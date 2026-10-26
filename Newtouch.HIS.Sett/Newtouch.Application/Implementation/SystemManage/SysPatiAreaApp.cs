@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取条件下病区下拉框
+        /// Lấy dòng vụ dư ới khu bệnh hộp thả xuống 
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

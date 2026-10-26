@@ -19,16 +19,16 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         private readonly IDischargeSettleDmnService _dischargeSettleDmnService;
 
         /// <summary>
-        /// 获取(计费和已退合计的)计费明细（包括治疗项目和非治疗项目）
+        /// Lấy(tính phí và đã hoàn tổng cộng của) tính phí chi tiết(bao gồm hạng mục điều trị và không phải hạng mục điều trị)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         public InpatientSettPatStatusDetailDto InpatientRefundQuery(string zyh, DateTime? kssj, DateTime? jssj, string ks = null, string xmlb = null, string xmmc = null)
         {
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetInpatientPatInfo(zyh);
 
-            // 获取计费明细（包括：项目和药品）
+            // Lấy tính phí chi tiết(bao gồm:Hạng mục và thuốc)
             var settleItemsBo = GetInpatientRefundItemsDetailList(zyh, kssj, jssj, ks, xmlb, xmmc);
 
             var resultDto = new InpatientSettPatStatusDetailDto()
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 获取病人信息
+        /// Lấy thông tin bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 获取(计费和已退合计的)计费明细（包括治疗项目和药品）
+        /// Lấy(tính phí và đã hoàn tổng cộng của) tính phí chi tiết(bao gồm hạng mục điều trị và thuốc)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             var treatmentItemsList = _dischargeSettleDmnService.SelectWsfItemList(zyh,this.OrganizeId, kssj, jssj,ks);
             //zy_ypjfb
             var drugList = _dischargeSettleDmnService.SelectWsfDrugList(zyh, this.OrganizeId, kssj, jssj,ks);
-            //非治疗项目
+            // không phải hạng mục điều trị
             //var non_treatmentItemsList = _dischargeSettleDmnService.SelectNonTreatmentItemList(zyh, this.OrganizeId);
             var resultBo = new InpatientSettleItemBO()
             {
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             return resultBo;
         }
         /// <summary>
-        /// 获取(计费和已退合计的)计费明细（包括治疗项目和药品）
+        /// Lấy(tính phí và đã hoàn tổng cộng của) tính phí chi tiết(bao gồm hạng mục điều trị và thuốc)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             var treatmentItemsList = _dischargeSettleDmnService.SelectWsfItemList(zyh, this.OrganizeId, kssj, jssj, ks, xmlb, xmmc);
             //zy_ypjfb
             var drugList = _dischargeSettleDmnService.SelectWsfDrugList(zyh, this.OrganizeId, kssj, jssj, ks, xmlb, xmmc);
-            //非治疗项目
+            // không phải hạng mục điều trị
             //var non_treatmentItemsList = _dischargeSettleDmnService.SelectNonTreatmentItemList(zyh, this.OrganizeId);
             var resultBo = new InpatientSettleItemBO()
             {

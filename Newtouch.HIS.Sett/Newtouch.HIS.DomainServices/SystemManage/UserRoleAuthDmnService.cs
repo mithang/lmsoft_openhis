@@ -14,7 +14,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 用户角色权限 公用DmnService
+    /// ngư ời dùng vai trò quyền hạn 公 dùng DmnService
     /// </summary>
     public class UserRoleAuthDmnService : DmnServiceBase, IUserRoleAuthDmnService
     {
@@ -24,10 +24,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取用户已授权的角色列表（非root 非Administrator）
+        /// Lấy ngư ời dùng Đ ã ủy quyền củavai trò danh sách(không phải root không phải Administrator)
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="orgId">医疗机构Id</param>
+        /// <param name="orgid"> y tế cơ quanid</param>
         /// <returns></returns>
         public IList<SysRoleEntity> GetUserRoleList(string userId, string orgId)
         {
@@ -51,7 +51,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// Lấyvai trò liên kết ngư ời dùng (org)
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

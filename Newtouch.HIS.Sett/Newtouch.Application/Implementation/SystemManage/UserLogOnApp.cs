@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.SystemManage
         /// <param name="keyValue"></param>
         public void RevisePassword(string userPassword, string keyValue)
         {
-            var userLogOnEntity = _userLogOnRepository.FindEntity(p => p.F_UserId == keyValue);    //是UserId
+            var userLogOnEntity = _userLogOnRepository.FindEntity(p => p.F_UserId == keyValue);    //Là Userid
 
             if (userLogOnEntity == null)
             {

@@ -9,7 +9,7 @@ using Newtouch.Core.Common;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 角色App
+    /// Vai trò App
     /// </summary>
     public class RoleApp : AppBase, IRoleApp
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 组织机构 角色列表 带 分页
+        /// Tổ chức vai trò danh sách 带 分trang
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 删除实体
+        /// Xóa thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)
@@ -66,14 +66,14 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 提交保存
+        /// GửiLưu
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="permissionIds"></param>
         /// <param name="keyValue"></param>
         public void SubmitForm(SysRoleEntity roleEntity, string[] permissionIds, string keyValue)
         {
-            //主要是为了唯一主键
+            // chủ yếu là đ ể duy nhất khóa chính
             if (!string.IsNullOrEmpty(keyValue))
             {
                 roleEntity.Modify(keyValue);
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application
                 roleAuthorizeEntity.Create(true);
                 roleAuthorizeEntity.RoleId = roleEntity.Id;
                 roleAuthorizeEntity.ItemId = itemId;
-                roleAuthorizeEntity.zt = "1";   //始终1 有效
+                roleAuthorizeEntity.zt = "1";   //始终1 hiệu lực
                 if (moduledata.Find(t => t.Id == itemId) != null)
                 {
                     roleAuthorizeEntity.ItemType = 1;

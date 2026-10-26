@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 根据Code获取配置Value
+        /// theo Code lấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 根据Code获取配置Value
+        /// theo Code lấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 根据Code获取配置Value
+        /// theo Code lấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

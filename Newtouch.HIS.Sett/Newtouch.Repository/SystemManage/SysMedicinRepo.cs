@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.Repository.SystemManage
 {
     /// <summary>
-    /// 系统药品
+    /// Hệ thốngThuốc
     /// </summary>
     public class SysMedicinRepo : RepositoryBase<SysMedicineVEntity>, ISysMedicinRepo
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 根据药品Code获取dlCode
+        /// theo thuốcCode LấydlCode
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取药品实体
+        /// LấyThuốcThực thể
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>

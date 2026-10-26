@@ -16,24 +16,24 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation.OutpatientManage.MzBespeakRegisterProcess
 {
     /// <summary>
-    /// 预约挂号处理
+    /// Đ ặt lịch đ ăng ký khám xử lý
     /// </summary>
     public class MzBespeakRegisterProcess : ProcessorFun<BespeakRegisterParamDTO>
     {
         private readonly IOutpatientRegistRepo _outpatientRegistRepo;
 
         /// <summary>
-        /// 已预约挂号
+        /// Đ ãĐ ặt lịch đ ăng ký khám
         /// </summary>
         private List<MzBespeakRegisterQueryResponseDTO> _mzyygh;
 
         /// <summary>
-        /// 预约挂号执行策略
+        /// Đ ặt lịch đ ăng ký khám thực hiện 策略
         /// </summary>
         private List<ICommitStrategy> _strategy;
 
         /// <summary>
-        /// 门诊挂号
+        /// Đ ăng ký khám ngoại trú
         /// </summary>
         private readonly MzBespeakRegisterVO _mzBespeakRegisterVo;
 
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Application.Implementation.OutpatientManage.MzBespeakRegi
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         /// <param name="actResult"></param>
         protected override void BeforeAction(ActResult actResult)
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Application.Implementation.OutpatientManage.MzBespeakRegi
         }
 
         /// <summary>
-        /// 执行
+        /// thực hiện 
         /// </summary>
         /// <param name="actResult"></param>
         protected override void Action(ActResult actResult)
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Application.Implementation.OutpatientManage.MzBespeakRegi
         }
 
         /// <summary>
-        /// 后处理
+        /// Hậu xử lý
         /// </summary>
         /// <param name="actResult"></param>
         protected override void AfterAction(ActResult actResult)

@@ -3,18 +3,18 @@
 namespace Newtouch.HIS.Sett.Request.Patient
 {
     /// <summary>
-    /// 患者基本信息查询请求参数
+    /// Bệnh nhân cơ bản thông tintra cứu yêu cầu tham số
     /// </summary>
     public class PatientBaseInfoQueryRequest : RequestBase
     {
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
     }

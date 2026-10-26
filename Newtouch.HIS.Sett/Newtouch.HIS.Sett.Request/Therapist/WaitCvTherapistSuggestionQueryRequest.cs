@@ -5,24 +5,24 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Therapist
 {
     /// <summary>
-    /// 待转换治疗建议 查询
+    /// chờ chuyển 换 điều trị đ ề xuất tra cứu
     /// </summary>
     public class TherapistSuggestionQueryRequest : OrgRequestBase
     {
         /// <summary>
-        /// 病人类型 1门诊 2住院
+        /// Loại bệnh nhân 1Ngoại trú 2Nhập viện
         /// </summary>
         [Required]
         public string brlx { get; set; }
 
         /// <summary>
-        /// 门诊住院号
+        /// Ngoại trú số nhập viện
         /// </summary>
         [Required]
         public string mzzyh { get; set; }
 
         /// <summary>
-        /// 开立的起始时间筛选
+        /// 开立của起始thời gian lọc
         /// </summary>
         [Required]
         public DateTime? startTime { get; set; }

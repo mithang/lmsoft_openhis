@@ -9,12 +9,12 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
     public class DepartmentResp
     {
         /// <summary>
-        /// 科室名称
+        /// KhoaTên
         /// </summary>
         public string Dept { get; set; }
 
         /// <summary>
-        /// 可是编号
+        /// có thể là số hiệu
         /// </summary>
         public string DeptName { get; set; }
     }

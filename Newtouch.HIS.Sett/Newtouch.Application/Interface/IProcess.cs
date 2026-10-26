@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 处理方法
+    /// Xử lý Phư ơng thức
     /// </summary>
     public interface IProcess
     {
         /// <summary>
-        /// 处理过程
+        /// Xử lý quá trình 
         /// </summary>
         /// <returns></returns>
         ActResult Process();

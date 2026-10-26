@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             {
                 if (_userModel == null)
                 {
-                    _userModel = OperatorProvider.GetCurrent();//获取当前登录用户对象
+                    _userModel = OperatorProvider.GetCurrent();//Lấykhi trư ớc đ ăng nhập ngư ời dùng Đ ối tư ợng
                 }
                 return _userModel;
             }
@@ -40,11 +40,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
         public DataTable zffsDt = new DataTable();
         public List<FinanceReceiptEntity> newFphOrSj = new List<FinanceReceiptEntity>();
-        public readonly IFinanceReceiptRepo _finRecRepos; //收据凭证号记录
+        public readonly IFinanceReceiptRepo _finRecRepos; //Số chứng từ biên lai bản ghi 
         public List<OutpatientRegistNonAttendanceEntity> ghjsDt = new List<OutpatientRegistNonAttendanceEntity>();
 
         /// <summary>
-        /// 收款支付方式
+        /// thu tiền phư ơng thức thanh toán 
         /// </summary>
         public DataTable ZffsDt
         {
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         public string kh = string.Empty;
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string Kh
         {
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         public bool isReturnAll = false;
 
         /// <summary>
-        /// 是否全退
+        /// Có hay khôngHoàn toàn bộ
         /// </summary>
         public bool IsReturnAll
         {
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         private int jsnm = 0;
 
         /// <summary>
-        /// 门诊结算
+        /// Quyết toán ngoại trú
         /// </summary>
         public int Jsnm
         {
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         private List<string> listSql = new List<string>();
 
         /// <summary>
-        /// 需退费插入对应表信息
+        /// 需hoàn phí chèn bảng tư ơng ứng thông tin
         /// </summary>
         public List<string> ListSql
         {
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         public JS_ENTITY accountEntity = new JS_ENTITY();
 
         /// <summary>
-        /// 需退费插入结算信息
+        /// 需hoàn phí chèn thông tin quyết toán
         /// </summary>
         public JS_ENTITY AccountEntity
         {
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         public bool isChangeBrxz = false;
 
         /// <summary>
-        /// 是否自费转医保
+        /// Có hay không tự trả chuyển BHYT
         /// </summary>
         public bool IsChangeBrxz
         {
@@ -155,10 +155,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             get { return jszffsArray; }
         }
 
-        //收款结算支付方式
+        // thu tiền quyết toán phư ơng thức thanh toán 
         private List<tbl_mz_jszffs_Ex> jszffsExListForSK = new List<tbl_mz_jszffs_Ex>();
 
-        //结算支付方式
+        //Quyết toán phư ơng thức thanh toán 
         private List<tbl_mz_jszffs_Ex> jszffsExList = new List<tbl_mz_jszffs_Ex>();
 
         private string kahao;
@@ -177,11 +177,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
         public List<GridViewMx> GetGridViewMx(int jsnm)
         {
-            /// 门诊项目明细
+            /// Hạng mục ngoại trú chi tiết
             var data = _RefundService.GetMz_xmRecordsByJsnm(jsnm);
-            /// 门诊挂号项目明细
+            /// Đ ăng ký khám ngoại trú hạng mụcchi tiết
             var data2 = _RefundService.GetMz_ghxmRecordsByJsnm(jsnm);
-            /// 门诊处方明细
+            /// Chi tiết đ ơn thuốc ngoại trú
             var data3 = _RefundService.GetMz_cfmxRecordsByJsnm(jsnm);
             int id = 0;
             data.ForEach(p =>
@@ -224,7 +224,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         public bool btnReturn(string kh, List<GridViewMx> GridViewMxList, int jsnm, out bool isReturnAll)
         {
@@ -272,7 +272,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             if (tblMzJs != null)
             {
-                //除挂号之外全部退费
+                //除Đ ăng ký khám của ngoài tất cả hoàn phí
                 var MZJS = GetMZJSByJsnm(jsnm);
                 var tmpDr = MZJS[0];
                 int tmpGhnm = tmpDr.GHNM;
@@ -292,7 +292,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 DataTable zffsDt = _RefundService.GetMzJszffsForJsnm(tblMzJs.jsnm);
 
 
-                //设置全退，半退，不退明细list
+                //Đ ặt hoàn toàn bộ,hoàn một phần, không hoàn chi tiếtlist
 
                 getRecordWithCategory(GridViewMxList);
                 JS_ENTITY accountEntityAll = getAccountList(2, tblMzJs, tmpDr);
@@ -304,11 +304,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 isReturnAll = (resultList["any"].Count == 0 && resultList["nothing"].Count == 0);
 
 
-                //记录退号表
+                // bản ghi trả lại số bảng 
                 List<OutpatientRegistNonAttendanceEntity> ghjsDt = new List<OutpatientRegistNonAttendanceEntity>();
-                if (fapiao.jslx == "0" && fapiao.zje > 2.0M) //退磁卡费，工本费不插退号记录
+                if (fapiao.jslx == "0" && fapiao.zje > 2.0M) // trả lại phí thẻ từ,phí làm thẻ không 插 trả lại số bản ghi 
                 {
-                    //获取挂号结算信息
+                    //LấyĐ ăng ký khám thông tin quyết toán
                     ghjsDt = getGhjsByGhnm(tmpGhnm);
 
                 }
@@ -366,13 +366,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             {
 
 
-                //加床记账半退打凭证(清单)
+                //加床ghi sổ hoàn một phần打凭证(清 đ ơn)
                 //if (mzJs.jslx == "1" && mzJs.jylx == "14" && mzJs.jch != 0)
                 //{
                 //    flag = false;
                 //}
 
-                //半退则开始获取发票号
+                //Hoàn một phần thì bắt đ ầu lấy số hóa đ ơn
                 bool flag = true;
 
                 // List<string> fpsql = new List<string>();
@@ -381,7 +381,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     lblFPHNew =
                         _IOutPatientDmnService.GetInvoiceListByEmpNo(this.UserIdentity.UserCode, this.OrganizeId);
-                    //插入/更新cw_fp
+                    //Chèn/Cập nhậtcw_fp
 
                     if (!_RefundService.CheckFPH(lblFPHNew))
                     {
@@ -405,11 +405,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                         //fpsqlList.AddRange(fpsql); 
                         if (type == "insert")
                         {
-                            _finRecRepos.AddReceiptInfo(sjEntity, this.OrganizeId); // 添加收据凭证号
+                            _finRecRepos.AddReceiptInfo(sjEntity, this.OrganizeId); // Thêm số chứng từ biên lai
                         }
                         if (type == "update")
                         {
-                            _finRecRepos.UpdateReceiptInfo(sjEntity, sjEntity.cwsjId); //修改收据凭证号
+                            _finRecRepos.UpdateReceiptInfo(sjEntity, sjEntity.cwsjId); //Sửa số chứng từ biên lai
                         }
                     }
                     else
@@ -424,42 +424,42 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             lblSsk = (mzJs.xjzf).ToString("0.00");
 
 
-            //第一次请求交易，判断账户是否封存
+            //Thứ một lần yêu cầu giao dịch, phán đoán tài khoản có hay không phong tỏa 
 
-            if (false == isReturnAll) //部分退需要重新申请医保
+            if (false == isReturnAll) //Một phần trả lại cần lại xin BHYT
             {
-                //先请求交易,在计算交易
+                // trư ớc yêu cầu giao dịch,tại tính giao dịch 
                 newMzJs = applyBackPart(accountEntity, out sqxh, out jsdlList);
                 newMzJs.zh = mzJs.zh;
             }
 
 
-            //初始化数据
+            //初始化dữ liệu
 
-            //初始化控件
+            //初始化控 vụ 
             // initControl();
-            //加载数据
+            // tải dữ liệu
             loadData(mzJs, isReturnAll, mzJs.jsnm);
 
 
-            //全部退款
+            //Tất cả hoàn tiền
             // try
             // {
             bool result = isAlreadyComfirmTF;
-            mzJs.CreateTime = DateTime.Now; //获取系统服务器时间
-            mzJs.CreatorCode = userModel.UserCode; //记录退费操作员
+            mzJs.CreateTime = DateTime.Now; //Lấy hệ thống máy chủ thời gian
+            mzJs.CreatorCode = userModel.UserCode; // bản ghi hoàn phí thao tác viên 
 
-            //    pos机全额退费
+            // pos máy 全额hoàn phí
 
             #region   pos机全额退费
 
-            //结算支付方式记录（退款方式）
+            //Quyết toán phư ơng thức thanh toán bản ghi (Phư ơng thức hoàn tiền)
             jszffsArray = getJszffsEntityForSK();
             if (JszffsArray.Count == 1)
             {
                 if (JszffsArray.Find(p => p.xjzffs == "1") != null)
                 {
-                    //pos方法
+                    //pos Phư ơng thức
                     if (PosJY(kahao, mzJs, mzJs.xjzf, isReturnAll) == false)
                     {
                         //    this.Close();
@@ -469,7 +469,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             }
             else
             {
-                //多退款方式,半退pos
+                // nhiều Phư ơng thức hoàn tiền,hoàn một phầnpos
                 if (JszffsArray.Count > 1)
                 {
                     OutpatientSettlementPaymentModelEntity mz_jszf = JszffsArray.Find(p => p.xjzffs == "1");
@@ -491,30 +491,30 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             result = fullBack(Kh, accountEntity.isGh, mzJs, ghjsDt);
 
 
-            //第二次请求交易
-            if (false == isReturnAll) //部分退需要重新申请医保
+            //Thứ二 lần yêu cầu giao dịch 
+            if (false == isReturnAll) //Một phần trả lại cần lại xin BHYT
             {
-                //先请求交易,在计算交易
+                // trư ớc yêu cầu giao dịch,tại tính giao dịch 
                 newMzJs = applyBackPart(accountEntity, out sqxh, out jsdlList);
                 newMzJs.zh = mzJs.zh;
-                //退款后再次请求医保计算现金支付
+                //Hoàn tiền sau lại lần nữa yêu cầu BHYTtínhthanh toán tiền mặt
                 YBTKloadData();
             }
 
 
 
 
-            //报价器退款
+            //报价 thiết bị hoàn tiền
             //string setFileName = (new Common.ConfigFile.AppConfig()).AppConfigGet("INIFileName");   // ConfigurationManager.AppSettings["INIFileName"].ToString();
             //string fileName = System.IO.Path.GetFullPath("../../") + "\\" + setFileName + ".ini";
             //IniFile Ini = new IniFile(fileName);
-            //string BJQpzStr = Ini.IniReadValue("本机参数", "BJQPZparm");
+            //string BJQpzStr = Ini.IniReadValue(" bản máy tham số", "BJQPZparm");
             //decimal tk = Common.Tools.AnyToDecimal(lblYtk.Text);
             //BF<BjqInterface>.Instance.mz_tk(tk, ClsCurrentUserInfo.UserLogin, BJQpzStr);
 
             if (jszffsExListForSK.Count < 2 && this.posTxj == false && false == isReturnAll)
             {
-                //多支付方式弹出退款界面
+                // nhiều phư ơng thức thanh toán 弹出hoàn tiền界面
                 //this.btnOk.PerformClick();
                 btnOk_Click(newMzJs, accountEntity, mzJs, jsdlList);
             }
@@ -522,9 +522,9 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 按全退，半退，不退取明细
+        /// theo hoàn toàn bộ,hoàn một phần, không hoàn 取chi tiết
         /// </summary>
-        /// <returns>全退，半退，不退明细</returns>
+        /// <returns>Hoàn toàn bộ,hoàn một phần, không hoàn chi tiết</returns>
         private void getRecordWithCategory(List<GridViewMx> GridViewMxList)
         {
             resultList["all"].Clear();
@@ -540,13 +540,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 decimal.TryParse(string.Format("{0}", GridViewMx.RETURNS_SL), out tmpReturnSl);
                 if (tmpSl == tmpReturnSl && GridViewMx.IS_RETURN == "true")
                 {
-                    resultList["all"].Add(GridViewMx); //全退
+                    resultList["all"].Add(GridViewMx); //Hoàn toàn bộ
                 }
-                if ((tmpSl > tmpReturnSl) && GridViewMx.IS_RETURN == "true") //半退
+                if ((tmpSl > tmpReturnSl) && GridViewMx.IS_RETURN == "true") //Hoàn một phần
                 {
                     resultList["any"].Add(GridViewMx);
                 }
-                else if ("false" == GridViewMx.IS_RETURN) //不退
+                else if ("false" == GridViewMx.IS_RETURN) // không hoàn 
                 {
                     resultList["nothing"].Add(GridViewMx);
                 }
@@ -554,14 +554,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 取半退，不退的结算信息 （1），取全退的结算信息（2）
+        /// 取hoàn một phần, không hoàn của thông tin quyết toán (1),取hoàn toàn bộ của thông tin quyết toán(2)
         /// </summary>
         /// <returns></returns>
         private JS_ENTITY getAccountList(int flag, OutpatientSettlementEntity fapiao, MZJS tmpDr)
         {
             int tmpGhnm;
 
-            JS_ENTITY returnAny = new JS_ENTITY(); //半退的不退部分
+            JS_ENTITY returnAny = new JS_ENTITY(); //Hoàn một phần của không hoàn một phần
             returnAny.patid = fapiao.patid;
             if (tmpDr != null)
             {
@@ -596,7 +596,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 DataRow tmpDataRow = GridViewMx.tag as DataRow;
                 infoSet = string.Format("{0}", GridViewMx.InfoSet);
 
-                dj = GridViewMx.DJ.ToDecimal(); //加服务费单价
+                dj = GridViewMx.DJ.ToDecimal(); //加 phí dịch vụ Đ ơn giá
                 fwfdj = GridViewMx.FWFDJ.ToDecimal();
                 je = GridViewMx.JE.ToDecimal();
                 sl = GridViewMx.SL.ToDecimal();
@@ -618,7 +618,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 }
                 //tmpJsxm.mxbm = string.Empty;
 
-                //成组号和处方号
+                //成 nhóm số và số đ ơn thuốc
                 tmpJsxm.czh = GridViewMx.czh;
                 tmpJsxm.cfh = GridViewMx.CHUFANGHAO;
 
@@ -639,7 +639,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 tmpJsxm.Xmbm = string.Format("{0}", tmpDataRow["NBDL"]);
                 returnAny.jsxmList.Add(tmpJsxm);
 
-                //添加挂号内码list，过滤重复记录
+                //Th êmĐ ăng ký khám mã nội bộlist, qua 滤 trùng lặp bản ghi 
                 int.TryParse(string.Format("{0}", tmpDataRow["GHNM"]), out tmpGhnm);
                 if (returnAny.ghnmList.Contains(tmpGhnm) == false)
                 {
@@ -650,7 +650,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 部分退请求医保交易
+        /// Một phần trả lại yêu cầu BHYT giao dịch 
         /// </summary>
         /// <param name="accountEntity"></param>
         /// <param name="sqxh"></param>
@@ -661,18 +661,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             bool ybError = true;
             OutpatientSettlementEntity newMzJs = getMzJs(accountEntity, true, out ybError, out sqxh, out jsdl,
                 out mzjsReq, out mzssRep);
-            //如果请求医保交易失败，则转自费
+            //Nếu yêu cầu BHYT giao dịch thất bại,thì chuyển tự trả
             //if (ybError)
             //{
             //  
-            //    //if (DialogHelper.Ask_OkCancel("医保交易失败，是否要转自费交易？") == DialogResult.OK)
+            // //if (DialogHelper.Ask_OkCancel("BHYT giao dịch thất bại,có hay không cần chuyển tự trả giao dịch ？") == DialogResult.OK)
             //    //{
             //    FrmBrxzEdit zfForm = new FrmBrxzEdit();
             //    zfForm.currBrxzEntity = BF<xt_brxz>.Instance.GetEntityByID(accountEntity.brxzbh.ToString());
             //    zfForm.brnm = accountEntity.brnm;
             //    if (zfForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             //    {
-            //        jxyb = zfForm.jxyb;//继续医保交易
+            // jxyb = zfForm.jxyb;// tiếp tục BHYT giao dịch 
             //        if (!jxyb)
             //        {
             //            accountEntity.brxzbh = zfForm.currBrxzEntity.brxzbh;
@@ -683,7 +683,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //    else
             //    {
             //        jxyb = false;
-            //        throw new FailedCodeException("医保交易失败!");
+            // throw new FailedCodeException("BHYT giao dịch thất bại!");
             //    }
             //    //}
             //}
@@ -693,17 +693,17 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 需要结算的项目信息
+        /// CầnQuyết toánCủaHạng mụcThông tin
         /// </summary>
         /// <param name="jsEntity"></param>
-        /// <param name="needCalJm">是否需要计算减免</param>
+        /// <param name="needCalJm">Có hay khôngCầnTínhGiảm trừ</param>
         /// <param name="ybError"></param>
         /// <returns></returns>
         public OutpatientSettlementEntity getMzJs(JS_ENTITY jsEntity, bool needCalJm, out bool ybError, out string sqxh,
             out List<OutpatientSettlementCategoryEntity> jsdl, out NB_INTERFACE_MZJS_REQ msjsReq,
             out NB_INTERFACE_MZSS_REP mzssRep)
         {
-            //不做减免功能
+            // không 做giảm trừ功 có thể 
             //if (needCalJm)
             //{
             //    if (jsEntity.jsxmList == null)
@@ -713,7 +713,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //    if (brxz == null)
             //        throw new FailedCodeException("OUTPAT_PATIENT_NATURE_IS_NOT_EXIST");
 
-            //    计算收费算法：收费项目、减免费用、收费算法
+            // Tínhthu phí thuật toán:Hạng mục thu phí, chi phí giảm trừ, thu phí thuật toán 
 
             //    decimal outJmbl = 0m;
             //    decimal outJmje = 0m;
@@ -729,7 +729,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 需要结算的项目信息
+        /// CầnQuyết toánCủaHạng mụcThông tin
         /// </summary>
         /// <param name="jsEntity"></param>
         /// <returns></returns>
@@ -740,26 +740,26 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             msjsReq = null;
             mzssRep = null;
 
-            //根据病人性质，得到访问医保接口的方式(该病人性质仅用于判断访问哪个医保接口) 
+            // theo tính chất bệnh nhân, nhận đ ược truy cập BHYTgiao diện của phư ơng thức (này tính chất bệnh nhân chỉ dùng đ ể phán đoán truy cập cái nào BHYTgiao diện) 
             var brxz = _RefundService.GetBrxzByBrbh(jsEntity.brxz);
             if (brxz == null)
                 throw new FailedCodeException("HOSP_PATIENT_NATURE_IS_NOT_EXIST");
 
             //if (brxz.ybjylx == Constants.ybjylx.ybjylx6)
             //{
-            //    //新农合交易
+            // // BHYT nông thôn mới giao dịch 
             //    return getMzJsNb(jsEntity, brxz, out ybError, out sqxh, out jsdl, out msjsReq, out mzssRep);
             //}
             //else
             //{
-            //    //自费及医保交易
+            // //Tự trả và BHYT giao dịch 
             //    return getMzJs(jsEntity, brxz, out ybError, out sqxh, out jsdl);
             //}
             return getMzJs(jsEntity, brxz, out ybError, out sqxh, out jsdl);
         }
 
         /// <summary>
-        /// 需要结算的项目信息
+        /// CầnQuyết toánCủaHạng mụcThông tin
         /// </summary>
         /// <param name="jsEntity"></param>
         /// <returns></returns>
@@ -777,45 +777,45 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 throw new FailedCodeException("GHNM_REQUIRED");
 
             OutpatientSettlementEntity js = new OutpatientSettlementEntity();
-            //不同病人性质和门急诊不能一起结算
+            // khác nhau tính chất bệnh nhân và cửa cấp cứu không thể cùng nhau quyết toán
 
-            /// 根据挂号内码获取挂号信息
+            /// theo Đ ăng ký khám mã nội bộ lấy thông tin đ ăng ký khám
             List<OutpatientRegistEntity> ghList = _RefundService.getGhs(jsEntity.ghnmList);
 
             if (jsEntity.ghnmList.Count != ghList.Count)
                 throw new FailedCodeException("MSG_ERROR");
 
-            //不同病人性质和门急诊不能一起结算
+            // khác nhau tính chất bệnh nhân và cửa cấp cứu không thể cùng nhau quyết toán
             checkGhjs(ghList);
 
-            //根据挂号内码获取挂号信息
+            // theo Đ ăng ký khám mã nội bộ lấy thông tin đ ăng ký khám
             OutpatientRegistEntity gh = ghList[0];
 
-            //根据病人内码获取病人信息
+            //Lấy thông tin bệnh nhân theo mã nội bộ bệnh nhân
             SysPatientBasicInfoEntity brjbxx = _RefundService.GetBrjbxxByPatid(jsEntity.patid);
             if (brjbxx == null)
                 throw new FailedCodeException("HOSP_SYSPATIENT_BASICINFO_IS_NOT_EXIST");
 
-            ////根据病人性质，得到访问医保接口的方式(该病人性质仅用于判断访问哪个医保接口) 
+            //// theo tính chất bệnh nhân, nhận đ ược truy cập BHYTgiao diện của phư ơng thức (này tính chất bệnh nhân chỉ dùng đ ể phán đoán truy cập cái nào BHYTgiao diện) 
             //tbl_xt_brxz brxz = BF<xt_brxz>.Instance.GetEntityByID(jsEntity.brxzbh.ToString());
             //if (brxz == null)
-            //    throw new FailedCodeException("该病人的病人性质在系统中不存在，请确认！");
+            // throw new FailedCodeException(" này bệnh nhân của tính chất bệnh nhân tại hệ thống trong không tồn tại tại,vui lòng xác nhận！");
 
-            //因为存在组合病人性质，所以不做该判断
-            //如果不存在医保与自费转换，当前病人性质必须与挂号相同
+            //因là tồn tại tại kết hợp tính chất bệnh nhân, vì vậy không 做 này phán đoán 
+            //Nếu không tồn tại tạiBHYTvà tự trả chuyển 换,khi trư ớc tính chất bệnh nhân phải và đăng ký khám giống nhau 
             //if (!jsEntity.isZh)
             //{
             //    if (gh.brxz != brxz.brxz)
-            //        throw new FailedCodeException("当前病人性质与挂号病人性质不一致，请确认！");
+            // throw new FailedCodeException("Khi trư ớc tính chất bệnh nhân và đăng ký khám tính chất bệnh nhân không nhất quán,vui lòng xác nhận！");
             //}
             //if (!jsEntity.isGh)
             //{
-            //    //计算服务费
+            // //Tính phí dịch vụ 
             //    CMS_Business cb = new CMS_Business();
             //    cb.CalFwf(brxz.brxz, jsEntity.jsxmList);
             //}
 
-            //根据收费项目和病人收费算法，得到计算结果集
+            // theo hạng mục thu phí và bệnh nhânthu phí thuật toán, nhận đ ược tính kết quả tập 
             Brsfsf_ReturnValue_YBANDFYB returnValue;
             getBrsfResultNB(jsEntity, brxz.brxz, out returnValue);
 
@@ -824,44 +824,44 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             js.patid = brjbxx.patid;
             js.brxz = brxz.brxz;
             js.jslx = jsEntity.jslx;
-            js.zlfy = returnValue.zlHj + returnValue.sfzlHj; //自理费用
-            js.zffy = returnValue.sfzfHj; //自负费用
-            js.flzffy = returnValue.flzfHj; //分类自负费用
-            js.jzfy = returnValue.jzfyHj; //记账费用，如果是医保病人，为医保返回的结果
-            js.jmje = returnValue.jmjeHj; //减免费用
-            js.jszt = (int)Constants.jsztEnum.YJ; //结算状态
+            js.zlfy = returnValue.zlHj + returnValue.sfzlHj; //Chi phí tự chi trả
+            js.zffy = returnValue.sfzfHj; //Chi phí tự trả
+            js.flzffy = returnValue.flzfHj; //Chi phí tự trả theo phân loại
+            js.jzfy = returnValue.jzfyHj; //Phí ghi sổ,nếu là BHYTbệnh nhân,là BHYTquay lại của kết quả
+            js.jmje = returnValue.jmjeHj; //Chi phí giảm trừ
+            js.jszt = (int)Constants.jsztEnum.YJ; //Trạng thái quyết toán
 
             js.xjzffs = string.Empty;
             // js.jch = jsEntity.jch;
 
-            //现金支付
+            //Thanh toán tiền mặt
             decimal ssk = 0m;
-            //现金误差
+            //Sai lệch tiền mặt
             decimal difference = 0m;
-            //医保返回自负结果
+            //BHYTquay lại tự trả kết quả
             decimal ybzf = 0m;
-            //医保返回可记账费用
+            //BHYTquay lại có thể phí ghi sổ
             decimal jzfy = 0m;
-            //应收款
+            //Số tiền phải thu
             decimal ysk = 0m;
 
             string ybjylx = brxz.ybjylx;
-            //金额为0，不访问医保接口
+            //Số tiền là0, không truy cập BHYTgiao diện
 
             ybjylx = Constants.ybjylx.ybjylx0;
             //if (returnValue.ybjsfwze == 0 && returnValue.jyze == 0)
             //{
             //    ybjylx = Constants.ybjylx.ybjylx0;
             //}
-            ////如果是家床且为挂号，则不访问医保接口,通过金额判断
+            ////Nếu là giư ờng gia đ ình và là đăng ký khám,thì không truy cập BHYTgiao diện, thông qua số tiền phán đoán 
             //if (ybjylx == Constant.ybjylx.ybjylx3 && jsEntity.isGh)
             //{
             //    ybjylx = Constant.ybjylx.ybjylx0;
             //}
-            //医保病人，并且是造口袋项目，进行造口袋交易
+            //BHYTbệnh nhân,và là造口袋hạng mục, tiến hành 造口袋 giao dịch 
             //if (ybjylx != Constants.ybjylx.ybjylx0)
             //{
-            //    //造口袋和非造口袋项目必须分开结算
+            // //造口袋và không phải 造口袋hạng mục phải tách ra quyết toán
             //    bool zkd = isZkd(jsEntity);
             //    if (zkd)
             //    {
@@ -871,7 +871,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             switch (ybjylx)
             {
-                //不交易
+                // không giao dịch 
                 case Constants.ybjylx.ybjylx0:
                     ysk = returnValue.totalHj;
                     jylx = Constants.ybDealLB.yb_deal_wjy;
@@ -879,14 +879,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     #region
 
-                    //普通交易
+                    //Thông thư ờng giao dịch 
                     //case Constants.ybjylx.ybjylx1:
                     //    ybptjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh, out isScgh);
-                    //    //记账费用
+                    //    //Phí ghi sổ
                     //    js.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //    //应收款
+                    //    //Số tiền phải thu
                     //    ysk = returnValue.xjHj + ybzf;
-                    //    //如果是伤残普通挂号，挂号费为记账
+                    // //Nếu là đ ăng ký khám thông thư ờng cho ngư ời khuyết tật,phí đ ăng ký khám đ ược ghi sổ
                     //    if (isScgh)
                     //    {
                     //        js.zlfy = js.zlfy - returnValue.YB.fybjsfwgrzf;
@@ -902,14 +902,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    }
                     //    break;
 
-                    ////大病交易
+                    ////大病 giao dịch 
                     //case Constants.ybjylx.ybjylx2:
                     //    ybdbjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh, out isScgh);
-                    //    //记账费用
+                    //    //Phí ghi sổ
                     //    js.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //    //应收款
+                    //    //Số tiền phải thu
                     //    ysk = returnValue.xjHj + ybzf;
-                    //    //如果是伤残普通挂号，挂号费为记账
+                    // //Nếu là đ ăng ký khám thông thư ờng cho ngư ời khuyết tật,phí đ ăng ký khám đ ược ghi sổ
                     //    if (isScgh)
                     //    {
                     //        js.zlfy = js.zlfy - returnValue.YB.fybjsfwgrzf;
@@ -926,18 +926,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    }
                     //    break;
 
-                    ////家床交易
+                    //// giao dịch giư ờng gia đ ình 
                     //case Constants.ybjylx.ybjylx3:
-                    //    //家床交易总额(传给医保的)，账户余额，门诊自负段现金支付累计数，门诊自负段定额
+                    // // giao dịch giư ờng gia đ ình 总额(truyền cho BHYTcủa),số dư tài khoản,tổng lũy kế tiền mặt đ ã trả đoạn tự trả ngoại trú,Đ ịnh mức đoạn tự trả ngoại trú
                     //    decimal jc_Jyze = 0;
                     //    //decimal jc_zhye = 0, jc_mzzfdxjzfljs = 0, jc_mzzfdde = 0;
-                    //    //是否离休、在职配置的比例
+                    // //Có hay không nghỉ hưu, tại职cấu hình của tỷ lệ 
                     //    decimal jc_bl = 0;
                     //    if (jsEntity.jslx == "1")
                     //    {
-                    //        jc_Jyze = returnValue.jyze;//(包含了记账费用)                 
-                    //        //家床记账模拟交易
-                    //        //获取门诊自负段现金支付累计数、门诊自负段定额
+                    // jc_Jyze = returnValue.jyze;//(bao gồm phí ghi sổ) 
+                    // // giư ờng gia đ ình ghi sổ mô phỏng giao dịch 
+                    // //Lấy tổng lũy kế tiền mặt đ ã trả đoạn tự trả ngoại trú, đ ịnh mức đoạn tự trả ngoại trú
                     //        //DataTable dtYbzh = BLLFactory<yb_brzhbz>.Instance.getYBbrzhxx(brjbxx.kh);
                     //        //if (dtYbzh != null)
                     //        //{
@@ -948,22 +948,22 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //        //    }
                     //        //}
 
-                    //        //模拟医保算法update 51200 20150921
-                    //        //jzfy = (jc_Jyze - jc_mzzfdxjzfljs - jc_mzzfdde) * jc_bl;//医保可报记账费用
-                    //        jzfy = jc_Jyze * (1 - jc_bl);//医保可报记账费用
+                    // // mô phỏng BHYT thuật toán update 51200 20150921
+                    //        //jzfy = (jc_Jyze - jc_mzzfdxjzfljs - jc_mzzfdde) * jc_bl;//Phí ghi sổ BHYT có thể thanh toán
+                    //        jzfy = jc_Jyze * (1 - jc_bl);//Phí ghi sổ BHYT có thể thanh toán
                     //        ybzf = jc_Jyze - jzfy;
-                    //        //记账费用
+                    //        //Phí ghi sổ
                     //        js.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //        //应收款
+                    //        //Số tiền phải thu
                     //        ysk = returnValue.xjHj + ybzf;
                     //        jylx = Constants.ybDealLB.yb_deal_jcjz;
                     //    }
                     //    else
                     //    {
                     //        ybjcjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, jsEntity.jch, out ybzf, out jzfy, out ybError, out sqxh);
-                    //        //记账费用
+                    //        //Phí ghi sổ
                     //        js.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //        //应收款
+                    //        //Số tiền phải thu
                     //        ysk = returnValue.xjHj + ybzf;
 
                     //        jylx = Constants.ybDealLB.yb_deal_jcsf;
@@ -971,12 +971,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     //    break;
 
-                    ////工伤交易
+                    ////工伤 giao dịch 
                     //case Constants.ybjylx.ybjylx4:
                     //    ybgsjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh);
-                    //    //记账费用
+                    //    //Phí ghi sổ
                     //    js.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //    //应收款
+                    //    //Số tiền phải thu
                     //    ysk = returnValue.xjHj + ybzf;
                     //    if (jsEntity.isGh)
                     //    {
@@ -988,12 +988,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    }
                     //    break;
 
-                    ////造口袋交易
+                    ////造口袋 giao dịch 
                     //case "ZKD":
                     //    ybmxxmjy(jsEntity.isGh, brjbxx, gh, brxz, jsEntity, out ybzf, out jzfy, out ybError, out sqxh);
-                    //    //记账费用
+                    //    //Phí ghi sổ
                     //    js.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //    //应收款
+                    //    //Số tiền phải thu
                     //    ysk = returnValue.xjHj + ybzf;
 
                     //    jylx = Constants.ybDealLB.yb_deal_sssf;
@@ -1001,18 +1001,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     #endregion
             }
-            //交易类型
+            // giao dịch loại 
             js.jylx = ((int)jylx).ToString();
-            //自负费用
+            //Chi phí tự trả
             js.zffy += ybzf;
             Ext.get5s6r(ysk, out ssk, out difference);
-            //现金支付
+            //Thanh toán tiền mặt
             js.xjzf = ssk;
-            //现金误差
+            //Sai lệch tiền mặt
             js.xjwc = difference;
-            //总金额:自理费用+自负费用+分类自负费用+记帐费用
+            //Tổng số tiền:Chi phí tự chi trả+Chi phí tự trả+Chi phí tự trả theo phân loại+Phí ghi sổ
             js.zje = js.zlfy + js.zffy + js.flzffy + js.jzfy;
-            //获取结算大类对象
+            //Lấy quyết toán loại lớn Đ ối tư ợng
             jsdl = getJsdl(js, returnValue);
 
             return js;
@@ -1020,21 +1020,21 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
 
         /// <summary>
-        /// 计算收费项目减免金额
-        /// 病人状态：1；--有效
-        /// 变更标志：0；--未变更
+        /// Tính hạng mục thu phí số tiền giảm trừ
+        /// Bệnh nhânTrạng thái:1;--Hiệu lực
+        /// thay đ ổi dấu hiệu:0;--chưa thay đ ổi 
         /// </summary>
-        /// <param name="parmBrxz">病人性质</param>
-        /// <param name="parmDl">大类</param>
-        /// <param name="parmSfxm">收费项目</param>
-        /// <param name="parmJe">金额</param>
-        /// <param name="outJmbl">减免比例</param>
-        /// <param name="outJmje">减免金额</param>
-        /// <returns>count:减免后金额</returns>
+        /// <param name="parmBrxz">Tính chất bệnh nhân</param>
+        /// <param name="parmDl"> loại lớn </param>
+        /// <param name="parmSfxm">Hạng mục thu phí</param>
+        /// <param name="parmJe">Số tiền</param>
+        /// <param name="outJmbl">Tỷ lệ giảm trừ</param>
+        /// <param name="outJmje">Số tiền giảm trừ</param>
+        /// <returns>count:Số tiền sau giảm trừ</returns>
         public decimal Calcjm(string parmBrxz, string parmDl, string parmSfxm, string parmJe, out decimal outJmbl,
             out decimal outJmje)
         {
-            //减免比例，减免金额，减免后的金额
+            //Tỷ lệ giảm trừ,số tiền giảm trừ,giảm trừ sau của số tiền
             decimal jmbl = 0, jmje = 0, count = 0;
             //  DataTable dt = new DataTable();
             // dt = BLLFactory<xt_brsfjm>.Instance.GetXT_brsfjm("brxz='" + parmBrxz + "' and sfxm='" + parmSfxm + "'");
@@ -1043,7 +1043,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             if (dt.Count > 0)
             {
                 jmbl = dt[0].jmbl.ToDecimal();
-                if (jmbl < 0) //定额自负
+                if (jmbl < 0) //Tự trả đ ịnh mức
                 {
                     count = parmJe.ToDecimal() + jmbl;
                     jmje = Math.Abs(jmbl);
@@ -1060,7 +1060,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 if (dt.Count > 0)
                 {
                     jmbl = dt[0].jmbl.ToDecimal();
-                    if (jmbl < 0) //定额自负
+                    if (jmbl < 0) //Tự trả đ ịnh mức
                     {
                         count = parmJe.ToDecimal() + jmbl;
                         jmje = Math.Abs(jmbl);
@@ -1078,7 +1078,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 多个挂号信息一起结算，不同病人性质和门急诊标志不能一起结算
+        /// nhiều thông tin đ ăng ký khám cùng nhau quyết toán, khác nhau tính chất bệnh nhân và cửa cấp cứu dấu hiệu không thể cùng nhau quyết toán
         /// </summary>
         /// <param name="ghList"></param>
         public void checkGhjs(List<OutpatientRegistEntity> ghList)
@@ -1105,37 +1105,37 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 根据收费项目和病人收费算法，得到计算结果集
+        /// theo hạng mục thu phí và bệnh nhânthu phí thuật toán, nhận đ ược tính kết quả tập 
         /// </summary>
         /// <param name="jsEntity"></param>
         /// <param name="brxz"></param>
         /// <param name="returnValue"></param>
         public void getBrsfResultNB(JS_ENTITY jsEntity, string brxz, out Brsfsf_ReturnValue_YBANDFYB returnValue)
         {
-            //需要结算的项目列表
+            //CầnQuyết toánCủaHạng mụcDanh sách
             List<jsxm_entity> xmList = jsEntity.jsxmList;
             returnValue = new Brsfsf_ReturnValue_YBANDFYB();
 
-            //上传医保和不上传医保项目
+            //Tải lênBHYTvà không tải lênBHYThạng mục
             List<jsxm_entity> xmListYB;
             List<jsxm_entity> xmListFYB;
 
-            //计算收费项目费用
+            //Tính hạng mục thu phí chi phí
             //List<SFXM_FYMX> sfxmFYBDict;
             //List<SFXM_FYMX> sfxmYBDict;
 
-            //病人算法返回计算的结果集
+            //Bệnh nhân thuật toán quay lại tính của kết quả tập 
             Brsfsf_ReturnValue returnValueYB;
             Brsfsf_ReturnValue returnValueFYB;
 
-            //获取要上传医保和不上传医保的大类
+            //Lấy cần tải lênBHYTvà không tải lênBHYTcủa loại lớn 
             getYBANDFYB(xmList, out xmListYB, out xmListFYB);
 
-            //上传和不上传医保收费项目合计
+            //Tải lên và không tải lênthu phí BHYThạng mục tổng cộng 
             getSfxmHj(xmListFYB);
             getSfxmHj(xmListYB);
 
-            //根据收费项目合计和病人收费算法计算
+            // theo hạng mục thu phí tổng cộng và bệnh nhânthu phí thuật toán tính
             //getBrsfResultNB(sfxmFYBDict, out returnValueFYB);
             //getBrsfResultNB(sfxmYBDict, out returnValueYB);
             getBrsfResult(xmListFYB, brxz, out returnValueFYB);
@@ -1143,14 +1143,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             returnValue.YB = returnValueYB;
             returnValue.FYB = returnValueFYB;
-            //暂不区分医保和非医保
+            // tạm thời không Quận分BHYTvà không phải BHYT
             //jsEntity.jsxmList.Clear();
             //jsEntity.jsxmList.AddRange(xmListYB);
             //jsEntity.jsxmList.AddRange(xmListFYB);
         }
 
         /// <summary>
-        /// 是否造口袋
+        /// Có hay không造口袋
         /// </summary>
         /// <returns></returns>
         public bool isZkd(JS_ENTITY jsEntity)
@@ -1180,11 +1180,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             else
                 return true;
 
-            // throw new FailedCodeException("造口袋项目与非造口袋项目不能一起结算！");
+            // throw new FailedCodeException("造口袋hạng mục và không phải 造口袋hạng mục không thể cùng nhau quyết toán！");
         }
 
         /// <summary>
-        /// 获取要上传医保和不上传医保的大类
+        /// Lấy cần tải lênBHYTvà không tải lênBHYTcủa loại lớn 
         /// </summary>
         /// <param name="xmList"></param>
         /// <param name="xmListYB"></param>
@@ -1195,7 +1195,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             xmListYB = new List<jsxm_entity>();
             xmListFYB = new List<jsxm_entity>();
 
-            //获取门诊配置：不上传医保大类
+            //Lấy ngoại trú cấu hình: không tải lênBHYT loại lớn 
 
             var entity = _sysConfigRepo.GetByCode(Constants.xtmzpz.DL_BSCYB, OperatorProvider.GetCurrent().OrganizeId);
             if (entity == null)
@@ -1214,14 +1214,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 dlDict.Add(dl, dl);
             }
 
-            //没有配置不上传医保
+            // không có cấu hình không tải lênBHYT
             if (struDl.Length == 0)
             {
                 xmListYB = xmList;
                 return;
             }
 
-            //根据大类区分是否上传医保
+            // theo loại lớn Quận分có hay không tải lênBHYT
             foreach (jsxm_entity xm in xmList)
             {
                 if (dlDict.ContainsKey(xm.dl))
@@ -1236,64 +1236,64 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 计算收费项目合计 
+        /// Tính hạng mục thu phí tổng cộng 
         /// </summary>
         /// <param name="ghxmList"></param>
-        /// <returns>可记账金额,分类自负金额,自理金额,减免金额</returns>
+        /// <returns>Số tiền có thể ghi sổ,Số tiền tự trả theo phân loại,Số tiền tự chi trả,Số tiền giảm trừ</returns>
         public List<CMSEntity> getSfxmHj(List<OutpatientRegistItemEntity> ghxmList)
         {
-            //计算收费项目合计费用
-            ////key - 大类；value - 可记账金额,分类自负金额,自理金额,减免
+            //Tính hạng mục thu phí tổng cộng chi phí
+            ////key - loại lớn;value - số tiền có thể ghi sổ,số tiền tự trả theo phân loại,số tiền tự chi trả,giảm trừ
             List<CMSEntity> amountList = new List<CMSEntity>();
             Dictionary<string, CMSEntity> amountDict = new Dictionary<string, CMSEntity>();
 
-            //根据收费项目计算
+            // theo hạng mục thu phí tính
             foreach (OutpatientRegistItemEntity ghxm in ghxmList)
             {
-                //大类
+                // loại lớn 
                 string dl = ghxm.dl;
-                //减免后金额
+                //Số tiền sau giảm trừ
                 decimal jmhje = (decimal)ghxm.je - ghxm.jmje;
                 if (!amountDict.ContainsKey(dl))
                     amountDict.Add(dl, new CMSEntity());
 
-                //大类
+                // loại lớn 
                 amountDict[dl].Dl = ghxm.dl;
-                //减免金额
+                //Số tiền giảm trừ
                 amountDict[dl].Jmje += ghxm.jmje;
 
-                //自理金额
+                //Số tiền tự chi trả
                 if (ghxm.zfxz == ((int)Constants.zfxzEnum.ZF).ToString())
                 {
                     amountDict[dl].Zlfy += jmhje;
                 }
                 else if (ghxm.zfxz == ((int)Constants.zfxzEnum.KB).ToString())
                 {
-                    //可记账金额
+                    //Số tiền có thể ghi sổ
                     amountDict[dl].Kbje += jmhje;
                 }
                 else
                 {
-                    //可报：费用×（1－自负比例）
-                    //分类自负：费用×自负比例
-                    //当自负比例为负数时，表示定额自负
+                    //Có thể thanh toán:Chi phí ×(1－tỷ lệ tự trả)
+                    //Tự trả theo phân loại:Chi phí ×tỷ lệ tự trả
+                    //Khi tỷ lệ tự trả là số âm giờ,biểu thị tự trả đ ịnh mức
                     if (ghxm.zfbl >= 0)
                     {
-                        //可记账金额
+                        //Số tiền có thể ghi sổ
                         amountDict[dl].Kbje += (jmhje * (1 - (decimal)ghxm.zfbl));
-                        //分类自负金额
+                        //Số tiền tự trả theo phân loại
                         amountDict[dl].Flzf += (jmhje * (decimal)ghxm.zfbl);
                     }
                     else
                     {
                         //if (ghxm.jmbl < 0)
                         //{
-                        //    throw new FailedCodeException("减免比例和自负比例只能有一个是定额，请重新配置！");
+                        // throw new FailedCodeException("Tỷ lệ giảm trừ và tỷ lệ tự trả chỉ có thể có một là định mức,vui lòng cấu hình lại！");
                         //}
 
-                        //分类自负金额: 定额 * （1-减免比例）* 数量
+                        //Số tiền tự trả theo phân loại: Đ ịnh mức * (1-tỷ lệ giảm trừ)* Số lư ợng
                         amountDict[dl].Flzf += -((decimal)ghxm.zfbl) * (1 - ghxm.jmbl) * ghxm.sl;
-                        //可记账金额
+                        //Số tiền có thể ghi sổ
                         amountDict[dl].Kbje += jmhje - amountDict[dl].Flzf;
                     }
                 }
@@ -1308,54 +1308,54 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 计算收费项目不做合计
+        /// Tính hạng mục thu phí không 做 tổng cộng 
         /// </summary>
         /// <param name="xmList"></param>
-        /// <returns>可记账金额,分类自负金额,自理金额,减免金额</returns>
+        /// <returns>Số tiền có thể ghi sổ,Số tiền tự trả theo phân loại,Số tiền tự chi trả,Số tiền giảm trừ</returns>
         public void getSfxmHj(List<jsxm_entity> xmList)
         {
             //xt_brsfsf.mzSfActiveList.Clear();
-            ////获取所有算法
+            ////Lấy tất cả các thuật toán 
             //List<tbl_xt_brsfsf> sfAllList = xt_brsfsf.mzSfActiveList;
 
-            //根据收费项目计算
+            // theo hạng mục thu phí tính
             foreach (jsxm_entity xm in xmList)
             {
-                //减免后金额
+                //Số tiền sau giảm trừ
                 decimal jmhje = (xm.dj + xm.fwfdj) * xm.sl - xm.jmje;
 
-                //自理金额
+                //Số tiền tự chi trả
                 if (xm.zfxz == ((int)Constants.zfxzEnum.ZF).ToString())
                 {
                     xm.zlfy = jmhje;
                 }
                 else if (xm.zfxz == ((int)Constants.zfxzEnum.KB).ToString())
                 {
-                    //可记账金额
+                    //Số tiền có thể ghi sổ
                     xm.kbje = jmhje;
                 }
                 else
                 {
-                    //可报：费用×（1－自负比例）
-                    //分类自负：费用×自负比例
-                    //当自负比例为负数时，表示定额自负
+                    //Có thể thanh toán:Chi phí ×(1－tỷ lệ tự trả)
+                    //Tự trả theo phân loại:Chi phí ×tỷ lệ tự trả
+                    //Khi tỷ lệ tự trả là số âm giờ,biểu thị tự trả đ ịnh mức
                     if (xm.zfbl >= 0)
                     {
-                        //可记账金额
+                        //Số tiền có thể ghi sổ
                         xm.kbje = (jmhje * (1 - xm.zfbl));
-                        //分类自负金额
+                        //Số tiền tự trả theo phân loại
                         xm.flzf = (jmhje * xm.zfbl);
                     }
                     else
                     {
                         //if (xm.jmbl < 0)
                         //{
-                        //    throw new FailedCodeException("减免比例和自负比例只能有一个是定额，请重新配置！");
+                        // throw new FailedCodeException("Tỷ lệ giảm trừ và tỷ lệ tự trả chỉ có thể có một là định mức,vui lòng cấu hình lại！");
                         //}
 
-                        //分类自负金额: 定额 * （1-减免比例）* 数量
+                        //Số tiền tự trả theo phân loại: Đ ịnh mức * (1-tỷ lệ giảm trừ)* Số lư ợng
                         xm.flzf = -(xm.zfbl) * (1 - xm.jmbl) * xm.sl;
-                        //可记账金额
+                        //Số tiền có thể ghi sổ
                         xm.kbje = jmhje - xm.flzf;
                     }
                 }
@@ -1363,7 +1363,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 根据收费项目合计和病人收费算法计算
+        /// theo hạng mục thu phí tổng cộng và bệnh nhânthu phí thuật toán tính
         /// </summary>
         /// <param name="amountList"></param>
         /// <param name="brxz"></param>
@@ -1372,13 +1372,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             returnValue = new Brsfsf_ReturnValue();
             returnValue.dlFymxList = new List<Brsfsf_Dl_Fymx>();
 
-            //获取所有算法
+            //Lấy tất cả các thuật toán 
             List<SysPatientChargeAlgorithmEntity> sfAllList = _RefundService.getMzActive();
-            //根据收费算法计算
+            // theo thu phí thuật toán tính
             foreach (jsxm_entity entity in amountList)
             {
                 Brsfsf_Dl_Fymx fymx = new Brsfsf_Dl_Fymx();
-                //大类
+                // loại lớn 
                 string dl = entity.dl;
                 fymx.dl = dl;
                 fymx.sfxm = entity.sfxm;
@@ -1387,18 +1387,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 fymx.cf_mxnm = entity.cf_mxnm;
                 fymx.czh = entity.czh;
 
-                //减免费用
+                //Chi phí giảm trừ
                 fymx.jmje = entity.jmje;
 
-                ////根据病人性质和大类获取病人收费算法
+                //// theo tính chất bệnh nhân và loại lớn lấy bệnh nhânthu phí thuật toán 
                 //List<tbl_xt_brsfsf> sfList = BF<xt_brsfsf>.Instance.getBrxzAndDl(brxz, dl);
                 List<SysPatientChargeAlgorithmEntity> sfList = null;
-                //项目算法优先级更高
+                //Hạng mục thuật toán 优 trư ớc cấp hơn 高
                 if (entity.mxnm != 0)
                 {
                     sfList = sfAllList.FindAll(t => t.brxz == brxz && t.sfxm == entity.sfxm);
                 }
-                //没有项目的算法，则考虑大类
+                // không có hạng mục của thuật toán,thì xem xét loại lớn 
                 if (sfList == null || sfList.Count == 0)
                 {
                     sfList = sfAllList.FindAll(
@@ -1407,18 +1407,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 #region 没有病人收费算法
 
-                //如果没有病人收费算法
+                //Nếu không có bệnh nhânthu phí thuật toán 
                 if (sfList == null || sfList.Count == 0)
                 {
-                    //没有算法 费用合计 = 可记账＋分类自负＋自理
+                    // không có thuật toán tổng chi phí = có thể ghi sổ＋tự trả theo phân loại＋tự chi trả
                     fymx.total = entity.kbje + entity.flzf + entity.zlfy;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = entity.flzf;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = entity.zlfy;
-                    //现金
+                    //Tiền mặt
                     fymx.xj = entity.flzf + entity.zlfy;
 
                     entity.jyje = fymx.jzfy;
@@ -1434,50 +1434,50 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 if (sfList[0].fyfw == Constants.fyfw.fyfw0)
                 {
-                    //可记帐 : 交易费用总额 = 医保结算范围费用总额 - 分类自负；现金：分类自负+自理+自负
-                    //现金
+                    //Có thể ghi sổ : Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT - Tự trả theo phân loại;Tiền mặt:Tự trả theo phân loại+Tự chi trả+Tự trả
+                    //Tiền mặt
                     fymx.xj = entity.flzf + entity.zlfy;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = entity.flzf;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = entity.zlfy;
                 }
                 else if (sfList[0].fyfw == Constants.fyfw.fyfw1)
                 {
-                    //可记帐 + 分类自负：交易费用总额 = 医保结算范围费用总额；现金：自理+自负
-                    //现金
+                    //Có thể ghi sổ + Tự trả theo phân loại:Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự chi trả+Tự trả
+                    //Tiền mặt
                     fymx.xj = entity.zlfy;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje + entity.flzf;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = 0m;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = entity.zlfy;
                 }
                 else if (sfList[0].fyfw == Constants.fyfw.fyfw2)
                 {
-                    //可记帐 + 分类自负 + 自理：交易费用总额 = 医保结算范围费用总额；现金：自负
-                    //现金
+                    //Có thể ghi sổ + Tự trả theo phân loại + Tự chi trả:Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự trả
+                    //Tiền mặt
                     fymx.xj = 0m;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje + entity.flzf + entity.zlfy;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = 0m;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = 0m;
                 }
                 else if (sfList[0].fyfw == Constants.fyfw.fyfw3)
                 {
-                    //可记帐 + 分类自负 + 自理 + 绝对自费：交易费用总额 = 医保结算范围费用总额；现金：自负
-                    //现金
+                    //Có thể ghi sổ + Tự trả theo phân loại + Tự chi trả + Hoàn toàn tự trả:Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự trả
+                    //Tiền mặt
                     fymx.xj = 0m;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje + entity.flzf + entity.zlfy;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = 0m;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = 0m;
                 }
 
@@ -1485,19 +1485,19 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 #region 费用计算
 
-                //计算金额
+                //TínhSố tiền
                 decimal jsAmount = fymx.jzfy;
-                //根据费用范围需要计算的金额
+                // theo chi phí phạm vi cần tính của số tiền
                 decimal jsedAmount = 0m;
                 decimal sfzf = 0m;
-                //如果有费用上线，则根据算法级别计算(实际只需计算自理费用) 
+                //Nếu có chi phí trên 线,thì theo thuật toán cấp bậc tính(thực tế 只需tínhchi phí tự chi trả) 
                 foreach (SysPatientChargeAlgorithmEntity sfEntity in sfList)
                 {
-                    //如果同一批算法的自负性质和费用范围不一致则直接报错
+                    //Nếu cùng một lô thuật toán của tính chất tự trả và chi phí phạm vi không nhất quán thì trực tiếp báo lỗi 
                     //if (sfEntity.zfxz != sfList[0].zfxz)
-                    //    throw new FailedCodeException("当前病人性质和大类的自负性质必须相同，请重新配置！");
+                    // throw new FailedCodeException("Khi trư ớc tính chất bệnh nhân và loại lớn của tính chất tự trả phải giống nhau,vui lòng cấu hình lại！");
                     //if (sfEntity.fyfw != sfList[0].fyfw)
-                    //    throw new FailedCodeException("当前病人性质和大类的费用范围必须相同，请重新配置！");
+                    // throw new FailedCodeException("Khi trư ớc tính chất bệnh nhân và loại lớn củachi phí phạm vi phải giống nhau,vui lòng cấu hình lại！");
 
                     decimal fysx = sfEntity.fysx * entity.sl;
 
@@ -1541,7 +1541,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 if (sfList[0].zfxz == ((int)Constants.sfZfxzEnum.ZL).ToString())
                 {
-                    //自负性质为自理
+                    //Tính chất tự trả là tự chi trả
                     fymx.sfzl += sfzf;
                 }
                 else
@@ -1550,19 +1550,19 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 }
                 if (sfList[0].fyfw == Constants.fyfw.fyfw3)
                 {
-                    //如果是绝对自费,记账金额为自理
+                    //Nếu là hoàn toàn tự trả,ghi sổ số tiền là tự chi trả
                     fymx.zl += fymx.jzfy - sfzf;
                     fymx.jzfy = 0m;
                     fymx.xj += fymx.zl;
                 }
                 else
                 {
-                    //可记账费用
+                    // có thể phí ghi sổ
                     fymx.jzfy = fymx.jzfy - sfzf;
                 }
-                //现金
+                //Tiền mặt
                 fymx.xj += sfzf;
-                //有算法 费用合计 = 现金
+                //Có thuật toán tổng chi phí = tiền mặt
                 fymx.total = fymx.xj;
 
                 entity.jyje = fymx.jzfy;
@@ -1573,7 +1573,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 根据自负比例计算自负金额
+        /// theo tỷ lệ tự trả tính số tiền tự trả
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="zfbl"></param>
@@ -1594,7 +1594,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 获取门结算大类
+        /// Lấy cửa quyết toán loại lớn 
         /// </summary>
         /// <param name="js"></param>
         /// <param name="returnValue"></param>
@@ -1603,7 +1603,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             Brsfsf_ReturnValue_YBANDFYB returnValue)
         {
 
-            //医保费用
+            //Chi phí bảo hiểm y tế
             //foreach (Brsfsf_Dl_Fymx yb in returnValue.YB.dlFymxList)
             //{
             //    OutpatientSettlementCategoryEntity jsdl = jsdlList.Find(t => t.dl == yb.dl);
@@ -1614,10 +1614,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //    }
 
             //    jsdl.jsnm = js.jsnm;
-            //    jsdl.dl = yb.dl;//大类
-            //    jsdl.flzffy += yb.flzf;//分类自负费用
-            //    jsdl.zlfy += yb.zl + yb.sfzl;//自理费用
-            //    jsdl.jmfy += yb.jmje;//减免金额
+            // jsdl.dl = yb.dl;// loại lớn 
+            //    jsdl.flzffy += yb.flzf;//Chi phí tự trả theo phân loại
+            //    jsdl.zlfy += yb.zl + yb.sfzl;//Chi phí tự chi trả
+            //    jsdl.jmfy += yb.jmje;//Số tiền giảm trừ
             //    if (returnValue.ybjsfwze == 0)
             //        if (0 == 0)
             //        {
@@ -1626,12 +1626,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //        }
             //        else
             //        {
-            //            jsdl.zffy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.zffy;//分类金额/分类金额合计*自负金额
-            //            jsdl.kbfy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.jzfy;//分类金额/分类金额合计*自负金额
+            //            jsdl.zffy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.zffy;//Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
+            //            jsdl.kbfy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.jzfy;//Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
             //        }
             //    jsdl.zje += jsdl.flzffy + jsdl.zlfy + jsdl.jmfy + jsdl.zffy + jsdl.kbfy;
             //}
-            //非医保费用
+            // không phải chi phí bảo hiểm y tế
             //foreach (Brsfsf_Dl_Fymx yb in returnValue.FYB.dlFymxList)
             //{
             //    OutpatientSettlementCategoryEntity jsdl = jsdlList.Find(t => t.dl == yb.dl);
@@ -1642,10 +1642,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //    }
 
             //    jsdl.jsnm = js.jsnm;
-            //    jsdl.dl = yb.dl;//大类
-            //    jsdl.flzffy += yb.flzf;//分类自负费用
-            //    jsdl.zlfy += yb.zl + yb.sfzl;//自理费用
-            //    jsdl.jmfy += yb.jmje;//减免金额
+            // jsdl.dl = yb.dl;// loại lớn 
+            //    jsdl.flzffy += yb.flzf;//Chi phí tự trả theo phân loại
+            //    jsdl.zlfy += yb.zl + yb.sfzl;//Chi phí tự chi trả
+            //    jsdl.jmfy += yb.jmje;//Số tiền giảm trừ
 
             //    jsdl.zffy += yb.sfzf;
             //    jsdl.kbfy += yb.jzfy;
@@ -1661,12 +1661,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 }
                 jsdl.jsnm = js.jsnm;
-                jsdl.dl = yb.dl; //大类
+                jsdl.dl = yb.dl; // loại lớn 
                 jsdl.zje = yb.total;
                 jsdl.kbfy = 0;
-                jsdl.flzffy += yb.flzf; //分类自负费用
-                jsdl.zlfy = yb.total; //自理费用
-                jsdl.jmfy += yb.jmje; //减免金额
+                jsdl.flzffy += yb.flzf; //Chi phí tự trả theo phân loại
+                jsdl.zlfy = yb.total; //Chi phí tự chi trả
+                jsdl.jmfy += yb.jmje; //Số tiền giảm trừ
                 jsdlList.Add(jsdl);
             }
             foreach (OutpatientSettlementCategoryEntity jsdl in jsdlList)
@@ -1683,7 +1683,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 造口袋交易
+        /// 造口袋 giao dịch 
         /// </summary>
         //public void ybmxxmjy(bool isGh, SysPatientBasicInfoEntity brjbxx, OutpatientRegistEntity gh, SysPatientNatureEntity brxz, JS_ENTITY jsEntity,
         //    out decimal ybzf, out decimal jzfy, out bool ybError, out string sqxh)
@@ -1695,17 +1695,17 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
         //    if (isGh)
         //    {
-        //        throw new FailedCodeException("医保挂号没有明细项目实时交易！");
+        // throw new FailedCodeException("BHYTĐ ăng ký khám không có chi tiết hạng mục实giờ giao dịch ！");
         //    }
         //    else
         //    {
         //        tbl_yb_deal_sssf sssf = ybmxxmsfjy(brjbxx, gh, brxz, jsEntity, out ybError);
-        //        //根据医保返回的结果，得到结算数据
-        //        //自负费用 = 自负段现金支付数+统筹段现金支付数+附加段现金支付数。
+        // // theo BHYTquay lại của kết quả, nhận đ ược quyết toán dữ liệu
+        // //Chi phí tự trả = số tiền mặt đ ã trả đoạn tự trả + số tiền mặt đ ã trả đoạn quỹ chung + số tiền mặt đ ã trả đoạn bổ sung.
         //        ybzf = Convert.ToDecimal(sssf.zf_xjzf) +
         //            Convert.ToDecimal(sssf.tc_xjzf) +
         //            Convert.ToDecimal(sssf.fj_xjzf);
-        //        //记帐费用 = 当年帐户支付数+历年帐户支付数+统筹支付数+附加支付数
+        // //Phí ghi sổ = số tiền tài khoản đ ã trả trong năm + số tiền tài khoản đ ã trả các năm trư ớc + số tiền quỹ chung đ ã trả + số tiền bổ sung đ ã trả
         //        jzfy = Convert.ToDecimal(sssf.dn_zhzf) +
         //            Convert.ToDecimal(sssf.ln_zhzf) +
         //            Convert.ToDecimal(sssf.tc_zf) +
@@ -1745,7 +1745,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     // tbl_jszffs.xjzffsmc = Tool.AnyToString(entiy["xjzffsmc"]);
                     jszffsExList.Add(tbl_jszffs);
                 }
-                //收款结算支付方式
+                // thu tiền quyết toán phư ơng thức thanh toán 
                 jszffsExListForSK = jszffsExList;
             }
             else
@@ -1783,7 +1783,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             }
 
 
-            ////计算实收总额  ----fangyi
+            ////Tính tổng số tiền thực thu  ----fangyi
             //if (jszffsExListForSK.Count > 1)
             //{
             //    jsSSK();
@@ -1792,12 +1792,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 确定全退
+        /// Xác nhậnHoàn toàn bộ
         /// </summary>
-        /// <param name="kh">卡号</param>
-        /// <param name="isGh">是否挂号</param>
-        /// <param name="mzJs">门诊结算</param>
-        /// <param name="resultList">明细</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="isGh">Có hay kh ôngĐ ăng ký khám</param>
+        /// <param name="mzJs">Quyết toán ngoại trú</param>
+        /// <param name="resultList">Chi tiết</param>
         private bool fullBack(string kh, bool isGh, OutpatientSettlementEntity mzJs,
             List<OutpatientRegistNonAttendanceEntity> GhjsDt)
         {
@@ -1810,7 +1810,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 if (ybError)
                 {
 
-                    //自费重复退费导致插入多条重复全退记录
+                    //Tự trả trùng lặp hoàn phí导致chèn nhiều dòng trùng lặp hoàn toàn bộ bản ghi 
                     if (_RefundService.getTFForFPH(mzJs.jsnm, mzJs.fph) > 0)
                     {
                         return true;
@@ -1818,7 +1818,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     List<SysPatientAccountRevenueAndExpenseEntity> szjlList =
                         new List<SysPatientAccountRevenueAndExpenseEntity>();
 
-                    //退款成功，插门诊结算，门诊结算明细。改门诊结算的jsnm. 改结算明细内码。
+                    //Hoàn tiền thành công,插quyết toán ngoại trú,chi tiết quyết toán ngoại trú. đ ổi quyết toán ngoại trú Củajsnm. đ ổi chi tiết quyết toán mã nội bộ.
                     List<OutpatientSettlementDetailEntity> mzJsmxList = getMzJsMx(mzJs.jslx, mzJs.jsnm);
 
                     //var mzJszffsList = _RefundService.GetJszffsByJsnm(mzJs.jsnm);
@@ -1827,11 +1827,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    mzJszffsList = getJszffsEntity();
                     //}
 
-                    ////新增系统病人帐户收支记录
+                    ////Thêm mới hệ thống bệnh nhân tài khoản 收支 bản ghi 
                     //szjlList = getZhszjlList(mzJs, mzJszffsList, "T");
 
                     //List<OutpatientSettlementCategoryEntity> jsdl = _RefundService.GetJsdlByJsnm(mzJs.jsnm);
-                    mzJs.cxjsnm = mzJs.jsnm; //旧结算是退新的撤销结算内码 
+                    mzJs.cxjsnm = mzJs.jsnm; // cũ quyết toán là trả lại mới của hủy bỏ mã nội bộ quyết toán 
                     mzJs.ghnm = mzJs.ghnm;
                     jsnmEx = mzJs.jsnm;
                     result = _RefundService.mzJsFullBack(mzJs, mzJsmxList, GhjsDt);
@@ -1846,7 +1846,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 确定部分退
+        /// Xác nhận một phần trả lại 
         /// </summary>
         /// <param name="newMzJs"></param>
         /// <param name="accountEntity"></param>
@@ -1858,14 +1858,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             bool ybError = false;
             string sqlUpdate = string.Empty;
             List<string> sqls = new List<string>();
-            //如果总金额为0，不打印发票
+            //Nếu tổng số tiền là0, không in hóa đ ơn
             if (newMzJs.zje != 0m)
             {
                 if (fpsqlList != null && fpsqlList.Count > 0)
                 {
                     sqls.AddRange(fpsqlList);
                 }
-                //发票号
+                //Số hóa đ ơn
                 newMzJs.fph = lblFPHNew.Trim();
             }
             else
@@ -1889,24 +1889,24 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    //if (mzssRep == null || mzjsReq == null)
                     //    //{
                     //    //    ybError = true;
-                    //    //    throw new FailedCodeException("农保交易失败！");
+                    // // throw new FailedCodeException(" bảo hiểm nông nghiệp giao dịch thất bại！");
                     //    //}
 
-                    //    //如果试算和结算金额不等，则做撤销试算和撤销结算，重新加载页面
+                    // //Nếu试 tính và số tiền quyết toán không V.v.,thì做 hủy bỏ 试 tính và hủy bỏ quyết toán,lại tải trang
                     //    if (Convert.ToDecimal(mzssRep.bcze) != Convert.ToDecimal(rep.bcze) ||
                     //        Convert.ToDecimal(mzssRep.kbze) != Convert.ToDecimal(rep.kbze) ||
                     //        Convert.ToDecimal(mzssRep.zfze) != Convert.ToDecimal(rep.zfze))
                     //    {
-                    //        if (DialogHelper.Ask_OkCancel("门诊试算结果与门诊结算结果不一致，是否重新结算？") == System.Windows.Forms.DialogResult.OK)
+                    //        if (DialogHelper.Ask_OkCancel("Kết quả tính thử ngoại trú không khớp với kết quả quyết toán ngoại trú, có quyết toán lại không？") == System.Windows.Forms.DialogResult.OK)
                     //        {
                     //            try
                     //            {
-                    //                //撤销结算
+                    // // hủy bỏ quyết toán
                     //                BF<mz_js>.Instance.nbmzqxjs(mzjsReq.kbh, rep.bclsh, mzjsReq.yydm, mzjsReq.czydm, mzjsReq.czymc, newMzJs.jsnm, out ybError);
                     //            }
                     //            catch
                     //            {
-                    //                DialogHelper.DlgError("撤销结算失败！将通过对账方式平帐！");
+                    // DialogHelper.DlgError(" hủy bỏ quyết toán thất bại！sẽ thông qua đ ối với 账 phư ơng thức 平帐！");
                     //            }
                     //            //isAlreadyComfirmYb = false;
                     //            //return;
@@ -1915,10 +1915,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //}
                     //else
                     //{
-                    //    //中心流水号为空，不去请求医保确认交易
+                    // // trong 心 số thứ tự là trống, không 去 yêu cầu BHYTxác nhận giao dịch 
                     //    if (string.IsNullOrEmpty(sqxh) == false)
                     //    {
-                    //        //医保交易确认请求。
+                    // //BHYT giao dịch xác nhận yêu cầu.
                     //        BF<mz_js>.Instance.ybDealComfirm(accountEntity.isGh, sqxh, accountEntity.ghnm, newMzJs.jsnm, newMzJs.jylx, out ybError, out sqlUpdate);
                     //    }
                     //}
@@ -1926,11 +1926,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 }
                 catch (Exception ex)
                 {
-                    ////如果医保交易失败，则转自费
+                    ////NếuBHYT giao dịch thất bại,thì chuyển tự trả
                     //if (!ybError)
                     //    throw;
 
-                    ////家床不转自费，继续重试交易
+                    //// giư ờng gia đ ình không chuyển tự trả, tiếp tục 重试 giao dịch 
                     //if (accountEntity.jch > 0)
                     //{
                     //    jxyb = true;
@@ -1943,13 +1943,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //zfForm.msg = ex.Message;
                     //if (zfForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     //{
-                    //    jxyb = zfForm.jxyb;//继续医保交易
+                    // jxyb = zfForm.jxyb;// tiếp tục BHYT giao dịch 
                     //    if (!jxyb)
                     //    {
-                    //        //转自费
+                    // // chuyển tự trả
                     //        accountEntity.isZh = true;
                     //        accountEntity.brxzbh = zfForm.currBrxzEntity.brxzbh;
-                    //        //重新初始化
+                    // //Lại初始化
                     //        FrmJS_Load(null, null);
                     //    }
 
@@ -1957,17 +1957,17 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //else
                     //{
                     //    jxyb = false;
-                    //    throw new FailedCodeException("医保交易失败!");
+                    // throw new FailedCodeException("BHYT giao dịch thất bại!");
                     //}
                 }
                 //if (string.IsNullOrEmpty(sqlUpdate) && jxyb == true)
                 //{
                 //    try
                 //    {
-                //        //中心流水号为空，不去请求医保确认交易
+                // // trong 心 số thứ tự là trống, không 去 yêu cầu BHYTxác nhận giao dịch 
                 //        if (string.IsNullOrEmpty(sqxh) == false)
                 //        {
-                //            //医保交易确认请求。
+                // //BHYT giao dịch xác nhận yêu cầu.
                 //            BF<mz_js>.Instance.ybDealComfirm(accountEntity.isGh, sqxh, accountEntity.ghnm, newMzJs.jsnm, newMzJs.jylx, out ybError, out sqlUpdate);
                 //        }
                 //    }
@@ -1975,11 +1975,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //    {
                 //        if (string.IsNullOrEmpty(sqlUpdate))
                 //        {
-                //            throw new FailedCodeException("医保网络问题，请重新拉卡退费！");
+                // throw new FailedCodeException("BHYT mạng 问题,vui lòng lại拉 thẻ hoàn phí！");
                 //        }
                 //    }
                 //}
-                //医保SQL
+                //BHYTSQL
                 if (!string.IsNullOrEmpty(sqlUpdate))
                 {
                     sqls.Add(sqlUpdate);
@@ -1987,14 +1987,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 try
                 {
-                    newMzJs.cxjsnm = Jsnm; //旧结算是退新的撤销结算内码 
+                    newMzJs.cxjsnm = Jsnm; // cũ quyết toán là trả lại mới của hủy bỏ mã nội bộ quyết toán 
 
-                    //获取账号信息
+                    //Lấy tài khoản thông tin
                     //tbl_xt_brzh brzh = BF<xt_brzh>.Instance.getBrzhByZh(mzJs.zh);
-                    //系统病人帐户收支记录
+                    //Hệ thống bệnh nhân tài khoản 收支 bản ghi 
                     List<SysPatientAccountRevenueAndExpenseEntity> szjlList = getZhszjlList(newMzJs, jszffsArray, "S");
                     ;
-                    //加床记账半退再收不插入收支记录
+                    //加床ghi sổ hoàn một phần再收 không chèn收支 bản ghi 
                     //if (newMzJs.jslx == "1" && newMzJs.jylx == "14" && newMzJs.jch > 0)
                     //{
                     //    szjlList = new List<tbl_xt_brzhszjl>();
@@ -2017,7 +2017,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
 
 
-        ////退款后再次请求医保计算现金支付
+        ////Hoàn tiền sau lại lần nữa yêu cầu BHYTtínhthanh toán tiền mặt
         private void YBTKloadData()
         {
             lblSrce = newMzJs.xjwc.ToString("0.00");
@@ -2055,7 +2055,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 }
 
             }
-            //计算实收总额  ----fangyi
+            //Tính tổng số tiền thực thu  ----fangyi
             if (jszffsExListForSK.Count > 1)
             {
                 // jsSSK();
@@ -2063,7 +2063,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 获取处方状态
+        /// LấyĐ ơn thuốc trạng thái
         /// </summary>
         private bool getPrescriptionStatus()
         {
@@ -2074,38 +2074,38 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             try
             {
                 return true;
-                //获取实际要退费的信息
+                //Lấy thực tế cần hoàn phí của thông tin
                 List<GET_CF_STATUS> tyCfList = getTyInfo();
                 if (tyCfList == null || tyCfList.Count == 0)
                     return true;
 
-                //Y（多个处方以“，”分隔）
+                //Y(nhiều Đ ơn thuốc以","分隔)
                 tyCfList.ForEach(t => reqData += t.prescriptionNo.ToString() + ",");
                 //tyCfList.ForEach(delegate(GET_CF_STATUS item)
                 //{
                 //    reqData += item.prescriptionNo.ToString() + ",";
                 //});
                 reqData = reqData.TrimEnd(',');
-                //reqData = JsonConvert.SerializeObject(reqData);       //去掉加\"的参数
+                //reqData = JsonConvert.SerializeObject(reqData); // loại bỏ 加\"Củatham số
 
-                //请求接口
+                // yêu cầu giao diện
                 //   WebPostAPI.API.post<GET_CF_STATUS>(Constant.InterfaceConstant.GET_CF_STATUS, reqData, out interRepPara, out statusDescription, out jsgb);
                 jsgb = true;
-                //接口关闭，直接返回
+                //Giao di ệnĐ óng,trực tiếpquay lại
                 if (jsgb)
                 {
                     return true;
                 }
-                //系统异常
+                //Hệ thống bất thư ờng
                 if (interRepPara == null)
                 {
-                    //       DialogHelper.DlgError("接口访问异常：" + statusDescription);
+                    // DialogHelper.DlgError("Giao diện truy cập bất thư ờng:" + statusDescription);
                     //return false;
                     return true;
                 }
                 else
                 {
-                    //如果有业务异常，则提示
+                    //Nếu có nghiệp vụ bất thư ờng,thì nhắc nhở
                     if (interRepPara.failureMessage != null && interRepPara.failureMessage.Count > 0)
                     {
                         //       DialogHelper.DlgError(interRepPara.failureMessageShow);
@@ -2114,7 +2114,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     }
                     else
                     {
-                        //判断处方状态
+                        // phán đoán Đ ơn thuốc trạng thái
                         string tempResult = JsonConvert.SerializeObject(interRepPara.result);
                         // return isAllowTy(tyCfList, tempResult);
                     }
@@ -2122,24 +2122,24 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             }
             catch (Exception ex)
             {
-                //DialogHelper.DlgError("获取处方状态接口处理失败：" + ex.Message);
+                //DialogHelper.DlgError("LấyĐ ơn thuốc trạng tháigiao diện xử lý thất bại:" + ex.Message);
                 //return false;
                 return true;
             }
         }
 
         /// <summary>
-        /// 获取实际退药信息
+        /// Lấy thực tế trả thuốc thông tin
         /// </summary>
         /// <returns></returns>
         private List<GET_CF_STATUS> getTyInfo()
         {
-            //全退的处方
+            //Hoàn toàn bộ CủaĐ ơn thuốc
             DataTable mzCfMxDt = _RefundService.GetMz_cfmxRecords(jsnm);
             List<GET_CF_STATUS> tyCfList = new List<GET_CF_STATUS>();
             foreach (DataRow dr in mzCfMxDt.Rows)
             {
-                //是否已包含处方
+                //Có hay kh ôngĐ ã bao gồm Đ ơn thuốc
                 GET_CF_STATUS cf = tyCfList.Find(t => t.prescriptionNo == dr["cfh"].ToString());
                 if (cf == null)
                 {
@@ -2149,7 +2149,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     cf.prescriptionNo = dr["cfh"].ToString();
                     tyCfList.Add(cf);
                 }
-                //处方中是否已包含药品
+                //Đ ơn thuốc trong có hay kh ôngĐ ã bao gồm thuốc
                 returnDrugInfo yp = cf.returnDrugInfo.Find(t => t.drugCode == dr["yp"].ToString());
                 if (yp == null)
                 {
@@ -2165,14 +2165,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                                                                     //&& t.mxbm == dr["yp"].ToString()
                                                                     && t.czh == dr["czh"].ToString());
 
-                //如果不收回则算全退
+                //Nếu không 收 lần thì tính hoàn toàn bộ
                 decimal returnCount = 0;
                 if (jsxm == null)
                     returnCount = 0;
                 else
                     returnCount = jsxm.sl;
 
-                //药品包装代码为 3，则数量为三级数量，药品包装代码为 4，则数量为四级单位
+                //Thuốc包装mã là 3,thì số lư ợng là ba cấp số lư ợng,thuốc包装mã là 4,thì số lư ợng là bốn cấp Đ ơn vị
                 if (dr["ypbzdm"].ToString() == "3")
                     yp.thirdLevelPkgQty = decimal.ToInt32(Convert.ToDecimal(dr["sl"].ToString()) - returnCount);
                 else
@@ -2183,12 +2183,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 结算数据验证
+        /// Quyết toánDữ liệuXác minh
         /// </summary>
         /// <returns></returns>
         private bool checkJs()
         {
-            //应收款 >= 实收款 - 舍入差额？
+            //Số tiền phải thu >= số tiền thực thu - 舍入差额？
             decimal Ytk = Convert.ToDecimal(lblYtk);
             decimal ssk = Convert.ToDecimal(lblSsk);
             decimal srce = Convert.ToDecimal(lblSrce);
@@ -2211,7 +2211,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 门诊结算支付方式记录————退款
+        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --hoàn tiền
         /// </summary>
         private List<OutpatientSettlementPaymentModelEntity> getJszffsEntity()
         {
@@ -2229,7 +2229,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         private void btnOk_Click(OutpatientSettlementEntity newMzJs, JS_ENTITY accountEntity,
             OutpatientSettlementEntity mzJs, List<OutpatientSettlementCategoryEntity> jsdlList)
         {
-            //自费转医保不判断旺云接口
+            //Tự trả chuyển BHYT không phán đoán 旺云giao diện
             if (IsChangeBrxz == false)
             {
                 if (!getPrescriptionStatus())
@@ -2238,16 +2238,16 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             if (!checkJs())
                 return;
-            //结算支付方式记录（退款方式）
+            //Quyết toán phư ơng thức thanh toán bản ghi (Phư ơng thức hoàn tiền)
             jszffsArray = getJszffsEntity();
 
-            //收款方式-去掉退款方式就是半退的结算方式
+            // phư ơng thức thu tiền - loại bỏ Phư ơng thức hoàn tiền thì là hoàn một phần của quyết toán phư ơng thức 
             var jszffsArrayForSK = getJszffsEntity(jszffsArray);
             if (IsReturnAll == false && accountEntity.jsxmList.Count > 0 && accountEntity.isGh == false)
             {
                 bool flag = true;
 
-                //加床记账半退打凭证(清单)
+                //加床ghi sổ hoàn một phần打凭证(清 đ ơn)
                 if (newMzJs.jslx == "1" && newMzJs.jylx == "14" && newMzJs.jch != 0)
                 {
                     flag = false;
@@ -2259,25 +2259,25 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                         throw new FailedCodeException("GET_FPH_FAIL");
                         // return;
                     }
-                    //重新验证票号
+                    //Lại xác minh票 số 
                     _RefundService.CheckFPH(lblFPHNew);
                 }
                 else
                 {
-                    //凭证号
+                    //凭证 số 
                     if (string.IsNullOrEmpty(lblFPHNew))
                     {
                         throw new FailedCodeException("GET_SJH_FAIL");
                         //  return;
                     }
-                    //重新验收据号
+                    //Lại验 số biên lai 
                     checkSJH(lblFPHNew);
                 }
             }
 
             try
             {
-                //全部退费医保交易结算
+                //Tất cả hoàn phí BHYT giao dịch quyết toán
                 mzJs.CreatorCode = userModel.UserCode;
                 mzJs.CreateTime = DateTime.Now;
 
@@ -2293,13 +2293,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 #region 调pos机接口操作
 
-                //半退pos退款
+                //Hoàn một phầnposHoàn tiền
                 //if (jszffsArrayForSK.Find(p => p.xjzffs == "1") != null && jszffsArrayForSK.Count == 1)
                 //{
                 //    if (this.isAlreadyPosCX == true)
                 //    {
                 //        errCode = PosSfInterface(Kh, lblFPHNew, (mzJs.xjzf - Tool.AnyToDecimal(lblSsk)), newMzJs.jsnm);
-                //        //撤销交易后收费
+                // // hủy giao dịch sau thu phí
                 //        if (errCode != "00")
                 //        {
                 //            return;
@@ -2315,7 +2315,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //        }
                 //    }
                 //}
-                //多退款方式,半退pos
+                // nhiều Phư ơng thức hoàn tiền,hoàn một phầnpos
                 //if (jszffsArrayForSK.Count > 1)
                 //{
                 //    tbl_mz_jszffs mz_jszf = jszffsArrayForSK.Find(p => p.xjzffs == "1");
@@ -2349,39 +2349,39 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 #endregion
 
-                //确定部分退，重新收部分
+                //Xác nhận một phần trả lại,lại收một phần
                 //backPart(newMzJs, accountEntity, jszffsArray, sqxh);
                 newMzJs.CreatorCode = userModel.UserCode;
                 newMzJs.CreateTime = DateTime.Now;
-                //医保半退收费
+                //BHYTHoàn một phầnThu phí
                 backPart(newMzJs, accountEntity, jszffsArrayForSK, sqxh, jsdlList);
 
                 //if (IsChangeBrxz == false)
                 //{
-                //    throw new FailedCodeException("退费成功！ 退款金额：" + lblSsk);
+                // throw new FailedCodeException("Hoàn phí thành công！ số tiền hoàn lại:" + lblSsk);
                 //}
                 //else
                 //{
-                //    throw new FailedCodeException("自费转医保成功！ 退款金额：" + lblSsk);
+                // throw new FailedCodeException("Tự trả chuyển BHYTthành công！ số tiền hoàn lại:" + lblSsk);
                 //}
 
-                //    if ((newMzJs.zje != 0 && newMzJs.jslx != "0") || (newMzJs.zje != 0 && newMzJs.jslx == "0" && IsChangeBrxz == true))     //结算类型不是挂号
+                // if ((newMzJs.zje!= 0 && newMzJs.jslx!= "0") || (newMzJs.zje!= 0 && newMzJs.jslx == "0" && IsChangeBrxz == true)) //Loại quyết toán không là đăng ký khám
                 //    {
                 //        bool flag = true;
 
-                //        //1 家床记帐（包括家床记帐 ） jylx=5(家床收费 ),jylx=14(家床记帐)
+                // //1 giư ờng gia đ ình ghi sổ(bao gồm giư ờng gia đ ình ghi sổ) jylx=5(giư ờng gia đ ình thu phí),jylx=14(giư ờng gia đ ình ghi sổ)
                 //        //if (newMzJs.jslx == "1" && newMzJs.jylx == "14" && newMzJs.jch > 0)
                 //        //{
                 //        //    flag = false;
                 //        //}
                 //        if (flag == true)
                 //        {
-                //            //打印发票
+                // //In hóa đ ơn
                 //            //   printBill(newMzJs, accountEntity);
                 //        }
                 //        else
                 //        {
-                //            //获取账户余额
+                //            //Lấy số dư tài khoản
                 //            //decimal jc_zhye = 0.00M;
                 //            //tbl_xt_brzhszjl entitySz = new tbl_xt_brzhszjl();
                 //            //entitySz = BLLFactory<xt_brzhszjl>.Instance.getLastestJlBybrnm(newMzJs.patid);
@@ -2389,11 +2389,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //            //{
                 //            //    jc_zhye = entitySz.zhye;
                 //            //}
-                //            ////历次记账+当前记账与账户余额比较
-                //            ////历次记账的总数
+                // ////历 lần ghi sổ+khi trư ớc ghi sổ và số dư tài khoản比较
+                // ////历 lần ghi sổ của总数
                 //            //decimal compareJe = 0m;
                 //            //getJcbrjzxx(Tools.AnyToInt32(newMzJs.brnm), newMzJs.brxz, newMzJs.jch, out compareJe);
-                //            ////打印清单
+                // ////In清 đ ơn 
                 //            //DataTable jc = BLLFactory<mz_jsmx>.Instance.getSFQDForJsnm(newMzJs.jsnm);
                 //            ////PrintBill print = new PrintBill(jc, newMzJs.xjzf);
                 //            //tbl_xt_brjbxx brjbxx = BF<xt_brjbxx>.Instance.GetEntityByID(newMzJs.brnm.ToString());
@@ -2412,16 +2412,16 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //    //{
                 //    //    if (IsChangeBrxz == false)
                 //    //    {
-                //    //        throw new FailedCodeException("退费成功！ 退款金额：" + lblSsk);
+                // // throw new FailedCodeException("Hoàn phí thành công！ số tiền hoàn lại:" + lblSsk);
                 //    //    }
                 //    //    else
                 //    //    {
-                //    //        throw new FailedCodeException("自费转医保成功！ 退款金额：" + lblSsk);
+                // // throw new FailedCodeException("Tự trả chuyển BHYTthành công！ số tiền hoàn lại:" + lblSsk);
                 //    //    }
                 //    //}
                 //}
 
-                ////处方退费通知
+                ////Đ ơn thuốc hoàn phí thông báo 
                 //returnMoneyOfPrescriptionNo();
             }
             catch
@@ -2431,22 +2431,22 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //DialogResult = DialogResult.OK;
             try
             {
-                //支付方式为现金则启动钱箱
+                // phư ơng thức thanh toán là tiền mặt thì启动钱箱
                 //if (JszffsArray.Find(p => p.xjzffs == "0") != null)
                 //{
                 //    string setFileName = (new Common.ConfigFile.AppConfig()).AppConfigGet("INIFileName");   // ConfigurationManager.AppSettings["INIFileName"].ToString();
                 //    string fileName = System.IO.Path.GetFullPath("../../") + "\\" + setFileName + ".ini";
                 //    IniFile Ini = new IniFile(fileName);
-                //    string ckpzStr = Ini.IniReadValue("本机参数", "QX_CKPZparm");
+                // string ckpzStr = Ini.IniReadValue(" bản máy tham số", "QX_CKPZparm");
                 //    if (!string.IsNullOrEmpty(ckpzStr))
                 //    {
                 //        SerialPort port = new SerialPort();
-                //        port.PortName = ckpzStr;//设定串口
-                //        port.Open();//打开串口
-                //        port.Write("#$1b#$70#0#$3c#$ff");//往串口写入启动钱箱的指令
-                //        port.Close();//释放串口
+                // port.PortName = ckpzStr;//设定串口
+                // port.Open();//打开串口
+                // port.Write("#$1b#$70#0#$3c#$ff");//往串口写入启动钱箱của指令
+                // port.Close();//释放串口
                 //    }
-                //    else { DialogHelper.DlgError("钱箱串口未配置!"); }
+                // else { DialogHelper.DlgError("钱箱串口chưa cấu hình!"); }
                 //}
             }
             catch
@@ -2456,7 +2456,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 门诊结算支付方式记录————退款剩下的收款
+        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --hoàn tiền剩 dư ới của thu tiền 
         /// </summary>
         private List<OutpatientSettlementPaymentModelEntity> getJszffsEntity(
             List<OutpatientSettlementPaymentModelEntity> jszffsListForTK)
@@ -2495,16 +2495,16 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //}
                 }
 
-                //修改操作员
+                //Sửathao tác viên 
                 jszffs.ssry = userModel.UserCode;
                 jszffs.ssrq = DateTime.Now;
                 jszffsList.Add(jszffs);
             }
-            //退款方式不是收款方式中任何一种
+            //Phư ơng thức hoàn tiền không là phư ơng thức thu tiền trong bất kỳ một loại 
             foreach (var entity in jszffsListFortemp)
             {
                 entity.zfje = -(entity.zfje);
-                //修改操作员
+                //Sửathao tác viên 
                 entity.ssry = userModel.UserCode;
                 entity.ssrq = DateTime.Now;
 
@@ -2527,11 +2527,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 门诊结算明细
+        /// Chi tiết quyết toán ngoại trú
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
-        /// <param name="jslx">结算类型</param>
-        /// <param name="xmList">结算项目明细</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
+        /// <param name="jslx">Loại quyết toán</param>
+        /// <param name="xmList">Quyết toánHạng mụcChi tiết</param>
         /// <returns></returns>
         private List<OutpatientSettlementDetailEntity> getMzJsMx(int jsnm, string jslx, List<jsxm_entity> xmList)
         {
@@ -2552,7 +2552,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 处方退费通知
+        /// Đ ơn thuốc hoàn phí thông báo 
         /// </summary>
         private void returnMoneyOfPrescriptionNo()
         {
@@ -2562,7 +2562,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             bool jsgb = false;
             try
             {
-                //获取实际要退费的信息，借用（获取处方状态）的对象
+                //Lấy thực tế cần hoàn phí của thông tin,借 dùng (LấyĐ ơn thuốc trạng thái)CủaĐ ối tư ợng
                 List<GET_CF_STATUS> tyCfList = getTyInfo();
                 if (tyCfList == null || tyCfList.Count == 0)
                     return;
@@ -2570,7 +2570,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 List<ADD_CF_TFTZ> tfTzList = new List<ADD_CF_TFTZ>();
                 foreach (GET_CF_STATUS cfStatus in tyCfList)
                 {
-                    //如果没有药品信息，则表示不退
+                    //Nếu không có thuốc thông tin,thì biểu thị không hoàn 
                     if (cfStatus.returnDrugInfo == null)
                         continue;
 
@@ -2599,29 +2599,29 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 if (tfTzList.Count < 1)
                 {
-                    //没有要退的处方
+                    // không có cần trả lại CủaĐ ơn thuốc
                     return;
                 }
 
                 reqData = JsonConvert.SerializeObject(tfTzList);
 
-                //   请求接口
+                // yêu cầu giao diện
                 // WebPostAPI.API.post<ADD_CF_TFTZ>(Constants.InterfaceConstant.ADD_CF_TFTZ, reqData, out interRepPara, out statusDescription, out jsgb);
                 jsgb = true;
-                //接口关闭，直接返回
+                //Giao di ệnĐ óng,trực tiếpquay lại
                 if (jsgb)
                 {
                     return;
                 }
-                //系统异常
+                //Hệ thống bất thư ờng
                 if (interRepPara == null)
                 {
-                    // throw new FailedCodeException("接口访问异常：" + statusDescription);
+                    // throw new FailedCodeException("Giao diện truy cập bất thư ờng:" + statusDescription);
                     //   return;
                 }
                 else
                 {
-                    //如果有业务异常，则提示
+                    //Nếu có nghiệp vụ bất thư ờng,thì nhắc nhở
                     if (interRepPara.failureMessage != null && interRepPara.failureMessage.Count > 0)
                     {
                         //   throw new FailedCodeException(interRepPara.failureMessageShow);
@@ -2631,18 +2631,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             }
             catch (Exception ex)
             {
-                //  throw new FailedCodeException("处方退费通知接口处理失败：" + ex.Message);
+                // throw new FailedCodeException("Đ ơn thuốc hoàn phí thông báo giao diện xử lý thất bại:" + ex.Message);
                 //  return;
             }
         }
 
-        //筛选没有退药的处方和退药数量为0的药品
+        //Lọc không có trả thuốc CủaĐ ơn thuốc và trả thuốc số lư ợng là0 của thuốc
         private List<GET_CF_STATUS> GetInfoForSelect(List<GET_CF_STATUS> tyCfList)
         {
             List<GET_CF_STATUS> retCfList = new List<GET_CF_STATUS>();
             foreach (GET_CF_STATUS cfStatus in tyCfList)
             {
-                //如果没有药品信息，则表示不退
+                //Nếu không có thuốc thông tin,thì biểu thị không hoàn 
                 if (cfStatus.returnDrugInfo == null)
                     continue;
 
@@ -2669,7 +2669,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 门诊结算支付方式记录————原收款
+        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --原 thu tiền 
         /// </summary>
         private List<OutpatientSettlementPaymentModelEntity> getJszffsEntityForSK()
         {
@@ -2692,10 +2692,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
 
         /// <summary>
-        /// 门诊结算明细_退
+        /// Chi tiết quyết toán ngoại trú_ trả lại 
         /// </summary>
-        /// <param name="jslx">结算类型</param>
-        /// <param name="detailList">明细</param>
+        /// <param name="jslx">Loại quyết toán</param>
+        /// <param name="detailList">Chi tiết</param>
         /// <returns></returns>
         private List<OutpatientSettlementDetailEntity> getMzJsMx(string jslx, int jsnm)
         {
@@ -2714,13 +2714,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        ///新增系统病人帐户收支记录
+        ///Thêm mới hệ thống bệnh nhân tài khoản 收支 bản ghi 
         /// </summary>
         private List<SysPatientAccountRevenueAndExpenseEntity> getZhszjlList(OutpatientSettlementEntity tempMzJs,
             List<OutpatientSettlementPaymentModelEntity> parmjszffsArray, string tsFlag)
         {
             return null;
-            //只有账户支付，才会有账户收支记录
+            //只có tài khoản thanh toán,才 sẽ có thu chi tài khoản bản ghi 
             //  if (brzh == null)
             //   return null;
             //List<tbl_mz_jszffs> tempjszffsArray = parmjszffsArray;
@@ -2736,43 +2736,43 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //        return null;
             //    if (tsFlag == "T")
             //    {
-            //        //退款
+            //        //Hoàn tiền
             //        szjl = getSzjl(tempMzJs.jsnm, fs.zfje, Constant.szxzEnum.MZ_JS_TH, fs.zfbh);
             //    }
             //    else
             //    {
-            //        //收款
+            // // thu tiền 
             //        szjl = getSzjl(tempMzJs.jsnm, -fs.zfje, Constant.szxzEnum.MZ_JS_TH, fs.zfbh);
             //    }
             //    szjlList.Add(szjl);
             //}
             //else
             //{
-            //    //家床病人
+            // // giư ờng gia đ ình bệnh nhân
             //    tbl_mz_jszffs fs = tempjszffsArray.Find(t => t.xjzffs == NewtouchHIS.MAT.Constant.xtzhfs.ZHZF);
             //    if (fs == null)
             //        return null;
             //    if (tsFlag == "T")
             //    {
-            //        //退款
+            //        //Hoàn tiền
             //        szjl = getSzjl(tempMzJs.jsnm, fs.zfje, Constant.szxzEnum.MZ_JS_TH, fs.zfbh);
             //    }
             //    else
             //    {
-            //        //收款
+            // // thu tiền 
             //        szjl = getSzjl(tempMzJs.jsnm, -fs.zfje, Constant.szxzEnum.MZ_JS_TH, fs.zfbh);
             //    }
             //    szjlList.Add(szjl);
 
 
-            //    //找零记录
+            // //Trả lại tiền thừa bản ghi 
             //    tbl_xt_xjzffs xjzffs = BF<xt_xjzffs>.Instance.getModel(NewtouchHIS.MAT.Constant.xtzhfs.XJZF);
             //    if (xjzffs == null)
-            //        throw new FailedCodeException("系统中不存在该现金支付！");
+            // throw new FailedCodeException("Hệ thống trong không tồn tại tại này thanh toán tiền mặt！");
             //    szjl = getSzjl(tempMzJs.jsnm, tempMzJs.zl, NewtouchHIS.MAT.Constant.szxzEnum.MZ_CZ_QK, xjzffs.xjzffsbh);
             //    szjlList.Add(szjl);
 
-            //    ////帐户支出
+            // //// tài khoản 支出
             //    //foreach (tbl_mz_jszffs_Ex entity in tempjszffsArray)
             //    //{
             //    //    szjl = getSzjl(brzh, tempMzJs);
@@ -2788,7 +2788,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 重新检查收据号
+        /// Lại kiểm tra số biên lai 
         /// </summary>
         private void checkSJH(string sjh)
         {
@@ -2796,7 +2796,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             {
                 FinanceReceiptEntity sjEntity = new FinanceReceiptEntity();
                 string type = string.Empty;
-                //获取收据号
+                //Lấy số biên lai 
                 //   List<string> fpsql = new List<string>();
                 if (_finRecRepos.checkSJH(sjh, userModel.UserCode, out sjEntity, out type, this.OrganizeId))
                 {
@@ -2805,11 +2805,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     if (type == "insert")
                     {
-                        _finRecRepos.AddReceiptInfo(sjEntity, this.OrganizeId); // 添加收据凭证号
+                        _finRecRepos.AddReceiptInfo(sjEntity, this.OrganizeId); // Thêm số chứng từ biên lai
                     }
                     if (type == "update")
                     {
-                        _finRecRepos.UpdateReceiptInfo(sjEntity, sjEntity.cwsjId); //修改收据凭证号
+                        _finRecRepos.UpdateReceiptInfo(sjEntity, sjEntity.cwsjId); //Sửa số chứng từ biên lai
                     }
                 }
                 else
@@ -2830,22 +2830,22 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
         //private bool PosJY(string kh, tbl_mz_js paramMzjs, decimal xjzf, bool flag)
         //   {
-        //       //撤销交易
+        // // hủy giao dịch 
         //       string code = PosCXInterface(kh, paramMzjs.fph, paramMzjs.jsnm);
         //       if (code != "00")
         //       {
         //           if (code == "12" || code == "E6")
         //           {
-        //               //pos撤销
+        // //pos hủy bỏ 
         //               this.isAlreadyPosCX = true;
-        //               if (DialogHelper.Ask_YesNo("收费处确认pos撤销交易已完成，请选择YES,退款将继续，否则终止退款。") == DialogResult.No)
+        // if (DialogHelper.Ask_YesNo("Thu phí nơi xác nhậnpos hủy giao dịch Đ ã hoàn thành,vui lòng chọnYES,hoàn tiền sẽ tiếp tục,nếu không chấm dứt hoàn tiền.") == DialogResult.No)
         //               {
         //                   return false;
         //               }
         //           }
         //           else if (code == "XX")
         //           {
-        //               //无撤销
+        // //Không có hủy bỏ 
         //               this.isAlreadyPosCX = false;
         //           }
         //           else
@@ -2857,12 +2857,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //           {
         //               if (Tools.getIniFileName("SFYXTFPZparm") != "0")
         //               {
-        //                   DialogHelper.DlgInfo("当前windows上POS机退费功能已关闭,无法做POS退费操作！");
+        // DialogHelper.DlgInfo("Khi trư ớc windows trên POS máy hoàn phí功 có thể Đ ãĐ óng,không có phư ơng pháp 做POShoàn phí thao tác！");
         //                   return false;
         //               }
         //           }
 
-        //           //全退款交易
+        // //Hoàn toàn bộ khoản giao dịch 
         //           if (flag == true)  //true == isReturnAll 
         //           {
         //               code = PosTfInterface(Kh, paramMzjs.fph, xjzf);
@@ -2870,7 +2870,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //               {
         //                   if (code == "12")
         //                   {
-        //                       if (DialogHelper.Ask_YesNo("收费处确认pos退款已完成时，请选择YES,退款将继续，否则终止退款。") == DialogResult.No)
+        // if (DialogHelper.Ask_YesNo("Thu phí nơi xác nhậnpos hoàn ti ềnĐ ã hoàn thành giờ,vui lòng chọnYES,hoàn tiền sẽ tiếp tục,nếu không chấm dứt hoàn tiền.") == DialogResult.No)
         //                       {
         //                           return false;
         //                       }
@@ -2888,28 +2888,28 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //       }
         //       else
         //       {
-        //           //pos撤销交易成功
+        // //pos hủy giao dịch thành công
         //           this.isAlreadyPosCX = true;
         //       }
         //       return true;
         //   }        //private bool PosJY(string kh, tbl_mz_js paramMzjs, decimal xjzf, bool flag)
         //   {
-        //       //撤销交易
+        // // hủy giao dịch 
         //       string code = PosCXInterface(kh, paramMzjs.fph, paramMzjs.jsnm);
         //       if (code != "00")
         //       {
         //           if (code == "12" || code == "E6")
         //           {
-        //               //pos撤销
+        // //pos hủy bỏ 
         //               this.isAlreadyPosCX = true;
-        //               if (DialogHelper.Ask_YesNo("收费处确认pos撤销交易已完成，请选择YES,退款将继续，否则终止退款。") == DialogResult.No)
+        // if (DialogHelper.Ask_YesNo("Thu phí nơi xác nhậnpos hủy giao dịch Đ ã hoàn thành,vui lòng chọnYES,hoàn tiền sẽ tiếp tục,nếu không chấm dứt hoàn tiền.") == DialogResult.No)
         //               {
         //                   return false;
         //               }
         //           }
         //           else if (code == "XX")
         //           {
-        //               //无撤销
+        // //Không có hủy bỏ 
         //               this.isAlreadyPosCX = false;
         //           }
         //           else
@@ -2921,12 +2921,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //           {
         //               if (Tools.getIniFileName("SFYXTFPZparm") != "0")
         //               {
-        //                   DialogHelper.DlgInfo("当前windows上POS机退费功能已关闭,无法做POS退费操作！");
+        // DialogHelper.DlgInfo("Khi trư ớc windows trên POS máy hoàn phí功 có thể Đ ãĐ óng,không có phư ơng pháp 做POShoàn phí thao tác！");
         //                   return false;
         //               }
         //           }
 
-        //           //全退款交易
+        // //Hoàn toàn bộ khoản giao dịch 
         //           if (flag == true)  //true == isReturnAll 
         //           {
         //               code = PosTfInterface(Kh, paramMzjs.fph, xjzf);
@@ -2934,7 +2934,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //               {
         //                   if (code == "12")
         //                   {
-        //                       if (DialogHelper.Ask_YesNo("收费处确认pos退款已完成时，请选择YES,退款将继续，否则终止退款。") == DialogResult.No)
+        // if (DialogHelper.Ask_YesNo("Thu phí nơi xác nhậnpos hoàn ti ềnĐ ã hoàn thành giờ,vui lòng chọnYES,hoàn tiền sẽ tiếp tục,nếu không chấm dứt hoàn tiền.") == DialogResult.No)
         //                       {
         //                           return false;
         //                       }
@@ -2952,7 +2952,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //       }
         //       else
         //       {
-        //           //pos撤销交易成功
+        // //pos hủy giao dịch thành công
         //           this.isAlreadyPosCX = true;
         //       }
         //       return true;
@@ -2964,7 +2964,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         #region GRS门诊退费
 
         /// <summary>
-        /// GRS门诊退费
+        /// GRSHoàn phí ngoại trú
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="GridViewMxList"></param>
@@ -3019,7 +3019,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 var tmpDr = MZJS[0];
 
                 #region 全退半退数据明细
-                //设置全退，半退，不退明细list
+                //Đ ặt hoàn toàn bộ,hoàn một phần, không hoàn chi tiếtlist
 
                 getRecordWithCategory(GridViewMxList);
                 var accountEntityAll = getAccountList(2, tblMzJs, tmpDr);
@@ -3051,7 +3051,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 退费结算
+        /// Hoàn phí quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="ZffsDt"></param>
@@ -3069,14 +3069,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             lblSsk = (mzJs.xjzf).ToString("0.00");
 
-            if (false == isReturnAll) //如果是部分退
+            if (false == isReturnAll) //Nếu là một phần trả lại 
             {
                 var ybError = false;
                 var tuije = accountEntity.jsxmList.Sum(p => p.je);
                 var brxz = _RefundService.GetBrxzByBrbh(accountEntity.brxz);
                 //if (brxz == null)
                 //    throw new FailedCodeException("HOSP_PATIENT_NATURE_IS_NOT_EXIST");
-                //基本信息
+                // cơ bản thông tin
                 newMzJs = getMzJsInAcc(accountEntity, brxz, out ybError, out sqxh);
                 newMzJs.jzsj = mzJs.jzsj;
                 newMzJs.zh = mzJs.zh;
@@ -3084,18 +3084,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 newMzJs.xjzf = newMzJs.zlfy;
                 newMzJs.zje = newMzJs.xjzf;
             }
-            mzJs.CreateTime = DateTime.Now; //获取系统服务器时间
-            mzJs.CreatorCode = userModel.UserCode; //记录退费操作员
+            mzJs.CreateTime = DateTime.Now; //Lấy hệ thống máy chủ thời gian
+            mzJs.CreatorCode = userModel.UserCode; // bản ghi hoàn phí thao tác viên 
             var jzrqList = Convert.ToDateTime(mzJs.jzsj);
-            //全退
+            //Hoàn toàn bộ
             fullBack(Kh, accountEntity.isGh, mzJs, ghjsDt);
-            if (false == isReturnAll) //如果是部分退
+            if (false == isReturnAll) //Nếu là một phần trả lại 
                 PartBackInAcc(newMzJs, accountEntity, mzJs);
             _RefundService.Minusybcs(jzrqList, isReturnAll, OrganizeId, accountEntity.patid);
         }
 
         /// <summary>
-        /// 需要结算的项目信息
+        /// CầnQuyết toánCủaHạng mụcThông tin
         /// </summary>
         /// <param name="jsEntity"></param>
         /// <param name="brxz"></param>
@@ -3118,7 +3118,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             var js = new OutpatientSettlementEntity();
 
-            //根据病人内码获取病人信息
+            //Lấy thông tin bệnh nhân theo mã nội bộ bệnh nhân
             var brjbxx = _RefundService.GetBrjbxxByPatid(jsEntity.patid);
             if (brjbxx == null)
                 throw new FailedCodeException("HOSP_SYSPATIENT_BASICINFO_IS_NOT_EXIST");
@@ -3127,16 +3127,16 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             js.patid = brjbxx.patid;
             js.brxz = brxz == null ? null : brxz.brxz;
             js.jslx = jsEntity.jslx;
-            js.zffy = 0; //自负费用
-            js.flzffy = 0; //分类自负费用
-            js.jzfy = 0; //记账费用，如果是医保病人，为医保返回的结果
-            js.jmje = 0; //减免费用
-            js.jszt = (int)Constants.jsztEnum.YJ; //结算状态
+            js.zffy = 0; //Chi phí tự trả
+            js.flzffy = 0; //Chi phí tự trả theo phân loại
+            js.jzfy = 0; //Phí ghi sổ,nếu là BHYTbệnh nhân,là BHYTquay lại của kết quả
+            js.jmje = 0; //Chi phí giảm trừ
+            js.jszt = (int)Constants.jsztEnum.YJ; //Trạng thái quyết toán
             js.xjzffs = string.Empty;
             js.ghnm = jsEntity.ghnm;
-            //现金支付
+            //Thanh toán tiền mặt
             decimal ssk;
-            //现金误差
+            //Sai lệch tiền mặt
             decimal difference;
 
             var ysk = jsEntity.jsxmList.Sum(p => p.je);
@@ -3149,7 +3149,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 半退
+        /// Hoàn một phần
         /// </summary>
         /// <param name="newMzJs"></param>
         /// <param name="accountEntity"></param>
@@ -3160,10 +3160,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             //if (!checkJs())
             //    return;
-            //结算支付方式记录（退款方式）
+            //Quyết toán phư ơng thức thanh toán bản ghi (Phư ơng thức hoàn tiền)
             //jszffsArray = getJszffsEntity();
 
-            //收款方式-去掉退款方式就是半退的结算方式
+            // phư ơng thức thu tiền - loại bỏ Phư ơng thức hoàn tiền thì là hoàn một phần của quyết toán phư ơng thức 
             //var jszffsArrayForSK = getJszffsEntity(jszffsArray);
 
             mzJs.CreatorCode = userModel.UserCode;
@@ -3176,7 +3176,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             newMzJs.fph = string.Empty;
             var listMzJsMx =
                 getMzJsMx(newMzJs.jsnm, newMzJs.jslx, accountEntity.jsxmList);
-            newMzJs.cxjsnm = Jsnm; //旧结算是退新的撤销结算内码 
+            newMzJs.cxjsnm = Jsnm; // cũ quyết toán là trả lại mới của hủy bỏ mã nội bộ quyết toán 
             var szjlList = getZhszjlList(newMzJs, jszffsArray, "S");
             var result2 = _RefundService.InsertRemainFromReturns(newMzJs, listMzJsMx, jszffsArray, jsdlList);
             if (false == result2)
@@ -3188,14 +3188,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         #region 医保退费
 
         /// <summary>
-        /// 退费流程.新的未结明细上传
+        /// Hoàn phí流程. mới của chưa结chi tiết tải lên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="newwjybjsh"></param>
-        /// <param name="tmxzje">退明细总金额</param>
-        /// <param name="yxzje">余下总金额</param>
+        /// <param name="tmxzje"> trả lại chi tiết tổng số tiền</param>
+        /// <param name="yxzje">余 dư ới tổng số tiền</param>
         public void DetailsUploadYb(string orgId, int jsnm
             , Dictionary<int, decimal> tjsxmDict
             , string newwjybjsh
@@ -3226,12 +3226,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 if (newsl < 0)
                 {
                     //throw
-                    tmxzje += item.jsmxje.Value;    //被全退了
+                    tmxzje += item.jsmxje.Value;    // đ ược hoàn toàn bộ 
                     continue;
                 }
                 else if (newsl == 0)
                 {
-                    tmxzje += item.jsmxje.Value;    //被全退了
+                    tmxzje += item.jsmxje.Value;    // đ ược hoàn toàn bộ 
                     continue;
                 }
 
@@ -3239,7 +3239,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 detail.ITEMID = item.feeType == 1 
                     ? ("YP" + item.cfmxId.Value.ToString()) 
                     : ("XM" + item.xmnm.Value.ToString());
-                //医保0药品 1项目
+                //BHYT0Thuốc 1Hạng mục
                 detail.DKE085 = item.feeType == 1 ? "0" : "1";
                 detail.DKE012 = item.sfxmCode;
                 detail.AKE227 = item.klsj;
@@ -3247,20 +3247,20 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 detail.AKE228 = item.ys;
                 detail.AKE229 = item.ysmc;
                 detail.AKE002 = item.mc;
-                //药品规格、生产地
+                //Thuốcquy cách, 生产 đ ịa 
                 detail.AKE207 = item.dw;
                 detail.AKE212 = item.sl.Value;
                 detail.AKE208 = item.dj;
                 detail.AKE198 = item.jsmxje.Value;
                 if (newsl != item.sl.Value)
                 {
-                    //退了部分
+                    // trả lại một phần
                     detail.AKE212 = newsl;
                     detail.AKE198 = item.dj * newsl;
 
                     tmxzje += item.jsmxje.Value - detail.AKE198;
                 }
-                //其他药品相关
+                //Khác thuốc liên quan 
                 ybDetailList.Add(detail);
 
                 yxzje += detail.AKE198;

@@ -1,6 +1,6 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description：门诊挂号收费相关业务 
+// Copyright (C) 2016 Newtouch Giữ bản quyền. 
+// Description:Đ ăng ký khám ngoại trú thu phí liên quan nghiệp vụ 
 // Author：HLF
 // CreateDate： 2016/12/23 13:42:32 
 //**********************************************************/
@@ -40,13 +40,13 @@ namespace Newtouch.HIS.Application.Implementation
     public class OutPatChargeApp : AppBase, IOutPatChargeApp
     {
         //GetOutPatRegEntity
-        private readonly IOutpatientRegistRepo _outPatRegRepo; //门诊挂号仓储
-        private readonly ISysConfigRepo _sysConfigRepo; //系统门诊配置
-        private readonly ISysPatientChargeWaiverRepo _sysPatiChargeWaiRepo; // 减免金额
-        private readonly IOutPatientDmnService _outPatientDmnService; //发票号
-        private readonly ISysPatientNatureRepo _sysNatRepo; //系统病人性质
-        private readonly ISysPatientBasicInfoRepo _sysPatiInfoRepo; //病人基本信息
-        private readonly IBookkeepInHosDmnService _hosTempRepo; //收费模版
+        private readonly IOutpatientRegistRepo _outPatRegRepo; //Đ ăng ký khám ngoại trú仓储
+        private readonly ISysConfigRepo _sysConfigRepo; //Hệ thống ngoại trú cấu hình
+        private readonly ISysPatientChargeWaiverRepo _sysPatiChargeWaiRepo; // Số tiền giảm trừ
+        private readonly IOutPatientDmnService _outPatientDmnService; //Số hóa đ ơn
+        private readonly ISysPatientNatureRepo _sysNatRepo; //Hệ thốngTính chất bệnh nhân
+        private readonly ISysPatientBasicInfoRepo _sysPatiInfoRepo; //Thông tin cơ bản bệnh nhân
+        private readonly IBookkeepInHosDmnService _hosTempRepo; //Thu phí模版
         private readonly IOutPatChargeDmnService _outChargeDmnService;
 	    private readonly IPatientBasicInfoDmnService _patientBasicInfoDmnService;
         private readonly IOutPatientSettleDmnService _outPatientSettleDmnService;
@@ -59,38 +59,38 @@ namespace Newtouch.HIS.Application.Implementation
 
 	    private readonly ICqybUploadInPres04Repo _cqybUploadInPres04Repo;
 		/// <summary>
-		/// 根据卡号或病历号获取病人信息
+		/// theo số thẻ hoặc số hồ sơ bệnh án lấy thông tin bệnh nhân
 		/// </summary>
-		/// <param name="kh">卡号</param>
-		/// <param name="brxz">病人性质</param>
+		/// <param name="kh">Số thẻ</param>
+		/// <param name="brxz">Tính chất bệnh nhân</param>
 		/// <returns></returns>
 		public OutPatChargeInfoVO GetOutPatChargeInfo(string kh, string brxz)
         {
             OutPatChargeInfoVO outchargeInfoVo;
             if (string.IsNullOrEmpty(kh))
             {
-                throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID"); //卡号无效
+                throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID"); //Số thẻ không hiệu lực
             }
             var _kh = kh.Trim().ToUpper();
-            //初复诊判断卡号是否有效
+            //初复诊 phán đoán số thẻ có hiệu lực hay không
             var regEntity = _outPatRegRepo.SelectCFZ(_kh, OrganizeId);
             if (regEntity == null)
             {
                 throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID");
             }
 
-            //病人性质传入不为空，说明多个病人性质已经选择一个作为参数传入
+            //Tính chất bệnh nhân truyền 入 không là trống,说明 nhiều tính chất bệnh nh ânĐ ãchọn một 作là tham số truyền 入
             if (!string.IsNullOrEmpty(brxz))
             {
                 regEntity.brxz = brxz;
 
-                //系统配置
+                //Cấu hình hệ thống
                 var confEntity = _sysConfigRepo.GetByCode(Constants.xtmzpz.BRXZ_YBJC, OperatorProvider.GetCurrent().OrganizeId);
                 if (confEntity != null && confEntity.Value.Contains(regEntity.brxz))
                 {
                     throw new FailedCodeException("OUTPAT_BEDPATIENT_CHARGE");
                 }
-                //获取挂号收费病人基本信息
+                //LấyĐ ăng ký khámthu phí thông tin cơ bản bệnh nhân
                 outchargeInfoVo = _outChargeDmnService.GetChargePatInfo(kh, brxz);
                 if (outchargeInfoVo == null)
                 {
@@ -108,19 +108,19 @@ namespace Newtouch.HIS.Application.Implementation
             }
             else
             {
-                //根据挂号信息查病人性质
-                //挂号信息
+                // theo thông tin đ ăng ký khám tra cứu tính chất bệnh nhân
+                //Thông tin đ ăng ký khám
                 var regEntityList = _outPatRegRepo.GetOutPatRegEntityList(_kh, this.OrganizeId);
                 if (regEntityList.Count < 1 || string.IsNullOrEmpty(regEntityList[0].brxz))
                 {
-                    throw new FailedCodeException("OUTPAT_REGIST_ISINVALID");  //挂号信息无效
+                    throw new FailedCodeException("OUTPAT_REGIST_ISINVALID");  //Thông tin đ ăng ký khám không hiệu lực
                 }
 
-                //病人性质列表
+                //Tính chất bệnh nhânDanh sách
                 var propertyList = new List<OutPatChargeProperty>();
                 if (regEntityList.Count > 1)
                 {
-                    //update by hao 2017-2-28 添加挂号多个病人性质的窗口选择 
+                    //update by hao 2017-2-28 Th êmĐ ăng ký khám nhiều tính chất bệnh nhân của窗口chọn 
                     foreach (var t in regEntityList)
                     {
                         var property = new OutPatChargeProperty
@@ -155,13 +155,13 @@ namespace Newtouch.HIS.Application.Implementation
                     regEntity.brxz = propertyList[0].brxz;
                 }
 
-                //系统配置
+                //Cấu hình hệ thống
                 var confEntity = _sysConfigRepo.GetByCode(Constants.xtmzpz.BRXZ_YBJC, OperatorProvider.GetCurrent().OrganizeId);
                 if (confEntity != null && confEntity.Value.Contains(regEntity.brxz))
                 {
                     throw new FailedCodeException("OUTPAT_BEDPATIENT_CHARGE");
                 }
-                //获取挂号收费病人基本信息
+                //LấyĐ ăng ký khámthu phí thông tin cơ bản bệnh nhân
                 outchargeInfoVo = _outChargeDmnService.GetChargePatInfo(kh, regEntity.brxz);
                 if (outchargeInfoVo == null)
                 {
@@ -182,9 +182,9 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取挂号信息
+        /// Lấy thông tin đ ăng ký khám
         /// </summary>
-        /// <param name="patid">病人patid</param>
+        /// <param name="patid">Bệnh nhânpatid</param>
         /// <param name="brxz"></param>
         /// <param name="docVo"></param>
         /// <returns></returns>
@@ -209,7 +209,7 @@ namespace Newtouch.HIS.Application.Implementation
                     {
                         itemVo[i].ghName = itemVo[i].gh_ks.Split('＞')[0];
                         itemVo[i].ksName = itemVo[i].gh_ks.Split('＞')[1];
-                        //门急诊挂号在系统配置表是否有效
+                        // cửa cấp c ứuĐ ăng ký khám tại cấu hình hệ thống bảng có hiệu lực hay không
                         var isYx = _outChargeDmnService.getActiveDuration(itemVo[i].ks, itemVo[i].mjzbz, itemVo[i].CreateTime.ToString(CultureInfo.InvariantCulture).Trim());
                         if (isYx) continue;
                         itemVo.Remove(itemVo[i]);
@@ -217,7 +217,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                 }
                 if (itemVo.Count <= 0) return itemVo;
-                //判断病人性质 是否大病  先略
+                // phán đoán tính chất bệnh nhân có hay không大病 trư ớc 略
                 if (itemVo.Count != 1) return itemVo;
                 var item = new OutPatChargeItemVO();
 
@@ -236,7 +236,7 @@ namespace Newtouch.HIS.Application.Implementation
                 item.ks = itemVo[0].ks;
                 item.mjzbz = itemVo[0].mjzbz;
                 item.ys = itemVo[0].ys;
-                //当前为专家挂号时，直接赋值医生并添加记录
+                //Khi trư ớc là chuyên giaĐ ăng ký khám giờ,trực tiếp gán giá trị bác sĩ và thêm bản ghi 
                 if (string.IsNullOrEmpty(item.ys)) return itemVo;
                 var doctorVo = _outChargeDmnService.getDoctorInfo
                     (item.ghnm, "", 3, item.mjzbz, false, false);
@@ -259,47 +259,47 @@ namespace Newtouch.HIS.Application.Implementation
 
 
         /// <summary>
-        /// 根据关键字获取药品和收费项目信息
+        /// theo từ khóa lấy thuốc và hạng mục thu phí thông tin
         /// </summary>
-        /// <param name="keyword">查询关键字</param>
+        /// <param name="keyword">Tra cứuTừ khóa</param>
         /// <returns></returns>
         public List<ChargeItemDetailVO> GetYpItemInfo(string keyword)
         {
-            //获取本地配置的药房代码
+            //LấyĐ ịa phư ơng cấu hình của nhà thuốc mã
             var yfpz = Constants.CurrentYfbm.yfbmCode;
             if (string.IsNullOrEmpty(yfpz))
             {
-                throw new FailedCodeException("OUTPAT_YP_YF_ISNULL"); //如需查询使用药品相关信息，请先配置药房！
+                throw new FailedCodeException("OUTPAT_YP_YF_ISNULL"); //如需tra cứu sử dụng thuốc liên quan thông tin,vui lòng trư ớc cấu hình nhà thuốc ！
             }
-            //查询有关药品和项目
+            //Tra cứu về thuốc và hạng mục
             var itemVo = _outChargeDmnService.getYpItemList(keyword, yfpz, this.OrganizeId);
             return itemVo;
         }
 
         /// <summary>
-        /// 获取处方号和附加费金额
+        /// Lấy số đ ơn thuốc và附加费số tiền
         /// </summary>
-        /// <param name="sfxmtype">收费项目类别</param>
-        /// <param name="lscfh">临时处方号</param>
-        /// <param name="brxz">病人性质</param>
-        /// <param name="dl">大类</param>
-        /// <param name="sfxm">收费项目</param>
-        /// <param name="dj">单价</param>
+        /// <param name="sfxmtype">Hạng mục thu phí loại</param>
+        /// <param name="lscfh"> tạm thời số đ ơn thuốc</param>
+        /// <param name="brxz">Tính chất bệnh nhân</param>
+        /// <param name="dl"> loại lớn </param>
+        /// <param name="sfxm">Hạng mục thu phí</param>
+        /// <param name="dj">Đ ơn giá</param>
         /// <param name="sl"></param>
         /// <returns></returns>
         public OutPatChargeCFDto GetCfhAndFjfMoney(string sfxmtype, string lscfh, string brxz, string dl, string sfxm, string dj, string sl)
         {
             var dto = new OutPatChargeCFDto();
 
-            if (sfxmtype == "1")//项目
+            if (sfxmtype == "1")//Hạng mục
             {
                 dto.cfh = "";
             }
-            if (sfxmtype == "2")//药品
+            if (sfxmtype == "2")//Thuốc
             {
                 dto.cfh = !string.IsNullOrEmpty(lscfh) ? lscfh : _outChargeDmnService.getCflsh();
             }
-            dto.fwf = _outChargeDmnService.Calcfwfjm(brxz, dl, sfxm, dj);//附件金额
+            dto.fwf = _outChargeDmnService.Calcfwfjm(brxz, dl, sfxm, dj);//附 vụ số tiền
             var jeNum = (Convert.ToDouble(dj) + Convert.ToDouble(dto.fwf)) * Convert.ToDouble(sl);
             dto.jeNum = jeNum;
 
@@ -308,20 +308,20 @@ namespace Newtouch.HIS.Application.Implementation
 
         #region 处方号
         /// <summary>
-        /// 获取处方号
+        /// Lấy số đ ơn thuốc
         /// </summary>
         /// <param name="sfxmtype"></param>
         /// <returns></returns>
         public string GetCfh(string sfxmtype)
         {
             string cfh = "";
-            if (sfxmtype == "1")//项目
+            if (sfxmtype == "1")//Hạng mục
             {
                 cfh = "";
             }
-            if (sfxmtype == "2")//药品
+            if (sfxmtype == "2")//Thuốc
             {
-                cfh = _outChargeDmnService.getCflsh(); //处方流水号
+                cfh = _outChargeDmnService.getCflsh(); //Số thứ tự đ ơn thuốc
             }
             return cfh;
         }
@@ -331,7 +331,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 判断同一药品是否一个处方 获取相同药品的组号 俩方法没有检测到引用，创建者如无需要，请删除 add by sunny
 
         /// <summary>
-        /// 阻止同一处方录入相同药品
+        /// 阻止 cùng một Đ ơn thuốc录入 giống nhau thuốc
         /// </summary>
         /// <param name="strSfxm"></param>
         /// <param name="strYf"></param>
@@ -345,7 +345,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 foreach (OutpatChargeDto dto in gridDto)
                 {
-                    if (!string.IsNullOrEmpty(dto.cfh))//药品
+                    if (!string.IsNullOrEmpty(dto.cfh))//Thuốc
                     {
                         if (!string.IsNullOrEmpty(lsCfh) && lsCfh.Equals(dto.cfh))
                         {
@@ -376,7 +376,7 @@ namespace Newtouch.HIS.Application.Implementation
 
 
         /// <summary>
-        /// 获取相同药品的组号
+        /// Lấy giống nhau thuốc của nhóm số 
         /// </summary>
         /// <param name="code"></param>
         /// <param name="strYf"></param>
@@ -390,7 +390,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 foreach (OutpatChargeDto dto in gridDto)
                 {
-                    if (!string.IsNullOrEmpty(dto.cfh))//药品
+                    if (!string.IsNullOrEmpty(dto.cfh))//Thuốc
                     {
                         if (!string.IsNullOrEmpty(lsCfh) && lsCfh.Equals(dto.cfh))
                         {
@@ -419,49 +419,49 @@ namespace Newtouch.HIS.Application.Implementation
         #region 结算
 
         /// <summary>
-        /// 门诊收费结算
+        /// Ngoại trú thu phí quyết toán
         /// </summary>
-        /// <param name="gridDto">要保存、结算的处方列表</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="fph">发票号</param>
-        /// <param name="xjzffs">现金支付方式</param>
+        /// <param name="gridDto"> cần lưu, quyết toán CủaĐ ơn thuốcdanh sách</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="fph">Số hóa đ ơn</param>
+        /// <param name="xjzffs">Phư ơng thức thanh toán tiền mặt</param>
         /// <param name="xjzffsbh"></param>
-        /// <param name="ysk">预收款</param>
-        /// <param name="ssk">实收款</param>
-        /// <param name="zl">找零</param>
+        /// <param name="ysk">Tạm thu</param>
+        /// <param name="ssk">Số tiền thực thu</param>
+        /// <param name="zl">Trả lại tiền thừa</param>
         /// <returns></returns>
         public SettSaveSuccessResultDto OutPatChargeSett(List<OutpatChargeDto> gridDto, string kh, string fph, string xjzffs, string xjzffsbh, decimal ysk, decimal ssk, decimal zl)
         {
 
-            //病人性质Entity
+            //Tính chất bệnh nhânEntity
             SysPatientNatureEntity brxzEntity;
-            //结算Entity
+            //Quyết toánEntity
             SettlementEntityVO jsEntity;
-            //结算实体 对应表mz_js
+            //Quyết toán thực thể bảng tư ơng ứngmz_js
             OutpatientSettlementEntity mzjs;
-            //结算明细 对应表mz_jsmx
-            //结算大类
+            //Chi tiết quyết toán bảng tư ơng ứngmz_jsmx
+            //Quyết toán loại lớn 
             List<OutpatientSettlementCategoryEntity> jsdlList;
 
 
-            //结算判断
+            //Quyết toán phán đoán 
             SettSaveCheck(gridDto, fph, zl, out brxzEntity);
 
-            //数据库变更对象
+            //Dữ liệu kho thay đ ổi Đ ối tư ợng
             var sqlVo = GetOutPatChargeSettDbvo(gridDto, kh, fph, xjzffs, xjzffsbh, ysk, ssk, zl, out jsEntity);
 
 
-            //获得需要结算的项目信息，统计结算大类
+            // nhận đ ược cần quyết toán của hạng mục thông tin, thống kê quyết toán loại lớn 
             _outChargeDmnService.GetMzJsInfo(jsEntity, brxzEntity, out mzjs, out jsdlList);
-            //现金支付
+            //Thanh toán tiền mặt
             mzjs.xjzf = ssk;
             mzjs.zje = ssk;
             mzjs.xjzffs = xjzffs;
             mzjs.fph = fph;
             mzjs.ysk = ysk;
             mzjs.zl = zl;
-            //新加字段 add
-            mzjs.xm = gridDto[0].xm; //姓名
+            // mới 加 trư ờng add
+            mzjs.xm = gridDto[0].xm; //Họ tên
             mzjs.xb = gridDto[0].xb;
             mzjs.blh = gridDto[0].blh;
             mzjs.csny = gridDto[0].csny;
@@ -471,19 +471,19 @@ namespace Newtouch.HIS.Application.Implementation
             sqlVo.mz_js = mzjs;
             sqlVo.mz_jsdlList = jsdlList;
 
-            //获取结算明细
+            //Lấy chi tiết quyết toán
             var jsmxList = _outChargeDmnService.getJSMX(mzjs, jsEntity);
             sqlVo.mz_jsmxList = jsmxList;
 
-            //门诊结算支付方式
+            //Phư ơng thức thanh toán quyết toán ngoại trú
             var settPayEntity = _outChargeDmnService.GetMzJsZffs(mzjs.jsnm, xjzffs, xjzffsbh, ysk);
             sqlVo.mz_jszffs = settPayEntity;
 
 
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _outChargeDmnService.OutPatChargeSettDB(sqlVo);
 
-            //返回门诊收费结算数据
+            //Quay lại ngoại trú thu phí quyết toán dữ liệu
             var reslt = new SettSaveSuccessResultDto()
             {
                 yingshoukuan = sqlVo.mz_js.zje.ToString("0.00"),
@@ -496,7 +496,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 结算判断
+        /// Quyết toán phán đoán 
         /// </summary>
         /// <param name="gridDto"></param>
         /// <param name="fph"></param>
@@ -506,64 +506,64 @@ namespace Newtouch.HIS.Application.Implementation
         {
             if (string.IsNullOrWhiteSpace(fph))
             {
-                throw new FailedCodeException("HOSP_PLEASE_CHOOSE_FINO"); //请选择发票号
+                throw new FailedCodeException("HOSP_PLEASE_CHOOSE_FINO"); //Vui lòng chọn số hóa đ ơn
             }
             if (_outPatientDmnService.ExistsForInvoiceNo(fph, OrganizeId))
             {
-                throw new FailedCodeException("HOSP_FINO_IS_USED"); //发票号已使用
+                throw new FailedCodeException("HOSP_FINO_IS_USED"); //Số hóa đ ơnĐ ãsử dụng
             }
-            //找零
+            //Trả lại tiền thừa
             if (zl < 0)
             {
-                throw new FailedCodeException("HOSP_ZHAOLING_IS_NEGATIVE"); //找零
+                throw new FailedCodeException("HOSP_ZHAOLING_IS_NEGATIVE"); //Trả lại tiền thừa
             }
 
-            //验证一些信息
+            //Xác minh một 些thông tin
             if (gridDto == null || gridDto.Count < 0)
             {
-                throw new FailedCodeException("OUTPAT_BILLING_ITEM_CAN_NOT_BE_EMPTY"); //没有要结算项目
+                throw new FailedCodeException("OUTPAT_BILLING_ITEM_CAN_NOT_BE_EMPTY"); // không có cần quyết toán hạng mục
             }
             if (gridDto[0].ghnm == 0)
             {
-                throw new FailedCodeException("OUTPAT_THE_REGISTERED_MESSAGE_DOES_NOT__EXIST"); //挂号内码为空
+                throw new FailedCodeException("OUTPAT_THE_REGISTERED_MESSAGE_DOES_NOT__EXIST"); //Đ ăng ký khám mã nội bộ là trống 
             }
 
-            //不同病人性质和门急诊不能一起结算   多个挂号信息一起结算，目前不存在
+            // khác nhau tính chất bệnh nhân và cửa cấp cứu không thể cùng nhau quyết toán nhiều thông tin đ ăng ký khám cùng nhau quyết toán,hiện tại không tồn tại tại
 
-            //根据挂号内码获取挂号信息 没用到
+            // theo Đ ăng ký khám mã nội bộ lấy thông tin đ ăng ký khám không dùng đ ến 
 
 
-            //根据病人内码获取病人信息
+            //Lấy thông tin bệnh nhân theo mã nội bộ bệnh nhân
             var brjbxx = _sysPatiInfoRepo.GetInfoByPatid(gridDto[0].patid.ToString(), OrganizeId);
-            if (brjbxx == null) throw new FailedCodeException("OUTPAT_PATIENT_BASICINFO_IS_NOT_EXIST"); //不存在该病人信息
-            //根据病人性质判断
+            if (brjbxx == null) throw new FailedCodeException("OUTPAT_PATIENT_BASICINFO_IS_NOT_EXIST"); // không tồn tại tại này thông tin bệnh nhân
+            // theo tính chất bệnh nhân phán đoán 
             brxzEntity = _sysNatRepo.SelectBrxzByBrxzbh(gridDto[0].brxzbh, OrganizeId);
             if (brxzEntity == null)
             {
-                throw new FailedCodeException("HOSP_PATIENT_NATURE_IS_NOT_EXIST"); //该病人性质不存在
+                throw new FailedCodeException("HOSP_PATIENT_NATURE_IS_NOT_EXIST"); // này tính chất bệnh nhân không tồn tại tại
             }
 
             if (brxzEntity.ybjylx == Constants.ybjylx.ybjylx6)
             {
-                //新农合交易
+                // BHYT nông thôn mới giao dịch 
             }
             else
             {
-                //自费及医保交易 
+                //Tự trả và BHYT giao dịch 
 
             }
         }
 
         /// <summary>
-        /// 保存结算实体赋值
+        /// Lưu quyết toán thực thể gán giá trị 
         /// </summary>
-        /// <param name="gridDto">要保存、结算的处方列表</param>
+        /// <param name="gridDto"> cần lưu, quyết toán CủaĐ ơn thuốcdanh sách</param>
         /// <param name="kh"></param>
-        /// <param name="fph">发票号</param>
-        /// <param name="xjzffs">现金支付方式</param>
+        /// <param name="fph">Số hóa đ ơn</param>
+        /// <param name="xjzffs">Phư ơng thức thanh toán tiền mặt</param>
         /// <param name="xjzffsbh"></param>
-        /// <param name="ysk">预收款</param>
-        /// <param name="ssk">实收款</param>
+        /// <param name="ysk">Tạm thu</param>
+        /// <param name="ssk">Số tiền thực thu</param>
         /// <param name="zl"></param>
         /// <param name="jsEntity"></param>
         /// <returns></returns>
@@ -580,23 +580,23 @@ namespace Newtouch.HIS.Application.Implementation
                 mz_jszffs = new OutpatientSettlementPaymentModelEntity()
             };
 
-            jsEntity = new SettlementEntityVO(); //暂存结算信息 
-            var jsxmList = new List<SettleProjectVO>(); //结算项目List
+            jsEntity = new SettlementEntityVO(); // tạm lưu thông tin quyết toán 
+            var jsxmList = new List<SettleProjectVO>(); //Quyết toánHạng mụcList
 
-            var strArray = new List<string>();  //暂存已保存的处方号
-            var cFisExit = true; // 默认处方不存在
-            var cfnm = 0; //处方内码
+            var strArray = new List<string>();  //Tạm lưu số đ ơn thuốc đ ã lưu
+            var cFisExit = true; // Đ ơn thuốc mặc đ ịnh không tồn tại
+            var cfnm = 0; //Mã nội bộ đ ơn thuốc
             const int ptcfnm = 0;
-            var cfh = ""; // 当前处方号
+            var cfh = ""; // Khi trư ớc số đ ơn thuốc
 
-            //是否特殊标识药品
+            //Có hay kh ôngĐ ặc biệt dấu hiệu thuốc
             var istsbzS = false;
-            var yxYbdm = false; //有效医保代码
+            var yxYbdm = false; //Hiệu lựcMã BHYT
             decimal outJmbl = 0;
             const decimal outJmblZhxz = 0;
             decimal outJmje = 0;
             const decimal outJmjeZhxz = 0;
-            //循环要保存的处方药品和项目数据
+            //循环 cần lưu CủaĐ ơn thuốc thuốc và hạng mục dữ liệu
             if (gridDto.Count > 0)
             {
                 var gridindex = 0;
@@ -604,19 +604,19 @@ namespace Newtouch.HIS.Application.Implementation
                 foreach (var dto in gridDto)
                 {
                     #region 药品处方
-                    if (dto.cfh != "" && dto.xmtype == "2")//处方号不为空，即为药品
+                    if (dto.cfh != "" && dto.xmtype == "2")//Số đ ơn thuốc không là trống, tức là là thuốc
                     {
 
                         #region 药品
-                        if (dto.IsZhbrxz)//组合病人性质
+                        if (dto.IsZhbrxz)// kết hợp tính chất bệnh nhân
                         {
                             if (dto.zh_sbrxz == dto.brxz)
                             {
                                 istsbzS = true;
                             }
-                            if (istsbzS)//特殊标识
+                            if (istsbzS)//Đ ặc biệt dấu hiệu 
                             {
-                                //医保减免算法
+                                //BHYTgiảm trừ thuật toán 
                                 _sysPatiChargeWaiRepo.Get_Calcjm(dto.zh_sbrxz, dto.dl, dto.sfxm, dto.je, out outJmbl, out outJmje, this.OrganizeId);
                             }
                             else
@@ -635,38 +635,38 @@ namespace Newtouch.HIS.Application.Implementation
 
                         if (dto.isYbbr || dto.brxz == "38")
                         {
-                            //暂不做处理
+                            // tạm thời không 做xử lý
                         }
                         else
                         {
                             yxYbdm = true;
                         }
 
-                        //添加处方主表信息
+                        //Thêm thông tin bảng chính đ ơn thuốc
                         if (gridindex == 0 || cfindex == 0 || strArray.Count == 0)
                         {
-                            cFisExit = true; //处方不存在，添加处方主表
+                            cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
                         }
-                        //添加过处方记录
+                        //Thêm qua Đ ơn thuốc bản ghi 
                         if (strArray != null && strArray.Count > 0)
                         {
                             foreach (var t in strArray)
                             {
                                 if (t == dto.cfh)
                                 {
-                                    //说明已经存在该处方主表信息 
-                                    cFisExit = false; // 处方已存在
+                                    //Cho biết đ ã tồn tại thông tin bảng chính của đ ơn thuốc này 
+                                    cFisExit = false; // Đ ơn thuốc đ ã tồn tại
                                 }
                             }
                         }
 
                         if (cFisExit)
                         {
-                            //添加处方主表信息
+                            //Thêm thông tin bảng chính đ ơn thuốc
                             strArray.Add(dto.cfh);
 
                             #region 添加处方
-                            //门诊处方
+                            //Đ ơn thuốc ngoại trú
                             var mzcf = new OutpatientPrescriptionEntity
                             {
                                 cfnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("mz_cf"),
@@ -713,9 +713,9 @@ namespace Newtouch.HIS.Application.Implementation
                         mzcfmx.dj = dto.dj;
                         mzcfmx.sl = dto.sl;
                         mzcfmx.je = dto.je;
-                        mzcfmx.zfbl = dto.zfbl; //自负比例
+                        mzcfmx.zfbl = dto.zfbl; //Tỷ lệ tự trả
                         mzcfmx.zfxz = dto.zfxz;
-                        mzcfmx.dw = dto.dw; //单位
+                        mzcfmx.dw = dto.dw; //Đ ơn vị
                         mzcfmx.yfdm = dto.yfdm;
                         mzcfmx.czh = dto.czh;
                         mzcfmx.zt = "1";
@@ -757,7 +757,7 @@ namespace Newtouch.HIS.Application.Implementation
                     #endregion
 
                     #region 项目
-                    if (dto.xmtype == "1" || dto.xmtype == "4")//收费项目数据(处方项目除外)//项目
+                    if (dto.xmtype == "1" || dto.xmtype == "4")//Số lư ợng hạng mục thu phí据(Đ ơn thuốc hạng mục ngoại trừ)//Hạng mục
                     {
                         #region 门诊项目
 
@@ -767,7 +767,7 @@ namespace Newtouch.HIS.Application.Implementation
                             ghnm = dto.ghnm,
                             patid = dto.patid
                         };
-                        if (dto.IsZhbrxz)//组合病人性质
+                        if (dto.IsZhbrxz)// kết hợp tính chất bệnh nhân
                         {
                             mzxm.brxz = istsbzS ? dto.zh_sbrxz : dto.zh_mbrxz;
                         }
@@ -791,9 +791,9 @@ namespace Newtouch.HIS.Application.Implementation
                         mzxm.ssrq = DateTime.Now;
                         mzxm.jsnm = 0;
                         mzxm.jsrq = DateTime.Now;
-                        if (dto.IsZhbrxz)//组合病人性质
+                        if (dto.IsZhbrxz)// kết hợp tính chất bệnh nhân
                         {
-                            if (istsbzS)//特殊标识
+                            if (istsbzS)//Đ ặc biệt dấu hiệu 
                             {
                                 mzxm.jmbl = outJmbl;
                                 mzxm.jmje = outJmje;
@@ -865,7 +865,7 @@ namespace Newtouch.HIS.Application.Implementation
             jsEntity.jsxmList = jsxmList;
 
             sqlVo.fph = fph;
-            //添加各个实体对象赋值
+            //Thêm mỗi 个Đ ối tư ợng thực thể gán giá trị 
             return sqlVo;
 
         }
@@ -876,7 +876,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 收费项目模版
 
         /// <summary>
-        /// 获取收费模板和  模板下所有项目
+        /// Lấythu phí mẫu và mẫu dư ới tất cả các hạng mục
         /// </summary>
         /// <param name="ks"></param>
         /// <returns></returns>
@@ -904,9 +904,9 @@ namespace Newtouch.HIS.Application.Implementation
 
 
         /// <summary>
-        /// 收费项目模板列表
+        /// Hạng mục thu phí mẫu danh sách
         /// </summary>
-        /// <param name="ks">科室</param>
+        /// <param name="ks">Khoa</param>
         /// <returns></returns>
         private List<ChargeItemTemplateVO> GetChargeTemplate(string ks)
         {
@@ -915,9 +915,9 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
-        /// <param name="sfmb">收费模板编号</param>
+        /// <param name="sfmb">Thu phí mẫu số hiệu</param>
         /// <returns></returns>
         private List<TemplateContentVO> GetChargeItemContent(string sfmb)
         {
@@ -934,10 +934,10 @@ namespace Newtouch.HIS.Application.Implementation
 
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号无效"); //病历号无效
+                throw new FailedException("门诊号无效"); //Số hồ sơ bệnh ánKhông hiệu lực
             }
 
-            //获取挂号收费病人基本信息
+            //LấyĐ ăng ký khámthu phí thông tin cơ bản bệnh nhân
             var outPatBasicInfoInAcc = _outChargeDmnService.GetChargePatInfoInAcc("", IsBlh, mzh, OrganizeId);
             if (outPatBasicInfoInAcc == null)
             {
@@ -949,12 +949,12 @@ namespace Newtouch.HIS.Application.Implementation
         #endregion
 
         /// <summary>
-        /// 门诊登记和住院登记 根据病历号 或 卡号 查询病人基本信息
+        /// Đ ăng ký ngoại trú và nhập viện登记 theo số hồ sơ bệnh án hoặc số thẻ tra cứu thông tin cơ bản bệnh nhân
         /// </summary>
-        /// <param name="blh">病历号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="zjh">证件号</param>
-        /// <param name="cardType">卡类型</param>
+        /// <param name="blh">Số hồ sơ bệnh án</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="zjh">Số giấy tờ</param>
+        /// <param name="cardType">Loại thẻ</param>
         /// <returns></returns>
         public OutpatAccInfoDto GetOutPatBasicInfoInRegister(string blh, string kh, string zjh, string cardType,string ly,string CardId)
         {
@@ -962,7 +962,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 throw new FailedException("缺少查询参数：病历号或卡号");
             }
-            //获取挂号收费病人基本信息
+            //LấyĐ ăng ký khámthu phí thông tin cơ bản bệnh nhân
             var outPatBasicInfoInAcc = _outChargeDmnService.GetChargePatInfoInRegister(kh, blh, zjh, OrganizeId, cardType,ly,CardId);
             if (outPatBasicInfoInAcc == null)
             {
@@ -975,7 +975,7 @@ namespace Newtouch.HIS.Application.Implementation
 
         #region 门诊收费 Vision-1.3 门诊记账的第三个版本
         /// <summary>
-        /// 门诊收费，获取病人基本信息
+        /// Ngoại trú thu phí,lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -989,7 +989,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 门诊收费2018
 
         /// <summary>
-        /// 门诊收费2018 提交门诊收费
+        /// Ngoại trú thu phí2018 gửi ngoại trú thu phí
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="feeRelated"></param>
@@ -999,7 +999,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="orgId"></param>
         /// <param name="cfnmList"></param>
         /// <param name="jsnmList"></param>
-        /// <param name="extxmnmList">历史已提交（库中已有）</param>
+        /// <param name="extxmnmList"> lịch sử Đ ãgửi(kho trong Đ ãcó)</param>
         /// <param name="outTradeNo"></param>
         /// <returns></returns>
         public bool submitOutpatCharge(BasicInfoDto2018 bacDto
@@ -1020,15 +1020,15 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 if (accDto.OutxmDto != null && accDto.OutxmDto.Count > 0)
                 {
-                    //项目（新录入的项目不关联处方）
+                    //Hạng mục(mới 录入của hạng mục không liên kết Đ ơn thuốc)
                     var itemsGroupBo = new FeeItemsGroupedBO
                     {
                         cfsfrq = bacDto.sfrq,
-                        xmList = new List<OutpatientItemEntity>(),//新增项目明细
+                        xmList = new List<OutpatientItemEntity>(),//Thêm chi tiết hạng mục
                     };
-                    foreach (var item in accDto.OutxmDto)//项目
+                    foreach (var item in accDto.OutxmDto)//Hạng mục
                     {
-                        //门诊项目
+                        //Hạng mục ngoại trú
                         var mzxm = new OutpatientItemEntity
                         {
                             sfxm = item.sfxmCode,
@@ -1039,7 +1039,7 @@ namespace Newtouch.HIS.Application.Implementation
                             zfbl = item.zfbl,
                             zfxz = item.zfxz
                         };
-                        if (item.zlcs != null && item.zll != null)//非常规版本
+                        if (item.zlcs != null && item.zll != null)// rất 规版 bản 
                         {
                             mzxm.zzll = item.zll * item.zlcs;
                             mzxm.dczll = item.zll;
@@ -1052,8 +1052,8 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 if (accDto.OutcfDto != null && accDto.OutcfDto.Any())
                 {
-                    //药品处方
-                    foreach (var item in accDto.OutcfDto)//处方
+                    //Thu ốcĐ ơn thuốc
+                    foreach (var item in accDto.OutcfDto)//Đ ơn thuốc
                     {
                         var cfGroupBo = new FeeItemsGroupedBO
                         {
@@ -1090,7 +1090,7 @@ namespace Newtouch.HIS.Application.Implementation
             IList<int> xmnmList;
             IList<int> cfnmadd;
             IList<string> updateSkipSettledCfhList;
-            //提交明细（处方的话更新主表信息）
+            //Gửichi tiết(Đ ơn thuốc thì cập nhật bảng chính thông tin)
             _outPatientUniversalDmnService.SubmitItems(orgId, out cfnmadd, out xmnmList, out updateSkipSettledCfhList, bacDto.mzh, bacDto.ys, itemsGroupBoList);
             //
             if (extxmnmList != null && extxmnmList.Count > 0)
@@ -1108,9 +1108,9 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 cfnmList = cfnmadd.ToList();
             }
-            //获取配置 门诊收费成功之后是否自动生成计划
+            //Lấy cấu hình ngoại trú thu phí thành công sau đ ó có hay không tự đ ộng tạo kế hoạch 
             var autoGenePlan = _sysConfigRepo.GetBoolValueByCode("Outpatient_ChargeFee_AutoGenePlan", orgId) ?? false;
-            // 更新门诊处方的结算信息（更新结算信息）
+            // Cập nh ậtĐ ơn thuốc ngoại trú của thông tin quyết toán(cập nhật thông tin quyết toán)
             var settAddBO = new OutpatientSettlementAddBO()
             {
                 cfnmList = cfnmList,
@@ -1126,7 +1126,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 补计费提交
+        /// 补 tính phí gửi
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bacDto"></param>
@@ -1145,15 +1145,15 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 if (accDto.OutxmDto != null && accDto.OutxmDto.Count > 0)
                 {
-                    //项目（新录入的项目不关联处方）
+                    //Hạng mục(mới 录入của hạng mục không liên kết Đ ơn thuốc)
                     var itemsGroupBo = new FeeItemsGroupedBO
                     {
                         cfsfrq = bacDto.sfrq,
-                        xmList = new List<OutpatientItemEntity>(),//新增项目明细
+                        xmList = new List<OutpatientItemEntity>(),//Thêm chi tiết hạng mục
                     };
-                    foreach (var item in accDto.OutxmDto)//项目
+                    foreach (var item in accDto.OutxmDto)//Hạng mục
                     {
-                        //门诊项目
+                        //Hạng mục ngoại trú
                         var mzxm = new OutpatientItemEntity
                         {
                             sfxm = item.sfxmCode,
@@ -1171,8 +1171,8 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 if (accDto.OutcfDto != null && accDto.OutcfDto.Any())
                 {
-                    //药品处方
-                    foreach (var item in accDto.OutcfDto)//处方
+                    //Thu ốcĐ ơn thuốc
+                    foreach (var item in accDto.OutcfDto)//Đ ơn thuốc
                     {
                         var cfGroupBo = new FeeItemsGroupedBO
                         {
@@ -1209,14 +1209,14 @@ namespace Newtouch.HIS.Application.Implementation
             IList<int> xmnmList;
             IList<int> cfnmadd;
             IList<string> updateSkipSettledCfhList;
-            //提交明细（处方的话更新主表信息）
+            //Gửichi tiết(Đ ơn thuốc thì cập nhật bảng chính thông tin)
             _outPatientUniversalDmnService.SubmitItems(orgId, out cfnmadd, out xmnmList, out updateSkipSettledCfhList, bacDto.mzh, bacDto.ys, itemsGroupBoList);
 
             return true;
         }
 
         /// <summary>
-        /// 整合前台数据成后台的理想状态
+        /// 整合 trư ớc máy dữ liệu成 sau máy của理想trạng thái
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -1232,11 +1232,11 @@ namespace Newtouch.HIS.Application.Implementation
                 };
                 foreach (var item in dto)
                 {
-                    if (item.yzlx == "1")//药品
+                    if (item.yzlx == "1")//Thuốc
                     {
                         if (OutDto.OutcfDto != null && OutDto.OutcfDto.Count() > 0)
                         {
-                            //判断处方是否存在
+                            // phán đoán Đ ơn thuốc có hay không tồn tại tại
                             OutcfmxDto2018 mzcfmx = new OutcfmxDto2018();
                             mzcfmx.dj = item.dj;
                             mzcfmx.dw = item.dw;
@@ -1267,7 +1267,7 @@ namespace Newtouch.HIS.Application.Implementation
                         }
                         else
                         {
-                            //第一次
+                            //Thứ một lần 
                             OutcfDto2018 mzcf = new OutcfDto2018
                             {
                                 cfh = item.cfh,
@@ -1290,7 +1290,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                     else
                     {
-                        //项目
+                        //Hạng mục
                         OutxmDto2018 mzxm = new OutxmDto2018();
                         mzxm.sfxmCode = item.sfxmCode;
                         mzxm.sfdlCode = item.sfdlCode;
@@ -1314,7 +1314,7 @@ namespace Newtouch.HIS.Application.Implementation
         #endregion
 
         /// <summary>
-        /// 明细上传到医保
+        /// Chi tiết tải lên đ ến BHYT
         /// </summary>
         /// <param name="mzh"></param>
         public void DetailsUploadYb(string mzh)
@@ -1341,7 +1341,7 @@ namespace Newtouch.HIS.Application.Implementation
                 detail.ITEMID = item.yzlx == "1"
                     ? ("YP" + item.cfmxId.Value.ToString())
                     : ("XM" + item.xmnm.Value.ToString());
-                //医保0药品 1项目
+                //BHYT0Thuốc 1Hạng mục
                 detail.DKE085 = item.yzlx == "1" ? "0" : "1";
                 detail.DKE012 = item.sfxmCode;
                 detail.AKE227 = item.klsj;
@@ -1349,12 +1349,12 @@ namespace Newtouch.HIS.Application.Implementation
                 detail.AKE228 = item.ys;
                 detail.AKE229 = item.ysmc;
                 detail.AKE002 = item.sfxmmc;
-                //药品规格、生产地
+                //Thuốcquy cách, 生产 đ ịa 
                 detail.AKE207 = item.dw;
                 detail.AKE212 = item.sl;
                 detail.AKE208 = item.dj;
                 detail.AKE198 = item.zje;
-                //其他药品相关
+                //Khác thuốc liên quan 
                 ybDetailList.Add(detail);
             }
             var preaccResult = YibaoUniteInterface.PreAccount(ghEntity.ybjsh, ybDetailList);
@@ -1365,7 +1365,7 @@ namespace Newtouch.HIS.Application.Implementation
             return;
         }
         /// <summary>
-        /// 获取所需结算的项目明细，分医保和自立两部分，贵安医保逻辑：医保的上传医保，自立的现金支付
+        /// Lấy nơi 需quyết toán của hạng mụcchi tiết,分BHYTvà tự chi trả hai một phần,贵安BHYT logic:BHYTcủa tải lênBHYT, tự chi trả củathanh toán tiền mặt
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -1394,12 +1394,12 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 //if (string.IsNullOrWhiteSpace(item.ybdm))
                 //{
-                //    throw new FailedException("获取医保明细失败." + "不能开立非医保项目/药品");
+                // throw new FailedException("LấyBHYTchi tiết thất bại." + " không thể 开立 không phải BHYThạng mục/Thuốc");
                 //}
                 FeejsMx detailOfMzjs = new FeejsMx();
                 detailOfMzjs.yka105 = item.yzlx == "1"
                     ? ("YP" + item.cfmxId.ToString())
-                    : ("XM" + item.xmnm.ToString()); //记账流水号
+                    : ("XM" + item.xmnm.ToString()); //Ghi sổ số thứ tự 
                 detailOfMzjs.ykd125 = item.sfxmCode.ToString();//
                 detailOfMzjs.ykd126 = item.sfxmmc.ToString();//
                 detailOfMzjs.yka002 = string.IsNullOrEmpty(item.ybdm) ? " " : item.ybdm;//
@@ -1482,12 +1482,12 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 //if (string.IsNullOrWhiteSpace(item.ybdm))
                 //{
-                //    throw new FailedException("获取医保明细失败." + "不能开立非医保项目/药品");
+                // throw new FailedException("LấyBHYTchi tiết thất bại." + " không thể 开立 không phải BHYThạng mục/Thuốc");
                 //}
                 FeejsMx detailOfMzjs = new FeejsMx();
                 detailOfMzjs.yka105 = item.yzlx == "1"
                     ? ("YP" + item.cfmxId.ToString())
-                    : ("XM" + item.xmnm.ToString()); //记账流水号
+                    : ("XM" + item.xmnm.ToString()); //Ghi sổ số thứ tự 
                 detailOfMzjs.ykd125 = item.sfxmCode.ToString();//
                 detailOfMzjs.ykd126 = item.sfxmmc.ToString();//
                 detailOfMzjs.yka002 = string.IsNullOrEmpty(item.ybdm) ? " " : item.ybdm;//
@@ -1593,7 +1593,7 @@ namespace Newtouch.HIS.Application.Implementation
 					    tfzje += (itemtf.Value * item.dj);
 				    }
 			    }
-			    item.cxmxlsh = "";//存放jsmxnm，该字段可能恒为null，为了分页获取数据（明细上传个数限制）
+			    item.cxmxlsh = "";// tồn tại 放jsmxnm, này trư ờng có thể恒Lànull, đ ể 分trang lấy dữ liệu(chi tiết tải lên个数限制)
 			    item.jbr = this.UserIdentity.UserCode;
                 if (!string.IsNullOrEmpty(item.sl.ToString()) && !string.IsNullOrEmpty(item.je.ToString()) && Convert.ToDecimal(item.sl) > 0 && Convert.ToDecimal(item.je) > 0)
 				{
@@ -1696,10 +1696,10 @@ namespace Newtouch.HIS.Application.Implementation
             }
         }
         /// <summary>
-        /// 获取处方号红冲数据，查询已经上传且未结算的处方号，进行红冲处理
+        /// Lấy số đ ơn thuốc ghi đ ỏ hoàn trả dữ liệu,tra c ứuĐ ãtải lên và chưa quyết toán của số đ ơn thuốc, tiến hành ghi đ ỏ hoàn trả xử lý
         /// </summary>
         /// <param name="zymzh"></param>
-        /// <param name="type">1门诊 2住院</param>
+        /// <param name="type">1Ngoại trú 2Nhập viện</param>
         /// <returns></returns>
         public List<RefundPrescriptionsInPut> GetCqyb10Data(string zymzh,string type)
 	    {
@@ -1740,7 +1740,7 @@ namespace Newtouch.HIS.Application.Implementation
 		    //var hasNonYbFee = _hospFeeDmnService.CheckHasNonYbFee(zyh, orgId);
 		    //if (hasNonYbFee)
 		    //{
-		    //    throw new FailedException("已产生非医保相关费用");
+		    // throw new FailedException("Đ ã产生 không phải BHYT liên quan chi phí");
 		    //}
 
 		    return new object();
@@ -1768,7 +1768,7 @@ namespace Newtouch.HIS.Application.Implementation
 			//var ryzd1 = _hospMultiDiagnosisRepo.IQueryable().Where(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId == orgId).OrderBy(p => p.zdpx).FirstOrDefault();
 
 			//var ksmc = _sysDepartmentRepo.GetNameByCode(zybrxx.ks, orgId);
-            //国家编码
+            //国家 mã 
             var ysInfo = _outPatientSettleDmnService.GetDepartmentDoctorIdC(orgId, ghxx.ks, ghxx.ys);
             return new
 			{
@@ -1792,7 +1792,7 @@ namespace Newtouch.HIS.Application.Implementation
 	    public object ZFToYB_Step_8(string mzh)
 	    {
 		    UpdatebrxzRequest par = new UpdatebrxzRequest {mzh=mzh, zyh = mzh, brxzCode = "1", brxzmc = "普通医保" };
-		    //同步数据至CPOE
+		    //Đ ồng bộ dữ liệu tớiCPOE
 		    SiteCISAPIHelper.UpdatebrxzInfo(par);
 		    return new object();
 	    }

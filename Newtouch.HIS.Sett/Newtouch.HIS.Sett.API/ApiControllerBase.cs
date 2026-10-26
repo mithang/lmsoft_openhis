@@ -4,7 +4,7 @@ using Newtouch.HIS.API.Common.Models;
 namespace Newtouch.HIS.Sett.API
 {
     /// <summary>
-    /// API Controll 基类
+    /// API Controll 基 loại 
     /// </summary>
     public class ApiControllerBase<TControllerType> : FrameworkBase.API.ApiControllerBase<TControllerType>
     {
@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Sett.API
         }
 
         /// <summary>
-        /// 用户身份
+        /// ngư ời dùng thân phận 
         /// </summary>
         public UserIdentity UserIdentity
         {

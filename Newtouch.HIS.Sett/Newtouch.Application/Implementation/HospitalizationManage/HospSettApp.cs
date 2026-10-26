@@ -18,7 +18,7 @@ using System.Linq;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 住院结算 实现
+    /// Quyết toán nhập viện 实现
     /// </summary>
     public class HospSettApp : AppBase, IHospSettApp
     {
@@ -36,31 +36,31 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IIntegratedMaterialDmnService _integratedMaterialDmnService;
 
         /// <summary>
-        /// 住院结算，查看患者住院 状态信息
+        /// Quyết toán nhập viện,XemBệnh nhânNhập viện Trạng tháiThông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
         public HosSettPatStatusDetailDto GetPatHospStatusDetail(string zyh, string kh)
         {
-            //获取住院结算病人信息（基本信息、账户、科室等）
+            //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospSettPatInfo(ref zyh, kh);
 
-            //患者交款历史
+            //Bệnh nhân交 khoản lịch sử 
             var chargeList = _hosPatAccDmnService.GetAccPayInfo((settpatinfo.zyyjjzh ?? 0), this.OrganizeId, zyh);
             if (chargeList.OrderByDescending(p => p.CreateTime).Select(p => p.zhye).FirstOrDefault() != chargeList.Select(p => p.szje).Sum())
             {
-                //判断该次入院 有 预交金充值记录
+                // phán đoán này lần nhập viện có tạm ứng nạp tiền bản ghi 
                 throw new FailedException("预交金账户出现收支与余额不一致<br/>请先核查");
             }
 
-            //根据住院号获取计费项目（已按‘大类’分类）
+            // theo số nhập viện lấy tính phí hạng mục(Đ ã theo ' loại lớn 'Phân loại)
             var dlFeeList = GetHospFeeClassifyWithDLBOList(zyh);
             if (dlFeeList == null || dlFeeList.Count == 0)
             {
                 throw new FailedCodeException("HOSP_SETTLEMENTITEM_IS_NULL");
             }
 
-            //验证 医保收费，必须消费医保项目/药品
+            //Xác minh thu phí BHYT,phải sử dụng hạng mục/dư ợc phẩm BHYT/Thuốc
             checkFeeValidWithBRXZ(dlFeeList, settpatinfo.brxz);
 
             var resultDto = new HosSettPatStatusDetailDto()
@@ -75,13 +75,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院结算 病人 分类收费 预览
+        /// Quyết toán nhập viện bệnh nhân phân loạithu phí 预览
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedjsje">结算金额 防止过程中的费用变更（未除去减免的）</param>
+        /// <param name="expectedjsje">Số tiền quyết toán ngăn chặn quá trình trong củachi phí thay đ ổi (chưa loại trừ giảm trừ của)</param>
         public HosSettPatClassifyChargePreviewDto GetHospSettPatClassifyChargePreview(string zyh, DateTime expectedcyrq, decimal expectedjsje)
         {
-            //获取住院结算病人信息（基本信息、账户、科室等）
+            //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospSettPatInfo(ref zyh, "");
 
             if (settpatinfo.cyrq.Value.Date != expectedcyrq.Date)
@@ -89,11 +89,11 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("HOSP_OUTHOSPITAL_CYRQ_IS_CHANGED");
             }
 
-            //住院帐户信息 预交金账户余额    //患者交款历史
+            //Nhập viện tài khoản thông tin tài khoản tạm ứng số dư //Bệnh nhân交 khoản lịch sử 
             var zhLastCharge = _hosPatAccDmnService.GetAccPayInfo((settpatinfo.zyyjjzh ?? 0), this.OrganizeId, zyh).OrderByDescending(p => p.CreateTime).FirstOrDefault();
             if (zhLastCharge == null)
             {
-                //判断该次入院 有 预交金充值记录
+                // phán đoán này lần nhập viện có tạm ứng nạp tiền bản ghi 
                 throw new FailedCodeException("HOSP_PATIENTACCOUNT_REVENUEANDEXPENSE_IS_NULL");
             }
 
@@ -104,7 +104,7 @@ namespace Newtouch.HIS.Application.Implementation
             //need organizeId
             resultDto.fph = _outPatientDmnService.GetInvoiceListByEmpNo(this.UserIdentity.UserCode, this.OrganizeId);
 
-            //根据住院号获取计费项目（已按‘大类’分类）
+            // theo số nhập viện lấy tính phí hạng mục(Đ ã theo ' loại lớn 'Phân loại)
             var dlFeeList = GetHospFeeClassifyWithDLBOList(zyh);
             if (dlFeeList == null || dlFeeList.Count == 0)
             {
@@ -118,35 +118,35 @@ namespace Newtouch.HIS.Application.Implementation
             resultDto.expectedjsje = expectedjsje;
             resultDto.zyh = zyh;
 
-            //验证 医保收费，必须消费医保项目/药品
+            //Xác minh thu phí BHYT,phải sử dụng hạng mục/dư ợc phẩm BHYT/Thuốc
             checkFeeValidWithBRXZ(dlFeeList, settpatinfo.brxz);
 
-            //分组（病人性质）结算
+            // nhóm (tính chất bệnh nhân)quyết toán
             var zyjyjsList = getHospFeeJieSuanGroupedByBrxzList(settpatinfo, dlFeeList);
 
-            //得 记账、分类自负、自费、自负、其他、应收款、找零、舍入差额、实收款
-            //病人性质决定zyjyjsList.Count
+            //得 ghi sổ, tự trả theo phân loại, tự trả, tự trả, khác, số tiền phải thu, trả lại tiền thừa, 舍入差额, số tiền thực thu
+            //Tính chất bệnh nhân决定zyjyjsList.Count
             foreach (HospFeeItemOrMedicinListGroupedByBrxzBO zyjyjs in zyjyjsList)
             {
-                //即对应了一交易‘zy_jyjs’
-                //#########仅自费逻辑
+                // tức là Tư ơng ứng một giao dịch 'zy_jyjs'
+                //######### chỉ tự trả logic 
                 foreach (var fee in zyjyjs.FeeList)
                 {
-                    resultDto.yingshoukuan += fee.sfjsfymx.total;   //会因为组合病人性质项目重复计算？
+                    resultDto.yingshoukuan += fee.sfjsfymx.total;   // sẽ 因là kết hợp tính chất bệnh nhân hạng mục trùng lặp tính？
                     resultDto.jzfy += fee.sfjsfymx.jzfy;
                     resultDto.flzf += fee.sfjsfymx.flzf;
                     resultDto.zifu += fee.sfjsfymx.sfzf;
                     resultDto.zifei += fee.sfjsfymx.zl;
                     resultDto.jmje += fee.sfjsfymx.jmje;
                 }
-                resultDto.yingshoukuan = resultDto.yingshoukuan + zyjyjs.jzce;    //现金加上记账超额部分
-                resultDto.jzfy = resultDto.jzfy - zyjyjs.jzce;    //可记账费用减去超额部分
-                resultDto.zifu = resultDto.zifu + zyjyjs.jzce;    //自负加上记账超额部分
-                resultDto.srce = 0; //住院无现金分币误差
+                resultDto.yingshoukuan = resultDto.yingshoukuan + zyjyjs.jzce;    //Tiền mặt thêm vào ghi sổ超额một phần
+                resultDto.jzfy = resultDto.jzfy - zyjyjs.jzce;    // có thể phí ghi sổ减去超额một phần
+                resultDto.zifu = resultDto.zifu + zyjyjs.jzce;    //Tự trả thêm vào ghi sổ超额một phần
+                resultDto.srce = 0; //Nhập viện không có tiền mặt分币误差
             }
 
-            resultDto.ssk = resultDto.zhye = Convert.ToDecimal(zhLastCharge.zhye);  //实收款
-            //如果住院帐户余额<现金支付，则剩余部分用其他支付；如果>现金支付，则多余部分用于找零
+            resultDto.ssk = resultDto.zhye = Convert.ToDecimal(zhLastCharge.zhye);  //Số tiền thực thu
+            //Nếu nhập viện tài khoản số dư <thanh toán tiền mặt,thì còn lại một phần dùng khác thanh toán;nếu>Thanh toán tiền mặt,thì nhiều 余một phần dùng cho trả lại tiền thừa
 
             resultDto.zhaoling = resultDto.zhye - resultDto.yingshoukuan;
 
@@ -156,10 +156,10 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院结算 提交结算，保存结果
+        /// Quyết toán nhập viện GửiQuyết toán,LưuKết quả
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedjsje">结算金额 防止过程中的费用变更（未除去减免的）</param>
+        /// <param name="expectedjsje">Số tiền quyết toán ngăn chặn quá trình trong củachi phí thay đ ổi (chưa loại trừ giảm trừ của)</param>
         /// <param name="expectedzhaoling"></param>
         /// <param name="xjzfListStr"></param>
         public SettSaveSuccessResultDto SaveSett(string zyh, DateTime expectedcyrq, string fph, decimal expectedyjjzhye, decimal expectedjsje, decimal expectedzhaoling, string xjzfListStr, decimal shishoukuan)
@@ -177,7 +177,7 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("HOSP_ZHAOLING_IS_NEGATIVE");
             }
 
-            //获取住院结算病人信息（基本信息、账户、科室等）
+            //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospSettPatInfo(ref zyh, "");
 
             if (settpatinfo.cyrq.Value.Date != expectedcyrq.Date)
@@ -185,7 +185,7 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("HOSP_OUTHOSPITAL_CYRQ_IS_CHANGED");
             }
 
-            //住院帐户信息 预交金账户余额    //患者交款历史
+            //Nhập viện tài khoản thông tin tài khoản tạm ứng số dư //Bệnh nhân交 khoản lịch sử 
             var zhLastCharge = _hosPatAccDmnService.GetAccPayInfo((settpatinfo.zyyjjzh ?? 0), this.OrganizeId, zyh).OrderByDescending(p => p.CreateTime).FirstOrDefault();
             if (zhLastCharge == null)
             {
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("HOSP_PATIENTACCOUNT_BALANCE_IS_CHANGED");
             }
 
-            //根据住院号获取计费项目（已按‘大类’分类）
+            // theo số nhập viện lấy tính phí hạng mục(Đ ã theo ' loại lớn 'Phân loại)
             var dlFeeList = GetHospFeeClassifyWithDLBOList(zyh);
             if (dlFeeList == null || dlFeeList.Count == 0)
             {
@@ -209,13 +209,13 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("HOSP_CHARGEITEM_IS_CHANGED");
             }
 
-            //验证 医保收费，必须消费医保项目/药品
+            //Xác minh thu phí BHYT,phải sử dụng hạng mục/dư ợc phẩm BHYT/Thuốc
             checkFeeValidWithBRXZ(dlFeeList, settpatinfo.brxz);
 
-            //分组（病人性质）结算
+            // nhóm (tính chất bệnh nhân)quyết toán
             var zyjyjsList = getHospFeeJieSuanGroupedByBrxzList(settpatinfo, dlFeeList);
 
-            //数据库变更对象
+            //Dữ liệu kho thay đ ổi Đ ối tư ợng
             var sqlVO = getSettDBUpdateVO(settpatinfo, fph, expectedyjjzhye, expectedzhaoling, zyjyjsList, xjzfListStr, zhLastCharge.xjzffs);
 
             if ((sqlVO.zy_js.zl ?? 0) != expectedzhaoling)
@@ -223,7 +223,7 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedException("找零金额发生变更，请重新结算");
             }
 
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _hospSettDmnService.SettSyncToDB(sqlVO, this.OrganizeId);
 
             var reslt = new SettSaveSuccessResultDto()
@@ -238,7 +238,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 根据住院号获取 本次结算 计费 按大类（分类项目）
+        /// theo số nhập viện lấy lần này quyết toán tính phí theo loại lớn (phân loại hạng mục)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -251,7 +251,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 dl = p.Key.dl,
                 dlmc = p.Key.dlmc,
-                jsje = p.Select(i => (i.fwfdj + i.dj) * i.sl).Sum(),    //结算金额
+                jsje = p.Select(i => (i.fwfdj + i.dj) * i.sl).Sum(),    //Số tiền quyết toán
                 ItemFeeList = p.ToList()
             });
 
@@ -269,7 +269,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region private method
 
         /// <summary>
-        /// 获取项目计费列表
+        /// LấyTính phí hạng mụcDanh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取药品计费列表
+        /// Lấy thuốc tính phí danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -289,7 +289,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院结算 获取病人基本信息（基本信息、账户、科室等） 在院状态验证
+        /// Quyết toán nhập viện lấy thông tin cơ bản bệnh nhân(cơ bản thông tin, tài khoản, khoaV.v.) xác minh trạng thái đang nằm viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -310,10 +310,10 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 else
                 {
-                    //这里 可结算 记录已经不会多余一条
+                    // tại đ ây có thể quyết toán bản ghi Đ ã sẽ không nhiều 余 một dòng
                     zyh = zyList.Where(p => p.zybz != ((int)EnumZYBZ.Wry).ToString()
                             && p.zybz != ((int)EnumZYBZ.Ycy).ToString()).Select(p => p.zyh).FirstOrDefault();
-                    if (string.IsNullOrWhiteSpace(zyh)) //说明没有可结算的记录
+                    if (string.IsNullOrWhiteSpace(zyh)) //说明 không có có thể quyết toán của bản ghi 
                     {
                         zyh = zyList.OrderByDescending(p => p.CreateTime).Select(p => p.zyh).First();
                     }
@@ -339,8 +339,8 @@ namespace Newtouch.HIS.Application.Implementation
             }
             else if (patinfo.zybz == ((int)EnumZYBZ.Bqz).ToString())
             {
-                //############从其他系统（繁云）同步在院状态 假设同步成功了 可以出院 获取到了‘cybz’为1，且‘出院时间’
-                patinfo.zybz = ((int)EnumZYBZ.Djz).ToString(); //待结账
+                //############ từ khác hệ thống(繁云)Đ ồng bộ tại viện trạng thái giả sử Đ ồng bộ thành công có thể xuất viện lấy đ ến 'cybz'Là1, và 'Thời gian xuất viện'
+                patinfo.zybz = ((int)EnumZYBZ.Djz).ToString(); //Chờ thanh toán
                 //throw new FailedCodeException("HOSP_CURRENTSTATUS_BQZ_CANNOT_DO_OUTHOSPITAL_SETTLEMENT");
             }
             else if (patinfo.zybz == ((int)EnumZYBZ.Ycy).ToString())
@@ -367,15 +367,15 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 throw new FailedCodeException("HOSP_ERROR_PATIENT_THERE_IS_NO_YJJ_ACCOUNT");
             }
-            ////############从其他系统（繁云）同步在院状态 假设同步成功了 可以出院 获取到了‘cybz’为1，且‘出院时间’
-            //patinfo.zybz = ((int)EnumZYBZ.Djz).ToString(); //待结账
+            ////############ từ khác hệ thống(繁云)Đ ồng bộ tại viện trạng thái giả sử Đ ồng bộ thành công có thể xuất viện lấy đ ến 'cybz'Là1, và 'Thời gian xuất viện'
+            //patinfo.zybz = ((int)EnumZYBZ.Djz).ToString(); //Chờ thanh toán
 
-            //不需要同步到数据库中    //不同时辰，会有不同的‘住院天数’
+            // không CầnĐ ồng bộ đ ến dữ liệu kho trong // không Đ ồng thời辰, sẽ có khác nhau của'Nhập viện số ngày'
             patinfo.cyrq = Convert.ToDateTime(DateTime.Now.AddMinutes(-30).ToString());
 
             patinfo.zyts = DateTimeHelper.GetInHospDays(patinfo.ryrq.Value, patinfo.cyrq.Value);
 
-            //只有新入院和待结帐状态才允许结账
+            //只có mới nhập viện và chờ quyết toán帐trạng thái才允许结账
             if (patinfo.zybz != ((int)EnumZYBZ.Xry).ToString()
                 && patinfo.zybz != ((int)EnumZYBZ.Djz).ToString())
             {
@@ -393,7 +393,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证 医保收费，必须消费医保项目/药品
+        /// Xác minh thu phí BHYT,phải sử dụng hạng mục/dư ợc phẩm BHYT/Thuốc
         /// </summary>
         /// <param name="dlFeeList"></param>
         /// <param name="brxz"></param>
@@ -403,7 +403,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 return;
             }
-            //住院医保收费病人性质， 医保收费 必须消费医保项目/药品
+            //Nhập việnthu phí BHYTtính chất bệnh nhân, thu phí BHYT phải sử dụng hạng mục/dư ợc phẩm BHYT/Thuốc
             var pzzyZYYBSFBRXZ = _sysConfigRepo.GetValueByCode(Constants.xtzypz.ZYYBSFBRXZ, this.OrganizeId);
             if (!string.IsNullOrWhiteSpace(pzzyZYYBSFBRXZ) && pzzyZYYBSFBRXZ.Contains(brxz))
             {
@@ -417,19 +417,19 @@ namespace Newtouch.HIS.Application.Implementation
             }
             else
             {
-                //非医保收费病人
+                // không phải thu phí BHYTbệnh nhân
             }
         }
 
         /// <summary>
-        /// 获取住院费用结算分组 by 病人性质 => 分组（病人性质）结算
+        /// Lấy nhập việnchi phí quyết toán nhóm by tính chất bệnh nhân => nhóm (tính chất bệnh nhân)quyết toán
         /// </summary>
-        /// <param name="settPatInfoVO">病人信息（包括住院基本信息、系统基本信息、账户、科室等）</param>
-        /// <param name="classifyFeeList">项目计费、分类计费</param>
+        /// <param name="settPatInfoVO">Thông tin bệnh nhân(bao gồm thông tin cơ bản nhập viện, hệ thống cơ bản thông tin, tài khoản, khoaV.v.)</param>
+        /// <param name="classifyFeeList">Tính phí hạng mục, phân loại tính phí </param>
         /// <returns></returns>
         private IList<HospFeeItemOrMedicinListGroupedByBrxzBO> getHospFeeJieSuanGroupedByBrxzList(HospSettPatInfoVO settPatInfoVO, IList<HospFeeClassifyWithDLBO> classifyFeeList)
         {
-            //病人（多）性质 List ，即 组合病人性质    //这里的排序很重要.OrderByDescending(p => p.jssx)
+            //Bệnh nhân(nhiều)性质 List, tức là kết hợp tính chất bệnh nhân // tại đ ây của sắp xếp 很重 cần.OrderByDescending(p => p.jssx)
             var brxzList = _sysPatientComprehensiveNatureRepo.GetListByZbrxz(settPatInfoVO.brxz, this.OrganizeId);
             if (brxzList == null || brxzList.Count == 0)
             {
@@ -440,25 +440,25 @@ namespace Newtouch.HIS.Application.Implementation
                 });
             }
 
-            //项目/药品 计费 ‘按 病人性质’ 分组结算 列表（只是分组了计费项目/药品）
+            //Hạng mục/Thuốc tính phí ' theo tính chất bệnh nhân' nhóm quyết toán danh sách(只là nhóm tính phí hạng mục/Thuốc)
             var feeGedByBrxzList = getHospFeeListGroupedByBrxzBO(brxzList, classifyFeeList);
 
-            //给项目/药品计费表Detail加上‘是否医保’的标志位（位 赋值）
+            // cho hạng mục/Thuốc bảng tính phí Detail thêm vào 'Có hay khôngBHYT'Của bit dấu hiệu (vị gán giá trị)
             divisionToYBandFYB(feeGedByBrxzList);
 
-            //分别计算各项目/药品的费用
+            // lần lư ợt tính mỗi hạng mục/Thuốc củachi phí
             jifeiToBrxzFeeList(feeGedByBrxzList);
 
-            //起付    ############暂未涉及 起付
+            // mức khởi trả ############ tạm thời chưa liên quan mức khởi trả 
 
-            //处理报销上限
+            //Xử lý thanh toán BHYT giới hạn trên 
             getJZCE(settPatInfoVO.ryzdicd10, feeGedByBrxzList);
 
             return feeGedByBrxzList;
         }
 
         /// <summary>
-        /// 项目/药品 计费 ‘按 病人性质’ 分组结算 列表 。‘如果是单一病人性质（非组合病人性质），会返回一条’
+        /// Hạng mục/Thuốc tính phí ' theo tính chất bệnh nhân' nhóm quyết toán danh sách.'Nếu là đ ơn lẻ tính chất bệnh nhân(không phải kết hợp tính chất bệnh nhân), sẽ quay lại một dòng'
         /// </summary>
         /// <returns></returns>
         private IList<HospFeeItemOrMedicinListGroupedByBrxzBO> getHospFeeListGroupedByBrxzBO(IList<SysPatientComprehensiveNatureEntity> brxzList, IList<HospFeeClassifyWithDLBO> classifyFeeList)
@@ -476,9 +476,9 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     throw new FailedCodeException("HOSP_PATIENT_NATURE_IS_NOT_EXIST");
                 }
-                //获取有效的病人收费范围 xt_brsffw
+                //Lấy hiệu lực của bệnh nhânthu phí phạm vi xt_brsffw
                 var patChargeRangeList = _sysPatientChargeRangeRepo.IQueryable().Where(p => p.brxz == zhbrxzEntity.cbrxz && p.OrganizeId == this.OrganizeId && p.zt == "1").ToList();
-                //所以这个配置很关键，容易导致项目不计费
+                // vì vậy này cấu hình很关键,容易导致hạng mục không tính phí 
 
                 foreach (var dlFee in classifyFeeList)
                 {
@@ -491,7 +491,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 || brxzFeeGroupList.Any(p => p.FeeList.Any(i => i.Item != null && i.Item.jfbbh == itemFee.jfbbh))
                                 ))
                             {
-                                continue;   //以计划计算 且配置为 不 重复计算
+                                continue;   //以 kế hoạch tính và cấu hình là không trùng lặp tính
                             }
                             if (patChargeRangeList == null || patChargeRangeList.Count == 0)
                             {
@@ -502,10 +502,10 @@ namespace Newtouch.HIS.Application.Implementation
                                     Item = itemFee
                                 });
                             }
-                            //有匹配的收费项目
+                            //Có匹配của hạng mục thu phí
                             else
                             {
-                                //sfxm一致 或 dl一样，fw配置的sfxm不作限制
+                                //sfxm nhất quán hoặc dl một 样,fw cấu hình Củasfxm không 作限制
                                 if (patChargeRangeList.Any(p => p.sfxm == itemFee.sfxm) || patChargeRangeList.Any(p => p.dl == itemFee.dl && (string.IsNullOrEmpty(p.sfxm) || p.sfxm == "0")))
                                 {
                                     brxzFeeGroup.FeeList.Add(new HospFeeItemOrMedicinDetailBO()
@@ -515,7 +515,7 @@ namespace Newtouch.HIS.Application.Implementation
                                         Item = itemFee
                                     });
                                 }
-                                //病人性质有收费范围配置，但该项（收费项目/药品）未配置，则不计算该项
+                                //Tính chất bệnh nhân có thu phí phạm vi cấu hình,nhưng này 项(hạng mục thu phí/Thuốc)chưa cấu hình,thì không tính này 项
                             }
                         }
                     }
@@ -539,10 +539,10 @@ namespace Newtouch.HIS.Application.Implementation
                                     Medicin = medicinFee
                                 });
                             }
-                            //有匹配的收费项目
+                            //Có匹配của hạng mục thu phí
                             else
                             {
-                                //sfxm一致 或 dl一样，fw配置的sfxm不作限制
+                                //sfxm nhất quán hoặc dl một 样,fw cấu hình Củasfxm không 作限制
                                 if (patChargeRangeList.Any(p => p.dl == medicinFee.dl && (string.IsNullOrEmpty(p.sfxm) || p.sfxm == "0")))
                                 {
                                     brxzFeeGroup.FeeList.Add(new HospFeeItemOrMedicinDetailBO()
@@ -552,7 +552,7 @@ namespace Newtouch.HIS.Application.Implementation
                                         Medicin = medicinFee
                                     });
                                 }
-                                //病人性质有收费范围配置，但该项（收费项目/药品）未配置，则不计算该项
+                                //Tính chất bệnh nhân có thu phí phạm vi cấu hình,nhưng này 项(hạng mục thu phí/Thuốc)chưa cấu hình,thì không tính này 项
                             }
                         }
                     }
@@ -563,12 +563,12 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 给‘是否需要医保交易’标志位赋值
+        /// cho 'Có hay không cầnBHYT giao dịch ' bit dấu hiệu gán giá trị 
         /// </summary>
         /// <param name="boList"></param>
         private void divisionToYBandFYB(IList<HospFeeItemOrMedicinListGroupedByBrxzBO> brxzFeeGroupList)
         {
-            //获取门诊配置：不上传医保大类
+            //Lấy ngoại trú cấu hình: không tải lênBHYT loại lớn 
             var pzzyBSCYBStr = _sysConfigRepo.GetValueByCode(Constants.xtzypz.DL_BSCYB, this.OrganizeId) ?? "";
 
             string[] arrDl = pzzyBSCYBStr.TrimEnd(',').Split(',').Where(p => !string.IsNullOrWhiteSpace(pzzyBSCYBStr)).ToArray();
@@ -607,12 +607,12 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 单独计算各项目/药品的费用 => 记账、分类自负、自费、自负、其他
+        /// riêng lẻ tính mỗi hạng mục/Thuốc củachi phí => Ghi sổ, tự trả theo phân loại, tự trả, tự trả, khác
         /// </summary>
         /// <param name="brxzFeeGroupList"></param>
         private void jifeiToBrxzFeeList(IList<HospFeeItemOrMedicinListGroupedByBrxzBO> brxzFeeGroupList)
         {
-            //一次性材料大类配置
+            // một lần 性材料 loại lớn cấu hình
             var pzzyYCXCLDMValue = _sysConfigRepo.GetValueByCode(Constants.xtzypz.YCXCLDM, this.OrganizeId);
             string[] arrYCXCLDl = pzzyYCXCLDMValue.Split(',').Where(p => !string.IsNullOrWhiteSpace(p)).ToArray();
 
@@ -620,9 +620,9 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 foreach (var fee in brxzFeeGroup.FeeList)
                 {
-                    jifeiToHospFeeItemOrMedicinDetailBO(fee, arrYCXCLDl);   //这一步和当前病人无关
+                    jifeiToHospFeeItemOrMedicinDetailBO(fee, arrYCXCLDl);   // này một 步và khi trư ớc bệnh nhân không có关
                 }
-                //切入 收费算法（病人性质） //算法列表按级别排序
+                // áp dụng thu phí thuật toán (tính chất bệnh nhân) // thuật toán danh sách sắp xếp theo cấp bậc 
                 var brxzSfsfList = _sysPatientChargeAlgorithmRepo.IQueryable().Where(p => p.brxz == brxzFeeGroup.brxzzhEntity.cbrxz && p.OrganizeId == this.OrganizeId && p.zt == "1").OrderByDescending(p => p.sfjb).ToList();
                 foreach (var fee in brxzFeeGroup.FeeList)
                 {
@@ -632,16 +632,16 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 简要计算 => 自理金额（自负性质 为 自费） 、可报金额 、分类自负
+        /// 简 cần tính => Số tiền tự chi trả(tính chất tự trả là tự trả), có thể thanh toán số tiền, tự trả theo phân loại
         /// </summary>
         /// <param name="fee"></param>
-        /// <param name="arrYCXCLDl">一次性材料大类</param>
+        /// <param name="arrYCXCLDl"> một lần 性材料 loại lớn </param>
         private void jifeiToHospFeeItemOrMedicinDetailBO(HospFeeItemOrMedicinDetailBO fee, string[] arrYCXCLDl)
         {
             if (fee.Item != null)
             {
-                var xm = fee.Item;  //项目计费
-                fee.jmhje = xm.je - xm.jmje;    //减免后金额
+                var xm = fee.Item;  //Tính phí hạng mục
+                fee.jmhje = xm.je - xm.jmje;    //Số tiền sau giảm trừ
 
                 #region 一次性材料收费项目判断
                 if (arrYCXCLDl != null && arrYCXCLDl.Contains(fee.dl))
@@ -650,45 +650,45 @@ namespace Newtouch.HIS.Application.Implementation
                     if (sfclxmzhEntity != null)
                     {
                         fee.sfclxmzhEntity = sfclxmzhEntity;
-                        fee.zlfy = fee.jmhje;   //先全部记入自理
+                        fee.zlfy = fee.jmhje;   // trư ớc tất cả ghi vào tự chi trả
                         return;
                     }
                 }
                 #endregion
 
-                //根据项目收费性质
+                // theo hạng mụcthu phí性质
                 if (xm.zfxz == ((int)EnumZiFuXingZhi.ZF).ToString())
                 {
-                    fee.zlfy = fee.jmhje;   //自费 则 减免后金额就是 自理金额
+                    fee.zlfy = fee.jmhje;   //Tự trả thì số tiền sau giảm trừ thì là số tiền tự chi trả
                 }
                 else if (xm.zfxz == ((int)EnumZiFuXingZhi.KB).ToString())
                 {
-                    fee.kbje = fee.jmhje;   //可记账金额
+                    fee.kbje = fee.jmhje;   //Số tiền có thể ghi sổ
                 }
                 else
                 {
-                    //可报：费用×（1－自负比例）
-                    //分类自负：费用×自负比例
+                    //Có thể thanh toán:Chi phí ×(1－tỷ lệ tự trả)
+                    //Tự trả theo phân loại:Chi phí ×tỷ lệ tự trả
                     if (xm.zfbl >= 0)
                     {
-                        fee.kbje = (fee.jmhje * (1 - xm.zfbl));    //可记账金额
-                        //如果某个药是乙10%，单价100元，意思就是说，这个药首先10%是需要个人承担的
-                        //这10块钱就是’分类自负‘
-                        //另90块尚不是所谓的’自负‘，    要根据个人的报销比例医保和个人按比例承担
-                        fee.flzf = (fee.jmhje * xm.zfbl);  //分类自负金额
+                        fee.kbje = (fee.jmhje * (1 - xm.zfbl));    //Số tiền có thể ghi sổ
+                        //Nếu một loại 药là乙10%,Đ ơn giá100 tệ, ý nghĩa thì là说, này 药 đ ầu tiên 10%là cần cá nhân chịu của
+                        // này 10 tệ 钱 thì là'Tự trả theo phân loại'
+                        //另90 tệ còn chưa là cái gọi là của'Tự trả', cần theo 个人của tỷ lệ thanh toán BHYT BHYTvà个人 theo tỷ lệ chịu 
+                        fee.flzf = (fee.jmhje * xm.zfbl);  //Số tiền tự trả theo phân loại
                     }
-                    //当自负比例为负数时，表示定额自负
+                    //Khi tỷ lệ tự trả là số âm giờ,biểu thị tự trả đ ịnh mức
                     else
                     {
                         if (xm.jmbl < 0)
                         {
                             throw new FailedException(xm.jfbbh + "定额自负，减免比例不能为负数，请重新配置");
                         }
-                        //减免比例通常0，所以 flzf 一般都是 定额*数量
-                        //分类自负金额: 定额 * （1-减免比例）* 数量
-                        //可说明 .jmbl 是 在 定额自负 时 才有意义
+                        //Tỷ lệ giảm trừ thông thư ờng 0, vì vậy flzf thông thư ờng đ ều là Đ ịnh mức*Số lư ợng
+                        //Số tiền tự trả theo phân loại: Đ ịnh mức * (1-tỷ lệ giảm trừ)* Số lư ợng
+                        // có thể 说明.jmbl là tại tự trả đ ịnh mức giờ 才có意义
                         fee.flzf = (-xm.zfbl) * (1 - xm.jmbl) * xm.sl;
-                        fee.kbje = fee.jmhje - fee.flzf;    //可记账金额
+                        fee.kbje = fee.jmhje - fee.flzf;    //Số tiền có thể ghi sổ
                     }
                 }
             }
@@ -726,17 +726,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 根据收费项目合计和病人‘‘‘‘收费算法’’’’计算
+        /// theo hạng mục thu phí tổng cộng và bệnh nhân''''Thu phí thuật toán ''''Tính
         /// </summary>
         /// <param name="fee"></param>
-        /// <param name="brxzSfsfList">病人性质对应的收费算法列表</param>
+        /// <param name="brxzSfsfList">Tính chất bệnh nhân Tư ơng ứng củathu phí thuật toán danh sách</param>
         private void jifeiWithBrsfsfToHospFeeItemOrMedicinDetailBO(HospFeeItemOrMedicinDetailBO fee, IList<SysPatientChargeAlgorithmEntity> brxzSfsfList)
         {
-            //项目（药品）匹配的收费算法
+            //Hạng mục(thuốc)匹配củathu phí thuật toán 
             IList<SysPatientChargeAlgorithmEntity> sfsfList = null;
             if (fee.Item != null)
             {
-                var xm = fee.Item;  //项目计费
+                var xm = fee.Item;  //Tính phí hạng mục
                 sfsfList = brxzSfsfList.Where(p => p.sfxm == xm.sfxm).ToList();
             }
             if (sfsfList == null || sfsfList.Count == 0)
@@ -744,18 +744,18 @@ namespace Newtouch.HIS.Application.Implementation
                 sfsfList = brxzSfsfList.Where(p => p.sfxm == "" && (p.dl == fee.dl || (p.dl ?? "").Trim() == "*")).ToList();
             }
 
-            if (sfsfList == null || sfsfList.Count == 0)    //如果没有病人收费算法
+            if (sfsfList == null || sfsfList.Count == 0)    //Nếu không có bệnh nhânthu phí thuật toán 
             {
-                //没有设置算法 费用合计 = 可记账＋分类自负＋自理
+                // không có đặt thuật toán tổng chi phí = có thể ghi sổ＋tự trả theo phân loại＋tự chi trả
                 fee.sfjsfymx.total = fee.kbje + fee.flzf + fee.zlfy;
-                //分类自负
+                //Tự trả theo phân loại
                 fee.sfjsfymx.flzf = fee.flzf;
-                //记账费用
+                //Phí ghi sổ
                 fee.sfjsfymx.jzfy = fee.kbje;
-                //自理费用
+                //Chi phí tự chi trả
                 fee.sfjsfymx.zl = fee.zlfy;
-                //现金
-                fee.sfjsfymx.xj = fee.flzf + fee.zlfy;  //现金支付 = 分类自负 + 自费
+                //Tiền mặt
+                fee.sfjsfymx.xj = fee.flzf + fee.zlfy;  //Thanh toán tiền mặt = Tự trả theo phân loại + Tự trả
             }
             else
             {
@@ -767,47 +767,47 @@ namespace Newtouch.HIS.Application.Implementation
                 #region 费用合计    根据病人不同的收费算法，=>现金、记账费用、分类自负、自理
                 if (sfsfList[0].fyfw == Constants.xtbrsfsffyfw.fyfw0)
                 {
-                    //交易费用总额 = 医保结算范围费用总额 - 分类自负；现金：分类自负+自理+自负
-                    fee.sfjsfymx.jzfy = fee.kbje; //记账费用：可记帐
-                    fee.sfjsfymx.flzf = fee.flzf; //分类自负
-                    fee.sfjsfymx.zl = fee.zlfy;   //自理费用
-                    fee.sfjsfymx.xj = fee.flzf + fee.zlfy;    //现金
+                    //Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT - Tự trả theo phân loại;Tiền mặt:Tự trả theo phân loại+Tự chi trả+Tự trả
+                    fee.sfjsfymx.jzfy = fee.kbje; //Phí ghi sổ:Có thể ghi sổ
+                    fee.sfjsfymx.flzf = fee.flzf; //Tự trả theo phân loại
+                    fee.sfjsfymx.zl = fee.zlfy;   //Chi phí tự chi trả
+                    fee.sfjsfymx.xj = fee.flzf + fee.zlfy;    //Tiền mặt
                 }
                 else if (sfsfList[0].fyfw == Constants.xtbrsfsffyfw.fyfw1)
                 {
-                    //交易费用总额 = 医保结算范围费用总额；现金：自理+自负
-                    fee.sfjsfymx.jzfy = fee.kbje + fee.flzf;  //记账费用：可记帐 + 分类自负
-                    fee.sfjsfymx.flzf = 0m;   //分类自负
-                    fee.sfjsfymx.zl = fee.zlfy;   //自理费用
-                    fee.sfjsfymx.xj = fee.zlfy;   //现金
+                    //Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự chi trả+Tự trả
+                    fee.sfjsfymx.jzfy = fee.kbje + fee.flzf;  //Phí ghi sổ:Có thể ghi sổ + Tự trả theo phân loại
+                    fee.sfjsfymx.flzf = 0m;   //Tự trả theo phân loại
+                    fee.sfjsfymx.zl = fee.zlfy;   //Chi phí tự chi trả
+                    fee.sfjsfymx.xj = fee.zlfy;   //Tiền mặt
                 }
                 else if (sfsfList[0].fyfw == Constants.xtbrsfsffyfw.fyfw2)
                 {
-                    //交易费用总额 = 医保结算范围费用总额；现金：自负
-                    fee.sfjsfymx.jzfy = fee.kbje + fee.flzf + fee.zlfy;   //记账费用：可记帐 + 分类自负 + 自理
-                    fee.sfjsfymx.flzf = 0m;   //分类自负
-                    fee.sfjsfymx.zl = 0m; //自理费用
-                    fee.sfjsfymx.xj = 0m; //现金
+                    //Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự trả
+                    fee.sfjsfymx.jzfy = fee.kbje + fee.flzf + fee.zlfy;   //Phí ghi sổ:Có thể ghi sổ + Tự trả theo phân loại + Tự chi trả
+                    fee.sfjsfymx.flzf = 0m;   //Tự trả theo phân loại
+                    fee.sfjsfymx.zl = 0m; //Chi phí tự chi trả
+                    fee.sfjsfymx.xj = 0m; //Tiền mặt
                 }
                 else if (sfsfList[0].fyfw == Constants.xtbrsfsffyfw.fyfw3)
                 {
-                    //交易费用总额 = 医保结算范围费用总额；现金：自负
-                    fee.sfjsfymx.jzfy = fee.kbje + fee.flzf + fee.zlfy;   //记账费用：可记帐 + 分类自负 + 自理 + 绝对自费
-                    fee.sfjsfymx.flzf = 0m;   //分类自负
-                    fee.sfjsfymx.zl = 0m; //自理费用
-                    fee.sfjsfymx.xj = 0m; //现金
+                    //Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự trả
+                    fee.sfjsfymx.jzfy = fee.kbje + fee.flzf + fee.zlfy;   //Phí ghi sổ:Có thể ghi sổ + Tự trả theo phân loại + Tự chi trả + Hoàn toàn tự trả
+                    fee.sfjsfymx.flzf = 0m;   //Tự trả theo phân loại
+                    fee.sfjsfymx.zl = 0m; //Chi phí tự chi trả
+                    fee.sfjsfymx.xj = 0m; //Tiền mặt
                 }
                 #endregion
 
                 #region 费用计算
                 decimal jsAmount = fee.sfjsfymx.jzfy;
-                decimal jsedAmount = 0m;    //根据费用范围需要计算的金额
-                decimal sfzf = 0m;  //算法自负（自负性质为自理时 记入’算法自理‘）
-                //如果有费用上限，则根据算法级别计算(实际只需计算自理费用) 
+                decimal jsedAmount = 0m;    // theo chi phí phạm vi cần tính của số tiền
+                decimal sfzf = 0m;  // thuật toán tự trả(tính chất tự trả là tự chi trả giờ ghi vào ' thuật toán tự chi trả')
+                //Nếu có chi phí giới hạn trên,thì theo thuật toán cấp bậc tính(thực tế 只需tínhchi phí tự chi trả) 
                 foreach (var sfEntity in sfsfList)
                 {
                     var sl = (fee.Item != null ? fee.Item.sl : fee.Medicin.sl);
-                    decimal sffysx = sfEntity.fysx * sl;   //费用上限
+                    decimal sffysx = sfEntity.fysx * sl;   //Chi phí giới hạn trên 
                     if (sffysx > fee.sfjsfymx.jzfy)
                     {
                         sfzf += jsAmount == 0 ? 0
@@ -851,7 +851,7 @@ namespace Newtouch.HIS.Application.Implementation
 
                 if (sfsfList[0].zfxz == ((int)EnumSuanFaZFXZ.ZL).ToString())
                 {
-                    fee.sfjsfymx.sfzl += sfzf;  //自负性质为自理
+                    fee.sfjsfymx.sfzl += sfzf;  //Tính chất tự trả là tự chi trả
                 }
                 else
                 {
@@ -859,25 +859,25 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 if (sfsfList[0].fyfw == Constants.xtbrsfsffyfw.fyfw3)
                 {
-                    //如果是绝对自费,记账金额为自理
+                    //Nếu là hoàn toàn tự trả,ghi sổ số tiền là tự chi trả
                     fee.sfjsfymx.zl += fee.sfjsfymx.jzfy - sfzf;
                     fee.sfjsfymx.jzfy = 0m;
                     fee.sfjsfymx.xj += fee.sfjsfymx.zl;
                 }
                 else
                 {
-                    //可记账费用
+                    // có thể phí ghi sổ
                     fee.sfjsfymx.jzfy = fee.sfjsfymx.jzfy - sfzf;
                 }
-                //现金
+                //Tiền mặt
                 fee.sfjsfymx.xj += sfzf;
-                //有算法 费用合计 = 现金
+                //Có thuật toán tổng chi phí = tiền mặt
                 fee.sfjsfymx.total = fee.sfjsfymx.xj;
             }
             fee.ybjyje = fee.sfjsfymx.jzfy;
             fee.ybjyfwje = fee.sfjsfymx.jzfy + fee.sfjsfymx.flzf;
 
-            //一次性材料 //放在这 顺序没问题？
+            // một lần 性材料 //放tại này thứ tự không 问题？
             if (fee.sfclxmzhEntity != null)
             {
                 //.jmhje fee.zlfy  fee.sfjsfymx.zl
@@ -895,14 +895,14 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 记账超额
+        /// Ghi sổ超额
         /// </summary>
-        /// <param name="icd10">入院诊断 的 icd10</param>
+        /// <param name="icd10">Chẩn đoán nhập viện Của icd10</param>
         /// <param name="brxzFeeGroupList"></param>
         private void getJZCE(string icd10, IList<HospFeeItemOrMedicinListGroupedByBrxzBO> brxzFeeGroupList)
         {
-            //根据病人性质和诊断判断，可保费用的上限，如少儿基金，第一诊断为急性xx阑尾，报销上限为1100
-            //例如：[{"brxz":"18","icd10":"A01.001","bxsx":"1100"}]
+            // theo tính chất bệnh nhân và chẩn đoán phán đoán, có thể 保chi phí của giới hạn trên,如少儿基金,thứ một chẩn đoán là急性xx阑尾, thanh toán BHYT giới hạn trên là1100
+            // ví dụ:[{"brxz":"18","icd10":"A01.001","bxsx":"1100"}]
             var pzzyBRXZZDBXSXValue = _sysConfigRepo.GetValueByCode(Constants.xtzypz.ZY_BRXZ_ZD_BXSX, this.OrganizeId);
             if (string.IsNullOrWhiteSpace(pzzyBRXZZDBXSXValue))
             {
@@ -919,7 +919,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     continue;
                 }
-                var jzjeHj = getBrxzFeeListJZHJ(brxzFeeGroup);   //计算出记账费用合计（可报金额）
+                var jzjeHj = getBrxzFeeListJZHJ(brxzFeeGroup);   //Tính出phí ghi sổ tổng cộng (có thể thanh toán số tiền)
                 if (jzjeHj > matchedXZPZ.bxsx)
                 {
                     brxzFeeGroup.jzce = jzjeHj - matchedXZPZ.bxsx;
@@ -928,7 +928,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取记账费用合计
+        /// Lấy phí ghi sổ tổng cộng 
         /// </summary>
         /// <param name="brxzFeeGroup"></param>
         /// <returns></returns>
@@ -937,17 +937,17 @@ namespace Newtouch.HIS.Application.Implementation
             decimal hj = 0;
             foreach (var fee in brxzFeeGroup.FeeList)
             {
-                if (fee.isNeedYBJY) //FYB有jzfy么
+                if (fee.isNeedYBJY) //FYBCójzfy么
                 {
                     hj += fee.sfjsfymx.jzfy;
                 }
-                ////########### 起付金额 ？？   医保有医保的起付金额？？  //记账超额  ？？
+                ////########### mức khởi trả số tiền ？？ BHYTcó BHYTcủa mức khởi trả số tiền？？ //Ghi sổ超额 ？？
             }
             return hj;
         }
 
         /// <summary>
-        /// 获取数据库变更集合对象（以便在事物中一次提交）
+        /// Lấy dữ liệu kho thay đ ổi tập hợp Đ ối tư ợng(đ ể tại事物 trong một lần gửi)
         /// </summary>
         /// <returns></returns>
         private OutHospSettDBDataUpdateCollectVO getSettDBUpdateVO(HospSettPatInfoVO settpatinfo, string fph, decimal zhye, decimal zhaoling, IList<HospFeeItemOrMedicinListGroupedByBrxzBO> zyjyjsList, string xjzfListStr, string defaultxjzffs)
@@ -981,13 +981,13 @@ namespace Newtouch.HIS.Application.Implementation
                 CreatorCode = this.UserIdentity.UserCode,
                 CreateTime = DateTime.Now,
                 zt = "1",
-                zl = zhaoling,   //找零
+                zl = zhaoling,   //Trả lại tiền thừa
                 xjzffs = string.Empty,
             };
 
             foreach (HospFeeItemOrMedicinListGroupedByBrxzBO zyjyjs in zyjyjsList)
             {
-                //（组合病人性质）即对应了一交易‘zy_jyjs’
+                //(kết hợp tính chất bệnh nhân) tức là Tư ơng ứng một giao dịch 'zy_jyjs'
                 var zy_jyjs = new HospTransactionSettlementEntity()
                 {
                     jsnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_jyjs"),
@@ -1009,35 +1009,35 @@ namespace Newtouch.HIS.Application.Implementation
                     zt = "1",
                 };
 
-                //#########仅自费逻辑
+                //######### chỉ tự trả logic 
 
                 foreach (var fee in zyjyjs.FeeList)
                 {
                     //zy_js
-                    zy_js.zje += fee.jmhje; //总金额 即 减免后金额总和
-                    zy_js.zlfy += fee.zlfy; //自理费用  算法前
-                    zy_js.zffy += fee.sfjsfymx.sfzf; //自负费用 算法自负
-                    zy_js.flzffy += fee.sfjsfymx.flzf;  //分类自负费用
-                    zy_js.jzfy += fee.sfjsfymx.jzfy;    //记账费用
-                    zy_js.xjzf += fee.sfjsfymx.total;   //现金支付
-                    zy_js.jmje += fee.sfjsfymx.jmje; //减免金额
-                    //zy_js.ysk   //预收款     //CS没赋值
-                    //zy_js.zl  //找零     //CS没赋值
+                    zy_js.zje += fee.jmhje; //Tổng số tiền tức là số tiền sau giảm trừ总và
+                    zy_js.zlfy += fee.zlfy; //Chi phí tự chi trả thuật toán trư ớc 
+                    zy_js.zffy += fee.sfjsfymx.sfzf; //Chi phí tự trả thuật toán tự trả
+                    zy_js.flzffy += fee.sfjsfymx.flzf;  //Chi phí tự trả theo phân loại
+                    zy_js.jzfy += fee.sfjsfymx.jzfy;    //Phí ghi sổ
+                    zy_js.xjzf += fee.sfjsfymx.total;   //Thanh toán tiền mặt
+                    zy_js.jmje += fee.sfjsfymx.jmje; //Số tiền giảm trừ
+                    //zy_js.ysk //Tạm thu //CS không gán giá trị 
+                    //zy_js.zl //Trả lại tiền thừa //CS không gán giá trị 
 
                     //zy_jyjs
-                    zy_jyjs.zlfy += fee.zlfy;   //自理费用
-                    zy_jyjs.zffy += fee.sfjsfymx.sfzf;  //自负费用
-                    zy_jyjs.flzffy = fee.sfjsfymx.flzf;     //分类自负费用
-                    zy_jyjs.jzfy += fee.sfjsfymx.jzfy;  //记帐费用
-                    zy_jyjs.xjzf += fee.sfjsfymx.total; //现金支付
-                    zy_jyjs.jmje += fee.sfjsfymx.jmje;  //减免金额
-                    //zy_jyjs.ysk   //预收款   //CS没赋值
-                    //zy_jyjs.zl    //找零     //CS没赋值
+                    zy_jyjs.zlfy += fee.zlfy;   //Chi phí tự chi trả
+                    zy_jyjs.zffy += fee.sfjsfymx.sfzf;  //Chi phí tự trả
+                    zy_jyjs.flzffy = fee.sfjsfymx.flzf;     //Chi phí tự trả theo phân loại
+                    zy_jyjs.jzfy += fee.sfjsfymx.jzfy;  //Phí ghi sổ
+                    zy_jyjs.xjzf += fee.sfjsfymx.total; //Thanh toán tiền mặt
+                    zy_jyjs.jmje += fee.sfjsfymx.jmje;  //Số tiền giảm trừ
+                    //zy_jyjs.ysk //Tạm thu //CS không gán giá trị 
+                    //zy_jyjs.zl //Trả lại tiền thừa //CS không gán giá trị 
 
                     //a new zy_jsmx
                     var zyjsmx = new HospSettlementDetailEntity()
                     {
-                        jsnm = zy_js.jsnm,  //住院结算的内容
+                        jsnm = zy_js.jsnm,  //Quyết toán nhập viện của nội dung 
                         OrganizeId = this.OrganizeId,
                         jyfwje = fee.ybjyfwje,
                         jyje = fee.ybjyje,
@@ -1053,7 +1053,7 @@ namespace Newtouch.HIS.Application.Implementation
                     //a new zy_yjjsmx
                     var zyjyjsmx = new HospTransactionSettlementDetailEntity()
                     {
-                        jsnm = zy_jyjs.jsnm,    //住院交易结算的内码
+                        jsnm = zy_jyjs.jsnm,    //Nhập viện giao dịch quyết toán của mã nội bộ
                         OrganizeId = this.OrganizeId,
                         xmjfbbh = fee.Item != null ? fee.Item.jfbbh : 0,
                         ypjfbbh = fee.Medicin != null ? fee.Medicin.jfbbh : 0,
@@ -1067,11 +1067,11 @@ namespace Newtouch.HIS.Application.Implementation
                     sqlVO.zy_jyjsmxList.Add(zyjyjsmx);
                 }
 
-                //总金额:自理费用+自负费用+分类自负费用+记帐费用
+                //Tổng số tiền:Chi phí tự chi trả+Chi phí tự trả+Chi phí tự trả theo phân loại+Phí ghi sổ
                 zy_jyjs.zje = zy_jyjs.zlfy + zy_jyjs.zffy + zy_jyjs.flzffy + zy_jyjs.jzfy;
                 sqlVO.zy_jyjsList.Add(zy_jyjs);
 
-                //住院结算大类
+                //Quyết toán nhập viện loại lớn 
 
                 var ybjsfwze = zyjyjs.FeeList.Sum(p => p.ybjyfwje);
 
@@ -1080,7 +1080,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     var zy_jsdl = new HospSettlementCategoryEntity()
                     {
-                        jsnm = zy_jyjs.jsnm,    //是关联‘住院交易结算’，而非‘住院结算’
+                        jsnm = zy_jyjs.jsnm,    //Là liên kết 'Nhập viện giao dịch quyết toán',而 không phải 'Quyết toán nhập viện'
                         OrganizeId = this.OrganizeId,
                         dl = dl,
                         jsrq = DateTime.Now,
@@ -1091,7 +1091,7 @@ namespace Newtouch.HIS.Application.Implementation
                     var feeList = zyjyjs.FeeList.Where(p => p.dl == dl && p.isNeedYBJY);
                     if (feeList != null && feeList.Count() > 0)
                     {
-                        //医保费用
+                        //Chi phí bảo hiểm y tế
                         if (ybjsfwze == 0)
                         {
                             zy_jsdl.zffy = 0m;
@@ -1099,23 +1099,23 @@ namespace Newtouch.HIS.Application.Implementation
                         }
                         else
                         {
-                            //yb.jzfy + yb.flzf/ returnValue.ybjsfwze 仅用做计算百分比
+                            //yb.jzfy + yb.flzf/ returnValue.ybjsfwze chỉ dùng 做tính trăm 分比
                             decimal percent = feeList.Sum(p => p.ybjyfwje) / ybjsfwze;
-                            zy_jsdl.zffy = percent * zy_jyjs.zffy;//分类金额/分类金额合计*自负金额
-                            zy_jsdl.kbfy = percent * zy_jyjs.jzfy;//分类金额/分类金额合计*记账金额
+                            zy_jsdl.zffy = percent * zy_jyjs.zffy;//Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
+                            zy_jsdl.kbfy = percent * zy_jyjs.jzfy;//Số tiền theo phân loại/Tổng số tiền theo phân loại*Ghi sổ số tiền
                         }
                     }
                     else
                     {
                         feeList = zyjyjs.FeeList.Where(p => p.dl == dl);
-                        //非医保费用
-                        zy_jsdl.zffy = feeList.Sum(p => p.sfjsfymx.sfzf); //算法自负
-                        zy_jsdl.kbfy = feeList.Sum(p => p.sfjsfymx.jzfy);   //可报费用
+                        // không phải chi phí bảo hiểm y tế
+                        zy_jsdl.zffy = feeList.Sum(p => p.sfjsfymx.sfzf); // thuật toán tự trả
+                        zy_jsdl.kbfy = feeList.Sum(p => p.sfjsfymx.jzfy);   //Có thể thanh toánChi phí
                     }
-                    zy_jsdl.jmfy = feeList.Sum(p => p.sfjsfymx.jmje);   //减免金额
-                    zy_jsdl.flzffy = feeList.Sum(p => p.sfjsfymx.flzf); //分类自负费用
-                    zy_jsdl.zlfy = feeList.Sum(p => p.sfjsfymx.zl); //自理费用
-                    //总金额
+                    zy_jsdl.jmfy = feeList.Sum(p => p.sfjsfymx.jmje);   //Số tiền giảm trừ
+                    zy_jsdl.flzffy = feeList.Sum(p => p.sfjsfymx.flzf); //Chi phí tự trả theo phân loại
+                    zy_jsdl.zlfy = feeList.Sum(p => p.sfjsfymx.zl); //Chi phí tự chi trả
+                    //Tổng số tiền
                     zy_jsdl.zje = zy_jsdl.flzffy + zy_jsdl.zlfy + zy_jsdl.jmfy + zy_jsdl.zffy + zy_jsdl.kbfy;
                     sqlVO.zy_jsdlList.Add(zy_jsdl);
                 }
@@ -1123,7 +1123,7 @@ namespace Newtouch.HIS.Application.Implementation
 
             #region 系统病人账户收支记录
             var xjzffsList = _sysCashPaymentModelRepo.GetLazyList();
-            //系统病人账户收支记录
+            //Hệ thống bệnh nhânthu chi tài khoản bản ghi 
             var newPaymentBOList = Json.ToObject<IList<HospSettPaymentRecordBO>>(xjzfListStr);
             if (!newPaymentBOList.Any(p => p.xjzffs == Constants.xtzffs.ZYYJZHZF))
             {
@@ -1155,7 +1155,7 @@ namespace Newtouch.HIS.Application.Implementation
 
                 sqlVO.xt_brzhszjlList.Add(xt_brzhszjl);
             }
-            //一条 住院支出消费的金额
+            // một dòng nhập viện支出消费của số tiền
             sqlVO.xt_brzhszjlList.Add(new SysPatientAccountRevenueAndExpenseEntity()
             {
                 OrganizeId = this.OrganizeId,
@@ -1177,7 +1177,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 throw new FailedCodeException("HOSP_FEE_IS_CHANGED");
             }
-            //添加一条找零的收支记录
+            //Thêm một dòng trả lại tiền thừa của收支 bản ghi 
             sqlVO.xt_brzhszjlList.Add(new SysPatientAccountRevenueAndExpenseEntity()
             {
                 OrganizeId = this.OrganizeId,

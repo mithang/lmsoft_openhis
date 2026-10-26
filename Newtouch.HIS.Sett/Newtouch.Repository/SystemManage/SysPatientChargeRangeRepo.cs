@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
             this.Delete(t => t.brsffwbh == keyValue && t.OrganizeId == orgId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysPatiChargeRangeEntity"></param>
         /// <param name="keyValue"></param>

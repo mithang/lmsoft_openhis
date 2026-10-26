@@ -6,7 +6,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 系统病人账户 相关
+    /// Hệ thống bệnh nhân tài khoản liên quan 
     /// </summary>
     public class SysPatAccountDmnService : DmnServiceBase, ISysPatAccountDmnService
     {

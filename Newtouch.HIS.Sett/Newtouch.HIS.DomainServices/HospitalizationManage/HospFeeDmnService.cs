@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 住院费用
+    /// Nhập việnChi phí
     /// </summary>
     public class HospFeeDmnService : DmnServiceBase, IHospFeeDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据住院获取住院的项目计费 的 简要信息 列表
+        /// theo nhập viện lấy nhập viện của tính phí hạng mục của 简 cần thông tin danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 根据住院获取住院的项目计费 的 详细信息 列表（含退费）
+        /// theo nhập viện lấy nhập viện của tính phí hạng mục của thông tin chi tiết danh sách(含hoàn phí)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -115,7 +115,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 根据住院获取住院的药品计费 的 简要信息 列表
+        /// theo nhập viện lấy nhập viện của thuốc tính phí của 简 cần thông tin danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 根据住院获取住院的药品计费 的 详细信息 列表（含退费）
+        /// theo nhập viện lấy nhập viện của thuốc tính phí của thông tin chi tiết danh sách(含hoàn phí)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -218,24 +218,24 @@ and a.OrganizeId = @orgId";
 
 
         /// <summary>
-        /// 同步最新CPOE项目费用
+        /// Đ ồng bộ mới nhất CPOEhạng mụcchi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         public void SyncPatFee(string orgId, string zyh, int zxtype)
         {
-            //是否启用费用同步最新机制
+            //Có hay không启 dùng chi phí đồng bộ mới nhất máy 制
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
                 var enable = _sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", orgId) ?? false;
                 if (enable)
                 {
                     string sql = "";
-                    if (zxtype == 0) //同步项目费用
+                    if (zxtype == 0) //Đ ồng bộ hạng mụcchi phí
                     {
                         sql = @" exec [skd_syncxmfeefromcpoe] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh,@newcount=@newcount output  ";
                     }
-                    else //同步药品费用
+                    else //Đ ồng bộ thuốcchi phí
                     {
                         sql = @" exec [skd_syncypfeefrompds] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh,@newcount=@newcount output ";
                     }
@@ -257,7 +257,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// check是否 产生非医保相关费用
+        /// check có hay không 产生 không phải BHYT liên quan chi phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

@@ -7,7 +7,7 @@ using Newtouch.HIS.Repository;
 namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
 {
     /// <summary>
-    /// 普通门诊
+    /// Phòng khám thông thư ờng
     /// </summary>
     public class GeneralBespeakStrategy : ICommitStrategy
     {
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
         private string userCode;
 
         /// <summary>
-        /// 执行
+        /// thực hiện 
         /// </summary>
         /// <param name="cts"></param>
         /// <param name="request"></param>
@@ -40,37 +40,37 @@ namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
                 mzyyghId = "";
                 userCode = "";
                 var mzBespeakRegister = request as MzBespeakRegisterVO;
-                //预约挂号是否排班 未排班的放过               
-                if (mzBespeakRegister.bespeakRegSchedulingDetail == null || mzBespeakRegister.bespeakRegSchedulingDetail.Count <= 0) return true; //该科室没有排班，可以直接挂号
-                //是否预约 有预约的放过
+                //Đ ặt lịch đ ăng ký khám có hay không lịch trực chưa lịch trực của放 qua 
+                if (mzBespeakRegister.bespeakRegSchedulingDetail == null || mzBespeakRegister.bespeakRegSchedulingDetail.Count <= 0) return true; // này khoa không có lịch trực,có thể trực ti ếpĐ ăng ký khám
+                //Có hay không đ ặt lịch có đ ặt lịch của放 qua 
                 var todayDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                if (mzBespeakRegister.bespeakRegDetail != null && mzBespeakRegister.bespeakRegDetail.Count > 0) //有预约
+                if (mzBespeakRegister.bespeakRegDetail != null && mzBespeakRegister.bespeakRegDetail.Count > 0) //Có đ ặt lịch 
                 {
                     var data = mzBespeakRegister.bespeakRegDetail.FindAll(p => p.regDate == todayDate && p.ksCode == mzBespeakRegister.registerInfo.ksCode && p.ysgh == "" && (p.arrivalDate == null || p.arrivalDate <= Convert.ToDateTime("1971-01-01")));
                     if (data != null && data.Count > 0)
                     {
                         mzyyghId = data[0].mzyyghId;
                         userCode = mzBespeakRegister.userCode;
-                        return true; //预约过
+                        return true; // đ ặt lịch qua 
                     }
                 }
 
-                //没有预约
+                // không có đ ặt lịch 
                 if (mzBespeakRegister.alreadyBespeakRegisterCount >= mzBespeakRegister.allBespeakMaxCount)
                 {
-                    //有预约排班，当前患者未预约当前科室，且预约已满
+                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, và đ ặt lịch Đ ã满
                     result.IsSucceed = false;
                     result.ResultMsg = "该科室预约已满，确定继续挂号吗？";
                     return false;
                 }
                 if ((mzBespeakRegister.alreadyBespeakRegisterCount + mzBespeakRegister.alreadyRegisterCount) >= mzBespeakRegister.allBespeakMaxCount)
                 {
-                    //有预约排班，当前患者未预约当前科室，预约未满，但已挂号挂号数+已预约数>=可预约总数
+                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, đ ặt lịch chưa满,Nh ưngĐ ãĐ ăng ký kh ámĐ ăng ký khám数+Đ ã đ ặt lịch 数>= có thể đ ặt lịch 总数
                     result.IsSucceed = false;
                     result.ResultMsg = "该科室挂号已满，确定继续挂号吗？";
                     return false;
                 }
-                return true; //预约人数 + 实际已挂号人数 < 支持预约最大人数，可以继续挂号
+                return true; // đ ặt lịch số ngư ời + thực tế Đ ãĐ ăng ký khám số ngư ời < hỗ trợ đ ặt lịch lớn nhất số ngư ời,có thể tiếp tục Đ ăng ký khám
 
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
         }
 
         /// <summary>
-        /// 后处理
+        /// Hậu xử lý
         /// </summary>
         /// <param name="cts"></param>
         /// <param name="request"></param>

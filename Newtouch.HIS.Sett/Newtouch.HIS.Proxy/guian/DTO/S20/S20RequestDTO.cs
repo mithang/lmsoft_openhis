@@ -4,89 +4,89 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S20
 {
     /// <summary>
-    /// 根据S18上传门诊返回的补偿序号outpId进行门诊信息修改 请求报文
+    /// theo S18 số thứ tự bồi thư ờng ngoại trú trả về sau khi tải lênoutpid tiến hành ngoại trú thông tin sửa bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S20")]
     [XmlRoot("body")]
     public class S20RequestDTO
     {
         /// <summary>
-        /// 门诊补偿序号
+        /// Số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        /// 就诊时间(yyyy-mm-dd)
+        /// Khám bệnhThời gian(yyyy-mm-dd)
         /// </summary>
         public string inpatientDate { get; set; }
 
         /// <summary>
-        /// 就诊科室（见字典科室）
+        /// Khoa khám bệnh(xem từ điển khoa)
         /// </summary>
         public string inpatientDepartments { get; set; }
 
         /// <summary>
-        /// 经治医生
+        /// Bác sĩ điều trị
         /// </summary>
         public string treatingPhysician { get; set; }
 
         /// <summary>
-        /// 疾病代码(接口S29下载获取)
+        /// Mã bệnh(Giao diệnS29Tải xuống và lấy)
         /// </summary>
         public string diseaseCode { get; set; }
 
         /// <summary>
-        /// 初步诊断
+        /// Chẩn đoán sơ bộ
         /// </summary>
         public string initialDiagnosis { get; set; }
 
         /// <summary>
-        /// 是否扣家庭账户
+        /// Có hay không扣 gia đ ình tài khoản
         /// </summary>
         public string isAccountPay { get; set; }
 
         /// <summary>
-        /// 是统筹
+        /// Là quỹ chung 
         /// </summary>
         public string isOutpPay { get; set; }
 
         /// <summary>
-        /// 是否提高（1提高0不提高）
+        /// Có hay không nâng cao (1 nâng cao 0 không nâng cao)
         /// </summary>
         public string isIncrease { get; set; }
 
         /// <summary>
-        /// 是否转诊（1转诊默认0）
+        /// Có chuyển viện hay không(1 chuyển tuyến mặc đ ịnh0)
         /// </summary>
         public string isReferra { get; set; }
 
         /// <summary>
-        /// 病人类型（见字典病人类型）
+        /// Loại bệnh nhân(xem từ điển loại bệnh nhân)
         /// </summary>
         public string inpatientTypeOflocal { get; set; }
 
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         public string tel { get; set; }
 
         /// <summary>
-        /// 银行卡号
+        /// Số thẻ ngân hàng
         /// </summary>
         public string bankCardNo { get; set; }
 
         /// <summary>
-        /// 银行卡号开户人姓
+        /// Họ của chủ tài khoản thẻ ngân hàng
         /// </summary>
         public string accountHolder { get; set; }
 
         /// <summary>
-        /// 患者与开户人关系
+        /// Quan hệ giữa bệnh nhân và chủ tài khoản
         /// </summary>
         public string holderRelation { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
     }

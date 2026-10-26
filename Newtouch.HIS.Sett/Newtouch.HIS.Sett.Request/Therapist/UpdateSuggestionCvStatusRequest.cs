@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Therapist
 {
     /// <summary>
-    /// 更新建议的转换状态
+    /// Cập nhật đ ề xuất của chuyển 换trạng thái
     /// </summary>
     public class UpdateSuggestionCvStatusRequest : OrgRequestBase
     {
         /// <summary>
-        /// 列表
+        /// Danh sách
         /// </summary>
         [Required]
         public IList<SuggestionCvStatuDTO> CvList { get; set; }

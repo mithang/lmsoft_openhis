@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Repository
             }
                
         }
-        //住院补计费扣掉相应库存
+        //Nhập viện补 tính phí 扣掉相 nên kho tồn tại 
         public void Updatezyaddfee(string OrganizeId, decimal sl,string yfbm,string ypdm)
         {
             try
@@ -102,7 +102,7 @@ and organizeid=@orgId and zt='1'";
 
         }
         /// <summary>
-        /// 退费退回耗材库存
+        /// Hoàn phí trả lại lần 耗材 kho tồn tại 
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="jfbbhs"></param>
@@ -114,7 +114,7 @@ and organizeid=@orgId and zt='1'";
         }
 
         /// <summary>
-        /// 住院退费退回医生站开立耗材库存
+        /// Nhập viện hoàn phí trả lại lần trạm bác sĩ开立耗材 kho tồn tại 
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="jfbbhs"></param>

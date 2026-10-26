@@ -72,15 +72,15 @@ namespace Newtouch.HIS.Application.SystemSecurity
         public void RemoveLog(string keepTime)
         {
             DateTime operateTime = DateTime.Now;
-            if (keepTime == "7")            //保留近一周
+            if (keepTime == "7")            //保留近 một tuần
             {
                 operateTime = DateTime.Now.AddDays(-7);
             }
-            else if (keepTime == "1")       //保留近一个月
+            else if (keepTime == "1")       //保留近 một tháng
             {
                 operateTime = DateTime.Now.AddMonths(-1);
             }
-            else if (keepTime == "3")       //保留近三个月
+            else if (keepTime == "3")       //保留近 ba 个tháng
             {
                 operateTime = DateTime.Now.AddMonths(-3);
             }

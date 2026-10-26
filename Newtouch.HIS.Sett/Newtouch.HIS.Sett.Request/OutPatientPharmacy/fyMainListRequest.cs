@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 门诊发药主表显示
+    /// Phát thuốc ngoại trú bảng chính hiển thị
     /// </summary>
     public class fyMainListRequest
     {

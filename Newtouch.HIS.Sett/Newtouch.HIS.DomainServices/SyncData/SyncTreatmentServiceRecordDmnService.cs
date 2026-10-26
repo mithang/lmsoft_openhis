@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 同步治疗记录
+    /// Đ ồng bộ điều trị bản ghi 
     /// </summary>
     public class SyncTreatmentServiceRecordDmnService : DmnServiceBase, ISyncTreatmentServiceRecordDmnService
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取同步治疗记录
+        /// LấyĐ ồng bộ điều trị bản ghi 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="clzt"></param>
@@ -78,17 +78,17 @@ where siteId = @orgId and tr.zt = '1' and isDeleted='0'";
             {
                 if (wtjlbz.Value)
                 {
-                    //true 仅问题记录
+                    //true chỉ 问题 bản ghi 
                     sql += " and isnull(wtjlbz,0) = 1";
                 }
                 else
                 {
-                    //false 排除问题记录
+                    //false loại trừ 问题 bản ghi 
                     sql += " and isnull(wtjlbz,0) = 0";
                 }
             }
 
-            //确保一下 没有确认过
+            //确保 một dư ới không có xác nhận qua 
             sql += " and jfbId is null";
 
             sql += " order by isnull(serviceDate,CreatedDate)";

@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 使用发票，数据库变更 同步当前发票号
+        /// Sử dụng hóa đ ơn,dữ liệu kho thay đ ổi Đ ồng bộ khi trư ớc số hóa đ ơn
         /// </summary>
         /// <param name="updateEntity"></param>
         /// <param name="insertEntity"></param>
@@ -68,32 +68,32 @@ namespace Newtouch.HIS.Repository
                 {
                     if (cwfp.dqfph == 0)
                     {
-                        //更新原cw_fp记录
+                        //Cập nhật原cw_fp bản ghi 
                         cwfp.dqfph = fphnum;
                         cwfp.LastModifyTime = DateTime.Now;
                         updateEntity = cwfp;
                     }
                     //else if (fphnum <= cwfp.dqfph)
                     //{
-                    //    throw new FailedException("发票号已被使用，请重新选择");
+                    // throw new FailedException("Số hóa đ ơnĐ ã đ ược sử dụng,vui lòng lại chọn");
                     //}
                     else if (fphnum - 1 == cwfp.dqfph)
                     {
-                        //更新原cw_fp记录
+                        //Cập nhật原cw_fp bản ghi 
                         cwfp.dqfph = fphnum;
                         cwfp.LastModifyTime = DateTime.Now;
                         updateEntity = cwfp;
                     }
                     else
                     {
-                        //更新原cw_fp记录
+                        //Cập nhật原cw_fp bản ghi 
                         cwfp.dqfph = fphnum;
                         cwfp.LastModifyTime = DateTime.Now;
                         updateEntity = cwfp;
                         #region 不需自动生成发票段
                         //var oldJsfph = cwfp.jsfph;
 
-                        ////分段
+                        ////分 đoạn 
                         //cwfp.jsfph = fphnum - 1;
                         ////cwfp.ty = ((int)EnumCWFPTY.YTY).ToString();
                         ////cwfp.LastModifyUserId = gh;
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Repository
                         //    zt = "1",
                         //    lyry = lyry,
                         //    lyrq = DateTime.Now,
-                        //    LastModifyTime = DateTime.Now,  //用于排序
+                        // LastModifyTime = DateTime.Now, // dùng cho sắp xếp 
                         //    CreatorCode = "",
                         //    CreateTime = DateTime.Now,
                         //};
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有发票列表
+        /// Lấy tất cả các hóa đ ơn danh sách
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="fpId"></param>
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改页面，根据主键获取实体
+        /// Sửatrang, theo khóa chính lấy thực thể
         /// </summary>
         /// <param name="ypdm"></param>
         /// <returns></returns>
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="financialInvoiceEntity"></param>
         /// <param name="fpdm"></param>
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string fpdm, string orgId)
@@ -198,10 +198,10 @@ namespace Newtouch.HIS.Repository
                 {
                     if (item.szm == entity.szm)
                     {
-                        //A) y1 < x1 并且 y2 > x2;
-                        //B) y1 < x1 并且 y2 > x1;
-                        //C) y1 > x1 并且 y2<x2;
-                        //D) y1 > x1 , y2 > x2 并且 y1<x2;
+                        //A) y1 < x1 Và y2 > x2;
+                        //B) y1 < x1 Và y2 > x1;
+                        //C) y1 > x1 Và y2<x2;
+                        //D) y1 > x1 , y2 > x2 Và y1<x2;
                         if ((entity.qsfph < item.qsfph && entity.jsfph > item.jsfph) ||
                             (entity.qsfph < item.qsfph && entity.jsfph > item.qsfph) ||
                             (entity.qsfph > item.qsfph && entity.jsfph < item.jsfph) ||

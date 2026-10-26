@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 取消住院结算 接口
+    /// Hủy quyết toán nhập viện Giao diện
     /// </summary>
     public interface IHospSettCancelApp
     {
         /// <summary>
-        /// 取消住院结算，查看患者住院 状态信息
+        /// Hủy quyết toán nhập viện,XemBệnh nhânNhập viện Trạng tháiThông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Application.Interface
         HospSettCancelPatStatusDetailDto GetPatHospStatusDetail(string zyh, string kh);
 
         /// <summary>
-        /// 取消住院结算 提交保存操作
+        /// Hủy quyết toán nhập viện GửiLưuThao tác
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsnm"></param>

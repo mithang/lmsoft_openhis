@@ -5,18 +5,18 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方作废请求根据门诊号
+    /// Đ ơn thuốc hủy bỏ yêu cầu theo số khám ngoại trú
     /// </summary>
     public class PrescriptionCancelByOutNoRequest : RequestBase
     {
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         [Required]
         public string mzh { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         [Required]
         public DateTime OperateTime { get; set; }

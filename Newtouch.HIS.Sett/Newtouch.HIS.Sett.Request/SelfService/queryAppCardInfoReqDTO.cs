@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 	public class queryAppCardInfoReqDTO
 	{
 		/// <summary>
-		/// 组织机构代码
+		/// Mã tổ chức
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 卡号
+		/// Số thẻ
 		/// </summary>
 
 		public string CARD_NO { get; set; }

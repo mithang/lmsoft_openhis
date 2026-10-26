@@ -39,7 +39,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 批量添加成本信息
+        /// hàng loạt thêm成 bản thông tin
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="srxxId"></param>
@@ -64,14 +64,14 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 新增站点收支统计表
+        /// Thêm mới trạm 点收支 thống kê bảng 
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="keyvalue"></param>
         /// <param name="orgId"></param>
         public void submitEarningInfo(SiteCostEarningVO vo, string keyvalue, string orgId)
         {
-            //修改
+            //Sửa
             if (!string.IsNullOrWhiteSpace(keyvalue))
             {
                 var srxxentity = jgss_EarningInfoRepo.FindEntity(p => p.Id == keyvalue && p.zt == "1");
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.DomainServices
                     {
                         throw new FailedException("该机构" + vo.srxx.year + "年" + vo.srxx.month + "月收支数据已统计，请核实");
                     }
-                    //GRS收入信息
+                    //GRSThu nhậpThông tin
                     var srxx = new jgss_EarningInfoEntity();
                     vo.srxx.MapperTo(srxx);
                     if (string.IsNullOrWhiteSpace(keyvalue))
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.DomainServices
 
                     srxxId = srxx.Id;
                     db.Insert(srxx);
-                    //共担成本比例
+                    //Tổng cộng担成 bản tỷ lệ 
 
                     var fcentity = db.FindEntity<SysConfigEntity>(p => p.Code == "jgssfdbl" && p.zt == "1" && p.OrganizeId == orgId);
                     if (fcentity != null)
@@ -134,11 +134,11 @@ namespace Newtouch.HIS.DomainServices
                         config.Create(true);
                         db.Insert(config);
                     }
-                    _cache.Remove("set:systemconfig_" + orgId);//清空配置的缓存，否则下次不生效
+                    _cache.Remove("set:systemconfig_" + orgId);//清 trống cấu hình của bộ nhớ đ ệm,nếu không dư ới lần không 生效
 
                     if (vo.srxxList != null && vo.srxxList.Count > 0)
                     {
-                        //GRS收入信息详情表
+                        //GRSthu nhập thông tinchi tiết bảng 
                         foreach (var item in vo.srxxList)
                         {
                             var earning = new jgss_EarningDetailInfoEntity { srxxId = srxxId };
@@ -172,12 +172,12 @@ namespace Newtouch.HIS.DomainServices
                     db.Commit();
                 }
             }
-            //更新实收
+            //Cập nhật thực thu 
             Getss(vo.srxx.siteId, vo.srxx.year, vo.srxx.month);
         }
 
         /// <summary>
-        /// 查看站点收支统计表
+        /// Xem trạm 点收支 thống kê bảng 
         /// </summary>
         /// <param name="srxxId"></param>
         /// <param name="orgId"></param>
@@ -253,7 +253,7 @@ WHERE   cbxx.srxxId = @srxxId order by cbxx.cblb
         }
 
         /// <summary>
-        /// 站点收支统计表-收入信息详情
+        /// trạm 点收支 thống kê bảng -thu nhập thông tinchi tiết
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>
@@ -341,7 +341,7 @@ WHERE   cbxx.srxxId = @srxxId order by cbxx.cblb
         }
 
         /// <summary>
-        /// 查看站点收费金额详情
+        /// Xem trạm 点thu phí số tiềnchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="siteId"></param>
@@ -386,7 +386,7 @@ WHERE   cbxx.srxxId = @srxxId order by cbxx.cblb
         }
 
         /// <summary>
-        /// 查看站点收费金额详情
+        /// Xem trạm 点thu phí số tiềnchi tiết
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -603,7 +603,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// 获取机构实收和GRS实收
+        /// Lấy cơ quan thực thu và GRS thực thu 
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>
@@ -621,7 +621,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="srxxId"></param>
         public void deletess(string srxxId)
@@ -672,10 +672,10 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
 
         #region 上传文件
         /// <summary>
-        /// 上传文件
+        /// Tải lên tệp 
         /// </summary>
         /// <param name="file"></param>
-        /// <returns>文件上传路径</returns>
+        /// <returns> tệp tải lên路径</returns>
         public string UploadFile(HttpPostedFileBase file, out string parth)
         {
             parth = "";
@@ -704,7 +704,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// 文件效验
+        /// tệp 效验
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -716,7 +716,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// 类型验证
+        /// loại xác minh
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -733,7 +733,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// 大小验证
+        /// 大小xác minh
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -751,7 +751,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         #endregion
 
         /// <summary>
-        /// 获取上个月的成本信息
+        /// Lấy trên 个tháng của成 bản thông tin
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>

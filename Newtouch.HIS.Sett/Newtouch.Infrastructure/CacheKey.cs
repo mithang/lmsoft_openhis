@@ -6,32 +6,32 @@
     public class CacheKey
     {
         /// <summary>
-        /// 有效的现金支付方式列表
+        /// Hiệu lực của Phư ơng thức thanh toán tiền mặtdanh sách
         /// </summary>
         public static string ValidXTXJZFFSListSetKey = "set:ValidXTXJZFFSList";
 
         /// <summary>
-        /// 有效的系统收费大类   {0}OrganizeId
+        /// Hiệu lực của hệ thốngthu phí loại lớn {0}Organizeid
         /// </summary>
         public static string ValidSystemChargeMajorClassListSetKey = "set:ValidSystemChargeMajorClassList_{0}";
 
         /// <summary>
-        /// 系统业务处理 错误提示 的 code msg 映射 {0}TopOrganizeId
+        /// Hệ thống nghiệp vụ xử lý lỗi nhắc nhở của code msg 映射 {0}TopOrganizeid
         /// </summary>
         public static string SysFailedCodeMessageMapListListSetKey = "set:SysFailedCodeMessageMapListList_{0}";
 
         /// <summary>
-        /// 当前登录的用户的药房部门信息  {0}UserId
+        /// Khi trư ớc đ ăng nhập của ngư ời dùng của nhà thuốc bộ phận thông tin {0}Userid
         /// </summary>
         public static string CurrentYfbmInfoEntityKey = "string:CurrentYfbmInfo_{0}";
 
         /// <summary>
-        /// 组织机构的用户树（得对应人员）缓存   {0}OrganizeId
+        /// Tổ chức của ngư ời dùng 树(得Tư ơng ứng nhân sự) bộ nhớ đ ệm {0}Organizeid
         /// </summary>
         public static string OrganizeUserTreeSetKey = "set:OrganizeUserTree_{0}";
 
         /// <summary>
-        /// 组织机构的人员树缓存   {0}OrganizeId
+        /// Tổ chức của nhân sự 树 bộ nhớ đ ệm {0}Organizeid
         /// </summary>
         public static string OrganizeStaffTreeSetKey = "set:OrganizeStaffTree_{0}";
 

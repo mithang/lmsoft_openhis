@@ -5,37 +5,37 @@ using System;
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 住院患者查询
+    /// Tra cứu bệnh nhân nhập viện
     /// </summary>
     public class InPatientQueryRequest : RequestBase
     {
         /// <summary>
-        /// 最后更新时间
+        /// nhất sau cập nhật thời gian
         /// </summary>
         public DateTime? lastUpdateTime { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 病区编码
+        /// Khu bệnh mã 
         /// </summary>
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 在院标志（多个用英文逗号分割）
+        /// Dấu hiệu đang nằm viện(nhiều dùng tiếng anh逗 số 分割)
         /// </summary>
         public string zybz { get; set; }
 
         /// <summary>
-        /// 关键字 可匹配 zyh blh xm
+        /// Từ khóa có thể 匹配 zyh blh xm
         /// </summary>
         public string keyword { get; set; }
 
         /// <summary>
-        /// 分页
+        /// 分trang
         /// </summary>
         public Pagination pagination { get; set; }
 

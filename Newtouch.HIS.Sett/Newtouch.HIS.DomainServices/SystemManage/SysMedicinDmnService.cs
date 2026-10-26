@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 检索药品（for 下拉）
+        /// 检索thuốc(for dư ới 拉)
         /// </summary>
         /// <param name="keywrod"></param>
         /// <returns></returns>

@@ -9,13 +9,13 @@ namespace Newtouch.HIS.Application
     public interface IHospMedicinFeeApp
     {
         /// <summary>
-        /// 根据住院号查询所有的计算记录，把已结和已冲销的记录进行对冲，得到未冲销的数据
+        /// theo số nhập việntra cứu tất cả các của tính bản ghi, Đ ã quyết toán và đã hủy bút toán của bản ghi tiến hành đ ối với 冲, nhận đ ược chưa hủy bút toán của dữ liệu
         /// </summary>
         /// <param name="zyh"></param>
         DataTable CountYPItemFree(string zyh);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>

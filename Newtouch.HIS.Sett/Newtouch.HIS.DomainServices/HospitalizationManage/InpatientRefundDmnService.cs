@@ -16,7 +16,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
         }
 
         /// <summary>
-        /// 保存退费
+        /// LưuHoàn phí
         /// </summary>
         /// <param name="xmjfbEntitylist"></param>
         /// <param name="ypjfbEntitylist"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
             return result;
         }
         /// <summary>
-        /// 验证可退数量
+        /// Xác minh có thể số lư ợng trả lại
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

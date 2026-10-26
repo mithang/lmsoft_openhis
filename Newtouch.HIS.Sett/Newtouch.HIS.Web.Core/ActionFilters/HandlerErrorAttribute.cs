@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Core.ActionFilters
 {
     /// <summary>
-    /// 全局异常捕获
+    /// 全局bất thư ờng bắt 
     /// </summary>
     public class HandlerErrorAttribute : HandleErrorAttribute
     {
@@ -18,14 +18,14 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
         {
             if (!(context.Exception is FailedException))
             {
-                //记录错误日志
+                // bản ghi nhật ký lỗi
                 var logger = AppLogger.Instance;
                 if (context != null && context.Exception != null && logger != null)
                 {
                     AppLogger.Instance.Error(context.Exception.Message, context.Exception);
                 }
             }
-            //否则为业务提示，不记日志
+            //Nếu không là nghiệp vụ nhắc nhở, không 记 nhật ký 
 
             if (context.RequestContext.HttpContext.Request.IsAjaxRequest())
             {

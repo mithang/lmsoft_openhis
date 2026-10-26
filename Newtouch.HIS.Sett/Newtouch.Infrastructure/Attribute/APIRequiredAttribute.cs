@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Infrastructure.Attributes
 {
     /// <summary>
-    /// 约束属性不能为空
+    /// 约束 thuộc tính không thể là trống 
     /// </summary>
     public class APIRequiredAttribute : Attribute
     {

@@ -11,7 +11,7 @@ namespace Newtouch.Infrastructure
     public class Constants
     {
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// ID tổ chức(顶 cấp,cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 应用Id
+        /// ID ứng dụng
         /// </summary>
         public static string AppId
         {
@@ -35,7 +35,7 @@ namespace Newtouch.Infrastructure
         #region 登录用户当前的药房部门信息 永不过期 不同系统之间会共享
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấykhi trư ớc của药剂bộ phận(nhà thuốc hoặc kho thuốc)
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -46,7 +46,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấykhi trư ớc của药剂bộ phận(nhà thuốc hoặc kho thuốc)
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 设置当前的药剂部门（药房或药库）
+        /// Đ ặtkhi trư ớc của药剂bộ phận(nhà thuốc hoặc kho thuốc)
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
@@ -81,15 +81,15 @@ namespace Newtouch.Infrastructure
         public struct xtzypz
         {
             /// <summary>
-            /// 住院不上传医保大类
+            /// Nhập viện không tải lênBHYT loại lớn 
             /// </summary>
             public const string DL_BSCYB = "zy.DL_BSCYB";
             /// <summary>
-            /// 一次性材料大类
+            /// một lần 性材料 loại lớn 
             /// </summary>
             public const string YCXCLDM = "zy.YCXCLDM";
             /// <summary>
-            /// 预算欠费
+            /// 预 tính 欠费
             /// </summary>
             public const string ZY_BRXZ_FYBL = "ZY_BRXZ_FYBL";
             /// <summary>
@@ -97,7 +97,7 @@ namespace Newtouch.Infrastructure
             /// </summary>
             public const string ZYJFKSDM = "ZYJFKSDM";
             /// <summary>
-            /// 验证医保代码的病人性质;住院收费项目中必须含有医保代码才允许收费的病人性质
+            /// Xác minh mã BHYTcủa tính chất bệnh nhân;nhập viện hạng mục thu phí trong phải含có mã BHYT才允许thu phí của tính chất bệnh nhân
             /// </summary>
             public const string ZYYBSFBRXZ = "ZYYBSFBRXZ";
             /// <summary>
@@ -105,32 +105,32 @@ namespace Newtouch.Infrastructure
             /// </summary>
             public const string ZYYZJFXM = "ZYYZJFXM";
             /// <summary>
-            /// 住院组合性质中参与医保交易的性质
+            /// Nhập viện kết hợp 性质 trong 参và BHYT giao dịch của性质
             /// </summary>
             public const string ZYZHXZYBJYXZ = "ZYZHXZYBJYXZ";
 
             /// <summary>
-            /// 根据病人性质和诊断判断，可保费用的上限，如少儿基金，第一诊断为急性xx阑尾，报销上限为1100
+            /// theo tính chất bệnh nhân và chẩn đoán phán đoán, có thể 保chi phí của giới hạn trên,如少儿基金,thứ một chẩn đoán là急性xx阑尾, thanh toán BHYT giới hạn trên là1100
             /// </summary>
             public const string ZY_BRXZ_ZD_BXSX = "zy.ZY_BRXZ_ZD_BXSX";
 
             ///// <summary>
-            ///// 干部离休病人性质住院床位费固定报销金额
+            ///// Cán bộ nghỉ hưu tính chất bệnh nhân nhập viện giư ờng bệnh 费固定 thanh toán BHYT số tiền
             ///// </summary>
             //public const string ZYCWFTSXZBX = "zy.ZYCWFTSXZBX";
 
 
         }
 
-        //什么范围内的费用参与自费比例的计算
-        //0 可记帐部分参与计算（暂无）
-        //1 可记帐＋分类自负（离休、慈善等大多数……）
-        //2 可记帐＋分类自负＋自理－绝对自理（离休挂号费0.1时,绝对自理处理离休特需挂号等不可报部分－见系统收费项目.自负性质）
-        //“同大类”的“所有级别”的可报范围必须一致
+        // gì phạm vi trong củachi phí参và tỷ lệ tự trả của tính
+        //0 có thể ghi sổ một phần参và tính(tạm thời không có)
+        //1 có thể ghi sổ＋tự trả theo phân loại(nghỉ hưu, 慈善V.v.大 nhiều 数……)
+        //2 có thể ghi sổ＋tự trả theo phân loại＋tự chi trả－绝 đ ối với tự chi trả(nghỉ hưu phí đ ăng ký khám0.1 giờ,绝 đ ối với tự chi trả xử lý nghỉ hưu đ ặc biệt Đ ăng ký khámV.v. không có thể thanh toán một phần－见hệ thống hạng mục thu phí.Tính chất tự trả)
+        //"同 loại lớn "Của" tất cả các cấp bậc "Của có thể thanh toán phạm vi phải nhất quán 
 
         /// <summary>
-        /// 系统病人收费算法 的 费用范围
-        /// 什么范围内的费用参与自费比例的计算
+        /// Hệ thống bệnh nhânthu phí thuật toán của chi phí phạm vi
+        /// gì phạm vi trong củachi phí参và tỷ lệ tự trả của tính
         /// </summary>
         public struct xtbrsfsffyfw
         {
@@ -159,52 +159,52 @@ namespace Newtouch.Infrastructure
 
 
         /// <summary>
-        /// 系统支付方式
+        /// Hệ thống phư ơng thức thanh toán 
         /// </summary>
         public struct xtzffs
         {
             /// <summary>
-            /// 现金支付
+            /// Thanh toán tiền mặt
             /// </summary>
             public const string XJZF = "0";
             /// <summary>
-            /// 住院预交账户支付（2018账户预交支付沿用3）
+            /// Nhập viện预交tài khoản thanh toán (2018 tài khoản预交 thanh toán 沿 dùng 3)
             /// </summary>
             public const string ZYYJZHZF = "3";
             /// <summary>
-            /// POS机支付
+            /// POS máy thanh toán 
             /// </summary>
             public const string POS = "1";
             /// <summary>
-            /// 银行转账支付
+            /// ngân hàng chuyển 账 thanh toán 
             /// </summary>
             public const string YHZZ = "2";
 
 
         }
 
-        //配置门诊
+        //Cấu hìnhNgoại trú
         public struct xtmzpz
         {
-            public const string ZYTFPZ_INCLUDEYP = "mz.ZYTFPZ_INCLUDEYP";//住院退费配置：是否包含药品 0--不包含 
+            public const string ZYTFPZ_INCLUDEYP = "mz.ZYTFPZ_INCLUDEYP";//Nhập viện hoàn phí cấu hình:Có hay không bao gồm thuốc 0-- không bao gồm 
 
             //add by HLF
-            public const string BRXZ_ZFJC = "BRXZ_ZFJC";//病人性质 自费家床
-            public const string BRXZ_YBJC = "BRXZ_YBJC";//病人性质 医保家床
-            public const string SFXM_GHGHF = "mz.SFXM_GHGHF"; //收费项目 不收挂号费 其他
-                                                              //门诊有效时长(小时)：科室(ks) -1 表示所有科室；门诊/急诊(mz) -1 表示当天有效，单位小时
-                                                              //例如：[{"ks":"-1","mz":"-1","jz":"24"},{"ks":"03.H1","mz":"-1","jz":"24"}]
+            public const string BRXZ_ZFJC = "BRXZ_ZFJC";//Tính chất bệnh nhân tự trả giư ờng gia đ ình 
+            public const string BRXZ_YBJC = "BRXZ_YBJC";//Tính chất bệnh nhân BHYT giư ờng gia đ ình 
+            public const string SFXM_GHGHF = "mz.SFXM_GHGHF"; //Hạng mục thu phí không 收phí đ ăng ký khám khác
+                                                              //Ngoại trú hiệu lực thời lư ợng(giờ):Khoa(ks) -1 biểu thị tất cả các khoa;ngoại trú/Cấp cứu(mz) -1 biểu thị khi ngày hiệu lực,Đ ơn vị giờ
+                                                              // ví dụ:[{"ks":"-1","mz":"-1","jz":"24"},{"ks":"03.H1","mz":"-1","jz":"24"}]
             public const string MZ_ACTIVE_DURATION = "mz.MZ_ACTIVE_DURATION";
-            public const string MZSFCX_DL = "mz.MZSFCX_DL"; //用于门诊收费查询页面的大类合计
-            //public const string GH_ZL_GROUP = "mz.GH_ZL_GROUP"; //挂号组
-            public const string SFXM_GHCKF = "mz.SFXM_GHCKF"; //磁卡费
-            public const string SFXM_GHGBF = "mz.SFXM_GHGBF"; //工本费
+            public const string MZSFCX_DL = "mz.MZSFCX_DL"; // dùng cho ngoại trú thu phí tra cứutrang của loại lớn tổng cộng 
+            //public const string GH_ZL_GROUP = "mz.GH_ZL_GROUP"; //Đ ăng ký khám nhóm 
+            public const string SFXM_GHCKF = "mz.SFXM_GHCKF"; //Phí thẻ từ
+            public const string SFXM_GHGBF = "mz.SFXM_GHGBF"; //Phí làm thẻ
             public const string SFXM_ZKD = "SFXM_ZKD";
             public const string DL_BSCYB = "mz.DL_BSCYB";
-            public const string SFXM_FWF = "mz.SFXM_FWF";//收费项目服务费
-            public const string DL_NOPRINTMX = "mz.DL_NOPRINTMX";//不打印明细大类
-            public const string GHLX_ZJGH = "mz.GHLX_ZJGH"; //专家挂号
-            public const string S20100 = "mz.S20100"; //门诊排班作息时间
+            public const string SFXM_FWF = "mz.SFXM_FWF";//Hạng mục thu phí phí dịch vụ 
+            public const string DL_NOPRINTMX = "mz.DL_NOPRINTMX";// không inchi tiết loại lớn 
+            public const string GHLX_ZJGH = "mz.GHLX_ZJGH"; //Chuyên giaĐ ăng ký khám
+            public const string S20100 = "mz.S20100"; //Lịch trực ngoại trú作息thời gian
         }
 
         #region 门诊退费
@@ -267,7 +267,7 @@ namespace Newtouch.Infrastructure
         #region 系统收费分类
         public struct xtsffl
         {
-            public const string fzlfl = "FZLFL"; //门诊排班作息时间
+            public const string fzlfl = "FZLFL"; //Lịch trực ngoại trú作息thời gian
         }
         #endregion
 

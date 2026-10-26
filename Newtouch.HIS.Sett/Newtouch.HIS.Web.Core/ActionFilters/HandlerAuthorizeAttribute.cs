@@ -6,7 +6,7 @@ using System.Text;
 namespace System.Web.Mvc
 {
     /// <summary>
-    /// 访问权限验证
+    /// truy cập quyền hạn xác minh
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerAuthorizeAttribute : ActionFilterAttribute
@@ -37,7 +37,7 @@ namespace System.Web.Mvc
             var operatorModel = OperatorProvider.GetCurrent();
             if (operatorModel == null)
             {
-                //不应该进来 //应该HandlerLoginAttribute的先执行
+                // không nên进来 //NênHandlerLoginAttribute của trư ớc thực hiện 
                 WebHelper.WriteCookie("Newtouch_login_error", "overdue");
                 filterContext.Result = new RedirectResult("/Login/Index");
                 return;

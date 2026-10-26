@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效国籍
+        /// LấyHiệu lựcQuốc tịch
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

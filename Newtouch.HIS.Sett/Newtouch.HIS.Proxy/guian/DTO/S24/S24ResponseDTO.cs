@@ -3,97 +3,97 @@
 namespace Newtouch.HIS.Proxy.guian.DTO.S24
 {
     /// <summary>
-    /// 根据S18门诊上传返回的补偿序号outpId进行门诊模拟结算 返回报文
+    /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành ngoại trú mô phỏng quyết toán bản tin trả về
     /// </summary>
     public class S24ResponseDTO
     {
         /// <summary>
-        /// 总费用（四位小数精度）
+        /// Tổng chi phí(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal totalCost { get; set; }
 
         /// <summary>
-        /// 保内费用（四位小数精度）
+        /// Chi phí trong phạm vi bảo hiểm(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal insuranceCost { get; set; }
 
         /// <summary>
-        /// 起伏线（四位小数精度）
+        /// mức khởi điểm (đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal undulatingLine { get; set; }
 
         /// <summary>
-        /// 统筹补偿（四位小数精度）
+        /// Bồi thư ờng quỹ chung(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string generalRedeem { get; set; }
 
         /// <summary>
-        /// 家庭账户补偿（四位小数精度）
+        /// Bồi thư ờng tài khoản gia đ ình(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal accRedeem { get; set; }
 
         /// <summary>
-        /// 农合补偿费用（四位小数精度）
+        /// hợp tác nông thôn chi phí bồi thư ờng(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string compensateCost { get; set; }
 
         /// <summary>
-        /// 民政救助费用（四位小数精度）
+        /// Chi phí cứu trợ dân chính(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string civilCost { get; set; }
 
         /// <summary>
-        /// 大病商保补偿（四位小数精度）
+        /// Bồi thư ờng bảo hiểm thư ơng mại bệnh nặng(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string insureCost { get; set; }
 
         /// <summary>
-        /// 计生救助费用（四位小数精度）
+        /// Chi phí cứu trợ kế hoạch hóa gia đ ình(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaJSCost { get; set; }
 
         /// <summary>
-        /// 精准民政救助补偿（四位小数精度）
+        /// 精准民政救助bồi thư ờng(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaMZCost { get; set; }
 
         /// <summary>
-        /// 兜底补偿费用（四位小数精度）
+        /// Chi phí bồi thư ờng sàn(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string bottomRedeem { get; set; }
 
         /// <summary>
-        /// 兜底二次补偿费用
+        /// Chi phí bồi thư ờng sàn lần hai
         /// </summary>
         public string bottomSecondRedeem { get; set; }
 
         /// <summary>
-        /// 精准目录补偿（四位小数精度）
+        /// Bồi thư ờng danh mục chính xác(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string medicineCost { get; set; }
 
         /// <summary>
-        /// 新精准优抚补偿（四位小数精度）
+        /// Bồi thư ờng ưu đ ãi chính xác mới(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaYFCost { get; set; }
 
         /// <summary>
-        ///  新精准残联补偿（四位小数精度）
+        /// Bồi thư ờng hội ngư ời khuyết tật chính xác mới(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaCLCost { get; set; }
 
         /// <summary>
-        /// 新精准扶贫补偿（四位小数精度）
+        /// Bồi thư ờng xóa đ ói giảm nghèo chính xác mới(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaFPCost { get; set; }
 
         /// <summary>
-        ///  新精准疾控补偿（四位小数精度）
+        /// Bồi thư ờng kiểm soát dịch bệnh chính xác mới(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaJKCost { get; set; }
 
         /// <summary>
-        ///  大地保险补偿金额
+        /// Số tiền bồi thư ờng bảo hiểm Dadi
         /// </summary>
         public string continentInsuranceCost { get; set; }
 
@@ -103,53 +103,53 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S24
         public string nurseCost { get; set; }
 
         /// <summary>
-        /// 床位包干补偿金额
+        /// Số tiền bồi thư ờng trọn gói giư ờng bệnh
         /// </summary>
         public string cwAccountCost { get; set; }
 
         /// <summary>
-        /// 计算进度
+        /// Tính进 đ ộ 
         /// </summary>
         public List<calcProgress> list { get; set; }
 
         /// <summary>
-        /// 特困供养补偿
+        /// nuôi dư ỡng ngư ời đ ặc biệt khó khăn bồi thư ờng
         /// </summary>
         public string specialPovertyCost { get; set; }
 
         /// <summary>
-        ///  医疗扶助补偿
+        /// trợ giúp y tế bồi thư ờng
         /// </summary>
         public string medicalAssistanceCost { get; set; }
 
         /// <summary>
-        ///  合医二次补偿
+        /// 合医二 lần bồi thư ờng
         /// </summary>
         public string medicalSecondCost { get; set; }
     }
 
     /// <summary>
-    /// 计算进度
+    /// Tính进 đ ộ 
     /// </summary>
     public class calcProgress
     {
         /// <summary>
-        ///   计算名称
+        ///   TínhTên
         /// </summary>
         public string calcName { get; set; }
 
         /// <summary>
-        ///   计算说明
+        /// Tính说明
         /// </summary>
         public string calcMemo { get; set; }
 
         /// <summary>
-        ///   本次计算
+        /// lần này tính
         /// </summary>
         public string calcBefore { get; set; }
 
         /// <summary>
-        ///   结果
+        ///   Kết quả
         /// </summary>
         public string calcAfter { get; set; }
     }

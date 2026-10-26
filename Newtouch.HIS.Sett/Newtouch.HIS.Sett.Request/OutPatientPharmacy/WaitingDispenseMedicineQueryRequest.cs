@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 门诊排药请求
+    /// Ngoại trú xếp thuốc yêu cầu 
     /// </summary>
     public class WaitingDispenseMedicineQueryRequest : RequestBase
     {
         /// <summary>
-        /// 门诊药房 药房部门Code
+        /// Nhà thuốc ngoại trú nhà thuốc bộ phậnCode
         /// </summary>
         [Required]
         public string yfbmCode { get; set; }

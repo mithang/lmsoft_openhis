@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Sett.Request.Booking
         }
 
         /// <summary>
-        /// 遍历指定特性的属性
+        /// 遍历 chỉ đ ịnh thuộc tính của thuộc tính 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>

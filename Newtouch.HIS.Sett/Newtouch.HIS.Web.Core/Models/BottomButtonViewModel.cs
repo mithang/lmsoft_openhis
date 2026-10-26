@@ -21,44 +21,44 @@ namespace Newtouch.HIS.Web.Core.Models
         }
 
         /// <summary>
-        /// 显示的快捷键列表
+        /// Hiển thị của nhanh 键danh sách
         /// </summary>
         public int[] ShowKeyList { get; set; }
 
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F2Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F3Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F4Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F5Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F6Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F7Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F8Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F9Text { get; set; }
         /// <summary>
-        /// 显示的文本
+        /// Hiển thị của văn bản 
         /// </summary>
         public string F10Text { get; set; }
     }

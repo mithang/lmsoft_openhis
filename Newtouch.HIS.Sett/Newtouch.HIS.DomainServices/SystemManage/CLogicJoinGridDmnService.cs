@@ -20,11 +20,11 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 病人收费算法grid显示
+        /// Bệnh nhânthu phí thuật toán grid hiển thị
         /// </summary>
         /// <returns></returns>
         /// <summary>
-        /// 搜索病人收费算法
+        /// Tìm kiếm bệnh nhânthu phí thuật toán 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 编辑页面时，加载选中行的对象
+        /// Sửatrang giờ, tải 选 trong dòng CủaĐ ối tư ợng
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <returns></returns>

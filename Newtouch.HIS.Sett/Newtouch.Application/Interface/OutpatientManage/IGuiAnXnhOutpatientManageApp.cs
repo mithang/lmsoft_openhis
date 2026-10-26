@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 贵安新农合门诊操作
+    /// 贵安 BHYT nông thôn mới ngoại trú thao tác
     /// </summary>
     public interface IGuiAnXnhOutpatientManageApp
     {

@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 	public class queryOutpfeeDetailInfoReqDTO
 	{
 		/// <summary>
-		/// 组织机构代码
+		/// Mã tổ chức
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 票据号(结算内码)
+		/// 票据 số (mã nội bộ quyết toán)
 		/// </summary>
 		public string RECEIPT_NO { get; set; }
 	}

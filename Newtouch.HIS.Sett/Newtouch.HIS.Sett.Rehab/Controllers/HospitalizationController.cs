@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab.Controllers
 {
     /// <summary>
-    /// 住院相关
+    /// Nhập viện liên quan 
     /// </summary>
     public class HospitalizationController : ControllerBase
     {

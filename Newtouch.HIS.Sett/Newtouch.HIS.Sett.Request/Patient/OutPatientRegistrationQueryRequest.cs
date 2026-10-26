@@ -5,47 +5,47 @@ using System;
 namespace Newtouch.HIS.Sett.Request.Patient
 {
     /// <summary>
-    /// 门诊挂号查询
+    /// Đ ăng ký khám ngoại trú tra cứu
     /// </summary>
     public class OutPatientRegistrationQueryRequest : RequestBase
     {
         /// <summary>
-        /// 最后更新时间
+        /// nhất sau cập nhật thời gian
         /// </summary>
         public DateTime? lastUpdateTime { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string outpatientNo { get; set; }
 
         /// <summary>
-        /// 科室编码
+        /// Khoa mã 
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Bác sĩ mã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 门急诊标志
+        /// cửa cấp cứu dấu hiệu 
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// 就诊标志
+        /// Khám bệnh dấu hiệu 
         /// </summary>
         public string jiuzhenbz { get; set; }
 
         /// <summary>
-        /// 关键字 可匹配 mzh blh xm
+        /// Từ khóa có thể 匹配 mzh blh xm
         /// </summary>
         public string keyword { get; set; }
 
         /// <summary>
-        /// 分页
+        /// 分trang
         /// </summary>
         public Pagination pagination { get; set; }
 

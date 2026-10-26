@@ -7,18 +7,18 @@ namespace Newtouch.HIS.Sett.Request.OrderCenter
     {
 
         /// <summary>
-        /// 订单类型 EnumOrderType
+        /// đ ơn hàng loại enumOrderType
         /// </summary>
         [Required(ErrorMessage ="请传入订单类型")]
         public int? OrderType { get; set; }
 
         /// <summary>
-        /// 就诊卡号
+        /// Khám bệnhSố thẻ
         /// </summary>
         [Required(ErrorMessage ="就诊卡号不可为空")]
         public string CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// lần này khám bệnh dấu hiệu ngoại trú:mzh;nhập viện:zyh
         /// </summary>
         [Required(ErrorMessage ="门诊订单请传入门诊号，住院订单请传入住院号")]
         public string VisitNo { get; set; }

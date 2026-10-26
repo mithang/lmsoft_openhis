@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 以关键信息（用户名、密码等）换取访问令牌
+    /// 以关键thông tin(ngư ời dùng 名, mật khẩu V.v.) đ ổi lấy truy cập 令牌
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {

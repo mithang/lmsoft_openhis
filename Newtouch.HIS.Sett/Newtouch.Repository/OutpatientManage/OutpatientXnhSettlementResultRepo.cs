@@ -9,7 +9,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊新农合结算
+    /// Ngoại trú BHYT nông thôn mới quyết toán
     /// </summary>
     public class OutpatientXnhSettlementResultRepo : RepositoryBase<OutpatientXnhSettlementResultEntity>, IOutpatientXnhSettlementResultRepo
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据outpId获取数据
+        /// theo outpid lấy dữ liệu
         /// </summary>
         /// <param name="outpId"></param>
         /// <param name="organizeId"></param>
@@ -38,9 +38,9 @@ WHERE outpId=@outpId AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// 修改结算标志
+        /// Sửa quyết toán dấu hiệu 
         /// </summary>
-        /// <param name="jszt">结算状态 1-已结 2-已退   默认已结</param>
+        /// <param name="jszt">Trạng thái quyết toán 1-Đ ã quyết toán 2-Đ ã hoàn mặc đ ịnhĐ ã quyết toán</param>
         /// <param name="outpId"></param>
         /// <param name="userCode"></param>
         /// <param name="organizeId"></param>

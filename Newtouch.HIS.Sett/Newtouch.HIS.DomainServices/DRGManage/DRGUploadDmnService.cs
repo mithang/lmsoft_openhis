@@ -110,7 +110,7 @@ namespace Newtouch.HIS.DomainServices.DRGManage
         //jsqd_scrq datetime,
         //)
 
-        ///*就诊ID-mdtrt_id*/ 
+        ///*Khám bệnhID-mdtrt_id*/ 
         //if(1=1)     
         //begin     
         //insert into #temp(zyh)    
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.DomainServices.DRGManage
 
         //end    
 
-        ///*结算ID/结算流水号-setl_id*/    
+        ///*Quyết toánID/Quyết toán số thứ tự -setl_id*/ 
 
 
         //update ls set ls.mdtrt_id=js.mdtrt_id  
@@ -127,18 +127,18 @@ namespace Newtouch.HIS.DomainServices.DRGManage
 
 
 
-        ///*1.病人信息更新*/
+        ///*1.Thông tin bệnh nhânCập nhật*/
         //if(1=1)
         //begin
 
 
-        ///*更新住院号*/
+        ///*Cập nhậtSố nhập viện*/
         //update ls set ls.mdtrt_id =ybry.mdtrt_id
         //  from NewtouchHIS_Sett..drjk_zyjs_input ybry with(nolock),#temp ls
         // where  ls.zyh=ybry.zyh
         //   and ybry.zt=1
 
-        ///*更新病人信息*/
+        ///*Cập nhậtThông tin bệnh nhân*/
         //update ls set ls.ryrq=br.ryrq,ls.cyrq=br.cyrq,ls.zjh=br.zjh,ls.ksdm=br.ks,ls.ysdm=br.doctor,ls.brxm=br.xm
         //  from NewtouchHIS_Sett..zy_brjbxx as br with(nolock),#temp as ls
         // where br.zyh=ls.zyh
@@ -151,23 +151,23 @@ namespace Newtouch.HIS.DomainServices.DRGManage
         //where ls.ysdm=czy.gh
         //  and czy.OrganizeId=@orgId
 
-        ///*更新结算日期*/
+        ///*Cập nhậtNgày quyết toán*/
         //update ls set ls.jsrq=br.czrq,jsqd_sclsh=br.jsqd_sclsh,jsqd_scrq=br.jsqd_scrq,setl_id=br.setl_id
         //  from NewtouchHIS_Sett..drjk_zyjs_output as br with(nolock),#temp as ls
         // where br.mdtrt_id=ls.mdtrt_id
         //   and br.zt=1
 
-        ///*更新病案首页书写状态*/
-        //update ls set ls.basy='已书写',ls.basy_rq=ba.CreateTime from Newtouch_EMR..mr_basy as ba with(nolock),#temp as ls 
+        ///*Cập nhật hồ sơ bệnh án trang chủ书写trạng thái*/
+        //update ls set ls.basy='Đ ã viết',ls.basy_rq=ba.CreateTime from Newtouch_EMR..mr_basy as ba with(nolock),#temp as ls 
         //where ba.ZYH=ls.zyh
         //  and ba.zt=1
-        //update #temp set #temp.basy='--未写病案首页--' where #temp.basy is null
+        //update #temp set #temp.basy='--chưa写 hồ sơ bệnh án trang chủ--' where #temp.basy is null
 
 
 
         //end
 
-        ///*2.结算上传情况获取*/  
+        ///*2.Quyết toán tải lên tình hình lấy*/ 
         //select rz.hisId,max(rz.inNumbier) inNumbier
         //  into #rz
         //  from NewtouchHIS_Sett.dbo.ybjk_logcontent as rz with(nolock)
@@ -175,14 +175,14 @@ namespace Newtouch.HIS.DomainServices.DRGManage
         //   and rz.tradiNumber='4101'
         // group by rz.hisId
 
-        ///*3.查询输出*/
+        ///*3.Tra cứu xuất */
         //select ls.zyh [zyh],ls.brxm[xm],ls.zjh [sfzh],ls.setl_id [setl_id],ls.mdtrt_id [mdtrt_id],
         //       rz1.beginDate [scrq],rz1.inContent [scsr],rz1.outContent [scsc],
         //       ls.ryrq [ryrq],ls.cyrq [cyrq],ls.basy_rq [basyrq],ls.jsrq [jsrq],
         //       ls.ksdm [ksdm],ls.ksmc [ks],ls.ysdm [ysdm],ls.ysmc [ysxm],ls.basy [basyqk],  
-        //       case when isnull(rz1.errorMsg,'')='' then '已上传' 
-        //	        when isnull(rz1.errorMsg,'')<>'' then '上传失败' 
-        //	   else '未上传'
+        // case when isnull(rz1.errorMsg,'')='' then 'Đ ãtải lên' 
+        //	        when isnull(rz1.errorMsg,'')<>'' then 'Tải lênThất bại' 
+        //	   else 'ChưaTải lên'
         //	   end [scqk],
         //	   jsqd_sclsh [jsqd],
         //	   rz1.errorMsg [errorMsg]

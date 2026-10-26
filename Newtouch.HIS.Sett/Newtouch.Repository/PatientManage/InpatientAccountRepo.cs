@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository.PatientManage
         }
 
         /// <summary>
-        /// 更新账户
+        /// Cập nhậtTài khoản
         /// </summary>
         /// <returns></returns>
         //public bool ModifyAcc(SysAccountEntity entity)

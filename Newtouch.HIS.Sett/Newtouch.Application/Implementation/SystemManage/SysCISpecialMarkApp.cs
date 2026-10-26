@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Application
         private readonly ISysCISpecialMarkDmnService _SysCISpecialMarkDmnService;
 
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// Grid筛选查询显示
+        /// GridHiển thị tra cứu lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据住院号 获取 收支记录 列表
+        /// theo số nhập viện lấy 收支 bản ghi danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 根据账号 获取账户余额
+        /// theo tài khoản lấy số dư tài khoản
         /// </summary>
         /// <param name="zh"></param>
         /// <returns></returns>
@@ -50,8 +50,8 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 添加收支记录
-        /// 预交款充值
+        /// Thêm bản ghi thu chi
+        /// 预交 khoản nạp tiền
         /// </summary>
         public void AddPayInfo(SysPatientAccountRevenueAndExpenseEntity sysPatPayInfoEntity, string orgId, string curUserCode, string curUserName)
         {

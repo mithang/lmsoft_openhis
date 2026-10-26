@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取所有国籍自动提示
+        /// Lấy tất cả các quốc tịch tự đ ộng nhắc nhở
         /// </summary>
         /// <returns></returns>
         public object GetgjList()

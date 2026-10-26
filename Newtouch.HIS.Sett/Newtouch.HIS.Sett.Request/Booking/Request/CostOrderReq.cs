@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         public int? DiagDay { get; set; }
         public DateTime? DiagDate { get; set; }
         /// <summary>
-        /// 0 待结 1已结
+        /// 0 chờ quyết toán 1Đ ã quyết toán
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "CostType is required")]
         public string CostType { get; set; }
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "Mzh is required")]
         public string Mzh { get; set; }
         /// <summary>
-        /// 0 待结 1已结
+        /// 0 chờ quyết toán 1Đ ã quyết toán
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "CostType is required")]
         public string CostType { get; set; }

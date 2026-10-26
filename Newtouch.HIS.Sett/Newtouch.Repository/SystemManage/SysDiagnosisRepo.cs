@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据条件获取诊断下拉框
+        /// theo dòng vụ lấy chẩn đoán hộp thả xuống 
         /// </summary>
         /// <param name="zd"></param>
         /// <returns></returns>

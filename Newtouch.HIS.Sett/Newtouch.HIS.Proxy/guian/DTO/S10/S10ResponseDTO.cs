@@ -13,39 +13,39 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class S10item
     {
         /// <summary>
-        /// 住院处方流水号
+        /// Nhập viện số thứ tự đ ơn thuốc
         /// </summary>
         public decimal? detailNo { get; set; }
         /// <summary>
-        /// His明细序号
+        /// Hischi tiết thứ tự số 
         /// </summary>
         public string hisDetailCode { get; set; }
         /// <summary>
-        /// 明细中文名
+        /// Chi tiết tên tiếng trung 
         /// </summary>
         public string detailName { get; set; }
         /// <summary>
-        /// 药品可报比例
+        /// Thuốc có thể thanh toán tỷ lệ 
         /// </summary>
         public string enableRatio { get; set; }
         /// <summary>
-        /// 药品可报金额
+        /// ThuốcCó thể thanh toánSố tiền
         /// </summary>
         public string enableMoney { get; set; }
         /// <summary>
-        /// 是否为基本药品0不是1是
+        /// Có hay không là cơ bản thuốc0 không là1 là
         /// </summary>
         public string essentialMedicine { get; set; }
         /// <summary>
-        /// 是否为中药 0 不是  1 是
+        /// Có hay không là trong 药 0 không là 1 là
         /// </summary>
         public string chineseMedicine { get; set; }
         /// <summary>
-        /// 1：成功 0：失败
+        /// 1:Thành công 0:Thất bại
         /// </summary>
         public string success { get; set; }
         /// <summary>
-        /// 失败消息
+        /// Thất bại消息
         /// </summary>
         public string message { get; set; }
     }

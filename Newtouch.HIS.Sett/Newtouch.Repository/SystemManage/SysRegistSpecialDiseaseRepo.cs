@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有挂号专病
+        /// Lấy tất cả các Đ ăng ký khám bệnh chuyên khoa
         /// </summary>
         /// <param name="ghzb"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据ghzbbh  add by caishanshan
+        /// theo ghzbbh add by caishanshan
         /// </summary>
         /// <param name="sfxm"></param>
         /// <returns></returns>

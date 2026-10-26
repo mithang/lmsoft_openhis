@@ -4,39 +4,39 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S03
 {
     /// <summary>
-    /// 根据传入的医疗证号获取家庭的参合成员列表 请求报文
+    /// theo truyền 入của số chứng nhận y tế lấy gia đ ình của tham gia hợp tác 成 viên danh sách bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S03")]
     [XmlRoot("body")]
     public class S03RequestDTO 
     {
         /// <summary>
-        /// 参合年度
+        /// tham gia hợp tác năm 
         /// </summary>
         public string year { get; set; }
 
         /// <summary>
-        /// 医疗证号 跨省至少一个入参不能为空;不跨省，医疗证号不为空
+        /// số chứng nhận y tế liên tỉnh 至少 một 入参 không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
         /// </summary>
         public string medicalNo { get; set; }
 
         /// <summary>
-        /// 身份证号(跨省) 跨省至少一个入参不能为空;不跨省，医疗证号不为空
+        /// Số CMND(liên tỉnh) liên tỉnh 至少 một 入参 không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
         /// </summary>
         public string idcardNo { get; set; }
 
         /// <summary>
-        /// 监护人身份证号(跨省) 跨省至少一个入参不能为空;不跨省，医疗证号不为空
+        /// ngư ời giám hộ số CMND(liên tỉnh) liên tỉnh 至少 một 入参 không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
         /// </summary>
         public string guardianCardNo { get; set; }
 
         /// <summary>
-        /// 行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
 
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
     }

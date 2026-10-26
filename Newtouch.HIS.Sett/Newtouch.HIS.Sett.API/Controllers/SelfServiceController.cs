@@ -22,7 +22,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
 	/// <summary>
-	/// 自助机相关
+	/// máy tự phục vụ liên quan 
 	/// </summary>
 	[RoutePrefix("api/SelfService")]
 	public class SelfServiceController : ApiControllerBase<SelfServiceController>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         {
 		}
 		/// <summary>
-		/// 确认挂号
+		/// Xác nh ậnĐ ăng ký khám
 		/// </summary>
 		/// <param name="oData"></param>
 		/// <returns></returns>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 							qzjzxh = mzhjzxh.Item1;
 							qzmzh = mzhjzxh.Item2;
 						}
-						//保存
+						//Lưu
 						_outPatientSettleDmnService.Save(oData.OrganizeId, cardEntity.patid, oData.kh, "0", oData.mjzbz,
 							oData.ks, "", oData.ksmc, "", entity.ghlx, entity.zlxm, null, null, false, false, (int)qzjzxh.Value, entity.ghpbId, feeRelated, oData.brxz, null, qzmzh, "0", null,null,null,null,null,null, out newJszbInfo);
 						resp.data = new { mzh = qzmzh };
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 			return base.CreateResponse(resp);
 		}
 		/// <summary>
-		/// 获取科室排班
+		/// Lấykhoa lịch trực 
 		/// </summary>
 		/// <param name="req"></param>
 		/// <returns></returns>
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 			return base.CreateResponse(resp);
 		}
 		/// <summary>
-		/// 查询就诊卡信息
+		/// Tra cứu khám bệnh thẻ thông tin
 		/// </summary>
 		/// <param name="req"></param>
 		/// <returns></returns>
@@ -186,7 +186,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 			return base.CreateResponse(resp);
 		}
 		/// <summary>
-		/// 查取门诊费用主表
+		/// tra cứu lấy ngoại trú chi phí bảng chính 
 		/// </summary>
 		/// <param name="req"></param>
 		/// <returns></returns>

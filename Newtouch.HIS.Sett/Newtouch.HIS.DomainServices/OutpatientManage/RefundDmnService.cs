@@ -27,8 +27,8 @@ namespace Newtouch.HIS.DomainServices
     public class RefundDmnService : DmnServiceBase, IRefundDmnService
     {
         private readonly ISysPatientBasicInfoRepo _sysPatBasicInfoRepository;
-        private OperatorModel userModel => OperatorProvider.GetCurrent(); //获取当前登录用户对象
-        private readonly IFinancialInvoiceRepo _financialInvoiceRepo;//发票号
+        private OperatorModel userModel => OperatorProvider.GetCurrent(); //Lấykhi trư ớc đ ăng nhập ngư ời dùng Đ ối tư ợng
+        private readonly IFinancialInvoiceRepo _financialInvoiceRepo;//Số hóa đ ơn
         private readonly IOutpatientSettlementRepo _outPatientSettleRepo;
         private readonly ISysUserDmnService _sysUserDmnService;
 
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.DomainServices
             : base(databaseFactory)
         {
         }
-        //添加查询发票添加 时间的查询条件
+        //Thêmtra cứu hóa đ ơn thêm thời gian CủaĐiều kiện tra cứu
         public string getWhere(string startTime, string endTime)
         {
             string where = "";
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.DomainServices
 
             return dt;
         }
-        /// 结算关联发票打印
+        /// Quyết toán liên kết hóa đ ơn in
         /// </summary>
         /// <param name="brnm"></param>
         /// <param name="fph"></param>
@@ -122,11 +122,11 @@ namespace Newtouch.HIS.DomainServices
             sqlBuilder.AppendLine("ZHJZ,XJZFFS,ISNULL(MZ_FPDY.XFPH,MZ_JS.FPH) AS FPH,JSZT,CXJSNM,ZH,MZ_JS.CreatorCode,MZ_JS.CreateTime,FPDM,JMBL,JMJE,JYLX,YSK,ZL,XJWC,MZ_JS.FPH as oldFPH FROM MZ_JS WITH(NOLOCK)");
             sqlBuilder.AppendLine("LEFT JOIN ( ");
             sqlBuilder.AppendLine("    SELECT * FROM MZ_FPDY AS A_SET WITH(NOLOCK) WHERE CreateTime = (SELECT MAX(CreateTime) FROM MZ_FPDY AS B_SET WITH(NOLOCK) WHERE B_SET.JSNM = A_SET.JSNM and B_SET.OrganizeId=@OrganizeId) and A_SET.OrganizeId=@OrganizeId ");
-            //sqlBuilder.AppendLine(") AS MZ_FPDY ON MZ_JS.FPH = MZ_FPDY.FPH ");    //修改成结算内码
+            //sqlBuilder.AppendLine(") AS MZ_FPDY ON MZ_JS.FPH = MZ_FPDY.FPH "); //Sửa成mã nội bộ quyết toán
             sqlBuilder.AppendLine(") AS MZ_FPDY ON MZ_JS.JSNM = MZ_FPDY.JSNM ");
             //sqlBuilder.AppendLine(string.Format("WHERE BRNM = {0} AND LEN(ISNULL(MZ_JS.FPH,'')) > 0 AND JSZT <> 2 ", brnm));
-            sqlBuilder.AppendLine(string.Format("WHERE PATID = {0}  AND JSZT <> 2 ", PATID));     //无发票也可以退费。
-            sqlBuilder.AppendLine(" AND  NOT EXISTS  (select 1 FROM mz_js b WITH(NOLOCK) WHERE b.jszt='2' and b.cxjsnm=MZ_JS.jsnm and b.OrganizeId=@OrganizeId ) and MZ_JS.OrganizeId=@OrganizeId");      //已经退的发票在退费界面不再显示
+            sqlBuilder.AppendLine(string.Format("WHERE PATID = {0}  AND JSZT <> 2 ", PATID));     //Không có hóa đ ơn cũng có thể hoàn phí.
+            sqlBuilder.AppendLine(" AND  NOT EXISTS  (select 1 FROM mz_js b WITH(NOLOCK) WHERE b.jszt='2' and b.cxjsnm=MZ_JS.jsnm and b.OrganizeId=@OrganizeId ) and MZ_JS.OrganizeId=@OrganizeId");      //Đ ã trả lại của hóa đ ơn tại hoàn phí界面 không 再hiển thị
 
 
             if (!string.IsNullOrWhiteSpace(where))
@@ -156,7 +156,7 @@ namespace Newtouch.HIS.DomainServices
             sqlBuilder.AppendLine(" left join (select * from xt_brxz  with(nolock)  where zt = 1 ) as xt_brxz on mz_ghxm.brxz = xt_brxz.brxz and xt_brxz.OrganizeId=@OrganizeId");
             sqlBuilder.AppendLine(" left join [NewtouchHIS_Base]..V_S_Sys_Staff xtry on mz_ghxm.ys = xtry.gh and xtry.OrganizeId=@OrganizeId left join [NewtouchHIS_Base]..V_S_Sys_Department on mz_ghxm.ks = [NewtouchHIS_Base]..V_S_Sys_Department.Code and [NewtouchHIS_Base]..V_S_Sys_Department.OrganizeId = @OrganizeId where exists ( ");
             sqlBuilder.AppendLine(" select mxnm from mz_jsmx  with(nolock)  where exists(select * from mz_js where ");
-            sqlBuilder.AppendLine(" jsnm = @jsnm and jslx='0' and mz_js.jsnm = mz_jsmx.jsnm and mz_js.OrganizeId=@OrganizeId) ");        //发票号为空，用结算内码查询
+            sqlBuilder.AppendLine(" jsnm = @jsnm and jslx='0' and mz_js.jsnm = mz_jsmx.jsnm and mz_js.OrganizeId=@OrganizeId) ");        //Số hóa đ ơn là trống, dùng mã nội bộ quyết toántra cứu
             sqlBuilder.AppendLine(" and mxnm = mz_ghxm.xmnm) ");
             sqlBuilder.AppendLine(" And mz_ghxm.OrganizeId = @OrganizeId ");
 
@@ -166,14 +166,14 @@ namespace Newtouch.HIS.DomainServices
             sqlBuilder.AppendLine(" on mz_xm.brxz = xt_brxz.brxz and xt_brxz.OrganizeId = @OrganizeId");
             sqlBuilder.AppendLine(" left join [NewtouchHIS_Base]..V_S_Sys_Staff xtry on mz_xm.ys = xtry.gh and xtry.OrganizeId = @OrganizeId ");
             sqlBuilder.AppendLine(" left join [NewtouchHIS_Base]..V_S_Sys_Department on mz_xm.ks = [NewtouchHIS_Base]..V_S_Sys_Department.Code and [NewtouchHIS_Base]..V_S_Sys_Department.OrganizeId = @OrganizeId ");
-            sqlBuilder.AppendLine(" where exists ( select mxnm from mz_jsmx  with(nolock)  where exists( select * from mz_js where jsnm = @jsnm and jslx !='0' and mz_js.jsnm = mz_jsmx.jsnm and mz_js.OrganizeId=@OrganizeId) and mxnm = mz_xm.xmnm) and mz_xm.OrganizeId=@OrganizeId ");//发票号为空，用结算内码查询
+            sqlBuilder.AppendLine(" where exists ( select mxnm from mz_jsmx  with(nolock)  where exists( select * from mz_js where jsnm = @jsnm and jslx !='0' and mz_js.jsnm = mz_jsmx.jsnm and mz_js.OrganizeId=@OrganizeId) and mxnm = mz_xm.xmnm) and mz_xm.OrganizeId=@OrganizeId ");//Số hóa đ ơn là trống, dùng mã nội bộ quyết toántra cứu
             sqlBuilder.AppendLine(" union ");
             sqlBuilder.AppendLine(" select top 1 patid,mz_cf.brxz,brxzmc,mz_cf.ks,[NewtouchHIS_Base]..V_S_Sys_Department.Name ksmc,ys,xtry.name rymc,ghnm from mz_cfmx  with(nolock) ");
             sqlBuilder.AppendLine(" left join mz_cf  with(nolock) on mz_cfmx.cfnm = mz_cf.cfnm and mz_cf.OrganizeId = @OrganizeId  ");
             sqlBuilder.AppendLine(" left join (select * from xt_brxz  with(nolock) where zt = 1) as xt_brxz on mz_cf.brxz = xt_brxz.brxz and xt_brxz.OrganizeId = @OrganizeId ");
             sqlBuilder.AppendLine(" left join [NewtouchHIS_Base]..V_S_Sys_Staff xtry on mz_cf.ys = xtry.gh and xtry.OrganizeId = @OrganizeId ");
             sqlBuilder.AppendLine(" left join [NewtouchHIS_Base]..V_S_Sys_Department on mz_cf.ks = [NewtouchHIS_Base]..V_S_Sys_Department.Code and [NewtouchHIS_Base]..V_S_Sys_Department.OrganizeId = @OrganizeId  ");
-            sqlBuilder.AppendLine(" where exists ( select cf_mxnm from mz_jsmx  with(nolock)  where exists( select * from mz_js  with(nolock) where jsnm = @jsnm and jslx !='0'  and mz_js.jsnm = mz_jsmx.jsnm and mz_js.OrganizeId = @OrganizeId ) and mxbm = mz_cfmx.yp and cf_mxnm =mz_cfmx.cfnm) ");//发票号为空，用结算内码查询    
+            sqlBuilder.AppendLine(" where exists ( select cf_mxnm from mz_jsmx  with(nolock)  where exists( select * from mz_js  with(nolock) where jsnm = @jsnm and jslx !='0'  and mz_js.jsnm = mz_jsmx.jsnm and mz_js.OrganizeId = @OrganizeId ) and mxbm = mz_cfmx.yp and cf_mxnm =mz_cfmx.cfnm) ");//Số hóa đ ơn là trống, dùng mã nội bộ quyết toántra cứu 
             SqlParameter[] param =
             {
                 new SqlParameter("@jsnm",jsnm.ToString()),
@@ -186,11 +186,11 @@ namespace Newtouch.HIS.DomainServices
             return result;
         }
         /// <summary>
-        /// 按结算内码查门诊项目
+        /// theo mã nội bộ quyết toán tra cứu hạng mục ngoại trú
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
-        /// 门诊项目明细
+        /// Hạng mục ngoại trú chi tiết
         public List<GridViewMx> GetMz_xmRecordsByJsnm(int jsnm)
         {
             StringBuilder sqlBuilder = new StringBuilder();
@@ -245,7 +245,7 @@ namespace Newtouch.HIS.DomainServices
             //        refund.SFXM = string.Format("{0}", dr["SFXM"]);
             //        // refund.CF_MXNM= 0;
             //        refund.FWFDJ = Tool.AnyToString(dr["FWFDJ"]);
-            //        //fangyi  20160802  开始  添加医生站的处方内码
+            // //fangyi 20160802 bắt đ ầu thêm trạm bác sĩ của mã nội bộ đ ơn thuốc
             //        //   refund.pt_cfnm= Tool.AnyToInt32(dr["pt_cfnm"]);
             //        result.Add(refund);
             //    }
@@ -253,11 +253,11 @@ namespace Newtouch.HIS.DomainServices
             return result;
         }
         /// <summary>
-        /// 按结算内码查挂号项目
+        /// theo mã nội bộ quyết toán tra cứu Đ ăng ký khám hạng mục
         /// </summary>
-        /// <param name="jsnm">结算内码</param> 
+        /// <param name="jsnm">Mã nội bộ quyết toán</param> 
         /// <returns></returns>
-        /// 门诊挂号项目明细
+        /// Đ ăng ký khám ngoại trú hạng mụcchi tiết
         public List<GridViewMx> GetMz_ghxmRecordsByJsnm(int jsnm)
         {
             StringBuilder sqlBuilder = new StringBuilder();
@@ -338,7 +338,7 @@ namespace Newtouch.HIS.DomainServices
             //        refund.ZFBL = string.Format("{0}", dr["ZFBL"]);
             //        refund.SL = string.Format("{0}", dr["SL"]);
             //        refund.JE = string.Format("{0}", Tool.AnyToDecimal(dr["JE"]).ToString("0.00"));
-            //        if (Tool.AnyToString(dr["DL"]) == "55")  //磁卡费默认不退
+            // if (Tool.AnyToString(dr["DL"]) == "55") //Phí thẻ từ mặc đ ịnh không hoàn 
             //        {
             //            refund.RETURNS_SL = 0;
             //            refund.IS_RETURN = "0";
@@ -352,19 +352,19 @@ namespace Newtouch.HIS.DomainServices
             //        refund.SFXM = string.Format("{0}", dr["SFXM"]);
             //        //  refund.CF_MXNM = 0;
             //        refund.FWFDJ = Tool.AnyToString(dr["FWFDJ"]);
-            //        //fangyi  20160802  开始  添加医生站的处方内码
+            // //fangyi 20160802 bắt đ ầu thêm trạm bác sĩ của mã nội bộ đ ơn thuốc
             //        // refund.pt_cfnm = Tools.AnyToInt32(dr["pt_cfnm"]);
-            //        //fangyi  20160802  结束
+            //        //fangyi  20160802  Kết thúc
             //        result.Add(refund);
             //    }
             //}
             return result;
         }
-        /// 按结算内码查处方明细
+        /// theo mã nội bộ quyết toán tra cứu chi tiết đ ơn thuốc
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
-        /// 门诊处方明细
+        /// Chi tiết đ ơn thuốc ngoại trú
         public DataTable GetMz_cfmxRecords(int jsnm)
         {
             StringBuilder sqlBuilder = new StringBuilder();
@@ -462,7 +462,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据病人内码获取除挂号之外的剩余数量
+        /// theo bệnh nhân mã nội bộ lấy除Đ ăng ký khám của ngoài của còn lại số lư ợng
         /// </summary>
         /// <param name="brnm"></param>
         /// <returns></returns>
@@ -498,9 +498,9 @@ from
         }
 
         /// <summary>
-        /// 门诊结算支付方式
+        /// Phư ơng thức thanh toán quyết toán ngoại trú
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public DataTable GetMzJszffsForJsnm(int jsnm)
         {
@@ -513,7 +513,7 @@ from
             return DbHelper.GetDataTableBySql(sqlBuilder.ToString(), paramList);
         }
         /// <summary>
-        /// 获取当前挂号信息的挂号结算及结算明细信息
+        /// Lấykhi trư ớc thông tin đ ăng ký khám CủaĐ ăng ký khám quyết toán và chi tiết quyết toán thông tin
         /// </summary>
         /// <param name="brnm"></param>
         /// <returns></returns>
@@ -555,7 +555,7 @@ and a.OrganizeId=@OrganizeId
             return _dataContext.Set<SysPatientNatureEntity>().FirstOrDefault(p => p.brxz == brxz && p.OrganizeId == OrganizeId);
         }
         /// <summary>
-        /// 根据首拼查询收费项目
+        /// theo 首拼tra cứu hạng mục thu phí
         /// </summary>
         /// <param name="parm"></param>
         /// <returns></returns>
@@ -566,20 +566,20 @@ and a.OrganizeId=@OrganizeId
 
         }
 
-        /// 根据挂号内码获取挂号信息
+        /// theo Đ ăng ký khám mã nội bộ lấy thông tin đ ăng ký khám
         public List<OutpatientRegistEntity> getGhs(List<int> ghnmList)
         {
             return _dataContext.Set<OutpatientRegistEntity>().Where(p => (ghnmList.Contains(p.ghnm))).ToList();
 
         }
-        //根据病人内码获取病人信息
+        //Lấy thông tin bệnh nhân theo mã nội bộ bệnh nhân
         public SysPatientBasicInfoEntity GetBrjbxxByPatid(int patid)
         {
             var OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
             return _dataContext.Set<SysPatientBasicInfoEntity>().FirstOrDefault(p => p.patid == patid && p.OrganizeId == OrganizeId);
 
         }
-        ///根据表名获取主键
+        /// theo bảng 名lấy khóa chính
         public int GetPrimaryKeyByTableName(string tableName)
         {
             return EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt(tableName);
@@ -609,7 +609,7 @@ and a.OrganizeId=@OrganizeId
 
 
 
-        //            --是否重复退费
+        // --có hay không trùng lặp hoàn phí
         //select count(jsnm) from mz_js b where  b.jszt='2' 
         // and b.cxjsnm = 1621 jsnm
         // and b.fph = '1000001813'
@@ -718,7 +718,7 @@ and a.OrganizeId=@OrganizeId
             return this.FindList<int>(strSql.ToString(), param).Any();
         }
         /// <summary>
-        /// 给门诊结算信息加上病人信息
+        /// cho quyết toán ngoại trú thông tin thêm vào thông tin bệnh nhân
         /// </summary>
         /// <param name="js"></param>
         /// <returns></returns>
@@ -744,7 +744,7 @@ and a.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 全退  mz_js mz_jsmx mz_ghth
+        /// Hoàn toàn bộ  mz_js mz_jsmx mz_ghth
         /// </summary>
         /// <param name="mzJs"></param>
         /// <param name="mzJsmxList"></param>
@@ -779,7 +779,7 @@ and a.OrganizeId=@OrganizeId
                     #endregion
 
                     #region mz_ghth 门诊退号
-                    //GRS退费不需要退号
+                    //GRShoàn phí không cần trả lại số 
                     if (ghjsDt.Count > 0 && ghjsDt != null)
                     {
                         foreach (OutpatientRegistNonAttendanceEntity ghjs in ghjsDt)
@@ -806,7 +806,7 @@ and a.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 插入退费剩余部分 mz_js mz_jsmx mz_jszffs mz_jsdl 数据库操作
+        /// Chèn hoàn phí còn lại một phần mz_js mz_jsmx mz_jszffs mz_jsdl dữ liệu kho thao tác
         /// </summary>
         /// <param name="js"></param>
         /// <param name="listMzJsMx"></param>
@@ -863,12 +863,12 @@ and a.OrganizeId=@OrganizeId
                     //        jsdl.jsrq = DateTime.Now;
                     //        jsdl.zt = "1";
                     //        jsdl.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
-                    //        jsdl.Create(true);  //自增string 主键
+                    // jsdl.Create(true); // tự 增string khóa chính
                     //        db.Insert(jsdl);
-                    //        AppLogger.Info("结算大类: " + jsdl.jsdlId.ToString());
+                    // AppLogger.Info("Quyết toán loại lớn: " + jsdl.jsdlid.ToString());
                     //        // sqlStrList.Add(DAL_mz_jsdl.Instance.getInsertSql(jsdl));
                     //    }
-                    //    AppLogger.Info("插入成功！" + jsdlList.Count);
+                    //    AppLogger.Info("ChènThành công！" + jsdlList.Count);
                     //}
                     #endregion
 
@@ -889,7 +889,7 @@ and a.OrganizeId=@OrganizeId
         #region GRS门诊退费
 
         /// <summary>
-        /// 门诊患者筛选
+        /// Ngoại trú bệnh nhân lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -952,7 +952,7 @@ GROUP BY A.patid, a.blh, A.xm, A.xb, A.csny, A.zjlx, A.zjh, A.dh, A.dybh, gh.mzh
         }
 
         /// <summary>
-        /// 病人管理查询病人信息
+        /// Quản lý bệnh nhânTra cứuThông tin bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -1010,7 +1010,7 @@ GROUP BY A.patid, a.blh, A.xm, A.xb, A.csny, A.zjlx, A.zjh, A.dh, A.dybh, gh.mzh
         }
 
         /// <summary>
-        /// 病人门诊登记，浮层查询病人信息
+        /// Bệnh nh ânĐ ăng ký ngoại trú,浮 lớp tra cứu thông tin bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -1115,7 +1115,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
             return FindList<PatInfoQuery>(strSql.ToString(), param).ToList();
         }
         /// <summary>
-        /// 根据病历号获取结算信息
+        /// theo số hồ sơ bệnh án lấy thông tin quyết toán
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="startTime"></param>
@@ -1211,12 +1211,12 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         }
 
         /// <summary>
-        /// 按结算内码查门诊项目
+        /// theo mã nội bộ quyết toán tra cứu hạng mục ngoại trú
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
-        /// 门诊项目明细
+        /// Hạng mục ngoại trú chi tiết
         public List<GridViewMx> GetMz_xmDetailByJsnm(int jsnm, string orgId)
         {
             var sqlBuilder = new StringBuilder();
@@ -1304,7 +1304,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         }
 
         /// <summary>
-        /// 根据结算内码获取结算项目信息
+        /// theo mã nội bộ quyết toán lấy quyết toán hạng mục thông tin
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -1375,7 +1375,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
                                                                 AND mz_js.jsnm = mz_jsmx.jsnm
                                                                 AND mz_js.OrganizeId = @orgId )
                                                 --AND mxbm = mz_cfmx.yp
-                                                AND cf_mxnm = mz_cfmx.cfnm )");//发票号为空，用结算内码查询    
+                                                AND cf_mxnm = mz_cfmx.cfnm )");//Số hóa đ ơn là trống, dùng mã nội bộ quyết toántra cứu 
             DbParameter[] param =
             {
                 new SqlParameter("@jsnm",jsnm.ToString()),
@@ -1389,9 +1389,9 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
 
         public List<GridViewMx> GetGridViewMx(int jsnm, string orgId)
         {
-            //门诊项目
+            //Hạng mục ngoại trú
             var data = GetMz_xmDetailByJsnm(jsnm, orgId);
-            //门诊处方
+            //Đ ơn thuốc ngoại trú
             var data2 = GetMz_cfmxDetailsByJsnm(jsnm, orgId);
             var id = data.Count;
             if (data2.Count > 0)
@@ -1447,7 +1447,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         }
 
         /// <summary>
-        /// 按结算内码查处方明细
+        /// theo mã nội bộ quyết toán tra cứu chi tiết đ ơn thuốc
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -1520,7 +1520,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         }
 
         /// <summary>
-        /// 全退时更新医保次数
+        /// Hoàn toàn bộ giờ cập nhậtBHYT số lần 
         /// </summary>
         /// <param name="jzrq"></param>
         /// <param name="IsReturnAll"></param>
@@ -1530,12 +1530,12 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         {
             if (!IsReturnAll) return;
             var strSql = new StringBuilder();
-            string isClinic = "2";//医保
+            string isClinic = "2";//BHYT
             DbParameter[] opar = { new SqlParameter("@Id", orgId) };
             var isZhenSuo = FirstOrDefault<string>("SELECT CategoryCode FROM NewtouchHIS_Base..Sys_Organize WHERE Id=@Id", opar);
             if (isZhenSuo == "Clinic")
             {
-                isClinic = "1";//1表示诊所，用商保
+                isClinic = "1";//1 biểu thị phòng khám, dùng bảo hiểm thư ơng mại 
             }
             strSql.Append(@" exec sp_bxba_gxsycs @bxtype,@orgId, @patId, @date");
             SqlParameter[] parameters =
@@ -1553,7 +1553,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         #region 退费2018版
 
         /// <summary>
-        /// 门诊退费 结算 主记录 Query
+        /// Hoàn phí ngoại trú quyết toán 主 bản ghi Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -1600,7 +1600,7 @@ order by mzjs.CreateTime
         }
 
         /// <summary>
-        /// 门诊退费 Query
+        /// Hoàn phí ngoại trú Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
@@ -1745,7 +1745,7 @@ order by mzjs.CreateTime
         #endregion
 
         /// <summary>
-        /// 门诊/住院计划录入 患者检索筛选
+        /// Ngoại trú/Nhập viện kế hoạch 录入 bệnh nhân检索lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -1850,7 +1850,7 @@ order by mzjs.CreateTime
         #region 医保退费
 
         /// <summary>
-        /// 获取待退费信息
+        /// Lấy chờ hoàn phí thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -1894,7 +1894,7 @@ ORDER BY mzjs.CreateTime
 
         #region
         /// <summary>
-        /// 获取待退费信息
+        /// Lấy chờ hoàn phí thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -1959,7 +1959,7 @@ ORDER BY mzjs.CreateTime
         }
         #endregion
         /// <summary>
-        /// 门诊住院预交金患者浮层
+        /// Ngoại trú nhập viện tạm ứng bệnh nhân浮 lớp 
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

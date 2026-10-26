@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Application.Implementation
         //other Repositories or DomainServices
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysChargeItemPriceAdjustEntity> GetEffectiveList(string keyValue)
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Application.Implementation
             return _sysChargeProjPriceAdjRepo.GetEffectiveList(keyValue, this.OrganizeId);
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Application.Implementation
             return _sysChargeProjPriceAdjRepo.GetForm(keyValue, this.OrganizeId);
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(SysChargeItemPriceAdjustEntity sysChargeProjPriceAdjEntity)
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Application.Implementation
             _sysChargeProjPriceAdjRepo.DeleteForm(sysChargeProjPriceAdjEntity, this.OrganizeId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysChargeProjPriceAdjEntity"></param>
         /// <param name="keyValue"></param>

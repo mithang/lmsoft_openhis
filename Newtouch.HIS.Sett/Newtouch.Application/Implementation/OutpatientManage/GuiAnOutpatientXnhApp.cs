@@ -35,7 +35,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 贵安门诊新农合
+    /// 贵安ngoại trú BHYT nông thôn mới 
     /// </summary>
     public class GuiAnOutpatientXnhApp : AppBase, IGuiAnOutpatientXnhApp
     {
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutPatChargeDmnService _outChargeDmnService;
 
         /// <summary>
-        /// 模拟结算全流程
+        /// mô phỏng quyết toán全流程
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="userCode"></param>
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 模拟结算，单功能
+        /// mô phỏng quyết toán, đ ơn 功 có thể 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
@@ -103,11 +103,11 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 模拟结算，单功能
+        /// mô phỏng quyết toán, đ ơn 功 có thể 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
-        /// <param name="s21Details">门诊费用上传明细</param>
+        /// <param name="s21Details">Ngoại trú chi phí tải lênchi tiết</param>
         /// <param name="organizeId"></param>
         /// <param name="s24Response"></param>
         /// <returns></returns>
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 回退先前上传的明细
+        /// trả lại trư ớc trư ớc tải lên củachi tiết
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -184,7 +184,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 查询门诊补偿序号
+        /// Tra cứu số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -198,7 +198,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装新农合医保上传明细 
+        /// nhóm 装 BHYT nông thôn mới BHYTtải lênchi tiết 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -228,11 +228,11 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊上传
+        /// Ngoại trú tải lên
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="userCode">操作员账号</param>
+        /// <param name="userCode">Thao tác viên tài khoản </param>
         /// <param name="zlkssj"></param>
         /// <returns></returns>
         public string OutpatientUpload(string mzh, string organizeId, string userCode, out DateTime zlkssj)
@@ -240,7 +240,7 @@ namespace Newtouch.HIS.Application.Implementation
             zlkssj = Constants.MinDate;
 
             var brxx = _outPatChargeDmnService.SelectSysPatientBasicInfoEntities(mzh, organizeId).FirstOrDefault();
-           // if (brxx == null || string.IsNullOrWhiteSpace(brxx.xnhgrbm)) return "新农合个人编码丢失，请联系管理员";
+           // if (brxx == null || string.IsNullOrWhiteSpace(brxx.xnhgrbm)) return " BHYT nông thôn mới mã cá nhân 丢失,vui lòng liên hệ quản trị viên ";
             var apiResp = SiteCISAPIHelper.PatientTreatmentInfoQuery(mzh, organizeId);
             var jzxx = new PatientTreatmentInfoQueryResponseDTO();
             if (apiResp != null && apiResp.data != null)
@@ -306,7 +306,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 保存新门诊补偿序号
+        /// Lưu mới số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         /// <param name="ghnm"></param>
         /// <param name="userCode"></param>
@@ -337,7 +337,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 修改门诊补偿序号
+        /// Sửa số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         /// <param name="ghnm"></param>
         /// <param name="userCode"></param>
@@ -352,7 +352,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊上传回退，验证失败后直接抛出异常
+        /// Ngoại trú tải lên trả lại,xác minh thất bại sau trực tiếp抛出bất thư ờng
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -372,12 +372,12 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊回退，可在取消挂号中使用（自动捕获异常）
+        /// Trả lại ngoại trú, có thể tại HủyĐ ăng ký khám trong sử dụng(tự đ ộng bắt bất thư ờng)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>失败原因</returns>
+        /// <returns>Nguyên nhân thất bại</returns>
         public string OutpatientReturn(string mzh, string organizeId, string userCode)
         {
             var outpId = "";
@@ -394,13 +394,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊回退，可在取消挂号中使用（自动捕获异常）
+        /// Trả lại ngoại trú, có thể tại HủyĐ ăng ký khám trong sử dụng(tự đ ộng bắt bất thư ờng)
         /// </summary>
         /// <param name="mzh"></param>
-        /// <param name="outpId">门诊补偿序号</param>
+        /// <param name="outpid">Số thứ tự bồi thư ờng ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>失败原因</returns>
+        /// <returns>Nguyên nhân thất bại</returns>
         public string OutpatientReturn(string mzh, string outpId, string organizeId, string userCode)
         {
             if (string.IsNullOrWhiteSpace(outpId)) return "";
@@ -416,7 +416,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消结算，门诊红冲
+        /// Hủy quyết toán,ngoại trú ghi đ ỏ hoàn trả 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -439,7 +439,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消结算，门诊红冲
+        /// Hủy quyết toán,ngoại trú ghi đ ỏ hoàn trả 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="outpId"></param>
@@ -462,7 +462,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 新农合门诊结算
+        /// BHYT nông thôn mới quyết toán ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -488,7 +488,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 新农合门诊结算
+        /// BHYT nông thôn mới quyết toán ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="outpId"></param>
@@ -514,7 +514,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装退费后要重新生成的结算明细
+        /// nhóm 装hoàn phí sau cần lại tạo củachi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -549,11 +549,11 @@ namespace Newtouch.HIS.Application.Implementation
                 foreach (var itemtf in tjsxmDict)
                 {
                     if (itemtf.Key != jsmx.jsmxnm.ToString()) continue;
-                    num = Convert.ToDecimal(jsmx.sl - itemtf.Value);//退后剩余数量
-                    result.tkzje += (itemtf.Value * Convert.ToDecimal(jsmx.dj));//退总金额
+                    num = Convert.ToDecimal(jsmx.sl - itemtf.Value);// trả lại sau còn lại số lư ợng
+                    result.tkzje += (itemtf.Value * Convert.ToDecimal(jsmx.dj));// trả lại tổng số tiền
                 }
 
-                var je = Convert.ToDecimal(num * jsmx.dj);//剩余数量*单价=剩余总额
+                var je = Convert.ToDecimal(num * jsmx.dj);// còn lại số lư ợng*Đ ơn giá= còn lại 总额
                 if (!string.IsNullOrWhiteSpace(jsmx.ybdm) && jsmx.ybbz == "1")
                 {
                     if (num <= 0 || je <= 0) continue;
@@ -565,7 +565,7 @@ namespace Newtouch.HIS.Application.Implementation
                         typeCode = tmpTTmllb.TTCode,
                         num = num,
                         price = jsmx.dj,
-                        totalCost = je,//剩余数量*单价=总额
+                        totalCost = je,// còn lại số lư ợng*Đ ơn giá=总额
                         date = jsmx.klsj.ToString("yyyy-MM-dd"),
                     });
                     result.ybzje += je;
@@ -580,7 +580,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -594,26 +594,26 @@ namespace Newtouch.HIS.Application.Implementation
         {
             tfRequest = new TFS21RequestDTO();
 
-            //新农合退费
+            // BHYT nông thôn mới hoàn phí
             var s26Response = CancelSett(mzh, outpId, OrganizeId, UserIdentity.UserCode);
             if (!string.IsNullOrWhiteSpace(s26Response) && s26Response.IndexOf("不是结算与暂存状态", StringComparison.Ordinal) < 0) return s26Response;
             try
             {
-                //门诊上传
+                //Ngoại trú tải lên
                 DateTime zlkssj;
                 var uploadResult = OutpatientUpload(mzh, organizeId, userCode, out zlkssj);
                 if (!string.IsNullOrWhiteSpace(uploadResult)) return uploadResult;
 
-                // 组装未退费明细
+                // nhóm 装chưa hoàn费chi tiết
                 tfRequest = AssembleS21RequestDto(jsnm, tjsxmDict, mzh, OrganizeId);
                 if (tfRequest.S21RequestDto.list.Count == 0)
                 {
-                    //全退，不需重新上传
+                    //Hoàn toàn bộ, không 需lại tải lên
                     OutpatientReturn(mzh, tfRequest.S21RequestDto.outpId, organizeId, userCode);
                     tfRequest.S21RequestDto.outpId = "";
                     return "";
                 }
-                //未退明细上模拟结算
+                //Chưa hoànchi tiết trên mô phỏng quyết toán
                 var tuiFeiSimulationSettResult = TuiFeiSimulationSett(tfRequest, organizeId, zlkssj);
                 return !string.IsNullOrWhiteSpace(tuiFeiSimulationSettResult) ? tuiFeiSimulationSettResult : "";
             }
@@ -626,7 +626,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 退费重新模拟上传未退费明细
+        /// Hoàn phí lại mô phỏng tải lên chưa hoàn费chi tiết
         /// </summary>
         /// <param name="tfxx"></param>
         /// <param name="organizeId"></param>
@@ -687,13 +687,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 新农合医保请求
+        /// BHYT nông thôn mới BHYT yêu cầu 
         /// </summary>
-        /// <param name="itn">接口名称  例：S02</param>
+        /// <param name="itn">Giao diện tên 例:S02</param>
         /// <param name="body"></param>
         /// <param name="organizeId"></param>
-        /// <param name="response">返回报文</param>
-        /// <returns>结果</returns>
+        /// <param name="response">Bản tin trả về</param>
+        /// <returns>Kết quả</returns>
         public string XnhInterfaceSend(string itn, string body, string organizeId, out string response)
         {
             response = "";

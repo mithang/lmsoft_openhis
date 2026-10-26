@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// NewtouchHIS库DB上下文Factory
+    /// NewtouchHIS kho DBngữ cảnhFactory
     /// </summary>
     public interface INewtouchDatabaseFactory : IDatabaseFactory
     {

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab
 {
     /// <summary>
-    /// 全局过滤器注册
+    /// 全局 qua 滤 thiết bị đ ăng ký 
     /// </summary>
     public class FilterConfig
     {
@@ -14,10 +14,10 @@ namespace Newtouch.HIS.Sett.Rehab
         /// <param name="filters"></param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //系统访问统计跟踪日志
+            //Hệ thống truy cập thống kê và 踪 nhật ký 
             filters.Add(new StatisticsTrackerAttribute());
 
-            //全局异常捕获
+            //全局bất thư ờng bắt 
             filters.Add(new HandlerErrorAttribute());
 
 

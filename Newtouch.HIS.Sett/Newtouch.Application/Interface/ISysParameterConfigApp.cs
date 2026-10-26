@@ -4,7 +4,7 @@ using Newtouch.HIS.Domain.ViewModels;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 系统参数设置
+    /// Cài đ ặt tham số hệ thống
     /// </summary>
     public interface ISysParameterConfigApp
     {

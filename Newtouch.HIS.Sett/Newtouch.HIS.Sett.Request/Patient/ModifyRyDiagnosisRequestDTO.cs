@@ -4,54 +4,54 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 修改入区诊断请求报文
+    /// Sửa入Quận chẩn đoán bản tin yêu cầu
     /// </summary>
     public class ModifyRyDiagnosisRequestDTO : RequestBase
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 当前登录者
+        /// Khi trư ớc đ ăng nhập 者
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 入院诊断内容
+        /// Chẩn đoán nhập viện nội dung 
         /// </summary>
         public List<RyDiagnosisDetail> RyDiagnosisDetails { get; set; }
     }
 
     /// <summary>
-    /// 入院诊断内容
+    /// Chẩn đoán nhập viện nội dung 
     /// </summary>
     public class RyDiagnosisDetail
     {
 
         /// <summary>
-        /// 入区诊断1名称
+        /// 入Quận chẩn đoán1 tên
         /// </summary>
         public string ryzdmc { get; set; }
 
         /// <summary>
-        /// 入区诊断1代码
+        /// 入Quận chẩn đoán1 mã
         /// </summary>
         public string ryzddm { get; set; }
 
         /// <summary>
-        /// 入区诊断1ICD10
+        /// 入Quận chẩn đoán1ICD10
         /// </summary>
         public string ryzdICD10 { get; set; }
 
         /// <summary>
-        /// 诊断排序  1：诊断1 2：诊断2  3：诊断3
+        /// Chẩn đoán sắp xếp 1:Chẩn đoán1 2:Chẩn đoán2 3:Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
     }

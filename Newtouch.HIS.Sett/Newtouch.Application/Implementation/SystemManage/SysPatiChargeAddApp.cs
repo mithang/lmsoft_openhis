@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.SystemManage
         private readonly ISysChargeAdditionalCategoryRepo _sysChargeAdditionalCategoryRepo;
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysPatiChargeAddVo> GetSysPatiChargeAddVoList(string keyword, int? bh = null)
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Application.SystemManage
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(SysPatientChargeAdditionalEntity sysPatiChargeAddEntity)
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Application.SystemManage
             _SysPatiChargeAddRepo.DeleteForm(sysPatiChargeAddEntity, this.OrganizeId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.SystemManage
         }
 
         /// <summary>
-        /// 附加显示大类下拉框
+        /// 附加hiển thị hộp thả xuống loại lớn 
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Application.SystemManage
         }
 
         /// <summary>
-        /// 获取服务费比例
+        /// Lấy phí dịch vụ tỷ lệ 
         /// </summary>
         /// <param name="brxz"></param>
         /// <param name="sfxm"></param>

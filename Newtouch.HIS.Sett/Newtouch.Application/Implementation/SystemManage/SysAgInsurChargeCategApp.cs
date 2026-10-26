@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Application
             this._sysAgInsurChargeCategRepo = sysAgInsurChargeCategRepo;
         }
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysAgriInsuranceChargeCategoryEntity> GetEffectiveList(int keyValue)
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application
             return _sysAgInsurChargeCategRepo.GetEffectiveList(keyValue);
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Application
             return _sysAgInsurChargeCategRepo.GetForm(keyValue);
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(int keyValue)
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Application
             _sysAgInsurChargeCategRepo.DeleteForm(keyValue);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysAgInsurChargeCategEntity"></param>
         /// <param name="keyValue"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Application
             _sysAgInsurChargeCategRepo.SubmitForm(sysAgInsurChargeCategEntity, keyValue);
         }
         /// <summary>
-        /// 获取所有农保收费大类下拉框
+        /// Lấy tất cả các bảo hiểm nông nghiệp thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         public object GetnbdlSelect()

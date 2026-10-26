@@ -5,7 +5,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab.Controllers
 {
     /// <summary>
-    /// 病人（信息）
+    /// Bệnh nhân(Thông tin)
     /// </summary>
     public class PatientController : ControllerBase
     {

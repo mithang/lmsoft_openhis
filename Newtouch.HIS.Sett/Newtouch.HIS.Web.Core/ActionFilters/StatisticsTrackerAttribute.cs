@@ -13,7 +13,7 @@ using Newtouch.Common;
 namespace Newtouch.HIS.Web.Core.ActionFilters
 {
     /// <summary>
-    /// 系统访问统计跟踪日志
+    /// Hệ thống truy cập thống kê và 踪 nhật ký 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class StatisticsTrackerAttribute : ActionFilterAttributeBase
@@ -51,14 +51,14 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
 
             if (enterTime.HasValue)
             {
-                //记录访问日志
+                // bản ghi truy cập nhật ký 
                 var areaName = filterContext.RouteData.Values["area"] as string;
                 var controllerName = filterContext.RouteData.Values["controller"] as string;
                 var actionName = filterContext.RouteData.Values["action"] as string;
                 var costMSec = (DateTime.Now - enterTime.Value).Milliseconds;
                 var ip = "";
                 var isAjax = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
-                //响应状态码
+                //响 nên trạng thái mã 
                 int responseStatusCode = 200;
                 string responseSubCode = null;
                 string responseSubMsg = null;
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
                 {
                     if (filterContext.Exception is FailedException)
                     {
-                        //为业务提示
+                        //Là nghiệp vụ nhắc nhở
                         responseStatusCode = -200;
                         responseSubCode = ((FailedException)filterContext.Exception).Code;
                         if (!string.IsNullOrWhiteSpace(responseSubCode))
@@ -77,20 +77,20 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
                     }
                     else
                     {
-                        responseStatusCode = -500;  //有异常
+                        responseStatusCode = -500;  //Có bất thư ờng
                     }
                 }
 
                 NameValueCollection requestQueryString = null, requestForm = null;
                 RouteValueDictionary routeDataCollections = null;
-                requestQueryString = filterContext.HttpContext.Request.QueryString; //Url 参数
+                requestQueryString = filterContext.HttpContext.Request.QueryString; //Url Tham số
                 routeDataCollections = filterContext.RouteData.Values;
                 if (!filterContext.ActionDescriptor.GetCustomAttributes(false).Any(p => p is TrackerRequestFormIgnoreAttribute))
                 {
-                    requestForm = filterContext.HttpContext.Request.Form;   //form表单提交的数据
+                    requestForm = filterContext.HttpContext.Request.Form;   //form biểu mẫu gửi của dữ liệu
                 }
 
-                //登录用户标示
+                // đ ăng nhập ngư ời dùng 标示
                 var op = OperatorProvider.GetCurrent();
                 string userIdentity = op != null ? op.UserCode : null;
 
@@ -104,8 +104,8 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
                     CostMSec = costMSec,
                     IP = ip,
                     IsAjax = isAjax,
-                    RequestQueryString = toDictionary(requestQueryString), //Url 参数
-                    RequestForm = toDictionary(requestForm),   //form表单提交的数据
+                    RequestQueryString = toDictionary(requestQueryString), //Url Tham số
+                    RequestForm = toDictionary(requestForm),   //form biểu mẫu gửi của dữ liệu
                     RouteDataCollections = toDictionary(routeDataCollections),
                     ResponseStatusCode = responseStatusCode,
                     ResponseSubCode = responseSubCode,
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
         #region private methods
 
         /// <summary>
-        /// 获取路由参数
+        /// Lấy路由tham số
         /// </summary>
         /// <param name="rDict"></param>
         /// <returns></returns>
@@ -156,7 +156,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
         }
 
         /// <summary>
-        /// 获取Post 或Get 参数
+        /// LấyPost HoặcGet Tham số
         /// </summary>
         /// <param name="collections"></param>
         /// <returns></returns>

@@ -1,92 +1,92 @@
 ﻿namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 接口返回处方明细初步信息
+    /// Giao diệnquay lạichi tiết đ ơn thuốc初步thông tin
     /// </summary>
     public class fyDetailListRequest
     {
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đ ơn thuốcID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// ThuốcTên
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// ThuốcMã
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đ ơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đ ơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 价格
+        /// Giá
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đ ơn thuốc
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 药厂名称
+        /// 药厂tên
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lư ợng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// liều lư ợng 
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// liều lư ợng Đ ơn vị
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法名称
+        /// cách dùng tên
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 时间安排 （频次）
+        /// Thời gian sắp xếp (Tần suất)
         /// </summary>
         public string sjap { get; set; }
 
         /// <summary>
-        /// 用量
+        /// dùng lư ợng 
         /// </summary>
         public decimal yl { get; set; }
 
         /// <summary>
-        /// 用量单位
+        /// dùng lư ợng Đ ơn vị
         /// </summary>
         public string yldw { get; set; }
 
@@ -96,7 +96,7 @@
         public string yszt { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public short plh { get; set; }
     }

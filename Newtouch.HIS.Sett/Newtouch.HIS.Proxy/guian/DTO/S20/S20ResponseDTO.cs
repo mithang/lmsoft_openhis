@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S20
 {
     /// <summary>
-    /// 根据S18上传门诊返回的补偿序号outpId进行门诊信息修改 返回报文
+    /// theo S18 số thứ tự bồi thư ờng ngoại trú trả về sau khi tải lênoutpid tiến hành ngoại trú thông tin sửa bản tin trả về
     /// </summary>
     public class S20ResponseDTO
     {

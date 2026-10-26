@@ -9,13 +9,13 @@ namespace Newtouch.HIS.Application
     public interface IHospItemFeeApp
     {
         /// <summary>
-        /// 根据住院号计算项目计费
+        /// theo số nhập viện tính tính phí hạng mục
         /// </summary>
         /// <param name="zyh"></param>
         DataTable CountZYItemFree(string zyh);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>

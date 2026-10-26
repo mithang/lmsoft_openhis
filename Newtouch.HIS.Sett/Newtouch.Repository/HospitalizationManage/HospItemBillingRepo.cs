@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         {
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>
@@ -42,8 +42,8 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 查询 时间段内的 项目计费EntityList
-        /// 已考虑退费
+        /// Tra cứu thời gian đoạn trong của tính phí hạng mụcEntityList
+        /// Đ ã xem xét hoàn phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Repository
             {
                 sourceQuery = this.IQueryable();
             }
-            //没有加入结束日期的过滤 是为了 退费
+            // không có加入ngày kết thúc của qua 滤 là đ ể hoàn phí
             var query1 = sourceQuery.Where(p => p.zyh == zyh
               && p.OrganizeId == orgId && p.zt == "1"
               && p.CreateTime > startTime).ToList();
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Repository
                 }).ToList();
             if (query2.Count == query1.Count)
             {
-                //没有退过费
+                // không có trả lại qua 费
                 return query1.Where(p => p.CreateTime <= endTime).ToList();
             }
             query1 = query1.Where(p => p.CreateTime <= endTime).ToList();
@@ -79,8 +79,8 @@ namespace Newtouch.HIS.Repository
             var query = from q2 in query2
                         join q1 in query1
                         on q2.jfbbh equals q1.jfbbh
-                        //一定是q2joinq1，然后过滤q1的时间
-                        //退完不显示
+                        // nhất đ ịnh Làq2joinq1, sau đ ó qua 滤q1 của thời gian
+                        // trả lại 完 không hiển thị
                         where q1.CreateTime <= endTime && q2.sl > 0
                         select new HospItemBillingEntity
                         {
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Repository
             return query.ToList();
         }
         /// <summary>
-        /// 变更耗材库存
+        /// thay đ ổi 耗材 kho tồn tại 
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="sl"></param>

@@ -9,16 +9,16 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2017-10-16 11:07
-    /// 描 述：快捷菜单
+    /// 创 建: tờ 冬林
+    /// Ngày kỳ:2017-10-16 11:07
+    /// 描 述: menu nhanh 
     /// </summary>
     public class SysShortcutMenuRepo : RepositoryBase<SysShortcutMenuEntity>, ISysShortcutMenuRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc đ ịnh
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFNhà máy ngữ cảnh</param>
         public SysShortcutMenuRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -26,9 +26,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取实体列表
+        /// Lấy thực thể danh sách
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">LọcTừ khóa</param>
         public IList<SysShortcutMenuEntity> GetList(string keyword)
         {
             var sql = new StringBuilder();
@@ -47,10 +47,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đ ối tư ợng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(SysShortcutMenuEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -66,9 +66,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

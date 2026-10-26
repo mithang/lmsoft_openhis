@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S23
 {
     /// <summary>
-    /// 根据S18门诊上传返回的补偿序号outpId门诊费用明细查询S22进行门诊费用明细退单；跨省如果只传补偿序号，不传明细ID 就是把所有明细删除 返回报文
+    /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid ngoại trú chi phí chi tiếttra cứuS22 tiến hành ngoại trú chi phí chi tiết trả lại đ ơn; liên tỉnh nếu只 truyền số thứ tự bồi thư ờng, không truyền chi tiếtID thì là tất cả các chi tiết xóa bản tin trả về
     /// </summary>
     public class S23ResponseDTO
     {

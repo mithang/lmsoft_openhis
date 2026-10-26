@@ -8,19 +8,19 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class S17RequestDTO
     {
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đ ầu
         /// </summary>
         public string startDate { get; set; }
         /// <summary>
-        /// 截止时间
+        /// 截止thời gian
         /// </summary>
         public string endDate { get; set; }
         /// <summary>
-        /// 医疗证卡号
+        /// Số thẻ chứng nhận y tế
         /// </summary>
         public string medicalNo { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string memberName { get; set; }
     }

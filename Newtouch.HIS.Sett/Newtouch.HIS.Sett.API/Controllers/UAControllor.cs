@@ -14,7 +14,7 @@ using Newtouch.HIS.API.Common.Filter;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 统一授权认证
+    /// 统 một ủy quyền 认证
     /// </summary>
     [RoutePrefix("api/UA")]
     public class UAController : ApiControllerBase<UAController>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 以访问令牌换取用户身份信息
+        /// 以 truy cập 令牌 đ ổi lấy ngư ời dùng thân phận thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         {
             Action<UAGetUserInfoRequest, DefaultResponse> ac = (req, resp) =>
             {
-                //更新过期时间 120?
+                //Cập nhật hết hạn thời gian 120?
                 // var config = Convert.ToInt32(ConfigurationHelper.GetAppConfigValue("LoginStatusKeepMinute") ?? "120");
                 var config = 120;
                 if (string.IsNullOrWhiteSpace(request.access_token)
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 门诊患者查询接口预热
+        /// Ngoại trú bệnh nhântra cứugiao diện预热
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Application
     public interface ISysPatAccApp
     {
         /// <summary>
-        /// 根据住院号获取账户信息
+        /// theo số nhập viện lấy tài khoản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

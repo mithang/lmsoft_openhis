@@ -14,7 +14,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 内部接口调用业务
+    /// nội bộ giao diện gọi nghiệp vụ 
     /// </summary>
     public class InsideGeneralApp : AppBase, IInsideGeneralApp
     {
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPharmacyAPIDmnService _outpatientPharmacyAPIDmnService;
 
         /// <summary>
-        /// 公共入口
+        /// 公tổng cộng入口
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>
@@ -45,15 +45,15 @@ namespace Newtouch.HIS.Application.Implementation
 
             switch (o.OperationType)
             {
-                //case "xnhS27"://查询并落地S27（结算查询）结果
+                //case "xnhS27"://Tra cứu và 落 đ ịa S27(quyết toántra cứu)kết quả
                 //    var pr = _guiAnOutpatientXnhApp.QueryAndRecordSettDetail(o.Content);
                 //    if (!string.IsNullOrWhiteSpace(pr)) throw new FailedException(pr);
                 //    break;
-                //case "supplementPatientBaseInfo"://补充患者基本信息
+                //case "supplementPatientBaseInfo"://补充bệnh nhân cơ bản thông tin
                 //    var r = SupplementPatientBaseInfo(o.Content);
                 //    if (!string.IsNullOrWhiteSpace(r)) throw new FailedException(r);
                 //    break;
-                case "OutpatientDrugWithdrawalNotify"://门诊退药
+                case "OutpatientDrugWithdrawalNotify"://Ngoại trú trả thuốc 
                     var rd = OutpatientDrugWithdrawalNotify(o.Content);
                     if (!string.IsNullOrWhiteSpace(rd)) throw new FailedException(rd);
                     break;
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊退药
+        /// Ngoại trú trả thuốc 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -76,16 +76,16 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 补充患者基本信息
+        /// 补充bệnh nhân cơ bản thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         //private string SupplementPatientBaseInfo(string request)
         //{
         //    var po = request.ToObject<PatientBaseInfoQueryRequest>();
-        //    if (po == null) throw new Exception("请求参数序列化后为空，原始报文：" + request);
+        // if (po == null) throw new Exception(" yêu cầu tham số tuần tự hóa sau là trống, bản gốc bản tin:" + request);
         //    var brjbxx = _patientBasic.SelectPatientBasicInfoByCfh(po.cfh, po.OrganizeId);
-        //    if (brjbxx == null) return string.Format("根据处方号【{0}】和机构Id【{1}】未找到系统病人基本信息！", po.cfh, po.OrganizeId);
+        // if (brjbxx == null) return string.Format(" theo số đ ơn thuốc[{0}]và cơ quanid[{1}]chưa找 đ ến hệ thống thông tin cơ bản bệnh nhân！", po.cfh, po.Organizeid);
         //    var rp = new SupplementPatientBaseInfoRequest();
         //    brjbxx.MapperTo(rp);
         //    rp.cfh = po.cfh;
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Application.Implementation
         //    AppLogger.Instance.Info("SupplementPatientBaseInfo requestXml", rp);
         //    var rs = SitePDSAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/Outpatient/SupplementPatientBaseInfo", rp, autoAppendToken: false);
 
-        //    return rs.code != APIRequestHelper.ResponseResultCode.SUCCESS ? string.Format("更新门诊处方【{0}】患者信息失败。失败原因：{1} {2}", po.cfh, rs.msg, rs.sub_msg) : "";
+        // return rs.code!= APIRequestHelper.ResponseResultCode.SUCCESS? string.Format("Cập nh ậtĐ ơn thuốc ngoại trú[{0}]bệnh nhân thông tin thất bại.Nguyên nhân thất bại:{1} {2}", po.cfh, rs.msg, rs.sub_msg): "";
         //}
     }
 }

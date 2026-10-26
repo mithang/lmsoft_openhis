@@ -16,7 +16,7 @@ using Newtouch.HIS.Proxy.guian.DTO.S24;
 namespace Newtouch.HIS.Application.Implementation.OutpatientManage
 {
     /// <summary>
-    /// 新农合门诊模拟结算
+    /// BHYT nông thôn mới ngoại trú mô phỏng quyết toán
     /// </summary>
     public class SimulationSettlementOverallProcess : ProcessorFun<SimulationSettlementOverallProcessDo>
     {

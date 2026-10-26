@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "CardNo is required")]
         public string CardNo { get; set; }
         /// <summary>
-        /// 0: 挂号 1:处方
+        /// 0: Đ ăng ký khám 1:Đ ơn thuốc
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "FeeType is required")]
         public string FeeType { get; set; }
@@ -22,16 +22,16 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         //[Required(AllowEmptyStrings = false, ErrorMessage = "OrderNo is required")]
         public string OrderNo { get; set; }
         /// <summary>
-        /// 0:自费 1:职工 2:居民 3:离休 11:普通医保
+        /// 0:Tự trả 1:职工 2: cư dân 3: nghỉ hưu 11:BHYT thông thư ờng
         /// </summary>
         public string PatType { get; set; }
         public string Mzh { get; set; }
         /// <summary>
-        /// 预约号 挂号预结比传
+        /// số đ ặt lịch Đ ăng ký khám预结比 truyền 
         /// </summary>
         public int? BookID { get; set; }
         /// <summary>
-        /// 是否当日挂号性质 Y:是 N:否 挂号预结比传
+        /// Có hay khôngkhi NgàyĐ ăng ký khám性质 Y:Là N:Không Đ ăng ký khám预结比 truyền 
         /// </summary>
         public string IsBooking { get; set; }
     }

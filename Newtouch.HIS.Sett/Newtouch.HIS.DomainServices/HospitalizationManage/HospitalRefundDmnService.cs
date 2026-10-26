@@ -18,7 +18,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 住院费用
+    /// Nhập việnChi phí
     /// </summary>
     public class HospitalRefundDmnService : DmnServiceBase, IHospitalRefundDmnService
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.DomainServices
         {
         }
 
-        /// 根据住院号获取病人姓名
+        /// theo số nhập viện lấy bệnh nhân họ tên
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.DomainServices
             name = name == null ? "" : name;
             return name;
         }
-        //根据科室名称获得科室代码
+        // theo khoa tên nhận đ ược khoa mã
         public string GetKSByKSBH(string zxks)
         {
             var name = _sysDepartmentRepo.GetCodeByNameFirstOrDefault(zxks, OperatorProvider.GetCurrent().OrganizeId);
@@ -66,17 +66,17 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 住院项目计费分组
+        /// Nhập viện tính phí hạng mục nhóm 
         /// </summary>
-        /// <param name="zyh">住院编号</param>
-        /// <param name="zxks">执行科室编号</param>
-        /// <param name="xmmc">收费项目</param>
-        /// <param name="yrh">新生儿编号</param>
+        /// <param name="zyh">Số hiệu nhập viện</param>
+        /// <param name="zxks"> thực hiện khoa số hiệu</param>
+        /// <param name="xmmc">Hạng mục thu phí</param>
+        /// <param name="yrh">Số trẻ sơ sinh</param>
 
         public List<GridZyXmYpjfb> GetZyXmjfbGroup(string zyh, string zxks, string xmmc, string yrh)
         {
             List<KeyValuePair<string, string>> paramList = new List<KeyValuePair<string, string>>();
-            //根据科室编号获得科室
+            // theo khoa số hiệu nhận đ ược khoa
             string ks = GetKSByKSBH(zxks);
             string strSQL = string.Format(@"
                         --根据住院号查询所有的计算记录，把已结和已冲销的记录进行对冲，得到未冲销的数据
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.DomainServices
                 int sl = Convert.ToInt32(data.Rows[i]["SL"]);
                 if (sl > 0)
                 {
-                    //项目的数量大于0的才显示
+                    //Hạng mục của số lư ợng大于0 của才hiển thị
                     var gr = new GridZyXmYpjfb();
                     gr.ZYH = data.Rows[i]["ZYH"].ToString();
                     gr.SL = data.Rows[i]["SL"].ToString();
@@ -169,12 +169,12 @@ namespace Newtouch.HIS.DomainServices
         }
 
 
-        /// 住院药品计费分组
+        /// Nhập viện thuốc tính phí nhóm 
         /// </summary>
-        /// <param name="zyh">住院编号</param>
-        /// <param name="zxks">执行科室编号</param>
-        /// <param name="xmmc">收费项目</param>
-        /// <param name="yrh">新生儿编号</param>
+        /// <param name="zyh">Số hiệu nhập viện</param>
+        /// <param name="zxks"> thực hiện khoa số hiệu</param>
+        /// <param name="xmmc">Hạng mục thu phí</param>
+        /// <param name="yrh">Số trẻ sơ sinh</param>
         /// <returns></returns>
         public List<GridZyXmYpjfb> GetZyYpjfbGroup(string zyh, string zxks, string xmmc, string yrh)
         {
@@ -242,11 +242,11 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 住院药品计费明细
+        /// Nhập viện thuốc tính phí chi tiết
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xsebh">新生儿编号</param>
-        /// <param name="ypbh">药品编号</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xsebh">Số trẻ sơ sinh</param>
+        /// <param name="ypbh">ThuốcSố hiệu</param>
         /// <returns></returns>
         public List<gridZyXmYpItemsjfb> GetZyYpjfbList(string zyh, string xsebh, string ypCode, string CreateTime)
         {
@@ -292,10 +292,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据药品和项目返回同一实体结构的数据类型
+        /// theo thuốc và hạng mụcquay lại cùng một thực thể结构của dữ liệu loại 
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="type">区分是否为药品</param>
+        /// <param name="type">Quận分có hay không là thuốc</param>
         /// <returns></returns>
         public List<gridZyXmYpItemsjfb> ToModMx(DataTable data, string type)
         {
@@ -324,7 +324,7 @@ namespace Newtouch.HIS.DomainServices
             return resultData;
         }
         /// <summary>
-        /// 住院项目计费明细
+        /// Nhập việnTính phí hạng mụcChi tiết
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="xsebh"></param>
@@ -373,7 +373,7 @@ namespace Newtouch.HIS.DomainServices
             return ToModMx(data, "xm");
         }
         /// <summary>
-        /// 药品退费
+        /// ThuốcHoàn phí
         /// </summary>
         /// <param name="returnDict"></param>
         /// <returns></returns>
@@ -390,7 +390,7 @@ namespace Newtouch.HIS.DomainServices
             {
                 tmpZyYpjfb.cxzyjfbbh = tmpZyYpjfb.jfbbh;
                 tmpZyYpjfb.sl = -1 * returnDict[tmpZyYpjfb.jfbbh.ToString()];
-                tmpZyYpjfb.CreatorCode = OperatorProvider.GetCurrent().UserCode; //获取当前用户工号;
+                tmpZyYpjfb.CreatorCode = OperatorProvider.GetCurrent().UserCode; //Lấykhi trư ớc ngư ời dùng mã nhân viên;
                 tmpZyYpjfb.CreateTime = DateTime.Now;
                 tmpZyYpjfb.jfbbh = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_ypjfb");
                 tmpZyYpjfb.yzzt = "2";
@@ -401,13 +401,13 @@ namespace Newtouch.HIS.DomainServices
             }
             try
             {
-                var db = new EFDbTransaction(this._databaseFactory);    //这怎么开事务了
+                var db = new EFDbTransaction(this._databaseFactory);    // này như thế nào 开 giao dịch 
                 db.Insert(YPList);
                 db.Commit();
             }
             catch (Exception ex)
             {
-                //  AppLogger.Info("报错：" + ex.InnerException);
+                // AppLogger.Info(" báo lỗi:" + ex.InnerException);
                 throw new FailedCodeException("HOSP_REFUNG_FAIL");
             }
             return result;
@@ -415,7 +415,7 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 项目退费
+        /// Hạng mụcHoàn phí
         /// </summary>
         /// <param name="returnDict"></param>
         /// <returns></returns>
@@ -431,7 +431,7 @@ namespace Newtouch.HIS.DomainServices
             {
                 tmpZyXmjfb.cxzyjfbbh = tmpZyXmjfb.jfbbh;
                 tmpZyXmjfb.sl = -1 * returnDict[tmpZyXmjfb.jfbbh.ToString()];
-                tmpZyXmjfb.CreatorCode = OperatorProvider.GetCurrent().UserCode; //获取当前用户工号;
+                tmpZyXmjfb.CreatorCode = OperatorProvider.GetCurrent().UserCode; //Lấykhi trư ớc ngư ời dùng mã nhân viên;
                 tmpZyXmjfb.CreateTime = DateTime.Now;
                 tmpZyXmjfb.jfbbh = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_xmjfb");
                 tmpZyXmjfb.yzzt = "2";
@@ -447,7 +447,7 @@ namespace Newtouch.HIS.DomainServices
             }
             catch (Exception ex)
             {
-                //  AppLogger.Info("报错：" + ex.InnerException);
+                // AppLogger.Info(" báo lỗi:" + ex.InnerException);
                 throw new FailedCodeException("HOSP_REFUNG_FAIL");
             }
             return result;

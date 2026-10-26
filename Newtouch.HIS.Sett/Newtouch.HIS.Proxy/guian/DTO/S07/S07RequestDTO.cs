@@ -8,103 +8,103 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class S07RequestDTO
     {
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 出院日期(yyyy-mm-dd)
+        /// Ngày xuất viện(yyyy-mm-dd)
         /// </summary>
         public string dischargeDate { get; set; }
         /// <summary>
-        /// 出院科室(见字典科室)
+        /// Khoa xuất viện(xem từ điển khoa)
         /// </summary>
         public string dischargeDepartments { get; set; }
         /// <summary>
-        /// 出院状态(见字典入出院状态)
+        /// Xuất viện trạng thái(xem từ điển 入xuất viện trạng thái)
         /// </summary>
         public string dischargeStatus { get; set; }
         /// <summary>
-        /// 农合疾病出院诊断（icd编码）(跨省)
+        /// hợp tác nông thôn bệnh xuất viện chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string icdAllNo { get; set; }
         /// <summary>
-        /// 第二疾病诊断（icd编码）(跨省)
+        /// Thứ二 bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string secondIcdNo { get; set; }
         /// <summary>
-        /// 第三疾病诊断（icd编码）(跨省)
+        /// Thứ ba bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string threeIcdNo { get; set; }
         /// <summary>
-        /// 第四疾病诊断（icd编码）(跨省)
+        /// Thứ bốn bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string fourNo { get; set; }
         /// <summary>
-        /// 第五疾病诊断（icd编码）(跨省)
+        /// Thứ năm bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string fiveNo { get; set; }
         /// <summary>
-        /// 治疗方式编码(跨省)
+        /// điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string treatCode { get; set; }
         /// <summary>
-        /// 第二治疗方式编码(跨省)
+        /// Thứ二 điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string secondTreatCode { get; set; }
         /// <summary>
-        /// 第三治疗方式编码(跨省)
+        /// Thứ ba điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string threeTreatCode { get; set; }
         /// <summary>
-        /// 第四治疗方式编码(跨省)
+        /// Thứ bốn điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string fourTreatCode { get; set; }
         /// <summary>
-        /// 第五治疗方式编码(跨省)
+        /// Thứ năm điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string fiveTreatCode { get; set; }
         /// <summary>
-        /// 转诊类型（0 正常住院 1 县外就医转诊 2 转院）(跨省)
+        /// chuyển tuyến loại (0 bình thư ờng nhập viện 1 huyện ngoài khám chữa bệnh chuyển tuyến 2 chuyển viện)(liên tỉnh)
         /// </summary>
         public string turnMode { get; set; }
         /// <summary>
-        /// 转诊转院编码（县外就医转诊-该值为转诊申请单号；转院-该值为转院住院登记号）(跨省)
+        /// chuyển tuyến chuyển viện mã (huyện ngoài khám chữa bệnh chuyển tuyến - này giá trị là chuyển tuyến xin đ ơn số; chuyển viện - này giá trị là chuyển viện nhập viện登记 số)(liên tỉnh)
         /// </summary>
         public string turnCode { get; set; }
         /// <summary>
-        /// 转院日期( yyyy-mm-dd hh:mm:ss)(跨省)
+        /// chuyển viện ngày (yyyy-mm-dd hh:mm:ss)(liên tỉnh)
         /// </summary>
         public string turnDate { get; set; }
         /// <summary>
-        /// HIS系统中病人总费用(跨省)
+        /// HIShệ thống trong bệnh nhân tổng chi phí(liên tỉnh)
         /// </summary>
         public string hisTotal { get; set; }
         /// <summary>
-        /// 行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
         /// <summary>
-        /// 重大疾病主诊断编码
+        /// bệnh nặng 主chẩn đoán mã 
         /// </summary>
         public string majorDiseaseICD { get; set; }
         /// <summary>
-        /// 重大疾病第二诊断编码
+        /// bệnh nặng thứ二chẩn đoán mã 
         /// </summary>
         public string secondMajorDiseaseICD { get; set; }
         /// <summary>
-        /// 重大疾病第三诊断编码
+        /// bệnh nặng thứ ba chẩn đoán mã 
         /// </summary>
         public string threeMajorDiseaseICD { get; set; }
         /// <summary>
-        /// 重大疾病第四诊断编码
+        /// bệnh nặng thứ bốn chẩn đoán mã 
         /// </summary>
         public string fourMajorDiseaseICD { get; set; }
         /// <summary>
-        /// 重大疾病第五诊断编码
+        /// bệnh nặng thứ năm chẩn đoán mã 
         /// </summary>
         public string fiveMajorDiseaseICD { get; set; }
     }

@@ -6,51 +6,51 @@ namespace Newtouch.HIS.Sett.Request
     public class OrderRequest : RequestBase
     {
         /// <summary>
-        /// 订单号
+        /// đ ơn hàng số 
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// Khám bệnhSố thẻ
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// lần này khám bệnh dấu hiệu ngoại trú:mzh;nhập viện:zyh
         /// </summary>
         public string VisitNo { get; set; }
         /// <summary>
-        /// 订单金额
+        /// đ ơn hàng số tiền
         /// </summary>
         public decimal OrderAmt { get; set; }
         /// <summary>
-        /// 支付方式
+        /// phư ơng thức thanh toán 
         /// </summary>
         public string PayWay { get; set; }
         /// <summary>
-        /// 支付金额
+        /// thanh toán số tiền
         /// </summary>
         public decimal? PayFee { get; set; }
         /// <summary>
-        /// 支付流水号
+        /// thanh toán số thứ tự 
         /// </summary>
         public string PayLsh { get; set; }
         /// <summary>
-        /// 支付者身份信息
+        /// thanh toán 者 thân phận thông tin
         /// </summary>
         public string PayerId { get; set; }
         /// <summary>
-        /// HIS内部结算号
+        /// HIS nội bộ số quyết toán
         /// </summary>
         public string SettTradeNo { get; set; }
         /// <summary>
-        /// 订单支付时间
+        /// đ ơn hàng thanh toán thời gian
         /// </summary>
         public DateTime? PayTime { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType
+        /// đ ơn hàng loại enumOrderType
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// 订单状态 EnumOrderStatus
+        /// đ ơn hàng trạng thái enumOrderStatus
         /// </summary>
         public int? OrderStu { get; set; }
     }

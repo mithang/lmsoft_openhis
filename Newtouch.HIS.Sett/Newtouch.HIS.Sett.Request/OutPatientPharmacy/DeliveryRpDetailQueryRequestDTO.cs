@@ -3,23 +3,23 @@
 namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 发药处方明细查询
+    /// phát thuốc chi tiết đ ơn thuốctra cứu
     /// </summary>
     public class DeliveryRpDetailQueryRequestDto : RequestBase
     {
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// 领药 nhà thuốc 
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string organizeId { get; set; }
     }

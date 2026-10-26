@@ -39,7 +39,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询收费项目模板
+        /// Tra cứu hạng mục thu phí mẫu 
         /// </summary>
         /// <param name="ks"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据收费项目编号获取模板内容
+        /// theo hạng mục thu phí số hiệu lấy mẫu nội dung 
         /// </summary>
         /// <param name="sfxmbh"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ LEFT JOIN NewtouchHIS_Base..V_S_xt_yzpc yzpc ON yzpc.yzpcCode = A.yzpc AND yzpc.
         #region 康复项目记账（由GRS收费项目扩展而来）
 
         /// <summary>
-        /// 根据住院号 查询 记账计划
+        /// theo số nhập viện tra cứu kế hoạch ghi sổ
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
@@ -211,7 +211,7 @@ order by StartDate desc, a.CreateTime desc";
         }
 
         /// <summary>
-        /// 保存住院记账计划
+        /// Lưughi sổ nhập viện kế hoạch 
         /// </summary>
         /// <param name="jzjh"></param>
         /// <param name="jhmxEntityList"></param>
@@ -231,7 +231,7 @@ order by StartDate desc, a.CreateTime desc";
                 {
                     if (jzjhmx.zxzt == (int)EnumJzjhZXZT.None)
                     {
-                        ////从未执行过 del
+                        //// từ chưa thực hiện qua del
                         //db.Delete(jzjhmx);
                         if (string.IsNullOrWhiteSpace(jzjhmx.yzxcs.ToString()) || jzjhmx.yzxcs == 0)
                         {
@@ -245,12 +245,12 @@ order by StartDate desc, a.CreateTime desc";
                             //,new SqlParameter("@jzjhmxId", jzjhmx.jzjhmxId) });
                             foreach (var item in zyjfb)
                             {
-                                item.zt = "0";//无效
+                                item.zt = "0";//Không hiệu lực
                                 item.Modify();
                                 db.Update(item, new List<string> { "zt" });
                             };
                             var zyjzjhmx = db.IQueryable<HospAccountingPlanDetailEntity>().FirstOrDefault(p => p.jzjhmxId == jzjhmx.jzjhmxId && p.zt == "1" && p.OrganizeId == jzjhmx.OrganizeId);
-                            //zyjzjhmx.zt = "0";//无效
+                            //zyjzjhmx.zt = "0";//Không hiệu lực
                             jzjhmx.zxzt = (int)EnumJzjhZXZT.Stopped;
                             zyjzjhmx.Modify();
                             db.Update(zyjzjhmx, new List<string> { "zt", "zxzt" });
@@ -269,7 +269,7 @@ order by StartDate desc, a.CreateTime desc";
         }
 
         /// <summary>
-        /// 获取机构住院病人列表（当前医生、存在未执行记账计划）
+        /// Lấy cơ quan nhập viện bệnh nhândanh sách(khi trư ớc bác sĩ, tồn tại tại chưa thực hiện kế hoạch ghi sổ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -332,7 +332,7 @@ order by StartDate desc, a.CreateTime desc";
         }
 
         /// <summary>
-        /// 获取机构门诊病人列表（当前医生、存在未执行记账计划）
+        /// Lấy cơ quan ngoại trú bệnh nhândanh sách(khi trư ớc bác sĩ, tồn tại tại chưa thực hiện kế hoạch ghi sổ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -400,7 +400,7 @@ order by StartDate desc, a.CreateTime desc";
         }
 
         /// <summary>
-        /// 待执行住院记账计划 查询（仅收费项目，不包含药品）
+        /// chờ thực hiện ghi sổ nhập viện kế hoạch tra cứu(chỉ hạng mục thu phí, không bao gồm thuốc)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyhStr"></param>
@@ -496,7 +496,7 @@ select m.jzjhId,m.jzjhmxId, a.xm patientName, m.yzxz,
         }
 
         /// <summary>
-        /// 待执行门诊记账计划 查询（仅收费项目，不包含药品）
+        /// chờ thực hiện ghi sổ ngoại trú kế hoạch tra cứu(chỉ hạng mục thu phí, không bao gồm thuốc)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="Str"></param>
@@ -586,13 +586,13 @@ ORDER BY gh.ghnm --m.CreateTime");
         }
 
         /// <summary>
-        /// 执行记账计划，生成计费
+        /// thực hiện kế hoạch ghi sổ,tạo tính phí 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zxItem"></param>
         /// <param name="curOprCode"></param>
         /// <param name="curOprDeptCode"></param>
-        /// <param name="zxrq">治疗日期</param>
+        /// <param name="zxrq"> điều trị ngày </param>
         public void ExecuteAccountingPlan(string orgId, IList<zxGirdDto> zxItem, string curOprCode, string curOprDeptCode, DateTime zxrq,out Dictionary<string, string> jfbStr)
         {
             jfbStr = new Dictionary<string, string>();
@@ -624,16 +624,16 @@ ORDER BY gh.ghnm --m.CreateTime");
                                     zxrq >= jzjhmxEntity.StartDate.Date
                                 )
                             {
-                                //另外 zxrq得在日期范围内
-                                //zxzt与实际执行不一致会导致多执行？
-                                if (jzjhmxEntity.yzlx == "1") //1药品
+                                // ngoài ra zxrq得tại ngày phạm vi trong 
+                                //zxzt và thực tế thực hiện không nhất quán sẽ 导致 nhiều thực hiện ？
+                                if (jzjhmxEntity.yzlx == "1") //1Thuốc
                                 {
                                     if (!executeMedicineAccountingPlan(db, jzjhmxEntity, curOprCode, curOprDeptCode, zxrq))
                                     {
                                         continue;
                                     }
                                 }
-                                else if (jzjhmxEntity.yzlx == "2")    //2项目
+                                else if (jzjhmxEntity.yzlx == "2")    //2Hạng mục
                                 {
                                     if (!executeItemAccountingPlan(db, jzjhmxEntity, curOprCode, curOprDeptCode, zxrq, item, out jfbbh))
                                     {
@@ -676,7 +676,7 @@ ORDER BY gh.ghnm --m.CreateTime");
                                 jzjhmxEntity.LastModifierCode = curOprCode;
                                 jzjhmxEntity.LastModifyTime = DateTime.Now;
 
-                                //执行状态
+                                // thực hiện trạng thái
 
                                 db.Update(jzjhmxEntity);
                                 needCommit = true;
@@ -700,15 +700,15 @@ ORDER BY gh.ghnm --m.CreateTime");
                     {
                         _hospdrugbillingRepo.Updatezy_brxxexpand(orgId, zyh);
                     }
-                    //否则没必要Commit
+                    //Nếu không không 必 cần Commit
                 }
             }
 
-            //更新病人医保使用次数
+            //Cập nhật bệnh nhânBHYTsử dụng số lần 
         }
 
         /// <summary>
-        /// 执行门诊记账计划
+        /// thực hiện ghi sổ ngoại trú kế hoạch 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mxIdList"></param>
@@ -737,9 +737,9 @@ ORDER BY gh.ghnm --m.CreateTime");
                                     zxrq >= jzjhmxEntity.StartDate.Value.Date
                                 )
                             {
-                                //另外 zxrq得在日期范围内
-                                //zxzt与实际执行不一致会导致多执行？
-                                //仅项目
+                                // ngoài ra zxrq得tại ngày phạm vi trong 
+                                //zxzt và thực tế thực hiện không nhất quán sẽ 导致 nhiều thực hiện ？
+                                // chỉ hạng mục
                                 if (!executeItemOutAccountingPlan(db, jzjhmxEntity, curOprCode, curOprDeptCode, zxrq, item))
                                 {
                                     continue;
@@ -764,17 +764,17 @@ ORDER BY gh.ghnm --m.CreateTime");
                     {
                         db.Commit();
                     }
-                    //否则没必要Commit
+                    //Nếu không không 必 cần Commit
                 }
             }
 
-            //医保备案 更新剩余次数
+            //BHYT备案 cập nhật còn lại số lần 
         }
 
         /// <summary>
-        /// 停止 记账计划
+        /// dừng kế hoạch ghi sổ
         /// </summary>
-        /// <param name="mxIdList">jzjhmxId列表</param>
+        /// <param name="mxIdList">jzjhmxIdDanh sách</param>
         /// <param name="stopDate"></param>
         /// <param name="curOprDeptCode"></param>
         /// <param name="curOprCode"></param>
@@ -786,7 +786,7 @@ ORDER BY gh.ghnm --m.CreateTime");
                 foreach (var mx in mxList)
                 {
                     if (mx.zxzt == (int)EnumJzjhZXZT.None || mx.zxzt == (int)EnumJzjhZXZT.Part)
-                    //未执行、执行部分的 才能 停止
+                    //Chưa thực hiện, thực hiện một phần của 才 có thể dừng 
                     {
                         mx.LastModifierCode = curOprCode;
                         mx.LastModifyTime = DateTime.Now;
@@ -800,7 +800,7 @@ ORDER BY gh.ghnm --m.CreateTime");
                         }
                         else
                         {
-                            continue;   //表单提交错误，提交了今天之前的日期
+                            continue;   // biểu mẫu gửi lỗi,gửi 今ngày trư ớc đ ó của ngày 
                         }
                         db.Update(mx);
                     }
@@ -810,9 +810,9 @@ ORDER BY gh.ghnm --m.CreateTime");
         }
 
         /// <summary>
-        /// 取消预停止
+        /// Hủy预 dừng 
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         public void CancelPreStopAccountingPlan(IList<string> mxIdList, string curOprCode, string curOprDeptCode)
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
@@ -837,7 +837,7 @@ ORDER BY gh.ghnm --m.CreateTime");
         #region 记账查询
 
         /// <summary>
-        /// 执行查询
+        /// thực hiện tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -944,12 +944,12 @@ and xmjf.OrganizeId = @orgId and jzjhmx.zt = '1' AND xx.zt = '1'");
             {
                 if (sfzt == "1")
                 {
-                    //已收费   //应该同时是有效记录
+                    //Đ ãthu phí //NênĐ ồng thời là hiệu lực bản ghi 
                     strSql.Append(" and xmjf.zt = '1' AND zyhjsjsrq.jsjsrq is not null and zyhjsjsrq.jsjsrq >= xmjf.CreateTime");
                 }
                 else
                 {
-                    //未收费
+                    //Chưa thu phí
                     strSql.Append(" AND (xmjf.zt = '0' or zyhjsjsrq.jsjsrq is null or zyhjsjsrq.jsjsrq < xmjf.CreateTime)");
                 }
             }
@@ -959,7 +959,7 @@ and xmjf.OrganizeId = @orgId and jzjhmx.zt = '1' AND xx.zt = '1'");
         }
 
         /// <summary>
-        /// 门诊计划执行查询
+        /// Ngoại trú kế hoạch thực hiện tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -1071,7 +1071,7 @@ WHERE zx.OrganizeId=@orgId and xx.zt='1'");
 
         #region 记账查询
         /// <summary>
-        /// 记账计划查询
+        /// Kế hoạch ghi sổ tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -1150,7 +1150,7 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' AND xx.zt = '1'
         }
 
         /// <summary>
-        /// 根据住院号 获取所有计费（项目/药品）总金额
+        /// theo số nhập viện lấy tất cả các tính phí (hạng mục/Thuốc)tổng số tiền
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -1171,7 +1171,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 查询记账计划执行详情
+        /// Tra cứu kế hoạch ghi sổ thực hiện chi tiết
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -1265,7 +1265,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 查询记账计划执行详情
+        /// Tra cứu kế hoạch ghi sổ thực hiện chi tiết
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -1363,7 +1363,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
 
         #region 记账计划相关业务逻辑
         /// <summary>
-        /// 保存住院计费
+        /// Lưu nhập viện tính phí 
         /// </summary>
         public void SaveInpatientAccounting(string zyh, IList<InpatientAccountingItemDto> xmList, string orgId, string curUserCode)
         {
@@ -1379,19 +1379,19 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             var drugBillingEntityList = new List<HospDrugBillingEntity>();
             var itemBillingEntityList = new List<HospItemBillingEntity>();
 
-            //要更新至 已确认
+            // cần cập nhật至 Đ ãxác nhận
             var updateToConfirmItemOuterIdList = new List<string>();
 
             var brjbxx = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.zyh == zyh).FirstOrDefault();
 
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //同一次提交
+                // cùng một lần gửi
                 foreach (var item in xmList)
                 {
                     //if (!item.ysList.Any(p => p.gh == this.UserIdentity.rygh))
                     //{
-                    //    throw new FailedException("只能记账参与治疗的项目");
+                    // throw new FailedException(" chỉ có thể ghi sổ参và điều trị của hạng mục");
                     //}
 
                     string ys = null;
@@ -1399,10 +1399,10 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                     string ks = null;
                     string ksmc = null;
                     getYsKsInfo(item.ysList, ref ys, ref ysmc, ref ks, ref ksmc);
-                    //新增记录
+                    //Thêm mới bản ghi 
                     if (item.yzlx == "1")
                     {
-                        //药品
+                        //Thuốc
                         var jfEntity = new HospDrugBillingEntity()
                         {
                             jfbbh = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_ypjfb"),
@@ -1428,7 +1428,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                     }
                     else
                     {
-                        //收费项目
+                        //Hạng mục thu phí
                         var jfEntity = new HospItemBillingEntity()
                         {
                             jfbbh = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_xmjfb"),
@@ -1460,7 +1460,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                             var syncItem = db.IQueryable<SyncTreatmentServiceRecordEntity>(p => p.zt == "1" && item.outerId == p.outerId && p.siteId == orgId).FirstOrDefault();
                             if (syncItem != null)
                             {
-                                //更新 确认标志
+                                //Cập nhật xác nhận dấu hiệu 
                                 if (string.IsNullOrEmpty(syncItem.clr))
                                 {
                                     syncItem.cxclbz = false;
@@ -1486,7 +1486,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
 
             foreach (var date in xmList.Select(p => p.tdrq.Date).Distinct())
             {
-                //更新病人医保使用次数
+                //Cập nhật bệnh nhânBHYTsử dụng số lần 
                 this.ExecuteSqlCommand("exec sp_ybba_gxsycs_zyhStr @orgId, @zyhStr, @date", new[] {
                         new SqlParameter("@orgId", orgId)
                         ,new SqlParameter("@zyhStr", zyh)
@@ -1498,7 +1498,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 撤销执行入库
+        /// hủy bỏ thực hiện 入 kho 
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="zxbh"></param>
@@ -1547,7 +1547,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 更改执行的治疗师和执行时间
+        /// Sửa thực hiện của chuyên viên trị liệu và thực hiện thời gian
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="zxbh"></param>
@@ -1575,7 +1575,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
 
 
         /// <summary>
-        /// 更改门诊执行的治疗师和执行时间
+        /// Sửa ngoại trú thực hiện của chuyên viên trị liệu và thực hiện thời gian
         /// </summary>
         /// <param name="db"></param>
         /// <param name="zxItem"></param>
@@ -1591,7 +1591,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 更改住院执行的治疗师和执行时间
+        /// Sửa nhập viện thực hiện của chuyên viên trị liệu và thực hiện thời gian
         /// </summary>
         /// <param name="db"></param>
         /// <param name="zxItem"></param>
@@ -1608,7 +1608,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 停止门诊临时记账计划
+        /// dừng ngoại trú tạm thời kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -1618,15 +1618,15 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             xmitem.zt = "0";
             xmitem.Modify();
             db.Update(xmitem, new List<string> { "zt" });
-            //2.结算明细
+            //2.Chi tiết quyết toán
             var jsmxitem = db.IQueryable<OutpatientSettlementDetailEntity>(p => p.mxnm == xmitem.xmnm && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             jsmxitem.zt = "0";
             db.Update(jsmxitem, new List<string> { "zt" });
-            //2.结算明细
+            //2.Chi tiết quyết toán
             var js = db.IQueryable<OutpatientSettlementEntity>(p => p.jsnm == jsmxitem.jsnm && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             js.zt = "0";
             db.Update(js, new List<string> { "zt" });
-            //3.更新mz_jzjhmx
+            //3.Cập nhậtmz_jzjhmx
             var jzjhmx = db.IQueryable<OutpatientAccountDetailEntity>(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             jzjhmx.zxzt = (int)EnumJzjhZXZT.Stopped;
             jzjhmx.yzxcs = 0;
@@ -1634,13 +1634,13 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 停止门诊长期记账计划
+        /// dừng ngoại trú dài hạn kế hoạch ghi sổ
         /// </summary>
         /// <param name="zxbh"></param>
         /// <param name="orgId"></param>
         private void StopOutpatientLongPlan(Infrastructure.EF.EFDbTransaction db, string jzjhmxId, string zxbh, string orgId)
         {
-            //1.执行表
+            //1. thực hiện bảng 
             var zxitem = db.IQueryable<OutpatientItemExeEntity>(p => p.Id == zxbh && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             if (zxitem == null)
             {
@@ -1649,14 +1649,14 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             zxitem.zt = "0";
             zxitem.Modify();
             db.Update(zxitem, new List<string> { "zt" });
-            //2.更新mz_jzjhmx
+            //2.Cập nhậtmz_jzjhmx
             var jzjhmx = db.IQueryable<OutpatientAccountDetailEntity>(p => p.jzjhmxId == zxitem.jzjhmxId && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             var oldzxzt = jzjhmx.zxzt;
             if (jzjhmx.yzxcs > 0)
             {
                 jzjhmx.yzxcs = jzjhmx.yzxcs - 1;
-                //180801已停止的也能撤销执行明细    //暂不可能已完成
-                //181015已完成的也能撤销执行明细
+                //180801Đ ã dừng của cũng có thể hủy bỏ thực hiện chi tiết // tạm thời không có thể đã hoàn thành 
+                //181015Đ ã hoàn thành của cũng có thể hủy bỏ thực hiện chi tiết
                 if (!(jzjhmx.zxzt == (int)EnumJzjhZXZT.Stopped))
                 {
                     if (jzjhmx.yzxcs == 0)
@@ -1670,13 +1670,13 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                 }
             }
             db.Update(jzjhmx, new List<string> { "yzxcs", "zxzt" });
-            //3更新门诊项目的执行ssbz
+            //3 cập nhật hạng mục ngoại trú của thực hiện ssbz
             if (oldzxzt == (int)EnumJzjhZXZT.Finished)
             {
                 var mzxmEntity = db.IQueryable<OutpatientItemEntity>(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
                 if (mzxmEntity != null)
                 {
-                    mzxmEntity.ssbz = "9";  //实施过程中 这样 不可退费
+                    mzxmEntity.ssbz = "9";  //Thực hiện quá trình trong như vậy không có thể hoàn phí
                     mzxmEntity.Modify();
                     db.Update(mzxmEntity, new List<string> { "ssbz" });
                 }
@@ -1684,24 +1684,24 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 撤销执行
+        /// hủy bỏ thực hiện 
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
         private void StopInpatientLongPlan(Infrastructure.EF.EFDbTransaction db, int zxbh, string orgId)
         {
-            //1.计费表
+            //1. bảng tính phí 
             var xmitem = db.IQueryable<HospItemBillingEntity>(p => p.jfbbh == zxbh && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             xmitem.zt = "0";
             xmitem.Modify();
             db.Update(xmitem, new List<string> { "zt" });
-            //2.更新zy_jzjhmx
+            //2.Cập nhậtzy_jzjhmx
             var jzjhmx = db.IQueryable<HospAccountingPlanDetailEntity>(p => p.jzjhmxId == xmitem.jzjhmxId && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             if (jzjhmx.yzxcs > 0)
             {
                 jzjhmx.yzxcs = jzjhmx.yzxcs - 1;
-                //180801已停止的也能撤销执行明细    //暂不可能已完成
-                //181015已完成的也能撤销执行明细
+                //180801Đ ã dừng của cũng có thể hủy bỏ thực hiện chi tiết // tạm thời không có thể đã hoàn thành 
+                //181015Đ ã hoàn thành của cũng có thể hủy bỏ thực hiện chi tiết
                 if (!(jzjhmx.zxzt == (int)EnumJzjhZXZT.Stopped))
                 {
                     if (jzjhmx.yzxcs == 0)
@@ -1718,7 +1718,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 停止住院临时记账计划
+        /// dừng nhập viện tạm thời kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -1729,16 +1729,16 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             xmitem.zt = "0";
             xmitem.Modify();
             db.Update(xmitem, new List<string> { "zt" });
-            ////2.结算明细
+            ////2.Chi tiết quyết toán
             //var jsmxitem = db.IQueryable<OutpatientSettlementDetailEntity>(p => p.mxnm == xmitem.jfbbh && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             //jsmxitem.zt = "0";
             //jsnm = jsmxitem.jsnm;
             //db.Update(jsmxitem, new List<string> { "zt" });
-            ////3.结算表
+            ////3.Quyết toán bảng 
             //var js = db.IQueryable<OutpatientSettlementEntity>(p => p.jsnm == jsnm && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             //js.zt = "0";
             //db.Update(js, new List<string> { "zt" });
-            //4.更新zy_jzjhmx
+            //4.Cập nhậtzy_jzjhmx
             var jzjhmx = db.IQueryable<HospAccountingPlanDetailEntity>(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
             jzjhmx.zxzt = (int)EnumJzjhZXZT.Stopped;
             jzjhmx.yzxcs = 0;
@@ -1749,7 +1749,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         #region private methods
 
         /// <summary>
-        /// 执行药品记账计划
+        /// thực hiện thuốc kế hoạch ghi sổ
         /// </summary>
         /// <param name="db"></param>
         /// <param name="mx"></param>
@@ -1758,12 +1758,12 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         /// <param name="zxrq"></param>
         private bool executeMedicineAccountingPlan(Newtouch.Infrastructure.EF.EFDbTransaction db, HospAccountingPlanDetailEntity mx, string curOprCode, string curOprDeptCode, DateTime zxrq)
         {
-            //对应药品
+            //Tư ơng ứng thuốc
             if (this.FirstOrDefault<int>(@"select 1 from zy_ypjfb(nolock) where jzjhmxId = @jzjhmxId 
-                   and tdrq >= @zxrq and tdrq < DATEADD(DAY,1,@zxrq)"   //sql比较日期部分
+                   and tdrq >= @zxrq and tdrq < DATEADD(DAY,1,@zxrq)"   //sql比较 ngày một phần
                 , new[] { new SqlParameter("@jzjhmxId", mx.jzjhmxId), new SqlParameter("@zxrq", zxrq.Date) }) > 0)
             {
-                return false;   //同一天 重复执行了
+                return false;   // cùng một ngày trùng lặp thực hiện 
             }
 
             var ypSql = "select * from [NewtouchHIS_Base]..V_C_xt_yp(nolock) where ypCode = @ypCode and OrganizeId = @orgId";
@@ -1771,11 +1771,11 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                                 , new SqlParameter("@orgId", mx.OrganizeId) });
             if (!yp.zycls.HasValue)
             {
-                return false;   //这个药品有问题，没有住院拆零数
+                return false;   // này thuốc có问题, không có nhập viện拆零数
             }
             var brjbxx = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == mx.zyh).FirstOrDefault();
-            //在时间范围内
-            //执行该计划 生成新的计费项目
+            //Tại thời gian phạm vi trong 
+            // thực hiện này kế hoạch tạo mới của tính phí hạng mục
             var jfEntity = new HospDrugBillingEntity()
             {
                 jfbbh = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_ypjfb"),
@@ -1785,7 +1785,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                 yp = mx.sfxmCode,
                 bzdm = yp.ypbzdm,
                 dl = yp.dlCode,
-                cls = (short)yp.zycls.Value, //住院拆零数
+                cls = (short)yp.zycls.Value, //Nhập viện拆零数
                 ys = mx.ys,
                 ysmc = mx.ysmc,
                 ks = mx.ks,
@@ -1799,7 +1799,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                 zfxz = yp.zfxz,
                 zxks = curOprDeptCode,
                 yzxz = mx.yzxz,
-                yzzt = "1", //未撤销
+                yzzt = "1", //Chưa hủy bỏ 
                 ybbm = yp.ybdm,
                 kflb = mx.kflb,
                 yzwym = mx.yzId
@@ -1811,7 +1811,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 执行治疗项目记账计划
+        /// thực hiện hạng mục điều trị kế hoạch ghi sổ
         /// </summary>
         /// <param name="db"></param>
         /// <param name="jzjhmxEntity"></param>
@@ -1827,19 +1827,19 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             var dcsl = 0;
             if (sfxm != null)
             {
-                //单次数量
+                // mỗi lần số lư ợng
                 dcsl = CommmHelper.CalcSfxmSl(jzjhmxEntity.zll, sfxm.dwjls, sfxm.jjcl);
             }
             if (dcsl < 0)
             {
                 jfbbh = null;
-                return false;   //计费失败
+                return false;   // tính phí thất bại
             }
-            //病区中 待结账
+            //Khu bệnh trong chờ thanh toán
             var zybzArr = new string[] { ((int)EnumZYBZ.Bqz).ToString(), ((int)EnumZYBZ.Djz).ToString() }.ToList();
             var brjbxx = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == jzjhmxEntity.zyh && zybzArr.Contains(p.zybz)).FirstOrDefault();
-            //在时间范围内
-            //执行该计划 生成新的计费项目
+            //Tại thời gian phạm vi trong 
+            // thực hiện này kế hoạch tạo mới của tính phí hạng mục
             var jfEntity = new HospItemBillingEntity()
             {
                 jfbbh = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_xmjfb"),
@@ -1859,11 +1859,11 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                 jfdw = sfxm.dw,
                 zfbl = sfxm.zfbl,
                 zfxz = sfxm.zfxz,
-                ssbz = "1",   //已实施
+                ssbz = "1",   //Đ ãthực hiện
                 ssrq = zxrq,
                 zxks = curOprDeptCode,
                 yzxz = jzjhmxEntity.yzxz,
-                yzzt = "1", //未撤销
+                yzzt = "1", //Chưa hủy bỏ 
                 ybbm = sfxm.ybdm,
                 jzjhmxId = jzjhmxEntity.jzjhmxId,
                 kflb = zxItem.kflb,
@@ -1878,7 +1878,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 执行治疗门诊项目记账计划
+        /// thực hiện điều trị hạng mục ngoại trú kế hoạch ghi sổ
         /// </summary>
         /// <param name="db"></param>
         /// <param name="jzjhmxEntity"></param>
@@ -1889,7 +1889,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         /// <returns></returns>
         private bool executeItemOutAccountingPlan(Infrastructure.EF.EFDbTransaction db, OutpatientAccountDetailEntity jzjhmxEntity, string curOprCode, string curOprDeptCode, DateTime zxrq, zxGirdDto zxItem)
         {
-            //对应项目
+            //Tư ơng ứng hạng mục
             var xmsql = @"SELECT  *
                         FROM mz_xm(nolock) xm
                         WHERE   xm.OrganizeId = @orgId
@@ -1898,12 +1898,12 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                                 , new SqlParameter("@orgId", jzjhmxEntity.OrganizeId) });
             if (mzxm == null)
             {
-                return false;   //不存在记账计划项目信息
+                return false;   // không tồn tại tại kế hoạch ghi sổ hạng mục thông tin
             }
             var sfxmSql = "select * from [NewtouchHIS_Base]..V_S_xt_sfxm(nolock) where sfxmCode = @sfxmCode and OrganizeId = @orgId";
             var sfxm = db.FirstOrDefault<SysChargeItemVEntity>(sfxmSql, new[] { new SqlParameter("@sfxmCode", jzjhmxEntity.sfxmCode)
                                 , new SqlParameter("@orgId", jzjhmxEntity.OrganizeId) });
-            //执行该计划 生成新的计费项目
+            // thực hiện này kế hoạch tạo mới của tính phí hạng mục
             var jfEntity = new OutpatientItemExeEntity()
             {
                 Id = Guid.NewGuid().ToString(),
@@ -1953,7 +1953,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         #region 住院记账，和门诊记账同个页面版本
 
         /// <summary>
-        /// 更新住院计划 剩余次数，同时停止需要停止的计划
+        /// Cập nhật nhập viện kế hoạch còn lại số lần,Đ ồng thời dừng cần dừng của kế hoạch 
         /// </summary>
         /// <param name="db"></param>
         /// <param name="orgId"></param>
@@ -1973,10 +1973,10 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             {
                 foreach (var jzjhmxId in jzjhmxIdList)
                 {
-                    //更新zy_jzjhmx
+                    //Cập nhậtzy_jzjhmx
                     var jzjhmxEntity = db.IQueryable<HospAccountingPlanDetailEntity>(p => p.jzjhmxId == jzjhmxId && p.OrganizeId == orgId && p.zt == "1").FirstOrDefault();
                     string yzxcssql = "";
-                    if (jzjhmxEntity.yzlx == "1") //1药品
+                    if (jzjhmxEntity.yzlx == "1") //1Thuốc
                     {
                         yzxcssql = @"SELECT  COUNT(*)
                         FROM dbo.zy_ypjfb(nolock)
@@ -2019,8 +2019,8 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
                         {
                             jzjhmxEntity.zxzt = (int)EnumJzjhZXZT.None;
                         }
-                        //长期必须手动停止  
-                        //这里暂不做每天执行最大次数的判断
+                        // dài hạn phải thủ công dừng 
+                        // tại đ ây tạm thời không 做 mỗi ngày thực hiện lớn nhất số lần của phán đoán 
                     }
                     jzjhmxEntity.Modify();
                     db.Update(jzjhmxEntity, dstnFieldNameList);
@@ -2030,7 +2030,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 更新门诊剩余记账次数，判断是否需要停止计划
+        /// Cập nhật ngoại trú còn lại ghi sổ số lần, phán đoán có hay không cần dừng kế hoạch 
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -2040,7 +2040,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
             bool Istop = false;
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //更新zy_jzjhmx
+                //Cập nhậtzy_jzjhmx
                 var jzjhmx = db.IQueryable<OutpatientAccountDetailEntity>().FirstOrDefault(p => p.jzjhmxId == jzjhmxId && p.OrganizeId == orgId && p.zt == "1");
                 string yzxcssql = @"SELECT  COUNT(*)
                                         FROM [dbo].[mz_jzjhmxzx]
@@ -2071,7 +2071,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         }
 
         /// <summary>
-        /// 已执行的康复项目同步到秦皇岛中间库
+        /// Đ ã thực hiện của hạng mục phục h ồiĐ ồng bộ đ ến Tần Hoàng Đ ảo kho trung gian 
         /// </summary>
         /// <param name="jfbStr"></param>
         /// <param name="orgId"></param>
@@ -2095,7 +2095,7 @@ where (@zyh = '' or zyh = @zyh) and OrganizeId = @orgId and zt = '1'
         #region 费用结算 出院结算
 
         /// <summary>
-        /// 获取最后一次结算 结束结算日期
+        /// Lấy nhất sau một lần quyết toán kết thúc ngày quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -2119,7 +2119,7 @@ and jsnm not in(
         }
 
         /// <summary>
-        /// 根据住院号 获取时间段内的 项目计费明细（考虑退费的）
+        /// theo số nhập viện lấy thời gian đoạn trong của tính phí hạng mụcchi tiết(xem xét hoàn phí của)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -2170,7 +2170,7 @@ and xmjf.CreateTime <= @endTime";
         }
 
         /// <summary>
-        /// 根据住院号 获取时间段内的 项目药品计费明细（考虑退费的）
+        /// theo số nhập viện lấy thời gian đoạn trong của hạng mục thuốc tính phí chi tiết(xem xét hoàn phí của)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -2201,11 +2201,11 @@ and aaa.tdrq <= @endTime";
 
 
         /// <summary>
-        /// 中途结算
+        /// Quyết toán giữa chừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
-        /// <param name="startTime">调用之前请明确开始日期</param>
+        /// <param name="startTime"> gọi trư ớc đ ó vui lòng明确ngày bắt đ ầu</param>
         /// <param name="endTime"></param>
         /// <param name="expectedCount"></param>
         public void MidwaySettlement(string zyh, string orgId, DateTime startTime, DateTime endTime, int? expectedCount = null)
@@ -2214,7 +2214,7 @@ and aaa.tdrq <= @endTime";
             {
                 var zybrInfo = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1").FirstOrDefault();
 
-                //计费项目
+                // tính phí hạng mục
                 var xmjfEntityList = _hospItemBillingRepo.GetItemFeeEntityListByTime(zyh, orgId, startTime, endTime, db.IQueryable<HospItemBillingEntity>());
 
                 if (expectedCount.HasValue && expectedCount.Value != xmjfEntityList.Count)
@@ -2253,8 +2253,8 @@ and aaa.tdrq <= @endTime";
                     brxz = zybrInfo.brxz,
                     zyts = DateTimeHelper.GetInHospDays(zybrInfo.ryrq, endTime),
                     zje = newJsmxList.Select(p => p.jyje.Value).Sum(),
-                    jszt = "1", //已结
-                    jsxz = "2", //中途结算
+                    jszt = "1", //Đ ã quyết toán
+                    jsxz = "2", //Quyết toán giữa chừng
                     jsksrq = startTime,
                     jsjsrq = endTime,
                 };
@@ -2270,7 +2270,7 @@ and aaa.tdrq <= @endTime";
         }
 
         /// <summary>
-        /// 撤销最后一次中途结算
+        /// hủy bỏ nhất sau một lần quyết toán giữa chừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -2278,10 +2278,10 @@ and aaa.tdrq <= @endTime";
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //1.先查出所有撤销的记录
+                //1. trư ớc tra cứu 出 tất cả các hủy bỏ của bản ghi 
                 var cxztjsList = db.IQueryable<HospSettlementEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.jszt == "2").Select(p => p.cxjsnm);
-                //已产生的 结算列表 jszt 1已结 且 为被撤销
-                //已排序 最新的有效结算 排在最前
+                //Đ ã产生của danh sách quyết toán jszt 1Đ ã quyết toán và là đ ược hủy bỏ 
+                //Đ ã sắp xếp mới nhất của hiệu lực quyết toán xếp tại nhất trư ớc 
                 var ztjsList = db.IQueryable<HospSettlementEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.jszt == "1" && !cxztjsList.Contains(p.jsnm)).OrderByDescending(p => p.CreateTime).ToList();
 
                 if (ztjsList.Count > 0 && ztjsList[0].jsxz == "1")
@@ -2292,13 +2292,13 @@ and aaa.tdrq <= @endTime";
                 {
                     throw new FailedException("暂无历史结算，操作失败");
                 }
-                //撤销结算内码
+                // hủy bỏ mã nội bộ quyết toán
                 var csjsnm = ztjsList[0].jsnm;
-                //结算明细
+                //Chi tiết quyết toán
                 var cxjsmnList = db.IQueryable<HospSettlementDetailEntity>(p => p.jsnm == csjsnm && p.zt == "1").ToList();
 
                 var newjsnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_js");
-                //3.中途结算
+                //3.Quyết toán giữa chừng
                 var jsItem = new HospSettlementEntity()
                 {
                     jsnm = newjsnm,
@@ -2307,8 +2307,8 @@ and aaa.tdrq <= @endTime";
                     brxz = ztjsList[0].brxz,
                     zyts = ztjsList[0].zyts,
                     zje = ztjsList[0].zje,
-                    jszt = "2", //1已结 2已退
-                    jsxz = "2", //1出院结算 2中途
+                    jszt = "2", //1Đ ã quyết toán 2Đ ã hoàn
+                    jsxz = "2", //1 quyết toán xuất viện 2 trong 途
                     jsksrq = ztjsList[0].jsksrq,
                     jsjsrq = ztjsList[0].jsjsrq,
                     cxjsnm = csjsnm,
@@ -2320,7 +2320,7 @@ and aaa.tdrq <= @endTime";
                 jsItem.xjzffs = zffs1;
                 jsItem.Create();
                 db.Insert(jsItem);
-                //结算明细
+                //Chi tiết quyết toán
                 foreach (var mx in cxjsmnList)
                 {
                     var jsmxItem = new HospSettlementDetailEntity()
@@ -2344,7 +2344,7 @@ and aaa.tdrq <= @endTime";
         }
 
         /// <summary>
-        /// 出院结算
+        /// Quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -2353,19 +2353,19 @@ and aaa.tdrq <= @endTime";
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //1.先查出所有撤销的记录
+                //1. trư ớc tra cứu 出 tất cả các hủy bỏ của bản ghi 
                 var cxztjsList = db.IQueryable<HospSettlementEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.jszt == "2").Select(p => p.cxjsnm);
-                //已产生的 结算列表 jszt 1已结 且 为被撤销
-                //已排序 最新的有效结算 排在最前
+                //Đ ã产生của danh sách quyết toán jszt 1Đ ã quyết toán và là đ ược hủy bỏ 
+                //Đ ã sắp xếp mới nhất của hiệu lực quyết toán xếp tại nhất trư ớc 
                 var ztjsList = db.IQueryable<HospSettlementEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.jszt == "1" && !cxztjsList.Contains(p.jsnm)).OrderByDescending(p => p.CreateTime).ToList();
-                //jsxz 1 出院结算
+                //jsxz 1 Quyết toán xuất viện
                 if (ztjsList.Count > 0 && ztjsList[0].jsxz == "1")
                 {
-                    throw new FailedException("重复出院");  //应该肯定是中途结算
+                    throw new FailedException("重复出院");  //Nên肯定là quyết toán giữa chừng
                 }
-                //住院病人信息
+                //Thông tin bệnh nhân nhập viện
                 var zybrInfo = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1").FirstOrDefault();
-                //2.未结明细 计费项目
+                //2.Chưa结chi tiết tính phí hạng mục
                 var stTime = ztjsList.Select(t => t.jsjsrq).Max() ?? zybrInfo.ryrq;
                 var cyrqTime = (cyrq.Date == DateTime.Now.Date ? DateTime.Now : cyrq.AddDays(1).AddMilliseconds(-1));
 
@@ -2390,7 +2390,7 @@ and aaa.tdrq <= @endTime";
                     newJsmxList.Add(jsmxItem);
                 }
 
-                //3.出院结算
+                //3.Quyết toán xuất viện
                 var jsItem = new HospSettlementEntity()
                 {
                     jsnm = newjsnm,
@@ -2399,9 +2399,9 @@ and aaa.tdrq <= @endTime";
                     brxz = zybrInfo.brxz,
                     zyts = DateTimeHelper.GetInHospDays(zybrInfo.ryrq, cyrqTime),
                     zje = ztjsList.Select(p => p.zje).Sum() + newJsmxList.Select(p => p.jyje.Value).Sum(),
-                    jszt = "1", //已结
-                    jsxz = "1", //1出院结算
-                    jsksrq = stTime,    //第一次结算的日期（默认会入院日期）
+                    jszt = "1", //Đ ã quyết toán
+                    jsxz = "1", //1Quyết toán xuất viện
+                    jsksrq = stTime,    //Thứ một lần quyết toán của ngày (mặc đ ịnh sẽ ngày nhập viện)
                     jsjsrq = cyrqTime,
                 };
                 jsItem.zlfy = jsItem.zje;
@@ -2440,7 +2440,7 @@ and jsnm not in(
 
         #region 住院记账业务
         /// <summary>
-        /// 根据项目编号获取自负性质
+        /// theo hạng mục số hiệu lấy tính chất tự trả
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="orgId"></param>
@@ -2453,7 +2453,7 @@ and jsnm not in(
            
         }
         /// <summary>
-        /// 物资耗材库存验证
+        /// 物资耗材 kho tồn tại xác minh
         /// </summary>
         /// <param name="jfbhs"></param>
         /// <returns></returns>
@@ -2469,7 +2469,7 @@ group by ks,productCode";
         }
 
         /// <summary>
-        /// 住院记账-项目、物资耗材、药品计费
+        /// Ghi sổ nhập viện-hạng mục, 物资耗材, thuốc tính phí 
         /// </summary>
         /// <param name="xmjfbEntitylist"></param>
         /// <param name="ypjfbEntitylist"></param>

@@ -9,7 +9,7 @@ using Newtouch.HIS.Sett.Request;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 结算系统内部通用接口
+    /// Quyết toán hệ thống nội bộ chunggiao diện
     /// </summary>
     [RoutePrefix("api/InsideGeneral")]
     public class InsideGeneralController : ApiControllerBase<InsideGeneralController>
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// mq调用入口
+        /// mq gọi 入口
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

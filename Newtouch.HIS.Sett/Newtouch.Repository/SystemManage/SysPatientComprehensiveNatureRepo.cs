@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据主病人性质 获取 所有
+        /// theo 主tính chất bệnh nhân lấy tất cả các 
         /// </summary>
         /// <param name="zbrxz"></param>
         /// <returns></returns>

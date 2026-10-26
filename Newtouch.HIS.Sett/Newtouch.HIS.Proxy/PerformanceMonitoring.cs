@@ -6,12 +6,12 @@ using Newtouch.HIS.Proxy.Log;
 namespace Newtouch.HIS.Proxy
 {
     /// <summary>
-    /// 方法运行监控
+    /// Phư ơng thức运 dòng 监控
     /// </summary>
     public class PerformanceMonitoring
     {
         /// <summary>
-        /// 代码运行时间
+        /// Mã运 dòng thời gian
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -22,16 +22,16 @@ namespace Newtouch.HIS.Proxy
         public static dynamic Running<T>(Func<T> missingHandler, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            //  开始监视代码运行时间
+            // Bắt đ ầu监视mã运 dòng thời gian
             stopwatch.Start();
 
-            //代码主体
+            //Mã主体
             dynamic value = missingHandler.Invoke();
 
-            //  停止监视
+            // dừng 监视
             stopwatch.Stop();
             ;
-            //记录日志
+            // bản ghi nhật ký 
             LogCore.Info(string.Format("Title:{0};\n message:{1} 方法耗时-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);
             return value;
         }

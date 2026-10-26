@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
     public class WaitingDispenseMedicineDetailListRequest : RequestBase
     {
         /// <summary>
-        /// 门诊排药处方明细查询
+        /// Ngoại trú xếp thuốc chi tiết đ ơn thuốctra cứu
         /// </summary>
         [Required]
         public string cfh { get; set; }

@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return identity.Account;
         }
         /// <summary>
-        /// 查询订单
+        /// Tra cứu đ ơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CommonExecute(ac, request);
         }
         /// <summary>
-        /// 查询订单明细
+        /// Tra cứu đ ơn hàng chi tiết
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CommonExecute(ac, request);
         }
         /// <summary>
-        /// 创建订单
+        /// tạo đ ơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CommonExecute(ac, request);
         }
         /// <summary>
-        /// 申请锁定订单
+        /// xin khóa đ ơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -219,7 +219,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CommonExecute(ac, request);
         }
         /// <summary>
-        /// 申请延时锁定订单
+        /// xin 延giờ khóa đ ơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -255,7 +255,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 订单支付(自费)
+        /// đ ơn hàng thanh toán (tự trả)
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -297,11 +297,11 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 IList<int> jsnmList = null;
                 if (ordermz != null && ordermz.info != null && ordermz.mx.Count() > 0)
                 {
-                    //获取虚拟发票号
+                    //Lấy虚拟số hóa đ ơn
                     //var fph = _outPatientDmnService.GetInvoiceListByEmpNo(request.AppId, apireq.OrganizeId);
 
                     IList<int> cfnmList = ordermz.mx.Select(p => Convert.ToInt32(p.cfxmmx)).Distinct().ToList();
-                    //结算
+                    //Quyết toán
                     var sett = _outPatChargeApp.submitOutpatCharge(new Domain.DTO.InputDto.BasicInfoDto2018
                     {
                         mzh = ordermz.info.VisitNo,
@@ -318,7 +318,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                         zje = request.PayFee
                     }, null, null, null, apireq.OrganizeId, cfnmList, out jsnmList, null, request.PayLsh);
                     orderInfoVo.SettTradeNo = jsnmList != null ? jsnmList[0].ToString() : "";
-                    //更新订单状态
+                    //Cập nhật đ ơn hàng trạng thái
                     _orderDmn.OrderPaidSuccess(orderInfoVo, request.AppId, apireq.OrganizeId);
 
                     #region 结算成功推送
@@ -343,7 +343,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 申请延时锁定订单
+        /// xin 延giờ khóa đ ơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -381,7 +381,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         #region privare method
         /// <summary>
-        /// 获取请求来源
+        /// Lấy yêu cầu 来源
         /// </summary>
         /// <param name="AppID"></param>
         /// <returns></returns>

@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S16
     public class S16RequestDTO
     {
         /// <summary>
-        /// 住院补偿序号
+        /// Nhập viện số thứ tự bồi thư ờng
         /// </summary>
         public string inpId { get; set; }
     }

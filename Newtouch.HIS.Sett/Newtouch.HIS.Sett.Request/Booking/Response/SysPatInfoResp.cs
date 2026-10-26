@@ -10,17 +10,17 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
     {
         public int patid { get; set; }
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// ID tổ chức(có具体 nghiệp vụ của bệnh viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人最近的性质xt_brxz.brxz
+        /// Bệnh nhân nhất 近của性质xt_brxz.brxz
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 本院磁卡号（包括医保离休病人），或者医保卡号
+        /// bản viện 磁số thẻ(bao gồmBHYT nghỉ hưu bệnh nhân),hoặcBHYTsố thẻ
         /// </summary>
         public string blh { get; set; }
 
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
         public string dh { get; set; }
         public string kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string klx { get; set; }
     }

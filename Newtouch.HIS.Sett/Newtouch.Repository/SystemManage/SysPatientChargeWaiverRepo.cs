@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysPatientChargeWaiverEntity> GetEffectiveList(int keyValue)
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
             return null;
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository
             return this.IQueryable().Where(a => a.OrganizeId == orgId && a.brsfjmbh == keyValue).FirstOrDefault();
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(int keyValue, string orgId)
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Repository
             this.Delete(a => a.brsfjmbh == keyValue && a.OrganizeId == orgId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysPatiChargeWaiverEntity"></param>
         /// <param name="keyValue"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Repository
         }
 
         ///// <summary>
-        ///// 根据首拼查询收费项目
+        ///// theo 首拼tra cứu hạng mục thu phí
         ///// </summary>
         ///// <param name="parm"></param>
         ///// <returns></returns>
@@ -81,27 +81,27 @@ namespace Newtouch.HIS.Repository
         //}
 
         /// <summary>
-        /// 计算收费项目减免金额
-        /// 病人状态：1；--有效
-        /// 变更标志：0；--未变更
+        /// Tính hạng mục thu phí số tiền giảm trừ
+        /// Bệnh nhânTrạng thái:1;--Hiệu lực
+        /// thay đ ổi dấu hiệu:0;--chưa thay đ ổi 
         /// </summary>
-        /// <param name="parmBrxz">病人性质</param>
-        /// <param name="parmDl">大类</param>
-        /// <param name="parmSfxm">收费项目</param>
-        /// <param name="parmJe">金额</param>
-        /// <param name="outJmbl">减免比例</param>
-        /// <param name="outJmje">减免金额</param>
-        /// <returns>count:减免后金额</returns>
+        /// <param name="parmBrxz">Tính chất bệnh nhân</param>
+        /// <param name="parmDl"> loại lớn </param>
+        /// <param name="parmSfxm">Hạng mục thu phí</param>
+        /// <param name="parmJe">Số tiền</param>
+        /// <param name="outJmbl">Tỷ lệ giảm trừ</param>
+        /// <param name="outJmje">Số tiền giảm trừ</param>
+        /// <returns>count:Số tiền sau giảm trừ</returns>
         public decimal Get_Calcjm(string parmBrxz, string parmDl, string parmSfxm, decimal parmJe, out decimal outJmbl, out decimal outJmje, string orgId)
         {
-            //减免比例，减免金额，减免后的金额
+            //Tỷ lệ giảm trừ,số tiền giảm trừ,giảm trừ sau của số tiền
             decimal jmbl = 0, jmje = 0, count = 0;
 
             var entity = IQueryable().FirstOrDefault(p => p.brxz == parmBrxz && p.sfxm == parmSfxm && p.zt == "1" && p.OrganizeId == orgId);
             if (entity != null && entity.jmbl != 0)
             {
                 jmbl = entity.jmbl;
-                if (jmbl < 0)//定额自负
+                if (jmbl < 0)//Tự trả đ ịnh mức
                 {
                     count = parmJe + jmbl;
                     jmje = Math.Abs(jmbl);
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Repository
                 if (entity != null && entity.jmbl != 0)
                 {
                     jmbl = entity.jmbl;
-                    if (jmbl < 0)//定额自负
+                    if (jmbl < 0)//Tự trả đ ịnh mức
                     {
                         count = Convert.ToDecimal(parmJe + jmbl);
                         jmje = Math.Abs(jmbl);

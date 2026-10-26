@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Application
         private readonly ISysChargeAdditionalCategoryRepo _sysChargeAddCategRepo;
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysChargeAdditionalCategoryEntity> GetEffectiveList(int keyValue)
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Application
             return _sysChargeAddCategRepo.GetEffectiveList(keyValue, this.OrganizeId);
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(int keyValue)
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Application
             _sysChargeAddCategRepo.DeleteForm(keyValue, this.OrganizeId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysChargeAddCategEntity"></param>
         /// <param name="keyValue"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Application
             _sysChargeAddCategRepo.SubmitForm(sysChargeAddCategEntity, keyValue, this.OrganizeId);
         }
         /// <summary>
-        /// 获取所有收费大类下拉框
+        /// Lấy tất cả các thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         public string GetSysChargeAddCategSelect()

@@ -4,12 +4,12 @@ using Newtouch.HIS.Domain.DTO.OutputDto;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 处理方法
+    /// Xử lý Phư ơng thức
     /// </summary>
     public class IProcessor : AppBase
     {
         /// <summary>
-        /// 验证Request
+        /// Xác minhRequest
         /// </summary>
         protected virtual ActResult Validata()
         {
@@ -17,14 +17,14 @@ namespace Newtouch.HIS.Application.Interface
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected virtual void BeforeAction(ActResult actResult)
         {
         }
 
         /// <summary>
-        /// 主处理
+        /// 主xử lý
         /// </summary>
         /// <returns></returns>
         protected virtual void Action(ActResult actResult)
@@ -32,14 +32,14 @@ namespace Newtouch.HIS.Application.Interface
         }
 
         /// <summary>
-        /// 后处理
+        /// Hậu xử lý
         /// </summary>
         protected virtual void AfterAction(ActResult actResult)
         {
         }
 
         /// <summary>
-        /// 异步处理
+        /// 异步xử lý
         /// </summary>
         protected virtual void AsyncAction(ActResult actResult)
         {

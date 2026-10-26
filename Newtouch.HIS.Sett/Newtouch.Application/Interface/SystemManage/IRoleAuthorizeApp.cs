@@ -4,19 +4,19 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 角色权限App
+    /// Vai trò quyền hạn App
     /// </summary>
     public interface IRoleAuthorizeApp
     {
         /// <summary>
-        /// 获取角色授权列表
+        /// Lấyvai trò ủy quyền danh sách
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
         List<SysRoleAuthorizeEntity> GetValidList(string roleId);
 
         /// <summary>
-        /// 权限验证
+        /// quyền hạn xác minh
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="moduleId"></param>

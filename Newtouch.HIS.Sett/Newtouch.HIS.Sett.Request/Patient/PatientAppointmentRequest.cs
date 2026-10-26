@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 签到
+    /// 签 đ ến 
     /// </summary>
     public class PatientAppointmentRequest : RequestBase
     {

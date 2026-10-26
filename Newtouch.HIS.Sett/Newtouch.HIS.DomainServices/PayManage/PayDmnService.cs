@@ -23,7 +23,7 @@ namespace Newtouch.HIS.DomainServices.PayManage
 
         }
         /// <summary>
-        /// 支付记录
+        /// thanh toán bản ghi 
         /// </summary>
         /// <param name="ksrq"></param>
         /// <param name="jsrq"></param>
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.DomainServices.PayManage
         }
 
         /// <summary>
-        /// 查询具体订单详情
+        /// Tra cứu具体 đ ơn hàng chi tiết
         /// </summary>
         /// <param name="OutTradeNo"></param>
         /// <param name="TradeNo"></param>
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.DomainServices.PayManage
 
 
         /// <summary>
-        /// 退款历史
+        /// Hoàn tiền lịch sử 
         /// </summary>
         /// <param name="OutTradeNo"></param>
         /// <param name="TradeNo"></param>
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.DomainServices.PayManage
         }
 
         /// <summary>
-        /// 交易详细信息
+        /// giao dịch thông tin chi tiết
         /// </summary>
         /// <param name="ksrq"></param>
         /// <param name="jsrq"></param>

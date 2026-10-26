@@ -3,13 +3,13 @@
 namespace Newtouch.HIS.Proxy.Attribute
 {
     /// <summary>
-    /// 接口编码
+    /// Giao diện mã 
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class InterfaceCodeAttribute : System.Attribute
     {
         /// <summary>
-        /// 接口编码
+        /// Giao diện mã 
         /// </summary>
         public string InterfaceCode { get; set; }
 

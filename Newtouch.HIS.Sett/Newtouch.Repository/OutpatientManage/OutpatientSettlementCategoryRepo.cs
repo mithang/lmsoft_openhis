@@ -8,7 +8,7 @@ using System.Linq;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊结算大类
+    /// Quyết toán ngoại trú loại lớn 
     /// </summary>
     public class OutpatientSettlementCategoryRepo : RepositoryBase<OutpatientSettlementCategoryEntity>, IOutpatientSettlementCategoryRepo
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 根据jsnm查门诊结算大类
+        /// theo jsnm tra cứu quyết toán ngoại trú loại lớn 
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取结算大类
+        /// Lấy quyết toán loại lớn 
         /// </summary>
         /// <param name="js"></param>
         /// <param name="ghxmList"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Repository
         {
             var jsdlList = new List<OutpatientSettlementCategoryEntity>();
             #region old Code
-            ////医保费用
+            ////Chi phí bảo hiểm y tế
             //foreach (OutpatientRegistItemEntity yb in ghxmList)
             //{
             //    OutpatientSettlementCategoryEntity jsdl = jsdlList.Find(t => t.dl == yb.dl);
@@ -49,10 +49,10 @@ namespace Newtouch.HIS.Repository
             //    }
 
             //    jsdl.jsnm = js.jsnm;
-            //    jsdl.dl = yb.dl;//大类
-            //    jsdl.flzffy += yb.flzf;//分类自负费用
-            //    jsdl.zlfy += yb.zl + yb.sfzl;//自理费用
-            //    jsdl.jmfy += yb.jmje;//减免金额
+            // jsdl.dl = yb.dl;// loại lớn 
+            //    jsdl.flzffy += yb.flzf;//Chi phí tự trả theo phân loại
+            //    jsdl.zlfy += yb.zl + yb.sfzl;//Chi phí tự chi trả
+            //    jsdl.jmfy += yb.jmje;//Số tiền giảm trừ
             //    jsdl.jsrq = js.CreateTime;
             //    if (returnValue.ybjsfwze == 0)
             //    {
@@ -61,12 +61,12 @@ namespace Newtouch.HIS.Repository
             //    }
             //    else
             //    {
-            //        jsdl.zffy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.zffy;//分类金额/分类金额合计*自负金额
-            //        jsdl.kbfy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.jzfy;//分类金额/分类金额合计*自负金额
+            //        jsdl.zffy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.zffy;//Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
+            //        jsdl.kbfy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.jzfy;//Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
             //    }
             //    jsdl.zje += jsdl.flzffy + jsdl.zlfy + jsdl.jmfy + jsdl.zffy + jsdl.kbfy;
             //}
-            //非医保费用
+            // không phải chi phí bảo hiểm y tế
             #endregion
             foreach (var dl in ghxmList.Select(a => a.dl).Distinct())
             {

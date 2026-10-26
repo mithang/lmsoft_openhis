@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         {
         }
 
-        //分页获取Schedule列表
+        //分trang lấyScheduledanh sách
         public IList<OutBookScheduleVO> GetPagintionList(Pagination pagination, string orgId, DateTime time)
         {
             if (string.IsNullOrEmpty(orgId))

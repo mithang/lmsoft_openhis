@@ -1,127 +1,127 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S22
 {
     /// <summary>
-    /// 查询当此门诊已上传费用明细 返回报文
+    /// Tra cứu chi tiết chi phí ngoại trú lần này đ ã tải lên bản tin trả về
     /// </summary>
     public class item
     {
         /// <summary>
-        ///  地区编码
+        /// đ ịa Quận mã 
         /// </summary>
         public string areaCode { get; set; }
 
         /// <summary>
-        /// 参合年度
+        /// tham gia hợp tác năm 
         /// </summary>
         public string year { get; set; }
 
         /// <summary>
-        /// 病人所属县区编号
+        /// Bệnh nhân thuộc về huyện Quận số hiệu
         /// </summary>
         public string countryCode { get; set; }
 
         /// <summary>
-        ///  门诊处方流水号
+        /// Đ ơn thuốc ngoại trú số thứ tự 
         /// </summary>
         public string detailNo { get; set; }
 
         /// <summary>
-        ///  补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        ///  明细ID
+        ///  Chi tiếtID
         /// </summary>
         public string detailId { get; set; }
 
         /// <summary>
-        ///  农合编码
+        /// mã hợp tác nông thôn 
         /// </summary>
         public string detailCode { get; set; }
 
         /// <summary>
-        ///  类别代码(见字典目录类别)
+        /// Loại mã(xem từ điển 目录loại)
         /// </summary>
         public string typeCode { get; set; }
 
         /// <summary>
-        /// 项目类别名称
+        /// Hạng mụcLoạiTên
         /// </summary>
         public string typeName { get; set; }
 
         /// <summary>
-        /// 明细中文名
+        /// Chi tiết tên tiếng trung 
         /// </summary>
         public string detailName { get; set; }
 
         /// <summary>
-        /// 数量（四位小数精度）
+        /// Số lư ợng(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal num { get; set; }
 
         /// <summary>
-        /// 单价（四位小数精度）
+        /// Đ ơn giá(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal price { get; set; }
 
         /// <summary>
-        /// 总价（四位小数精度）
+        /// Tổng giá(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal totalCost { get; set; }
 
         /// <summary>
-        ///  用药日期(yyyy-mm-dd)
+        ///  Ngày dùng thuốc(yyyy-mm-dd)
         /// </summary>
         public string date { get; set; }
 
         /// <summary>
-        ///  规格
+        ///  Quy cách
         /// </summary>
         public string standard { get; set; }
 
         /// <summary>
-        ///  剂型
+        ///  Dạng bào chế
         /// </summary>
         public string formulations { get; set; }
 
         /// <summary>
-        /// 保内或保内（1-保内，0 保外）
+        /// 保 trong hoặc保 trong (1-保 trong,0 保 ngoài)
         /// </summary>
         public string flag { get; set; }
 
         /// <summary>
-        /// 报销比例
+        /// tỷ lệ thanh toán BHYT 
         /// </summary>
         public decimal proportion { get; set; }
 
         /// <summary>
-        /// 是否中药
+        /// Có hay không trong 药
         /// </summary>
         public string isCm { get; set; }
 
         /// <summary>
-        /// 限制值
+        /// 限制 giá trị 
         /// </summary>
         public string limitValue { get; set; }
 
         /// <summary>
-        /// 是否需要审批
+        /// Có hay không cần phê duyệt 
         /// </summary>
         public string isAudit { get; set; }
 
         /// <summary>
-        /// 入库日期
+        /// 入 kho ngày 
         /// </summary>
         public string storageTime { get; set; }
 
         /// <summary>
-        /// 是否修改
+        /// Có hay khôngSửa
         /// </summary>
         public string isModify { get; set; }
 
         /// <summary>
-        /// 医院使用名称
+        /// bệnh viện sử dụng tên
         /// </summary>
         public string detailLocalName { get; set; }
     }

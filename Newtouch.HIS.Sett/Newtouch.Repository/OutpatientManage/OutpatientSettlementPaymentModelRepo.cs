@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 根据jsnm查结算支付方式
+        /// theo jsnm tra cứu quyết toán phư ơng thức thanh toán 
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 金额上限查询
+        /// Số tiền giới hạn trên tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

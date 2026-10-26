@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices.ReportManage
         }
 
         /// <summary>
-        /// 门诊人次图表
+        /// Ngoại trú Lư ợt ngư ời biểu đ ồ 
         /// </summary>
         public List<PerformanceIndicatorVO> SelectPerformanceIndicator(string orgId, string year)
         {
@@ -135,7 +135,7 @@ ORDER BY col
         }
 
         /// <summary>
-        /// 门诊人次月份图表
+        /// Ngoại trú Lư ợt ngư ời tháng biểu đ ồ 
         /// </summary>
         public List<PerformanceIndicatorVO> PerformanceMonthIndicator(string orgId, string year,string month)
         {

@@ -10,31 +10,31 @@ namespace Newtouch.HIS.Application
     public interface ISysPatBasicInfoApp
     {
         /// <summary>
-        /// （病历号由系统自动生成）获取最新病历号
+        /// (số hồ sơ bệnh án由hệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         string Getblh();
 
         /// <summary>
-        /// 获取病人性质列表
+        /// LấyTính chất bệnh nhânDanh sách
         /// </summary>
         /// <returns></returns>
         object GetBRXZList(string orgId);
 
         /// <summary>
-        /// 打印住院信息
+        /// InNhập việnThông tin
         /// </summary>
         /// <param name="info"></param>
         void PrinZYInfo(ZYInfoVO info);
 
         /// <summary>
-        /// 打印腕带
+        /// In腕带
         /// </summary>
         /// <param name="info"></param>
         void PrintWDInfo(WDInfoVO info);
 
         /// <summary>
-        /// 修改入院诊断
+        /// SửaChẩn đoán nhập viện
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Application
 
 
         /// <summary>
-        /// 根据patid获取病人基本信息
+        /// theo patid lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>

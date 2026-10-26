@@ -24,7 +24,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// 查询可以取消挂号的列表
+        /// Tra cứu có thể HủyĐ ăng ký khám củadanh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -111,7 +111,7 @@ where cf.zt = '1' and cfmx.zt = '1'
         }
 
         /// <summary>
-        /// 保存取消挂号
+        /// Lưu HủyĐ ăng ký khám
         /// </summary>
         /// <param name="list"></param>
         public void SaveCancelRegister(string orgId, List<SaveCancelRegisterGhnmVO> list)
@@ -123,7 +123,7 @@ where cf.zt = '1' and cfmx.zt = '1'
                     var settlist = SelectEntityByGhnm(orgId, item.ghnm);
                     if (settlist.Count > 0)
                     {
-                        throw new FailedCodeException("NOTICE_A_BILLING_RECORD_ALREADY_EXISTS_AND_CAN_NOT_BE_CANCELED");  //"注意：已存在计费记录，无法取消登记"
+                        throw new FailedCodeException("NOTICE_A_BILLING_RECORD_ALREADY_EXISTS_AND_CAN_NOT_BE_CANCELED");  //"Lưu ý: Đ ã tồn tại bản ghi tính phí, không thể hủy đ ăng ký"
                     }
                     _outpatientRegistRepo.SaveCancelRegister(orgId, item.ghnm);
                 }
@@ -132,7 +132,7 @@ where cf.zt = '1' and cfmx.zt = '1'
         }
 
         /// <summary>
-        /// 根据ghnm查询list
+        /// theo ghnmtra cứulist
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ghnm"></param>

@@ -15,14 +15,14 @@ namespace Newtouch.HIS.Application.Interface
     public interface IOutPatienChargeQueryApp
     {
         /// <summary>
-        /// 获取门诊挂号收费详情
+        /// LấyĐ ăng ký khám ngoại trú thu phí chi tiết
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
         OutPatientRegChargeDetailDto GetRecordsByJsnm(string jsnm);
 
         /// <summary>
-        /// 获取门诊挂号收费详情
+        /// LấyĐ ăng ký khám ngoại trú thu phí chi tiết
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

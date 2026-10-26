@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysChargeItemPriceAdjustEntity> GetEffectiveList(string keyValue, string orgId)
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Repository
             return this.IQueryable().Where(a => a.OrganizeId == orgId).FirstOrDefault();
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(SysChargeItemPriceAdjustEntity sysChargeProjPriceAdjEntity, string orgId)
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysChargeProjPriceAdjEntity"></param>
         /// <param name="keyValue"></param>

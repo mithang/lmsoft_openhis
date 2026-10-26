@@ -9,15 +9,15 @@ namespace Newtouch.HIS.Sett.Request.Patient
     public class MZhistorybillRequest : BookingReqBaseDto
     {
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đ ầu
         /// </summary>
         public DateTime kssj { get; set; }
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime jssj { get; set; }
     }

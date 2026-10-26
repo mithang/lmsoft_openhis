@@ -16,7 +16,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 病人病历DmnService
+    /// Bệnh nhân hồ sơ bệnh án DmnService
     /// </summary>
     public class SysPatientMedicalRecordDmnService : DmnServiceBase, ISysPatientMedicalRecordDmnService
     {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取病历
+        /// Lấy hồ sơ bệnh án 
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="blId"></param>
@@ -85,7 +85,7 @@ order by a.zt desc, a.rq desc, a.CreateTime, b.CreateTime";
         }
 
         /// <summary>
-        /// 获取病历
+        /// Lấy hồ sơ bệnh án 
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ order by a.zt desc, a.rq desc, a.CreateTime, b.CreateTime";
         }
 
         /// <summary>
-        /// 获取病历明细
+        /// Lấy hồ sơ bệnh án chi tiết
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -171,7 +171,7 @@ order by a.zt desc, a.rq desc, a.CreateTime, b.CreateTime";
         }
         #region 卫健数据上传日志
         /// <summary>
-        /// 卫健上传日志
+        /// 卫健tải lên nhật ký 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

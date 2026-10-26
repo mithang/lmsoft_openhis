@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 
@@ -19,7 +19,7 @@ using System.Text;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 收费大类
+    /// Thu phí loại lớn 
     /// </summary>
     public class SysChargeCategoryRepo : RepositoryBase<SysChargeCategoryVEntity>, ISysChargeCategoryRepo
     {
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 收取所有收费大类（带缓存）
+        /// 收取 tất cả các thu phí loại lớn (带 bộ nhớ đ ệm)
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeCategoryVEntity> GetLazyList(string orgId)
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取收费大类列表
+        /// Lấythu phí loại lớn danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dllbs"></param>

@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 查询条件，筛选出收费项目grid
+        /// Điều kiện tra cứu,lọc出hạng mục thu phígrid
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

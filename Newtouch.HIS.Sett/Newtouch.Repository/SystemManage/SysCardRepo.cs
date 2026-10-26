@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有卡
+        /// Lấy tất cả các thẻ 
         /// </summary>
         /// <returns></returns>
         public List<SysCardEntity> GetList(string orgId)
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据卡号获取病人内码
+        /// theo số thẻ lấy bệnh nhân mã nội bộ
         /// </summary>
         /// <param name="cardno"></param>
         /// <param name="orgId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据卡号获取卡类型
+        /// theo số thẻ lấy loại thẻ
         /// </summary>
         /// <param name="cardno"></param>
         /// <param name="orgId"></param>
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取新虚拟卡 卡号
+        /// Lấy mới 虚拟 thẻ số thẻ
         /// </summary>
         /// <returns></returns>
         public string GetCardSerialNo(string orgId)
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据卡号和组织机构获取卡信息（先假设不同类型的卡 卡号不会重复）
+        /// theo số thẻ và tổ chức lấy thẻ thông tin(trư ớc giả sử khác nhau loại của thẻ số thẻ sẽ không trùng lặp)
         /// </summary>
         /// <param name="cardno"></param>
         /// <param name="orgId"></param>
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Repository
         }
         
         /// <summary>
-        /// 获取卡实体
+        /// Lấy thẻ thực thể
         /// </summary>
         /// <param name="cardType"></param>
         /// <param name="cardno"></param>

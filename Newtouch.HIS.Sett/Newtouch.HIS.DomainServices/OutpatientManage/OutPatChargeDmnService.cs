@@ -1,6 +1,6 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 门诊挂号收费
+// Copyright (C) 2016 Newtouch Giữ bản quyền. 
+// Description: Đ ăng ký khám ngoại trú thu phí
 // Author：HLF
 // CreateDate： 2016/12/23 11:12:44 
 //**********************************************************/
@@ -35,10 +35,10 @@ namespace Newtouch.HIS.DomainServices
     public class OutPatChargeDmnService : DmnServiceBase, IOutPatChargeDmnService
     {
 
-        private readonly ISysConfigRepo _sysConfigRepo; //系统门诊配置
-        private readonly ISysPatientChargeAdditionalRepo _sysPatChargeAddRepo; //服务费
-        private readonly IFinancialInvoiceRepo _finInvoicRepo; //财务发票
-        private readonly ISysPatientChargeAlgorithmRepo _sysPatiAlgorithmRepo; //系统病人收费
+        private readonly ISysConfigRepo _sysConfigRepo; //Hệ thống ngoại trú cấu hình
+        private readonly ISysPatientChargeAdditionalRepo _sysPatChargeAddRepo; // phí dịch vụ 
+        private readonly IFinancialInvoiceRepo _finInvoicRepo; //财务 hóa đ ơn 
+        private readonly ISysPatientChargeAlgorithmRepo _sysPatiAlgorithmRepo; //Hệ thốngBệnh nhânThu phí
         private readonly IOutpatientRegistRepo _outpatientRegistRepo;
         private readonly IOutPatientUniversalDmnService _outPatientUniversalDmnService;
         private readonly IOutpatientPrescriptionRepo _outpatientPrescriptionRepo;
@@ -48,10 +48,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取挂号收费时病人信息
+        /// LấyĐ ăng ký khámthu phí giờ thông tin bệnh nhân
         /// </summary>
-        /// <param name="kh">卡号</param>
-        /// <param name="brxz">病人性质</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="brxz">Tính chất bệnh nhân</param>
         /// <returns></returns>
         public OutPatChargeInfoVO GetChargePatInfo(string kh, string brxz)
         {
@@ -86,15 +86,15 @@ ORDER BY mzh desc
 
 
         /// <summary>
-        /// 获得当前病人挂号科室
+        /// nhận đ ược khi trư ớc bệnh nh ânĐ ăng ký khámkhoa
         /// </summary>
-        /// <param name="patid">病人</param>
-        /// <param name="startDate">开始日期</param>
-        /// <param name="endDate">结束日期</param>
+        /// <param name="patid">Bệnh nhân</param>
+        /// <param name="startDate">Ngày bắt đ ầu</param>
+        /// <param name="endDate">Ngày kết thúc</param>
         /// <returns></returns>
         public List<OutPatChargeItemVO> getOutPatItem_ghlx(int patid, string brxz, string startDate, string endDate)
         {
-            //系统配置
+            //Cấu hình hệ thống
             var confEntity = _sysConfigRepo.GetByCode(Constants.xtmzpz.SFXM_GHGHF, OperatorProvider.GetCurrent().OrganizeId);
             var strSql = new StringBuilder(@"
 select a.ghnm,a.ks,a.ys,c.mjzbz,c.dbxm,c.fzbz,c.CreateTime,
@@ -127,15 +127,15 @@ and a.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获得当前病人挂号科室
+        /// nhận đ ược khi trư ớc bệnh nh ânĐ ăng ký khámkhoa
         /// </summary>
-        /// <param name="patid">病人</param>
+        /// <param name="patid">Bệnh nhân</param>
         /// <param name="brxz"></param>
-        /// <param name="startDate">开始日期</param>
-        /// <param name="endDate">结束日期</param>
+        /// <param name="startDate">Ngày bắt đ ầu</param>
+        /// <param name="endDate">Ngày kết thúc</param>
         public List<OutPatChargeItemVO> GetOutPatGhlx(int patid, string brxz, string startDate, string endDate)
         {
-            //系统配置
+            //Cấu hình hệ thống
             var confEntity = _sysConfigRepo.GetByCode(Constants.xtmzpz.SFXM_GHGHF, OperatorProvider.GetCurrent().OrganizeId);
             var strSql = new StringBuilder(@"
 SELECT xm.ghnm, xm.ks, xm.ys, c.mjzbz, c.dbxm, c.fzbz, c.CreateTime, 
@@ -170,11 +170,11 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 获取当前科室挂号时间是否有效
+        /// Lấykhi trư ớc KhoaĐ ăng ký khám thời gian có hiệu lực hay không
         /// </summary>
-        /// <param name="ks">科室</param>
-        /// <param name="mjzbz">门急诊标志</param>
-        /// <param name="parmJdrq">科室创建日期</param>
+        /// <param name="ks">Khoa</param>
+        /// <param name="mjzbz"> cửa cấp cứu dấu hiệu </param>
+        /// <param name="parmJdrq">Khoa tạo ngày </param>
         /// <returns></returns>
         public bool getActiveDuration(string ks, string mjzbz, object parmJdrq)
         {
@@ -192,14 +192,14 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 var entity = durationList.Find(a => a.ks == ks);
                 if (entity == null)
                 {
-                    entity = durationList.Find(t => t.ks == "-1"); //ks（科室）："-1"为通配，匹配所有科室
+                    entity = durationList.Find(t => t.ks == "-1"); //ks(khoa):"-1"Là通配,匹配 tất cả các khoa
                 }
                 if (entity == null)
                 {
                     throw new FailedCodeException("OUTPAT_TIMECONFIGURE_EFFECTIVELY");
                 }
                 int duration = -1;
-                if (mjzbz == "2") //急诊
+                if (mjzbz == "2") //Cấp cứu
                 {
                     duration = entity.jz;
                 }
@@ -207,9 +207,9 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 {
                     duration = entity.mz;
                 }
-                if (duration == -1) //当天有效
+                if (duration == -1) //KhiNgàyHiệu lực
                 {
-                    //当天有效
+                    //KhiNgàyHiệu lực
                     string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
                     string isYx = jdrq.Split(' ')[0].ToString();
                     if (currentDate.Equals(isYx))
@@ -219,7 +219,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 }
                 else
                 {
-                    //一段时间内有效
+                    // một đoạn thời gian trong hiệu lực
                     DateTime currentDate = DateTime.Now;
                     DateTime isYx = Convert.ToDateTime(jdrq).AddHours(duration);
 
@@ -235,14 +235,14 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
 
         /// <summary>
-        /// 获取挂号医生信息ghnm, "", 3, mjzbz, Isyzybzz, Istxzzys
+        /// LấyĐ ăng ký khám bác sĩ thông tinghnm, "", 3, mjzbz, Isyzybzz, Istxzzys
         /// </summary>
-        /// <param name="ghnm">挂号内码</param>
-        /// <param name="parmKs">科室</param>
+        /// <param name="ghnm">Đ ăng ký khám mã nội bộ</param>
+        /// <param name="parmKs">Khoa</param>
         /// <param name="type"></param>
-        /// <param name="mjzbz">门急诊标识</param>
-        /// <param name="Isyzybzz">是否验证医生、科室医保资质</param>
-        /// <param name="Istxzzys">是否验证是血透医生（大病需要）</param>
+        /// <param name="mjzbz"> cửa cấp cứu dấu hiệu </param>
+        /// <param name="Isyzybzz">Có hay không xác minh bác sĩ, khoaBHYT资质</param>
+        /// <param name="Istxzzys">Có hay không xác minh là血透bác sĩ(大病cần)</param>
         /// <returns></returns>
         public OutPatChargeDoctorVO getDoctorInfo(int ghnm, string parmKs, int type, string mjzbz, bool Isyzybzz,
             bool Istxzzys)
@@ -265,9 +265,9 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
 
         /// <summary>
-        /// 获取有关药品和收费项目
+        /// Lấy về thuốc và hạng mục thu phí
         /// </summary>
-        /// <param name="keyword">关键字</param>
+        /// <param name="keyword">Từ khóa</param>
         /// <param name="yfPz"></param>
         /// <param name="OrganizeId"></param>
         /// <returns></returns> 
@@ -283,7 +283,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 生成处方号
+        /// Tạo số đ ơn thuốc
         /// </summary>
         /// <returns></returns>
         public string getCflsh()
@@ -295,16 +295,16 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 附加服务费
+        /// 附加 phí dịch vụ 
         /// </summary>
-        /// <param name="parmBrxz">病人性质</param>
-        /// <param name="parmDl">大类</param>
-        /// <param name="parmSfxm">收费项目</param>
-        /// <param name="parmJe">单价</param>
-        /// <returns>count:服务费金额</returns>
+        /// <param name="parmBrxz">Tính chất bệnh nhân</param>
+        /// <param name="parmDl"> loại lớn </param>
+        /// <param name="parmSfxm">Hạng mục thu phí</param>
+        /// <param name="parmJe">Đ ơn giá</param>
+        /// <returns>count: phí dịch vụ số tiền</returns>
         public decimal? Calcfwfjm(string parmBrxz, string parmDl, string parmSfxm, string parmDJ)
         {
-            //服务费比例，服务费金额 
+            // phí dịch vụ tỷ lệ, phí dịch vụ số tiền 
             decimal? count = 0;
             SysPatientChargeAdditionalEntity chargAddEntity = _sysPatChargeAddRepo.GetFWFBL(parmBrxz, null, parmSfxm, OperatorProvider.GetCurrent().OrganizeId);
             if (chargAddEntity != null && chargAddEntity.fwfbl > 0)
@@ -324,7 +324,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
 
         /// <summary>
-        /// 门诊结算事务
+        /// Quyết toán ngoại trú giao dịch 
         /// </summary>
         /// <param name="vo"></param>
         public void OutPatChargeSettDB(OutPatChargeSettDataVo vo)
@@ -376,7 +376,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
                 }
 
-                //发票号逻辑
+                //Số hóa đ ơn logic 
                 FinancialInvoiceEntity fpUpdateEntity, fpInsertEntity;
                 _finInvoicRepo.UpdateCurrentGetEntitys(vo.fph, OperatorProvider.GetCurrent().UserCode,
                     out fpUpdateEntity, out fpInsertEntity, OperatorProvider.GetCurrent().OrganizeId);
@@ -395,15 +395,15 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 计算出门诊结算信息 getMzJs
+        /// Tính出quyết toán ngoại trú thông tin getMzJs
         /// </summary>
         public void GetMzJsInfo(SettlementEntityVO jsEntity, SysPatientNatureEntity brxzEntity, out OutpatientSettlementEntity mzjs, out List<OutpatientSettlementCategoryEntity> jsdl)
         {
             var brxz = brxzEntity.brxz;
             var jylx = Constants.ybDealLB.yb_deal_wjy;
-            //计算出门诊结算信息  
+            //Tính出quyết toán ngoại trú thông tin 
 
-            //根据收费项目和病人收费算法，得到计算结果集
+            // theo hạng mục thu phí và bệnh nhânthu phí thuật toán, nhận đ ược tính kết quả tập 
             var returnValue = GetSettResult(jsEntity, brxz);
 
             #region 门诊结算
@@ -431,27 +431,27 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 CreateTime = DateTime.Now,
                 CreatorCode = OperatorProvider.GetCurrent().UserCode
             };
-            //自理费用
-            //自负费用
-            //分类自负费用
-            //记账费用，如果是医保病人，为医保返回的结果
-            //减免费用                              
-            //结算状态 
+            //Chi phí tự chi trả
+            //Chi phí tự trả
+            //Chi phí tự trả theo phân loại
+            //Phí ghi sổ,nếu là BHYTbệnh nhân,là BHYTquay lại của kết quả
+            //Chi phí giảm trừ                              
+            //Trạng thái quyết toán 
 
-            //家床号
+            // giư ờng gia đ ình số 
 
-            //现金支付
+            //Thanh toán tiền mặt
             decimal ssk;
-            //现金误差
+            //Sai lệch tiền mặt
             decimal difference;
-            //医保返回自负结果
+            //BHYTquay lại tự trả kết quả
             var ybzf = 0m;
-            //医保返回可记账费用
+            //BHYTquay lại có thể phí ghi sổ
             var jzfy = 0m;
-            //应收款
+            //Số tiền phải thu
             var ysk = 0m;
             var ybjylx = brxzEntity.ybjylx;
-            //金额为0，不访问医保接口
+            //Số tiền là0, không truy cập BHYTgiao diện
             if (returnValue.ybjsfwze == 0 && returnValue.jyze == 0)
             {
                 ybjylx = Constants.ybjylx.ybjylx0;
@@ -459,10 +459,10 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
             #region 医保 暂不处理
 
-            //医保病人，并且是造口袋项目，进行造口袋交易
+            //BHYTbệnh nhân,và là造口袋hạng mục, tiến hành 造口袋 giao dịch 
             if (ybjylx != Constants.ybjylx.ybjylx0)
             {
-                //造口袋和非造口袋项目必须分开结算
+                //造口袋và không phải 造口袋hạng mục phải tách ra quyết toán
                 //bool zkd = isZkd(jsEntity);
                 //if (zkd)
                 //{
@@ -471,20 +471,20 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
             }
             switch (ybjylx)
             {
-                //不交易
+                // không giao dịch 
                 case Constants.ybjylx.ybjylx0:
                     ysk = returnValue.totalHj;
                     jylx = Constants.ybDealLB.yb_deal_wjy;
                     break;
 
-                //普通交易
+                //Thông thư ờng giao dịch 
                 case Constants.ybjylx.ybjylx1:
                     //ybptjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh, out isScgh);
-                    //记账费用
+                    //Phí ghi sổ
                     mzjs.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //应收款
+                    //Số tiền phải thu
                     ysk = returnValue.xjHj + ybzf;
-                    //如果是伤残普通挂号，挂号费为记账
+                    //Nếu là đ ăng ký khám thông thư ờng cho ngư ời khuyết tật,phí đ ăng ký khám đ ược ghi sổ
                     //if (isScgh)
                     //{
                     //    mzjs.zlfy = mzjs.zlfy - returnValue.YB.fybjsfwgrzf;
@@ -493,14 +493,14 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                     jylx = jsEntity.isGh ? Constants.ybDealLB.yb_deal_mzgh : Constants.ybDealLB.yb_deal_mzsf;
                     break;
 
-                //大病交易
+                //大病 giao dịch 
                 case Constants.ybjylx.ybjylx2:
                     //ybdbjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh, out isScgh);
-                    ////记账费用
+                    ////Phí ghi sổ
                     mzjs.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //应收款
+                    //Số tiền phải thu
                     ysk = returnValue.xjHj + ybzf;
-                    //如果是伤残普通挂号，挂号费为记账
+                    //Nếu là đ ăng ký khám thông thư ờng cho ngư ời khuyết tật,phí đ ăng ký khám đ ược ghi sổ
                     //if (isScgh)
                     //{
                     //    mzjs.zlfy = mzjs.zlfy - returnValue.YB.fybjsfwgrzf;
@@ -510,37 +510,37 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                     jylx = jsEntity.isGh ? Constants.ybDealLB.yb_deal_dbgh : Constants.ybDealLB.yb_deal_dbsf;
                     break;
 
-                //家床交易
+                // giao dịch giư ờng gia đ ình 
                 case Constants.ybjylx.ybjylx3:
-                    //家床交易总额(传给医保的)，账户余额，门诊自负段现金支付累计数，门诊自负段定额
+                    // giao dịch giư ờng gia đ ình 总额(truyền cho BHYTcủa),số dư tài khoản,tổng lũy kế tiền mặt đ ã trả đoạn tự trả ngoại trú,Đ ịnh mức đoạn tự trả ngoại trú
                     decimal jcJyze = 0;
                     //decimal jc_zhye = 0, jc_mzzfdxjzfljs = 0, jc_mzzfdde = 0;
-                    //是否离休、在职配置的比例
+                    //Có hay không nghỉ hưu, tại职cấu hình của tỷ lệ 
                     const decimal jcBl = 0;
                     if (jsEntity.jslx == "1")
                     {
-                        jcJyze = returnValue.jyze; //(包含了记账费用)                 
-                        //家床记账模拟交易
-                        //获取门诊自负段现金支付累计数、门诊自负段定额
+                        jcJyze = returnValue.jyze; //(bao gồm phí ghi sổ) 
+                        // giư ờng gia đ ình ghi sổ mô phỏng giao dịch 
+                        //Lấy tổng lũy kế tiền mặt đ ã trả đoạn tự trả ngoại trú, đ ịnh mức đoạn tự trả ngoại trú
                         //DataTable dtYbzh = BLLFactory<yb_brzhbz>.Instance.getYBbrzhxx(brjbxx.kh);
 
 
-                        //模拟医保算法update 51200 20150921
-                        //jzfy = (jc_Jyze - jc_mzzfdxjzfljs - jc_mzzfdde) * jc_bl;//医保可报记账费用
-                        jzfy = jcJyze * (1 - jcBl); //医保可报记账费用
+                        // mô phỏng BHYT thuật toán update 51200 20150921
+                        //jzfy = (jc_Jyze - jc_mzzfdxjzfljs - jc_mzzfdde) * jc_bl;//Phí ghi sổ BHYT có thể thanh toán
+                        jzfy = jcJyze * (1 - jcBl); //Phí ghi sổ BHYT có thể thanh toán
                         ybzf = jcJyze - jzfy;
-                        //记账费用
+                        //Phí ghi sổ
                         mzjs.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                        //应收款
+                        //Số tiền phải thu
                         ysk = returnValue.xjHj + ybzf;
                         jylx = Constants.ybDealLB.yb_deal_jcjz;
                     }
                     else
                     {
                         //ybjcjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, jsEntity.jch, out ybzf, out jzfy, out ybError, out sqxh);
-                        //记账费用
+                        //Phí ghi sổ
                         mzjs.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                        //应收款
+                        //Số tiền phải thu
                         ysk = returnValue.xjHj + ybzf;
 
                         jylx = Constants.ybDealLB.yb_deal_jcsf;
@@ -548,22 +548,22 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
                     break;
 
-                //工伤交易
+                //工伤 giao dịch 
                 case Constants.ybjylx.ybjylx4:
                     //ybgsjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh);
-                    //记账费用
+                    //Phí ghi sổ
                     mzjs.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //应收款
+                    //Số tiền phải thu
                     ysk = returnValue.xjHj + ybzf;
                     jylx = jsEntity.isGh ? Constants.ybDealLB.yb_deal_gsgh : Constants.ybDealLB.yb_deal_gsmz;
                     break;
 
-                //造口袋交易
+                //造口袋 giao dịch 
                 case "ZKD":
                     //ybmxxmjy(jsEntity.isGh, brjbxx, gh, brxz, jsEntity, out ybzf, out jzfy, out ybError, out sqxh);
-                    //记账费用
+                    //Phí ghi sổ
                     mzjs.jzfy = returnValue.FYB.jzfyHj + jzfy;
-                    //应收款
+                    //Số tiền phải thu
                     ysk = returnValue.xjHj + ybzf;
 
                     jylx = Constants.ybDealLB.yb_deal_sssf;
@@ -572,55 +572,55 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
             #endregion
 
-            //交易类型
+            // giao dịch loại 
             mzjs.jylx = ((int)jylx).ToString();
-            //自负费用
+            //Chi phí tự trả
             mzjs.zffy += ybzf;
             Ext.get5s6r(ysk, out ssk, out difference);
-            //现金支付
+            //Thanh toán tiền mặt
             mzjs.xjzf = ssk;
-            //现金误差
+            //Sai lệch tiền mặt
             mzjs.xjwc = difference;
-            //总金额:自理费用+自负费用+分类自负费用+记帐费用
+            //Tổng số tiền:Chi phí tự chi trả+Chi phí tự trả+Chi phí tự trả theo phân loại+Phí ghi sổ
             mzjs.zje = mzjs.zlfy + mzjs.zffy + mzjs.flzffy + mzjs.jzfy;
 
             #endregion
 
-            //获取结算大类对象
+            //Lấy quyết toán loại lớn Đ ối tư ợng
             jsdl = getJsdl(mzjs, returnValue);
 
         }
 
         /// <summary>
-        /// 得到结算结果 根据收费项目和病人收费算法，得到计算结果集 
+        /// nhận đ ược quyết toán kết quả theo hạng mục thu phí và bệnh nhânthu phí thuật toán, nhận đ ược tính kết quả tập 
         /// </summary>
         /// <param name="jsEntity"></param>
-        /// <param name="brxz">病人性质</param>
+        /// <param name="brxz">Tính chất bệnh nhân</param>
         /// <returns></returns>
         private Brsfsf_ReturnValue_YBANDFYB GetSettResult(SettlementEntityVO jsEntity, string brxz)
         {
             Brsfsf_ReturnValue_YBANDFYB returnValue = new Brsfsf_ReturnValue_YBANDFYB();
 
-            //需要结算的项目列表
+            //CầnQuyết toánCủaHạng mụcDanh sách
             List<SettleProjectVO> xmList = jsEntity.jsxmList;
 
-            //上传医保和不上传医保项目
+            //Tải lênBHYTvà không tải lênBHYThạng mục
             var xmListYB = new List<SettleProjectVO>();
             var xmListFYB = new List<SettleProjectVO>();
 
-            //获取要上传医保和不上传医保的大类
+            //Lấy cần tải lênBHYTvà không tải lênBHYTcủa loại lớn 
             getYBANDFYB(xmList, out xmListYB, out xmListFYB);
 
-            //病人算法返回计算的结果集
+            //Bệnh nhân thuật toán quay lại tính của kết quả tập 
             var returnValueYB = new Brsfsf_ReturnValue();
             var returnValueFYB = new Brsfsf_ReturnValue();
 
-            ////上传和不上传医保收费项目合计 
+            ////Tải lên và không tải lênthu phí BHYThạng mục tổng cộng 
             getSfxmHj(xmListFYB);
             getSfxmHj(xmListYB);
 
 
-            //根据收费项目合计和病人收费算法计算
+            // theo hạng mục thu phí tổng cộng và bệnh nhânthu phí thuật toán tính
             getBrsfResult(xmListYB, brxz, out returnValueYB);
             getBrsfResult(xmListFYB, brxz, out returnValueFYB);
 
@@ -636,7 +636,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
 
         /// <summary>
-        /// 获取要上传医保和不上传医保的大类
+        /// Lấy cần tải lênBHYTvà không tải lênBHYTcủa loại lớn 
         /// </summary>
         /// <param name="xmList"></param>
         /// <param name="xmListYB"></param>
@@ -648,7 +648,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
             xmListYB = new List<SettleProjectVO>();
             xmListFYB = new List<SettleProjectVO>();
 
-            //获取门诊配置：不上传医保大类 
+            //Lấy ngoại trú cấu hình: không tải lênBHYT loại lớn 
             var pzzyBSCYBEntity = _sysConfigRepo.GetByCode(Constants.xtzypz.DL_BSCYB,
                 OperatorProvider.GetCurrent().OrganizeId);
             if (pzzyBSCYBEntity == null)
@@ -667,14 +667,14 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 dlDict.Add(dl, dl);
             }
 
-            //没有配置不上传医保
+            // không có cấu hình không tải lênBHYT
             if (struDl.Length == 0)
             {
                 xmListYB = xmList;
                 return;
             }
 
-            //根据大类区分是否上传医保
+            // theo loại lớn Quận分có hay không tải lênBHYT
             foreach (SettleProjectVO xm in xmList)
             {
                 if (dlDict.ContainsKey(xm.dl))
@@ -689,55 +689,55 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 计算收费项目不做合计
+        /// Tính hạng mục thu phí không 做 tổng cộng 
         /// </summary>
         /// <param name="xmList"></param>
-        /// <returns>可记账金额,分类自负金额,自理金额,减免金额</returns>
+        /// <returns>Số tiền có thể ghi sổ,Số tiền tự trả theo phân loại,Số tiền tự chi trả,Số tiền giảm trừ</returns>
         private void getSfxmHj(List<SettleProjectVO> xmList)
         {
 
-            //根据收费项目计算
+            // theo hạng mục thu phí tính
             decimal jmhje = 0;
             decimal zfbl = 0;
 
             foreach (SettleProjectVO xm in xmList)
             {
-                //减免后金额
+                //Số tiền sau giảm trừ
                 jmhje = (xm.dj + xm.fwfdj) * xm.sl - xm.jmje;
                 zfbl = Convert.ToDecimal(xm.zfbl == null ? 0 : xm.zfbl);
 
-                //自理金额
+                //Số tiền tự chi trả
                 if (xm.zfxz == ((int)Constants.zfxzEnum.ZF).ToString())
                 {
                     xm.zlfy = jmhje;
                 }
                 else if (xm.zfxz == ((int)Constants.zfxzEnum.KB).ToString())
                 {
-                    //可记账金额
+                    //Số tiền có thể ghi sổ
                     xm.kbje = jmhje;
                 }
                 else
                 {
-                    //可报：费用×（1－自负比例）
-                    //分类自负：费用×自负比例
-                    //当自负比例为负数时，表示定额自负
+                    //Có thể thanh toán:Chi phí ×(1－tỷ lệ tự trả)
+                    //Tự trả theo phân loại:Chi phí ×tỷ lệ tự trả
+                    //Khi tỷ lệ tự trả là số âm giờ,biểu thị tự trả đ ịnh mức
                     if (xm.zfbl >= 0)
                     {
-                        //可记账金额
+                        //Số tiền có thể ghi sổ
                         xm.kbje = (jmhje * (1 - zfbl));
-                        //分类自负金额
+                        //Số tiền tự trả theo phân loại
                         xm.flzf = (jmhje * zfbl);
                     }
                     else
                     {
                         if (xm.jmbl < 0)
                         {
-                            throw new FailedException("OUTPAT_JMBL_ZFBL_IS_NOTEXIT"); //减免比例和自负比例只能有一个是定额，请重新配置！
+                            throw new FailedException("OUTPAT_JMBL_ZFBL_IS_NOTEXIT"); //Tỷ lệ giảm trừ và tỷ lệ tự trả chỉ có thể có một là định mức,vui lòng cấu hình lại！
                         }
 
-                        //分类自负金额: 定额 * （1-减免比例）* 数量
+                        //Số tiền tự trả theo phân loại: Đ ịnh mức * (1-tỷ lệ giảm trừ)* Số lư ợng
                         xm.flzf = -(zfbl) * (1 - zfbl) * xm.sl;
-                        //可记账金额
+                        //Số tiền có thể ghi sổ
                         xm.kbje = jmhje - xm.flzf;
                     }
                 }
@@ -745,7 +745,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 根据收费项目合计和病人收费算法计算
+        /// theo hạng mục thu phí tổng cộng và bệnh nhânthu phí thuật toán tính
         /// </summary>
         /// <param name="amountList"></param>
         /// <param name="brxz"></param>
@@ -754,14 +754,14 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
             returnValue = new Brsfsf_ReturnValue();
             returnValue.dlFymxList = new List<Brsfsf_Dl_Fymx>();
 
-            //获取所有算法
+            //Lấy tất cả các thuật toán 
             List<SysPatientChargeAlgorithmEntity> sfAllList = _sysPatiAlgorithmRepo.getAllMzActive();
 
-            //根据收费算法计算
+            // theo thu phí thuật toán tính
             foreach (SettleProjectVO entity in amountList)
             {
                 Brsfsf_Dl_Fymx fymx = new Brsfsf_Dl_Fymx();
-                //大类
+                // loại lớn 
                 string dl = entity.dl;
                 fymx.dl = dl;
                 fymx.sfxm = entity.sfxm;
@@ -770,17 +770,17 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 fymx.cf_mxnm = entity.cf_mxnm;
                 fymx.czh = entity.czh;
 
-                //减免费用
+                //Chi phí giảm trừ
                 fymx.jmje = entity.jmje;
 
-                ////根据病人性质和大类获取病人收费算法 
+                //// theo tính chất bệnh nhân và loại lớn lấy bệnh nhânthu phí thuật toán 
                 List<SysPatientChargeAlgorithmEntity> sfList = null;
-                //项目算法优先级更高
+                //Hạng mục thuật toán 优 trư ớc cấp hơn 高
                 if (entity.mxnm != 0)
                 {
                     sfList = sfAllList.FindAll(t => t.brxz == brxz && t.sfxm == entity.sfxm);
                 }
-                //没有项目的算法，则考虑大类
+                // không có hạng mục của thuật toán,thì xem xét loại lớn 
                 if (sfList == null || sfList.Count == 0)
                 {
                     sfList = sfAllList.FindAll(
@@ -789,18 +789,18 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
                 #region 没有病人收费算法
 
-                //如果没有病人收费算法
+                //Nếu không có bệnh nhânthu phí thuật toán 
                 if (sfList == null || sfList.Count == 0)
                 {
-                    //没有算法 费用合计 = 可记账＋分类自负＋自理
+                    // không có thuật toán tổng chi phí = có thể ghi sổ＋tự trả theo phân loại＋tự chi trả
                     fymx.total = entity.kbje + entity.flzf + entity.zlfy;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = entity.flzf;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = entity.zlfy;
-                    //现金
+                    //Tiền mặt
                     fymx.xj = entity.flzf + entity.zlfy;
 
                     entity.jyje = fymx.jzfy;
@@ -816,50 +816,50 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
                 if (sfList[0].fyfw == Constants.fyfw.fyfw0)
                 {
-                    //可记帐 : 交易费用总额 = 医保结算范围费用总额 - 分类自负；现金：分类自负+自理+自负
-                    //现金
+                    //Có thể ghi sổ : Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT - Tự trả theo phân loại;Tiền mặt:Tự trả theo phân loại+Tự chi trả+Tự trả
+                    //Tiền mặt
                     fymx.xj = entity.flzf + entity.zlfy;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = entity.flzf;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = entity.zlfy;
                 }
                 else if (sfList[0].fyfw == Constants.fyfw.fyfw1)
                 {
-                    //可记帐 + 分类自负：交易费用总额 = 医保结算范围费用总额；现金：自理+自负
-                    //现金
+                    //Có thể ghi sổ + Tự trả theo phân loại:Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự chi trả+Tự trả
+                    //Tiền mặt
                     fymx.xj = entity.zlfy;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje + entity.flzf;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = 0m;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = entity.zlfy;
                 }
                 else if (sfList[0].fyfw == Constants.fyfw.fyfw2)
                 {
-                    //可记帐 + 分类自负 + 自理：交易费用总额 = 医保结算范围费用总额；现金：自负
-                    //现金
+                    //Có thể ghi sổ + Tự trả theo phân loại + Tự chi trả:Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự trả
+                    //Tiền mặt
                     fymx.xj = 0m;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje + entity.flzf + entity.zlfy;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = 0m;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = 0m;
                 }
                 else if (sfList[0].fyfw == Constants.fyfw.fyfw3)
                 {
-                    //可记帐 + 分类自负 + 自理 + 绝对自费：交易费用总额 = 医保结算范围费用总额；现金：自负
-                    //现金
+                    //Có thể ghi sổ + Tự trả theo phân loại + Tự chi trả + Hoàn toàn tự trả:Tổng số tiền giao dịch = Tổng chi phí trong phạm vi quyết toán BHYT;Tiền mặt:Tự trả
+                    //Tiền mặt
                     fymx.xj = 0m;
-                    //记账费用
+                    //Phí ghi sổ
                     fymx.jzfy = entity.kbje + entity.flzf + entity.zlfy;
-                    //分类自负
+                    //Tự trả theo phân loại
                     fymx.flzf = 0m;
-                    //自理费用
+                    //Chi phí tự chi trả
                     fymx.zl = 0m;
                 }
 
@@ -867,21 +867,21 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
                 #region 费用计算
 
-                //计算金额
+                //TínhSố tiền
                 decimal jsAmount = fymx.jzfy;
-                //根据费用范围需要计算的金额
+                // theo chi phí phạm vi cần tính của số tiền
                 decimal jsedAmount = 0m;
                 decimal sfzf = 0m;
-                //如果有费用上线，则根据算法级别计算(实际只需计算自理费用) 
+                //Nếu có chi phí trên 线,thì theo thuật toán cấp bậc tính(thực tế 只需tínhchi phí tự chi trả) 
                 foreach (SysPatientChargeAlgorithmEntity sfEntity in sfList)
                 {
-                    //如果同一批算法的自负性质和费用范围不一致则直接报错
+                    //Nếu cùng một lô thuật toán của tính chất tự trả và chi phí phạm vi không nhất quán thì trực tiếp báo lỗi 
                     if (sfEntity.zfxz != sfList[0].zfxz)
                         throw new FailedCodeException(
-                            "OUTPAT_PATIENT_NATURE_AND_ZFXZ_IS_NOT_SAME_RANGE"); //当前病人性质和大类的自负性质必须相同，请重新配置！
+                            "OUTPAT_PATIENT_NATURE_AND_ZFXZ_IS_NOT_SAME_RANGE"); //Khi trư ớc tính chất bệnh nhân và loại lớn của tính chất tự trả phải giống nhau,vui lòng cấu hình lại！
                     if (sfEntity.fyfw != sfList[0].fyfw)
                         throw new FailedCodeException(
-                            "HOSP_PATIENT_NATURE_AND_CATEGORY_THE_SUANFALIST_IS_NOT_SAME_RANGE"); //当前病人性质和大类的费用范围必须相同，请重新配置！
+                            "HOSP_PATIENT_NATURE_AND_CATEGORY_THE_SUANFALIST_IS_NOT_SAME_RANGE"); //Khi trư ớc tính chất bệnh nhân và loại lớn củachi phí phạm vi phải giống nhau,vui lòng cấu hình lại！
 
                     decimal fysx = sfEntity.fysx * entity.sl;
 
@@ -925,7 +925,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
                 if (sfList[0].zfxz == ((int)Constants.sfZfxzEnum.ZL).ToString())
                 {
-                    //自负性质为自理
+                    //Tính chất tự trả là tự chi trả
                     fymx.sfzl += sfzf;
                 }
                 else
@@ -934,19 +934,19 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 }
                 if (sfList[0].fyfw == Constants.fyfw.fyfw3)
                 {
-                    //如果是绝对自费,记账金额为自理
+                    //Nếu là hoàn toàn tự trả,ghi sổ số tiền là tự chi trả
                     fymx.zl += fymx.jzfy - sfzf;
                     fymx.jzfy = 0m;
                     fymx.xj += fymx.zl;
                 }
                 else
                 {
-                    //可记账费用
+                    // có thể phí ghi sổ
                     fymx.jzfy = fymx.jzfy - sfzf;
                 }
-                //现金
+                //Tiền mặt
                 fymx.xj += sfzf;
-                //有算法 费用合计 = 现金
+                //Có thuật toán tổng chi phí = tiền mặt
                 fymx.total = fymx.xj;
 
                 entity.jyje = fymx.jzfy;
@@ -959,7 +959,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         #region  获取结算大类
 
         /// <summary>
-        /// 获取门诊结算大类
+        /// Lấy quyết toán ngoại trú loại lớn 
         /// </summary>
         /// <param name="js"></param>
         /// <param name="returnValue"></param>
@@ -968,7 +968,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
             Brsfsf_ReturnValue_YBANDFYB returnValue)
         {
             List<OutpatientSettlementCategoryEntity> jsdlList = new List<OutpatientSettlementCategoryEntity>();
-            //医保费用
+            //Chi phí bảo hiểm y tế
             foreach (Brsfsf_Dl_Fymx yb in returnValue.YB.dlFymxList)
             {
                 OutpatientSettlementCategoryEntity jsdl = jsdlList.Find(t => t.dl == yb.dl);
@@ -985,10 +985,10 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 }
 
                 jsdl.jsnm = js.jsnm;
-                jsdl.dl = yb.dl; //大类
-                jsdl.flzffy += yb.flzf; //分类自负费用
-                jsdl.zlfy += yb.zl + yb.sfzl; //自理费用
-                jsdl.jmfy += yb.jmje; //减免金额
+                jsdl.dl = yb.dl; // loại lớn 
+                jsdl.flzffy += yb.flzf; //Chi phí tự trả theo phân loại
+                jsdl.zlfy += yb.zl + yb.sfzl; //Chi phí tự chi trả
+                jsdl.jmfy += yb.jmje; //Số tiền giảm trừ
 
                 if (returnValue.ybjsfwze == 0)
                 {
@@ -997,12 +997,12 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 }
                 else
                 {
-                    jsdl.zffy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.zffy; //分类金额/分类金额合计*自负金额
-                    jsdl.kbfy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.jzfy; //分类金额/分类金额合计*自负金额
+                    jsdl.zffy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.zffy; //Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
+                    jsdl.kbfy += ((yb.jzfy + yb.flzf) / returnValue.ybjsfwze) * js.jzfy; //Số tiền theo phân loại/Tổng số tiền theo phân loại*Số tiền tự trả
                 }
                 jsdl.zje += jsdl.flzffy + jsdl.zlfy + jsdl.jmfy + jsdl.zffy + jsdl.kbfy;
             }
-            //非医保费用
+            // không phải chi phí bảo hiểm y tế
             foreach (Brsfsf_Dl_Fymx yb in returnValue.FYB.dlFymxList)
             {
                 OutpatientSettlementCategoryEntity jsdl = jsdlList.Find(t => t.dl == yb.dl);
@@ -1018,10 +1018,10 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 }
 
                 jsdl.jsnm = js.jsnm;
-                jsdl.dl = yb.dl; //大类
-                jsdl.flzffy += yb.flzf; //分类自负费用
-                jsdl.zlfy += yb.zl + yb.sfzl; //自理费用
-                jsdl.jmfy += yb.jmje; //减免金额
+                jsdl.dl = yb.dl; // loại lớn 
+                jsdl.flzffy += yb.flzf; //Chi phí tự trả theo phân loại
+                jsdl.zlfy += yb.zl + yb.sfzl; //Chi phí tự chi trả
+                jsdl.jmfy += yb.jmje; //Số tiền giảm trừ
 
                 jsdl.zffy += yb.sfzf;
                 jsdl.kbfy += yb.jzfy;
@@ -1046,7 +1046,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
 
         /// <summary>
-        /// 根据自负比例计算自负金额
+        /// theo tỷ lệ tự trả tính số tiền tự trả
         /// </summary>
         /// <param name="amount"></param>
         /// <param name="zfbl"></param>
@@ -1067,7 +1067,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 获取结算明细
+        /// Lấy chi tiết quyết toán
         /// </summary>
         /// <param name="mzjs"></param>
         /// <param name="jsEntity"></param>
@@ -1106,7 +1106,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
 
 
         /// <summary>
-        /// 获取结算明细
+        /// Lấy chi tiết quyết toán
         /// </summary>
         /// <param name="mzjsList"></param>
         /// <param name="jsEntity"></param>
@@ -1126,7 +1126,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 mzjsmx.jsnm = int.Parse(jsxm.jsnm.ToString());
                 mzjsmx.mxnm = jsxm.mxnm;
                 mzjsmx.sl = jsxm.sl;
-                mzjsmx.jslx = "2";//2表示门诊记账
+                mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                 mzjsmx.cf_mxnm = jsxm.cf_mxnm;
                 mzjsmx.jyje = jsxm.jyje;
                 mzjsmx.jyfwje = jsxm.jyfwje;
@@ -1145,11 +1145,11 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         #region 门诊结算支付方式
 
         /// <summary>
-        /// 门诊结算支付方式
+        /// Phư ơng thức thanh toán quyết toán ngoại trú
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
-        /// <param name="xjzffs">支付方式</param>
-        /// <param name="ysk">应收款</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
+        /// <param name="xjzffs"> phư ơng thức thanh toán </param>
+        /// <param name="ysk">Số tiền phải thu</param>
         /// <returns></returns>
         public OutpatientSettlementPaymentModelEntity GetMzJsZffs(int jsnm, string xjzffs, string xjzffsbh, decimal ysk)
         {
@@ -1165,7 +1165,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
                 zh = 0
             };
 
-            if (mzjszffs.xjzffs == Constants.xtzffs.XJZF) //现金
+            if (mzjszffs.xjzffs == Constants.xtzffs.XJZF) //Tiền mặt
             {
                 mzjszffs.zfje = ysk;
             }
@@ -1184,7 +1184,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         #region 门诊记账
 
         /// <summary>
-        /// 根据卡号病历号门诊号模糊查询病人信息（门诊记账右上方病人信息）
+        /// theo số thẻ số hồ sơ bệnh án số khám ngoại trú模糊tra cứu thông tin bệnh nhân(ghi sổ ngoại trú phải trên 方thông tin bệnh nhân)
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="IsBlh"></param>
@@ -1193,12 +1193,12 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         /// <returns></returns>
         public List<OutpatAccInfoDto> GetChargePatInfoInAcc(string kh, string IsBlh, string mzh, string orgId)
         {
-            string isClinic = "2";//医保
+            string isClinic = "2";//BHYT
             DbParameter[] opar = { new SqlParameter("@Id", orgId) };
             var isZhenSuo = FirstOrDefault<string>("SELECT CategoryCode FROM NewtouchHIS_Base..Sys_Organize WHERE Id=@Id", opar);
             if (isZhenSuo == "Clinic")
             {
-                isClinic = "1";//1表示诊所，用商保
+                isClinic = "1";//1 biểu thị phòng khám, dùng bảo hiểm thư ơng mại 
             }
             var blh = IsBlh == "ON" ? mzh : null;
             var mmzh = (IsBlh == "OFF" || IsBlh == null) ? mzh : null;
@@ -1250,7 +1250,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
             };
                 patChargeVo = FindList<OutpatAccInfoDto>(strSql.ToString(), par1);
             }
-            else if (isClinic == "1")//商保
+            else if (isClinic == "1")// bảo hiểm thư ơng mại 
             {
                 StringBuilder strSql2 = new StringBuilder();
                 strSql.Append(@"SELECT  A.patid ,
@@ -1305,7 +1305,7 @@ AND NOT EXISTS(SELECT 1 FROM dbo.mz_ghth(NOLOCK) y WHERE xm.ghnm=y.ghnm)
         }
 
         /// <summary>
-        /// 根据卡号和挂号时间查询病人详细信息（门诊收费右上方病人信息）
+        /// theo số thẻ và đăng ký khám thời giantra cứu bệnh nhân thông tin chi tiết(ngoại trú thu phí phải trên 方thông tin bệnh nhân)
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -1366,7 +1366,7 @@ AND gh.ghrq BETWEEN @kssj AND DATEADD(DAY,1,CONVERT(DATETIME,@jssj))
         }
 
         /// <summary>
-        /// 根据门诊号查询病人详细信息（门诊收费右上方病人信息）
+        /// theo số khám ngoại trú tra cứu bệnh nhân thông tin chi tiết(ngoại trú thu phí phải trên 方thông tin bệnh nhân)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="cardType"></param>
@@ -1427,7 +1427,7 @@ order by gh.ghrq
         }
 
         /// <summary>
-        /// 根据卡号和病历号获取病人基本信息
+        /// theo số thẻ và số hồ sơ bệnh án lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="blh"></param>
@@ -1527,11 +1527,11 @@ ORDER BY A.CreateTime DESC";
             return patChargeVo;
         }
         /// <summary>
-        /// 门诊结算事务
+        /// Quyết toán ngoại trú giao dịch 
         /// </summary>
         /// <param name="vo"></param>
-        /// <param name="jzjhEntity">记账计划</param>
-        /// <param name="jzmxlist">记账计划明细</param>
+        /// <param name="jzjhEntity">Kế hoạch ghi sổ</param>
+        /// <param name="jzmxlist">Chi tiết kế hoạch ghi sổ</param>
         public void OutPatChargeSettDBInAcc(OutPatChargeSettInAccDataVo vo, OutpatientAccountEntity jzjhEntity, List<OutpatientAccountDetailEntity> jzmxlist, Dictionary<string, string> optimaId)
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
@@ -1601,13 +1601,13 @@ ORDER BY A.CreateTime DESC";
                         db.Insert(item);
                     }
                 }
-                //记账计划
+                //Kế hoạch ghi sổ
                 if (jzjhEntity != null)
                 {
                     db.Insert(jzjhEntity);
                 }
 
-                //记账计划明细
+                //Chi tiết kế hoạch ghi sổ
                 if (jzmxlist != null && jzmxlist.Count > 0)
                 {
                     foreach (var item in jzmxlist)
@@ -1628,7 +1628,7 @@ ORDER BY A.CreateTime DESC";
         /// </summary>
         /// <param name="admsNum"></param>
         /// <param name="orgId"></param>
-        /// <param name="type">病人类型：门诊/住院</param>
+        /// <param name="type">Loại bệnh nhân:Ngoại trú/Nhập viện</param>
         /// <returns></returns>
         public OutpatAccInfoDto GetPatInfoInOptima(string admsNum, string orgId, string type)
         {
@@ -1722,7 +1722,7 @@ ORDER BY A.CreateTime DESC";
 
 
         /// <summary>
-        /// 根据门诊号获取历史门诊记账项目(已确认和手工记账)
+        /// theo số khám ngoại trú lấy lịch sử ghi sổ ngoại trú hạng mục(Đ ãxác nhận và手工ghi sổ)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -1843,7 +1843,7 @@ ORDER BY A.CreateTime DESC";
         }
 
         /// <summary>
-        /// 根据住院号获取历史住院记账项目(已确认和手工记账)
+        /// theo số nhập viện lấy lịch sử ghi sổ nhập viện hạng mục(Đ ãxác nhận và手工ghi sổ)
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -1949,14 +1949,14 @@ ORDER BY A.CreateTime DESC";
         }
 
         /// <summary>
-        /// optima提交
+        /// optimaGửi
         /// </summary>
-        /// <param name="outaddvo">门诊新增记账</param>
-        /// <param name="outupdatevo">门诊修改记账</param>
-        /// <param name="outdelvo">门诊删除记账</param>
-        /// <param name="inaddvo">住院新增记账</param>
-        /// <param name="inupdatevo">住院修改记账</param>
-        /// <param name="indelvo">住院删除记账</param>
+        /// <param name="outaddvo">Ngoại trú thêm mớighi sổ</param>
+        /// <param name="outupdatevo">Ngoại trú sửaghi sổ</param>
+        /// <param name="outdelvo">Ngoại trú xóaghi sổ</param>
+        /// <param name="inaddvo">Nhập việnThêm mớiGhi sổ</param>
+        /// <param name="inupdatevo">Nhập việnSửaGhi sổ</param>
+        /// <param name="indelvo">Nhập việnXóaGhi sổ</param>
         /// <param name="orgId"></param>
         public void PatsettDBInOptima(SettInAccOutpatDataVo outaddvo,
             updateInAccOutpatVo outupdatevo,
@@ -2053,7 +2053,7 @@ ORDER BY A.CreateTime DESC";
                         foreach (var item in outupdatevo.mz_cfmxList.Keys)
                         {
                             db.Update(outupdatevo.mz_cfmxList[item]);
-                            //保存变更日志
+                            //Lưu nhật ký thay đ ổi
                             if (outupdatevo.mz_cfmxList.Keys != null)
                             {
                                 AppLogger.WriteEntityChangeRecordLog(item, outupdatevo.mz_cfmxList[item], OutpatientPrescriptionDetailEntity.GetTableName(), item.cfmxId.ToString());
@@ -2066,7 +2066,7 @@ ORDER BY A.CreateTime DESC";
                         foreach (var item in outupdatevo.mz_xmList.Keys)
                         {
                             db.Update(outupdatevo.mz_xmList[item]);
-                            //保存变更日志
+                            //Lưu nhật ký thay đ ổi
                             if (outupdatevo.mz_xmList.Keys != null)
                             {
                                 AppLogger.WriteEntityChangeRecordLog(item, outupdatevo.mz_xmList[item], OutpatientItemEntity.GetTableName(), item.xmnm.ToString());
@@ -2082,7 +2082,7 @@ ORDER BY A.CreateTime DESC";
                         foreach (var item in inupdatevo.zy_xmjfbList.Keys)
                         {
                             db.Update(inupdatevo.zy_xmjfbList[item]);
-                            //保存变更日志
+                            //Lưu nhật ký thay đ ổi
                             if (inupdatevo.zy_xmjfbList.Keys != null)
                             {
                                 AppLogger.WriteEntityChangeRecordLog(item, inupdatevo.zy_xmjfbList[item], HospItemBillingEntity.GetTableName(), item.jfbbh.ToString());
@@ -2094,7 +2094,7 @@ ORDER BY A.CreateTime DESC";
                         foreach (var item in inupdatevo.zy_ypjfbList.Keys)
                         {
                             db.Update(inupdatevo.zy_ypjfbList[item]);
-                            //保存变更日志
+                            //Lưu nhật ký thay đ ổi
                             if (inupdatevo.zy_ypjfbList.Keys != null)
                             {
                                 AppLogger.WriteEntityChangeRecordLog(item, inupdatevo.zy_ypjfbList[item], HospDrugBillingEntity.GetTableName(), item.jfbbh.ToString());
@@ -2108,7 +2108,7 @@ ORDER BY A.CreateTime DESC";
 
                 if (outdelvo != null)
                 {
-                    //删除处方明细
+                    //Xóachi tiết đ ơn thuốc
                     if (outdelvo.mz_cfmxList != null && outdelvo.mz_cfmxList.Count > 0)
                     {
                         var cfmxIdslist = "'" + string.Join("','", outdelvo.mz_cfmxList.Distinct().ToArray()) + "'";
@@ -2144,7 +2144,7 @@ ORDER BY A.CreateTime DESC";
                 {
                     foreach (var cfmxid in cfmxIds)
                     {
-                        //获取删除处方内码
+                        //Lấy xóa mã nội bộ đ ơn thuốc
                         var cfnm = db2.FirstOrDefault<int>(@"SELECT DISTINCT
                                                             cfmx.cfnm
                                                     FROM    dbo.mz_cf cf
@@ -2155,7 +2155,7 @@ ORDER BY A.CreateTime DESC";
                                                             AND js.OrganizeId = @orgId",
                                                             new[] { new SqlParameter("@cfmxId", cfmxid),
                                                                 new SqlParameter("@orgId", orgId) });
-                        //判断处方是否存在其他的未删除
+                        // phán đoán Đ ơn thuốc có hay không tồn tại tại khác của chưa xóa
                         var cfnmExists = db2.FirstOrDefault<int>(@"SELECT  COUNT(1)
                         FROM    dbo.mz_cfmx
                         WHERE   cfnm = @cfnm AND zt=1 AND OrganizeId=@orgId",
@@ -2164,7 +2164,7 @@ ORDER BY A.CreateTime DESC";
                             new SqlParameter("@cfnm", cfnm) });
                         if (cfnmExists > 0)
                         {
-                            //更新处方主表总金额
+                            //Cập nh ậtĐ ơn thuốc bảng chính tổng số tiền
                             db2.ExecuteSqlCommand(@"UPDATE  dbo.mz_cf
                                     SET     zje = (SELECT  SUM(dj * sl),LastModifierCode=@usercode,LastModifyTime=GETDATE()
                                                     FROM    dbo.mz_cfmx
@@ -2183,7 +2183,7 @@ ORDER BY A.CreateTime DESC";
 
         #region 门诊收费 Vision-1.3 门诊记账的第三个版本
         /// <summary>
-        /// 获取时间段内病人所有挂号和消费总金额
+        /// Lấy thời gian đoạn trong bệnh nhân tất cả các Đ ăng ký khám và消费tổng số tiền
         /// </summary>
         public IList<OutPatAccountingDto> GetRegisterGridJson(string begindate, string enddate, string orgId, string usercode)
         {
@@ -2213,7 +2213,7 @@ ORDER BY A.CreateTime DESC";
         }
 
         /// <summary>
-        /// 根据门诊号获取历史收费项目
+        /// theo số khám ngoại trú lấy lịch sử hạng mục thu phí
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -2352,12 +2352,12 @@ order by js.jsnm");
         }
 
         /// <summary>
-        /// 保存记账，数据库保存
+        /// Lưughi sổ,dữ liệu kho lưu
         /// </summary>
-        /// <param name="vo">新增对象集合</param>
-        /// <param name="updatevo">修改对象集合</param>
-        /// <param name="jsnmList">修改和删除的结算内码集合</param>
-        /// <param name="delvo">删除对象集合</param>
+        /// <param name="vo">Thêm m ớiĐ ối tư ợng tập hợp </param>
+        /// <param name="updatevo">SửaĐ ối tư ợng tập hợp </param>
+        /// <param name="jsnmList">Sửa và xóa của mã nội bộ quyết toán tập hợp </param>
+        /// <param name="delvo">XóaĐ ối tư ợng tập hợp </param>
         /// <param name="orgId"></param>
         public void OutPatsettDBInCharge(OutPatSettInAccDataVo vo, updatePatSettInAccDataVo updatevo, List<int> jsnmList, DelPatSettInAccDataVo delvo, string orgId)
         {
@@ -2402,13 +2402,13 @@ order by js.jsnm");
                         db.Insert(item);
                     }
                 }
-                ////记账计划
+                ////Kế hoạch ghi sổ
                 //if (vo.mz_jzjh != null)
                 //{
                 //    db.Insert(vo.mz_jzjh);
                 //}
 
-                ////记账计划明细
+                ////Chi tiết kế hoạch ghi sổ
                 //if (vo.mz_jzjhmx != null && vo.mz_jzjhmx.Count > 0)
                 //{
                 //    foreach (var item in vo.mz_jzjhmx)
@@ -2424,7 +2424,7 @@ order by js.jsnm");
                 //    foreach (var item in updatevo.mz_cfmxList.Keys)
                 //    {
                 //        db.Update(updatevo.mz_cfmxList[item]);
-                //        //保存变更日志
+                // //Lưu nhật ký thay đ ổi
                 //        if (updatevo.mz_cfmxList.Keys != null)
                 //        {
                 //            AppLogger.WriteEntityChangeRecordLog(item, updatevo.mz_cfmxList[item], OutpatientPrescriptionDetailEntity.GetTableName(), item.cfmxId.ToString());
@@ -2436,7 +2436,7 @@ order by js.jsnm");
                     foreach (var item in updatevo.mz_jsmxList.Keys)
                     {
                         db.Update(updatevo.mz_jsmxList[item]);
-                        //保存变更日志
+                        //Lưu nhật ký thay đ ổi
                         if (updatevo.mz_jsmxList.Keys != null)
                         {
                             AppLogger.WriteEntityChangeRecordLog(item, updatevo.mz_jsmxList[item], OutpatientSettlementDetailEntity.GetTableName(), item.jsmxnm.ToString());
@@ -2448,7 +2448,7 @@ order by js.jsnm");
                 //    foreach (var item in updatevo.mz_jzjhmx.Keys)
                 //    {
                 //        db.Update(updatevo.mz_jzjhmx[item]);
-                //        //保存变更日志
+                // //Lưu nhật ký thay đ ổi
                 //        if (updatevo.mz_jzjhmx.Keys != null)
                 //        {
                 //            AppLogger.WriteEntityChangeRecordLog(item, updatevo.mz_jzjhmx[item], OutpatientAccountDetailEntity.GetTableName(), item.jzjhmxId.ToString());
@@ -2460,7 +2460,7 @@ order by js.jsnm");
                     foreach (var item in updatevo.mz_xmList.Keys)
                     {
                         db.Update(updatevo.mz_xmList[item]);
-                        //保存变更日志
+                        //Lưu nhật ký thay đ ổi
                         if (updatevo.mz_xmList.Keys != null)
                         {
                             AppLogger.WriteEntityChangeRecordLog(item, updatevo.mz_xmList[item], OutpatientItemEntity.GetTableName(), item.xmnm.ToString());
@@ -2470,7 +2470,7 @@ order by js.jsnm");
                 #endregion
 
                 #region 删除
-                //删除子表
+                //Xóa子 bảng 
                 //if (delvo.mz_cfmxList != null && delvo.mz_cfmxList.Count > 0)
                 //{
                 //    var stringlist = "'" + string.Join("','", delvo.mz_cfmxList.Distinct().ToArray()) + "'";
@@ -2496,10 +2496,10 @@ order by js.jsnm");
                 #region
                 if (jsnmList != null && jsnmList.Count() > 0)
                 {
-                    //删除和更改时，刷新处方主表，结算主表的状态
+                    //Xóa và sửa giờ,刷 mới Đ ơn thuốc bảng chính,quyết toán bảng chính của trạng thái
                     foreach (var jsnm in jsnmList)
                     {
-                        ////获取删除处方内码（此版本前提：一次结算最多一张处方）
+                        ////Lấy xóa mã nội bộ đ ơn thuốc(này 版 bản điều kiện tiên quyết: một lần quyết toán nhất nhiều một tờ Đ ơn thuốc)
                         //var cfnm = db.FirstOrDefault<int>(@"SELECT
                         //                        cfmx.cfnm
                         //                 FROM   mz_js js
@@ -2513,7 +2513,7 @@ order by js.jsnm");
                         //                        AND js.OrganizeId = @orgId", new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
                         //if (cfnm > 0)
                         //{
-                        //    //判断处方是否存在其他的未删除
+                        // // phán đoán Đ ơn thuốc có hay không tồn tại tại khác của chưa xóa
                         //    var cfnmExists = db.FirstOrDefault<int>(@"SELECT  COUNT(1)
                         //FROM    dbo.mz_cfmx
                         //WHERE   cfnm = @cfnm AND zt=1 AND OrganizeId=@orgId", new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId), new SqlParameter("@cfnm", cfnm) });
@@ -2523,7 +2523,7 @@ order by js.jsnm");
                         //    }
                         //}
 
-                        //判断结算是否存在其他的未删除
+                        // phán đoán quyết toán có hay không tồn tại tại khác của chưa xóa
                         var jsExists = db.FirstOrDefault<int>(@"SELECT COUNT(1) FROM dbo.mz_jsmx WHERE jsnm=@jsnm AND zt=1 AND OrganizeId=@orgId",
                             new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
                         if (jsExists < 1)
@@ -2535,13 +2535,13 @@ order by js.jsnm");
                 }
                 #endregion
 
-                //删除记账计划主表
+                //Xóa kế hoạch ghi sổ bảng chính 
 
-                //获取所有已删除记账计划主键
+                //Lấy tất cả các Đ ãxóa kế hoạch ghi sổ khóa chính
                 //var jzjhIdList = db.FindList<string>("SELECT DISTINCT jzjhId FROM dbo.mz_jzjhmx WHERE jzjhmxId IN (" + jzjhmxIdslist + ") AND zt=0", new[] { new SqlParameter("@orgId", orgId) });
                 //foreach (var item in jzjhIdList)
                 //{
-                //    //判断记账计划是否存在其他的未删除
+                // // phán đoán kế hoạch ghi sổ có hay không tồn tại tại khác của chưa xóa
                 //    var jzjhExists = db.FirstOrDefault<int>(@"SELECT COUNT(1) FROM dbo.mz_jzjhmx WHERE jzjhId=@jzjhId AND zt=1 AND OrganizeId=@orgId",
                 //        new[] { new SqlParameter("@jzjhId", item), new SqlParameter("@orgId", orgId) });
                 //    if (jzjhExists < 1)
@@ -2560,10 +2560,10 @@ order by js.jsnm");
                 #region 修改处方主表，结算主表总金额
                 if (jsnmList != null && jsnmList.Count() > 0)
                 {
-                    //更改处方主表和结算主表总金额
+                    //SửaĐ ơn thuốc bảng chính và quyết toán bảng chính tổng số tiền
                     foreach (var jsnm in jsnmList)
                     {
-                        ////获取删除处方内码
+                        ////Lấy xóa mã nội bộ đ ơn thuốc
                         //var cfnm = db2.FirstOrDefault<int>(@"SELECT DISTINCT
                         //                        cfmx.cfnm
                         //                 FROM   mz_js js
@@ -2577,13 +2577,13 @@ order by js.jsnm");
                         //                        AND js.OrganizeId = @orgId", new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
                         //if (cfnm > 0)
                         //{
-                        //    //判断处方是否存在其他的未删除
+                        // // phán đoán Đ ơn thuốc có hay không tồn tại tại khác của chưa xóa
                         //    var cfnmExists = db2.FirstOrDefault<int>(@"SELECT  COUNT(1)
                         //FROM    dbo.mz_cfmx
                         //WHERE   cfnm = @cfnm AND zt=1 AND OrganizeId=@orgId", new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId), new SqlParameter("@cfnm", cfnm) });
                         //    if (cfnmExists > 0)
                         //    {
-                        //        //更新处方主表总金额
+                        // //Cập nh ậtĐ ơn thuốc bảng chính tổng số tiền
                         //        db2.ExecuteSqlCommand(@"UPDATE  dbo.mz_cf
                         //            SET     zje = (SELECT  SUM(dj * sl),LastModifierCode=@usercode,LastModifyTime=GETDATE()
                         //                            FROM    dbo.mz_cfmx
@@ -2594,12 +2594,12 @@ order by js.jsnm");
                         //    }
                         //}
 
-                        //判断结算是否存在其他的未删除
+                        // phán đoán quyết toán có hay không tồn tại tại khác của chưa xóa
                         var jsExists = db2.FirstOrDefault<int>(@"SELECT COUNT(1) FROM dbo.mz_jsmx WHERE jsnm=@jsnm AND zt=1 AND OrganizeId=@orgId",
                             new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
                         if (jsExists > 0)
                         {
-                            //更新结算主表总金额
+                            //Cập nhật quyết toán bảng chính tổng số tiền
                             var xmzj = FirstOrDefault<decimal>(@"SELECT sum(ISNULL(jyje, 0)) FROM mz_jsmx WHERE jsnm = @jsnm AND OrganizeId =@orgId AND zt = '1'", new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
                             decimal cfzj = 0;
                             //cfzj = FirstOrDefault<decimal>(@"SELECT  ISNULL(SUM(cfmx.dj * cfmx.sl), 0)
@@ -2629,7 +2629,7 @@ order by js.jsnm");
 
         #region 门诊记账，第四个版本，增加单位治疗量逻辑
         /// <summary>
-        /// 根据门诊号获取历史收费项目，不包含药品和已完成，已停止的记账计划
+        /// theo số khám ngoại trú lấy lịch sử hạng mục thu phí, không bao gồm thuốc và đã hoàn thành,Đ ã dừng của kế hoạch ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -2708,11 +2708,11 @@ order by mx.jzsj desc, mx.CreateTime desc");
         }
         #endregion
         /// <summary>
-        /// 保存记账，数据库保存
+        /// Lưughi sổ,dữ liệu kho lưu
         /// </summary>
-        /// <param name="vo">新增对象集合</param>
-        /// <param name="updatevo">修改对象集合</param>
-        /// <param name="jsnmList">修改结算内码集合</param>
+        /// <param name="vo">Thêm m ớiĐ ối tư ợng tập hợp </param>
+        /// <param name="updatevo">SửaĐ ối tư ợng tập hợp </param>
+        /// <param name="jsnmList">Sửa mã nội bộ quyết toán tập hợp </param>
         /// <param name="orgId"></param>
         public void OutPatsettDBInCharge(OutPatSettInAccDataVo4 vo, List<OutpatientItemExeEntity> tempVo, string orgId)
         {
@@ -2742,13 +2742,13 @@ order by mx.jzsj desc, mx.CreateTime desc");
                         db.Insert(item);
                     }
                 }
-                //记账计划
+                //Kế hoạch ghi sổ
                 if (vo.mz_jzjh != null)
                 {
                     db.Insert(vo.mz_jzjh);
                 }
 
-                //记账计划明细
+                //Chi tiết kế hoạch ghi sổ
                 if (vo.mz_jzjhmx != null && vo.mz_jzjhmx.Count > 0)
                 {
                     foreach (var item in vo.mz_jzjhmx)
@@ -2756,7 +2756,7 @@ order by mx.jzsj desc, mx.CreateTime desc");
                         db.Insert(item);
                     }
                 }
-                //门诊项目执行
+                //Hạng mục ngoại trú thực hiện 
                 if (tempVo != null && tempVo.Count() > 0)
                 {
                     foreach (var item in tempVo)
@@ -2774,7 +2774,7 @@ order by mx.jzsj desc, mx.CreateTime desc");
         #region 收费2018版
 
         /// <summary>
-        /// 获取未收费的病人信息
+        /// Lấy chưa thu phí của thông tin bệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2845,7 +2845,7 @@ order by ttt.ghrq desc");
         }
 
         /// <summary>
-        /// 获取欠费预结的结算记录
+        /// Lấy quyết toán trư ớc khi nợ phí của quyết toán bản ghi 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -2871,7 +2871,7 @@ and gh.mzh = @mzh");
         }
 
         /// <summary>
-        /// 根据jsnm 获取结算的明细列表
+        /// theo jsnm lấy quyết toán củachi tiếtdanh sách
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -2907,7 +2907,7 @@ and jsmx.zt = '1' and ypmx.zt = '1'");
         }
 
         /// <summary>
-        /// 根据门诊号获取未收费的处方
+        /// theo số khám ngoại trú lấy chưa thu phí CủaĐ ơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -2995,10 +2995,10 @@ and xm.cfnm in ({0})", cfnm);
         }
 
         /// <summary>
-        /// 获取待收费的处方列表
+        /// Lấy chờ thu phí CủaĐ ơn thuốcdanh sách
         /// </summary>
-        /// <param name="mzh">门诊号</param>
-        /// <param name="orgId">机构ID</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
+        /// <param name="orgId">Cơ quanID</param>
         /// <returns></returns>
         public IList<ChargeLeftDto> GetNewUnSettedPrescriptionByMzh(string mzh, string orgId)
         {
@@ -3019,11 +3019,11 @@ and xm.cfnm in ({0})", cfnm);
         }
 
         /// <summary>
-        /// 获取待收费的处方明细列表
+        /// Lấy chờ thu phí củachi tiết đ ơn thuốcdanh sách
         /// </summary>
-        /// <param name="mzh">门诊号</param>
-        /// <param name="cfnms">逗号分隔的处方内码</param>
-        /// <param name="orgId">机构ID</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
+        /// <param name="cfnms">逗 số 分隔của mã nội bộ đ ơn thuốc</param>
+        /// <param name="orgId">Cơ quanID</param>
         /// <returns></returns>
         public IList<ChargeRightDto> GetNewAllUnSettedListByMzh(string mzh, string cfnms, string orgId)
         {
@@ -3127,7 +3127,7 @@ and xm.cfnm in ({0})", cfnm);
         }
 
         /// <summary>
-        /// 获取待结
+        /// LấyChờ quyết toán
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -3176,7 +3176,7 @@ ORDER by isnull(cfh, 'ZZZZ'),klsj  ---ZZZ排在最后
         }
 
         /// <summary>
-        /// 根据结算内码获取结算明细
+        /// theo mã nội bộ quyết toán lấy chi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -3248,7 +3248,7 @@ FROM
         }
 
         /// <summary>
-        /// 获取待结项目（非处方）
+        /// Lấy chờ quyết toán hạng mục(không phải Đ ơn thuốc)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -3282,7 +3282,7 @@ order by xm.CreateTime desc
         }
 
         /// <summary>
-        /// 获取指定患者新农合未结算的所有outpId
+        /// Lấy chỉ đ ịnh bệnh nhân BHYT nông thôn mới chưa quyết toán của tất cả các outpid
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="organizeId"></param>
@@ -3311,7 +3311,7 @@ AND (xsr.Id IS NULL OR xsr.zt='0')
         #region 结算查询
 
         /// <summary>
-        /// 结算查询
+        /// Quyết toánTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -3375,7 +3375,7 @@ where js.OrganizeId = @orgId and js.zt = '1'");
         #endregion
 
         /// <summary>
-        /// 根据门诊号获取系统病人基本信息
+        /// theo số khám ngoại trú lấy hệ thống thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -3401,7 +3401,7 @@ AND gh.mzh=@mzh
 
 		#region 重庆医保
 	    /// <summary>
-	    /// 获取医保待结
+	    /// LấyBHYTChờ quyết toán
 	    /// </summary>
 	    /// <param name="mzh"></param>
 	    /// <param name="orgId"></param>
@@ -3543,7 +3543,7 @@ AND gh.mzh=@mzh
 	    }
 
 	    /// <summary>
-	    /// 获取医保费用金额
+	    /// Lấychi phí bảo hiểm y tế số tiền
 	    /// </summary>
 	    /// <param name="mzh"></param>
 	    /// <param name="orgId"></param>
@@ -3674,7 +3674,7 @@ SELECT
 
 	    public IList<UploadPrescriptionsListInPut> GetCQYBTfListByJsnm(string jsnm, string mzh, string orgId)
 	    {
-			//cxmxlsh存放jsmxnm
+			//cxmxlsh tồn tại 放jsmxnm
 		    const string strSql = @"
 			SELECT  *
 FROM    ( SELECT    ISNULL(cf.cfh,'YP'+ CONVERT(VARCHAR(50),a.jsmxnm)) cfh ,
@@ -3810,8 +3810,8 @@ FROM    ( SELECT    ISNULL(cf.cfh,'YP'+ CONVERT(VARCHAR(50),a.jsmxnm)) cfh ,
 
 		public IList<UploadPrescriptionsListInPut> GetCQZFTfListByJsnm(string jsnm, string mzh, string orgId)
 	    {
-			//cxmxlsh存放jsmxnm
-		    //cxmxlsh存放jsmxnm
+			//cxmxlsh tồn tại 放jsmxnm
+		    //cxmxlsh tồn tại 放jsmxnm
 		    const string strSql = @"
 			SELECT  *
 FROM    ( SELECT    cf.cfh ,

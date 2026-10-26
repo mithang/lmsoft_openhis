@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 门诊号下的处方信息全部重写
+    /// Số khám ngoại trú dư ới CủaĐ ơn thuốc thông tin tất cả重写
     /// </summary>
     public class PrescriptionUpdateAllForOutNoRequest : PrescriptionAddOrUpdateRequest
     {
         /// <summary>
-        /// 逗号分割的cf（若未指定，作废所有的未收费处方）
+        /// 逗 số 分割Củacf(nếu chưa chỉ đ ịnh,hủy bỏ tất cả các của chưa thu phí đơn thuốc)
         /// </summary>
         public string AheadCancelCf { get; set; }
 

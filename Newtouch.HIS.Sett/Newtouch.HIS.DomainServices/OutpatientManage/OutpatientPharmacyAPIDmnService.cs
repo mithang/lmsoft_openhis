@@ -26,7 +26,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// 加载排药合计信息
+        /// tải xếp thuốc tổng cộng thông tin
         /// </summary>
         /// <param name="ksdm"></param>
         /// <param name="fysjs"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// 查询排药信息
+        /// Tra cứu xếp thuốc thông tin
         /// </summary>
         /// <param name="ksdm"></param>
         /// <param name="yxq"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// 补打发药单 查询发药信息
+        /// In bù phát thuốc đ ơn tra cứu phát thuốc thông tin
         /// </summary>
         /// <param name="ksdm"></param>
         /// <param name="fph"></param>
@@ -90,9 +90,9 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// 查询排药详细药品信息
+        /// Tra cứu xếp thuốc 详细thuốc thông tin
         /// </summary>
-        /// <param name="cfh">处方号</param>
+        /// <param name="cfh">Số đ ơn thuốc</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public List<OutPatientpyDetailListDTO> GetFyDetailList(string cfh, string orgId)
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// 根据处方内码获取详细的处方药品信息
+        /// theo mã nội bộ đ ơn thuốc lấy详细CủaĐ ơn thuốc thuốc thông tin
         /// </summary>
         /// <param name="cfnm"></param>
         /// <param name="organizeId"></param>
@@ -127,7 +127,7 @@ AND cfmx.OrganizeId=@OrganizeId", paraList);
         }
 
         /// <summary>
-        /// 获取处方金额，领药药房信息
+        /// LấyĐ ơn thuốc số tiền,领药 nhà thuốc thông tin
         /// </summary>
         /// <param name="cfnm"></param>
         /// <param name="organizeId"></param>
@@ -143,7 +143,7 @@ AND cfmx.OrganizeId=@OrganizeId", paraList);
         }
 
         /// <summary>
-        /// 更新发药标志
+        /// Cập nhật dấu hiệu phát thuốc 
         /// </summary>
         /// <param name="par"></param>
         public bool Updatecfzt(UpdatefyztRequest par)
@@ -167,7 +167,7 @@ AND cfmx.OrganizeId=@OrganizeId", paraList);
         }
 
         /// <summary>
-        /// 门诊发药显示主表信息
+        /// Phát thuốc ngoại trú hiển thị bảng chính thông tin
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -206,9 +206,9 @@ AND ( br.xm LIKE @keyword OR c.CardNo LIKE @keyword OR js.fph LIKE @keyword)
         }
 
         /// <summary>
-        /// 门诊发药显示处方详细信息
+        /// Phát thuốc ngoại trú hiển thị đơn thuốc thông tin chi tiết
         /// </summary>
-        /// <param name="cfh">处方号</param>
+        /// <param name="cfh">Số đ ơn thuốc</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public IList<fyDetailListRequest> GetfyDetailInfoList(string cfh, string organizeId)
@@ -250,7 +250,7 @@ AND a.OrganizeId=@OrganizeId
 
         #region GetfyDetailCFInfo old code
         //        /// <summary>
-        //        /// 门诊发药，发药时获取处方信息
+        // /// Phát thuốc ngoại trú, phát thuốc giờ LấyĐ ơn thuốc thông tin
         //        /// </summary>
         //        /// <param name="cfh"></param>
         //        /// <param name="lyyf"></param>
@@ -300,7 +300,7 @@ AND a.OrganizeId=@OrganizeId
 
         #endregion
         /// <summary>
-        /// 门诊发药，发药时获取处方信息
+        /// Phát thuốc ngoại trú, phát thuốc giờ LấyĐ ơn thuốc thông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="lyyf"></param>
@@ -329,7 +329,7 @@ AND ISNULL(cf.fybz,'1') = '1'
         }
 
         /// <summary>
-        /// 发药完成后更新处方表的发药标志
+        /// phát thuốc hoàn thành sau cập nh ậtĐ ơn thuốc bảng của dấu hiệu phát thuốc 
         /// </summary>
         /// <param name="cfnm"></param>
         /// <param name="userCode"></param>
@@ -355,7 +355,7 @@ AND ISNULL(cf.fybz,'1') = '1'
         }
 
         /// <summary>
-        /// 门诊退药显示主表信息
+        /// Ngoại trú trả thuốc hiển thị bảng chính thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <param name="orgId"></param>
@@ -400,7 +400,7 @@ GROUP BY js.fph , br.xm , br.csny, c.CardNo , cf.cfh , xz.brxzmc , js.CreateTime
         }
 
         /// <summary>
-        /// 门诊退药显示处方详细信息
+        /// Ngoại trú trả thuốc hiển thị đơn thuốc thông tin chi tiết
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -445,7 +445,7 @@ ORDER BY a.cfmxId
         }
 
         /// <summary>
-        /// 门诊发药查询页面 查询主表信息
+        /// Phát thuốc ngoại trú tra cứutrang tra cứu bảng chính thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <param name="orgId"></param>
@@ -487,7 +487,7 @@ AND ISNULL(js.fph, '') LIKE @fph
         }
 
         /// <summary>
-        /// 门诊发药查询显示药品详细信息
+        /// Phát thuốc ngoại trú tra cứu hiển thị thuốc thông tin chi tiết
         /// </summary>
         /// <param name="cfnm"></param>
         /// <param name="orgId"></param>
@@ -531,14 +531,14 @@ AND a.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 已结算处方明细查询
+        /// Đ ã quyết toán tính chi tiết đ ơn thuốctra cứu
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="fph"></param>
         /// <param name="kh"></param>
-        /// <param name="yfCode">用法代码</param>
+        /// <param name="yfCode"> cách dùng mã</param>
         /// <returns></returns>
         public List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(string organizeId, DateTime kssj, DateTime jssj, string fph, string kh, string yfCode,string mzh)
         {
@@ -575,13 +575,13 @@ AND cfmx.yfCode in (select col from f_split(@yfCode,',') where col>'') ";
         }
 
         /// <summary>
-        /// 获取已结算药品
+        /// LấyĐ ã quyết toán tính thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="cfnm"></param>
         /// <param name="yp"></param>
         /// <param name="sl"></param>
-        /// <param name="czh">成组号</param>
+        /// <param name="czh">成 nhóm số </param>
         public void OutpatientDrugWithdrawalNotify(string organizeId, int cfnm, string yp, decimal sl, string czh)
         {
             const string sql = @"

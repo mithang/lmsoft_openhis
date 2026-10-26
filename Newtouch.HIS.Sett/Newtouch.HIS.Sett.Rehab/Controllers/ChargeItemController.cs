@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab.Controllers
 {
     /// <summary>
-    /// 收费项目
+    /// Hạng mục thu phí
     /// </summary>
     public class ChargeItemController : ControllerBase
     {

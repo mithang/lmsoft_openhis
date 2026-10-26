@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取有效民族下拉框
+        /// Lấy hiệu lực dân tộc hộp thả xuống 
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

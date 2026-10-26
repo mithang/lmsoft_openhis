@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 处方主表
+    /// Đ ơn thuốc bảng chính 
     /// </summary>
     public class OutpatientPrescriptionRepo : RepositoryBase<OutpatientPrescriptionEntity>, IOutpatientPrescriptionRepo
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据cfh获取 有效 处方实体
+        /// theo cfh lấy hiệu lực Đ ơn thuốc thực thể
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据cfnm获取 有效 处方实体
+        /// theo cfnm lấy hiệu lực Đ ơn thuốc thực thể
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfnm"></param>
@@ -47,10 +47,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 生成新处方号
+        /// Tạo mới số đ ơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
-        /// <param name="type">处方类型1药品 2非药品</param>
+        /// <param name="type">Loại đ ơn thuốc1 thuốc 2 không phải thuốc</param>
         /// <returns></returns>
         public string GeneratePresNo(string orgId, int type)
         {

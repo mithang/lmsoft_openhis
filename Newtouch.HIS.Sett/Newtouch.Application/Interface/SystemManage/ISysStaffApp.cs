@@ -4,13 +4,13 @@
     {
 
         /// <summary>
-        /// 有效员工自动提示
+        /// Hiệu lực viên 工 tự đ ộng nhắc nhở
         /// </summary>
         /// <returns></returns>
         object GetValidStaffList();
 
         /// <summary>
-        /// 根据Account（工号）获取人员编号
+        /// theo Account(mã nhân viên)lấy nhân sự số hiệu
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>

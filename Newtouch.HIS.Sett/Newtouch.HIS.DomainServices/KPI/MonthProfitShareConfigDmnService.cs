@@ -13,7 +13,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.DomainServices.KPI
 {
     /// <summary>
-    /// 月利润分成
+    /// Tháng利润分成
     /// </summary>
     public class MonthProfitShareConfigDmnService : DmnServiceBase, IMonthProfitShareConfigDmnService
     {
@@ -90,7 +90,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// 提交治疗师提成配置
+        /// Gửi chuyên viên trị liệu提成cấu hình
         /// </summary>
         /// <param name="entity"></param>
         public void SubmitTherapeutistPSConfig(TherapeutistMonthProfitShareConfigEntity entity, string keyValue)
@@ -117,7 +117,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// 治疗师利润提成 固定报表
+        /// Chuyên viên trị liệu利润提成 固定 báo cáo 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="curUserCode"></param>
@@ -157,7 +157,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// Check报表是否已经生成过
+        /// Check báo cáo có hay kh ôngĐ ãtạo qua 
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="year"></param>
@@ -237,7 +237,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// 提交医疗机构提成配置
+        /// Gửi y tế cơ quan提成cấu hình
         /// </summary>
         /// <param name="entity"></param>
         public void SubmitMedicalOrgPSConfig(MedicalOrgMonthProfitShareConfigEntity entity, string keyValue)
@@ -264,7 +264,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// 医疗机构利润分成 固定报表
+        /// y tế cơ quan利润分成 固定 báo cáo 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="curUserCode"></param>
@@ -304,7 +304,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// Check报表是否已经生成过
+        /// Check báo cáo có hay kh ôngĐ ãtạo qua 
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="year"></param>

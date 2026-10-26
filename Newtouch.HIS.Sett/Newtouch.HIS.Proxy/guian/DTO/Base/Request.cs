@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class RequestHeader : RequestHeaderBase
     {
         /// <summary>
-        /// 票据代码
+        /// 票据mã
         /// </summary>
         [DataMember]
         public string billCode { get; set; }
@@ -77,13 +77,13 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class RequestHeaderBase
     {
         /// <summary>
-        /// 交易代码
+        /// giao dịch mã
         /// </summary>
         [DataMember]
         public string operCode { get; set; }
 
         /// <summary>
-        /// body的md5摘要算法串
+        /// body Củamd5摘 cần thuật toán 串
         /// </summary>
         [DataMember]
         public string rsa { get; set; }

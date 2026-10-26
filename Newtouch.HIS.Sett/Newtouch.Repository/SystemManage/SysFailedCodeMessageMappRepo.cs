@@ -13,18 +13,18 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2017-09-30 14:21
-    /// 描 述：错误提示配置
+    /// 创 建: tờ 冬林
+    /// Ngày kỳ:2017-09-30 14:21
+    /// 描 述:Lỗi nhắc nhở cấu hình
     /// </summary>
     public class SysFailedCodeMessageMappRepo : RepositoryBase<SysFailedCodeMessageMappEntity>, ISysFailedCodeMessageMappRepo
     {
         private readonly ICache _cache;
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc đ ịnh
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFNhà máy ngữ cảnh</param>
         public SysFailedCodeMessageMappRepo(IDefaultDatabaseFactory databaseFactory, ICache cache)
             : base(databaseFactory)
         {
@@ -32,10 +32,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy分trang thực thể danh sách
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">分trang</param>
+        /// <param name="keyword">LọcTừ khóa</param>
         public IList<SysFailedCodeMessageMappEntity> GetPagintionList(Pagination pagination, string keyword)
         {
             var sql = new StringBuilder();
@@ -54,10 +54,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đ ối tư ợng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(SysFailedCodeMessageMappEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -73,22 +73,22 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);
         }
 
         /// <summary>
-        /// 获取组织机构FailMsg配置列表
+        /// LấyTổ chứcFailMsgCấu hìnhDanh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public IList<SysFailedCodeMessageMappEntity> GetListByOrgId(string orgId = null)
         {
-            //顶级组织机构 匹配到的 Mapp
+            //Tổ chức cấp cao nhất 匹配 đ ến của Mapp
             var topOrgMappList = _cache.Get<IList<SysFailedCodeMessageMappEntity>>(string.Format(Infrastructure.CacheKey.SysFailedCodeMessageMapListListSetKey, Constants.TopOrganizeId), () =>
             {
                 return this.IQueryable(p => (p.TopOrganizeId == null || p.TopOrganizeId == "*" || p.TopOrganizeId == Infrastructure.Constants.TopOrganizeId))
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Repository
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                //Organize 匹配到的 Mapp
+                //Organize 匹配 đ ến của Mapp
                 var orgMappList = topOrgMappList.Where(p => p.OrganizeId == null || p.OrganizeId == "*" || p.OrganizeId == orgId).ToList();
 
                 return orgMappList.GroupBy(p => p.code)

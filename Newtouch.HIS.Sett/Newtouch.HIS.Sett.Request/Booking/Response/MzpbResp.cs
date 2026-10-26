@@ -12,19 +12,19 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string OutDept { get; set; }
         public string OutDeptName { get; set; }
         /// <summary>
-        /// mjzbz 门诊类型
+        /// mjzbz Loại ngoại trú
         /// </summary>
         public string RegType { get; set; }
         /// <summary>
-        /// 排班描述
+        /// lịch trực mô tả
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 号源总数
+        /// nguồn số 总数
         /// </summary>
         public int? TotalNum { get; set; }
         /// <summary>
-        /// 剩余号源
+        /// còn lại nguồn số 
         /// </summary>
         public int? BookNum { get; set; }
     }

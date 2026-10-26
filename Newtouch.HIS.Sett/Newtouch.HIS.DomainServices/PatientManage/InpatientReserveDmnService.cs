@@ -25,10 +25,10 @@ namespace Newtouch.HIS.DomainServices.PatientManage
         
 
         /// <summary>
-        /// 获取病人管理》预交金》获取账户收支记录信息
+        /// Lấy quản lý bệnh nhân>Tạm ứng>Lấythu chi tài khoản bản ghi thông tin
         /// </summary>
-        /// <param name="zh">账户</param>
-        /// <param name="zyh">住院号</param>
+        /// <param name="zh">Tài khoản</param>
+        /// <param name="zyh">Số nhập viện</param>
         /// <returns></returns>
         public List<InpatientPatAccPayVO> GetAccPayInfo(int zh, string orgId, string zhxz)
         {
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.DomainServices.PatientManage
 
         #region 住院账户操作
         /// <summary>
-        /// 保存账户事务
+        /// Lưu tài khoản giao dịch 
         /// </summary>
         /// <param name="vo"></param>
         public void PatZyAccDBProc(PatZyAccDataVO vo, InpatientAccountEntity zh, FinanceReceiptEntity cwsj, string type)
@@ -85,20 +85,20 @@ namespace Newtouch.HIS.DomainServices.PatientManage
                         db.Insert(vo.szjl);
                     }
 
-                    //病人账户更新
+                    //Bệnh nhânTài khoảnCập nhật
                     if (vo.oldzh != null)
                     {
                         db.Update(zh);
                     }
 
-                    //财务收据
+                    //财务 biên lai 
                     if (type == "insert")
                     {
-                        db.Insert(cwsj);  // 添加收据凭证号 
+                        db.Insert(cwsj);  // Thêm số chứng từ biên lai 
                     }
                     if (type == "update")
                     {
-                        db.Update(cwsj);  //修改收据凭证号 
+                        db.Update(cwsj);  //Sửa số chứng từ biên lai 
                     }
                     db.Commit();
                 }
@@ -109,12 +109,12 @@ namespace Newtouch.HIS.DomainServices.PatientManage
                 throw;
             }
 
-            //病人账户变更日志
+            //Bệnh nhân tài khoản thay đ ổi nhật ký 
             if (vo.oldzh != null)
             {
                 AppLogger.WriteEntityChangeRecordLog(vo.oldzh, zh, SysPatientAccountEntity.GetTableName(), vo.oldzh.zhCode.ToString());
             }
-            //财务收据变更日志
+            //财务 biên lai thay đ ổi nhật ký 
             if (vo.oldcwsj != null && type == "update")
             {
                 AppLogger.WriteEntityChangeRecordLog(vo.oldcwsj, cwsj, FinanceReceiptEntity.GetTableName(), vo.oldcwsj.cwsjId.ToString());

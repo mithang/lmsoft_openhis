@@ -8,7 +8,7 @@ using FrameworkBase.MultiOrg.Repository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 农保收费大类
+    /// bảo hiểm nông nghiệp thu phí loại lớn 
     /// </summary>
     public class SysAgriInsuranceChargeCategoryRepo : RepositoryBase<SysAgriInsuranceChargeCategoryVEntity>, ISysAgriInsuranceChargeCategoryRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有农保收费大类下拉框
+        /// Lấy tất cả các bảo hiểm nông nghiệp thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         public IList<SysAgriInsuranceChargeCategoryVEntity> GetnbdlSelect(string orgId)

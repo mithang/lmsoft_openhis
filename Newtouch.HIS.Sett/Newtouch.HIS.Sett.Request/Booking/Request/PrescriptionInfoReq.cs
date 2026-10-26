@@ -11,11 +11,11 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
     {
         public string PresId { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string PresNo { get; set; }
         /// <summary>
-        /// 处方金额
+        /// Đ ơn thuốc số tiền
         /// </summary>
         public decimal PresAmt { get; set; }
         /// <summary>
@@ -24,15 +24,15 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         public string DeptName { get; set; }
         public string DoctorName { get; set; }
         /// <summary>
-        /// 处方类型
+        /// Loại đ ơn thuốc
         /// </summary>
         //public string PresType { get; set; }
         /// <summary>
-        /// 处方类型说明
+        /// Loại đ ơn thuốc说明
         /// </summary>
         public string PresTypeName { get; set; }
         /// <summary>
-        /// 开立时间
+        /// 开立thời gian
         /// </summary>
         public string PresTime { get; set; }
     }
@@ -41,36 +41,36 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
     {
         public string PresId { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string PresNo { get; set; }
         public string PresItemId { get; set; }
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string PresItemName { get; set; }
         /// <summary>
-        /// 数量
+        /// Số lư ợng
         /// </summary>
         public int Quantity { get; set; }
         /// <summary>
-        /// 单位
+        /// Đ ơn vị
         /// </summary>
         public string Unit { get; set; }
         /// <summary>
-        /// 单价
+        /// Đ ơn giá
         /// </summary>
         public decimal Price { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal Amt { get; set; }
         /// <summary>
-        /// 项目组合名称
+        /// Hạng mục kết hợp tên
         /// </summary>
         public string ItemGroupName { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         //public string Spec { get; set; }
 

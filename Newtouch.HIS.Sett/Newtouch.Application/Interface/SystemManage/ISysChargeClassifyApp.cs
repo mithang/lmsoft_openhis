@@ -10,13 +10,13 @@ namespace Newtouch.HIS.Application
     {
 
         /// <summary>
-        /// 获取所有收费分类下拉框
+        /// Lấy tất cả các thu phí phân loại hộp thả xuống 
         /// </summary>
         /// <returns></returns>
         object GetsfflSelect();
 
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application
         void SubmitForm(SysChargeClassificationEntity xt_sfflEntity, string keyValue);
 
         /// <summary>
-        /// Grid筛选查询显示
+        /// GridHiển thị tra cứu lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

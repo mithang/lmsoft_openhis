@@ -2,9 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// 有关程序集的一般信息由以下
-// 控制。更改这些特性值可修改
-// 与程序集关联的信息。
+// Thông tin chung về assembly gồm các
+// Điều khiển.Thay đ ổi các giá trị thuộc tính này có thể sửa
+// Thông tin liên kết với assembly.
 [assembly: AssemblyTitle("Newtouch.HIS.Proxy")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -14,23 +14,23 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// 将 ComVisible 设置为 false 会使此程序集中的类型
-//对 COM 组件不可见。如果需要从 COM 访问此程序集中的类型
-//请将此类型的 ComVisible 特性设置为 true。
+// Đ ặt ComVisible thành false sẽ làm cho các kiểu trong assembly này 
+// đ ối với COM thành phần không hiển thị.Nếu cần từ COM truy cập các kiểu trong assembly này
+// vui lòng này loại của ComVisible Đ ặt thuộc tính thành true.
 [assembly: ComVisible(false)]
 
-// 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
+// Nếu hạng mục này hư ớng tới COM công khai,thì các GUID dùng cho thư viện kiểu của ID
 [assembly: Guid("3dd8b1d6-0b8b-4620-ab4a-0b584f1b5054")]
 
-// 程序集的版本信息由下列四个值组成: 
+// Thông tin phiên bản của assembly gồm bốn giá trị sau: 
 //
-//      主版本
-//      次版本
-//      生成号
-//      修订号
+//      Phiên bản chính
+//      Phiên bản phụ
+// Số đ ược tạo
+// Số hiệu sửa đ ổi
 //
-// 可以指定所有值，也可以使用以下所示的 "*" 预置版本号和修订号
-//通过使用 "*"，如下所示:
+// Có thể chỉ đ ịnh tất cả các giá trị, cũng có thể sử dụng以 dư ới nơi 示của "*" 预置版 bản số và số hiệu sửa đ ổi
+// thông qua sử dụng "*",如 dư ới nơi 示:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -9,87 +9,87 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     {
        
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string inpatientNo { get; set; }
         /// <summary>
-        /// 入院日期(yyyy-mm-dd)
+        /// Ngày nhập viện(yyyy-mm-dd)
         /// </summary>
         public string admissionDate { get; set; }
         /// <summary>
-        /// 入院科室（见字典科室）
+        /// Khoa nhập viện(xem từ điển khoa)
         /// </summary>
         public string admissionDepartments { get; set; }
         /// <summary>
-        /// 经治医生
+        /// Bác sĩ điều trị
         /// </summary>
         public string treatingPhysician { get; set; }
         /// <summary>
-        /// 入院状态(见字典入出院状态)
+        /// Trạng thái nhập viện(xem từ điển 入xuất viện trạng thái)
         /// </summary>
         public string admissionStatus { get; set; }
         /// <summary>
-        /// 疾病代码(接口S29下载获取)
+        /// Mã bệnh(Giao diệnS29Tải xuống và lấy)
         /// </summary>
         public string diseaseCode { get; set; }
         /// <summary>
-        /// 初步诊断
+        /// Chẩn đoán sơ bộ
         /// </summary>
         public string initialDiagnosis { get; set; }
         /// <summary>
-        /// 手术代码(接口S31下载获取)
+        /// phẫu thuật mã(giao diệnS31 tải xuống và lấy)
         /// </summary>
         public string surgeryCode { get; set; }
         /// <summary>
-        /// 病区
+        /// Khu bệnh
         /// </summary>
         public string wardArea { get; set; }
         /// <summary>
-        /// 病房号
+        /// phòng bệnh số 
         /// </summary>
         public string wardNo { get; set; }
         /// <summary>
-        /// 床位号
+        /// giư ờng bệnh số 
         /// </summary>
         public string berthNo { get; set; }
         /// <summary>
-        /// 证件是否齐全0不齐全1齐全
+        /// Giấy tờ đ ã đ ầy đ ủ chưa0 không 齐全1齐全
         /// </summary>
         public string isIncrease { get; set; }
         /// <summary>
-        /// 是否转诊1转诊默认0
+        /// Có chuyển viện hay không1 chuyển tuyến mặc đ ịnh0
         /// </summary>
         public string isReferra { get; set; }
         /// <summary>
-        /// 病人类型（见字典病人类型）
+        /// Loại bệnh nhân(xem từ điển loại bệnh nhân)
         /// </summary>
         public string inpatientTypeOflocal { get; set; }
         /// <summary>
-        /// 保险金额
+        /// bảo hiểm số tiền
         /// </summary>
         public string bxAccount { get; set; }
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         public string tel { get; set; }
         /// <summary>
-        /// 银行卡号
+        /// Số thẻ ngân hàng
         /// </summary>
         public string bankCardNo { get; set; }
         /// <summary>
-        /// 银行卡号开户人姓
+        /// Họ của chủ tài khoản thẻ ngân hàng
         /// </summary>
         public string accountHolder { get; set; }
         /// <summary>
-        /// 患者与开户人关系
+        /// Quan hệ giữa bệnh nhân và chủ tài khoản
         /// </summary>
         public string holderRelation { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
     }

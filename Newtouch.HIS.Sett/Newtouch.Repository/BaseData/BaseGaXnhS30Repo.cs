@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.Entity.BaseData;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 新农合目录下载
+    /// BHYT nông thôn mới 目录tải xuống
     /// </summary>
     public class BaseGaXnhS30Repo : RepositoryBase<BaseGaXnhS30Entity>, IBaseGaXnhS30Repo
     {

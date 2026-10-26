@@ -60,7 +60,7 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 根据病人内码找病人基本信息
+        /// theo bệnh nhân mã nội bộ找thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 同时保存病人和卡信息
+        /// Đ ồng thời lưu bệnh nhân và thẻ thông tin
         /// </summary>
         /// <returns></returns>
         public void SavePatBasicCardInfo(SysHosBasicInfoVO vo, string orgId, string CreatorCode)
@@ -122,8 +122,8 @@ namespace Newtouch.HIS.DomainServices
             SysCardEntity newCardEntity = null;
             SysPatientBasicInfoEntity Oldpatient = null, patiententity = null;
             SysxtbrjbxxlogEntity xtbrjbxxlog = null;
-            //修改病人信息
-            //根据证件号判断病人基本信息
+            //SửaThông tin bệnh nhân
+            // theo số giấy tờ phán đoán thông tin cơ bản bệnh nhân
             //string zjlx = ((EnumZJLX)(Convert.ToInt32(vo.zjlx))).GetDescription();
             var validatepat = _SysPatBasicInfoRepository.IQueryable().Where(p => p.zjlx == vo.zjlx && p.zjh == vo.zjh && p.OrganizeId == orgId && p.zt == "1" && p.zjh!=null);
             if ((vo.patid ?? 0) > 0 && vo.yktbz!= "yktcardregister")
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                     
                 }
-                //修改基本信息
+                //Sửa cơ bản thông tin
                 patiententity = _SysPatBasicInfoRepository.FindEntity(vo.patid);
                 if (patiententity == null)
                 {
@@ -155,16 +155,16 @@ namespace Newtouch.HIS.DomainServices
             }
             else
             {
-                //新增
+                //Thêm mới
                 if (string.IsNullOrWhiteSpace(vo.cardtype))
                 {
                     switch (vo.brxz)
                     {
-                        //医保
+                        //BHYT
                         case "2":
                             vo.cardtype = ((int)EnumCardType.YBJYK).ToString();
                             break;
-                        //新农合
+                        // BHYT nông thôn mới 
                         case "3":
                             vo.cardtype = ((int)EnumCardType.XNHJYK).ToString();
                             break;
@@ -180,7 +180,7 @@ namespace Newtouch.HIS.DomainServices
                 if (validatepat.Count() == 1)
                 {
                     patiententity = validatepat.FirstOrDefault();
-                    vo.yktbz = "yktcardregister";//新增卡信息同时更新一卡通信息
+                    vo.yktbz = "yktcardregister";//Thêm mới thẻ thông tinĐ ồng thời cập nhật một thẻ 通thông tin
                     newPatId = patiententity.patid;
                     var isexitCard = _SysCardRepository.GetCardEntity(patiententity.patid, vo.cardtype, orgId);
                     if (isexitCard != null&&isexitCard.brxz!=((int)EnumBrxz.zf).ToString())
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.DomainServices
                 if (vo.cardtype != ((int)EnumCardType.YBJYK).ToString() && vo.cardtype != ((int)EnumCardType.XNHJYK).ToString())
                 {
 
-                    //验卡号重复使用
+                    //验số thẻ trùng lặp sử dụng
                     if (newCardEntity != null)
                     {
                         throw new FailedException("卡号已存在");
@@ -218,11 +218,11 @@ namespace Newtouch.HIS.DomainServices
                 
                 if (patiententity == null)
                 {
-                    //病历号重复使用判断
+                    //Số hồ sơ bệnh án trùng lặp sử dụng phán đoán 
                     var blhExist = _SysPatBasicInfoRepository.GetInfoByblh(orgId, vo.blh.Trim());
                     if (blhExist != null)
                     {
-                        //新增时判断病历号重复
+                        //Thêm mới giờ phán đoán số hồ sơ bệnh án trùng lặp 
                         throw new FailedException("病历号已存在");
                     }
                     patiententity = new SysPatientBasicInfoEntity();
@@ -230,10 +230,10 @@ namespace Newtouch.HIS.DomainServices
 
                 }
             }
-            //通过身份证获取真实出生日期和性别 
+            // thông qua CMNDlấy真实ngày sinh và giới tính 
             var BirthdayAdnSix = vo.zjlx== ((int)EnumZJLX.sfz).ToString()? CommmHelper.GetBirthdayAdnSix(vo.zjh):null;
             var sd = ((int)EnumZJLX.sfz).ToString();
-            //修改病人基本信息
+            //SửaThông tin cơ bản bệnh nhân
             patiententity.xm = vo.xm;
             patiententity.zjlx = vo.zjlx;
             patiententity.zjh = vo.zjh;
@@ -343,9 +343,9 @@ namespace Newtouch.HIS.DomainServices
 
             #region 数据比较
             System.Reflection.PropertyInfo[] mPi = typeof(SysPatientBasicInfoEntity).GetProperties();
-            var data_name = "";      //差别字段名
-            var datavalue_old = "";  //老字段值
-            var datavalue_new = "";  //新字段值
+            var data_name = "";      //差别 trư ờng 名
+            var datavalue_old = "";  //老 trư ờng giá trị 
+            var datavalue_new = "";  // mới trư ờng giá trị 
             var sqlvalue = "";
             if (Oldpatient != null)
             {
@@ -357,7 +357,7 @@ namespace Newtouch.HIS.DomainServices
                     sqlvalue += get_new == "" ? "NULL," : "'" + get_new + "',";
                     if (get_old != get_new)
                     {
-                        //差别数据统计
+                        //差别dữ liệu thống kê 
                         data_name += (pi.Name == "" ? "NULL" : pi.Name) + ",";
                         datavalue_old += (get_old == "" ? "NULL" : get_old) + ",";
                         datavalue_new += (get_new == "" ? "NULL" : get_new) + ",";
@@ -416,7 +416,7 @@ namespace Newtouch.HIS.DomainServices
                     #region 照顾自助机/小程序接口，获取不到登录用户
                     if (string.IsNullOrEmpty(patiententity.CreatorCode))
                     {
-                        patiententity.CreatorCode = "zzjadmin";//如果为空，设置为自助机挂号（接口）
+                        patiententity.CreatorCode = "zzjadmin";//Nếu trống,Đ ặt thành đ ăng ký khám tại máy tự phục vụ(giao diện)
                     }
                     if (string.IsNullOrEmpty(patiententity.CreateTime.ToString()))
                     {
@@ -430,7 +430,7 @@ namespace Newtouch.HIS.DomainServices
                     #region 照顾自助机/小程序接口，获取不到登录用户
                     if (string.IsNullOrEmpty(xtbrjbxxlog.CreatorCode))
                     {
-                        xtbrjbxxlog.CreatorCode = "zzjadmin";//如果为空，设置为自助机挂号（接口）
+                        xtbrjbxxlog.CreatorCode = "zzjadmin";//Nếu trống,Đ ặt thành đ ăng ký khám tại máy tự phục vụ(giao diện)
                     }
                     if (string.IsNullOrEmpty(xtbrjbxxlog.CreateTime.ToString()))
                     {
@@ -442,13 +442,13 @@ namespace Newtouch.HIS.DomainServices
 
                 if (newCardEntity != null)
                 {
-                    //新卡
+                    // mới thẻ 
                     newCardEntity.patid = newPatId;
                     newCardEntity.Create(true);
                     #region 照顾自助机/小程序接口，获取不到登录用户
                     if (string.IsNullOrEmpty(newCardEntity.CreatorCode))
                     {
-                        newCardEntity.CreatorCode = "zzjadmin";//如果为空，设置为自助机挂号（接口）
+                        newCardEntity.CreatorCode = "zzjadmin";//Nếu trống,Đ ặt thành đ ăng ký khám tại máy tự phục vụ(giao diện)
                     }
                     if (string.IsNullOrEmpty(newCardEntity.CreateTime.ToString()))
                     {
@@ -472,14 +472,14 @@ namespace Newtouch.HIS.DomainServices
 
                 if (Oldpatient != null)
                 {
-                    //基本信息变更日志
+                    // cơ bản thông tin thay đ ổi nhật ký 
                     AppLogger.WriteEntityChangeRecordLog(Oldpatient, patiententity, SysPatientBasicInfoEntity.GetTableName(), vo.patid.ToString());
                 }
             }
         }
 
         /// <summary>
-        /// 住院登记 根据patid获取新登记入院病人基本信息/在院病人住院基本信息
+        /// Nhập viện登记 theo patid lấy mới 登记nhập viện thông tin cơ bản bệnh nhân/Tại viện bệnh nhân thông tin cơ bản nhập viện
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="result"></param>
@@ -624,7 +624,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 病人管理获取form窗体
+        /// Quản lý bệnh nhân Lấyform窗体
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="OrganizeId"></param>
@@ -720,14 +720,14 @@ FROM     xt_brjbxx  jb
 
 
         /// <summary>
-        /// 同时保存住院基本信息//和预交账户信息
+        /// Đ ồng thời lưu thông tin cơ bản nhập viện//Và预交tài khoản thông tin
         /// </summary>
         /// <param name="VO"></param>
         /// <param name="OrganizeId"></param>
         /// <param name="res"></param>
         public string SaveSysBasicAccountInfo(SysHosBasicInfoVO VO, string OrganizeId, out string res)
         {
-            //修改住院病人信息时 同步给CIS
+            //Sửa thông tin bệnh nhân nhập viện giờ Đ ồng bộ cho CIS
             InpatientPatientInfoDTO syncInPatientDTO = null;
             if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", OrganizeId) == true)
             {
@@ -740,16 +740,16 @@ FROM     xt_brjbxx  jb
                 throw new FailedException("patid不能为空");
             }
             var zyhAutoGene = _sysConfigRepo.GetBoolValueByCode("xt_zyh", OrganizeId, true).Value;
-            //当前数据库中的住院病人基本信息   //这是要记日志 比较的    //修改时，才有值
+            //Khi trư ớc dữ liệu kho trong của nhập viện thông tin cơ bản bệnh nhân // này là cần 记 nhật ký 比较của //Sửa giờ,才có giá trị 
             HospPatientBasicInfoEntity oldHospPatientBasicInfo = null;
-            //新入院，会产生新住院号 要返回到页面上
+            // mới nhập viện, sẽ 产生 mới số nhập viện cần quay lại đ ến trang trên 
             string newZyh = null;
             var hospPatientBasicInfo = _HosPatBasicInfoRepository.GetFirstPatiInfoByPatid(VO.patid);
             if (hospPatientBasicInfo != null)
             {
                 oldHospPatientBasicInfo = hospPatientBasicInfo.Clone();
                 //sync to cis
-                //新入院的不需要同步
+                // mới nhập viện của không CầnĐ ồng bộ
                 if (syncInPatientDTO != null
                     && hospPatientBasicInfo.zybz != ((int)EnumZYBZ.Xry).ToString())
                 {
@@ -758,11 +758,11 @@ FROM     xt_brjbxx  jb
             }
             else
             {
-                //当前数据库没有对应的住院 则视为 新增住院
+                //Khi trư ớc dữ liệu kho không có Tư ơng ứng của nhập viện thì视là thêm mới nhập viện
                 hospPatientBasicInfo = new HospPatientBasicInfoEntity();
                 if (!zyhAutoGene)
                 {
-                    //住院号配置不自动生成，则判断住院号，并且赋值
+                    //Số nhập viện cấu hình không tự đ ộng tạo,thì phán đoán số nhập viện,và gán giá trị 
                     if (string.IsNullOrWhiteSpace(VO.zyh))
                     {
                         throw new FailedCodeException("缺少住院号");
@@ -777,7 +777,7 @@ FROM     xt_brjbxx  jb
 
             if (oldHospPatientBasicInfo == null && zyhAutoGene)
             {
-                newZyh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zy_zyh", OrganizeId, initFormat: "{0:D5}"); //新入院 生成住院号
+                newZyh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zy_zyh", OrganizeId, initFormat: "{0:D5}"); // mới nhập viện tạo số nhập viện
                 hospPatientBasicInfo.zyh = newZyh;
             }
             if (string.IsNullOrWhiteSpace(VO.ryrq))
@@ -795,11 +795,11 @@ FROM     xt_brjbxx  jb
             hospPatientBasicInfo.patid = VO.patid.Value;
             if (oldHospPatientBasicInfo == null)
             {
-                //是入院登记
+                //Là đăng ký nhập viện
                 hospPatientBasicInfo.zybz = ((int)EnumZYBZ.Xry).ToString();
                 var isToDjz = _sysConfigRepo.GetBoolValueByCode(
                     "HOSP_Register_To_DJZ", OrganizeId);
-                //默认是新入院，只有配了才直接待结账
+                //Mặc đ ịnh là mới nhập viện,只có配 才trực tiếp chờ thanh toán
                 if (isToDjz == true)
                 {
                     hospPatientBasicInfo.zybz = ((int)EnumZYBZ.Djz).ToString();
@@ -813,7 +813,7 @@ FROM     xt_brjbxx  jb
             hospPatientBasicInfo.doctor = VO.doctor ?? "";
             hospPatientBasicInfo.cw = VO.cw;
             hospPatientBasicInfo.brxz = VO.brxz;
-            //主诊断 sync to cis
+            //主chẩn đoán sync to cis
             if (syncInPatientDTO != null && !string.IsNullOrWhiteSpace(syncInPatientDTO.zyh) && !string.IsNullOrWhiteSpace(VO.brxz))
             {
                 syncInPatientDTO.brxz = VO.brxz;
@@ -821,7 +821,7 @@ FROM     xt_brjbxx  jb
             }
             hospPatientBasicInfo.gms = VO.gms;
             hospPatientBasicInfo.rybq = VO.rybq;
-            hospPatientBasicInfo.zy = VO.zy;    //职业
+            hospPatientBasicInfo.zy = VO.zy;    //Nghề nghiệp
             hospPatientBasicInfo.ys = VO.ys;
             hospPatientBasicInfo.cs_sheng = VO.cs_sheng;
             hospPatientBasicInfo.cs_shi = VO.cs_shi;
@@ -858,14 +858,14 @@ FROM     xt_brjbxx  jb
             hospPatientBasicInfo.lxrEmail2 = VO.lxrEmail2;
             hospPatientBasicInfo.lxrgx2 = VO.lxrgx2;
             hospPatientBasicInfo.lxrWebchat2 = VO.lxrWebchat2;
-            //主诊断 sync to cis
+            //主chẩn đoán sync to cis
             if (syncInPatientDTO != null && !string.IsNullOrWhiteSpace(syncInPatientDTO.zyh) && !string.IsNullOrWhiteSpace(VO.lxr))
             {
                 syncInPatientDTO.lxr = VO.lxr;
                 syncInPatientDTO.lxrdh = VO.lxrdh;
                 syncInPatientDTO.lxrgx = VO.lxrgx;
             }
-            //卡
+            // thẻ 
             hospPatientBasicInfo.kh = VO.kh;
             VO.cardtype = string.IsNullOrWhiteSpace(VO.cardtype) ? ((int)EnumCardType.XNK).ToString() : VO.cardtype;
             hospPatientBasicInfo.CardType =VO.cardtype ;
@@ -918,7 +918,7 @@ FROM     xt_brjbxx  jb
 
                         if (i == 0)
                         {
-                            //主诊断 sync to cis
+                            //主chẩn đoán sync to cis
                             if (syncInPatientDTO != null && !string.IsNullOrWhiteSpace(syncInPatientDTO.zyh) && zdEntity != null)
                             {
                                 syncInPatientDTO.ryzd = zdEntity.zdCode;
@@ -929,7 +929,7 @@ FROM     xt_brjbxx  jb
                 }
             }
             var oldHmdUpdateList = new List<HospMultiDiagnosisEntity>();
-            //数据库中当前住院号的入院多诊断（可以包括无效的）
+            //Dữ liệu kho trong khi trư ớc số nhập viện của nhập viện nhiều chẩn đoán(có thể bao gồm không hiệu lực của)
             List<HospMultiDiagnosisEntity> hmdUpdateList = null;
             if (oldHospPatientBasicInfo != null) //Update
             {
@@ -938,7 +938,7 @@ FROM     xt_brjbxx  jb
                 foreach (var item in hmdUpdateList)
                 {
                     oldHmdUpdateList.Add(item.Clone());
-                    item.zt = "0";  //更新为无效
+                    item.zt = "0";  //Cập nhật là không hiệu lực
                 }
             }
             var hmdInsertList = new List<HospMultiDiagnosisEntity>();
@@ -947,7 +947,7 @@ FROM     xt_brjbxx  jb
             //    var minus = hmdUpdateList.Count - zdList.Count;
             //    hmdUpdateList.RemoveRange(0, minus);
             //}
-            for (var i = 0; i < zdList.Count; i++)   //i是从1开始的
+            for (var i = 0; i < zdList.Count; i++)   //i là từ 1 bắt đ ầu của
             {
 
                 if (hmdUpdateList != null && hmdUpdateList.Count > i)
@@ -984,7 +984,7 @@ FROM     xt_brjbxx  jb
                 xtbrxx.jjlldh = VO.lxrdh;
                 xtbrxx.jjllrgx = VO.lxrgx;
                 xtbrxx.gms = VO.gms;
-                xtbrxx.zy = VO.zy;    //职业
+                xtbrxx.zy = VO.zy;    //Nghề nghiệp
                 xtbrxx.mz = VO.mzCode;
                 xtbrxx.gj = VO.gjCode;
                 xtbrxx.cs_sheng = VO.cs_sheng;
@@ -1007,13 +1007,13 @@ FROM     xt_brjbxx  jb
             }
             if (VO.hy.HasValue)
             {
-                xtbrxx.hf = (byte?)VO.hy;  //住院提交过来的是hy
+                xtbrxx.hf = (byte?)VO.hy;  //Nhập viện gửi qua 来của Làhy
             }
             #endregion
 
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //住院病人基本信息
+                //Nhập việnThông tin cơ bản bệnh nhân
                 if (oldHospPatientBasicInfo != null)
                 {
                     //Update
@@ -1027,7 +1027,7 @@ FROM     xt_brjbxx  jb
                     hospPatientBasicInfo.Create(true, EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt(HospPatientBasicInfoEntity.GetTableName()));
                     db.Insert(hospPatientBasicInfo);
                 }
-                //入院诊断
+                //Chẩn đoán nhập viện
                 if (hmdUpdateList != null)
                 {
                     foreach (var item in hmdUpdateList)
@@ -1044,7 +1044,7 @@ FROM     xt_brjbxx  jb
                         db.Insert(item);
                     }
                 }
-                //系统病人基本信息
+                //Hệ thốngThông tin cơ bản bệnh nhân
                 if (xtbrxx != null)
                 {
                     xtbrxx.Modify();
@@ -1052,7 +1052,7 @@ FROM     xt_brjbxx  jb
                 }
                 db.Commit();
             }
-            //保存实体变更日志
+            //Lưu thực thể thay đ ổi nhật ký 
             if (oldHospPatientBasicInfo != null)
             {
                 AppLogger.WriteEntityChangeRecordLog(oldHospPatientBasicInfo, hospPatientBasicInfo, HospPatientBasicInfoEntity.GetTableName(), oldHospPatientBasicInfo.syxh.ToString());
@@ -1074,7 +1074,7 @@ FROM     xt_brjbxx  jb
         }
 
         /// <summary>
-        /// 根据zyh判断是否存在病人基本信息
+        /// theo zyh phán đoán có hay không tồn tại tại thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -1092,12 +1092,12 @@ FROM     xt_brjbxx  jb
                 {
                     throw new FailedException("该住院号已登记，且已取消入院");
                 }
-                //住院号已存在
+                //Số nhập vi ệnĐ ã tồn tại tại
                 throw new FailedCodeException("MOREZYH_IS_INVALID");
             }
             else if (list.Count > 1)
             {
-                //当前住院号存在多条住院记录
+                //Khi trư ớc số nhập viện tồn tại tại nhiều dòng nhập viện bản ghi 
                 throw new FailedCodeException("MOREINFO_IS_INVALID");
             }
         }
@@ -1112,7 +1112,7 @@ FROM     xt_brjbxx  jb
             return cqrq;
         }
         /// <summary>
-        /// check zyh是否存在有效计费
+        /// check zyh có hay không tồn tại tại hiệu lực tính phí 
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1138,7 +1138,7 @@ where sl <> 0";
         #region 病人管理
 
         /// <summary>
-        /// 病人管理查询
+        /// Quản lý bệnh nhânTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -1192,7 +1192,7 @@ where sl <> 0";
             StringBuilder strsql = new StringBuilder();
             IList<SqlParameter> sqlparam = null;
             sqlparam = new List<SqlParameter>();
-            if (isjs == "yj")//医保已结算 HIS未结算
+            if (isjs == "yj")//BHYTĐ ã quyết toán tính HISchưa quyết toán
             {
                 if (lx == "zy")
                 {
@@ -1281,7 +1281,7 @@ where   a.zt='1' and zybz not in('3','9')  and cd.CardType<>'1' and l.tradiNumbe
                     sqlparam.Add(new SqlParameter("@keyword", "%" + keyword.Trim() + "%"));
                 }
             }
-            else if (isjs == "cz")//国家平台医保交易单边 只能采用冲正交易 门诊：存在网络等特殊情况导致日志表无记录但日志文件有记录，需新增日志记录到日志表 请将 errorMsg 值赋值未0 在冲正
+            else if (isjs == "cz")//国家 nền tảng BHYT giao dịch đ ơn 边 chỉ có thể 采 dùng 冲正 giao dịch ngoại trú: tồn tại tại mạng V.v.Đ ặc biệt tình hình 导致 nhật ký bảng không có bản ghi nhưng nhật ký tệp có bản ghi,需thêm mới nhật ký bản ghi đ ến nhật ký bảng vui lòng errorMsg giá trị gán giá trị chưa0 tại冲正
             {
                 if (lx == "zy")
                 {
@@ -1322,7 +1322,7 @@ where  a.zt='1' and cd.CardType<>'1' and l.tradiNumber='2207' and l.errorMsg='0'
         #endregion
 
         /// <summary>
-        /// 根据住院号查询有效住院病人基本信息
+        /// theo số nhập việntra cứu hiệu lực nhập viện thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1412,7 +1412,7 @@ WHERE   zybz NOT IN ( 0, 4 ) ");
 
 
         /// <summary>
-        /// 费用一日清 住院号浮层搜索用
+        /// Chi phí một ngày清 số nhập viện浮 lớp tìm kiếm dùng 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgid"></param>
@@ -1489,7 +1489,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
             }
         }
         /// <summary>
-        /// 门诊病人挂号查询
+        /// Ngoại trú bệnh nh ânĐ ăng ký khámtra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="flag"></param>
@@ -1519,7 +1519,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
             //
             pagination = pagination ?? new Pagination();
             pagination.page = pagination.page <= 0 ? 1 : pagination.page;
-            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  //不分页
+            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  // không 分trang
             pagination.sidx = string.IsNullOrWhiteSpace(pagination.sidx) ? "UpdateTime" : pagination.sidx;
 
             paraList.Add(new SqlParameter("@page", pagination.page));
@@ -1554,7 +1554,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
         }
 
         /// <summary>
-        /// 住院患者查询（接口用）
+        /// Tra cứu bệnh nhân nhập viện(giao diện dùng)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="flag"></param>
@@ -1583,7 +1583,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
             //
             pagination = pagination ?? new Pagination();
             pagination.page = pagination.page <= 0 ? 1 : pagination.page;
-            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  //不分页
+            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  // không 分trang
             pagination.sidx = string.IsNullOrWhiteSpace(pagination.sidx) ? "UpdateTime" : pagination.sidx;
 
             paraList.Add(new SqlParameter("@page", pagination.page));
@@ -1618,7 +1618,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
         }
 
         /// <summary>
-        /// 住院患者查询（患者查询用）
+        /// Tra cứu bệnh nhân nhập viện(bệnh nhântra cứu dùng)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="flag"></param>
@@ -1803,7 +1803,7 @@ and zyxx.OrganizeId = @orgId
 
         #region 住院相关
         /// <summary>
-        /// 更新住院患者多诊断之主诊断
+        /// Cập nhật nhập viện bệnh nhân nhiều chẩn đoán của 主chẩn đoán
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -1855,11 +1855,11 @@ and zyxx.OrganizeId = @orgId
         }
 
         /// <summary>
-        /// 住院病人信息 分页数据
+        /// Thông tin bệnh nhân nhập viện 分trang dữ liệu
         /// </summary>
-        /// <param name="pagination">分页信息</param>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="pagination">分trang thông tin</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         public IList<HospPatientBasicInfoEntity> GetPatSearchList(Pagination pagination, string orgId, string zyh, string xm, string brzybzType = null)
         {
@@ -1889,7 +1889,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
         #region 取消入区登记
 
         /// <summary>
-        /// 取消入院
+        /// HủyNhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -1901,7 +1901,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
             {
                 if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", orgId) == true)
                 {
-                    //仅新入院可以取消入院登记
+                    // chỉ mới nhập viện có thể HủyĐ ăng ký nhập viện
                     if (entity.zybz == ((int)EnumZYBZ.Xry).ToString())
                     {
                         entity.zybz = ((int)EnumZYBZ.Wry).ToString();
@@ -1922,7 +1922,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 }
                 else
                 {
-                    //没有费用的都已取消入院
+                    // không có chi phí của đ ều Đ ãhủy nhập viện
                     entity.zybz = ((int)EnumZYBZ.Wry).ToString();
                     entity.Modify();
                     _HosPatBasicInfoRepository.Update(entity);
@@ -1933,7 +1933,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
         #endregion
 
         /// <summary>
-        /// 自费转医保
+        /// Tự trả chuyển BHYT
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="patid"></param>
@@ -1959,8 +1959,8 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                     {
                         throw new FailedException("异常：patid错误");
                     }
-                    //更新zy_brjbxx
-                    zybrxxEntity.brxz = "1";    //普通医保
+                    //Cập nhậtzy_brjbxx
+                    zybrxxEntity.brxz = "1";    //BHYT thông thư ờng
                     zybrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                     zybrxxEntity.zjh = cardInfo.prm_aac002;
                     zybrxxEntity.kh = cardInfo.prm_aac001;
@@ -1974,7 +1974,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
 
                     //if (string.IsNullOrWhiteSpace(xtbrxxEntity.sbbh) || xtbrxxEntity.sbbh != ryblInfo.prm_aac001)
                     //{
-                    //    //更新卡信息
+                    // //Cập nhật thẻ thông tin
                     //    var cardEnitty = db.IQueryable<SysCardEntity>(p => p.patid == patid).First();
                     //    cardEnitty.CardNo = cardInfo.prm_aac001;
                     //    cardEnitty.CardType = ((int)EnumCardType.YBJYK).ToString();
@@ -1982,10 +1982,10 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                     //    cardEnitty.Modify();
                     //    db.Update(cardEnitty);
                     //}
-                    //else 否则不需要更新卡信息
+                    //else nếu không không cần cập nhật thẻ thông tin
 
-                    //更新xt_brjbxx
-                    //xtbrxxEntity.brxz = "1";    //普通医保
+                    //Cập nhậtxt_brjbxx
+                    //xtbrxxEntity.brxz = "1"; //BHYT thông thư ờng
                     xtbrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                     xtbrxxEntity.zjh = cardInfo.prm_aac002;
                     //xtbrxxEntity.sbbh = ryblInfo.prm_aac001;
@@ -2008,7 +2008,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                     }
                     else
                     {
-                        //更新逻辑
+                        //Cập nhật logic 
                         ryblInfo.MapperTo(ga21List[0]);
                         //ga21List[0].Modify(true);
                         ga21List[0].OrganizeId = orgId;
@@ -2022,7 +2022,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
         }
 
         /// <summary>
-        /// 医保转自费
+        /// BHYT chuyển tự trả
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -2036,8 +2036,8 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 {
                     throw new FailedException("异常：patid错误");
                 }
-                //更新zy_brjbxx
-                zybrxxEntity.brxz = "0";    //自费
+                //Cập nhậtzy_brjbxx
+                zybrxxEntity.brxz = "0";    //Tự trả
                 //...
                 zybrxxEntity.Modify();
                 db.Update(zybrxxEntity);
@@ -2094,7 +2094,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 throw new FailedException("新农合入院办理接口科室缺少对照");
             }
             dto.treatingPhysician = vo.doctor ?? "";
-            //入院状态
+            //Trạng thái nhập viện
             allTT = _ttCataloguesComparisonDmnService.GetTTItem(orgId, "ryzt", "guianxinnonghe");
             if (!string.IsNullOrWhiteSpace(vo.rybq))
             {
@@ -2142,7 +2142,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
         }
 
         /// <summary>
-        /// 调用S04入院办理
+        /// gọi S04 nhập viện làm thủ tục 
         /// </summary>
         /// <param name="request"></param>
         /// <param name="orgId"></param>
@@ -2203,7 +2203,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 throw new FailedException("新农合入院办理接口科室缺少对照");
             }
             dto.treatingPhysician = vo.doctor;
-            //入院状态
+            //Trạng thái nhập viện
             allTT = _ttCataloguesComparisonDmnService.GetTTItem(orgId, "ryzt", "guianxinnonghe");
             if (!string.IsNullOrWhiteSpace(vo.rybq))
             {
@@ -2236,7 +2236,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
         }
 
         /// <summary>
-        /// 验证新农合接口对照
+        /// Xác minh BHYT nông thôn mới giao diện đ ối với 照
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -2264,11 +2264,11 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 var zybrxxEntity = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == zyh && p.OrganizeId == orgId).First();
                 //if (zybrxxEntity.patid != patid)
                 //{
-                //    msg = "参数异常，patid错误";
+                // msg = "Tham số bất thư ờng,patid lỗi";
                 //    return false;
                 //}
-                //更新zy_brjbxx
-                zybrxxEntity.brxz = "8";    //农合
+                //Cập nhậtzy_brjbxx
+                zybrxxEntity.brxz = "8";    // hợp tác nông thôn 
                 zybrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                 zybrxxEntity.zjh = cardInfo.zjh;
                 zybrxxEntity.xian_dz = string.IsNullOrEmpty(cardInfo.xian_dz) ? zybrxxEntity.xian_dz : cardInfo.xian_dz;
@@ -2282,7 +2282,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
 
                 //if (string.IsNullOrWhiteSpace(xtbrxxEntity.xnhgrbm) || xtbrxxEntity.xnhgrbm != cardInfo.xnhgrbm)
                 //{
-                //    //更新卡信息
+                // //Cập nhật thẻ thông tin
                 //    var cardEnitty = db.IQueryable<SysCardEntity>(p => p.patid == zybrxxEntity.patid).First();
                 //    //cardEnitty.CardNo = cardInfo.prm_aac001;
                 //    cardEnitty.CardType = ((int)EnumCardType.XNHJYK).ToString();
@@ -2290,10 +2290,10 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 //    cardEnitty.Modify();
                 //    db.Update(cardEnitty);
                 //}
-                //else 否则不需要更新卡信息
+                //else nếu không không cần cập nhật thẻ thông tin
 
-                //更新xt_brjbxx
-                //xtbrxxEntity.brxz = "8";    //农合
+                //Cập nhậtxt_brjbxx
+                //xtbrxxEntity.brxz = "8"; // hợp tác nông thôn 
                 xtbrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                 xtbrxxEntity.zjh = cardInfo.zjh;
                 //xtbrxxEntity.xnhgrbm = cardInfo.xnhgrbm;
@@ -2316,7 +2316,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
                 }
                 else
                 {
-                    //更新逻辑
+                    //Cập nhật logic 
                     ryblInfo.MapperTo(ga21List[0]);
                     //ga21List[0].Modify(true);
                     ga21List[0].OrganizeId = orgId;
@@ -2441,7 +2441,7 @@ WHERE   a.zyh = @zyh
         }
 
         /// <summary>
-        /// 门诊自费转医保
+        /// Ngoại trú tự trả chuyển BHYT
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -2450,7 +2450,7 @@ WHERE   a.zyh = @zyh
         /// <param name="ryblInfo"></param>
         public void OutPatZFchangetoYB(string orgId, string mzh, int patid, ZYToYBDto patInfo)
         {
-            //卡是否存在 不存在新增医保基础信息
+            // thẻ có hay không tồn tại tại không tồn tại tại thêm mớiBHYT基础thông tin
             var brxzlist = _sysPatientNatureRepo.IQueryable().Where(p=>p.OrganizeId==orgId && p.zt=="1");
             var list = _SysCardRepository.IQueryable().Where(p => p.OrganizeId == orgId && p.patid == patid && p.zt == "1").ToList();
             var isExist = list.Where(m=>m.CardType==patInfo.jzpzlx).FirstOrDefault();
@@ -2490,8 +2490,8 @@ WHERE   a.zyh = @zyh
             {
                 var ghxxEntity = db.IQueryable<OutpatientRegistEntity>(p => p.mzh == mzh && p.OrganizeId == orgId).First();
                 
-                //更新挂号
-                ghxxEntity.brxz = string.IsNullOrWhiteSpace(entity.CardNo) ? isExist.brxz : entity.brxz;    //普通医保
+                //Cập nh ậtĐ ăng ký khám
+                ghxxEntity.brxz = string.IsNullOrWhiteSpace(entity.CardNo) ? isExist.brxz : entity.brxz;    //BHYT thông thư ờng
                 ghxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                 ghxxEntity.zjh = patInfo.sfzh;
                 ghxxEntity.kh = string.IsNullOrWhiteSpace(entity.CardNo) ? isExist.CardNo : entity.CardNo; //patInfo.kh;
@@ -2505,7 +2505,7 @@ WHERE   a.zyh = @zyh
 
                 var xtbrxxEntity = db.IQueryable<SysPatientBasicInfoEntity>(p => p.patid == patid && p.OrganizeId == orgId && p.zt == "1").First();
 
-                //更新xt_brjbxx
+                //Cập nhậtxt_brjbxx
                 xtbrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                 xtbrxxEntity.zjh =string.IsNullOrWhiteSpace(patInfo.sfzh)? xtbrxxEntity.zjh :patInfo.sfzh;
                 xtbrxxEntity.Modify();
@@ -2525,7 +2525,7 @@ WHERE   a.zyh = @zyh
             }
             //if (string.IsNullOrWhiteSpace(patInfo.kh))
             //{
-            //    throw new FailedException("参数异常，卡号为空");
+            // throw new FailedException("Tham số bất thư ờng,số thẻ là trống ");
             //}
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
@@ -2539,11 +2539,11 @@ WHERE   a.zyh = @zyh
                 var zybrxxEntity = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == zyh && p.OrganizeId == orgId).First();
                 //if (zybrxxEntity.patid != patid)
                 //{
-                //	throw new FailedException("异常：patid错误");
+                //	throw new FailedException("Bất thư ờng:patid lỗi");
                 //}
                 oldpatid = zybrxxEntity.patid;
-                //更新zy_brjbxx
-                zybrxxEntity.brxz = cardEnitty.brxz;    //普通医保
+                //Cập nhậtzy_brjbxx
+                zybrxxEntity.brxz = cardEnitty.brxz;    //BHYT thông thư ờng
                 zybrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                 zybrxxEntity.zjh = patInfo.sfzh;
                 zybrxxEntity.kh = cardEnitty.CardNo;//patInfo.kh;
@@ -2557,19 +2557,19 @@ WHERE   a.zyh = @zyh
                 zybrxxEntity.Modify();
                 db.Update(zybrxxEntity);
 
-                //预交金账户处理  自费预交金账户费用转到医保预交金账户上，当前预交金账户zt作废(历史记录)，
-                //收支明细zhcod,patid变更为预交金账户相应
+                //Tài khoản tạm ứng xử lý tự trả tài khoản tạm ứngchi phí chuyển đ ến BHYTtài khoản tạm ứng trên,khi trư ớc tài khoản tạm ứngzt hủy bỏ(lịch sử bản ghi),
+                //收支chi tiếtzhcod,patid thay đ ổi là tài khoản tạm ứng相 nên 
                 try
                 {
                     if (patid != oldpatid)
                     {
-                        // oldpatid(自费信息ID)  patid(医保信息ID)
+                        // oldpatid(tự trả thông tinID) patid(BHYTthông tinID)
                         var yjjzhEntity = db.IQueryable<SysAccountEntity>(p => p.patid == oldpatid && p.OrganizeId == orgId && p.zhxz == ((int)EnumXTZHXZ.ZYYJKZH) && p.zt == "1").ToList();
                         var ybyjjzhEntity = db.IQueryable<SysAccountEntity>(p => p.patid == patid && p.OrganizeId == orgId && p.zhxz == ((int)EnumXTZHXZ.ZYYJKZH) && p.zt == "1").ToList();
                         var szjlentity = db.IQueryable<SysAccountRevenueAndExpenseEntity>(p => p.patid == patid && p.OrganizeId == orgId && p.zt == "1").OrderByDescending(p => p.CreateTime).FirstOrDefault();
                         var zfdataInfo = db.IQueryable<SysAccountRevenueAndExpenseEntity>(p => p.patid == oldpatid && p.OrganizeId == orgId && p.zt == "1").ToList();
 
-                        if (ybyjjzhEntity.Count == 1)//存在医保预交金账户
+                        if (ybyjjzhEntity.Count == 1)// tồn tại tạiBHYTtài khoản tạm ứng
                         {
                             if (yjjzhEntity.Count == 1)
                             {
@@ -2579,7 +2579,7 @@ WHERE   a.zyh = @zyh
                                 zhentity.zt = "0";
                                 zhentity.Modify();
                                 db.Update(zhentity);
-                                //转移预交金金额
+                                // chuyển 移tạm ứng số tiền
                                 SysAccountEntity ybentity = new SysAccountEntity();
                                 ybentity = ybyjjzhEntity[0];
                                 ybentity.zhye += zhentity.zhye;
@@ -2622,7 +2622,7 @@ WHERE   a.zyh = @zyh
 
                 // if (string.IsNullOrWhiteSpace(xtbrxxEntity.sbbh) || xtbrxxEntity.sbbh != patInfo.kh)
                 //  {
-                //更新卡信息
+                //Cập nhật thẻ thông tin
                 //var cardEnitty = db.IQueryable<SysCardEntity>(p => p.patid == patid).First();
                 //cardEnitty.CardNo = patInfo.kh;
                 //cardEnitty.CardType = ((int)EnumCardType.YBJYK).ToString();
@@ -2630,10 +2630,10 @@ WHERE   a.zyh = @zyh
                 //cardEnitty.Modify();
                 //db.Update(cardEnitty);
                 //  }
-                //else 否则不需要更新卡信息
+                //else nếu không không cần cập nhật thẻ thông tin
 
-                //更新xt_brjbxx
-                //xtbrxxEntity.brxz = "1";    //普通医保
+                //Cập nhậtxt_brjbxx
+                //xtbrxxEntity.brxz = "1"; //BHYT thông thư ờng
                 xtbrxxEntity.zjlx = ((int)EnumZJLX.sfz).ToString();
                 xtbrxxEntity.zjh = patInfo.sfzh;
                 //xtbrxxEntity.sbbh = patInfo.kh;
@@ -2658,7 +2658,7 @@ WHERE   a.zyh = @zyh
                 }
                 else
                 {
-                    //更新逻辑
+                    //Cập nhật logic 
                     ga21List[0].jylsh = ryblInfo.jylsh;
                     ga21List[0].zhye = ryblInfo.zhye;
                     ga21List[0].yzcyymc = ryblInfo.yzcyymc;
@@ -2986,7 +2986,7 @@ where zyxx.zt = '1' and zyxx.OrganizeId=@orgId";
         }
 
 
-        //入院诊断
+        //Chẩn đoán nhập viện
         public IList<ryzd> getRyzdByZyh(string zyh,string HospitalID)
         {
 
@@ -3007,7 +3007,7 @@ where zyxx.zt = '1' and zyxx.OrganizeId=@orgId";
 
         }
         /// <summary>
-        /// 出院诊断
+        /// Xuất việnChẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="HospitalID"></param>
@@ -3035,7 +3035,7 @@ where cyzd.zdlx=0 and cyzd.zdlb=2 and cyzd.zt=1  and organizeId =@orgId ";
         }
 
         /// <summary>
-        /// 门诊历史账单
+        /// Ngoại trú lịch sử 账 đ ơn 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -3054,7 +3054,7 @@ and a.CreateTime>=@kssj and a.CreateTime<=@jssj";
         }
 
         /// <summary>
-        /// 账单明细
+        /// 账 đ ơn chi tiết
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>

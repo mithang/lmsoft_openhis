@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Application.Interface
     public interface IPayApp
     {
         /// <summary>
-        /// 退款（原路退回）
+        /// Hoàn tiền(原路 trả lại lần)
         /// </summary>
         /// <param name="outTradeNo"></param>
-        /// <param name="refundAmount">金额</param>
-        /// <param name="refundReason">退款原因</param>
+        /// <param name="refundAmount">Số tiền</param>
+        /// <param name="refundReason">Hoàn tiền nguyên nhân </param>
         /// <param name="errorMsg"></param>
         /// <returns></returns>
         int TradeRefund(string outTradeNo, decimal refundAmount, string refundReason,string outRequestNo

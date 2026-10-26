@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询收费项目和药品
+        /// Tra cứu hạng mục thu phí và thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.DomainServices
             {
                 if (zlfzlbz.Value)
                 {
-                    //仅治疗项目
+                    // chỉ hạng mục điều trị
                     sb.Append(@"
 WITH cteTree
 AS (
@@ -49,7 +49,7 @@ AS (
                 }
                 else
                 {
-                    //仅非治疗项目
+                    // chỉ không phải hạng mục điều trị
                     sb.Append(@"
 WITH cteTree
 AS (
@@ -86,8 +86,8 @@ from(");
     and aaa.zt = '1' 
     and bbb.zt = '1'
 ", mzzybz ?? "0");
-            //这一块的逻辑有点复杂，暂时不加。 需要用到 yfbm yfbm_yp
-            //并不是xt_yp的mzzybz字段
+            // này một tệ của logic có点复杂,tạm thời không 加. Cần dùng đ ến yfbm yfbm_yp
+            // và không Làxt_yp Củamzzybz trư ờng 
             //if (!string.IsNullOrWhiteSpace(mzzybz))
             //{
             //    
@@ -140,11 +140,11 @@ from(");
         }
 
         /// <summary>
-        /// 项目检索
+        /// Hạng mục检索
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
-        /// <param name="zlfzlbz">true 治疗项目 false 非治疗项目 null都包含</param>
+        /// <param name="zlfzlbz">true hạng mục điều trị false không phải hạng mục điều trị null đ ều bao gồm </param>
         /// <param name="mzzybz"></param>
         /// <returns></returns>
         public IList<SysChargeItemVO> SelectSearch(string keyword, string orgId, bool? zlfzlbz = null, string mzzybz = null, string dlCode = null, bool isContansChildDl = true)
@@ -158,14 +158,14 @@ from(");
             {
                 if (zlfzlbz.Value)
                 {
-                    //仅治疗项目
+                    // chỉ hạng mục điều trị
                     sb.Append(@"
 WITH cteTree
         AS (select * from [NewtouchHIS_Base]..V_S_xt_sfdl where dllb in (1,2) and OrganizeId = @orgId)");
                 }
                 else
                 {
-                    //仅非治疗项目
+                    // chỉ không phải hạng mục điều trị
                     sb.Append(@"
 WITH cteTree
         AS (select * from [NewtouchHIS_Base]..V_S_xt_sfdl where dllb = 3 and OrganizeId = @orgId)");
@@ -215,7 +215,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and b.zt = '1'
         }
 
         /// <summary>
-        /// 获取大类
+        /// Lấy loại lớn 
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -236,7 +236,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and b.zt = '1'
         }
 
         /// <summary>
-        /// 收费模板页面index list
+        /// Thu phí mẫu Trangindex list
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeTemplateGridVO> Search(Pagination pagination, string keyword, string organizeId,string yxbz)
@@ -275,7 +275,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and b.zt = '1'
 
 
         /// <summary>
-        /// 获取用法
+        /// Lấy cách dùng 
         /// </summary>
         /// <returns></returns>
         public IList<SysUsageVO> GetYF()

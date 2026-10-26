@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application
         /// <param name="keyValue"></param>
         public void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string[] roleList, string[] dutyList, string keyValue)
         {
-            UserEntity oldEntity = null;   //变更前Entity
+            UserEntity oldEntity = null;   // thay đ ổi trư ớc Entity
             if (!string.IsNullOrEmpty(keyValue))
             {
                 oldEntity = _userRepository.FindEntity(t => t.Id == keyValue);
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application
                 userEntity.Create(true);
             }
          
-            //角色list
+            //Vai tròlist
             List<UserRoleEntity> roleLists = new List<UserRoleEntity>();
             foreach (var item in roleList)
             {
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application
                 entity.zt = ((int)EnumZT.Valid).ToString();
                 roleLists.Add(entity);
             }
-            //岗位list
+            // vị trí list
             List<UserDutyEntity> dutyLists = new List<UserDutyEntity>();
             foreach (var item in dutyList)
             {

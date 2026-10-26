@@ -9,23 +9,23 @@ namespace Newtouch.HIS.Sett.Request.Patient
     public class InpatientDayFeeRequest : BookingReqBaseDto
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đ ầu
         /// </summary>
         public DateTime kssj { get; set; }
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime jssj { get; set; }
         /// <summary>
-        /// 每页显示条数
+        /// mỗi trang hiển thị dòng数
         /// </summary>
         public int pageSize { get; set; }
         /// <summary>
-        /// 当前页数
+        /// Khi trư ớc trang数
         /// </summary>
         public int pageNum { get; set; }
     }

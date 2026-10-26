@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据收费项目获取 一次性材料 收费材料项目综合
+        /// theo hạng mục thu phí lấy một lần 性材料 thu phí材料hạng mục综合
         /// </summary>
         /// <param name="sfxm"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.DomainServices
                       && clzhsf.zt == "1"
                       && mapper.OrganizeId == orgId && clzhsf.OrganizeId == "1"
                       && clzhsf.qfbs.HasValue
-                      && clzhsf.qfbs != 1   //??什么意思
+                      && clzhsf.qfbs != 1   //?? gì ý nghĩa 
                       select clzhsf).FirstOrDefault();
             return ff;
         }

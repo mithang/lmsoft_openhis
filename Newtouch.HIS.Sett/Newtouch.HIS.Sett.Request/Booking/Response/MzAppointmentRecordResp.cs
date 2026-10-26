@@ -23,25 +23,25 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
     public class MzAppointmentRecordResp
     {
         /// <summary>
-        /// 预约号
+        /// số đ ặt lịch 
         /// </summary>
         /// <returns></returns>
         public int BookId { get; set; }
 
         /// <summary>
-        /// 预约状态 1 已约 2 已挂号 3 已取消预约 EnumMzyyzt
+        /// đ ặt lịch trạng thái 1 Đ ã约 2 Đ ãĐ ăng ký khám 3 Đ ãhủy đ ặt lịch enumMzyyzt
         /// </summary>
         /// <returns></returns>
         public string BookStatus { get; set; }
 
         /// <summary>
-        /// 门诊排班日程
+        /// Lịch trực ngoại trú ngày程
         /// </summary>
         /// <returns></returns>
         public int ScheduId { get; set; }
 
         /// <summary>
-        /// brxz 挂号时 自费 医保
+        /// brxz Đ ăng ký khám giờ tự trả BHYT
         /// </summary>
         /// <returns></returns>
         public string Ghxz { get; set; }
@@ -51,38 +51,38 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
         public string Lxdh { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         /// <returns></returns>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         /// <returns></returns>
         public string Dept { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         /// <returns></returns>
         public string Doctor { get; set; }
 
         /// <summary>
-        /// 就诊日期
+        /// Khám bệnh ngày 
         /// </summary>
         /// <returns></returns>
         public DateTime OutDate { get; set; }
 
         /// <summary>
-        /// 挂号类型 门诊 急诊 专家
+        /// Loại đ ăng ký khám ngoại trú cấp cứu chuyên gia
         /// </summary>
         /// <returns></returns>
         public string RegType { get; set; }
 
         public string RegName { get; set; }
         /// <summary>
-        /// 时间段 0无 1全天 2上午 3下午
+        /// Thời gian đoạn 0 không có 1全ngày 2 buổi sáng 3 buổi chiều
         /// </summary>
         /// <returns></returns>
         public int? Period { get; set; }
@@ -112,19 +112,19 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
         public decimal? RegFee { get; set; }
 
         /// <summary>
-        /// 已付费用
+        /// Đ ã付chi phí
         /// </summary>
         /// <returns></returns>
         public decimal? PayFee { get; set; }
 
         /// <summary>
-        /// 支付流水号
+        /// thanh toán số thứ tự 
         /// </summary>
         /// <returns></returns>
         public string PayLsh { get; set; }
 
         /// <summary>
-        /// 支付时间
+        /// thanh toán thời gian
         /// </summary>
         /// <returns></returns>
         public DateTime? PayTime { get; set; }

@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices.DeanInquiryManage
         }
         #region 住院费用分析
         /// <summary>
-        /// 抬头
+        /// tiêu đ ề 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksrq"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.DomainServices.DeanInquiryManage
             return this.FirstOrDefault<ZYFYFXDTO>("exec [NewtouchHIS_Sett]..[yzcx_zyfyfx_bunner] @kssj,@jssj,@lx, @OrganizeId", inParameters.ToArray());
         }
         /// <summary>
-        /// 院长查询住院费用分析_科室费用分析部分
+        /// viện trư ởng tra cứu nhập việnchi phí phân tích _khoachi phí phân tích một phần
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksrq"></param>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.DomainServices.DeanInquiryManage
 
         }
         /// <summary>
-        /// 出院患者费用分析
+        /// Xuất viện bệnh nhânchi phí phân tích 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksrq"></param>
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.DomainServices.DeanInquiryManage
         }
         #endregion
         /// <summary>
-        /// 院长查询-今日动态-banner 
+        /// viện trư ởng tra cứu-今ngày动态-banner 
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.DomainServices.DeanInquiryManage
             return this.FirstOrDefault<JRDT_Banner>("exec [NewtouchHIS_Sett]..[yzcx_jrdt_banner] @ksrq,@jsrq, @OrganizeId", inParameters.ToArray());
         }
         /// <summary>
-        /// 当日动态_全院收入概况
+        /// Diễn biến trong ngày_全 viện thu nhập概况
         /// </summary>
         public List<DailyUpdatesEntiy> DailyUpdates_GetQysr()
         {
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.DomainServices.DeanInquiryManage
         }
 
         /// <summary>
-        /// 当日动态_今日动态门诊
+        /// Diễn biến trong ngày_今ngày动态ngoại trú
         /// </summary>
         public List<DailyUpdates_GetJrdtmz> DailyUpdates_GetJrdt(string orgId)
         {
@@ -154,7 +154,7 @@ left join (select count(ks)yjz,ks from [NewtouchHIS_Sett]..mz_gh gh2 where gh2.j
         }
 
         /// <summary>
-        /// 当日动态_门诊处方
+        /// Diễn biến trong ngày_Đ ơn thuốc ngoại trú
         /// </summary>
         public List<DailyUpdates_GetMzcf> DailyUpdates_GetMzcf(string orgId)
         {
@@ -175,7 +175,7 @@ select count(*) from (select patid from NewtouchHIS_Sett..mz_cf  where CreateTim
         }
 
         /// <summary>
-        /// 当日动态_门诊费用
+        /// Diễn biến trong ngày_ngoại trú chi phí
         /// </summary>
         public List<DailyUpdates_GetMzfy> DailyUpdates_GetMzfy(string orgId)
         {
@@ -188,7 +188,7 @@ select count(*) from (select patid from NewtouchHIS_Sett..mz_cf  where CreateTim
         }
 
         /// <summary>
-        /// 当日动态_住院占床率
+        /// Diễn biến trong ngày_nhập viện占床 tỷ lệ 
         /// </summary>
         public List<DailyUpdates_GetZyzcl> DailyUpdates_GetZyzcl(string orgId)
         {
@@ -208,7 +208,7 @@ where a.OrganizeId=@orgId and a.zt=1");
         }
 
         /// <summary>
-        /// 当日动态_门诊挂号统计
+        /// Diễn biến trong ngày_Đ ăng ký khám ngoại trú thống kê 
         /// </summary>
         public List<DailyUpdates_GetMzghtj> DailyUpdates_GetMzghtj(string orgId)
         {
@@ -228,7 +228,7 @@ select '专家门诊'ghlx,count(mjzbz)sl from mz_gh where OrganizeId=@orgId and 
         }
 
         /// <summary>
-        /// 当日动态_住院患者统计
+        /// Diễn biến trong ngày_nhập viện bệnh nhân thống kê 
         /// </summary>
         public List<DailyUpdates_GetZyhztj> DailyUpdates_GetZyhztj(string orgId)
         {
@@ -251,7 +251,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 业务排名_门诊医生工作量
+        /// xếp hạng nghiệp vụ _ngoại trú bác sĩ khối lư ợng công việc 
         /// </summary>
         /// <returns></returns>
         public List<BusinessRankingEntiy> BusinessRankingEntiy_mzysgzl(string kssj, string jssj,string OrganizeId)
@@ -271,7 +271,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 业务排名_门诊科室收入排名
+        /// xếp hạng nghiệp vụ _ngoại trú khoathu nhập xếp 名
         /// </summary>
         /// <returns></returns>
         public List<BusinessRankingEntiy_mzkssr> BusinessRankingEntiy_mzkssr(string kssj, string jssj, string OrganizeId)
@@ -301,7 +301,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 业务排名_住院业务科室排名
+        /// xếp hạng nghiệp vụ _nhập viện nghiệp vụ khoa xếp 名
         /// </summary>
         /// <returns></returns>
         public List<BusinessRankingEntiy_zyywks> BusinessRankingEntiy_zyywks(string kssj,string jssj,string orgId)
@@ -351,7 +351,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 业务排名_医生业务排名
+        /// xếp hạng nghiệp vụ _bác sĩ xếp hạng nghiệp vụ 
         /// </summary>
         /// <returns></returns>
         public List<BusinessRankingEntiy_ysyw> BusinessRankingEntiy_ysyw(string kssj, string jssj, string orgId,string bqcode)
@@ -405,7 +405,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 门诊综合分析_抬头数据
+        /// Ngoại trú phân tích tổng hợp _ tiêu đ ề dữ liệu
         /// </summary>
         /// <returns></returns>
         public OutpatientComprehensiveAnalysisEntiy OutpatientComprehensiveAnalysisEntiy_TitleData(string orgId,string ksrq,string jsrq,string rtype)
@@ -419,7 +419,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 门诊综合分析_门诊患者分析
+        /// Ngoại trú phân tích tổng hợp _ngoại trú bệnh nhân phân tích 
         /// </summary>
         /// <returns></returns>
         public OutpatientComprehensiveAnalysisEntiy_Mzhzfx OutpatientComprehensiveAnalysisEntiy_Mzhzfx(string orgId, string ksrq, string jsrq)
@@ -432,7 +432,7 @@ select '死亡人数'xm,count(ZYH)sl from [Newtouch_EMR]..mr_basy where Organize
         }
 
         /// <summary>
-        /// 门诊工作量_门诊科室工作量
+        /// Ngoại trú khối lư ợng công việc _ngoại trú khoa khối lư ợng công việc 
         /// </summary>
         public List<OutpatientWorkloadEntiy> OutpatientWorkloadEntiy_Mzksgzl(string ksrq, string jsrq, string OrganizeId)
         {
@@ -456,7 +456,7 @@ order by mzzlrc desc");
         }
 
         /// <summary>
-        /// 门诊工作量_医生工作量
+        /// Ngoại trú khối lư ợng công việc _bác sĩ khối lư ợng công việc 
         /// </summary>
         public List<OutpatientWorkloadEntiy_ysgzl> OutpatientWorkloadEntiy_Ysgzl(string ksrq, string jsrq, string OrganizeId,string ks)
         {
@@ -478,7 +478,7 @@ order by mzzlrc desc");
         }
 
         /// <summary>
-        /// 门诊费用分析_门诊费用分类分析
+        /// Ngoại trú chi phí phân tích _ngoại trú chi phí phân loại phân tích 
         /// </summary>
         public List<OutpatientCostEntiy> OutpatientCostEntiy_Mzfyflfx(string orgId,string ksrq, string jsrq)
         {
@@ -550,7 +550,7 @@ where mx.mxnm is not null and mx.CreateTime between @ksrq and @jsrq and js.Organ
         }
 
         /// <summary>
-        /// 门诊费用分析_门诊费用分类分析_图表（患者人均费用分析图表也用这个字段都是一样的）
+        /// Ngoại trú chi phí phân tích _ngoại trú chi phí phân loại phân tích _ biểu đ ồ (bệnh nhân bình quân đ ầu ngư ời chi phí phân tích biểu đ ồ cũng dùng trư ờng này đ ều là một 样của)
         /// </summary>
         public List<OutpatientCostEntiy_Mzfyflfx_tb> OutpatientCostEntiy_Mzfyflfx_tb(string orgId, string ksrq, string jsrq, string rtype)
         {
@@ -563,7 +563,7 @@ where mx.mxnm is not null and mx.CreateTime between @ksrq and @jsrq and js.Organ
         }
 
         /// <summary>
-        /// 门诊费用分析_患者人均费用分析
+        /// Ngoại trú chi phí phân tích _bệnh nhân bình quân đ ầu ngư ời chi phí phân tích 
         /// </summary>
         public List<OutpatientCostEntiy_Hzrjfyfx> OutpatientCostEntiy_Hzrjfyfx(string orgId, string ksrq, string jsrq)
         {
@@ -634,7 +634,7 @@ where mx.mxnm is not null and mx.CreateTime between @ksrq and @jsrq and js.Organ
         }
 
         /// <summary>
-        /// 门诊费用分析_患者人均费用分析_图标
+        /// Ngoại trú chi phí phân tích _bệnh nhân bình quân đ ầu ngư ời chi phí phân tích _ hình 标
         /// </summary>
         public List<OutpatientCostEntiy_Mzfyflfx_tb> OutpatientCostEntiy_Hzrjfyfx_tb(string orgId, string ksrq, string jsrq, string rtype)
         {
@@ -647,7 +647,7 @@ where mx.mxnm is not null and mx.CreateTime between @ksrq and @jsrq and js.Organ
         }
 
         /// <summary>
-        /// 门诊效益_门诊效益明细
+        /// Ngoại trú hiệu quả _ngoại trú hiệu quả chi tiết
         /// </summary>
         public List<OutpatientBenefitsEntiy> OutpatientCostEntiy_Mzxymx(string orgId, string ksrq, string jsrq)
         {
@@ -695,7 +695,7 @@ order by mzzlrc desc");
         }
 
         /// <summary>
-        /// 门诊效益_医生效益
+        /// Ngoại trú hiệu quả _bác sĩ hiệu quả 
         /// </summary>
         public List<OutpatientBenefitsEntiy_Ysxy> OutpatientCostEntiy_Ysxy(string orgId, string ksrq, string jsrq,string dpCode)
         {
@@ -746,7 +746,7 @@ order by mzzlrc desc");
 
 
         /// <summary>
-        /// 门诊效益_历史趋势
+        /// Ngoại trú hiệu quả _ lịch sử 趋势
         /// </summary>
         public List<KSXYPMBySJSRDTO> OutpatientCostEntiy_Lsqs(string orgId, string ksrq, string jsrq, string rType, string type)
         {
@@ -759,7 +759,7 @@ order by mzzlrc desc");
             return this.FindList<KSXYPMBySJSRDTO>("exec [NewtouchHIS_Sett]..[yzcx_mzfyfx_lxqszxt] @kssj,@jssj,@lx,@type,@OrganizeId", inParameters.ToArray());
         }
         /// <summary>
-        /// 科室效益排名-诊疗人次
+        /// Khoa hiệu quả xếp 名- chẩn đoán và điều trị Lư ợt ngư ời
         /// </summary>
         /// <returns></returns>
         public List<KSXYPMDTO> GetKSXYPM(string orgId, string ksrq, string jsrq)
@@ -779,7 +779,7 @@ group by dp.Name");
             return outpatientlist;
         }
         /// <summary>
-        /// 科室效益排名-实际收入
+        /// Khoa hiệu quả xếp 名- thực tế thu nhập
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksrq"></param>
@@ -806,7 +806,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 药品top 50 排行
+        /// Thuốctop 50 xếp dòng 
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -850,7 +850,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 损益排行
+        /// 损益 xếp dòng 
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -877,7 +877,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 医生开单排行
+        /// Bác sĩ开 đ ơn xếp dòng 
         /// </summary>
         /// <param name="ypcode"></param>
         /// <param name="OrganizeId"></param>
@@ -913,7 +913,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 耗材销量排名TOP50
+        /// 耗材销 lư ợng xếp 名TOP50
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -946,7 +946,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 耗材医生排名
+        /// 耗材bác sĩ xếp 名
         /// </summary>
         /// <param name="sfxmdm"></param>
         /// <param name="OrganizeId"></param>
@@ -974,7 +974,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 耗材损益排行
+        /// 耗材损益 xếp dòng 
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -995,7 +995,7 @@ group by dp.name");
         }
 
         /// <summary>
-        /// 入院趋势
+        /// Nhập viện趋势
         /// </summary>
         /// <param name="time"></param>
         /// <param name="OrganizeId"></param>
@@ -1027,7 +1027,7 @@ group by dp.name");
 
 
         /// <summary>
-        /// 出院趋势
+        /// Xuất viện趋势
         /// </summary>
         /// <param name="time"></param>
         /// <param name="OrganizeId"></param>
@@ -1059,7 +1059,7 @@ group by dp.name");
 
 
         /// <summary>
-        /// 转院趋势
+        /// chuyển viện 趋势
         /// </summary>
         /// <param name="time"></param>
         /// <param name="OrganizeId"></param>

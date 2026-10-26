@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Core.Url
         }
 
         /// <summary>
-        /// 返回带软件版本号的Uri
+        /// Quay lại带phiên bản phần mềm số củaUri
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>

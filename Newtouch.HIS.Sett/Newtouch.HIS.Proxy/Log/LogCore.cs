@@ -9,7 +9,7 @@ using System.Configuration;
 namespace Newtouch.HIS.Proxy.Log
 {
     /// <summary>
-    /// 日志组件
+    /// nhật ký nhóm vụ 
     /// </summary>
     public class LogCore
     {
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Proxy.Log
         }
 
         /// <summary>
-        /// 写本地日志
+        /// 写Đ ịa phư ơng nhật ký 
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfo(string message)
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Proxy.Log
             catch { }
         }
         /// <summary>
-        /// 写本地日志
+        /// 写Đ ịa phư ơng nhật ký 
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfoWeb(string message)

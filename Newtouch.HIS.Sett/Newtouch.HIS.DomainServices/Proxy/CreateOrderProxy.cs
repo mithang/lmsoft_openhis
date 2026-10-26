@@ -12,7 +12,7 @@ using Newtouch.His.OrderService.Contact.DTO;
 namespace Newtouch.HIS.DomainServices.Proxy
 {
     /// <summary>
-    /// 调下单接口
+    /// 调 dư ới đ ơn giao diện
     /// </summary>
     public class CreateOrderProxy
     {
@@ -26,11 +26,11 @@ namespace Newtouch.HIS.DomainServices.Proxy
         #endregion
 
         /// <summary>
-        /// 创建暂存单
+        /// tạo tạm lưu đ ơn 
         /// </summary>
-        /// <param name="gh">挂号信息</param>
-        /// <param name="ghxmList">挂号项目明细</param>
-        /// <param name="mzjs">门诊结算信息</param>
+        /// <param name="gh">Thông tin đ ăng ký khám</param>
+        /// <param name="ghxmList">Đ ăng ký khám hạng mụcchi tiết</param>
+        /// <param name="mzjs">Quyết toán ngoại trú thông tin</param>
         /// <returns></returns>
         public OrderCreateResponseDTO Book(OutpatientRegistEntity gh, OutpatientSettlementEntity mzjs, List<OutpatientItemEntity> ghxmList)
         {
@@ -39,9 +39,9 @@ namespace Newtouch.HIS.DomainServices.Proxy
 
 
         /// <summary>
-        /// 创建暂存单
+        /// tạo tạm lưu đ ơn 
         /// </summary>
-        /// <param name="orderId">订单号</param>
+        /// <param name="orderid"> đ ơn hàng số </param>
         /// <returns></returns>
         public OrderCreateResponseDTO Commit(long orderId)
         {
@@ -50,11 +50,11 @@ namespace Newtouch.HIS.DomainServices.Proxy
 
 
         /// <summary>
-        /// 组装下单报文
+        /// nhóm 装 dư ới đ ơn bản tin
         /// </summary>
-        /// <param name="gh">挂号信息</param>
-        /// <param name="ghxmList">挂号项目明细</param>
-        /// <param name="mzjs">门诊结算信息</param>
+        /// <param name="gh">Thông tin đ ăng ký khám</param>
+        /// <param name="ghxmList">Đ ăng ký khám hạng mụcchi tiết</param>
+        /// <param name="mzjs">Quyết toán ngoại trú thông tin</param>
         /// <returns></returns>
         private static OrderCreateRequestDTO BuildBookRequest(OutpatientRegistEntity gh, OutpatientSettlementEntity mzjs, List<OutpatientItemEntity> ghxmList)
         {
@@ -71,9 +71,9 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// 组装下单报文
+        /// nhóm 装 dư ới đ ơn bản tin
         /// </summary>
-        /// <param name="orderId">订单号</param>
+        /// <param name="orderid"> đ ơn hàng số </param>
         /// <returns></returns>
         private static OrderCreateRequestDTO BuildCommitRequest(long orderId)
         {
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// 组装订单基本信息
+        /// nhóm 装 đ ơn hàng cơ bản thông tin
         /// </summary>
         /// <returns></returns>
         private static OrderBasicDTO BuildOrderBasicInfo(OutpatientSettlementEntity mzjs)
@@ -109,9 +109,9 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// 组装订单联系人信息
+        /// nhóm 装 đ ơn hàng liên hệ 人thông tin
         /// </summary>
-        /// <param name="patid">病人ID</param>
+        /// <param name="patid">Bệnh nhânID</param>
         /// <returns></returns>
         private static ContactDTO BuildContactInfo(string patid)
         {
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// 组装订单资源信息
+        /// nhóm 装 đ ơn hàng 资源thông tin
         /// </summary>
         /// <param name="ghxmList"></param>
         /// <returns></returns>
@@ -165,7 +165,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// 创建暂存单
+        /// tạo tạm lưu đ ơn 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

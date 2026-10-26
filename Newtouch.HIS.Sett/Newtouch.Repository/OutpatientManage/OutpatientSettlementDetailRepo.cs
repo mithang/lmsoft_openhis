@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 根据jsnm查门诊结算明细
+        /// theo jsnm tra cứu chi tiết quyết toán ngoại trú
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

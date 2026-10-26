@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 用过住院号获取诊断信息
+        /// dùng qua số nhập viện lấy chẩn đoán thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="organizeId"></param>

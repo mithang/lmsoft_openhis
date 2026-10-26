@@ -4,29 +4,29 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S19
 {
     /// <summary>
-    /// 根据S18上传门诊返回的补偿序号outpId进行门诊回退 请求报文
+    /// theo S18 số thứ tự bồi thư ờng ngoại trú trả về sau khi tải lênoutpid tiến hành trả lại ngoại trú bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S19")]
     [XmlRoot("body")]
     public class S19RequestDTO
     {
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        ///  门诊登记取消原因(跨省)
+        /// Đ ăng ký ngoại trú hủy nguyên nhân (liên tỉnh)
         /// </summary>
         public string cancelCause { get; set; }
 
         /// <summary>
-        ///  行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
 
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
 

@@ -3,38 +3,38 @@
 namespace Newtouch.HIS.Proxy.guian.DTO.S21
 {
     /// <summary>
-    /// 查询当此门诊已上传费用明细 返回报文
+    /// Tra cứu chi tiết chi phí ngoại trú lần này đ ã tải lên bản tin trả về
     /// </summary>
     public class S21ResponseDTO
     {
         /// <summary>
-        /// 本次完成交易的明细数据量
+        /// lần này hoàn thành giao dịch củachi tiết dữ liệu lư ợng 
         /// </summary>
         public decimal num { get; set; }
 
         /// <summary>
-        /// 明细
+        /// Chi tiết
         /// </summary>
         public List<item> list { get; set; }
     }
 
     /// <summary>
-    /// 项目
+    /// Hạng mục
     /// </summary>
     public class item
     {
         /// <summary>
-        /// 门诊处方流水号
+        /// Đ ơn thuốc ngoại trú số thứ tự 
         /// </summary>
         public string detailNo  { get; set; }
 
         /// <summary>
-        /// His明细序号（唯一编号）
+        /// Hischi tiết thứ tự số (duy nhất số hiệu)
         /// </summary>
         public string hisDetailCode { get; set; }
 
         /// <summary>
-        /// 明细中文名
+        /// Chi tiết tên tiếng trung 
         /// </summary>
         public string detailName { get; set; }
 

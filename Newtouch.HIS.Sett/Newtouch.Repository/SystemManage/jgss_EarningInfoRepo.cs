@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新审核状态
+        /// Cập nhật kiểm tra trạng thái
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shzt"></param>

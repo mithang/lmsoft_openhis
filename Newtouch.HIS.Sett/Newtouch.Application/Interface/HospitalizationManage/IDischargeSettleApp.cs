@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Application.Interface.HospitalizationManage
         #region 出院结算
 
         /// <summary>
-        /// 住院号查询数据（包括病人信息和计费明细） zyh 或 kh +cardType 或 sfz +cardType
+        /// Số nhập việntra cứu dữ liệu(bao gồm thông tin bệnh nhân và tính phí chi tiết) zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -30,13 +30,13 @@ namespace Newtouch.HIS.Application.Interface.HospitalizationManage
         InpatientSettPatStatusDetailDto GetInpatientSettleStatusDetail(string zyh, string sfz, string kh, string cardType, string jslx,string ver);
 
         /// <summary>
-        /// 保存结算
+        /// LưuQuyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedcyrq"></param>
         /// <param name="fph"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
-        /// <param name="ybfeeRelated">医保相关费用信息</param>
+        /// <param name="feeRelated">Số tiền và thanh toán thông tin</param>
+        /// <param name="ybfeeRelated">BHYT liên quan chi phí thông tin</param>
         void SaveSett(string zyh, DateTime expectedcyrq, string fph, InpatientSettFeeRelatedDTO feeRelated
             , CQZyjs05Dto ybfeeRelated, S14OutResponseDTO xnhfeeRelated
             , string outTradeNo, string jslx, out int jsnm);
@@ -48,12 +48,12 @@ namespace Newtouch.HIS.Application.Interface.HospitalizationManage
 
         #region 取消出院结算
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         InpatientCancelSettPatStatusDetailDto GetCancelSettleStatusDetail(string zyh, string sfz, string kh, string cardType);
 
         /// <summary>
-        /// 取消出院结算
+        /// HủyQuyết toán xuất viện
         /// </summary>
         void DoCancel(string zyh, int expectedjsnm, string cancelReason,string cancelyblsh, out string outTradeNo, out decimal refundAmount);
 
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Application.Interface.HospitalizationManage
         InpatientSettPatStatusDetailDto GetPartialInpatientSettleStatusDetail(string zyh, string sfz, string kh, string cardType, string jslx,string ver);
 
         /// <summary>
-        /// 转出院结算 预处理
+        /// chuyển quyết toán xuất viện tiền xử lý
         /// </summary>
         /// <param name="zyh"></param>
          string PreCYsettle(string zyh);

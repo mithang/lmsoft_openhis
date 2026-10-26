@@ -15,7 +15,7 @@ using NLog.Client.Util;
 namespace Newtouch.HIS.Proxy.guian
 {
     /// <summary>
-    /// 公共接口
+    /// 公tổng cộnggiao diện
     /// </summary>
     public class CommonProxy
     {
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Proxy.guian
         #endregion
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public static string OrganizeId { get; set; }
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// S02 客户端传入用户名密码进行身份认证返回票据代码，密码需要MD5加密32位大写
+        /// S02 客户端 truyền 入 ngư ời dùng 名 mật khẩu tiến hành thân phận 认证quay lại票据mã, mật khẩu cầnMD5 mã hóa 32 vị 大写
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="passWord"></param>
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据传入的医疗证号获取家庭的参合成员列表
+        /// theo truyền 入của số chứng nhận y tế lấy gia đ ình của tham gia hợp tác 成 viên danh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据时间戳下载疾病字典信息
+        /// Tải thông tin từ điển bệnh theo dấu thời gian
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据时间戳下载疾病字典信息
+        /// Tải thông tin từ điển bệnh theo dấu thời gian
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据ghnm查退号记录
+        /// theo ghnm tra cứu trả lại số bản ghi 
         /// </summary>
         /// <param name="ghnm"></param>
         /// <returns></returns>

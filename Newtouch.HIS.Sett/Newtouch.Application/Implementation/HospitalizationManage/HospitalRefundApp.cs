@@ -1,6 +1,6 @@
 ﻿/*********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 住院管理》住院退费》
+// Copyright (C) 2016 Newtouch Giữ bản quyền. 
+// Description: Nhập viện quản lý >Nhập viện hoàn phí>
 //**********************************************************/
 using System.Collections.Generic;
 using Newtouch.HIS.Domain.IDomainServices;
@@ -18,15 +18,15 @@ namespace Newtouch.HIS.Application
     public class HospitalRefundApp : AppBase, IHospitalRefundApp
     {
         private readonly IHospitalRefundDmnService _hospitalRefundService;
-        private readonly ISysConfigRepo _sysConfigRepo; //系统配置
+        private readonly ISysConfigRepo _sysConfigRepo; //Cấu hình hệ thống
         
         /// <summary>
-        /// 住院项目计费分组
+        /// Nhập viện tính phí hạng mục nhóm 
         /// </summary>
-        /// <param name="zyh">住院编号</param>
-        /// <param name="zxks">科室</param>
-        /// <param name="xmmc">收费项目</param>
-        /// <param name="yrh">新生儿编号</param>
+        /// <param name="zyh">Số hiệu nhập viện</param>
+        /// <param name="zxks">Khoa</param>
+        /// <param name="xmmc">Hạng mục thu phí</param>
+        /// <param name="yrh">Số trẻ sơ sinh</param>
         public List<GridZyXmYpjfb> GetZyXmjfbGroup(string zyh, string zxks, string xmmc, string yrh)
         {
             List<GridZyXmYpjfb> zyXmjfbDt = _hospitalRefundService.GetZyXmjfbGroup(zyh, zxks, xmmc, yrh);
@@ -34,12 +34,12 @@ namespace Newtouch.HIS.Application
             return zyXmjfbDt;
         }
              /// <summary>
-        /// 住院药品计费分组
+        /// Nhập viện thuốc tính phí nhóm 
         /// </summary>
-        /// <param name="zyh">住院编号</param>
-        /// <param name="zxks">科室</param>
-        /// <param name="xmmc">收费项目</param>
-        /// <param name="yrh">新生儿编号</param>
+        /// <param name="zyh">Số hiệu nhập viện</param>
+        /// <param name="zxks">Khoa</param>
+        /// <param name="xmmc">Hạng mục thu phí</param>
+        /// <param name="yrh">Số trẻ sơ sinh</param>
 
         public List<GridZyXmYpjfb> GetZyYpjfbGroup(string zyh, string zxks, string xmmc, string yrh)
         {
@@ -48,11 +48,11 @@ namespace Newtouch.HIS.Application
             return ZyYpjfb;
         }
         /// <summary>
-        /// 住院药品计费明细
+        /// Nhập viện thuốc tính phí chi tiết
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xsebh">新生儿编号</param>
-        /// <param name="ypbh">药品编号</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xsebh">Số trẻ sơ sinh</param>
+        /// <param name="ypbh">ThuốcSố hiệu</param>
         /// <returns></returns>
         public List<gridZyXmYpItemsjfb> GetZyYpjfbList(string zyh, string xsebh, string ypCode, string tdrq)
         {
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Application
             return zyYpjfbDt;
         }
         /// <summary>
-        /// 住院项目计费明细
+        /// Nhập việnTính phí hạng mụcChi tiết
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="xsebh"></param>
@@ -75,17 +75,17 @@ namespace Newtouch.HIS.Application
             return zyXmjfbDt;
         }
         /// <summary>
-        /// 加载新生儿 
+        /// tải trẻ sơ sinh 
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <returns>姓名 婴儿号</returns>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <returns>Họ tên 婴儿 số </returns>
         //public DataTable GetYehByZyh(string zyh)
         //{
 
         //    DataTable yeh = _hospitalRefundService.GetYehByZyh(zyh);
         //    return yeh;
         //}
-        /// 根据住院号获取病人信息
+        /// theo số nhập viện lấy thông tin bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -94,14 +94,14 @@ namespace Newtouch.HIS.Application
           
             return _hospitalRefundService.GetPatInfoByZyh( zyh);
         }
-        /// 根据代码获取配置信息
+        /// theo mã lấy cấu hình thông tin
         public string GetPZInfo()
         {
             return _sysConfigRepo.GetValueByCode(Constants.xtmzpz.ZYTFPZ_INCLUDEYP, OperatorProvider.GetCurrent().OrganizeId);
 
         }
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         /// <param name="returnDict"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Application
             return _hospitalRefundService.SaveReturnZyyp(returnDict);
         }
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         /// <param name="returnDict"></param>
         /// <returns></returns>

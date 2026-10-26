@@ -4,24 +4,24 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Patient
 {
     /// <summary>
-    /// 更新门诊病人（门诊挂号）就诊状态
+    /// Cập nhật ngoại trú bệnh nhân(Đ ăng ký khám ngoại trú)khám bệnh trạng thái
     /// </summary>
     public class OutPatientUpdateConsultationStatusRequest : RequestBase
     {
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         [Required]
         public string outpatientNo { get; set; }
 
         /// <summary>
-        /// 就诊标志
+        /// Khám bệnh dấu hiệu 
         /// </summary>
         [Required]
         public string jiuzhenbz { get; set; }
 
         /// <summary>
-        /// 看诊医生
+        /// 看诊bác sĩ
         /// </summary>
         public string jzys { get; set; }
     }

@@ -9,7 +9,7 @@ using System.Threading;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 处理过程
+    /// Xử lý quá trình 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ProcessorFun<T> : IProcessor, IProcess
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.Implementation
         protected Dictionary<string, string> Tags;
 
         /// <summary>
-        /// 基类初始化
+        /// 基 loại 初始化
         /// </summary>
         /// <param name="request"></param>
         protected ProcessorFun(T request)
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 处理过程
+        /// Xử lý quá trình 
         /// </summary>
         /// <returns></returns>
         public ActResult Process()
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 异步处理
+        /// 异步xử lý
         /// </summary>
         /// <param name="result"></param>
         private void AsyncProcess(ActResult result)

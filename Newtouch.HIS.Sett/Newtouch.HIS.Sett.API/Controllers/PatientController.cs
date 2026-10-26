@@ -19,7 +19,7 @@ using Newtouch.HIS.Sett.Request.Patient;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 患者相关
+    /// Bệnh nhân liên quan 
     /// </summary>
     [RoutePrefix("api/Patient")]
     [DefaultAuthorize]
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         private readonly ISysPatBasicInfoApp _sysPatBasicInfoApp;
 
         /// <summary>
-        /// 门诊挂号信息查询
+        /// Đ ăng ký khám ngoại trú thông tintra cứu
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     , par.keyword
                     , par.pagination);
 
-                //这是分页查询
+                // này là分trangtra cứu
                 resp.data = new
                 {
                     pagination = par.pagination,
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 更新门诊病人（门诊挂号）就诊状态
+        /// Cập nhật ngoại trú bệnh nhân(Đ ăng ký khám ngoại trú)khám bệnh trạng thái
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 更新门诊病人（门诊挂号）诊断信息
+        /// Cập nhật ngoại trú bệnh nhân(Đ ăng ký khám ngoại trú)chẩn đoán thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 病历查询（历史病历）
+        /// hồ sơ bệnh án tra cứu(lịch sử hồ sơ bệnh án)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 住院患者查询
+        /// Tra cứu bệnh nhân nhập viện
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     , par.keyword
                     , par.pagination);
 
-                //这是分页查询
+                // này là分trangtra cứu
                 resp.data = new
                 {
                     pagination = par.pagination,
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 住院患者详情查询
+        /// Nhập việnBệnh nhânChi tiếtTra cứu
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 var list = _patientBasicInfoDmnService.InPatientQuery(this.UserIdentity.OrganizeId
                     , ref flag, ref msg, null, par.zyh);
 
-                //这是分页查询
+                // này là分trangtra cứu
                 resp.data = list == null && list.Count > 0 ? null : list[0];
 
                 if (resp.data != null)
@@ -215,7 +215,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 更新住院病人在院标志
+        /// Cập nhậtNhập việnBệnh nhânDấu hiệu đang nằm viện
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -270,7 +270,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 入院诊断查询
+        /// Chẩn đoán nhập việnTra cứu
         /// </summary>
         /// <param name="pat"></param>
         /// <returns></returns>
@@ -288,7 +288,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 修改入院诊断
+        /// SửaChẩn đoán nhập viện
         /// </summary>
         /// <param name="pat"></param>
         /// <returns></returns>
@@ -306,7 +306,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
         
         /// <summary>
-        /// 住院病人信息
+        /// Thông tin bệnh nhân nhập viện
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -350,7 +350,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊就诊列表
+        /// Ngoại trú khám bệnhdanh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -388,7 +388,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 住院一日清
+        /// Nhập viện một ngày清
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -419,12 +419,12 @@ namespace Newtouch.HIS.Sett.API.Controllers
                         dlObj.dlje = l.dlje;
                         for (var i = 0; i < DayFeeResp.data.Count; i++) {
                             if (DayFeeResp.data[i].rq.IndexOf(l.rq) != -1)
-                            {//存在该日期
+                            {// tồn tại tại này ngày 
                                 rqflag = i;
                             }
                         }
                         if (rqflag == -1)
-                        {//日期不存在，创建该日期
+                        {// ngày không tồn tại tại, tạo này ngày 
                             InpatientDayFeeRQ rqObj = new InpatientDayFeeRQ();
                             rqObj.data = new List<InpatientDayFeeDL>();
                             rqObj.rq = l.rq;

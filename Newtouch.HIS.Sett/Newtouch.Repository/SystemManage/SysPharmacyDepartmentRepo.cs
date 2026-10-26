@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取发药药房列表
+        /// Lấy phát thuốc nhà thuốc danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzzybz"></param>

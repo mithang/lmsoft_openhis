@@ -3,17 +3,17 @@
 namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 更新发药标志 请求阐述
+    /// Cập nhật dấu hiệu phát thuốc yêu cầu 阐述
     /// </summary>
     public class UpdatefyztRequest : RequestBase
     {
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đ ơn thuốc
         /// </summary>
         public string cfnm { get; set; }
 
         /// <summary>
-        /// 配药人员
+        /// 配药 nhân sự 
         /// </summary>
         public string user_code { get; set; }
 

@@ -12,11 +12,11 @@ namespace Newtouch.Infrastructure
     {
         public static string Post(string data, string uri, string token)
         {
-            //先根据用户请求的uri构造请求地址
+            // trư ớc theo ngư ời dùng yêu cầu Củauri xây dựng yêu cầu Đ ịa chỉ
             string serviceUrl = string.Format(uri);
-            //创建Web访问对象
+            // tạo web truy cập Đ ối tư ợng
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(serviceUrl);
-            //把用户传过来的数据转成“UTF-8”的字节流
+            // ngư ời dùng truyền qua 来của dữ liệu chuyển 成"UTF-8"Của字 mục 流
             byte[] buf = System.Text.Encoding.GetEncoding("UTF-8").GetBytes(data);
 
             myRequest.Method = "POST";
@@ -28,18 +28,18 @@ namespace Newtouch.Infrastructure
             {
                 myRequest.Headers.Add("Authorization", "Bearer " + token);
             }
-            //发送请求
+            //发送 yêu cầu 
             Stream stream = myRequest.GetRequestStream();
             stream.Write(buf, 0, buf.Length);
             stream.Close();
 
-            //获取接口返回值
-            //通过Web访问对象获取响应内容
+            //Lấygiao diệnquay lại giá trị 
+            // thông qua web truy cập Đ ối tư ợng lấy响 nên nội dung 
             HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
-            //通过响应内容流创建StreamReader对象，因为StreamReader更高级更快
+            // thông qua 响 nên nội dung 流 tạo StreamReaderĐ ối tư ợng,因là StreamReader hơn cao cấp hơn sắp 
             StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
-            //string returnXml = HttpUtility.UrlDecode(reader.ReadToEnd());//如果有编码问题就用这个方法
-            string returnXml = reader.ReadToEnd();//利用StreamReader就可以从响应内容从头读到尾
+            //string returnXml = HttpUtility.UrlDecode(reader.ReadToEnd());//Nếu có mã 问题 thì dùng này Phư ơng thức
+            string returnXml = reader.ReadToEnd();//利 dùng StreamReader thì có thể từ 响 nên nội dung từ 头读 đ ến 尾
             reader.Close();
             myResponse.Close();
             return returnXml;

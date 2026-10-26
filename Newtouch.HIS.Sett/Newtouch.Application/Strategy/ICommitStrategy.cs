@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Application.Strategy
     public interface ICommitStrategy
     {
         /// <summary>
-        /// 执行策略
+        /// thực hiện 策略
         /// </summary>
         /// <param name="cts"></param>
         /// <param name="request"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.Strategy
         bool Process(CancellationTokenSource cts, dynamic request, ActResult result);
 
         /// <summary>
-        /// 后处理
+        /// Hậu xử lý
         /// </summary>
         /// <param name="cts"></param>
         /// <param name="request"></param>

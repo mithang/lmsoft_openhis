@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="sxtxId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Repository
         }
         
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ybbabId"></param>
         /// <param name="orgId"></param>

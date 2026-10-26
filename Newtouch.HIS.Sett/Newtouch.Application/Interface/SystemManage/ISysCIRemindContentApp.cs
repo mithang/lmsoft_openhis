@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -15,13 +15,13 @@ namespace Newtouch.HIS.Application
     public interface ISysCIRemindContentApp
     {
         /// <summary>
-        /// 收费大类所有数据
+        /// Thu phí loại lớn tất cả các dữ liệu
         /// </summary>
         /// <returns></returns>
         List<SysChargeItemWarningContentEntity> GetList();
 
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -30,13 +30,13 @@ namespace Newtouch.HIS.Application
         void SubmitForm(SysChargeItemWarningContentEntity xt_sfxmjsnrEntity, string keyValue);
 
         /// <summary>
-        /// 获取所有收费大类下拉框
+        /// Lấy tất cả các thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         string GetdlSelect();
 
         /// <summary>
-        /// Grid筛选查询显示
+        /// GridHiển thị tra cứu lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

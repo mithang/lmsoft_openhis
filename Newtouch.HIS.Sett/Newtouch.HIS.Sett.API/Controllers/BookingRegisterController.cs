@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 出诊科室信息
+        /// khám bệnh khoa thông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 一段时间内排班
+        /// một đoạn thời gian trong lịch trực 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 科室排班信息
+        /// Khoa lịch trực thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 出诊科室排班详细
+        /// khám bệnh khoa lịch trực 详细
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -243,7 +243,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 预约挂号
+        /// Đ ặt lịch đ ăng ký khám
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -287,7 +287,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 结算
+        /// Quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -331,7 +331,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 预约号查询预约信息
+        /// số đ ặt lịch tra cứu đ ặt lịch thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -369,7 +369,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 查询预约记录
+        /// Tra cứu bản ghi đ ặt lịch 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -406,7 +406,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 取消预约
+        /// Hủy đ ặt lịch
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -450,7 +450,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 出诊科室信息
+        /// khám bệnh khoa thông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -487,7 +487,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 建卡
+        /// 建 thẻ 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -531,7 +531,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 取消结算
+        /// Hủy quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -575,7 +575,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 待缴费账单
+        /// chờ thanh toán phí 账 đ ơn 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -619,7 +619,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 待缴费明细
+        /// chờ thanh toán phí chi tiết
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -663,7 +663,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 取消订单
+        /// Hủy đ ơn hàng 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -707,7 +707,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 挂号/处方预结算
+        /// Đ ăng ký khám/Đ ơn thuốc预quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -751,7 +751,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 处方结算
+        /// Đ ơn thuốc quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -798,14 +798,14 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
                     if (ghEntity.brxz != ((int)EnumBrxz.zf).ToString() && req.PatType != ((int)EnumBrxz.zf).ToString())
                     {
-                        //走医保
+                        //Qua BHYT
                         throw new FailedException("医保收费未开通");
                     }
                     OutpatientSettFeeRelatedDTO feeRelated = new OutpatientSettFeeRelatedDTO()
                     {
                         zje = Convert.ToDecimal(req.TotalAmount),
                         ssk = Convert.ToDecimal(req.PayFee),
-                        zffs1 = (req.AppID == "Alipay" ? "10" : "11"),//11微信,10支付宝
+                        zffs1 = (req.AppID == "Alipay" ? "10" : "11"),//11微信,10 thanh toán 宝
                         zfje1 = Convert.ToDecimal(req.PayFee),
                         zhaoling = 0
                     };
@@ -866,7 +866,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                 }
                             }
                         }
-                        //异步推送处方收费成功的通知给药房药库(取消mq的用法)
+                        //异步 đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc (Hủymq của cách dùng)
                         //notifyPDS(jsnmList[0], DateTime.Now, cfnmlist, patInfo.fph, orgId, req.AppID);
                         resp.data = new SettResp() { RegId = jsnmList[0].ToString(), xjzf = req.TotalAmount, ybzf = 0.00.ToDecimal(), grzf = req.TotalAmount };
                         resp.msg = "";
@@ -905,7 +905,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 对账
+        /// đ ối với 账
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -943,7 +943,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 结算成功推送状态至药房
+        /// Quyết toán thành công đ ẩy trạng thái至 nhà thuốc 
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="sfrq"></param>

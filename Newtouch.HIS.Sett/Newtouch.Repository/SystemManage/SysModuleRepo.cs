@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Repository
     public class SysModuleExRepository : RepositoryBase<SysModuleEntity>, ISysModuleExRepo
     {
         /// <summary>
-        /// 构造函数
+        /// xây dựng hàm 
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysModuleExRepository(IDefaultDatabaseFactory databaseFactory)

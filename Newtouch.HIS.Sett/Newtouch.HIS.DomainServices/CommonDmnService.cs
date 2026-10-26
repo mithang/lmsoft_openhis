@@ -22,14 +22,14 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取就诊人数（门诊和住院）
+        /// Lấy khám bệnh số ngư ời(ngoại trú và nhập viện)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public VisitNumBO GetVisitNum(string configmethod, string orgId = null)
         {
 
-            /*************************************门诊部门，暂不考虑全退*****************************************************/
+            /*************************************Khoa ngoại trú, tạm thời không xét hoàn toàn bộ*****************************************************/
             List<OutpatientVisitNumVO> outpatientlist = null;
             StringBuilder sqlStr = new StringBuilder();
             sqlStr.Append(@"--当前年份
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.DomainServices
             outpatientlist = this.FindList<OutpatientVisitNumVO>(sqlStr.ToString(), param).ToList();
 
 
-            /**********************************************住院部门,已去掉全退的人*****************************************************/
+            /**********************************************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ của人*****************************************************/
 
             var inpatientList = new List<InpatientVisitNumVO>();
 
@@ -126,8 +126,8 @@ namespace Newtouch.HIS.DomainServices
                 var num = 0;
                 if (i < nowMonth)
                 {
-                    //1.当月入院或当月出院
-                    //2.在院状态<>已出院 and 入院日期<当月
+                    //1.KhiThángNhập việnHoặcKhiThángXuất viện
+                    //2.Tại viện trạng thái<>Đ ãxuất viện and ngày nhập viện<khi tháng
                     num = zyList.Count(p =>
                     (p.ryrq >= new DateTime(nowYear, (i + 1), 1)
                     && p.ryrq < new DateTime(nowYear, (i + 1), 1).AddMonths(1)
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.DomainServices
                 });
             }
 
-            //放在一个对象，返回到页面
+            //放tại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new VisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取今天之前10周就诊人次详情
+        /// Lấy今ngày trư ớc đ ó 10 tuần khám bệnh Lư ợt ngư ờichi tiết
         /// </summary>
         /// <param name="month"></param>
         /// <param name="isAdministrator"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="topOrgId"></param>
         public MonthVisitNumBO GetWeekNum(string configmethod, string orgId)
         {
-            /*************************************门诊部门，暂不考虑全退*****************************************************/
+            /*************************************Khoa ngoại trú, tạm thời không xét hoàn toàn bộ*****************************************************/
             List<OutpatientWeekVisitNumVO> outpatientlist = null;
             var basic = @"WITH    cteTree
                               AS ( SELECT   DATEADD(wk, DATEDIFF(wk, 0, GETDATE()), 0) wbegin ,
@@ -221,11 +221,11 @@ namespace Newtouch.HIS.DomainServices
                 };
             outpatientlist = this.FindList<OutpatientWeekVisitNumVO>(sqlStr.ToString(), param).ToList();
 
-            /****************住院部门,已去掉全退的人**********************/
+            /****************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ của人**********************/
             StringBuilder sqlStr3 = new StringBuilder(basic);
             var inpatientList = new List<OutpatientWeekVisitNumVO>();
             List<InpatientVisitBasicVO> zyList = null;
-            //如果是admin登录，则统计该组织机构下所有医院的就诊人数
+            //Nếu Làadmin đ ăng nhập,thì thống kê này tổ chức dư ới tất cả các bệnh viện của khám bệnh số ngư ời
             sqlStr3.Append(@"     SELECT  CONVERT(VARCHAR(10), cte.wbegin, 25) wbegin,
                                     CONVERT(VARCHAR(10), cte.wend, 25)  wend,
                                     zyh ,
@@ -241,13 +241,13 @@ namespace Newtouch.HIS.DomainServices
             zyList = this.FindList<InpatientVisitBasicVO>(sqlStr3.ToString(), new[] {
                     new SqlParameter("@orgId", orgId)});
             string ycy = ((int)EnumZYBZ.Ycy).ToString();
-            var LastWeekInfo = GetLastWeek();//获取最后10周日期list
+            var LastWeekInfo = GetLastWeek();//Lấy nhất sau 10 tuần ngày list
             if (LastWeekInfo != null && LastWeekInfo.Count() > 0)
             {
                 for (int i = 0; i < LastWeekInfo.Count(); i++)
                 {
-                    //1.本周入院或本周出院
-                    //2.在院状态<>已出院 and 入院日期<本周
+                    //1. bản tuần nhập viện hoặc bản tuần xuất viện
+                    //2.Tại viện trạng thái<>Đ ãxuất viện and ngày nhập viện< bản tuần
                     var Num = zyList.Count(p =>
                       (p.ryrq >= DateTime.Parse(LastWeekInfo[i].wbegin)
                       && p.ryrq < DateTime.Parse(LastWeekInfo[i].wend)
@@ -262,7 +262,7 @@ namespace Newtouch.HIS.DomainServices
                     });
                 }
             }
-            //放在一个对象，返回到页面
+            //放tại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new MonthVisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -272,7 +272,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取最后10周日期list
+        /// Lấy nhất sau 10 tuần ngày list
         /// </summary>
         /// <returns></returns>
         public List<LastWeekInfo> GetLastWeek()
@@ -294,7 +294,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 贵州医保,通过交易流水号获取交易验证码
+        /// 贵州BHYT, thông qua giao dịch số thứ tự lấy giao dịch xác minh mã 
         /// </summary>
         /// <param name="jylsh"></param>
         /// <param name="OrgId"></param>
@@ -315,7 +315,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取药品分类list（非收费大类）
+        /// Lấy thuốc phân loạilist(không phải thu phí loại lớn)
         /// </summary>
         /// <returns></returns>
         public IList<SysMedicineClassificationVEntity> GetMedicineClassificationList()
@@ -325,12 +325,12 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取项目分类list
+        /// LấyHạng mụcPhân loạilist
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeCategoryVEntity> GetChargetItemClassificationList(string orgId)
         {
-            //2项目
+            //2Hạng mục
             var sql = "select * from [NewtouchHIS_Base]..V_S_xt_sfdl where dllb = 2 and OrganizeId = @orgId and zt = '1'";
             return this.FindList<SysChargeCategoryVEntity>(sql, new[] { new SqlParameter("@orgId", orgId) });
         }
@@ -338,7 +338,7 @@ namespace Newtouch.HIS.DomainServices
 
         #region base字典等公共数据
         /// <summary>
-        /// 获取科室绑定的病区
+        /// LấyKhoaLiên kếtCủaKhu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>

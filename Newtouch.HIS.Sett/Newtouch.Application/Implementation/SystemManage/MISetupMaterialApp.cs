@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application
             }
         }
         /// <summary>
-        /// 获取医保-设置-材料的物价代码
+        /// LấyBHYT-Đ ặt-材料của mã giá
         /// </summary>
         /// <returns></returns>
         public string GetybdmSelect()

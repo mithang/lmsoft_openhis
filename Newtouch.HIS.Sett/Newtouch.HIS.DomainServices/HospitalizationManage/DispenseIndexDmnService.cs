@@ -22,10 +22,10 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
         #region 住院发药
 
         /// <summary>
-        /// 住院发药病区
+        /// Nhập viện phát thuốc khu bệnh
         /// </summary>
-        /// <param name="bq">病区</param>
-        /// <param name="organizeId">组织ID</param>
+        /// <param name="bq">Khu bệnh</param>
+        /// <param name="organizeid"> nhóm 织ID</param>
         /// <returns></returns>
         public IList<DispenseBQIndexVO> GetZYFYBQPagList(string lyyf, string organizeId)
         {
@@ -43,19 +43,19 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
         }
 
         /// <summary>
-        /// 住院发药病人
+        /// Nhập viện phát thuốc bệnh nhân
         /// </summary>
-        /// <param name="bq">病区</param>
+        /// <param name="bq">Khu bệnh</param>
         /// <returns></returns>
         public IList<DispenseBQRYIndexVO> GetZYFYBRPagList(string zyyf, string bq)
         {
             string sql = @"select DISTINCT zyh,b.xm,bq,cw from NewtouchHIS_Sett..zy_brjbxx a WITH ( NOLOCK ) 
                            inner join NewtouchHIS_Sett..xt_brjbxx b WITH ( NOLOCK )
                            on a.patid = b.patid AND a.zybz IN ('1','2','3')   ";
-            //有条件跟条件取
+            //Có dòng vụ và dòng vụ 取
             if (!string.IsNullOrEmpty(bq))
                 sql += " AND a.bq =@bq  ";
-            else//没条件根据类型的第一个病区取
+            else// không dòng vụ theo loại của thứ một khu bệnh取
                 sql += @" AND a.bq=(SELECT top 1 a.bqCode FROM NewtouchHIS_Base..xt_bq a WITH(NOLOCK) 
                            inner join NewtouchHIS_Sett..zy_ypyzzx b WITH(NOLOCK)
                             ON a.bqCode = b.bqCode and  b.lyyf = @lyyf) ";
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
 
 
         /// <summary>
-        /// 住院发药信息集合
+        /// Nhập viện phát thuốc thông tin tập hợp 
         /// </summary>
         /// <param name="bq"></param>
         /// <param name="Zyh"></param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
         }
 
 
-        //根据开始时间结束时间获取住院病人医嘱,药品，数量等信息
+        // theo thời gian bắt đ ầu thời gian kết thúc lấy nhập viện bệnh nhân y lệnh,thuốc,số lư ợngV.v.Thông tin
         public IList<DispenseBQBRPYIndexVO> SetZYBRBQPY(WaitingDispenseBQBRPYMedicineDispenseRequest model)
         {
             string sql = @" SELECT DISTINCT a.yzId,a.zyh,isnull(b.sl,0)sl,b.lyyf,a.ypCode,b.CreateTime as jdrq,a.cls 
@@ -144,21 +144,21 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
                 new SqlParameter("@Kssj",model.Kssj ?? ""),
                 new SqlParameter("@Jssj",model.Jssj ?? "")
             };
-            return this.FindList<DispenseBQBRPYIndexVO>(sql, para);// 取出来的 datetime 少了毫秒
+            return this.FindList<DispenseBQBRPYIndexVO>(sql, para);// 取出来của datetime 少 毫giây
         }
 
-        //如果配药或者退药完成，修改医嘱执行 fybz 状态为1
+        //Nếu配药hoặc trả thuốc hoàn thành,sửa y lệnh thực hiện fybz trạng thái là1
         public int UpBQPYyzzx(WaitingDispenseBQPYyzzxZTDispenseRequest model)
         {
             string sql = "";
             if (model.fybz == "1")
-            {//配药执行SQL
+            {//配药 thực hiện SQL
                 sql = @" update zy_ypyzzx set fybz = @fybz where yzid = @yzId 
                 and CONVERT(varchar(19),CreateTime,20)=CONVERT(varchar(19),CAST(@CreateTime as datetime),20) 
                 select @@ROWCOUNT as Con  ";
             }
             else if (model.fybz == "2")
-            {//发药执行SQL
+            {// phát thuốc thực hiện SQL
                 sql = @" update zy_ypyzzx set fybz = @fybz, dj=@ypdj, je=@ypje, zfbl=@zfbl, zfxz=@zfxz where yzid = @yzId 
                         and CONVERT(varchar(19),CreateTime,20)=CONVERT(varchar(19),CAST(@CreateTime as datetime),20) 
                         select @@ROWCOUNT as Con  ";
@@ -183,7 +183,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
         #region 住院发药查询
 
         /// <summary>
-        /// 住院发药查询人员信息
+        /// Nhập viện phát thuốc tra cứu nhân sự thông tin
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -194,16 +194,16 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
             //var outpar = new SqlParameter("@tempSql", System.Data.SqlDbType.VarChar,8000);
             //outpar.Direction = System.Data.ParameterDirection.Output;
             //var sqlParList = new List<SqlParameter>();
-            //sqlParList.Add(new SqlParameter("@Kssj", model.Kssj));//开始时间
-            //sqlParList.Add(new SqlParameter("@Jssj", model.Jssj));//结束时间
-            //sqlParList.Add(new SqlParameter("@lyyf", model.zyyf));//住院药房
-            //sqlParList.Add(new SqlParameter("@yp", model.ypCode));//药品code
-            //sqlParList.Add(new SqlParameter("@bq", model.Bq));// 病区
-            //sqlParList.Add(new SqlParameter("@clbz", model.Cl));// 长临
+            //sqlParList.Add(new SqlParameter("@Kssj", model.Kssj));//Thời gian bắt đ ầu
+            //sqlParList.Add(new SqlParameter("@Jssj", model.Jssj));//Thời gian kết thúc
+            //sqlParList.Add(new SqlParameter("@lyyf", model.zyyf));//Nhập viện nhà thuốc 
+            //sqlParList.Add(new SqlParameter("@yp", model.ypCode));//Thuốccode
+            //sqlParList.Add(new SqlParameter("@bq", model.Bq));// Khu bệnh
+            //sqlParList.Add(new SqlParameter("@clbz", model.Cl));// 长 tạm 
             //sqlParList.Add(outpar);
             //_databaseFactory.Get().Database.ExecuteSqlCommand("Exec YP_XT_ZYFYCX @Kssj,@Jssj,@lyyf,@yp,@bq,@clbz,@tempSql out", sqlParList.ToArray());
             //if (!string.IsNullOrEmpty(outpar.Value.ToString()))
-            //{//获取拼好SQL 语句
+            //{//Lấy拼 SQL 语句
             //    return this.QueryWithPage<DispenseBQRYCXXXIndexVO>(outpar.Value.ToString(), pagination, new SqlParameter[] {
             //    //new SqlParameter("@lyyf", lyyf ?? "")
             //    });
@@ -222,7 +222,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
                     SQLT.Append(",tyjlrq='" + item.tyjlrq + "',tyxh='" + item.tyxh + "',tyry='" + item.tyry + "' ");
                     SQLT.Append(",ypCode='" + item.ypCode + "',pc='" + item.yppc + "',ph='" + item.ypph + "' ");
                     SQLT.Append(",tyrq='" + item.tyrq + "',sl='" + item.sl + "' ,tysqczyh='" + item.tysqczyh + "' ");
-                    strunion = " union all ";//第二次循环执行拼装
+                    strunion = " union all ";//Thứ二 lần 循环 thực hiện 拼装
                 }
             }
             else
@@ -271,7 +271,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
 
         #region 住院退药明细信息
         /// <summary>
-        /// 返回医生站医嘱ID 医嘱表ID
+        /// Quay lại trạm bác sĩ y lệnh ID y lệnh bảng ID
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -294,7 +294,7 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
         }
 
         /// <summary>
-        /// 住院退药信息集合
+        /// Nhập viện trả thuốc thông tin tập hợp 
         /// </summary>
         /// <param name="bq"></param>
         /// <param name="Zyh"></param>
@@ -308,19 +308,19 @@ namespace Newtouch.HIS.DomainServices.HospitalizationManage
             StringBuilder SQLT = new StringBuilder();
             List<ModelBQBRYZZXTYInfoVO> list = model.YpTymxxxList;
             if (list.Count < 1)
-                return null;//退药表没有能退药数据信息
+                return null;// trả thuốc bảng không có có thể trả thuốc dữ liệu thông tin
             else
             {
                 String strunion = " ";
                 SQLT.Append("( ");
                 foreach (ModelBQBRYZZXTYInfoVO item in list)
-                {//拼PDS 库 退药明细表信息
+                {//拼PDS kho trả thuốc chi tiết bảng thông tin
                     SQLT.Append("" + strunion + "select yszyzid='" + item.yszyzid + "',tdrq='" + item.tdrq + "' ");
                     SQLT.Append(",tysl='" + item.tysl + "',tymxId='" + item.tymxId + "',tybz='" + item.tybz + "' ");
                     SQLT.Append(",tyjlrq='" + item.tyjlrq + "',tyxh='" + item.tyxh + "',tyry='" + item.tyry + "' ");
                     SQLT.Append(",ypCode='" + item.ypCode + "',pc='" + item.yppc + "',ph='" + item.ypph + "' ");
                     SQLT.Append(",tyrq='" + item.tyrq + "' ");
-                    strunion = " union all ";//第二次循环执行拼装
+                    strunion = " union all ";//Thứ二 lần 循环 thực hiện 拼装
                 }
                 SQLT.Append("  ) ");
                 string sql = @"SELECT DISTINCT d.xm,l.cw,k.ypCode,j.ypmc,j.ycmc,i.ypgg,k.sl,t.tysl,t.tyry,

@@ -3,32 +3,32 @@
 namespace Newtouch.Infrastructure.Model
 {
     /// <summary>
-    /// 登录用户，当前药房部门信息
+    /// đ ăng nhập ngư ời dùng,khi trư ớc nhà thuốc bộ phận thông tin
     /// </summary>
     public class LoginUserCurrentYfbmModel
     {
         /// <summary>
-        /// 药房部门Code
+        /// nhà thuốc bộ phậnCode
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药房部门级别（1级 药库，2级药房）
+        /// nhà thuốc bộ phận cấp bậc (1 cấp kho thuốc,2 cấp nhà thuốc)
         /// </summary>
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// 当前登录身份 的 药房部门：0药库；1门诊药房；2住院药房   药库直接通过yjbmjb判断就可以了
+        /// Khi trư ớc đ ăng nhập thân phận của nhà thuốc bộ phận:0 kho thuốc;1 nhà thuốc ngoại trú;2 nhập viện nhà thuốc kho thuốc trực tiếp thông qua yjbmjb phán đoán thì có thể 
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 上级 药库 Code List（药房可向目标药库申领）
+        /// trên cấp kho thuốc Code List(nhà thuốc có thể tới 目标 kho thuốc xin 领)
         /// </summary>
         public IList<string> TheUpperYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 下级 药房 Code List（药库可向目标药房发药）
+        /// dư ới cấp nhà thuốc Code List(kho thuốc có thể tới 目标 nhà thuốc phát thuốc)
         /// </summary>
         public IList<string> TheLowerYfbmCodeList { get; set; }
 

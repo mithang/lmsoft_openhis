@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Application.Implementation
             //var hasNonYbFee = _hospFeeDmnService.CheckHasNonYbFee(zyh, orgId);
             //if (hasNonYbFee)
             //{
-            //    throw new FailedException("已产生非医保相关费用");
+            // throw new FailedException("Đ ã产生 không phải BHYT liên quan chi phí");
             //}
 
             return new object();
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application.Implementation
             //{
             //    //if (xtbrxxList[0].patid != zybrxx.patid)
             //    //{
-            //    //    throw new FailedException("该社保卡在系统里已绑定其他身份,不能再用来转该患者医保信息，请联系his！社保编号："+ sbbh.ToString());
+            // // throw new FailedException("Thẻ bảo hiểm xã hội này đ ã liên kết với thân phận khác trong hệ thống,không thể dùng nữa đ ể chuyển thông tin BHYT của bệnh nhân này,vui lòng liên hệ his！社保số hiệu:"+ sbbh.ToString());
             //    //}
             //    xtbrxx = xtbrxxList[0];
             //}
@@ -101,12 +101,12 @@ namespace Newtouch.HIS.Application.Implementation
             //    xtbrxx = _sysPatientBasicInfoRepo.IQueryable().Where(p => p.patid == patid && p.OrganizeId == orgId && p.zt == "1").First();
             //    if (!string.IsNullOrWhiteSpace(xtbrxx.sbbh) && xtbrxx.sbbh != sbbh)
             //    {
-            //        throw new FailedException("该住院患者已绑定其他社保卡");
+            // throw new FailedException(" này nhập viện bệnh nh ânĐ ãliên kết khác社保 thẻ ");
             //    }
             //}
             //else
             //{
-            //    throw new FailedException("数据异常，该社保卡在基础信息中存在多条，无法定位");
+            // throw new FailedException("Dữ liệu bất thư ờng, này 社保 thẻ tại基础thông tin trong tồn tại tại nhiều dòng,không có phư ơng pháp 定 vị ");
             //}
 
             if (zybrxx.xm != xm)
@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Application.Implementation
             var ryzd1 = _hospMultiDiagnosisRepo.IQueryable().Where(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId==orgId).OrderBy(p => p.zdpx).FirstOrDefault();
 
             var ksmc = _sysDepartmentRepo.GetNameByCode(zybrxx.ks, orgId);
-            //国家编码
+            //国家 mã 
             var ysInfo = _outPatientSettleDmnService.GetDepartmentDoctorIdC(orgId, zybrxx.ks, zybrxx.ys);
 
             return new
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Application.Implementation
 		public object ZFToYB_Step_8(string zyh1)
         {
             UpdatebrxzRequest par = new UpdatebrxzRequest { zyh = zyh1,brxzCode="1",brxzmc="医保病人"};
-            //同步数据至CPOE
+            //Đ ồng bộ dữ liệu tớiCPOE
             SiteCISAPIHelper.UpdatebrxzInfo(par);
             return new object();
         }
@@ -193,7 +193,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             //if (!(zybrxx.brxz == "1"))
             //{
-            //    throw new FailedException("当前非医保");
+            // throw new FailedException("Khi trư ớc không phải BHYT");
             //}
 
             return new object();
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             //if (xtbrxx.sbbh != sbbh)
             //{
-            //    throw new FailedException("异常，社保个人编号不一致");
+            // throw new FailedException("Bất thư ờng,社保个人số hiệu không nhất quán ");
             //}
 
             var garybl21 = _guianRybl21OutInfoRepo.GetInfoByZyh(zyh, orgId);
@@ -290,9 +290,9 @@ namespace Newtouch.HIS.Application.Implementation
         /// <returns></returns>
         public object YBToZF_Step_7(string zyh1)
         {
-            //同步数据至CPOE
+            //Đ ồng bộ dữ liệu tớiCPOE
             UpdatebrxzRequest par = new UpdatebrxzRequest { zyh = zyh1, brxzCode = "0", brxzmc = "自费" };
-            //同步数据至CPOE
+            //Đ ồng bộ dữ liệu tớiCPOE
             SiteCISAPIHelper.UpdatebrxzInfo(par);
             return new object();
         }
@@ -345,7 +345,7 @@ namespace Newtouch.HIS.Application.Implementation
             //{
             //    if (xtbrxxList[0].patid != zybrxx.patid)
             //    {
-            //        msg = "该农合卡在系统里已绑定其他身份,不能再用来转该患者新农合信息，请联系his！个人编码：" + grbm.ToString();
+            // msg = " này hợp tác nông thôn thẻ tại hệ thống trong Đ ãliên kết khác thân phận, không thể 再 dùng 来 chuyển này bệnh nhân BHYT nông thôn mới thông tin,vui lòng liên hệ his！ mã cá nhân:" + grbm.ToString();
             //        return false;
             //    }
             //    xtbrxx = xtbrxxList[0];
@@ -355,13 +355,13 @@ namespace Newtouch.HIS.Application.Implementation
             //    xtbrxx = _sysPatientBasicInfoRepo.IQueryable().Where(p => p.patid == patid && p.OrganizeId == orgId && p.zt == "1").First();
             //    if (!string.IsNullOrWhiteSpace(xtbrxx.xnhgrbm) && xtbrxx.xnhgrbm != grbm)
             //    {
-            //        msg = "该住院患者已绑定其他农合卡";
+            // msg = " này nhập viện bệnh nh ânĐ ãliên kết khác hợp tác nông thôn thẻ ";
             //        return false;
             //    }
             //}
             //else
             //{
-            //    msg = "数据异常，该社保卡在基础信息中存在多条，无法定位";
+            // msg = "Dữ liệu bất thư ờng, này 社保 thẻ tại基础thông tin trong tồn tại tại nhiều dòng,không có phư ơng pháp 定 vị ";
             //    return false;
             //}
 
@@ -384,7 +384,7 @@ namespace Newtouch.HIS.Application.Implementation
         public object ZFToXNH_Step_8(string zyh1)
         {
             UpdatebrxzRequest par = new UpdatebrxzRequest { zyh = zyh1, brxzCode = "8", brxzmc = "新农合" };
-            //同步数据至CPOE
+            //Đ ồng bộ dữ liệu tớiCPOE
             SiteCISAPIHelper.UpdatebrxzInfo(par);
             return new object();
         }

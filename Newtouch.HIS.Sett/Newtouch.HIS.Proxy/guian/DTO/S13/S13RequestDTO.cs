@@ -8,31 +8,31 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class S13RequestDTO
     {
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 补偿类型编码
+        /// Bồi thư ờng loại mã 
         /// </summary>
         public string redeemNo { get; set; }
         /// <summary>
-        /// 出院时间(跨省)
+        /// Thời gian xuất viện(liên tỉnh)
         /// </summary>
         public string outDate { get; set; }
         /// <summary>
-        /// 五保户、低保户等特殊参合患者是否提供身份属性证明材料(跨省)1：已提供 0：未提供
+        /// năm 保户, 低保户V.v.Đ ặc biệt tham gia hợp tác bệnh nhân có hay không提供 thân phận thuộc tính 证明材料(liên tỉnh)1:Đ ã提供 0:Chưa提供
         /// </summary>
         public string isMaterials { get; set; }
         /// <summary>
-        /// 操作员姓名(跨省)
+        /// Thao tác viên họ tên(liên tỉnh)
         /// </summary>
         public string operationName { get; set; }
         /// <summary>
-        /// 行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
     }

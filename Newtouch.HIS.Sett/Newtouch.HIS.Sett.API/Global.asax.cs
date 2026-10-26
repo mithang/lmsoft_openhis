@@ -21,10 +21,10 @@ namespace Newtouch.HIS.Sett.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            //向上下文注册表
+            // tới ngữ cảnh đ ăng ký bảng 
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //注册 释放数据库链接
+            // đ ăng ký 释放dữ liệu kho 链接
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(() => {
                 //释放DefaultDbContext
                 Newtouch.Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IDefaultDatabaseFactory, DefaultDbContext>();
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Sett.API
 
             IEntityEx.RegisterCurUserCodeGetter(() =>
             {
-                //在基类认证用户身份时写上的
+                //Tại基 loại 认证 ngư ời dùng thân phận giờ写 trên của
                 var account = HttpContext.Current.Items["API_UserIdentity_Account"];
                 return account == null ? null : account.ToString();
             });

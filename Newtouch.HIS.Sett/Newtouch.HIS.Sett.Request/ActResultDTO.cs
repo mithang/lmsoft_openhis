@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 执行结果
+    /// thực hiện kết quả
     /// </summary>
     public class ActResultDTO
     {
         /// <summary>
-        /// 构造函数初始化
+        /// xây dựng hàm 初始化
         /// </summary>
         public ActResultDTO()
         {
@@ -14,17 +14,17 @@
         }
 
         /// <summary>
-        /// 是否成功
+        /// Có hay khôngThành công
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// 错误编码
+        /// Lỗi mã 
         /// </summary>
         public int ErrorCode { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// Mô tả lỗi
         /// </summary>
         public string ErrorMsg { get; set; }
     }

@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="ghpbId"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(int ghpbId, string orgId)

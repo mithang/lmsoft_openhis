@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 门诊发药查询显示药品详细信息
+    /// Phát thuốc ngoại trú tra cứu hiển thị thuốc thông tin chi tiết
     /// </summary>
     public class fyQueryDetailInfo
     {

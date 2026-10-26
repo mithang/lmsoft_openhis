@@ -14,7 +14,7 @@ using Newtouch.HIS.Proxy.guian.DTO.S27;
 namespace Newtouch.HIS.Proxy.guian
 {
     /// <summary>
-    /// 门诊相关
+    /// Ngoại trú liên quan 
     /// </summary>
     public class OutpatientProxy
     {
@@ -34,12 +34,12 @@ namespace Newtouch.HIS.Proxy.guian
         #endregion
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public static string OrganizeId { get; set; }
 
         /// <summary>
-        /// 根据获取的家庭参合列表进行门诊上传 跨省登记修改也是这个接口，使用uploadType
+        /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành ngoại trú tải lên liên tỉnh 登记sửa cũng là này giao diện,sử dụnguploadType
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18上传门诊返回的补偿序号outpId进行门诊回退
+        /// theo S18 số thứ tự bồi thư ờng ngoại trú trả về sau khi tải lênoutpid tiến hành trả lại ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18上传门诊返回的补偿序号outpId进行门诊信息修改
+        /// theo S18 số thứ tự bồi thư ờng ngoại trú trả về sau khi tải lênoutpid tiến hành ngoại trú thông tin sửa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18门诊上传返回的补偿序号outpId进行门诊费用上传,结算后上传无效
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành ngoại trú chi phí tải lên,quyết toán sau tải lên không hiệu lực
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 查询当此门诊已上传费用明细
+        /// Tra cứu chi tiết chi phí ngoại trú lần này đ ã tải lên
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18门诊上传返回的补偿序号outpId门诊费用明细查询S22进行门诊费用明细退单；跨省如果只传补偿序号，不传明细ID 就是把所有明细删除
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid ngoại trú chi phí chi tiếttra cứuS22 tiến hành ngoại trú chi phí chi tiết trả lại đ ơn; liên tỉnh nếu只 truyền số thứ tự bồi thư ờng, không truyền chi tiếtID thì là tất cả các chi tiết xóa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18门诊上传返回的补偿序号outpId进行门诊模拟结算
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành ngoại trú mô phỏng quyết toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18门诊上传返回的补偿序号outpId进行门诊结算
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành quyết toán ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18门诊上传返回的补偿序号outpId进行门诊冲红
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành ngoại trú ghi đ ỏ 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -129,7 +129,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 根据S18门诊上传返回的补偿序号outpId进行获取门诊结算单信息
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành lấy quyết toán ngoại trú đ ơn thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

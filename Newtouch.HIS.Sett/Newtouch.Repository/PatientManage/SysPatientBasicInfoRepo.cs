@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
 
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                //先变更标志和时间 暂定修改 其实是更改到病人基本信息变更表
+                // trư ớc thay đ ổi dấu hiệu và thời gian tạm thời 定sửa thực ra là sửa đ ến thông tin cơ bản bệnh nhân thay đ ổi bảng 
                 var entity = this.FindEntity(sysPatBasicInfoEntity.patid);
                 entity.Modify(keyValue);
                 this.Update(entity);
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// （病历号由系统自动生成）获取最新病历号
+        /// (số hồ sơ bệnh án由hệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         public string Getblh(string orgId)
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据patid获取病人基本信息
+        /// theo patid lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据证件号，姓名获取病人基本信息
+        /// theo số giấy tờ,họ tên lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zjh"></param>
         /// <param name="orgId"></param>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据姓名获取病人基本信息
+        /// theo họ tên lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="orgId"></param>
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据病历号获取信息
+        /// theo số hồ sơ bệnh án lấy thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="blh"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据病历号查询
+        /// theo số hồ sơ bệnh ántra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="blh"></param>
@@ -152,7 +152,7 @@ WHERE OrganizeId = @orgId
         }
 
         /// <summary>
-        /// 更新紧急联系人相关信息
+        /// Cập nhật Ngư ời liên hệ khẩn cấp liên quan thông tin
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -169,7 +169,7 @@ WHERE OrganizeId = @orgId
             xtbrxx.jjllrgx = lxrgx;
 
 
-            //系统病人基本信息
+            //Hệ thốngThông tin cơ bản bệnh nhân
             if (xtbrxx != null)
             {
                 xtbrxx.LastModifyTime = DateTime.Now;
@@ -213,7 +213,7 @@ WHERE OrganizeId = @orgId
         {
             int t = int.Parse(patid);
             var xtbrxx = this.FindEntity(p => p.patid == t && p.OrganizeId == orgId);
-            //系统病人基本信息
+            //Hệ thốngThông tin cơ bản bệnh nhân
             if (xtbrxx != null)
             {
                 xtbrxx.zt = zt;

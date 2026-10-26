@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据代码获取住院配置
+        /// theo mã lấy nhập viện cấu hình
         /// </summary>
         /// <param name="dm"></param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据dm获取配置
+        /// theo dm lấy cấu hình
         /// </summary>
         /// <param name="dm"></param>
         /// <returns></returns>

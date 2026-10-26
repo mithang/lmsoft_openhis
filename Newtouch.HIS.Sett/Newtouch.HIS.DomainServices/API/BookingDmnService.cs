@@ -38,7 +38,7 @@ namespace Newtouch.HIS.DomainServices.API
         private readonly ISysCashPaymentModelRepo _sysForCashPayRepository;
         private readonly IOutPatientChargeQueryDmnService _outPatienChargeQueryDmnService;
         /// <summary>
-        /// 获取科室信息
+        /// LấyKhoaThông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.DomainServices.API
         }
 
         /// <summary>
-        /// 获取医生人员信息
+        /// Lấy bác sĩ nhân sự thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.DomainServices.API
         }
 
         /// <summary>
-        /// 获取基本病人信息
+        /// Lấy cơ bản thông tin bệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kh"></param>
@@ -158,7 +158,7 @@ where zt='1'
 
 
         /// <summary>
-        /// 医院药品信息
+        /// Thông tin thuốc bệnh viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sfxmId"></param>
@@ -195,7 +195,7 @@ where zt='1'
 
 
         /// <summary>
-        /// 获取医疗项目信息
+        /// Lấy y tế hạng mục thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sfxmId"></param>
@@ -234,7 +234,7 @@ where zt='1'
 
 
         /// <summary>
-        /// 获取门诊疾病信息
+        /// Lấy ngoại trú bệnh thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sfxmId"></param>
@@ -270,7 +270,7 @@ where zt='1'
 
 
         /// <summary>
-        /// 门诊排班
+        /// Lịch trực ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="OutDate"></param>
@@ -344,7 +344,7 @@ where a.[OrganizeId]=@orgId and a.zt='1' and OutDate>=@limitdate and IsBook='1' 
 
 
         /// <summary>
-        /// 门诊处方信息
+        /// Đ ơn thuốc ngoại trú thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfnm"></param>
@@ -379,7 +379,7 @@ where a.[OrganizeId]=@orgId and a.zt='1' and OutDate>=@limitdate and IsBook='1' 
             return this.FindList<SysRecipeVO>(sql, para.ToArray());
         }
         /// <summary>
-        /// 门诊处方明细
+        /// Chi tiết đ ơn thuốc ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfmxId"></param>
@@ -414,7 +414,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_ypjx] c
         }
 
         /// <summary>
-        /// 预约记录查询
+        /// bản ghi đ ặt lịch tra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kh"></param>
@@ -504,7 +504,7 @@ order by a.outdate desc " ;
 
         }
         /// <summary>
-        /// 获取排班号源详情
+        /// Lấy nguồn số lịch trực chi tiết
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ScheduId"></param>
@@ -535,30 +535,30 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
             return FindList<MzpbScheduleVO>(sql, para.ToArray());
         }
         /// <summary>
-        /// 预约申请
+        /// đ ặt lịch xin 
         /// </summary>
         /// <param name="orgId"></param>
-        /// <param name="scheduId">排班日程id</param>
+        /// <param name="scheduid"> lịch trực ngày程id</param>
         /// <param name="patid"></param>
-        /// <param name="kh">患者卡号</param>
+        /// <param name="kh">Bệnh nhânSố thẻ</param>
         public decimal OutbookingApply(BookingRequestDto req, SysPatInfoVO patvo, MzpbScheduleVO pbvo)
         {
-            //获取剩余号源
+            //Lấy còn lại nguồn số 
             var syhy = GetScheduleDetail(req.OrgId, pbvo.ScheduId).FirstOrDefault();
             if (syhy!=null)
             {
                 if (syhy.BookNum == 0)
                 {
                     return -100;
-                    //throw new FailedException("该排班已无可约号源");
+                    //throw new FailedException(" này lịch trực Đ ãkhông có có thể 约 nguồn số ");
                 }
             }
             else
             {
                 return -200;
-                //throw new FailedException("无法获取号源信息，请重试");
+                //throw new FailedException("Không có phư ơng pháp lấy nguồn số thông tin,vui lòng重试");
             }
-            //申请预约
+            // xin đ ặt lịch 
             if (req != null && patvo != null && pbvo != null)
             {
                 var queno= _OutPatientDmnService.GetJzxh(req.scheduId, pbvo.czks, pbvo.ysgh, "", req.AppId, req.OrgId);
@@ -597,13 +597,13 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
             else
             {
                 return -300;
-                //throw new FailedException("关键信息不可为空");
+                //throw new FailedException("关键thông tin không có thể là trống ");
             }
 
         }
 
         /// <summary>
-        /// 预约挂号
+        /// Đ ặt lịch đ ăng ký khám
         /// </summary>
         /// <param name="bookId"></param>
         /// <param name="kh"></param>
@@ -670,7 +670,7 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
 
             if (string.IsNullOrWhiteSpace(res.msg) && patvo!=null && bookRecord!=null)
             {
-                //获取门诊号
+                //LấySố khám ngoại trú
                 string mzh = _OutPatientSettleDmnService.GetRegMzh(patid, bookRecord.ScheduId.ToString(), bookRecord.ks, orgId, null,
                     bookRecord.QueueNo, bookRecord.OutDate.ToString("yyyy-MM-dd"));
                 var scheduety = GetMzpbSchedule(orgId, null, null, null, null, null, bookRecord.ScheduId.ToString()).FirstOrDefault();
@@ -772,7 +772,7 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
                 if (regEty != null)
                 {
                     var isTody = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                    //待就诊 且已结
+                    // chờ khám bệnh và Đ ã quyết toán
                     if (regEty.jzbz == ((int) EnumOutpatientJzbz.Djz).ToString() && regEty.ghzt == "1" &&
                         regEty.ghrq == isTody)
                     {
@@ -800,7 +800,7 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
                                     }
                                 }
 
-                                //预约挂号只能当前平台退号
+                                //Đ ặt lịch đ ăng ký khám chỉ có thể khi trư ớc nền tảng trả lại số 
                                 var yyzt = ((int) EnumMzyyzt.reg).ToString();
                                 var bookRecord = _MzghbookRepo.FindEntity(p =>
                                     p.OrganizeId == orgId && p.mzh == mzh && p.zt == "1" && p.yyzt == yyzt);
@@ -947,11 +947,11 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
                     ghxz = ((int)EnumGhxz.PTGH).ToString();
                 }
 
-                //获取排班
+                //Lấy lịch trực 
                 var scheduety = GetMzpbSchedule(orgId, ghrq, ks, null, "1", null, null).FirstOrDefault();
                 if (scheduety != null)
                 {
-                    //获取门诊号 就诊序号
+                    //LấySố khám ngoại trú Số thứ tự khám bệnh
                     var mjz = ((int)EnumOutPatientType.generalOutpat).ToString();
                     var ghready = _OutPatientSettleDmnService.GetCQMzhJzxh(patvo.patid,scheduety.ScheduId,ks,null,orgId, user, mjz,null,ghrq);
                     if(ghready!=null)

@@ -13,16 +13,16 @@ using System.Text;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-12-16 17:20
-    /// 描 述：预约
+    /// 创 建:chl
+    /// Ngày kỳ:2019-12-16 17:20
+    /// 描 述: đ ặt lịch 
     /// </summary>
     public class MzghbookRepo : RepositoryBase<MzghbookEntity>, IMzghbookRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc đ ịnh
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFNhà máy ngữ cảnh</param>
         public MzghbookRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -30,10 +30,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đ ối tư ợng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(MzghbookEntity entity, decimal? keyValue)
         {
             if (keyValue.HasValue && keyValue.Value > 0)
@@ -45,20 +45,20 @@ namespace Newtouch.HIS.Repository
                 return Update(dbEntity);
             }
             entity.Create();
-            throw new NotImplementedException(); //主键 非string 非标识，未给主键赋值
+            throw new NotImplementedException(); //Khóa chính không phải string không phải dấu hiệu,chưa cho khóa chính gán giá trị 
             return Insert(entity);
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(decimal keyValue)
         {
             return Delete(p => p.BookId == keyValue);
         }
         /// <summary>
-        /// 修改预约挂号预约状态
+        /// SửaĐ ặt lịch đ ăng ký khám đ ặt lịch trạng thái
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="mzh"></param>

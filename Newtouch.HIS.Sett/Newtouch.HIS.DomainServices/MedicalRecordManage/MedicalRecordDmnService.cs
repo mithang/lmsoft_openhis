@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices.KnowledgeBaseManage
         {
         }
         /// <summary>
-        /// 获取病案首页诊断信息
+        /// Lấy hồ sơ bệnh án trang chủ chẩn đoán thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -44,7 +44,7 @@ where zyh=@zyh and OrganizeId=@orgId
             return list;
         }
         /// <summary>
-        /// 获取病案首页手术信息
+        /// Lấy hồ sơ bệnh án trang chủ phẫu thuật thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -69,7 +69,7 @@ where zyh=@zyh and OrganizeId=@orgId
             return list;
         }
         /// <summary>
-        /// 病案首页诊断信息排序
+        /// hồ sơ bệnh án trang chủ chẩn đoán thông tin sắp xếp 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -102,7 +102,7 @@ where zyh=@zyh and OrganizeId=@orgId
             return "";
         }
         /// <summary>
-        /// 病案首页手术信息排序
+        /// hồ sơ bệnh án trang chủ phẫu thuật thông tin sắp xếp 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -135,7 +135,7 @@ where zyh=@zyh and OrganizeId=@orgId
             return "";
         }
         /// <summary>
-        /// 获取病案首页病人信息
+        /// Lấy hồ sơ bệnh án trang chủ thông tin bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -160,7 +160,7 @@ where zyh=@zyh and OrganizeId=@orgId
             return list;
         }
         /// <summary>
-        /// 手术浮层
+        /// phẫu thuật 浮 lớp 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

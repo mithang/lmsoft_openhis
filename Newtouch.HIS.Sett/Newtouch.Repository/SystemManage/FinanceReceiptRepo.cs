@@ -1,6 +1,6 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 财务票据-预交金收据凭证号
+// Copyright (C) 2016 Newtouch Giữ bản quyền. 
+// Description: 财务票据-tạm ứng số chứng từ biên lai
 // Author：HLF
 // CreateDate： 2016/12/15 12:36:16 
 //**********************************************************/
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取收据号Entity
+        /// Lấy số biên lai Entity
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 根据工号获取可使用的收据号
+        /// theo mã nhân viên lấy có thể sử dụng của số biên lai 
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Repository
             return result;
         }
         /// <summary>
-        /// 根据工号获取可使用的收据号(不累加pzh)
+        /// theo mã nhân viên lấy có thể sử dụng của số biên lai (không 累加pzh)
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 根据工号获取可使用的收据号(不累加pzh)
+        /// theo mã nhân viên lấy có thể sử dụng của số biên lai (không 累加pzh)
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -172,11 +172,11 @@ namespace Newtouch.HIS.Repository
             return result;
         }
         /// <summary>
-        /// 验证收据号
-        /// 第一位为字母
-        /// 或都为数字
+        /// Xác minh số biên lai 
+        /// Thứ một vị là字母
+        /// Hoặc đ ều là chữ số 
         /// </summary>
-        /// <param name="sjhfull">完整的收据号</param> 
+        /// <param name="sjhfull">完整của số biên lai </param> 
         /// <returns></returns>
         public bool checkSJH(string sjhfull, string gh, out FinanceReceiptEntity outEntity, out string type, string orgId)
         {
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.Repository
             }
 
             szm = sjhfull.Substring(0, 1);
-            //如果收据号第一个字符不是数字，则为首字母
+            //Nếu số biên lai thứ một 字符 không là chữ số,thì là首字母
             if (!int.TryParse(szm, out nTemp))
             {
                 szm = sjhfull.Substring(0, 1);
@@ -216,12 +216,12 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 判断当前收据号是否已被使用
-        /// 返回收据号校验结果（true ：校验通过，false：已使用的收据号或者未分配的收据号不能使用）
+        /// phán đoán khi trư ớc số biên lai có hay kh ôngĐ ã đ ược sử dụng
+        /// Quay lại số biên lai 校验kết quả(true:校验 thông qua,false:Đ ãsử dụng của số biên lai hoặc chưa phân phối của số biên lai không thể sử dụng)
         /// </summary>
-        /// <param name="gh">使用者工号</param>
+        /// <param name="gh">Sử dụng者mã nhân viên</param>
         /// <param name="szm">首字母</param>
-        /// <param name="value">收据号</param> 
+        /// <param name="value"> số biên lai </param> 
         /// <returns></returns>
         public bool checkSJIsUsedForUser(string gh, string szm, long sjh, out FinanceReceiptEntity outEntity, out string type, string orgId)
         {
@@ -251,15 +251,15 @@ namespace Newtouch.HIS.Repository
                 {
                     if (sj.dqsjh > 0)
                     {
-                        if (sj.dqsjh == (sjh - 1)) //连着上一次使用的收据号
+                        if (sj.dqsjh == (sjh - 1)) //连 trên một lần sử dụng của số biên lai 
                         {
-                            //修改原来记录的当前收据号
+                            //Sửa原来 bản ghi củakhi trư ớc số biên lai 
                             FinanceReceiptEntity sjentity = sj;
                             sjentity.dqsjh = sjh;
                             sjentity.ry = gh;
                             sjentity.LastModifyTime = DateTime.Now;
                             sjentity.LastModifierCode = gh;
-                            //this.Update(sjentity);// 在加预交金的同时 才修改收据号
+                            //this.Update(sjentity);// Tại加tạm ứng CủaĐ ồng thời 才sửa số biên lai 
                             outEntity = sjentity;
                             type = "update";
                         }
@@ -271,7 +271,7 @@ namespace Newtouch.HIS.Repository
                         sjentity.ry = gh;
                         sjentity.LastModifyTime = DateTime.Now;
                         sjentity.LastModifierCode = gh;
-                        //this.Update(sjentity); //无当前号，修改原来的记录的当前收据号
+                        //this.Update(sjentity); //Không có khi trư ớc số,sửa原来của bản ghi củakhi trư ớc số biên lai 
                         outEntity = sjentity;
                         type = "update";
                     }
@@ -287,7 +287,7 @@ namespace Newtouch.HIS.Repository
                 sjentity.szm = szm;
                 sjentity.qssjh = sjh;
                 sjentity.dqsjh = sjh;
-                sjentity.jssjh = 0;       //结束收据号暂时都不填
+                sjentity.jssjh = 0;       //Kết thúc số biên lai tạm thời đ ều không 填
                 sjentity.CreateTime = DateTime.Now;
                 sjentity.CreatorCode = gh;
                 sjentity.ry = gh;
@@ -303,7 +303,7 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 添加收据凭证号
+        /// Thêm số chứng từ biên lai
         /// </summary>
         public void AddReceiptInfo(FinanceReceiptEntity sjEntity, string orgId)
         {
@@ -312,7 +312,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改当前收据凭证号
+        /// Sửakhi trư ớc số chứng từ biên lai
         /// </summary>
         public void UpdateReceiptInfo(FinanceReceiptEntity sjEntity, string cwsjId)
         {
@@ -332,7 +332,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改页面，根据主键获取实体
+        /// Sửatrang, theo khóa chính lấy thực thể
         /// </summary>
         /// <param name="ypdm"></param>
         /// <returns></returns>
@@ -343,7 +343,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="financialInvoiceEntity"></param>
         /// <param name="fpdm"></param>
@@ -363,7 +363,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string Id, string orgId)
@@ -386,10 +386,10 @@ namespace Newtouch.HIS.Repository
                 {
                     if (item.szm == entity.szm)
                     {
-                        //A) y1 < x1 并且 y2 > x2;
-                        //B) y1 < x1 并且 y2 > x1;
-                        //C) y1 > x1 并且 y2<x2;
-                        //D) y1 > x1 , y2 > x2 并且 y1<x2;
+                        //A) y1 < x1 Và y2 > x2;
+                        //B) y1 < x1 Và y2 > x1;
+                        //C) y1 > x1 Và y2<x2;
+                        //D) y1 > x1 , y2 > x2 Và y1<x2;
                         if ((entity.qssjh < item.qssjh && entity.jssjh > item.jssjh) ||
                             (entity.qssjh < item.qssjh && entity.jssjh > item.qssjh) ||
                             (entity.qssjh > item.qssjh && entity.jssjh < item.jssjh) ||

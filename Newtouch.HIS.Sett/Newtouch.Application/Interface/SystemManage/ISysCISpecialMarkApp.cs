@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Application
     {
         void DeleteForm(int keyValue);
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

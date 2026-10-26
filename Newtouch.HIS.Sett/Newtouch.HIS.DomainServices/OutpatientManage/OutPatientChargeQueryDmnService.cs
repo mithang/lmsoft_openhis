@@ -24,7 +24,7 @@ namespace Newtouch.HIS.DomainServices
     public class OutPatientChargeQueryDmnService : DmnServiceBase, IOutPatientChargeQueryDmnService
     {
         private readonly IFinancialInvoiceRepo _financialInvoiceEntityRepository;
-        private readonly ISysConfigRepo _sysConfigRepo; //系统配置
+        private readonly ISysConfigRepo _sysConfigRepo; //Cấu hình hệ thống
         public OutPatientChargeQueryDmnService(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.DomainServices
 
         #region old SelectRegChargeQuery code
         /// <summary>
-        /// 挂号收费查询
+        /// Đ ăng ký khámthu phí tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -82,13 +82,13 @@ namespace Newtouch.HIS.DomainServices
         #endregion
 
         /// <summary>
-        /// 挂号收费查询 new SelectRegChargeQuery code
-        /// 该查询cxjsnm为退票记录的jsnm 
+        /// Đ ăng ký khámthu phí tra cứu new SelectRegChargeQuery code
+        /// này tra cứucxjsnm là trả lại 票 bản ghi Củajsnm 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
-        /// <param name="syy">收银员</param>
+        /// <param name="syy">收银 viên </param>
         /// <param name="createTimestart"></param>
         /// <param name="createTimeEnd"></param>
         /// <returns></returns>
@@ -152,9 +152,9 @@ WHERE
                 sqlStr.AppendLine("AND (js.xm LIKE @xm or js.blh LIKE @blh or gh.mzh LIKE @xm or xx.py like @xm)");
                 paraList.Add(new SqlParameter("@xm", "%" + xm.Trim() + "%"));
                 paraList.Add(new SqlParameter("@blh", "%" + xm.Trim() + "%"));
-                // paraList.Add(new SqlParameter("@py", "%" + xm.Trim() + "%")); 查询效率过慢 去除 lixin 20200114
+                // paraList.Add(new SqlParameter("@py", "%" + xm.Trim() + "%")); tra cứu效 tỷ lệ qua chậm loại bỏ lixin 20200114
             }
-            //if (!string.IsNullOrWhiteSpace(kh))  //暂无刷卡功能取消卡号查询
+            //if (!string.IsNullOrWhiteSpace(kh)) // tạm thời không có刷 thẻ 功 có thể hủy số thẻ tra cứu
             //{
             //    sqlStr.AppendLine("AND (gh.kh LIKE @kh or js.blh LIKE @blh )");
             //    paraList.Add(new SqlParameter("@kh", "%" + kh.Trim() + "%"));
@@ -214,7 +214,7 @@ WHERE
         }
 
         /// <summary>
-        /// 待上传的门诊自费病人结算信息
+        /// chờ tải lên của ngoại trú tự trả bệnh nhân thông tin quyết toán
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -303,7 +303,7 @@ WHERE
         }
 
         /// <summary>
-        /// 获取结算支付方式
+        /// Lấy quyết toán phư ơng thức thanh toán 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnms"></param>
@@ -323,9 +323,9 @@ and mzjszffs.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 收费明细
+        /// Thu phí chi tiết
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public IList<OutPatientRegChargeDetailsVO> GetRecordsByJsnm(string jsnm)
         {
@@ -403,7 +403,7 @@ and mzjszffs.OrganizeId = @orgId";
             return DbHelper.ExecuteProcedureQueryList<OutPatRegChargeDetailsMVO>("spSelectRecordsDetailByJsnm", inParameters);
         }
         /// <summary>
-        /// 重打/补打发票 mz_js List
+        /// In lại/In bù hóa đ ơn mz_js List
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jsnm"></param>
@@ -459,7 +459,7 @@ and mzjszffs.OrganizeId = @orgId";
 
         }
         /// <summary>
-        /// 门诊挂号项目 jsnmStr
+        /// Đ ăng ký khám ngoại trú hạng mục jsnmStr
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <returns></returns>
@@ -487,7 +487,7 @@ and mzjszffs.OrganizeId = @orgId";
             return list;
         }
         /// <summary>
-        /// 门诊项目 jsnmStr
+        /// Hạng mục ngoại trú jsnmStr
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <returns></returns>
@@ -513,7 +513,7 @@ and mzjszffs.OrganizeId = @orgId";
             return list;
         }
         /// <summary>
-        /// 门诊处方明细 jsnmStr
+        /// Chi tiết đ ơn thuốc ngoại trú jsnmStr
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <returns></returns>
@@ -541,7 +541,7 @@ and mzjszffs.OrganizeId = @orgId";
             return list;
         }
         /// <summary>
-        /// 保存发票打印记录
+        /// Lưu hóa đ ơn in bản ghi 
         /// </summary>
         /// <param name="js"></param>
         /// <param name="fph"></param>
@@ -560,7 +560,7 @@ and mzjszffs.OrganizeId = @orgId";
                 entity.jsrq = js.CreateTime;
                 entity.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
                 entity.Create();
-                entity.dyfs = ((int)dyfs).ToString();//1:补打  2:重打
+                entity.dyfs = ((int)dyfs).ToString();//1:In bù  2:In lại
                 db.Insert(entity);
                 db.Commit();
             }
@@ -568,7 +568,7 @@ and mzjszffs.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 门诊处方明细 jsnm
+        /// Chi tiết đ ơn thuốc ngoại trú jsnm
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <returns></returns>
@@ -597,7 +597,7 @@ and mzjszffs.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 门诊项目 jsnm
+        /// Hạng mục ngoại trú jsnm
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -622,7 +622,7 @@ and mzjszffs.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 门诊挂号项目  jsnm
+        /// Đ ăng ký khám ngoại trú hạng mục jsnm
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -649,7 +649,7 @@ and mzjszffs.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 门诊结算支付方式
+        /// Phư ơng thức thanh toán quyết toán ngoại trú
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -674,7 +674,7 @@ and mzjszffs.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 重打时变更mz_js和cw_fp的fph
+        /// In lại giờ thay đ ổi mz_js Vàcw_fp Củafph
         /// </summary>
         /// <param name="settlementEntity"></param>
         /// <param name="pageFPH"></param>
@@ -682,20 +682,20 @@ and mzjszffs.OrganizeId = @orgId";
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //更新mz_js
-                //保存变更日志老记录
+                //Cập nhậtmz_js
+                //Lưu bản ghi nhật ký thay đ ổi cũ
                 OutpatientSettlementEntity oldSettlementEntity = null;
                 oldSettlementEntity = settlementEntity.Clone();
                 settlementEntity.fph = pageFph;
                 settlementEntity.LastModifierCode = OperatorProvider.GetCurrent().UserCode;
                 settlementEntity.LastModifyTime = DateTime.Now;
                 db.Update(settlementEntity);
-                //保存变更日志
+                //Lưu nhật ký thay đ ổi
                 if (oldSettlementEntity != null)
                 {
                     AppLogger.WriteEntityChangeRecordLog(oldSettlementEntity, settlementEntity, OutpatientSettlementEntity.GetTableName(), oldSettlementEntity.jsnm.ToString());
                 }
-                //插入/更新cw_fp
+                //Chèn/Cập nhậtcw_fp
                 FinancialInvoiceEntity fpUpdateEntity, fpInsertEntity;
                 _financialInvoiceEntityRepository.UpdateCurrentGetEntitys(pageFph, OperatorProvider.GetCurrent().UserCode, out fpUpdateEntity, out fpInsertEntity, OperatorProvider.GetCurrent().OrganizeId);
                 if (fpUpdateEntity != null)
@@ -727,7 +727,7 @@ and mzjszffs.OrganizeId = @orgId";
             return FindList<string>(strSql.ToString(), param).ToList();
         }
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// Lấyvai trò liên kết ngư ời dùng (org)
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>

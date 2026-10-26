@@ -4,37 +4,37 @@ using System;
 namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 已结算处方明细查询接口请求报文
+    /// Đ ã quyết toán tính chi tiết đ ơn thuốctra cứugiao diện bản tin yêu cầu
     /// </summary>
     public class OutpatientSettledRpQueryRequestDTO: RequestBase
     {
 
         /// <summary>
-        /// 结算开始时间
+        /// Quyết toán thời gian bắt đ ầu
         /// </summary>
         public DateTime kssj { get; set; }
 
         /// <summary>
-        /// 结算结束时间
+        /// Quyết toánThời gian kết thúc
         /// </summary>
         public DateTime jssj { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đ ơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 用法
+        /// cách dùng 
         /// </summary>
         public string yfCode { get; set; }
 

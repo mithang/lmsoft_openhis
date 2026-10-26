@@ -4,61 +4,61 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方信息DTO
+    /// Đ ơn thuốc thông tinDTO
     /// </summary>
     public class PrescriptionUpdateDTO
     {
         /// <summary>
-        /// 处方类型 对应枚举 EnumPrescriptionType
+        /// Loại đ ơn thuốc Tư ơng ứng enum enumPrescriptionType
         /// </summary>
         [Required]
         public int cflx { get; set; }
 
         /// <summary>
-        /// 处方类型名称
+        /// Loại đ ơn thuốc tên
         /// </summary>
         public string cflxmc { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         [Required]
         public string cfh { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// 领药 nhà thuốc 
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 中药贴数
+        /// trong 药贴数
         /// </summary>
         public int? ts { get; set; }
 
         /// <summary>
-        /// 中药代煎标志 1 需要代煎
+        /// trong 药代煎 dấu hiệu 1 cần代煎
         /// </summary>
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 删除 药品明细
-        /// 删除可以以编码来判断唯一
+        /// Xóa Chi tiết thuốc
+        /// Xóa có thể以 mã 来 phán đoán duy nhất 
         /// </summary>
         public IList<PrescriptionMedicineItemDTO> DeleteMedicineItems { get; set; }
 
         /// <summary>
-        /// 删除 治疗项目明细
-        /// 删除可以以编码来判断唯一
+        /// Xóa Chi tiết hạng mục điều trị
+        /// Xóa có thể以 mã 来 phán đoán duy nhất 
         /// </summary>
         public IList<PrescriptionTreamentItemDTO> DeleteTreamentItems { get; set; }
 
         /// <summary>
-        /// 新增 药品明细
+        /// Thêm mới Chi tiết thuốc
         /// </summary>
         public IList<PrescriptionMedicineItemDTO> AddMedicineItems { get; set; }
 
         /// <summary>
-        /// 新增 治疗项目明细
+        /// Thêm mới Chi tiết hạng mục điều trị
         /// </summary>
         public IList<PrescriptionTreamentItemDTO> AddTreamentItems { get; set; }
     }

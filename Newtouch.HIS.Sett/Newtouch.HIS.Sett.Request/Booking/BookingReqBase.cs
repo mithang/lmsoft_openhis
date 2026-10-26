@@ -14,18 +14,18 @@ namespace Newtouch.HIS.Sett.Request
 
         public new string AppId { get; set; }
         /// <summary>
-        /// 组织机构Id（已经定位到了具体医院）
+        /// ID tổ chức(Đ ã定 vị đ ến 具体 bệnh viện)
         /// </summary>
         [APIRequired]
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 请求编号
+        /// yêu cầu số hiệu
         /// </summary>
         [APIRequired]
         public string methodcode { get; set; }
         public string optype { get; set; }
         /// <summary>
-        /// 当前用户
+        /// Khi trư ớc ngư ời dùng 
         /// </summary>
         public string user { get; set; }
         /// <summary>

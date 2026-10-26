@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Application
 
         List<SysChargeAdditionalCategoryEntity> GetfjsfdlList(string keyValue);
         /// <summary>
-        /// 获取服务费比例
+        /// Lấy phí dịch vụ tỷ lệ 
         /// </summary>
         /// <param name="brxz"></param>
         /// <param name="sfxm"></param>

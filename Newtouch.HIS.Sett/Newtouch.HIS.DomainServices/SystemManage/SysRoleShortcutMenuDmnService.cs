@@ -9,7 +9,7 @@ using FrameworkBase.MultiOrg.DmnService;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 快捷菜单
+    /// menu nhanh 
     /// </summary>
     public class SysRoleShortcutMenuDmnService : DmnServiceBase, ISysRoleShortcutMenuDmnService
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取角色开放的快捷菜单 List
+        /// Lấyvai trò mở của menu nhanh List
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <param name="orgId"></param>
@@ -38,7 +38,7 @@ order by isnull(px, 99999), CreateTime desc";
         }
 
         /// <summary>
-        /// 获取快捷菜单 已授权的角色列表
+        /// Lấy menu nhanh Đ ã ủy quyền củavai trò danh sách
         /// </summary>
         /// <param name="scmId"></param>
         /// <param name="orgId"></param>
@@ -53,7 +53,7 @@ where a.zt = '1' and b.zt = '1' and b.OrganizeId = @orgId and a.Id = @scmId";
         }
 
         /// <summary>
-        /// 快捷菜单 授权 给指定 角色
+        /// menu nhanh ủy quyền cho chỉ đ ịnh vai trò
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="roleList"></param>
@@ -64,7 +64,7 @@ where a.zt = '1' and b.zt = '1' and b.OrganizeId = @orgId and a.Id = @scmId";
             {
                 db.Delete<SysRoleShortcutMenuEntity>(p => p.SCMId == scmId && p.OrganizeId == orgId);
 
-                //再添加
+                //再thêm
                 foreach (var roleId in roleIdArr)
                 {
                     var entity = new SysRoleShortcutMenuEntity();

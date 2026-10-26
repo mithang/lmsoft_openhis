@@ -1,106 +1,106 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S30
 {
     /// <summary>
-    /// 根据时间戳下载疾病字典信息 返回报文
+    /// Tải thông tin từ điển bệnh theo dấu thời gian Bản tin trả về
     /// </summary>
     public class item
     {
         /// <summary>
-        /// 疾病中文名
+        /// bệnh tên tiếng trung 
         /// </summary>
         public string name { get; set; }
         
         /// <summary>
-        /// 疾病编码
+        /// bệnh mã 
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        /// 项目类别
+        /// Hạng mụcLoại
         /// </summary>
         public string category { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string specification { get; set; }
         /// <summary>
-        /// 剂型
+        /// Dạng bào chế
         /// </summary>
         public string dosageForm { get; set; }
         /// <summary>
-        /// 单位
+        /// Đ ơn vị
         /// </summary>
         public string unit { get; set; }
         /// <summary>
-        /// 使用级别
+        /// Sử dụng cấp bậc 
         /// </summary>
         public string rank { get; set; }
         /// <summary>
-        /// 补偿比例
+        /// Bồi thư ờng tỷ lệ 
         /// </summary>
         public string scale { get; set; }
         /// <summary>
-        /// 医保范围1保内 0保外
+        /// BHYTphạm vi1保 trong 0保 ngoài 
         /// </summary>
         public string scope { get; set; }
         /// <summary>
-        /// 是否基药
+        /// Có hay không基药
         /// </summary>
         public string isBase { get; set; }
         /// <summary>
-        /// 拼音码
+        /// Phiên âm mã 
         /// </summary>
         public string pcode { get; set; }
         /// <summary>
-        /// 价格（省）
+        /// Giá(Tỉnh)
         /// </summary>
         public string price5 { get; set; }
         /// <summary>
-        /// 价格（市）
+        /// Giá(Thành phố)
         /// </summary>
         public string price4 { get; set; }
         /// <summary>
-        /// 价格（县）
+        /// Giá(Huyện)
         /// </summary>
         public string price3 { get; set; }
         /// <summary>
-        /// 价格（乡）
+        /// Giá(乡)
         /// </summary>
         public string price2 { get; set; }
         /// <summary>
-        /// 价格（村）
+        /// Giá(村)
         /// </summary>
         public string price1 { get; set; }
         /// <summary>
-        /// 限价（省）
+        /// giá trần (tỉnh)
         /// </summary>
         public string limitPrice5 { get; set; }
         /// <summary>
-        /// 限价（市）
+        /// giá trần (thành phố)
         /// </summary>
         public string limitPrice4 { get; set; }
         /// <summary>
-        /// 限价（县）
+        /// giá trần (huyện)
         /// </summary>
         public string limitPrice3 { get; set; }
         /// <summary>
-        /// 限价（乡）
+        /// giá trần (乡)
         /// </summary>
         public string limitPrice2 { get; set; }
         /// <summary>
-        /// 限价（村）
+        /// giá trần (村)
         /// </summary>
         public string limitPrice1 { get; set; }
         /// <summary>
-        /// 目录级别
+        /// 目录 cấp bậc 
         /// </summary>
         public string grade { get; set; }
         /// <summary>
-        /// 状态0未审核1已审核2未通过
+        /// Trạng thái0 chưa kiểm tra 1Đ ã kiểm tra 2 chưa thông qua 
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// 时间戳
+        /// Thời gian戳
         /// </summary>
         public string datetime { get; set; }
     }

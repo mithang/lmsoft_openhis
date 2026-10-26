@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 根据结算jsnm查门诊结算
+        /// theo quyết toánjsnm tra cứu quyết toán ngoại trú
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Repository
         }
 
         ///// <summary>
-        ///// 根据ghnm查询list
+        ///// theo ghnmtra cứulist
         ///// </summary>
         ///// <param name="orgId"></param>
         ///// <param name="ghnm"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Repository
         //}
 
         /// <summary>
-        /// 强制更新发票号
+        /// 强制cập nhật số hóa đ ơn
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

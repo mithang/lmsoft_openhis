@@ -3,7 +3,7 @@
     public class S04ResponseDTO
     {
         /// <summary>
-        /// 住院补偿序号
+        /// Nhập viện số thứ tự bồi thư ờng
         /// </summary>
         public string inpId { get; set; }
     }

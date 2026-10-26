@@ -1,6 +1,6 @@
 ﻿/*********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。
-// Description： 获取住院管理》账户管理》
+// Copyright (C) 2016 Newtouch Giữ bản quyền.
+// Description: Lấy nhập viện quản lý >Quản lý tài khoản>
 // Author：HLF
 // CreateDate： 2016/12/6 17:01:42
 //**********************************************************/
@@ -31,9 +31,9 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 获取住院管理》账户管理》病人基本信息
+        /// Lấy nhập viện quản lý >Quản lý tài khoản>Thông tin cơ bản bệnh nhân
         /// </summary>
-        /// <param name="kh">卡号</param>
+        /// <param name="kh">Số thẻ</param>
         /// <returns></returns>
         public HosPatAccountActionVO GetHosPatInfo(string zyh,string orgId)
         {
@@ -66,10 +66,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取住院管理》账户管理》获取账户收支记录信息
+        /// Lấy nhập viện quản lý >Quản lý tài khoản>Lấythu chi tài khoản bản ghi thông tin
         /// </summary>
-        /// <param name="zh">账户</param>
-        /// <param name="zyh">住院号</param>
+        /// <param name="zh">Tài khoản</param>
+        /// <param name="zyh">Số nhập viện</param>
         /// <returns></returns>
         public List<HosPatAccPayVO> GetAccPayInfo(int zh, string orgId, string zyh = null)
         {
@@ -90,9 +90,9 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 住院结算 获取病人基本信息（基本信息、账户、科室等）
+        /// Quyết toán nhập viện lấy thông tin cơ bản bệnh nhân(cơ bản thông tin, tài khoản, khoaV.v.)
         /// </summary>
-        /// <param name="zyh">住院号</param> 
+        /// <param name="zyh">Số nhập viện</param> 
         /// <returns></returns>
         public IList<HospSettPatInfoVO> GetHospSettPatInfo(string zyh, string orgId)
         {
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.DomainServices
                         where a.zyh = @zyh and e.zhxz = @xtzhxz and e.zt = '1' and a.OrganizeId=@OrganizeId ";
             var parameters = new List<SqlParameter>() {
                 new SqlParameter("@zyh" , zyh)
-                //住院病人等级过来的，一定已经有了一个‘预缴款账户’
+                //Nhập viện bệnh nhânV.v. cấp qua 来của, nhất đ ịnh Đ ãcó một '预缴 khoản tài khoản'
                 ,new SqlParameter("@xtzhxz" , ((int)EnumXTZHXZ.ZYYJKZH).ToString())
                 ,new SqlParameter("@OrganizeId" , orgId)
             };
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 充值和退费事务处理
+        /// Nạp tiền và hoàn phí giao dịch xử lý
         /// </summary>
         /// <param name="vo"></param>
         public void HosPatAccDB(HosPatAccDataVO vo, SysPatientAccountEntity zh, FinanceReceiptEntity cwsj,string type)
@@ -149,39 +149,39 @@ namespace Newtouch.HIS.DomainServices
                     db.Insert(vo.szjl);
                 }
 
-                //病人账户
+                //Bệnh nhânTài khoản
                 if (vo.oldzh != null)    //Update
                 { 
                     db.Update(zh);
                 }
 
-                //财务收据
+                //财务 biên lai 
                 if (type == "insert")
                 {
-                    db.Insert(cwsj);  // 添加收据凭证号 
+                    db.Insert(cwsj);  // Thêm số chứng từ biên lai 
                 }
                 if (type == "update")
                 {
-                    db.Update(cwsj);  //修改收据凭证号 
+                    db.Update(cwsj);  //Sửa số chứng từ biên lai 
                 }
                 db.Commit();
             }
 
-            //病人账户变更日志
+            //Bệnh nhân tài khoản thay đ ổi nhật ký 
             if (vo.oldzh != null)
             {
                 AppLogger.WriteEntityChangeRecordLog(vo.oldzh, zh, SysPatientAccountEntity.GetTableName(), vo.oldzh.zhbh.ToString());
             }
-            //财务收据变更日志
+            //财务 biên lai thay đ ổi nhật ký 
             if(vo.oldcwsj != null && type == "update"){
                 AppLogger.WriteEntityChangeRecordLog(vo.oldcwsj, cwsj, FinanceReceiptEntity.GetTableName(), vo.oldcwsj.cwsjId.ToString());
             }
         }
 
         /// <summary>
-        /// 获取住院病人基本信息（基本信息、科室等） 在院状态验证
+        /// Lấy nhập viện thông tin cơ bản bệnh nhân(cơ bản thông tin, khoaV.v.) xác minh trạng thái đang nằm viện
         /// </summary>
-        /// <param name="zyh">住院号</param> 
+        /// <param name="zyh">Số nhập viện</param> 
         /// <returns></returns>
         public IList<HospPatientInfoVO> GetHospPatientInfo(string zyh, string orgId)
         {

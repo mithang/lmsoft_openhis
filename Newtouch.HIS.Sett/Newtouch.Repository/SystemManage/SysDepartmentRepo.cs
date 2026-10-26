@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取机构科室列表
+        /// LấyCơ quanKhoaDanh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据Code获取科室
+        /// theo Code lấykhoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据Name获取Code
+        /// theo Name lấyCode
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据Code获取名称
+        /// theo Code lấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

@@ -21,11 +21,11 @@ namespace Newtouch.HIS.Application
         private readonly IOrderRefundInfoRepo _orderRefundInfoRepo;
 
         /// <summary>
-        /// 退款（原路退回）
+        /// Hoàn tiền(原路 trả lại lần)
         /// </summary>
         /// <param name="outTradeNo"></param>
-        /// <param name="refundAmount">金额</param>
-        /// <param name="refundReason">退款原因</param>
+        /// <param name="refundAmount">Số tiền</param>
+        /// <param name="refundReason">Hoàn tiền nguyên nhân </param>
         /// <param name="errorMsg"></param>
         /// <returns></returns>
         public int TradeRefund(string outTradeNo, decimal refundAmount, string refundReason, string outRequestNo
@@ -50,17 +50,17 @@ namespace Newtouch.HIS.Application
 
             try
             {
-                //1、获取可退金额 及 tradeNo 、退款方式
+                //1, lấy có thể trả lại số tiền và tradeNo, Phư ơng thức hoàn tiền
                 var payEntity = _orderPayInfoRepo.GetSuccessRecordByOutTradeNo(outTradeNo);
                 if (payEntity != null)
                 {
                     refundEntity.TradeNo = payEntity.TradeNo;
 
-                    //2、验证是否可退
+                    //2, xác minh có hay không có thể trả lại 
                     var refundedSum = _orderRefundInfoRepo.GetRefundedSumByOutTradeNo(outTradeNo);
                     if (refundedSum + refundAmount <= payEntity.Amount)
                     {
-                        //13聚合支付退费
+                        //13聚合 thanh toán hoàn phí
                         if (payEntity.PayType == 13)
                         {
                             //N|BH1234567890133|20240402|0.01
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Application
                         }
                         else
                         {
-                            //3、退
+                            //3, trả lại 
                             PayResultModel payresult = TradeHelper.TradeRefund(refundEntity.OutTradeNo, refundEntity.TradeNo, refundAmount.ToString("0.00"), refundReason, payEntity.PayType, "", refundEntity.OutRequestNo);
 
                             if (payresult.code == ResponseResultCode.SUCCESS)

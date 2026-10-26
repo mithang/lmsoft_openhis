@@ -8,15 +8,15 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class S15RequestDTO
     {
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
     }

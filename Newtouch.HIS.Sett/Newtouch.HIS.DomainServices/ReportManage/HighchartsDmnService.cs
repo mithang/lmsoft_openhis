@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices.ReportManage
         #region 门诊
 
         /// <summary>
-        /// 获取门诊就诊人数
+        /// Lấy ngoại trú khám bệnh số ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.DomainServices.ReportManage
         }
 
         /// <summary>
-        /// 获取门诊就诊人次
+        /// Lấy ngoại trú khám bệnh Lư ợt ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.DomainServices.ReportManage
         }
 
         /// <summary>
-        /// 获取门诊收入统计
+        /// Lấy ngoại trú thống kê thu nhập
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.DomainServices.ReportManage
 
         #region 门诊记账1.2 and 1.3版本，不适用多个治疗师和医院的记账逻辑
         /// <summary>
-        /// 获取治疗师治疗总费用
+        /// Lấy chuyên viên trị liệu điều trị tổng chi phí
         /// </summary>
         public List<TherapistVisit> GetTherapistDischarge(string year, string orgId)
         {
@@ -421,7 +421,7 @@ namespace Newtouch.HIS.DomainServices.ReportManage
         }
 
         /// <summary>
-        /// 获取治疗师治疗人数
+        /// Lấy chuyên viên trị liệu điều trị số ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -586,7 +586,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// 获取平均费用（总费用/总人次）
+        /// Lấy平均chi phí(tổng chi phí/Tổng lư ợt ngư ời)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -1104,7 +1104,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// 获取治疗师平均治疗人次（总人次/总天数）
+        /// Lấy chuyên viên trị liệu平均 điều trị Lư ợt ngư ời(tổng lư ợt ngư ời/总số ngày)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -1548,7 +1548,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// 获取治疗师月度平均治疗人次（总人次/总天数）
+        /// Lấy chuyên viên trị liệu tháng đ ộ 平均 điều trị Lư ợt ngư ời(tổng lư ợt ngư ời/总số ngày)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -1745,7 +1745,7 @@ ELSE
         }
 
         /// <summary>
-        /// 获取治疗师治疗总费用
+        /// Lấy chuyên viên trị liệu điều trị tổng chi phí
         /// </summary>
         public List<TherapistMonthCharge> GetMonthTherapistDischarge(string year, string orgId, string month)
         {
@@ -1867,7 +1867,7 @@ ELSE
 
 
         /// <summary>
-        /// 获取月度平均费用（总费用/总人次）
+        /// Lấy tháng đ ộ 平均chi phí(tổng chi phí/Tổng lư ợt ngư ời)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -2110,7 +2110,7 @@ DROP TABLE #temp,#temp2;
 
 
         /// <summary>
-        /// 获取治疗师月度治疗人数
+        /// Lấy chuyên viên trị liệu tháng đ ộ điều trị số ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2217,7 +2217,7 @@ DROP TABLE #temp,#temp2;
 
         #region 住院
         /// <summary>
-        /// 获取住院新增人数
+        /// Lấy nhập viện thêm mới số ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2262,7 +2262,7 @@ DROP TABLE #temp,#temp2;
         }
 
         /// <summary>
-        /// 获取出院人数
+        /// Lấy xuất viện số ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2307,7 +2307,7 @@ DROP TABLE #temp,#temp2;
         }
 
         /// <summary>
-        /// 获取住院收入统计
+        /// LấyNhập việnThống kê thu nhập
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2392,7 +2392,7 @@ DROP TABLE #temp,#temp2;
 
 
         /// <summary>
-        /// 获取治疗师住院治疗总费用
+        /// Lấy chuyên viên trị liệu nhập viện điều trị tổng chi phí
         /// </summary>
         public List<TherapistVisit> GetInTherapistDischarge(string year, string orgId)
         {
@@ -2540,7 +2540,7 @@ DROP TABLE #temp,#temp2;");
         }
 
         /// <summary>
-        /// 获取治疗师住院治疗人次
+        /// Lấy chuyên viên trị liệu nhập viện điều trị Lư ợt ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2627,7 +2627,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// 获取治疗师住院治疗平均人次 总人次/总天数
+        /// Lấy chuyên viên trị liệu nhập viện điều trị 平均Lư ợt ngư ời tổng lư ợt ngư ời/总số ngày
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -2830,7 +2830,7 @@ DROP TABLE  #temp,#temp2;");
         }
 
         /// <summary>
-        /// 获取治疗之住院平均费用
+        /// Lấy điều trị của nhập viện平均chi phí
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3096,7 +3096,7 @@ SELECT  'Avg Rev.per Therapist' title ,
         }
 
         /// <summary>
-        /// 住院月份总费用
+        /// Nhập việnThángTổng chi phí
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3168,7 +3168,7 @@ SELECT  'Avg Rev.per Therapist' title ,
         }
 
         /// <summary>
-        /// 住院月份平均费用
+        /// Nhập viện tháng平均chi phí
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3295,7 +3295,7 @@ SELECT  'Avg Rev.per Therapist' title ,
         }
 
         /// <summary>
-        /// 获取治疗师住院月份治疗总人次
+        /// Lấy chuyên viên trị liệu nhập viện tháng điều trị tổng lư ợt ngư ời
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -3352,7 +3352,7 @@ GROUP BY xm.ssry ,
         }
 
         /// <summary>
-        /// 获取治疗师住院治疗月度平均人次 总人次/总天数
+        /// Lấy chuyên viên trị liệu nhập viện điều trị tháng đ ộ 平均Lư ợt ngư ời tổng lư ợt ngư ời/总số ngày
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3451,7 +3451,7 @@ DROP TABLE  #temp,#temp2;");
         #region Common
 
         /// <summary>
-        /// 门诊住院收入统计对比
+        /// Ngoại trú nhập viện thống kê thu nhập đ ối với 比
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -3459,7 +3459,7 @@ DROP TABLE  #temp,#temp2;");
         {
             List<OutpatientSCNumVO> outpatientlist = GetOutpatientSalaryNum(orgId);
             List<InpatientSCNumVO> inpatientList = GetInpatientSalaryNum(orgId);
-            //放在一个对象，返回到页面
+            //放tại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new SCNumBO
             {
                 OutpatientList = outpatientlist,

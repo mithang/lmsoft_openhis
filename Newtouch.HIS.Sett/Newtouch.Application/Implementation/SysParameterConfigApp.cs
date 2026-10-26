@@ -13,7 +13,7 @@ using FrameworkBase.MultiOrg.Application;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 系统参数设置
+    /// Cài đ ặt tham số hệ thống
     /// </summary>
     public class SysParameterConfigApp : AppBase, ISysParameterConfigApp
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application.Interface
         /// <returns></returns>
         public SysChargeTemplateInfoVM GetSysChargeTemplateInfo(string keyValue)
         {
-            //收费项目列表
+            //Hạng mục thu phí danh sách
             var templateEntity = _sysChargeTemplateEntityRepository.IQueryable()
                     .Where(p => p.sfmbbh == keyValue).FirstOrDefault();
             if (templateEntity == null || string.IsNullOrWhiteSpace(keyValue) || templateEntity.OrganizeId == null)

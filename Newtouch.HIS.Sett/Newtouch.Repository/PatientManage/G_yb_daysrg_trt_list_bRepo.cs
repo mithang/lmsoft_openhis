@@ -237,7 +237,7 @@ from NewtouchHIS_Base.[dbo].G_yb_ylfuxm_new_list_b with (nolock) where YLML_CODE
                         //}
 
 
-                        string[] sRecordKbn = sLine.Split('\t');//过滤空格
+                        string[] sRecordKbn = sLine.Split('\t');// qua 滤 trống 格
                         var a = "";
                         for (int i = 0; i < sRecordKbn.Length-1; i++)
                         {
@@ -295,7 +295,7 @@ from NewtouchHIS_Base.[dbo].G_yb_ylfuxm_new_list_b with (nolock) where YLML_CODE
                         //}
 
 
-                        string[] sRecordKbn = sLine.Split('\t');//过滤空格
+                        string[] sRecordKbn = sLine.Split('\t');// qua 滤 trống 格
                         var a = "";
                         for (int i = 0; i < sRecordKbn.Length - 1; i++)
                         {

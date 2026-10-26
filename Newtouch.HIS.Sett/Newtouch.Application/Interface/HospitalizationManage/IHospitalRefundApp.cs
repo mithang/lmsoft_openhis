@@ -1,6 +1,6 @@
 ﻿/*********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 住院管理》账户管理》
+// Copyright (C) 2016 Newtouch Giữ bản quyền. 
+// Description: Nhập viện quản lý >Quản lý tài khoản>
 // Author：HYJ
 // CreateDate： 2016/12/20 
 //**********************************************************/

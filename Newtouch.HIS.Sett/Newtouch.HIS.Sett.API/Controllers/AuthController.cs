@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// ủy quyền 认证
     /// </summary>
     [RoutePrefix("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// 以关键thông tin(ngư ời dùng 名, mật khẩu V.v.) đ ổi lấy truy cập 令牌
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -42,10 +42,10 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                     resp.sub_msg = "";
                     return;
                 }
-                //then假设身份验证通过了
-                //1、由request验证出用户身份 //需要的时候加上验证
+                //then giả sử thân phận xác minh thông qua 
+                //1, 由request xác minh出 ngư ời dùng thân phận //Cần của giờ候 thêm vào xác minh
 
-                //2、身份存储在Redis（有一定的过期时间）
+                //2, thân phận tồn tại 储tạiRedis(có nhất đ ịnh của hết hạn thời gian)
                 var identity = new UserIdentity()
                 {
                     AppId = request.AppId,
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                 };
                 var token = SaveIdentity(identity);
 
-                //3、返回key
+                //3, Quay lạikey
                 resp.data = new
                 {
                     token = token

@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IHospItemBillingRepo _hospItemFeeRepository;
 
         /// <summary>
-        /// 根据住院号计算项目计费
+        /// theo số nhập viện tính tính phí hạng mục
         /// </summary>
         /// <param name="zyh"></param>
         public DataTable CountZYItemFree(string zyh)
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>

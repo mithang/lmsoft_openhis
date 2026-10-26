@@ -25,12 +25,12 @@ namespace Newtouch.HIS.DomainServices
         #region 患者信息
         public HosPatientVo PatBrxzInfo(string patid,string orgId)
         {
-            //            string sql = @"select a.patid, a.brxz,(case when a.brxz='1' and a.cblb='3' then '离休医保' 
-            //when a.brxz='1' and a.xzlx is not null and a.xzlx='310' then '职工医保'
-            //when a.brxz='1' and a.xzlx is not null and a.xzlx='390' then '居民医保'
+            // string sql = @"select a.patid, a.brxz,(case when a.brxz='1' and a.cblb='3' then ' nghỉ hưu BHYT' 
+            //when a.brxz='1' and a.xzlx is not null and a.xzlx='310' then '职工BHYT'
+            //when a.brxz='1' and a.xzlx is not null and a.xzlx='390' then ' cư dân BHYT'
             //else --xz.brxzmc
-            //(case when a.brxz='1' and a.cblb<>'3' and a.lscblb='1' then '职工医保'
-            //when a.brxz='1' and a.cblb<>'3' and a.lscblb='2' then'居民医保'
+            //(case when a.brxz='1' and a.cblb<>'3' and a.lscblb='1' then '职工BHYT'
+            //when a.brxz='1' and a.cblb<>'3' and a.lscblb='2' then' cư dân BHYT'
             //else b.brxzmc end) end) brxzmc,patid
             //from xt_brjbxx a with(nolock)
             //left join xt_brxz b with(nolock) on a.brxz=b.brxz and a.OrganizeId=b.OrganizeId and b.zt='1'
@@ -130,7 +130,7 @@ where c.organizeid=@orgId and c.zt='1' and c.CreateTime>=@zjdjrq ";
             return pat;
         }
         /// <summary>
-        /// 历次住院
+        /// 历 lần nhập viện
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -176,7 +176,7 @@ where a.organizeid=@orgId and a.patid=@patid and a.zt='1' and a.zybz<>9
             });
         }
         /// <summary>
-        /// 住院医生信息
+        /// Nhập viện bác sĩ thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -256,7 +256,7 @@ where a.jsnm=@jsnm and a.organizeid=@orgId and a.zt='1'
 
         #region 费用信息
         /// <summary>
-        /// 获取住院费用明细
+        /// Lấy nhập việnchi phí chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -327,10 +327,10 @@ left join Drjk_zyfymxsc_input (NOLOCK) fymx on SUBSTRING(fymx.feedetl_sn,3,50)=x
             });
         }
         /// <summary>
-        /// 获取计费表数据
+        /// Lấy bảng tính phí dữ liệu
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="group">1 sfdl 2 sfxm 3 sfxm+jfrq 4 无</param>
+        /// <param name="group">1 sfdl 2 sfxm 3 sfxm+jfrq 4 Không có</param>
         /// <param name="sfdl"></param>
         /// <param name="sfxm"></param>
         /// <param name="orgId"></param>
@@ -470,7 +470,7 @@ group by zyh,zdCode,zdmc,zdlb,zdsj,rybq,cyqk,zdlx,zdly,sfsc
 
         #region 医保相关
         /// <summary>
-        /// 预结算
+        /// 预quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -503,7 +503,7 @@ where prejs_id=@prejs_id
             });
         }
         /// <summary>
-        /// 结算
+        /// Quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S18
 {
     /// <summary>
-    /// 根据获取的家庭参合列表进行门诊上传 跨省登记修改也是这个接口，使用uploadType 返回报文
+    /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành ngoại trú tải lên liên tỉnh 登记sửa cũng là này giao diện,sử dụnguploadType bản tin trả về
     /// </summary>
     public class S18ResponseDTO
     {
         /// <summary>
-        /// 门诊补偿序号
+        /// Số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         public string outpId { get; set; }
     }

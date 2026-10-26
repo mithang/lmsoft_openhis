@@ -1,48 +1,48 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S02
 {
     /// <summary>
-    /// 客户端传入用户名密码进行身份认证返回票据代码，密码需要MD5加密32位大写 response dto
+    /// 客户端 truyền 入 ngư ời dùng 名 mật khẩu tiến hành thân phận 认证quay lại票据mã, mật khẩu cầnMD5 mã hóa 32 vị 大写 response dto
     /// </summary>
     public class S02ResponseDTO
     {
         /// <summary>
-        /// 票据单号
+        /// 票据 đ ơn số 
         /// </summary>
         public string billCode { get; set; }
 
         /// <summary>
-        /// 用户属性
+        /// ngư ời dùng thuộc tính 
         /// </summary>
         public UserProp userProp { get; set; }
     }
 
     /// <summary>
-    /// 用户属性
+    /// ngư ời dùng thuộc tính 
     /// </summary>
     public class UserProp
     {
         /// <summary>
-        /// 用户ID
+        /// ngư ời dùng ID
         /// </summary>
         public string userId { get; set; }
 
         /// <summary>
-        /// 用户名称
+        /// ngư ời dùng tên
         /// </summary>
         public string userName { get; set; }
 
         /// <summary>
-        /// 用户账号
+        /// ngư ời dùng tài khoản 
         /// </summary>
         public string userAccount { get; set; }
 
         /// <summary>
-        /// 机构ID
+        /// Cơ quanID
         /// </summary>
         public string orgId { get; set; }
 
         /// <summary>
-        /// 机构名称
+        /// Cơ quanTên
         /// </summary>
         public string orgName { get; set; }
 
@@ -52,17 +52,17 @@
         public string isManager { get; set; }
 
         /// <summary>
-        /// 行政编码
+        /// mã hành chính 
         /// </summary>
         public string areaCode { get; set; }
 
         /// <summary>
-        /// 行政名称
+        /// dòng 政tên
         /// </summary>
         public string areaName { get; set; }
 
         /// <summary>
-        /// 机构级别
+        /// Cơ quan cấp bậc 
         /// </summary>
         public string orgLevel { get; set; }
 

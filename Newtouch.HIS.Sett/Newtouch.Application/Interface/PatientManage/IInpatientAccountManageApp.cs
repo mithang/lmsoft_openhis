@@ -15,33 +15,33 @@ namespace Newtouch.HIS.Application.Interface.PatientManage
         InpatientReserveDto GetHosPatAccInfo(string zyh);
         InpatientReserveDto GetHosPatAccInfo(string zyh, string zhxz);
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="szid"></param>
         /// <returns></returns>
         bool PayDepositPost(DeposDto dto, out string szid);
         /// <summary>
-        /// 取款
+        /// 取 khoản 
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         bool ReturnDepositPost(DeposDto dto);
         /// <summary>
-        /// 余额劝退
+        /// số dư 劝 trả lại 
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         bool RefundAccount(DeposDto dto);
         /// <summary>
-        /// 获取账户余额
+        /// Lấy số dư tài khoản
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         decimal GetzhYe(string zyh);
 
         /// <summary>
-        /// 获取患者账户收支记录
+        /// Lấy bệnh nhânthu chi tài khoản bản ghi 
         /// </summary>
         /// <returns></returns>
         List<InpatientPatAccPayVO> GetPayList(int zh, string zhxz);

@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 病案收费大类
+    /// hồ sơ bệnh án thu phí loại lớn 
     /// </summary>
     public class SysMedicalRecordChargeCategoryRepo : RepositoryBase<SysMedicalRecordChargeCategoryVEntity>, ISysMedicalRecordChargeCategoryRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有病案收费大类下拉框
+        /// Lấy tất cả các hồ sơ bệnh án thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         public IList<SysMedicalRecordChargeCategoryVEntity> GetdlSelect(string orgId)

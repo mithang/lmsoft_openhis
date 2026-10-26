@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方状态查询
+    /// Đ ơn thuốc trạng tháitra cứu
     /// </summary>
     public class DjxmInsertRequest : RequestBase
     {

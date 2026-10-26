@@ -5,27 +5,27 @@ namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
     public class OutpatientDrugWithdrawalNotifyRequest : RequestBase
     {
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đ ơn thuốc
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 药品编码
+        /// Thuốc mã 
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 退药数量
+        /// trả thuốc số lư ợng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// 成 nhóm số 
         /// </summary>
         public string czh { get; set; }
 

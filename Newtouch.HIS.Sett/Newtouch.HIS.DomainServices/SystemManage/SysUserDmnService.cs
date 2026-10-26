@@ -7,12 +7,12 @@ using FrameworkBase.MultiOrg.DmnService;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 用户相关DmnService
+    /// ngư ời dùng liên quan DmnService
     /// </summary>
     public class SysUserExDmnService : DmnServiceBase, ISysUserExDmnService
     {
         /// <summary>
-        /// 构造函数
+        /// xây dựng hàm 
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysUserExDmnService(IDefaultDatabaseFactory databaseFactory) 
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据UserId获取系统用户可操作的药房部门Code List
+        /// theo Userid lấy hệ thống ngư ời dùng có thể thao tác của nhà thuốc bộ phậnCode List
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

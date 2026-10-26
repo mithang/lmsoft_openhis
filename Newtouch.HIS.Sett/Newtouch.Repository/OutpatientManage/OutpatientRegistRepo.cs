@@ -16,7 +16,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊挂号
+    /// Đ ăng ký khám ngoại trú
     /// </summary>
     public class OutpatientRegistRepo : RepositoryBase<OutpatientRegistEntity>, IOutpatientRegistRepo
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         {
         }
         /// <summary>
-        /// 门诊挂号
+        /// Đ ăng ký khám ngoại trú
         /// </summary>
         /// <param name="ghnm"></param>
         /// <returns></returns>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据mzh获取挂号实体
+        /// theo mzh LấyĐ ăng ký khám thực thể
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据mzh获取挂号实体
+        /// theo mzh LấyĐ ăng ký khám thực thể
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -78,7 +78,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         /// <summary>
         /// 初复诊
         /// </summary>
-        /// <param name="kh">挂号</param>
+        /// <param name="kh">Đ ăng ký khám</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public OutpatientRegistEntity SelectCFZ(string kh, string orgId)
@@ -87,10 +87,10 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// 根据卡号查询患者当天挂号信息
+        /// theo số thẻ tra cứu bệnh nhânkhi ngày thông tin đ ăng ký khám
         /// add by HLF
         /// </summary>
-        /// <param name="kh">卡号</param>
+        /// <param name="kh">Số thẻ</param>
         /// <returns></returns>
         public List<OutpatientRegistEntity> GetOutPatRegEntityList(string kh, string orgId)
         {
@@ -101,7 +101,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
 
         #region GRS门诊挂号
         /// <summary>
-        ///门诊登记时，挂号
+        ///Đ ăng ký ngoại trú giờ,Đ ăng ký khám
         /// </summary>
         /// <param name="OutpatientRegistEntity"></param>
         /// <param name="keyValue"></param>
@@ -170,7 +170,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
 
                     short jzxh = Convert.ToInt16(outParameter.Value);
 
-                    var mzh2 = DateTime.Now.ToString("yyMMdd") + jzxh.ToString().PadLeft(7, '0');  //门诊号
+                    var mzh2 = DateTime.Now.ToString("yyMMdd") + jzxh.ToString().PadLeft(7, '0');  //Số khám ngoại trú
                     bool mzhexits = true;
 
                     while (mzhexits)
@@ -179,7 +179,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
                         if (extis != null)
                         {
                             jzxh++;
-                            mzh2 = DateTime.Now.ToString("yyMMdd") + jzxh.ToString().PadLeft(7, '0');  //门诊号
+                            mzh2 = DateTime.Now.ToString("yyMMdd") + jzxh.ToString().PadLeft(7, '0');  //Số khám ngoại trú
                             continue;
                         }
                         else
@@ -189,7 +189,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
                         }
                     }
                 }
-                OutpatientRegistEntity.jzbz = ((int)EnumOutpatientJzbz.Djz).ToString();  //待就诊
+                OutpatientRegistEntity.jzbz = ((int)EnumOutpatientJzbz.Djz).ToString();  // chờ khám bệnh
                 OutpatientRegistEntity.CardType = ((int)EnumCardType.XNK).ToString();
                 OutpatientRegistEntity.CardTypeName = EnumCardType.XNK.GetDescription();
                 OutpatientRegistEntity.OrganizeId = orgId;
@@ -202,7 +202,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// 病人今天是否已挂号
+        /// Bệnh nhân今ngày có hay kh ôngĐ ãĐ ăng ký khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -219,7 +219,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
             return result;
         }
         /// <summary>
-        /// 取消挂号
+        /// HủyĐ ăng ký khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ghnm"></param>
@@ -242,7 +242,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         #endregion
 
         /// <summary>
-        /// 更新门诊挂号 就诊状态、就诊医生
+        /// Cập nh ậtĐ ăng ký khám ngoại trú khám bệnh trạng thái, khám bệnh bác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -254,7 +254,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
                 entity.jzbz = jzbz;
                 if (!string.IsNullOrWhiteSpace(jzys) && string.IsNullOrWhiteSpace(entity.ys))
                 {
-                    //挂号时排班未到医生，则用医生站过来的看诊医生更新
+                    //Đ ăng ký khám giờ lịch trực chưa đ ến bác sĩ,thì dùng trạm bác sĩ qua 来của看诊bác sĩ cập nhật
                     entity.ys = jzys;
                 }
                 entity.Modify();
@@ -263,7 +263,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// 更新门诊挂号 诊断信息
+        /// Cập nh ậtĐ ăng ký khám ngoại trú chẩn đoán thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -293,7 +293,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
             {
                 if (!string.IsNullOrWhiteSpace(brxz))
                 {
-                    //挂号时排班未到医生，则用医生站过来的看诊医生更新
+                    //Đ ăng ký khám giờ lịch trực chưa đ ến bác sĩ,thì dùng trạm bác sĩ qua 来của看诊bác sĩ cập nhật
                     entity.brxz = brxz;
                 }
                 entity.Modify();
@@ -301,7 +301,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
             }
         }
         /// <summary>
-        /// 门诊挂号不进行医保登记 收费时进行登记跟新自费卡为医保卡
+        /// Đ ăng ký khám ngoại trú không tiến hành BHYT登记 thu phí giờ tiến hành 登记 và mới tự trả thẻ là BHYT thẻ 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -344,7 +344,7 @@ and CardType = @cardtype ";
 
         }
         /// <summary>
-        /// 更新挂号医保就诊id流水号
+        /// Cập nh ậtĐ ăng ký khámBHYTkhám bệnhid số thứ tự 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -364,11 +364,11 @@ and CardType = @cardtype ";
 
 
         /// <summary>
-        /// 记录补偿序号
+        /// bản ghi số thứ tự bồi thư ờng
         /// </summary>
         /// <param name="mzh"></param>
-        /// <param name="outpId">补偿序号</param>
-        /// <param name="userCode">修改人</param>
+        /// <param name="outpid">Số thứ tự bồi thư ờng</param>
+        /// <param name="userCode">Sửa人</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public int RecordOutpId(string mzh, string outpId, string userCode, string organizeId)
@@ -391,7 +391,7 @@ AND OrganizeId=@OrganizeId
             return ExecuteSqlCommand(sql, param);
         }
         /// <summary>
-        /// 修改病人手机号
+        /// Sửa bệnh nh ânĐiện thoại di đ ộng số 
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="organizeId"></param>

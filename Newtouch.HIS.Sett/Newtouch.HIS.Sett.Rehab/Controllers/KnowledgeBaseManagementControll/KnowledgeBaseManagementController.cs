@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Sett.Rehab.Controllers.KnowledgeBaseManagementControll
 
         #region 商业保险
         /// <summary>
-        /// 商保
+        /// bảo hiểm thư ơng mại 
         /// </summary>
         /// <returns></returns>
         public ActionResult CommercialInsurance()
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Sett.Rehab.Controllers.KnowledgeBaseManagementControll
             return View();
         }
         /// <summary>
-        /// 新增商保
+        /// Thêm mới bảo hiểm thư ơng mại 
         /// </summary>
         /// <returns></returns>
         public ActionResult AddCommercialInsurance()

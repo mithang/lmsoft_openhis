@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据记账计划明细Id获取list
+        /// theo chi tiết kế hoạch ghi sổ id Lấylist
         /// </summary>
         /// <returns></returns>
         public IList<OutpatientAccountDetailEntity> GetListbyjzjhids(string orgId, IList<string> mxIdList)

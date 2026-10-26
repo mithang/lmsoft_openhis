@@ -18,7 +18,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 门诊挂号应用
+    /// Đ ăng ký khám ngoại trú nên dùng 
     /// </summary>
     public class OutpatientRegApp : AppBase, IOutpatientRegApp
     {
@@ -29,17 +29,17 @@ namespace Newtouch.HIS.Application.Implementation
         private List<MzBespeakRegisterQueryResponseDTO> mzbrDetail;
 
         /// <summary>
-        /// 挂号排班List
+        /// Đ ăng ký khám lịch trực List
         /// </summary>
-        /// <param name="keyword">科室/医生</param>
-        /// <param name="mzlx">门诊类型 普通门诊/急症/专家门诊</param>
+        /// <param name="keyword">Khoa/Bác sĩ</param>
+        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/急症/Phòng khám chuyên gia</param>
         /// <returns></returns>
         public List<RegScheduleVO> GetRegScheduleList(string keyword, string mzlx)
         {
             return _outPatientDmnService.GetRegScheduleList(keyword, mzlx, this.OrganizeId);
         }
         /// <summary>
-        /// 根据工号获取发票号 
+        /// theo mã nhân viên lấy số hóa đ ơn 
         /// by caishanshan 
         /// </summary>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Application.Implementation
             return _outPatientDmnService.GetInvoiceListByEmpNo(UserIdentity.UserCode, OrganizeId);
         }
         /// <summary>
-        /// 验证输入发票号是否可用
+        /// Xác minh nhập số hóa đ ơn có hay không có thể dùng 
         /// by caishanshan
         /// </summary>
         /// <param name="inputFph"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊挂号保存
+        /// Đ ăng ký khám ngoại trú lưu
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="kh"></param>
@@ -77,12 +77,12 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="isGbf"></param>
         /// <param name="ghpbId"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">病人性质由页面传过来，因为医保患者可以挂自费</param>
-        /// <param name="notSett">true暂时不结（门诊收费时一起结），否则结</param>
-        /// <param name="ybjsh">医保端结算号</param>
-        /// <param name="qzjzxh">前置就诊序号</param>
-        /// <param name="qzmzh">前置门诊号</param>
-        /// <param name="mzyyghId">门诊预约挂号ID 对应Newtouch_CIS.dbo.mz_yygh.Id</param>
+        /// <param name="brxz">Tính chất bệnh nhân由trang truyền qua 来,因là BHYTbệnh nhân có thể挂tự trả</param>
+        /// <param name="notSett">true tạm thời không 结(ngoại trú thu phí giờ cùng nhau 结),nếu không结</param>
+        /// <param name="ybjsh">BHYT端số quyết toán</param>
+        /// <param name="qzjzxh"> trư ớc 置số thứ tự khám bệnh</param>
+        /// <param name="qzmzh"> trư ớc 置số khám ngoại trú</param>
+        /// <param name="mzyyghid">Đ ặt lịch đ ăng ký khám ngoại trú ID Tư ơng ứngNewtouch_CIS.dbo.mz_yygh.Id</param>
         /// <returns></returns>
         public void Save(int patid, string kh, string ghly, string mjzbz,
             string ks, string ys, string ksmc, string ysmc, string ghxm, string zlxm
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Application.Implementation
                 qzjzxh = mzhjzxh.Item1;
                 qzmzh = mzhjzxh.Item2;
             }
-            //保存
+            //Lưu
             _outPatientSettleDmnService.Save(this.OrganizeId, patid, kh, ghly, mjzbz,
             ks, ys, ksmc, ysmc, ghxm, zlxm, fph, sfrq, isCkf, isGbf, (int)qzjzxh.Value, ghpbId, feeRelated, brxz, ybjsh, qzmzh, jzyy,jzid,jzlx,bzbm,bzmc, mzyyghId, isjm, out newJszbInfo);
         }
@@ -113,36 +113,36 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="updateBrxz"></param>
         public long Book(OutpatientRegistEntity gh, decimal ssk, string fph, bool isCkf, bool isGbf, string updateBrxz)
         {
-            //获取就诊序号
+            //LấySố thứ tự khám bệnh
             var jzxh = _outPatientDmnService.GetJzxh(gh.ghlx, gh.ks, gh.ys, gh.ghzb, this.UserIdentity.UserCode, this.OrganizeId);
             if (string.IsNullOrEmpty(jzxh.ToString()))
             {
                 throw new FailedCodeException("OUTPAT_FAILED_TO_GET_THE_SERIAL_NUMBER");
             }
             gh.jzxh = jzxh;
-            //验证病人性质是否适用于门诊
+            //Xác minh tính chất bệnh nhân có hay không áp dụng cho ngoại trú
             CheckBrxz(gh.kh, updateBrxz);
-            //保存
+            //Lưu
             return _outPatientSettleDmnService.Book(gh, ssk, fph, isCkf, isGbf);
         }
 
         /// <summary>
-        /// 判断病人性质是否适用于门诊（挂号页面更改病人性质）
+        /// phán đoán tính chất bệnh nhân có hay không áp dụng cho ngoại trú(Đ ăng ký khámtrang sửa tính chất bệnh nhân)
         /// </summary>
         public void CheckBrxz(string kh, string updateBrxz)
         {
-            //根据kh获取病人基本信息及卡类型
+            // theo kh lấy thông tin cơ bản bệnh nhân và loại thẻ
             var basicInfoVo = _outPatientDmnService.GetBasicInfoByCardNo(kh);
             var ghlx = basicInfoVo.cardtype;
             if (ghlx == "")
             {
-                throw new FailedCodeException("SYS_CARD_TYPE_IS_EMPTY");  //卡类型=挂号类型
+                throw new FailedCodeException("SYS_CARD_TYPE_IS_EMPTY");  //Loại thẻ=loại đ ăng ký khám
             }
             var ybtsdy = string.Empty;
             var syybbf = string.Empty;
             var fw = ((int)Enummzzybz.mz).ToString();
             var validBrxzList = _outPatientDmnService.GetValidBrxzList(string.Empty, ghlx, ybtsdy, syybbf, fw);
-            //验证病人性质是否包含挂号的病人性质
+            //Xác minh tính chất bệnh nhân có hay không bao gồm Đ ăng ký khám của tính chất bệnh nhân
             var validBrxz = validBrxzList.Any(validBrxzItem => validBrxzItem.brxz == updateBrxz);
             if (!validBrxz)
             {
@@ -153,13 +153,13 @@ namespace Newtouch.HIS.Application.Implementation
 
 
         /// <summary>
-        /// 预约挂号
+        /// Đ ặt lịch đ ăng ký khám
         /// </summary>
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>
         /// <param name="blh"></param>
         /// <param name="ksCode"></param>
-        /// <param name="mzlx">门诊挂号类型 1:普通门诊  2:急诊  3:专家门诊</param>
+        /// <param name="mzlx">Đ ăng ký khám ngoại trú loại 1:Phòng khám thông thư ờng 2:Cấp cứu 3:Phòng khám chuyên gia</param>
         /// <param name="ysgh"></param>
         /// <returns></returns>
         public string BespeakRegister(int? zjlx, string zjh, string blh, string ksCode, int mzlx, string ysgh)

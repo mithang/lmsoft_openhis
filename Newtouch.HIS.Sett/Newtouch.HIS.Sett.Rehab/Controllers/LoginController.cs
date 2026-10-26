@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Web.Controllers
                 //#if !DEBUG
                 //if (Session["Newtouch_session_verifycode"].IsEmpty() || Md5.md5(code.ToLower(), 16) != Session["Newtouch_session_verifycode"].ToString())
                 //{
-                //    throw new Exception("验证码错误，请重新输入");
+                // throw new Exception("Xác minh mã lỗi,vui lòng lại nhập ");
                 //}
                 //#endif
                 var userEntity = _sysUserDmnService.CheckLogin(username, password);
@@ -91,10 +91,10 @@ namespace Newtouch.HIS.Web.Controllers
                     //operatorModel.xtrybh = _sysStaffApp.GetSysRybhByAccont(userEntity.F_Account);
                     //if (operatorModel.xtrybh <= 0)
                     //{
-                    //    throw new FailedException("系统人员信息不存在，请联系管理员");
+                    // throw new FailedException("Hệ thống nhân sự thông tin không tồn tại tại,vui lòng liên hệ quản trị viên ");
                     //}
-                    operatorModel.rygh = userEntity.Account;  //先默认这样
-                    operatorModel.OrganizeId = "2"; //一妇婴的东院
+                    operatorModel.rygh = userEntity.Account;  // trư ớc mặc đ ịnh như vậy 
+                    operatorModel.OrganizeId = "2"; // một 妇婴của东 viện 
                     OperatorProvider.AddCurrent(operatorModel);
                     logEntity.F_Account = userEntity.Account;
                     //logEntity.F_NickName = userEntity.F_RealName;

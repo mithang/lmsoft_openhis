@@ -24,11 +24,11 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary> 
-        /// 获取有效的住院基本信息
+        /// LấyHiệu lựcCủaThông tin cơ bản nhập viện
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         public List<HospPatientBasicInfoEntity> GetHosPatInfoList(string zyh, string kh, string xm, string OrganizeId)
         {
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Repository
             {
                 hospatInfoEntityList = hospatInfoEntityList.Where(t => t.OrganizeId == OrganizeId && t.zyh.Contains(zyh)
                 && t.zybz == ((int)EnumZYBZ.Bqz).ToString()
-                ).ToList(); //枚举EnumZYBZ
+                ).ToList(); // enum enumZYBZ
             }
             if (!string.IsNullOrEmpty(xm))
             {
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Repository
                 hospatInfoEntityList = hospatInfoEntityList.Where(p => p.kh == kh.ToUpper() && p.OrganizeId == OrganizeId).ToList();
                 if (hospatInfoEntityList.Count == 0)
                 {
-                    throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID"); //卡号无效
+                    throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID"); //Số thẻ không hiệu lực
                 }
             }
 
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据病人内码获取有效的住院基本信息
+        /// theo bệnh nhân mã nội bộ lấy hiệu lực của thông tin cơ bản nhập viện
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据zyh判断是否存在病人基本信息
+        /// theo zyh phán đoán có hay không tồn tại tại thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Repository
                 int cnt = sce.Where(p => p.zyh == zyh).Count();
                 if (cnt == 0)
                 {
-                    throw new FailedCodeException("OUTPAT_ZYH_ISINVALID"); //住院号无效
+                    throw new FailedCodeException("OUTPAT_ZYH_ISINVALID"); //Số nhập việnKhông hiệu lực
                 }
                 if (cnt == 1)
                 {
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Repository
                 }
                 if (cnt > 1)
                 {
-                    throw new FailedCodeException("MOREINFO_IS_INVALID"); //当前住院号存在多条住院记录
+                    throw new FailedCodeException("MOREINFO_IS_INVALID"); //Khi trư ớc số nhập viện tồn tại tại nhiều dòng nhập viện bản ghi 
                 }
             }
 
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取机构病人列表
+        /// LấyCơ quanBệnh nhânDanh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
         }
 
         /// <summary>
-        /// 根据zyh获取病人信息
+        /// theo zyh lấy thông tin bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -138,7 +138,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
             {
                 throw new FailedCodeException("HOSP_ZYH_IS_EMPTY");
             }
-            var entity = this.IQueryable().Where(a => a.zyh == zyh && a.OrganizeId == orgId && (a.zybz == ((int)EnumZYBZ.Xry).ToString() || a.zybz == ((int)EnumZYBZ.Djz).ToString() || a.zybz == ((int)EnumZYBZ.Bqz).ToString())).ToList();   //注:条件zybz为病区中是暂时的
+            var entity = this.IQueryable().Where(a => a.zyh == zyh && a.OrganizeId == orgId && (a.zybz == ((int)EnumZYBZ.Xry).ToString() || a.zybz == ((int)EnumZYBZ.Djz).ToString() || a.zybz == ((int)EnumZYBZ.Bqz).ToString())).ToList();   // chú thích:Dòng vụ zybz là khu bệnh trong là tạm thời của
             if (entity == null)
             {
                 throw new FailedCodeException("HOSP_INPATIENT_BASICINFO_IS_NOT_EXIST");
@@ -151,7 +151,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
         }
 
         /// <summary>
-        /// 筛选住院病人
+        /// LọcNhập việnBệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -180,7 +180,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
         }
 
         /// <summary>
-        /// 更新住院病人在院标志
+        /// Cập nhậtNhập việnBệnh nhânDấu hiệu đang nằm viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -200,7 +200,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
                 }
                 if (entity.zybz == ((int)EnumZYBZ.Ycy).ToString() || entity.zybz == ((int)EnumZYBZ.Wry).ToString())
                 {
-                    //已出院或取消入院记录不能通过接口更新
+                    //Đ ãxuất viện hoặc hủy nhập viện bản ghi không thể thông qua giao diện cập nhật
                     throw new FailedCodeException("CURRENT_YCY_OR_ZFWRY_UPDATE_FORBIDDEN");
                 }
                 entity.zybz = zybz;
@@ -210,7 +210,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
         }
 
         /// <summary>
-        /// 通过出区、转区更新患者基本信息
+        /// thông qua 出Quận, chuyển Quận cập nhật bệnh nhân cơ bản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bq"></param>
@@ -236,7 +236,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
                     {
                         if (entity.zybz == ((int)EnumZYBZ.Ycy).ToString() || entity.zybz == ((int)EnumZYBZ.Wry).ToString())
                         {
-                            //已出院或取消入院记录不能通过接口更新
+                            //Đ ãxuất viện hoặc hủy nhập viện bản ghi không thể thông qua giao diện cập nhật
                             throw new FailedCodeException("CURRENT_YCY_OR_ZFWRY_UPDATE_FORBIDDEN");
                         }
                         entity.zybz = zybz;
@@ -272,7 +272,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
             }
         }
         /// <summary>
-        /// 通过出区召回更新患者基本信息
+        /// thông qua 出Quận召 lần cập nhật bệnh nhân cơ bản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bq"></param>
@@ -298,7 +298,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
                     {
                         if (entity.zybz == ((int)EnumZYBZ.Ycy).ToString() || entity.zybz == ((int)EnumZYBZ.Wry).ToString())
                         {
-                            //已出院或取消入院记录不能通过接口更新
+                            //Đ ãxuất viện hoặc hủy nhập viện bản ghi không thể thông qua giao diện cập nhật
                             throw new FailedCodeException("CURRENT_YCY_OR_ZFWRY_UPDATE_FORBIDDEN");
                         }
                         entity.zybz = zybz;

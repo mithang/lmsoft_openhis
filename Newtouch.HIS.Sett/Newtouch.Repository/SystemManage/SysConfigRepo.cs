@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                //Code重复判断
+                //CodePhán đoán trùng lặp
                 if (this.IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //CodePhán đoán trùng lặp
                 if (this.IQueryable().Any(p => p.Code == entity.Code && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");

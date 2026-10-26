@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
 	/// <summary>
-	/// 门诊挂号结算相关
+	/// Đ ăng ký khám ngoại trú quyết toán liên quan 
 	/// </summary>
 	[RoutePrefix("api/OutReg")]
     [DefaultAuthorize]
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// chongqing 新排班唯一门诊号、就诊序号
+        /// chongqing mới lịch trực duy nhất số khám ngoại trú, số thứ tự khám bệnh
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
    //         var ysxx = new CqybGjbmInfoVo();
    //         if (patid <= 0 || string.IsNullOrWhiteSpace(ghpbId) || string.IsNullOrWhiteSpace(ks))
    //         {
-   //             return Error("请求数据不完整");
+   // return Error(" yêu cầu dữ liệu không 完整");
    //         }
    //         var mzhjzxh = _outPatientSettleDmnService.GetCQMzhJzxh(patid, ghpbId.ToString(), ks, ys, OrganizeId, this.UserIdentity.UserCode, mjzbz, null, null);
    //         var data = new
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 			//	if (string.IsNullOrWhiteSpace(kh) || string.IsNullOrWhiteSpace(mjzbz) || string.IsNullOrWhiteSpace(ks) || string.IsNullOrWhiteSpace(ksmc) || ghpbId < 0
 			//		|| string.IsNullOrWhiteSpace(brxz) || (feeRelated != null && feeRelated.zje < 0))
 			//	{
-			//		return Error("请求数据不完整");
+			//		return Error(" yêu cầu dữ liệu không 完整");
 			//	}
 			//	object newJszbInfo;
 			//	_outpatientRegApp.Save(patid, kh, ghly, mjzbz,
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 			//}
    //         catch (Exception ex)
    //         {
-   //             return Error("请求数据不完整");
+   // return Error(" yêu cầu dữ liệu không 完整");
    //         }
         }
 

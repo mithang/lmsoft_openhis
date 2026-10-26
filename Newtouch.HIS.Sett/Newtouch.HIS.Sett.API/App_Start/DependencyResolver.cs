@@ -20,26 +20,26 @@ namespace Newtouch.HIS.Sett.API.App_Start
     public class DependencyResolver
     {
         /// <summary>
-        /// 注入Web API控制器/过滤器
+        /// chú thích 入web APIĐiều khiển thiết bị / qua 滤 thiết bị 
         /// </summary>
         /// <param name="config">HttpConfiguration</param>
         public static void RegisteWebApiComponent()
         {
             var builder = new ContainerBuilder();
             
-            // 注册WebAPI控制器
+            // đ ăng ký webAPIĐiều khiển thiết bị 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            //注册默认EF上下文
+            // đ ăng ký mặc đ ịnhEFngữ cảnh
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
 
-            //日志注册
+            // nhật ký đ ăng ký 
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            //缓存
+            // bộ nhớ đ ệm 
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
-            //API用户身份解析器
+            //API ngư ời dùng thân phận 解析 thiết bị 
             builder.RegisterType<HISAPIUserIdentityResolver>().As<IUserIdentityResolver<Identity>>().InstancePerLifetimeScope();
 
             #region IOC注册底层
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Sett.API.App_Start
             #endregion
 
             #region IOC, then registe yours
-            //DLL所在的绝对路径
+            //DLL nơi tại của绝 đ ối với 路径
             var repoAssembly = Assembly.Load("Newtouch.HIS.Repository");
             builder.RegisterAssemblyTypes(repoAssembly)
                 .Where(t => t.Name.EndsWith("Repo") || t.Name.EndsWith("Repository"))
@@ -70,10 +70,10 @@ namespace Newtouch.HIS.Sett.API.App_Start
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
             #endregion
 
-            //注册Autofac过滤器提供程序.
+            // đ ăng ký Autofac qua 滤 thiết bị 提供 chư ơng trình.
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
 
-            // 设置依赖解析器-Dependency Resolver
+            // Đ ặt依赖解析 thiết bị -Dependency Resolver
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;

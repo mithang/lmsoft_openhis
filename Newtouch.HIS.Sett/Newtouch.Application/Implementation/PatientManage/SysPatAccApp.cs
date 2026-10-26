@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Application
         private readonly ISysPatientAccountRepo _sysPatAccRepository;
 
         /// <summary>
-        /// 根据住院号获取账户信息
+        /// theo số nhập viện lấy tài khoản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

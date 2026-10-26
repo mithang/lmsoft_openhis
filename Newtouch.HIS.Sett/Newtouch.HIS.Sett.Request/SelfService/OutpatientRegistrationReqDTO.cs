@@ -11,33 +11,33 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 	public class OutpatientRegistrationReqDTO
 	{
 		/// <summary>
-		/// 组织机构ID
+		/// ID tổ chức
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 卡号
+		/// Số thẻ
 		/// </summary>
 		public string kh { get; set; }
 		/// <summary>
-		/// 门急诊标志
+		/// cửa cấp cứu dấu hiệu 
 		/// </summary>
 		public string mjzbz { get; set; }
 		/// <summary>
-		/// 科室
+		/// Khoa
 		/// </summary>
 		public string ks { get; set; }
 		/// <summary>
-		/// 科室名称
+		/// KhoaTên
 		/// </summary>
 		public string ksmc { get; set; }
 		//public string ys { get; set; }
 		//public string ysmc { get; set; }
 		/// <summary>
-		/// 病人性质
+		/// Tính chất bệnh nhân
 		/// </summary>
 		public string brxz { get; set; }
 		/// <summary>
-		/// 挂号排班id
+		/// Đ ăng ký khám lịch trực id
 		/// </summary>
 		public string ghpbId { get; set; }
     }

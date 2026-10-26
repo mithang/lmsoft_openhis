@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 	public class queryOutpfeeMasterInfoReqDTO : queryAppCardInfoReqDTO
 	{
 		/// <summary>
-		/// 开始时间
+		/// Thời gian bắt đ ầu
 		/// </summary>
 		public string START_DATE { get; set; }
 		/// <summary>
-		/// 结束时间
+		/// Thời gian kết thúc
 		/// </summary>
 
 		public string END_DATE { get; set; }

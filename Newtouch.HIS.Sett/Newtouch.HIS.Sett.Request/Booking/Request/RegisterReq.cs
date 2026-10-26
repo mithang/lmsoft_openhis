@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "Phone is required")]
         public string Phone { get; set; }
         /// <summary>
-        /// 医保卡
+        /// BHYT thẻ 
         /// </summary>
         public string CardNo { get; set; }
     }

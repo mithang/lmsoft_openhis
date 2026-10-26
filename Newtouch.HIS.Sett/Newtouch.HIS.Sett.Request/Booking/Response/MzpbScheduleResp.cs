@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class MzpbScheduleResponse
     {
         /// <summary>
-        /// 就诊日期
+        /// Khám bệnh ngày 
         /// </summary>
         public DateTime OutDate { get; set; }
         public int ScheduId { get; set; }
@@ -19,15 +19,15 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string OutDept { get; set; }
         public string OutDeptName { get; set; }
         /// <summary>
-        /// mjzbz 门诊类型
+        /// mjzbz Loại ngoại trú
         /// </summary>
         public string RegType { get; set; }
         /// <summary>
-        /// 排班描述
+        /// lịch trực mô tả
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 时间段 0无 1全天 2上午 3下午
+        /// Thời gian đoạn 0 không có 1全ngày 2 buổi sáng 3 buổi chiều
         /// </summary>
         public string Period { get; set; }
         public string PeriodDesc { get; set; }
@@ -35,37 +35,37 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string PeriodStart { get; set; }
         public string PeriodEnd { get; set; }
         /// <summary>
-        /// 挂号费
+        /// Phí đ ăng ký khám
         /// </summary>
         public decimal? RegFee { get; set; }
         /// <summary>
-        /// 挂号费
+        /// Phí đ ăng ký khám
         /// </summary>
         public decimal? GhFee { get; set; }
         /// <summary>
-        /// 诊疗费
+        /// chẩn đoán và điều trị 费
         /// </summary>
         public decimal? ZLFee { get; set; }
         /// <summary>
-        /// 挂号项目
+        /// Đ ăng ký khám hạng mục
         /// </summary>
         public string Ghlx { get; set; }
         public string GhxmName { get; set; }
         /// <summary>
-        /// 诊疗项目
+        /// chẩn đoán và điều trị hạng mục
         /// </summary>
         public string Zlxm { get; set; }
         public string ZlxmName { get; set; }
         /// <summary>
-        /// 星期
+        /// 星 kỳ 
         /// </summary>
         public int? Weekdd { get; set; }
         /// <summary>
-        /// 号源总数
+        /// nguồn số 总数
         /// </summary>
         public int? TotalNum { get; set; }
         /// <summary>
-        /// 剩余号源
+        /// còn lại nguồn số 
         /// </summary>
         public int? BookNum { get; set; }
     }

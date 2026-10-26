@@ -3,12 +3,12 @@
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// PDS API请求帮助类
+    /// PDS API yêu cầu giúp đ ỡ loại 
     /// </summary>
     public class SitePDSAPIHelper : SiteAPIRequestHelperBase<SitePDSAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// lĩnh vực Addr cấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SitePDSAPIHost";
 

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据ghnm查询门诊挂号项目
+        /// theo ghnmtra c ứuĐ ăng ký khám ngoại trú hạng mục
         /// </summary>
         /// <param name="ghnm"></param>
         /// <returns></returns>

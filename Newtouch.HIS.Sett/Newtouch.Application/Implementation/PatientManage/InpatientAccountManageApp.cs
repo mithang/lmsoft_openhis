@@ -28,13 +28,13 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
         private readonly IInpatientAccountRepo _inpatientAccountRepo;
         private readonly IHospPatientBasicInfoRepo _hospPatientBasicInfoRepo;
         private readonly IInpatientReserveDmnService _InpatientReserveDmnService;
-        private readonly IFinanceReceiptRepo _finRecRepos; //收据凭证号记录
+        private readonly IFinanceReceiptRepo _finRecRepos; //Số chứng từ biên lai bản ghi 
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly ISysPatientBasicInfoRepo _sysPatientBasicInfoRepo;
         private readonly IPatientBasicInfoDmnService _PatientBasicInfoDmnService;
 
         /// <summary>
-        /// 查询患者基本信息和账户信息
+        /// Tra cứu bệnh nhân cơ bản thông tin và tài khoản thông tin
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             {
                 throw new FailedException("病人内码不存在");
             }
-            //在基本信息表中查询
+            //Tại cơ bản thông tin bảng trong tra cứu
             var e = _hospPatientBasicInfoRepo.FindEntity(p =>
                  p.zyh == zyh && p.OrganizeId == OrganizeId && p.zt == "1");
             if (e == null)
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
 
 
         /// <summary>
-        /// 查询患者基本信息和账户信息
+        /// Tra cứu bệnh nhân cơ bản thông tin và tài khoản thông tin
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             {
                 throw new FailedException("住院号不存在");
             }
-            //在基本信息表中查询
+            //Tại cơ bản thông tin bảng trong tra cứu
             //OutpatAccInfoDto e = _patientBasicInfoDmnService.GetPatInfoByPatid(patid, OrganizeId);
 
             var e = _hospPatientBasicInfoRepo.FindEntity(p =>
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
         
 
         /// <summary>
-        /// 获取患者账户收支记录
+        /// Lấy bệnh nhânthu chi tài khoản bản ghi 
         /// </summary>
         /// <returns></returns>
         public List<InpatientPatAccPayVO> GetPayList(int zh, string zhxz)
@@ -129,7 +129,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
 
 
         /// <summary>
-        /// 获取凭证号
+        /// Lấy số chứng từ
         /// </summary>
         //public string GetFinRepSJPZH(out FinanceReceiptEntity outsjhEntity, out string outsjhType)
         //{
@@ -147,7 +147,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
         //}
 
         /// <summary>
-        /// 获取凭证号
+        /// Lấy số chứng từ
         /// </summary>
         public string GetFinRepSJPZH()
         {
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
 
         #region 住院账户操作
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
         /// <param name="zffsbh"></param>
         /// <param name="zffsmc"></param>
@@ -198,13 +198,13 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             FinanceReceiptEntity oldcwsj = null;
             FinanceReceiptEntity newcwsj = null;
 
-            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //添加收支记录
+            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi
 
-            //获取原来的收据凭证Entity  
+            //Lấy原来của chứng từ biên lai Entity 
             oldcwsj = _finRecRepos.getSJKEntity(UserIdentity.UserCode, this.OrganizeId);
             _finRecRepos.DetacheEntity(oldcwsj);
 
-            //新的收据凭证信息
+            // mới của chứng từ biên lai thông tin
             FinanceReceiptEntity sjEntity = null;
             string type = string.Empty;
             //var pzh =GetFinRepSJPZH(out sjEntity, out type);
@@ -222,18 +222,18 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             sqlVO.szjl = zhszjl;
             sqlVO.oldzh = oldzh;
             sqlVO.oldcwsj = oldcwsj;
-            //type默认值
+            //type giá trị mặc đ ịnh
             //type = type == "" ? "update" : type;
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _InpatientReserveDmnService.PatZyAccDBProc(sqlVO, newzh, newcwsj, type);
             szid = zhszjl.Id;
-            //实时更新账户余额
+            //实giờ cập nhật số dư tài khoản
             _PatientBasicInfoDmnService.updateZybrxxkExpandZhye(dto.zyh, OrganizeId, newzh.zhye);
             return true;
         }
 
         /// <summary>
-        /// 添加支付、退款记录
+        /// Thêm thanh toán, hoàn tiền bản ghi 
         /// </summary>
         /// <param name="dto"></param>
         private void AccPayDeposit(DeposDto dto, out InpatientAccountRevenueAndExpenseEntity payEntity, out InpatientAccountEntity oldAccEntity, out InpatientAccountEntity newAccEntity)
@@ -245,25 +245,25 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             payEntity.pzh = dto.pzh;
             payEntity.zhCode = dto.zh;
             payEntity.zyh = dto.zyh;
-            payEntity.szje =dto.szxz==2? (-1)*System.Math.Abs(dto.zfje) : dto.zfje; // 退款:负数
+            payEntity.szje =dto.szxz==2? (-1)*System.Math.Abs(dto.zfje) : dto.zfje; // Hoàn tiền: số âm 
             payEntity.xjzffs = dto.zffsbh.ToString();
             payEntity.zhye = payEntity.szje + GetzhYe(dto.zyh);
             payEntity.memo = dto.memo;
             payEntity.zt = "1";
             payEntity.OrganizeId = OrganizeId;
             payEntity.outTradeNo = dto.outTradeNo;
-            ////获取凭证号s
-            ////判断静态参数配置
+            ////Lấy số chứng từs
+            //// phán đoán 静态tham số cấu hình
             payEntity.pzh = GetFinRepSJPZH();
             payEntity.Create(true);
-            //更新账户信息
+            //Cập nhậtTài khoảnThông tin
             oldAccEntity = _inpatientAccountRepo.FindEntity(p => p.zyh == dto.zyh && p.OrganizeId == OrganizeId && p.zt == "1");
             _inpatientAccountRepo.DetacheEntity(oldAccEntity);
             newAccEntity = oldAccEntity.Clone();
             newAccEntity.zhye = payEntity.zhye;
         }
         /// <summary>
-        /// 获得住院账户余额
+        /// nhận đ ược nhập viện số dư tài khoản
         /// </summary>
         public decimal GetzhYe(string zyh)
         {
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             return zyzhEntity.zhye;
         }
         /// <summary>
-        /// 取款
+        /// 取 khoản 
         /// </summary>
         /// <param name="zffsbh"></param>
         /// <param name="zffsmc"></param>
@@ -292,7 +292,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             }
             //if (string.IsNullOrEmpty(dto.zfje.ToString()) || dto.zfje >= 0)
             //{
-            //    throw new FailedException("请输入正确的取款金额(金额须为负值)");
+            // throw new FailedException("Vui lòng nhập chính xác của取 khoản số tiền(số tiền须là负 giá trị)");
             //}
             if (string.IsNullOrEmpty(dto.pzh))
             {
@@ -305,13 +305,13 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             FinanceReceiptEntity oldcwsj = null;
             FinanceReceiptEntity newcwsj = null;
 
-            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //添加收支记录 负的
+            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi 负của
 
-            //新的收据凭证信息
+            // mới của chứng từ biên lai thông tin
             FinanceReceiptEntity sjEntity = null;
             string type = string.Empty;
 
-            //预交金退款是否使用凭证号
+            //Tạm ứng hoàn tiền có hay không sử dụng凭证 số 
             var isTopzh = _sysConfigRepo.GetBoolValueByCode("Account_Refund_pzh", OrganizeId);
 
             if (isTopzh is true)
@@ -333,15 +333,15 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             sqlVO.szjl = zhszjl;
             sqlVO.oldzh = oldzh;
             sqlVO.oldcwsj = oldcwsj;
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _InpatientReserveDmnService.PatZyAccDBProc(sqlVO, newzh, newcwsj, type);
-            //实时更新账户余额
+            //实giờ cập nhật số dư tài khoản
             _PatientBasicInfoDmnService.updateZybrxxkExpandZhye(dto.zyh, OrganizeId, newzh.zhye);
             return true;
         }
 
         /// <summary>
-        /// 余额全退
+        /// số dư hoàn toàn bộ
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -358,7 +358,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             }
             //if (string.IsNullOrEmpty(dto.zfje.ToString()) || dto.zfje >= 0)
             //{
-            //    throw new FailedException("无可退余额");
+            // throw new FailedException("Không có có thể trả lại số dư ");
             //}
 
             InpatientAccountRevenueAndExpenseEntity payEntity = null;
@@ -375,9 +375,9 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             payEntity.zhye = payEntity.szje + GetzhYe(dto.zyh);
             payEntity.zt = "1";
             payEntity.OrganizeId = OrganizeId;
-            //payEntity.pzh = GetFinRepSJPZH();//获取凭证号
+            //payEntity.pzh = GetFinRepSJPZH();//Lấy số chứng từ
             payEntity.Create(true);
-            //更新账户信息
+            //Cập nhậtTài khoảnThông tin
             oldAccEntity = _inpatientAccountRepo.FindEntity(p => p.zyh == dto.zyh && p.OrganizeId == OrganizeId && p.zt == "1");
             _inpatientAccountRepo.DetacheEntity(oldAccEntity);
             newAccEntity = oldAccEntity.Clone();
@@ -391,9 +391,9 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             sqlVO.szjl = payEntity;
             sqlVO.oldzh = oldAccEntity;
             sqlVO.oldcwsj = null;
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _InpatientReserveDmnService.PatZyAccDBProc(sqlVO, newAccEntity, null, "");
-            //实时更新账户余额
+            //实giờ cập nhật số dư tài khoản
             _PatientBasicInfoDmnService.updateZybrxxkExpandZhye(dto.zyh, OrganizeId, newAccEntity.zhye);
             return true;
         }
@@ -403,7 +403,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
         #region 发票相关
 
         /// <summary>
-        /// 后台验证收据凭证号
+        /// sau máy xác minh số chứng từ biên lai
         /// </summary>
         /// <returns></returns> 
         public bool CheckSJPZH(string pzh, out FinanceReceiptEntity sjEntity, out string type)

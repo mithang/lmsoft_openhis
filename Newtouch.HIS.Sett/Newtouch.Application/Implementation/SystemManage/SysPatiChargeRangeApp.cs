@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly ISysFeeDmnService _sysFeeDmnService;
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysPatientChargeRangeVO> GetEffectiveList(string keyValue, int? bh = null)
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(int keyValue)
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Application.Implementation
             _sysPatiChargeRangeRepo.DeleteForm(keyValue, this.OrganizeId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysPatiChargeRangeEntity"></param>
         /// <param name="keyValue"></param>

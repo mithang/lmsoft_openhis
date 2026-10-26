@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// （下拉）选择 数据源
+    /// (dư ới 拉)chọn dữ liệu源
     /// </summary>
     public class SelectDataSourceApp : ISelectDataSourceApp
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取病人性质有效列表
+        /// LấyTính chất bệnh nhânHiệu lựcDanh sách
         /// </summary>
         /// <returns></returns>
         public string getEffectPatiNatureList()

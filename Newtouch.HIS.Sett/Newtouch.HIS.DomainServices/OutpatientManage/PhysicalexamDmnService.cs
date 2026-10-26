@@ -57,7 +57,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
                 ys=dto.ys,
                 jzbz = ((int)EnumOutpatientJzbz.Jsjz).ToString(),
                 jzxh = (short)jzxh,
-                //门诊号
+                //Số khám ngoại trú
                 mzh = mzh,
                 kh = dto.kh,
                 blh=dto.blh,

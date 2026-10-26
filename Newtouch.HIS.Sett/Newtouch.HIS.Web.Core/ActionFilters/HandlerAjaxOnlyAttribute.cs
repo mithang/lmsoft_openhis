@@ -1,7 +1,7 @@
 ﻿namespace System.Web.Mvc
 {
     /// <summary>
-    /// 仅处理ajax请求 验证
+    /// chỉ xử lýajax yêu cầu xác minh
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerAjaxOnlyAttribute : ActionMethodSelectorAttribute

@@ -9,17 +9,17 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class Response<T>
     {
         /// <summary>
-        /// 交易结果状态true成功false失败， 必填  
+        /// giao dịch kết quả trạng tháitrue thành côngfalse thất bại, 必填 
         /// </summary>
         public bool state { get; set; }
 
         /// <summary>
-        /// 失败原因
+        /// Nguyên nhân thất bại
         /// </summary>
         public string message { get; set; }
 
         /// <summary>
-        /// 结果
+        /// Kết quả
         /// </summary>
         public T data { get; set; }
     }

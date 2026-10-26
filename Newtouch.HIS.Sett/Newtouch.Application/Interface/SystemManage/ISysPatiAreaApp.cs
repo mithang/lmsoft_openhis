@@ -3,7 +3,7 @@
     public interface ISysPatiAreaApp
     {
         /// <summary>
-        /// 获取病区自动提示
+        /// Lấykhu bệnh tự đ ộng nhắc nhở
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

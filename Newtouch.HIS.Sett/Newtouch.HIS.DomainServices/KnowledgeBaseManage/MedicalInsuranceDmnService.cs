@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices.KnowledgeBaseManage
         }
 
         /// <summary>
-        /// 获取医保备案列表
+        /// LấyBHYT备案danh sách
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="ksrq"></param>

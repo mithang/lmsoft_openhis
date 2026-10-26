@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.DomainServices.OutpatientManage
 {
 	/// <summary>
-	/// 自助机（接口）相关
+	/// máy tự phục vụ (giao diện) liên quan 
 	/// </summary>
 	public class SelfServiceDmnService: DmnServiceBase, ISelfServiceDmnService
 	{
@@ -42,7 +42,7 @@ WHERE   b.CardNo = @CardNo AND a.zt='1'
 				new[] { new SqlParameter("@orgId", dto.OrganizeId), new SqlParameter("@CardNo", dto.CARD_NO) });
 		}
 		/// <summary>
-		/// 查取门诊费用主表Patinfo
+		/// tra cứu lấy ngoại trú chi phí bảng chính Patinfo
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>
@@ -76,7 +76,7 @@ WHERE   a.zt='1'
 			return resInfoVo;
 		}
 		/// <summary>
-		/// 查取门诊费用主表List
+		/// tra cứu lấy ngoại trú chi phí bảng chính List
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>
@@ -133,7 +133,7 @@ WHERE   b.CardNo = @CardNo
 		}
 
 	    /// <summary>
-		/// 获取门诊结算明细费用
+		/// Lấychi tiết quyết toán ngoại trú chi phí
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>
@@ -176,7 +176,7 @@ WHERE   a.zt = '1'
 		}
 
 		/// <summary>
-		/// 查取门诊费用明细List
+		/// tra cứu lấy ngoại trú chi phí chi tiếtList
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>
@@ -256,7 +256,7 @@ WHERE   a.jsnm = @RECEIPT_NO
 		}
 
 		/// <summary>
-		/// 获取住院费用一日清
+		/// Lấy nhập việnchi phí một ngày清
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>
@@ -325,7 +325,7 @@ WHERE   b.CardNo = @CardNo
 		}
 
 		/// <summary>
-		/// 查取门诊费用明细List
+		/// tra cứu lấy ngoại trú chi phí chi tiếtList
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>

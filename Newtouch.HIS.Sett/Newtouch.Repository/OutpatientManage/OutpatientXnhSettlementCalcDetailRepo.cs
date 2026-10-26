@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊新农合结算
+    /// Ngoại trú BHYT nông thôn mới quyết toán
     /// </summary>
     public class OutpatientXnhSettlementCalcDetailRepo : RepositoryBase<OutpatientXnhSettlementCalcDetailEntity>, IOutpatientXnhSettlementCalcDetailRepo
     {

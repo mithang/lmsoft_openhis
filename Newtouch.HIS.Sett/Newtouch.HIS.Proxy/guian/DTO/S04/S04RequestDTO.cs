@@ -6,222 +6,222 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO
 {
     /// <summary>
-    /// 根据获取的家庭参合列表进行入院办理 跨省修改也是这个接口 uploadType节点控制 请求报文
+    /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành nhập viện làm thủ tục liên tỉnh sửa cũng là này giao diện uploadType nút điều khiển bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S04")]
     [XmlRoot("body")]
     public class S04RequestDTO
     {
         /// <summary>
-        /// 个人编码
+        /// mã cá nhân 
         /// </summary>
         public string memberId { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string inpatientNo { get; set; }
         /// <summary>
-        /// 入院日期(yyyy-mm-dd)
+        /// Ngày nhập viện(yyyy-mm-dd)
         /// </summary>
         public string admissionDate { get; set; }
         /// <summary>
-        /// 入院科室（见字典科室）
+        /// Khoa nhập viện(xem từ điển khoa)
         /// </summary>
         public string admissionDepartments { get; set; }
         /// <summary>
-        /// 经治医生
+        /// Bác sĩ điều trị
         /// </summary>
         public string treatingPhysician { get; set; }
         /// <summary>
-        /// 入院状态(见字典入出院状态)
+        /// Trạng thái nhập viện(xem từ điển 入xuất viện trạng thái)
         /// </summary>
         public string admissionStatus { get; set; }
         /// <summary>
-        /// 疾病代码(接口S29下载获取)
+        /// Mã bệnh(Giao diệnS29Tải xuống và lấy)
         /// </summary>
         public string diseaseCode { get; set; }
         /// <summary>
-        /// 初步诊断
+        /// Chẩn đoán sơ bộ
         /// </summary>
         public string initialDiagnosis { get; set; }
         /// <summary>
-        /// 手术代码(接口S31下载获取)
+        /// phẫu thuật mã(giao diệnS31 tải xuống và lấy)
         /// </summary>
         public string surgeryCode { get; set; }
         /// <summary>
-        /// 病区
+        /// Khu bệnh
         /// </summary>
         public string wardArea { get; set; }
         /// <summary>
-        /// 病房号
+        /// phòng bệnh số 
         /// </summary>
         public string wardNo { get; set; }
         /// <summary>
-        /// 床位号
+        /// giư ờng bệnh số 
         /// </summary>
         public string berthNo { get; set; }
         /// <summary>
-        /// 证件是否齐全0不齐全1齐全
+        /// Giấy tờ đ ã đ ầy đ ủ chưa0 không 齐全1齐全
         /// </summary>
         public string isIncrease { get; set; }
         /// <summary>
-        /// 是否转诊1转诊默认0
+        /// Có chuyển viện hay không1 chuyển tuyến mặc đ ịnh0
         /// </summary>
         public string isReferra { get; set; }
         /// <summary>
-        /// 病人类型（见字典病人类型）
+        /// Loại bệnh nhân(xem từ điển loại bệnh nhân)
         /// </summary>
         public string inpatientTypeOflocal { get; set; }
         /// <summary>
-        /// 保险金额
+        /// bảo hiểm số tiền
         /// </summary>
         public string bxAccount { get; set; }
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         public string tel { get; set; }
         /// <summary>
-        /// 银行卡号
+        /// Số thẻ ngân hàng
         /// </summary>
         public string bankCardNo { get; set; }
         /// <summary>
-        /// 银行卡号开户人姓
+        /// Họ của chủ tài khoản thẻ ngân hàng
         /// </summary>
         public string accountHolder { get; set; }
         /// <summary>
-        /// 患者与开户人关系
+        /// Quan hệ giữa bệnh nhân và chủ tài khoản
         /// </summary>
         public string holderRelation { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
         /// <summary>
-        /// 重大疾病申请序号
+        /// bệnh nặng xin thứ tự số 
         /// </summary>
         public string bigDiseaseNo { get; set; }
         /// <summary>
-        /// 转诊号
+        /// chuyển tuyến số 
         /// </summary>
         public string isReferraNo { get; set; }
         /// <summary>
-        /// 上传类别 0新增 1修改
+        /// Tải lênLoại 0Thêm mới 1Sửa
         /// </summary>
         public string uploadType { get; set; }
         /// <summary>
-        /// 家庭编号（跨省）
+        /// Số hộ gia đ ình(liên tỉnh)
         /// </summary>
         public string familySysno { get; set; }
         /// <summary>
-        /// 身高（跨省）
+        /// 身高(liên tỉnh)
         /// </summary>
         public string Stature { get; set; }
         /// <summary>
-        /// 体重（跨省）
+        /// 体重(liên tỉnh)
         /// </summary>
         public string Weight { get; set; }
         /// <summary>
-        /// 第二疾病诊断（icd编码）（跨省）
+        /// Thứ二 bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string secondIcdNo { get; set; }
         /// <summary>
-        /// 第三疾病诊断（icd编码）（跨省）
+        /// Thứ ba bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string threeIcdNo { get; set; }
         /// <summary>
-        /// 手术编号（跨省）
+        /// phẫu thuật số hiệu(liên tỉnh)
         /// </summary>
         public string opsId { get; set; }
         /// <summary>
-        /// 治疗方式编码（跨省）
+        /// điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string treatCode { get; set; }
         /// <summary>
-        /// 就诊类型（跨省）群文件有文档
+        /// Loại khám bệnh(liên tỉnh)群 tệp có文档
         /// </summary>
         public string cureId { get; set; }
         /// <summary>
-        /// 并发症（跨省）传名称，只能传一个
+        /// và 发症(liên tỉnh) truyền tên, chỉ có thể truyền một 
         /// </summary>
         public string complication { get; set; }
         /// <summary>
-        /// 转诊类型（0 正常住院 1 县外就医转诊 2 转院）（跨省）
+        /// chuyển tuyến loại (0 bình thư ờng nhập viện 1 huyện ngoài khám chữa bệnh chuyển tuyến 2 chuyển viện)(liên tỉnh)
         /// </summary>
         public string turnMode { get; set; }
         /// <summary>
-        /// 转诊转院编码（县外就医转诊-该值为转诊申请单号；转院-该值为转院住院登记号）（跨省）
+        /// chuyển tuyến chuyển viện mã (huyện ngoài khám chữa bệnh chuyển tuyến - này giá trị là chuyển tuyến xin đ ơn số; chuyển viện - này giá trị là chuyển viện nhập viện登记 số)(liên tỉnh)
         /// </summary>
         public string turnCode { get; set; }
         /// <summary>
-        /// 转院日期(yyyy-mm-dd hh:mm:ss)（跨省）
+        /// chuyển viện ngày (yyyy-mm-dd hh:mm:ss)(liên tỉnh)
         /// </summary>
         public string turnDate { get; set; }
         /// <summary>
-        /// 医院住院收费收据号（跨省）
+        /// bệnh viện nhập việnthu phí số biên lai (liên tỉnh)
         /// </summary>
         public string ticketNo { get; set; }
         /// <summary>
-        /// 民政通知书号（跨省）
+        /// 民政 thông báo 书 số (liên tỉnh)
         /// </summary>
         public string ministerNotice { get; set; }
         /// <summary>
-        /// 生育证号（跨省）
+        /// 生育证 số (liên tỉnh)
         /// </summary>
         public string procreateNotice { get; set; }
         /// <summary>
-        /// 是否新生儿入院1：是0：否（跨省）
+        /// Có hay không trẻ sơ sinh nhập viện1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isNewborn { get; set; }
         /// <summary>
-        /// isNewborn=1时不可为空（跨省）
+        /// isNewborn=1 giờ không có thể là trống (liên tỉnh)
         /// </summary>
         public string newbornBirthday { get; set; }
         /// <summary>
-        /// isNewborn=1时不可为空（跨省）
+        /// isNewborn=1 giờ không có thể là trống (liên tỉnh)
         /// </summary>
         public string newbornName { get; set; }
         /// <summary>
-        /// isNewborn=1时不可为空1:男2:女（跨省）
+        /// isNewborn=1 giờ không có thể là trống 1:男2:女(liên tỉnh)
         /// </summary>
         public string newbornSex { get; set; }
         /// <summary>
-        /// 经办医院登记流水号唯一ID（跨省）
+        /// 经办 bệnh viện 登记 số thứ tự duy nhất ID(liên tỉnh)
         /// </summary>
         public string registerID { get; set; }
         /// <summary>
-        /// 住院登记流水号住院登记修改时传入（跨省）
+        /// Nhập viện登记 số thứ tự nhập viện登记sửa giờ truyền 入(liên tỉnh)
         /// </summary>
         public string inpatientSn { get; set; }
         /// <summary>
-        /// 行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
         /// <summary>
-        /// 重大疾病主诊断组编码
+        /// bệnh nặng 主chẩn đoán nhóm mã 
         /// </summary>
         public string majorDiseaseICD { get; set; }
         /// <summary>
-        /// 重大疾病第二诊断组编码
+        /// bệnh nặng thứ二chẩn đoán nhóm mã 
         /// </summary>
         public string secondMajorDiseaseICD { get; set; }
         /// <summary>
-        /// 重大疾病第三诊断组编码
+        /// bệnh nặng thứ ba chẩn đoán nhóm mã 
         /// </summary>
         public string threeMajorDiseaseICD { get; set; }
         /// <summary>
-        /// 第二治疗方式编码，对应第二诊断
+        /// Thứ二 điều trị phư ơng thức mã,Tư ơng ứng thứ二chẩn đoán
         /// </summary>
         public string secondTreatCode { get; set; }
         /// <summary>
-        /// 第三治疗方式编码，对应第三诊断
+        /// Thứ ba điều trị phư ơng thức mã,Tư ơng ứng thứ ba chẩn đoán
         /// </summary>
         public string threeTreatCode { get; set; }
         /// <summary>
-        /// 多诊断节点
+        /// nhiều chẩn đoán nút 
         /// </summary>
         public List<valueList> disList { get; set; }
     }
@@ -229,7 +229,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class valueList
     {
         /// <summary>
-        /// 疾病代码（多诊断）
+        /// Mã bệnh(nhiều chẩn đoán)
         /// </summary>
         public string disCode { get; set; }
     }

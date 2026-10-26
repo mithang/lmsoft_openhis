@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Application
             this._sysMRChargeClassRepo = sysMRChargeClassRepo;
         }
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysMedicalRecordChargeCategoryEntity> GetEffectiveList(string keyValue)
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application
             
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Application
             return _sysMRChargeClassRepo.FindEntity(keyValue);
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(SysMedicalRecordChargeCategoryEntity sysMRChargeClassEntity)
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Application
             _sysMRChargeClassRepo.DeleteForm(sysMRChargeClassEntity);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysMRChargeClassEntity"></param>
         /// <param name="keyValue"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Application
             _sysMRChargeClassRepo.SubmitForm(sysMRChargeClassEntity, keyValue);
         }
         /// <summary>
-        /// 获取所有病案收费大类下拉框
+        /// Lấy tất cả các hồ sơ bệnh án thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         public object GetdlSelect()

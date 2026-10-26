@@ -13,7 +13,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 处方相关
+    /// Đ ơn thuốc liên quan 
     /// </summary>
     [RoutePrefix("api/Therapist")]
     public class TherapistController : ApiControllerBase<TherapistController>
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 治疗建议查询
+        /// điều trị đ ề xuất tra cứu
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 更新建议的转换状态
+        /// Cập nhật đ ề xuất của chuyển 换trạng thái
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

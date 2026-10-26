@@ -6,30 +6,30 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方新增/明细删除请求
+    /// Đ ơn thuốc thêm mới/Chi tiết xóa yêu cầu 
     /// </summary>
     public class PrescriptionAddOrUpdateRequest : RequestBase
     {
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         [Required]
         public string mzh { get; set; }
 
         /// <summary>
-        /// 医生（医生工号）
+        /// Bác sĩ(bác sĩ mã nhân viên)
         /// </summary>
         [Required]
         public string ys { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         [Required]
         public DateTime OperateTime { get; set; }
 
         /// <summary>
-        /// 处方 List
+        /// Đ ơn thuốc List
         /// </summary>
         [Required]
         public IList<PrescriptionUpdateDTO> PrescriptionList { get; set; }

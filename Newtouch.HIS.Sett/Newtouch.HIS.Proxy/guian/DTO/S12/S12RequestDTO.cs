@@ -9,15 +9,15 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class S12RequestDTO
     {
         /// <summary>
-        /// 补偿序号（跨省删除部分明细需要传单条明细的序号，如果不传明细序号删除所有明细）
+        /// Số thứ tự bồi thư ờng(liên tỉnh xóa một phầnchi tiết cần truyền đ ơn dòngchi tiết của thứ tự số,nếu không truyền chi tiết thứ tự số xóa tất cả các chi tiết)
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
         [XmlArray("list"), XmlArrayItem("string")]

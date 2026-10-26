@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository.PatientManage
 		{
 		}
 		/// <summary>
-		/// 保存
+		/// Lưu
 		/// </summary>
 		/// <param name="hospItemFeeEntity"></param>
 		/// <param name="keyValue"></param>

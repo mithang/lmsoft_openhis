@@ -21,7 +21,7 @@ using Newtouch.HIS.Application;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 处方相关
+    /// Đ ơn thuốc liên quan 
     /// </summary>
     [RoutePrefix("api/Prescription")]
     [DefaultAuthorize]
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 处方更新请求（新处方、或新增明细、或删除明细）
+        /// Đ ơn thuốc cập nhật yêu cầu (mới Đ ơn thuốc, hoặc thêm mớichi tiết, hoặc xóachi tiết)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊号下的处方信息全部重写请求
+        /// Số khám ngoại trú dư ới CủaĐ ơn thuốc thông tin tất cả重写 yêu cầu 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -75,8 +75,8 @@ namespace Newtouch.HIS.Sett.API.Controllers
             {
                 if (string.IsNullOrWhiteSpace(par.AheadCancelCf))
                 {
-                    //作废所有的未收费处方
-                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //未收费 来自门诊医生站
+                    //Hủy bỏ tất cả các của chưa thu phí đơn thuốc
+                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //Chưa thu phí 来 tự ngoại trú trạm bác sĩ
 
                     if (cfList != null && cfList.Count > 0)
                     {
@@ -86,8 +86,8 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 }
                 else
                 {
-                    //作废部分指定的处方
-                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1", cfhs: par.AheadCancelCf);   //未收费 来自门诊医生站
+                    //Hủy bỏ một phần chỉ đ ịnh CủaĐ ơn thuốc
+                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1", cfhs: par.AheadCancelCf);   //Chưa thu phí 来 tự ngoại trú trạm bác sĩ
 
                     if (cfList != null && cfList.Count > 0)
                     {
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     }
                 }
 
-                //再新增
+                //再thêm mới
                 IList<string> updateSkipSettledCfhList;
                 add(par.PrescriptionList, par.mzh, par.ys, out updateSkipSettledCfhList);
 
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 处方作废
+        /// Đ ơn thuốc hủy bỏ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -138,7 +138,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 处方作废 根据门诊号
+        /// Đ ơn thuốc hủy bỏ theo số khám ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -148,8 +148,8 @@ namespace Newtouch.HIS.Sett.API.Controllers
         {
             Action<PrescriptionCancelByOutNoRequest, DefaultResponse> ac = (req, resp) =>
             {
-                //作废所有的未收费处方
-                var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //未收费 来自门诊医生站
+                //Hủy bỏ tất cả các của chưa thu phí đơn thuốc
+                var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //Chưa thu phí 来 tự ngoại trú trạm bác sĩ
 
                 if (cfList != null && cfList.Count > 0)
                 {
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 处方状态查询
+        /// Đ ơn thuốc trạng tháitra cứu
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// 代煎费项目生成
+        /// 代煎费hạng mục tạo
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -260,7 +260,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     jl = p.jl,
                     jldw = p.jldw,
                     czh = p.zh,
-                    dj = -1,    //CIS医生没有定价的权限 -1后面会更新为字典价格
+                    dj = -1,    //CISbác sĩ không có定价của quyền hạn -1 phía sau sẽ cập nhật là từ điển giá
                     yfCode = p.yfCode,
                     zzfbz = p.zzfbz,
                     pcCode=p.pcCode
@@ -298,7 +298,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     sl = p.sl,
                     zzll = p.zll,
                     dw = p.dw,
-                    dj = -1,    //CIS医生没有定价的权限 -1后面会更新为字典价格
+                    dj = -1,    //CISbác sĩ không có定价của quyền hạn -1 phía sau sẽ cập nhật là từ điển giá
                     zzfbz = p.zzfbz,
                     ztId=p.ztId,
                     ztmc=p.ztmc,
@@ -311,7 +311,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 if (newEntity.sl <= 0)
                 {
                     //throw new ArgumentsRequiredException("sl");
-                    newEntity.sl = 0; //后面 根据‘单位计量数’计算
+                    newEntity.sl = 0; // phía sau theo 'Đ ơn vị计 lư ợng 数'Tính
                     if ((newEntity.dczll ?? 0) <= 0)
                     {
                         throw new ArgumentsRequiredException("dczll");

@@ -14,7 +14,7 @@ using System.Reflection;
 namespace Newtouch.HIS.Sett.Rehab.App_Start
 {
     /// <summary>
-    /// 依赖注入配置
+    /// 依赖 chú thích 入cấu hình
     /// </summary>
     public class DependencyResolver
     {
@@ -25,18 +25,18 @@ namespace Newtouch.HIS.Sett.Rehab.App_Start
         {
             var builder = new ContainerBuilder();
 
-            //注册控制器
+            // đ ăng ký điều khiển thiết bị 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
-            //注册默认EF上下文
+            // đ ăng ký mặc đ ịnhEFngữ cảnh
             builder.RegisterType<NewtouchDatabaseFactory>().As<INewtouchDatabaseFactory>().InstancePerLifetimeScope();
             //builder.RegisterType<BaseDatabaseFactory>().As<IBaseDatabaseFactory>().InstancePerLifetimeScope();
 
-            //日志注册
+            // nhật ký đ ăng ký 
             LoggerHelper.InitLog4net("/Configs/log4net.config");
             builder.RegisterType<Log4NetLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            //缓存
+            // bộ nhớ đ ệm 
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(typeof(RepositoryBase<>).Assembly)

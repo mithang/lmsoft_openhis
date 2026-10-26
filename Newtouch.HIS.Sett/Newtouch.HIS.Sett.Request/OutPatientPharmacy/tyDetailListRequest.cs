@@ -1,57 +1,57 @@
 ﻿namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 门诊退药显示药品详细信息
+    /// Ngoại trú trả thuốc hiển thị thuốc thông tin chi tiết
     /// </summary>
     public class tyDetailListRequest
     {
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đ ơn thuốcID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// ThuốcMã
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// ThuốcTên
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 频号
+        /// 频 số 
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lư ợng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đ ơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đ ơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
 
@@ -61,32 +61,32 @@
         public string sccj { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// liều lư ợng 
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// liều lư ợng Đ ơn vị
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法
+        /// cách dùng 
         /// </summary>
         public string yf { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 用量
+        /// dùng lư ợng 
         /// </summary>
         public decimal yl { get; set; }
 
         /// <summary>
-        /// 用了单位
+        /// dùng Đ ơn vị
         /// </summary>
         public string yldw { get; set; }
 
@@ -96,12 +96,12 @@
         public string yszt { get; set; }
 
         /// <summary>
-        /// 排列号
+        /// xếp cột số 
         /// </summary>
         public short plh { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đ ơn thuốc
         /// </summary>
         public int cfnm { get; set; }
     }

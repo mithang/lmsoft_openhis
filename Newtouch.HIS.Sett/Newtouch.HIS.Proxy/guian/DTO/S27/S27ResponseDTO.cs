@@ -1,72 +1,72 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S27
 {
     /// <summary>
-    /// 根据S18门诊上传返回的补偿序号outpId进行获取门诊结算单信息 返回报文
+    /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành lấy quyết toán ngoại trú đ ơn thông tin bản tin trả về
     /// </summary>
     public class S27ResponseDTO
     {
         /// <summary>
-        /// 门诊补偿序号
+        /// Số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        /// 个人编码
+        /// mã cá nhân 
         /// </summary>
         public string memberId { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string memberName { get; set; }
 
         /// <summary>
-        /// 患者性别
+        /// Bệnh nhânGiới tính
         /// </summary>
         public string memberSex { get; set; }
 
         /// <summary>
-        /// 患者身份证号
+        /// Bệnh nhânSố CMND
         /// </summary>
         public string idCard { get; set; }
 
         /// <summary>
-        /// 患者年龄
+        /// Bệnh nhânTuổi
         /// </summary>
         public string memberAge { get; set; }
 
         /// <summary>
-        /// 家庭编号
+        /// Số hộ gia đ ình
         /// </summary>
         public string familyId { get; set; }
 
         /// <summary>
-        /// 医疗证卡号
+        /// Số thẻ chứng nhận y tế
         /// </summary>
         public string medicalNo { get; set; }
 
         /// <summary>
-        /// 就诊类型
+        /// Loại khám bệnh
         /// </summary>
         public string inpatientType { get; set; }
 
         /// <summary>
-        /// 就诊日期
+        /// Khám bệnh ngày 
         /// </summary>
         public string inpatientDate { get; set; }
 
         /// <summary>
-        /// 就医机构代码
+        /// khám chữa bệnh mã cơ quan
         /// </summary>
         public string hospitalNo { get; set; }
 
         /// <summary>
-        /// 就医机构名称
+        /// khám chữa bệnh cơ quan tên
         /// </summary>
         public string hospitalName { get; set; }
 
         /// <summary>
-        /// 就医机构级别
+        /// khám chữa bệnh cơ quan cấp bậc 
         /// </summary>
         public string hospitalLevel { get; set; }
 
@@ -76,67 +76,67 @@
         public string mzPro { get; set; }
 
         /// <summary>
-        /// 人员属性
+        /// Thuộc tính nhân sự
         /// </summary>
         public string memberPro { get; set; }
 
         /// <summary>
-        /// 人员属性
+        /// Thuộc tính nhân sự
         /// </summary>
         public string memberProName { get; set; }
 
         /// <summary>
-        /// 就诊科室
+        /// Khoa khám bệnh
         /// </summary>
         public string inpatientDepartments { get; set; }
 
         /// <summary>
-        /// 就诊科室
+        /// Khoa khám bệnh
         /// </summary>
         public string inpatientDepartmentsName { get; set; }
 
         /// <summary>
-        /// 经治医生
+        /// Bác sĩ điều trị
         /// </summary>
         public string treatingPhysician { get; set; }
 
         /// <summary>
-        /// 疾病代码
+        /// Mã bệnh
         /// </summary>
         public string diseaseCode { get; set; }
 
         /// <summary>
-        /// 疾病名称
+        /// bệnh tên
         /// </summary>
         public string diseaseName { get; set; }
 
         /// <summary>
-        /// 初步诊断
+        /// Chẩn đoán sơ bộ
         /// </summary>
         public string initialDiagnosis { get; set; }
 
         /// <summary>
-        /// 补偿类别
+        /// Loại bồi thư ờng
         /// </summary>
         public string compensateType { get; set; }
 
         /// <summary>
-        /// 补偿类别
+        /// Loại bồi thư ờng
         /// </summary>
         public string compensateTypeName { get; set; }
 
         /// <summary>
-        /// 补偿机构
+        /// Bồi thư ờng cơ quan
         /// </summary>
         public string compensateMechanism { get; set; }
 
         /// <summary>
-        /// 补偿机构名称
+        /// Bồi thư ờng cơ quan tên
         /// </summary>
         public string compensateMechanismName { get; set; }
 
         /// <summary>
-        /// 补偿日期
+        /// Bồi thư ờng ngày 
         /// </summary>
         public string compensateDate { get; set; }
 
@@ -146,37 +146,37 @@
         public string managerCode { get; set; }
 
         /// <summary>
-        /// 总费用
+        /// Tổng chi phí
         /// </summary>
         public string totalCost { get; set; }
 
         /// <summary>
-        /// 保内费用
+        /// Chi phí trong phạm vi bảo hiểm
         /// </summary>
         public string insuranceCost { get; set; }
 
         /// <summary>
-        /// 起伏线
+        /// mức khởi điểm 
         /// </summary>
         public string undulatingLine { get; set; }
 
         /// <summary>
-        /// 补偿费用
+        /// Chi phí bồi thư ờng
         /// </summary>
         public string compensateCost { get; set; }
 
         /// <summary>
-        /// 自付金额
+        /// tự 付số tiền
         /// </summary>
         public string setPayCost { get; set; }
 
         /// <summary>
-        /// 保内自付金额
+        /// 保 trong tự 付số tiền
         /// </summary>
         public string insurancePayCost { get; set; }
 
         /// <summary>
-        /// 核算金额
+        /// 核 tính số tiền
         /// </summary>
         public string auditCompensateCost { get; set; }
 
@@ -191,217 +191,217 @@
         public string lastAuditDeductionCost { get; set; }
 
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         public string tel { get; set; }
 
         /// <summary>
-        /// 农保补偿比
+        /// bảo hiểm nông nghiệp bồi thư ờng比
         /// </summary>
         public string compensateProportion { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 证件是否齐全
+        /// Giấy tờ đ ã đ ầy đ ủ chưa
         /// </summary>
         public string isIncrease { get; set; }
 
         /// <summary>
-        /// 是否转诊
+        /// Có chuyển viện hay không
         /// </summary>
         public string isReferra { get; set; }
 
         /// <summary>
-        /// 是否扣家庭账户
+        /// Có hay không扣 gia đ ình tài khoản
         /// </summary>
         public string isAccountPay { get; set; }
 
         /// <summary>
-        /// 是统筹
+        /// Là quỹ chung 
         /// </summary>
         public string isOutpPay { get; set; }
 
         /// <summary>
-        /// 地址
+        /// Đ ịa chỉ
         /// </summary>
         public string areaName { get; set; }
 
         /// <summary>
-        /// 操作员编号
+        /// Thao tác viên số hiệu
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 操作员
+        /// Thao tác viên 
         /// </summary>
         public string userName { get; set; }
 
         /// <summary>
-        /// 病人类型
+        /// Loại bệnh nhân
         /// </summary>
         public string inpatientTypeOflocal { get; set; }
 
         /// <summary>
-        /// 银行卡号
+        /// Số thẻ ngân hàng
         /// </summary>
         public string bankCardNo { get; set; }
 
         /// <summary>
-        /// 是否绑定银行卡号
+        /// Có hay khôngLiên kếtSố thẻ ngân hàng
         /// </summary>
         public string isBankCardNo { get; set; }
 
         /// <summary>
-        /// 银行卡号开户人姓
+        /// Họ của chủ tài khoản thẻ ngân hàng
         /// </summary>
         public string accountHolder { get; set; }
 
         /// <summary>
-        /// 患者与开户人关系
+        /// Quan hệ giữa bệnh nhân và chủ tài khoản
         /// </summary>
         public string holderRelation { get; set; }
 
         /// <summary>
-        /// 就医机构名称备注
+        /// khám chữa bệnh cơ quan tênghi chú
         /// </summary>
         public string hospitalNameRemark { get; set; }
 
         /// <summary>
-        /// 保险金额
+        /// bảo hiểm số tiền
         /// </summary>
         public string bxAccount { get; set; }
 
         /// <summary>
-        /// 计算公式
+        /// Tính公 kiểu 
         /// </summary>
         public string jsgs { get; set; }
 
         /// <summary>
-        /// 大额补偿金额
+        /// 大额bồi thư ờng số tiền
         /// </summary>
         public string bigAccountCost { get; set; }
 
         /// <summary>
-        /// 床位包干补偿金额
+        /// Số tiền bồi thư ờng trọn gói giư ờng bệnh
         /// </summary>
         public string cwAccountCost { get; set; }
 
         /// <summary>
-        /// 二次补偿金额
+        /// 二 lần bồi thư ờng số tiền
         /// </summary>
         public string secondCompensateCost { get; set; }
 
         /// <summary>
-        /// 家庭账户抵扣
+        /// gia đ ình tài khoản抵扣
         /// </summary>
         public string accRedeem { get; set; }
 
         /// <summary>
-        /// 累计补偿是否已达封顶线
+        /// lũy kế bồi thư ờng có hay kh ôngĐ ã达封顶线
         /// </summary>
         public string isOverLimitLine { get; set; }
 
         /// <summary>
-        /// 是否保底
+        /// Có hay không保底
         /// </summary>
         public string isLessLimit { get; set; }
 
         /// <summary>
-        /// 年度补偿次数
+        /// năm bồi thư ờng số lần 
         /// </summary>
         public string inpYearCount { get; set; }
 
         /// <summary>
-        /// 病人所属县区编号
+        /// Bệnh nhân thuộc về huyện Quận số hiệu
         /// </summary>
         public string countryCode { get; set; }
 
         /// <summary>
-        /// 病人所属县区名称
+        /// Bệnh nhân thuộc về huyện Quận tên
         /// </summary>
         public string countryName { get; set; }
 
         /// <summary>
-        /// 初审时间
+        /// 初审thời gian
         /// </summary>
         public string auditDate { get; set; }
 
         /// <summary>
-        /// 初审机构
+        /// 初审cơ quan
         /// </summary>
         public string auditOrg { get; set; }
 
         /// <summary>
-        /// 初审人员
+        /// 初审 nhân sự 
         /// </summary>
         public string auditUser { get; set; }
 
         /// <summary>
-        /// 初审扣减原因
+        /// 初审扣减 nguyên nhân 
         /// </summary>
         public string auditRemark { get; set; }
 
         /// <summary>
-        /// 终审时间
+        /// 终审thời gian
         /// </summary>
         public string lastAuditDate { get; set; }
 
         /// <summary>
-        /// 终审机构
+        /// 终审cơ quan
         /// </summary>
         public string lastAuditOrg { get; set; }
 
         /// <summary>
-        /// 终审人员
+        /// 终审 nhân sự 
         /// </summary>
         public string lastAuditUser { get; set; }
 
         /// <summary>
-        /// 终审扣减原因
+        /// 终审扣减 nguyên nhân 
         /// </summary>
         public string lastAuditRemark { get; set; }
 
         /// <summary>
-        /// 补偿状态
+        /// Bồi thư ờng trạng thái
         /// </summary>
         public string state { get; set; }
 
         /// <summary>
-        /// 冲红人员
+        /// ghi đ ỏ nhân sự 
         /// </summary>
         public string destoryUserName { get; set; }
 
         /// <summary>
-        /// 冲红时间
+        /// ghi đ ỏ thời gian
         /// </summary>
         public string destoryDate { get; set; }
 
         /// <summary>
-        /// 终审标识状态
+        /// 终审 dấu hiệu trạng thái
         /// </summary>
         public string lastAuditState { get; set; }
 
         /// <summary>
-        /// 药品费
+        /// Thuốc费
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 检查费
+        /// kiểm tra 费
         /// </summary>
         public string jc { get; set; }
 
         /// <summary>
-        /// 治疗费
+        /// điều trị 费
         /// </summary>
         public string zl { get; set; }
 
         /// <summary>
-        /// 床位费
+        /// giư ờng bệnh 费
         /// </summary>
         public string cw { get; set; }
 
@@ -411,32 +411,32 @@
         public string cl { get; set; }
 
         /// <summary>
-        /// 其他费
+        /// Khác费
         /// </summary>
         public string qt { get; set; }
 
         /// <summary>
-        /// 民政局补偿金额
+        /// 民政局bồi thư ờng số tiền
         /// </summary>
         public string mzjCompensateCost { get; set; }
 
         /// <summary>
-        /// 计生补偿金额
+        /// 计生bồi thư ờng số tiền
         /// </summary>
         public string jsCompensateCost { get; set; }
 
         /// <summary>
-        /// 大病保险补偿金额
+        /// 大病 bảo hiểm bồi thư ờng số tiền
         /// </summary>
         public string sbCost { get; set; }
 
         /// <summary>
-        /// 大病保险上传标识
+        /// 大病 bảo hiểm tải lên dấu hiệu 
         /// </summary>
         public string sbState { get; set; }
 
         /// <summary>
-        /// 付款对象
+        /// 付 khoản Đ ối tư ợng
         /// </summary>
         public string bus_type { get; set; }
 
@@ -446,12 +446,12 @@
         public string lockedStatus { get; set; }
 
         /// <summary>
-        /// 主要治疗方式
+        /// chủ yếu điều trị phư ơng thức 
         /// </summary>
         public string cureType { get; set; }
 
         /// <summary>
-        /// 主要治疗方式
+        /// chủ yếu điều trị phư ơng thức 
         /// </summary>
         public string cureTypeName { get; set; }
 
@@ -461,107 +461,107 @@
         public string degree { get; set; }
 
         /// <summary>
-        /// 就诊次数
+        /// Khám bệnh số lần 
         /// </summary>
         public string visits { get; set; }
 
         /// <summary>
-        /// 家庭账户余额
+        /// gia đ ình số dư tài khoản
         /// </summary>
         public string accountLeftCost { get; set; }
 
         /// <summary>
-        /// 精准民政属性
+        /// 精准民政 thuộc tính 
         /// </summary>
         public string jzmzName { get; set; }
 
         /// <summary>
-        /// 精准计生属性
+        /// 精准计生 thuộc tính 
         /// </summary>
         public string jzjsName { get; set; }
 
         /// <summary>
-        /// 精准目录进口目录费用
+        /// 精准目录进口目录chi phí
         /// </summary>
         public string jzImportCost { get; set; }
 
         /// <summary>
-        /// 精准目录国产目录费用
+        /// 精准目录国产目录chi phí
         /// </summary>
         public string jzHomeCost { get; set; }
 
         /// <summary>
-        /// 精准目录补偿金额
+        /// Bồi thư ờng danh mục chính xác số tiền
         /// </summary>
         public string jzCompensateCost { get; set; }
 
         /// <summary>
-        /// 兜底补偿金额
+        /// 兜底bồi thư ờng số tiền
         /// </summary>
         public string ddCost { get; set; }
 
         /// <summary>
-        /// 新精准优抚补偿
+        /// Bồi thư ờng ưu đ ãi chính xác mới
         /// </summary>
         public string salvaYFCost { get; set; }
 
         /// <summary>
-        /// 新精准残联补偿
+        /// Bồi thư ờng hội ngư ời khuyết tật chính xác mới
         /// </summary>
         public string salvaCLCost { get; set; }
 
         /// <summary>
-        /// 新精准扶贫补偿
+        /// Bồi thư ờng xóa đ ói giảm nghèo chính xác mới
         /// </summary>
         public string salvaFPCost { get; set; }
 
         /// <summary>
-        /// 新精准疾控补偿
+        /// Bồi thư ờng kiểm soát dịch bệnh chính xác mới
         /// </summary>
         public string salvaJKCost { get; set; }
 
         /// <summary>
-        /// 新精准优抚属性
+        /// mới 精准优抚 thuộc tính 
         /// </summary>
         public string salvaYFName { get; set; }
 
         /// <summary>
-        /// 新精准残联属性
+        /// mới 精准残联 thuộc tính 
         /// </summary>
         public string salvaCLName { get; set; }
 
         /// <summary>
-        /// 新精准扶贫属性
+        /// mới 精准扶贫 thuộc tính 
         /// </summary>
         public string salvaFPName { get; set; }
 
         /// <summary>
-        /// 新精准疾控属性
+        /// mới 精准疾控 thuộc tính 
         /// </summary>
         public string salvaJKName { get; set; }
 
         /// <summary>
-        /// 合医二次补偿
+        /// 合医二 lần bồi thư ờng
         /// </summary>
         public decimal medicalSecondCost { get; set; }
 
         /// <summary>
-        /// 特困供养
+        /// nuôi dư ỡng ngư ời đ ặc biệt khó khăn 
         /// </summary>
         public decimal specialPovertyCost { get; set; }
 
         /// <summary>
-        /// 医疗扶助
+        /// trợ giúp y tế 
         /// </summary>
         public decimal medicalAssistanceCost { get; set; }
 
         /// <summary>
-        /// 医生级别
+        /// Bác sĩ cấp bậc 
         /// </summary>
         public string docatorRank { get; set; }
 
         /// <summary>
-        /// 大地保险补偿金额
+        /// Số tiền bồi thư ờng bảo hiểm Dadi
         /// </summary>
         public decimal continentInsuranceCost { get; set; }
 

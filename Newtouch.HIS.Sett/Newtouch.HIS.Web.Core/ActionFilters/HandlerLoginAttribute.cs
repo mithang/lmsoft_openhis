@@ -4,7 +4,7 @@ using Newtouch.Tools;
 namespace System.Web.Mvc
 {
     /// <summary>
-    /// 登录状态验证
+    /// đ ăng nhập trạng thái xác minh
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerLoginAttribute : AuthorizeAttribute

@@ -23,7 +23,7 @@ namespace Newtouch.HIS.DomainServices.NonTreatmentItemManage
 
         #region 记账
         /// <summary>
-        /// 根据病历号查patid和xm
+        /// theo số hồ sơ bệnh án tra cứu patid Vàxm
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="orgId"></param>
@@ -81,7 +81,7 @@ WHERE brjbxx.OrganizeId=@orgId
 
         #region 记账退费
         /// <summary>
-        /// 记账退费查询
+        /// Ghi sổ hoàn phí tra cứu
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="smry"></param>
@@ -210,7 +210,7 @@ WHERE 1=1
         #region 记账查询
 
         /// <summary>
-        /// 获取收费项目分类List
+        /// Lấy hạng mục thu phí phân loạiList
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -235,7 +235,7 @@ and ParentId is not null
         }
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="sffl"></param>
         /// <param name="keyword"></param>

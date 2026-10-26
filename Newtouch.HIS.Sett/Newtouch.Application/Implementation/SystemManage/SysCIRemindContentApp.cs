@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Application
 
 
         /// <summary>
-        /// 收费大类所有数据
+        /// Thu phí loại lớn tất cả các dữ liệu
         /// </summary>
         /// <returns></returns>
         public List<SysChargeItemWarningContentEntity> GetList()
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取所有收费大类下拉框
+        /// Lấy tất cả các thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         public string GetdlSelect()
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// Grid筛选查询显示
+        /// GridHiển thị tra cứu lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

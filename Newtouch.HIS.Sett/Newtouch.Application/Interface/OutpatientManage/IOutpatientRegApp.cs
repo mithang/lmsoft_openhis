@@ -13,10 +13,10 @@ namespace Newtouch.HIS.Application.Interface
     public interface IOutpatientRegApp
     {
         /// <summary>
-        /// 挂号排班List
+        /// Đ ăng ký khám lịch trực List
         /// </summary>
-        /// <param name="keyword">科室/医生</param>
-        /// <param name="mzlx">门诊类型 普通门诊/急症/专家门诊</param>
+        /// <param name="keyword">Khoa/Bác sĩ</param>
+        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/急症/Phòng khám chuyên gia</param>
         /// <returns></returns>
         List<RegScheduleVO> GetRegScheduleList(string keyword, string mzlx);
 
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Interface
         void CheckInvoice(string inputFph);
 
         /// <summary>
-        /// 门诊挂号保存
+        /// Đ ăng ký khám ngoại trú lưu
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="kh"></param>
@@ -43,12 +43,12 @@ namespace Newtouch.HIS.Application.Interface
         /// <param name="isGbf"></param>
         /// <param name="ghpbId"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">病人性质由页面传过来，因为医保患者可以挂自费</param>
-        /// <param name="notSett">true暂时不结（门诊收费时一起结），否则结</param>
-        /// <param name="ybjsh">医保端结算号</param>
-        /// <param name="qzjzxh">前置就诊序号</param>
-        /// <param name="qzmzh">前置门诊号</param>
-        /// <param name="mzyyghId">门诊预约挂号ID 对应Newtouch_CIS.dbo.mz_yygh.Id</param>
+        /// <param name="brxz">Tính chất bệnh nhân由trang truyền qua 来,因là BHYTbệnh nhân có thể挂tự trả</param>
+        /// <param name="notSett">true tạm thời không 结(ngoại trú thu phí giờ cùng nhau 结),nếu không结</param>
+        /// <param name="ybjsh">BHYT端số quyết toán</param>
+        /// <param name="qzjzxh"> trư ớc 置số thứ tự khám bệnh</param>
+        /// <param name="qzmzh"> trư ớc 置số khám ngoại trú</param>
+        /// <param name="mzyyghid">Đ ặt lịch đ ăng ký khám ngoại trú ID Tư ơng ứngNewtouch_CIS.dbo.mz_yygh.Id</param>
         /// <returns></returns>
         void Save(int patid, string kh, string ghly, string mjzbz,
             string ks, string ys, string ksmc, string ysmc, string ghxm, string zlxm
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Application.Interface
         void CheckBrxz(string kh, string updateBrxz);
 
         /// <summary>
-        /// 预约挂号
+        /// Đ ặt lịch đ ăng ký khám
         /// </summary>
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>

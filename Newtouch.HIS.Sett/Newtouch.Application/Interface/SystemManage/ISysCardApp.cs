@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Application
     public interface ISysCardApp
     {
         /// <summary>
-        /// 根据卡号获取病人内码
+        /// theo số thẻ lấy bệnh nhân mã nội bộ
         /// </summary>
         /// <param name="cardno"></param>
         /// <returns></returns>
@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Application
 
 
         /// <summary>
-        /// 获取新虚拟卡 卡号
+        /// Lấy mới 虚拟 thẻ số thẻ
         /// </summary>
         /// <returns></returns>
         string GetCardSerialNo();

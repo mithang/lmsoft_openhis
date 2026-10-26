@@ -6,48 +6,48 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方新增请求
+    /// Đ ơn thuốc thêm mới yêu cầu 
     /// </summary>
     public class PrescriptionAddRequest : RequestBase
     {
         /// <summary>
-        /// 病历号
+        /// Số hồ sơ bệnh án
         /// </summary>
         [Required]
         public string blh { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         [Required]
         public string mzh { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         [Required]
         public string cfh { get; set; }
 
         /// <summary>
-        /// 医生（医生工号）
+        /// Bác sĩ(bác sĩ mã nhân viên)
         /// </summary>
         [Required]
         public string ys { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         [Required]
         public DateTime OperateTime { get; set; }
 
         /// <summary>
-        /// 药品明细
+        /// Chi tiết thuốc
         /// </summary>
         [Required]
         public IList<PrescriptionMedicineItemDTO> MedicineItems { get; set; }
 
         /// <summary>
-        /// 治疗项目明细
+        /// Chi tiết hạng mục điều trị
         /// </summary>
         [Required]
         public IList<PrescriptionTreamentItemDTO> TreamentItems { get; set; }

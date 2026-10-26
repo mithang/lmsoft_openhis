@@ -1,6 +1,6 @@
 ﻿/*********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 住院管理》账户管理》
+// Copyright (C) 2016 Newtouch Giữ bản quyền. 
+// Description: Nhập viện quản lý >Quản lý tài khoản>
 // Author：HLF
 // CreateDate： 2016/12/8 12:01:42 
 //**********************************************************/
@@ -25,14 +25,14 @@ namespace Newtouch.HIS.Application
         bool CheckSJPZH(string pzh, out FinanceReceiptEntity sjEntity, out string type);
         bool PayDepositPost(DeposDto dto, out string szid);
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
         /// <param name="dto"></param>
-        /// <returns>返回新账户信息</returns>
+        /// <returns>Quay lại mới tài khoản thông tin</returns>
         SysAccountEntity PayDepositPostAcnt(DeposDto dto);
         bool ExitDepositPost(DeposDto dto);
         /// <summary>
-        /// 余额全退
+        /// số dư hoàn toàn bộ
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -40,19 +40,19 @@ namespace Newtouch.HIS.Application
         decimal GetzhYe(int zh);
         
         /// <summary>
-        /// 获得账户余额
+        /// nhận đ ược số dư tài khoản
         /// </summary>
         decimal GetZhyeByPatid(int patid);
         decimal GetZhyeByPatid(int patid,int zhxz);
 
         /// <summary>
-        /// 获取患者基本信息
+        /// Lấy bệnh nhân cơ bản thông tin
         /// add by HLF
-        /// 根据住院号 、卡号 、 姓名查询
+        /// theo số nhập viện, số thẻ, họ têntra cứu
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         HosPatAccountActionVO GetHosPatInfo(string zyh);
     }

@@ -72,7 +72,7 @@ namespace Newtouch.HIS.DomainServices
 		{
 			using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
 			{
-				//首先检查重复生成
+				// đ ầu tiên kiểm tra trùng lặp tạo
 				if (!isregenerate)
 				{
 					if (db.IQueryable<RptMonthReportDetailEntity>().Any(p => p.OrganizeId == orgId && p.year == year && p.month == month))
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.DomainServices
 					foreach (var old in olds)
 					{
 						old.Modify();
-						old.zt = "0";   //置为无效
+						old.zt = "0";   //置là không hiệu lực
 						db.Update(old);
 					}
 				}
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.DomainServices
 				,new SqlParameter("@jssj", jssj) ,new SqlParameter("@orgId", orgId),new SqlParameter("@doctor", czr) });
 		}
 
-		//获取大类名称
+		//Lấy loại lớn tên
 		public IList<GetDlMc> GetDlMc(string OrganizeId)
 		{
 			return FindList<GetDlMc>(@"select dlmc,dlcode from  NewtouchHIS_Base..xt_sfdl where OrganizeId=@orgId and zt='1' ", new DbParameter[] { new SqlParameter("@orgId", OrganizeId) });
@@ -231,7 +231,7 @@ namespace Newtouch.HIS.DomainServices
 			return list;
 		}
 
-        //获取收费项目
+        //LấyHạng mục thu phí
         public IList<getsfxm> Getsfxm(Pagination pagination, string xzstr,string py,string sfdl, string OrganizeId)
         {
             if (xzstr==null)
@@ -255,7 +255,7 @@ namespace Newtouch.HIS.DomainServices
             }
             return this.QueryWithPage<getsfxm>(sql, pagination, new[] { new SqlParameter("@xzstr", xzstr), new SqlParameter("@py", py), new SqlParameter("@orgId", OrganizeId), new SqlParameter("@sfdl", sfdl) });
         }
-        //获取交易记录库
+        //Lấy giao dịch bản ghi kho 
         public IList<GetJyllk> GetJyjlData(Pagination pagination, string ksrq, string jsrq, string OrganizeId)
         {
             string sql = @"select 
@@ -338,7 +338,7 @@ and gh.OrganizeId=@orgId";
             return this.FindList<GetJyllk>(sql, new[] { new SqlParameter("@ksrq", ksrq), new SqlParameter("@jsrq", jsrq), new SqlParameter("@orgId", OrganizeId) });
         }
         /// <summary>
-        /// 门急诊大病挂号库
+        /// cửa cấp cứu大病Đ ăng ký khám kho 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>
@@ -406,7 +406,7 @@ and ybjs.setl_time<=@jsrq and gh.OrganizeId=@orgId";
             return this.FindList<OutpatientRegistrationVO>(sql, new[] { new SqlParameter("@ksrq", ksrq), new SqlParameter("@jsrq", jsrq), new SqlParameter("@orgId", OrganizeId) });
         }
         /// <summary>
-        /// 获取门急诊大病加床收费数据
+        /// Lấy cửa cấp cứu大病加床thu phí dữ liệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

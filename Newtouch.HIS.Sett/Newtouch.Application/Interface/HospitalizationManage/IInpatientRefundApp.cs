@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Application.Interface.HospitalizationManage
     public interface IInpatientRefundApp
     {
         /// <summary>
-        /// 获取(计费和已退合计的)计费明细（包括治疗项目和非治疗项目）
+        /// Lấy(tính phí và đã hoàn tổng cộng của) tính phí chi tiết(bao gồm hạng mục điều trị và không phải hạng mục điều trị)
         /// </summary>
         InpatientSettPatStatusDetailDto InpatientRefundQuery(string zyh, DateTime? kssj, DateTime? jssj, string ks = null, string xmlb = null, string xmmc = null);
      }

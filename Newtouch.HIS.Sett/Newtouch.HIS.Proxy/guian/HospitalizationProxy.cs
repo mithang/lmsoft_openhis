@@ -9,7 +9,7 @@ using Newtouch.HIS.Proxy.guian.DTO.S16;
 namespace Newtouch.HIS.Proxy.guian
 {
     /// <summary>
-    /// 住院管理相关
+    /// Nhập viện quản lý liên quan 
     /// </summary>
     public class HospitalizationProxy
     {
@@ -30,12 +30,12 @@ namespace Newtouch.HIS.Proxy.guian
 
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public static string OrganizeId { get; set; }
 
         ///// <summary>
-        ///// 入院办理
+        ///// Nhập viện làm thủ tục 
         ///// </summary>
         ///// <param name="inBody"></param>
         ///// <returns></returns>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Proxy.guian
         //    //        return new ResponseBaseDTO<S04ResponseDTO>
         //    //        {
         //    //            state = false,
-        //    //            message = "S02认证鉴权接口调用失败",
+        // // message = "S02认证鉴权giao diện gọi thất bại",
         //    //            data = null
         //    //        };
         //    //    }
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Proxy.guian
         //    #endregion
         //}
         /// <summary>
-        /// 入院办理回退
+        /// Nhập viện làm thủ tục trả lại 
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Proxy.guian
             //        return new ResponseBaseDTO<string>
             //        {
             //            state = false,
-            //            message = "S02认证鉴权接口调用失败",
+            // message = "S02认证鉴权giao diện gọi thất bại",
             //            data = null
             //        };
             //    }
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         ///// <summary>
-        ///// 入院办理信息修改
+        ///// Nhập viện làm thủ tục thông tin sửa
         ///// </summary>
         ///// <param name="inBody"></param>
         ///// <returns></returns>
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Proxy.guian
         //}
 
         /// <summary>
-        /// 出院办理
+        /// Xuất viện làm thủ tục 
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 出院办理回退
+        /// Xuất viện làm thủ tục trả lại 
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Proxy.guian
             //return WebServiceHelper.xnh_HospitalCall<S08RequestDTO, string>(inBody, "S08");
         }
         /// <summary>
-        /// 住院费用明细上传
+        /// Nhập việnchi phí chi tiết tải lên
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -171,7 +171,7 @@ namespace Newtouch.HIS.Proxy.guian
             //return WebServiceHelper.xnh_HospitalCall<S10RequestDTO,S10ResponseDTO>(inBody, "S10");
         }
         /// <summary>
-        /// 住院费用明细查询
+        /// Nhập việnchi phí chi tiếttra cứu
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.Proxy.guian
             //};
         }
         /// <summary>
-        /// 住院费用明细退单
+        /// Nhập việnchi phí chi tiết trả lại đ ơn 
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace Newtouch.HIS.Proxy.guian
             //return WebServiceHelper.xnh_HospitalCall<S12RequestDTO, string>(inBody, "S12");
         }
         /// <summary>
-        /// 住院模拟结算
+        /// Nhập viện mô phỏng quyết toán
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -210,7 +210,7 @@ namespace Newtouch.HIS.Proxy.guian
             //return WebServiceHelper.xnh_HospitalCall<S13RequestDTO, S13ResponseDTO>(inBody, "S13");
         }
         /// <summary>
-        /// 住院结算
+        /// Quyết toán nhập viện
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -221,7 +221,7 @@ namespace Newtouch.HIS.Proxy.guian
             //return WebServiceHelper.xnh_HospitalCall<S14RequestDTO, S14ResponseDTO>(inBody, "S14");
         }
         /// <summary>
-        /// 住院冲红
+        /// Nhập viện ghi đ ỏ 
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace Newtouch.HIS.Proxy.guian
             //return WebServiceHelper.xnh_HospitalCall<S15RequestDTO, string>(inBody, "S15");
         }
         /// <summary>
-        /// 16获取住院结算单信息
+        /// 16 lấy quyết toán nhập viện đ ơn thông tin
         /// </summary>
         /// <param name="inBody"></param>
         /// <returns></returns>
@@ -257,7 +257,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 入院办理
+        /// Nhập viện làm thủ tục 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -268,7 +268,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 入院办理修改
+        /// Nhập viện làm thủ tục sửa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

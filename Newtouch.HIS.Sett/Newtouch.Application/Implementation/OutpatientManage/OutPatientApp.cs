@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutPatientUniversalDmnService _outPatientUniversalDmnService;
 
         /// <summary>
-        /// 保存门诊记账（仅新增）
+        /// Lưughi sổ ngoại trú(chỉ thêm mới)
         /// </summary>
         public void SaveoutpatientAccountInfo(OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> accDto, string orgId)
         {
@@ -37,12 +37,12 @@ namespace Newtouch.HIS.Application.Implementation
             }
             var ItemsGroupBO = new FeeItemsGroupedBO
             {
-                xmList = new List<OutpatientItemEntity>(),//新增项目明细
+                xmList = new List<OutpatientItemEntity>(),//Thêm chi tiết hạng mục
             };
             foreach (var item in accDto)
             {
-                int zsl = 0;//总计费数量
-                var dcsl = 0;//单次数量=治疗量/单位计量数
+                int zsl = 0;//总 tính phí số lư ợng
+                var dcsl = 0;// mỗi lần số lư ợng= điều trị lư ợng /Đ ơn vị计 lư ợng 数
                 int? zzll = item.zll * item.sl;
                 var zje = item.Zje;
                 if (item.sfxmCode != null)
@@ -50,10 +50,10 @@ namespace Newtouch.HIS.Application.Implementation
                     dcsl = CommmHelper.CalcSfxmSl(item.zll, item.dwjls, item.jjcl);
                     //总数
                     zsl = (dcsl * item.sl).ToInt();
-                    zje = zsl * item.dj;    //重新计算总金额
+                    zje = zsl * item.dj;    //LạiTínhTổng số tiền
                 }
 
-                //门诊项目
+                //Hạng mục ngoại trú
                 var mzxm = new OutpatientItemEntity
                 {
                     xmnm = 0,
@@ -65,16 +65,16 @@ namespace Newtouch.HIS.Application.Implementation
                     dw = item.dw,
                     zzll = zzll,
                     dczll = item.zll,
-                    zxcs = item.sl, //执行次数
+                    zxcs = item.sl, // thực hiện số lần 
                     bz = item.bz,
-                    ssbz = "9",    //直接进入 实施过程中 这样 不可操作退费
+                    ssbz = "9",    //Trực tiếp进入 thực hiện quá trình trong như vậy không có thể thao tác hoàn phí
                     sfrq = item.jzsj
                 };
                 mzxm.Create();
                 ItemsGroupBO.xmList.Add(mzxm);
             }
 
-            //新项目 薪结算
+            // mới hạng mục 薪quyết toán
             if (ItemsGroupBO.xmList != null && ItemsGroupBO.xmList.Count() > 0)
             {
                 IList<int> cfnmList = new List<int>();
@@ -82,14 +82,14 @@ namespace Newtouch.HIS.Application.Implementation
                 IList<string> updateSkipSettledCfhList;
                 IList<FeeItemsGroupedBO> ItemsGroupBOList = new List<FeeItemsGroupedBO>();
                 ItemsGroupBOList.Add(ItemsGroupBO);
-                //提交明细（处方的话更新主表信息）
+                //Gửichi tiết(Đ ơn thuốc thì cập nhật bảng chính thông tin)
                 _outPatientUniversalDmnService.SubmitItems(orgId, out cfnmList, out xmnmList, out updateSkipSettledCfhList, ghIsExits.mzh, ghIsExits.ys, ItemsGroupBOList);
-                // 更新门诊处方的结算信息（更新结算信息）
+                // Cập nh ậtĐ ơn thuốc ngoại trú của thông tin quyết toán(cập nhật thông tin quyết toán)
                 var settAddBO = new OutpatientSettlementAddBO()
                 {
                     cfnmList = cfnmList,
                     xmnmList = xmnmList,
-                    autoGenePlan = true,    //自动生成门诊计划
+                    autoGenePlan = true,    // tự đ ộng tạo ngoại trú kế hoạch 
                 };
                 _outPatientUniversalDmnService.AddSettlement(orgId, ghIsExits.mzh, settAddBO);
             }

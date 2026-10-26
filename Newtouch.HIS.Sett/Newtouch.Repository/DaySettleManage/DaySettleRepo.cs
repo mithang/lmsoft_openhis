@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 出院结算时检查是否有未完成且未终止的执行计划
+        /// Quyết toán xuất viện giờ kiểm tra có hay không có chưa hoàn thành và chưa chấm dứt của kế hoạch thực hiện 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

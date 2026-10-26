@@ -10,7 +10,7 @@ using Newtouch.HIS.Sett.Request.OutPatientPharmacy;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 门诊药房
+    /// Nhà thuốc ngoại trú
     /// </summary>
     [RoutePrefix("api/OutpatientPharmacy")]
     public class OutpatientPharmacyController : ApiControllerBase<OutpatientPharmacyController>
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊排药合计信息（待排药）
+        /// Ngoại trú xếp thuốc tổng cộng thông tin(chờ xếp thuốc)
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
 
         /// <summary>
-        /// 补打发药单 查询发药信息
+        /// In bù phát thuốc đ ơn tra cứu phát thuốc thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊排药查询
+        /// Ngoại trú xếp thuốc tra cứu
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊排药药品详细查询
+        /// Ngoại trú xếp thuốc thuốc详细tra cứu
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 根据处方内码获取排药参数list
+        /// theo mã nội bộ đ ơn thuốc lấy xếp thuốc tham sốlist
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 根据处方内码获取排药参数list
+        /// theo mã nội bộ đ ơn thuốc lấy xếp thuốc tham sốlist
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 排药后更新mz_cf表的排药日期，排药人员，领药窗口，发药标志
+        /// xếp thuốc sau cập nhậtmz_cf bảng của xếp thuốc ngày, xếp thuốc nhân sự,领药窗口, dấu hiệu phát thuốc 
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询主表信息
+        /// Phát thuốc ngoại trú tra cứu bảng chính thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询处方详细信息
+        /// Phát thuốc ngoại trú tra c ứuĐ ơn thuốc thông tin chi tiết
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -178,7 +178,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊发药,发药时获取处方验证信息
+        /// Phát thuốc ngoại trú, phát thuốc giờ LấyĐ ơn thuốc xác minh thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -195,7 +195,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊发药,发药时获取处方验证信息
+        /// Phát thuốc ngoại trú, phát thuốc giờ LấyĐ ơn thuốc xác minh thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -212,7 +212,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 发药完成后更新处方表的发药标志
+        /// phát thuốc hoàn thành sau cập nh ậtĐ ơn thuốc bảng của dấu hiệu phát thuốc 
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -229,7 +229,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊退药显示主表信息
+        /// Ngoại trú trả thuốc hiển thị bảng chính thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -246,7 +246,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊退药查询处方详细信息
+        /// Ngoại trú trả thuốc tra c ứuĐ ơn thuốc thông tin chi tiết
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -263,7 +263,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询 查主表信息
+        /// Phát thuốc ngoại trú tra cứu tra cứu bảng chính thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -280,7 +280,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询显示子表信息
+        /// Phát thuốc ngoại trú tra cứu hiển thị子 bảng thông tin
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -297,7 +297,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 已结算处方明细查询
+        /// Đ ã quyết toán tính chi tiết đ ơn thuốctra cứu
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -314,7 +314,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 通知门诊退药
+        /// thông báo ngoại trú trả thuốc 
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

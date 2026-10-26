@@ -1,27 +1,27 @@
 ﻿namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// 发药处方药品信息
+    /// phát thuốc Đ ơn thuốc thuốc thông tin
     /// </summary>
     public class fyCfYpInfo
     {
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đ ơn thuốc
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đ ơn thuốcID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// ThuốcMã
         /// </summary>
         public string yp { get; set; }
     }

@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Proxy.guian
 
         }
         /// <summary>
-        /// 对于返回是List，且data下直接是detail的集合
+        /// đ ối với quay lại là List, và data dư ới trực tiếp Làdetail của tập hợp 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="V"></typeparam>
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Proxy.guian
 
         }
         /// <summary>
-        /// 对于返回是List，且data下直接是Inp的集合
+        /// đ ối với quay lại là List, và data dư ới trực tiếp là Inp của tập hợp 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="V"></typeparam>

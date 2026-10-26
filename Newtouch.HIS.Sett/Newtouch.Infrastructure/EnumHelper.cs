@@ -10,7 +10,7 @@ namespace Newtouch.Infrastructure
         #region 获取枚举列表
 
         /// <summary>
-        /// 通过枚举对象获取枚举列表
+        /// thông qua enum Đ ối tư ợng lấy enum danh sách
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.Infrastructure
         }
  
         /// <summary>
-        /// 通过枚举类型获取枚举列表
+        /// thông qua enum loại lấy enum danh sách
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
@@ -43,7 +43,7 @@ namespace Newtouch.Infrastructure
          
 
         /// <summary>
-        /// 通过枚举对象获取所有枚举
+        /// thông qua enum Đ ối tư ợng lấy tất cả các enum 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value">The value.</param>
@@ -57,7 +57,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Gets all items for an enum type.（通过枚举类型获取所有枚举）
+        /// Gets all items for an enum type.(thông qua enum loại lấy tất cả các enum)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace Newtouch.Infrastructure
 
         #region dictionary
         /// <summary>
-        /// Enum转Dictionary
+        /// Enum chuyển Dictionary
         /// </summary>
         /// <returns></returns>
         public static Dictionary<int, string> GetEnumDic<TEnum>()
@@ -83,12 +83,12 @@ namespace Newtouch.Infrastructure
                 .ToDictionary(t => Convert.ToInt32(t), t => t.ToString());
         }
         /// <summary>
-        /// 枚举转字典集合(Key是value,Value是description（如果不存在description 则是name）)
+        /// enum chuyển từ điển tập hợp (Key Làvalue,Value Làdescription(nếu không tồn tại Tạidescription thì Làname))
         /// </summary>
-        /// <typeparam name="T">枚举类名称</typeparam>
-        /// <param name="keyDefault">默认key值</param>
-        /// <param name="valueDefault">默认value值</param>
-        /// <returns>返回生成的字典集合</returns>
+        /// <typeparam name="T"> enum loại tên</typeparam>
+        /// <param name="keyDefault">Mặc đ ịnhkey giá trị </param>
+        /// <param name="valueDefault">Mặc đ ịnhvalue giá trị </param>
+        /// <returns>Quay lại tạo của từ điển tập hợp </returns>
         public static Dictionary<string, object> EnumListDic<T>(string keyDefault, string valueDefault = "")
         {
             Dictionary<string, object> dicEnum = new Dictionary<string, object>();
@@ -97,25 +97,25 @@ namespace Newtouch.Infrastructure
             {
                 return dicEnum;
             }
-            if (!string.IsNullOrEmpty(keyDefault)) //判断是否添加默认选项
+            if (!string.IsNullOrEmpty(keyDefault)) // phán đoán có hay không thêm mặc đ ịnh tùy chọn 
             {
                 dicEnum.Add(keyDefault, valueDefault);
             }
-            string[] fieldstrs = Enum.GetNames(enumType); //获取枚举字段数组
+            string[] fieldstrs = Enum.GetNames(enumType); //Lấy enum trư ờng 数 nhóm 
             foreach (var item in fieldstrs)
             {
                 string description = string.Empty;
                 var field = enumType.GetField(item);
-                object[] arr = field.GetCustomAttributes(typeof(DescriptionAttribute), true); //获取属性字段数组
+                object[] arr = field.GetCustomAttributes(typeof(DescriptionAttribute), true); //Lấy thuộc tính trư ờng 数 nhóm 
                 if (arr != null && arr.Length > 0)
                 {
-                    description = ((DescriptionAttribute)arr[0]).Description;   //属性描述
+                    description = ((DescriptionAttribute)arr[0]).Description;   // thuộc tính mô tả
                 }
                 else
                 {
-                    description = item;  //描述不存在取字段名称
+                    description = item;  //Mô tả không tồn tại tại取 trư ờng tên
                 }
-                dicEnum.Add(description, (int)Enum.Parse(enumType, item));  //不用枚举的value值作为字典key值的原因从枚举例子能看出来，其实这边应该判断他的值不存在，默认取字段名称
+                dicEnum.Add(description, (int)Enum.Parse(enumType, item));  // không cần enum Củavalue giá trị 作là từ điển key giá trị của nguyên nhân từ enum 例子 có thể 看出来, thực ra này 边nên phán đoán 他của giá trị không tồn tại tại,mặc đ ịnh取 trư ờng tên
             }
             return dicEnum;
         }

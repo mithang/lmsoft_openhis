@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Application
         private readonly ISysMedicalTechItemMappRepo _sysMedicalTechItemMappRepo;
 
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -47,13 +47,13 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// Grid筛选查询显示
+        /// GridHiển thị tra cứu lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
         public DataTable GetListBySearch(string keyword)
         {
-            //xt_yjxmdz 根据xm 找到 对于 执行科室
+            //xt_yjxmdz theo xm 找 đ ến đ ối với thực hiện khoa
             return null;
         }
     }

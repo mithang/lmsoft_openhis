@@ -24,7 +24,7 @@ namespace Newtouch.HIS.DomainServices.NewFolder1
         }
 
         /// <summary>
-        /// 获取商保备案列表
+        /// Lấy bảo hiểm thư ơng mại 备案danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.DomainServices.NewFolder1
         }
 
         /// <summary>
-        /// 提交商保
+        /// Gửi bảo hiểm thư ơng mại 
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="KeyValue"></param>

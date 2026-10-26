@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Sett.Rehab.Controllers.BookkeepInHosControll
         }
 
         /// <summary>
-        /// 执行记账
+        /// thực hiện ghi sổ
         /// </summary>
         /// <returns></returns>
         public ActionResult PerformAccount()

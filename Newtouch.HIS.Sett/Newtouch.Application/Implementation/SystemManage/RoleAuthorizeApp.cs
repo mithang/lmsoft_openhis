@@ -9,7 +9,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 角色权限App
+    /// Vai trò quyền hạn App
     /// </summary>
     public class RoleAuthorizeApp : IRoleAuthorizeApp
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取角色授权列表
+        /// Lấyvai trò ủy quyền danh sách
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 权限验证
+        /// quyền hạn xác minh
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="moduleId"></param>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Application
             var moduledata = _moduleRepository.IQueryable().ToList();
             var buttondata = _moduleButtonRepository.IQueryable().ToList();
 
-            //包括 菜单按钮
+            //Bao gồm menu nút 
             var orgAuthedItemId = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1"
  && (t.TopOrganizeId == "*" || t.TopOrganizeId == Constants.TopOrganizeId)).Select(p => p.ItemId).ToList();
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //如果加了HandlerAuthorizeAttribute，就要求有对应的Meum/MenuButton 且有设置Url
+                    //Nếu加 HandlerAuthorizeAttribute, thì cần yêu cầu có Tư ơng ứng củaMeum/MenuButton và có đặturl
                     string[] url = item.UrlAddress.Split('?');
                     if (item.Id == moduleId && url[0] == action)
                     {

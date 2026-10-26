@@ -35,7 +35,7 @@ namespace Newtouch.HIS.DomainServices
         #region 日结算查询
 
         /// <summary>
-        /// 门诊日结算查询
+        /// Ngoại trú ngày quyết toántra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -60,7 +60,7 @@ where 1 = 1 and a.OrganizeId = @orgId and a.zt = '1' and a.mzzybz = @mzzybz");
         }
 
         /// <summary>
-        /// 获取上次日结算时间
+        /// Lấy trên lần ngày quyết toán thời gian
         /// </summary>
         /// <returns></returns>
         public string getLastSettDate(string mzzybz)
@@ -141,7 +141,7 @@ where 1 = 1 and a.OrganizeId = @orgId and a.zt = '1' and a.mzzybz = @mzzybz");
                 daySettleOb.OrganizeId = orgId;
                 db.Insert(daySettleOb);
 
-                //获取结算明细
+                //Lấy chi tiết quyết toán
                 //var jsmxList = db.IQueryable<DaySettleMxEntity>(p => p.Id == "").ToList();
                 //foreach (var item in jsmxList)
                 //{
@@ -153,7 +153,7 @@ where 1 = 1 and a.OrganizeId = @orgId and a.zt = '1' and a.mzzybz = @mzzybz");
         }
 
         /// <summary>
-        /// 住院日结算
+        /// Nhập việnNgàyQuyết toán
         /// </summary>
         public void SaveInpatientDaySettleInfo(DateTime? kssj, DateTime jssj, string CreatorCode, string orgId)
         {
@@ -201,7 +201,7 @@ where 1 = 1 and a.OrganizeId = @orgId and a.zt = '1' and a.mzzybz = @mzzybz");
                 daySettleOb.OrganizeId = orgId;
                 db.Insert(daySettleOb);
 
-                //获取结算明细
+                //Lấy chi tiết quyết toán
                 //var jsmxList = db.IQueryable<DaySettleMxEntity>(p => p.Id == "").ToList();
                 //foreach (var item in jsmxList)
                 //{
@@ -213,7 +213,7 @@ where 1 = 1 and a.OrganizeId = @orgId and a.zt = '1' and a.mzzybz = @mzzybz");
         }
 
         /// <summary>
-        /// 取消门诊日结算
+        /// Hủy ngoại trú ngày quyết toán
         /// </summary>
         public void CancleDaySettleInfo(string Id, string UserCode)
         {
@@ -270,11 +270,11 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// 获取清算对总帐
+		/// Lấy清 tính đ ối với 总帐
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="organizeId">Mã cơ quan</param>
+		/// <param name="ksrq">Ngày bắt đ ầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		public IList<Qsdzz> GetQsdzzs(string organizeId, string ksrq, string jsrq, string qslx, string xz)
 		{
@@ -308,11 +308,11 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// 获取清算明细（上半部分）
+		/// Lấy清 tính chi tiết(trên 半một phần)
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="organizeId">Mã cơ quan</param>
+		/// <param name="ksrq">Ngày bắt đ ầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		public IList<Qsmx> GetQsmx(string organizeId, string ksrq, string jsrq, string jslx, string xzlx)
 		{
@@ -331,11 +331,11 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// 获取清算明细（下半部分）
+		/// Lấy清 tính chi tiết(dư ới 半một phần)
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="organizeId">Mã cơ quan</param>
+		/// <param name="ksrq">Ngày bắt đ ầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		public IList<Qsmx_1> GetQsmx_1(string organizeId, string ksrq, string jsrq, string jslx, string xzlx)
 		{
@@ -354,12 +354,12 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// 获取清算申请
+		/// Lấy清 tính xin 
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="sfyd">是否异地</param>
+		/// <param name="organizeId">Mã cơ quan</param>
+		/// <param name="ksrq">Ngày bắt đ ầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="sfyd">Có hay không nơi khác </param>
 		/// <returns></returns>
 		public IList<Qssq> GetQssq(string organizeId, string ksrq, string jsrq, string sfyd)
 		{
@@ -377,11 +377,11 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// 获取清算回退
+		/// Lấy清 tính trả lại 
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="organizeId">Mã cơ quan</param>
+		/// <param name="ksrq">Ngày bắt đ ầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		public IList<Qsht> GetQsht(string organizeId, string ksrq, string jsrq)
 		{
@@ -398,7 +398,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// 日对账历史数据
+		/// Ngày đ ối với 账 lịch sử dữ liệu
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="ksrq"></param>
@@ -430,7 +430,7 @@ order by q.insutype");
 			return list;
 		}
         /// <summary>
-		/// 日对账历史数据
+		/// Ngày đ ối với 账 lịch sử dữ liệu
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="ksrq"></param>

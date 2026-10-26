@@ -19,18 +19,18 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新部分字段
+        /// Cập nhật một phần trư ờng 
         /// </summary>
         /// <param name="entity"></param>
-        /// <param name="dstnFieldNameList">目标列</param>
-        /// <param name="ignoreFieldNameList">排除列</param>
-        /// <param name="attach">是否需要将Entity附加上上下文（如果这个Entity是从dbcontext查出来的，false）</param>
+        /// <param name="dstnFieldNameList">目标 cột </param>
+        /// <param name="ignoreFieldNameList"> loại trừ cột </param>
+        /// <param name="attach">Có hay không cần sẽ Entity附 thêm vào ngữ cảnh(nếu này Entity là từ dbcontext tra cứu 出来của,false)</param>
         /// <returns></returns>
         public override int Update(TEntity entity, IEnumerable<string> dstnFieldNameList = null, IEnumerable<string> ignoreFieldNameList = null, bool attach = true)
         {
             if (attach)
             {
-                //唯一一种发生异常的情况：尝试附加相同主键的不同实体（注意这是引用类型，即同一实体重复Attach是不会有问题的）
+                // duy nhất một loại 发生bất thư ờng của tình hình:尝试附加 giống nhau khóa chính của khác nhau thực thể(lưu ý này là引 dùng loại, tức là cùng một thực thể trùng lặp Attach là sẽ không có问题của)
                 _dataContext.Set<TEntity>().Attach(entity);
             }
             PropertyInfo[] props = entity.GetType().GetProperties();

@@ -5,7 +5,7 @@
 
 
         /// <summary>
-        /// 获取有效国籍下拉框
+        /// Lấy hiệu lực quốc tịch hộp thả xuống 
         /// </summary>
         /// <returns></returns>
         object GetgjList();

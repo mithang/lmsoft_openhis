@@ -20,14 +20,14 @@ namespace Newtouch.HIS.Sett.Rehab
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //数据库链接释放
+            //Dữ liệu kho 链接释放
             Web.Core.HttpModules.AspNetObjectContextDisposalModule.Register(() =>
             {
                 Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<INewtouchDatabaseFactory, NewtouchDbContext>();
                 //Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IBaseDatabaseFactory, BaseDbContext>();
             });
 
-            //权限验证向下层注册
+            // quyền hạn xác minh tới dư ới lớp đ ăng ký 
             System.Web.Mvc.HandlerAuthorizeAttribute.Register((IList<string> roleIdList, string moduleId, string action) =>
             {
                 return Common.DependencyDefaultInstanceResolver.GetInstance<Application.IRoleAuthorizeApp>().ActionValidate(roleIdList, moduleId, action);

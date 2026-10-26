@@ -4,24 +4,24 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S22
 {
     /// <summary>
-    /// 查询当此门诊已上传费用明细 请求报文
+    /// Tra cứu chi tiết chi phí ngoại trú lần này đ ã tải lên bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S22")]
     [XmlRoot("body")]
     public class S22RequestDTO
     {
         /// <summary>
-        /// 开始时间(yyyy-mm-dd)
+        /// Thời gian bắt đ ầu(yyyy-mm-dd)
         /// </summary>
         public string startDate { get; set; }
 
         /// <summary>
-        /// 截止时间(yyyy-mm-dd)
+        /// 截止thời gian(yyyy-mm-dd)
         /// </summary>
         public string endDate { get; set; }
 
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string outpId { get; set; }
     }

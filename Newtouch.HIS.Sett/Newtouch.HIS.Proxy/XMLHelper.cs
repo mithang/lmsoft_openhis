@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Proxy
     public class XMLHelper
     {
         /// <summary>
-        /// 对象序列化成xml
+        /// Đ ối tư ợng tuần tự hóa 成xml
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Object"></param>
@@ -29,13 +29,13 @@ namespace Newtouch.HIS.Proxy
                 StreamWriter writer = new StreamWriter(ms);
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
 
-                //设置命名空间
+                //Đ ặt命名 trống giữa 
                 XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
                 ns.Add(string.Empty, string.Empty);
 
                 try
                 {
-                    //序列化对象
+                    // tuần tự hóa Đ ối tư ợng
                     serializer.Serialize(writer, Object, ns);
                 }
                 catch (Exception ex)
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Proxy
         }
 
         /// <summary>
-        /// XML String 反序列化成对象
+        /// XML String 反 tuần tự hóa 成Đ ối tư ợng
         /// </summary>
         public static T XmlDeserialize<T>(string xmlString)
         {

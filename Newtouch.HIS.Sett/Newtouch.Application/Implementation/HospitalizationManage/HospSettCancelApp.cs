@@ -16,7 +16,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 取消住院结算 实现
+    /// Hủy quyết toán nhập viện 实现
     /// </summary>
     public class HospSettCancelApp : AppBase, IHospSettCancelApp
     {
@@ -28,16 +28,16 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IHospSettlementDetailRepo _hospSettlementDetailRepo;
 
         /// <summary>
-        /// 取消住院结算，查看患者住院 状态信息
+        /// Hủy quyết toán nhập viện,XemBệnh nhânNhập viện Trạng tháiThông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
         public HospSettCancelPatStatusDetailDto GetPatHospStatusDetail(string zyh, string kh)
         {
-            //获取住院结算病人信息（基本信息、账户、科室等）
+            //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospPatBasicInfo(ref zyh, kh);
 
-            //根据住院号 获取 （未退）结算列表， 取其最后一条
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
 
             var resultDto = new HospSettCancelPatStatusDetailDto()
@@ -50,17 +50,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消住院结算 提交保存操作
+        /// Hủy quyết toán nhập viện GửiLưuThao tác
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsnm"></param>
         /// <param name="cancelReason"></param>
         public void DoCancel(string zyh, int expectedjsnm, string cancelReason)
         {
-            //获取住院结算病人信息（基本信息、账户、科室等）
+            //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospPatBasicInfo(ref zyh, "");
 
-            //根据住院号 获取 （未退）结算列表， 取其最后一条
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
 
             if (lastSett.jsnm != expectedjsnm)
@@ -75,15 +75,15 @@ namespace Newtouch.HIS.Application.Implementation
 
             };
 
-            //医保交易取消结算
+            //BHYT giao dịch hủy quyết toán
 
             sqlVO.zyh = zyh;
-            /*********注 此处的zybz应是本系统状态变更为“待结账”，推送给其他系统（繁云），然后（繁云）系统变更为“病区中”，这样，该病人才可记账。 这里先手动赋值 *************/
+            /********* chú thích tại đ ây Củazybz nên là bản hệ thống trạng thái thay đ ổi là"Chờ thanh toán", đ ẩy cho khác hệ thống(繁云), sau đ ó (繁云)hệ thống thay đ ổi là"Khu bệnh trong ", như vậy, này bệnh nhân才 có thể ghi sổ. tại đ ây trư ớc gán giá trị thủ công *************/
             sqlVO.zybz = ((int)EnumZYBZ.Bqz).ToString();
             //sqlVO.zybz = ((int)EnumZYBZ.Djz).ToString();
             sqlVO.cyrq = null;
 
-            //住院结算 对应的 撤销记录
+            //Quyết toán nhập viện Tư ơng ứng của hủy bỏ bản ghi 
             var cxjs = lastSett.Clone();
             sqlVO.cxjs = cxjs;
             cxjs.jsnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_js");
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Application.Implementation
             cxjs.CreateTime = DateTime.Now;
             cxjs.zt = "1";
 
-            //住院结算明细 对应的 撤销记录
+            //Quyết toán nhập việnchi tiết Tư ơng ứng của hủy bỏ bản ghi 
             var zyjsmxList = _hospSettlementDetailRepo.IQueryable().Where(p => p.jsnm == lastSett.jsnm).ToList();
             foreach (var zyjsmx in zyjsmxList)
             {
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Application.Implementation
                 sqlVO.cx_zyjsmxList.Add(cxjsmx);
             }
 
-            //系统病人账户收支记录
+            //Hệ thống bệnh nhânthu chi tài khoản bản ghi 
             if (!settpatinfo.zyyjjzhbh.HasValue || !settpatinfo.zyyjjzh.HasValue)
             {
                 throw new FailedCodeException("HOSP_ERROR_PATIENT_YJJ_ACCOUNT_IS_NOT_FOUND");
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Application.Implementation
                 zt = "1",
             });
 
-            //住院结算支付方式
+            //Quyết toán nhập viện phư ơng thức thanh toán 
             sqlVO.cx_zy_jszffsList.Add(new HospSettlementPaymentModelEntity()
             {
                 jsnm = cxjs.jsnm,
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Application.Implementation
 
             _hospSettDmnService.CancelSettSyncToDB(sqlVO, this.OrganizeId);
 
-            //########同步状态至中间库
+            //########Đ ồng bộ trạng thái tới kho trung gian
 
             return;
         }
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region private methods
 
         /// <summary>
-        /// 取消住院结算 获取病人基本信息（基本信息、账户、科室等） 在院状态验证
+        /// Hủy quyết toán nhập viện lấy thông tin cơ bản bệnh nhân(cơ bản thông tin, tài khoản, khoaV.v.) xác minh trạng thái đang nằm viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 //zyh = zyList.Where(p => p.zybz == ((int)EnumZYBZ.Ycy).ToString())
                 //      .OrderByDescending(p => p.CreateTime).Select(p => p.zyh).First();
-                //if (string.IsNullOrWhiteSpace(zyh)) //说明没有可取消结算的记录
+                //if (string.IsNullOrWhiteSpace(zyh)) //说明 không có có thể hủy quyết toán của bản ghi 
                 //{
                 //    zyh = zyList.OrderByDescending(p => p.CreateTime).Select(p => p.zyh).First();
                 //}

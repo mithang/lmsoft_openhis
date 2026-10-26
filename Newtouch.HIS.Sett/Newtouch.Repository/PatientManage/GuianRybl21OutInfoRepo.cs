@@ -19,10 +19,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据住院号获取贵安医保住院反馈信息
+        /// theo số nhập viện lấy贵安BHYTnhập viện phản hồi thông tin
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="OrganizeId">组织机构ID</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="OrganizeId">ID tổ chức</param>
         /// <returns></returns>
         public GuianRybl21OutInfoEntity GetInfoByZyh(string zyh, string OrganizeId)
         {

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效
+        /// LấyHiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

@@ -6,7 +6,7 @@ using System;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊作废
+    /// Ngoại trú hủy bỏ
     /// </summary>
     public class OutpatientRegistAbandonRepo : RepositoryBase<OutpatientRegistAbandonEntity>, IOutpatientRegistAbandonRepo
     {
@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
 
         }
         ///// <summary>
-        /////保存挂号作废记录
+        /////LưuĐ ăng ký khám hủy bỏ bản ghi 
         ///// </summary>
         ///// <param name="outPatientRegAbandEntity"></param>
         //public void SaveRegAbandRecord(int ghnm, string yhm, int rybh)

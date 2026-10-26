@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Sett.Request.Patient
 {
     /// <summary>
-    /// 住院病人信息
+    /// Thông tin bệnh nhân nhập viện
     /// </summary>
     public class InPatientInfoQueryRequest : BookingReqBaseDto
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 身份证号
+        /// Số CMND
         /// </summary>
         public string sfzh { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         //public string OrganizeId { get; set; }
     }

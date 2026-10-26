@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Application
         private readonly ISysPatientNatureRepo _xt_brxzResposity;
 
         /// <summary>
-        /// 获取条件下病人性质下拉框
+        /// Lấy dòng vụ dư ới tính chất bệnh nhân hộp thả xuống 
         /// </summary>
         /// <returns></returns>
         public string GetbrxzSelect(string bxzc)

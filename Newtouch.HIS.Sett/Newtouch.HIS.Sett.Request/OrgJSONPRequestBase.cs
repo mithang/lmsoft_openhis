@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Sett.Request
     public class OrgJSONPRequestBase : JSONRequestBase
     {
         /// <summary>
-        /// 组织机构Id（已经定位到了具体医院）
+        /// ID tổ chức(Đ ã定 vị đ ến 具体 bệnh viện)
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }

@@ -13,45 +13,45 @@ namespace Newtouch.HIS.Application.Interface
     public interface IBookkeepInpatientApp
     {
         /// <summary>
-        /// 根据住院号 获取 病人 记账 信息
+        /// theo số nhập viện lấy bệnh nhân ghi sổ thông tin
         /// </summary>
         /// <param name="zyh"></param>
         HosAccountingPatStatusDetailDto GetAccountingStatusDetail(string zyh);
 
         /// <summary>
-        /// 提交记账计划
+        /// GửiKế hoạch ghi sổ
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xmList">记账项目列表（如果是但项目，也要先包装成数组）</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xmList">Ghi sổ hạng mụcdanh sách(nếu là nhưng hạng mục, cũng cần trư ớc 包装成数 nhóm)</param>
         void SubmitAccountingPlan(string zyh, IList<InpatientAccountingPlanItemDto> xmList);
 
         /// <summary>
-        /// 待执行记账计划 查询
+        /// chờ thực hiện kế hoạch ghi sổ tra cứu
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
         IList<HospAccountingPlanWaitingExeVO> WaitingAccountingPlanQuery(IList<string> zyhList,string from = null);
 
         /// <summary>
-        /// 执行记账计划
+        /// thực hiện kế hoạch ghi sổ
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void ExecuteAccountingPlan(IList<zxGirdDto> zxItem, DateTime? zxrq, string from = null);
 
         /// <summary>
-        /// 停止记账计划
+        /// dừng kế hoạch ghi sổ
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void StopAccountingPlan(string jzjhmxIdStr, DateTime stopDate);
 
         /// <summary>
-        /// 取消预停止
+        /// Hủy预 dừng 
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void CancelPreStopAccountingPlan(string jzjhmxIdStr);
 
         /// <summary>
-        /// 根据住院号 获取 病人 记账 信息
+        /// theo số nhập viện lấy bệnh nhân ghi sổ thông tin
         /// </summary>
         /// <param name="zyh"></param>
         InpatientHosAccountingPatStatusDetailDto GetInpatientAccountingStatusDetail(string zyh);

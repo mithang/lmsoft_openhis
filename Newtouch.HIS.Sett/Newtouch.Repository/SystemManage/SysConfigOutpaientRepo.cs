@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
             return this.IQueryable().Where(a => a.dm == dm && a.OrganizeId == OrganizeId).FirstOrDefault();
         }
 
-        /// 根据代码获取配置信息
+        /// theo mã lấy cấu hình thông tin
         public string GetSysConfig(string dm)
         {
             var OrganizeId = OperatorProvider.GetCurrent().OrganizeId;

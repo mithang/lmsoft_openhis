@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Proxy.guian
         public Request<T> Request { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Proxy.guian
                 body = body,
                 head = new RequestHeader()
             };
-            foreach (var attribute in body.GetType().GetCustomAttributes(true)) //2.通过映射，找到成员属性上关联的特性类实例，
+            foreach (var attribute in body.GetType().GetCustomAttributes(true)) //2. thông qua 映射,找 đ ến 成 viên thuộc tính trên liên kết của thuộc tính loại 实例,
             {
                 if (!(attribute is InterfaceCodeAttribute)) continue;
                 Request.head.operCode = (attribute as InterfaceCodeAttribute).InterfaceCode;

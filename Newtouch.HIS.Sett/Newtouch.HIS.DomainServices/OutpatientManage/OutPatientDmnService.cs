@@ -65,24 +65,24 @@ namespace Newtouch.HIS.DomainServices
         #region 挂号界面info
 
         /// <summary>
-        /// 根据类别、医保特殊待遇、适用医保办法标志、范围刷选 获取有效病人性质 by caishanshan 20161215
+        /// theo loại, BHYTĐ ặc biệt chờ 遇, 适 dùng BHYT biện pháp dấu hiệu, phạm vi刷选 lấy hiệu lực tính chất bệnh nhân by caishanshan 20161215
         /// </summary>
         /// <param name="text"></param>
-        /// <param name="ghlx">挂号类型</param>
-        /// <param name="ybtsdy">医保特殊待遇标志</param>
-        /// <param name="syybbf">适用医保办法标志</param>
-        /// <param name="fw">范围筛选</param>
+        /// <param name="ghlx">Loại đ ăng ký khám</param>
+        /// <param name="ybtsdy">BHYTĐ ặc biệt chờ 遇 dấu hiệu </param>
+        /// <param name="syybbf">适 dùng BHYT biện pháp dấu hiệu </param>
+        /// <param name="fw">Phạm viLọc</param>
         /// <param name="brxzList"></param>
         /// <returns></returns>
         public List<SysPatiNatureEntity2VO> GetValidBrxzList(string text, string ghlx = "", string ybtsdy = "", string syybbf = "", string fw = "", List<string> brxzList = null)
         {
-            //开始按关键字检索记录
+            //Bắt đ ầu theo từ khóa检索 bản ghi 
             string brxzs = string.Empty;
             StringBuilder strSql = new StringBuilder();
             strSql.Append(@"
                           select brxz from xt_brxz where ZT=1 and OrganizeId=@orgId
                          ");
-            //挂号类型
+            //Loại đ ăng ký khám
             if (!string.IsNullOrEmpty(ghlx))
             {
                 //if (!(ghlx == "0" || ghlx == "2"))
@@ -90,17 +90,17 @@ namespace Newtouch.HIS.DomainServices
                 //    strSql.Append(" and brxzlb <> 1 ");
                 //}
             }
-            //医保特殊待遇
+            //BHYTĐ ặc biệt chờ 遇
             if (!string.IsNullOrEmpty(ybtsdy))
             {
                 strSql.Append(" and ybtsdy =@ybtsdy");
             }
-            //范围
+            //Phạm vi
             if (!string.IsNullOrEmpty(fw))
             {
                 strSql.Append(" and (mzzybz = '0' or mzzybz =@fw)");
             }
-            //如果指定病人性质，另行处理
+            //Nếu chỉ đ ịnh tính chất bệnh nhân,另 dòng xử lý
             if (brxzList != null && brxzList.Count > 0)
             {
                 foreach (string brxz in brxzList)
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.DomainServices
         #endregion
 
         /// <summary>
-        /// 根据卡号获取基本信息 by caishanshan
+        /// theo số thẻ lấy cơ bản thông tin by caishanshan
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.DomainServices
                         left JOIN xt_brxz ON xt_brjbxx.brxz = xt_brxz.brxz and xt_brxz.OrganizeId=@orgId 
                 WHERE   xt_card.OrganizeId=@orgId
                         AND cardno=@kh
-            ");//此处sql modified by sunny  不能完全显示在基本信息页面上
+            ");// tại đ ây sql modified by sunny không thể 完全hiển thị tại cơ bản thông tintrang trên 
             DbParameter[] param =
             {
                 new SqlParameter("@kh",kh),
@@ -185,7 +185,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据工号获取发票号  by caishanshan 20161210
+        /// theo mã nhân viên lấy số hóa đ ơn by caishanshan 20161210
         /// </summary>
         /// <param name="userCode"></param>
         /// <param name="orgId"></param>
@@ -220,12 +220,12 @@ namespace Newtouch.HIS.DomainServices
             }
             return result;
 
-            //AppLogger.Instance.InfoFormat("根据rybh获取发票号start，rybh：{0}", userCode);
+            //AppLogger.Instance.InfoFormat(" theo rybh lấy số hóa đ ơnstart,rybh:{0}", userCode);
             //string result = null;
             //var list = _financialInvoiceEntityRepository.GetListByUserCode(userCode);
             //foreach (var item in list)
             //{
-            //    AppLogger.Instance.InfoFormat("已分配发票记录：qsfph{0}jsfph{1}dqfph{2}", item.qsfph, item.jsfph, item.dqfph);
+            // AppLogger.Instance.InfoFormat("Đ ã phân phối bản ghi hóa đ ơn:qsfph{0}jsfph{1}dqfph{2}", item.qsfph, item.jsfph, item.dqfph);
             //}
             //if (list.Count < 1)
             //{
@@ -238,7 +238,7 @@ namespace Newtouch.HIS.DomainServices
             //        if (!ExistsForInvoiceNo(item.szm + item.qsfph))
             //        {
             //            result = item.szm + item.qsfph;
-            //            AppLogger.Instance.InfoFormat("匹配到的记录：fpdm：{0}result:{1}", item.fpdm, result);
+            // AppLogger.Instance.InfoFormat("匹配 đ ến của bản ghi:fpdm:{0}result:{1}", item.fpdm, result);
             //            break;
             //        }
             //    }
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.DomainServices
             //        if (!ExistsForInvoiceNo(item.szm + item.dqfph + 1))
             //        {
             //            result = item.szm + (item.dqfph + 1);
-            //            AppLogger.Instance.InfoFormat("匹配到的记录：fpdm：{0}result:{1}", item.fpdm, result);
+            // AppLogger.Instance.InfoFormat("匹配 đ ến của bản ghi:fpdm:{0}result:{1}", item.fpdm, result);
             //            break;
             //        }
             //    }
@@ -256,9 +256,9 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// check发票号是否被使用过， 已被使用过返回true
+        /// check số hóa đ ơn có hay không đ ược sử dụng qua, Đ ã đ ược sử dụng qua quay lạitrue
         /// </summary>
-        /// <param name="invoiceNo">发票号</param>
+        /// <param name="invoiceNo">Số hóa đ ơn</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public bool ExistsForInvoiceNo(string invoiceNo, string orgId)
@@ -282,7 +282,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 挂号排班列表 ,修改页面
+        /// Đ ăng ký khám lịch trực danh sách,sửatrang
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -327,10 +327,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 挂号排班List
+        /// Đ ăng ký khám lịch trực List
         /// </summary>
-        /// <param name="keyword">科室/医生</param>
-        /// <param name="mzlx">门诊类型 普通门诊/急症/专家门诊</param>
+        /// <param name="keyword">Khoa/Bác sĩ</param>
+        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/急症/Phòng khám chuyên gia</param>
         /// <returns></returns>
         public List<RegScheduleVO> GetRegScheduleList(string keyword, string mzlx, string orgId)
         {
@@ -362,7 +362,7 @@ namespace Newtouch.HIS.DomainServices
             var weekdayField = string.Empty;
             var weekday = DateTime.Now.DayOfWeek;
             MzpbZxsjVO currZxsj = null;
-            //定义上午下午的时间分布 2下午 3上午
+            //定义buổi sáng buổi chiều của thời gian分布 2 buổi chiều 3 buổi sáng
             //[{type:"2",startTime:"07:00:00",endTime:"12:00:00"},{type:"3",startTime:"13:00:00",endTime:"18:00:00"}]
             var zxsjConfigStr = _sysConfigRepo.GetValueByCode(Constants.xtmzpz.S20100, orgId);
             if (!string.IsNullOrWhiteSpace(zxsjConfigStr))
@@ -424,7 +424,7 @@ namespace Newtouch.HIS.DomainServices
             return FindList<RegScheduleVO>(strSql.ToString(), pars.ToArray());
         }
         /// <summary>
-        /// 获取新挂号排班
+        /// Lấy mới Đ ăng ký khám lịch trực 
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="mzlx"></param>
@@ -466,7 +466,7 @@ and a.OrganizeId=ks.OrganizeId and ks.zt='1' and a.czks=ks.Code ";
             return FindList<RegNewScheduleVO>(strSql.ToString(), para.ToArray());
         }
         /// <summary>
-        /// 获取新挂号排班（治疗组合）
+        /// Lấy mới Đ ăng ký khám lịch trực (điều trị kết hợp)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="mzlx"></param>
@@ -527,7 +527,7 @@ and a.OrganizeId=ks.OrganizeId and ks.zt='1' and a.czks=ks.Code ";
             return FindList<RegNewScheduleVO>(strSql.ToString(), para.ToArray());
         }
         /// <summary>
-        /// 患者已预约挂号list
+        /// Bệnh nh ânĐ ãĐ ặt lịch đ ăng ký khámlist
         /// </summary>
         /// <param name="mzlx"></param>
         /// <param name="patid"></param>
@@ -537,7 +537,7 @@ and a.OrganizeId=ks.OrganizeId and ks.zt='1' and a.czks=ks.Code ";
            string ks, DateTime? yykssj=null,DateTime? yyjssj=null)
         {
             string sql = "";
-            if (isfeegroup == "1") //1:启用收费组合 0:停用
+            if (isfeegroup == "1") //1:启 dùng thu phí kết hợp 0:停 dùng 
             {
                 sql = @" select gb.Regtype,gs.Title,gb.AppId,cast(gb.BookId as int) BookId,
 gb.ScheduId,gs.ghlx,gs.zlxm,d.sfxmmc,gb.xm,gb.xb,gb.kh,xtxx.zjh,gb.mzh,gb.RegFee,
@@ -610,7 +610,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 自助机获取排班信息
+        /// máy tự phục vụ lấy lịch trực thông tin
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="mzlx"></param>
@@ -630,7 +630,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 			var weekdayField = string.Empty;
 			var weekday = pbrq.DayOfWeek;
 			MzpbZxsjVO currZxsj = null;
-			//定义上午下午的时间分布 2下午 3上午
+			//定义buổi sáng buổi chiều của thời gian分布 2 buổi chiều 3 buổi sáng
 			//[{type:"2",startTime:"07:00:00",endTime:"12:00:00"},{type:"3",startTime:"13:00:00",endTime:"18:00:00"}]
 			var zxsjConfigStr = _sysConfigRepo.GetValueByCode(Constants.xtmzpz.S20100, orgId);
 			if (!string.IsNullOrWhiteSpace(zxsjConfigStr))
@@ -685,10 +685,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 		}
 
 		/// <summary>
-		/// 获取当前科室门诊有效时长 by caishanshan 20161214 
+		/// Lấykhi trư ớc khoa ngoại trú hiệu lực thời lư ợng by caishanshan 20161214 
 		/// </summary>
-		/// <param name="isJz">是否急诊</param>
-		/// <param name="ks">科室(-1表示所有科室)</param>
+		/// <param name="isJz">Có hay khôngCấp cứu</param>
+		/// <param name="ks">Khoa(-1 biểu thị tất cả các khoa)</param>
 		/// <param name="ksDate"></param>
 		/// <param name="jsDate"></param>
 		private void GetCurrKsDuration(bool isJz, string ks, out DateTime ksDate, out DateTime jsDate)
@@ -718,13 +718,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 }
                 if (duration == -1)
                 {
-                    //当天有效
+                    //KhiNgàyHiệu lực
                     ksDate = currTime.Date;
                     jsDate = currTime.Date.AddDays(1).AddSeconds(-1);
                 }
                 else
                 {
-                    //一段时间内有效
+                    // một đoạn thời gian trong hiệu lực
                     ksDate = currTime.AddHours(-duration);
                     jsDate = currTime;
                 }
@@ -734,7 +734,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 获取就诊序号
+        /// LấySố thứ tự khám bệnh
         /// </summary>
         /// <param name="ghlx"></param>
         /// <param name="ks"></param>
@@ -760,13 +760,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         #region 门诊记账
 
         /// <summary>
-        /// 门诊记账保存操作
+        /// Ghi sổ ngoại trú lưuthao tác
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="accDto"></param>
         /// <param name="orgId"></param>
-        /// <param name="isOptimaApi">是否Optima接口对应的记账，默认为空，1表示是(记账计划不做数据处理)，null和0表示否</param>
-        /// <param name="isClinic">是否诊所记账，默认为空，1表示是（提醒商保次数），null和2表示否（提醒医保次数）</param>
+        /// <param name="isOptimaApi">Có hay khôngOptimagiao diện Tư ơng ứng củaghi sổ,mặc đ ịnh là trống,1 biểu thị là(kế hoạch ghi sổ không 做dữ liệu xử lý),null và0 biểu thị là không</param>
+        /// <param name="isClinic">Có hay không phòng khám ghi sổ,mặc đ ịnh là trống,1 biểu thị là(nhắc nhở bảo hiểm thư ơng mại số lần),null và2 biểu thị là không(nhắc nhở BHYT số lần)</param>
         public void SaveOutpatientAccountInfo(OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> accDto, string orgId, string isOptimaApi = null, string isClinic = null)
         {
             DbParameter[] opar = { new SqlParameter("@Id", orgId) };
@@ -776,19 +776,19 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 isClinic = "1";
             }
 
-            List<DateTime> jzsjList = new List<DateTime>();//记账日期不重复字符串，为医保或者商保次数统计准备
+            List<DateTime> jzsjList = new List<DateTime>();//Ghi sổ ngày không trùng lặp 字符串,là BHYThoặc bảo hiểm thư ơng mại số lần thống kê chuẩn bị 
             var optimaId = new Dictionary<string, string>();
-            //结算Entity
+            //Quyết toánEntity
             var jsEntity = new SettlementEntityVO();
-            //结算实体 对应表mz_js
+            //Quyết toán thực thể bảng tư ơng ứngmz_js
             var mzjs = new List<OutpatientSettlementEntity>();
-            //结算明细 对应表mz_jsmx
+            //Chi tiết quyết toán bảng tư ơng ứngmz_jsmx
             var jsmxList = new List<OutpatientSettlementDetailEntity>();
             OutpatientAccountEntity jzjh = null;
             List<OutpatientAccountDetailEntity> jzjhmxList = null;
             if (isOptimaApi != "1")
             {
-                //记账计划
+                //Kế hoạch ghi sổ
                 jzjh = new OutpatientAccountEntity
                 {
                     OrganizeId = orgId,
@@ -797,9 +797,9 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     zt = "1"
                 };
 
-                //记账计划
+                //Kế hoạch ghi sổ
                 jzjh.Create(true);
-                //记账计划明细
+                //Chi tiết kế hoạch ghi sổ
                 jzjhmxList = new List<OutpatientAccountDetailEntity>();
             }
 
@@ -807,17 +807,17 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
             var sqlVo = GetOutPatChargeAccuDbvo(bacDto.patid, bacDto.brxz, accDto, out jsEntity, out jzjhmxList, jzjh, orgId, bacDto, out mzjs, out jzsjList, out optimaId, isOptimaApi, isClinic);
 
-            //计算出门诊结算信息 getMzJs
+            //Tính出quyết toán ngoại trú thông tin getMzJs
             sqlVo.mz_js = mzjs;
 
-            //获取结算明细
+            //Lấy chi tiết quyết toán
             jsmxList = _outPatChargeDmSer.getJSMX(jsEntity, orgId);
             sqlVo.mz_jsmxList = jsmxList;
 
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _outPatChargeDmSer.OutPatChargeSettDBInAcc(sqlVo, jzjh, jzjhmxList, optimaId);
 
-            //保险剩余次数
+            // số lần còn lại của bảo hiểm 
             if (jzsjList == null || jzsjList.Count <= 0 || string.IsNullOrWhiteSpace(bacDto.patid.ToString())) return;
             foreach (var time in jzsjList)
             {
@@ -835,7 +835,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 门诊记账 保存结算实体赋值
+        /// Ghi sổ ngoại trú lưu quyết toán thực thể gán giá trị 
         /// </summary>
         /// <param name="brxz"></param>
         /// <param name="gridDto"></param>
@@ -847,8 +847,8 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         /// <param name="bacDto"></param>
         /// <param name="mzjsList"></param>
         /// <param name="jzsjList"></param>
-        /// <param name="isOptimaApi">是否Optima接口对应的记账，默认为空，1表示是(记账计划不做数据处理)，null和0表示否</param>
-        /// <param name="isClinic">是否诊所记账，默认为空，1表示是（提醒商保次数），null和0表示否（提醒医保次数）</param>
+        /// <param name="isOptimaApi">Có hay khôngOptimagiao diện Tư ơng ứng củaghi sổ,mặc đ ịnh là trống,1 biểu thị là(kế hoạch ghi sổ không 做dữ liệu xử lý),null và0 biểu thị là không</param>
+        /// <param name="isClinic">Có hay không phòng khám ghi sổ,mặc đ ịnh là trống,1 biểu thị là(nhắc nhở bảo hiểm thư ơng mại số lần),null và0 biểu thị là không(nhắc nhở BHYT số lần)</param>
         public OutPatChargeSettInAccDataVo GetOutPatChargeAccuDbvo(int patid
             , string brxz
             , IList<OutpatAccGridInfoDto> gridDto
@@ -876,17 +876,17 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             };
             if (isOptimaApi != "1" && jzjhEntity != null)
             {
-                jzjhmxEntity = new List<OutpatientAccountDetailEntity>();//记账计划明细list
+                jzjhmxEntity = new List<OutpatientAccountDetailEntity>();//Chi tiết kế hoạch ghi sổlist
             }
-            jsEntity = new SettlementEntityVO(); //暂存结算信息 
+            jsEntity = new SettlementEntityVO(); // tạm lưu thông tin quyết toán 
 
-            var jsxmList = new List<SettleProjectVO>(); //结算项目List
+            var jsxmList = new List<SettleProjectVO>(); //Quyết toánHạng mụcList
 
-            //mz_cf mz_cfmx处方参数
-            var strArray = new Dictionary<string, string>();  //暂存已保存的处方号,对应的医生
-            var cFisExit = true; // 默认处方不存在
-            var _cfnm = 0; //处方内码
-            var _cfh = "";//处方号
+            //mz_cf mz_cfmxĐ ơn thuốctham số
+            var strArray = new Dictionary<string, string>();  //Tạm lưu số đ ơn thuốc đ ã lưu,Tư ơng ứng của bác sĩ
+            var cFisExit = true; // Đ ơn thuốc mặc đ ịnh không tồn tại
+            var _cfnm = 0; //Mã nội bộ đ ơn thuốc
+            var _cfh = "";//Số đ ơn thuốc
             var ghnmentity = _outpatientRegRepo.IQueryable().FirstOrDefault(p => p.mzh == bacDto.mzh && p.OrganizeId == orgId);
             if (ghnmentity == null)
             {
@@ -895,7 +895,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             var ghnm = ghnmentity.ghnm;
             const decimal outJmbl = 0;
             const decimal outJmje = 0;
-            //循环要保存的项目数据
+            //循环 cần lưu của hạng mục dữ liệu
             if (gridDto.Count > 0)
             {
 
@@ -907,12 +907,12 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     {
                         optimaId.Add(dto.newid, null);
                     }
-                    string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
-                    //现金支付
+                    string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
+                    //Thanh toán tiền mặt
                     decimal ssk;
-                    //现金误差
+                    //Sai lệch tiền mặt
                     decimal difference;
-                    //应收款
+                    //Số tiền phải thu
                     var ysk = 0m;
                     var ysArray = dto.ysList.OrderBy(p => p.gh).ToList();
 
@@ -926,7 +926,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         jsEntity.ghnm = ghnm;
                         jsEntity.isGh = false;
                         jsEntity.isZf = true;
-                        jsEntity.jslx = "2";//门诊记账
+                        jsEntity.jslx = "2";//Ghi sổ ngoại trú
                         #endregion 
                     }
                     if (dto.jzsj != null && !jzsjList.Contains(dto.jzsj)) jzsjList.Add(dto.jzsj);
@@ -977,38 +977,38 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         if (oldDto != null)
                         {
 
-                            if (dto.yzlx == "1") //药品
+                            if (dto.yzlx == "1") //Thuốc
                             {
                                 #region 药品
 
                                 if (dto.sfxmCode != null)
-                                    //添加处方主表信息
+                                    //Thêm thông tin bảng chính đ ơn thuốc
                                     if (gridindex == 0 || cfindex == 0 || strArray.Count == 0)
                                     {
-                                        cFisExit = true; //处方不存在，添加处方主表
-                                        _cfh = getCflsh(); //处方流水号
+                                        cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
+                                        _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                     }
-                                //添加过处方记录
+                                //Thêm qua Đ ơn thuốc bản ghi 
                                 if (strArray != null && strArray.Count > 0)
                                 {
                                     foreach (var t in strArray)
                                     {
                                         if (t.Value.Equals(ys))
                                         {
-                                            //说明已经存在该处方主表信息
-                                            cFisExit = false; // 处方已存在
+                                            //Cho biết đ ã tồn tại thông tin bảng chính của đ ơn thuốc này
+                                            cFisExit = false; // Đ ơn thuốc đ ã tồn tại
                                         }
                                         else
                                         {
-                                            cFisExit = true; // 不同治疗师，处方不同
-                                            _cfh = getCflsh(); //处方流水号
+                                            cFisExit = true; // khác nhau chuyên viên trị liệu,Đ ơn thuốc khác nhau 
+                                            _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                         }
                                     }
                                 }
 
                                 if (cFisExit)
                                 {
-                                    //添加处方主表信息
+                                    //Thêm thông tin bảng chính đ ơn thuốc
                                     strArray.Add(_cfh, ys);
 
                                     #region 添加处方
@@ -1070,7 +1070,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                 jsxmList.Add(jsxmDto);
                                 #endregion
                             }
-                            else//项目
+                            else//Hạng mục
                             {
 
                                 #region 门诊项目
@@ -1176,19 +1176,19 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     itemDtoList.Add(mzjs);
                     #endregion
 
-                    if (dto.yzlx == "1") //药品
+                    if (dto.yzlx == "1") //Thuốc
                     {//mz_cf mz_cfmx 
 
                         #region 药品
 
                         if (dto.sfxmCode != null)
-                            //添加处方主表信息
-                            cFisExit = true; //处方不存在，添加处方主表
-                        _cfh = getCflsh(); //处方流水号
+                            //Thêm thông tin bảng chính đ ơn thuốc
+                            cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
+                        _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
 
                         if (cFisExit)
                         {
-                            //添加处方主表信息
+                            //Thêm thông tin bảng chính đ ơn thuốc
                             strArray.Add(_cfh, ys);
 
                             #region 添加处方
@@ -1250,7 +1250,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         jsxmList.Add(jsxmDto);
                         #endregion
                     }
-                    else//项目
+                    else//Hạng mục
                     {//mz_xm
                         #region 门诊项目
                         var mzxm = new OutpatientItemEntity
@@ -1307,18 +1307,18 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             jsEntity.jsxmList = jsxmList;
             mzjsList = itemDtoList;
 
-            //处方根据治疗师是否同一条mz_cf数据，所以总金额根据处方明细计算
+            //Đ ơn thuốc theo chuyên viên trị liệu có hay không cùng một Dòngmz_cf dữ liệu, vì vậy tổng số tiền theo chi tiết đ ơn thuốc tính
             foreach (var item in sqlVo.mz_cf)
             {
                 item.zje = sqlVo.mz_cfmxList.Where(p => p.cfnm == item.cfnm).Sum(p => p.dj * p.sl);
             }
-            //添加各个实体对象赋值
+            //Thêm mỗi 个Đ ối tư ợng thực thể gán giá trị 
             return sqlVo;
 
         }
 
         /// <summary>
-        /// 治疗师list组合成字符串
+        /// Chuyên viên trị liệulist kết hợp 成字符串
         /// </summary>
         /// <param name="ysList"></param>
         /// <param name="ys"></param>
@@ -1350,7 +1350,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// mz_cf处方流水号
+        /// mz_cf số thứ tự đ ơn thuốc
         /// </summary>
         /// <returns></returns>
         private static string getCflsh()
@@ -1362,7 +1362,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 结算对象赋值
+        /// Quyết to ánĐ ối tư ợng gán giá trị 
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="sfxm"></param>
@@ -1401,14 +1401,14 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         #region optima记账 包括门诊记账和住院记账，不包含结算表和记账计划 Vision-1.2 门诊记账的第二个版本
         public void CommitAccounting(string patientType, OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> accDto, string orgId)
         {
-            //未确认和新增的数据
+            //Chưa xác nhận và thêm mới của dữ liệu
             var adddata = accDto.Where(p => (p.clzt == 1 || p.clzt == null) && p.czlx == "0").ToList();
             AddAccounting(patientType, bacDto, adddata, orgId);
             var updatedata = accDto.Where(p => (p.clzt == 2 || p.clzt == null) && (p.czlx == "1" || p.czlx == "2")).ToList();
-            //已确认和修改删除的数据
+            //Đ ãxác nhận và sửa xóa của dữ liệu
             UpdateAccounting(patientType, bacDto, updatedata, orgId);
 
-            //删除未确认的数据
+            //XóaChưaXác nhậnCủaDữ liệu
             var unconfirmdatadel = accDto.Where(p => (p.clzt == 1 && p.czlx == "2")).ToList();
             if (unconfirmdatadel != null && unconfirmdatadel.Count() > 0)
             {
@@ -1430,7 +1430,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 门诊/住院 新增记账 仅未确认
+        /// Ngoại trú/Nhập viện thêm mớighi sổ chỉ chưa xác nhận
         /// </summary>
         /// <param name="patientType"></param>
         /// <param name="bacDto"></param>
@@ -1450,8 +1450,8 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         throw new FailedException("门诊号不存在，请确认");
                     }
                     var ghnm = ghIsExits.ghnm;
-                    //***************************************新增实体******************************************************
-                    //新增记账对象集合
+                    //***************************************Thêm thực thể******************************************************
+                    //Thêm mớighi sổ đối tư ợng tập hợp 
                     var sqlVo = new SettInAccOutpatDataVo
                     {
                         mz_xmList = new List<OutpatientItemEntity>(),
@@ -1461,14 +1461,14 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     var jzsjList = new List<DateTime>();
                     var gridindex = 0;
                     var cfindex = 0;
-                    var strArray = new Dictionary<string, string>();  //暂存已保存的处方号,对应的医生
-                    var cFisExit = true; // 默认处方不存在
-                    var _cfh = "";//处方号
-                    var _cfnm = 0; //处方内码
-                    //***************************************End新增实体***************************************************
+                    var strArray = new Dictionary<string, string>();  //Tạm lưu số đ ơn thuốc đ ã lưu,Tư ơng ứng của bác sĩ
+                    var cFisExit = true; // Đ ơn thuốc mặc đ ịnh không tồn tại
+                    var _cfh = "";//Số đ ơn thuốc
+                    var _cfnm = 0; //Mã nội bộ đ ơn thuốc
+                    //***************************************EndThêm thực thể***************************************************
                     foreach (var item in accDto)
                     {
-                        string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
+                        string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
                         if (item.ysList != null && item.ysList.Count() > 0)
                         {
                             var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
@@ -1476,43 +1476,43 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         }
 
                         if (item.jzsj != null && !jzsjList.Contains(item.jzsj)) jzsjList.Add(item.jzsj);
-                        //添加optimaIds 未确认(clzt=1)的新增(czlx=0)数据
+                        //ThêmoptimaIds ChưaXác nhận(clzt=1)CủaThêm mới(czlx=0)Dữ liệu
                         if (item.newid != null && !optimaIds.Keys.Contains(item.newid) && item.clzt == 1 && item.czlx
                             == "0") optimaIds.Add(item.newid, null);
                         #region 新增
-                        if (item.yzlx == "1") //药品
+                        if (item.yzlx == "1") //Thuốc
                         {//mz_cf mz_cfmx 
 
                             #region 药品
 
                             if (item.sfxmCode != null)
-                                //添加处方主表信息
+                                //Thêm thông tin bảng chính đ ơn thuốc
                                 if (gridindex == 0 || cfindex == 0 || strArray.Count == 0)
                                 {
-                                    cFisExit = true; //处方不存在，添加处方主表
-                                    _cfh = getCflsh(); //处方流水号
+                                    cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
+                                    _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                 }
-                            //添加过处方记录
+                            //Thêm qua Đ ơn thuốc bản ghi 
                             if (strArray != null && strArray.Count > 0)
                             {
                                 foreach (var t in strArray)
                                 {
                                     if (t.Value.Equals(ys))
                                     {
-                                        //说明已经存在该处方主表信息
-                                        cFisExit = false; // 处方已存在
+                                        //Cho biết đ ã tồn tại thông tin bảng chính của đ ơn thuốc này
+                                        cFisExit = false; // Đ ơn thuốc đ ã tồn tại
                                     }
                                     else
                                     {
-                                        cFisExit = true; // 不同治疗师，处方不同
-                                        _cfh = getCflsh(); //处方流水号
+                                        cFisExit = true; // khác nhau chuyên viên trị liệu,Đ ơn thuốc khác nhau 
+                                        _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                     }
                                 }
                             }
 
                             if (cFisExit)
                             {
-                                //添加处方主表信息
+                                //Thêm thông tin bảng chính đ ơn thuốc
                                 strArray.Add(_cfh, ys);
 
                                 #region 添加处方
@@ -1567,7 +1567,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                             #endregion
                         }
-                        else//项目
+                        else//Hạng mục
                         {//mz_xm
                             #region 门诊项目
                             var mzxm = new OutpatientItemEntity
@@ -1616,7 +1616,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         #endregion
                     }
                     #endregion
-                    //处方根据治疗师是否同一条mz_cf数据，所以总金额根据处方明细计算
+                    //Đ ơn thuốc theo chuyên viên trị liệu có hay không cùng một Dòngmz_cf dữ liệu, vì vậy tổng số tiền theo chi tiết đ ơn thuốc tính
                     foreach (var item in sqlVo.mz_cf)
                     {
                         item.zje = sqlVo.mz_cfmxList.Where(p => p.cfnm == item.cfnm).Sum(p => p.dj * p.sl);
@@ -1631,26 +1631,26 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     {
                         throw new FailedException("该病人不在住院状态，请确认");
                     }
-                    //***************************************新增实体******************************************************
-                    //新增记账对象集合
+                    //***************************************Thêm thực thể******************************************************
+                    //Thêm mớighi sổ đối tư ợng tập hợp 
                     var inpatsqlVo = new SettInAccHospatDataVo
                     {
                         zy_xmjfbList = new List<HospItemBillingEntity>(),
                         zy_ypjfbList = new List<HospDrugBillingEntity>()
                     };
-                    //***************************************End新增实体***************************************************
+                    //***************************************EndThêm thực thể***************************************************
                     foreach (var item in accDto)
                     {
-                        string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
+                        string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
                         if (item.ysList != null && item.ysList.Count() > 0)
                         {
                             var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
                             getYsKsInfo(ysArray, ref ys, ref ysmc, ref ks, ref ksmc);
                         }
-                        //添加optimaIds 未确认(clzt=1)的新增(czlx=0)数据
+                        //ThêmoptimaIds ChưaXác nhận(clzt=1)CủaThêm mới(czlx=0)Dữ liệu
                         if (item.newid != null && !optimaIds.Keys.Contains(item.newid) && item.clzt == 1 && item.czlx
                             == "0") optimaIds.Add(item.newid, null);
-                        if (item.yzlx == "1") //药品
+                        if (item.yzlx == "1") //Thuốc
                         {
                             #region 药品计费表
                             HospDrugBillingEntity zyYpjfb = new HospDrugBillingEntity();
@@ -1687,7 +1687,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             inpatsqlVo.zy_ypjfbList.Add(zyYpjfb);
                             #endregion
                         }
-                        else//项目
+                        else//Hạng mục
                         {
                             #region 项目计费表
                             HospItemBillingEntity zyXmjfb = new HospItemBillingEntity();
@@ -1744,7 +1744,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 更新(新增，修改，删除)记账，仅已确认
+        /// Cập nhật(thêm mới,sửa,xóa)ghi sổ, chỉ Đ ãxác nhận
         /// </summary>
         /// <param name="patientType"></param>
         /// <param name="bacDto"></param>
@@ -1764,8 +1764,8 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         throw new FailedException("门诊号不存在，请确认");
                     }
                     var ghnm = ghIsExits.ghnm;
-                    //***************************************新增实体******************************************************
-                    //新增记账对象集合
+                    //***************************************Thêm thực thể******************************************************
+                    //Thêm mớighi sổ đối tư ợng tập hợp 
                     var addVo = new SettInAccOutpatDataVo
                     {
                         mz_xmList = new List<OutpatientItemEntity>(),
@@ -1775,13 +1775,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     var jzsjList = new List<DateTime>();
                     var gridindex = 0;
                     var cfindex = 0;
-                    var strArray = new Dictionary<string, string>();  //暂存已保存的处方号,对应的医生
-                    var cFisExit = true; // 默认处方不存在
-                    var _cfh = "";//处方号
-                    var _cfnm = 0; //处方内码
-                                   //***************************************End新增实体***************************************************
+                    var strArray = new Dictionary<string, string>();  //Tạm lưu số đ ơn thuốc đ ã lưu,Tư ơng ứng của bác sĩ
+                    var cFisExit = true; // Đ ơn thuốc mặc đ ịnh không tồn tại
+                    var _cfh = "";//Số đ ơn thuốc
+                    var _cfnm = 0; //Mã nội bộ đ ơn thuốc
+                                   //***************************************EndThêm thực thể***************************************************
 
-                    //***************************************更改实体***************************************************
+                    //***************************************Sửa thực thể***************************************************
                     var updateVo = new updateInAccOutpatVo
                     {
                         mz_xmList = new Dictionary<OutpatientItemEntity, OutpatientItemEntity>(),
@@ -1789,29 +1789,29 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         mz_cfmxList = new Dictionary<OutpatientPrescriptionDetailEntity, OutpatientPrescriptionDetailEntity>()
                     };
                     var cfmxIds = new List<int>();
-                    //***************************************End更改实体************************************************
+                    //***************************************EndSửa thực thể************************************************
 
-                    //***************************************删除实体***************************************************
+                    //***************************************Xóa thực thể***************************************************
                     var delVo = new delInAccOutpatVo
                     {
                         mz_xmList = new List<int>(),
                         mz_cf = new List<int>(),
                         mz_cfmxList = new List<int>()
                     };
-                    //***************************************End删除实体************************************************
+                    //***************************************EndXóa thực thể************************************************
                     foreach (var item in accDto)
                     {
-                        string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
+                        string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
                         if (item.ysList != null && item.ysList.Count() > 0)
                         {
                             var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
                             getYsKsInfo(ysArray, ref ys, ref ysmc, ref ks, ref ksmc);
                         }
-                        OutpatientPrescriptionEntity IsSameCF = null;//门诊处方表，为了修改处方备用
-                        if (item.yzlx == "1" && item.czlx == "1")//修改的处方
+                        OutpatientPrescriptionEntity IsSameCF = null;//Đ ơn thuốc ngoại trú bảng, đ ể SửaĐ ơn thuốc备 dùng 
+                        if (item.yzlx == "1" && item.czlx == "1")//Đ ơn thuốc đ ã sửa
                         {
-                            //日期和治疗师，判断是否同张处方.为了避免重复取数据，先取出来 
-                            //1.获取当前处方 如果修改前是同张处方，后面处理，否则新增
+                            // ngày và chuyên viên trị liệu, phán đoán có hay không cùng một tờ Đ ơn thuốc. đ ể 避免 trùng lặp 取dữ liệu, trư ớc 取出来 
+                            //1.Lấykhi trư ớc Đ ơn thuốc nếu sửa trư ớc là cùng một tờ Đ ơn thuốc, phía sau xử lý,nếu không thêm mới
                             IsSameCF = item.yzlx == "1" ? FirstOrDefault<OutpatientPrescriptionEntity>(@"SELECT  cf.*
                                             FROM    dbo.mz_cf cf
                                                     LEFT JOIN dbo.mz_cfmx cfmx ON cfmx.cfnm = cf.cfnm
@@ -1820,7 +1820,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                                     AND cf.OrganizeId = @orgId", new[] { new SqlParameter("@cfmxnm", item.jfbId), new SqlParameter("@orgId", orgId) }) : null;
 
                         }
-                        //两种情况新增：1.计费表Id不存在;2. 修改处方（日期或者治疗师更改了的情况）
+                        // hai loại tình hình thêm mới:1. bảng tính phí id không tồn tại tại;2. SửaĐ ơn thuốc(ngày hoặc chuyên viên trị liệu sửa của tình hình)
                         if ((IsSameCF != null &&
                             (IsSameCF.jsrq != item.jzsj || IsSameCF.ys != ys) &&
                             item.yzlx == "1" &&
@@ -1830,39 +1830,39 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             if (item.jzsj != null && !jzsjList.Contains(item.jzsj)) jzsjList.Add(item.jzsj);
 
                             #region 新增
-                            if (item.yzlx == "1") //药品
+                            if (item.yzlx == "1") //Thuốc
                             {//mz_cf mz_cfmx 
 
                                 #region 药品
 
                                 if (item.sfxmCode != null)
-                                    //添加处方主表信息
+                                    //Thêm thông tin bảng chính đ ơn thuốc
                                     if (gridindex == 0 || cfindex == 0 || strArray.Count == 0)
                                     {
-                                        cFisExit = true; //处方不存在，添加处方主表
-                                        _cfh = getCflsh(); //处方流水号
+                                        cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
+                                        _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                     }
-                                //添加过处方记录
+                                //Thêm qua Đ ơn thuốc bản ghi 
                                 if (strArray != null && strArray.Count > 0)
                                 {
                                     foreach (var t in strArray)
                                     {
                                         if (t.Value.Equals(ys))
                                         {
-                                            //说明已经存在该处方主表信息
-                                            cFisExit = false; // 处方已存在
+                                            //Cho biết đ ã tồn tại thông tin bảng chính của đ ơn thuốc này
+                                            cFisExit = false; // Đ ơn thuốc đ ã tồn tại
                                         }
                                         else
                                         {
-                                            cFisExit = true; // 不同治疗师，处方不同
-                                            _cfh = getCflsh(); //处方流水号
+                                            cFisExit = true; // khác nhau chuyên viên trị liệu,Đ ơn thuốc khác nhau 
+                                            _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                         }
                                     }
                                 }
 
                                 if (cFisExit)
                                 {
-                                    //添加处方主表信息
+                                    //Thêm thông tin bảng chính đ ơn thuốc
                                     strArray.Add(_cfh, ys);
 
                                     #region 添加处方
@@ -1917,7 +1917,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                                 #endregion
                             }
-                            else//项目
+                            else//Hạng mục
                             {//mz_xm
                                 #region 门诊项目
                                 var mzxm = new OutpatientItemEntity
@@ -1957,10 +1957,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                             #endregion
 
-                            if (item.yzlx == "1" && item.czlx == "1")//修改的处方，删除之前逻辑
+                            if (item.yzlx == "1" && item.czlx == "1")//Đ ơn thuốc đ ã sửa,xóa trư ớc đ ó logic 
                             {
                                 #region 删除处方明细
-                                delVo.mz_cfmxList.Add(int.Parse(item.jfbId));//相关处方明细删除
+                                delVo.mz_cfmxList.Add(int.Parse(item.jfbId));// liên quan chi tiết đ ơn thuốc xóa
                                 #endregion
                             }
                         }
@@ -1970,26 +1970,26 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             {
                                 cfmxIds.Add(int.Parse(item.jfbId));
                             }
-                            if (item.czlx == "2")//删除
+                            if (item.czlx == "2")//Xóa
                             {
-                                if (item.yzlx == "1")//药品
+                                if (item.yzlx == "1")//Thuốc
                                 {
                                     #region 删除处方明细
-                                    delVo.mz_cfmxList.Add(int.Parse(item.jfbId));//相关处方明细删除
+                                    delVo.mz_cfmxList.Add(int.Parse(item.jfbId));// liên quan chi tiết đ ơn thuốc xóa
                                     #endregion
                                 }
-                                else if (item.yzlx == "2")//项目
+                                else if (item.yzlx == "2")//Hạng mục
                                 {
                                     delVo.mz_xmList.Add(int.Parse(item.jfbId));
                                 }
                             }
-                            else if (item.czlx == "1")//更改
+                            else if (item.czlx == "1")//Sửa
                             {
                                 #region 更改
-                                //结算明细 对应表mz_jsmx
-                                if (item.yzlx == "1") //药品
+                                //Chi tiết quyết toán bảng tư ơng ứngmz_jsmx
+                                if (item.yzlx == "1") //Thuốc
                                 {
-                                    //根据记账日期和医生，判断是否同张处方
+                                    // theo ghi sổ ngày và bác sĩ, phán đoán có hay không cùng một tờ Đ ơn thuốc
                                     if (IsSameCF.jsrq == item.jzsj && IsSameCF.ys == ys)
                                     {
                                         var updatemzcfmx = FirstOrDefault<OutpatientPrescriptionDetailEntity>(@"SELECT   mx.*
@@ -2018,7 +2018,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                         }
                                     }
                                 }
-                                else if (item.yzlx == "2")//收费项目更改
+                                else if (item.yzlx == "2")//Hạng mục thu phí sửa
                                 {
 
                                     var updatemzxm = FirstOrDefault<OutpatientItemEntity>(@"select * from mz_xm where xmnm=@xmnm AND OrganizeId=@orgId",
@@ -2064,33 +2064,33 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     {
                         throw new FailedException("该病人不在住院状态，请确认");
                     }
-                    //***************************************新增实体******************************************************
-                    //新增记账对象集合
+                    //***************************************Thêm thực thể******************************************************
+                    //Thêm mớighi sổ đối tư ợng tập hợp 
                     var inpataddVo = new SettInAccHospatDataVo
                     {
                         zy_xmjfbList = new List<HospItemBillingEntity>(),
                         zy_ypjfbList = new List<HospDrugBillingEntity>()
                     };
-                    //***************************************End新增实体***************************************************
+                    //***************************************EndThêm thực thể***************************************************
 
-                    //***************************************更改实体***************************************************
+                    //***************************************Sửa thực thể***************************************************
                     var inpatupdateVo = new updateInAccHospatVo
                     {
                         zy_xmjfbList = new Dictionary<HospItemBillingEntity, HospItemBillingEntity>(),
                         zy_ypjfbList = new Dictionary<HospDrugBillingEntity, HospDrugBillingEntity>()
                     };
-                    //***************************************End更改实体************************************************
+                    //***************************************EndSửa thực thể************************************************
 
-                    //***************************************删除实体***************************************************
+                    //***************************************Xóa thực thể***************************************************
                     var inpatdelVo = new delInAccHospatVo
                     {
                         zy_xmjfbList = new List<string>(),
                         zy_ypjfbList = new List<string>()
                     };
-                    //***************************************End删除实体************************************************
+                    //***************************************EndXóa thực thể************************************************
                     foreach (var item in accDto)
                     {
-                        string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
+                        string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
                         if (item.ysList != null && item.ysList.Count() > 0)
                         {
                             var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
@@ -2100,7 +2100,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         if (!string.IsNullOrWhiteSpace(item.jfbId) && item.czlx == "0")
                         {
                             #region 新增
-                            if (item.yzlx == "1") //药品
+                            if (item.yzlx == "1") //Thuốc
                             {
                                 #region 药品计费表
                                 HospDrugBillingEntity zyYpjfb = new HospDrugBillingEntity();
@@ -2136,7 +2136,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                 inpataddVo.zy_ypjfbList.Add(zyYpjfb);
                                 #endregion
                             }
-                            else//项目
+                            else//Hạng mục
                             {
                                 #region 项目计费表
                                 HospItemBillingEntity zyXmjfb = new HospItemBillingEntity();
@@ -2177,22 +2177,22 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         }
                         else
                         {
-                            if (item.czlx == "2") //删除
+                            if (item.czlx == "2") //Xóa
                             {
-                                if (item.yzlx == "1")//药品
+                                if (item.yzlx == "1")//Thuốc
                                 {
                                     #region 删除药品计费表
                                     inpatdelVo.zy_ypjfbList.Add(item.jfbId);
                                     #endregion
                                 }
-                                else if (item.yzlx == "2")//项目
+                                else if (item.yzlx == "2")//Hạng mục
                                 {
                                     inpatdelVo.zy_xmjfbList.Add(item.jfbId);
                                 }
                             }
-                            else if (item.czlx == "1")//更改
+                            else if (item.czlx == "1")//Sửa
                             {
-                                if (item.yzlx == "1")//药品
+                                if (item.yzlx == "1")//Thuốc
                                 {
                                     var jfbid = int.Parse(item.jfbId);
                                     var updateyp = _hospDrugBillingRepo.IQueryable().FirstOrDefault(p => p.jfbbh == jfbid && p.zt == "1" && p.OrganizeId == orgId);
@@ -2220,7 +2220,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                     }
 
                                 }
-                                else if (item.yzlx == "2")//项目
+                                else if (item.yzlx == "2")//Hạng mục
                                 {
                                     var jfbid = int.Parse(item.jfbId);
                                     var updatexm = _hospItemBillingRepo.IQueryable().FirstOrDefault(p => p.jfbbh == jfbid && p.zt == "1" && p.OrganizeId == orgId);
@@ -2263,7 +2263,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
         #region 门诊收费 Vision-1.3 门诊记账的第三个版本
         /// <summary>
-        /// 保存门诊记账
+        /// LưuGhi sổ ngoại trú
         /// </summary>
         public void SavepatientAccountInfo(OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> accDto, string orgId)
         {
@@ -2273,8 +2273,8 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 throw new FailedException("门诊号不存在，请确认");
             }
             var ghnm = ghIsExits.ghnm;
-            //***************************************新增实体******************************************************
-            //新增记账对象集合
+            //***************************************Thêm thực thể******************************************************
+            //Thêm mớighi sổ đối tư ợng tập hợp 
             var sqlVo = new OutPatSettInAccDataVo
             {
                 mz_cf = new List<OutpatientPrescriptionEntity>(),
@@ -2289,17 +2289,17 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             var jzsjList = new List<DateTime>();
             var gridindex = 0;
             var cfindex = 0;
-            var strArray = new Dictionary<string, string>();  //暂存已保存的处方号,对应的医生
-            var cFisExit = true; // 默认处方不存在
-            var _cfh = "";//处方号
-            var _cfnm = 0; //处方内码
+            var strArray = new Dictionary<string, string>();  //Tạm lưu số đ ơn thuốc đ ã lưu,Tư ơng ứng của bác sĩ
+            var cFisExit = true; // Đ ơn thuốc mặc đ ịnh không tồn tại
+            var _cfh = "";//Số đ ơn thuốc
+            var _cfnm = 0; //Mã nội bộ đ ơn thuốc
 
-            //***************************************End新增实体***************************************************
+            //***************************************EndThêm thực thể***************************************************
 
-            //***************************************更改实体***************************************************
+            //***************************************Sửa thực thể***************************************************
             var updateVo = new updatePatSettInAccDataVo
             {
-                //Key 旧实体，Value新实体，为更改数据库时，记录日志准备
+                //Key cũ thực thể,Value mới thực thể,là sửa dữ liệu kho giờ, bản ghi nhật ký chuẩn bị 
                 mz_cf = new Dictionary<OutpatientPrescriptionEntity, OutpatientPrescriptionEntity>(),
                 mz_cfmxList = new Dictionary<OutpatientPrescriptionDetailEntity,
                 OutpatientPrescriptionDetailEntity>(),
@@ -2309,9 +2309,9 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 mz_jzjh = new Dictionary<OutpatientAccountEntity, OutpatientAccountEntity>(),
                 mz_jzjhmx = new Dictionary<OutpatientAccountDetailEntity, OutpatientAccountDetailEntity>()
             };
-            //***************************************End更改实体***************************************************
+            //***************************************EndSửa thực thể***************************************************
 
-            //***************************************删除实体***************************************************
+            //***************************************Xóa thực thể***************************************************
             var DelVo = new DelPatSettInAccDataVo
             {
                 mz_cf = new List<int>(),
@@ -2322,25 +2322,25 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 mz_jzjh = new List<string>(),
                 mz_jzjhmx = new List<string>(),
             };
-            var del_jsnm = new List<int>();//需要删除和更新总金额的结算内码
-            //***************************************End删除实体***************************************************
+            var del_jsnm = new List<int>();//Cần xóa và cập nhật tổng số tiền của mã nội bộ quyết toán
+            //***************************************EndXóa thực thể***************************************************
             foreach (var item in accDto)
             {
-                string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
-                OutpatientPrescriptionEntity IsSameCF = null;//门诊处方表，为了修改处方备用
+                string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
+                OutpatientPrescriptionEntity IsSameCF = null;//Đ ơn thuốc ngoại trú bảng, đ ể SửaĐ ơn thuốc备 dùng 
                 if (item.ysList != null && item.ysList.Count() > 0)
                 {
                     var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
                     getYsKsInfo(ysArray, ref ys, ref ysmc, ref ks, ref ksmc);
                 }
                 OutpatientSettlementDetailEntity updatejsmx = null;
-                if (!string.IsNullOrWhiteSpace(item.xmnm.ToString()))//修改的处方
+                if (!string.IsNullOrWhiteSpace(item.xmnm.ToString()))//Đ ơn thuốc đ ã sửa
                 {
                     updatejsmx = _outpatientSettlementDetailRepo.FindEntity(p => p.mxnm == item.xmnm);
-                    if (item.yzlx == "1" && item.czlx == "1")//修改的处方
+                    if (item.yzlx == "1" && item.czlx == "1")//Đ ơn thuốc đ ã sửa
                     {
-                        //判断jsnm，日期和治疗师，判断是否同张处方.为了避免重复取数据，先取出来 
-                        //1.获取当前处方 如果修改前是同张处方，后面处理，否则新增
+                        // phán đoán jsnm, ngày và chuyên viên trị liệu, phán đoán có hay không cùng một tờ Đ ơn thuốc. đ ể 避免 trùng lặp 取dữ liệu, trư ớc 取出来 
+                        //1.Lấykhi trư ớc Đ ơn thuốc nếu sửa trư ớc là cùng một tờ Đ ơn thuốc, phía sau xử lý,nếu không thêm mới
                         IsSameCF = item.yzlx == "1" ? FirstOrDefault<OutpatientPrescriptionEntity>(@"SELECT  cf.*
                                             FROM    dbo.mz_cf cf
                                                     LEFT JOIN dbo.mz_cfmx cfmx ON cfmx.cfnm = cf.cfnm
@@ -2352,7 +2352,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                     }
                 }
-                //两种情况新增：1.结算明细内码不存在;2. 修改处方（日期或者治疗师更改了的情况）
+                // hai loại tình hình thêm mới:1.Chi tiết quyết toán mã nội bộ không tồn tại tại;2. SửaĐ ơn thuốc(ngày hoặc chuyên viên trị liệu sửa của tình hình)
                 if (string.IsNullOrWhiteSpace(item.xmnm.ToString()) || (IsSameCF != null && (IsSameCF.jsrq != item.jzsj || IsSameCF.ys != ys) && (!string.IsNullOrWhiteSpace(item.xmnm.ToString())) && item.yzlx == "1"))
                 {
                     sqlVo.mz_jzjh = new OutpatientAccountEntity();
@@ -2398,38 +2398,38 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         if (oldDto != null)
                         {
 
-                            if (item.yzlx == "1") //药品
+                            if (item.yzlx == "1") //Thuốc
                             {
                                 #region 药品
 
                                 if (item.sfxmCode != null)
-                                    //添加处方主表信息
+                                    //Thêm thông tin bảng chính đ ơn thuốc
                                     if (gridindex == 0 || cfindex == 0 || strArray.Count == 0)
                                     {
-                                        cFisExit = true; //处方不存在，添加处方主表
-                                        _cfh = getCflsh(); //处方流水号
+                                        cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
+                                        _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                     }
-                                //添加过处方记录
+                                //Thêm qua Đ ơn thuốc bản ghi 
                                 if (strArray != null && strArray.Count > 0)
                                 {
                                     foreach (var t in strArray)
                                     {
                                         if (t.Value.Equals(ys))
                                         {
-                                            //说明已经存在该处方主表信息
-                                            cFisExit = false; // 处方已存在
+                                            //Cho biết đ ã tồn tại thông tin bảng chính của đ ơn thuốc này
+                                            cFisExit = false; // Đ ơn thuốc đ ã tồn tại
                                         }
                                         else
                                         {
-                                            cFisExit = true; // 不同治疗师，处方不同
-                                            _cfh = getCflsh(); //处方流水号
+                                            cFisExit = true; // khác nhau chuyên viên trị liệu,Đ ơn thuốc khác nhau 
+                                            _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                                         }
                                     }
                                 }
 
                                 if (cFisExit)
                                 {
-                                    //添加处方主表信息
+                                    //Thêm thông tin bảng chính đ ơn thuốc
                                     strArray.Add(_cfh, ys);
 
                                     #region 添加处方
@@ -2495,7 +2495,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                 mzjsmx.jsnm = oldDto.jsnm;
                                 mzjsmx.mxnm = 0;
                                 mzjsmx.sl = item.sl;
-                                mzjsmx.jslx = "2";//2表示门诊记账
+                                mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                                 mzjsmx.cf_mxnm = mzcfmx.cfmxId;
                                 mzjsmx.zt = "1";
                                 mzjsmx.OrganizeId = orgId;
@@ -2505,7 +2505,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                 sqlVo.mz_jsmxList.Add(mzjsmx);
                                 #endregion
                             }
-                            else//项目
+                            else//Hạng mục
                             {
                                 #region 门诊项目
                                 var xmnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("mz_xm");
@@ -2555,7 +2555,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                 mzjsmx.jsnm = oldDto.jsnm;
                                 mzjsmx.mxnm = mzxm2.xmnm;
                                 mzjsmx.sl = item.sl;
-                                mzjsmx.jslx = "2";//2表示门诊记账
+                                mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                                 mzjsmx.cf_mxnm = 0;
                                 mzjsmx.zt = "1";
                                 mzjsmx.OrganizeId = orgId;
@@ -2611,15 +2611,15 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         sqlVo.mz_js.Add(mzjs);
                         #endregion
 
-                        if (item.yzlx == "1") //药品
+                        if (item.yzlx == "1") //Thuốc
                         {//mz_cf mz_cfmx 
 
                             #region 药品
 
                             if (item.sfxmCode != null)
-                                //添加处方主表信息
-                                cFisExit = true; //处方不存在，添加处方主表
-                            _cfh = getCflsh(); //处方流水号
+                                //Thêm thông tin bảng chính đ ơn thuốc
+                                cFisExit = true; //Đ ơn thuốc không tồn tại,thêm bảng chính đ ơn thuốc
+                            _cfh = getCflsh(); //Số thứ tự đ ơn thuốc
                             var mz_cf = new OutpatientPrescriptionEntity();
                             var mz_jsmx = new OutpatientSettlementDetailEntity();
                             var mz_cfmx = new OutpatientPrescriptionDetailEntity();
@@ -2634,10 +2634,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                             //if (cFisExit)
                             //{
-                            ////添加处方主表信息
+                            ////Thêm thông tin bảng chính đ ơn thuốc
                             //strArray.Add(_cfh, ys);
 
-                            //#region 添加处方
+                            //#region Th êmĐ ơn thuốc
 
                             //var mzcf =
                             //    new OutpatientPrescriptionEntity
@@ -2674,14 +2674,14 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             //cfindex++;
                             //addVo.mz_cf.Add(mzcf);
 
-                            //#region 门诊结算明细
+                            //#region Chi tiết quyết toán ngoại trú
                             //var mzjsmx = new OutpatientSettlementDetailEntity();
                             //mzjsmx.jsmxnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("mz_jsmx");
                             //mzjsmx.jsnm = jsnm;
                             //mzjsmx.mxnm = 0;
                             //mzjsmx.mxbm = item.sfxmCode;
                             //mzjsmx.sl = item.sl;
-                            //mzjsmx.jslx = "2";//2表示门诊记账
+                            //mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                             //mzjsmx.cf_mxnm = mzcf.cfnm;
                             //mzjsmx.zt = "1";
                             //mzjsmx.OrganizeId = orgId;
@@ -2693,7 +2693,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                             //#endregion
 
-                            //#region 处方明细
+                            //#region chi tiết đ ơn thuốc
 
                             //var mzcfmx = new OutpatientPrescriptionDetailEntity
                             //{
@@ -2729,7 +2729,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             //addVo.mz_cfmxList.Add(mzcfmx);
                             #endregion
                         }
-                        else//项目
+                        else//Hạng mục
                         {//mz_xm
                             #region 门诊项目
                             var mzxm = new OutpatientItemEntity
@@ -2779,7 +2779,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             mzjsmx.jsnm = jsnm;
                             mzjsmx.mxnm = mzxm.xmnm;
                             mzjsmx.sl = item.sl;
-                            mzjsmx.jslx = "2";//2表示门诊记账
+                            mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                             mzjsmx.cf_mxnm = 0;
                             mzjsmx.zt = "1";
                             mzjsmx.OrganizeId = orgId;
@@ -2793,14 +2793,14 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     }
 
                     #endregion
-                    if (item.yzlx == "1" && item.czlx == "1")//修改的处方，删除之前逻辑
+                    if (item.yzlx == "1" && item.czlx == "1")//Đ ơn thuốc đ ã sửa,xóa trư ớc đ ó logic 
                     {
                         #region 删除处方相关
-                        DelVo.mz_jsmxList.Add(updatejsmx.jsmxnm);//相关结算明细删除
-                        DelVo.mz_cfmxList.Add(updatejsmx.cf_mxnm.Value);//相关处方明细删除
+                        DelVo.mz_jsmxList.Add(updatejsmx.jsmxnm);// liên quan chi tiết quyết toán xóa
+                        DelVo.mz_cfmxList.Add(updatejsmx.cf_mxnm.Value);// liên quan chi tiết đ ơn thuốc xóa
                         var jzjhmx = FirstOrDefault<string>(@"SELECT TOP 1 jzjhmxId FROM dbo.mz_cfmx WHERE cfmxId=@cfmxnm AND OrganizeId=@orgId",
                                new[] { new SqlParameter("@cfmxnm", updatejsmx.cf_mxnm), new SqlParameter("@orgId", orgId) });
-                        DelVo.mz_jzjhmx.Add(jzjhmx);//相关记账计划明细删除
+                        DelVo.mz_jzjhmx.Add(jzjhmx);// liên quan chi tiết kế hoạch ghi sổ xóa
                         #endregion
                     }
 
@@ -2811,8 +2811,8 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     //string jzjhmxId = item.yzlx == "1" ? FirstOrDefault<string>(@"SELECT TOP 1 jzjhmxId FROM dbo.mz_cfmx WHERE cfmxId=@cfmxnm AND OrganizeId=@orgId",
                     //           new[] { new SqlParameter("@cfmxnm", updatejsmx.cf_mxnm), new SqlParameter("@orgId", orgId) }) :
                     //           FirstOrDefault<string>("SELECT DISTINCT jzjhmxId FROM MZ_XM WHERE jsnm = @jsnm",
-                    //           new[] { new SqlParameter("@jsnm", jsnm) });//要删除的记账计划明细Id
-                    del_jsnm.Add(int.Parse(jsnm.ToString()));//添加结算状态，刷新主表状态和总金额
+                    // new[] { new SqlParameter("@jsnm", jsnm) });// cần xóa củachi tiết kế hoạch ghi sổ id
+                    del_jsnm.Add(int.Parse(jsnm.ToString()));//Thêm trạng thái quyết toán,刷 mới bảng chính trạng thái và tổng số tiền
                     if (item.czlx == "2")
                     {
                         #region 删除
@@ -2822,7 +2822,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         #endregion
 
                         #region 删除计费表明细 获取记账计划明细Id
-                        if (item.yzlx == "1") //药品
+                        if (item.yzlx == "1") //Thuốc
                         {
                             DelVo.mz_cfmxList.Add(updatejsmx.cf_mxnm.Value);
 
@@ -2841,23 +2841,23 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         }
                         #endregion
 
-                        //#region 删除相关记账计划明细
+                        //#region Xóa chi tiết kế hoạch ghi sổ liên quan
                         //DelVo.mz_jzjhmx.Add(jzjhmxId);
                         //#endregion
                         continue;
                         #endregion
                     }
-                    else if (item.czlx == "1")//更改
+                    else if (item.czlx == "1")//Sửa
                     {
                         #region 更改
-                        //结算明细 对应表mz_jsmx
+                        //Chi tiết quyết toán bảng tư ơng ứngmz_jsmx
 
                         if (updatejsmx != null)
                         {
                             var oldjsmx = updatejsmx.Clone();
-                            if (item.yzlx == "1") //药品
+                            if (item.yzlx == "1") //Thuốc
                             {
-                                //根据记账日期和医生，判断是否同张处方
+                                // theo ghi sổ ngày và bác sĩ, phán đoán có hay không cùng một tờ Đ ơn thuốc
                                 if (IsSameCF.jsrq == item.jzsj && IsSameCF.ys == ys)
                                 {
                                     var updatemzcfmx = FirstOrDefault<OutpatientPrescriptionDetailEntity>(@"SELECT   mx.*
@@ -2885,7 +2885,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
                                     if (!string.IsNullOrWhiteSpace(updatemzcfmx.jzjhmxId))
                                     {
-                                        //记账计划更改
+                                        //Kế hoạch ghi sổ sửa
                                         var updatejzjhmx = FirstOrDefault<OutpatientAccountDetailEntity>(@"select * from mz_jzjhmx where jzjhmxId=@jzjhmxId AND OrganizeId=@orgId ", new[] { new SqlParameter("@jzjhmxId", updatemzcfmx.jzjhmxId), new SqlParameter("@orgId", orgId) });
                                         var oldjzjhmx = updatejzjhmx.Clone();
                                         updatejzjhmx.sfxmCode = item.sfxmCode;
@@ -2912,7 +2912,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
 
                             }
-                            else if (item.yzlx == "2")//收费项目更改
+                            else if (item.yzlx == "2")//Hạng mục thu phí sửa
                             {
 
                                 var updatemzxm = FirstOrDefault<OutpatientItemEntity>(@"select * from mz_xm where xmnm=@xmnm AND OrganizeId=@orgId", new[] { new SqlParameter("@xmnm", oldjsmx.mxnm), new SqlParameter("@orgId", orgId) });
@@ -2947,7 +2947,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                                     }
                                     //if (!string.IsNullOrWhiteSpace(updatemzxm.jzjhmxId))
                                     //{
-                                    //    //记账计划更改
+                                    // //Kế hoạch ghi sổ sửa
                                     //    var updatejzjhmx = FirstOrDefault<OutpatientAccountDetailEntity>(@"select * from mz_jzjhmx where jzjhmxId=@jzjhmxId AND OrganizeId=@orgId", new[] { new SqlParameter("@jzjhmxId", updatemzxm.jzjhmxId), new SqlParameter("@orgId", orgId) });
                                     //    var oldjzjhmx = updatejzjhmx.Clone();
                                     //    updatejzjhmx.sfxmCode = item.sfxmCode;
@@ -2985,13 +2985,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     }
                 }
             }
-            //处方根据治疗师是否同一条mz_cf数据，所以总金额根据处方明细计算
+            //Đ ơn thuốc theo chuyên viên trị liệu có hay không cùng một Dòngmz_cf dữ liệu, vì vậy tổng số tiền theo chi tiết đ ơn thuốc tính
             foreach (var item in sqlVo.mz_cf)
             {
                 item.zje = sqlVo.mz_cfmxList.Where(p => p.cfnm == item.cfnm).Sum(p => p.dj * p.sl);
             }
             _outPatChargeDmSer.OutPatsettDBInCharge(sqlVo, updateVo, del_jsnm, DelVo, orgId);
-            //保险剩余次数
+            // số lần còn lại của bảo hiểm 
             if (jzsjList == null || jzsjList.Count <= 0 || string.IsNullOrWhiteSpace(bacDto.patid.ToString())) return;
             foreach (var time in jzsjList)
             {
@@ -3009,7 +3009,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 生成处方逻辑(包含生成结算明细)
+        /// TạoĐ ơn thuốc logic (bao gồm tạochi tiết quyết toán)
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="item"></param>
@@ -3023,11 +3023,11 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         private void Addcf(OutpatAccBasicInfoDto bacDto, OutpatAccGridInfoDto item, string orgId, int ghnm, int jsnm, OutpatientAccountDetailEntity jzjhmx, ref Dictionary<string, string> strArray, ref int cfnm, string _cfh, bool cFisExit, out OutpatientPrescriptionEntity mzcf, out OutpatientSettlementDetailEntity mzjsmx, out OutpatientPrescriptionDetailEntity mzcfmx)
         {
             var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
-            string ys = null, ysmc = null, ks = null, ksmc = null;//当前处方的医生
+            string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
             getYsKsInfo(ysArray, ref ys, ref ysmc, ref ks, ref ksmc);
             if (cFisExit)
             {
-                //添加处方主表信息
+                //Thêm thông tin bảng chính đ ơn thuốc
                 strArray.Add(_cfh, ys);
 
                 #region 添加处方
@@ -3088,7 +3088,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             mzjsmx.jsnm = jsnm;
             mzjsmx.mxnm = 0;
             mzjsmx.sl = item.sl;
-            mzjsmx.jslx = "2";//2表示门诊记账
+            mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
             mzjsmx.cf_mxnm = mzcfmx.cfmxId;
             mzjsmx.zt = "1";
             mzjsmx.OrganizeId = orgId;
@@ -3102,7 +3102,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
         #region Vision-1.4 门诊记账第四个版本 增加临时和长期，单次治疗量
         /// <summary>
-        /// 保存门诊记账
+        /// LưuGhi sổ ngoại trú
         /// </summary>
         public void SaveoutpatientAccountInfo(OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> accDto, string orgId, string userCode)
         {
@@ -3116,8 +3116,8 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 throw new FailedException("门诊号不存在，请确认");
             }
             var ghnm = ghIsExits.ghnm;
-            //***************************************新增实体******************************************************
-            //新增记账对象集合
+            //***************************************Thêm thực thể******************************************************
+            //Thêm mớighi sổ đối tư ợng tập hợp 
             var sqlVo = new OutPatSettInAccDataVo4
             {
                 mz_xmList = new List<OutpatientItemEntity>(),
@@ -3129,7 +3129,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             var tempVo = new List<OutpatientItemExeEntity>();
             var jzsjList = new List<DateTime>();
             var gridindex = 0;
-            //***************************************End新增实体***************************************************
+            //***************************************EndThêm thực thể***************************************************
             sqlVo.mz_jzjh = new OutpatientAccountEntity();
             sqlVo.mz_jzjh.OrganizeId = orgId;
             sqlVo.mz_jzjh.patid = bacDto.patid.ToString();
@@ -3145,15 +3145,15 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 ys = ghIsExits.ys;
                 ks = ghIsExits.ks;
 
-                //修改：先停用，再新增
+                //Sửa: trư ớc 停 dùng,再thêm mới
                 if (!string.IsNullOrWhiteSpace(item.jzjhmxId) && (item.czlx == "1"))
                 {
-                    //停用计划
+                    //停 dùng kế hoạch 
                     overAccountingPlan(item.jzjhmxId, orgId, userCode);
                 }
 
                 var jzjhmxId = "";
-                //新增计划
+                //Thêm mới kế hoạch 
                 var addvo = AddoutpatientAccountInfo(item, orgId, jzsjList, bacDto, ghnm, gridindex, sqlVo.mz_jzjh, ys, ysmc, ks, ksmc, out jzjhmxId);
                 sqlVo.mz_jzjhmx.AddRange(addvo.mz_jzjhmx);
                 sqlVo.mz_js.AddRange(addvo.mz_js);
@@ -3162,10 +3162,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 continue;
 
                 #region 注释
-                ////新增：结算明细内码不存在;
+                ////Thêm mới:Chi tiết quyết toán mã nội bộ không tồn tại tại;
                 //if (string.IsNullOrWhiteSpace(item.jsmxnm.ToString()))
                 //{
-                //    //新增计划
+                // //Thêm mới kế hoạch 
                 //    var addvo = AddoutpatientAccountInfo(item, orgId, jzsjList, bacDto, ghnm, gridindex, sqlVo.mz_jzjh);
                 //    sqlVo.mz_jzjhmx.AddRange(addvo.mz_jzjhmx);
                 //    sqlVo.mz_js.AddRange(addvo.mz_js);
@@ -3175,12 +3175,12 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 //else
                 //{
                 //    updatejsmx = _outpatientSettlementDetailRepo.FindEntity(int.Parse(item.jsmxnm.ToString()));
-                //    if (item.czlx == "1")//更改,先停用当前计划，再开启新计划
+                // if (item.czlx == "1")//Sửa, trư ớc 停 dùng khi trư ớc kế hoạch,再开启 mới kế hoạch 
                 //    {
                 //        var updatemzxm = FirstOrDefault<OutpatientItemEntity>(@"select * from mz_xm where xmnm=@xmnm AND OrganizeId=@orgId", new[] { new SqlParameter("@xmnm", updatejsmx.mxnm), new SqlParameter("@orgId", orgId) });
-                //        //停用计划
+                // //停 dùng kế hoạch 
                 //        overAccountingPlan(updatemzxm.jzjhmxId, orgId, userCode);
-                //        //新增计划
+                // //Thêm mới kế hoạch 
                 //        var addvo = AddoutpatientAccountInfo(item, orgId, jzsjList, bacDto, ghnm, gridindex, sqlVo.mz_jzjh);
                 //        sqlVo.mz_jzjhmx.AddRange(addvo.mz_jzjhmx);
                 //        sqlVo.mz_js.AddRange(addvo.mz_js);
@@ -3195,7 +3195,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             }
 
             _outPatChargeDmSer.OutPatsettDBInCharge(sqlVo, tempVo, orgId);
-            //保险剩余次数
+            // số lần còn lại của bảo hiểm 
             if (jzsjList == null || jzsjList.Count <= 0 || string.IsNullOrWhiteSpace(bacDto.patid.ToString())) return;
             foreach (var time in jzsjList)
             {
@@ -3214,7 +3214,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
 
         /// <summary>
-        /// 保险剩余次数
+        /// số lần còn lại của bảo hiểm 
         /// </summary>
         /// <param name="jzsjList"></param>
         /// <param name="orgId"></param>
@@ -3222,7 +3222,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         public void Execsycs(List<DateTime> jzsjList, string orgId, string patid)
         {
 
-            //保险剩余次数
+            // số lần còn lại của bảo hiểm 
             if (jzsjList == null || jzsjList.Count <= 0 || string.IsNullOrWhiteSpace(patid)) return;
             foreach (var time in jzsjList)
             {
@@ -3240,7 +3240,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 新增记账计划
+        /// Thêm mớiKế hoạch ghi sổ
         /// </summary>
         /// <param name="item"></param>
         /// <param name="orgId"></param>
@@ -3265,7 +3265,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
             var zje = item.Zje;
             int zsl = 0;//总数
-            var dcsl = 0;//单次数量=治疗量/单位计量数
+            var dcsl = 0;// mỗi lần số lư ợng= điều trị lư ợng /Đ ơn vị计 lư ợng 数
             int? zzll = item.sl * item.zll;
             var zxzt = (int)EnumJzjhZXZT.None;
             if (item.sfxmCode != null)
@@ -3367,10 +3367,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     mzjsmx.jsnm = oldDto.jsnm;
                     mzjsmx.mxnm = mzxm2.xmnm;
                     mzjsmx.sl = zsl;
-                    mzjsmx.jslx = "2";//2表示门诊记账
+                    mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                     mzjsmx.cf_mxnm = 0;
                     mzjsmx.zt = "1";
-                    mzjsmx.jyje = zsl * item.dj;//交易金额
+                    mzjsmx.jyje = zsl * item.dj;// giao dịch số tiền
                     mzjsmx.OrganizeId = orgId;
                     mzjsmx.CreateTime = DateTime.Now;
                     mzjsmx.CreatorCode = OperatorProvider.GetCurrent().UserCode;
@@ -3469,11 +3469,11 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 mzjsmx.jsnm = jsnm;
                 mzjsmx.mxnm = mzxm.xmnm;
                 mzjsmx.sl = zsl;
-                mzjsmx.jslx = "2";//2表示门诊记账
+                mzjsmx.jslx = "2";//2 biểu thị ghi sổ ngoại trú
                 mzjsmx.cf_mxnm = 0;
                 mzjsmx.zt = "1";
                 mzjsmx.OrganizeId = orgId;
-                mzjsmx.jyje = zsl * item.dj;//交易金额
+                mzjsmx.jyje = zsl * item.dj;// giao dịch số tiền
                 mzjsmx.CreateTime = DateTime.Now;
                 mzjsmx.CreatorCode = OperatorProvider.GetCurrent().UserCode;
                 sqlVo.mz_jsmxList.Add(mzjsmx);
@@ -3485,7 +3485,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 门诊停止计划
+        /// Ngoại trú dừng kế hoạch 
         /// </summary>
         /// <param name="db"></param>
         /// <param name="jzjhmxId"></param>
@@ -3498,13 +3498,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 string yzxcssql = "SELECT count(*) FROM [dbo].[mz_jzjhmxzx] WHERE [jzjhmxId] = @jzjhmxId and [OrganizeId] = @orgId AND zt=1 ";
                 var yzxcs = db.FirstOrDefault<int>(yzxcssql, new[] { new SqlParameter("@jzjhmxId", jzjhmxId)
                                 , new SqlParameter("@orgId", orgId) });
-                //if (yzxcs == 0)//未执行过就把所有关联表状态置为0
+                //if (yzxcs == 0)//Chưa thực hiện qua thì nơi về联 bảng trạng thái置là0
                 //{
                 //    delAccountingPlan(db, jzjhmxId, orgId, "1");
                 //    return;
                 //}
-                //1.更新mz_xm
-                //根据jzjhmzId,统计执行表数量和总量
+                //1.Cập nhậtmz_xm
+                // theo jzjhmzid, thống kê thực hiện bảng số lư ợng và总 lư ợng 
                 //var mxzx = db.FirstOrDefault<mxzxDto>(@"SELECT  ISNULL(SUM(zll), 0) zll ,
                 //                        ISNULL(CAST(SUM(sl) AS INT), 0) sl
                 //                        FROM [dbo].[mz_jzjhmxzx]
@@ -3521,19 +3521,19 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     db.Update(xmitem, new List<string> { "ssbz" });
                 }
 
-                //2.结算明细
+                //2.Chi tiết quyết toán
                 //var jsmxitem = db.IQueryable<OutpatientSettlementDetailEntity>(p => p.mxnm == xmitem.xmnm && p.OrganizeId == orgId).FirstOrDefault();
                 //jsmxitem.sl = mxzx.sl;
                 //jsnm = jsmxitem.jsnm;
                 //db.Update(jsmxitem, new List<string> { "sl", "jsnm" });
-                //3.更新mz_jzjhmx
+                //3.Cập nhậtmz_jzjhmx
                 var jzjhmx = db.IQueryable<OutpatientAccountDetailEntity>(p => p.jzjhmxId == jzjhmxId && p.OrganizeId == orgId).FirstOrDefault();
                 if (jzjhmx != null)
                 {
                     jzjhmx.yzxcs = yzxcs;
                     //if (jzjhmx.zxzt == (int)EnumJzjhZXZT.None && yzxcs == 0)
                     //{
-                    //    //从未执行过 del
+                    // // từ chưa thực hiện qua del
                     //    db.Delete(jzjhmx);
                     //}
                     //else
@@ -3556,16 +3556,16 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
             //using (var db2 = new EFDbTransaction(_databaseFactory).BeginTrans())
             //{
-            //    #region 更改结算主表总金额
+            //    #region Sửa tổng số tiền bảng chính quyết toán
             //    if (jsnm != null)
             //    {
-            //        //判断结算是否存在其他的未删除
+            // // phán đoán quyết toán có hay không tồn tại tại khác của chưa xóa
             //        var jsExists = db2.FirstOrDefault<int>(@"SELECT COUNT(1) FROM dbo.mz_jsmx WHERE jsnm=@jsnm AND zt=1 AND OrganizeId=@orgId",
             //            new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
             //        if (jsExists > 0)
             //        {
 
-            //            //更新结算主表总金额
+            // //Cập nhật quyết toán bảng chính tổng số tiền
             //            var xmzj = FirstOrDefault<decimal>(@"SELECT ISNULL(SUM(dj * sl), 0) FROM mz_xm WHERE jsnm = @jsnm
             //                AND OrganizeId =@orgId AND zt = 1", new[] { new SqlParameter("@jsnm", jsnm), new SqlParameter("@orgId", orgId) });
             //            var cfzj = FirstOrDefault<decimal>(@"SELECT  ISNULL(SUM(cfmx.dj * cfmx.sl), 0)
@@ -3591,7 +3591,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
 
         /// <summary>
-        /// 门诊停止记账计划（mz_jzjhmx）
+        /// Ngoại trú dừng kế hoạch ghi sổ(mz_jzjhmx)
         /// </summary>
         /// <param name="db"></param>
         /// <param name="jzjhmxId"></param>
@@ -3600,7 +3600,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //更新mz_jzjhmx
+                //Cập nhậtmz_jzjhmx
                 var jzjhmx = db.IQueryable<OutpatientAccountDetailEntity>(p => p.jzjhmxId == jzjhmxId && p.OrganizeId == orgId).FirstOrDefault();
                 jzjhmx.zxzt = (int)EnumJzjhZXZT.Stopped;
                 jzjhmx.Modify();
@@ -3610,11 +3610,11 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 未执行计划时，修改记账计划
+        /// Chưa kế hoạch thực hiện giờ,sửa kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
-        /// <param name="type">1表示 门诊 2表示住院</param>
+        /// <param name="type">1 biểu thị ngoại trú 2 biểu thị nhập viện</param>
         public void delAccountingPlan(Infrastructure.EF.EFDbTransaction db, string jzjhmxId, string orgId, string type)
         {
 
@@ -3622,23 +3622,23 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             {
                 switch (type)
                 {
-                    case "1"://门诊
+                    case "1"://Ngoại trú
                         var jzjhmx = db.IQueryable<OutpatientAccountDetailEntity>().FirstOrDefault(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId);
-                        //jzjhmx.zt = "0";//jzjhmx无效
+                        //jzjhmx.zt = "0";//jzjhmxKhông hiệu lực
                         jzjhmx.zxzt = (int)EnumJzjhZXZT.Stopped;
                         jzjhmx.Modify();
                         db.Update(jzjhmx, new List<string> { "zt", "zxzt" });
                         var xmitem = db.IQueryable<OutpatientItemEntity>(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
-                        xmitem.zt = "0";//mz_xm无效
+                        xmitem.zt = "0";//mz_xmKhông hiệu lực
                         xmitem.Modify();
                         db.Update(xmitem, new List<string> { "zt" });
                         var jsmx = db.IQueryable<OutpatientSettlementDetailEntity>().FirstOrDefault(p => p.mxnm == xmitem.xmnm && p.zt == "1" && p.OrganizeId == orgId);
-                        jsmx.zt = "0";//jsmx无效
+                        jsmx.zt = "0";//jsmxKhông hiệu lực
                         jsmx.Modify();
                         db.Update(jsmx, new List<string> { "zt" });
                         //var js = db.IQueryable<OutpatientSettlementEntity>().FirstOrDefault(p => p.jsnm == jsmx.jsnm && p.zt == "1" && p.OrganizeId == orgId);
                         //var xmsum = db.IQueryable<OutpatientItemEntity>().Sum(p => p.dj * p.sl);
-                        //js.zje = xmsum;//更新结算表
+                        //js.zje = xmsum;//Cập nhật quyết toán bảng 
                         //js.Modify();
                         //db.Update(js, new List<string> { "zje" });
                         break;
@@ -3646,12 +3646,12 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                         var zyjfb = db.IQueryable<HospItemBillingEntity>().Where(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId);
                         foreach (var item in zyjfb)
                         {
-                            item.zt = "0";//无效
+                            item.zt = "0";//Không hiệu lực
                             item.Modify();
                             db.Update(item, new List<string> { "zt" });
                         };
                         var zyjzjhmx = db.IQueryable<HospAccountingPlanDetailEntity>().FirstOrDefault(p => p.jzjhmxId == jzjhmxId && p.zt == "1" && p.OrganizeId == orgId);
-                        zyjzjhmx.zt = "0";//无效
+                        zyjzjhmx.zt = "0";//Không hiệu lực
                         zyjzjhmx.zxzt = (int)EnumJzjhZXZT.Stopped;
                         zyjzjhmx.Modify();
                         db.Update(zyjzjhmx, new List<string> { "zt", "zxzt" });
@@ -3663,7 +3663,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         }
 
         /// <summary>
-        /// 记账计划查询
+        /// Kế hoạch ghi sổ tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -3731,19 +3731,19 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
                 strSql.Append(" AND jzjhmx.zxzt = @jhzxzt ");
                 pars.Add(new SqlParameter("@jhzxzt", zxzt.Value));
             }
-            if ((zsftx ?? 0) > 0)//再收费提醒
+            if ((zsftx ?? 0) > 0)//再thu phí nhắc nhở 
             {
                 strSql.Append(" AND datediff(day, jzjhmx.jzsj, jzjhmx.LastEexcutionTime) >= @zsftx");
                 pars.Add(new SqlParameter("@zsftx", zsftx.Value));
-                //仅未执行或执行中的
+                // chỉ chưa thực hiện hoặc thực hiện trong của
                 strSql.AppendFormat(" AND jzjhmx.zxzt in ({0})"
                     , (int)EnumJzjhZXZT.None + "," + (int)EnumJzjhZXZT.Part);
             }
-            if ((sycstx ?? 0) > 0)//剩余次数提醒
+            if ((sycstx ?? 0) > 0)// còn lại số lần nhắc nhở 
             {
                 strSql.Append("  AND (ISNULL(jzjhmx.zcs, 0) - ISNULL(zhzxsjItem.yzxcs, 0)) <= @sycstx");
                 pars.Add(new SqlParameter("@sycstx", sycstx.Value));
-                //仅未执行或执行中的
+                // chỉ chưa thực hiện hoặc thực hiện trong của
                 strSql.AppendFormat(" AND jzjhmx.zxzt in ({0})"
                     , (int)EnumJzjhZXZT.None + "," + (int)EnumJzjhZXZT.Part);
             }
@@ -3751,12 +3751,12 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
             {
                 if (sfzt == "1")
                 {
-                    //已收费
+                    //Đ ãthu phí
                     strSql.Append("  and jzjhmx.jzsj is not null");
                 }
                 else if (sfzt == "2")
                 {
-                    //未收费
+                    //Chưa thu phí
                     strSql.Append("  and jzjhmx.jzsj is null");
                 }
             }
@@ -3766,7 +3766,7 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
         }
 
         /// <summary>
-        /// 保存记账计划和记账计划明细到数据库
+        /// Lưu kế hoạch ghi sổ và chi tiết kế hoạch ghi sổ đ ến dữ liệu kho 
         /// </summary>
         /// <param name="jzjh"></param>
         /// <param name="jzjhmxList"></param>
@@ -3775,13 +3775,13 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //记账计划
+                //Kế hoạch ghi sổ
                 if (jzjh != null)
                 {
                     db.Insert(jzjh);
                 }
 
-                //记账计划明细
+                //Chi tiết kế hoạch ghi sổ
                 if (jzjhmxList != null && jzjhmxList.Count() > 0)
                 {
                     foreach (var item in jzjhmxList)
@@ -3789,7 +3789,7 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
                         db.Insert(item);
                     }
                 }
-                //门诊项目
+                //Hạng mục ngoại trú
                 if (mz_xmList != null && mz_xmList.Count > 0)
                 {
                     foreach (var mz_xm in mz_xmList)
@@ -3809,7 +3809,7 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
         #region 根据门诊号查询关联处方（但不包括zt=0处方）
 
         /// <summary>
-        /// 根据门诊号查询关联药品处方（未发药 退费）（但不包括zt=0处方）
+        /// theo số khám ngoại trú tra cứu liên kết thu ốcĐ ơn thuốc(chưa phát thuốc hoàn phí)(nhưng không bao gồmzt=0Đ ơn thuốc)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -3848,11 +3848,11 @@ and isnull(mzcf.fybz,'') <> '2'", string.Join(",", refundDict.Select(p => p.Key)
 
 		#region 医保业务
 		/// <summary>
-		/// 获取处方号红冲数据，查询已经上传且未结算的处方号，进行红冲处理
+		/// Lấy số đ ơn thuốc ghi đ ỏ hoàn trả dữ liệu,tra c ứuĐ ãtải lên và chưa quyết toán của số đ ơn thuốc, tiến hành ghi đ ỏ hoàn trả xử lý
 		/// </summary>
 		/// <param name="zymzh"></param>
 		/// <param name="orgId"></param>
-		/// <param name="type">1门诊，2住院</param>
+		/// <param name="type">1Ngoại trú,2Nhập viện</param>
 		/// <returns></returns>
 		public List<RefundPrescriptionsInPut> GetCqyb10Data(string zymzh,string orgId,string type)
 		{

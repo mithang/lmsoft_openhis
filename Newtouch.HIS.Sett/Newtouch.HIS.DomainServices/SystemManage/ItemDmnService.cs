@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 字典、字典项 DmnService
+    /// từ điển, từ điển 项 DmnService
     /// </summary>
     public class ItemDmnService : DmnServiceBase, IItemDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取有效字典项 列表 指定组织机构
+        /// Lấy hiệu lực từ điển 项 danh sách chỉ đ ịnh tổ chức
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ select Id from [NewtouchHIS_Base]..V_S_Sys_Items where Code = @code and zt = '1'
         }
 
         /// <summary>
-        /// 获取所有字典分类
+        /// Lấy tất cả các từ điển phân loại
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ select Id from [NewtouchHIS_Base]..V_S_Sys_Items where Code = @code and zt = '1'
         }
 
         /// <summary>
-        /// 获取所有字典项
+        /// Lấy tất cả các từ điển 项
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>

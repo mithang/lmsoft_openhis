@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Application.SystemManage
         }
 
         /// <summary>
-        /// 诊断下拉框
+        /// Chẩn đoán hộp thả xuống 
         /// </summary>
         /// <param name="zd"></param>
         /// <returns></returns>

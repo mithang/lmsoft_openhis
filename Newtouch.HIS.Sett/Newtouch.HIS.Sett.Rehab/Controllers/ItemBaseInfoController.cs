@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Sett.Rehab.Controllers
     public class ItemBaseInfoController : Controller
     {
         /// <summary>
-        /// 添加
+        /// Thêm
         /// </summary>
         /// <returns></returns>
         public ActionResult Add()
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Sett.Rehab.Controllers
         }
 
         /// <summary>
-        /// 修改
+        /// Sửa
         /// </summary>
         /// <returns></returns>
         public ActionResult Edit()

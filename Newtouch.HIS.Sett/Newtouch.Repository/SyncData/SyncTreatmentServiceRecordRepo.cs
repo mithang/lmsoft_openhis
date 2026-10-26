@@ -60,17 +60,17 @@ where siteId = @orgId";
             {
                 if (wtjlbz.Value)
                 {
-                    //true 仅问题记录
+                    //true chỉ 问题 bản ghi 
                     sql += " and isnull(wtjlbz,0) = 1";
                 }
                 else
                 {
-                    //false 排除问题记录
+                    //false loại trừ 问题 bản ghi 
                     sql += " and isnull(wtjlbz,0) = 0";
                 }
             }
 
-            //确保一下 没有确认过
+            //确保 một dư ới không có xác nhận qua 
             sql += " and jfbId is null";
 
             sql += " order by isnull(ModifiedDate,CreatedDate) desc";
@@ -120,12 +120,12 @@ where siteId = @orgId";
             {
                 if (wtjlbz.Value)
                 {
-                    //true 仅问题记录
+                    //true chỉ 问题 bản ghi 
                     sql += " and isnull(wtjlbz,0) = 1";
                 }
                 else
                 {
-                    //false 排除问题记录
+                    //false loại trừ 问题 bản ghi 
                     sql += " and isnull(wtjlbz,0) = 0";
                 }
             }
@@ -167,7 +167,7 @@ where siteId = @orgId";
                 pars.Add(new SqlParameter("@isDeleted", isDeleted));
             }
 
-            //确保一下 没有确认过
+            //确保 một dư ới không có xác nhận qua 
             sql += " and jfbId is null and zt='1'";
 
             //sql += " order by isnull(LastModifyTime,CreateTime) desc";
@@ -237,7 +237,7 @@ where siteId = @orgId";
             return FindList<OptimaAccLeftDto>(sql, pars.ToArray());
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SyncTreatmentServiceRecordEntity"></param>
         /// <param name="keyValue"></param>
@@ -258,7 +258,7 @@ where siteId = @orgId";
         }
 
         /// <summary>
-        /// 批量作废
+        /// hàng loạt hủy bỏ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="Id"></param>

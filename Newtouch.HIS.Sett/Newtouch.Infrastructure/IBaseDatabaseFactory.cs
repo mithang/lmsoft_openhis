@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// base库DB上下文Factory
+    /// base kho DBngữ cảnhFactory
     /// </summary>
     public interface IBaseDatabaseFactory : IDatabaseFactory
     {

@@ -4,156 +4,156 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Proxy.guian.DO
 {
     /// <summary>
-    /// 结算完整流程所需参数
+    /// Quyết toán完整流程 nơi 需tham số
     /// </summary>
     public class SettlementOverallProcessDo
     {
         /// <summary>
-        /// 组织机构代码
+        /// Mã tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 门诊补偿序号
+        /// Số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         public string outpId { get; set; }
     }
 
     /// <summary>
-    /// 虚拟结算完整流程所需参数
+    /// 虚拟quyết toán完整流程 nơi 需tham số
     /// </summary>
     public class SimulationSettlementOverallProcessDo
     {
         /// <summary>
-        /// 组织机构代码
+        /// Mã tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 门诊补偿序号
+        /// Số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        /// 查询当此门诊已上传费用明细 请求参数
+        /// Tra cứu chi tiết chi phí ngoại trú lần này đ ã tải lên yêu cầu tham số
         /// </summary>
         public S22Param S22Param { get; set; }
 
         /// <summary>
-        /// S21接口上传明细
+        /// S21Giao diệnTải lênChi tiết
         /// </summary>
         public List<S21Detail> S21Details { get; set; }
     }
 
     /// <summary>
-    /// 查询当此门诊已上传费用明细 请求参数
+    /// Tra cứu chi tiết chi phí ngoại trú lần này đ ã tải lên yêu cầu tham số
     /// </summary>
     public class S22Param
     {
         /// <summary>
-        /// 开始时间(yyyy-mm-dd)
+        /// Thời gian bắt đ ầu(yyyy-mm-dd)
         /// </summary>
         public string startDate { get; set; }
 
         /// <summary>
-        /// 截止时间(yyyy-mm-dd)
+        /// 截止thời gian(yyyy-mm-dd)
         /// </summary>
         public string endDate { get; set; }
     }
 
     /// <summary>
-    /// S18接口所需参数
+    /// S18giao diện nơi 需tham số
     /// </summary>
     public class S18Param
     {
         /// <summary>
-        /// 个人编码
+        /// mã cá nhân 
         /// </summary>
         public string memberId { get; set; }
 
         /// <summary>
-        /// 就诊时间(yyyy-mm-dd)
+        /// Khám bệnhThời gian(yyyy-mm-dd)
         /// </summary>
         public DateTime jzsj{ get; set; }
 
         /// <summary>
-        /// 就诊科室，我们系统所用科室
+        /// Khoa khám bệnh,我们hệ thống nơi dùng khoa
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 经治医生
+        /// Bác sĩ điều trị
         /// </summary>
         public string doctorName { get; set; }
 
         /// <summary>
-        /// 疾病代码(接口S29下载获取)
+        /// Mã bệnh(Giao diệnS29Tải xuống và lấy)
         /// </summary>
         public string diseaseCode { get; set; }
     }
 
     /// <summary>
-    /// S21上传明细所需参数
+    /// S21 tải lênchi tiết nơi 需tham số
     /// </summary>
     public class S21Detail
     {
         /// <summary>
-        /// 明细中文名
+        /// Chi tiết tên tiếng trung 
         /// </summary>
         public string detailName { get; set; }
 
         /// <summary>
-        /// 农合编码
+        /// mã hợp tác nông thôn 
         /// </summary>
         public string detailCode { get; set; }
 
         /// <summary>
-        /// His明细序号（唯一编号）
+        /// Hischi tiết thứ tự số (duy nhất số hiệu)
         /// </summary>
         public string hisDetailCode { get; set; }
         
         /// <summary>
-        /// 本地编码PDA可以上传农合编码
+        /// Đ ịa phư ơng mã PDAcó thể tải lên mã hợp tác nông thôn 
         /// </summary>
         public string detailHosCode { get; set; }
         
         /// <summary>
-        /// 本地类别代码
+        /// Đ ịa phư ơng loại mã
         /// </summary>
         public string typeCode { get; set; }
         
         /// <summary>
-        /// 数量（四位小数精度）
+        /// Số lư ợng(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal num { get; set; }
         
         /// <summary>
-        ///  单价（四位小数精度）
+        /// Đ ơn giá(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal price { get; set; }
        
         /// <summary>
-        /// 总价（四位小数精度）
+        /// Tổng giá(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal totalCost { get; set; }
         
         /// <summary>
-        /// 用药日期(yyyy-mm-dd)
+        /// Ngày dùng thuốc(yyyy-mm-dd)
         /// </summary>
         public string date { get; set; }
         
         /// <summary>
-        /// 单位
+        /// Đ ơn vị
         /// </summary>
         public string unit { get; set; }
         
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string standard { get; set; }
         
         /// <summary>
-        /// 剂型
+        /// Dạng bào chế
         /// </summary>
         public string formulations { get; set; }
     }

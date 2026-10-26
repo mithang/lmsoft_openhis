@@ -15,17 +15,17 @@ namespace Newtouch.HIS.Application
         void SubmitForm(SysPatientChargeWaiverEntity sysPatiChargeWaiverEntity, int? keyValue);
 
         /// <summary>
-        /// 计算收费项目减免金额
-        /// 病人状态：1；--有效
-        /// 变更标志：0；--未变更
+        /// Tính hạng mục thu phí số tiền giảm trừ
+        /// Bệnh nhânTrạng thái:1;--Hiệu lực
+        /// thay đ ổi dấu hiệu:0;--chưa thay đ ổi 
         /// </summary>
-        /// <param name="parmBrxz">病人性质</param>
-        /// <param name="parmDl">大类</param>
-        /// <param name="parmSfxm">收费项目</param>
-        /// <param name="parmJe">金额</param>
-        /// <param name="outJmbl">减免比例</param>
-        /// <param name="outJmje">减免金额</param>
-        /// <returns>count:减免后金额</returns>
+        /// <param name="parmBrxz">Tính chất bệnh nhân</param>
+        /// <param name="parmDl"> loại lớn </param>
+        /// <param name="parmSfxm">Hạng mục thu phí</param>
+        /// <param name="parmJe">Số tiền</param>
+        /// <param name="outJmbl">Tỷ lệ giảm trừ</param>
+        /// <param name="outJmje">Số tiền giảm trừ</param>
+        /// <returns>count:Số tiền sau giảm trừ</returns>
         decimal Calcjm(string parmBrxz, string parmDl, string parmSfxm, decimal parmJe, out decimal outJmbl, out decimal outJmje);
 
     }

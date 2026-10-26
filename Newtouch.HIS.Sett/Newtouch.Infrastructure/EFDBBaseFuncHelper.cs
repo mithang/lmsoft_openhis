@@ -8,8 +8,8 @@ using System.Text.RegularExpressions;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 常用到的（放Repo、DmnService都不合适的，但又要请求数据库的）
-    /// 比如获取唯一编号（自增，但有不能重复）
+    /// 常 dùng đ ến của(放Repo, DmnService đ ều không 合适của,nhưng又 cần yêu cầu dữ liệu kho của)
+    /// ví dụ lấy duy nhất số hiệu(tự 增,nhưng có không thể trùng lặp)
     /// </summary>
     public class EFDBBaseFuncHelper
     {
@@ -21,7 +21,7 @@ namespace Newtouch.Infrastructure
         private IDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// 默认DB上下文
+        /// Mặc đ ịnhDBngữ cảnh
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -34,7 +34,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文
+        /// chỉ đ ịnh DBngữ cảnh
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace Newtouch.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.DefaultDB;  //默认
+                dbType = EnumDBFactoryType.DefaultDB;  //Mặc đ ịnh
             }
             IDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -57,7 +57,7 @@ namespace Newtouch.Infrastructure
         #region 方法
 
         /// <summary>
-        /// 获取主键字段唯一Id
+        /// Lấy khóa chính trư ờng duy nhất id
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取主键字段唯一Id
+        /// Lấy khóa chính trư ờng duy nhất id
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取主键字段唯一Id
+        /// Lấy khóa chính trư ờng duy nhất id
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -114,7 +114,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy trư ờng / nghiệp vụ duy nhất giá trị 
         /// </summary>
         /// <param name="fieldName"></param>
         /// <returns></returns>
@@ -152,7 +152,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// Ngữ cảnh loại 
     /// </summary>
     public enum EnumDBFactoryType
     {

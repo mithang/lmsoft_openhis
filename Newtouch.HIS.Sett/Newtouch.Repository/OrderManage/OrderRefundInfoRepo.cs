@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取已退金额（包括未知状态的）
+        /// LấyĐ ã hoàn số tiền(bao gồm chưa知trạng thái của)
         /// </summary>
         /// <param name="outTradeNo"></param>
         /// <returns></returns>

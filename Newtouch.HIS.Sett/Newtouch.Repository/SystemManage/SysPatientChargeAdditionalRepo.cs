@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(SysPatientChargeAdditionalEntity sysPatiChargeAddEntity, string orgId)
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
             this.Delete(t => t.brsffjbh == sysPatiChargeAddEntity.brsffjbh && t.OrganizeId == orgId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有有效数据
+        /// Lấy tất cả các hiệu lực dữ liệu
         /// </summary>
         /// <returns></returns>
         public List<SysPatientChargeAdditionalEntity> SelectALLEffectiveList(string orgId)

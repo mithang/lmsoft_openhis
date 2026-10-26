@@ -15,7 +15,7 @@ namespace Newtouch.Infrastructure
         private byte _precision;
 
         /// <summary>
-        /// 精确度。
+        /// 精确 đ ộ.
         /// </summary>
         public byte Precision
         {
@@ -27,7 +27,7 @@ namespace Newtouch.Infrastructure
         private byte _scale;
 
         /// <summary>
-        /// 小数保留位数。
+        /// 小数保留 vị 数.
         /// </summary>
         public byte Scale
         {
@@ -36,10 +36,10 @@ namespace Newtouch.Infrastructure
         }
         
         /// <summary>
-        /// 根据指定的精确度与小数保留位数，初始化 DecimalPrecisionAttribute 的实例。
+        /// theo chỉ đ ịnh của精确 đ ộ và小数保留 vị 数,初始化 DecimalPrecisionAttribute của实例.
         /// </summary>
-        /// <param name="precision">精确度。</param>
-        /// <param name="scale">小数保留位数。</param>
+        /// <param name="precision">精确 đ ộ.</param>
+        /// <param name="scale">小数保留 vị 数.</param>
         public DecimalPrecisionAttribute(byte precision, byte scale)
         {
             this.Precision = precision;

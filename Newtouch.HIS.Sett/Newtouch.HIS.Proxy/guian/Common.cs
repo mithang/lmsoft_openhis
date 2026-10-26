@@ -4,13 +4,13 @@ using Newtouch.HIS.Proxy.guian.DTO.S25;
 namespace Newtouch.HIS.Proxy.guian
 {
     /// <summary>
-    /// 贵安新农合 公共方法
+    /// 贵安 BHYT nông thôn mới 公tổng cộng Phư ơng thức
     /// </summary>
     public static class Common
     {
 
         /// <summary>
-        /// 计算新农合医保自负费用
+        /// Tính BHYT nông thôn mới BHYTchi phí tự trả
         /// </summary>
         /// <param name="s25ResponseDto"></param>
         /// <returns></returns>
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 计算新农合医保账户支付金额
+        /// Tính BHYT nông thôn mới BHYTtài khoản thanh toán số tiền
         /// </summary>
         /// <param name="s25ResponseDto"></param>
         /// <returns></returns>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// 计算新农合其他补偿费用
+        /// Tính BHYT nông thôn mới khácchi phí bồi thư ờng
         /// </summary>
         /// <param name="s25ResponseDto"></param>
         /// <returns></returns>

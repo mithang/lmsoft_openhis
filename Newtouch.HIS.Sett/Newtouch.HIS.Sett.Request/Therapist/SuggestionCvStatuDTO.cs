@@ -12,12 +12,12 @@ namespace Newtouch.HIS.Sett.Request.Therapist
     public class SuggestionCvStatuDTO
     {
         /// <summary>
-        /// 建议Id
+        /// đ ề xuất id
         /// </summary>
         public string jyId { get; set; }
 
         /// <summary>
-        /// 转换标志
+        /// chuyển 换 dấu hiệu 
         /// </summary>
         public string zhbz { get; set; }
     }

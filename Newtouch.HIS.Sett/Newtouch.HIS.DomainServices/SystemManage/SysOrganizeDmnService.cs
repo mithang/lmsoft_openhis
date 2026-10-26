@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 组织机构 DmnService
+    /// Tổ chức DmnService
     /// </summary>
     public class SysOrganizeDmnService : DmnServiceBase, ISysOrganizeDmnService
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取组织下的所有有效组织（parent）
+        /// Lấy nhóm 织 dư ới của tất cả các hiệu lực nhóm 织(parent)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId)
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取所有的顶级组织机构
+        /// Lấy tất cả các của tổ chức cấp cao nhất
         /// </summary>
         /// <returns></returns>
         public IList<SysOrganizeVEntity> GetValidTopOrgList()
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取Org名称
+        /// LấyOrgTên
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取 UserId 对应的 医疗机构 List
+        /// Lấy Userid Tư ơng ứng của y tế cơ quan List
         /// </summary>
         /// <returns></returns>
         public IList<SysOrganizeVEntity> GetMedicalOrganizeListByUserId(string userId)

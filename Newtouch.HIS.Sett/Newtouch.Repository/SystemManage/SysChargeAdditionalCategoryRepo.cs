@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysChargeAdditionalCategoryEntity> GetEffectiveList(int keyValue, string orgId)
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Repository
             return this.IQueryable().Where(a => a.zt == "1" && a.dlbh == keyValue && a.OrganizeId == orgId).ToList();
         }
         /// <summary>
-        /// 获取所有有效列表
+        /// Lấy tất cả các hiệu lựcdanh sách
         /// </summary>
         /// <returns></returns>
         public List<SysChargeAdditionalCategoryEntity> SelectALLEffectiveList(string orgId)
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
             return this.IQueryable().Where(a => a.zt == "1" && a.OrganizeId == orgId).ToList();
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Repository
             return this.IQueryable().Where(a=>a.dlbh == keyValue && a.OrganizeId == orgId).FirstOrDefault();
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(int keyValue, string orgId)
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Repository
             this.Delete(t => t.dlbh == keyValue && t.OrganizeId == orgId);
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysChargeAddCategEntity"></param>
         /// <param name="keyValue"></param>

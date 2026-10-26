@@ -1,41 +1,41 @@
 ﻿namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 治疗项目明细
+    /// Chi tiết hạng mục điều trị
     /// </summary>
     public class PrescriptionTreamentItemDTO
     {
         /// <summary>
-        /// 收费项目（编码）
+        /// Hạng mục thu phí(mã)
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 数量（计费数量）
+        /// Số lư ợng(tính phí số lư ợng)
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 单次治疗量
+        /// mỗi lần điều trị lư ợng 
         /// </summary>
         public int? dczll { get; set; }
 
         /// <summary>
-        /// 执行次数
+        /// thực hiện số lần 
         /// </summary>
         public int? zxcs { get; set; }
 
         /// <summary>
-        /// 治疗量（总）
+        /// điều trị lư ợng (总)
         /// </summary>
         public int? zll { get; set; }
 
         /// <summary>
-        /// 单位（名称）
+        /// Đ ơn vị(tên)
         /// </summary>
         public string dw { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// chuyển tự trả dấu hiệu 
         /// </summary>
         public int? zzfbz { get; set; }
 

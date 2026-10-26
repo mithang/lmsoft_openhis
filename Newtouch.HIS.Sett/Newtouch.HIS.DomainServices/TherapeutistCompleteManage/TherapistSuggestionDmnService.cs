@@ -26,7 +26,7 @@ namespace Newtouch.HIS.DomainServices.TherapeutistCompleteManage
         }
 
         /// <summary>
-        /// 保存治疗建议
+        /// Lưu điều trị đ ề xuất 
         /// </summary>
         /// <param name="itemList"></param>
         public void SaveData(IList<TherapistSuggestionEntity> itemList, IList<string> delIds, string orgId)
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.DomainServices.TherapeutistCompleteManage
         }
 
         /// <summary>
-        /// 根据门诊或住院号模糊查询病人信息（治疗师建议）
+        /// theo ngoại trú hoặc số nhập viện模糊tra cứu thông tin bệnh nhân(chuyên viên trị liệu đ ề xuất)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -209,12 +209,12 @@ FROM [NewtouchHIS_Sett].[dbo].[zls_zljy] AS A WITH ( NOLOCK )
         }
 
         /// <summary>
-        /// 获取治疗建议列表（API用）
+        /// Lấy điều trị đ ề xuất danh sách(API dùng)
         /// </summary>
         /// <param name="mzzyh"></param>
         /// <param name="orgId"></param>
         /// <param name="brlx"></param>
-        /// <param name="startTime">开立起始时间</param>
+        /// <param name="startTime">开立起始thời gian</param>
         /// <returns></returns>
         public IList<TherapistSuggestionVO> GetTherapistSuggestionList(string mzzyh, string orgId, string brlx, DateTime startTime)
         {
@@ -249,7 +249,7 @@ and zljy.CreateTime >= @startTime";
         }
 
         /// <summary>
-        /// 更新建议的转换状态
+        /// Cập nhật đ ề xuất của chuyển 换trạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cvList"></param>

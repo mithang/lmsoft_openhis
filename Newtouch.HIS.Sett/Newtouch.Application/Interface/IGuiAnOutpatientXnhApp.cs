@@ -9,12 +9,12 @@ using Newtouch.HIS.Proxy.guian.DTO.S25;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 贵安门诊新农合
+    /// 贵安ngoại trú BHYT nông thôn mới 
     /// </summary>
     public interface IGuiAnOutpatientXnhApp
     {
         /// <summary>
-        /// 模拟结算全流程
+        /// mô phỏng quyết toán全流程
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="userCode"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Application.Interface
         string SimulationSettWholeProcess(string mzh, string userCode, string organizeId, out S24ResponseDTO s24);
 
         /// <summary>
-        /// 模拟结算，单功能
+        /// mô phỏng quyết toán, đ ơn 功 có thể 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
@@ -34,18 +34,18 @@ namespace Newtouch.HIS.Application.Interface
         string SimulationSett(string mzh, DateTime zlkssj, string organizeId, out Response<S24ResponseDTO> s24Response);
 
         /// <summary>
-        /// 模拟结算
+        /// mô phỏng quyết toán
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
-        /// <param name="s21Details">上传明细</param>
+        /// <param name="s21Details">Tải lênChi tiết</param>
         /// <param name="organizeId"></param>
         /// <param name="s24Response"></param>
         /// <returns></returns>
         string SimulationSett(string mzh, DateTime zlkssj, List<S21Detail> s21Details, string organizeId, out Response<S24ResponseDTO> s24Response);
 
         /// <summary>
-        /// 回退先前上传的明细
+        /// trả lại trư ớc trư ớc tải lên củachi tiết
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Application.Interface
         string DetailedUploadRetreat(string startDate, string endDate, string outpId, string organizeId);
 
         /// <summary>
-        /// 查询门诊补偿序号
+        /// Tra cứu số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -63,16 +63,16 @@ namespace Newtouch.HIS.Application.Interface
         string OutpIdQuery(string mzh, string organizeId);
 
         /// <summary>
-        /// 门诊上传
+        /// Ngoại trú tải lên
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="zlkssj">诊疗开始时间</param>
+        /// <param name="zlkssj"> chẩn đoán và điều trị thời gian bắt đ ầu</param>
         /// <returns></returns>
         string OutpatientUpload(string mzh, string organizeId, string userCode, out DateTime zlkssj);
 
         /// <summary>
-        /// 保存新门诊补偿序号
+        /// Lưu mới số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         /// <param name="ghnm"></param>
         /// <param name="userCode"></param>
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Application.Interface
         void SaveNewOutpId(int ghnm, string userCode, string mzh, string organizeId, string outpId);
 
         /// <summary>
-        /// 保存新门诊补偿序号
+        /// Lưu mới số thứ tự bồi thư ờng ngoại trú
         /// </summary>
         /// <param name="ghnm"></param>
         /// <param name="userCode"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Application.Interface
         void UpdateMzghOutpId(int ghnm, string userCode, string mzh, string organizeId, string newOutpId);
 
         /// <summary>
-        /// 门诊上传回退
+        /// Ngoại trú tải lên trả lại 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -103,16 +103,16 @@ namespace Newtouch.HIS.Application.Interface
         string OutpatientUploadReturn(string mzh, string organizeId, string userCode);
 
         /// <summary>
-        /// 门诊回退，可在取消挂号中使用
+        /// Trả lại ngoại trú, có thể tại HủyĐ ăng ký khám trong sử dụng
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>失败原因</returns>
+        /// <returns>Nguyên nhân thất bại</returns>
         string OutpatientReturn(string mzh, string organizeId, string userCode);
 
         /// <summary>
-        /// 取消结算，门诊红冲
+        /// Hủy quyết toán,ngoại trú ghi đ ỏ hoàn trả 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Application.Interface
         string CancelSett(string mzh, string organizeId, string userCode);
 
         /// <summary>
-        /// 取消结算，门诊红冲
+        /// Hủy quyết toán,ngoại trú ghi đ ỏ hoàn trả 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="outpId"></param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Application.Interface
         string CancelSett(string mzh, string outpId, string organizeId, string userCode);
 
         /// <summary>
-        /// 新农合门诊结算
+        /// BHYT nông thôn mới quyết toán ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Application.Interface
         string Sett(string mzh, string organizeId, string userCode, out S25ResponseDTO s25, out string outpId);
 
         /// <summary>
-        /// 新农合门诊结算
+        /// BHYT nông thôn mới quyết toán ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="outpId"></param>
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Application.Interface
         string Sett(string mzh, string outpId, string organizeId, string userCode, out S25ResponseDTO s25);
 
         /// <summary>
-        /// 组装退费后要重新生成的结算明细
+        /// nhóm 装hoàn phí sau cần lại tạo củachi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -164,7 +164,7 @@ namespace Newtouch.HIS.Application.Interface
         TFS21RequestDTO AssembleS21RequestDto(string jsnm, Dictionary<string, decimal> tjsxmDict, string mzh, string organizeId, string outpId = "");
 
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -178,13 +178,13 @@ namespace Newtouch.HIS.Application.Interface
            string organizeId, string userCode, out TFS21RequestDTO tfRequest);
 
         /// <summary>
-        /// 新农合医保请求
+        /// BHYT nông thôn mới BHYT yêu cầu 
         /// </summary>
-        /// <param name="itn">接口名称  例：S02</param>
+        /// <param name="itn">Giao diện tên 例:S02</param>
         /// <param name="body"></param>
         /// <param name="organizeId"></param>
-        /// <param name="response">返回报文</param>
-        /// <returns>结果</returns>
+        /// <param name="response">Bản tin trả về</param>
+        /// <returns>Kết quả</returns>
         string XnhInterfaceSend(string itn, string body, string organizeId, out string response);
     }
 }

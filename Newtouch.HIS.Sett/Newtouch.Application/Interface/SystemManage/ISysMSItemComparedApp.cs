@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Application
     public interface ISysMSItemComparedApp
     {
         /// <summary>
-        /// A页面带一个对象到B页面
+        /// Atrang mang một đ ối tư ợng sangBtrang
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Application
         void SubmitForm(SysMedicalTechItemMappEntity entity, string keyValue);
 
         /// <summary>
-        /// Grid筛选查询显示
+        /// GridHiển thị tra cứu lọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

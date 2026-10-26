@@ -46,11 +46,11 @@ namespace Newtouch.HIS.Repository
             }
             var linq = ExtLinq.True<SysPatientNatureEntity>();
             return this.IQueryable(linq).Where(P => P.zt == "1" && P.OrganizeId == ogrId
-            && (string.IsNullOrEmpty(keyword) || P.brxzmc.Contains(keyword) || P.py.Contains(keyword) || (P.brxz.Contains(keyword)))).ToList(); //modify by caishanshan 20161217 加了个brxz的条件
+            && (string.IsNullOrEmpty(keyword) || P.brxzmc.Contains(keyword) || P.py.Contains(keyword) || (P.brxz.Contains(keyword)))).ToList(); //modify by caishanshan 20161217 加 个brxz của dòng vụ 
         }
 
         /// <summary>
-        /// 获取报销政策下拉框（自动提示）
+        /// Lấy thanh toán BHYT 政策 hộp thả xuống (tự đ ộng nhắc nhở)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取病人性质有效列表
+        /// LấyTính chất bệnh nhânHiệu lựcDanh sách
         /// </summary>
         /// <returns></returns>
         public string getEffectPatiNatureList(string orgId)
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据brxz编号获取实体
+        /// theo brxz số hiệu lấy thực thể
         /// </summary>
         /// <param name="brxzbh"></param>
         /// <param name="orgId"></param>
@@ -101,10 +101,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据brxz获取实体
+        /// theo brxz lấy thực thể
         /// </summary>
-        /// <param name="brxz">病人性质</param>
-        /// <param name="orgId">组织机构</param>
+        /// <param name="brxz">Tính chất bệnh nhân</param>
+        /// <param name="orgId">Tổ chức</param>
         /// <returns></returns>
         public SysPatientNatureEntity SelectBrxzByBrxz(string brxz, string orgId)
         {
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Repository
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
                 var brxzbh = int.Parse(keyValue);
-                //Code重复判断
+                //CodePhán đoán trùng lặp
                 if (this.IQueryable().Any(p => p.brxz == entity.brxz && p.brxzbh != brxzbh && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //CodePhán đoán trùng lặp
                 if (this.IQueryable().Any(p => p.brxz == entity.brxz && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");

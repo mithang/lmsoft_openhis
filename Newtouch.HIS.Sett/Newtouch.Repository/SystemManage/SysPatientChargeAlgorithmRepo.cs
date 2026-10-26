@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有有效算法
+        /// Lấy tất cả các hiệu lực thuật toán 
         /// </summary>
         /// <returns></returns>
         public List<SysPatientChargeAlgorithmEntity> getAllMzActive()

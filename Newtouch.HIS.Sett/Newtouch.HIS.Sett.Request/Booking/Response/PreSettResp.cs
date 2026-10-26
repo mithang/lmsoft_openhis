@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
         public decimal ybzf { get; set; }
         public decimal grzf { get; set; }
         /// <summary>
-        /// 现金支付合计
+        /// Thanh toán tiền mặt tổng cộng 
         /// </summary>
         public decimal xjzf { get; set; }
     }

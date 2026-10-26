@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据住院号获取账户信息
+        /// theo số nhập viện lấy tài khoản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 添加账户
+        /// ThêmTài khoản
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新账户
+        /// Cập nhậtTài khoản
         /// </summary>
         /// <returns></returns>
         public bool ModifyAcc(SysPatientAccountEntity entity)

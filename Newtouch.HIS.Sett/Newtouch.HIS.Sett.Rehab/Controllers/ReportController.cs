@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab.Controllers
 {
     /// <summary>
-    /// 报表
+    /// báo cáo 
     /// </summary>
     public class ReportController : ControllerBase
     {

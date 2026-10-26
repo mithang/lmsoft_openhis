@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 更新账户
+        /// Cập nhậtTài khoản
         /// </summary>
         /// <returns></returns>
         public bool ModifyAcc(SysAccountEntity entity)

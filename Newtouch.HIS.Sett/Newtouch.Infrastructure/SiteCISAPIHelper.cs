@@ -5,12 +5,12 @@ using Newtouch.Common.Web;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// CIS API请求帮助类
+    /// CIS API yêu cầu giúp đ ỡ loại 
     /// </summary>
     public class SiteCISAPIHelper : SiteAPIRequestHelperBase<SiteCISAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// lĩnh vực Addr cấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteCISAPIHost";
 
@@ -20,7 +20,7 @@ namespace Newtouch.Infrastructure
         private readonly static string _apiName = "CIS";
 
         /// <summary>
-        /// 同步病人信息给CIS
+        /// Đ ồng bộ thông tin bệnh nhân cho CIS
         /// </summary>
         /// <param name="dto"></param>
         public static APIRequestHelper.DefaultResponse UpdateInpatientBasicInfo(InpatientPatientInfoDTO dto)
@@ -42,7 +42,7 @@ namespace Newtouch.Infrastructure
             return apiResp;
         }
         /// <summary>
-        /// 同步病人性质给CIS
+        /// Đ ồng bộ tính chất bệnh nhân cho CIS
         /// </summary>
         /// <param name="dto"></param>
         public static APIRequestHelper.DefaultResponse UpdatebrxzInfo(UpdatebrxzRequest dto)
@@ -52,7 +52,7 @@ namespace Newtouch.Infrastructure
             return apiResp;
         }
         /// <summary>
-        /// 门诊预约查询 不分预约日期、科室、专家
+        /// Ngoại trú đ ặt lịch tra cứu không 分 đ ặt lịch ngày, khoa, chuyên gia
         /// </summary>
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 门诊预约排班查询
+        /// Ngoại trú lịch trực đ ặt lịch tra cứu
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 已预约门诊挂号信息查询
+        /// Đ ã đ ặt lịch Đ ăng ký khám ngoại trú thông tintra cứu
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -119,9 +119,9 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// 赴约
         /// </summary>
-        /// <param name="mzyyghId">门诊预约挂号ID</param>
-        /// <param name="arrivalDate">赴约时间</param>
-        /// <param name="arrivalOpereater">门诊挂号操作员</param>
+        /// <param name="mzyyghid">Đ ặt lịch đ ăng ký khám ngoại trú ID</param>
+        /// <param name="arrivalDate">赴约thời gian</param>
+        /// <param name="arrivalOpereater">Đ ăng ký khám ngoại trú thao tác viên </param>
         /// <returns></returns>
         public static APIRequestHelper.DefaultResponse KeepAnAppointment(string mzyyghId, DateTime arrivalDate, string arrivalOpereater)
         {
@@ -136,7 +136,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取就诊信息
+        /// LấyKhám bệnhThông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -154,44 +154,44 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 同步住院病人信息
+    /// Đ ồng bộ thông tin bệnh nhân nhập viện
     /// </summary>
     public class InpatientPatientInfoDTO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 在院标志
+        /// Dấu hiệu đang nằm viện
         /// </summary>
         public string zybz { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán nhập viện
         /// </summary>
         public string ryzd { get; set; }
         /// <summary>
-        /// 入院诊断名称
+        /// Chẩn đoán nhập việnTên
         /// </summary>
         public string ryzdmc { get; set; }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
-        /// 病人性质名称
+        /// Tính chất bệnh nhânTên
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 联系人
+        /// liên hệ 人
         /// </summary>
         public string lxr { get; set; }
         /// <summary>
-        /// 联系人关系
+        /// liên hệ 人 quan hệ 
         /// </summary>
         public string lxrgx { get; set; }
         /// <summary>
-        /// 联系人电话
+        /// liên hệ 人điện thoại
         /// </summary>
         public string lxrdh { get; set; }
     }

@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Repository.SystemManage
 
         }
         /// <summary>
-        /// 保存收费项目组合
+        /// Lưu hạng mục thu phí kết hợp 
         /// </summary>
         /// <param name="entity"></param>
         public void ADDrowdata(TreatmentportfolioEntity entity)
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository.SystemManage
             this.Insert(entity);
         }
         /// <summary>
-        /// 删除收费项目组合
+        /// Xóa hạng mục thu phí kết hợp 
         /// </summary>
         /// <param name="keyValue"></param>
         public void deleteid(string keyValue, string orgId)
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 删除收费组合中明细
+        /// Xóathu phí kết hợp trong chi tiết
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="zhcodemc"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 是否已存在收费项目组合
+        /// Có hay kh ôngĐ ã tồn tại tại hạng mục thu phí kết hợp 
         /// </summary>
         /// <param name="zhcode"></param>
         /// <param name="sfxmmc"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取修改收费项目组合
+        /// Lấy sửa hạng mục thu phí kết hợp 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zhcode"></param>
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Repository.SystemManage
             return this.FindList<TreatmentportfolioEntity>(sql, par);
         }
         /// <summary>
-        /// 查询收费项目组合
+        /// Tra cứu hạng mục thu phí kết hợp 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>

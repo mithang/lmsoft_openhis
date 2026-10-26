@@ -4,34 +4,34 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S24
 {
     /// <summary>
-    /// 根据S18门诊上传返回的补偿序号outpId进行门诊模拟结算 请求报文
+    /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid tiến hành ngoại trú mô phỏng quyết toán bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S24")]
     [XmlRoot("body")]
     public class S24RequestDTO
     {
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        ///  补偿类型编码(跨省)
+        /// Bồi thư ờng loại mã (liên tỉnh)
         /// </summary>
         public string redeemNo { get; set; }
        
         /// <summary>
-        /// 出院日期(yyyy-mm-dd hh:mm:ss )(跨省)
+        /// Ngày xuất viện(yyyy-mm-dd hh:mm:ss)(liên tỉnh)
         /// </summary>
         public string leaveDate { get; set; }
         
         /// <summary>
-        ///  行政编码(跨省)
+        /// mã hành chính (liên tỉnh)
         /// </summary>
         public string areaCode { get; set; }
        
         /// <summary>
-        /// 是否跨省就医患者1:是0:否(跨省)
+        /// Có phải bệnh nhân khám chữa bệnh liên tỉnh không1:Là0:Không(liên tỉnh)
         /// </summary>
         public string isTransProvincial { get; set; }
     }

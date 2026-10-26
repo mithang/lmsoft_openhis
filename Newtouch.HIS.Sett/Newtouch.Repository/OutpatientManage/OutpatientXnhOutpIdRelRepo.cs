@@ -8,7 +8,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 新农合门诊补偿序号关联表
+    /// BHYT nông thôn mới số thứ tự bồi thư ờng ngoại trú liên kết bảng 
     /// </summary>
     public class OutpatientXnhOutpIdRelRepo : RepositoryBase<OutpatientXnhOutpIdRelEntity>, IOutpatientXnhOutpIdRelRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改状态无效
+        /// SửaTrạng tháiKhông hiệu lực
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -39,7 +39,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改状态无效
+        /// SửaTrạng tháiKhông hiệu lực
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="outpId"></param>
@@ -63,10 +63,10 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND outpId=@outpId
         }
 
         /// <summary>
-        /// 修改处理状态
+        /// Sửa xử lý trạng thái
         /// </summary>
         /// <param name="mzh"></param>
-        /// <param name="processingStatus">处理状态 0-未处理 1-明细已上传 2-已结算 3-已红冲  4-门诊回退 </param>
+        /// <param name="processingStatus">Xử lý trạng thái 0-chưa xử lý 1-chi ti ếtĐ ãtải lên 2-Đ ã quyết toán tính 3-Đ ã ghi đ ỏ hoàn trả 4-trả lại ngoại trú </param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
@@ -87,10 +87,10 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改处理状态
+        /// Sửa xử lý trạng thái
         /// </summary>
         /// <param name="mzh"></param>
-        /// <param name="processingStatus">处理状态 0-未处理 1-明细已上传 2-已结算 3-已红冲  4-门诊回退 </param>
+        /// <param name="processingStatus">Xử lý trạng thái 0-chưa xử lý 1-chi ti ếtĐ ãtải lên 2-Đ ã quyết toán tính 3-Đ ã ghi đ ỏ hoàn trả 4-trả lại ngoại trú </param>
         /// <param name="outpId"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>

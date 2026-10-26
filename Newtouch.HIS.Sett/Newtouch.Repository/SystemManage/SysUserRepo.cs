@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 返回一个实体
+        /// Quay lại một thực thể
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <param name="account"></param>

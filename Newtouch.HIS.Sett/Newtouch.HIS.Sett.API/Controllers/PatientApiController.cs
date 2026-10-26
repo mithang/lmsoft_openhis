@@ -17,7 +17,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 对外接口 患者信息 无需身份信息
+    /// đ ối với ngoài giao diện bệnh nhân thông tin không có需 thân phận thông tin
     /// </summary>
     [RoutePrefix("api/PatientAnon")]
     [IgnoreTokenDecrypt]
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //去挂号
+                //Đi đ ăng ký khám
                 var data = _patientCenterDmnService.GetPatRegList(req.OrgId, req.AppId, false, req.kh, req.mzh);
                 if (data.Count > 0)
                 {
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<PatientLisReportDetailRequest, DefaultResponse> ac = (req, resp) =>
             {
-                //去挂号
+                //Đi đ ăng ký khám
                 var data = _patientCenterDmnService.PatLisReportDetail(req.sqdh, req.xmdm, req.ywlx, req.AppId, apireq.OrganizeId);
                 if (data != null)
                 {
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         #region 住院
         /// <summary>
-        /// 查询患者
+        /// Tra cứuBệnh nhân
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -202,7 +202,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 查询住院患者账单
+        /// Tra cứu nhập viện bệnh nhân账 đ ơn 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>

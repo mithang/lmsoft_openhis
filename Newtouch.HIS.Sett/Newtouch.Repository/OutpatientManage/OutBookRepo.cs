@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
 
         }
 
-        //根据科室获取医生
+        // theo khoa lấy bác sĩ
         public IList<string> getStaffByKs(string ks,string orgId) {
             string sql = "select ys from [dbo].[mz_ghpb_rel_doc]  where 1=1 and zt='1' and OrganizeId=@orgId";
             //var para = new List<SqlParameter>();
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
             return result;
         }
 
-        //设置科室下状态为0
+        //Đ ặtkhoa dư ới trạng thái là0
         public int updateZt(string ks, string CreateCode, DateTime CreateTime,string orgId) {
             string sql = "update mz_ghpb_rel_doc set zt='0',LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where ks=@ks and OrganizeId=@orgId";
             SqlParameter[] para ={
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
 
         public int SubmitForm(string orgId, string ks, string gh, string CreateCode, DateTime CreateTime) {
             if (this.IQueryable().Any(p => p.ks == ks && p.ys == gh))
-            {//设置zt=1
+            {//Đ ặtzt=1
                 string sql = "update mz_ghpb_rel_doc set zt='1',LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where ks=@ks and ys=@ys and OrganizeId=@orgId";
                 SqlParameter[] para ={
                 new SqlParameter("@LastModifyTime",Convert.ToDateTime(CreateTime)),
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
                 };
                 return this.ExecuteSqlCommand(sql, para);
             }
-            else {//新增
+            else {//Thêm mới
                 var entity = new OutBookRelEntity();
                 entity.OrganizeId = orgId;
                 entity.ks = ks;
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
         public int UpdateForm(int keyValue,string orgId, string ks,string gh, string CreateCode, DateTime CreateTime)
         {
             if (this.IQueryable().Any(p => p.ks == ks && p.zt == "1"))
-            {//更新
+            {//Cập nhật
                 //var dbEntity = this.FindEntity(ks);
                 ////properties
                 //dbEntity.ks = ks;
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
                 return this.ExecuteSqlCommand(sql, para);
             }
             else
-            {//新增
+            {//Thêm mới
                 var entity = new OutBookRelEntity();
                 entity.OrganizeId = orgId;
                 entity.ks = ks;

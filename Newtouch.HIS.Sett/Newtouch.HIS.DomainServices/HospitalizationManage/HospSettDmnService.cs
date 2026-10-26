@@ -18,7 +18,7 @@ using System.Text;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 住院结算 实现
+    /// Quyết toán nhập viện 实现
     /// </summary>
     public class HospSettDmnService : DmnServiceBase, IHospSettDmnService
     {
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 住院结算 保存至数据库
+        /// Quyết toán nhập viện Lưu vào cơ sở dữ liệu
         /// </summary>
         /// <param name="vo"></param>
         public void SettSyncToDB(OutHospSettDBDataUpdateCollectVO vo, string orgId)
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.DomainServices
                 zybrjbxxEntityList[0].LastModifyTime = DateTime.Now;
                 db.Update(zybrjbxxEntityList[0]);
 
-                //发票号逻辑
+                //Số hóa đ ơn logic 
                 FinancialInvoiceEntity fpUpdateEntity, fpInsertEntity;
                 //need organizeId
                 _financialInvoiceRepo.UpdateCurrentGetEntitys(vo.fph, OperatorProvider.GetCurrent().UserCode, out fpUpdateEntity, out fpInsertEntity, orgId);
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 住院结算 取消结算 保存至数据库
+        /// Quyết toán nhập viện Hủy quyết toán Lưu vào cơ sở dữ liệu
         /// </summary>
         /// <param name="vo"></param>
         public void CancelSettSyncToDB(HospCancelSettDBDataUpdateCollectVO vo, string orgId)
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.DomainServices
                 }
                 oldZybrjbxxEntity = zybrjbxxEntityList[0].Clone();
                 zybrjbxxEntityList[0].zybz = vo.zybz;
-                zybrjbxxEntityList[0].cyrq = vo.cyrq;   //应该没有问题
+                zybrjbxxEntityList[0].cyrq = vo.cyrq;   //Nên không có问题
                 zybrjbxxEntityList[0].LastModifierCode = OperatorProvider.GetCurrent().UserCode;
                 zybrjbxxEntityList[0].LastModifyTime = DateTime.Now;
                 db.Update(zybrjbxxEntityList[0]);
@@ -301,7 +301,7 @@ and zyjs.jsnm not in (select cxjsnm from zy_js where jszt = '2' and OrganizeId =
         }
 
         /// <summary>
-        /// 待上传的自费结算病人信息
+        /// chờ tải lên của tự trả quyết toán thông tin bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="organizeId"></param>
@@ -386,7 +386,7 @@ on sfdl.dlCode = dljf.dl and sfdl.OrganizeId = @orgId";
             return this.FindList<HospSettlementClassificationFeeVO>(sql, new[] { new SqlParameter("@orgId", organizeId), new SqlParameter("@jsnm", jsnm) });
         }
         /// <summary>
-        /// 出院结算查询 费用明细
+        /// Quyết toán xuất việntra cứu chi phí chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -445,7 +445,7 @@ select sfdl.dlCode as dlCode, sfxm.sfxmmc AS sfxmmc,sfxm.dw AS jfdw, sfdl.dlmc a
 
                 }
 
-                //发票号逻辑
+                //Số hóa đ ơn logic 
                 //FinancialInvoiceEntity fpUpdateEntity, fpInsertEntity;
                 ////need organizeId
                 //_financialInvoiceRepo.UpdateCurrentGetEntitys(fph, OperatorProvider.GetCurrent().UserCode, out fpUpdateEntity, out fpInsertEntity, orgId);

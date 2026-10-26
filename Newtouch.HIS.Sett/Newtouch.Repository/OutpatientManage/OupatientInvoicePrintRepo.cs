@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据jsnm查打印记录
+        /// theo jsnm tra cứu in bản ghi 
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

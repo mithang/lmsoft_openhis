@@ -53,7 +53,7 @@ namespace Newtouch.HIS.DomainServices.API
         private readonly IOutpatientRegistRepo _ioutpatientRegistRepo;
         //private readonly IOutPatChargeApp _outPatChargeApp;
         /// <summary>
-        /// 获取卡信息
+        /// Lấy thẻ thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ where a.zt='1' and a.organizeId=@orgId
             return this.FindList<CardInfoResp>(sql, para.ToArray());
         }
         /// <summary>
-        /// 获取预约出诊科室信息
+        /// Lấy đ ặt lịch khám bệnh khoa thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>
@@ -119,7 +119,7 @@ where a.zt='1' and a.organizeId=@orgId
 
         }
         /// <summary>
-        /// 一段时间内门诊排班及号源等信息
+        /// một đoạn thời gian trong lịch trực ngoại trú và nguồn số V.v.Thông tin
         /// </summary>
         /// <returns></returns>
         public IList<MzpbScheduleResponse> GetMzpbSchedule(DepartmentSchedulingDTO dto)
@@ -175,7 +175,7 @@ order by a.OutDate  ";
             return FindList<MzpbScheduleResponse>(sql, para.ToArray());
         }
         /// <summary>
-        /// 出诊日排班及号源信息
+        /// khám bệnh ngày lịch trực và nguồn số thông tin
         /// </summary>
         /// <returns></returns>
         public IList<MzpbResponse> GetMzpb(MzKsPbDto dto)
@@ -224,7 +224,7 @@ order by a.OutDate ";
             return FindList<MzpbResponse>(sql, para.ToArray());
         }
         /// <summary>
-        /// 出诊日排班时间段明细
+        /// khám bệnh ngày lịch trực thời gian đoạn chi tiết
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -286,7 +286,7 @@ order by a.OutDate  ";
         }
 
         /// <summary>
-        /// 获取卡信息
+        /// Lấy thẻ thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kh"></param>
@@ -324,7 +324,7 @@ where a.zt='1' and a.organizeId=@orgId
 
         }
         /// <summary>
-        /// 预约挂号/非预约当日挂号
+        /// Đ ặt lịch đ ăng ký khám/ không phải đ ặt lịch khi NgàyĐ ăng ký khám
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -425,7 +425,7 @@ where a.zt='1' and a.organizeId=@orgId
             };
         }
         /// <summary>
-        /// (挂号结算)
+        /// (Đ ăng ký khám quyết toán)
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -472,7 +472,7 @@ where a.zt='1' and a.organizeId=@orgId
                 }
                 
             }
-            //获取门诊号
+            //LấySố khám ngoại trú
             string mzh = _OutPatientSettleDmnService.GetRegMzh(patid, bookRecord.ScheduId.ToString(), bookRecord.ks, orgId, null,
                 bookRecord.QueueNo, bookRecord.OutDate.ToString("yyyy-MM-dd"));
             MzKsPbDto pbxx = new MzKsPbDto();
@@ -543,7 +543,7 @@ where a.zt='1' and a.organizeId=@orgId
         }
 
         /// <summary>
-        /// 预约号查询预约信息
+        /// số đ ặt lịch tra cứu đ ặt lịch thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -572,7 +572,7 @@ where a.zt='1' and a.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 预约list
+        /// đ ặt lịch list
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -621,7 +621,7 @@ where a.zt='1'
             return FindList<MzAppointmentRecordListResp>(sql, para.ToArray());
         }
         /// <summary>
-        /// 取消预约(限未结算)
+        /// Hủy đ ặt lịch(限chưa quyết toán)
         /// </summary>
         /// <param name="dto"></param>
         public int CancelOutApp(MzAppointmentRecordReq req)
@@ -655,12 +655,12 @@ where a.zt='1'
             }
             //else
             //{
-            //    throw new FailedException("取消预约成功,号源退还失败,原因:未找到预约排班！");
+            // throw new FailedException("Hủy đ ặt lịch thành công, nguồn số trả lại 还thất bại, nguyên nhân:Chưa找 đ ến lịch trực đ ặt lịch ！");
             //}
             return refCnt;
         }
         /// <summary>
-        /// 获取医生信息
+        /// Lấy bác sĩ thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -693,7 +693,7 @@ where a.zt='1'
 
         }
         /// <summary>
-        /// 建卡
+        /// 建 thẻ 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -753,7 +753,7 @@ where a.zt='1'
             vo.xb = req.Gender;
             vo.brxz = req.PatType;
             vo.py = CommmHelper.StrConvertToPinyin(req.Name, "1");
-            vo.isdsfly = "Y"; //第三方健卡 不更改一卡通基本信息
+            vo.isdsfly = "Y"; //Thứ ba 方健 thẻ không sửa một thẻ 通 cơ bản thông tin
 
             _PatientBasicInfoDmnService.SavePatBasicCardInfo(vo, OrgId, "");
             CardInfoReq kxx = new CardInfoReq();
@@ -766,7 +766,7 @@ where a.zt='1'
             return list;
         }
         /// <summary>
-        /// 取消结算
+        /// Hủy quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -787,7 +787,7 @@ where a.zt='1'
             }
             int ghnm = settList.FirstOrDefault().ghnm;
 
-            if (settList.FirstOrDefault().jslx == "0")//退挂号
+            if (settList.FirstOrDefault().jslx == "0")// trả lại Đ ăng ký khám
             {
                 var regEty = _outpatientRegRepo.FindEntity(p =>
                     p.ghnm == ghnm && p.zt == "1" && p.OrganizeId == orgId &&
@@ -888,7 +888,7 @@ update Xt_Order set OrderStatus=2 where jsnm=@jsnm and zt=1
             };
         }
         /// <summary>
-        /// 待缴费订单
+        /// chờ thanh toán phí đ ơn hàng 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -912,7 +912,7 @@ update Xt_Order set OrderStatus=2 where jsnm=@jsnm and zt=1
                 feelistsql.Append(" and OrderStatus=1 ");
             }
             else {
-//                //暂时先采用删除在生成未缴费订单
+// //Tạm thời trư ớc 采 dùng xóa tại tạo chưa缴费 đ ơn hàng 
 //                string sql1 = @" delete Xt_OrderDetail from  Xt_OrderDetail a join Xt_Order b on a.OrderId=b.Id and (b.OrderStatus=0 or b.OrderStatus=3) where  b.CardNo=@CardNo and b.OrganizeId=@orgId
 //                            delete  from Xt_Order where CardNo=@CardNo and OrganizeId=@orgId  and (OrderStatus=0 or OrderStatus=3)
 //";
@@ -921,7 +921,7 @@ update Xt_Order set OrderStatus=2 where jsnm=@jsnm and zt=1
 //                pars.Add(new SqlParameter("@CardNo", req.CardNo));
 //                var i = this.ExecuteSqlCommand(sql1, pars.ToArray());
 
-                // 发生变化并且订单待支付的处方作废并生成新处方订单
+                // phát sinh thay đ ổi và đ ơn hàng chờ thanh toán CủaĐ ơn thuốc hủy bỏ và tạo mới Đ ơn thuốc đ ơn hàng 
                 string sql = @" exec Cf_OrderGenerate @orgId, @cardNo ";
                 var result = this.FindList<string>(sql,
                         new[] {new SqlParameter("orgId", orgId) ,
@@ -951,7 +951,7 @@ update Xt_Order set OrderStatus=2 where jsnm=@jsnm and zt=1
             return this.FindList<CostOrderResp>(feelistsql.ToString(), para.ToArray());
         }
         /// <summary>
-        /// 待缴费明细
+        /// chờ thanh toán phí chi tiết
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1018,7 +1018,7 @@ group by cfh,cftypename";
             };
         }
         /// <summary>
-        /// 取消订单
+        /// Hủy đ ơn hàng 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1056,7 +1056,7 @@ group by cfh,cftypename";
             return i;
         }
         /// <summary>
-        /// 订单状态重置
+        /// đ ơn hàng trạng thái重置
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1072,7 +1072,7 @@ group by cfh,cftypename";
             return i;
         }
         /// <summary>
-        /// 预结算
+        /// 预quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1097,7 +1097,7 @@ group by cfh,cftypename";
                     }
                     if (validPre != ((int)EnumBrxz.zf).ToString() && req.PatType != ((int)EnumBrxz.zf).ToString())
                     {
-                        //走医保
+                        //Qua BHYT
                         throw new FailedException("医保收费未开通");
                     }
                     else
@@ -1148,7 +1148,7 @@ group by cfh,cftypename";
                 var validCf = ValidFee(ghEntity.mzh, orgId);
                 if (!string.IsNullOrWhiteSpace(validCf))
                     throw new FailedException("门诊号:" + req.Mzh + "的处方订单已发生改变，请重新查询费用订单");
-                //费用无变化 锁定账单
+                //Chi phí không có thay đ ổi 锁定账 đ ơn 
                 string orderlock = @" update Xt_Order set orderstatus=@status where  OuttradeNo=@orderNo and organizeId=@orgId and zt=1";
                 var pars = new List<SqlParameter>();
                 pars.Add(new SqlParameter("@orgId", orgId));
@@ -1157,9 +1157,9 @@ group by cfh,cftypename";
                 var i = this.ExecuteSqlCommand(orderlock, pars.ToArray());
                 if (ghEntity.brxz != ((int)EnumBrxz.zf).ToString() && req.PatType != ((int)EnumBrxz.zf).ToString())
                 {
-                    //走医保
+                    //Qua BHYT
                     throw new FailedException("医保收费未开通");
-                    //医保返回错误需重置
+                    //BHYTquay lại lỗi需重置
                     CancalOrderReq cancalreq = new CancalOrderReq();
                     cancalreq.AppID = req.AppID;
                     cancalreq.HospitalID = req.HospitalID;
@@ -1180,7 +1180,7 @@ group by cfh,cftypename";
             }
         }
         /// <summary>
-        /// 处方结算
+        /// Đ ơn thuốc quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1191,37 +1191,37 @@ group by cfh,cftypename";
             //var ghEntity = _ioutpatientRegistRepo.FindEntity(p => p.mzh == req.Mzh && p.OrganizeId == orgId && p.zt == "1");
 
             //if (ghEntity == null)
-            //    throw new FailedException("不存在该门诊号的挂号记录");
+            // throw new FailedException(" không tồn tại tại này số khám ngoại trú CủaĐ ăng ký khám bản ghi ");
             //if (!string.IsNullOrWhiteSpace(req.PatType))
             //{
             //    if (req.PatType != ((int)EnumBrxz.zf).ToString() && ghEntity.brxz == ((int)EnumBrxz.zf).ToString())
             //    {
-            //        throw new FailedException("入参:PatType 值错误,该人员性质为自费");
+            // throw new FailedException("入参:PatType giá trị lỗi, này nhân sự 性质là tự trả");
             //    }
             //}
             //var validCf = ValidFee(ghEntity.mzh, orgId);
             //if (string.IsNullOrWhiteSpace(validCf))
-            //    throw new FailedException("门诊号:" + req.Mzh + "的处方订单已发生改变，请重新拉取费用订单");
+            // throw new FailedException("Số khám ngoại trú:" + req.Mzh + "CủaĐ ơn thuốc đ ơn hàng Đ ã发生 đ ổi 变,vui lòng lại拉取chi phí đ ơn hàng ");
 
             //var amount = GetOrderAmount(req.Mzh, orgId);
             //if (amount.Count == 0)
-            //    throw new FailedException("订单中心无未结算订单");
+            // throw new FailedException(" đ ơn hàng trong 心không có chưa quyết toán đ ơn hàng ");
             //if (amount.Count > 1)
-            //    throw new FailedException("订单中心存在多条未结订单,请取消订单或重新查询代缴费订单");
+            // throw new FailedException(" đ ơn hàng trong 心 tồn tại tại nhiều dòng chưa结 đ ơn hàng,vui lòng hủy đ ơn hàng hoặc lạitra cứu代缴费 đ ơn hàng ");
             //var jsje = amount.FirstOrDefault();
             //if (jsje != req.TotalAmount)
-            //    throw new FailedException("收费金额异常，HIS为：【" + jsje + "】传入金额为：【" + req.TotalAmount + "】");
+            // throw new FailedException("Thu phí số tiền bất thư ờng,HISlà:[" + jsje + "] truyền 入số tiền là:[" + req.TotalAmount + "]");
 
             //if (ghEntity.brxz != ((int)EnumBrxz.zf).ToString() && req.PatType != ((int)EnumBrxz.zf).ToString())
             //{
-            //    //走医保
-            //    throw new FailedException("医保收费未开通");
+            //    //Qua BHYT
+            // throw new FailedException("Thu phí BHYTchưa开通");
             //}
             //OutpatientSettFeeRelatedDTO feeRelated = new OutpatientSettFeeRelatedDTO()
             //{
             //    zje = Convert.ToDecimal(req.TotalAmount),
             //    ssk = Convert.ToDecimal(req.PayFee),
-            //    zffs1 = (req.AppID == "Alipay" ? "10" : "11"),//11微信,10支付宝
+            // zffs1 = (req.AppID == "Alipay"? "10": "11"),//11微信,10 thanh toán 宝
             //    zfje1 = Convert.ToDecimal(req.PayFee),
             //    zhaoling = 0
             //};
@@ -1229,7 +1229,7 @@ group by cfh,cftypename";
             //var cfnmlist = getCfnmList(ghEntity.mzh,orgId);
             //if (!(cfnmlist != null || cfnmlist.Count > 0))
             //{
-            //    throw new FailedException("该门诊号无可收费数据");
+            // throw new FailedException(" này số khám ngoại trú không có có thể thu phí dữ liệu");
             //}
             //patInfo.fph = _OutPatientDmnService.GetInvoiceListByEmpNo(req.AppID, orgId);
             //string outTradeNo = "";
@@ -1256,7 +1256,7 @@ group by cfh,cftypename";
 
         }
         /// <summary>
-        /// 对账信息
+        /// đ ối với 账thông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1352,7 +1352,7 @@ where ghyy.zt=1 and ghyy.yyzt in ('2','5') and ghyy.OrganizeId=@orgId and ghyy.A
             //};
         }
         /// <summary>
-        /// 挂号预结算验证
+        /// Đ ăng ký khám预quyết toán xác minh
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1399,7 +1399,7 @@ where ghyy.zt=1 and ghyy.yyzt in ('2','5') and ghyy.OrganizeId=@orgId and ghyy.A
                 }
 
             }
-            //获取门诊号
+            //LấySố khám ngoại trú
             MzKsPbDto pbxx = new MzKsPbDto();
             var scheduId = Convert.ToInt32(bookRecord.ScheduId);
             pbxx.HospitalID = req.HospitalID;
@@ -1410,13 +1410,13 @@ where ghyy.zt=1 and ghyy.yyzt in ('2','5') and ghyy.OrganizeId=@orgId and ghyy.A
             return bookRecord.ghxz;
         }
         /// <summary>
-        /// 处方费用是否发生变化
+        /// Đ ơn thuốcchi phí có hay không phát sinh thay đ ổi 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         public string ValidFee(string mzh,string orgId)
         {
-            //考虑医保上传唯一流水号使用明细Id 用处方或项目明细Id判断处方是否发生变化
+            // xem xét BHYTtải lên số thứ tự duy nhất sử dụngchi tiếtid dùng Đ ơn thuốc hoặc hạng mụcchi tiếtid phán đoán Đ ơn thuốc có hay không phát sinh thay đ ổi 
             string sql = @"
 SELECT cast(a.cfmxId as varchar) cfmxId from(
 SELECT  b.yp SubItemCode ,
@@ -1466,7 +1466,7 @@ where   a.cfmxId is null or b.cfmxId is null";
 
         }
         /// <summary>
-        /// 待缴订单总金额
+        /// chờ 缴 đ ơn hàng tổng số tiền
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -1482,7 +1482,7 @@ and a.OrganizeId=@orgId  ";
                 , new SqlParameter("@status2", ((int)EnumOrderStatus.zfz).ToString())});
         }
         /// <summary>
-        /// 获取待缴处方内码
+        /// Lấy chờ 缴mã nội bộ đ ơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -1499,7 +1499,7 @@ where a.zt=1 and (orderstatus='0' or orderstatus='3') and a.mzzyh=@mzh  and a.Or
                new[] { new SqlParameter("@mzh", mzh), new SqlParameter("@orgId", orgId) });
         }
         /// <summary>
-        /// 获取病人基本信息
+        /// Lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

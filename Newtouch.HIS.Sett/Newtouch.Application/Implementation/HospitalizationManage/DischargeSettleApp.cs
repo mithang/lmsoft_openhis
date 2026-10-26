@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         #region 出院结算
 
         /// <summary>
-        /// 住院号查询数据（包括病人信息和计费明细） zyh 或 kh +cardType 或 sfz +cardType
+        /// Số nhập việntra cứu dữ liệu(bao gồm thông tin bệnh nhân và tính phí chi tiết) zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -52,9 +52,9 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         /// <returns></returns>
         public InpatientSettPatStatusDetailDto GetInpatientSettleStatusDetail(string zyh, string sfz, string kh, string cardType,string jslx,string ver)
         {
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetInpatientSettlePatInfo(ref zyh, sfz, kh, cardType, jslx);
-            // 获取计费明细（包括：项目和药品）
+            // Lấy tính phí chi tiết(bao gồm:Hạng mục và thuốc)
             //var settleItemsBo = GetInpatientSettleItemsDetailList(zyh);
             if (settpatInfo.cyrq.HasValue)
             {
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 
 
         /// <summary>
-        /// 病人基本信息
+        /// Thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -81,12 +81,12 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             {
                 if (!string.IsNullOrWhiteSpace(kh) && !string.IsNullOrWhiteSpace(cardType))
                 {
-                    //根据卡号和卡类型 换取住院号
+                    // theo số thẻ và loại thẻ đ ổi lấy số nhập viện
                     zyh = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.kh == kh && p.CardType == cardType &&p.zt=="1" && p.OrganizeId==this.OrganizeId && p.zybz!=((int)EnumZYBZ.Wry).ToString()).OrderByDescending(p => p.CreateTime).Select(p => p.zyh).FirstOrDefault();
                 }
                 else if (!string.IsNullOrWhiteSpace(sfz) && !string.IsNullOrWhiteSpace(cardType))
                 {
-                    //根据身份证和卡类型 换取住院号
+                    // theo CMNDvà loại thẻ đ ổi lấy số nhập viện
                     var zjlx = ((int)EnumZJLX.sfz).ToString();
                     zyh = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.zjlx == zjlx && p.zjh == sfz && p.CardType == cardType && p.zt=="1" && p.OrganizeId==this.OrganizeId && p.zybz!= ((int)EnumZYBZ.Wry).ToString()).OrderByDescending(p => p.CreateTime).Select(p => p.zyh).FirstOrDefault();
                 }
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
                 throw new FailedCodeException("HOSP_ERROR_PATIENT_DEPT_IS_NO_FOUND");
             }
             //settpatinfo.zyts = Common.DateTimeHelper.GetInHospDays(settpatinfo.ryrq.Value, settpatinfo.cyrq.Value);
-                //zybz 是否可结算 病区中的患者
+                //zybz có hay không có thể quyết toán khu bệnh trong của bệnh nhân
                 var isSettContainsBQZ = _sysConfigRepo.GetBoolValueByCode("HOSP_Sett_Contains_BQZ", this.OrganizeId, false).Value;
                 var brzybzType = ((int)EnumZYBZ.Djz).ToString();
                 if (isSettContainsBQZ)
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 获取(计费和已退合计的)计费明细（包括治疗项目和药品）
+        /// Lấy(tính phí và đã hoàn tổng cộng của) tính phí chi tiết(bao gồm hạng mục điều trị và thuốc)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -165,7 +165,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             var treatmentItemsList = _dischargeSettleDmnService.SelectTreatmentItemList(zyh, this.OrganizeId, kssj,jssj);
             //zy_ypjfb
             var drugList = _dischargeSettleDmnService.SelectDrugList(zyh, this.OrganizeId, kssj, jssj);
-            //非治疗收费项目
+            // không phải điều trị hạng mục thu phí
             //var non_treatmentItemsList = _dischargeSettleDmnService.SelectNonTreatmentItemList(zyh, this.OrganizeId);
 
             var resultBo = new InpatientSettleItemBO()
@@ -179,9 +179,9 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         #region  医保数据传输
         public InpatientSettPatStatusDetailDto GetZyUploadDetail(string zyh,string jslx)
         {
-            //获取病人信息
+            //Lấy thông tin bệnh nhân
             var settpatInfo = GetInpatientSettlePatInfo(ref zyh, null, null, null, jslx);
-            // 获取计费金额（包括：项目和药品）
+            // Lấy tính phí số tiền(bao gồm:Hạng mục và thuốc)
             //var settleItemsBo = GetInpatientSettleJe(zyh,kssj,jssj,sczt);
             if (settpatInfo.cyrq.HasValue)
             {
@@ -196,7 +196,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 
         }
         /// <summary>
-        /// 医保费用传输zje
+        /// Chi phí bảo hiểm y tế truyền 输zje
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kssj"></param>
@@ -218,13 +218,13 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 
         #endregion
         /// <summary>
-        /// 保存结算
+        /// LưuQuyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedcyrq"></param>
         /// <param name="fph"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
-        /// <param name="ybfeeRelated">医保相关费用信息</param>
+        /// <param name="feeRelated">Số tiền và thanh toán thông tin</param>
+        /// <param name="ybfeeRelated">BHYT liên quan chi phí thông tin</param>
         public void SaveSett(string zyh, DateTime expectedcyrq, string fph, InpatientSettFeeRelatedDTO feeRelated
             , CQZyjs05Dto ybfeeRelated, S14OutResponseDTO xnhfeeRelated
             , string outTradeNo, string jslx, out int jsnm)
@@ -234,18 +234,18 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
                 throw new FailedCodeException("HOSP_ZYH_IS_EMPTY");
             }
 
-            //检查是否有未完成且未终止的执行计划
+            // kiểm tra có hay không có chưa hoàn thành và chưa chấm dứt của kế hoạch thực hiện 
             //_hospAccountingPlanDetailRepo.CheckAccountingPlanDetailStatus(zyh, this.OrganizeId);
 
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetInpatientSettlePatInfo(ref zyh);
-            //获取最后一次结算 排除中途结算
+            //Lấy nhất sau một lần quyết toán loại trừ quyết toán giữa chừng
             var dbDt = _BookkeepInHosDmnService.GetLastValidSettTime(zyh, this.OrganizeId);
 
-            // 获取计费明细（包括：项目和药品）
+            // Lấy tính phí chi tiết(bao gồm:Hạng mục và thuốc)
             var settleItemsBo = GetInpatientSettleItemsDetailList(zyh, dbDt, null);
 
-            //保存到数据库
+            //Lưu đ ến dữ liệu kho 
             _dischargeSettleDmnService.SaveSett(settpatInfo, settleItemsBo, expectedcyrq, this.OrganizeId, fph, feeRelated, ybfeeRelated, xnhfeeRelated, outTradeNo, jslx,out jsnm);
 
         }
@@ -255,21 +255,21 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         #region 取消出院结算
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         public InpatientCancelSettPatStatusDetailDto GetCancelSettleStatusDetail(string zyh, string sfz, string kh, string cardType)
         {
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetCancelSettlePatInfo(ref zyh, sfz, kh, cardType);
-            //根据住院号 获取 （未退）结算列表， 取其最后一条
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
             var medicalInsurance = _sysConfigRepo.GetValueByCode("Inpatient_MedicalInsurance", this.OrganizeId);
             HospSettlementGAYBFeeEntity ybFee = null;
             HospSettlementGAXNHFeeEntity xnhFee = null;
 	        CqybSett05Entity cqYbFee = null;
-			if (settpatInfo.brxz=="1" && settpatInfo.CardType== ((int)EnumCardType.YBJYK).ToString())//医保患者
+			if (settpatInfo.brxz=="1" && settpatInfo.CardType== ((int)EnumCardType.YBJYK).ToString())//BHYTBệnh nhân
             { 
                 if (medicalInsurance == "guian")
                 {
@@ -280,7 +280,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 		           // cqYbFee = lastSett != null ? _cqybSett05Repo.IQueryable().Where(p => p.jsnm == lastSett.jsnm && p.zt=="1").FirstOrDefault() : null;
 	            //}
 			}
-            if (settpatInfo.brxz == "8" && settpatInfo.CardType == ((int)EnumCardType.XNHJYK).ToString())//新农合患者
+            if (settpatInfo.brxz == "8" && settpatInfo.CardType == ((int)EnumCardType.XNHJYK).ToString())// BHYT nông thôn mới bệnh nhân
             {
                 if (medicalInsurance == "guian")
                 {
@@ -300,7 +300,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 取消住院结算 获取病人基本信息（基本信息、账户、科室等） 在院状态验证
+        /// Hủy quyết toán nhập viện lấy thông tin cơ bản bệnh nhân(cơ bản thông tin, tài khoản, khoaV.v.) xác minh trạng thái đang nằm viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -310,12 +310,12 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             {
                 if (!string.IsNullOrWhiteSpace(kh) && !string.IsNullOrWhiteSpace(cardType))
                 {
-                    //根据卡号和卡类型 换取住院号
+                    // theo số thẻ và loại thẻ đ ổi lấy số nhập viện
                     zyh = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.kh == kh && p.CardType == cardType).OrderByDescending(p => p.CreateTime).Select(p => p.zyh).FirstOrDefault();
                 }
                 else if (!string.IsNullOrWhiteSpace(sfz) && !string.IsNullOrWhiteSpace(cardType))
                 {
-                    //根据身份证和卡类型 换取住院号
+                    // theo CMNDvà loại thẻ đ ổi lấy số nhập viện
                     var zjlx = ((int)EnumZJLX.sfz).ToString();
                     zyh = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.zjlx == zjlx && p.zjh == sfz && p.CardType == cardType).OrderByDescending(p => p.CreateTime).Select(p => p.zyh).FirstOrDefault();
                 }
@@ -361,7 +361,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 取消出院结算
+        /// HủyQuyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsnm"></param>
@@ -371,9 +371,9 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             refundAmount = 0;
             outTradeNo = null;
 
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetCancelSettlePatInfo(ref zyh);
-            //根据住院号 获取 （未退）结算列表， 取其最后一条(zy_js)
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng(zy_js)
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
             if (lastSett.jsnm != expectedjsnm)
             {
@@ -382,14 +382,14 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             //zy_jsmx
             var zyjsmxList = _hospSettlementDetailRepo.IQueryable().Where(p => p.jsnm == lastSett.jsnm).ToList();
 
-            //计算退现金金额   //前提：仅一种支付方式    //仅一种支付方式js.xjzffs会有值
+            //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán js.xjzffs sẽ có giá trị 
             if (!string.IsNullOrWhiteSpace(lastSett.xjzffs) && lastSett.xjzf > 0)
             {
-                refundAmount = lastSett.xjzf;  //应该取支付的
+                refundAmount = lastSett.xjzf;  //Nên取 thanh toán của
                 outTradeNo = lastSett.OutTradeNo;
             }
 
-            //保存取消
+            //LưuHủy
             _dischargeSettleDmnService.DoCancel(lastSett, zyjsmxList, cancelReason, cancelyblsh, this.OrganizeId);
 
         }
@@ -407,7 +407,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             , CQZyjs05Dto ybfeeRelated, string outTradeNo, string jslx, out int jsnm)
         {
              jsnm = 0;
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetPartialInpatientSettlePatInfo(ref zyh);
 
             var ypxmlist = GetInpatientSettleItemsDetailList(zyh, startTime, endTime);
@@ -416,7 +416,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             //{
             //    ypjfbList = list.DrugList.ToList();
             //}
-            //获取最后一次结算 结束结算日期
+            //Lấy nhất sau một lần quyết toán kết thúc ngày quyết toán
             var dbDt = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (dbDt.HasValue && dbDt.Value != startTime)
             {
@@ -428,9 +428,9 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 
         public InpatientSettPatStatusDetailDto GetPartialInpatientSettleStatusDetail(string zyh, string sfz, string kh, string cardType, string jslx,string ver)
         {
-            // 获取病人信息
+            // Lấy thông tin bệnh nhân
             var settpatInfo = GetPartialInpatientSettlePatInfo(ref zyh, sfz, kh, cardType, jslx);
-            // 获取计费明细（包括：项目和药品）
+            // Lấy tính phí chi tiết(bao gồm:Hạng mục và thuốc)
             //var settleItemsBo = GetInpatientSettleItemsDetailList(zyh);
                 settpatInfo.zyts = DateTimeHelper.GetInHospDays(settpatInfo.ryrq.Value, DateTime.Now);
             var resultDto = new InpatientSettPatStatusDetailDto()
@@ -443,7 +443,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 中途结算获取病人基本信息
+        /// Quyết toán giữa chừngLấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -453,12 +453,12 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             {
                 if (!string.IsNullOrWhiteSpace(kh) && !string.IsNullOrWhiteSpace(cardType))
                 {
-                    //根据卡号和卡类型 换取住院号
+                    // theo số thẻ và loại thẻ đ ổi lấy số nhập viện
                     zyh = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.kh == kh && p.CardType == cardType).OrderByDescending(p => p.CreateTime).Select(p => p.zyh).FirstOrDefault();
                 }
                 else if (!string.IsNullOrWhiteSpace(sfz) && !string.IsNullOrWhiteSpace(cardType))
                 {
-                    //根据身份证和卡类型 换取住院号
+                    // theo CMNDvà loại thẻ đ ổi lấy số nhập viện
                     var zjlx = ((int)EnumZJLX.sfz).ToString();
                     zyh = _hospPatientBasicInfoRepo.IQueryable().Where(p => p.zjlx == zjlx && p.zjh == sfz && p.CardType == cardType).OrderByDescending(p => p.CreateTime).Select(p => p.zyh).FirstOrDefault();
                 }
@@ -502,20 +502,20 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         }
 
         /// <summary>
-        /// 转出院结算 预处理
+        /// chuyển quyết toán xuất viện tiền xử lý
         /// </summary>
         /// <param name="zyh"></param>
         public string PreCYsettle(string zyh) {
-            //1.未停止的医嘱判断  
+            //1.Chưa dừng của y lệnh phán đoán 
             _hospAccountingPlanDetailRepo.CheckAccountingPlanDetailStatus(zyh, this.OrganizeId);
-            //2.在院状态判断
+            //2.Tại viện trạng thái phán đoán 
             GetInpatientSettlePatInfo(ref zyh);
-            //3.是否产生新的费用判断 CheckIsExistUnSetted
+            //3.Có hay không产生 mới củachi phí phán đoán CheckIsExistUnSetted
             DateTime? startTime = null;
             startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)
             {
-                startTime = new DateTime(1970, 01, 01);  //未结算过的话 从入院开始算所有项目
+                startTime = new DateTime(1970, 01, 01);  //Chưa quyết toán qua thì từ nhập viện bắt đ ầu tính tất cả các hạng mục
             }
             var jsItemList = _hospItemBillingRepo.GetItemFeeEntityListByTime(zyh, this.OrganizeId, startTime.Value, DateTime.Now);
             if (jsItemList.Count()>0)
@@ -523,7 +523,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
                 throw new FailedException("存在未结费用，不能出院");
             }
 
-            //4.更新病人基本信息
+            //4.Cập nhậtThông tin cơ bản bệnh nhân
             _dischargeSettleDmnService.UpdatePatientInfo(zyh, this.OrganizeId);
             var jsnm = _dischargeSettleDmnService.GetCQLastJsnm(zyh, this.OrganizeId);
             var jylsh = _dischargeSettleDmnService.GetCQLastLsh(jsnm, this.OrganizeId);

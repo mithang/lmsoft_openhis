@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices.PatientManage
         }
 
         /// <summary>
-        /// 获取患者列表
+        /// LấyBệnh nhânDanh sách
         /// </summary>
         /// <returns></returns>
         public List<PatientListOutPutVO> PatientList(PatientListInputVO patientListInputVO)

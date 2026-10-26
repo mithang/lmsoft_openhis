@@ -3,44 +3,44 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 通用消息请求报文
+    /// Chung消息bản tin yêu cầu
     /// </summary>
     public class MqGeneralTaskRequestDto : RequestBase
     {
         /// <summary>
-        /// 消息主内容
+        /// 消息主 nội dung 
         /// </summary>
         public string body { get; set; }
     }
 
     /// <summary>
-    /// MqGeneralTaskRequestDto.body反序列化内容
+    /// MqGeneralTaskRequestDto.body反 tuần tự hóa nội dung 
     /// </summary>
     public class MqGeneralTaskBody
     {
         /// <summary>
-        /// 操作类型  xnhS27：调用新农合S27接口、
+        /// Thao tác loại xnhS27: gọi BHYT nông thôn mới S27giao diện, 
         /// </summary>
         public string OperationType { get; set; }
 
         /// <summary>
-        /// 内容，action传参
+        /// nội dung,action truyền 参
         /// </summary>
         public string Content { get; set; }
     }
 
     /// <summary>
-    /// 查询结算结果
+    /// Tra cứuQuyết toánKết quả
     /// </summary>
     public class QuerySettDetail
     {
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thư ờng
         /// </summary>
         public string outpId { get; set; }
     }

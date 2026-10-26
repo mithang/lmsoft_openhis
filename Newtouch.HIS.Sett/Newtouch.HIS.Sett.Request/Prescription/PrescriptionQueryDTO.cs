@@ -3,18 +3,18 @@
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方
+    /// Đ ơn thuốc
     /// </summary>
     public class PrescriptionQueryDTO
     {
         /// <summary>
-        /// 处方类型 对应枚举 EnumPrescriptionType
+        /// Loại đ ơn thuốc Tư ơng ứng enum enumPrescriptionType
         /// </summary>
         [Required]
         public int cflx { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đ ơn thuốc
         /// </summary>
         [Required]
         public string cfh { get; set; }

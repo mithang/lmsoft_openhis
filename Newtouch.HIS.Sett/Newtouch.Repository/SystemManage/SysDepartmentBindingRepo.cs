@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取列表
+        /// LấyDanh sách
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="OrganizeId"></param>
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取实体 
+        /// Lấy thực thể 
         /// </summary>
         /// <param name="bddm"></param>
         /// <param name="orgId"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="sysDepartmentBindinEntity"></param>
         /// <param name="bddm"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="bddm"></param>
         /// <param name="orgId"></param>

@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Proxy.Attribute
 {
     /// <summary>
-    /// 重命名xml节点名称
+    /// 重命名xml nút tên
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]
     public class XmlNodeRenameAttribute : System.Attribute

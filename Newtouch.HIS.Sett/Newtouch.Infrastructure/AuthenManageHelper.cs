@@ -16,14 +16,14 @@ namespace Newtouch.Infrastructure
 {
     public class AuthenManageHelper
     {
-        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteTokenAPIHost"];//token站点
-        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteConmonAPIHost"]; //api中心站点
-        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api中心站点访问appid
+        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteTokenAPIHost"];//token trạm 点
+        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteConmonAPIHost"]; //api trong 心 trạm 点
+        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api trong 心 trạm 点 truy cập appid
         public readonly static string accessAppId = ConfigurationManager.AppSettings["Token_ApiManage"];//Apimanage AppId
-        //用户登陆缓存token
+        // ngư ời dùng Đ ăng nhập bộ nhớ đ ệm token
         public static string userCacheToken = "";
         /// <summary>
-        /// 获取中心接口api token
+        /// Lấy trong 心giao diệnapi token
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -60,8 +60,8 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Post 请求
-        /// 鉴权失败自动刷新
+        /// Post yêu cầu 
+        /// 鉴权thất bại tự đ ộng 刷 mới 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -83,9 +83,9 @@ namespace Newtouch.Infrastructure
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //鉴权失败 刷新token
+                    //鉴权thất bại 刷 mới token
                     token = GetUserTokenRefesh(user, token);
-                    //重新请求接口
+                    //Lại yêu cầu giao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
                     apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 }
@@ -101,7 +101,7 @@ namespace Newtouch.Infrastructure
             }
         }
         /// <summary>
-        /// token 过期 强制刷新
+        /// token hết hạn 强制刷 mới 
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace Newtouch.Infrastructure
             return Token.BusData.data.Token;
         }
         /// <summary>
-        /// 用户登陆后获取api通用 token
+        /// ngư ời dùng Đ ăng nhập sau Lấyapichung token
         /// </summary>
         /// <returns></returns>
         public static string GetUserToken(OperatorModel user)

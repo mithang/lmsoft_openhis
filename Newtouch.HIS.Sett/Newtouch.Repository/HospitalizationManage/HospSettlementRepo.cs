@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据住院号查询所有的结算记录，把已结和已撤销的记录进行对冲，得到未冲销的数据
+        /// theo số nhập việntra cứu tất cả các của quyết toán bản ghi, Đ ã quyết toán và đã hủy bỏ của bản ghi tiến hành đ ối với 冲, nhận đ ược chưa hủy bút toán của dữ liệu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

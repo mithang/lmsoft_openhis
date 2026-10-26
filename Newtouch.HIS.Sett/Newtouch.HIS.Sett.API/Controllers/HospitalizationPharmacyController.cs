@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// 门诊药房
+    /// Nhà thuốc ngoại trú
     /// </summary>
     [RoutePrefix("api/HospitalizationPharmacy")]
     public class HospitalizationPharmacyController : ApiControllerBase<HospitalizationPharmacyController>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         #region 住院发药页面绑定信息
 
         /// <summary>
-        /// 住院发药病区
+        /// Nhập viện phát thuốc khu bệnh
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 住院发药病人
+        /// Nhập viện phát thuốc bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 住院发药人员详细信息
+        /// Nhập viện phát thuốc nhân sự thông tin chi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         #region 配药操作
         /// <summary>
-        /// 查询用户执行配药 根据开始时间结束时间获取住院病人医嘱,药品，数量等信息
+        /// Tra cứu ngư ời dùng thực hiện 配药 theo thời gian bắt đ ầu thời gian kết thúc lấy nhập viện bệnh nhân y lệnh,thuốc,số lư ợngV.v.Thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
 
-        //查询用户执行配药  配药操作后修改发药备注 状态
+        //Tra cứu ngư ời dùng thực hiện 配药 配药thao tác sau sửa phát thuốc ghi chú trạng thái
         [HttpPost]
         [Route("WaitingDispenseDispenseUPBQPYyzzxTotal")]
         public HttpResponseMessage WaitingDispenseDispenseUPBQPYyzzxTotal(WaitingDispenseBQPYyzzxZTDispenseRequest par)
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         #region 发药查询操作
         /// <summary>
-        /// 住院发药人员详细信息
+        /// Nhập viện phát thuốc nhân sự thông tin chi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         #region 退药操作
 
         /// <summary>
-        /// 获取退药明细医生站医嘱ID 医嘱表ID
+        /// Lấy trả thuốc chi tiết trạm bác sĩ y lệnh ID y lệnh bảng ID
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// 获取住院病区退药人员详细信息
+        /// Lấy nhập việnkhu bệnh trả thuốc nhân sự thông tin chi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

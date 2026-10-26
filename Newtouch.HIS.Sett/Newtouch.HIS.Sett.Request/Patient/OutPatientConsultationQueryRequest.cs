@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Sett.Request.Patient
 {
     /// <summary>
-    /// 门诊就诊列表
+    /// Ngoại trú khám bệnhdanh sách
     /// </summary>
     public class OutPatientConsultationQueryRequest : BookingReqBaseDto
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 身份证号
+        /// Số CMND
         /// </summary>
         public string sfzh { get; set; }
         

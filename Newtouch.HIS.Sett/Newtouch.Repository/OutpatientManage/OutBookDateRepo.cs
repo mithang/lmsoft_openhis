@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
 
         }
 
-        //排班时间 新增/更新
+        // lịch trực thời gian thêm mới/Cập nhật
         public int UpdateDate(OutBookArrangeVO entity, int ghpbId, string weekdd, string orgId, string User, DateTime Time,int ghpbIdNew)
         {
             var period = 0;var totalNum = 0;var weekddName = "";var totalNum1 = 0;
@@ -73,8 +73,8 @@ namespace Newtouch.HIS.Repository.OutpatientManage
                 weekddName = "星期日";
             }
             if (ghpbId == 0)
-            {//新增
-                //获取排班编号
+            {//Thêm mới
+                //Lấy lịch trực số hiệu
                 if (entity.sjd != null && entity.sjd != "")
                 {
                     var dbEntity = new OutBookDateEntity();
@@ -128,10 +128,10 @@ namespace Newtouch.HIS.Repository.OutpatientManage
                 }
             }
             else
-            {//修改时根据星期是否存在执行更新/新增
+            {//Sửa giờ theo 星 kỳ có hay không tồn tại tại thực hiện cập nhật/Thêm mới
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.ghpbId == ghpbId && p.Weekdd == weekdd))
-                {//更新
-                    //获取排班编号
+                {//Cập nhật
+                    //Lấy lịch trực số hiệu
                     if (entity.sjd != null && entity.sjd != "")
                     {
                         var dbEntity = new OutBookDateEntity();
@@ -186,7 +186,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
                     }
                 }
                 else
-                {//新增
+                {//Thêm mới
                     if (entity.sjd!=null&& entity.sjd!="")
                     {
                         var dbEntity = new OutBookDateEntity();

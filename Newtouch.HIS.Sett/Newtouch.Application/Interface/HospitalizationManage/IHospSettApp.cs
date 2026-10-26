@@ -6,33 +6,33 @@ using Newtouch.HIS.Domain.DTO.OutputDto;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 住院结算 接口
+    /// Quyết toán nhập viện Giao diện
     /// </summary>
     public interface IHospSettApp
     {
         /// <summary>
-        /// 住院结算，查看结算信息
+        /// Quyết toán nhập viện,XemThông tin quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
         HosSettPatStatusDetailDto GetPatHospStatusDetail(string zyh, string kh);
 
         /// <summary>
-        /// 住院结算 病人 分类收费 预览
+        /// Quyết toán nhập viện bệnh nhân phân loạithu phí 预览
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="jsje">结算金额 防止过程中的费用变更</param>
+        /// <param name="jsje">Số tiền quyết toán ngăn chặn quá trình trong củachi phí thay đ ổi </param>
         HosSettPatClassifyChargePreviewDto GetHospSettPatClassifyChargePreview(string zyh, DateTime expectedcyrq, decimal jsje);
 
         /// <summary>
-        /// 根据住院号获取 本次结算 计费 按大类（分类项目）
+        /// theo số nhập viện lấy lần này quyết toán tính phí theo loại lớn (phân loại hạng mục)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<HospFeeClassifyWithDLBO> GetHospFeeClassifyWithDLBOList(string zyh);
 
         /// <summary>
-        /// 提交结算，保存结果
+        /// GửiQuyết toán,LưuKết quả
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsje"></param>

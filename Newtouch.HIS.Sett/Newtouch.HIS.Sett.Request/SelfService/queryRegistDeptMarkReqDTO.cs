@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 	public class queryRegistDeptMarkReqDTO
 	{
 		/// <summary>
-		/// 看诊时间
+		/// 看诊thời gian
 		/// </summary>
 		public string VisitDate { get; set; }
 		/// <summary>
-		/// 组织机构代码
+		/// Mã tổ chức
 		/// </summary>
 		public string OrganizeId { get; set; }
     }

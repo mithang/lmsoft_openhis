@@ -31,20 +31,20 @@ namespace Newtouch.HIS.Application.Implementation
         #region 康复项目（药品）记账（由GRS收费项目（药品）扩展而来）
 
         /// <summary>
-        /// 根据住院号 获取 病人 记账 信息
+        /// theo số nhập viện lấy bệnh nhân ghi sổ thông tin
         /// </summary>
         /// <param name="zyh"></param>
         public HosAccountingPatStatusDetailDto GetAccountingStatusDetail(string zyh)
         {
-            //获取住院记账病人信息（基本信息、科室等）
+            //Lấy thông tin bệnh nhân ghi sổ nhập viện(cơ bản thông tin, khoaV.v.)
             var patInfo = getHospAccountingPatInfo(zyh);
 
-            //zyh可以记账
+            //zyh có thể ghi sổ
 
-            //查询此次住院 已 记账 计划
+            //Tra cứu này lần nhập viện Đ ã ghi sổ kế hoạch 
             var jzjhList = _bookkeepInHosDmnService.BeenAccountingPlanQuery(this.OrganizeId, zyh);
 
-            //查询是否有中途结算
+            //Tra cứu có hay không có quyết toán giữa chừng
             var ztjsrq = _bookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
 
             var resultDto = new HosAccountingPatStatusDetailDto()
@@ -57,10 +57,10 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 提交记账计划
+        /// GửiKế hoạch ghi sổ
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xmList">记账项目（药品）列表（如果是单项目（药品），请先包装成数组）</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xmList">Ghi sổ hạng mục(thuốc)danh sách(nếu là đ ơn hạng mục(thuốc),vui lòng trư ớc 包装成数 nhóm)</param>
         public void SubmitAccountingPlan(string zyh, IList<InpatientAccountingPlanItemDto> xmList)
         {
             if (xmList == null || xmList.Count == 0)
@@ -68,19 +68,19 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedException("缺少记账计划");
             }
 
-            //获取当前住院病人基本信息
+            //Lấykhi trư ớc nhập viện thông tin cơ bản bệnh nhân
             var zyInfo = _hospPatientBasicInfoRepo.IQueryable().FirstOrDefault(p => p.zt == "1" && p.zyh == zyh && p.OrganizeId == this.OrganizeId);
 
             //if (xmList.Any(p => (p.ysList == null || p.ysList.Count == 0) && p.yzxz == "1"))
             //{
-            //    throw new FailedException("请给收费选择治疗师");
+            // throw new FailedException(" vui lòng cho thu phí chọn chuyên viên trị liệu");
             //}
 
             var jhmxEntityList = new List<HospAccountingPlanDetailEntity>();
             IList<zxGirdDto> itemList = new List<zxGirdDto>();
             var updateToStopJzjhxmIdList = new List<string>();
 
-            //同一次提交
+            // cùng một lần gửi
             var jzjhEntity = new HospAccountingPlanEntity()
             {
                 jzjhId = Guid.NewGuid().ToString(),
@@ -97,13 +97,13 @@ namespace Newtouch.HIS.Application.Implementation
                 ys = zyInfo.doctor;
                 ks = zyInfo.ks;
 
-                int? zzll = item.sl * item.zll;//整个记账
-                int dcsl = 0;//单次数量
+                int? zzll = item.sl * item.zll;//整个ghi sổ
+                int dcsl = 0;// mỗi lần số lư ợng
                 int zsl;
                 if (item.sfxmCode != null)
                 {
                     dcsl = CommmHelper.CalcSfxmSl(item.zll, item.dwjls, item.jjcl);
-                    //总量
+                    //总 lư ợng 
                     zsl = (dcsl * item.sl).ToInt();
                 }
                 item.yzxz = (item.yzxz ?? "").Trim();   //
@@ -113,21 +113,21 @@ namespace Newtouch.HIS.Application.Implementation
                 //{
                 //    if (item.EndDate.HasValue && item.EndDate.Value != item.StartDate)
                 //    {
-                //        //异常：临时医嘱， 日期 是 一个范围
-                //        throw new FailedException("临时性记账日期范围错误");
+                // //Bất thư ờng: tạm thời y lệnh, ngày là một phạm vi
+                // throw new FailedException(" tạm thời ghi sổ ngày phạm vi lỗi");
                 //    }
                 //}
                 //else
                 //{
                 //    if (item.EndDate.HasValue && item.EndDate.Value <= item.StartDate)
                 //    {
-                //        //异常：长期医嘱， 日期 不是 一个范围
-                //        throw new FailedException("长期性记账日期范围错误");
+                // //Bất thư ờng: y lệnh dài hạn, ngày không là một phạm vi
+                // throw new FailedException(" dài hạn 性ghi sổ ngày phạm vi lỗi");
                 //    }
                 //}
 
-                //收费项目
-                //新增记录
+                //Hạng mục thu phí
+                //Thêm mới bản ghi 
                 var jhmxEntity = new HospAccountingPlanDetailEntity()
                 {
                     jzjhmxId = Guid.NewGuid().ToString(),
@@ -157,17 +157,17 @@ namespace Newtouch.HIS.Application.Implementation
                 jhmxEntityList.Add(jhmxEntity);
                 if (!string.IsNullOrWhiteSpace(item.jzjhmxId))
                 {
-                    //这是一条 修改历史 ，更新原纪录状态 至 已停止
+                    // này là một dòng sửa lịch sử,cập nhật原纪录trạng thái 至 Đ ã dừng 
                     updateToStopJzjhxmIdList.Add(item.jzjhmxId);
                 }
             }
 
-            //去 领域服务层 持续化 数据
+            //去 领 lĩnh vực 服务 lớp 持续化 dữ liệu
             _bookkeepInHosDmnService.SaveAccountingPlan(jzjhEntity, jhmxEntityList, updateToStopJzjhxmIdList);
         }
 
         /// <summary>
-        /// 待执行记账计划 查询
+        /// chờ thực hiện kế hoạch ghi sổ tra cứu
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
@@ -196,9 +196,9 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 执行记账计划，生成计费
+        /// thực hiện kế hoạch ghi sổ,tạo tính phí 
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         public void ExecuteAccountingPlan(IList<zxGirdDto> zxItem, DateTime? zxrq, string from = null)
         {
             if (zxItem == null || zxItem.Count() == 0)
@@ -212,7 +212,7 @@ namespace Newtouch.HIS.Application.Implementation
             if (from != null && from == "mz")
             {
                 _bookkeepInHosDmnService.ExecuteOutAccountingPlan(this.OrganizeId, zxItem, this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, zxrq.Value);
-                //更新需要停止的记账计划
+                //Cập nhật cần dừng của kế hoạch ghi sổ
                 zxItem.ToList().ForEach(p =>
                 {
                     if (_bookkeepInHosDmnService.StopOutpatientjzjh(p.jzjhmxId, OrganizeId))
@@ -225,17 +225,17 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 Dictionary<string, string> jfbStr = new Dictionary<string, string>();
                 _bookkeepInHosDmnService.ExecuteAccountingPlan(this.OrganizeId, zxItem, this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, zxrq.Value, out jfbStr);
-                //刷一下 计划的已执行次数、执行状态
+                //刷 một dư ới kế hoạch CủaĐ ã thực hiện số lần, thực hiện trạng thái
                 _bookkeepInHosDmnService.updateHospitaljzjh(OrganizeId, zxItem.Select(p => p.jzjhmxId).ToList());
-                //已执行的康复项目同步到秦皇岛中间库 秦皇岛三期功能 jfbStr 才有值，skd_SyncInpatientToInterfaceBasic 调用此存储过程前有判空，GRS不会调用。
+                //Đ ã thực hiện của hạng mục phục h ồiĐ ồng bộ đ ến Tần Hoàng Đ ảo kho trung gian Tần Hoàng Đ ảo giai đoạn 3 功 có thể jfbStr 才có giá trị,skd_SyncInpatientToInterfaceBasic gọi này tồn tại 储 quá trình trư ớc có判 trống,GRS sẽ không gọi.
                 //_bookkeepInHosDmnService.SyncInpatientToInterfaceBasic(jfbStr, OrganizeId, zxrq, UserIdentity.rygh);
             }
         }
 
         /// <summary>
-        /// 停止记账计划
+        /// dừng kế hoạch ghi sổ
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         public void StopAccountingPlan(string jzjhmxIdStr, DateTime stopDate)
         {
             var mxIdList = jzjhmxIdStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消预停止
+        /// Hủy预 dừng 
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         public void CancelPreStopAccountingPlan(string jzjhmxIdStr)
@@ -264,12 +264,12 @@ namespace Newtouch.HIS.Application.Implementation
         #region 住院记账
 
         /// <summary>
-        /// 根据住院号 获取 病人 记账 信息
+        /// theo số nhập viện lấy bệnh nhân ghi sổ thông tin
         /// </summary>
         /// <param name="zyh"></param>
         public InpatientHosAccountingPatStatusDetailDto GetInpatientAccountingStatusDetail(string zyh)
         {
-            //获取住院记账病人信息（基本信息、科室等）
+            //Lấy thông tin bệnh nhân ghi sổ nhập viện(cơ bản thông tin, khoaV.v.)
             var patInfo = getHospAccountingPatInfo(zyh);
 
             var resultDto = new InpatientHosAccountingPatStatusDetailDto()
@@ -285,7 +285,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region private methods
 
         /// <summary>
-        /// 住院记账 获取病人基本信息（基本信息、科室等） 在院状态验证
+        /// Ghi sổ nhập viện lấy thông tin cơ bản bệnh nhân(cơ bản thông tin, khoaV.v.) xác minh trạng thái đang nằm viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>

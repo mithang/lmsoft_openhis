@@ -16,7 +16,7 @@ using System.Text;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 系统费用相关 DmnService
+    /// Hệ thốngchi phí liên quan DmnService
     /// </summary>
     public class SysFeeDmnService : DmnServiceBase, ISysFeeDmnService
     {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取收费模板的项目列表
+        /// Lấythu phí mẫu của hạng mụcdanh sách
         /// </summary>
         /// <param name="sfmbbh"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ from xt_sfmbxm(nolock) a
         }
 
         /// <summary>
-        /// 保存收费模板
+        /// Lưuthu phí mẫu 
         /// </summary>
         /// <param name="tmp"></param>
         /// <param name="itemList"></param>
@@ -78,7 +78,7 @@ from xt_sfmbxm(nolock) a
             {
                 if (!string.IsNullOrWhiteSpace(entity.sfmbbh))
                 {
-                    //Code重复判断
+                    //CodePhán đoán trùng lặp
                     if (db.IQueryable<SysChargeTemplateEntity>().Any(p => p.sfmb == entity.sfmb && p.sfmbbh != entity.sfmbbh && p.OrganizeId == entity.OrganizeId))
                     {
                         throw new FailedException("编码不可重复");
@@ -86,12 +86,12 @@ from xt_sfmbxm(nolock) a
                     entity.Modify();
                     db.Update(entity);
 
-                    //删除old
+                    //Xóaold
                     db.Delete<SysChargeTemplateItemMappEntity>(p => p.sfmbbh == entity.sfmbbh);
                 }
                 else
                 {
-                    //Code重复判断
+                    //CodePhán đoán trùng lặp
                     if (db.IQueryable<SysChargeTemplateEntity>().Any(p => p.sfmb == entity.sfmb && p.OrganizeId == entity.OrganizeId))
                     {
                         throw new FailedException("编码不可重复");
@@ -128,7 +128,7 @@ from xt_sfmbxm(nolock) a
         }
 
         /// <summary>
-        /// 系统病人收费范围有效列表
+        /// Hệ thống bệnh nhânthu phí phạm vi hiệu lựcdanh sách
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -174,7 +174,7 @@ from xt_sfmbxm(nolock) a
 
 
         /// <summary>
-        /// 收费减免有效列表
+        /// Thu phí giảm trừ hiệu lựcdanh sách
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -217,7 +217,7 @@ from xt_sfmbxm(nolock) a
         }
 
         /// <summary>
-        /// 删除模板
+        /// Xóa mẫu 
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>

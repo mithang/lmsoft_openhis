@@ -31,7 +31,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         {
         }
 
-        //分页获取挂号排班列表
+        //分trang LấyĐ ăng ký khám lịch trực danh sách
         public IList<OutBookVO> GetPagintionList(Pagination pagination, string orgId, string keyword)
         {
             if (string.IsNullOrEmpty(orgId))
@@ -69,7 +69,7 @@ on ghpb.ys=staff.gh
             return list;
         }
 
-        //获取医生工号姓名对应关系
+        //Lấy bác sĩ mã nhân viên họ tên Tư ơng ứng quan hệ 
         public IList<OutPatientStaffEntity> GetStaffList(string orgId) {
             if (string.IsNullOrEmpty(orgId))
             {
@@ -86,7 +86,7 @@ on ghpb.ys=staff.gh
             });
         }
 
-        //根据医生工号获取医生姓名
+        // theo bác sĩ mã nhân viên lấy bác sĩ họ tên
         public string getStaffName(string gh) {
             string sql = "select Name from  NewtouchHIS_Base.[dbo].[V_S_Sys_Staff] where 1=1 and zt='1'";
             var para = new List<SqlParameter>();
@@ -98,7 +98,7 @@ on ghpb.ys=staff.gh
             return this.FindList<string>(sql, para.ToArray()).FirstOrDefault();
         }
 
-        //排班页获取排班信息
+        // lịch trực trang lấy lịch trực thông tin
         public OutBookVO getArrangeInfo(int ghpbId,string orgId) {
             if (ghpbId==0)
             {
@@ -110,7 +110,7 @@ on ghpb.ys=staff.gh
 //left join NewtouchHIS_Base.[dbo].[V_S_xt_sfxm] zlsfxm on zlsfxm.sfxmCode=ghpb.zlxm and zlsfxm.OrganizeId = ghpb.OrganizeId
 //left join NewtouchHIS_Base.[dbo].[V_S_Sys_Staff] staff on ghpb.ys=staff.gh 
 //where 1=1 ";
-            //诊疗项目打包为收费组合
+            // chẩn đoán và điều trị hạng mục打包là thu phí kết hợp 
             string sql = @"select ghpb.[ghpbId] ,ghpb.[OrganizeId],ghpb.[ks] ,ghpb.[ys],ghpb.[zt] ,ghpb.pbdesc,
 ghpb.[zhl] ,ghpb.[ghzb],ghpb.[CreatorCode] ,ghpb.[CreateTime] ,ghpb.[LastModifyTime],ghpb.[LastModifierCode] ,
 ghpb.[px],ghpb.[ghlx] ,ghpb.[zlxm] ,ghpb.[mjzbz],sfxm.sfxmmc,zlsfxm.zhmc zlxmmc,department.name as ksmz,staff.name as ysxm 
@@ -160,7 +160,7 @@ where 1=1 ";
                 new SqlParameter("@ghpbId",ghpbId)
             });
         }
-        //排班页获取排班时间
+        // lịch trực trang lấy lịch trực thời gian
         public OutBookDateVO getDateInfo(string organizeId,int ghpbId) {
              
                 if (string.IsNullOrEmpty(organizeId))
@@ -204,7 +204,7 @@ where 1=1 ";
             });
         }
 
-        //更新排班信息
+        //Cập nhật lịch trực thông tin
         public int UpdateArrange(OutBookArrangeVO entity,int ghpbId,string orgId,string User,DateTime Time) {
             string sql = @"update [mz_ghpb_config] 
 set organizeId = @organizeId,mjzbz = @mjzbz,ghlx = @ghlx,zlxm = @zlxm,ks = @ks, zt = @zt,
@@ -227,7 +227,7 @@ where ghpbId = @ghpbId and organizeId=@orgId";
             return this.ExecuteSqlCommand(sql, para);
         }
 
-        //新增排班信息
+        //Thêm mới lịch trực thông tin
         public int InsertArrange(OutBookArrangeVO entity, string orgId, string User, DateTime Time,int ghpbIdNew) {
             string sql = @"insert into [dbo].[mz_ghpb_config] (ghpbId,OrganizeId, ks, mjzbz, ghlx,zlxm, zt, CreatorCode, CreateTime,pbdesc,ys) 
 values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @CreateTime,@pbdesc,@ys)";
@@ -245,7 +245,7 @@ values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @Create
                 };
             return this.ExecuteSqlCommand(sql, para);
         }
-        //新增排班信息
+        //Thêm mới lịch trực thông tin
         public int DeleteArrange(int ghpbId,string orgId)
         {
             string deletesql = @"delete from mz_ghpb_date where ghpbid=@ghpbId and OrganizeId=@organizeId";
@@ -259,7 +259,7 @@ values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @Create
                 };
            return this.ExecuteSqlCommand(deletesql, para);
         }
-        //新增排班时间
+        //Thêm mới lịch trực thời gian
         public int InsertghpbTime(string begintime, string endtime, string orgId, string User, DateTime Time,int id)
         {
 
@@ -302,7 +302,7 @@ values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @Create
             });
         }
 
-        //根据科室获取医生列表
+        // theo khoa lấy bác sĩ danh sách
         public IList<string> getStaffListByKs(string ks,string orgId)
         {
             string sql = "select name from [dbo].[mz_ghpb_rel_doc] ghpb left join NewtouchHIS_Base.[dbo].[V_S_Sys_Staff] staff on ghpb.ys = staff.gh where 1=1  and ghpb.zt='1'";
@@ -330,7 +330,7 @@ values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @Create
         }
 
         /// <summary>
-        /// 修改排班号源
+        /// Sửa nguồn số lịch trực 
         /// </summary>
         /// <param name="pbList"></param>
         /// <param name="orgId"></param>
@@ -360,7 +360,7 @@ values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @Create
             }
         }
         /// <summary>
-        /// 修改排班号源
+        /// Sửa nguồn số lịch trực 
         /// </summary>
         /// <param name="pbList"></param>
         /// <param name="orgId"></param>
@@ -394,7 +394,7 @@ values(@ghpbId,@OrganizeId, @ks, @mjzbz, @ghlx,@zlxm, '1', @CreatorCode, @Create
         }
 
         /// <summary>
-        /// 获取排班门诊诊疗项目组合
+        /// Lấy lịch trực ngoại trú chẩn đoán và điều trị hạng mục kết hợp 
         /// </summary>
         /// <param name="zhcode"></param>
         /// <param name="keyword"></param>

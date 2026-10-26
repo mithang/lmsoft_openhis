@@ -6,18 +6,18 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Prescription
 {
     /// <summary>
-    /// 处方作废请求
+    /// Đ ơn thuốc hủy bỏ yêu cầu 
     /// </summary>
     public class PrescriptionCancelRequest : RequestBase
     {
         /// <summary>
-        /// 处方List
+        /// Đ ơn thuốcList
         /// </summary>
         [Required]
         public IList<PrescriptionQueryDTO> cfList { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         [Required]
         public DateTime OperateTime { get; set; }

@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 
@@ -15,7 +15,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 收费项目
+    /// Hạng mục thu phí
     /// </summary>
     public class SysChargeItemRepo : RepositoryBase<SysChargeItemVEntity>, ISysChargeItemRepo
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据sfxm Code获取Entity
+        /// theo sfxm Code lấyEntity
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据编码获取dl
+        /// theo mã Lấydl
         /// </summary>
         /// <param name="sfxm"></param>
         /// <param name="orgId"></param>

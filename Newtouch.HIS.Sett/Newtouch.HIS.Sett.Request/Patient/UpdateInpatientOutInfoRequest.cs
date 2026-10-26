@@ -9,43 +9,43 @@ namespace Newtouch.HIS.Sett.Request
         //zyh,bq,cw,cyrq,cyzd,doctor
         [Required]
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 病区
+        /// Khu bệnh
         /// </summary>
         public string bq { get; set; }
         /// <summary>
-        /// 床位
+        /// giư ờng bệnh 
         /// </summary>
         public string cw { get; set; }
         /// <summary>
-        ///  出院日期
+        ///  Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Xuất việnChẩn đoán
         /// </summary>
         public string cyzd { get; set; }
         ///// <summary>
-        ///// 出院病情
+        ///// Xuất viện病情
         ///// </summary>
         //public string cybq { get; set; }
         /// <summary>
-        /// 主治医生
+        /// 主治bác sĩ
         /// </summary>
         public string doctor { get; set; }
         ///// <summary>
-        ///// 入院诊断
+        ///// Chẩn đoán nhập viện
         ///// </summary>
         //public short? ryzd { get; set; }
         ///// <summary>
-        ///// 入院病情
+        ///// Nhập viện病情
         ///// </summary>
         //public string rybq { get; set; }
         /// <summary>
-        /// 在院标志
+        /// Dấu hiệu đang nằm viện
         /// </summary>
         public string zybz { get; set; }
 

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Application
         //string OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
 
         /// <summary>
-        /// （病历号由系统自动生成）获取最新病历号
+        /// (số hồ sơ bệnh án由hệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         public string Getblh()
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 根据patid获取病人基本信息
+        /// theo patid lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 打印腕带
+        /// In腕带
         /// </summary>
         /// <param name="info"></param>
         public void PrintWDInfo(WDInfoVO info)
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 修改入院诊断
+        /// SửaChẩn đoán nhập viện
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ namespace Newtouch.HIS.Application
             {
                 if (zdEntities != null && zdEntities.Count > 0)
                 {
-                    //作废原诊断
+                    //Hủy bỏ原chẩn đoán
                     zdEntities.ForEach(p =>
                     {
                         p.zt = "0";
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Application
                         db.Update(p);
                     });
                 }
-                //新增
+                //Thêm mới
                 var li = new List<HospMultiDiagnosisEntity>();
                 Parallel.ForEach(request.RyDiagnosisDetails, p =>
                 {

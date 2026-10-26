@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name is required")]
         public string Name { get; set; }
        /// <summary>
-       /// 病人性质
+       /// Tính chất bệnh nhân
        /// </summary>
         public string PatType { get; set; }
     }

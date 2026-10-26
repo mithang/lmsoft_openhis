@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Giữ bản quyền
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Application
         void SubmitForm(SysAgriInsuranceChargeCategoryEntity sysAgInsurChargeCategEntity, int keyValue);
 
         /// <summary>
-        /// 获取所有农保收费大类下拉框
+        /// Lấy tất cả các bảo hiểm nông nghiệp thu phí hộp thả xuống loại lớn 
         /// </summary>
         /// <returns></returns>
         object GetnbdlSelect();

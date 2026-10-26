@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Application
         private readonly IHospPatientBasicInfoRepo _hosPatBasicInfoRepository;
 
         /// <summary>
-        /// 取消入院
+        /// HủyNhập viện
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
