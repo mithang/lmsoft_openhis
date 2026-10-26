@@ -3,11 +3,11 @@ function Search() {
 
 }
 
-//患者登记
+//Đăng ký bệnh nhân
 function AddNewPatient() {
     $.modalOpen({
         id: "Form",
-        title: "患者登记",
+        title: "Đăng ký bệnh nhân",
         url: "/Patient/AddPatient",
         width: "1000px",
         height: "824px",
@@ -17,12 +17,12 @@ function AddNewPatient() {
     });
 }
 
-//保存项目
+//Lưu hạng mục
 function AddItem() {
     BindItemData();
 }
 
-//修改项目
+//Sửa hạng mục
 function EditItem() {
 
 }

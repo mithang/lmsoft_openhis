@@ -18,17 +18,17 @@ function gridList() {
         url: "/Patient/GetGridJson",
         height: $(window).height - 215,
         colModel: [
-     { label: "姓名", name: "Name", width: "8%", align: "left" },
-     { label: "性别", name: "Gender", width: "8%", align: "center" },
-     { label: "年龄", name: "Age", width: "8%", align: "center" },
-     { label: "出生日期", name: "Birthday", width: "10%", align: "center" },
-     { label: "病人性质", name: "Nature", width: "8%", align: "left" },
-     { label: "诊断", name: "Diagnosis", width: "20%", align: "left" },
-     { label: "门诊号", name: "OutPatientNo", width: "10%", align: "center" },
-     { label: "住院号", name: "InpatientNo", width: "10%", align: "center" },
-     { label: "最近治疗时间", name: "TreatDate", width: "10%", align: "left" },
-     { label: "自费比例", name: "LastTreatmentTime", width: "8%", align: "center" },
-     { label: "备注", name: "Remark", width: "10%", align: "left" }
+     { label: "Họ tên", name: "Name", width: "8%", align: "left" },
+     { label: "Giới tính", name: "Gender", width: "8%", align: "center" },
+     { label: "Tuổi", name: "Age", width: "8%", align: "center" },
+     { label: "Ngày sinh", name: "Birthday", width: "10%", align: "center" },
+     { label: "Tính chất bệnh nhân", name: "Nature", width: "8%", align: "left" },
+     { label: "Chẩn đoán", name: "Diagnosis", width: "20%", align: "left" },
+     { label: "Số ngoại trú", name: "OutPatientNo", width: "10%", align: "center" },
+     { label: "Số nhập viện", name: "InpatientNo", width: "10%", align: "center" },
+     { label: "Thời gian điều trị gần nhất", name: "TreatDate", width: "10%", align: "left" },
+     { label: "Tỷ lệ tự trả", name: "LastTreatmentTime", width: "8%", align: "center" },
+     { label: "Ghi chú", name: "Remark", width: "10%", align: "left" }
         ],
         pager: "#gridPager",
         viewrecords: true,
@@ -61,17 +61,17 @@ function checkNotNull() {
             jjlldh: { isPhone: true }
         },
         messages: {
-            mzh: { required: "门诊号必须填写" },
-            xm: { required: "姓名必须填写" },
-            brxz: { required: "病人性质必须填写" },
-            nl: { required: "年龄必须填写" },
-            hf: { required: "婚否必须选择" },
-            blh: { required: "婚否必须选择" },
-            zjh: { isIdentity: "证件格式不正确" },
-            email: { email: "邮箱格式不正确" },
-            phone: { isMobile: "手机格式不正确" },
-            dh: { isPhone: "电话格式不正确" },
-            jjlldh: { isPhone: "电话格式不正确" }
+            mzh: { required: "Phải nhập số ngoại trú" },
+            xm: { required: "Phải nhập họ tên" },
+            brxz: { required: "Phải nhập tính chất bệnh nhân" },
+            nl: { required: "Phải nhập tuổi" },
+            hf: { required: "Phải chọn tình trạng hôn nhân" },
+            blh: { required: "Phải chọn tình trạng hôn nhân" },
+            zjh: { isIdentity: "Định dạng giấy tờ không đúng" },
+            email: { email: "Định dạng email không đúng" },
+            phone: { isMobile: "Định dạng điện thoại di động không đúng" },
+            dh: { isPhone: "Định dạng điện thoại không đúng" },
+            jjlldh: { isPhone: "Định dạng điện thoại không đúng" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
@@ -82,19 +82,19 @@ function checkNotNull() {
     if (!validator.form()) {
         return false;
     }
-    //病历号
+    //Số bệnh án
     var blh = $("#blh").val();
     if (!blh) {
-        $.modalAlert("病历号为空！", 'warning');
+        $.modalAlert("Số bệnh án trống!", 'warning');
         return false;
     }
-    //拼音
+    //Phiên âm
     var py = $("#py").val();
     if (!py) {
-        $.modalAlert("拼音为空！", 'warning');
+        $.modalAlert("Phiên âm trống!", 'warning');
         return false;
     }
-    //性别
+    //Giới tính
     var xb = false;
     $('input[name="xb"]').each(function () {
         var $this = $(this);
@@ -104,13 +104,13 @@ function checkNotNull() {
         }
     });
     if (!xb) {
-        $.modalAlert("请选中性别！", 'warning');
+        $.modalAlert("Vui lòng chọn giới tính!", 'warning');
         return false;
     }
     return true;
 }
 
-//*****************************  以下为患者查询功能  **********************************//
+//*****************************  Dưới đây là chức năng tra cứu bệnh nhân  **********************************//
 
 var gridData = [];
 //function GetPatientsInfo() {
@@ -141,17 +141,17 @@ var gridData = [];
 //        rowList: [10, 20, 30],
 //        autoScroll: true,
 //        colModel: [
-//            { label: "姓名", name: "Name", width: "8%", align: "left" },
-//            { label: "性别", name: "Gender", width: "8%", align: "center" },
-//            { label: "年龄", name: "Age", width: "8%", align: "center" },
-//            { label: "出生日期", name: "Birthday", width: "10%", align: "center" },
-//            { label: "病人性质", name: "Nature", width: "8%", align: "left" },
-//            { label: "诊断", name: "Diagnosis", width: "20%", align: "left" },
-//            { label: "门诊号", name: "OutPatientNo", width: "10%", align: "center" },
-//            { label: "住院号", name: "InpatientNo", width: "10%", align: "center" },
-//            { label: "最近治疗时间", name: "TreatDate", width: "10%", align: "left" },
-//            { label: "自费比例", name: "LastTreatmentTime", width: "8%", align: "center" },
-//            { label: "备注", name: "Remark", width: "10%", align: "left" }
+//            { label: "Họ tên", name: "Name", width: "8%", align: "left" },
+//            { label: "Giới tính", name: "Gender", width: "8%", align: "center" },
+//            { label: "Tuổi", name: "Age", width: "8%", align: "center" },
+//            { label: "Ngày sinh", name: "Birthday", width: "10%", align: "center" },
+//            { label: "Tính chất bệnh nhân", name: "Nature", width: "8%", align: "left" },
+//            { label: "Chẩn đoán", name: "Diagnosis", width: "20%", align: "left" },
+//            { label: "Số ngoại trú", name: "OutPatientNo", width: "10%", align: "center" },
+//            { label: "Số nhập viện", name: "InpatientNo", width: "10%", align: "center" },
+//            { label: "Thời gian điều trị gần nhất", name: "TreatDate", width: "10%", align: "left" },
+//            { label: "Tỷ lệ tự trả", name: "LastTreatmentTime", width: "8%", align: "center" },
+//            { label: "Ghi chú", name: "Remark", width: "10%", align: "left" }
 //        ],
 //        pager: "#PagePatientListGrid",
 //        viewrecords: true,
@@ -170,7 +170,7 @@ var gridData = [];
 function EditSelectedItem(rowId) {
     $.modalOpen({
         id: "Form",
-        title: "修改患者信息",
+        title: "Sửa thông tin bệnh nhân",
         url: "/Patient/AddPatient",
         width: "1000px",
         height: "824px",
@@ -183,7 +183,7 @@ function EditSelectedItem(rowId) {
 function AddNewPatient() {
     $.modalOpen({
         id: "Form",
-        title: "新增患者",
+        title: "Thêm mới bệnh nhân",
         url: "/Patient/AddPatient",
         width: "1000px",
         height: "824px",

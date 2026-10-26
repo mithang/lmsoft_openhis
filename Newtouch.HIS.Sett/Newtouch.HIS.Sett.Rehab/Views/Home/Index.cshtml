@@ -8,7 +8,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>新致云HIS系统</title>
+    <title>Hệ thống HIS Cloud Newtouch</title>
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
@@ -89,16 +89,16 @@
                                     <span class="hidden-xs">@OperatorProvider.GetCurrent().UserCode</span>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
-                                        <li><a href="javascript:void();"><i class="fa fa-inbox"></i>我的信箱</a></li>*@
-                                    <li><a href="javascript:void();" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+                                    @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>
+                                        <li><a href="javascript:void();"><i class="fa fa-inbox"></i>Hộp thư của tôi</a></li>*@
+                                    <li><a href="javascript:void();" onclick="layer.msg('Xóa bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>Xóa bộ nhớ đệm</a></li>
                                     <li>
-                                        <a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a>
+                                        <a href="javascript:void();"><i class="fa fa-paint-brush"></i>Cài đặt giao diện</a>
                                         <div class="tab-pane" id="control-sidebar-home-tab">
                                         </div>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                                    <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>Thoát an toàn</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -118,7 +118,7 @@
                                             @OperatorProvider.GetCurrent().UserCode;@OperatorProvider.GetCurrent().UserName
                                         </span>
                                         <span class="status">
-                                            <i class="fa fa-circle"></i>在线
+                                            <i class="fa fa-circle"></i>Trực tuyến
                                         </span>
                                     </div>
                                 </div>*@
@@ -127,156 +127,156 @@
                                     <li class="open">
                                         <a href="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>门诊记账</span>
+                                            <span>Ghi sổ ngoại trú</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu" style="display: block; ">
                                             <li>
-                                                <a class="menuItem" href="/Outpatient/Index" data-index="1">门诊记账</a>
+                                                <a class="menuItem" href="/Outpatient/Index" data-index="1">Ghi sổ ngoại trú</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/VisitInfoManage/VisitInfoShow" data-index="1">门诊退费</a>
+                                                <a class="menuItem" href="/VisitInfoManage/VisitInfoShow" data-index="1">Hoàn phí ngoại trú</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>住院管理</span>
+                                            <span>Quản lý nội trú</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" href="/BookkeepInHos/HospiterResister" data-index="1">入院登记</a>
+                                                <a class="menuItem" href="/BookkeepInHos/HospiterResister" data-index="1">Đăng ký nhập viện</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/BookkeepInHos/Index" data-index="1">记账登记</a>
+                                                <a class="menuItem" href="/BookkeepInHos/Index" data-index="1">Đăng ký ghi sổ</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/BookkeepInHos/PerformAccount" data-index="1">执行记账</a>
+                                                <a class="menuItem" href="/BookkeepInHos/PerformAccount" data-index="1">Thực hiện ghi sổ</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/VisitInfoManage/VisitInfoShow" data-index="1">住院退费</a>
+                                                <a class="menuItem" href="/VisitInfoManage/VisitInfoShow" data-index="1">Hoàn phí nội trú</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/BookkeepInHos/DischargeSettlement" data-index="1">出院结算</a>
+                                                <a class="menuItem" href="/BookkeepInHos/DischargeSettlement" data-index="1">Thanh toán xuất viện</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/BookkeepInHos/CancelSettlement" data-index="1">取消结算</a>
+                                                <a class="menuItem" href="/BookkeepInHos/CancelSettlement" data-index="1">Hủy thanh toán</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>康复项目管理</span>
+                                            <span>Quản lý hạng mục phục hồi chức năng</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu" style="overflow: auto; height: auto;">
                                             <li>
-                                                <a class="menuItem" href="/HisRehabilitationItem/Index" data-index="1">His康复项目信息维护</a>
+                                                <a class="menuItem" href="/HisRehabilitationItem/Index" data-index="1">Bảo trì thông tin hạng mục phục hồi chức năng His</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/OptimaRehabilitationItem/Index" data-index="1">Optima康复项目信息维护</a>
+                                                <a class="menuItem" href="/OptimaRehabilitationItem/Index" data-index="1">Bảo trì thông tin hạng mục phục hồi chức năng Optima</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/RelateRehabilitationItem/SearchRelationalItem" data-index="1">关联项目管理</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="fa fa-gears"></i>
-                                            <span>治疗师管理</span>
-                                            <i class="fa fa-angle-right drop-icon"></i>
-                                        </a>
-                                        <ul class="submenu">
-                                            <li>
-                                                <a class="menuItem" href="/TherapeutistCompleteList/Index" data-index="1">治疗师工作列表</a>
-                                            </li>
-                                            <li>
-                                                <a class="menuItem" href="/NonChargeableItems/UpgradeWorkingTime" data-index="1">时长调整</a>
-                                            </li>
-                                            <li>
-                                                <a class="menuItem" href="/TherapeutistCompleteList/ArrangeWork" data-index="1">治疗师工作时间</a>
-                                            </li>
-                                            <li>
-                                                <a class="menuItem" href="/TherapeutistCompleteList/TatisticWorkload" data-index="1">工作量统计</a>
+                                                <a class="menuItem" href="/RelateRehabilitationItem/SearchRelationalItem" data-index="1">Quản lý hạng mục liên kết</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>非治疗项目管理</span>
+                                            <span>Quản lý nhà trị liệu</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" href="/NonChargeableItems/Index" data-index="1">非治疗项目列表</a>
+                                                <a class="menuItem" href="/TherapeutistCompleteList/Index" data-index="1">Danh sách công việc nhà trị liệu</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/NonChargeableItems/ItemSales" data-index="1">非治疗项目记账</a>
+                                                <a class="menuItem" href="/NonChargeableItems/UpgradeWorkingTime" data-index="1">Điều chỉnh thời lượng</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/NonChargeableItems/SalesList" data-index="1">非治疗项目记账查询</a>
+                                                <a class="menuItem" href="/TherapeutistCompleteList/ArrangeWork" data-index="1">Thời gian làm việc nhà trị liệu</a>
+                                            </li>
+                                            <li>
+                                                <a class="menuItem" href="/TherapeutistCompleteList/TatisticWorkload" data-index="1">Thống kê khối lượng công việc</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle">
+                                            <i class="fa fa-gears"></i>
+                                            <span>Quản lý hạng mục phi điều trị</span>
+                                            <i class="fa fa-angle-right drop-icon"></i>
+                                        </a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a class="menuItem" href="/NonChargeableItems/Index" data-index="1">Danh sách hạng mục phi điều trị</a>
+                                            </li>
+                                            <li>
+                                                <a class="menuItem" href="/NonChargeableItems/ItemSales" data-index="1">Ghi sổ hạng mục phi điều trị</a>
+                                            </li>
+                                            <li>
+                                                <a class="menuItem" href="/NonChargeableItems/SalesList" data-index="1">Tra cứu ghi sổ hạng mục phi điều trị</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a heaf="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>系统管理</span>
+                                            <span>Quản lý hệ thống</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         @*<ul class="submenu">
                                                 <li>
-                                                    <a class="menuItem" href="/PharmacyUnit/Index" data-index="1">操作记录查询</a>
+                                                    <a class="menuItem" href="/PharmacyUnit/Index" data-index="1">Tra cứu nhật ký thao tác</a>
                                                 </li>
                                             </ul>*@
                                     </li>
                                     <li>
                                         <a heaf="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>病人管理</span>
+                                            <span>Quản lý bệnh nhân</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" href="/Patient/Index" data-index="1">病人管理</a>
+                                                <a class="menuItem" href="/Patient/Index" data-index="1">Quản lý bệnh nhân</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/Patient/MZRegister" data-index="1">门诊登记</a>
+                                                <a class="menuItem" href="/Patient/MZRegister" data-index="1">Đăng ký ngoại trú</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/Patient/ZYRegister" data-index="1">住院登记</a>
+                                                <a class="menuItem" href="/Patient/ZYRegister" data-index="1">Đăng ký nội trú</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a heaf="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>报表管理</span>
+                                            <span>Quản lý báo cáo</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" href="/ReportManagement/IncomeStatistics" data-index="1">医院收入统计</a>
+                                                <a class="menuItem" href="/ReportManagement/IncomeStatistics" data-index="1">Thống kê thu nhập bệnh viện</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/ReportManagement/RehabilitationDetail" data-index="1">住院收入统计</a>
+                                                <a class="menuItem" href="/ReportManagement/RehabilitationDetail" data-index="1">Thống kê thu nhập nội trú</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/ReportManagement/RehabiliationItemStatistic" data-index="1">门诊收入统计</a>
+                                                <a class="menuItem" href="/ReportManagement/RehabiliationItemStatistic" data-index="1">Thống kê thu nhập ngoại trú</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/ReportManagement/OutpatientIncome" data-index="1">诊所收入统计</a>
+                                                <a class="menuItem" href="/ReportManagement/OutpatientIncome" data-index="1">Thống kê thu nhập phòng khám</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/ReportManagement/TreatmentStatistics" data-index="1">就诊统计</a>
+                                                <a class="menuItem" href="/ReportManagement/TreatmentStatistics" data-index="1">Thống kê khám bệnh</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/ReportManagement/IncomeTotal" data-index="1">收入统计</a>
+                                                <a class="menuItem" href="/ReportManagement/IncomeTotal" data-index="1">Thống kê thu nhập</a>
                                             </li>
 
                                         </ul>
@@ -284,15 +284,15 @@
                                     <li>
                                         <a heaf="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>知识库管理</span>
+                                            <span>Quản lý cơ sở tri thức</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" href="/KnowledgeBaseManagement/MedicalInsurance" data-index="1">医保知识库列表</a>
+                                                <a class="menuItem" href="/KnowledgeBaseManagement/MedicalInsurance" data-index="1">Danh sách cơ sở tri thức bảo hiểm y tế</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" href="/KnowledgeBaseManagement/CommercialInsurance" data-index="2">商保知识库列表</a>
+                                                <a class="menuItem" href="/KnowledgeBaseManagement/CommercialInsurance" data-index="2">Danh sách cơ sở tri thức bảo hiểm thương mại</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -308,8 +308,8 @@
                         </button>
                         <nav class="page-tabs menuTabs">
                             <div class="page-tabs-content" style="margin-left: 0px;">
-                                <a href="javascript:;" class="menuTab active" data-id="/Home/Default">欢迎首页</a>
-                                <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>
+                                <a href="javascript:;" class="menuTab active" data-id="/Home/Default">Trang chủ chào mừng</a>
+                                <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">Giới thiệu nền tảng</a>
                             </div>
                         </nav>
                         <button class="roll-nav roll-right tabRight">
@@ -317,13 +317,13 @@
                         </button>
                         <div class="btn-group roll-nav roll-right">
                             <button class="dropdown tabClose" data-toggle="dropdown">
-                                页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
+                                Thao tác tab<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="tabReload" href="javascript:void();">刷新当前</a></li>
-                                <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
-                                <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
-                                <li><a class="tabCloseOther" href="javascript:void();">除此之外全部关闭</a></li>
+                                <li><a class="tabReload" href="javascript:void();">Làm mới hiện tại</a></li>
+                                <li><a class="tabCloseCurrent" href="javascript:void();">Đóng hiện tại</a></li>
+                                <li><a class="tabCloseAll" href="javascript:void();">Đóng tất cả</a></li>
+                                <li><a class="tabCloseOther" href="javascript:void();">Đóng tất cả trừ cái này</a></li>
                             </ul>
                         </div>
                         <button class="roll-nav roll-right fullscreen"><i class="fa fa-arrows-alt"></i></button>
@@ -340,7 +340,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu, vui lòng đợi…</div>
     </div>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/indextab.js")"></script>

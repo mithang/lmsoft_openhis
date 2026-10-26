@@ -3,59 +3,59 @@ var griddata = [];
 
 var gridColumns = [];
 
-// ************************ 公共部分  end  ************************************** //
+// ************************ Phần chung  end  ************************************** //
 
-//获取ItemsGrid的列 主要为了拼接大类
+//Lấy các cột của ItemsGrid, chủ yếu để ghép nhóm lớn
 function GetItemsGridColumns() {
     //gridColumns = [
-    //    { label: "日期", name: "Date", width: "100", align: "center" },
-    //    { label: "门诊号", name: "OutpatientNo", width: "100", align: "center" },
-    //    { label: "姓名", name: "PatientName", width: "100", align: "center" },
-    //    { label: "性别", name: "Gender", width: "60", align: "center" },
-    //    { label: "年龄", name: "Age", width: "60", align: "center" },
-    //    { label: "病症", name: "Disease", width: "120", align: "center" },
-    //    { label: "备注", name: "Remark", width: "120", align: "center" },
-    //    { label: "治疗师", name: "Doctor", width: "100", align: "center" },
-    //    { label: "费用", name: "Total", width: "50", align: "left" },
-    //    { label: "推拿", name: "TuiNa", width: "50", align: "left" },
-    //    { label: "针法", name: "ZhenFa", width: "50", align: "left" },
-    //    { label: "灸法", name: "JiuFa", width: "50", align: "left" },
-    //    { label: "拔罐", name: "BaGuan", width: "50", align: "left" },
-    //    { label: "药熏", name: "YaoXun", width: "50", align: "left" },
-    //    { label: "牵引", name: "QianYin", width: "50", align: "left" },
-    //    { label: "超声", name: "ChaoSheng", width: "50", align: "left" },
-    //    { label: "药透", name: "YaoTou", width: "50", align: "left" },
-    //    { label: "理疗", name: "LiLiao", width: "50", align: "left" },
-    //    { label: "康复", name: "kangFu", width: "50", align: "left" },
-    //    { label: "副木", name: "FuMu", width: "50", align: "left" },
-    //    { label: "药品", name: "Medicine", width: "50", align: "left" },
-    //    { label: "检查", name: "Check", width: "50", align: "left" },
-    //    { label: "人次", name: "PersonTime", width: "50", align: "left" }
+    //    { label: "Ngày", name: "Date", width: "100", align: "center" },
+    //    { label: "Số ngoại trú", name: "OutpatientNo", width: "100", align: "center" },
+    //    { label: "Họ tên", name: "PatientName", width: "100", align: "center" },
+    //    { label: "Giới tính", name: "Gender", width: "60", align: "center" },
+    //    { label: "Tuổi", name: "Age", width: "60", align: "center" },
+    //    { label: "Triệu chứng bệnh", name: "Disease", width: "120", align: "center" },
+    //    { label: "Ghi chú", name: "Remark", width: "120", align: "center" },
+    //    { label: "Nhà trị liệu", name: "Doctor", width: "100", align: "center" },
+    //    { label: "Chi phí", name: "Total", width: "50", align: "left" },
+    //    { label: "Xoa bóp", name: "TuiNa", width: "50", align: "left" },
+    //    { label: "Châm cứu", name: "ZhenFa", width: "50", align: "left" },
+    //    { label: "Cứu ngải", name: "JiuFa", width: "50", align: "left" },
+    //    { label: "Giác hơi", name: "BaGuan", width: "50", align: "left" },
+    //    { label: "Xông thuốc", name: "YaoXun", width: "50", align: "left" },
+    //    { label: "Kéo giãn", name: "QianYin", width: "50", align: "left" },
+    //    { label: "Siêu âm", name: "ChaoSheng", width: "50", align: "left" },
+    //    { label: "Thẩm thấu thuốc", name: "YaoTou", width: "50", align: "left" },
+    //    { label: "Vật lý trị liệu", name: "LiLiao", width: "50", align: "left" },
+    //    { label: "Phục hồi chức năng", name: "kangFu", width: "50", align: "left" },
+    //    { label: "Nẹp", name: "FuMu", width: "50", align: "left" },
+    //    { label: "Thuốc", name: "Medicine", width: "50", align: "left" },
+    //    { label: "Kiểm tra", name: "Check", width: "50", align: "left" },
+    //    { label: "Lượt người", name: "PersonTime", width: "50", align: "left" }
     //];
     gridColumns = [
-        { label: "日期", name: "Date", width: "6%", align: "center" },
-        { label: "门诊号", name: "OutpatientNo", width: "6%", align: "center" },
-        { label: "姓名", name: "PatientName", width: "6%", align: "center" },
-        { label: "性别", name: "Gender", width: "5%", align: "center" },
-        { label: "年龄", name: "Age", width: "5%", align: "center" },
-        { label: "病症", name: "Disease", width: "11%", align: "center" },
-        { label: "备注", name: "Remark", width: "10%", align: "center" },
-        { label: "治疗师", name: "Doctor", width: "6%", align: "center" },
-        { label: "费用", name: "Total", width: "3%", align: "left" },
-        { label: "推拿", name: "TuiNa", width: "3%", align: "left" },
-        { label: "针法", name: "ZhenFa", width: "3%", align: "left" },
-        { label: "灸法", name: "JiuFa", width: "3%", align: "left" },
-        { label: "拔罐", name: "BaGuan", width: "3%", align: "left" },
-        { label: "药熏", name: "YaoXun", width: "3%", align: "left" },
-        { label: "牵引", name: "QianYin", width: "3%", align: "left" },
-        { label: "超声", name: "ChaoSheng", width: "3%", align: "left" },
-        { label: "药透", name: "YaoTou", width: "3%", align: "left" },
-        { label: "理疗", name: "LiLiao", width: "3%", align: "left" },
-        { label: "康复", name: "kangFu", width: "3%", align: "left" },
-        { label: "副木", name: "FuMu", width: "3%", align: "left" },
-        { label: "药品", name: "Medicine", width: "3%", align: "left" },
-        { label: "检查", name: "Check", width: "3%", align: "left" },
-        { label: "人次", name: "PersonTime", width: "3%", align: "left" }
+        { label: "Ngày", name: "Date", width: "6%", align: "center" },
+        { label: "Số ngoại trú", name: "OutpatientNo", width: "6%", align: "center" },
+        { label: "Họ tên", name: "PatientName", width: "6%", align: "center" },
+        { label: "Giới tính", name: "Gender", width: "5%", align: "center" },
+        { label: "Tuổi", name: "Age", width: "5%", align: "center" },
+        { label: "Triệu chứng bệnh", name: "Disease", width: "11%", align: "center" },
+        { label: "Ghi chú", name: "Remark", width: "10%", align: "center" },
+        { label: "Nhà trị liệu", name: "Doctor", width: "6%", align: "center" },
+        { label: "Chi phí", name: "Total", width: "3%", align: "left" },
+        { label: "Xoa bóp", name: "TuiNa", width: "3%", align: "left" },
+        { label: "Châm cứu", name: "ZhenFa", width: "3%", align: "left" },
+        { label: "Cứu ngải", name: "JiuFa", width: "3%", align: "left" },
+        { label: "Giác hơi", name: "BaGuan", width: "3%", align: "left" },
+        { label: "Xông thuốc", name: "YaoXun", width: "3%", align: "left" },
+        { label: "Kéo giãn", name: "QianYin", width: "3%", align: "left" },
+        { label: "Siêu âm", name: "ChaoSheng", width: "3%", align: "left" },
+        { label: "Thẩm thấu thuốc", name: "YaoTou", width: "3%", align: "left" },
+        { label: "Vật lý trị liệu", name: "LiLiao", width: "3%", align: "left" },
+        { label: "Phục hồi chức năng", name: "kangFu", width: "3%", align: "left" },
+        { label: "Nẹp", name: "FuMu", width: "3%", align: "left" },
+        { label: "Thuốc", name: "Medicine", width: "3%", align: "left" },
+        { label: "Kiểm tra", name: "Check", width: "3%", align: "left" },
+        { label: "Lượt người", name: "PersonTime", width: "3%", align: "left" }
     ];
 }
 
@@ -122,11 +122,11 @@ function GetItemsGridData() {
     }
 }
 
-//跳转到详细信息页面
+//Chuyển đến trang thông tin chi tiết
 function ShowSelectedDetail(rowid, iRow, iCol, e) {
     $.modalOpen({
         id: "Form",
-        title: "门诊收费项目统计明细",
+        title: "Chi tiết thống kê hạng mục thu phí ngoại trú",
         url: "/ReportManagement/RehabiliationItemStatisticDetail",
         width: "1000px",
         height: "824px",
@@ -138,9 +138,9 @@ function ShowSelectedDetail(rowid, iRow, iCol, e) {
 }
 
 
-// ************************ 以下为明细部分 ************************************** //
+// ************************ Dưới đây là phần chi tiết ************************************** //
 
-//Grid绑定已选项目
+//Grid liên kết các hạng mục đã chọn
 function BindItemDetailData() {
     window.jQuery("#ItemDetailGrid").jqGrid("clearGridData");
     window.jQuery("#ItemDetailGrid").jqGrid({
@@ -151,19 +151,19 @@ function BindItemDetailData() {
         rowList: [10, 20, 30],
         autoScroll: true,
         colModel: [
-            { label: "大类", name: "dl", width: "5%", align: "left" },
-            { label: "治疗项目", name: "ItemName", width: "15%", align: "left" },
-            { label: "替代项目", name: "ReplaceTtemName", width: "15%", align: "left" },
-            { label: "数量", name: "ItemCount", width: "3%", align: "center" },
-            { label: "单位", name: "Unit", width: "4%", align: "center" },
-            { label: "单次时长", name: "SingleTimeLength", width: "9%", align: "center" },
-            { label: "单价", name: "UnitPrice", width: "5%", align: "center" },
-            { label: "类别", name: "Category", width: "3%", align: "center" },
-            { label: "治疗师", name: "Doctor", width: "7%", align: "left" },
-            { label: "治疗时间", name: "TreatDate", width: "8%", align: "center" },
-            { label: "自费比例", name: "SelfPaidRatio", width: "6%", align: "center" },
-            { label: "总价", name: "Total", width: "5%", align: "center" },
-            { label: "备注", name: "Remark", width: "15%", align: "left" },
+            { label: "Nhóm lớn", name: "dl", width: "5%", align: "left" },
+            { label: "Hạng mục điều trị", name: "ItemName", width: "15%", align: "left" },
+            { label: "Hạng mục thay thế", name: "ReplaceTtemName", width: "15%", align: "left" },
+            { label: "Số lượng", name: "ItemCount", width: "3%", align: "center" },
+            { label: "Đơn vị", name: "Unit", width: "4%", align: "center" },
+            { label: "Thời lượng mỗi lần", name: "SingleTimeLength", width: "9%", align: "center" },
+            { label: "Đơn giá", name: "UnitPrice", width: "5%", align: "center" },
+            { label: "Loại", name: "Category", width: "3%", align: "center" },
+            { label: "Nhà trị liệu", name: "Doctor", width: "7%", align: "left" },
+            { label: "Thời gian điều trị", name: "TreatDate", width: "8%", align: "center" },
+            { label: "Tỷ lệ tự trả", name: "SelfPaidRatio", width: "6%", align: "center" },
+            { label: "Tổng giá", name: "Total", width: "5%", align: "center" },
+            { label: "Ghi chú", name: "Remark", width: "15%", align: "left" },
             { label: "ItemCode", name: "ItemCode", hidden: true },
             { label: "ReplaceItemCode", name: "ReplaceItemCode", hidden: true },
             { label: "ReplaceTtemCount", name: "ReplaceTtemCount", hidden: true },

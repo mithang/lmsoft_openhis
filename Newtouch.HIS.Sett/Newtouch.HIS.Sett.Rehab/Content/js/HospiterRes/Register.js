@@ -41,9 +41,9 @@ $(function () {
                 if (rep["zjlx"]) {
                     var type = rep["zjlx"].trim();
                     switch (type) {
-                        case "0": type = "身份证"; break;
-                        case "1": type = "护照"; break;
-                        case "2": type = "军官证"; break;
+                        case "0": type = "Chứng minh nhân dân"; break;
+                        case "1": type = "Hộ chiếu"; break;
+                        case "2": type = "Chứng nhận sĩ quan"; break;
                         default: break;
 
                     }
@@ -66,10 +66,10 @@ $(function () {
                 async: false,
                 success: function (rep) {
                     if (rep == "0") {
-                        //无卡做免卡登记 
+                        //Đăng ký miễn thẻ khi không có thẻ 
                         btn_NocardRes();
                     } else {
-                        //有卡显示基本信息
+                        //Có thẻ thì hiển thị thông tin cơ bản
                         $("#form1").formSerialize(rep);
                         if (rep["jkjl"]) {
                             $("#jkjlmc").attr("data-label", rep["jkjl"]);
@@ -104,15 +104,15 @@ $(function () {
                         if (rep["zjlx"]) {
                             var type = rep["zjlx"].trim();
                             switch (type) {
-                                case "0": type = "身份证"; break;
-                                case "1": type = "护照"; break;
-                                case "2": type = "军官证"; break;
+                                case "0": type = "Chứng minh nhân dân"; break;
+                                case "1": type = "Hộ chiếu"; break;
+                                case "2": type = "Chứng nhận sĩ quan"; break;
                                 default: break;
 
                             }
                             $("#zjlx").html(type + "<span>*</span>");
                         }
-                        //禁用系统病人基本信息
+                        //Vô hiệu hóa thông tin cơ bản bệnh nhân của hệ thống
                         DisableSysBasicInfo();
                     }
                 }
@@ -125,7 +125,7 @@ $(function () {
 function btn_NocardRes() {
     $.modalOpen({
         id: "Form",
-        title: "患者登记",
+        title: "Đăng ký bệnh nhân",
         url: "/Patient/AddPatient",
         width: "1000px",
         height: "824px",
@@ -136,7 +136,7 @@ function btn_NocardRes() {
 }
 
 function initControl() {
-    ///健康教练
+    ///Huấn luyện viên sức khỏe
     $("#jkjlmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -144,7 +144,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysStaffList, function (idx, val) {
                 if (((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "")
@@ -155,15 +155,15 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "健康教练",
+        caption: "Huấn luyện viên sức khỏe",
         colModel: [
             {
-                label: '代码', name: 'ry', widthratio: 25
+                label: 'Mã', name: 'ry', widthratio: 25
             },
             {
-                label: '名称', name: 'rymc', widthratio: 25
+                label: 'Tên', name: 'rymc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#jkjlmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -171,7 +171,7 @@ function initControl() {
             return;
         },
     });
-    ///医生
+    ///Bác sĩ
     $("#doctormc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -179,7 +179,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
 
             $.each(top.window.newtouchclients.sysStaffList, function (idx, val) {
@@ -191,15 +191,15 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "医生",
+        caption: "Bác sĩ",
         colModel: [
             {
-                label: '代码', name: 'ry', widthratio: 25
+                label: 'Mã', name: 'ry', widthratio: 25
             },
             {
-                label: '名称', name: 'rymc', widthratio: 25
+                label: 'Tên', name: 'rymc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#doctormc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -207,7 +207,7 @@ function initControl() {
             return;
         },
     });
-    ///报销政策
+    ///Chính sách hoàn trả
     $("#brxzmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -215,7 +215,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -225,18 +225,18 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "Tính chất bệnh nhân",
         colModel: [
             {
-                label: '编号', name: 'brxzbh', widthratio: 25
+                label: 'Mã số', name: 'brxzbh', widthratio: 25
             },
             {
-                label: '代码', name: 'brxz', widthratio: 25
+                label: 'Mã', name: 'brxz', widthratio: 25
             },
             {
-                label: '名称', name: 'brxzmc', widthratio: 25
+                label: 'Tên', name: 'brxzmc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#brxzmc").attr("data-label", $thistr.find("td:eq(0)").html() + "-" + $thistr.find("td:eq(1)").html());
@@ -244,7 +244,7 @@ function initControl() {
             return;
         }
     });
-    ///入院诊断 zdmc1
+    ///Chẩn đoán khi nhập viện zdmc1
     $("#zdmc1").newtouchFloatingSelector(
         {
             height: 200,
@@ -253,18 +253,18 @@ function initControl() {
             ajaxparameters: function () {
                 return "ryzd=" + $("#zdmc1").val();
             },
-            caption: "入院诊断",
+            caption: "Chẩn đoán khi nhập viện",
             colModel: [
            {
-               label: '编号', name: 'zdbh', widthratio: 25
+               label: 'Mã số', name: 'zdbh', widthratio: 25
            },
            {
                label: 'icd10', name: 'icd10', widthratio: 25
            },
            {
-               label: '名称', name: 'zdmc', widthratio: 25
+               label: 'Tên', name: 'zdmc', widthratio: 25
            },
-           { label: '内码', name: 'zdnm', widthratio: 25 }
+           { label: 'Mã nội bộ', name: 'zdnm', widthratio: 25 }
             ],
             itemdbclickhandler: function (data) {
                 $("#zdmc1").attr("data-label", data.find("td:eq(0)").html() + "-" + data.find("td:eq(3)").html());
@@ -272,7 +272,7 @@ function initControl() {
                 return;
             }
         });
-    ///入院诊断 zdmc2
+    ///Chẩn đoán khi nhập viện zdmc2
     $("#zdmc2").newtouchFloatingSelector(
            {
                height: 200,
@@ -281,18 +281,18 @@ function initControl() {
                ajaxparameters: function () {
                    return "ryzd=" + $("#zdmc2").val();
                },
-               caption: "入院诊断",
+               caption: "Chẩn đoán khi nhập viện",
                colModel: [
                    {
-                       label: '编号', name: 'zdbh', widthratio: 25
+                       label: 'Mã số', name: 'zdbh', widthratio: 25
                    },
                    {
                        label: 'icd10', name: 'icd10', widthratio: 25
                    },
                    {
-                       label: '名称', name: 'zdmc', widthratio: 25
+                       label: 'Tên', name: 'zdmc', widthratio: 25
                    },
-                   { label: '内码', name: 'zdnm', widthratio: 25 }
+                   { label: 'Mã nội bộ', name: 'zdnm', widthratio: 25 }
                ],
                itemdbclickhandler: function (data) {
                    $("#zdmc2").attr("data-label", data.find("td:eq(0)").html() + "-" + data.find("td:eq(3)").html());
@@ -300,7 +300,7 @@ function initControl() {
                    return;
                }
            });
-    ///入院诊断 zdmc3
+    ///Chẩn đoán khi nhập viện zdmc3
     $("#zdmc3").newtouchFloatingSelector(
               {
                   height: 200,
@@ -309,18 +309,18 @@ function initControl() {
                   ajaxparameters: function () {
                       return "ryzd=" + $("#zdmc3").val();
                   },
-                  caption: "入院诊断",
+                  caption: "Chẩn đoán khi nhập viện",
                   colModel: [
                        {
-                           label: '编号', name: 'zdbh', widthratio: 25
+                           label: 'Mã số', name: 'zdbh', widthratio: 25
                        },
                        {
                            label: 'icd10', name: 'icd10', widthratio: 25
                        },
                        {
-                           label: '名称', name: 'zdmc', widthratio: 25
+                           label: 'Tên', name: 'zdmc', widthratio: 25
                        },
-                       { label: '内码', name: 'zdnm', widthratio: 25 }
+                       { label: 'Mã nội bộ', name: 'zdnm', widthratio: 25 }
                   ],
                   itemdbclickhandler: function (data) {
                       $("#zdmc3").attr("data-label", data.find("td:eq(0)").html() + "-" + data.find("td:eq(3)").html());
@@ -328,7 +328,7 @@ function initControl() {
                       return;
                   }
               });
-    ///科室
+    ///Khoa
     $("#ksmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -336,7 +336,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -346,18 +346,18 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "科室",
+        caption: "Khoa",
         colModel: [
             {
-                label: '编号', name: 'ksbh', widthratio: 25
+                label: 'Mã số', name: 'ksbh', widthratio: 25
             },
             {
-                label: '代码', name: 'ks', widthratio: 25
+                label: 'Mã', name: 'ks', widthratio: 25
             },
             {
-                label: '名称', name: 'ksmc', widthratio: 25
+                label: 'Tên', name: 'ksmc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#ksmc").attr("data-label", $thistr.find("td:eq(0)").html() + "-" + $thistr.find("td:eq(1)").html());
@@ -365,7 +365,7 @@ function initControl() {
             return;
         },
     });
-    ///病区
+    ///Khu bệnh
     $("#bqmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -373,7 +373,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysPatiAreaList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -383,18 +383,18 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "病区",
+        caption: "Khu bệnh",
         colModel: [
             {
-                label: '编号', name: 'bqbh', widthratio: 25
+                label: 'Mã số', name: 'bqbh', widthratio: 25
             },
             {
-                label: '代码', name: 'bq', widthratio: 25
+                label: 'Mã', name: 'bq', widthratio: 25
             },
             {
-                label: '名称', name: 'bqmc', widthratio: 25
+                label: 'Tên', name: 'bqmc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#bqmc").attr("data-label", $thistr.find("td:eq(0)").html() + "-" + $thistr.find("td:eq(1)").html());
@@ -402,7 +402,7 @@ function initControl() {
             return;
         },
     });
-    ///民族
+    ///Dân tộc
     $("#mzmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -410,7 +410,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysNationList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -420,15 +420,15 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "民族",
+        caption: "Dân tộc",
         colModel: [
             {
-                label: '代码', name: 'mz', widthratio: 25
+                label: 'Mã', name: 'mz', widthratio: 25
             },
             {
-                label: '名称', name: 'mzmc', widthratio: 25
+                label: 'Tên', name: 'mzmc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#mzmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -436,7 +436,7 @@ function initControl() {
             return;
         },
     });
-    ///国籍
+    ///Quốc tịch
     $("#gjmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -444,7 +444,7 @@ function initControl() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysNationalityList, function (idx, val) {
                 if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -454,15 +454,15 @@ function initControl() {
             return resultObjArr;
 
         },
-        caption: "国籍",
+        caption: "Quốc tịch",
         colModel: [
             {
-                label: '代码', name: 'gj', widthratio: 25
+                label: 'Mã', name: 'gj', widthratio: 25
             },
             {
-                label: '名称', name: 'gjmc', widthratio: 25
+                label: 'Tên', name: 'gjmc', widthratio: 25
             },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#gjmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -500,12 +500,12 @@ function btn_Save() {
         data["gj"] = $("#gjmc").attr("data-label");
         $.submitForm({
             url: "/PatientManage/HospiterRes/SaveSysHosBasicInfo",
-            loading: "正在提交数据...",
+            loading: "Đang gửi dữ liệu...",
             param: data,
             successwithtipmsg: false,
             success: function (data) {
                 if (data.message == "操作成功") {
-                    $.modalAlert("入院登记成功！住院号为:" + data.data, 'warning');
+                    $.modalAlert("Đăng ký nhập viện thành công! Số nhập viện là:" + data.data, 'warning');
                     ClearAll();
                 }
                 $.loading(false);
@@ -516,10 +516,10 @@ function btn_Save() {
 
 function PrinyZYInfo() {
     if (!$("#patid").val()) {
-        $.modalAlert("病人基本信息不全，无法打印住院信息", 'error');
+        $.modalAlert("Thông tin cơ bản bệnh nhân chưa đầy đủ, không thể in thông tin nhập viện", 'error');
         return;
     } else {
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
         return;
     }
     var data = $("#form1").formSerialize();
@@ -542,10 +542,10 @@ function PrinyZYInfo() {
 function PrintWDInfo() {
 
     if (!$("#patid").val()) {
-        $.modalAlert("病人基本信息不全，无法打印腕带", 'error');
+        $.modalAlert("Thông tin cơ bản bệnh nhân chưa đầy đủ, không thể in vòng tay", 'error');
         return;
     } else {
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
         return;
     }
     $.ajax({
@@ -563,7 +563,7 @@ function PrintWDInfo() {
 
 function Cancel() {
     if (!$("#patid").val()) {
-        $.modalAlert("病人基本信息不全，无法打印住院信息", 'error');
+        $.modalAlert("Thông tin cơ bản bệnh nhân chưa đầy đủ, không thể in thông tin nhập viện", 'error');
         return;
     }
     $.ajax({
@@ -646,7 +646,7 @@ function newtouch_event_f4() {
 function checkNotNull() {
     var patid = $("#patid").val();
     if (!patid) {
-        $.modalAlert("病人基本信息不存在，无法保存", 'warning');
+        $.modalAlert("Thông tin cơ bản bệnh nhân không tồn tại, không thể lưu", 'warning');
         return false;
     }
 
@@ -667,18 +667,18 @@ function checkNotNull() {
             kh: { required: true }
         },
         messages: {
-            brxzmc: { required: "报销政策必须填写" },
-            ksmc: { required: "科室必须填写" },
-            bqmc: { required: "病区必须填写" },
-            mzmc: { required: "民族必须填写" },
-            gjmc: { required: "国籍必须填写" },
-            zy: { required: "职业必须填写" },
-            bje: { required: "报警额必须填写" },
-            lxr: { required: "紧急联系人必须填写" },
-            lxrgx: { required: "紧急联系人关系必须填写" },
-            lxrdh: { isMobile: "移动电话格式不正确", required: "紧急联系人移动电话必须填写" },
-            lxrdz: { required: "紧急联系人地址必须填写" },
-            kh: { required: "卡号必须填写" }
+            brxzmc: { required: "Phải nhập chính sách hoàn trả" },
+            ksmc: { required: "Phải nhập khoa" },
+            bqmc: { required: "Phải nhập khu bệnh" },
+            mzmc: { required: "Phải nhập dân tộc" },
+            gjmc: { required: "Phải nhập quốc tịch" },
+            zy: { required: "Phải nhập nghề nghiệp" },
+            bje: { required: "Phải nhập mức cảnh báo" },
+            lxr: { required: "Phải nhập người liên hệ khẩn cấp" },
+            lxrgx: { required: "Phải nhập quan hệ người liên hệ khẩn cấp" },
+            lxrdh: { isMobile: "Định dạng điện thoại di động không đúng", required: "Phải nhập điện thoại di động của người liên hệ khẩn cấp" },
+            lxrdz: { required: "Phải nhập địa chỉ người liên hệ khẩn cấp" },
+            kh: { required: "Phải nhập số thẻ" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {

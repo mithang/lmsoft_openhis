@@ -34,83 +34,83 @@
         <div class="rows" style="margin-bottom: 1%;" id="basicInfo">
             <div class="panel panel-default" style="margin-bottom:0;">
                 <div class="panel-heading navb-bg">
-                    病人基本信息
+                    Thông tin cơ bản bệnh nhân
                 </div>
                 <table class="form" style="width:98%;border:0">
                     <tr>
-                        <th class="formTitle">卡号<span>*</span></th>
+                        <th class="formTitle">Số thẻ<span>*</span></th>
                         <td class="formValue">
                             <input type="text" id="kh" name="kh" class="form-control" />
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default" id="noCardRes" value="免卡登记" onclick="btn_NocardRes()">
-                                免卡登记
+                            <button type="button" class="btn btn-default" id="noCardRes" value="Đăng ký miễn thẻ" onclick="btn_NocardRes()">
+                                Đăng ký miễn thẻ
                             </button>
                         </td>
                         <td class="formTitle">
-                            住院号<span>*</span>
+                            Số nhập viện<span>*</span>
                         </td>
                         <td class="formValue"> <input type="text" id="zyh" class="form-control  newtouch_Readonly" /></td>
                         <td class="formTitle">
-                            姓名
+                            Họ tên
                         </td>
                         <td class="formValue">  <input type="text" id="xm" class="form-control newtouch_Readonly" /></td>
                         <td class="formTitle">
 
-                            <label id="zjlx">身份证号<span>*</span></label>
+                            <label id="zjlx">Số CMND<span>*</span></label>
                         </td>
                         <td class="formValue">
                             <input type="text" id="zjh" class="form-control newtouch_Readonly" />
                         </td>
                     <tr>
                         <td class="formTitle">
-                            出生年月
+                            Năm tháng sinh
                         </td>
                         <td class="formValue">
                             @*onfocus="WdatePicker()"*@
                             <input id="csny" type="text" class="form-control newtouch_Readonly" />
                         </td>
                         <td></td>
-                        <td class="formTitle">性别<span>*</span></td>
+                        <td class="formTitle">Giới tính<span>*</span></td>
                         <td>
                             <div class="btn-group formValue" data-toggle="buttons">
                                 <label class="btn btn-default" disabled>
-                                    <input type="radio" id="xb" value="1" name="xb" class="form-control" />男
+                                    <input type="radio" id="xb" value="1" name="xb" class="form-control" />Nam
                                 </label>
                                 <label class="btn btn-default" disabled>
-                                    <input type="radio" id="xb" value="0" name="xb" class="form-control" />女
+                                    <input type="radio" id="xb" value="0" name="xb" class="form-control" />Nữ
                                 </label>
                             </div>
                         </td>
-                        <td class="formTitle">年龄<span>*</span></td>
+                        <td class="formTitle">Tuổi<span>*</span></td>
                         <td class="formValue">
                             <input type="text" id="nl" class="form-control newtouch_Readonly" />
                         </td>
                         <td class="formTitle">
-                            病历号
+                            Số bệnh án
                         </td>
                         <td class="formValue">
                             <input type="text" readonly="readonly" id="blh" class="form-control newtouch_Readonly" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle">电话</td>
+                        <td class="formTitle">Điện thoại</td>
                         <td class="formValue"><input type="text" id="dh" class="form-control newtouch_Readonly" /></td>
                         <td></td>
-                        <td class="formTitle">地域</td>
+                        <td class="formTitle">Khu vực</td>
                         <td class="formValue">
                             <select id="dy" class="form-control newtouch_Readonly">
-                                <option value="">==请选择==</option>
-                                <option value="0">本地</option>
-                                <option value="1">外地</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Địa phương</option>
+                                <option value="1">Ngoại tỉnh</option>
                             </select>
                         </td>
-                        <td class="formTitle">婚姻<span>*</span></td>
+                        <td class="formTitle">Hôn nhân<span>*</span></td>
                         <td class="formValue">
                             <select id="hf" class="form-control newtouch_Readonly">
-                                <option value="">==请选择==</option>
-                                <option value="0">未婚</option>
-                                <option value="1">已婚</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Chưa kết hôn</option>
+                                <option value="1">Đã kết hôn</option>
                             </select>
                         </td>
                         <td class="formValue"><input type="hidden" id="patid" /></td>
@@ -120,199 +120,199 @@
         </div>
         <div id="InHospitalInfo" class="rows" style="margin-bottom: 1%;">
             <div class="panel panel-default" style="margin-bottom:0;">
-                <div class="panel-heading navb-bg">住院基本信息</div>
+                <div class="panel-heading navb-bg">Thông tin cơ bản nhập viện</div>
                 <table class="form" style="width:98%;border:0">
                     <tr>
-                        <td class="formTitle">住院号<span>*</span></td>
+                        <td class="formTitle">Số nhập viện<span>*</span></td>
                         <td class="formValue"><input type="text" id="zyh2" class="form-control newtouch_Readonly" readonly="readonly" /></td>
-                        <td class="formTitle">健康教练</td>
+                        <td class="formTitle">Huấn luyện viên sức khỏe</td>
                         <td class="formValue"><input type="text" id="jkjlmc" class="form-control" /></td>
-                        <td class="formTitle">医生</td>
+                        <td class="formTitle">Bác sĩ</td>
                         <td class="formValue"><input type="text" id="doctormc" class="form-control" /></td>
-                        <td class="formTitle">床位</td>
+                        <td class="formTitle">Giường bệnh</td>
                         <td class="formValue"><input type="text" id="cw" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">报销政策<span>*</span></td>
+                        <td class="formTitle">Chính sách hoàn trả<span>*</span></td>
                         <td class="formValue">  <input type="text" id="brxzmc" name="brxzmc" class="form-control" /></td>
-                        <td class="formTitle">入院诊断一</td>
+                        <td class="formTitle">Chẩn đoán khi nhập viện 1</td>
                         <td class="formValue"><input type="text" id="zdmc1" class="form-control" /></td>
-                        <td class="formTitle">入院诊断二</td>
+                        <td class="formTitle">Chẩn đoán khi nhập viện 2</td>
                         <td class="formValue"> <input type="text" id="zdmc2" class="form-control" /></td>
-                        <td class="formTitle">入院诊断三</td>
+                        <td class="formTitle">Chẩn đoán khi nhập viện 3</td>
                         <td class="formValue"> <input type="text" id="zdmc3" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">入院日期<span>*</span></td>
+                        <td class="formTitle">Ngày nhập viện<span>*</span></td>
                         <td class="formValue">
                             @*<input size="16" type="text" id="ryrq" class="form_datetime form-control">*@
                             <input id="ryrq" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
                         </td>
-                        <td class="formTitle">科室<span>*</span></td>
+                        <td class="formTitle">Khoa<span>*</span></td>
                         <td class="formValue">   <input type="text" id="ksmc" name="ksmc" class="form-control" /></td>
-                        <td class="formTitle">病区<span>*</span></td>
+                        <td class="formTitle">Khu bệnh<span>*</span></td>
                         <td class="formValue"> <input type="text" id="bqmc" name="bqmc" class="form-control" /></td>
-                        <td class="formTitle">过敏史</td>
+                        <td class="formTitle">Tiền sử dị ứng</td>
                         <td class="formValue"> <input type="text" id="gms" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">入院病情</td>
+                        <td class="formTitle">Tình trạng bệnh khi nhập viện</td>
                         <td>
                             <div class="btn-group formValue" data-toggle="buttons">
                                 <label class="btn btn-default">
-                                    <input type="radio" id="rybq" value="0" name="rybq" class="form-control" />一般
+                                    <input type="radio" id="rybq" value="0" name="rybq" class="form-control" />Bình thường
                                 </label>
                                 <label class="btn btn-default">
-                                    <input type="radio" id="rybq" value="1" name="rybq" class="form-control" />危急
+                                    <input type="radio" id="rybq" value="1" name="rybq" class="form-control" />Nguy kịch
                                 </label>
                             </div>
                         </td>
-                        <td class="formTitle">入院途径</td>
+                        <td class="formTitle">Đường nhập viện</td>
                         <td class="formValue">
                             <select class="form-control" id="rytj">
-                                <option value="">==请选择==</option>
-                                <option value="0">门诊</option>
-                                <option value="1">急诊</option>
-                                <option value="2">其他医疗机构转入</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Ngoại trú</option>
+                                <option value="1">Cấp cứu</option>
+                                <option value="2">Chuyển từ cơ sở y tế khác</option>
                                 <option value="3">120</option>
                             </select>
                         </td>
-                        <td class="formTitle">职业<span>*</span></td>
+                        <td class="formTitle">Nghề nghiệp<span>*</span></td>
                         <td class="formValue">
                             <select class="form-control" id="zy" name="zy">
-                                <option value="">==请选择==</option>
-                                <option value="0">其他</option>
-                                <option value="1">工人</option>
-                                <option value="2">退休工人</option>
-                                <option value="3">干部</option>
-                                <option value="4">军人</option>
-                                <option value="5">教师</option>
-                                <option value="6">农民</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Khác</option>
+                                <option value="1">Công nhân</option>
+                                <option value="2">Công nhân đã nghỉ hưu</option>
+                                <option value="3">Cán bộ</option>
+                                <option value="4">Quân nhân</option>
+                                <option value="5">Giáo viên</option>
+                                <option value="6">Nông dân</option>
                             </select>
                         </td>
-                        <td class="formTitle">饮食</td>
+                        <td class="formTitle">Ăn uống</td>
                         <td class="formValue"> <input type="text" id="ys" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">出生地</td>
+                        <td class="formTitle">Nơi sinh</td>
                         <td class="formValue">
                             <input type="text" id="cs_sheng" class="form-control" style="width:90px; float:left" />
-                            <p style="float:right">省(区，市)</p>
+                            <p style="float:right">Tỉnh (quận, thành phố)</p>
                         </td>
-                        @*<td class="formTitle">省(区，市)</td>*@
+                        @*<td class="formTitle">Tỉnh (quận, thành phố)</td>*@
                         <td></td>
                         <td class="formValue">
                             <input type="text" id="cs_shi" class="form-control" style="width:125px; float:left" />
-                            <p style="float:right">市</p>
+                            <p style="float:right">Thành phố</p>
                         </td>
-                        @*<td class="formTitle">市</td>*@
+                        @*<td class="formTitle">Thành phố</td>*@
                         <td></td>
                         <td class="formValue">
                             <input type="text" id="cs_xian" class="form-control" style="width:125px; float:left" />
-                            <p style="float:right">县</p>
+                            <p style="float:right">Huyện</p>
                         </td>
-                        @*<td class="formTitle">县</td>*@
+                        @*<td class="formTitle">Huyện</td>*@
                     </tr>
                     <tr>
-                        <td class="formTitle">现地址</td>
-                        <td class="formValue"><input type="text" id="xian_sheng" class="form-control" style="width:90px; float:left" /><p style="float:right">省(区，市)</p></td>
-                        @*<td class="formTitle">省(区，市)</td>*@
+                        <td class="formTitle">Địa chỉ hiện tại</td>
+                        <td class="formValue"><input type="text" id="xian_sheng" class="form-control" style="width:90px; float:left" /><p style="float:right">Tỉnh (quận, thành phố)</p></td>
+                        @*<td class="formTitle">Tỉnh (quận, thành phố)</td>*@
                         <td></td>
-                        <td class="formValue"> <input type="text" id="xian_shi" class="form-control" style="width:125px; float:left" /><p style="float:right">市</p></td>
-                        @*<td class="formTitle">市</td>*@
+                        <td class="formValue"> <input type="text" id="xian_shi" class="form-control" style="width:125px; float:left" /><p style="float:right">Thành phố</p></td>
+                        @*<td class="formTitle">Thành phố</td>*@
                         <td></td>
-                        <td class="formValue"> <input type="text" id="xian_xian" class="form-control" style="width:125px; float:left" /><p style="float:right">县</p></td>
-                        @*<td class="formTitle">县</td>*@
-                        <td class="formTitle">地址</td>
+                        <td class="formValue"> <input type="text" id="xian_xian" class="form-control" style="width:125px; float:left" /><p style="float:right">Huyện</p></td>
+                        @*<td class="formTitle">Huyện</td>*@
+                        <td class="formTitle">Địa chỉ</td>
                         <td class="formValue"><input type="text" id="xian_dz" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">户口地址</td>
-                        <td class="formValue"><input type="text" id="hu_sheng" class="form-control" style="width:90px; float:left" /><p style="float:right">省(区，市)</p></td>
-                        @*<td class="formTitle">省(区，市)</td>*@
+                        <td class="formTitle">Địa chỉ hộ khẩu</td>
+                        <td class="formValue"><input type="text" id="hu_sheng" class="form-control" style="width:90px; float:left" /><p style="float:right">Tỉnh (quận, thành phố)</p></td>
+                        @*<td class="formTitle">Tỉnh (quận, thành phố)</td>*@
                         <td></td>
-                        <td class="formValue"> <input type="text" id="hu_shi" class="form-control" style="width:125px; float:left" /><p style="float:right">市</p></td>
-                        @*<td class="formTitle">市</td>*@
+                        <td class="formValue"> <input type="text" id="hu_shi" class="form-control" style="width:125px; float:left" /><p style="float:right">Thành phố</p></td>
+                        @*<td class="formTitle">Thành phố</td>*@
                         <td></td>
-                        <td class="formValue"> <input type="text" id="hu_xian" class="form-control" style="width:125px; float:left" /><p style="float:right">县</p></td>
-                        @*<td class="formTitle">县</td>*@
-                        <td class="formTitle">地址</td>
+                        <td class="formValue"> <input type="text" id="hu_xian" class="form-control" style="width:125px; float:left" /><p style="float:right">Huyện</p></td>
+                        @*<td class="formTitle">Huyện</td>*@
+                        <td class="formTitle">Địa chỉ</td>
                         <td class="formValue"><input type="text" id="hu_dz" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">民族<span>*</span></td>
+                        <td class="formTitle">Dân tộc<span>*</span></td>
                         <td class="formValue"> <input type="text" id="mzmc" name="mzmc" class="form-control" /></td>
-                        <td class="formTitle">国籍<span>*</span></td>
+                        <td class="formTitle">Quốc tịch<span>*</span></td>
                         <td class="formValue"> <input type="text" id="gjmc" name="gjmc" class="form-control" /></td>
-                        <td class="formTitle">婚姻<span>*</span></td>
+                        <td class="formTitle">Hôn nhân<span>*</span></td>
                         <td class="formValue">
                             <select class="form-control" id="hy">
-                                <option value="">==请选择==</option>
-                                <option value="0">未婚</option>
-                                <option value="1">已婚</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Chưa kết hôn</option>
+                                <option value="1">Đã kết hôn</option>
                             </select>
                         </td>
-                        <td class="formTitle">报警额<span>*</span></td>
+                        <td class="formTitle">Mức cảnh báo<span>*</span></td>
                         <td class="formValue"> <input type="text" id="bje" name="bje" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">紧急联系人<span>*</span></td>
+                        <td class="formTitle">Người liên hệ khẩn cấp<span>*</span></td>
                         <td class="formValue"> <input type="text" id="lxr" name="lxr" class="form-control" /></td>
-                        <td class="formTitle">紧急联系人关系<span>*</span></td>
+                        <td class="formTitle">Quan hệ người liên hệ khẩn cấp<span>*</span></td>
                         <td class="formValue">
                             <select id="lxrgx" name="lxrgx" class="form-control">
-                                <option value="">==请选择==</option>
-                                <option value="1">夫妻</option>
-                                <option value="2">父子</option>
-                                <option value="3">母子</option>
-                                <option value="4">父女</option>
-                                <option value="5">兄弟</option>
-                                <option value="6">姐弟</option>
-                                <option value="0">其他</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="1">Vợ - chồng</option>
+                                <option value="2">Cha - con trai</option>
+                                <option value="3">Mẹ - con trai</option>
+                                <option value="4">Cha - con gái</option>
+                                <option value="5">Anh - em trai</option>
+                                <option value="6">Chị - em trai</option>
+                                <option value="0">Khác</option>
                             </select>
                         </td>
-                        <td class="formTitle">紧急移动电话<span>*</span></td>
+                        <td class="formTitle">Điện thoại di động khẩn cấp<span>*</span></td>
                         <td class="formValue"><input type="text" id="lxrdh" name="lxrdh" class="form-control" /></td>
-                        <td class="formTitle">紧急家庭电话</td>
+                        <td class="formTitle">Điện thoại gia đình khẩn cấp</td>
                         <td class="formValue"> <input type="text" id="lxrjtdh" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">紧急联系人微信</td>
+                        <td class="formTitle">WeChat người liên hệ khẩn cấp</td>
                         <td class="formValue">  <input type="text" id="lxrWebchat" class="form-control" /></td>
-                        <td class="formTitle">紧急联系人邮箱</td>
+                        <td class="formTitle">Email người liên hệ khẩn cấp</td>
                         <td class="formValue"><input type="text" id='lxrEmail' class="form-control" /></td>
-                        <td class="formTitle">紧急联系人地址<span>*</span></td>
+                        <td class="formTitle">Địa chỉ người liên hệ khẩn cấp<span>*</span></td>
                         <td colspan="3" class="formValue">
                             <input type="text" id="lxrdz" name="lxrdz" class="form-control" style="width:101%" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle">第二联系人</td>
+                        <td class="formTitle">Người liên hệ thứ hai</td>
                         <td class="formValue"> <input type="text" id="lxr2" class="form-control" /></td>
-                        <td class="formTitle">第二联系人关系</td>
+                        <td class="formTitle">Quan hệ người liên hệ thứ hai</td>
                         <td class="formValue">
                             <select id="lxrgx2" class="form-control">
-                                <option value="">==请选择==</option>
-                                <option value="0">其他</option>
-                                <option value="1">夫妻</option>
-                                <option value="2">父子</option>
-                                <option value="3">母子</option>
-                                <option value="4">父女</option>
-                                <option value="5">兄弟</option>
-                                <option value="6">姐弟</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Khác</option>
+                                <option value="1">Vợ - chồng</option>
+                                <option value="2">Cha - con trai</option>
+                                <option value="3">Mẹ - con trai</option>
+                                <option value="4">Cha - con gái</option>
+                                <option value="5">Anh - em trai</option>
+                                <option value="6">Chị - em trai</option>
                             </select>
                         </td>
-                        <td class="formTitle">第二移动电话</td>
+                        <td class="formTitle">Điện thoại di động thứ hai</td>
                         <td class="formValue"> <input type="text" id="lxryddh2" class="form-control" /></td>
-                        <td class="formTitle">第二家庭电话</td>
+                        <td class="formTitle">Điện thoại gia đình thứ hai</td>
                         <td class="formValue"> <input type="text" id="lxrjtdh2" class="form-control" /></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">第二联系人微信</td>
+                        <td class="formTitle">WeChat người liên hệ thứ hai</td>
                         <td class="formValue">  <input type="text" id="lxrWebchat2" class="form-control" /></td>
-                        <td class="formTitle">第二联系人邮箱</td>
+                        <td class="formTitle">Email người liên hệ thứ hai</td>
                         <td class="formValue"> <input type="text" id="lxrEmail2" class="form-control" /></td>
-                        <td class="formTitle">第二联系人地址</td>
+                        <td class="formTitle">Địa chỉ người liên hệ thứ hai</td>
                         <td colspan="3" class="formValue">
                             <input type="text" id="lxrdz2" class="form-control" style="width:101%" />
                             @*<textarea id="lxrdz2" cols="20" class="form-control" rows="1"></textarea>*@
@@ -322,9 +322,9 @@
                 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
            {
                ShowKeyList = new int[] { 4, 6, 7, 8, 9 },
-               F6Text = "腕带",
-               F7Text = "住院信息打印",
-               F9Text = "取消入院"
+               F6Text = "Vòng tay",
+               F7Text = "In thông tin nhập viện",
+               F9Text = "Hủy nhập viện"
 
            })
     </form>

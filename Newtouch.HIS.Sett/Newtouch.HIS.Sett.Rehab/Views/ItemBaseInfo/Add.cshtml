@@ -33,11 +33,11 @@
         });
     })
     function InitControl() {
-        dlList();//大类
-        flList();//分类
-        ybdmList(); //医保代码
-        nbList();//农保大类
-        baList();//病案大类
+        dlList();//Nhóm lớn
+        flList();//Phân loại
+        ybdmList(); //Mã bảo hiểm y tế
+        nbList();//Nhóm lớn bảo hiểm nông nghiệp
+        baList();//Nhóm lớn bệnh án
     }
     function dlList() {
         $("#dlmc").newtouchFloatingSelector({
@@ -47,7 +47,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysMajorClassList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -57,12 +57,12 @@
                 return resultObjArr;
 
             },
-            caption: "大类",
+            caption: "Nhóm lớn",
             colModel: [
-                { label: '编号', name: 'dlbh', widthratio: 25 },
-                { label: '代码', name: 'dl', widthratio: 25 },
-                { label: '名称', name: 'dlmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: 'Mã số', name: 'dlbh', widthratio: 25 },
+                { label: 'Mã', name: 'dl', widthratio: 25 },
+                { label: 'Tên', name: 'dlmc', widthratio: 25 },
+                { label: 'Phiên âm', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#dlmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -80,7 +80,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysChargeClassifyList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -90,12 +90,12 @@
                 return resultObjArr;
 
             },
-            caption: "分类",
+            caption: "Phân loại",
             colModel: [
-                { label: '编号', name: 'flbh', widthratio: 25 },
-                { label: '代码', name: 'fl', widthratio: 25 },
-                { label: '名称', name: 'flmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: 'Mã số', name: 'flbh', widthratio: 25 },
+                { label: 'Mã', name: 'fl', widthratio: 25 },
+                { label: 'Tên', name: 'flmc', widthratio: 25 },
+                { label: 'Phiên âm', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#flmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -113,7 +113,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysnbsfdlList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -123,12 +123,12 @@
                 return resultObjArr;
 
             },
-            caption: "大类",
+            caption: "Nhóm lớn",
             colModel: [
-                { label: '编号', name: 'dlbh', widthratio: 25 },
-                { label: '代码', name: 'dl', widthratio: 25 },
-                { label: '名称', name: 'dlmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: 'Mã số', name: 'dlbh', widthratio: 25 },
+                { label: 'Mã', name: 'dl', widthratio: 25 },
+                { label: 'Tên', name: 'dlmc', widthratio: 25 },
+                { label: 'Phiên âm', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#nbdlmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -146,7 +146,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysbasfdlList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -156,12 +156,12 @@
                 return resultObjArr;
 
             },
-            caption: "大类",
+            caption: "Nhóm lớn",
             colModel: [
-                { label: '编号', name: 'dlbh', widthratio: 25 },
-                { label: '代码', name: 'dl', widthratio: 25 },
-                { label: '名称', name: 'dlmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: 'Mã số', name: 'dlbh', widthratio: 25 },
+                { label: 'Mã', name: 'dl', widthratio: 25 },
+                { label: 'Tên', name: 'dlmc', widthratio: 25 },
+                { label: 'Phiên âm', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#badlmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -179,7 +179,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.syszlxmList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -189,12 +189,12 @@
                 return resultObjArr;
 
             },
-            caption: "分类",
+            caption: "Phân loại",
             colModel: [
-                { label: '编号', name: 'py', widthratio: 25 },
-                { label: '医保代码', name: 'ybdm', widthratio: 25 },
-                { label: '物价代码', name: 'wjdm', widthratio: 25 },
-                { label: '名称', name: 'xmmc', widthratio: 25 }
+                { label: 'Mã số', name: 'py', widthratio: 25 },
+                { label: 'Mã bảo hiểm y tế', name: 'ybdm', widthratio: 25 },
+                { label: 'Mã giá cả', name: 'wjdm', widthratio: 25 },
+                { label: 'Tên', name: 'xmmc', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#ybdm").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -246,19 +246,19 @@
                 dl: { required: true },
             },
             messages: {
-                sfxmmc: { required: "收费项目名称必须填写" },
-                py: { required: "拼音必须填写" },
-                dw: { required: "单位必须填写" },
-                dj: { required: "单价必须填写" },
-                zfbl: { required: "自负比例必须填写" },
-                zfxz: { required: "自负性质必须选择" },
-                mzzybz: { required: "范围必须选择" },
-                ssbz: { required: "实施标志必须选择" },
-                tsbz: { required: "特殊标志必须选择" },
-                jsbz: { required: "警示标志必须选择" },
-                sfbz: { required: "收费标志必须选择" },
-                zt: { required: "状态必须选择" },
-                dl: { required: "大类必须选择" },
+                sfxmmc: { required: "Phải nhập tên hạng mục thu phí" },
+                py: { required: "Phải nhập phiên âm" },
+                dw: { required: "Phải nhập đơn vị" },
+                dj: { required: "Phải nhập đơn giá" },
+                zfbl: { required: "Phải nhập tỷ lệ tự trả" },
+                zfxz: { required: "Phải chọn tính chất tự trả" },
+                mzzybz: { required: "Phải chọn phạm vi" },
+                ssbz: { required: "Phải chọn dấu hiệu thực hiện" },
+                tsbz: { required: "Phải chọn dấu hiệu đặc biệt" },
+                jsbz: { required: "Phải chọn dấu hiệu cảnh báo" },
+                sfbz: { required: "Phải chọn dấu hiệu thu phí" },
+                zt: { required: "Phải chọn trạng thái" },
+                dl: { required: "Phải chọn nhóm lớn" },
             },
             showErrors: function (errorMap, errorList) {
                 if (!$.isEmptyObject(errorList)) {
@@ -269,7 +269,7 @@
         if (!validator.form()) {
             return false;
         }
-        //状态
+        //Trạng thái
         var zt = false;
         $('input[name="zt"]').each(function () {
             var $this = $(this);
@@ -279,7 +279,7 @@
             }
         });
         if (!zt) {
-            $.modalAlert("请选择是否有效！", 'warning');
+            $.modalAlert("Vui lòng chọn có hiệu lực hay không!", 'warning');
             return false;
         }
         return true;
@@ -315,14 +315,14 @@
 <form id="form1" style="width:95%;">
     <table class="form">
         <tr>
-            <td class="formTitle">有效：</td>
+            <td class="formTitle">Có hiệu lực:</td>
             <td class="formValue th_Required">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="1" class="form-control"> 是
+                        <input type="radio" name="zt" id="zt" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="0" class="form-control"> 否
+                        <input type="radio" name="zt" id="zt" value="0" class="form-control"> Không
                     </label>
                 </div>
                 <span>*</span>
@@ -331,124 +331,124 @@
             <td class="formValue"></td>
         </tr>
         <tr>
-            <td class="formTitle">代码：</td>
+            <td class="formTitle">Mã:</td>
             <td class="formValue"><input type="text" class="form-control" name="sfxm" id="sfxm" /></td>
-            <td class="formTitle">自负性质：</td>
+            <td class="formTitle">Tính chất tự trả：</td>
             <td class="formValue th_Required">
                 <select class="form-control" id="zfxz" name="zfxz">
-                    <option value="">==请选择==</option>
-                    <option value="0">可报</option>
-                    <option value="1">自费</option>
-                    <option value="2">分类自负</option>
-                    <option value="3">绝对自费</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Được hoàn trả</option>
+                    <option value="1">Tự trả</option>
+                    <option value="2">Tự trả theo phân loại</option>
+                    <option value="3">Tự trả tuyệt đối</option>
                 </select>
                 <span>*</span>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">收费项目：</td>
+            <td class="formTitle">Hạng mục thu phí：</td>
             <td class="formValue th_Required">
                 <input type="text" class="form-control" name="sfxmmc" id="sfxmmc" />
                 <span>*</span>
             </td>
-            <td class="formTitle">拼音：</td>
+            <td class="formTitle">Phiên âm：</td>
             <td class="formValue th_Required"><input type="text" class="form-control" name="py" id="py" /><span>*</span></td>
         </tr>
         <tr>
-            <td class="formTitle">单位：</td>
+            <td class="formTitle">Đơn vị：</td>
             <td class="formValue th_Required"><input type="text" class="form-control" name="dw" id="dw" /><span>*</span></td>
-            <td class="formTitle">单价：</td>
+            <td class="formTitle">Đơn giá：</td>
             <td class="formValue th_Required"><input type="text" class="form-control" name="dj" id="dj" /><span>*</span></td>
         </tr>
         <tr>
-            <td class="formTitle">范围：</td>
+            <td class="formTitle">Phạm vi：</td>
             <td class="formValue th_Required">
                 <select class="form-control" id="mzzybz" name="mzzybz">
-                    <option value="">==请选择==</option>
-                    <option value="0">通用</option>
-                    <option value="1">门诊</option>
-                    <option value="2">住院</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Ngoại trú</option>
+                    <option value="2">Nội trú</option>
                 </select><span>*</span>
             </td>
-            <td class="formTitle">自付比例：</td>
+            <td class="formTitle">Tỷ lệ tự trả：</td>
             <td class="formValue th_Required"><input type="text" class="form-control" id="zfbl" name="zfbl" /><span>*</span></td>
         </tr>
         <tr>
-            <td class="formTitle">特殊：</td>
+            <td class="formTitle">Đặc biệt：</td>
             <td class="formValue th_Required">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="tsbz" id="tsbz" value="1" class="form-control"> 是
+                        <input type="radio" name="tsbz" id="tsbz" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="tsbz" id="tsbz" value="0" class="form-control"> 否
+                        <input type="radio" name="tsbz" id="tsbz" value="0" class="form-control"> Không
                     </label>
                 </div><span>*</span>
             </td>
-            <td class="formTitle">警示：</td>
+            <td class="formTitle">Cảnh báo：</td>
             <td class="formValue th_Required">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="jsbz" id="jsbz" value="1" class="form-control"> 是
+                        <input type="radio" name="jsbz" id="jsbz" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="jsbz" id="jsbz" value="0" class="form-control"> 否
-                    </label>
-                </div><span>*</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="formTitle">收费：</td>
-            <td class="formValue th_Required">
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default">
-                        <input type="radio" name="sfbz" id="sfbz" value="1" class="form-control"> 是
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" name="sfbz" id="sfbz" value="0" class="form-control"> 否
-                    </label>
-                </div><span>*</span>
-            </td>
-            <td class="formTitle">实施：</td>
-            <td class="formValue th_Required">
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default">
-                        <input type="radio" name="ssbz" id="ssbz" value="1" class="form-control"> 是
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" name="ssbz" id="ssbz" value="0" class="form-control"> 否
+                        <input type="radio" name="jsbz" id="jsbz" value="0" class="form-control"> Không
                     </label>
                 </div><span>*</span>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">大类：</td>
+            <td class="formTitle">Thu phí：</td>
+            <td class="formValue th_Required">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="sfbz" id="sfbz" value="1" class="form-control"> Có
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="sfbz" id="sfbz" value="0" class="form-control"> Không
+                    </label>
+                </div><span>*</span>
+            </td>
+            <td class="formTitle">Thực hiện：</td>
+            <td class="formValue th_Required">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="ssbz" id="ssbz" value="1" class="form-control"> Có
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="ssbz" id="ssbz" value="0" class="form-control"> Không
+                    </label>
+                </div><span>*</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Nhóm lớn：</td>
             <td class="formValue th_Required">
                 <input type="text" class="form-control" id="dlmc" name="dlmc" /><span>*</span>
             </td>
-            <td class="formTitle">分类：</td>
+            <td class="formTitle">Phân loại：</td>
             <td class="formValue"><input type="text" class="form-control" id="flmc" name="flmc" /></td>
         </tr>
         <tr>
-            <td class="formTitle">医保代码：</td>
+            <td class="formTitle">Mã bảo hiểm y tế:</td>
             <td class="formValue">
                 <input type="text" class="form-control" id="ybdm" name="ybdm" />
             </td>
-            <td class="formTitle">物价代码：</td>
+            <td class="formTitle">Mã giá cả:</td>
             <td class="formValue"><input type="text" class="form-control " id="wjdm" name="wjdm" /></td>
         </tr>
         <tr>
-            <td class="formTitle">农保大类：</td>
+            <td class="formTitle">Nhóm lớn bảo hiểm nông nghiệp:</td>
             <td class="formValue"><input type="text" class="form-control" id="nbdlmc" name="nbdlmc" /></td>
-            <td class="formTitle">病案大类：</td>
+            <td class="formTitle">Nhóm lớn bệnh án:</td>
             <td class="formValue"><input type="text" class="form-control" id="badlmc" name="badlmc" /></td>
         </tr>
         <tr>
-            <td class="formTitle">建档人员：</td>
+            <td class="formTitle">Người lập hồ sơ：</td>
             <td class="formValue">
                 <input class="form-control " id="CreatorCode" name="CreatorCode" value="admin" type="text" />
             </td>
-            <td class="formTitle">建档日期：</td>
+            <td class="formTitle">Ngày lập hồ sơ：</td>
             <td class="formValue">
                 <input class="form-control " id="CreateTime" name="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") type="text" />
             </td>

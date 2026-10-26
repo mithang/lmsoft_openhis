@@ -2,17 +2,17 @@
     Search();
 });
 
-//搜索
+//Tìm kiếm
 function Search() {
     GetItemData();
     BindItemData();
 }
 
-//打开新建关联关系模块
+//Mở mô-đun tạo mới quan hệ liên kết
 function ShowRelationalItem() {
     $.modalOpen({
         id: "Form",
-        title: "新建关联关系",
+        title: "Tạo mới quan hệ liên kết",
         url: "/RelateRehabilitationItem/RelateItem",
         width: "1000px",
         height: "200px",
@@ -67,14 +67,14 @@ function BindItemData() {
         rowNum: 20,
         rowList: [10, 20, 30],
         colModel: [
-            { label: "康复项目", name: "RehaliationItemName", index: "RehaliationItemName", width: "25%", align: "left" },
-            { label: "康复时长", name: "RehaliationItemSingleTimeLength", index: "RehaliationItemSingleTimeLength", width: "7%", align: "center" },
-            { label: "康复收费标准", name: "RehaliationItemUnitPrice", index: "RehaliationItemUnitPrice", width: "8%", align: "center" },
-            { label: "康复备注", name: "RehaliationItemRemark", index: "RehaliationItemRemark", width: "10%", align: "left" },
-            { label: "His项目", name: "HisItemName", index: "HisItemName", width: "25%", align: "left" },
-            { label: "His时长", name: "HisItemSingleTimeLength", index: "HisItemSingleTimeLength", width: "7%", align: "center" },
-            { label: "His收费标准", name: "HisItemUnitPrice", index: "HisItemUnitPrice", width: "8%", align: "center" },
-            { label: "His备注", name: "HisItemRemark", index: "HisItemRemark", width: "10%", align: "left" }
+            { label: "Hạng mục phục hồi chức năng", name: "RehaliationItemName", index: "RehaliationItemName", width: "25%", align: "left" },
+            { label: "Thời lượng phục hồi chức năng", name: "RehaliationItemSingleTimeLength", index: "RehaliationItemSingleTimeLength", width: "7%", align: "center" },
+            { label: "Tiêu chuẩn thu phí phục hồi chức năng", name: "RehaliationItemUnitPrice", index: "RehaliationItemUnitPrice", width: "8%", align: "center" },
+            { label: "Ghi chú phục hồi chức năng", name: "RehaliationItemRemark", index: "RehaliationItemRemark", width: "10%", align: "left" },
+            { label: "Hạng mục His", name: "HisItemName", index: "HisItemName", width: "25%", align: "left" },
+            { label: "Thời lượng His", name: "HisItemSingleTimeLength", index: "HisItemSingleTimeLength", width: "7%", align: "center" },
+            { label: "Tiêu chuẩn thu phí His", name: "HisItemUnitPrice", index: "HisItemUnitPrice", width: "8%", align: "center" },
+            { label: "Ghi chú His", name: "HisItemRemark", index: "HisItemRemark", width: "10%", align: "left" }
         ],
         pager: "#relationalItemGridListPager",
         viewrecords: true,
@@ -90,16 +90,16 @@ function BindItemData() {
     window.jQuery("#relationalItemGridList").closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
 }
 
-//获取关联ID
+//Lấy ID liên kết
 function GetRelationID(rowId) {
     return 10001;
 }
 
-//跳转修改关联关系页面
+//Chuyển đến trang sửa quan hệ liên kết
 function ShowEditRelationItemForm(relationID) {
     $.modalOpen({
         id: "Form",
-        title: "修改关联关系",
+        title: "Sửa quan hệ liên kết",
         url: "/RelateRehabilitationItem/RelateItem",
         width: "900px",
         height: "200px",

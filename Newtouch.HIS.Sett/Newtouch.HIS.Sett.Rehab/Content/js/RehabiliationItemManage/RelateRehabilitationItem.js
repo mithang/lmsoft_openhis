@@ -7,7 +7,7 @@
     }
 }
 
-//His康复项目列表 jGrid声明
+//Khai báo jGrid danh sách hạng mục phục hồi chức năng His
 function BindHisItemData() {
     jQuery("#HisGridList").jqGrid({
         height: 200,
@@ -21,9 +21,9 @@ function BindHisItemData() {
         shrinkToFit: true,
         datatype: "local",
         colModel: [
-            { label: "His编码", name: "xmbm", width: "20%", key: true, align: "center" },
-            { label: "His名称", name: "xmmc", width: "60%", align: "left" },
-            { label: "是否有效", name: "isValid", width: "20%", align: "center" }
+            { label: "Mã His", name: "xmbm", width: "20%", key: true, align: "center" },
+            { label: "Tên His", name: "xmmc", width: "60%", align: "left" },
+            { label: "Có hiệu lực không", name: "isValid", width: "20%", align: "center" }
         ],
         ondblClickRow: function (rowid, iRow, iCol, e) {
             ThrowItemToRelationPool(GetItemCodebyIndex(rowid), "His");
@@ -41,7 +41,7 @@ function BindHisItemData() {
     jQuery("#HisGridList").closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
 }
 
-//His康复项目列表 jGrid声明
+//Khai báo jGrid danh sách hạng mục phục hồi chức năng His
 function BindOptimaItemData() {
     jQuery("#OptimaGridList").jqGrid({
         height: 200,
@@ -55,9 +55,9 @@ function BindOptimaItemData() {
         shrinkToFit: true,
         datatype: "local",
         colModel: [
-            { label: "Optima编码", name: "xmbm", width: "20%", key: true, align: "center" },
-            { label: "Optima名称", name: "xmmc", width: "60%", align: "left" },
-            { label: "是否有效", name: "isValid", width: "20%", align: "center" }
+            { label: "Mã Optima", name: "xmbm", width: "20%", key: true, align: "center" },
+            { label: "Tên Optima", name: "xmmc", width: "60%", align: "left" },
+            { label: "Có hiệu lực không", name: "isValid", width: "20%", align: "center" }
         ],
         ondblClickRow: function (rowid, iRow, iCol, e) {
             ThrowItemToRelationPool(GetItemCodebyIndex(rowid), "Optima");
@@ -75,18 +75,18 @@ function BindOptimaItemData() {
     jQuery("#OptimaGridList").closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
 }
 
-//将指定项目丢入关联池
+//Đưa hạng mục đã chỉ định vào nhóm liên kết
 function ThrowItemToRelationPool(itemCode, sourceFrom) {
     relateData.push({ xmbm: 1001, xmmc: "红外线治疗", isValid: "是" });
     BindRelateData();
 }
 
-//索引找到指定项目带
+//Tìm hạng mục đã chỉ định theo chỉ mục
 function GetItemCodebyIndex(i) {
     return 1001;
 }
 
-////需要关联的数据
+////Dữ liệu cần liên kết
 //var relateData = [{ xmbm: 1001, xmmc: "红外线治疗", isValid: "是" },
 //    { xmbm: 1002, xmmc: "激光疗法", isValid: "是" },
 //    { xmbm: 1003, xmmc: "低频脉冲电治疗", isValid: "是" },
@@ -109,9 +109,9 @@ function BindRelateData() {
         shrinkToFit: true,
         datatype: "local",
         colModel: [
-            { label: "Optima编码", name: "xmbm", width: "20%", key: true, align: "center" },
-            { label: "Optima名称", name: "xmmc", width: "60%", align: "left" },
-            { label: "是否有效", name: "isValid", width: "20%", align: "center" }
+            { label: "Mã Optima", name: "xmbm", width: "20%", key: true, align: "center" },
+            { label: "Tên Optima", name: "xmmc", width: "60%", align: "left" },
+            { label: "Có hiệu lực không", name: "isValid", width: "20%", align: "center" }
         ]
     });
     for (var i = 0; i <= relateData.length; i++) {
@@ -120,7 +120,7 @@ function BindRelateData() {
     jQuery("#RelateGridList").closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
 }
 
-//清楚已选关联数据
+//Xóa dữ liệu liên kết đã chọn
 function Clean() {
     if (relateData != undefined && relateData.length > 0) {
         relateData.splice(0, relateData.length);
@@ -128,8 +128,8 @@ function Clean() {
     BindRelateData();
 }
 
-//提交关联
+//Gửi liên kết
 function SubmintRelate() {
-    alert("关联成功！");
+    alert("Liên kết thành công!");
     Clean();
 }

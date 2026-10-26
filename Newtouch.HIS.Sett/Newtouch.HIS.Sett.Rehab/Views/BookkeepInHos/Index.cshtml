@@ -24,10 +24,10 @@
         });
     });
 
-    //绑定grid
+    //Liên kết grid
     function gridListData(mydata) {
-        var captionCon = "项目信息";
-        captionCon += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目总额：" + "" + "元&nbsp;&nbsp;&nbsp;&nbsp;当前项目金额：" + "" + "元";
+        var captionCon = "Thông tin hạng mục";
+        captionCon += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền hạng mục:" + "" + "tệ&nbsp;&nbsp;&nbsp;&nbsp;Số tiền hạng mục hiện tại:" + "" + "tệ";
 
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -36,22 +36,22 @@
             shrinkToFit: true,
             caption: captionCon,
             colModel: [
-                { label: "主键", name: "patid", hidden: true },
-                  { label: '类别', name: 'lb', width: 100, align: 'left', editor: "text" },
-                    { label: '科室', name: 'ks', width: 100, align: 'left', editor: "text" },
-                      { label: '住院号', name: 'zyh', width: 100, align: 'left', editor: "text" },
-                       { label: '床号', name: 'ks', width: 100, align: 'left', editor: "text" },
-                   { label: '治疗师', name: 'name', width: 100, align: 'left', editor: "text" },
-                   { label: '姓名', name: 'patname', width: 100, align: 'left', editor: "text" },
-                //{ label: '替代项目', name: 'ReplaceTtemName', width: 100, align: 'left', editor: "text" },
-                { label: '备注', name: 'Remark', width: 150, align: 'left', editor: "text" },
-                { label: '治疗项目', name: 'ItemName', width: 300, align: 'left', editor: "text" },
-                   { label: '时间', name: 'sj', width: 100, align: 'left', editor: "text" },
-                { label: '单位', name: 'Unit', width: 100, align: 'left', editor: "text" },
-                { label: '单价', name: 'UnitPrice', width: 100, align: 'left', editor: "text" },
-                { label: '自付比例', name: 'zfbl', width: 100, align: 'left', editor: "text", },
-                { label: '数量', name: 'ItemCount', width: 100, align: 'left', editor: "text" },
-                { label: '金额', name: 'Total', width: 100, align: 'left', editor: "text" },
+                { label: "Khóa chính", name: "patid", hidden: true },
+                  { label: 'Loại', name: 'lb', width: 100, align: 'left', editor: "text" },
+                    { label: 'Khoa', name: 'ks', width: 100, align: 'left', editor: "text" },
+                      { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'left', editor: "text" },
+                       { label: 'Số giường', name: 'ks', width: 100, align: 'left', editor: "text" },
+                   { label: 'Nhà trị liệu', name: 'name', width: 100, align: 'left', editor: "text" },
+                   { label: 'Họ tên', name: 'patname', width: 100, align: 'left', editor: "text" },
+                //{ label: 'Hạng mục thay thế', name: 'ReplaceTtemName', width: 100, align: 'left', editor: "text" },
+                { label: 'Ghi chú', name: 'Remark', width: 150, align: 'left', editor: "text" },
+                { label: 'Hạng mục điều trị', name: 'ItemName', width: 300, align: 'left', editor: "text" },
+                   { label: 'Thời gian', name: 'sj', width: 100, align: 'left', editor: "text" },
+                { label: 'Đơn vị', name: 'Unit', width: 100, align: 'left', editor: "text" },
+                { label: 'Đơn giá', name: 'UnitPrice', width: 100, align: 'left', editor: "text" },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 100, align: 'left', editor: "text", },
+                { label: 'Số lượng', name: 'ItemCount', width: 100, align: 'left', editor: "text" },
+                { label: 'Số tiền', name: 'Total', width: 100, align: 'left', editor: "text" },
 
             ]
         });
@@ -74,11 +74,11 @@
         }
     }
 
-    //选择模板
+    //Chọn mẫu
     function GetTemplate() {
         $.modalOpen({
             id: "Form",
-            title: "收费项目模板窗口",
+            title: "Cửa sổ mẫu hạng mục thu phí",
             url: "/BookkeepInHos/ChargeItemTemplate",
             width: "700px",
             height: "570px"
@@ -91,7 +91,7 @@
     function getMorePatientInfo() {
         $.modalOpen({
             id: "Form",
-            title: "更多信息",
+            title: "Thêm thông tin",
             url: "/TherapeutistCompleteList/MorePatientInfo",
             width: "900px",
             height: "260px",
@@ -102,11 +102,11 @@
     }
 
 
-    //患者登记
+    //Đăng ký bệnh nhân
     function AddNewPatient() {
         $.modalOpen({
             id: "Form",
-            title: "患者登记",
+            title: "Đăng ký bệnh nhân",
             url: "/Patient/AddPatient",
             width: "1000px",
             height: "824px",
@@ -129,35 +129,35 @@
     <div class="rows" style="margin-bottom: 10px;margin-right:5px;" id="HosBasicInfo">
         <div class="panel panel-default">
             <div class="panel-heading">
-                住院病人信息
+                Thông tin bệnh nhân nội trú
             </div>
             <table style="width:100%" class="form">
                 <tr>
-                    <td class="formTitle">卡号:</td>
+                    <td class="formTitle">Số thẻ:</td>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="卡号" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Số thẻ" />
                     </td>
-                    @*<td style="width:62px"><input type="button" class="btn btn-default btn-md" value="新增患者" onclick="AddNewPatient()" /></td>*@
+                    @*<td style="width:62px"><input type="button" class="btn btn-default btn-md" value="Thêm mới bệnh nhân" onclick="AddNewPatient()" /></td>*@
                     <td class="formTitle">
-                        住院号:
+                        Số nhập viện:
                     </td>
                     <td class="formValue">
                         <input type="text" id="zyh" class="form-control" />
                     </td>
                     <td class="formTitle">
-                        姓名:
+                        Họ tên:
                     </td>
                     <td class="formValue">
                         <input type="text" id="brxzmc" class="form-control" />
                     </td>
                     <td class="formTitle">
-                        诊断:
+                        Chẩn đoán:
                     </td>
                     <td class="formValue">
                         <input type="text" id="kh" class="form-control" />
                     </td>
                     <td class="formTitle">
-                        有效期:
+                        Thời hạn hiệu lực:
                     </td>
                     <td class="formValue">
                         <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
@@ -166,27 +166,27 @@
                 </tr>
                 <tr class="moreInfo">
                     <td class="formTitle">
-                        病人性质:
+                        Tính chất bệnh nhân:
                     </td>
                     <td class="formValue">
                         <input type="text" id="brxzmc" class="form-control newtouch_Readonly" value="自费" />
                     </td>
                     @*<td></td>*@
                     <td class="formTitle">
-                        证件类型:
+                        Loại giấy tờ:
                     </td>
                     <td class="formValue">
                         <input type="text" id="zybz" class="form-control newtouch_Readonly" value="身份证" />
                     </td>
-                    <td class="formTitle">证件号:</td>
+                    <td class="formTitle">Số giấy tờ:</td>
                     <td class="formValue">
                         <input type="text" id="cw" class="form-control newtouch_Readonly" value="420281199305022429" />
                     </td>
-                    <td class="formTitle">出生日期:</td>
+                    <td class="formTitle">Ngày sinh:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" readonly="readonly" type="text" value="1993-05-02" id="csny" />
                     </td>
-                    <td class="formTitle">状态:</td>
+                    <td class="formTitle">Trạng thái:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" type="text" value="在院" />
                     </td>
@@ -203,9 +203,9 @@
         <div class="panel-heading">
             <table>
                 <tr>
-                    <td style="color: red">预交金:</td>
-                    <td class="formTitle">未结金额:<label id="wjje">0.00</label>元</td>
-                    <td class="formTitle">剩余金额:<label id="zhye">0.00</label>元</td>
+                    <td style="color: red">Tiền tạm ứng:</td>
+                    <td class="formTitle">Số tiền chưa thanh toán:<label id="wjje">0.00</label>tệ</td>
+                    <td class="formTitle">Số tiền còn lại:<label id="zhye">0.00</label>tệ</td>
                 </tr>
             </table>
         </div>
@@ -214,37 +214,37 @@
     @*<div id="BookKeep" class="rows">
             <div class="panel panel-default" style="margin-bottom: 0;">
                 <div class="panel-heading">
-                    治疗信息
+                    Thông tin điều trị
                 </div>
                 <table class="form" style="width:95%">
                     <tr>
 
                         <td class="formTitle">
-                            治疗项目:<span>*</span>
+                            Hạng mục điều trị:<span>*</span>
                         </td>
                         <td class="formValue">
                             <input type="text" id="sfxm" class="form-control sfxm" onkeydown="loadGrid()" />
                         </td>
                         <td class="formTitle">
-                            数量:<span>*</span>
+                            Số lượng:<span>*</span>
                         </td>
                         <td class="formValue">
                             <input type="text" id="sl" class="form-control" onkeydown="loadGrid()" />
                         </td>
                         <td class="formTitle">
-                            单价:
+                            Đơn giá:
                         </td>
                         <td class="formValue">
                             <input type="text" id="dj" class="form-control newtouch_Readonly" />
                         </td>
                         <td class="formTitle">
-                            治疗师:<span>*</span>
+                            Nhà trị liệu:<span>*</span>
                         </td>
                         <td class="formValue">
                             <input type="text" id="doctor" class="form-control" onkeydown="loadGrid()" />
                         </td>
                         <td class="formTitle">
-                            开始时间:<span>*</span>
+                            Thời gian bắt đầu:<span>*</span>
                         </td>
                         <td class="formValue">
                             <input id="jzrq" type="text" class="form-control input-wdatepicker"
@@ -253,7 +253,7 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            时长:(分)
+                            Thời lượng: (phút)
                         </td>
                         <td class="formValue">
                             <input type="text" id="sl" class="form-control" onkeydown="loadGrid()" />
@@ -270,9 +270,9 @@
                 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
            {
                ShowKeyList = new int[] { 6, 7, 8 },
-               F6Text = "添加",
-               F7Text = "修改",
-               F8Text = "删除"
+               F6Text = "Thêm",
+               F7Text = "Sửa",
+               F8Text = "Xóa"
            })
             </div>
 
@@ -283,7 +283,7 @@
     @*@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
         {
             ShowKeyList = new int[] { 4, 9 },
-            F9Text = "保存"
+            F9Text = "Lưu"
         })*@
 </form>
 

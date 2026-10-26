@@ -7,28 +7,28 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            查询条件
+            Điều kiện tra cứu
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">名称/代码：</th>
+                    <th class="formTitle">Tên/Mã:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtNAME" />
                     </td>
-                    <th class="formTitle">英文：</th>
+                    <th class="formTitle">Tiếng Anh:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtENGLISHNAME" />
                     </td>
-                    <th class="formTitle">有效期：</th>
+                    <th class="formTitle">Thời hạn hiệu lực:</th>
                     <td class="formValue">
                         <input id="txtYXQ" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px; " value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px; " value="Tra cứu" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_Add" class="btn btn-md btn-primary" style="margin-left:10px;" value="新增商保" onclick="AddCommercialInsurance()"/>
+                        <input type="button" id="btn_Add" class="btn btn-md btn-primary" style="margin-left:10px;" value="Thêm mới bảo hiểm thương mại" onclick="AddCommercialInsurance()"/>
                     </td>
                 </tr>
             </table>
@@ -45,7 +45,7 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lại chiều rộng jqGrid
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -58,14 +58,14 @@
             height: $(window).height() - 185,
             unwritten: false,
             colModel: [
-                { label: '主键', name: 'id', hidden: true, key: true },
-                { label: '代码', name: 'code', width: 80, align: 'left' },
-                { label: '公司名称', name: 'company', width: 120, align: 'left' },
-                { label: '拼音', name: 'py', width: 100, align: 'left' },
-                { label: '英文', name: 'englishname', width: 100, align: 'left' },
-                { label: '报销额度', name: 'discount', width: 100, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 100, align: 'left' },
-                { label: '备注', name: 'mark', width: 120, align: 'left' }
+                { label: 'Khóa chính', name: 'id', hidden: true, key: true },
+                { label: 'Mã', name: 'code', width: 80, align: 'left' },
+                { label: 'Tên công ty', name: 'company', width: 120, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
+                { label: 'Tiếng Anh', name: 'englishname', width: 100, align: 'left' },
+                { label: 'Mức hoàn trả', name: 'discount', width: 100, align: 'left' },
+                { label: 'Thời hạn hiệu lực', name: 'yxq', width: 100, align: 'left' },
+                { label: 'Ghi chú', name: 'mark', width: 120, align: 'left' }
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -108,7 +108,7 @@
         //});
         //$("#btn_search").trigger('click');
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var company = $("#txtCOMPANY").val();
         var txtENGLISHNAME = $("#txttxtENGLISHNAME").val();
@@ -118,7 +118,7 @@
     function AddCommercialInsurance() {
         $.modalOpen({
             id: "Form",
-            title: "新增商保维护",
+            title: "Bảo trì thêm mới bảo hiểm thương mại",
             url: "/KnowledgeBaseManagement/AddCommercialInsurance",
             width: "500px",
             height: "250px",

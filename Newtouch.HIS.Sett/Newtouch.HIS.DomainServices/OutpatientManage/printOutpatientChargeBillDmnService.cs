@@ -64,14 +64,14 @@ BEGIN
 			staff.Name AS sky ,
 			js.CreateTime ,
 			js.xjzffs ,
-			ISNULL(js.xjzf, 0.00) XJZF ,--现金支付
-			ISNULL(@qtfy, 0.00) TCZF ,--基本医疗统筹
-			0.00 GWYBZ ,--公务员补助
-			0.00 DBZF ,--大额支付
-			ISNULL(@civilCost, 0.00) MZBC ,--民政补偿
-			CAST(@salvaJSCost as varchar(50)) JSBC ,--计生补偿
-		    CAST(@bottomRedeem as varchar(50))	 DDBC,--兜底补偿
-			ISNULL(@zhzf, 0.00) AS ZHZF --账户支付
+			ISNULL(js.xjzf, 0.00) XJZF ,--Thanh toán tiền mặt
+			ISNULL(@qtfy, 0.00) TCZF ,--Quỹ chung y tế cơ bản
+			0.00 GWYBZ ,--Trợ cấp công chức
+			0.00 DBZF ,--Thanh toán chi phí lớn
+			ISNULL(@civilCost, 0.00) MZBC ,--Bồi hoàn dân chính
+			CAST(@salvaJSCost as varchar(50)) JSBC ,--Bồi hoàn kế hoạch hóa gia đình
+		    CAST(@bottomRedeem as varchar(50))	 DDBC,--Bồi hoàn bảo đảm tối thiểu
+			ISNULL(@zhzf, 0.00) AS ZHZF --Thanh toán từ tài khoản
 	FROM    dbo.mz_gh(NOLOCK) gh 
 			LEFT JOIN dbo.mz_js(NOLOCK) js ON gh.ghnm = js.ghnm AND js.OrganizeId = gh.OrganizeId
 			LEFT JOIN dbo.xt_brxz(NOLOCK) xz ON xz.brxz = gh.brxz AND xz.OrganizeId = gh.OrganizeId

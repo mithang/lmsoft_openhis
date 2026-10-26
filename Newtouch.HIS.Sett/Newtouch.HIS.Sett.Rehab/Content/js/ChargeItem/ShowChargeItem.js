@@ -29,11 +29,11 @@ function BindVouchersGrid() {
         rowNum: 30,
         rowList: [10, 20, 30],
         colModel: [
-            { label: "姓名", name: "PatientName", width: "20%", align: "left" },
-            { label: "卡号", name: "CardNo", width: "20%", align: "center" },
-            { label: "凭证号", name: "VoucherNo", width: "20%", align: "center" },
-            { label: "凭证生成日期", name: "CreateVoucherDate", width: "20%", align: "center" },
-            { label: "总金额", name: "Total", width: "20%", align: "left" }
+            { label: "Họ tên", name: "PatientName", width: "20%", align: "left" },
+            { label: "Số thẻ", name: "CardNo", width: "20%", align: "center" },
+            { label: "Số chứng từ", name: "VoucherNo", width: "20%", align: "center" },
+            { label: "Ngày tạo chứng từ", name: "CreateVoucherDate", width: "20%", align: "center" },
+            { label: "Tổng số tiền", name: "Total", width: "20%", align: "left" }
         ],
         pager: "#PageVoucherListGrid",
         viewrecords: true,

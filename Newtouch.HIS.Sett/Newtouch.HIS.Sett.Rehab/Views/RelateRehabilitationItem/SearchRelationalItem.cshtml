@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "查询已关联项目";
+    ViewBag.Title = "Tra cứu các hạng mục đã liên kết";
 
     Layout = "~/Views/Shared/_Index.cshtml";
 }
@@ -21,7 +21,7 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group" onclick="ShowRelationalItem()">
-            <a id="NF-add" class="btn btn-primary dropdown-text"><i class="fa fa-plus"></i>新建关联</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text"><i class="fa fa-plus"></i>Tạo mới liên kết</a>
         </div>
     </div>
     <div class="search">
@@ -32,9 +32,9 @@
                         <span class="span-radio">
                             <input type="radio" name="sourceFrom" value="His" checked="checked"/>His
                             <input type="radio" name="sourceFrom" value="Optima"/>Optima
-                            <input type="radio" name="sourceFrom" value="Optima"/>关联名称
+                            <input type="radio" name="sourceFrom" value="Optima"/>Tên liên kết
                         </span>
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
                         <span class="input-group-btn" style="margin-left: 10px; display: inline-block;">
                             <button id="btn_search" type="button" class="btn  btn-primary" onclick="Search()"><i class="fa fa-search"></i></button>
                         </span>

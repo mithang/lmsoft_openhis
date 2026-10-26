@@ -74,25 +74,25 @@ namespace Newtouch.HIS.Sett.API.Controllers
             DefaultResponse resp = new DefaultResponse();
             if (dto != null)
             {
-                //参数规范性校验
+                //Kiểm tra tính hợp lệ của tham số
                 resp = dto.FormatCheck(dto.methodcode);
                 if (resp.code == ResponseResultCode.SUCCESS)
                 {
-                    //身份设置
+                    // thân phận Đ ặt
                     dto.user = GetAuth(dto.OrganizeId);
                     switch (dto.methodcode)
                     {
-                        case "Y002"://系统科室列表
+                        case "Y002"://Hệ thốngKhoaDanh sách
                             //para.ks = dto.paradata.ContainsKey("ks") == true ? dto.paradata["ks"] : null; //dto.FormatMedRequest(dto.paradata, "ksdm");
                             //para.ksmc = dto.paradata.ContainsKey("ksmc") == true ? dto.paradata["ksmc"] : null; //dto.FormatMedRequest(dto.paradata, "ksmc");
                             //resp = SysDeptartment(para.ks, resp);
                             httpresp = SysDepartmentInfo(dto);
                             break;  
-                        case "Y003": //医生人员信息
+                        case "Y003": //Bác sĩ nhân sự thông tin
                             httpresp = SysStaffInfo(dto);
                             break;
-                        case "Y004"://患者信息 optype=1 添加新患者 optype=0 患者查询
-                            #region 患者查询与登记
+                        case "Y004"://Bệnh nhân thông tin optype=1 thêm mới bệnh nhân optype=0 bệnh nhântra cứu
+                            #region Tra cứu và đăng ký bệnh nhân
                             if (dto.optype == "1")
                             {
                                 if (dto.paradata!=null && dto.paradata.ContainsKey("zjh") 
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                     httpresp = CreateResponse(resp);
                                 }
                             }
-                            else if(dto.optype=="3") // 2020-2-19 与his登记同步 不强制要求证件号非空
+                            else if(dto.optype=="3") // 2020-2-19 Đồng bộ đăng ký với HIS không bắt buộc số giấy tờ phải khác rỗng
                             {
                                 if (dto.paradata != null && dto.paradata.ContainsKey("xm") && dto.paradata.ContainsKey("xb") && dto.paradata.ContainsKey("csrq"))
                                 {
@@ -140,22 +140,22 @@ namespace Newtouch.HIS.Sett.API.Controllers
                             }
                             #endregion
                             break;
-                        case "Y005"://医院药品信息
+                        case "Y005"://Thông tin thuốc bệnh viện
                             httpresp = SysDrugInfo(dto);
                             break;
-                        case "Y006"://医疗项目信息
+                        case "Y006":// y tế hạng mục thông tin
                             httpresp = SysMedicalInfo(dto);
                             break;
-                        case "Y007"://门诊疾病信息
+                        case "Y007"://Ngoại trú bệnh thông tin
                             httpresp = SysDiseaseInfo(dto);
                             break;
-                        case "Y008"://挂号项目类别
+                        case "Y008"://Đ ăng ký khám hạng mục loại
                             httpresp = SysRegType(dto);
                             break;
-                        case "Y009"://门诊排班
+                        case "Y009"://Lịch trực ngoại trú
                             httpresp = GetMzpbSchedule(dto);
                             break;
-                        case "Y010": //门诊排班详细号源信息
+                        case "Y010": //Thông tin chi tiết nguồn số lịch trực ngoại trú
                             httpresp = GetMzpbScheduleDetail(dto);
                             break;
                         case "Y011":
@@ -164,11 +164,11 @@ namespace Newtouch.HIS.Sett.API.Controllers
                         case "Y012":
                             httpresp = GetRecipeDrugInfo(dto);
                             break;
-                        case "Y021"://预约记录
+                        case "Y021":// bản ghi đ ặt lịch 
                             httpresp = OutBookRecord(dto);
                             break;
-                        case "Y022"://预约
-                            #region 门诊预约
+                        case "Y022":// đ ặt lịch 
+                            #region Đặt lịch khám ngoại trú
                             if (dto.paradata != null && dto.paradata.ContainsKey("ghxz")&& dto.paradata.ContainsKey("scheduId")&& dto.paradata.ContainsKey("kh"))
                             {
                                 httpresp = OutBookApply(dto);
@@ -181,7 +181,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                             }
                             #endregion
                             break;
-                        case "Y023"://取消预约
+                        case "Y023"://Hủy đ ặt lịch
                             if (dto.paradata != null && dto.paradata.ContainsKey("bookId") && dto.paradata.ContainsKey("kh") &&
                                 dto.paradata.ContainsKey("lxdh"))
                             {
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                 httpresp = CreateResponse(resp);
                             }
                             break;
-                        case "Y024"://挂号支付
+                        case "Y024"://Đ ăng ký khám thanh toán 
                             if (dto.paradata != null && dto.paradata.ContainsKey("bookId") && dto.paradata.ContainsKey("kh") &&
                                 dto.paradata.ContainsKey("PayFee") && dto.paradata.ContainsKey("PayLsh"))
                             {
@@ -207,7 +207,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                 httpresp = CreateResponse(resp);
                             }
                             break;
-                        case "Y025"://预约退号
+                        case "Y025":// đ ặt lịch trả lại số 
                             if (dto.paradata != null && dto.paradata.ContainsKey("mzh") &&
                                 dto.paradata.ContainsKey("kh"))
                             {
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                 httpresp = CreateResponse(resp);
                             }
                             break;
-                        case "Y026"://无预约挂号
+                        case "Y026"://Không có đặt lịch đ ăng ký khám
                             if (dto.paradata != null && dto.paradata.ContainsKey("ks") && dto.paradata.ContainsKey("kh") 
                                 && dto.paradata.ContainsKey("ghxz"))
                             {
@@ -233,7 +233,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                 httpresp = CreateResponse(resp);
                             }
                             break;
-                        case "Y030"://门诊收费信息查询
+                        case "Y030"://Ngoại trú thu phí thông tintra cứu
                             if (dto.paradata != null && dto.paradata.ContainsKey("mzh") && dto.paradata.ContainsKey("kh"))
                             {
                                 httpresp = OutpatChargeInfo(dto);
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y002 科室信息
+        /// Y002 KhoaThông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -308,7 +308,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y003 医生人员信息
+        /// Y003 bác sĩ nhân sự thông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -362,7 +362,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
 
         /// <summary>
-        /// Y004 获取基本患者信息
+        /// Y004 lấy cơ bản bệnh nhân thông tin
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="kh"></param>
@@ -397,7 +397,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// Y004 添加新患者信息
+        /// Y004 thêm mới bệnh nhân thông tin
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="kh"></param>
@@ -567,7 +567,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
 
         /// <summary>
-        /// Y005 医院药品信息
+        /// Y005 Thông tin thuốc bệnh viện
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -609,7 +609,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y006 医疗项目信息
+        /// Y006 y tế hạng mục thông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -650,7 +650,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y007 门诊疾病信息
+        /// Y007 ngoại trú bệnh thông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -686,7 +686,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y008 ghlx 挂号类型
+        /// Y008 ghlx loại đ ăng ký khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -712,7 +712,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y009 门诊排班
+        /// Y009 Lịch trực ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="outDate"></param>
@@ -757,7 +757,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// Y010 排班号源明细
+        /// Y010 nguồn số lịch trực chi tiết
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -789,7 +789,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y011 就诊处方信息
+        /// Y011 khám b ệnhĐ ơn thuốc thông tin
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -829,7 +829,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Y012 门诊处方明细
+        /// Y012 chi tiết đ ơn thuốc ngoại trú
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -867,7 +867,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// Y021 预约记录查询
+        /// Y021 bản ghi đ ặt lịch tra cứu
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -916,7 +916,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// 门诊预约
+        /// Ngoại trú đ ặt lịch 
         /// </summary>
         /// <returns></returns>
         private HttpResponseMessage OutBookApply(BookingReqBase dto)
@@ -932,12 +932,12 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //患者身份验证
+                //Bệnh nhân thân phận xác minh
                 var pat = _BookingDmnService.GetPatInfo(para.OrgId, para.kh, null, null).FirstOrDefault();
-                //排班有效性验证
+                //Xác minh tính hiệu lực của lịch trực
                 if (pat!= null)
                 {
-                    //仅限预约当天之后的有效预约
+                    //Chỉ đặt lịch trong ngày sau thời gian hiệu lực đặt lịch
                     string nowday = DateTime.Now.ToString("yyyy-MM-dd");
                     
                     var pb = _BookingDmnService.GetMzpbSchedule(para.OrgId, null, null, null, null, null,
@@ -1017,7 +1017,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         }
         /// <summary>
-        /// 取消预约
+        /// Hủy đ ặt lịch
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -1033,7 +1033,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //校验预约信息是否一致、预约状态
+                //Kiểm tra tính nhất quán của thông tin đặt lịch, trạng thái đặt lịch
                 var record = _MzghbookRepo.FindEntity(p =>
                     p.BookId.ToString() == para.bookId && p.OrganizeId == para.OrgId && p.zt == "1");
                 if (record != null)
@@ -1090,7 +1090,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //去挂号
+                //Đi đ ăng ký khám
                 var res = _BookingDmnService.OutpatRegApply(para.bookId, para.kh, para.OrgId, para.PayFee, para.PayLsh,dto.user);
                 if (res.code == 0)
                 {
@@ -1155,7 +1155,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //去挂号
+                //Đi đ ăng ký khám
                 var res = _BookingDmnService.OutpatReg(para.kh, para.OrgId, para.ghrq, para.ghxz, para.ks, dto.user, para.AppId, para.ghlybz);
                 if (res.code == 0)
                 {
@@ -1185,7 +1185,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //去挂号
+                //Đi đ ăng ký khám
                 var res = _BookingDmnService.OutpatChargeInfo(para.OrgId, para.kh, para.mzh,para.AppId);
                 if (res==null || res.Count==0)
                 {

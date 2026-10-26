@@ -17,19 +17,19 @@
             height: $(window).height() - 185,
             datatype: "local",
             colModel: [
-                { label: "主键", name: "id", hidden: true, key: true },
-                { label: '工号', name: 'id', width: 50, align: 'left' },
-                { label: '科室', name: 'ks', width: 100, align: 'left' },
-                { label: '治疗师姓名', name: 'zlsxm', width: 80, align: 'left' },
-                { label: '实际时长(分)', name: 'sjsc', width: 80, align: 'left' },
-                { label: '调整时长(分)', name: 'sc', width: 50, align: 'left', editable: true },
-                { label: '调整理由', name: 'note', align: 'left', editable: true },
+                { label: "Khóa chính", name: "id", hidden: true, key: true },
+                { label: 'Mã nhân viên', name: 'id', width: 50, align: 'left' },
+                { label: 'Khoa', name: 'ks', width: 100, align: 'left' },
+                { label: 'Tên nhà trị liệu', name: 'zlsxm', width: 80, align: 'left' },
+                { label: 'Thời lượng thực tế (phút)', name: 'sjsc', width: 80, align: 'left' },
+                { label: 'Thời lượng điều chỉnh (phút)', name: 'sc', width: 50, align: 'left', editable: true },
+                { label: 'Lý do điều chỉnh', name: 'note', align: 'left', editable: true },
             ],
             afterInsertRow: function (rowid) {
                 //var ids = $gridList.jqGrid('getDataIDs');
                 //for (var i = 0; i < ids.length; i++) {
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                    //return false;   //Xác minh nội dung nhập vào có hợp lệ không, hủy lưu thì trả về false    //Không hiệu lực, v.v. cần sửa
                     //});
                 });
 
@@ -54,28 +54,28 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading">
-            查询条件
+            Điều kiện tra cứu
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form" style="width:70%">
                 <tr>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <th class="formTitle">科室：</th>
+                    <th class="formTitle">Khoa:</th>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
                             <option value="PT">内一科</option>
                             <option value="OT">内二科</option>
                         </select>
                     </td>
-                    <th class="formTitle">治疗师：</th>
+                    <th class="formTitle">Nhà trị liệu:</th>
                     <td class="formValue">
-                        <input id="txtSRM" type="text" class="form-control" placeholder="拼音 工号 名称" />
+                        <input id="txtSRM" type="text" class="form-control" placeholder="Phiên âm Mã nhân viên Tên" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:50px; margin-left:40px;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:50px; margin-left:40px;" value="Tra cứu" />
                     </td>
                 </tr>
             </table>

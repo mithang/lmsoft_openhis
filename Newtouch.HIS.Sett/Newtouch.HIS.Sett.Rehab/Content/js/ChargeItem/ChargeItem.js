@@ -1,7 +1,7 @@
 ﻿var ReplaceItemsCout = 0;
 var SelectedItemCount = 0;
 
-//康复项目剩余次数
+//Số lần còn lại của hạng mục phục hồi chức năng
 var RemainderTimes = [
     {
         key: "1", name: "超声药物透入治疗", count: 10
@@ -13,8 +13,8 @@ var RemainderTimes = [
 
 $(function () {
     window.$('[name="radio_srif"]').bootstrapSwitch({
-        onText: "无",
-        offText: "有",
+        onText: "Không",
+        offText: "Có",
         size: "mini",
         onSwitchChange: function (event, state) {
             if (state === true) {
@@ -28,7 +28,7 @@ $(function () {
     });
 });
 
-//添加
+//Thêm
 function SaveItem() {
     if (!CheckVal()) return;
     var items = GetInputVal();
@@ -41,7 +41,7 @@ function SaveItem() {
     DefaultVal();
 }
 
-//修改
+//Sửa
 function ModifyItem() {
     if (SelectedItemCount != undefined && SelectedItemInfo.No !== "") {
         var items = GetInputVal();
@@ -56,7 +56,7 @@ function ModifyItem() {
     DefaultVal();
 }
 
-//单条提交
+//Gửi từng dòng
 function DeleteItem() {
     if (SelectedItemInfo != undefined && SelectedItemInfo.No !== "" && griddata != undefined && griddata.length > 0) {
         for (var i = 0; i < griddata.length; i++) {
@@ -69,7 +69,7 @@ function DeleteItem() {
     DefaultVal();
 }
 
-//清楚
+//Xóa
 function newtouch_globalevent_f4() {
     SelectedItemCount = 0;
     if (griddata != undefined && griddata.length > 0) {
@@ -79,23 +79,23 @@ function newtouch_globalevent_f4() {
     DefaultVal();
 }
 
-//全部提交
+//Gửi tất cả
 function newtouch_globalevent_f8() {
     ReckonRemainderTimes();
     newtouch_globalevent_f4();
-    alert("提交成功！");
+    alert("Gửi thành công!");
 }
 
-//检查输入值
+//Kiểm tra giá trị nhập vào
 function CheckVal(cnt) {
     if (window.$("#ddlzlxm").val().trim() === "") {
-        alert("请选择项目！");
+        alert("Vui lòng chọn hạng mục!");
         return false;
     }
     return true;
 }
 
-//移除当前替换项目
+//Xóa hạng mục thay thế hiện tại
 function RemoveItem(i) {
     window.$("#trReplaceItem_" + i).remove();
     if (window.$("#tabReplaceItems").find("tr") == undefined ||
@@ -104,27 +104,27 @@ function RemoveItem(i) {
     }
 }
 
-//更多替代项目
+//Thêm hạng mục thay thế
 function MoreReplaceItem() {
     window.$("#tabReplaceItems").append("<tr class=\"form\" id=\"trReplaceItem_" + (++ReplaceItemsCout) + "\">"
-        + "<th class=\"formTitle \" >替代项目：</th>"
+        + "<th class=\"formTitle \" >Hạng mục thay thế:</th>"
         + " <td class=\"formValue\" colspan=\"3\">"
         + "<select id=\"ddltdxm_" + ReplaceItemsCout + "\" class=\"form-control\"  onchange=\"ddltdxmchange(this)\">"
-        + "<option value=\"\">===请选择===</option>"
+        + "<option value=\"\">===Vui lòng chọn===</option>"
         + "<option value=\"0\">红外线治疗</option>"
         + "<option value=\"1\">超声药物透入治疗</option>"
         + "<option value=\"2\">普通针刺（体针）</option>"
         + "</select>"
         + "</td>"
-        + " <th class=\"formTitle\">收费标准：</th>"
+        + " <th class=\"formTitle\">Tiêu chuẩn thu phí:</th>"
         + " <td class=\"formValue\"><input type=\"text\" class=\"form-control newtouch_Readonly\" id=\"txtsfbz_" + ReplaceItemsCout + "\" name=\"txtsfbz\" /></td>"
         + "<input type=\"text\" class=\"form-control \" id=\"txttddw_" + ReplaceItemsCout + "\" name=\"txttddw\" />"
-        + " <th class=\"formTitle\">数量：</th>"
+        + " <th class=\"formTitle\">Số lượng:</th>"
         + " <td class=\"formValue\"><input type=\"text\" class=\"form-control\" id=\"txtsl_" + ReplaceItemsCout + "\" name=\"txtsl\" value=\"1\" /></td>"
-        + " <th class=\"formTitle\">总费用：</th>"
+        + " <th class=\"formTitle\">Tổng chi phí:</th>"
         + " <td class=\"formValue\"><input type=\"text\" class=\"form-control newtouch_Readonly\" id=\"txtzfy_" + ReplaceItemsCout + "\" name=\"txtzfy\"/></td>"
-        + " <th class=\"formTitle\">治疗时长：</th>"
-        + " <td class=\"formValue\"><input type=\"text\" class=\"form-control\" placeHolder=\"分钟\" id=\"txtzlsc_" + ReplaceItemsCout + "\" name=\"txtzlsc\"/></td>"
+        + " <th class=\"formTitle\">Thời gian điều trị:</th>"
+        + " <td class=\"formValue\"><input type=\"text\" class=\"form-control\" placeHolder=\"phút\" id=\"txtzlsc_" + ReplaceItemsCout + "\" name=\"txtzlsc\"/></td>"
         + "<td class=\"formTitle\">"
         + "<span style=\"text-align:center;color: red; font-size:16px;font-size: 1px;font-size: px;font-size: 20px;\" class=\"glyphicon glyphicon-minus\" onclick=\"RemoveItem(" + ReplaceItemsCout + ")\"></span></td>"
         + "</td>"
@@ -133,10 +133,10 @@ function MoreReplaceItem() {
         + "</tr>");
 }
 
-//已添加项目
+//Hạng mục đã thêm
 var griddata = [];
 
-//Grid绑定已选项目
+//Grid liên kết các hạng mục đã chọn
 function BindItemData() {
     window.jQuery("#SelectedListgrid").jqGrid("clearGridData");
     window.jQuery("#SelectedListgrid").jqGrid({
@@ -147,21 +147,21 @@ function BindItemData() {
         rowList: [10, 20, 30],
         autoScroll: true,
         colModel: [
-            { label: "治疗项目", name: "ItemName", width: "15%", align: "left" },
-            { label: "替代项目", name: "ReplaceTtemName", width: "15%", align: "left" },
-            { label: "数量", name: "ItemCount", width: "3%", align: "left" },
-            { label: "单位", name: "Unit", width: "5%", align: "left" },
-            { label: "单次时长", name: "SingleTimeLength", width: "9%", align: "left" },
-            { label: "单价", name: "UnitPrice", width: "5%", align: "left" },
-            { label: "类别", name: "Category", width: "3%", align: "left" },
-            { label: "治疗师", name: "Doctor", width: "5%", align: "left" },
-            { label: "记账方式", name: "jzfs", width: "10%", align: "left" },
-            { label: "频次", name: "pc", width: "10%", align: "left" },
-            { label: "开始时间", name: "BeginDate", width: "10%", align: "left" },
-            { label: "结束时间", name: "EndDate", width: "10%", align: "left" },
-            { label: "自费比例", name: "SelfPaidRatio", width: "5%", align: "left" },
-            { label: "总价", name: "Total", width: "5%", align: "left" },
-            { label: "备注", name: "Remark", width: "20%", align: "left" },
+            { label: "Hạng mục điều trị", name: "ItemName", width: "15%", align: "left" },
+            { label: "Hạng mục thay thế", name: "ReplaceTtemName", width: "15%", align: "left" },
+            { label: "Số lượng", name: "ItemCount", width: "3%", align: "left" },
+            { label: "Đơn vị", name: "Unit", width: "5%", align: "left" },
+            { label: "Thời lượng mỗi lần", name: "SingleTimeLength", width: "9%", align: "left" },
+            { label: "Đơn giá", name: "UnitPrice", width: "5%", align: "left" },
+            { label: "Loại", name: "Category", width: "3%", align: "left" },
+            { label: "Nhà trị liệu", name: "Doctor", width: "5%", align: "left" },
+            { label: "Phương thức ghi sổ", name: "jzfs", width: "10%", align: "left" },
+            { label: "Tần suất", name: "pc", width: "10%", align: "left" },
+            { label: "Thời gian bắt đầu", name: "BeginDate", width: "10%", align: "left" },
+            { label: "Thời gian kết thúc", name: "EndDate", width: "10%", align: "left" },
+            { label: "Tỷ lệ tự trả", name: "SelfPaidRatio", width: "5%", align: "left" },
+            { label: "Tổng giá", name: "Total", width: "5%", align: "left" },
+            { label: "Ghi chú", name: "Remark", width: "20%", align: "left" },
             { label: "No", name: "No", hidden: true },
             { label: "ItemCode", name: "ItemCode", hidden: true },
             { label: "ReplaceItemCode", name: "ReplaceItemCode", hidden: true },
@@ -185,7 +185,7 @@ function BindItemData() {
     window.jQuery("#SelectedListgrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
 }
 
-//初始化所有数据
+//Khởi tạo tất cả dữ liệu
 function DefaultVal() {
     SelectedItemInfo.rowid = 0;
     SelectedItemInfo.No = "";
@@ -228,7 +228,7 @@ function DefaultVal() {
     $("#sp_remainderTimesRemind").html("");
 }
 
-//被双击选中的项目数据保存在此Json中
+//Dữ liệu hạng mục được chọn bằng nhấp đúp được lưu trong Json này
 var SelectedItemInfo = {
     rowid: 0,
     No: "",
@@ -253,7 +253,7 @@ var SelectedItemInfo = {
     Remark: ""
 }
 
-// 修改选中项目
+// Sửa hạng mục đã chọn
 function EditSelectItem(rowId) {
     DefaultVal();
     var tds = window.$("#" + rowId).find("td");
@@ -271,23 +271,23 @@ function EditSelectItem(rowId) {
                 ddlval = "2";
                 break;
             default:
-                ddlval = "===请选择===";
+                ddlval = "===Vui lòng chọn===";
                 break;
         }
 
         switch (ddlval) {
             case "0":
-                $("#txtsfbz").val("5元/部位");
+                $("#txtsfbz").val("5 tệ/vị trí");
                 $("#txtzfy").val("5");
                 $("#txtzlsc").val("20m");
                 break;
             case "1":
-                $("#txtsfbz").val("60/次");
+                $("#txtsfbz").val("60/lần");
                 $("#txtzfy").val("60");
                 $("#txtzlsc").val("");
                 break;
             case "2":
-                $("#txtsfbz").val("3/穴");
+                $("#txtsfbz").val("3/huyệt");
                 $("#txtzfy").val("3");
                 $("#txtzlsc").val("5m");
                 break;
@@ -346,23 +346,23 @@ function EditSelectItem(rowId) {
                     tddlval = "2";
                     break;
                 default:
-                    tddlval = "===请选择===";
+                    tddlval = "===Vui lòng chọn===";
                     break;
             }
 
             switch (tddlval) {
                 case "0":
-                    $("#txtsfbz_1").val("5元/部位");
+                    $("#txtsfbz_1").val("5 tệ/vị trí");
                     $("#txtzfy_1").val("5");
                     $("#txtzlsc_1").val("20m");
                     break;
                 case "1":
-                    $("#txtsfbz_1").val("60/次");
+                    $("#txtsfbz_1").val("60/lần");
                     $("#txtzfy_1").val("60");
                     $("#txtzlsc_1").val("");
                     break;
                 case "2":
-                    $("#txtsfbz_1").val("3/穴");
+                    $("#txtsfbz_1").val("3/huyệt");
                     $("#txtzfy_1").val("3");
                     $("#txtzlsc_1").val("5m");
                     break;
@@ -388,7 +388,7 @@ function EditSelectItem(rowId) {
     }
 }
 
-//获取用户输入的信息
+//Lấy thông tin người dùng nhập vào
 function GetInputVal() {
     debugger;
     var items = [];
@@ -460,14 +460,14 @@ function GetInputVal() {
     return items;
 }
 
-//初始化没有替代项目控件
+//Khởi tạo điều khiển khi không có hạng mục thay thế
 function NoReplaceItemDefaultVal() {
     window.$("#tabReplaceItems").find("tr").remove();
     window.$("#radio_srif").bootstrapSwitch("state", true, true);
     window.$("#dvMoreReplaceItems").hide();
 }
 
-//初始化有替代项目控件
+//Khởi tạo điều khiển khi có hạng mục thay thế
 function HadReplaceItemDefaultVal() {
     MoreReplaceItem();
     window.$("#dvMoreReplaceItems").show();
@@ -479,17 +479,17 @@ function ddltdxmchange(obj) {
     var count = id.charAt(id.length - 1);
     switch (val) {
         case "0":
-            $("#txtsfbz_" + count).val("5元/部位");
+            $("#txtsfbz_" + count).val("5 tệ/vị trí");
             $("#txtzfy_" + count).val("5");
             $("#txtzlsc_" + count).val("20m");
             break;
         case "1":
-            $("#txtsfbz_" + count).val("60/次");
+            $("#txtsfbz_" + count).val("60/lần");
             $("#txtzfy_" + count).val("60");
             $("#txtzlsc_" + count).val("");
             break;
         case "2":
-            $("#txtsfbz_" + count).val("3/穴");
+            $("#txtsfbz_" + count).val("3/huyệt");
             $("#txtzfy_" + count).val("3");
             $("#txtzlsc_" + count).val("5m");
             break;
@@ -506,11 +506,11 @@ function BuildRemainderTimesMsg(itemid) {
     $("#sp_remainderTimesRemind").html("");
     var remainder = GetRemainderTimes(itemid);
     if (remainder != undefined) {
-        $("#sp_remainderTimesRemind").append(remainder.name + "  医保报销还剩<span style='font-size:16px; margin-left:2px; margin-right:2px;'>" + remainder.count + "</span>次");
+        $("#sp_remainderTimesRemind").append(remainder.name + "  Bảo hiểm y tế còn được hoàn trả<span style='font-size:16px; margin-left:2px; margin-right:2px;'>" + remainder.count + "</span>lần");
     }
 }
 
-//计算指定治疗项目剩余次数
+//Tính số lần còn lại của hạng mục điều trị đã chỉ định
 function GetRemainderTimes(itemId) {
     if (RemainderTimes != undefined && RemainderTimes.length > 0) {
         for (var i = 0; i < RemainderTimes.length; i++) {
@@ -522,7 +522,7 @@ function GetRemainderTimes(itemId) {
     return undefined;
 }
 
-//计算指定治疗项目剩余次数
+//Tính số lần còn lại của hạng mục điều trị đã chỉ định
 function ReckonRemainderTimes() {
     if (RemainderTimes != undefined && RemainderTimes.length > 0 && griddata != undefined && griddata.length > 0) {
         for (var i = 0; i < RemainderTimes.length; i++) {

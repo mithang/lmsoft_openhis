@@ -27,28 +27,28 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">开始时间</td>
+                    <td class="formTitle">Thời gian bắt đầu</td>
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">结束时间</td>
+                    <td class="formTitle">Thời gian kết thúc</td>
 
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">患者姓名</td>
+                    <td class="formTitle">Tên bệnh nhân</td>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="姓名" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Họ tên" />
                     </td>
-                    <td class="formTitle">医生</td>
+                    <td class="formTitle">Bác sĩ</td>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
-                            <option value="-1">全部</option>
+                            <option value="-1">Tất cả</option>
                             <option value="PT">GRS1</option>
                             <option value="OT">GRS2</option>
                             <option value="ST">GRS3</option>
@@ -56,7 +56,7 @@
                     </td>
                     <td colspan="2">
                         <div style="margin-left:80px">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                         </div>
                     </td>
                 </tr>
@@ -67,21 +67,21 @@
 <div style="overflow-y:scroll; width:100%; ">
     <table class="list" style="width:100%;">
         <tr style="background-color:rgb(79,173,194);color:rgb(255,255,255);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); text-align:center;  ">
-            <td>账单日期</td>
-            <td>病案号</td>
-            <td>患者姓名</td>
-            <td>国籍</td>
-            <td>医生</td>
-            <td>应收门诊费</td>
-            <td>实收门诊费</td>
-            <td>现金</td>
+            <td>Ngày hóa đơn</td>
+            <td>Số bệnh án</td>
+            <td>Tên bệnh nhân</td>
+            <td>Quốc tịch</td>
+            <td>Bác sĩ</td>
+            <td>Phí ngoại trú phải thu</td>
+            <td>Phí ngoại trú thực thu</td>
+            <td>Tiền mặt</td>
             <td>Visa</td>
-            <td>银联</td>
-            <td>公司支付</td>
-            <td>抹零</td>
-            <td>折扣</td>
-            <td>保险应收</td>
-            <td>收银员</td>
+            <td>UnionPay</td>
+            <td>Công ty thanh toán</td>
+            <td>Làm tròn bỏ phần lẻ</td>
+            <td>Chiết khấu</td>
+            <td>Bảo hiểm phải thu</td>
+            <td>Thu ngân</td>
         </tr>
         <tr>
             <td>2017/3/1  11:04:54</td>
@@ -165,6 +165,6 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 9 },
-    F9Text = "导出"
+    F9Text = "Xuất"
 })
 

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "门诊就诊记录";
+    ViewBag.Title = "Hồ sơ khám ngoại trú";
 
     Layout = "~/Views/Shared/_Index.cshtml";
 }
@@ -33,17 +33,17 @@
 <form name="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            患者基本信息
+            Thông tin cơ bản bệnh nhân
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">卡号：</th>
+                    <th class="formTitle">Số thẻ:</th>
                     <td class="formValue">
                         <input type="text" class="form-control " id="txtCardNo" name="txtCardNo" onfocus="CleanDefaultValue(this.value)" style="float:left; width: 60%;" />
-                        <input type="button" class="btn btn-primary btn-md" value="新增" onclick="AddNewPatient()" style="margin-left:5px;" />
+                        <input type="button" class="btn btn-primary btn-md" value="Thêm mới" onclick="AddNewPatient()" style="margin-left:5px;" />
                     </td>
-                    <th class="formTitle">门诊号：</th>
+                    <th class="formTitle">Số ngoại trú:</th>
                     <td class="formValue th_Required">
                         <input type="text" class="form-control" id="txtmzh" name="txtmzh" />
                         <span>*</span>

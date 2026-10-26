@@ -18,20 +18,20 @@
             height: $(window).height() - 185,
             datatype: "local",
             colModel: [
-                { label: "主键", name: "id", hidden: true, key: true },
-                { label: '患者姓名', name: 'xm', width: 50, align: 'left' },
-                { label: '病人方位', name: 'CardNo', width: 80, align: 'left' },
-                { label: '大类', name: 'bm', width: 50, align: 'left' },
-                { label: '治疗师姓名', name: 'zlsxm', width: 80, align: 'left' },
-                { label: '开始时间', name: 'kssj', width: 130, align: 'left' },
-                { label: '时长(分)', name: 'jssj', width: 50, align: 'left' },
-                { label: '治疗项目', name: 'zlxm', width: 130, align: 'left' },
-                { label: '替代项目', name: 'tdxm', width: 130, align: 'left' },
-                { label: '数量', name: 'sl', width: 50, align: 'left' },
-                { label: '备注', name: 'note', align: 'left' },
+                { label: "Khóa chính", name: "id", hidden: true, key: true },
+                { label: 'Tên bệnh nhân', name: 'xm', width: 50, align: 'left' },
+                { label: 'Vị trí bệnh nhân', name: 'CardNo', width: 80, align: 'left' },
+                { label: 'Nhóm lớn', name: 'bm', width: 50, align: 'left' },
+                { label: 'Tên nhà trị liệu', name: 'zlsxm', width: 80, align: 'left' },
+                { label: 'Thời gian bắt đầu', name: 'kssj', width: 130, align: 'left' },
+                { label: 'Thời lượng (phút)', name: 'jssj', width: 50, align: 'left' },
+                { label: 'Hạng mục điều trị', name: 'zlxm', width: 130, align: 'left' },
+                { label: 'Hạng mục thay thế', name: 'tdxm', width: 130, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 50, align: 'left' },
+                { label: 'Ghi chú', name: 'note', align: 'left' },
                 //{
                 //    label: '', name: '', width: 80, align: 'center', formatter: function (cellvalue, options, rowObject) {
-                //        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"更多\" onclick=\"moreInfo('" + arguments[1].rowId + "');\" style=\"margin-left:3px;\" />";
+                //        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"Thêm\" onclick=\"moreInfo('" + arguments[1].rowId + "');\" style=\"margin-left:3px;\" />";
                 //    }
                 //},
             ],
@@ -55,7 +55,7 @@
     function moreInfo(rowId) {
         $.modalOpen({
             id: "Form",
-            title: "更多信息",
+            title: "Thêm thông tin",
             url: "/TherapeutistCompleteList/moreInfo",
             width: "900px",
             height: "430px",
@@ -68,7 +68,7 @@
         var keyValue = $("#gridList").jqGridRowValue().patid;
         $.modalOpen({
             id: "Details",
-            title: "查看基本信息",
+            title: "Xem thông tin cơ bản",
             url: "/PatientManage/HospiterRes/Register?keyValue=" + keyValue,
             width: "1000px",
             height: "700px",
@@ -79,34 +79,34 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">开始时间</td>
+                    <td class="formTitle">Thời gian bắt đầu</td>
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">结束时间</td>
+                    <td class="formTitle">Thời gian kết thúc</td>
                     <td class="formValue">
                         <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">关键字</td>
+                    <td class="formTitle">Từ khóa</td>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="患者姓名 治疗师姓名" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Tên bệnh nhân Tên nhà trị liệu" />
                     </td>
-                    <td class="formTitle">大类</td>
+                    <td class="formTitle">Nhóm lớn</td>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
-                            <option value="-1">全部</option>
+                            <option value="-1">Tất cả</option>
                             <option value="PT">PT</option>
                             <option value="OT">OT</option>
                             <option value="ST">ST</option>
                         </select>
                     </td>
                     <td>
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                     </td>
                 </tr>
             </table>

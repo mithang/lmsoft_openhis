@@ -1,6 +1,6 @@
 ﻿var griddata = [];
 
-//Grid绑定已选项目
+//Grid liên kết các hạng mục đã chọn
 function BindVisitInfoData() {
     window.jQuery("#AccountingListGrid").jqGrid("clearGridData");
     window.jQuery("#AccountingListGrid").jqGrid({
@@ -13,27 +13,27 @@ function BindVisitInfoData() {
         autoScroll: true,
         colModel: [
             {
-                label: "退", name: "IS_RETURN", width: "3%", align: "left", editable: true, edittype: "checkbox", formatter: function (cellvalue) {
+                label: "Trả lại", name: "IS_RETURN", width: "3%", align: "left", editable: true, edittype: "checkbox", formatter: function (cellvalue) {
                     return "<input name='chkReturn' class='IS_RETURN' type='checkbox' value='' />";
                 }
             },
-            { label: "治疗项目", name: "ItemName", width: "15%", align: "left" },
-            { label: "替代项目", name: "ReplaceTtemName", width: "15%", align: "left" },
-            { label: "数量", name: "ItemCount", width: "3%", align: "left" },
+            { label: "Hạng mục điều trị", name: "ItemName", width: "15%", align: "left" },
+            { label: "Hạng mục thay thế", name: "ReplaceTtemName", width: "15%", align: "left" },
+            { label: "Số lượng", name: "ItemCount", width: "3%", align: "left" },
             {
-                label: "退数量", name: "RETURNS_SL", width: "5%", align: "left", formatter: function (cellvalue) {
+                label: "Số lượng trả lại", name: "RETURNS_SL", width: "5%", align: "left", formatter: function (cellvalue) {
                     return "<input name='IS_RETURN' type='text' class='tuishuliang' style='width: 35px; height:15px;' checked value='" + cellvalue + "' />";
                 }
             },
-            { label: "单位", name: "Unit", width: "5%", align: "left" },
-            { label: "单次时长", name: "SingleTimeLength", width: "9%", align: "left" },
-            { label: "单价", name: "UnitPrice", width: "5%", align: "left" },
-            { label: "类别", name: "Category", width: "3%", align: "left" },
-            { label: "治疗师", name: "Doctor", width: "5%", align: "left" },
-            { label: "治疗时间", name: "TreatDate", width: "10%", align: "left" },
-            { label: "自费比例", name: "SelfPaidRatio", width: "5%", align: "left" },
-            { label: "总价", name: "Total", width: "5%", align: "left" },
-            { label: "备注", name: "Remark", width: "12%", align: "left" },
+            { label: "Đơn vị", name: "Unit", width: "5%", align: "left" },
+            { label: "Thời lượng mỗi lần", name: "SingleTimeLength", width: "9%", align: "left" },
+            { label: "Đơn giá", name: "UnitPrice", width: "5%", align: "left" },
+            { label: "Loại", name: "Category", width: "3%", align: "left" },
+            { label: "Nhà trị liệu", name: "Doctor", width: "5%", align: "left" },
+            { label: "Thời gian điều trị", name: "TreatDate", width: "10%", align: "left" },
+            { label: "Tỷ lệ tự trả", name: "SelfPaidRatio", width: "5%", align: "left" },
+            { label: "Tổng giá", name: "Total", width: "5%", align: "left" },
+            { label: "Ghi chú", name: "Remark", width: "12%", align: "left" },
             { label: "No", name: "No", hidden: true },
             { label: "ItemCode", name: "ItemCode", hidden: true },
             { label: "ReplaceItemCode", name: "ReplaceItemCode", hidden: true },
@@ -119,15 +119,15 @@ function Refund() {
     BindVisitInfoData();
 }
 
-//快捷键：清除
+//Phím tắt: Xóa
 function newtouch_event_f4() {
     $("#AccountingListGrid").jqGrid("clearGridData");
     BindVisitInfoData();
 }
 
-//快捷键：F6：退费
+//Phím tắt: F6: Hoàn phí
 function newtouch_event_f6() {
-    $.modalConfirm("您确定要退费吗？",
+    $.modalConfirm("Bạn có chắc muốn hoàn phí không?",
         function (flag) {
             if (flag === true) Refund();
         });

@@ -22,40 +22,40 @@
 <form style="background-color:white">
     @*<div class="panel panel-default" style="margin-top:5px;">
             <div class="panel-heading">
-                筛选条件
+                Điều kiện lọc
             </div>
             <div style="padding: 2px;">
                 <table class="form">
                     <tr>
-                        <td class="formTitle">是否过滤未出院病人</td>
+                        <td class="formTitle">Có lọc bệnh nhân chưa xuất viện không</td>
                         <td class="formValue">
                             <input type="checkbox" />
                         </td>
                     </tr>
                     @*<tr>
-                            <td class="formTitle">开始时间</td>
+                            <td class="formTitle">Thời gian bắt đầu</td>
                             <td class="formValue">
                                 <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                             </td>
-                            <td class="formTitle">结束时间</td>
+                            <td class="formTitle">Thời gian kết thúc</td>
                             <td class="formValue">
                                 <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                             </td>
-                            <td class="formTitle">关键字</td>
+                            <td class="formTitle">Từ khóa</td>
                             <td class="formValue">
-                                <input type="text" id="txtINPUTCODE" class="form-control" placeholder="患者姓名 治疗师姓名" />
+                                <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Tên bệnh nhân Tên nhà trị liệu" />
                             </td>
-                            <td class="formTitle">大类</td>
+                            <td class="formTitle">Nhóm lớn</td>
                             <td class="formValue">
                                 <select id="Cl" class="form-control">
-                                    <option value="-1">全部</option>
+                                    <option value="-1">Tất cả</option>
                                     <option value="PT">PT</option>
                                     <option value="OT">OT</option>
                                     <option value="ST">ST</option>
                                 </select>
                             </td>
                             <td>
-                                <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                                <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                             </td>
                         </tr>
                 </table>
@@ -63,56 +63,56 @@
         </div>*@
     <div style="overflow-y:scroll; width:100%; height:500px;">
         <table role="presentation" style="height:500px; width:3900px;" class="list">
-            @*<tr><td colspan="35" style="background-color:rgb(235,247,252);color:rgb(42,135,198);border-bottom-color:rgb(149,211,244); font-size:x-large; padding-left:10px;border-bottom-style: solid;border-bottom-width: 3px;">收入统计</td></tr>>*@
+            @*<tr><td colspan="35" style="background-color:rgb(235,247,252);color:rgb(42,135,198);border-bottom-color:rgb(149,211,244); font-size:x-large; padding-left:10px;border-bottom-style: solid;border-bottom-width: 3px;">Thống kê thu nhập</td></tr>>*@
             <tr style="height:10px">
 
                 <td colspan="12" style="border:none"></td>
             </tr>
             <tr style="background-color:rgb(79,173,194);color:rgb(255,255,255);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); text-align:center">
-                <td rowspan="2" colspan="3" style="width:400px;">项目</td>
+                <td rowspan="2" colspan="3" style="width:400px;">Hạng mục</td>
                 @*<td colspan="2" rowspan="2"></td>*@
-                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px; width:880px;">第一周</td>
-                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px;width:880px;">第二周</td>
-                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px;width:880px;">第三周</td>
-                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px;width:880px;">第四周</td>
+                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px; width:880px;">Tuần thứ nhất</td>
+                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px;width:880px;">Tuần thứ hai</td>
+                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px;width:880px;">Tuần thứ ba</td>
+                <td colspan="8" style="border-bottom-color:rgb(164,218,234); border-bottom-style:solid;border-bottom-width: 1px;width:880px;">Tuần thứ tư</td>
                 @*<td></td>*@
             </tr>
             <tr role="row" style="background-color:#f6f7fb; height:33px; border-bottom:solid 1px;background-color:rgb(79,173,194);color:rgb(255,255,255);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); text-align:center;">
-                <td style="width:100px">收入</td>
-                <td style="width:40px;">人次</td>
-                <td style="width:40px;">人数</td>
-                <td style="width:100px;">收费项目数</td>
-                <td style="width:100px;">治疗师效率</td>
-                <td style="width:78px;">新增病人</td>
-                <td style="width:78px;">出院病人</td>
-                <td style="width:120px">医院总病人数</td>
-                <td style="width:100px">收入</td>
-                <td style="width:40px;">人次</td>
-                <td style="width:40px;">人数</td>
-                <td style="width:100px;">收费项目数</td>
-                <td style="width:100px;">治疗师效率</td>
-                <td style="width:78px;">新增病人</td>
-                <td style="width:78px;">出院病人</td>
-                <td style="width:120px">医院总病人数</td>
-                <td style="width:100px">收入</td>
-                <td style="width:40px;">人次</td>
-                <td style="width:40px;">人数</td>
-                <td style="width:100px;">收费项目数</td>
-                <td style="width:100px;">治疗师效率</td>
-                <td style="width:78px;">新增病人</td>
-                <td style="width:78px;">出院病人</td>
-                <td style="width:120px">医院总病人数</td>
-                <td style="width:100px">收入</td>
-                <td style="width:40px;">人次</td>
-                <td style="width:40px;">人数</td>
-                <td style="width:100px;">收费项目数</td>
-                <td style="width:100px;">治疗师效率</td>
-                <td style="width:78px;">新增病人</td>
-                <td style="width:78px;">出院病人</td>
-                <td style="width:100px">医院总病人数</td>
+                <td style="width:100px">Thu nhập</td>
+                <td style="width:40px;">Lượt người</td>
+                <td style="width:40px;">Số người</td>
+                <td style="width:100px;">Số hạng mục thu phí</td>
+                <td style="width:100px;">Hiệu suất nhà trị liệu</td>
+                <td style="width:78px;">Bệnh nhân mới</td>
+                <td style="width:78px;">Bệnh nhân xuất viện</td>
+                <td style="width:120px">Tổng số bệnh nhân bệnh viện</td>
+                <td style="width:100px">Thu nhập</td>
+                <td style="width:40px;">Lượt người</td>
+                <td style="width:40px;">Số người</td>
+                <td style="width:100px;">Số hạng mục thu phí</td>
+                <td style="width:100px;">Hiệu suất nhà trị liệu</td>
+                <td style="width:78px;">Bệnh nhân mới</td>
+                <td style="width:78px;">Bệnh nhân xuất viện</td>
+                <td style="width:120px">Tổng số bệnh nhân bệnh viện</td>
+                <td style="width:100px">Thu nhập</td>
+                <td style="width:40px;">Lượt người</td>
+                <td style="width:40px;">Số người</td>
+                <td style="width:100px;">Số hạng mục thu phí</td>
+                <td style="width:100px;">Hiệu suất nhà trị liệu</td>
+                <td style="width:78px;">Bệnh nhân mới</td>
+                <td style="width:78px;">Bệnh nhân xuất viện</td>
+                <td style="width:120px">Tổng số bệnh nhân bệnh viện</td>
+                <td style="width:100px">Thu nhập</td>
+                <td style="width:40px;">Lượt người</td>
+                <td style="width:40px;">Số người</td>
+                <td style="width:100px;">Số hạng mục thu phí</td>
+                <td style="width:100px;">Hiệu suất nhà trị liệu</td>
+                <td style="width:78px;">Bệnh nhân mới</td>
+                <td style="width:78px;">Bệnh nhân xuất viện</td>
+                <td style="width:100px">Tổng số bệnh nhân bệnh viện</td>
             </tr>
             <tr>
-                <td colspan="3" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">门诊Outpatient</td>
+                <td colspan="3" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Ngoại trú Outpatient</td>
                 <td>5945</td>
                 <td>64</td>
                 <td>7</td>
@@ -148,9 +148,9 @@
 
             </tr>
             <tr>
-                <td rowspan="9" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); width:130px;">住院Inpatient</td>
+                <td rowspan="9" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); width:130px;">Nội trú Inpatient</td>
                 <td rowspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); width:50px">PT</td>
-                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); width:240px;">康复科室Rehab unit</td>
+                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234); width:240px;">Khoa phục hồi chức năngRehab unit</td>
                 <td>12391.6</td>
                 <td>343</td>
                 <td rowspan="3">48</td>
@@ -185,7 +185,7 @@
                 <td rowspan="10" class="total">223</td>
             </tr>
             <tr>
-                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">其他科室Non-rehab unit</td>
+                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Khoa khácNon-rehab unit</td>
                 <td>26017.6</td>
                 <td>697</td>
                 <td>26017.6</td>
@@ -196,7 +196,7 @@
                 <td>697</td>
             </tr>
             <tr>
-                <td colspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">PT小计 add-up</td>
+                <td colspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Tổng phụ PT add-up</td>
                 <td class="add-up">38409.2</td>
                 <td class="add-up">1040</td>
                 <td class="add-up">38409.2</td>
@@ -208,7 +208,7 @@
             </tr>
             <tr>
                 <td rowspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">OT</td>
-                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">康复科室Rehab unit</td>
+                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Khoa phục hồi chức năngRehab unit</td>
                 <td>4141.2</td>
                 <td>117</td>
                 <td rowspan="3">34</td>
@@ -239,7 +239,7 @@
                 <td rowspan="3">3</td>
             </tr>
             <tr>
-                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">其他科室Non-rehab unit</td>
+                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Khoa khácNon-rehab unit</td>
                 <td>17230</td>
                 <td>437</td>
                 <td>17230</td>
@@ -250,7 +250,7 @@
                 <td>437</td>
             </tr>
             <tr>
-                <td colspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">PT小计 add-up</td>
+                <td colspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Tổng phụ PT add-up</td>
                 <td class="add-up">38409.2</td>
                 <td class="add-up">1040</td>
                 <td class="add-up">38409.2</td>
@@ -262,7 +262,7 @@
             </tr>
             <tr>
                 <td rowspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">ST</td>
-                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">康复科室Rehab unit</td>
+                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Khoa phục hồi chức năngRehab unit</td>
                 <td>1685</td>
                 <td>57</td>
                 <td rowspan="3">4</td>
@@ -293,7 +293,7 @@
                 <td rowspan="3">1</td>
             </tr>
             <tr>
-                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">其他科室Non-rehab unit</td>
+                <td style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Khoa khácNon-rehab unit</td>
                 <td>525</td>
                 <td>19</td>
                 <td>525</td>
@@ -304,7 +304,7 @@
                 <td>19</td>
             </tr>
             <tr>
-                <td colspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">PT小计 add-up</td>
+                <td colspan="2" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Tổng phụ PT add-up</td>
                 <td class="add-up">2210</td>
                 <td class="add-up">76</td>
                 <td class="add-up">2210</td>
@@ -315,7 +315,7 @@
                 <td class="add-up">76</td>
             </tr>
             <tr>
-                <td colspan="3" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">住院汇总 Inpatient total</td>
+                <td colspan="3" style="background-color:rgb(241,254,255);color:rgb(30,30,30);border-bottom-color:rgb(164,218,234);border-left-color:rgb(164,218,234);border-top-color:rgb(164,218,234);font-family:Microsoft YaHei UI;border-right-color:rgb(164,218,234);">Tổng nội trú Inpatient total</td>
                 <td class="total">61990.4</td>
                 <td class="total">1670</td>
                 <td>7</td>

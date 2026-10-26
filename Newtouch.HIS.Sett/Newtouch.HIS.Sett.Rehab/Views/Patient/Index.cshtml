@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "患者查询";
+    ViewBag.Title = "Tra cứu bệnh nhân";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <!DOCTYPE html>
@@ -14,51 +14,51 @@
             url: "/Patient/GetGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "patid", hidden: true, key: true },
-                { label: '卡号', name: 'CardNo', width: 100, align: 'left' },
-                { label: '病人性质', name: 'brxzmc', width: 100, align: 'left' },
-                { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                { label: '姓名', name: 'xm', width: 50, align: 'left' },
-                { label: '学历', name: 'xl', width: 50, align: 'left' },
+                { label: "Khóa chính", name: "patid", hidden: true, key: true },
+                { label: 'Số thẻ', name: 'CardNo', width: 100, align: 'left' },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 100, align: 'left' },
+                { label: 'Số bệnh án', name: 'blh', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+                { label: 'Trình độ học vấn', name: 'xl', width: 50, align: 'left' },
                 {
-                    label: '性别', name: 'xb', width: 50, align: 'left',
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == "0") {
-                            return "女";
+                            return "Nữ";
                         } else if (cellvalue == "1") {
-                            return "男";
+                            return "Nam";
                         } else {
                             return "";
                         }
                     }
                 },
-                { label: '拼音', name: 'py', width: 100, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
                 {
-                    label: '出生年月', name: 'csny', width: 80, align: 'left',
+                    label: 'Năm tháng sinh', name: 'csny', width: 80, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: '证件类型', name: 'zjlx', width: 50, align: 'left',
+                    label: 'Loại giấy tờ', name: 'zjlx', width: 50, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue) {
                             if (cellvalue.trim() == "1") {
-                                return "身份证";
+                                return "Chứng minh nhân dân";
                             } else if (cellvalue.trim() == "2") {
-                                return "护照";
+                                return "Hộ chiếu";
                             } else if (cellvalue.trim() == "3") {
-                                return "军官证";
+                                return "Chứng nhận sĩ quan";
                             } else {
-                                return "其他";
+                                return "Khác";
                             }
                         }
                         return "";
                     }
                 },
-                 { label: '证件号', name: 'zjh', width: 150, align: 'left' },
-                 { label: '年龄', name: 'nl', width: 50, align: 'left' },
-                 { label: '电话', name: 'dh', width: 100, align: 'left' },
-                 { label: '紧急联系人', name: 'jjllr', width: 100, align: 'left' },
-                 { label: '联系人电话', name: 'jjlrdh', width: 100, align: 'left' },
+                 { label: 'Số giấy tờ', name: 'zjh', width: 150, align: 'left' },
+                 { label: 'Tuổi', name: 'nl', width: 50, align: 'left' },
+                 { label: 'Điện thoại', name: 'dh', width: 100, align: 'left' },
+                 { label: 'Người liên hệ khẩn cấp', name: 'jjllr', width: 100, align: 'left' },
+                 { label: 'Điện thoại người liên hệ', name: 'jjlrdh', width: 100, align: 'left' },
                  { label: 'CreateTime', name: 'CreateTime', hidden: true },
 
             ],
@@ -76,7 +76,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "入院登记",
+            title: "Đăng ký nhập viện",
             url: "/PatientManage/HospiterRes/Register",
             width: "700px",
             height: "530px",
@@ -89,7 +89,7 @@
         var keyValue = $("#gridList").jqGridRowValue().patid;
         $.modalOpen({
             id: "Details",
-            title: "查看基本信息",
+            title: "Xem thông tin cơ bản",
             url: "/PatientManage/HospiterRes/Register?keyValue=" + keyValue,
             width: "1200px",
             height: "700px",
@@ -105,10 +105,10 @@
     <div class="topPanel">
         <div class="toolbar">
             <div class="btn-group">
-                <a id="NF-add" class="menuItem btn btn-primary" data-id="Register" href="/PatientManage/HospiterRes/Register"><i class="fa fa-plus"></i>入院登记</a>
+                <a id="NF-add" class="menuItem btn btn-primary" data-id="Register" href="/PatientManage/HospiterRes/Register"><i class="fa fa-plus"></i>Đăng ký nhập viện</a>
             </div>
             <div class="btn-group">
-                <a id="NF-add" class="menuItem btn btn-primary" data-id="Register" href="/PatientManage/HospiterRes/Register"><i class="fa fa-plus"></i>门诊登记</a>
+                <a id="NF-add" class="menuItem btn btn-primary" data-id="Register" href="/PatientManage/HospiterRes/Register"><i class="fa fa-plus"></i>Đăng ký ngoại trú</a>
             </div>
         </div>
         <div class="search">
@@ -116,7 +116,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 160px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 160px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>

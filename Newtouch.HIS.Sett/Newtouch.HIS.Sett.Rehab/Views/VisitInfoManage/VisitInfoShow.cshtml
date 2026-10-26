@@ -1,22 +1,22 @@
 ﻿
 @{
-    ViewBag.Title = "就诊信息维护";
+    ViewBag.Title = "Bảo trì thông tin khám bệnh";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <form name="form1">
     <div class="panel panel-default" style="margin-top: 2px;" id="dvSearch">
         <div class="panel-heading">
-            就诊信息维护
+            Bảo trì thông tin khám bệnh
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">门诊/住院 号：</th>
+                    <th class="formTitle">Số ngoại trú/nội trú:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtNo" name="txtNo" />
                     </td>
-                    <th class="formTitle">记录日期：</th>
+                    <th class="formTitle">Ngày ghi chép:</th>
                     <td class="formValue">
                         <input id="ksrq" type="text" class="form-control input-wdatepicker formAutoNextIgnore" style="width: 80%; float: left; margin-right: 3px;" onkeydown="loadGrid()" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         <span>-</span>
@@ -24,11 +24,11 @@
                     <th class="formValue">
                         <input id="jsrq" type="text" class="form-control input-wdatepicker formAutoNextIgnore" onkeydown="loadGrid()" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </th>
-                    <th class="formTitle">治疗师：</th>
+                    <th class="formTitle">Nhà trị liệu:</th>
                     <td class="formValue">
-                        <input type="text" id="txtpatient" class="form-control" placeholder="姓名/拼音/编号" />
+                        <input type="text" id="txtpatient" class="form-control" placeholder="Họ tên/Phiên âm/Mã số" />
                     </td>
-                    <th class="formTitle"><input type="button" class="btn btn-primary btn-md" value="查询" onclick="Search()" /></th>
+                    <th class="formTitle"><input type="button" class="btn btn-primary btn-md" value="Tra cứu" onclick="Search()" /></th>
                     <td class="formValue"></td>
                 </tr>
             </table>
@@ -37,7 +37,7 @@
     </div>
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            就诊信息
+            Thông tin khám bệnh
         </div>
         <div style="padding: 2px; overflow-y: auto;" id="dvVisitG">
             <table id="AccountingListGrid"></table>
@@ -47,7 +47,7 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 6 },
-    F6Text = "退费"
+    F6Text = "Hoàn phí"
 })
 </form>
 <script src="~/Content/js/VisitInfoManage/VisitInfoManage.js">
@@ -62,7 +62,7 @@
     function Search() {
         $.modalOpen({
             id: "Form",
-            title: "凭证列表",
+            title: "Danh sách chứng từ",
             url: "/ChargeItem/ShowChargeItem",
             width: "800px",
             height: "520px",

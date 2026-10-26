@@ -16,15 +16,15 @@
             datatype: "local",
             unwritten: false,
             colModel: [
-                 { label: "主键", name: "patid", hidden: true },
-                 { label: '项目名称', name: 'dlmc', width: 100, align: 'left', editor: "text" },
-                 { label: '销售人员', name: 'xsry', width: 100, align: 'left', editor: "text" },
-                 { label: '分类', name: 'flmc', width: 100, align: 'left', editor: "text" },
-                 { label: '单价', name: 'dj', width: 100, align: 'left', editor: "text" },
-                 { label: '数量', name: 'dw', width: 100, align: 'left', editor: "text" },
-                 { label: '自付比例', name: 'zfbl', width: 100, align: 'left', editor: "text" },
-                 { label: '总金额', name: 'je', width: 100, align: 'left', editor: "text" },
-                 { label: '操作时间', name: 'czsj', width: 100, align: 'left', editor: "text" }
+                 { label: "Khóa chính", name: "patid", hidden: true },
+                 { label: 'Tên hạng mục', name: 'dlmc', width: 100, align: 'left', editor: "text" },
+                 { label: 'Nhân viên bán hàng', name: 'xsry', width: 100, align: 'left', editor: "text" },
+                 { label: 'Phân loại', name: 'flmc', width: 100, align: 'left', editor: "text" },
+                 { label: 'Đơn giá', name: 'dj', width: 100, align: 'left', editor: "text" },
+                 { label: 'Số lượng', name: 'dw', width: 100, align: 'left', editor: "text" },
+                 { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 100, align: 'left', editor: "text" },
+                 { label: 'Tổng số tiền', name: 'je', width: 100, align: 'left', editor: "text" },
+                 { label: 'Thời gian thao tác', name: 'czsj', width: 100, align: 'left', editor: "text" }
             ],
             pager: "#gridPager",
             sortname: 'desc',
@@ -33,9 +33,9 @@
         });
 
         var mydata = [
-            { id: "1", sfxm: "1", dlmc: "轮椅", py: "LunYi", dw: "1", dj: "￥11700", flmc: "器材", zfbl: "0", ybdm: "", wjdm: "10000001", mzzybz: "门诊", je: "￥100.20", czsj: "2017-04-10", xsry: "张三" },
-            { id: "2", sfxm: "2", dlmc: "口罩", py: "KouZhao", dw: "1", dj: "￥15", flmc: "器材", zfbl: "0", ybdm: "", wjdm: "10000002", mzzybz: "通用", je: "￥100.20", czsj: "2017-04-10", xsry: "李四" },
-            { id: "3", sfxm: "3", dlmc: "按摩椅", py: "AnMoYi", dw: "2", dj: "￥5400", flmc: "器材", zfbl: "0", ybdm: "", wjdm: "10000003", mzzybz: "住院", je: "￥100.20", czsj: "2017-04-10", xsry: "王五" }
+            { id: "1", sfxm: "1", dlmc: "轮椅", py: "LunYi", dw: "1", dj: "￥11700", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000001", mzzybz: "门诊", je: "￥100.20", czsj: "2017-04-10", xsry: "张三" },
+            { id: "2", sfxm: "2", dlmc: "口罩", py: "KouZhao", dw: "1", dj: "￥15", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000002", mzzybz: "通用", je: "￥100.20", czsj: "2017-04-10", xsry: "李四" },
+            { id: "3", sfxm: "3", dlmc: "按摩椅", py: "AnMoYi", dw: "2", dj: "￥5400", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000003", mzzybz: "住院", je: "￥100.20", czsj: "2017-04-10", xsry: "王五" }
         ];
         for (var i = 0; i <= mydata.length; i++) {
             $gridList.jqGrid('addRowData', i + 1, mydata[i]);
@@ -45,7 +45,7 @@
         var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
         $.modalOpen({
             id: "Form",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
             width: "700px",
             height: "520px",
@@ -67,7 +67,7 @@
         var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
         $.modalOpen({
             id: "Details",
-            title: "查看机构",
+            title: "Xem cơ quan",
             url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
             width: "700px",
             height: "560px",
@@ -92,25 +92,25 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">开始时间</td>
+                    <td class="formTitle">Thời gian bắt đầu</td>
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">结束时间</td>
+                    <td class="formTitle">Thời gian kết thúc</td>
                     <td class="formValue">
                         <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">关键字</td>
+                    <td class="formTitle">Từ khóa</td>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="名称" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Tên" />
                     </td>
                     <td class="formTitle">
-                        销售人员:
+                        Nhân viên bán hàng:
                     </td>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
@@ -120,17 +120,17 @@
                         </select>
                     </td>
                     <td class="formTitle">
-                        分类:
+                        Phân loại:
                     </td>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
-                            <option value="PT">器材</option>
-                            <option value="OT">保健品</option>
+                            <option value="PT">Dụng cụ</option>
+                            <option value="OT">Thực phẩm bảo vệ sức khỏe</option>
                         </select>
                     </td>
                     <td>
                         <div style="margin-left:20px">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                         </div>
                     </td>
                 </tr>
@@ -145,6 +145,6 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 9 },
-    F9Text = "导出"
+    F9Text = "Xuất"
 })
 

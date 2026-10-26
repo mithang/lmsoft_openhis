@@ -1,8 +1,8 @@
-﻿//打开新增His康复项目弹层
+﻿//Mở lớp bật thêm mới hạng mục phục hồi chức năng His
 function AddHisRehabilitationItem() {
     $.modalOpen({
         id: "Form",
-        title: "新增His康复项目",
+        title: "Thêm mới hạng mục phục hồi chức năng His",
         url: "/ItemBaseInfo/Add",
         width: "800px",
         height: "520px",
@@ -12,11 +12,11 @@ function AddHisRehabilitationItem() {
     });
 }
 
-//打开修改His康复项目弹层
+//Mở lớp bật sửa hạng mục phục hồi chức năng His
 function EditHisRehabilitationItem(itemCode) {
     $.modalOpen({
         id: "Form",
-        title: "修改His康复项目",
+        title: "Sửa hạng mục phục hồi chức năng His",
         url: "/ItemBaseInfo/Add?ItemCode=" + itemCode,
         width: "800px",
         height: "520px",
@@ -26,7 +26,7 @@ function EditHisRehabilitationItem(itemCode) {
     });
 }
 
-//His康复项目列表 jGrid声明
+//Khai báo jGrid danh sách hạng mục phục hồi chức năng His
 $("#gridList").newtouchLocalDataGrid({
     height: document.documentElement.clientHeight - 125,
     width: document.body.clientWidth,
@@ -38,17 +38,17 @@ $("#gridList").newtouchLocalDataGrid({
     pager: jQuery('#gridPager'),
     shrinkToFit: true,
     colModel: [
-        { label: "编码", name: "xmbm", width: "15%", key: true, align: "center" },
-        { label: "名称", name: "xmmc", width: "40%", align: "left" },
-        { label: "拼音", name: "xmpy", width: "10%", align: "left" },
-        { label: "单位", name: "dw", width: "10%", align: "left" },
+        { label: "Mã", name: "xmbm", width: "15%", key: true, align: "center" },
+        { label: "Tên", name: "xmmc", width: "40%", align: "left" },
+        { label: "Phiên âm", name: "xmpy", width: "10%", align: "left" },
+        { label: "Đơn vị", name: "dw", width: "10%", align: "left" },
         {
-            label: "单价", name: "dj", width: "10%", align: "left", formatter: function (cellvalue) {
+            label: "Đơn giá", name: "dj", width: "10%", align: "left", formatter: function (cellvalue) {
                 return cellvalue ? cellvalue.toFixed(2) : "0.00";
             }
         },
-        { label: "时长", name: "sc", width: "5%", align: "left" },
-        { label: "是否有效", name: "isValid", width: "10%", align: "center" }
+        { label: "Thời lượng", name: "sc", width: "5%", align: "left" },
+        { label: "Có hiệu lực không", name: "isValid", width: "10%", align: "center" }
     ],
     ondblClickRow: function (rowid, iRow, iCol, e) {
         EditHisRehabilitationItem(1001);

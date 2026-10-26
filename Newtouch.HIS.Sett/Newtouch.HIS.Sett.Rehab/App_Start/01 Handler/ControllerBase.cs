@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab
 {
     /// <summary>
-    /// Controller基类
+    /// Lớp cơ sở Controller 
     /// </summary>
     [HandlerLogin]
     public abstract class ControllerBase : Controller

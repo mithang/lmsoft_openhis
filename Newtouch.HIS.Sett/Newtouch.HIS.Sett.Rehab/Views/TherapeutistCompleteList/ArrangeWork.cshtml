@@ -17,12 +17,12 @@
             height: $(window).height() - 185,
             datatype: "local",
             colModel: [
-                { label: "主键", name: "id", hidden: true, key: true },//
-                { label: '姓名', name: 'xm', width: 150, align: 'left' },
-                { label: '工号', name: 'gh', width: 150, align: 'left' },
-                { label: '年份', name: 'nf', width: 80, align: 'left' },
-                { label: '月份', name: 'yf', width: 50, align: 'left' },
-                { label: '天数', name: 'ts', width: 50, align: 'left', editable: true },
+                { label: "Khóa chính", name: "id", hidden: true, key: true },//
+                { label: 'Họ tên', name: 'xm', width: 150, align: 'left' },
+                { label: 'Mã nhân viên', name: 'gh', width: 150, align: 'left' },
+                { label: 'Năm', name: 'nf', width: 80, align: 'left' },
+                { label: 'Tháng', name: 'yf', width: 50, align: 'left' },
+                { label: 'Số ngày', name: 'ts', width: 50, align: 'left', editable: true },
             ],
             onSelectRow: function (rowid) {
                 var yf = $gridList.jqGrid('getRowData', rowid)["yf"];
@@ -45,7 +45,7 @@
         for (var i = 0; i <= mydata.length; i++) {
             $gridList.jqGrid('addRowData', i + 1, mydata[i]);
             $("#HisgridList").jqGrid('editRow', i, true, null, function (result) {
-                //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                //return false;   //Xác minh nội dung nhập vào có hợp lệ không, hủy lưu thì trả về false    //Không hiệu lực, v.v. cần sửa
                 //});
             });
         }
@@ -62,14 +62,14 @@
         for (var i = 0; i <= mydata.length; i++) {
             $("#HisgridList").jqGrid('addRowData', i + 1, mydata[i]);
             $("#HisgridList").jqGrid('editRow', i, true, null, function (result) {
-                //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                //return false;   //Xác minh nội dung nhập vào có hợp lệ không, hủy lưu thì trả về false    //Không hiệu lực, v.v. cần sửa
                 //});
             });
         }
 
         //$.modalOpen({
         //    id: "Form",
-        //    title: "添加排班",
+        //    title: "Thêm lịch trực",
         //    url: "/TherapeutistCompleteList/AddArrange",
         //    width: "600px",
         //    height: "250px",
@@ -82,24 +82,24 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">年份</td>
+                    <td class="formTitle">Năm</td>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                             <option value="PT">2015</option>
                             <option value="OT">2016</option>
                             <option value="ST" selected="selected">2017</option>
                         </select>
                     </td>
-                    <td class="formTitle">月份</td>
+                    <td class="formTitle">Tháng</td>
                     <td class="formValue">
                         <select id="Cl" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                             <option value="PT">1</option>
                             <option value="OT">2</option>
                             <option value="ST">3</option>
@@ -108,14 +108,14 @@
                             <option value="ST">6</option>
                         </select>
                     </td>
-                    <td class="formTitle">关键字</td>
+                    <td class="formTitle">Từ khóa</td>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="姓名 工号" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Họ tên Mã nhân viên" />
                     </td>
                     <td colspan="2">
                         <div style="margin-left:80px">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
-                            <a class="menuItem btn btn-primary" onclick="btn_add()">新增排班</a>
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                            <a class="menuItem btn btn-primary" onclick="btn_add()">Thêm mới lịch trực</a>
                         </div>
                     </td>
                 </tr>

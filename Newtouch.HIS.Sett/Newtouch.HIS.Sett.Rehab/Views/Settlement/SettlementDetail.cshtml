@@ -7,20 +7,20 @@
 <form name="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            结算信息
+            Thông tin thanh toán
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">结算号：</th>
+                    <th class="formTitle">Số thanh toán:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtjsh" name="txtjsh" />
                     </td>
-                    <th class="formTitle">患者：</th>
+                    <th class="formTitle">Bệnh nhân:</th>
                     <td class="formValue">
-                        <input type="text" id="txtpatient" class="form-control" placeholder="姓名 拼音 编号" />
+                        <input type="text" id="txtpatient" class="form-control" placeholder="Họ tên Phiên âm Mã số" />
                     </td>
-                    <th class="formTitle">记录日期：</th>
+                    <th class="formTitle">Ngày ghi chép:</th>
                     <td class="formValue">
                         <div style="display:inline;line-height:15px; width:100%;">
                             <input id="ksrq" type="text" class="form-control input-wdatepicker formAutoNextIgnore" style="width:42%; float: left; margin-left:3px;" onkeydown="loadGrid()" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
@@ -28,11 +28,11 @@
                             <input id="jsrq" type="text" class="form-control input-wdatepicker formAutoNextIgnore" style="width:42%; display: inline-block;" onkeydown="loadGrid()" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         </div>
                     </td>
-                    <th class="formTitle">治疗师：</th>
+                    <th class="formTitle">Nhà trị liệu:</th>
                     <td class="formValue">
-                        <input type="text" id="txtpatient" class="form-control" placeholder="姓名 拼音 编号" />
+                        <input type="text" id="txtpatient" class="form-control" placeholder="Họ tên Phiên âm Mã số" />
                     </td>
-                    <th class="formTitle"><input type="button" class="btn btn-primary btn-md" value="查询" onclick="Search()" /></th>
+                    <th class="formTitle"><input type="button" class="btn btn-primary btn-md" value="Tra cứu" onclick="Search()" /></th>
                     <td class="formValue"></td>
                 </tr>
             </table>

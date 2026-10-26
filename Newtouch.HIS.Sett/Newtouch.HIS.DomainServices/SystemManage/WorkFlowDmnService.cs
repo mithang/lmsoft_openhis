@@ -6,7 +6,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.DomainServices.SystemManage
 {
     /// <summary>
-    /// 工作流
+    /// Luồng công việc
     /// </summary>
     public class WorkFlowDmnService : DmnServiceBase, IWorkFlowDmnService
     {

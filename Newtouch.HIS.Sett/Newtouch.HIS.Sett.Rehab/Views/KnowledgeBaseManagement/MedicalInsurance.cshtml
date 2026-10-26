@@ -16,15 +16,15 @@
             datatype: "local",
             unwritten: false,
             colModel: [
-                { label: "主键", name: "sfxmbh", hidden: true, key: true },
-                { label: "代码", name: "dm", width: 80, align: 'left' },
-                { label: '名称', name: 'mc', width: 100, align: 'left' },
-                { label: '拼音', name: 'py', width: 100, align: 'left' },
+                { label: "Khóa chính", name: "sfxmbh", hidden: true, key: true },
+                { label: "Mã", name: "dm", width: 80, align: 'left' },
+                { label: 'Tên', name: 'mc', width: 100, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
                 { label: 'icd10', name: 'idc10', width: 80, align: 'left' },
-                { label: '治疗项目', name: 'zlxm', width: 80, align: 'left' },
-                { label: '次数', name: 'cs', width: 100, align: 'left' }
+                { label: 'Hạng mục điều trị', name: 'zlxm', width: 80, align: 'left' },
+                { label: 'Số lần', name: 'cs', width: 100, align: 'left' }
                 //,
-                //{ label: '有效期', name: 'yxq', width: 100, align: 'left' }
+                //{ label: 'Thời hạn hiệu lực', name: 'yxq', width: 100, align: 'left' }
             ],
             pager: "#gridPager",
             sortname: 'desc',
@@ -44,7 +44,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "收费项目维护",
+            title: "Bảo trì hạng mục thu phí",
             url: "/KnowledgeBaseManagement/AddMedicalInsurance",
             width: "500px",
             height: "250px",
@@ -57,7 +57,7 @@
         var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
         $.modalOpen({
             id: "Form",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
             width: "700px",
             height: "520px",
@@ -79,7 +79,7 @@
         var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
         $.modalOpen({
             id: "Details",
-            title: "查看机构",
+            title: "Xem cơ quan",
             url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
             width: "700px",
             height: "560px",
@@ -104,27 +104,27 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">开始时间</td>
+                    <td class="formTitle">Thời gian bắt đầu</td>
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">结束时间</td>
+                    <td class="formTitle">Thời gian kết thúc</td>
                     <td class="formValue">
                         <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
                     <td class="formTitle">名称</td>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="名称" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Tên" />
                     </td>
                     <td colspan="2">
                         <div style="margin-left:40px">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
-                            <a class="menuItem btn btn-primary" onclick="btn_add()">新增项目</a>
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                            <a class="menuItem btn btn-primary" onclick="btn_add()">Thêm mới hạng mục</a>
                         </div>
                     </td>
                 </tr>

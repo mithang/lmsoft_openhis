@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "门诊收费项目统计";
+    ViewBag.Title = "Thống kê hạng mục thu phí ngoại trú";
 
     Layout = "~/Views/Shared/_Index.cshtml";
 }
@@ -59,33 +59,33 @@
 <form name="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            项目统计检索
+            Tra cứu thống kê hạng mục
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">门诊/住院号：</th>
+                    <th class="formTitle">Số ngoại trú/nội trú:</th>
                     <td class="formValue">
                         <input type="text" id="txtOutpatientNo" class="form-control" />
                     </td>
-                    <th class="formTitle">患者：</th>
+                    <th class="formTitle">Bệnh nhân:</th>
                     <td class="formValue">
-                        <input type="text" id="txtpatient" class="form-control" placeholder="姓名 拼音 编号" />
+                        <input type="text" id="txtpatient" class="form-control" placeholder="Họ tên Phiên âm Mã số" />
                     </td>
-                    <th class="formTitle">星期：</th>
+                    <th class="formTitle">Thứ:</th>
                     <td class="formValue">
                         <select id="selWeek" class="form-control" style="width: 80%;">
-                            <option value="" selected>=请选择=</option>
-                            <option value="1">周一</option>
-                            <option value="2">周二</option>
-                            <option value="3">周三</option>
-                            <option value="4">周四</option>
-                            <option value="5">周五</option>
-                            <option value="6">周六</option>
-                            <option value="7">周日</option>
+                            <option value="" selected>=Vui lòng chọn=</option>
+                            <option value="1">Thứ Hai</option>
+                            <option value="2">Thứ Ba</option>
+                            <option value="3">Thứ Tư</option>
+                            <option value="4">Thứ Năm</option>
+                            <option value="5">Thứ Sáu</option>
+                            <option value="6">Thứ Bảy</option>
+                            <option value="7">Chủ Nhật</option>
                         </select>
                     </td>
-                    <th class="formTitle">记录日期：</th>
+                    <th class="formTitle">Ngày ghi chép:</th>
                     <td class="formValue" colspan="2">
                         <div style="display: inline-block; line-height: 15px; width: 100%;">
                             <input id="ksrq" type="text" class="form-control input-wdatepicker formAutoNextIgnore" style="width: 40%; float: left; margin-left: 3px;" onkeydown="loadGrid()" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
@@ -93,18 +93,18 @@
                             <input id="jsrq" type="text" class="form-control input-wdatepicker formAutoNextIgnore" style="width: 40%; display: inline-block;" onkeydown="loadGrid()" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         </div>
                     </td>
-                    <th class="formTitle">治疗师：</th>
+                    <th class="formTitle">Nhà trị liệu:</th>
                     <td class="formValue">
-                        <input type="text" id="txtpatient" class="form-control" placeholder="姓名/拼音/编号" />
+                        <input type="text" id="txtpatient" class="form-control" placeholder="Họ tên/Phiên âm/Mã số" />
                     </td>
-                    <th class="formTitle"><input type="button" class="btn btn-primary btn-md" value="查询" onclick="Search()" /></th>
+                    <th class="formTitle"><input type="button" class="btn btn-primary btn-md" value="Tra cứu" onclick="Search()" /></th>
                 </tr>
             </table>
         </div>
     </div>
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            项目明细
+            Chi tiết hạng mục
         </div>
         <div style="padding: 2px; overflow-y: auto;" id="dvGL">
             <table id="ItemsGrid"></table>
@@ -119,7 +119,7 @@
         Search();
     });
 
-    //查询
+    //Tra cứu
     function Search() {
         FullItemsGrid();
     }

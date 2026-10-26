@@ -7,21 +7,21 @@
     <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationSettBasicInfo">
         <div class="panel panel-default" style="margin-bottom:0;">
             <div class="panel-heading navb-bg">
-                住院病人信息
+                Thông tin bệnh nhân nội trú
             </div>
             <table class="form" style="width:100%;">
 
                 <tr>
-                    <td class="formTitle">卡号：</td>
+                    <td class="formTitle">Số thẻ:</td>
                     <td class="formValue">
                         <input class="form-control " type="text" id="kh" value="" />
                     </td>
-                    <td class="formTitle">住院号：</td>
+                    <td class="formTitle">Số nhập viện:</td>
                     <td class="formValue">
                         <input class="form-control " type="text" id="zyh" value="" />
                     </td>
 
-                    <td class="formTitle">姓名：</td>
+                    <td class="formTitle">Họ tên:</td>
                     <td class="formValue">
                         <input class="form-control " type="text" id="xm" value="" />
                     </td>
@@ -32,30 +32,30 @@
                     </td>
                 </tr>
                 <tr class="moreInfo">
-                    <td class="formTitle">病历号：</td>
+                    <td class="formTitle">Số bệnh án:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" type="text" id="blh" value="" />
                     </td>
-                    <td class="formTitle">性别：</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" readonly="readonly" type="text" id="xb" value="" />
                     </td>
-                    <td class="formTitle">患者类型：</td>
+                    <td class="formTitle">Loại bệnh nhân:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" type="text" id="brxzmc" value="" />
                     </td>
-                    <td class="formTitle">医保证号：</td>
+                    <td class="formTitle">Số chứng nhận bảo hiểm y tế:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" type="text" value="" id="pzh" />
                     </td>
 
-                    <td class="formTitle">入院日期：</td>
+                    <td class="formTitle">Ngày nhập viện:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" type="text" value="" id="ryrq" />
                     </td>
                 </tr>
                 <tr class="moreInfo">
-                    <td class="formTitle">出院日期：</td>
+                    <td class="formTitle">Ngày xuất viện:</td>
                     <td class="formValue">
                         <input id="Kssj" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                     </td>
@@ -100,11 +100,11 @@
 
         });
     });
-    //绑定grid
+    //Liên kết grid
     function gridListData(mydata) {
 
-        var captionCon = "项目信息";
-        captionCon += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>总额： <span style=\"color:red;font-size:large;\"><strong>1000.00</strong></span>元";
+        var captionCon = "Thông tin hạng mục";
+        captionCon += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng số tiền: <span style=\"color:red;font-size:large;\"><strong>1000.00</strong></span>tệ";
 
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -113,15 +113,15 @@
             shrinkToFit: true,
             caption: captionCon,
             colModel: [
-                { label: "主键", name: "patid", hidden: true },
-                { label: '项目名称', name: 'ItemName', width: 300, align: 'left', editor: "text" },
-                { label: '替代项目', name: 'ReplaceTtemName', width: 100, align: 'left', editor: "text" },
-                { label: '单位', name: 'Unit', width: 100, align: 'left', editor: "text" },
-                { label: '单价', name: 'UnitPrice', width: 100, align: 'left', editor: "text" },
-                { label: '自付比例', name: 'zfbl', width: 100, align: 'left', editor: "text", },
-                { label: '数量', name: 'ItemCount', width: 100, align: 'left', editor: "text" },
-                { label: '金额', name: 'Total', width: 100, align: 'left', editor: "text" },
-                { label: '备注', name: 'Remark', width: 100, align: 'left', editor: "text" }
+                { label: "Khóa chính", name: "patid", hidden: true },
+                { label: 'Tên hạng mục', name: 'ItemName', width: 300, align: 'left', editor: "text" },
+                { label: 'Hạng mục thay thế', name: 'ReplaceTtemName', width: 100, align: 'left', editor: "text" },
+                { label: 'Đơn vị', name: 'Unit', width: 100, align: 'left', editor: "text" },
+                { label: 'Đơn giá', name: 'UnitPrice', width: 100, align: 'left', editor: "text" },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 100, align: 'left', editor: "text", },
+                { label: 'Số lượng', name: 'ItemCount', width: 100, align: 'left', editor: "text" },
+                { label: 'Số tiền', name: 'Total', width: 100, align: 'left', editor: "text" },
+                { label: 'Ghi chú', name: 'Remark', width: 100, align: 'left', editor: "text" }
             ]
         });
 
@@ -147,12 +147,12 @@
         container: "#divPatHospitalizationSettBasicInfo, #divPatHospitalizationSettFeeInfo"
     };
 
-    //清除操作
+    //Thao tác xóa
     var funcDoPageClear = function () {
         newtouch_globalevent_f4();
     };
 
-    //结算
+    //Thanh toán
     function newtouch_event_f8() {
         var zyh = $.trim($('#zyh').val());
         var jsje = $.trim($('#txtSettJSJE').val());
@@ -161,7 +161,7 @@
         if (zyh && jsje) {
             $.modalOpen({
                 id: "FormShowSett",
-                title: "结算",
+                title: "Thanh toán",
                 url: url,
                 width: "670px",
                 height: "490px",
@@ -179,11 +179,11 @@
             + "&zhaoling=" + zhaoling;
         $.modalOpen({
             id: "FormShowSettSuccessDialog",
-            title: "结算成功",
+            title: "Thanh toán thành công",
             url: url,
             width: "320px",
             height: "240px",
-            //btn: ['关闭'],
+            //btn: ['Đóng'],
             //btnclass: ['btn btn-danger'],
             btn: null,
             callBack: function (iframeId) {

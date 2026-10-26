@@ -8,7 +8,7 @@
     $(function () {
         gridList([]);
     });
-    //绑定grid
+    //Liên kết grid
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.dataNewGrid({
@@ -16,16 +16,16 @@
             shrinkToFit: true,
             unwritten: false,
             colModel: [
-                 //{ label: "主键", name: "patid", hidden: true, key: true },
-                { label: "主键", name: "patid", hidden: true },
-                { label: '替代项目', name: 'dlmc', width: 100, align: 'left', editor: "text" },
-                { label: '治疗项目', name: 'sfxmmc', width: 300, align: 'left', editor: "text" },
-                { label: '数量', name: 'dw', width: 100, align: 'left', editor: "text" },
-                { label: '单价', name: 'dj', width: 100, align: 'left', editor: "text" },
-                { label: '金额', name: 'dj', width: 100, align: 'left', editor: "text" },
-                { label: '时间', name: 'zfbl', width: 100, align: 'left', editor: "text" },
-                { label: '治疗师', name: 'sl', width: 100, align: 'left', editor: "text" },
-                { label: '开始时间', name: 'je', width: 100, align: 'left', editor: "text" }
+                 //{ label: "Khóa chính", name: "patid", hidden: true, key: true },
+                { label: "Khóa chính", name: "patid", hidden: true },
+                { label: 'Hạng mục thay thế', name: 'dlmc', width: 100, align: 'left', editor: "text" },
+                { label: 'Hạng mục điều trị', name: 'sfxmmc', width: 300, align: 'left', editor: "text" },
+                { label: 'Số lượng', name: 'dw', width: 100, align: 'left', editor: "text" },
+                { label: 'Đơn giá', name: 'dj', width: 100, align: 'left', editor: "text" },
+                { label: 'Số tiền', name: 'dj', width: 100, align: 'left', editor: "text" },
+                { label: 'Thời gian', name: 'zfbl', width: 100, align: 'left', editor: "text" },
+                { label: 'Nhà trị liệu', name: 'sl', width: 100, align: 'left', editor: "text" },
+                { label: 'Thời gian bắt đầu', name: 'je', width: 100, align: 'left', editor: "text" }
             ]
         }, mydata);
 
@@ -38,24 +38,24 @@
     <div class="rows" style="margin-bottom: 1%; margin-top:5px;" id="HosBasicInfo">
         <div class="panel panel-default">
             <div class="panel-heading">
-                病人信息
+                Thông tin bệnh nhân
             </div>
             <table>
                 <tr>
                     <td class="formTitle">
-                        卡号:
+                        Số thẻ:
                     </td>
                     <td class="formValue">
                         <input type="text" id="kh" class="form-control newtouch_Readonly" value="C1221" />
                     </td>
                     <td class="formTitle">
-                        住院号:
+                        Số nhập viện:
                     </td>
                     <td class="formValue">
                         <input type="text" id="zyh" class="form-control newtouch_Readonly" value="164193" />
                     </td>
                     <td class="formTitle">
-                        病人性质:
+                        Tính chất bệnh nhân:
                     </td>
                     <td class="formValue">
                         <input type="text" id="brxzmc" class="form-control newtouch_Readonly" value="自费" />
@@ -63,37 +63,37 @@
                 </tr>
                 <tr>
                     <td class="formTitle">
-                        状态:
+                        Trạng thái:
                     </td>
                     <td class="formValue">
                         <input type="text" id="zybz" class="form-control newtouch_Readonly" value="出院" />
                     </td>
-                    <td class="formTitle">姓名:</td>
+                    <td class="formTitle">Họ tên:</td>
                     <td class="formValue">
                         <input type="text" id="xm" class="form-control newtouch_Readonly" value="张三" />
                     </td>
-                    <td class="formTitle">性别:</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td>
                         <div class="btn-group formValue" data-toggle="buttons">
                             <label class="btn btn-default" disabled>
-                                <input type="radio" checked="checked" id="xb" value="1" name="xb" class="form-control" />男
+                                <input type="radio" checked="checked" id="xb" value="1" name="xb" class="form-control" />Nam
                             </label>
                             <label class="btn btn-default" disabled>
-                                <input type="radio" id="xb" value="0" name="xb" class="form-control" />女
+                                <input type="radio" id="xb" value="0" name="xb" class="form-control" />Nữ
                             </label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">出生日期:</td>
+                    <td class="formTitle">Ngày sinh:</td>
                     <td class="formValue">
                         <input class="form-control newtouch_Readonly" disabled readonly="readonly" type="text" value="1993-05-02" id="csny" />
                     </td>
-                    <td class="formTitle">当前科室:</td>
+                    <td class="formTitle">Khoa hiện tại:</td>
                     <td class="formValue">
                         <input type="text" id="ksmc" class="form-control newtouch_Readonly" disabled="disabled" value="内一科" />
                     </td>
-                    <td class="formTitle">床位号:</td>
+                    <td class="formTitle">Số giường bệnh:</td>
                     <td class="formValue">
                         <input type="text" id="cw" class="form-control newtouch_Readonly" disabled="disabled" value="34" />
                     </td>
@@ -104,20 +104,20 @@
     <div class="rows" id="BookKeep" style="margin-bottom: 10px;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                治疗信息
+                Thông tin điều trị
             </div>
             <table>
                 <tr>
-                    <td class="formTitle">替代项目</td>
+                    <td class="formTitle">Hạng mục thay thế</td>
                     <td class="formValue"><input type="text" id="tdxm" class="form-control newtouch_Readonly" value="理疗" /></td>
                     <td class="formTitle">
-                        治疗项目:
+                        Hạng mục điều trị:
                     </td>
                     <td class="formValue">
                         <input type="text" id="sfxm" class="form-control newtouch_Readonly" value="运动" />
                     </td>
                     <td class="formTitle">
-                        数量:
+                        Số lượng:
                     </td>
                     <td class="formValue">
                         <input type="text" id="sl" class="form-control newtouch_Readonly" value="1" />
@@ -125,19 +125,19 @@
                 </tr>
                 <tr>
                     <td class="formTitle">
-                        单价:(元/次)
+                        Đơn giá: (tệ/lần)
                     </td>
                     <td class="formValue">
                         <input type="text" id="dj" class="form-control newtouch_Readonly" value="80" />
                     </td>
                     <td class="formTitle">
-                        治疗师:
+                        Nhà trị liệu:
                     </td>
                     <td class="formValue">
                         <input type="text" id="doctor" class="form-control newtouch_Readonly" value="童咪咪" />
                     </td>
                     <td class="formTitle">
-                        开始时间:
+                        Thời gian bắt đầu:
                     </td>
                     <td class="formValue">
                         <input id="jzrq" type="text" class="form-control input-wdatepicker newtouch_Readonly"
@@ -146,7 +146,7 @@
                 </tr>
                 <tr>
                     <td class="formTitle">
-                        时间:(分)
+                        Thời gian: (phút)
                     </td>
                     <td class="formValue">
                         <input type="text" id="sl" class="form-control newtouch_Readonly" value="20m" />
