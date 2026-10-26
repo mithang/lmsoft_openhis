@@ -11,32 +11,32 @@
         public string id { get; set; }
 
         /// <summary>
-        /// 联系人姓名
+        /// Tên người liên hệ
         /// </summary>
         public string contactName { get; set; }
 
         /// <summary>
-        /// 手机
+        /// Điện thoại di động
         /// </summary>
         public string telphone { get; set; }
 
         /// <summary>
-        /// 职责
+        /// Trách nhiệm
         /// </summary>
         public string duties { get; set; }
 
         /// <summary>
-        /// 固话
+        /// Điện thoại cố định
         /// </summary>
         public string phone { get; set; }
 
         /// <summary>
-        /// 邮箱
+        /// Email
         /// </summary>
         public string email { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string keyWord { get; set; }
 

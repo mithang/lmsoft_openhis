@@ -5,12 +5,12 @@ using Newtouch.Herp.Application.Interface;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 调价
+    /// Điều chỉnh giá
     /// </summary>
     public class AdjustPriceApp : AppBase, IAdjustPriceApp
     {
         /// <summary>
-        /// 执行调价损益
+        /// Thực hiện lãi/lỗ điều chỉnh giá
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>

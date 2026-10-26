@@ -9,7 +9,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 库存结转
+    /// Kết chuyển tồn kho
     /// </summary>
     public class StockCarryOverController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         private readonly IKcKcjzDmnService _kcKcjzDmnService;
 
         /// <summary>
-        /// 给视图中OrganizeId的赋值
+        /// Cho trong khung nhìn OrganizeId Phép gán của
         /// </summary>
         /// <returns></returns>
         public override ActionResult Index()
@@ -27,7 +27,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取历史结转时间
+        /// Lấy thời gian kết chuyển lịch sử
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 结转结束时间
+        /// Thời gian kết thúc kết chuyển
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 查询上一次结转的时间
+        /// Tra cứu thời gian kết chuyển lần trước
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -61,7 +61,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 查询已结转物资信息
+        /// Tra cứu thông tin vật tư đã kết chuyển
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -80,7 +80,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 结转
+        /// Kết chuyển
         /// </summary>
         /// <returns></returns>
         [HttpPost]

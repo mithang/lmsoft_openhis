@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.Herp.APIRequest
 {
     /// <summary>
-    /// 医疗机构API请求基类
+    /// Cơ sở y tế API Lớp cơ sở yêu cầu
     /// </summary>
     public class OrgJSONRequestBase : JSONRequestBase
     {
         /// <summary>
-        /// 医疗机构Id
+        /// Cơ sở y tế Id
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }

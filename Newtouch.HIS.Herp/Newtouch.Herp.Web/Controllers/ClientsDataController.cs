@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Newtouch.Herp.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Home/Index Khi tải tải mặc định Dữ liệu bộ nhớ đệm
     /// </summary>
     public class ClientsDataController : FrameworkBase.MultiOrg.Web.Controllers.ClientsDataController
     {
@@ -24,7 +24,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// Lấy phần bất đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]

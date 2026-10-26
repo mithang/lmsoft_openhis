@@ -39,7 +39,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
         public string sPwd = ConfigurationHelper.GetAppConfigValue("PurchasePwd");
         public string sVersion = "1.0.0.0";
 
-        #region 接口公共方法
+        #region Phương pháp công khai của giao diện
 
         public string getMessageDigest(string content)
         {
@@ -65,7 +65,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
         }
 
 
-        //读取xml指定节点的值
+        //Đọc xml Giá trị của nút đã chỉ định
         public string ReadXmlNodes(string xml, string node)
         {
             string text = string.Empty;
@@ -113,10 +113,10 @@ namespace Newtouch.Herp.DomainServices.Purchase
             return text;
         }
 
-        //查询错误提示
+        //Tra cứu thông báo lỗi
         public void GetErrorOut(string responseXML)
         {
-            //错误提示
+            //Thông báo lỗi
             var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
             if (ztcljg != "00000")
             {
@@ -148,11 +148,11 @@ namespace Newtouch.Herp.DomainServices.Purchase
         //            //var sXxlx = "";
         //            //var sSign = "";
         //            //var xmlData = responsexml;
-        //            //var responseXML = "<?xml version=\"1.0\" encoding=\"utf - 8\"?><XMLDATA><HEAD><JSSJ>接收时间</JSSJ><ZTCLJG>消息主体处理结果</ZTCLJG><CWXX>错误提示内容</CWXX><BZXX>备注信息</BZXX></HEAD><MAIN><DDBH>订单编号</DDBH></MAIN><DETAIL><OutputDetailYY009><DDMXBH>订单明细编号</DDMXBH><SXH>顺序号</SXH><SPLX>商品类型</SPLX><ZXSPBM>商品统编代码</ZXSPBM><CLJG>处理结果</CLJG><CLQKMS>处理情况描述</CLQKMS></OutputDetailYY009></DETAIL></XMLDATA>";
+        //            //var responseXML = "<?xml version=\"1.0\" encoding=\"utf - 8\"?><XMLDATA><HEAD><JSSJ>Thời gian nhận</JSSJ><ZTCLJG>Kết quả xử lý thân tin nhắn</ZTCLJG><CWXX>Nội dung thông báo lỗi</CWXX><BZXX>Thông tin ghi chú</BZXX></HEAD><MAIN><DDBH>Số đơn hàng</DDBH></MAIN><DETAIL><OutputDetailYY009><DDMXBH>Số chi tiết đơn hàng</DDMXBH><SXH>Số thứ tự</SXH><SPLX>Loại hàng hóa</SPLX><ZXSPBM>Mã thống nhất hàng hóa</ZXSPBM><CLJG>Kết quả xử lý</CLJG><CLQKMS>Mô tả tình hình xử lý</CLQKMS></OutputDetailYY009></DETAIL></XMLDATA>";
 
         //            var sXxlx = jydm;
         //            var sSign = getMessageDigest(responsexml);
-        //            //调用阳光采购平台WebService接口
+        //            //Gọi nền tảng mua sắm Sunshine WebService Giao diện
         //            YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
         //            var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
 
@@ -212,7 +212,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY111";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -239,7 +239,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                 if (ztcljg != "00000")
                 {
@@ -247,7 +247,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     throw new Exception(cwxx);
                 }
 
-                //更新订单编号
+                //Cập nhật Số đơn hàng
                 var ddbh = ReadXmlNodes(responseXML, "DDBH");
                 return ddbh;
 
@@ -278,12 +278,12 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY112";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -310,7 +310,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
                 return "";
@@ -342,12 +342,12 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY156";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -411,7 +411,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 //return jsonout;
                 return tmpList;
@@ -439,13 +439,13 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                 var sXxlx = "YY132";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
 
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -470,7 +470,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
                 return null;
@@ -501,13 +501,13 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY153";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购接口入参: " + qybm + "," + psmxbhcxtj + "," + main);
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -565,7 +565,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
                 return tmpList;
@@ -594,13 +594,13 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                 var sXxlx = "YY131";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
 
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -625,7 +625,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
 
@@ -668,17 +668,17 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 xmlData.HEAD = head;
                 string responsexml = xmlData.XmlSerialize().Replace("<?xml version=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 
-                //var logstr = PurchaseInterface(responsexml, orgId, param, "YY009", "订单填报");//接口
+                //var logstr = PurchaseInterface(responsexml, orgId, param, "YY009", "Kê khai đơn hàng");//Giao diện
 
                 var sXxlx = "YY113";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
 
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -709,11 +709,11 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
 
-                //更新订单编号
+                //Cập nhật Số đơn hàng
                 var ddbh = ReadXmlNodes(responseXML, "THDBH");
                 return ddbh;
             }
@@ -743,13 +743,13 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY114";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
 
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
                 //YsxtMainServiceImplService ysxtMainServiceClient = new YsxtMainServiceImplService();
-                //AppLogger.Info("调用采购交易请求url: " + ysxtMainServiceClient.Url);
+                //AppLogger.Info("Gọi yêu cầu giao dịch mua hàng url: " + ysxtMainServiceClient.Url);
                 //var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
                 DispatcherServiceClient ysxtMainServiceClient = new DispatcherServiceClient();
                 var responseXML = ysxtMainServiceClient.SendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
@@ -776,7 +776,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
                 return "";
@@ -802,7 +802,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY157";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -819,7 +819,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY157> outStruct = new List<OutputStructYY157>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -835,7 +835,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY157> tmpList = new List<OutputStructYY157>();
                 if (outMain.JLS > 0)
                 {
@@ -881,7 +881,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -910,7 +910,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 var sXxlx = "YY133";
                 var sSign = getMessageDigest(responsexml);
 
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -933,7 +933,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                ////错误提示
+                ////Thông báo lỗi
                 //var cwxx = ReadXmlContent(responseXML, "XMLDATA/HEAD/CWXX");
                 //if (cwxx != null)
                 //{
@@ -970,7 +970,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY101";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -995,7 +995,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
 
                 return "Success";
@@ -1007,9 +1007,9 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        #region 查询接口
+        #region Tra cứu giao diện
 
-        //YY154 耗材配送单获取(YY154)
+        //YY154 Lấy phiếu giao hàng vật tư tiêu hao(YY154)
         public OutputYY154 Purchase_YY154(PurchaseMainYY154 main, string orgId)
         {
             try
@@ -1022,7 +1022,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY154";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1039,7 +1039,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY154> outStruct = new List<OutputStructYY154>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1055,7 +1055,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY154> tmpList = new List<OutputStructYY154>();
                 if (outMain.JLS > 0)
                 {
@@ -1095,7 +1095,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1106,7 +1106,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        //YY155 耗材配送明细获取(YY155)
+        //YY155 Lấy chi tiết giao hàng vật tư tiêu hao(YY155)
         public OutputYY155 Purchase_YY155(PurchaseMainYY155 main, string orgId)
         {
             try
@@ -1119,7 +1119,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY155";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1136,7 +1136,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY155> outStruct = new List<OutputStructYY155>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1152,7 +1152,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY155> tmpList = new List<OutputStructYY155>();
                 if (outMain.JLS > 0)
                 {
@@ -1208,7 +1208,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1219,7 +1219,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        //YY158 耗材发票明细获取(YY158)
+        //YY158 Lấy chi tiết hóa đơn vật tư tiêu hao(YY158)
 
         public OutputYY158 Purchase_YY158(PurchaseMainYY158 main, string orgId)
         {
@@ -1233,7 +1233,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY158";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1250,7 +1250,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY158> outStruct = new List<OutputStructYY158>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1266,7 +1266,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY158> tmpList = new List<OutputStructYY158>();
                 if (outMain.JLS > 0)
                 {
@@ -1324,7 +1324,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1335,7 +1335,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        //YY151 耗材采购明细信息获取(YY151)
+        //YY151 Lấy thông tin chi tiết mua hàng vật tư tiêu hao(YY151)
 
         public OutputYY151 Purchase_YY151(PurchaseMainYY151 main, string orgId)
         {
@@ -1349,7 +1349,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY151";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1366,7 +1366,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY151> outStruct = new List<OutputStructYY151>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1382,7 +1382,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY151> tmpList = new List<OutputStructYY151>();
                 if (outMain.JLS > 0)
                 {
@@ -1451,7 +1451,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1463,7 +1463,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
         }
 
 
-        //YY152 耗材退货明细信息获取(YY152)
+        //YY152 Lấy thông tin chi tiết trả hàng vật tư tiêu hao(YY152)
 
         public OutputYY152 Purchase_YY152(PurchaseMainYY152 main, string orgId)
         {
@@ -1477,7 +1477,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY152";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1494,7 +1494,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY152> outStruct = new List<OutputStructYY152>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1510,7 +1510,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY152> tmpList = new List<OutputStructYY152>();
                 if (outMain.JLS > 0)
                 {
@@ -1575,7 +1575,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1587,7 +1587,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
         }
 
 
-        //YY159 耗材按采购单获取采购明细状态(YY159)
+        //YY159 Lấy trạng thái chi tiết mua hàng vật tư tiêu hao theo đơn mua hàng(YY159)
         public OutputYY159 Purchase_YY159(PurchaseMainYY159 main, string orgId)
         {
             try
@@ -1600,7 +1600,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY159";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1617,7 +1617,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY159> outStruct = new List<OutputStructYY159>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1633,7 +1633,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY159> tmpList = new List<OutputStructYY159>();
                 if (outMain.JLS > 0)
                 {
@@ -1673,7 +1673,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1684,7 +1684,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        //YY160 耗材发票状态获取(YY160)
+        //YY160 Lấy trạng thái hóa đơn vật tư tiêu hao(YY160)
 
         public OutputYY160 Purchase_YY160(PurchaseMainYY160 main, string orgId)
         {
@@ -1698,7 +1698,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY160";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1715,7 +1715,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY160> outStruct = new List<OutputStructYY160>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1731,7 +1731,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY160> tmpList = new List<OutputStructYY160>();
                 if (outMain.JLS > 0)
                 {
@@ -1770,7 +1770,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1781,7 +1781,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        //YY161 耗材配送单状态获取(YY161)
+        //YY161 Lấy trạng thái phiếu giao hàng vật tư tiêu hao(YY161)
         public OutputYY161 Purchase_YY161(PurchaseMainYY161 main, string orgId)
         {
             try
@@ -1794,7 +1794,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY161";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1811,7 +1811,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY161> outStruct = new List<OutputStructYY161>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1827,7 +1827,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY161> tmpList = new List<OutputStructYY161>();
                 if (outMain.JLS > 0)
                 {
@@ -1869,7 +1869,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1880,7 +1880,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
             }
         }
 
-        //YY162 耗材按退货单获取退货明细状态(YY162)
+        //YY162 Trạng thái chi tiết trả hàng lấy theo phiếu trả hàng vật tư tiêu hao(YY162)
         public OutputYY162 Purchase_YY162(PurchaseMainYY162 main, string orgId)
         {
             try
@@ -1893,7 +1893,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY162";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -1910,7 +1910,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY162> outStruct = new List<OutputStructYY162>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -1926,7 +1926,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY162> tmpList = new List<OutputStructYY162>();
                 if (outMain.JLS > 0)
                 {
@@ -1964,7 +1964,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -1976,7 +1976,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
         }
 
 
-        //YY164 企业信息获取(YY164)
+        //YY164 Lấy thông tin doanh nghiệp(YY164)
         public OutputYY164 Purchase_YY164(PurchaseMainYY164 main, string orgId)
         {
             try
@@ -1989,7 +1989,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
                 var sXxlx = "YY164";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua sắm Sunshine WebService Giao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
                 AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
                 AppLogger.Info("调用采购交易请求url: " + responsexml);
@@ -2006,7 +2006,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                 List<OutputStructYY164> outStruct = new List<OutputStructYY164>();
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(responseXML);
-                //输出main结点
+                //Đầu ra main Nút
                 XmlNodeList nodeMain = xmlDoc.SelectNodes("XMLDATA/MAIN");
                 foreach (XmlNode node in nodeMain)
                 {
@@ -2022,7 +2022,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     outMain.JLS = int.Parse(node["JLS"].InnerText);
                 }
 
-                //输出detail结点
+                //Đầu ra detail Nút
                 //List<OutputStructYY164> tmpList = new List<OutputStructYY164>();
                 if (outMain.JLS > 0)
                 {
@@ -2062,7 +2062,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 GetErrorOut(responseXML);
                 return output;
             }
@@ -2075,7 +2075,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
 
         #endregion
 
-        #region WebService接口调用
+        #region WebService Gọi giao diện
         public string SendRecvFunc(string sUser, string sPwd, string sJgbm,
 string sVersion, string sXxlx, string sSign, string xmlData)
         {
@@ -2116,7 +2116,7 @@ string sVersion, string sXxlx, string sSign, string xmlData)
             webRequest.ContentType = "text/xml; charset=utf-8";
             webRequest.ContentLength = data.Length;
 
-            //写入参数
+            //Ghi tham số
             try
             {
                 AppLogger.Info("调用GetService方法，写入参数 ");
@@ -2130,7 +2130,7 @@ string sVersion, string sXxlx, string sSign, string xmlData)
             writer.Write(data, 0, data.Length);
             writer.Close();
 
-            //获取响应
+            //Lấy phản hồi
             try
             {
                 webResponse = (HttpWebResponse)webRequest.GetResponse();

@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 出入库单据
+    /// Chứng từ nhập/xuất kho
     /// </summary>
     public class KfCrkdjRepo : RepositoryBase<KfCrkdjEntity>, IKfCrkdjRepo
     {
@@ -16,7 +16,7 @@ namespace Newtouch.Herp.Repository
         }
         
         /// <summary>
-        /// 打回申请 从待处理变成暂存，只针对外部入库
+        /// Trả lại đơn đăng ký Từ chờ xử lý chuyển thành lưu tạm,Chỉ áp dụng cho nhập kho ngoài
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

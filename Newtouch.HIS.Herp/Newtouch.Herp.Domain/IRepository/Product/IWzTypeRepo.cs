@@ -4,7 +4,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 物资类别
+    /// Loai vat tu
     /// </summary>
     public interface IWzTypeRepo : IRepositoryBase<WzTypeEntity>
     {

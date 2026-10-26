@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "耗材按退货单获取退货明细状态";
+    ViewBag.Title = "Trạng thái chi tiết trả hàng lấy theo phiếu trả hàng vật tư tiêu hao";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -9,15 +9,15 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">耗材按退货单获取退货明细状态</div>
+        <div class="panel-heading">Trạng thái chi tiết trả hàng lấy theo phiếu trả hàng vật tư tiêu hao</div>
         <table class="form">
             <tr style="float:left">
-                <th class="formTitle">退货单编号：</th>
+                <th class="formTitle">Số phiếu trả hàng:</th>
                 <td class="formValue">
-                    <input id="thdbh" class="form-control" placeholder="退货单编号" />
+                    <input id="thdbh" class="form-control" placeholder="Số phiếu trả hàng" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                 </th>
             </tr>
         </table>
@@ -50,13 +50,13 @@
             height: $(window).height() - 200,
             postData: getPostData(),
             colModel: [
-                { label: '退货明细编号', name: 'THMXBH', width: 180, align: 'left' },
+                { label: 'Số chi tiết trả hàng', name: 'THMXBH', width: 180, align: 'left' },
                 {
-                    label: '退货明细状态', name: 'THMXZT', width: 180, align: 'left', formatter: function (val) {
+                    label: 'Trạng thái chi tiết trả hàng', name: 'THMXZT', width: 180, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumTHMXZT", val);
                     }
                 },
-                { label: '退货单企业处理说明', name: 'THDQYCLSM', width: 180, align: 'left' },
+                { label: 'Mô tả xử lý doanh nghiệp của phiếu trả hàng', name: 'THDQYCLSM', width: 180, align: 'left' },
             ],
             multiselect: false,
             //pager: "#gridPager",
@@ -74,10 +74,10 @@
         });
     }
 
-    //查询
+    //Tra cứu
     $('#btn_search').click(function () {
         if ($("#thdbh").val() == "" || $("#thdbh").val() == null) {
-            $.modalAlert("请填写退货单编号", 'warning');
+            $.modalAlert("Vui lòng điền Số phiếu trả hàng", 'warning');
             return ;
         }
         gridList();

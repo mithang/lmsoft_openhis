@@ -13,7 +13,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
 {
     /// <summary>
-    /// 外部入库
+    /// Nhập kho ngoài
     /// </summary>
     public class WbrkProcess : ProcessorFun<BillApprovalDTO>
     {
@@ -30,7 +30,7 @@ namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
         }
 
         /// <summary>
-        /// 验证Request
+        /// Kiểm tra Request
         /// </summary>
         protected override ActResult Validata()
         {
@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
             if (_dj == null) throw new FailedException("单据不存在");
             if (Request.shzt == ((int)EnumAuditState.Cancelled).ToString())
             {
-                if (((int)EnumAuditState.Waiting).ToString() == _dj.auditState) throw new FailedException("未找到单据审核记录，作废失败"); //作废操作，应该存在单据审核记录
+                if (((int)EnumAuditState.Waiting).ToString() == _dj.auditState) throw new FailedException("未找到单据审核记录，作废失败"); //Thao tác hủy bỏ,Nên tồn tại bản ghi duyệt chứng từ
                 if (((int)EnumAuditState.Cancelled).ToString() == _dj.auditState) throw new FailedException("单据已作废，不能重复作废");
                 if (((int)EnumAuditState.Refuse).ToString() == _dj.auditState) throw new FailedException("单据已审核不通过，不能作废");
             }
@@ -48,7 +48,7 @@ namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
             }
             else
             {
-                if (((int)EnumAuditState.Waiting).ToString() != _dj.auditState) throw new FailedException("【审核通过】只针对待处理单据");//非作废操作，应该不存在单据审核记录
+                if (((int)EnumAuditState.Waiting).ToString() != _dj.auditState) throw new FailedException("【审核通过】只针对待处理单据");//Thao tác không hủy bỏ,Không nên tồn tại bản ghi duyệt chứng từ
             }
 
             _mx = _kfCrkmxRepo.IQueryable(p => p.crkId == Request.djId && p.zt == ((int)Enumzt.Enable).ToString()).ToList();
@@ -58,7 +58,7 @@ namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
         }
 
         /// <summary>
-        /// 组装库存信息
+        /// Lắp ráp thông tin tồn kho
         /// </summary>
         /// <returns></returns>
         private List<KfKcxxEntity> AssembleKcxx()
@@ -89,7 +89,7 @@ namespace Newtouch.Herp.Application.Implementation.BillApprovalProcess
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

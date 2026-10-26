@@ -3,12 +3,12 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 库存维护
+    /// Bao tri ton kho
     /// </summary>
     public interface IStorageApp
     {
         /// <summary>
-        /// 提交外部入库
+        /// Gui nhap kho ngoai
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -16,7 +16,7 @@ namespace Newtouch.Herp.Application.Interface
         string InStorageSubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx);
 
         /// <summary>
-        /// 提交外部出库
+        /// Gui xuat kho ngoai
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.Herp.Application.Interface
         string OutStorageSubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx);
 
         /// <summary>
-        /// 提交直接出库
+        /// Gui xuat kho truc tiep
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Application.Interface
         string DirectDeliverySubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx);
 
         /// <summary>
-        /// 提交内部发货退回
+        /// Gui tra lai hang giao noi bo
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>

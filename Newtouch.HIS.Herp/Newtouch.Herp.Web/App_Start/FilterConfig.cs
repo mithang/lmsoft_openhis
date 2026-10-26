@@ -4,20 +4,20 @@ using System.Web.Mvc;
 namespace Newtouch.Herp.Web
 {
     /// <summary>
-    /// 全局过滤器注册
+    /// Đăng ký bộ lọc toàn cục
     /// </summary>
     public class FilterConfig
     {
         /// <summary>
-        /// 全局过滤器注册
+        /// Đăng ký bộ lọc toàn cục
         /// </summary>
         /// <param name="filters"></param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //系统访问统计跟踪日志
+            //Nhật ký theo dõi thống kê truy cập hệ thống
             filters.Add(new StatisticsTrackerAttribute());
 
-            //全局异常捕获
+            //Bắt ngoại lệ toàn cục
             filters.Add(new HandlerErrorAttribute());
 
 

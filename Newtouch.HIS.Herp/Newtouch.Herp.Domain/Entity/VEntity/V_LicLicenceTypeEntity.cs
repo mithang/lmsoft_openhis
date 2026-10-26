@@ -3,47 +3,47 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 证照类型
+    /// Loại giấy phép
     /// </summary>
     public class VLicLicenceTypeEntity
     {
         /// <summary>
-        /// 类型ID
+        /// Loại ID
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string typeName { get; set; }
 
         /// <summary>
-        /// 所属名称
+        /// Tên thuộc về
         /// </summary>
         public string belonged { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人	
+        /// Người sửa cuối	
         /// </summary>
         public string LastModifierCode { get; set; }
     }

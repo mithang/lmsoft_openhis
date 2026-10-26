@@ -8,7 +8,7 @@ using System.Linq;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 盘点
+    /// Kiểm kê
     /// </summary>
     public class KcPdxxRepo : RepositoryBase<KcPdxxEntity>, IKcPdxxRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 根据盘点ID获取盘点信息
+        /// Theo kiểm kê ID Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 判断是否有未完成的盘点 （结束）
+        /// Kiểm tra có kiểm kê chưa hoàn thành không (Kết thúc)
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventoryByPdId(long pdId, string organizeId)

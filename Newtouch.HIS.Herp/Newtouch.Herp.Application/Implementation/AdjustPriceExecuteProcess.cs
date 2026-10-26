@@ -9,7 +9,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 执行调价损益
+    /// Thực hiện lãi/lỗ điều chỉnh giá
     /// </summary>
     public class AdjustPriceExecuteProcess : ProcessorFun<string>
     {
@@ -25,7 +25,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 验证Request
+        /// Kiểm tra Request
         /// </summary>
         protected override ActResult Validata()
         {
@@ -37,11 +37,11 @@ namespace Newtouch.Herp.Application.Implementation
             {
                 if (_tjInfo.shzt.Equals(((int)EnumTjShzt.Waiting).ToString())
                     || _tjInfo.shzt.Equals(((int)EnumTjShzt.Refuse).ToString())
-                    || _tjInfo.shzt.Equals(((int)EnumTjShzt.Revoke).ToString())) //未审核 拒绝 撤销
+                    || _tjInfo.shzt.Equals(((int)EnumTjShzt.Revoke).ToString())) //Chưa duyệt Từ chối Hủy
                 {
                     throw new FailedException("1", string.Format("主键为{0}的调价信息状态处于未审核或拒绝或撤销，不可执行！", Request));
                 }
-                if (((int)EnumTjZxbz.Already).ToString().Equals(_tjInfo.zxbz)) //执行
+                if (((int)EnumTjZxbz.Already).ToString().Equals(_tjInfo.zxbz)) //Thực hiện
                 {
                     throw new FailedException("2", string.Format("主键为{0}的调价信息已执行，不可重复执行！", Request));
                 }
@@ -68,7 +68,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

@@ -5,12 +5,12 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库房操作
+    /// Thao tac kho
     /// </summary>
     public interface IKfWarehouseRepo : IRepositoryBase<KfWarehouseEntity>
     {
         /// <summary>
-        /// 获取目标兄弟或子库房
+        /// Lay kho anh em hoac kho con dich
         /// </summary>
         /// <param name="kfId"></param>
         /// <param name="organizeId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Domain.IRepository
         List<KfWarehouseEntity> GetBrothersOrChildren(string kfId, string organizeId, string keyWord = "");
 
         /// <summary>
-        /// 获取部门(父节点和兄弟节点)
+        /// Lay khoa phong(Nut cha va nut anh em)
         /// </summary>
         /// <param name="kfId"></param>
         /// <param name="keyWord"></param>

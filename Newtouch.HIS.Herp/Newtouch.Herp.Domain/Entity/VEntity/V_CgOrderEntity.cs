@@ -3,165 +3,165 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 采购单信息
+    /// Thông tin đơn mua hàng
     /// </summary>
     public class VCgOrderEntity
     {
 
         /// <summary>
-        /// 订单类型 0：暂存单；1：正式单
+        /// Loại đơn hàng 0:Phiếu lưu tạm;1:Phiếu chính thức
         /// </summary>
         public int orderType { get; set; }
 
         /// <summary>
-        /// 采购订单处理流程 -1：拒处理； 0：待处理； 1：备货； 2：配送； 3：签收； 4：完成； 5：拒签 
+        /// Quy trình xử lý đơn đặt mua hàng -1:Từ chối xử lý; 0:Chờ xử lý; 1:Chuẩn bị hàng; 2:Giao hàng; 3:Ký nhận; 4:Hoàn thành; 5:Từ chối ký 
         /// </summary>
         public int orderProcess { get; set; }
 
         /// <summary>
-        /// 采购单号
+        /// Số đơn mua hàng
         /// </summary>
         public string orderNo { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorName { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string LastModifierName { get; set; }
     }
 
     /// <summary>
-    /// 采购单明细
+    /// Chi tiết đơn mua hàng
     /// </summary>
     public class VCgOrderDetailEntity
     {
         /// <summary>
-        /// 子订单号
+        /// Số đơn hàng con
         /// </summary>
         public string subOrderNo { get; set; }
 
         /// <summary>
-        /// 采购计划单号
+        /// Số phiếu kế hoạch mua hàng
         /// </summary>
         public string cgdh { get; set; }
 
         /// <summary>
-        /// 部门名称
+        /// Tên khoa phòng
         /// </summary>
         public string deptName { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 数量+单位
+        /// Số lượng+Đơn vị
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        ///进价+单位
+        ///Giá nhập+Đơn vị
         /// </summary>
         public string jjStr { get; set; }
 
         /// <summary>
-        /// 厂家名称
+        /// Tên nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
 
         /// <summary>
-        /// 明细备注
+        /// Ghi chú chi tiết
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 产品ID
+        /// Sản phẩm ID
         /// </summary>
         public string productId { get; set; }
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
         /// <summary>
-        /// 订单编号
+        /// Số đơn hàng
         /// </summary>
         public string orderNo { get; set; }
         /// <summary>
-        /// 订单日期
+        /// Ngày đơn hàng
         /// </summary>
         public DateTime orderData { get; set; }
         /// <summary>
-        /// 进价总额
+        /// Tổng tiền nhập
         /// </summary>
         public decimal? jjze { get; set; }
     }
     public class VCgOrderRkEntity
     {
         /// <summary>
-        /// 订单时间
+        /// Thời gian đơn hàng
         /// </summary>
         public DateTime orderDate { get; set; }
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string orderNo { get; set; }
         /// <summary>
-        /// 子订单号-同一订单号根据供应商分组
+        /// Số đơn hàng con-Cùng một Số đơn hàng nhóm theo nhà cung cấp
         /// </summary>
         public string subOrderNo { get; set; }
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
         /// <summary>
-        /// 发票
+        /// Hóa đơn
         /// </summary>
         public string fp { get; set; }
         /// <summary>
-        /// 发票
+        /// Hóa đơn
         /// </summary>
         public string fph { get; set; }
         /// <summary>
-        /// 采购明细数
+        /// Số chi tiết mua hàng
         /// </summary>
         public int cgmxs { get; set; }
         /// <summary>
-        /// 采购金额
+        /// Tiền mua hàng
         /// </summary>
         public decimal? cgje { get; set; }
     }

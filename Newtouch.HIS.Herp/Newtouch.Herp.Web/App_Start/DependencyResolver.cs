@@ -14,32 +14,32 @@ using System.Web;
 namespace Newtouch.Herp.Web.App_Start
 {
     /// <summary>
-    /// 依赖注入配置
+    /// Cấu hình dependency injection
     /// </summary>
     public class DependencyResolver
     {
         /// <summary>
-        /// 依赖注入配置
+        /// Cấu hình dependency injection
         /// </summary>
         public static void RegisteWebApiComponent()
         {
             var builder = new ContainerBuilder();
 
-            //注册默认EF上下文
+            //Đăng ký mặc định EF Ngữ cảnh
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
             builder.RegisterType<BaseDatabaseFactory>().As<IBaseDatabaseFactory>().InstancePerLifetimeScope();
 
-            //注册控制器
+            //Đăng ký bộ điều khiển
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.Load("FrameworkBase.MultiOrg.Web"));
 
-            //日志注册
+            //Đăng ký nhật ký
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            //缓存
+            //Bộ nhớ đệm
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
-            #region IOC注册底层
+            #region IOC Đăng ký tầng dưới
             builder.RegisterAssemblyTypes(typeof(FrameworkBase.MultiOrg.Repository.RepositoryBase<>).Assembly)
                 .Where(t => t.Name.EndsWith("Repo"))
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -53,7 +53,7 @@ namespace Newtouch.Herp.Web.App_Start
             #endregion
 
             #region IOC, then registe yours
-            //DLL所在的绝对路径
+            //DLL Đường dẫn tuyệt đối nơi đặt
             var repoAssembly = Assembly.Load("Newtouch.Herp.Repository");
             builder.RegisterAssemblyTypes(repoAssembly)
                 .Where(t => t.Name.EndsWith("Repo"))

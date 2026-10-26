@@ -23,7 +23,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         private readonly IAdjustPriceApp adjustPriceApp;
 
         /// <summary>
-        /// GET: WarehouseManage/PriceAdjustment  调价申请
+        /// GET: WarehouseManage/PriceAdjustment  Đơn điều chỉnh giá
         /// </summary>
         /// <returns></returns>
         public ActionResult PriceAdjustmentRequest()
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价审核
+        /// Duyệt điều chỉnh giá
         /// </summary>
         /// <returns></returns>
         public ActionResult PriceAdjustmentApproval()
@@ -41,7 +41,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价历史
+        /// Lịch sử điều chỉnh giá
         /// </summary>
         /// <returns></returns>
         public ActionResult PriceAdjustmentHistory()
@@ -50,7 +50,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价盈亏查询
+        /// Tra cứu lãi/lỗ điều chỉnh giá
         /// </summary>
         /// <returns></returns>
         public ActionResult PriceAdjustmentProfitAndLossQuery()
@@ -59,7 +59,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 提交调价申请
+        /// Gửi đơn điều chỉnh giá
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价审核查询
+        /// Tra cứu duyệt điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价审核 
+        /// Duyệt điều chỉnh giá 
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="operationType"></param>
@@ -126,7 +126,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价执行
+        /// Thực hiện điều chỉnh giá
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价历史查询
+        /// Tra cứu lịch sử điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -157,7 +157,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 调价历史查询
+        /// Tra cứu lịch sử điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -184,7 +184,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取当前登陆者所有库房
+        /// Lấy tất cả kho của người đang đăng nhập
         /// </summary>
         /// <returns></returns>
         [HttpGet]

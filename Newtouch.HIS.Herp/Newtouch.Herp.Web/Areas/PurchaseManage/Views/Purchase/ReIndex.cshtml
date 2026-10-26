@@ -2,7 +2,7 @@
 @using Newtouch.Infrastructure;
 @using Newtouch.HIS.Web.Core.Extensions;
 @{
-    ViewBag.Title = "退货管理";
+    ViewBag.Title = "Quản lý trả hàng";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -56,14 +56,14 @@
             <table class="form">
                 <tr>
 
-                    <th class="formTitle">订单时间：</th>
+                    <th class="formTitle">Thời gian đơn hàng:</th>
                     <td class="formValue" colspan="3">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                     <td class="formValue title">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
                     </td>
 
                 </tr>
@@ -77,7 +77,7 @@
         <div id="TabGrid">
             <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
                 <li role="presentation" class="active">
-                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
                 </li>
                 <li style="float:right">
                     <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -91,11 +91,11 @@
             <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
         </div>
         <div class="panel panel-default">
-            <input type="button" id="btn_delete" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="作废" />
-            @*<input type="button" id="btn_receive" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="退货" />*@
-            <input type="button" id="btn_submit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="传报" />
-            <input type="button" id="btn_edit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="修改" />
-            <input type="button" id="btn_add" class="btn btn-info" style="width:10%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="新建" />
+            <input type="button" id="btn_delete" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Hủy bỏ" />
+            @*<input type="button" id="btn_receive" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Trả hàng" />*@
+            <input type="button" id="btn_submit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Báo cáo" />
+            <input type="button" id="btn_edit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Sửa" />
+            <input type="button" id="btn_add" class="btn btn-info" style="width:10%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tạo mới" />
 
         </div>
     </form>
@@ -110,7 +110,7 @@
     $(function () {
         initControl();
         gridList();
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện ô tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -122,7 +122,7 @@
         TabGridHide();
     })
 
-    //隐藏搜索框并显示箭头
+    //Ẩn ô tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -141,35 +141,35 @@
             colModel: [
 
                 { label: 'thId', name: 'thId', hidden: true },
-                { label: '实际退货日期', name: 'SJTHRQ', width: 120, align: 'left' },
-                { label: '退货单编号', name: 'THDBH', width: 150, align: 'left' },
+                { label: 'Ngày trả hàng thực tế', name: 'SJTHRQ', width: 120, align: 'left' },
+                { label: 'Số phiếu trả hàng', name: 'THDBH', width: 150, align: 'left' },
                 {
-                    label: '采购方式', name: 'CGFS', width: 70, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 1) return '非系统采购';
-                        else if (cellvalue == 2) return '按系统采购';
+                    label: 'Hình thức mua hàng', name: 'CGFS', width: 70, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Mua hàng ngoài hệ thống';
+                        else if (cellvalue == 2) return 'Mua hàng theo hệ thống';
                         else return '';
                     }
                 },
-                { label: '系统编码', name: 'XTBM', width: 50, align: 'left' },
+                { label: 'Mã hệ thống', name: 'XTBM', width: 50, align: 'left' },
                 {
-                    label: '是否含伴随服务', name: 'SFHBSFW', width: 100, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 0) return '否';
-                        else if (cellvalue == 1) return '是';
+                    label: 'Có bao gồm dịch vụ đi kèm không', name: 'SFHBSFW', width: 100, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 0) return 'Không';
+                        else if (cellvalue == 1) return 'Có';
                         else return '';
                     }},
-                { label: '采购单号', name: 'DDBH', width: 150, align: 'left' },
+                { label: 'Số đơn mua hàng', name: 'DDBH', width: 150, align: 'left' },
                 {
-                    label: '订单状态', name: 'thdzt', width: 60, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 00) return '已保存';
-                        else if (cellvalue == 01) return '已传报';
-                        else if (cellvalue == 02) return '已退货';
-                        else return '已保存';
+                    label: 'Trạng thái đơn hàng', name: 'thdzt', width: 60, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 00) return 'Đã lưu';
+                        else if (cellvalue == 01) return 'Đã báo cáo';
+                        else if (cellvalue == 02) return 'Đã trả hàng';
+                        else return 'Đã lưu';
                     }
                 },
-                { label: '明细记录数', name: 'JLS', width: 20, align: 'left' },
-                { label: '操作类型', name: 'CZLX', width: 20, hidden: true, align: 'left' },
-                { label: '医院编码', name: 'YYBM', width: 20, hidden: true, align: 'left' },
-                { label: '配送点编码', name: 'PSDBM', width: 20, hidden: true, align: 'left' },
+                { label: 'Số bản ghi chi tiết', name: 'JLS', width: 20, align: 'left' },
+                { label: 'Loại thao tác', name: 'CZLX', width: 20, hidden: true, align: 'left' },
+                { label: 'Mã bệnh viện', name: 'YYBM', width: 20, hidden: true, align: 'left' },
+                { label: 'Mã điểm giao hàng', name: 'PSDBM', width: 20, hidden: true, align: 'left' },
             ],
 
             multiselect: true,
@@ -190,17 +190,17 @@
     }
 
     //function rptdjmx(byid) {
-    //    window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f科室备药退回单&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=" + byid + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+    //    window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f Phiếu trả thuốc dự trữ khoa&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=" + byid + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     //}
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột,Xóa trống chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/ReturnedMaterials/QueryPurchaseReturnDetailbyId",
@@ -214,29 +214,29 @@
             }
         });
     }
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '顺序号', name: 'SXH', width: 60, align: 'left' },
-            { label: '采购类型', name: 'cglxmc', width: 80, align: 'left' },
-            { label: '退货类型', name: 'thlxmc', width: 80, align: 'left' },
-            { label: '耗材统编代码', name: 'HCTBDM', width: 80, align: 'left' },
-            { label: '耗材细分代码', name: 'HCXFDM', width: 80, align: 'left' },
-            { label: '医院本地代码', name: 'YYBDDM', width: 80, align: 'left' },
-            { label: '采购规格型号', name: 'CGGGXH', width: 80, align: 'left' },
+            { label: 'Số thứ tự', name: 'SXH', width: 60, align: 'left' },
+            { label: 'Loại mua hàng', name: 'cglxmc', width: 80, align: 'left' },
+            { label: 'Loại trả hàng', name: 'thlxmc', width: 80, align: 'left' },
+            { label: 'Mã thống nhất vật tư tiêu hao', name: 'HCTBDM', width: 80, align: 'left' },
+            { label: 'Mã chi tiết vật tư tiêu hao', name: 'HCXFDM', width: 80, align: 'left' },
+            { label: 'Mã nội bộ bệnh viện', name: 'YYBDDM', width: 80, align: 'left' },
+            { label: 'Quy cách mẫu mã mua hàng', name: 'CGGGXH', width: 80, align: 'left' },
 
-            { label: '生产批号', name: 'SCPH', width: 80, align: 'left' },
-            { label: '生产日期', name: 'SCRQ', width: 80, align: 'left' },
-            { label: '有效日期', name: 'YXRQ', width: 80, align: 'left' },
-            { label: '配送明细条码类型', name: 'psmxtmlxmc', width: 80, align: 'left' },
-            { label: '配送明细条码', name: 'PSMXTM', width: 80, align: 'left' },
-            { label: '退货数量', name: 'THSL', width: 80, align: 'left' },
-            { label: '退货单价', name: 'THDJ', width: 80, align: 'left' },
-            { label: '企业编码', name: 'QYBM', width: 80, align: 'left' },
-            { label: '退货原因', name: 'THYY', width: 80, align: 'left' },
+            { label: 'Số lô sản xuất', name: 'SCPH', width: 80, align: 'left' },
+            { label: 'Ngày sản xuất', name: 'SCRQ', width: 80, align: 'left' },
+            { label: 'Ngày hiệu lực', name: 'YXRQ', width: 80, align: 'left' },
+            { label: 'Loại mã vạch chi tiết giao hàng', name: 'psmxtmlxmc', width: 80, align: 'left' },
+            { label: 'Mã vạch chi tiết giao hàng', name: 'PSMXTM', width: 80, align: 'left' },
+            { label: 'Số lượng trả hàng', name: 'THSL', width: 80, align: 'left' },
+            { label: 'Đơn giá trả hàng', name: 'THDJ', width: 80, align: 'left' },
+            { label: 'Mã doanh nghiệp', name: 'QYBM', width: 80, align: 'left' },
+            { label: 'Lý do trả hàng', name: 'THYY', width: 80, align: 'left' },
         ]
     });
 
@@ -244,26 +244,26 @@
 
     }
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
 
         //if (selRowIds == null || selRowIds.length == 0) {
-        //    $.modalAlert("请选择需要退货的单据", 'warning');
+        //    $.modalAlert("Vui lòng chọn chứng từ cần trả hàng", 'warning');
         //    return;
         //}
         //if (selRowIds.length >= 2) {
-        //    $.modalAlert("只能选择一个单据进行退货", 'warning');
+        //    $.modalAlert("Chỉ được chọn một chứng từ để trả hàng", 'warning');
         //    return;
         //}
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        //if (rowData.ddzt != "已验收") {
-        //    $.modalAlert("选中的单据不是已验收状态，不能退货", 'warning');
+        //if (rowData.ddzt != "Đã nghiệm thu") {
+        //    $.modalAlert("Chứng từ đã chọn không ở trạng thái đã nghiệm thu,Không thể trả hàng", 'warning');
         //    return;
         //}
         $.modalOpen({
             id: "Form",
-            title: "耗材退货",
+            title: "Trả hàng vật tư tiêu hao",
             url: "/PurchaseManage/Purchase/ReForm?keyValue=" + rowData.ddbh,
             width: "95%",
             height: "95%",
@@ -278,26 +278,26 @@
         });
     });
 
-    //修改
+    //Sửa
     $('#btn_edit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
 
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要修改的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần sửa", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行修改", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để sửa", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.thdzt != "已保存") {
-            $.modalAlert("选中的单据不是已保存状态，不能修改", 'warning');
+            $.modalAlert("Chứng từ đã chọn không ở trạng thái đã lưu,Không thể sửa", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "耗材退货",
+            title: "Trả hàng vật tư tiêu hao",
             url: "/PurchaseManage/Purchase/ReForm?keyValue=" + rowData.thId,
             width: "95%",
             height: "95%",
@@ -312,15 +312,15 @@
         });
     });
 
-    //提交
+    //Gửi
     $('#btn_submit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要提交的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần gửi", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行提交", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để gửi", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
@@ -331,31 +331,31 @@
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
-                    $.modalMsg("单据提交成功！", 'success');
+                    $.modalMsg("Gửi chứng từ thành công!", 'success');
                     //$('#gridDJMXInfo').jqGrid("clearGridData");
 
                     $('#btn_search').trigger('click');
                 } else {
-                    $.modalMsg("单据提交失败：" + res.message, 'warning');
+                    $.modalMsg("Gửi chứng từ thất bại:" + res.message, 'warning');
                 }
             }
         });
     });
 
-    //发货
+    //Giao hàng
     $('#btn_receive').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要发货的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần giao hàng", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行发货", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để giao hàng", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.thdzt != "已传报") {
-            $.modalAlert("选中的单据不是已传报状态，不能发货", 'warning');
+            $.modalAlert("Chứng từ đã chọn không ở trạng thái đã báo cáo,Không thể giao hàng", 'warning');
             return;
         }
         $.najax({
@@ -366,28 +366,28 @@
             success: function (res) {
                 if (res.state == "success") {
                     $('#btn_search').trigger('click');
-                    $.modalAlert("单据发货成功！", 'success');
+                    $.modalAlert("Giao hàng chứng từ thành công!", 'success');
                 } else {
-                    $.modalAlert("单据发货失败：" + res.message, 'warning');
+                    $.modalAlert("Giao hàng chứng từ thất bại:" + res.message, 'warning');
                 }
             }
         });
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要作废的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần hủy bỏ", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行作废", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để hủy bỏ", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.thdzt != "已保存") {
-            $.modalAlert("请选择已保存的单据进行作废", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ đã lưu để hủy bỏ", 'warning');
             return;
         }
         $.najax({

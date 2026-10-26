@@ -7,77 +7,77 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 出入库单据明细
+    /// Chi tiết chứng từ nhập/xuất kho
     /// </summary>
     public class VCrkdjmxEntity
     {
         /// <summary>
-        /// 出入库明细ID
+        /// Chi tiết nhập/xuất kho ID
         /// </summary>
         public long crkmxId { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 数量，带单位
+        /// Số lượng,Kèm đơn vị
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// Tổng tiền bán lẻ
         /// </summary>
         public decimal ljze { get; set; }
 
         /// <summary>
-        /// 进价总额
+        /// Tổng tiền nhập
         /// </summary>
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// 进销差价
+        /// Chênh lệch giá nhập-bán
         /// </summary>
         public decimal jxcj { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
     }

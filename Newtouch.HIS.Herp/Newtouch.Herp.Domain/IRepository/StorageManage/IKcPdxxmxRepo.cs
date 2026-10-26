@@ -6,12 +6,12 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库存明细
+    /// Chi tiết tồn kho
     /// </summary>
     public interface IKcPdxxmxRepo : IRepositoryBase<KcPdxxmxEntity>
     {
         /// <summary>
-        /// 盘点保存时 变更数量
+        /// Khi lưu kiểm kê Số lượng thay đổi
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         void UpdateSlBySaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList);

@@ -4,7 +4,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 证照所属维护
+    /// Bảo trì thuộc về giấy phép
     /// </summary>
     public interface ILicLicenceBelongedRepo : IRepositoryBase<LicLicenceBelongedEntity>
     {

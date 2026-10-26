@@ -3,47 +3,47 @@
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 出入库单据查询条件
+    /// Điều kiện tra cứu chứng từ nhập/xuất kho
     /// </summary>
     public class CrkdjSearchParamDTO
     {
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đầu
         /// </summary>
         public DateTime kssj { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime jssj { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 票单号
+        /// Số phiếu
         /// </summary>
         public string pdh { get; set; }
 
         /// <summary>
-        /// 单据类型
+        /// Loại chứng từ
         /// </summary>
         public string djlx { get; set; }
 
         /// <summary>
-        /// 配送单号
+        /// Số phiếu giao hàng
         /// </summary>
         public string deliveryNo { get; set; }
     }

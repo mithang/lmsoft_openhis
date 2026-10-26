@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "耗材按采购单获取采购明细状态";
+    ViewBag.Title = "Lấy trạng thái chi tiết mua hàng vật tư tiêu hao theo đơn mua hàng";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -9,15 +9,15 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">采购明细获取</div>
+        <div class="panel-heading">Lấy chi tiết mua hàng</div>
         <table class="form">
             <tr style="float:left">
-                <th class="formTitle">采购单编号：</th>
+                <th class="formTitle">Số đơn mua hàng:</th>
                 <td class="formValue">
-                    <input id="ddbh" class="form-control" placeholder="采购单编号" />
+                    <input id="ddbh" class="form-control" placeholder="Số đơn mua hàng" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                 </th>
             </tr>
         </table>
@@ -50,19 +50,19 @@
             height: $(window).height() - 200,
             postData: getPostData(),
             colModel: [
-                { label: '采购单明细编号', name: 'DDMXBH', width: 180, align: 'left' },
+                { label: 'Số chi tiết đơn mua hàng', name: 'DDMXBH', width: 180, align: 'left' },
                 {
-                    label: '采购单明细状态', name: 'CGMXZT', width: 180, align: 'left', formatter: function (val) {
+                    label: 'Trạng thái chi tiết đơn mua hàng', name: 'CGMXZT', width: 180, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumCGMXZT", val);
                     }
                 },
                 {
-                    label: '企业库存', name: 'QYKC', width: 100, align: 'left', formatter: function (val) {
+                    label: 'Tồn kho doanh nghiệp', name: 'QYKC', width: 100, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumQYKC", val);
                     }
                 },
-                { label: '采购单明细审核意见', name: 'CGMXSHYJ', width: 120, align: 'left' },
-                { label: '采购单企业处理说明', name: 'CGDCLSM', width: 80, align: 'left' },
+                { label: 'Ý kiến duyệt chi tiết đơn mua hàng', name: 'CGMXSHYJ', width: 120, align: 'left' },
+                { label: 'Mô tả xử lý doanh nghiệp của đơn mua hàng', name: 'CGDCLSM', width: 80, align: 'left' },
 
             ],
             multiselect: false,
@@ -81,10 +81,10 @@
         });
     }
 
-    //查询
+    //Tra cứu
     $('#btn_search').click(function () {
         if ($("#ddbh").val() == "" || $("#ddbh").val() == null) {
-            $.modalAlert("请填写采购单号", 'warning');
+            $.modalAlert("Vui lòng điền Số đơn mua hàng", 'warning');
             return ;
         }
         gridList();

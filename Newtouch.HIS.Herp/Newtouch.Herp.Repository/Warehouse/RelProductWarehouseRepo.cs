@@ -9,7 +9,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库房物资
+    /// Vật tư kho
     /// </summary>
     public class RelProductWarehouseRepo : RepositoryBase<RelProductWarehouseEntity>, IRelProductWarehouseRepo
     {
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 批量删除
+        /// Xóa hàng loạt
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>

@@ -103,15 +103,15 @@ namespace Newtouch.Herp.Application.Implementation
             return result;
         }
 
-        #region  库房物资同步
+        #region  Đồng bộ vật tư kho
 
         /// <summary>
-        /// 同步库房物资
+        /// Đồng bộ vật tư kho
         /// </summary>
-        /// <param name="productIds">物资ID</param>
-        /// <param name="opereateType">0:添加  1：删除</param>
+        /// <param name="productIds">Vật tư ID</param>
+        /// <param name="opereateType">0:Thêm  1:Xóa</param>
         /// <param name="organizeId"></param>
-        /// <param name="warehouseId">库房</param>
+        /// <param name="warehouseId">Kho</param>
         /// <returns></returns>
         public bool FreshWhAndwzRelList(List<string> productIds, int opereateType, string organizeId, string warehouseId)
         {
@@ -133,7 +133,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 库房添加新物资
+        /// Kho thêm vật tư mới
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="organizeId"></param>
@@ -167,7 +167,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 删除库房物资
+        /// Xóa vật tư kho
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="organizeId"></param>
@@ -192,7 +192,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 组装目标物资
+        /// Lắp ráp vật tư đích
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="organizeId"></param>

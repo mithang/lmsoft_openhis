@@ -2,7 +2,7 @@
 @using Newtouch.Herp.Infrastructure.Enum
 @using Newtouch.Tools
 @{
-    ViewBag.Title = "采购单审核";
+    ViewBag.Title = "Duyệt đơn mua hàng";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -21,24 +21,24 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" id="dv-search">
-        <div class="panel-heading">筛选条件</div>
+        <div class="panel-heading">Điều kiện lọc</div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle" style="width: 80px;">采购单号：</td>
+                    <td class="formTitle" style="width: 80px;">Số đơn mua hàng:</td>
                     <td class="formValue">
-                        <input type="text" id="orderNo" class="form-control" placeholder="采购单号" />
+                        <input type="text" id="orderNo" class="form-control" placeholder="Số đơn mua hàng" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>提交时间：</th>
+                    <th class="formTitle"><span class="required">*</span>Thời gian gửi:</th>
                     <td class="formValue">
                         <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
-                    <th class="formTitle" style="width: 50px;"><span class="required">*</span>至：</th>
+                    <th class="formTitle" style="width: 50px;"><span class="required">*</span>Đến:</th>
                     <td class="formValue">
                         <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
                     <td class="formTitle" style="width: 70px;">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -57,10 +57,10 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 7, 8},
-        F7Text = "作废(不通过)",
-        F8Text = "审核通过"
+        F7Text = "Hủy bỏ(Không đạt)",
+        F8Text = "Duyệt đạt"
     })
-    <div class="dv-remarks"><span>批语：</span><input type="text" id="remarks" value="" /></div>
+    <div class="dv-remarks"><span>Lời phê:</span><input type="text" id="remarks" value="" /></div>
 </form>
 <script type="text/javascript">
     var $gridList = $("#gridList");
@@ -79,14 +79,14 @@
         $("#dv_gridhzMxList").hide();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
         $gridList.dataGrid({
             url: "/BillManage/PurchasingOrder/TempPurchasingOrderInfoQuery",
@@ -94,7 +94,7 @@
             height: gridListhigh,
             colModel: [
                 {
-                    label: '订单类型', name: 'orderType', width: 120, formatter: function (val) {
+                    label: 'Loại đơn hàng', name: 'orderType', width: 120, formatter: function (val) {
                         switch (val) {
                         case @((int)EnumOrderTypeHrp.TempOrder):
                             return "@EnumOrderTypeHrp.TempOrder.GetDescription()";
@@ -108,7 +108,7 @@
                     }
                 },
                 {
-                    label: '处理状态', name: 'orderProcess', width: 120,hidden:true, formatter: function (val) {
+                    label: 'Trạng thái xử lý', name: 'orderProcess', width: 120,hidden:true, formatter: function (val) {
                         switch (val) {
                         case @((int)EnumOrderProcess.Refusal):
                             return "@EnumOrderProcess.Refusal.GetDescription()";
@@ -129,10 +129,10 @@
                         }
                     }
                 },
-                { label: '采购单号', name: 'orderNo', width: 180 },
-                { label: '备注', name: 'remark', width: 250 },
-                { label: '创建人', name: 'CreatorName', width: 130 },
-                { label: '创建时间', name: 'CreateTime', width: 130, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                { label: 'Số đơn mua hàng', name: 'orderNo', width: 180 },
+                { label: 'Ghi chú', name: 'remark', width: 250 },
+                { label: 'Người tạo', name: 'CreatorName', width: 130 },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 130, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -160,10 +160,10 @@
                 }).trigger('reloadGrid');
         });
         $("#gridPager_left").html("<span onclick='shrinkGridList(this)' style='cursor: pointer;margin-right: 250px;font-size: 1.3rem;padding: 0 20px;'><i class='fa fa-angle-up'></i></span>");
-        $("#gridPager_right").html("<span>采购单明细 | 汇总展示：</span><i id='i-noPc' onclick='accordingBatch(this)' class='fa fa-toggle-off' style='margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;'></i>");
+        $("#gridPager_right").html("<span>Chi tiết đơn mua hàng | Hiển thị tổng hợp:</span><i id='i-noPc' onclick='accordingBatch(this)' class='fa fa-toggle-off' style='margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;'></i>");
     }
 
-    //组装搜索条件
+    //Lắp ráp điều kiện tìm kiếm
     function assembleParam() {
         var orderType = $("#orderType").val() === "" ? -1 : $("#orderType").val();
         var orderProcess = $("#orderProcess").val() === "" ? -2 : $("#orderProcess").val();
@@ -176,7 +176,7 @@
         };
     }
 
-    //是否按批次
+    //Có theo lô không
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -191,7 +191,7 @@
         }
     }
 
-    //收缩主信息
+    //Thu gọn thông tin chính
     function shrinkGridList(obj) {
         var t = $(".ui-jqgrid-bdiv")[0];
         if ($(t).is(':hidden')) {
@@ -210,86 +210,86 @@
         }
     }
 
-    //明细信息
+    //Thông tin chi tiết
     function gridMxList() {
         $gridMxList.dataGrid({
             height: gridMxListhigh,
             colModel: [
-                { label: '子订单号', name: 'subOrderNo', width: 140 },
-                { label: '采购计划单', name: 'cgdh', width: 140 },
-                { label: '采购部门', name: 'deptName', width: 100 },
-                { label: '物资', name: 'wzmc', width: 120 },
-                { label: '采购数量', name: 'slStr', width: 80 },
-                { label: '规格', name: 'gg', width: 90 },
-                { label: '品牌', name: 'brand', width: 100 },
-                { label: '进价', name: 'jjStr', width: 100 },
-                { label: '生产厂家', name: 'sccj', width: 120 },
-                { label: '供应商', name: 'gysmc', width: 120 },
-                { label: '备注', name: 'remark', width: 120 },
+                { label: 'Số đơn hàng con', name: 'subOrderNo', width: 140 },
+                { label: 'Phiếu kế hoạch mua hàng', name: 'cgdh', width: 140 },
+                { label: 'Khoa mua hàng', name: 'deptName', width: 100 },
+                { label: 'Vật tư', name: 'wzmc', width: 120 },
+                { label: 'Số lượng mua hàng', name: 'slStr', width: 80 },
+                { label: 'Quy cách', name: 'gg', width: 90 },
+                { label: 'Thương hiệu', name: 'brand', width: 100 },
+                { label: 'Giá nhập', name: 'jjStr', width: 100 },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 120 },
+                { label: 'Nhà cung cấp', name: 'gysmc', width: 120 },
+                { label: 'Ghi chú', name: 'remark', width: 120 },
                 { label: 'productId', name: 'productId', hidden: true }
             ],
             viewrecords: true
         });
     }
 
-    //明细信息
+    //Thông tin chi tiết
     function gridhzMxList() {
         $gridhzMxList.dataGrid({
             height: gridMxListhigh,
             colModel: [
-                { label: '物资', name: 'wzmc', width: 150 },
-                { label: '采购数量', name: 'slStr', width: 100 },
-                { label: '规格', name: 'gg', width: 120 },
-                { label: '品牌', name: 'brand', width: 100 },
-                { label: '进价', name: 'jjStr', width: 120 },
-                { label: '生产厂家', name: 'sccj', width: 150 },
-                { label: '供应商', name: 'gysmc', width: 150 },
-                { label: '备注', name: 'remark', width: 150 },
+                { label: 'Vật tư', name: 'wzmc', width: 150 },
+                { label: 'Số lượng mua hàng', name: 'slStr', width: 100 },
+                { label: 'Quy cách', name: 'gg', width: 120 },
+                { label: 'Thương hiệu', name: 'brand', width: 100 },
+                { label: 'Giá nhập', name: 'jjStr', width: 120 },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150 },
+                { label: 'Nhà cung cấp', name: 'gysmc', width: 150 },
+                { label: 'Ghi chú', name: 'remark', width: 150 },
                 { label: 'productId', name: 'productId', hidden: true }
             ],
             viewrecords: true
         });
     }
 
-    //审核不通过
+    //Duyệt không đạt
     function newtouch_event_f7() {
         var id = $gridList.jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalAlert("请选择采购单！", 'warning');
+            $.modalAlert("Vui lòng chọn đơn mua hàng!", 'warning');
             return false;
         }
         var rowData = $gridList.jqGrid('getRowData', id);
         if (!rowData) {
-            $.modalAlert("选中的采购单信息不完整，请联系管理员！", 'warning');
+            $.modalAlert("Thông tin đơn mua hàng đã chọn không đầy đủ,Vui lòng liên hệ quản trị viên!", 'warning');
             return false;
         }
         if (rowData.orderProcess !== "@EnumOrderProcess.Waiting.GetDescription()" || rowData.orderType !== "@EnumOrderTypeHrp.TempOrder.GetDescription()") {
-            $.modalAlert("审核只针对待处理的暂存采购单！", 'warning');
+            $.modalAlert("Duyệt chỉ áp dụng cho đơn mua hàng lưu tạm chờ xử lý!", 'warning');
             return false;
         }
         SubmitAuditPurchasingOrder(rowData.orderNo, @((int)EnumOrderTypeHrp.BadOrder));
     }
 
-    //审核通过
+    //Duyệt đạt
     function newtouch_event_f8() {
         var id = $gridList.jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalAlert("请选择采购单！", 'warning');
+            $.modalAlert("Vui lòng chọn đơn mua hàng!", 'warning');
             return false;
         }
         var rowData = $gridList.jqGrid('getRowData', id);
         if (!rowData) {
-            $.modalAlert("选中的采购单信息不完整，请联系管理员！", 'warning');
+            $.modalAlert("Thông tin đơn mua hàng đã chọn không đầy đủ,Vui lòng liên hệ quản trị viên!", 'warning');
             return false;
         }
         if (rowData.orderProcess !== "@EnumOrderProcess.Waiting.GetDescription()" || rowData.orderType !== "@EnumOrderTypeHrp.TempOrder.GetDescription()") {
-            $.modalAlert("审核只针对待处理的暂存采购单！", 'warning');
+            $.modalAlert("Duyệt chỉ áp dụng cho đơn mua hàng lưu tạm chờ xử lý!", 'warning');
             return false;
         }
         SubmitAuditPurchasingOrder(rowData.orderNo, @((int)EnumOrderTypeHrp.OfficialOrder));
     }
 
-    //提交审核
+    //Gửi duyệt
     function SubmitAuditPurchasingOrder(orderNo, orderType) {
         $.najax({
             type: "POST",
@@ -298,7 +298,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg('操作成功', 'success', 2000);
+                    $.modalMsg('Thao tác thành công', 'success', 2000);
                     $("#btn_search").trigger("click");
                     $("#remarks").val("");
                 }

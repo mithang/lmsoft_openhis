@@ -7,23 +7,23 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 出入库单据
+    /// Chung tu nhap/xuat kho
     /// </summary>
     public interface IKfCrkdjDmnService
     {
         /// <summary>
-        /// 获取出入库单据主表信息
+        /// Lay thong tin bang chinh chung tu nhap/xuat kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
-        /// <param name="alldjlx">该用户所能拥有的所有单据类型</param>
-        /// <param name="warehouseId">当前库房</param>
-        /// <param name="ope">操作  query：查询  approval：审核</param>
+        /// <param name="alldjlx">Tat ca cac loai chung tu ma nguoi dung nay co the so huu</param>
+        /// <param name="warehouseId">Kho hien tai</param>
+        /// <param name="ope">Thao tac  query:Tra cuu  approval:Duyet</param>
         /// <returns></returns>
         IList<VCrkdjEntity> GetCrkdjMainList(Pagination pagination, CrkdjSearchParamDTO param, string[] alldjlx, string warehouseId, string ope = "");
 
         /// <summary>
-        /// 获取出入库明细
+        /// Lay chi tiet nhap/xuat kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="organizeId"></param>
@@ -31,7 +31,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VCrkdjmxEntity> GetCrkdjmxList(string crkId, string organizeId);
 
         /// <summary>
-        /// 获取供应商和发票信息
+        /// Lay thong tin nha cung cap va hoa don
         /// </summary>
         /// <param name="keyWord"></param>
         /// <param name="warehouseId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
 
 
         /// <summary>
-        /// 删除单据主表和明细表 慎用
+        /// Xoa bang chinh va bang chi tiet chung tu Su dung than trong
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="organizeId"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         int DeleteDjById(long crkId, string organizeId);
 
         /// <summary>
-        /// 保存单据
+        /// Luu chung tu
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mxList"></param>
@@ -57,14 +57,14 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string SaveDj(KfCrkdjEntity dj, List<KfCrkmxEntity> mxList);
 
         /// <summary>
-        /// 取消已成功插入明细
+        /// Huy chi tiet da chen thanh cong
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="successList"></param>
         void CancelCrkmx(KfCrkdjEntity dj, List<KfCrkmxEntity> successList);
 
         /// <summary>
-        /// 查询入库配送单号
+        /// Tra cuu So phieu giao hang nhap kho
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="warehouseId"></param>
@@ -75,7 +75,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VInStorageDeliveryInfoEntity> SelectInStorageDeliveryInfo(string keyword, string warehouseId, string userCode, string organizeid, string shzt = "4");
 
         /// <summary>
-        /// 通过配送单号获取出入库明细
+        /// Lay chi tiet nhap/xuat kho qua So phieu giao hang
         /// </summary>
         /// <param name="deliveryNo"></param>
         /// <param name="djh"></param>
@@ -86,7 +86,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VCrkdjmxInfoEntity> SelectCrkmxByDeliveryNo(string deliveryNo, string djh, string warehouseId, string organizeid, string gysId = "");
 
         /// <summary>
-        /// 删除指定出入库单据和明细
+        /// Xoa chung tu nhap/xuat kho va chi tiet da chi dinh
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

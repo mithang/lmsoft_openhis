@@ -3,97 +3,97 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 调价信息
+    /// Thông tin điều chỉnh giá
     /// </summary>
     public class VPriceAdjustmentInfoEntity
     {
         /// <summary>
-        /// 主键 物资调价Id
+        /// Khóa chính Điều chỉnh giá vật tư Id
         /// </summary>
         public string wztjId { get; set; }
 
         /// <summary>
-        /// 审核状态   0:未审核 1:已审核 2:已拒绝 3.已撤销
+        /// Trạng thái duyệt   0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã hủy
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 执行标志   0:未执行 1:已执行
+        /// Cờ thực hiện   0:Chưa thực hiện 1:Đã thực hiện
         /// </summary>
         public string zxbz { get; set; }
 
         /// <summary>
-        /// 列别名称
+        /// Tên loại cột
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 物资名称  
+        /// Tên vật tư  
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 原零售价 与转化因子对应，一般为部门单位价格
+        /// Giá bán lẻ gốc Tương ứng với hệ số chuyển đổi,Thông thường là giá đơn vị khoa phòng
         /// </summary>
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// 零售价 与转化因子对应，一般为部门单位价格
+        /// Giá bán lẻ Tương ứng với hệ số chuyển đổi,Thông thường là giá đơn vị khoa phòng
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 单位 与zhyz对应，一般为部门单位
+        /// Đơn vị Và zhyz Tương ứng,Thông thường là đơn vị khoa phòng
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// Nhà sản xuất
         /// </summary>
         public string supplierName { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 调整文件
+        /// Điều chỉnh tệp
         /// </summary>
         public string tzwj { get; set; }
 
         /// <summary>
-        /// 调整时间
+        /// Thời gian điều chỉnh
         /// </summary>
         public DateTime tzsj { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime? zxsj { get; set; }
 
         /// <summary>
-        /// 是否过期
+        /// Có hết hạn không
         /// </summary>
         public string Isgq { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 提交人员
+        /// Người gửi
         /// </summary>
         public string CreatorCode { get; set; }
     }

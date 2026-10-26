@@ -19,7 +19,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 提交采购订购单
+    /// Gửi đơn đặt mua hàng
     /// </summary>
     public class SubmitGeneratingPurchaseprocess : ProcessorFun<SubmitGeneratingPurchaseDto>
     {
@@ -62,7 +62,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 组装数据
+        /// Lắp ráp dữ liệu
         /// </summary>
         /// <param name="actResult"></param>
         protected override void BeforeAction(ActResult actResult)
@@ -128,14 +128,14 @@ namespace Newtouch.Herp.Application.Implementation
                     {
                         cgOrderDetailEntities.ForEach(p =>
                         {
-                            #region 插入采购单明细
+                            #region Chèn chi tiết đơn mua hàng
 
                             p.orderId = cgOrderEntity.Id;
                             db.Insert(p);
 
-                            #endregion 插入采购单明细
+                            #endregion Chèn chi tiết đơn mua hàng
 
-                            #region 更新采购计划实际采购数
+                            #region Cập nhật Số lượng mua thực tế của kế hoạch mua hàng
 
                             const string sql = @"
 UPDATE dbo.cg_purchaseOrderDetail 
@@ -151,7 +151,7 @@ WHERE Id=@pdId AND zt='1'
                             };
                             db.ExecuteSqlCommandNoLog(sql, param1);
 
-                            #endregion 更新采购计划实际采购数
+                            #endregion Cập nhật Số lượng mua thực tế của kế hoạch mua hàng
                         });
                         db.Commit();
                     }

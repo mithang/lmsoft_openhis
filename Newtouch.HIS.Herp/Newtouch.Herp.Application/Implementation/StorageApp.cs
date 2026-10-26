@@ -12,14 +12,14 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 盘点
+    /// Kiểm kê
     /// </summary>
     public class StorageApp : AppBase, IStorageApp
     {
         private readonly IStorageManageDmnService _storageDmnService;
 
         /// <summary>
-        /// 提交外部入库
+        /// Gửi nhập kho ngoài
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -87,7 +87,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交外部出库
+        /// Gửi xuất kho ngoài
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -149,7 +149,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交直接出库
+        /// Gửi xuất kho trực tiếp
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -206,7 +206,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交内部发货退回
+        /// Gửi trả lại hàng giao nội bộ
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>

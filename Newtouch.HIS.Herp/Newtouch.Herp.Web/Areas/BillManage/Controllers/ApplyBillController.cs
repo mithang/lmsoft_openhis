@@ -12,14 +12,14 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 申领单管理
+    /// Quản lý phiếu lĩnh
     /// </summary>
     public class ApplyBillController : ControllerBase
     {
         private readonly IKfApplyOrderDmnService _applyOrderDmnService;
 
         /// <summary>
-        /// 申领单查询
+        /// Tra cứu phiếu lĩnh
         /// </summary>
         /// <returns></returns>
         public ActionResult Query()
@@ -29,7 +29,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单主信息查询
+        /// Tra cứu thông tin chính phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单主信息查询
+        /// Tra cứu thông tin chính phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <param name="pdh"></param>
         /// <param name="applyType"></param>
         /// <param name="applyProcess"></param>
-        /// <param name="applyProcesses">可选申领状态</param>
+        /// <param name="applyProcesses">Trạng thái lĩnh có thể chọn</param>
         /// <returns></returns>
         public ActionResult ApplyBillInfoQueryV2(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess, string slbm, string applyProcesses)
         {
@@ -85,7 +85,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单明细信息查询
+        /// Tra cứu thông tin chi tiết phiếu lĩnh
         /// </summary>
         /// <param name="sldId"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单明细信息查询
+        /// Tra cứu thông tin chi tiết phiếu lĩnh
         /// </summary>
         /// <param name="sldIds"></param>
         /// <returns></returns>

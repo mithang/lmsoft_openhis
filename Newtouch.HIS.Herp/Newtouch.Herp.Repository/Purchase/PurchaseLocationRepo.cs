@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Repository.Purchase
         }
 
 
-        //更新或新增
+        //Cập nhật hoặc thêm mới
         public string SubmitForm(PurchaseLocationEntity entity,string orgId, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -35,19 +35,19 @@ namespace Newtouch.Herp.Repository.Purchase
             {
                 entity.Id = Guid.NewGuid().ToString();
                 entity.OrganizeId = orgId;
-                entity.psdzt = 1;//已保存
+                entity.psdzt = 1;//Đã lưu
                 entity.Create(true);
                 this.Insert(entity);
                 return entity.Id;
             }
         }
 
-        //更新配送点状态
+        //Cập nhật trạng thái điểm giao hàng
         public int LocationStateUpdate(string Id, string orgId,int psdzt)
         {
             var dbEntity = this.FindEntity(Id);
             //properties
-            dbEntity.psdzt = psdzt;//psdzt 1已保存 2已传报 3已作废
+            dbEntity.psdzt = psdzt;//psdzt 1 Đã lưu 2 Đã báo cáo 3 Đã hủy bỏ
             dbEntity.Modify(Id);
             return this.Update(dbEntity);
         }

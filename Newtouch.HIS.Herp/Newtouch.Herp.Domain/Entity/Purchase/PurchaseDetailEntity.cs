@@ -15,12 +15,12 @@ namespace Newtouch.Herp.Domain.Entity.Purchase
         [Key]
         public string cgmxId { get; set; }
         /// <summary>
-        /// 采购编号
+        /// Số mua hàng
         /// </summary>
         public string cgId { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 药品编号
+        /// Số hiệu thuốc
         /// </summary>
         public string productCode { get; set; }
         

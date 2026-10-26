@@ -14,7 +14,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 申领单管理
+    /// Quản lý phiếu lĩnh
     /// </summary>
     public class ApplyBillApp : AppBase, IApplyBillApp
     {
@@ -25,7 +25,7 @@ namespace Newtouch.Herp.Application.Implementation
         private readonly IKfKcxxRepo _kfKcxxRepo;
 
         /// <summary>
-        /// 提交科室申领单
+        /// Gửi phiếu lĩnh khoa
         /// </summary>
         /// <param name="sld"></param>
         /// <param name="sldmx"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交申领发货
+        /// Gửi lĩnh hàng giao
         /// </summary>
         /// <param name="ckmx"></param>
         /// <param name="organizeId"></param>
@@ -72,7 +72,7 @@ namespace Newtouch.Herp.Application.Implementation
                     {
                         crkdj = new KfCrkdjEntity
                         {
-                            auditState = ((int)EnumAuditState.Adopt).ToString(), //无需人工审核
+                            auditState = ((int)EnumAuditState.Adopt).ToString(), //Không cần duyệt thủ công
                             Pdh = ReceiptNoManage.GetNewReceiptNo(EnumOutOrInStorageBillType.chukuzhikeshi.GetDescription()),
                             deliveryNo = "",
                             crkfs = crkfs == null ? "" : crkfs.Id,

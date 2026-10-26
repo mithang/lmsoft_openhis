@@ -9,7 +9,7 @@ using System.Configuration;
 namespace Newtouch.Herp.Infrastructure.Log
 {
     /// <summary>
-    /// 日志组件
+    /// Thành phần nhật ký
     /// </summary>
     public class LogCore
     {
@@ -58,7 +58,7 @@ namespace Newtouch.Herp.Infrastructure.Log
         }
 
         /// <summary>
-        /// 写本地日志
+        /// Ghi nhật ký cục bộ
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfo(string message)
@@ -77,7 +77,7 @@ namespace Newtouch.Herp.Infrastructure.Log
             catch { }
         }
         /// <summary>
-        /// 写本地日志
+        /// Ghi nhật ký cục bộ
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfoWeb(string message)

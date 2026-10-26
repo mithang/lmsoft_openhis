@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "配送点";
+    ViewBag.Title = "Điểm giao hàng";
     Layout = "~/Views/Shared/_Form.cshtml";
 
 }
@@ -12,43 +12,43 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">配送点编码：</th>
+                        <th class="formTitle">Mã điểm giao hàng:</th>
                         <td class="formValue">
                             <input id="psdbm" name="psdbm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">配送点名称：</th>
+                        <th class="formTitle">Tên điểm giao hàng:</th>
                         <td class="formValue">
                             <input id="psdmc" name="psdmc" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">配送地址：</th>
+                        <th class="formTitle">Địa chỉ giao hàng:</th>
                         <td class="formValue">
                             <input id="psdz" name="psdz" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">联系人姓名：</th>
+                        <th class="formTitle">Tên người liên hệ:</th>
                         <td class="formValue">
                             <input id="lxrxm" name="lxrxm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">联系电话：</th>
+                        <th class="formTitle">Số điện thoại liên hệ:</th>
                         <td class="formValue">
                             <input id="lxdh" name="lxdh" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">邮政编码：</th>
+                        <th class="formTitle">Mã bưu điện:</th>
                         <td class="formValue">
                             <input id="yzbm" name="yzbm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">备注信息：</th>
+                        <th class="formTitle">Thông tin ghi chú:</th>
                         <td class="formValue">
                             <input id="bzxx" name="bzxx" type="text" class="form-control" placeholder="" />
                         </td>
@@ -64,7 +64,7 @@
     var keyValue = $.request("keyValue");
     initForm();
 
-    //初始化表单
+    //Khởi tạo biểu mẫu
     function initForm() {
         if (keyValue != null && keyValue != "") {
             $.najax({
@@ -88,7 +88,7 @@
         }
     }
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -99,37 +99,37 @@
             url: "/Purchase/SubmitLocation",
             param: postData,
             success: function () {
-                $.modalMsg('保存成功', 'success');
+                $.modalMsg('Lưu thành công', 'success');
                 $.modalClose();
                 callback();
             }
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#psdbm").val() === "") {
-            $.modalAlert("配送点编码必填", 'warning');
+            $.modalAlert("Mã điểm giao hàng bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#psdmc").val() === "") {
-            $.modalAlert("配送点名称必填", 'warning');
+            $.modalAlert("Tên điểm giao hàng bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#psdz").val() === "") {
-            $.modalAlert("配送地址必填", 'warning');
+            $.modalAlert("Địa chỉ giao hàng bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#lxrxm").val() === "") {
-            $.modalAlert("联系人姓名必填", 'warning');
+            $.modalAlert("Tên người liên hệ bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#lxdh").val() === "") {
-            $.modalAlert("联系电话必填", 'warning');
+            $.modalAlert("Số điện thoại liên hệ bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#yzbm").val() === "") {
-            $.modalAlert("邮政编码必填", 'warning');
+            $.modalAlert("Mã bưu điện bắt buộc nhập", 'warning');
             return false;
         }
         return true;

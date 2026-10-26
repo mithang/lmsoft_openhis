@@ -3,67 +3,67 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 物资批次信息
+    /// Thông tin lô vật tư
     /// </summary>
     public class VProductBatchInfoEntity
     {
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 库存数量，最小单位
+        /// Số lượng tồn kho,Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 可用库存（kcsl-djsl），最小单位
+        /// Tồn kho khả dụng(kcsl-djsl),Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// 单位库存，部门单位
+        /// Tồn kho đơn vị,Đơn vị khoa phòng
         /// </summary>
         public string slstr { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// 生产日期
+        /// Ngày sản xuất
         /// </summary>
         public DateTime? scrq { get; set; }
 
         /// <summary>
-        /// 部门单位进价
+        /// Giá nhập đơn vị khoa phòng
         /// </summary>
         public decimal bmjj { get; set; }
 
         /// <summary>
-        /// 最小单位进价
+        /// Giá nhập đơn vị nhỏ nhất
         /// </summary>
         public decimal minjj { get; set; }
 
         /// <summary>
-        /// 进价总额
+        /// Tổng tiền nhập
         /// </summary>
         public decimal jjzje { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 进价单位单价
+        /// Đơn giá đơn vị giá nhập
         /// </summary>
         public string jjdwdj { get; set; }
     }

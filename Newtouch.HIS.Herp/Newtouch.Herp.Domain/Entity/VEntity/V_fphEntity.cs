@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 出入库单据主信息
+    /// Thông tin chính chứng từ nhập/xuất kho
     /// </summary>
     public class V_fphEntity
     {
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
         /// <summary>
-        /// 开票时间
+        /// Thời gian xuất hóa đơn
         /// </summary>
         public string kprq { get; set; }
         /// <summary>
@@ -24,7 +24,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         /// </summary>
         public string gysCode { get; set; }
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -15,7 +15,7 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>证照所属：</th>
+                        <th class="formTitle"><span class="required">*</span>Thuộc về giấy phép:</th>
                         <td class="formValue">
                             <select class="form-control" id="belongedId" onchange="changeBelonged()"></select>
                         </td>
@@ -24,25 +24,25 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>证照类型：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại giấy phép:</th>
                         <td class="formValue">
                             <select class="form-control" id="licenceTypeId"></select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>证照号：</th>
+                        <th class="formTitle"><span class="required">*</span>Số giấy phép:</th>
                         <td class="formValue">
-                            <input id="licenceNo" name="licenceNo" type="text" class="form-control required" placeholder="证照号" />
+                            <input id="licenceNo" name="licenceNo" type="text" class="form-control required" placeholder="Số giấy phép" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>对象名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên đối tượng:</th>
                         <td class="formValue">
-                            <input id="objectName" name="objectName" type="text" class="form-control required" placeholder="证照对象名称" />
+                            <input id="objectName" name="objectName" type="text" class="form-control required" placeholder="Tên đối tượng giấy phép" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>起效日期：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày có hiệu lực:</th>
                         <td class="formValue">
                             <input id="qxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
@@ -51,13 +51,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>失效日期：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày hết hiệu lực:</th>
                         <td class="formValue">
                             <input id="sxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
                         <td class="formValue" style="padding-left: 25px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -82,7 +82,7 @@
         }
     });
 
-    //回填input
+    //Điền trả lại input
     function fillInput(data) {
         $("#zt").attr("checked", data.zt === "1" ? true : false);
         if (data.fileUrl !== "") {
@@ -96,9 +96,9 @@
         $("#sxrq").val(data.sxrq.substring(0,10));
     }
 
-    //初始化
+    //Khởi tạo
     function Init() {
-        //加载所属
+        //Tải thuộc về
         $("#belongedId").bindSelect({
             url: "/LicenceManage/Licence/Getbelonged"
         });
@@ -116,13 +116,13 @@
                     && fileExt !== "xls" && fileExt !== "xlsx"
                     && fileExt !== "doc" && fileExt !== "docx"
                     && fileExt !== "pdf") {
-                    $.modalAlert("目前系统仅支持jpg、bmp、png、ppt、pptx、xlsx、docx、pdf后缀图片上传!", 'warning');
+                    $.modalAlert("Hiện tại hệ thống chỉ hỗ trợ jpg,bmp,png,ppt,pptx,xlsx,docx,pdf Tải lên hình ảnh hậu tố!", 'warning');
                     $("#fileUrl").val("");
                     $("#fileUpload").val("");
                     return false;
                 }
                 if (file.size/1024/2014 > @ViewData["maxSize"]) {
-                    $.modalAlert("文件大小不能超过"+@ViewData["maxSize"]+"M!", 'warning');
+                    $.modalAlert("Kích thước tệp không được vượt quá"+@ViewData["maxSize"]+"M!", 'warning');
                     $("#fileUrl").val("");
                     $("#fileUpload").val("");
                     return false;
@@ -131,25 +131,25 @@
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (ret) {
-                //预览图片
+                //Xem trước hình ảnh
                 $("#fileUrl").attr({ "src": reader.result });
             }
         });
     }
 
-    //切换所属 获取类型
+    //Chuyển thuộc về Lấy loại
     function changeBelonged() {
         var s = $("#belongedId").val();
         if (s !== "") {
             $("#licenceTypeId").html("");
-            //加载类型
+            //Tải loại
             $("#licenceTypeId").bindSelect({
                 url: "/LicenceManage/Licence/GetlicenceType?belonged=" + $("#belongedId").val()
             });
         }
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -182,30 +182,30 @@
         form.ajaxSubmit(options);
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#belongedId").val() === "") {
-            $.modalAlert("证照所属必选", 'warning');
+            $.modalAlert("Thuộc về giấy phép bắt buộc chọn", 'warning');
             return false;
         }
         if ($("#licenceTypeId").val() === "") {
-            $.modalAlert("证照类型必选", 'warning');
+            $.modalAlert("Loại giấy phép bắt buộc chọn", 'warning');
             return false;
         }
         if ($("#licenceNo").val() === "") {
-            $.modalAlert("证照号必填", 'warning');
+            $.modalAlert("Số giấy phép bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#objectName").val() === "") {
-            $.modalAlert("对象名必填", 'warning');
+            $.modalAlert("Tên đối tượng bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#qxrq").val() === "") {
-            $.modalAlert("起始日期不能为空", 'warning');
+            $.modalAlert("Ngày bắt đầu không được để trống", 'warning');
             return false;
         }
         if ($("#sxrq").val() === "") {
-            $.modalAlert("失效日期不能为空", 'warning');
+            $.modalAlert("Ngày hết hiệu lực không được để trống", 'warning');
             return false;
         }
         return true;

@@ -8,7 +8,7 @@ namespace Newtouch.Herp.Application.Interface
     public interface IProductApp
     {
         /// <summary>
-        /// 物资维护表单提交
+        /// Gui bieu mau bao tri vat tu
         /// </summary>
         /// <param name="wzProductEntity"></param>
         /// <param name="keyWord"></param>
@@ -16,14 +16,14 @@ namespace Newtouch.Herp.Application.Interface
         int SubmitForm(VProductInfoEntity wzProductEntity, string keyWord);
 
         /// <summary>
-        /// 上传图片
+        /// Tai len hinh anh
         /// </summary>
         /// <param name="file"></param>
-        /// <returns>图片上传路径</returns>
+        /// <returns>Duong dan tai len hinh anh</returns>
         string UploadImag(HttpPostedFileBase file);
 
         /// <summary>
-        /// 提交物资单位
+        /// Gui don vi vat tu
         /// </summary>
         /// <param name="rel"></param>
         /// <param name="organizeId"></param>

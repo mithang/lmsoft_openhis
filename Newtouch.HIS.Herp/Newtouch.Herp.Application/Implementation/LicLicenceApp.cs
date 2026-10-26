@@ -7,15 +7,15 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 证照管理
+    /// Quản lý giấy phép
     /// </summary>
     public class LicLicenceApp : AppBase, ILicLicenceApp
     {
         /// <summary>
-        /// 上传图片
+        /// Tải lên hình ảnh
         /// </summary>
         /// <param name="file"></param>
-        /// <returns>图片上传路径</returns>
+        /// <returns>Đường dẫn tải lên hình ảnh</returns>
         public string UploadFile(HttpPostedFileBase file)
         {
             try
@@ -42,7 +42,7 @@ namespace Newtouch.Herp.Application.Implementation
         #region private function
 
         /// <summary>
-        /// 图片效验
+        /// Kiểm tra hình ảnh
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 类型验证
+        /// Kiểm tra loại
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 大小验证
+        /// Kiểm tra kích thước
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>

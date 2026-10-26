@@ -4,12 +4,12 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 采购订单
+    /// Đơn đặt mua hàng
     /// </summary>
     public interface IPurchasingOrderApp
     {
         /// <summary>
-        /// 提交采购订单
+        /// Gửi đơn đặt mua hàng
         /// </summary>
         /// <param name="cgmx"></param>
         /// <param name="userCode"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Application.Interface
         string SubmitGeneratingPurchaseOrder(List<VCgPurchaseOrderDetailEntity> cgmx, string userCode, string organizeId, string remark);
 
         /// <summary>
-        /// 审核采购单
+        /// Duyệt đơn mua hàng
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="auditState"></param>

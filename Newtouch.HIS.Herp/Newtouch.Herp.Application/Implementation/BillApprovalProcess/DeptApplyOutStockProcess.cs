@@ -15,7 +15,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 科室申领出库
+    /// Xuất kho lĩnh vật tư khoa
     /// </summary>
     public class DeptApplyOutStockProcess : ProcessorFun<DjInfDTO>
     {
@@ -30,7 +30,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 效验
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -43,7 +43,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="actResult"></param>
         protected override void Action(ActResult actResult)
@@ -53,7 +53,7 @@ namespace Newtouch.Herp.Application.Implementation
                 if (_crkdjRepo.Insert(Request.crkdj) <= 0) throw new FailedException("生成出入库单失败");
                 using (var db = new EFDbTransaction(new DefaultDatabaseFactory()).BeginTrans())
                 {
-                    #region 保存出入库单
+                    #region Lưu phiếu nhập/xuất kho
                     Request.crkdjmx.ForEach(p =>
                     {
                         p.crkId = Request.crkdj.Id;
@@ -61,13 +61,13 @@ namespace Newtouch.Herp.Application.Implementation
                     });
                     #endregion
 
-                    #region 库存变更
+                    #region Thay đổi tồn kho
                     var updateKcslParam = AssembleUpdateKcslDTO();
                     var subtractKcslResult = iKfKcxxDmnService.JustSubtractKcslNoTrans(updateKcslParam, db);
                     if (!string.IsNullOrWhiteSpace(subtractKcslResult)) throw new Exception(subtractKcslResult);
                     #endregion
 
-                    #region 变更申领单状态
+                    #region Thay đổi trạng thái phiếu lĩnh
                     foreach (var sldh in Request.applyBillDetail.Select(p => p.sldh).Distinct())
                     {
                         var abd = Request.applyBillDetail.FindAll(p => p.sldh == sldh);
@@ -115,7 +115,7 @@ WHERE Id=@sldmxId AND zt='1'
 
 
         /// <summary>
-        /// 组装修改库存DTO
+        /// Lắp ráp sửa tồn kho DTO
         /// </summary>
         /// <returns></returns>
         private List<UpdateKcslDTO> AssembleUpdateKcslDTO()

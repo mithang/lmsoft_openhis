@@ -18,7 +18,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.DomainServices.Product
 {
     /// <summary>
-    /// 物资调价信息
+    /// Thông tin điều chỉnh giá vật tư
     /// </summary>
     public class WzPriceAdjustmentDmnService : DmnServiceBase, IWzPriceAdjustmentDmnService
     {
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.DomainServices.Product
         }
 
         /// <summary>
-        /// 获取调价信息
+        /// Lấy thông tin điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -65,7 +65,7 @@ AND (pa.zxbz=@zxbz OR ''=@zxbz)
         }
 
         /// <summary>
-        /// 审核调价
+        /// Duyệt điều chỉnh giá
         /// </summary>
         /// <param name="idList"></param>
         /// <param name="operationType"></param>
@@ -113,7 +113,7 @@ WHERE pa.wztjId=@Id AND pa.zxbz=@zxbz AND pa.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获取调价损益信息
+        /// Lấy thông tin lãi/lỗ điều chỉnh giá
         /// </summary>
         /// <param name="wztjId"></param>
         /// <param name="productId"></param>
@@ -150,7 +150,7 @@ AND tj.wztjId=@Id
         }
 
         /// <summary>
-        /// 调价执行
+        /// Thực hiện điều chỉnh giá
         /// </summary>
         /// <param name="tjInfo"></param>
         /// <returns></returns>
@@ -159,9 +159,9 @@ AND tj.wztjId=@Id
             var oldzxsj = DateTime.Now.AddDays(1);
             try
             {
-                if (_wzProductDmnService.UpdateProductPrice(tjInfo.productId, tjInfo.lsj, tjInfo.tzczy, tjInfo.OrganizeId) > 0)// 第一步 修改物资零售价
+                if (_wzProductDmnService.UpdateProductPrice(tjInfo.productId, tjInfo.lsj, tjInfo.tzczy, tjInfo.OrganizeId) > 0)// Bước đầu tiên Sửa giá bán lẻ vật tư
                 {
-                    #region  第二步 修改调价执行标志
+                    #region  Bước thứ hai Sửa cờ thực hiện điều chỉnh giá
                     var executeTime = DateTime.Now;
                     tjInfo.zxbz = ((int)EnumTjZxbz.Already).ToString();
                     oldzxsj = tjInfo.zxsj;
@@ -171,7 +171,7 @@ AND tj.wztjId=@Id
                     if (_wzPriceAdjustmentRepo.Update(tjInfo) <= 0) throw new FailedException("2", "修改调价执行标志失败");
                     #endregion
 
-                    #region 第三步 新增调价利润
+                    #region Bước thứ ba Thêm lợi nhuận điều chỉnh giá
                     var lrList = GetPriceAdjustmentProfitLoss(tjInfo.wztjId, tjInfo.productId, tjInfo.OrganizeId);
                     var tjlrList = new List<WzPriceAdjustmentProfitAndLossEntity>();
                     if (lrList != null && lrList.Count > 0)
@@ -223,7 +223,7 @@ AND tj.wztjId=@Id
         }
 
         /// <summary>
-        /// 取消调价执行
+        /// Hủy thực hiện điều chỉnh giá
         /// </summary>
         /// <param name="ex"></param>
         /// <param name="oldzxsj"></param>
@@ -250,13 +250,13 @@ AND tj.wztjId=@Id
         }
 
         /// <summary>
-        /// 获取调价历史信息
+        /// Lấy thông tin lịch sử điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
         /// <param name="organizeId"></param>
-        /// <param name="bt">开始时间</param>
-        /// <param name="et">结束时间</param>
+        /// <param name="bt">Thời gian bắt đầu</param>
+        /// <param name="et">Thời gian kết thúc</param>
         /// <param name="warehouseId"></param>
         /// <returns></returns>
         public IList<VPriceAdjustmentInfoEntity> GetPriceAdjustmentHistoryList(Pagination pagination, string keyWord, string organizeId, DateTime bt, DateTime et, string warehouseId)
@@ -292,7 +292,7 @@ AND pa.warehouseId=@warehouseId
         }
 
         /// <summary>
-        /// 获取调价损益信息
+        /// Lấy thông tin lãi/lỗ điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchDto"></param>

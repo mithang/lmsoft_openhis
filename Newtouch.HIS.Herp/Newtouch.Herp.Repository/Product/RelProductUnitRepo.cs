@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库存单位关联
+    /// Liên kết đơn vị tồn kho
     /// </summary>
     public class RelProductUnitRepo : RepositoryBase<RelProductUnitEntity>, IRelProductUnitRepo
     {

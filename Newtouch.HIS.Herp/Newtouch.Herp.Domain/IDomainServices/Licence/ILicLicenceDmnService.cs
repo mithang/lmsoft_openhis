@@ -5,12 +5,12 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 证照维护
+    /// Bảo trì giấy phép
     /// </summary>
     public interface ILicLicenceDmnService
     {
         /// <summary>
-        /// 获取证照类型
+        /// Lấy loại giấy phép
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         IList<VLicLicenceTypeEntity> GetLicenceTypeList(Pagination pagination, string keyWord = "");
 
         /// <summary>
-        /// 获取证照列表
+        /// Lấy danh sách giấy phép
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>

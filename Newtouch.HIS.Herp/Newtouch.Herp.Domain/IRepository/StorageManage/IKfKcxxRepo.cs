@@ -5,13 +5,13 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库存信息
+    /// Thong tin ton kho
     /// </summary>
     public interface IKfKcxxRepo : IRepositoryBase<KfKcxxEntity>
     {
 
         /// <summary>
-        /// 查询库存信息
+        /// Tra cuu thong tin ton kho
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="productId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Domain.IRepository
         List<KfKcxxEntity> SelectData(string warehouseId, string productId);
 
         /// <summary>
-        /// 修改库存状态
+        /// Sua trang thai ton kho
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="ph"></param>

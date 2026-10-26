@@ -3,12 +3,12 @@
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 物资收费项目对照
+    /// Đối chiếu khoản thu vật tư
     /// </summary>
     public interface IRelProductAndsfxmApp
     {
         /// <summary>
-        /// 提交物资收费项目对照
+        /// Gửi đối chiếu khoản thu vật tư
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>

@@ -9,7 +9,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 申领单明细
+    /// Chi tiết phiếu lĩnh
     /// </summary>
     public class KfApplyOrderDetailRepo : RepositoryBase<KfApplyOrderDetailEntity>, IKfApplyOrderDetailRepo
     {
@@ -18,10 +18,10 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 修改已发数量
+        /// Sửa số lượng đã phát
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">部门单位数量，与表kf_applyOrderDetail.zhyz*sl=最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng,Với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         public int UpdateYfsl(long id, int sl)
         {
@@ -39,10 +39,10 @@ WHERE Id=@sldmxId AND zt='1'
         }
 
         /// <summary>
-        /// 修改已发数量，并返回变更记录
+        /// Sửa số lượng đã phát,Và trả về bản ghi thay đổi
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">部门单位数量，与表kf_applyOrderDetail.zhyz*sl=最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng,Với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         public KfApplyOrderDetailEntity UpdateYfslAndSelectChangeRecord(long id, int sl)
         {
@@ -61,7 +61,7 @@ SELECT * FROM dbo.kf_applyOrderDetail(NOLOCK) WHERE Id=@sldmxId AND zt='1'
         }
 
         /// <summary>
-        /// 获取申领单明细信息
+        /// Lấy thông tin chi tiết phiếu lĩnh
         /// </summary>
         /// <param name="sldh"></param>
         /// <param name="organizeId"></param>

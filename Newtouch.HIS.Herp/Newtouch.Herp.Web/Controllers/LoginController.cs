@@ -17,14 +17,14 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Controllers
 {
     /// <summary>
-    /// 登录登出
+    /// Đăng nhập/đăng xuất
     /// </summary>
     public class LoginController : FrameworkBase.MultiOrg.Web.Controllers.LoginController
     {
         private readonly IWarehouseDmnService _warehouseDmnService;
 
         /// <summary>
-        /// 登出
+        /// Đăng xuất
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,7 +40,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 保存预处理
+        /// Lưu tiền xử lý
         /// </summary>
         /// <param name="opr"></param>
         public override void OprBeforeSave(OperatorModel opr)
@@ -82,10 +82,10 @@ namespace Newtouch.Herp.Web.Controllers
             }
         }
 
-        #region 统一授权登录
+        #region Đăng nhập ủy quyền thống nhất
 
         /// <summary>
-        /// 统一授权登录
+        /// Đăng nhập ủy quyền thống nhất
         /// </summary>
         /// <param name="access_token"></param>
         /// <param name="returnUrl"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.Herp.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login");  //缺少令牌
+                return RedirectToAction("Index", "Login");  //Thiếu mã thông báo
             }
 
             var eOpr = OperatorProvider.GetCurrent();
@@ -112,9 +112,9 @@ namespace Newtouch.Herp.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login");  //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login");  //Chưa cấu hình đổi danh tính API Địa chỉ
             }
-            //向API请求换取身份
+            //đến API Yêu cầu đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -129,7 +129,7 @@ namespace Newtouch.Herp.Web.Controllers
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login");  //身份换取失败
+                return RedirectToAction("Index", "Login");  //Đổi danh tính thất bại
             }
             sw.Start();
             string account = "", organizeId = "";
@@ -156,7 +156,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权获取跳转地址
+        /// Lấy địa chỉ chuyển hướng ủy quyền thống nhất
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -184,7 +184,7 @@ namespace Newtouch.Herp.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //视为null
+                    addr = null;    //Được coi là null
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());

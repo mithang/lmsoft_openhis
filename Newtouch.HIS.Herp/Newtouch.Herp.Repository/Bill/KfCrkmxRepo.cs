@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 出入库单据明细
+    /// Chi tiết chứng từ nhập/xuất kho
     /// </summary>
     public class KfCrkmxRepo : RepositoryBase<KfCrkmxEntity>, IKfCrkmxRepo
     {
@@ -15,7 +15,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 修改发票号
+        /// Sửa số hóa đơn
         /// </summary>
         /// <param name="crkmxId"></param>
         /// <param name="fph"></param>

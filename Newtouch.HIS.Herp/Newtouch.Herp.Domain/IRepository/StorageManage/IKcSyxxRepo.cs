@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库存损益
+    /// Lãi/lỗ tồn kho
     /// </summary>
     public interface IKcSyxxRepo : IRepositoryBase<KcSyxxEntity>
     {

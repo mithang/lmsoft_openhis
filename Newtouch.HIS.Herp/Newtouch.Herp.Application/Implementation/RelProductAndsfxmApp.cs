@@ -6,14 +6,14 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 物资收费项目对照
+    /// Đối chiếu khoản thu vật tư
     /// </summary>
     public class RelProductAndsfxmApp : AppBase, IRelProductAndsfxmApp
     {
         private readonly IRelProductAndsfxmRepo _relProductAndsfxmRepo;
 
         /// <summary>
-        /// 提交物资收费项目对照
+        /// Gửi đối chiếu khoản thu vật tư
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -22,7 +22,7 @@ namespace Newtouch.Herp.Application.Implementation
             if (entity == null) return "提交内容不能为空";
             if (string.IsNullOrWhiteSpace(entity.Id))
             {
-                //新增
+                //Thêm mới
                 var oldEntitis = _relProductAndsfxmRepo.IQueryable(p => p.OrganizeId == entity.OrganizeId && p.sfdlCode == entity.sfdlCode && p.productId == entity.productId);
                 if (oldEntitis != null && oldEntitis.Any()) return "已存在相同关联关系，不能重复提交";
                 entity.Create(true);

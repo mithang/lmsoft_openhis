@@ -1,17 +1,17 @@
 ﻿namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 盘点时间
+    /// Thời gian kiểm kê
     /// </summary>
     public class VInventoryDateDropDownEntity
     {
         /// <summary>
-        /// 盘点ID
+        /// Kiểm kê ID
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// 盘点时间
+        /// Thời gian kiểm kê
         /// </summary>
         public string pdsj { get; set; }
     }

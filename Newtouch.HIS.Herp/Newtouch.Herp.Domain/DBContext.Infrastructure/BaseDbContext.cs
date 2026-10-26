@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF.Conventions;
 namespace Newtouch.Herp.Domain.DBContext.Infrastructure
 {
     /// <summary>
-    /// 基础库
+    /// Thư viện cơ sở
     /// </summary>
     public class BaseDbContext : DbContextBase
     {

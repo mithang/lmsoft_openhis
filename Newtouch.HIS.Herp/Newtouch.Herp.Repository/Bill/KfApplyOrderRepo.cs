@@ -8,7 +8,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 申领单
+    /// Phiếu lĩnh
     /// </summary>
     public class KfApplyOrderRepo: RepositoryBase<KfApplyOrderEntity>, IKfApplyOrderRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 查询申领单住信息
+        /// Tra cứu thông tin chính phiếu lĩnh
         /// </summary>
         /// <param name="sldh"></param>
         /// <param name="organizeId"></param>

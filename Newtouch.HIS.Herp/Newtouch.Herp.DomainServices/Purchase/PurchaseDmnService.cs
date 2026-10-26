@@ -71,29 +71,29 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
         {
             try
             {
-                //更新
+                //Cập nhật
                 if (cgEntity.cgId != null)
                 {
-                    //更新采购列表
+                    //Cập nhật danh sách mua hàng
                     //string sql = "delete from zy_ksbyth where Id=@Id and OrganizeId=@orgId and zt='1' ";
                     //SqlParameter[] para = {
                     //        new SqlParameter("@Id", Djnr.isdeldj),
                     //        new SqlParameter("@orgId", orgId) };
                     //ExecuteSqlCommand(sql, para);
 
-                    //删除采购明细
+                    //Xóa chi tiết mua hàng
                     string sql2 = "delete from xt_wz_cgmx where cgId=@cgId and OrganizeId=@orgId and zt='1' ";
                     SqlParameter[] para2 = {
                             new SqlParameter("@cgId", cgEntity.cgId),
                             new SqlParameter("@orgId", orgId) };
                     ExecuteSqlCommand(sql2, para2);
-                    //再添加采购明细
+                    //Thêm chi tiết mua hàng lại
                     return "采购单据修改成功!";
                 }
 
                 //if (Djnr.issavesubmit == "1")
                 //{
-                //    shzt = "2";//提交
+                //    shzt = "2";//Gửi
                 //    tjsj = DateTime.Now.Date;
                 //}
                 //var request = new
@@ -103,7 +103,7 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
                 //    yplist = Djnr
                 //};
 
-                //新增
+                //Thêm mới
                 else
                 {
                     using (var db = new EFDbTransaction(_databaseFactory).BeginTrans())
@@ -112,7 +112,7 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
                         //cgEntity.OrganizeId = orgId;
                         //cgEntity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm");
                         //cgEntity.ddbh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("xt_cg_ddbh", orgId, "{0:D4}", true);
-                        //cgEntity.ddzt = 1; //1已保存
+                        //cgEntity.ddzt = 1; //1 Đã lưu
                         //cgEntity.zt = "1";
                         //cgEntity.CreatorCode = user.rygh;
                         //cgEntity.CreateTime = DateTime.Now;
@@ -125,7 +125,7 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
                             OrganizeId = orgId,
                             ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm"),
                             ddbh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("xt_cg_ddbh", orgId, "{0:D4}", true),
-                            ddzt = 1,//1已保存
+                            ddzt = 1,//1 Đã lưu
                             zt = "1",
                             CreatorCode = user.rygh,
                             CreateTime = DateTime.Now,
@@ -160,14 +160,14 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
                 //    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request, autoAppendToken: false);
                 //    if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                 //    {
-                //        return "保存并提交成功！";
+                //        return "Lưu và gửi thành công!";
                 //    }
                 //    else
                 //    {
-                //        return "调用药房接口失败，请联系开发人员！";
+                //        return "Gọi giao diện nhà thuốc thất bại,Vui lòng liên hệ nhân viên phát triển!";
                 //    }
                 //}
-                //return "科室备药退回保存成功！";
+                //return "Lưu trả thuốc dự trữ khoa thành công!";
             }
             catch (Exception ex)
             {
@@ -175,7 +175,7 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
             }
         }
 
-        #region 采购退货
+        #region Trả hàng mua hàng
 
         public List<ReturnedEntity> QueryPurchaseReturnbyId(string thId, string orgId)
         {
@@ -225,7 +225,7 @@ left join gys_supplier gys on thmx.qybm=gys.py and thmx.OrganizeId=gys.OrganizeI
 
         #endregion
 
-        #region 外部入库 导入采购单
+        #region Nhập kho ngoài Nhập đơn mua hàng
         public List<PurchaseStoreVO> QueryPurchaseStorebyId(string cgId, string orgId, string warehouseId)
         {
             var strSql = new StringBuilder(@"

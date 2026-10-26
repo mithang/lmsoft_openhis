@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -22,58 +22,58 @@
 <form id="form1">
     <div class="container" style="padding:0;">
         <ul class="nav nav-tabs" role="tablist" id="tab">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab" style="width: 80px;">基本信息</a></li>
-            <li role="presentation"><a href="#department" role="tab" data-toggle="tab">科室</a></li>
-            <li role="presentation"><a href="#staff" role="tab" data-toggle="tab">人员</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab" style="width: 80px;">Thông tin cơ bản</a></li>
+            <li role="presentation"><a href="#department" role="tab" data-toggle="tab">Khoa</a></li>
+            <li role="presentation"><a href="#staff" role="tab" data-toggle="tab">Nhân viên</a></li>
         </ul>
         <div class="tab-content" style="margin-top:10px;">
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active" style="padding-right:10px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">上级：</th>
+                        <th class="formTitle">Cấp trên:</th>
                         <td class="formValue">
                             <select id="parentId" name="parentId" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên:</th>
                         <td class="formValue">
-                            <input id="name" name="name" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="name" name="name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>首拼：</th>
+                        <th class="formTitle"><span class="required">*</span>Chữ đầu phiên âm:</th>
                         <td class="formValue">
                             <input id="py" name="py" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>等级：</th>
+                        <th class="formTitle"><span class="required">*</span>Cấp:</th>
                         <td class="formValue">
-                            @Html.DropDownList("level", EnumWarehouseLevel.OneLevel.ToDescSelectList(), "==请选择==", new { @class = "form-control form-an" })
+                            @Html.DropDownList("level", EnumWarehouseLevel.OneLevel.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control form-an" })
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">排序：</th>
+                        <th class="formTitle">Sắp xếp:</th>
                         <td class="formValue">
-                            <input id="px" name="px" type="text" class="form-control" placeholder="请输入排序" />
+                            <input id="px" name="px" type="text" class="form-control" placeholder="Vui lòng nhập thứ tự sắp xếp" />
                         </td>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                             <div class="ckbox" style="margin-left:20px;">
-                                <input id="isDefSyn" name="isDefSyn" type="checkbox"><label for="isDefSyn">默认同步</label>
+                                <input id="isDefSyn" name="isDefSyn" type="checkbox"><label for="isDefSyn">Đồng bộ mặc định</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">地址：</th>
+                        <th class="formTitle">Địa chỉ:</th>
                         <td class="formValue" colspan="3">
                             <textarea id="address" name="Icon" type="text" class="form-control" style="height: 30px;"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">备注：</th>
+                        <th class="formTitle">Ghi chú:</th>
                         <td class="formValue" colspan="3">
                             <textarea id="remark" name="remark" type="text" class="form-control" style="height: 30px;"></textarea>
                         </td>
@@ -105,7 +105,7 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function initControl() {
         $("#parentId").bindSelect({
             url: "/WarehouseManage/Warehouse/GetPatientTreeSelectJson"
@@ -128,7 +128,7 @@
         });
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -146,14 +146,14 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#name").val() === "") {
-            $.modalAlert("库房名称必填", 'warning');
+            $.modalAlert("Tên kho bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#level").val() === "") {
-            $.modalAlert("等级必选", 'warning');
+            $.modalAlert("Cấp bắt buộc chọn", 'warning');
             return false;
         }
         return true;

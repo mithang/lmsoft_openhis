@@ -8,7 +8,7 @@ using Newtouch.Herp.Domain.DTO.InputDto;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 盘点明细
+    /// Chi tiết kiểm kê
     /// </summary>
     public class KcPdxxmxRepo : RepositoryBase<KcPdxxmxEntity>, IKcPdxxmxRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 盘点保存时 变更数量
+        /// Khi lưu kiểm kê Số lượng thay đổi
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList)
@@ -36,7 +36,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 盘点保存时 变更数量
+        /// Khi lưu kiểm kê Số lượng thay đổi
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfoNoPc(List<SaveInventoryDTO> inventoryInfoList)

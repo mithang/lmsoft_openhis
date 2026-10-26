@@ -8,14 +8,14 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 采购订单
+    /// Đơn đặt mua hàng
     /// </summary>
     public class PurchasingOrderApp : AppBase, IPurchasingOrderApp
     {
         private readonly ICgOrderRepo _cgOrderRepo;
 
         /// <summary>
-        /// 提交采购订购单
+        /// Gửi đơn đặt mua hàng
         /// </summary>
         /// <param name="cgmx"></param>
         /// <param name="userCode"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 审核采购单
+        /// Duyệt đơn mua hàng
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="orderType"></param>

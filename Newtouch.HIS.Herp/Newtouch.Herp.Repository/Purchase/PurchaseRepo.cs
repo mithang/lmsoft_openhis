@@ -27,7 +27,7 @@ where zt=1 and organizeId=@OrganizeId
 and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
             if (ddzt != 0)
             {
-                sql += " and ddzt=@ddzt";//已传报
+                sql += " and ddzt=@ddzt";//Đã báo cáo
             }
             var parms = new List<SqlParameter>
             {
@@ -60,7 +60,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         }
 
         /// <summary>
-        /// 更新采购单的订单编号
+        /// Cập nhật Số đơn hàng của đơn mua hàng
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddbh"></param>
@@ -95,7 +95,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
                 entity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm");
                 //entity.ddbh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("xt_cg_ddbh", entity.OrganizeId, "{0:D4}", true);
                 entity.yyjhdh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("xt_cg_ddbh", entity.OrganizeId, "{0:D4}", true);
-                entity.ddzt = 1; //1已保存
+                entity.ddzt = 1; //1 Đã lưu
                 //entity.zt = "1";
                 //entity.CreatorCode = user.rygh;
                 //entity.CreateTime = DateTime.Now;

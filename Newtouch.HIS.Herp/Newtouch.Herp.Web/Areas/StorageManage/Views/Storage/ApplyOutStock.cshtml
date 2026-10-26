@@ -3,7 +3,7 @@
 @using Newtouch.HIS.Web.Core.Extensions;
 @using Newtouch.Tools;
 @{
-    ViewBag.Title = "申领出库";
+    ViewBag.Title = "Xuất kho lĩnh";
     Layout = "~/Views/Shared/_Index.cshtml";
     var applyProcess = new StringBuilder().Append((int)EnumApplyProcess.AuditApproved).Append(",").Append((int)EnumApplyProcess.Distributing).Append(",").Append((int)EnumApplyProcess.PartialCompletion);
 }
@@ -72,35 +72,35 @@
 
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">筛选信息</div>
+        <div class="panel-heading">Thông tin lọc</div>
         <table class="form">
             <tr>
-                <td class="formTitle">申领单号：</td>
+                <td class="formTitle">Số phiếu lĩnh:</td>
                 <td class="formValue">
-                    <input type="text" id="djh" name="djh" class="form-control" placeholder="请输入申领单号" />
+                    <input type="text" id="djh" name="djh" class="form-control" placeholder="Vui lòng nhập Số phiếu lĩnh" />
                 </td>
-                <td class="formTitle">申领状态：</td>
+                <td class="formTitle">Trạng thái lĩnh:</td>
                 <td class="formValue">
-                    @Html.DropDownList("applyProcess", EnumApplyProcess.Waiting.ToSomeDescSelectList(applyProcess.ToString()), "全部", new { @class = "form-control" })
+                    @Html.DropDownList("applyProcess", EnumApplyProcess.Waiting.ToSomeDescSelectList(applyProcess.ToString()), "Tất cả", new { @class = "form-control" })
                 </td>
-                <th class="formTitle">单据类型：</th>
+                <th class="formTitle">Loại chứng từ:</th>
                 <td class="formValue" style="width: 110px;">
-                    @Html.DropDownList("applyType", EnumApplyType.DepartmentApply.ToDescSelectList(), "全部", new { @class = "form-control" })
+                    @Html.DropDownList("applyType", EnumApplyType.DepartmentApply.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
-                <td class="formTitle">申领部门：</td>
+                <td class="formTitle">Khoa lĩnh:</td>
                 <td class="formValue" style="width: 200px;">
-                    <select id="slbm" name="slbm" class="form-control"><option value="">全部</option></select>
+                    <select id="slbm" name="slbm" class="form-control"><option value="">Tất cả</option></select>
                 </td>
                 <td class="formTitle" rowspan="2">
-                    <input type="button" class="btn btn-primary btn-md" value="查询" id="btn_search" />
+                    <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>申请日期：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày đăng ký:</th>
                 <td class="formValue" style="width:130px;">
                     <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>到：</th>
+                <th class="formTitle"><span class="required">*</span>Đến:</th>
                 <td class="formValue">
                     <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                 </td>
@@ -120,7 +120,7 @@
         @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
         {
             ShowKeyList = new[] { 8 },
-            F8Text = "发药"
+            F8Text = "Phát thuốc"
         })
     </div>
 </form>
@@ -141,7 +141,7 @@
             $("#dv_right").css("z-index", 101);
         });
         $("#applyType").change(function () {
-            $("#slbm").html("<option value=''>全部</option>");
+            $("#slbm").html("<option value=''>Tất cả</option>");
             switch ($(this).val()) {
                 case "@((int)EnumApplyType.DepartmentApply)":
                     bindDeptmentSelecotr();
@@ -156,7 +156,7 @@
         $("#applyType").trigger("change");
     });
 
-    //科室绑定
+    //Gắn kết khoa
     function bindDeptmentSelecotr() {
         $.najax({
             url: "/WarehouseManage/Warehouse/GetDeptmentSelecotrTree",
@@ -171,7 +171,7 @@
         });
     }
 
-    //部门绑定
+    //Gắn kết khoa phòng
     function bindWarehouseSelecotr() {
         $.najax({
             url: "/WarehouseManage/Warehouse/GetPatientTreeSelectJson",
@@ -186,23 +186,23 @@
         });
     }
 
-    //回车事件绑定
+    //Gắn sự kiện Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //左侧，申请单区
+    //Bên trái,Vùng đơn đăng ký
     function gridList() {
         $gridList.dataGrid({
-            caption: "申领信息",
+            caption: "Thông tin lĩnh",
             url: "/ApplyBill/ApplyBillInfoQueryV2",
             height: $(window).height() - 220,
             postData: getSearchPostData(),
             colModel: [
                 {
-                    label: '处理状态', name: 'applyProcess', width: 60, align: 'center', formatter: function (val) {
+                    label: 'Trạng thái xử lý', name: 'applyProcess', width: 60, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumApplyProcess.Waiting):
                             return "@EnumApplyProcess.Waiting.GetDescription()";
@@ -224,7 +224,7 @@
                     }
                 },
                 {
-                    label: '入库库房/科室', name: 'rkbmmc', width: 80, align: 'center', formatter: function (val, options, rowObject) {
+                    label: 'Kho nhập kho/Khoa', name: 'rkbmmc', width: 80, align: 'center', formatter: function (val, options, rowObject) {
                         if (rowObject != null) {
                             switch (rowObject.applyType) {
                             case @((int)EnumApplyType.DepartmentApply):
@@ -238,7 +238,7 @@
                     }
                 },
                 {
-                    label: '单据类型', name: 'applyType', width: 65, align: 'center', formatter: function (val) {
+                    label: 'Loại chứng từ', name: 'applyType', width: 65, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumApplyType.DepartmentApply):
                             return "@EnumApplyType.DepartmentApply.GetDescription()";
@@ -249,9 +249,9 @@
                         }
                     }
                 },
-                { label: '单据号', name: 'sldh', width: 130, align: 'center' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '创建人', name: 'CreatorName', width: 70, align: 'center' }
+                { label: 'Số chứng từ', name: 'sldh', width: 130, align: 'center' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Người tạo', name: 'CreatorName', width: 70, align: 'center' }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -279,7 +279,7 @@
         });
     }
 
-    //组装查询条件
+    //Lắp ráp điều kiện tra cứu
     function getSelectRowPostData() {
         var allCheckedTr = $(":checkbox:checked").parents("tr");
         var ids = "";
@@ -296,7 +296,7 @@
         return { sldIds: ids };
     };
 
-    //组装查询条件
+    //Lắp ráp điều kiện tra cứu
     function getSearchPostData() {
         var applyProcess = $("#applyProcess").val();
         var applyType = $("#applyType").val();
@@ -309,28 +309,28 @@
         return { kssj: kssj, jssj: jssj, pdh: pdh, applyType: applyType, applyProcess: applyProcess, slbm: slbm, applyProcesses:"@applyProcess" };
     };
 
-    //右侧，明细区域
+    //Bên phải,Vùng chi tiết
     function productGridList() {
         $ProductGridList.dataGrid({
-            caption: "申领明细",
+            caption: "Chi tiết lĩnh",
             url: "",
             height: $(window).height() - 265,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
-                { label: '现发数量', name: 'xfsl', width: 55, align: 'center', editable: true, editwidth:"88%"},
-                { label: '单位', name: 'bmdwmc', width: 40, align: 'left' },
-                { label: '已发数量', name: 'yfslStr', width: 55, align: 'right' },
-                { label: '申领数量', name: 'slStr', width: 55, align: 'right' },
-                { label: '现有库存', name: 'kyslStr', width: 80, align: 'center' },
-                { label: '物资名称', name: 'wzmc', width: 110, align: 'left' },
-                { label: '规格', name: 'gg', width: 110, align: 'left' },
-                { label: '品牌', name: 'brand', width: 110, align: 'left' },
-                { label: "申领单号", name: "sldh", width: 130, align: 'center' },
+                { label: 'Số lượng phát hiện tại', name: 'xfsl', width: 55, align: 'center', editable: true, editwidth:"88%"},
+                { label: 'Đơn vị', name: 'bmdwmc', width: 40, align: 'left' },
+                { label: 'Số lượng đã phát', name: 'yfslStr', width: 55, align: 'right' },
+                { label: 'Số lượng lĩnh', name: 'slStr', width: 55, align: 'right' },
+                { label: 'Tồn kho hiện có', name: 'kyslStr', width: 80, align: 'center' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 110, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 110, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 110, align: 'left' },
+                { label: "Số phiếu lĩnh", name: "sldh", width: 130, align: 'center' },
                 { label: "sldmxId", name: "sldmxId", hidden: true },
                 { label: 'zhyz', name: 'zhyz', hidden: true },
                 { label: "sldId", name: "sldId", hidden: true },
                 { label: 'productId', name: 'productId', hidden: true },
-                { label: 'bmdwsysl', name: 'bmdwsysl', hidden: true },//剩余待发数量 初次加载与xfsl相同
+                { label: 'bmdwsysl', name: 'bmdwsysl', hidden: true },//Số lượng chờ phát còn lại Tải lần đầu và xfsl Giống nhau
                 { label: 'kykcsl', name: 'kykcsl', hidden: true },
                 { label: 'sl', name: 'sl', hidden: true },
                 { label: 'bmdwId', name: 'bmdwId', hidden: true },
@@ -349,33 +349,33 @@
         });
     }
 
-    //行编辑验证
+    //Kiểm tra chỉnh sửa dòng
     function RowDataValidate(rowid){
-        $ProductGridList.saveRow(rowid, function (result) { }); //先保存处于编辑状态的那一行
+        $ProductGridList.saveRow(rowid, function (result) { }); //Lưu trước dòng đang ở trạng thái chỉnh sửa
         var rowData = $ProductGridList.getRowData(rowid);
-        var reg = /^[1-9]\d*$/;//大于0的整数
+        var reg = /^[1-9]\d*$/;//Lớn hơn 0 số nguyên
         if (!reg.test(rowData.xfsl)) {
-            $.modalMsg("发药数量必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Số lượng phát thuốc phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var xfsl = parseInt(rowData.xfsl);
         var zhyz = parseInt(rowData.zhyz);
         if (xfsl - parseInt(rowData.bmdwsysl) > 0) {
-            $.modalMsg("现发数量不可大于" + rowData.bmdwsysl + "！", 'warning', 1500);
+            $.modalMsg("Số lượng phát hiện tại không được lớn hơn" + rowData.bmdwsysl + "!", 'warning', 1500);
             return false;
         }
         if ((xfsl * zhyz - parseInt(rowData.kykcsl) > 0)) {
-            $.modalMsg("现发数量不可大于可用库存！", 'warning', 1500);
+            $.modalMsg("Số lượng phát hiện tại không được lớn hơn tồn kho khả dụng!", 'warning', 1500);
             return false;
         }
         return true;
     }
 
-    //发货
+    //Giao hàng
     function newtouch_event_f8() {
         var rowIds = $ProductGridList.getDataIDs();
         if (rowIds == undefined || rowIds.length <= 0) {
-            $.modalMsg("请选择出库单据！", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn chứng từ xuất kho!", 'warning', 1500);
             return false;
         }
         var ckmx = [];
@@ -385,7 +385,7 @@
             if (rowData != null) ckmx.push(rowData);
         });
         if (ckmx.length <= 0) {
-            $.modalMsg("未找到有效的出库明细！", 'warning', 1500);
+            $.modalMsg("Không tìm thấy chi tiết xuất kho hiệu lực!", 'warning', 1500);
             return false;
         }
         $.najax({
@@ -395,7 +395,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg('发药成功', 'success', 1000);
+                    $.modalMsg('Phát thuốc thành công', 'success', 1000);
                     $gridList.trigger("reloadGrid");
                     $ProductGridList.jqGrid("clearGridData");
                 } else if (res.state === "error") {

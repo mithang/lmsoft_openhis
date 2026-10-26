@@ -16,7 +16,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 物资维护
+    /// Bảo trì vật tư
     /// </summary>
     public class ProductApp : AppBase, IProductApp
     {
@@ -27,7 +27,7 @@ namespace Newtouch.Herp.Application.Implementation
         private readonly IWzProductDmnService _wzProductDmnService;
 
         /// <summary>
-        /// 物资维护表单提交
+        /// Gửi biểu mẫu bảo trì vật tư
         /// </summary>
         /// <param name="source"></param>
         /// <param name="keyWord"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.Herp.Application.Implementation
                 {
                     throw new Exception("初始化物资单位失败");
                 }
-				//同步到BASE库中
+				//Đồng bộ đến BASE Trong kho
 				_wzProductDmnService.InsertTOSfxm(wzProductEntity.OrganizeId, wzProductEntity.productCode);
 				return 1;
             }
@@ -81,7 +81,7 @@ namespace Newtouch.Herp.Application.Implementation
             dbProduct.Modify();
 			int updatecount= wzProductRepo.Update(dbProduct);
 
-			//同步到BASE库中
+			//Đồng bộ đến BASE Trong kho
 			_wzProductDmnService.InsertTOSfxm(wzProductEntity.OrganizeId, wzProductEntity.productCode);
 
 			return updatecount;
@@ -128,7 +128,7 @@ namespace Newtouch.Herp.Application.Implementation
 		}
 
 		/// <summary>
-		/// 获取生产商ID
+		/// Lấy nhà sản xuất ID
 		/// </summary>
 		/// <param name="supplierId"></param>
 		/// <param name="supplierName"></param>
@@ -143,7 +143,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 组装物资最小单位信息
+        /// Lắp ráp thông tin đơn vị nhỏ nhất vật tư
         /// </summary>
         private ProductUnitRelVo AssembleRelProductUnit(WzProductEntity wzProductEntity)
         {
@@ -157,10 +157,10 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 上传图片
+        /// Tải lên hình ảnh
         /// </summary>
         /// <param name="file"></param>
-        /// <returns>图片上传路径</returns>
+        /// <returns>Đường dẫn tải lên hình ảnh</returns>
         public string UploadImag(HttpPostedFileBase file)
         {
             try
@@ -186,7 +186,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交物资单位
+        /// Gửi đơn vị vật tư
         /// </summary>
         /// <param name="rel"></param>
         /// <param name="organizeId"></param>
@@ -223,7 +223,7 @@ namespace Newtouch.Herp.Application.Implementation
         #region private function
 
         /// <summary>
-        /// 图片效验
+        /// Kiểm tra hình ảnh
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -241,7 +241,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 类型验证
+        /// Kiểm tra loại
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -262,7 +262,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 大小验证
+        /// Kiểm tra kích thước
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>

@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 单位维护
+    /// Bảo trì đơn vị
     /// </summary>
     public class WzUnitRepo : RepositoryBase<WzUnitEntity>, IWzUnitRepo
     {

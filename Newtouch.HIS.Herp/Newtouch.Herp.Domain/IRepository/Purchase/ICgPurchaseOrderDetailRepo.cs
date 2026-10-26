@@ -4,7 +4,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 采购计划明细
+    /// Chi tiết kế hoạch mua hàng
     /// </summary>
     public interface ICgPurchaseOrderDetailRepo : IRepositoryBase<CgPurchaseOrderDetailEntity>
     {

@@ -5,12 +5,12 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 物资调价
+    /// Điều chỉnh giá vật tư
     /// </summary>
     public interface IWzPriceAdjustmentRepo : IRepositoryBase<WzPriceAdjustmentEntity>
     {
         /// <summary>
-        /// 获取未执行列表
+        /// Lấy danh sách chưa thực hiện
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="organizeId"></param>

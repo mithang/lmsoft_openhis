@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 证照类型维护
+    /// Bảo trì loại giấy phép
     /// </summary>
     public class LicLicenceTypeRepo : RepositoryBase<LicLicenceTypeEntity>, ILicLicenceTypeRepo
     {

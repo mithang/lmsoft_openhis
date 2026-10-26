@@ -1,9 +1,9 @@
 ﻿@using Newtouch.Core.Common.Utils;
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //Có phải chọn ngay khi tải trang không Org
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
-    //是否页面加载时就必须选择Org
+    //Có phải chọn ngay khi tải trang không Org
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 }
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppName ?? "医疗物资耗材系统")</title>
+    <title>@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppName ?? "Hệ thống vật tư y tế tiêu hao")</title>
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/ophislogo.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
@@ -51,7 +51,7 @@
                                     <b>@Html.Raw(ViewBag.OrgName)</b>
                                     @if (mediOrgList != null && mediOrgList.Count > 1)
                                     {
-                                        <i id="iSwitchOrg" title="切换机构" class="fa fa-hospital-o"></i>
+                                        <i id="iSwitchOrg" title="Chuyển tổ chức" class="fa fa-hospital-o"></i>
                                     }
                                 </a>
                             </li>
@@ -70,7 +70,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu,Vui lòng đợi một lát…</div>
     </div>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)" charset="gb2312"></script>
@@ -104,7 +104,7 @@
                 clearTimeout(times);
             }
         })
-        //图标闪烁
+        //Biểu tượng nhấp nháy
         function blink(selector) {
             $(selector).fadeOut('slow', function () {
                 $(this).fadeIn('slow', function () {
@@ -132,7 +132,7 @@
                             blink('#txtb');
                         }
                         var rows = da.rows
-                        //1:库存预警 2:过期预警
+                        //1:Cảnh báo tồn kho 2:Cảnh báo hết hạn
                         for (var i = 0; i < rows.length; i++) {
                             if (rows[i].typeas == "1") {
                                 kcyjypcode += rows[i].ypCode + ",";
@@ -167,9 +167,9 @@
                 $('#txtb').hide();
             }
             //sessionStorage.setItem('kcyjyp', kcyjypcode);
-            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "库存量查询（消息提醒）", enName: "", url: "/BillManage/PurchasingPlan/PurchasingPlan" });
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu lượng tồn kho(Nhắc nhở tin nhắn)", enName: "", url: "/BillManage/PurchasingPlan/PurchasingPlan" });
         }
-        //已过期
+        //Đã hết hạn
         function gqyj() {
             //$("#badge3").text("");
             var badge2 = Number($("#badge2").text());
@@ -182,7 +182,7 @@
                 $('#txtb').hide();
             }
             //sessionStorage.setItem('gqyjyp', gqyjypcode);
-            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "过期药品查询（消息提醒）", enName: "", url: "/StorageManage/Storage/ExpiredStorageQuery" });
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu thuốc hết hạn(Nhắc nhở tin nhắn)", enName: "", url: "/StorageManage/Storage/ExpiredStorageQuery" });
         }
 
         function Onload() {
@@ -393,7 +393,7 @@
         function showSwitchOrgPrompt(force) {
             $.modalOpen({
                 id: "FormSwitchOrg",
-                title: "切换医疗机构",
+                title: "Chuyển cơ sở y tế",
                 url: "/Home/UserOrgChoose",
                 width: "400px",
                 height: "260px",
@@ -403,12 +403,12 @@
         }
 
         $(function () {
-            //Home/Index加载时强制选择医疗机构
+            //Home/Index Khi tải bắt buộc chọn cơ sở y tế
             @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
         });
     </script>
     <script type="text/javascript">
-        //Home/Index页面加载完成之后 再加载iframe
+        //Home/Index Sau khi tải trang xong Tải lại iframe
         $(window).load(function () {
             $('.mainContent .Newtouch_iframe').each(function () {
                 if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {

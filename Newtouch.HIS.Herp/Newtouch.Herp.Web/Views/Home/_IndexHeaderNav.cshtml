@@ -43,16 +43,16 @@
                 <span class="hidden-xs" style="width: 110px;">@opr.UserCode【@Constants.CurrentKf.currentKfName】</span>
             </a>
             <ul class="dropdown-menu pull-right">
-                <li><a href="javascript:void(0);" onclick="KfChange()"><i class="fa fa-exchange"></i>切换库房</a></li>
-                @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>个人信息</a></li>*@
-                @*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>我的信箱</a></li>*@
-                <li><a href="javascript:void(0);" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+                <li><a href="javascript:void(0);" onclick="KfChange()"><i class="fa fa-exchange"></i>Chuyển kho</a></li>
+                @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>*@
+                @*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>Hộp thư của tôi</a></li>*@
+                <li><a href="javascript:void(0);" onclick="layer.msg('Xóa bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>Xóa bộ nhớ đệm</a></li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>皮肤设置</a>
+                    <a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>Cài đặt giao diện</a>
                     <div class="tab-pane" id="control-sidebar-home-tab">
                     </div>
                 </li>
-                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>Thoát an toàn</a></li>
             </ul>
         </li>
     </ul>
@@ -60,10 +60,10 @@
 <div class="nav-no-collapse pull-right" id="header-dic">
     <ul class="nav nav-pills nav-stacked">
         <li role="presentation" class="active">
-            <a href="#" class="hidden-xs" style="padding-top:15px" data-toggle="dropdown">消息列表<span class="badge" id="badge1"></span></a>
+            <a href="#" class="hidden-xs" style="padding-top:15px" data-toggle="dropdown">Danh sách tin nhắn<span class="badge" id="badge1"></span></a>
             <ul class="dropdown-menu pull-right" style="width:100%;" id="uldiv">
-                <li style="height:25px;"><a style="width:100%;text-align:center;" id="kcyj">库存预警<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
-                <li style="height:25px;"><a style="width:100%;text-align:center;" id="gqyj">过期预警<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
+                <li style="height:25px;"><a style="width:100%;text-align:center;" id="kcyj">Cảnh báo tồn kho<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
+                <li style="height:25px;"><a style="width:100%;text-align:center;" id="gqyj">Cảnh báo hết hạn<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
             </ul>
         </li>
     </ul>

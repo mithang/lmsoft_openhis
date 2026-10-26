@@ -11,7 +11,7 @@ using Newtouch.Herp.Domain.ValueObjects;
 namespace Newtouch.Herp.DomainServices
 {
     /// <summary>
-    /// 物资收费项目对照
+    /// Đối chiếu khoản thu vật tư
     /// </summary>
     public class RelProductAndsfxmDmnService : DmnServiceBase, IRelProductAndsfxmDmnService
     {
@@ -20,7 +20,7 @@ namespace Newtouch.Herp.DomainServices
         }
 
         /// <summary>
-        /// 查询物资收费项目对照管理
+        /// Tra cứu quản lý đối chiếu khoản thu vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sfdlCode"></param>
@@ -60,7 +60,7 @@ WHERE relps.OrganizeId=@OrganizeId ");
         }
 
         /// <summary>
-        /// 查询物资收费项目对照管理
+        /// Tra cứu quản lý đối chiếu khoản thu vật tư
         /// </summary>
         /// <param name="relId"></param>
         /// <param name="organizeId"></param>

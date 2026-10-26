@@ -5,37 +5,37 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
     public class VLicLicencesEntity
     {
         /// <summary>
-        /// 证照主键
+        /// Khóa chính giấy phép
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 类型
+        /// Loại
         /// </summary>
         public string typeName { get; set; }
 
         /// <summary>
-        /// 所属
+        /// Thuộc về
         /// </summary>
         public string belonged { get; set; }
 
         /// <summary>
-        /// 对象名称
+        /// Tên đối tượng
         /// </summary>
         public string objectName { get; set; }
 
         /// <summary>
-        /// 证照号
+        /// Số giấy phép
         /// </summary>
         public string licenceNo { get; set; }
 
         /// <summary>
-        /// 起效日期
+        /// Ngày có hiệu lực
         /// </summary>
         public DateTime qxrq { get; set; }
 
         /// <summary>
-        /// 失效日期
+        /// Ngày hết hiệu lực
         /// </summary>
         public DateTime sxrq { get; set; }
 
@@ -45,27 +45,27 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string fileUrl { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

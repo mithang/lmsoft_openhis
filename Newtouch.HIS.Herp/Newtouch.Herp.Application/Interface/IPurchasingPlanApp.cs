@@ -4,12 +4,12 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 采购计划
+    /// Kế hoạch mua hàng
     /// </summary>
     public interface IPurchasingPlanApp
     {
         /// <summary>
-        /// 提交采购计划
+        /// Gửi kế hoạch mua hàng
         /// </summary>
         /// <param name="pp"></param>
         /// <param name="ppmx"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Application.Interface
         string SubmitFillPurchasingPlan(CgPurchaseOrderEntity pp, List<CgPurchaseOrderDetailEntity> ppmx, string userCode, string organizeId);
 
         /// <summary>
-        /// 检查是否是暂存单
+        /// Kiểm tra có phải phiếu lưu tạm không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.Herp.Application.Interface
         string CheckIsTemporaryBill(string cgdh, string organizeId, ref CgPurchaseOrderEntity entity);
 
         /// <summary>
-        /// 检查是否是审核不通过
+        /// Kiểm tra có phải duyệt không đạt không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.Herp.Application.Interface
         string CheckIsAuditRefuseBill(string cgdh, string organizeId, ref CgPurchaseOrderEntity entity);
 
         /// <summary>
-        /// 检查是否是审核不通过或暂存采购计划单
+        /// Kiểm tra có phải duyệt không đạt hoặc phiếu kế hoạch mua hàng lưu tạm không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.Herp.Application.Interface
         string CheckIsAuditRefuseOrTemporaryBill(string cgdh, string organizeId, ref CgPurchaseOrderEntity entity);
 
         /// <summary>
-        /// 检查是否是暂存单
+        /// Kiểm tra có phải phiếu lưu tạm không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.Herp.Application.Interface
         string CancelPurchasingPlan(string cgdh, string organizeId, string userCode);
 
         /// <summary>
-        /// 将暂存采购计划提交审核
+        /// Gửi kế hoạch mua hàng lưu tạm để duyệt
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -63,11 +63,11 @@ namespace Newtouch.Herp.Application.Interface
         string SubmitPurchasingPlan(string cgdh, string organizeId);
 
         /// <summary>
-        /// 审核采购计划
+        /// Duyệt kế hoạch mua hàng
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="auditState"></param>
-        /// <param name="remarks">批语</param>
+        /// <param name="remarks">Lời phê</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>

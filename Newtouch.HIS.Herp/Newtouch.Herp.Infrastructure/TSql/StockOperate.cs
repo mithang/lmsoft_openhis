@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.Herp.Infrastructure.TSql
 {
     /// <summary>
-    /// 库存操作
+    /// Thao tác tồn kho
     /// </summary>
     public class StockOperate
     {
         /// <summary>
-        /// 减库存 无需解冻
+        /// Giảm tồn kho Không cần rã đông
         /// </summary>
         public const string just_subtract_kcsl = @"
 BEGIN TRANSACTION
@@ -79,7 +79,7 @@ BEGIN CATCH
 END CATCH
 ";
         /// <summary>
-        /// 只冻结库存
+        /// Chỉ đóng băng tồn kho
         /// </summary>
         public const string just_frozen_kcsl = @"
 BEGIN TRANSACTION
@@ -138,7 +138,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 减冻结并扣库存  一般用作审核通过
+        /// Giảm đóng băng và trừ tồn kho  Thông thường dùng làm duyệt đạt
         /// </summary>
         public const string subtract_freeze_and_kcsl = @"
 BEGIN TRANSACTION
@@ -212,7 +212,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 仅解冻
+        /// Chỉ rã đông
         /// </summary>
         public const string just_unfreeze = @"
 BEGIN TRANSACTION
@@ -273,7 +273,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 作废  减库存
+        /// Hủy bỏ  Giảm tồn kho
         /// </summary>
         public const string cancel_subtract_kcsl = @"
 BEGIN TRANSACTION

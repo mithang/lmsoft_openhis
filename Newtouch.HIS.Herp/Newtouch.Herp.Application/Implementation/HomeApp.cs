@@ -20,7 +20,7 @@ namespace Newtouch.Herp.Application.Implementation
         private readonly IWzProductDmnService _wzProductDmnService;
 
         /// <summary>
-        /// 获取代办HTML
+        /// Lấy việc cần làm HTML
         /// </summary>
         /// <returns></returns>
         public string AssembleNeedDealHtml()
@@ -39,7 +39,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 总库房
+        /// Tổng kho
         /// </summary>
         /// <returns></returns>
         private string AssembleZkfNeedDelaHtml()
@@ -93,7 +93,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 科室库房
+        /// Kho khoa
         /// </summary>
         /// <returns></returns>
         private string AssembleKskfNeedDelaHtml()
@@ -129,7 +129,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 获取代办总数
+        /// Lấy tổng Số việc cần làm
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetPendingCount()
@@ -148,7 +148,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 获取住院月处方发药次
+        /// Lấy lượt phát thuốc đơn nội trú theo tháng
         /// </summary>
         /// <returns></returns>
         public MonthlySummaryDTO GetPsiCountVoByKf(List<VPsiStatisticsByDateEntity> val)
@@ -213,7 +213,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 转换类型名称
+        /// Tên loại chuyển đổi
         /// </summary>
         /// <param name="source"></param>
         public void TransformRkCount(List<ClassificationStatisticsEntity> source)

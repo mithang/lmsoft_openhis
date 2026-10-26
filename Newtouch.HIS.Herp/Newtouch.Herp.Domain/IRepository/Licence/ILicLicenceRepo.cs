@@ -4,7 +4,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// ÷§’’Œ¨ª§
+    /// Bao tri giay phep
     /// </summary>
     public interface ILicLicenceRepo : IRepositoryBase<LicLicenceEntity>
     {

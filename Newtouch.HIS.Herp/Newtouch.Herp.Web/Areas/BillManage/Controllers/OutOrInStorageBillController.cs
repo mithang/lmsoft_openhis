@@ -11,7 +11,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 出入库单操作
+    /// Thao tác phiếu nhập/xuất kho
     /// </summary>
     public class OutOrInStorageBillController : ControllerBase
     {
@@ -20,10 +20,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         private readonly IKfCrkmxRepo _crkmxRepo;
         private readonly IOutOrInStorageBillApprovalApp _outOrInStorageBillApprovalApp;
 
-        #region 单据审核
+        #region Duyệt chứng từ
 
         /// <summary>
-        /// 单据审核
+        /// Duyệt chứng từ
         /// </summary>
         /// <returns></returns>
         public ActionResult Approval()
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 出入库单据 审核
+        /// Chứng từ nhập/xuất kho Duyệt
         /// </summary>
         /// <param name="billApprovalDTO"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 修改发票号
+        /// Sửa số hóa đơn
         /// </summary>
         /// <param name="crkmxId"></param>
         /// <param name="fph"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
         
         /// <summary>
-        /// 打回申请 从待处理变成暂存，只针对外部入库
+        /// Trả lại đơn đăng ký Từ chờ xử lý chuyển thành lưu tạm,Chỉ áp dụng cho nhập kho ngoài
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>
@@ -66,10 +66,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 单据查询
+        #region Tra cứu chứng từ
 
         /// <summary>
-        /// 单据查询
+        /// Tra cứu chứng từ
         /// </summary>
         /// <returns></returns>
         public ActionResult Query()
@@ -79,7 +79,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 单据查询 主信息
+        /// Tra cứu chứng từ Thông tin chính
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -134,7 +134,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 单据查询明细
+        /// Chi tiết tra cứu chứng từ
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>
@@ -144,7 +144,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取常用的审核状态
+        /// Lấy trạng thái duyệt thường dùng
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryCommonAuditState()
@@ -161,7 +161,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 根据配送单号和供应商ID获取出入库单据明细
+        /// Theo Số phiếu giao hàng và nhà cung cấp ID Lấy chi tiết chứng từ nhập/xuất kho
         /// </summary>
         /// <param name="deliveryNo"></param>
         /// <param name="gysId"></param>
@@ -174,10 +174,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 我的暂存
+        #region Lưu tạm của tôi
 
         /// <summary>
-        /// 我的暂存 视图
+        /// Lưu tạm của tôi Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult MyTemporaryCrkdj()
@@ -186,7 +186,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 删除暂存单
+        /// Xóa phiếu lưu tạm
         /// </summary>
         /// <param name="billApprovalDTO"></param>
         /// <returns></returns>
@@ -197,7 +197,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 根据配送单号获取暂存的单据明细
+        /// Lấy chi tiết chứng từ lưu tạm theo Số phiếu giao hàng
         /// </summary>
         /// <param name="deliveryNo"></param>
         /// <returns></returns>

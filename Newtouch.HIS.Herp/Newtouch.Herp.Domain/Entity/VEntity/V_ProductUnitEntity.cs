@@ -1,37 +1,37 @@
 ﻿namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 物资单位
+    /// Đơn vị vật tư
     /// </summary>
     public class VProductUnitEntity
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string productName { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string unitName { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string productZt { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string unitZt { get; set; }
     }

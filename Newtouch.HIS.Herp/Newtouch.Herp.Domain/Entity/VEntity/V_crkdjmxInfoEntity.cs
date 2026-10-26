@@ -3,161 +3,161 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 出入库单据明细
+    /// Chi tiết chứng từ nhập/xuất kho
     /// </summary>
     public class VCrkdjmxInfoEntity
     {
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 批发号
+        /// Số bán buôn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 最小单位进价
+        /// Giá nhập đơn vị nhỏ nhất
         /// </summary>
         public decimal minjj { get; set; }
 
         /// <summary>
-        /// 单位ID
+        /// Đơn vị ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string unitName { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 总金额  进价
+        /// Tổng tiền  Giá nhập
         /// </summary>
         public decimal zje { get; set; }
 
         /// <summary>
-        /// 现有库存
+        /// Tồn kho hiện có
         /// </summary>
         public string slstr { get; set; }
 
         /// <summary>
-        /// 入库部门库存 
+        /// Tồn kho khoa nhập kho 
         /// </summary>
         public int rkbmkc { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 生产日期
+        /// Ngày sản xuất
         /// </summary>
         public DateTime? scrq { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string mindwmc { get; set; }
 
         /// <summary>
-        /// 最小单位ID
+        /// Đơn vị nhỏ nhất ID
         /// </summary>
         public string zxdwId { get; set; }
                 
         /// <summary>
-        /// 最小单位转化因子
+        /// Hệ số chuyển đổi đơn vị nhỏ nhất
         /// </summary>
         public int zxdwzhyz { get; set; }
 
         /// <summary>
-        /// 部门单位名称
+        /// Tên đơn vị khoa phòng
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// 部门单位Id
+        /// Đơn vị khoa phòng Id
         /// </summary>
         public string bmdwId { get; set; }
 
         /// <summary>
-        /// 部门单位转化因子
+        /// Hệ số chuyển đổi đơn vị khoa phòng
         /// </summary>
         public int bmdwzhyz { get; set; }
 
         /// <summary>
-        /// 最小零售价
+        /// Giá bán lẻ nhỏ nhất
         /// </summary>
         public decimal minlsj { get; set; }
 
         /// <summary>
-        /// 出库部门
+        /// Khoa xuất kho
         /// </summary>
         public string ckbm { get; set; }
 
         /// <summary>
-        /// 可用库存数量
+        /// Số lượng tồn kho khả dụng
         /// </summary>
         public int kykcsl { get; set; }
         /// <summary>
-        /// 国家医保代码
+        /// Mã bảo hiểm y tế quốc gia
         /// </summary>
         public string gjybdm { get; set; }
     }

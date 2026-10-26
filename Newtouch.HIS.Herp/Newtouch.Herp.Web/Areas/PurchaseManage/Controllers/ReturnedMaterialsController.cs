@@ -22,9 +22,9 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
         private readonly IPurchaseDmnService _purchaseDmnService;
         private readonly ISunPurchaseDmnService _sunPurchaseDmnService;
 
-        #region 退货单内容
+        #region Nội dung phiếu trả hàng
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="cgEntity"></param>
         /// <param name="cgmxList"></param>
@@ -36,14 +36,14 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
 
             thEntity.OrganizeId = this.OrganizeId;
             thEntity.JLS = thmxList.Count;
-            // 1.新增或更新采购列表
+            // 1.Thêm mới hoặc cập nhật danh sách mua hàng
             var thId = _returnedRepo.SubmitForm(thEntity, keyValue);
-            //2.删除采购明细
+            //2.Xóa chi tiết mua hàng
             if (keyValue != null)
             {
                 _returnedDetailRepo.DeleteItem(thId, this.OrganizeId);
             }
-            //3.添加采购明细
+            //3.Thêm chi tiết mua hàng
             foreach (var cgmx in thmxList)
             {
                 cgmx.OrganizeId = this.OrganizeId;
@@ -57,26 +57,26 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
 
             thEntity.OrganizeId = this.OrganizeId;
             thEntity.JLS = thmxList.Count;
-            // 1.新增或更新采购列表
+            // 1.Thêm mới hoặc cập nhật danh sách mua hàng
             var thId = _returnedRepo.SubmitForm(thEntity, keyValue);
-            //2.删除采购明细
+            //2.Xóa chi tiết mua hàng
             if (keyValue != null)
             {
                 _returnedDetailRepo.DeleteItem(thId, this.OrganizeId);
             }
-            //3.添加采购明细
+            //3.Thêm chi tiết mua hàng
             foreach (var cgmx in thmxList)
             {
                 cgmx.OrganizeId = this.OrganizeId;
                 _returnedDetailRepo.InsertItem(cgmx, thId);
             }
-            //4.采购订单退货与传报
+            //4.Trả hàng và báo cáo đơn đặt mua hàng
             PurchaseUpload(thId, 2);
             return Success();
         }
         #endregion
         /// <summary>
-        /// 分页查询退药单数据
+        /// Tra cứu phân trang dữ liệu phiếu trả thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -120,22 +120,22 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
         }
 
         /// <summary>
-        /// 采购退货单单传报
+        /// Báo cáo phiếu trả hàng mua hàng
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddzt"></param>
         /// <returns></returns>
         public ActionResult PurchaseUpload(string thId, int ddzt)
         {
-            //1.上传至阳光采购平台 YY113
+            //1.Tải lên nền tảng mua sắm Sunshine YY113
             var ddbh=_sunPurchaseDmnService.Purchase_YY113(this.OrganizeId, thId);
-            //2.获取YY113的订单编号  (YY113落地表)
+            //2.Lấy YY113 Số đơn hàng của  (YY113 Bảng đích)
             //var ddbh = "00001";
-            //3.更新ddbh
+            //3.Cập nhật ddbh
             _returnedRepo.PurchaseDdbhUpdate(thId, ddbh, this.OrganizeId);
-            //4.订单填报确认 YY114
+            //4.Xác nhận kê khai đơn hàng YY114
             _sunPurchaseDmnService.Purchase_YY114(this.OrganizeId, thId);
-            //更新传报状态
+            //Cập nhật trạng thái báo cáo
             _returnedRepo.PurchaseReturnStateUpdate(thId, ddzt, this.OrganizeId);
             return Success();
         }

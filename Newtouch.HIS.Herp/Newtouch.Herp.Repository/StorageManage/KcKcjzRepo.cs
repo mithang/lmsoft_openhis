@@ -11,7 +11,7 @@ using Newtouch.Herp.Infrastructure;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库存结转
+    /// Kết chuyển tồn kho
     /// </summary>
     public class KcKcjzRepo : RepositoryBase<KcKcjzEntity>, IKcKcjzRepo
     {
@@ -20,7 +20,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 获取历史结转时间
+        /// Lấy thời gian kết chuyển lịch sử
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 获取最近一次结转信息
+        /// Lấy thông tin kết chuyển gần nhất
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

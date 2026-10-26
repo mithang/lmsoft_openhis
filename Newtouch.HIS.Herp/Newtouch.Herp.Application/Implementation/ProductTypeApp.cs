@@ -5,7 +5,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 物资类别操作
+    /// Thao tác loại vật tư
     /// </summary>
     public class ProductTypeApp : AppBase, IProductTypeApp
     {

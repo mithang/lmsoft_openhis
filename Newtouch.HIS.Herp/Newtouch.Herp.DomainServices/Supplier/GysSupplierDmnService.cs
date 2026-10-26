@@ -6,7 +6,7 @@ using EFDbTransaction = Newtouch.Infrastructure.EF.EFDbTransaction;
 namespace Newtouch.Herp.DomainServices.Warehouse
 {
     /// <summary>
-    /// 供应商操作
+    /// Thao tác nhà cung cấp
     /// </summary>
     public class GysSupplierDmnService : DmnServiceBase, IGysSupplierDmnService
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.DomainServices.Warehouse
         /// <summary>
         /// delete supplier
         /// </summary>
-        /// <param name="id">库房Id</param>
+        /// <param name="id">Kho Id</param>
         public void DeleteSupplier(string id)
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())

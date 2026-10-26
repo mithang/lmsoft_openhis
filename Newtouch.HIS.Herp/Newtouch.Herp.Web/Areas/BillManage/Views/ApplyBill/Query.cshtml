@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Herp.Infrastructure.Enum;
 @using Newtouch.Tools
 @{
-    ViewBag.Title = "申领单查询";
+    ViewBag.Title = "Tra cứu phiếu lĩnh";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -55,36 +55,36 @@
 <form id="form1">
     <div class="panel panel-default" id="dv_search">
         <div class="panel-heading">
-            查询条件
+            Điều kiện tra cứu
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">处理状态：</th>
+                    <th class="formTitle">Trạng thái xử lý:</th>
                     <td class="formValue">
-                        @Html.DropDownList("applyProcess", EnumApplyProcess.Waiting.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("applyProcess", EnumApplyProcess.Waiting.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle"><span class="required">*</span>提交日期：</th>
+                    <th class="formTitle"><span class="required">*</span>Ngày gửi:</th>
                     <td class="formValue">
                         <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>至：</th>
+                    <th class="formTitle"><span class="required">*</span>Đến:</th>
                     <td class="formValue">
                         <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">单据号：</th>
+                    <th class="formTitle">Số chứng từ:</th>
                     <td class="formValue">
-                        <input type="text" class="form-control" id="txtPDH" placeholder="单据号" />
+                        <input type="text" class="form-control" id="txtPDH" placeholder="Số chứng từ" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">单据类型：</th>
+                    <th class="formTitle">Loại chứng từ:</th>
                     <td class="formValue">
-                        @Html.DropDownList("applyType", EnumApplyType.DepartmentApply.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("applyType", EnumApplyType.DepartmentApply.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
                     <td class="formTitle" colspan="6">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In" />
                     </td>
                 </tr>
             </table>
@@ -98,7 +98,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -115,11 +115,11 @@
 <script>
     var $gridDjMainRecords = $("#gridDJMainRecords");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện ô tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -133,11 +133,11 @@
         $("#btn_print").click(function () {
             var rowIds = $gridDjMainRecords.jqGrid('getRowData_AllLine');
             if (!rowIds|| rowIds.length <= 0) {
-                $.newtouchAlert("打印内容不允许为空");
+                $.newtouchAlert("Nội dung in không được để trống");
                 return;
             }
 
-            //打印全部查询
+            //In tất cả tra cứu
             var applyProcess = $("#applyProcess").val();
             var applyType = $("#applyType").val();
             var kssj = $("#txtStartDate").val();
@@ -147,7 +147,7 @@
             var sldh = $("#txtPDH").val();
             var rowId = $gridDjMainRecords.jqGrid('getGridParam', 'selrow');
             if (rowId) {
-                //打印选中
+                //In mục đã chọn
                 var rowData = $gridDjMainRecords.jqGrid('getRowData', rowId);
                 sldh = rowData.sldh;
             }
@@ -156,14 +156,14 @@
         });
     });
 
-    //回车事件绑定
+    //Gắn sự kiện Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //隐藏搜索框并显示箭头
+    //Ẩn ô tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -173,7 +173,7 @@
         }
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         $gridDjMainRecords.dataGrid({
             postData: getSearchPostData(),
@@ -181,7 +181,7 @@
             url: "/ApplyBill/ApplyBillInfoQuery",
             colModel: [
                 {
-                    label: '处理状态', name: 'applyProcess', width: 100, align: 'center', formatter: function (val) {
+                    label: 'Trạng thái xử lý', name: 'applyProcess', width: 100, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumApplyProcess.Waiting):
                             return "@EnumApplyProcess.Waiting.GetDescription()";
@@ -203,7 +203,7 @@
                     }
                 },
                 {
-                    label: '单据类型', name: 'applyType', width: 100, align: 'center', formatter: function (val) {
+                    label: 'Loại chứng từ', name: 'applyType', width: 100, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumApplyType.DepartmentApply):
                             return "@EnumApplyType.DepartmentApply.GetDescription()";
@@ -214,12 +214,12 @@
                         }
                     }
                 },
-                { label: '单据号', name: 'sldh', width: 150, align: 'center' },
-                { label: '出库库房', name: 'ckbmmc', width: 150, align: 'center' },
-                { label: '入库库房', name: 'rkbmmc', width: 150, align: 'center' },
-                { label: '入库科室', name: 'rkksmc', width: 150, align: 'center' },
-                { label: '创建时间', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '创建人', name: 'CreatorName', width: 90, align: 'center' }
+                { label: 'Số chứng từ', name: 'sldh', width: 150, align: 'center' },
+                { label: 'Kho xuất kho', name: 'ckbmmc', width: 150, align: 'center' },
+                { label: 'Kho nhập kho', name: 'rkbmmc', width: 150, align: 'center' },
+                { label: 'Khoa nhập kho', name: 'rkksmc', width: 150, align: 'center' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Người tạo', name: 'CreatorName', width: 90, align: 'center' }
             ],
             unwritten: false,
             multiselect: false,
@@ -236,11 +236,11 @@
 
         $("#btn_search").click(function () {
             if ($("#txtStartDate").val() === "") {
-                $.modalMsg("请选择开始时间", 'error', 1500);
+                $.modalMsg("Vui lòng chọn thời gian bắt đầu", 'error', 1500);
                 return false;
             }
             if ($("#txtEndDate").val() === "") {
-                $.modalMsg("请选择结束时间", 'error', 1500);
+                $.modalMsg("Vui lòng chọn thời gian kết thúc", 'error', 1500);
                 return false;
             }
             $('#gridDJMXInfo').jqGrid("clearGridData");
@@ -250,7 +250,7 @@
         });
     }
 
-    //组装查询条件
+    //Lắp ráp điều kiện tra cứu
     function getSearchPostData() {
         var applyProcess = $("#applyProcess").val();
         var applyType = $("#applyType").val();
@@ -262,9 +262,9 @@
         return { kssj: kssj, jssj: jssj, pdh: pdh, applyType: applyType, applyProcess: applyProcess };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột,Xóa trống chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/ApplyBill/ApplyBillDetailBySldhQuery",
@@ -279,19 +279,19 @@
         });
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '类别', name: 'lbmc', width: 130, align: 'center' },
-            { label: '名称', name: 'wzmc', width: 160, align: 'center' },
-            { label: '申领数量', name: 'slStr', width: 90, align: 'center' },
-            { label: '已发数量', name: 'yfslStr', width: 90, align: 'center' },
-            { label: '规格', name: 'gg', width: 120, align: 'center' },
-            { label: '品牌', name: 'brand', width: 120, align: 'center' },
-            { label: '生产厂家', name: 'sccj', width: 160, align: 'center' }
+            { label: 'Loại', name: 'lbmc', width: 130, align: 'center' },
+            { label: 'Tên', name: 'wzmc', width: 160, align: 'center' },
+            { label: 'Số lượng lĩnh', name: 'slStr', width: 90, align: 'center' },
+            { label: 'Số lượng đã phát', name: 'yfslStr', width: 90, align: 'center' },
+            { label: 'Quy cách', name: 'gg', width: 120, align: 'center' },
+            { label: 'Thương hiệu', name: 'brand', width: 120, align: 'center' },
+            { label: 'Nhà sản xuất', name: 'sccj', width: 160, align: 'center' }
         ]
     });
 

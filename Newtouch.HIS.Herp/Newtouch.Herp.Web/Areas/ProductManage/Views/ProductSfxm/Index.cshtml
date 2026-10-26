@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "物资收费项目对照";
+    ViewBag.Title = "Đối chiếu khoản thu vật tư";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -9,33 +9,33 @@
             <tr>
                 <td class="formValue" style="width: 160px;">
                     <div class="btn-group">
-                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                        <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+                        <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
                     </div>
                 </td>
-                <th class="formTitle">收费大类：</th>
+                <th class="formTitle">Nhóm thu lớn:</th>
                 <td class="formValue">
                     <select class="form-control" id="selSfdl">
-                        <option value="">==全部==</option>
+                        <option value="">==Tất cả==</option>
                     </select>
                 </td>
-                <th class="formTitle">物资类型：</th>
+                <th class="formTitle">Loại vật tư:</th>
                 <td class="formValue">
                     <select class="form-control" id="selProductType">
-                        <option value="">==全部==</option>
+                        <option value="">==Tất cả==</option>
                     </select>
                 </td>
-                <th class="formTitle" style="width: 50px;">状态：</th>
+                <th class="formTitle" style="width: 50px;">Trạng thái:</th>
                 <td class="formValue" style="width: 60px;">
                     <select class="form-control" id="selZt">
-                        <option value="">=全部=</option>
-                        <option value="1">有效</option>
-                        <option value="0">作废</option>
+                        <option value="">=Tất cả=</option>
+                        <option value="1">Hiệu lực</option>
+                        <option value="0">Hủy bỏ</option>
                     </select>
                 </td>
                 <td class="formValue">
@@ -59,13 +59,13 @@
         Init();
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
-        //加载项目大类
+        //Tải nhóm lớn dự án
         $("#selSfdl").bindSelect({
             url: "/ProductManage/ProductSfxm/GetAllSfdl"
         });
-        //加载物资类别
+        //Tải loại vật tư
         $("#selProductType").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
         });
@@ -79,19 +79,19 @@
             postData: getPostData(),
             height: $(window).height() - 125,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "项目大类", name: "sfdlmc", width: 100, align: "left" },
-                { label: "项目名称", name: "sfxmmc", width: 100, align: "left" },
-                { label: "物资类别", name: "productTypeName", width: 100, align: "left" },
-                { label: '物资名称', name: 'productName', width: 100, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Nhóm lớn dự án", name: "sfdlmc", width: 100, align: "left" },
+                { label: "Tên dự án", name: "sfxmmc", width: 100, align: "left" },
+                { label: "Loại vật tư", name: "productTypeName", width: 100, align: "left" },
+                { label: 'Tên vật tư', name: 'productName', width: 100, align: 'left' },
                 {
-                    label: "有效", name: "zt", width: 50, align: "center",
+                    label: "Hiệu lực", name: "zt", width: 50, align: "center",
                     formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
                 },
-                { label: '创建人', name: 'CreatorCode', width: 70, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '最后修改', name: 'LastModifierCode', hidden: true },
-                { label: '最后修改时间', name: 'LastModifyTime', hidden: true }
+                { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Sửa cuối', name: 'LastModifierCode', hidden: true },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', hidden: true }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -105,7 +105,7 @@
         });
     }
 
-    //组装请求参数
+    //Lắp ráp tham số yêu cầu
     function getPostData() {
         return {
             sfdlCode: $("#selSfdl").val(),
@@ -114,24 +114,24 @@
         };
     }
 
-    //回车触发查询事件
+    //Nhấn Enter kích hoạt sự kiện tra cứu
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#dv_search").trigger("click");
         }
     });
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增",
+            title: "Thêm mới",
             url: "/ProductManage/ProductSfxm/Form",
             width: "550px",
             height: "310px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -139,22 +139,22 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改",
+            title: "Sửa",
             url: "/ProductManage/ProductSfxm/Form?keyValue=" + keyValue,
             width: "550px",
             height: "310px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -162,14 +162,14 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
-        $.modalConfirm("您确定要将删除该关联吗？",
+        $.modalConfirm("Bạn có chắc muốn xóa liên kết đó không?",
             function (flag) {
                 if (flag) {
                     var keyValue = $("#gridList").jqGridRowValue().Id;
                     if (!!!keyValue) {
-                        $.modalAlert("请选中一条信息", 'warning');
+                        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                         return;
                     }
                     $.najax({
@@ -178,14 +178,14 @@
                         dataType: "json",
                         success: function (data) {
                             if (data.state === "success") {
-                                $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                                 $("#gridList").resetSelection();
                                 $("#gridList").trigger("reloadGrid");
                             } else {
                                 if (data.state != null) {
                                     $.modalMsg(data.state, 'warning', 1500);
                                 } else {
-                                    $.modalMsg("删除失败", 'warning', 1500);
+                                    $.modalMsg("Xóa thất bại", 'warning', 1500);
                                 }
                             }
                         }

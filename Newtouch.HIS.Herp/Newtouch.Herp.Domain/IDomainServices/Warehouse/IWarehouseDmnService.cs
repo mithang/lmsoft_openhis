@@ -6,7 +6,7 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 库房操作
+    /// Thao tac kho
     /// </summary>
     public interface IWarehouseDmnService
     {
@@ -27,7 +27,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         void UpdateWarehouse(KfWarehouseEntity wzEntity, List<RelWarehouseUserEntity> userList, List<RelWarehouseDeptEntity> deptList);
 
         /// <summary>
-        /// 获取库房信息
+        /// Lay thong tin kho
         /// </summary>
         /// <param name="keyWord"></param>
         /// <param name="organizeId"></param>
@@ -36,13 +36,13 @@ namespace Newtouch.Herp.Domain.IDomainServices
         IList<VKfWarehouseEntity> QueryWarehouseInfo(string keyWord, string organizeId, string zt = "1");
 
         /// <summary>
-        /// 删除库房
+        /// Xoa kho
         /// </summary>
-        /// <param name="id">库房Id</param>
+        /// <param name="id">Kho Id</param>
         void DeleteWarehouse(string id);
 
         /// <summary>
-        /// 获取库房管理员信息
+        /// Lay thong tin quan tri vien kho
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>
@@ -50,18 +50,18 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VKfUserInfoEntity> GetKfUserInfo(string userId, string organizeId);
 
         /// <summary>
-        /// 获取库房同步物资
+        /// Lay vat tu dong bo kho
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="warehouseId">库房ID</param>
-        /// <param name="wzlb">物资类别</param>
-        /// <param name="keyWord">查询关键字</param>
+        /// <param name="warehouseId">Kho ID</param>
+        /// <param name="wzlb">Loai vat tu</param>
+        /// <param name="keyWord">Tra cuu tu khoa</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         IList<VSyncProductEntity> GetSyncProductList(Pagination pagination, string warehouseId, string wzlb, string keyWord, string organizeId);
 
         /// <summary>
-        /// 获取库房物资
+        /// Lay vat tu kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>

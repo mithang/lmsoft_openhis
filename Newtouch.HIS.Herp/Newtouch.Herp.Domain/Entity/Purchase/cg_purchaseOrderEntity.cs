@@ -6,64 +6,64 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 采购_采购计划
+    /// Mua hàng _ Kế hoạch mua hàng
     /// </summary>
     [Table("cg_purchaseOrder")]
     public class CgPurchaseOrderEntity : IEntity<CgPurchaseOrderEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 采购计划单号
+        /// Số phiếu kế hoạch mua hàng
         /// </summary>
         public string cgdh { get; set; }
 
         /// <summary>
-        /// 入库部门Code
+        /// Khoa nhập kho Code
         /// </summary>
         public string rkbmCode { get; set; }
 
         /// <summary>
-        /// 审核状态 0-待审核； 1-审核通过； 2-审核不通过；3-已作废；4-暂存
+        /// Trạng thái duyệt 0-Chờ duyệt; 1-Duyệt đạt; 2-Duyệt không đạt;3-Đã hủy bỏ;4-Lưu tạm
         /// </summary>
         public int auditState { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态 0:作废；1.有效
+        /// Trạng thái 0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Tạo người dùng ID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa cuối ID
         /// </summary>
         public string LastModifierCode { get; set; }
     }

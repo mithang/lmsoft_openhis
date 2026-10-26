@@ -4,7 +4,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 物资调价
+    /// Dieu chinh gia vat tu
     /// </summary>
     public interface IWzPriceAdjustmentProfitAndLossRepo : IRepositoryBase<WzPriceAdjustmentProfitAndLossEntity>
     {

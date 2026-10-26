@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 证照所属维护
+    /// Bảo trì thuộc về giấy phép
     /// </summary>
     public class LicLicenceBelongedRepo: RepositoryBase<LicLicenceBelongedEntity>, ILicLicenceBelongedRepo
     {

@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "发票状态获取";
+    ViewBag.Title = "Lấy trạng thái hóa đơn";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -9,10 +9,10 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">发票状态获取</div>
+        <div class="panel-heading">Lấy trạng thái hóa đơn</div>
         <table class="form">
             <tr>
-                <th class="formTitle">查询时间：</th>
+                <th class="formTitle">Thời gian tra cứu:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -26,16 +26,16 @@
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">发票代码：</th>
+                <th class="formTitle">Mã hóa đơn:</th>
                 <td class="formValue">
-                    <input id="fpdm" class="form-control" placeholder="发票代码" />
+                    <input id="fpdm" class="form-control" placeholder="Mã hóa đơn" />
                 </td>
-                <th class="formTitle">发票号：</th>
+                <th class="formTitle">Số hóa đơn:</th>
                 <td class="formValue">
-                    <input id="fph" class="form-control" placeholder="发票号" />
+                    <input id="fph" class="form-control" placeholder="Số hóa đơn" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                 </th>
                 <td></td>
             </tr>
@@ -70,11 +70,11 @@
             height: $(window).height() - 200,
             postData: getPostData(),
             colModel: [
-                { label: '发票编号', name: 'FPBH', width: 180, align: 'left' },
-                { label: '发票代码', name: 'FPDM', width: 180, align: 'left' },
-                { label: '发票号', name: 'FPH', width: 180, align: 'left' },
+                { label: 'Số hóa đơn', name: 'FPBH', width: 180, align: 'left' },
+                { label: 'Mã hóa đơn', name: 'FPDM', width: 180, align: 'left' },
+                { label: 'Số hóa đơn', name: 'FPH', width: 180, align: 'left' },
                 {
-                    label: '发票状态', name: 'FPZT', width: 180, align: 'left', formatter: function (val) {
+                    label: 'Trạng thái hóa đơn', name: 'FPZT', width: 180, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumFPZT", val);
                     }
                 },
@@ -95,12 +95,12 @@
         });
     }
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         var kssj = new Date($("#kssj").val());
         var jssj = new Date($("#jssj").val());
         if (getDaysBetween(kssj,jssj) > 30) {
-            $.modalAlert("日期不能超过30天", 'warning');
+            $.modalAlert("Ngày không được vượt quá 30 Ngày", 'warning');
             return;
         }
         gridList();

@@ -4,7 +4,7 @@ using Newtouch.Herp.API.Models;
 namespace Newtouch.Herp.API
 {
     /// <summary>
-    /// API Controll 基类
+    /// API Controll Lớp cơ sở
     /// </summary>
     public class ApiControllerBase<TControllerType> : FrameworkBase.API.ApiControllerBase<TControllerType>
     {
@@ -14,7 +14,7 @@ namespace Newtouch.Herp.API
         }
 
         /// <summary>
-        /// 用户身份
+        /// Danh tính người dùng
         /// </summary>
         public UserIdentity UserIdentity
         {

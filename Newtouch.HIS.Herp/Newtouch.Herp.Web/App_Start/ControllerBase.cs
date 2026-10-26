@@ -4,7 +4,7 @@ using FrameworkBase.MultiOrg.Web;
 namespace Newtouch.Herp.Web
 {
     /// <summary>
-    /// Controller基类
+    /// Controller Lớp cơ sở
     /// </summary>
     [HandlerLogin]
     public abstract class ControllerBase : OrgControllerBase

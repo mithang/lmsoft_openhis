@@ -18,7 +18,7 @@ using Newtouch.Herp.Infrastructure.TSql;
 namespace Newtouch.Herp.DomainServices.StorageManage
 {
     /// <summary>
-    /// 库存盘点
+    /// Kiểm kê tồn kho
     /// </summary>
     public class StockInventoryDmnService : DmnServiceBase, IStockInventoryDmnService
     {
@@ -30,7 +30,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 获取盘点时间
+        /// Lấy thời gian kiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -57,7 +57,7 @@ ORDER BY a.CreateTime DESC
         }
 
         /// <summary>
-        /// 获取未完成的盘点时间
+        /// Lấy thời gian kiểm kê chưa hoàn thành
         /// </summary>
         /// <returns></returns>
         public List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId)
@@ -82,7 +82,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         public string GenerateInventoryInfo(string warehouseId, string organizeId)
         {
@@ -96,7 +96,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// 获取盘点信息
+        /// Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -146,16 +146,16 @@ AND pdxx.Id=@pdId
             }
             switch (param.kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc://Hiển thị tồn kho bằng 0
                     sql.AppendLine("AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl://不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl://Không hiển thị Số lượng lý thuyết là 0
                     sql.AppendLine("AND mx.Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl://不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl://Không hiển thị số lượng thực tế là 0
                     sql.AppendLine("AND mx.Llsl Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl://不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl://Không hiển thị cả hai đều là 0
                     sql.AppendLine("AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
                     break;
             }
@@ -163,7 +163,7 @@ AND pdxx.Id=@pdId
         }
 
         /// <summary>
-        /// 获取盘点信息
+        /// Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -214,16 +214,16 @@ FROM (
             }
             switch (param.kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc://Hiển thị tồn kho bằng 0
                     sql.AppendLine("	AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl://不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl://Không hiển thị Số lượng lý thuyết là 0
                     sql.AppendLine("	AND mx.Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl://不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl://Không hiển thị số lượng thực tế là 0
                     sql.AppendLine("	AND mx.Llsl Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl://不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl://Không hiển thị cả hai đều là 0
                     sql.AppendLine("	AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
                     break;
             }
@@ -234,8 +234,8 @@ FROM (
         }
 
         /// <summary>
-        /// 取消盘点 
-        /// 删除 盘点信息（xt_yp_pdxx）、盘点信息明细（xt_yp_pdxxmx）
+        /// Hủy kiểm kê 
+        /// Xóa Thông tin kiểm kê(xt_yp_pdxx),Chi tiết thông tin kiểm kê(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory(long pdId)
         {
@@ -270,7 +270,7 @@ END
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         public string EndInventory(long pdId, string organizeId, string creatorCode)
@@ -285,7 +285,7 @@ END
         }
 
         /// <summary>
-        /// 批量保存损益信息
+        /// Lưu hàng loạt thông tin lãi/lỗ
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -312,7 +312,7 @@ END
         }
 
         /// <summary>
-        /// 保存变更后的盘点明细
+        /// Lưu chi tiết kiểm kê sau thay đổi
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>

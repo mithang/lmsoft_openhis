@@ -6,84 +6,84 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 库房
+    /// Kho
     /// </summary>
     [Table("kf_warehouse")]
     public class KfWarehouseEntity : IEntity<KfWarehouseEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房名称
+        /// Tên kho
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string address { get; set; }
 
         /// <summary>
-        /// 等级
+        /// Cấp
         /// </summary>
         public int level { get; set; }
 
         /// <summary>
-        /// 父节点
+        /// Nút cha
         /// </summary>
         public string parentId { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 是否默认同步
+        /// Có đồng bộ mặc định không
         /// </summary>
         public string isDefSyn { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

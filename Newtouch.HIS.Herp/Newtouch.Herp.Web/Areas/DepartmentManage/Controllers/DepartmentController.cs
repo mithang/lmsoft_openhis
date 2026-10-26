@@ -6,7 +6,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.DepartmentManage.Controllers
 {
     /// <summary>
-    /// 科室管理
+    /// Quản lý khoa
     /// </summary>
     public class DepartmentController : ControllerBase
     {
@@ -14,7 +14,7 @@ namespace Newtouch.Herp.Web.Areas.DepartmentManage.Controllers
         private readonly ISysUserDmnService _sysUserDmnService;
 
         /// <summary>
-        /// 获取科室
+        /// Lấy khoa
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -25,7 +25,7 @@ namespace Newtouch.Herp.Web.Areas.DepartmentManage.Controllers
         }
 
         /// <summary>
-        /// 获取科室
+        /// Lấy khoa
         /// </summary>
         /// <returns></returns>
         public ActionResult CurrentUserDepartmentQuery()

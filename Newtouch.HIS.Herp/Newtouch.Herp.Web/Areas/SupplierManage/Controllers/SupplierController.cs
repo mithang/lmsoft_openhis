@@ -12,7 +12,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
 {
     /// <summary>
-    /// 供应商
+    /// Nhà cung cấp
     /// </summary>
     public class SupplierController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         private readonly ISupplierApp _supplierApp;
 
         /// <summary>
-        /// 获取供应商列表
+        /// Lấy danh sách nhà cung cấp
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         }
 
         /// <summary>
-        /// 供应商维护 表单提交
+        /// Bảo trì nhà cung cấp Gửi biểu mẫu
         /// </summary>
         /// <param name="supplierEntity"></param>
         /// <param name="keyWord"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         }
 
         /// <summary>
-        /// 添加联系人
+        /// Thêm người liên hệ
         /// </summary>
         /// <param name="contactInfo"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         }
 
         /// <summary>
-        /// 获取生产商
+        /// Lấy nhà sản xuất
         /// </summary>
         /// <returns></returns>
         public ActionResult GetProducers(string keyword)
@@ -137,7 +137,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         }
 
         /// <summary>
-        /// 获取供应商
+        /// Lấy nhà cung cấp
         /// </summary>
         /// <returns></returns>
         public ActionResult GetSuppliers(string keyword)

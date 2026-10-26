@@ -1,37 +1,37 @@
 ﻿namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 下拉列表物资信息
+    /// Thông tin vật tư trong danh sách thả xuống
     /// </summary>
     public class DepartmentStockListQueryParam
     {
         /// <summary>
-        /// keyword 物资名称/拼音
+        /// keyword Tên vật tư/Phiên âm
         /// </summary>
         public string key { get; set; }
 
         /// <summary>
-        /// 当前库房
+        /// Kho hiện tại
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        /// 配送单号
+        /// Số phiếu giao hàng
         /// </summary>
         public string deliveryNo { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string gysId { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
     }

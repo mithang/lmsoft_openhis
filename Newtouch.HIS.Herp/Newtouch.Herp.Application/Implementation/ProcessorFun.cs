@@ -13,7 +13,7 @@ using Newtouch.Herp.Infrastructure.Log;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 处理过程
+    /// Quá trình xử lý
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ProcessorFun<T> : IProcessor, IProcess
@@ -22,7 +22,7 @@ namespace Newtouch.Herp.Application.Implementation
         protected Dictionary<string, string> Tags;
 
         /// <summary>
-        /// 基类初始化
+        /// Khởi tạo lớp cơ sở
         /// </summary>
         /// <param name="request"></param>
         protected ProcessorFun(T request)
@@ -45,7 +45,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 处理过程
+        /// Quá trình xử lý
         /// </summary>
         /// <returns></returns>
         public ActResult Process()
@@ -96,7 +96,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 异步处理
+        /// Xử lý bất đồng bộ
         /// </summary>
         /// <param name="result"></param>
         private void AsyncProcess(ActResult result)

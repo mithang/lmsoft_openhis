@@ -11,25 +11,25 @@ namespace Newtouch.Herp.Application.Interface
     public interface IHomeApp
     {
         /// <summary>
-        /// 获取代办HTML
+        /// Lấy việc cần làm HTML
         /// </summary>
         /// <returns></returns>
         string AssembleNeedDealHtml();
 
         /// <summary>
-        /// 获取代办总数
+        /// Lấy tổng Số việc cần làm
         /// </summary>
         /// <returns></returns>
         NeedDealCountVO GetPendingCount();
 
         /// <summary>
-        /// 获取住院月处方发药次
+        /// Lấy lượt phát thuốc đơn nội trú theo tháng
         /// </summary>
         /// <returns></returns>
         MonthlySummaryDTO GetPsiCountVoByKf(List<VPsiStatisticsByDateEntity> val);
 
         /// <summary>
-        /// 转换类型名称
+        /// Tên loại chuyển đổi
         /// </summary>
         /// <param name="source"></param>
         void TransformRkCount(List<ClassificationStatisticsEntity> source);

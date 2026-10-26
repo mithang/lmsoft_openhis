@@ -6,64 +6,64 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 采购_订单
+    /// Mua hàng _ Đơn hàng
     /// </summary>
     [Table("cg_order")]
     public class CgOrderEntity : IEntity<CgOrderEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 采购单号
+        /// Số đơn mua hàng
         /// </summary>
         public string orderNo { get; set; }
 
         /// <summary>
-        /// 订单类型 0：暂存单；1：正式单
+        /// Loại đơn hàng 0:Phiếu lưu tạm;1:Phiếu chính thức
         /// </summary>
         public int orderType { get; set; }
 
         /// <summary>
-        /// 采购订单处理流程 -1：拒处理； 0：待处理； 1：备货； 2：配送； 3：签收； 4：完成； 5：拒签 
+        /// Quy trình xử lý đơn đặt mua hàng -1:Từ chối xử lý; 0:Chờ xử lý; 1:Chuẩn bị hàng; 2:Giao hàng; 3:Ký nhận; 4:Hoàn thành; 5:Từ chối ký 
         /// </summary>
         public int orderProcess { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态 0:作废；1.有效
+        /// Trạng thái 0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

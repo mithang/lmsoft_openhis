@@ -14,7 +14,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 物资管理
+    /// Quản lý vật tư
     /// </summary>
     public class ProductController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 物资列表
+        /// Danh sách vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -50,7 +50,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 删除物资
+        /// Xóa vật tư
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 物资维护 表单提交
+        /// Bảo trì vật tư Gửi biểu mẫu
         /// </summary>
         /// <param name="wzProductEntity"></param>
         /// <param name="keyValue"></param>
@@ -121,7 +121,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         {
             if (!string.IsNullOrEmpty(_wzProductDmnService.CheckProductCode(wzProductEntity.productCode, keyValue)))
             {
-                return Error("物资代码已存在");//防止出现并发情况
+                return Error("物资代码已存在");//Ngăn ngừa tình huống đồng thời
             }
             var file = Request.Files["imgUpload"];
             wzProductEntity.zt = wzProductEntity.zt == "on" ? "1" : "0";
@@ -135,7 +135,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取物资代码
+        /// Lấy mã vật tư
         /// </summary>
         /// <returns></returns>
         public ActionResult GetProductCode()
@@ -144,7 +144,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 检查物资代码是否已存在
+        /// Kiểm tra mã vật tư đã tồn tại chưa
         /// </summary>
         /// <returns></returns>
         public ActionResult CheckProductCode(string productCode, string keyWord)
@@ -153,7 +153,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 根据物资类别获取物资
+        /// Lấy vật tư theo loại vật tư
         /// </summary>
         /// <param name="typId"></param>
         /// <returns></returns>
@@ -165,7 +165,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取物资明细
+        /// Lấy chi tiết vật tư
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -176,7 +176,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
         
         /// <summary>
-        /// 获取物资所有单位
+        /// Lấy tất cả đơn vị của vật tư
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

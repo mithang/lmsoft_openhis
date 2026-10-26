@@ -7,12 +7,12 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 库存盘点
+    /// Kiểm kê tồn kho
     /// </summary>
     public interface IStockInventoryDmnService
     {
         /// <summary>
-        /// 获取挂起盘点时间
+        /// Lấy thời gian kiểm kê đang treo
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 获取所有盘点时间
+        /// Lấy tất cả thời gian kiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -28,12 +28,12 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VInventoryDateDropDownEntity> GetPdSj(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         string GenerateInventoryInfo(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 获取盘点信息
+        /// Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -43,7 +43,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         IList<VInventoryInfoEntity> QueryInventoryInfoList(Pagination pagination, InventorySearchDTO param, string warehouseId, string organizeId);
 
         /// <summary>
-        /// 获取盘点信息
+        /// Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -52,19 +52,19 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <returns></returns>
         IList<VInventoryInfoEntity> QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO param, string warehouseId, string organizeId);
         /// <summary>
-        /// 取消盘点 
-        /// 删除 盘点信息（xt_yp_pdxx）、盘点信息明细（xt_yp_pdxxmx）
+        /// Hủy kiểm kê 
+        /// Xóa Thông tin kiểm kê(xt_yp_pdxx),Chi tiết thông tin kiểm kê(xt_yp_pdxxmx)
         /// </summary>
         void CancelInventory(long pdId);
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         string EndInventory(long pdId, string organizeId, string creatorCode);
 
         /// <summary>
-        /// 批量保存损益信息
+        /// Lưu hàng loạt thông tin lãi/lỗ
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         int InsertSyxxBatch(List<KcSyxxEntity> syList, string warehouseId, string organizeId);
 
         /// <summary>
-        /// 保存变更后的盘点明细
+        /// Lưu chi tiết kiểm kê sau thay đổi
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>

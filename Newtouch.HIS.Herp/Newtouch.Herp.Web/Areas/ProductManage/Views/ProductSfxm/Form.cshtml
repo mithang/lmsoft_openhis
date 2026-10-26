@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -11,38 +11,38 @@
     <div class="container" style="margin-top:10px;width: 500px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>收费大类：</th>
+                <th class="formTitle"><span class="required">*</span>Nhóm thu lớn:</th>
                 <td class="formValue">
                     <select class="form-control" id="selSfdl"></select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>收费项目：</th>
+                <th class="formTitle"><span class="required">*</span>Khoản thu:</th>
                 <td class="formValue">
                     <select class="form-control" id="selSfxm">
-                        <option value="">==请选择项目==</option>
+                        <option value="">==Vui lòng chọn dự án==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>物资类型：</th>
+                <th class="formTitle"><span class="required">*</span>Loại vật tư:</th>
                 <td class="formValue">
                     <select class="form-control" id="selProductType"></select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>物资：</th>
+                <th class="formTitle"><span class="required">*</span>Vật tư:</th>
                 <td class="formValue">
                     <select class="form-control" id="selProduct">
-                        <option value="">==请选择物资==</option>
+                        <option value="">==Vui lòng chọn vật tư==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">状态：</th>
+                <th class="formTitle" style="height: 35px;">Trạng thái:</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
@@ -64,7 +64,7 @@
             });
         }
         $("#selSfdl").change(function () {
-            //加载收费项目
+            //Tải khoản thu
             $("#selSfxm").html("");
             $("#selSfxm").bindSelect({
                 url: "/ProductManage/ProductSfxm/GetSfmxBySfdl?sfdlCode=" + $("#selSfdl").val(),
@@ -73,7 +73,7 @@
             });
         });
         $("#selProductType").change(function () {
-            //加载物资
+            //Tải vật tư
             $("#selProduct").html("");
             $("#selProduct").bindSelect({
                 url: "/ProductManage/Product/GetProductbyType?typId=" + $("#selProductType").val(),
@@ -83,19 +83,19 @@
         });
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
-        //加载项目大类
+        //Tải nhóm lớn dự án
         $("#selSfdl").bindSelect({
             url: "/ProductManage/ProductSfxm/GetAllSfdl"
         });
-        //加载物资类别
+        //Tải loại vật tư
         $("#selProductType").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
         });
     }
 
-    //回填input
+    //Điền trả lại input
     function fillInput(data) {
         if (data == null) return;
         $("#zt").attr("checked", data.zt === "1" ? true : false);
@@ -106,7 +106,7 @@
     }
 
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -132,30 +132,30 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#belongedId").val() === "") {
-            $.modalAlert("证照所属必选", 'warning');
+            $.modalAlert("Thuộc về giấy phép bắt buộc chọn", 'warning');
             return false;
         }
         if ($("#licenceTypeId").val() === "") {
-            $.modalAlert("证照类型必选", 'warning');
+            $.modalAlert("Loại giấy phép bắt buộc chọn", 'warning');
             return false;
         }
         if ($("#licenceNo").val() === "") {
-            $.modalAlert("证照号必填", 'warning');
+            $.modalAlert("Số giấy phép bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#objectName").val() === "") {
-            $.modalAlert("对象名必填", 'warning');
+            $.modalAlert("Tên đối tượng bắt buộc nhập", 'warning');
             return false;
         }
         if ($("#qxrq").val() === "") {
-            $.modalAlert("起始日期不能为空", 'warning');
+            $.modalAlert("Ngày bắt đầu không được để trống", 'warning');
             return false;
         }
         if ($("#sxrq").val() === "") {
-            $.modalAlert("失效日期不能为空", 'warning');
+            $.modalAlert("Ngày hết hiệu lực không được để trống", 'warning');
             return false;
         }
         return true;

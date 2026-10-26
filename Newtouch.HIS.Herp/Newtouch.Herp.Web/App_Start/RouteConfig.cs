@@ -4,12 +4,12 @@ using System.Web.Routing;
 namespace Newtouch.Herp.Web
 {
     /// <summary>
-    /// 路由注册
+    /// Đăng ký route
     /// </summary>
     public class RouteConfig
     {
         /// <summary>
-        /// 路由注册
+        /// Đăng ký route
         /// </summary>
         /// <param name="routes"></param>
         public static void RegisterRoutes(RouteCollection routes)

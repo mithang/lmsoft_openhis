@@ -5,19 +5,19 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 出入库方式
+    /// Hình thức nhập/xuất kho
     /// </summary>
     public interface IWzCrkfsRepo : IRepositoryBase<WzCrkfsEntity>
     {
         /// <summary>
-        /// 根据ID删除出入库方式
+        /// Theo ID Xóa hình thức nhập/xuất kho
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         int DeleteCrkfsById(string id);
 
         /// <summary>
-        /// 查询出入库方式
+        /// Tra cứu hình thức nhập/xuất kho
         /// </summary>
         /// <param name="crkbz"></param>
         /// <returns></returns>

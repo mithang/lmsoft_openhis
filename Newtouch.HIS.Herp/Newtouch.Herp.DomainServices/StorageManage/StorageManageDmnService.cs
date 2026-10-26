@@ -19,7 +19,7 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.Herp.DomainServices.StorageManage
 {
     /// <summary>
-    /// 库房管理
+    /// Quản lý kho
     /// </summary>
     public class StorageManageDmnService : DmnServiceBase, IStorageManageDmnService
     {
@@ -35,7 +35,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -89,10 +89,10 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit(NOLOCK) zxdw ON zxdw.Id=a.zxdwId AND zxdw
         }
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="key">物资名称/拼音</param>
+        /// <param name="key">Tên vật tư/Phiên âm</param>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         /// <param name="zt"></param>
@@ -136,11 +136,11 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit(NOLOCK) zxdw ON zxdw.Id=a.zxdwId AND zxdw
         }
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
-        /// <param name="key">物资名称/拼音</param>
+        /// <param name="key">Tên vật tư/Phiên âm</param>
         /// <param name="ckbm"></param>
-        /// <param name="deliveryNo">配送单号</param>
+        /// <param name="deliveryNo">Số phiếu giao hàng</param>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         /// <param name="zt"></param>
@@ -192,7 +192,7 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit(NOLOCK) zxdw ON zxdw.Id=a.zxdwId AND zxdw
         }
 
         /// <summary>
-        /// 获取物资批号批次信息  top 20
+        /// Lấy thông tin Số lô/lô vật tư  top 20
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="warehouseId"></param>
@@ -246,7 +246,7 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         }
 
         /// <summary>
-        /// 外部入库
+        /// Nhập kho ngoài
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mxList"></param>
@@ -278,7 +278,7 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         }
 
         /// <summary>
-        /// 新老数据转换
+        /// Chuyển đổi dữ liệu cũ/mới
         /// </summary>
         /// <param name="dj"></param>
         private bool SaveCrkdAndReturnIsExist(KfCrkdjEntity dj)
@@ -303,7 +303,7 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         }
 
         /// <summary>
-        /// 判断是否存在有效并相同配送单号的暂存单
+        /// Kiểm tra có tồn tại phiếu lưu tạm hiệu lực và cùng Số phiếu giao hàng không
         /// </summary>
         /// <param name="dj"></param>
         /// <returns></returns>
@@ -329,7 +329,7 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         }
 
         /// <summary>
-        /// 验证单据号的唯一性
+        /// Kiểm tra tính duy nhất của Số chứng từ
         /// </summary>
         /// <param name="pdh"></param>
         /// <returns></returns>
@@ -346,7 +346,7 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         }
 
         /// <summary>
-        /// 获取物资库存
+        /// Lấy tồn kho vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="warehouseId"></param>
@@ -355,9 +355,9 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         /// <param name="lbId"></param>
         /// <param name="kzbz"></param>
         /// <param name="wzzt"></param>
-        /// <param name="xslkc">显示零库存  1：显示  0：不显示</param>
-        /// <param name="ygq">已过期</param>
-        /// <param name="mxyx">暂时有效的明细  true：是  false：否</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
+        /// <param name="ygq">Đã hết hạn</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         public IList<VProductStorageEntity> GetProductStorage(Pagination pagination,
             string warehouseId,
@@ -425,7 +425,7 @@ WHERE 1=1 ");
         }
 
         /// <summary>
-        /// 获取物资库存
+        /// Lấy tồn kho vật tư
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -463,12 +463,12 @@ FROM (
         }
 
         /// <summary>
-        /// 物资库存分批次批号汇总
+        /// Tổng hợp tồn kho vật tư theo lô và số lô
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         /// <param name="proId"></param>
-        /// <param name="zt">暂时有效的明细  true：是  false：否</param>
+        /// <param name="zt">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         public IList<VProductStorageDetailEntity> GetProductStorageDetail(string warehouseId, string organizeId, string proId, string zt)
         {
@@ -506,7 +506,7 @@ GROUP BY s.productId,s.wzmc,s.ph,s.pc,s.yxq,s.zt,s.bmdwmc,s.jj,s.zhyz,s.zxdwmc
         }
 
         /// <summary>
-        /// 获取物资库存
+        /// Lấy tồn kho vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="warehouseId"></param>
@@ -515,9 +515,9 @@ GROUP BY s.productId,s.wzmc,s.ph,s.pc,s.yxq,s.zt,s.bmdwmc,s.jj,s.zhyz,s.zxdwmc
         /// <param name="lbId"></param>
         /// <param name="kzbz"></param>
         /// <param name="wzzt"></param>
-        /// <param name="xslkc">显示零库存  1：显示  0：不显示</param>
-        /// <param name="mxyx">暂时有效的明细  true：是  false：否</param>
-        /// <param name="isExpired">true:显示过期  false：显示不过期</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
+        /// <param name="isExpired">true:Hiển thị đã hết hạn  false:Hiển thị chưa hết hạn</param>
         /// <returns></returns>
         public IList<VProductStorageDetailEntity> SelectStorageDetail(Pagination pagination,
             string warehouseId,
@@ -583,10 +583,10 @@ FROM (
             return QueryWithPage<VProductStorageDetailEntity>(sql.ToString(), pagination, param);
         }
 
-        #region 外部入库
+        #region Nhập kho ngoài
 
         /// <summary>
-        /// 外部入库 审核通过
+        /// Nhập kho ngoài Duyệt đạt
         /// </summary>
         /// <param name="kcxx"></param>
         /// <param name="dj"></param>
@@ -607,7 +607,7 @@ FROM (
         }
 
         /// <summary>
-        /// 外部入库 作废
+        /// Nhập kho ngoài Hủy bỏ
         /// </summary>
         /// <param name="mx"></param>
         /// <param name="dj"></param>
@@ -637,17 +637,17 @@ FROM (
 
         #endregion
 
-        #region 外部出库
+        #region Xuất kho ngoài
 
         /// <summary>
-        /// 外部出库/直接出库/内部发货退回
+        /// Xuất kho ngoài/Xuất kho trực tiếp/Trả lại hàng giao nội bộ
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mxList"></param>
         /// <returns></returns>
         public string Wbck(KfCrkdjEntity dj, List<KfCrkmxEntity> mxList)
         {
-            var ret = _kfCrkdjRepo.Insert(dj); //新增kf_crkdj
+            var ret = _kfCrkdjRepo.Insert(dj); //Thêm mới kf_crkdj
             if (ret <= 0) return "";
             var successList = new List<KfCrkmxEntity>();
             try
@@ -676,7 +676,7 @@ FROM (
         }
 
         /// <summary>
-        /// 外部出库，扣库存，审核通过
+        /// Xuất kho ngoài,Trừ tồn kho,Duyệt đạt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -707,7 +707,7 @@ FROM (
         }
 
         /// <summary>
-        /// 外部出库/直接出库/内部发货退回，解冻，审核不通过
+        /// Xuất kho ngoài/Xuất kho trực tiếp/Trả lại hàng giao nội bộ,Rã đông,Duyệt không đạt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -737,7 +737,7 @@ FROM (
         }
 
         /// <summary>
-        /// 外部出库 作废
+        /// Xuất kho ngoài Hủy bỏ
         /// </summary>
         /// <param name="mx"></param>
         /// <param name="dj"></param>
@@ -763,10 +763,10 @@ FROM (
         }
         #endregion
 
-        #region 直接出库
+        #region Xuất kho trực tiếp
 
         /// <summary>
-        /// 直接出库/内部发货退回 审核通过
+        /// Xuất kho trực tiếp/Trả lại hàng giao nội bộ Duyệt đạt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -815,7 +815,7 @@ FROM (
         }
 
         /// <summary>
-        /// 直接出库/内部发货退回 作废操作
+        /// Xuất kho trực tiếp/Trả lại hàng giao nội bộ Thao tác hủy bỏ
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -843,7 +843,7 @@ FROM (
 
         #endregion
 
-        #region 出库至科室-同步物资到CIS科室库存管理
+        #region Xuất kho đến khoa-Đồng bộ vật tư đến CIS Quản lý tồn kho khoa
         public void SynchWz(string djh,string UserCode,string organizeId)
         {
             ExecuteSqlCommand("exec SynchDeptProduct_CIS @Pdh ,@OrganizeId,@UserCode", new SqlParameter("@Pdh", djh), new SqlParameter("@UserCode", UserCode), new SqlParameter("@organizeId", organizeId));
@@ -852,10 +852,10 @@ FROM (
         #endregion
 
 
-        #region 首页统计
+        #region Thống kê trang chủ
 
         /// <summary>
-        /// 出库数量统计
+        /// Thống kê số lượng xuất kho
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -879,7 +879,7 @@ FROM (
         }
 
         /// <summary>
-        /// 入库数量统计
+        /// Thống kê số lượng nhập kho
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -903,7 +903,7 @@ FROM (
         }
 
         /// <summary>
-        /// 损益数量统计
+        /// Thống kê Số lượng lãi/lỗ
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -930,7 +930,7 @@ FROM (
         }
 
         /// <summary>
-        /// 按单据类型获取入库总数
+        /// Lấy tổng số nhập kho theo loại chứng từ
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -957,7 +957,7 @@ GROUP BY t.djlx
             return FindList<ClassificationStatisticsEntity>(sql, param);
         }
         /// <summary>
-        /// 获取过期预警和库存预警总条数
+        /// Lấy tổng Số cảnh báo hết hạn và cảnh báo tồn kho
         /// </summary>
         /// <param name="kfId"></param>
         /// <param name="OrganizeId"></param>

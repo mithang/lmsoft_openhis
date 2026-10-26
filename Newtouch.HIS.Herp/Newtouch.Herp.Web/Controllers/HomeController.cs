@@ -13,7 +13,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Controllers
 {
     /// <summary>
-    /// 首页
+    /// Trang chủ
     /// </summary>
     public class HomeController : FrameworkBase.MultiOrg.Web.Controllers.HomeController
     {
@@ -31,7 +31,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 库房切换
+        /// Chuyển kho
         /// </summary>
         /// <returns></returns>
         public ActionResult KfChange()
@@ -41,11 +41,11 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 切换库房
+        /// Chuyển kho
         /// </summary>
-        /// <param name="kfId">库房ID</param>
-        /// <param name="kfName">库房名称</param>
-        /// <param name="kfLeve">库房等级</param>
+        /// <param name="kfId">Kho ID</param>
+        /// <param name="kfName">Tên kho</param>
+        /// <param name="kfLeve">Cấp kho</param>
         /// <returns></returns>
         public ActionResult SwithKf(string kfId, string kfName, int kfLeve)
         {
@@ -57,10 +57,10 @@ namespace Newtouch.Herp.Web.Controllers
             return Success("切换成功");
         }
 
-        #region 首页待办
+        #region Việc cần làm trang chủ
 
         /// <summary>
-        /// 获取待处理html
+        /// Lấy chờ xử lý html
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -71,7 +71,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 获取带处理总数
+        /// Lấy tổng Số cần xử lý
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -82,10 +82,10 @@ namespace Newtouch.Herp.Web.Controllers
 
         #endregion
 
-        #region 统计
+        #region Thống kê
 
         /// <summary>
-        /// 进销存统计
+        /// Thống kê nhập-xuất-tồn
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPsiByKf()
@@ -98,7 +98,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 按单据类型获取入库总数
+        /// Lấy tổng số nhập kho theo loại chứng từ
         /// </summary>
         /// <returns></returns>
         public ActionResult GetRkCountByLx()
@@ -109,11 +109,11 @@ namespace Newtouch.Herp.Web.Controllers
         }
         #endregion
 
-        #region 消息提醒
+        #region Nhắc nhở tin nhắn
         public ActionResult getmesquery()
         {
             string yfbm = Constants.CurrentKf.currentKfId;
-            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//过期预警值
+            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//Giá trị cảnh báo hết hạn
             var retdata = _storageManageDmnService.MSGQuery(yfbm, this.OrganizeId, gqyjz);
             int gqyjcount = 0, kcyjcount = 0;
             if (retdata != null)
@@ -131,14 +131,14 @@ namespace Newtouch.Herp.Web.Controllers
         }
         #endregion
 
-        #region 同步系统参数配置
+        #region Đồng bộ cấu hình tham số hệ thống
         public ActionResult SyncSysConfigParams(string orgId)
         {
-            //基础数据
+            //Dữ liệu cơ sở
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
-            //组织机构自带数据
+            //Dữ liệu tự mang theo của tổ chức
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
-            //根据code 去重
+            //Theo code Khử trùng lặp
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));
             var filteredEntities = sysConfigBaseEntities
                 .Where(baseEntity => !sysConfigCodes.Contains(baseEntity.Code))

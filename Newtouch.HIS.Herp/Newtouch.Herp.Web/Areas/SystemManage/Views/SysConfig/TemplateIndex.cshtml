@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_addTmp()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_addTmp()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_editTmp()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_editTmp()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_deleteTmp()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_deleteTmp()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keywordTmp" type="text" class="form-control" placeholder="配置名称/配置编码" style="width: 200px;">
+                        <input id="txt_keywordTmp" type="text" class="form-control" placeholder="Tên cấu hình/Mã cấu hình" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_searchTmp" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -49,17 +49,17 @@
             url: "/SystemManage/SysConfig/GetGridJsonTmp",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: "名称", name: "Name", width: 100, align: 'left' },
-                { label: '编码', name: 'Code', width: 80, align: 'left' },
-                { label: '说明', name: 'Memo', width: 100, align: 'left' },
-                { label: "默认值", name: "DefaultVal", width: 100, align: 'left' },
-                { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 80, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 80, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: "Tên", name: "Name", width: 100, align: 'left' },
+                { label: 'Mã', name: 'Code', width: 80, align: 'left' },
+                { label: 'Mô tả', name: 'Memo', width: 100, align: 'left' },
+                { label: "Giá trị mặc định", name: "DefaultVal", width: 100, align: 'left' },
+                { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Sửa cuối', name: 'LastModifierCode', width: 80, align: 'left' },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             ondblClickRow: function (rowid) { btn_editTmp(); }
         });
@@ -73,7 +73,7 @@
     function btn_addTmp() {
         $.modalOpen({
             id: "Form",
-            title: "新增配置模板",
+            title: "Thêm mẫu cấu hình mới",
             url: "/SystemManage/SysConfig/TemplateForm",
             width: "450px",
             height: "370px",
@@ -91,12 +91,12 @@
     function btn_editTmp() {
         var keyValue = $("#gridListTmp").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改配置",
+            title: "Sửa cấu hình",
             url: "/SystemManage/SysConfig/TemplateForm?keyValue=" + keyValue,
             width: "550px",
             height: "570px",
@@ -116,7 +116,7 @@
     function btn_deleteTmp() {
         var keyValue = $("#gridListTmp").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.deleteForm({

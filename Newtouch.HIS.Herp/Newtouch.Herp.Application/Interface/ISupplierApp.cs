@@ -3,7 +3,7 @@
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 供应商处理
+    /// Xử lý nhà cung cấp
     /// </summary>
     public interface ISupplierApp
     {
@@ -15,7 +15,7 @@ namespace Newtouch.Herp.Application.Interface
         void SubmitForm(GysSupplierEntity supplierEntity, string keyWord);
 
         /// <summary>
-        /// 快速创建生产商  返回生产商ID
+        /// Tạo nhanh nhà sản xuất  Trả về nhà sản xuất ID
         /// </summary>
         /// <param name="name"></param>
         /// <param name="organizeId"></param>

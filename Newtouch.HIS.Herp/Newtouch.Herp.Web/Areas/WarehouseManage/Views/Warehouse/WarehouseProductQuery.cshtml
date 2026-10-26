@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Herp.Infrastructure.Enum
 @using Newtouch.Herp.Infrastructure;
 @{
-    ViewBag.Title = "本部门物资查询";
+    ViewBag.Title = "Tra cứu vật tư của khoa này";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -26,37 +26,37 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">物资名称：</td>
+                    <td class="formTitle">Tên vật tư:</td>
                     <td class="formValue" style="width:120px;">
-                        <input type="text" id="keyWord" class="form-control" placeholder="拼音/名称" />
+                        <input type="text" id="keyWord" class="form-control" placeholder="Phiên âm/Tên" />
                         <input type="hidden" id="productId" value="" />
                     </td>
-                    <td class="formTitle">类别：</td>
+                    <td class="formTitle">Loại:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="lb">
-                            <option value="">全部</option>
+                            <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">使用状态：</td>
+                    <td class="formTitle">Trạng thái sử dụng:</td>
                     <td class="formValue formDdlSelectorTd" style="width:75px;">
                         <select class="form-control" id="kzbz" name="kzbz">
-                            <option value="">全部</option>
-                            <option value="1">正常</option>
-                            <option value="0">控制</option>
+                            <option value="">Tất cả</option>
+                            <option value="1">Bình thường</option>
+                            <option value="0">Điều khiển</option>
                         </select>
                     </td>
-                    <td class="formTitle">物资状态：</td>
+                    <td class="formTitle">Trạng thái vật tư:</td>
                     <td class="formValue formDdlSelectorTd" style="width:75px;">
-                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
                     <td class="formTitle" style="width:180px;">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
-                        <input type="button" id="btn_print" class="btn btn-primary" value="打印" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                        <input type="button" id="btn_print" class="btn btn-primary" value="In" />
                     </td>
                 </tr>
             </table>
@@ -75,7 +75,7 @@
         gridList();
     });
 
-    //获取物资信息
+    //Lấy thông tin vật tư
     function gridList() {
         $gridList.dataGrid({
             url: "/WarehouseManage/Warehouse/GetWarehouseProducts",
@@ -83,38 +83,38 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
             colModel: [
                 {
-                    label: '控制标志', name: 'kzbz', width: 60, align: 'center',
-                    formatter: function (cellvalue) { return cellvalue === "1" ? "正常" : "控制"; }
+                    label: 'Cờ điều khiển', name: 'kzbz', width: 60, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Bình thường" : "Điều khiển"; }
                 },
                 {
-                    label: '物资状态', name: 'wzzt', width: 60, align: 'center',
-                    formatter: function (cellvalue) { return cellvalue === "1" ? "可用" : "无效"; }
+                    label: 'Trạng thái vật tư', name: 'wzzt', width: 60, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Khả dụng" : "Không hiệu lực"; }
                 },
-                { label: '名称', name: 'wzmc', width: 180, align: 'left' },
-                { label: '国家医保码', name: 'gjybdm', width: 100, align: 'left' },
-                { label: '拼音', name: 'py', width: 70, align: 'left' },
-                { label: '类别', name: 'lb', width: 100, align: 'left' },
-                { label: '最小起订数', name: 'zxqds', width: 70, align: 'left' },
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Mã bảo hiểm y tế quốc gia', name: 'gjybdm', width: 100, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 70, align: 'left' },
+                { label: 'Loại', name: 'lb', width: 100, align: 'left' },
+                { label: 'Số lượng đặt tối thiểu', name: 'zxqds', width: 70, align: 'left' },
                 {
-                    label: '零售价', name: 'lsj', width: 80, hidden: true,
+                    label: 'Giá bán lẻ', name: 'lsj', width: 80, hidden: true,
                     formatter: function (val) {
                         return val.toFixed(4);
                     } },
-                { label: '单位', name: 'zxdwmc', width: 50, align: 'center' },
-                { label: '规格', name: 'gg', width: 100, align: 'left' },
-                { label: '品牌', name: 'brand', width: 150, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                { label: 'Đơn vị', name: 'zxdwmc', width: 50, align: 'center' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 150, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 {
-                    label: '是否零库存', name: 'sflkc', width: 70, align: 'center',
-                    formatter: function (cellvalue) { return cellvalue === "1" ? "是" : "否"; }
+                    label: 'Có tồn kho bằng 0 không', name: 'sflkc', width: 70, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có" : "Không"; }
                 },
                 {
-                    label: '是否复用', name: 'sffy', width: 60, align: 'center',
-                    formatter: function (cellvalue) { return cellvalue === "1" ? "是" : "否"; }
+                    label: 'Có tái sử dụng không', name: 'sffy', width: 60, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có" : "Không"; }
                 },
                 {
-                    label: '是否跟台', name: 'sfgt', width: 55, align: 'center',
-                    formatter: function (cellvalue) { return cellvalue === "1" ? "是" : "否"; }
+                    label: 'Có theo ca không', name: 'sfgt', width: 55, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có" : "Không"; }
                 },
                 { label: "productId", name: "productId", hidden: true, key: true }
             ],
@@ -137,7 +137,7 @@
         });
     }
 
-    //类别
+    //Loại
     function initialddlYPLBList() {
         $("#lb").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"

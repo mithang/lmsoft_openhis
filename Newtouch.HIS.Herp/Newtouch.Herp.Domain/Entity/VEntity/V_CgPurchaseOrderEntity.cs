@@ -3,177 +3,177 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 采购计划主表
+    /// Bảng chính kế hoạch mua hàng
     /// </summary>
     public class VCgPurchaseOrderEntity
     {
         /// <summary>
-        /// 采购计划单号
+        /// Số phiếu kế hoạch mua hàng
         /// </summary>
         public string cgdh { get; set; }
 
         /// <summary>
-        /// 入库部门Code
+        /// Khoa nhập kho Code
         /// </summary>
         public string rkbmCode { get; set; }
 
         /// <summary>
-        /// 入库部门名称
+        /// Tên khoa nhập kho
         /// </summary>
         public string rkbmmc { get; set; }
 
         /// <summary>
-        /// 审核状态 0-待审核； 1-审核通过； 2-审核不通过；3-已作废；4-暂存
+        /// Trạng thái duyệt 0-Chờ duyệt; 1-Duyệt đạt; 2-Duyệt không đạt;3-Đã hủy bỏ;4-Lưu tạm
         /// </summary>
         public int auditState { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorName { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者账号
+        /// Tài khoản người sửa
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 修改者名称
+        /// Tên người sửa
         /// </summary>
         public string LastModifierName { get; set; }
     }
 
     /// <summary>
-    /// 采购计划明细
+    /// Chi tiết kế hoạch mua hàng
     /// </summary>
     public class VCgPurchaseOrderDetailEntity
     {
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 计划采购数 sl*zhyz=最小单位数量
+        /// Số lượng mua theo kế hoạch sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 实际采购数 sjsl*zhyz=最小单位数量
+        /// Số lượng mua thực tế sjsl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sjsl { get; set; }
 
         /// <summary>
-        /// 计划采购数（带单位）
+        /// Số lượng mua theo kế hoạch(Kèm đơn vị)
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 实际采购数（带单位）
+        /// Số lượng mua thực tế(Kèm đơn vị)
         /// </summary>
         public string sjslStr { get; set; }
 
         /// <summary>
-        /// 继续采购 sl-sjsl
+        /// Tiếp tục mua hàng sl-sjsl
         /// </summary>
         public int jxcgs { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 单位ID
+        /// Đơn vị ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string unitName { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// 物资类别名称
+        /// Tên loại vật tư
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 生产厂家名称
+        /// Tên nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 进价  jj/zhyz=最小单位进价
+        /// Giá nhập  jj/zhyz=Giá nhập đơn vị nhỏ nhất
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 采购计划明细ID，cg_purchaseOrderDetail表主键
+        /// Chi tiết kế hoạch mua hàng ID,cg_purchaseOrderDetail Khóa chính bảng
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string gysId { get; set; }
 
         /// <summary>
-        /// 最小起订数(最小单位)
+        /// Số lượng đặt tối thiểu(Đơn vị nhỏ nhất)
         /// </summary>
         public int zxqds { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
         /// <summary>
-        /// 供应商
+        /// Nhà cung cấp
         /// </summary>
         public string supplierId { get; set; }
         public string supplierName { get; set; }

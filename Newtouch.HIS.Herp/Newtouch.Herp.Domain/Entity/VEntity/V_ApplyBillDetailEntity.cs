@@ -1,117 +1,117 @@
 ﻿namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 申领单明细
+    /// Chi tiết phiếu lĩnh
     /// </summary>
     public class VApplyBillDetailEntity
     {
         /// <summary>
-        /// 申领单ID
+        /// Phiếu lĩnh ID
         /// </summary>
         public long sldId { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// Số phiếu lĩnh
         /// </summary>
         public string sldh { get; set; }
 
         /// <summary>
-        /// 入库部门ID
+        /// Khoa nhập kho ID
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 申领单明细ID
+        /// Chi tiết phiếu lĩnh ID
         /// </summary>
         public long sldmxId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 申领数量,部门单位
+        /// Số lượng lĩnh,Đơn vị khoa phòng
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 申领数量
+        /// Số lượng lĩnh
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 已发数量
+        /// Số lượng đã phát
         /// </summary>
         public string yfslStr { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 可用库存数量
+        /// Số lượng tồn kho khả dụng
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// 部门单位剩余数量
+        /// Số lượng còn lại đơn vị khoa phòng
         /// </summary>
         public int bmdwsysl { get; set; }
 
         /// <summary>
-        /// 现发数量，默认等于部门单位剩余数量
+        /// Số lượng phát hiện tại,Mặc định bằng Số lượng còn lại đơn vị khoa phòng
         /// </summary>
         public int xfsl { get; set; }
 
         /// <summary>
-        /// 部门单位ID
+        /// Đơn vị khoa phòng ID
         /// </summary>
         public string bmdwId { get; set; }
 
         /// <summary>
-        /// 部门单位名称
+        /// Tên đơn vị khoa phòng
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// 可用库存数量
+        /// Số lượng tồn kho khả dụng
         /// </summary>
         public string kyslStr { get; set; }
 
         /// <summary>
-        /// 最小单位剩余数量
+        /// Số lượng còn lại đơn vị nhỏ nhất
         /// </summary>
         public int zxdwsysl { get; set; }
     }

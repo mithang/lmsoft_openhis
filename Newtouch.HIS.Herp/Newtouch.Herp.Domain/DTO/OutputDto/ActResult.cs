@@ -3,12 +3,12 @@
 namespace Newtouch.Herp.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 执行结果
+    /// Kết quả thực hiện
     /// </summary>
     public class ActResult
     {
         /// <summary>
-        /// 执行结果
+        /// Kết quả thực hiện
         /// </summary>
         public ActResult()
         {
@@ -18,63 +18,63 @@ namespace Newtouch.Herp.Domain.DTO.OutputDto
         }
 
         /// <summary>
-        /// 是否成功 true:全部成功/部分成功  false:全部失败/验证失败
+        /// Có thành công không true:Tất cả thành công/Thành công một phần  false:Tất cả thất bại/Kiểm tra thất bại
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// 状态码 参照枚举ResultCode
+        /// Mã trạng thái Tham chiếu enum ResultCode
         /// </summary>
         public int ResultCode { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// Mô tả lỗi
         /// </summary>
         public string ResultMsg { get; set; }
 
         /// <summary>
-        /// 返回信息
+        /// Trả về thông tin
         /// </summary>
         public dynamic Data { get; set; }
     }
 
     /// <summary>
-    /// 返回状态枚举
+    /// Trả về enum trạng thái
     /// </summary>
     public enum ResultCode
     {
         /// <summary>
-        /// 执行成功
+        /// Thực hiện thành công
         /// </summary>
         [Description("执行成功")]
         None = 0,
 
         /// <summary>
-        /// 执行成功
+        /// Thực hiện thành công
         /// </summary>
         [Description("部分成功")]
         PartSuccess = 1,
 
         /// <summary>
-        /// 执行成功
+        /// Thực hiện thành công
         /// </summary>
         [Description("部分成功")]
         AllFailure = 2,
 
         /// <summary>
-        /// 验证失败
+        /// Kiểm tra thất bại
         /// </summary>
         [Description("验证失败")]
         ValidationFailure = 3,
 
         /// <summary>
-        /// 内部处理异常
+        /// Ngoại lệ xử lý nội bộ
         /// </summary>
         [Description("内部处理异常")]
         InternalProcessingAbnormality = 4,
 
         /// <summary>
-        /// 其他错误
+        /// Lỗi khác
         /// </summary>
         [Description("其他错误")]
         Other = 5,

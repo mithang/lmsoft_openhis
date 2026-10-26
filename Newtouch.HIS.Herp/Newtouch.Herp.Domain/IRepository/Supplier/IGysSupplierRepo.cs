@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 供应商操作
+    /// Thao tác nhà cung cấp
     /// </summary>
     public interface IGysSupplierRepo : IRepositoryBase<GysSupplierEntity>
     {
@@ -26,7 +26,7 @@ namespace Newtouch.Herp.Domain.IRepository
         /// <param name="pagination"></param>
         /// <param name="organizeId"></param>
         /// <param name="keyWord"></param>
-        /// <param name="supplierType">0：其他     1：生产商      2：经销商</param>
+        /// <param name="supplierType">0:Khác     1:Nhà sản xuất      2:Nhà phân phối</param>
         /// <param name="zt"></param>
         /// <returns></returns>
         IList<GysSupplierEntity> GetList(string organizeId, string keyWord, int supplierType, string zt = "");

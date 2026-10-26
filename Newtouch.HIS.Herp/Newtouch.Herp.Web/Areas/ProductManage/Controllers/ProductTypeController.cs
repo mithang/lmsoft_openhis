@@ -11,7 +11,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 物资类别维护
+    /// Bảo trì loại vật tư
     /// </summary>
     public class ProductTypeController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         private readonly IProductTypeApp _productTypeApp;
 
         /// <summary>
-        /// 获取物资类别列表
+        /// Lấy danh sách loại vật tư
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 物资类别维护 表单提交
+        /// Bảo trì loại vật tư Gửi biểu mẫu
         /// </summary>
         /// <param name="wzTypeEntity"></param>
         /// <param name="keyWord"></param>
@@ -78,7 +78,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取上级
+        /// Lấy cấp trên
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatientTreeSelectJson()

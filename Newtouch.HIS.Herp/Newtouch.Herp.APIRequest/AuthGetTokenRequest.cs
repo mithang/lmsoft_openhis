@@ -3,7 +3,7 @@
 namespace Newtouch.Herp.APIRequest
 {
     /// <summary>
-    /// 以关键信息（用户名、密码等）换取访问令牌
+    /// Bằng thông tin quan trọng(Tên người dùng,mật khẩu, v.v.)Đổi lấy mã truy cập
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {

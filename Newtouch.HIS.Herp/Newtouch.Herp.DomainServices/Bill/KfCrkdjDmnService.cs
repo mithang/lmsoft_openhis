@@ -18,7 +18,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.DomainServices
 {
     /// <summary>
-    /// 出入库单据
+    /// Chứng từ nhập/xuất kho
     /// </summary>
     public class KfCrkdjDmnService : DmnServiceBase, IKfCrkdjDmnService
     {
@@ -32,13 +32,13 @@ namespace Newtouch.Herp.DomainServices
         }
 
         /// <summary>
-        /// 获取出入库单据主表信息
+        /// Lấy thông tin bảng chính chứng từ nhập/xuất kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
         /// <param name="alldjlx"></param>
-        /// <param name="warehouseId">当前库房</param>
-        /// <param name="ope">操作  query：查询  approval：审核</param>
+        /// <param name="warehouseId">Kho hiện tại</param>
+        /// <param name="ope">Thao tác  query:Tra cứu  approval:Duyệt</param>
         /// <returns></returns>
         public IList<VCrkdjEntity> GetCrkdjMainList(Pagination pagination, CrkdjSearchParamDTO param, string[] alldjlx, string warehouseId, string ope = "")
         {
@@ -130,7 +130,7 @@ AND dj.CreateTime BETWEEN @kssj AND @jssj
         }
 
         /// <summary>
-        /// 获取出入库明细
+        /// Lấy chi tiết nhập/xuất kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="organizeId"></param>
@@ -162,7 +162,7 @@ AND dj.Id=@crkId
         }
 
         /// <summary>
-        /// 获取供应商和发票信息
+        /// Lấy thông tin nhà cung cấp và hóa đơn
         /// </summary>
         /// <param name="keyWord"></param>
         /// <param name="warehouseId"></param>
@@ -192,7 +192,7 @@ ORDER BY fph DESC
         }
 
         /// <summary>
-        /// 删除单据主表和明细表 慎用
+        /// Xóa bảng chính và bảng chi tiết chứng từ Sử dụng thận trọng
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="organizeId"></param>
@@ -214,14 +214,14 @@ ORDER BY fph DESC
         }
 
         /// <summary>
-        /// 保存单据
+        /// Lưu chứng từ
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mxList"></param>
         /// <returns></returns>
         public string SaveDj(KfCrkdjEntity dj, List<KfCrkmxEntity> mxList)
         {
-            var ret = iKfCrkdjRepo.Insert(dj); //新增kf_crkdj
+            var ret = iKfCrkdjRepo.Insert(dj); //Thêm mới kf_crkdj
             if (ret <= 0) return "保存出入库主信息失败";
             var successList = new List<KfCrkmxEntity>();
             try
@@ -247,7 +247,7 @@ ORDER BY fph DESC
         }
 
         /// <summary>
-        /// 取消已成功插入明细
+        /// Hủy chi tiết đã chèn thành công
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="successList"></param>
@@ -269,7 +269,7 @@ ORDER BY fph DESC
         }
 
         /// <summary>
-        /// 查询入库配送单号
+        /// Tra cứu Số phiếu giao hàng nhập kho
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="warehouseId"></param>
@@ -307,7 +307,7 @@ AND (crkdj.auditState=@shzt OR ''=@shzt)
         }
 
         /// <summary>
-        /// 通过配送单号获取出入库明细
+        /// Lấy chi tiết nhập/xuất kho qua Số phiếu giao hàng
         /// </summary>
         /// <param name="deliveryNo"></param>
         /// <param name="djh"></param>
@@ -360,7 +360,7 @@ ORDER BY s.LastModifyTime DESC  ");
         }
 
         /// <summary>
-        /// 删除指定出入库单据和明细
+        /// Xóa chứng từ nhập/xuất kho và chi tiết đã chỉ định
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

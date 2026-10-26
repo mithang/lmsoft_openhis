@@ -9,7 +9,7 @@ using Newtouch.Herp.Domain.IDomainServices;
 namespace Newtouch.Herp.DomainServices.Licence
 {
     /// <summary>
-    /// 证照维护
+    /// Bảo trì giấy phép
     /// </summary>
     public class LicLicenceDmnService : DmnServiceBase, ILicLicenceDmnService
     {
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.DomainServices.Licence
         }
 
         /// <summary>
-        /// 获取证照类型
+        /// Lấy loại giấy phép
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -39,7 +39,7 @@ WHERE lit.Id=@keyWord OR ''=@keyWord
         }
 
         /// <summary>
-        /// 获取证照列表
+        /// Lấy danh sách giấy phép
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>

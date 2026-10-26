@@ -7,13 +7,13 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 出入库单审核
+    /// Duyệt chứng từ nhập/xuất kho
     /// </summary>
     public class OutOrInStorageBillApprovalApp : AppBase, IOutOrInStorageBillApprovalApp
     {
 
         /// <summary>
-        /// 审核
+        /// Duyệt
         /// </summary>
         /// <param name="billApprovalDTO"></param>
         /// <returns></returns>

@@ -14,7 +14,7 @@ using Newtouch.Herp.Infrastructure.Log;
 namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
 {
     /// <summary>
-    /// 外部入库
+    /// Nhập kho ngoài
     /// </summary>
     public class DeliveryToDepartmentProcess : ProcessorFun<DjInfDTO>
     {
@@ -27,7 +27,7 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
         }
 
         /// <summary>
-        /// 验证Request
+        /// Kiểm tra Request
         /// </summary>
         protected override ActResult Validata()
         {
@@ -39,12 +39,12 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
         {
-            //提交单据表
+            //Gửi bảng chứng từ
             var djSubmitResult = DeliveryToDepartmentSubmit(Request.crkdj, Request.crkdjmx);
             if (!string.IsNullOrWhiteSpace(djSubmitResult))
             {
@@ -52,7 +52,7 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
                 actResult.ResultMsg = djSubmitResult;
                 return;
             }
-            //库存变更
+            //Thay đổi tồn kho
             var updateKcslParam = AssembleUpdateKcslDTO();
             var result = iKfKcxxDmnService.JustSubtractKcsl(updateKcslParam);
             if (string.IsNullOrWhiteSpace(result)) return;
@@ -62,7 +62,7 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
         }
 
         /// <summary>
-        /// 回滚单据
+        /// Khôi phục chứng từ
         /// </summary>
         private void RollBackDj()
         {
@@ -80,7 +80,7 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
         }
 
         /// <summary>
-        /// 组装修改库存DTO
+        /// Lắp ráp sửa tồn kho DTO
         /// </summary>
         /// <returns></returns>
         private List<UpdateKcslDTO> AssembleUpdateKcslDTO()
@@ -98,7 +98,7 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
         }
 
         /// <summary>
-        /// 提交直接出库
+        /// Gửi xuất kho trực tiếp
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -108,7 +108,7 @@ namespace Newtouch.Herp.Application.Implementation.DeliveryAutoProcss
             crkdj.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
             crkdj.ckczy = OperatorProvider.GetCurrent().UserCode;
             crkdj.ckbm = Constants.CurrentKf.currentKfId;
-            crkdj.auditState = ((int)EnumAuditState.Adopt).ToString(); //无需人工审核
+            crkdj.auditState = ((int)EnumAuditState.Adopt).ToString(); //Không cần duyệt thủ công
             crkdj.rksj = DateTime.Now;
             crkdj.rkczy = OperatorProvider.GetCurrent().UserCode;
             crkdj.cksj = DateTime.Now;

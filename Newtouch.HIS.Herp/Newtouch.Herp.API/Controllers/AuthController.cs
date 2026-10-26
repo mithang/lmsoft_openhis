@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace Newtouch.Herp.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Xác thực ủy quyền
     /// </summary>
     [RoutePrefix("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
@@ -21,7 +21,7 @@ namespace Newtouch.Herp.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// Bằng thông tin quan trọng(Tên người dùng,mật khẩu, v.v.)Đổi lấy mã truy cập
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -31,9 +31,9 @@ namespace Newtouch.Herp.API.Controllers
         {
             Action<AuthGetTokenRequest, DefaultResponse> ac = (req, resp) =>
             {
-                //1、由request验证出用户身份
+                //1,bởi request Xác minh danh tính người dùng
 
-                //2、身份存储在Redis（有一定的过期时间）
+                //2,Danh tính được lưu trữ tại Redis(Có một thời gian hết hạn nhất định)
                 var identity = new UserIdentity()
                 {
                     AppId = request.AppId,
@@ -45,7 +45,7 @@ namespace Newtouch.Herp.API.Controllers
                 };
                 var token = SaveIdentity(identity);
 
-                //3、返回key
+                //3,Trả về key
                 resp.data = new
                 {
                     token = token

@@ -2,28 +2,28 @@
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "调价审核";
+    ViewBag.Title = "Duyệt điều chỉnh giá";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">关键字</th>
+                    <th class="formTitle">Từ khóa</th>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="药品代码 拼音 名称" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Mã thuốc Phiên âm Tên" />
                     </td>
-                    <th class="formTitle">审核状态</th>
+                    <th class="formTitle">Trạng thái duyệt</th>
                     <td class="formValue">
-                        @Html.DropDownList("ddlSHZT", EnumTjShzt.Waiting.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlSHZT", EnumTjShzt.Waiting.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px;margin-left:30%;" />
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px;margin-left:30%;" />
                     </td>
                     <th></th>
                     <td></td>
@@ -39,15 +39,15 @@
     </div>
 </form>
 <div style="float:left;margin:10px 30px 12px;">
-    <span style="background-color:#EECBAD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 已过期
+    <span style="background-color:#EECBAD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Đã hết hạn
 </div>
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 2, 3, 6, 7, },
-    F2Text = "审核",
-    F3Text = "拒绝",
-    F6Text = "撤销",
-    F7Text = "执行"
+    F2Text = "Duyệt",
+    F3Text = "Từ chối",
+    F6Text = "Hủy",
+    F7Text = "Thực hiện"
 })
 
 <script>
@@ -63,7 +63,7 @@
             height: $(window).height() - document.getElementById('gridXSHYPInfoList').offsetTop - 115,
             colModel: [
                 {
-                    label: "审核状态", name: "shzt", width: 60, align: 'left', formatter: function (val) {
+                    label: "Trạng thái duyệt", name: "shzt", width: 60, align: 'left', formatter: function (val) {
                         switch (val) {
                         case '@((int)EnumTjShzt.Audited)':
                             return "@EnumTjShzt.Audited.GetDescription()";
@@ -79,7 +79,7 @@
                     }
                 },
                 {
-                    label: '执行标志', name: 'zxbz', width: 70, align: 'left', hidden: true, formatter: function (val) {
+                    label: 'Cờ thực hiện', name: 'zxbz', width: 70, align: 'left', hidden: true, formatter: function (val) {
                     switch (val) {
                     case '@((int)EnumTjZxbz.Already)':
                         return "@EnumTjZxbz.Already.GetDescription()";
@@ -89,32 +89,32 @@
                         return "";
                     }
                 } },
-                { label: '类别', name: 'lbmc', width: 80, align: 'left' },
-                { label: '物资名称', name: 'wzmc', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 100, align: 'left' },
+                { label: 'Loại', name: 'lbmc', width: 80, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
                 {
-                    label: '原零售价', name: 'ylsj', width: 70, align: 'right',
+                    label: 'Giá bán lẻ gốc', name: 'ylsj', width: 70, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }},
                 {
-                    label: '新零售价', name: 'lsj', width: 70, align: 'right',
+                    label: 'Giá bán lẻ mới', name: 'lsj', width: 70, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }},
-                { label: '定价单位', name: 'dwmc', width: 70, align: 'center' },
-                { label: '转化因子', name: 'zhyz', width: 70, align: 'center' },
-                { label: '调整文件', name: 'tzwj', width: 80, align: 'left' },
-                { label: '预执行时间', name: 'zxsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Đơn vị định giá', name: 'dwmc', width: 70, align: 'center' },
+                { label: 'Hệ số chuyển đổi', name: 'zhyz', width: 70, align: 'center' },
+                { label: 'Điều chỉnh tệp', name: 'tzwj', width: 80, align: 'left' },
+                { label: 'Thời gian thực hiện trước', name: 'zxsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
                 {
-                    label: '是否过期', name: 'Isgq', width: 80, align: 'left', hidden: true ,
+                    label: 'Có hết hạn không', name: 'Isgq', width: 80, align: 'left', hidden: true ,
                     formatter: function (val) {
-                        return val === "true" ? "已过期" : "";
+                        return val === "true" ? "Đã hết hạn" : "";
                     }
                 },
-                { label: '生产厂家', name: 'supplierName', width: 120, align: 'left' },
-                { label: '提交时间', name: 'tzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '有效', name: 'zt', width: 50, align: 'center', formatter: function (val) { return val === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";} },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 120, align: 'left' },
+                { label: 'Thời gian gửi', name: 'tzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Hiệu lực', name: 'zt', width: 50, align: 'center', formatter: function (val) { return val === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";} },
                 { label: 'productId', name: 'productId', hidden: true },
                 { label: 'wztjId', name: 'wztjId', hidden: true }
             ],
@@ -174,7 +174,7 @@
                 }
             },
             gridComplete: function () {
-                //已过期 背景色为红色
+                //Đã hết hạn Màu nền là màu đỏ
                 var ids = $("#gridXSHYPInfoList").getDataIDs();
                 for (var i = 0; i < ids.length; i++) {
                     var rowData = $("#gridXSHYPInfoList").getRowData(ids[i]);
@@ -196,14 +196,14 @@
         $("#btn_search").trigger('click');
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         var shzt = $("#ddlSHZT").val();
         return { inputCode: inputCode, shzt: shzt };
     };
 
-    //已过期 背景色为红色
+    //Đã hết hạn Màu nền là màu đỏ
     function afterCompleteFunction() {
         var ids = $("#gridXSHYPInfoList").getDataIDs();
         for (var i = 0; i < ids.length; i++) {
@@ -214,35 +214,35 @@
         }
     }
 
-    //批准 EnumPriceAdjustOperationType:1:批准,2:拒绝,3:撤销,4:执行
+    //Phê duyệt EnumPriceAdjustOperationType:1:Phê duyệt,2:Từ chối,3:Hủy,4:Thực hiện
     function newtouch_event_f2() {
         AdjustPriceApproval("@((int)EnumTjShzt.Audited)");
     }
-    //拒绝
+    //Từ chối
     function newtouch_event_f3() {
         AdjustPriceApproval("@((int)EnumTjShzt.Refuse)");
     }
-    //撤销
+    //Hủy
     function newtouch_event_f6() {
         AdjustPriceApproval("@((int)EnumTjShzt.Revoke)");
     }
 
-    //审核 拒绝 撤销 执行操作
+    //Duyệt Từ chối Hủy Thực hiện thao tác
     function AdjustPriceApproval(operationType) {
         if (!ValidateData()) {
             return;
         }
         if (tjIds === "") {
-            $.modalAlert("未获取到需操作数据", 'warning');
+            $.modalAlert("Không lấy được dữ liệu cần thao tác", 'warning');
             return;
         }
         var tipStr = "";
         if (operationType === "@((int)EnumTjShzt.Audited)") {
-            tipStr = "确定要批准吗？";
+            tipStr = "Bạn có chắc muốn phê duyệt không?";
         } else if (operationType === "@((int)EnumTjShzt.Refuse)") {
-            tipStr = "确定要拒绝吗？";
+            tipStr = "Bạn có chắc muốn từ chối không?";
         } else if (operationType === "@((int)EnumTjShzt.Revoke)") {
-            tipStr = "确定要撤销吗？";
+            tipStr = "Bạn có chắc muốn hủy không?";
         }
         $.modalConfirm(tipStr, function (flag) {
             if (!flag) {
@@ -255,9 +255,9 @@
                     Type: "POST",
                     success: function(data) {
                         if (data.state === 'success') {
-                            $.modalMsg("操作成功", 'success',1500);
+                            $.modalMsg("Thao tác thành công", 'success',1500);
                         } else {
-                            var msg = data.message != null ? data.message : "操作失败";
+                            var msg = data.message != null ? data.message : "Thao tác thất bại";
                             $.modalMsg(msg, 'error', 1500);
                         }
                         $("#btn_search").trigger('click');
@@ -269,16 +269,16 @@
     }
 
     var tjIds = "";
-    //执行
+    //Thực hiện
     function newtouch_event_f7() {
         if (!ValidateData()) {
             return;
         }
         if (tjIds === "") {
-            $.modalAlert("未获取到需操作数据", 'warning');
+            $.modalAlert("Không lấy được dữ liệu cần thao tác", 'warning');
             return;
         }
-        $.modalConfirm("确定要执行吗？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn thực hiện không?", function (flag) {
             if (!flag) {
                 return false;
             } else {
@@ -289,9 +289,9 @@
                     Type: "POST",
                     success: function (data) {
                         if (data.state === 'success') {
-                            $.modalMsg("操作成功", 'success', 1500);
+                            $.modalMsg("Thao tác thành công", 'success', 1500);
                         } else {
-                            var msg = data.message != null ? data.message : "操作失败";
+                            var msg = data.message != null ? data.message : "Thao tác thất bại";
                             $.modalMsg(msg, 'error', 1500);
                         }
                         $("#btn_search").trigger('click');
@@ -301,17 +301,17 @@
         });
     }
 
-    //数据验证
+    //Kiểm tra dữ liệu
     function ValidateData() {
         tjIds = "";
         var rowsDataArray = $("#gridXSHYPInfoList").jqGrid("getRowData_AllLine", true);
         if (rowsDataArray.length === 0) {
-            $.modalAlert("请先选择需操作的数据", 'warning');
+            $.modalAlert("Vui lòng chọn dữ liệu cần thao tác trước", 'warning');
             return false;
         }
         for (var i = 0; i < rowsDataArray.length; i++) {
             if (rowsDataArray[i].Isgq === '已过期') {
-                $.modalAlert(rowsDataArray[i].wzmc + " 已过期，执行时间需大于当前时间", 'warning');
+                $.modalAlert(rowsDataArray[i].wzmc + " Đã hết hạn,Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
                 return false;
             }
             tjIds += rowsDataArray[i].wztjId + ",";
@@ -319,7 +319,7 @@
         return true;
     }
 
-    ////禁用
+    ////Vô hiệu hóa
     //function DisableControls(flag) {
     //    if (flag === "0" || flag === "2" || flag === "3") {
     //        $("#btn_bottombutton_f7").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");

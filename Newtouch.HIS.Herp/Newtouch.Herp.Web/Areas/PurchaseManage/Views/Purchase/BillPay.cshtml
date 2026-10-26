@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "发票支付确认";
+    ViewBag.Title = "Xác nhận thanh toán hóa đơn";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -46,10 +46,10 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">采购信息</div>
+        <div class="panel-heading">Thông tin mua hàng</div>
         <table class="form">
             <tr>
-                <th class="formTitle">日期：</th>
+                <th class="formTitle">Ngày:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -63,15 +63,15 @@
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle "><span class="required">*</span>供应商：</th>
+                <th class="formTitle "><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
-                    <input type="text" id="yq" name="yq" class="form-control" placeholder="请选择供应商" autocomplete="off" style="width:60%" />
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" style="width:60%" />
                     <input type="hidden" id="yqbm" />
                 </td>
 
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="获取明细" />
-                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="支付确认" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Lấy chi tiết" />
+                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="Xác nhận thanh toán" />
                 </th>
                 <td></td>
             </tr>
@@ -92,22 +92,22 @@
     });
 
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
-        //物资供应商
+        //Nhà cung cấp vật tư
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             url: '/Storage/GetSupplierList',
             height: 300,
             width: 400,
-            caption: "物资供应商",
+            caption: "Nhà cung cấp vật tư",
             ajaxparameters: function () {
                 return "key=" + $("#yq").val();
             },
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'py', widthratio: 45 },
-                { label: '供应商', name: 'name', widthratio: 55 }
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#yqbm").val($thistr.attr('data-py'));
@@ -132,17 +132,17 @@
             height: $(window).height() - 200,
             postData: getPostData(),
             colModel: [
-                { label: '发票编号', name: 'FPBH', width: 140, align: 'left' },
-                { label: '发票代码', name: 'FPDM', width: 140, align: 'left' },
-                { label: '发票号', name: 'FPH', width: 140, align: 'left' },
-                { label: '发票日期', name: 'FPRQ', width: 80, align: 'left' },
-                { label: '发票含税总金额', name: 'FPHSZJE', width: 100, align: 'left' },
-                { label: '企业名称', name: 'QYMC', width: 150, align: 'left' },
-                { label: '企业编码', name: 'QYBM', width: 150, align: 'left',hidden:true },
-                { label: '医院编码', name: 'YYBM', width: 80, align: 'left' },
-                { label: '配送点编码', name: 'PSDBM', width: 80, align: 'left' },
-                { label: '发票状态', name: 'FPZT', width: 60, align: 'left' ,hidden:true},
-                { label: '支付标识', name: 'ZFBZ', width: 60, align: 'left' },
+                { label: 'Số hóa đơn', name: 'FPBH', width: 140, align: 'left' },
+                { label: 'Mã hóa đơn', name: 'FPDM', width: 140, align: 'left' },
+                { label: 'Số hóa đơn', name: 'FPH', width: 140, align: 'left' },
+                { label: 'Ngày hóa đơn', name: 'FPRQ', width: 80, align: 'left' },
+                { label: 'Tổng tiền hóa đơn bao gồm thuế', name: 'FPHSZJE', width: 100, align: 'left' },
+                { label: 'Tên doanh nghiệp', name: 'QYMC', width: 150, align: 'left' },
+                { label: 'Mã doanh nghiệp', name: 'QYBM', width: 150, align: 'left',hidden:true },
+                { label: 'Mã bệnh viện', name: 'YYBM', width: 80, align: 'left' },
+                { label: 'Mã điểm giao hàng', name: 'PSDBM', width: 80, align: 'left' },
+                { label: 'Trạng thái hóa đơn', name: 'FPZT', width: 60, align: 'left' ,hidden:true},
+                { label: 'Dấu hiệu thanh toán', name: 'ZFBZ', width: 60, align: 'left' },
             ],
 
             multiselect: false,
@@ -162,27 +162,27 @@
         });
     }
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#yq").val() == "" || $("#yq").val() == null) {
-            $.modalAlert("请选择供应商", 'warning');
+            $.modalAlert("Vui lòng chọn nhà cung cấp", 'warning');
             return ;
         }
         var kssj = new Date($("#kssj").val());
         var jssj = new Date($("#jssj").val());
         if (getDaysBetween(kssj,jssj) > 30) {
 
-            $.modalAlert("日期不能超过30天", 'warning');
+            $.modalAlert("Ngày không được vượt quá 30 Ngày", 'warning');
             return;
         }
         gridList();
     });
 
-    //明细验收
+    //Nghiệm thu chi tiết
     $('#btn_accept').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null) {
-            $.modalAlert("请选择需要验收的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
             return;
         }
         //var psmxbh = rowData.PSMXBH;
@@ -191,7 +191,7 @@
         //var pssl = rowData.PSSL
         $.modalOpen({
             id: "Form",
-            title: "支付确认",
+            title: "Xác nhận thanh toán",
             url: "/PurchaseManage/Purchase/BillPayForm?FPID=" + rowData.FPBH + "&FPDM=" + rowData.FPDM + "&FPH=" + rowData.FPH + "&QYBM=" + rowData.QYBM +  "&FPHSZJE=" + rowData.FPHSZJE,
             width: "350px",
             height: "150px",

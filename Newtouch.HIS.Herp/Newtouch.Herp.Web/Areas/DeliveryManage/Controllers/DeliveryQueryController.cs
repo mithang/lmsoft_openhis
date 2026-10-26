@@ -7,14 +7,14 @@ using System.Web.Mvc;
 namespace Newtouch.Herp.Web.Areas.DeliveryManage.Controllers
 {
     /// <summary>
-    /// 配送单查询
+    /// Tra cứu phiếu giao hàng
     /// </summary>
     public class DeliveryQueryController : ControllerBase
     {
         private readonly IKfCrkdjDmnService crkdjDmnService;
 
         /// <summary>
-        /// 入库
+        /// Nhập kho
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -25,7 +25,7 @@ namespace Newtouch.Herp.Web.Areas.DeliveryManage.Controllers
         }
 
         /// <summary>
-        /// 获取已审核配送单
+        /// Lấy phiếu giao hàng đã duyệt
         /// </summary>
         /// <returns></returns>
         [HttpGet]

@@ -12,7 +12,7 @@ using EFDbTransaction = Newtouch.Infrastructure.EF.EFDbTransaction;
 namespace Newtouch.Herp.DomainServices.Warehouse
 {
     /// <summary>
-    /// 库房操作
+    /// Thao tác kho
     /// </summary>
     public class WarehouseDmnService : DmnServiceBase, IWarehouseDmnService
     {
@@ -77,7 +77,7 @@ namespace Newtouch.Herp.DomainServices.Warehouse
         }
 
         /// <summary>
-        /// 获取库房信息
+        /// Lấy thông tin kho
         /// </summary>
         /// <param name="keyWord"></param>
         /// <param name="organizeId"></param>
@@ -115,9 +115,9 @@ order by isnull(kfw.px, 99999)
         }
 
         /// <summary>
-        /// 删除库房
+        /// Xóa kho
         /// </summary>
-        /// <param name="id">库房Id</param>
+        /// <param name="id">Kho Id</param>
         public void DeleteWarehouse(string id)
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
@@ -131,7 +131,7 @@ order by isnull(kfw.px, 99999)
         }
 
         /// <summary>
-        /// 获取库房管理员信息
+        /// Lấy thông tin quản trị viên kho
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>
@@ -159,12 +159,12 @@ AND us.zt='1'
         }
 
         /// <summary>
-        /// 获取库房同步物资
+        /// Lấy vật tư đồng bộ kho
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="warehouseId">库房ID</param>
-        /// <param name="wzlb">物资类别</param>
-        /// <param name="keyWord">查询关键字</param>
+        /// <param name="warehouseId">Kho ID</param>
+        /// <param name="wzlb">Loại vật tư</param>
+        /// <param name="keyWord">Tra cứu từ khóa</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public IList<VSyncProductEntity> GetSyncProductList(Pagination pagination, string warehouseId, string wzlb, string keyWord, string organizeId)
@@ -193,7 +193,7 @@ AND (wz.name LIKE '%'+@keyWord+'%' OR wz.py LIKE '%'+@keyWord+'%' OR wz.Id=@keyw
         }
 
         /// <summary>
-        /// 获取库房物资
+        /// Lấy vật tư kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>

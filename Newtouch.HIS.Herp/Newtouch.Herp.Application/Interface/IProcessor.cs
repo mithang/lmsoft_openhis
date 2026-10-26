@@ -3,12 +3,12 @@
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 处理方法
+    /// Phương pháp xử lý
     /// </summary>
     public class IProcessor : AppBase
     {
         /// <summary>
-        /// 验证Request
+        /// Kiểm tra Request
         /// </summary>
         protected virtual ActResult Validata()
         {
@@ -16,14 +16,14 @@ namespace Newtouch.Herp.Application.Interface
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected virtual void BeforeAction(ActResult actResult)
         {
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected virtual void Action(ActResult actResult)
@@ -31,14 +31,14 @@ namespace Newtouch.Herp.Application.Interface
         }
 
         /// <summary>
-        /// 后处理
+        /// Xử lý sau
         /// </summary>
         protected virtual void AfterAction(ActResult actResult)
         {
         }
 
         /// <summary>
-        /// 异步处理
+        /// Xử lý bất đồng bộ
         /// </summary>
         protected virtual void AsyncAction(ActResult actResult)
         {

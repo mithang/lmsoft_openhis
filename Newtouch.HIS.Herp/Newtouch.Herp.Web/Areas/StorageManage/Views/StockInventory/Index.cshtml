@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "库存盘点";
+    ViewBag.Title = "Kiểm kê tồn kho";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -34,13 +34,13 @@
 </style>
 <div class="dv-panel">
     <div class="dv-index">
-        <div id="dv_index_startPd">开始盘点</div>
-        <div id="dv_search">查询</div>
+        <div id="dv_index_startPd">Bắt đầu kiểm kê</div>
+        <div id="dv_search">Tra cứu</div>
     </div>
 </div>
 <script>
     $(function() {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
             window.initLayout("MyTabGrid");
         });
         $("#dv_index_startPd").click(function () {

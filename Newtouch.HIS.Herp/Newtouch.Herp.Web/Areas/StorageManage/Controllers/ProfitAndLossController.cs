@@ -15,7 +15,7 @@ using Newtouch.Herp.Infrastructure.Common;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 报损报溢
+    /// Báo hỏng/báo thừa
     /// </summary>
     public class ProfitAndLossController : ControllerBase
     {
@@ -24,10 +24,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         private readonly ISysUserDmnService sysuserDmnService;
         private readonly IStockInventoryApp _stockInventoryApp;
 
-        #region 损益原因维护
+        #region Bảo trì nguyên nhân lãi/lỗ
 
         /// <summary>
-        /// 损益原因
+        /// Nguyên nhân lãi/lỗ
         /// </summary>
         /// <returns></returns>
         public ActionResult Syyy()
@@ -36,7 +36,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 损益原因信息查询
+        /// Tra cứu thông tin nguyên nhân lãi/lỗ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 损益原因 视图
+        /// Nguyên nhân lãi/lỗ Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult SyyyForm()
@@ -63,7 +63,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 删除损益原因
+        /// Xóa nguyên nhân lãi/lỗ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取损益原因下拉
+        /// Lấy thả xuống nguyên nhân lãi/lỗ
         /// </summary>
         /// <returns></returns>
         public ActionResult GetLossProfitReasonListByType(string sybz = "")
@@ -106,10 +106,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 损益查询
+        #region Tra cứu lãi/lỗ
 
         /// <summary>
-        /// 损益查询
+        /// Tra cứu lãi/lỗ
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryProfitAndLoss()
@@ -119,7 +119,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取损益明细
+        /// Lấy chi tiết lãi/lỗ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -141,7 +141,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         #region Generate profit or loss
 
         /// <summary>
-        /// 获取报损报溢单据号
+        /// Lấy Số chứng từ báo hỏng/báo thừa
         /// </summary>
         /// <returns></returns>
         public ActionResult GenerateDjh()
@@ -151,7 +151,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
 
         /// <summary>
-        /// 获取责任人list
+        /// Lấy người chịu trách nhiệm list
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -162,7 +162,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 损益提交
+        /// Gửi lãi/lỗ
         /// </summary>
         /// <param name="plist"></param>
         /// <returns></returns>

@@ -1,38 +1,38 @@
 ﻿namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 库房用户信息
+    /// Thông tin người dùng kho
     /// </summary>
     public class VKfUserInfoEntity
     {
 
         /// <summary>
-        /// 工号
+        /// Mã nhân viên
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// 员工名称
+        /// Tên nhân viên
         /// </summary>
         public string staffName { get; set; }
 
         /// <summary>
-        /// 库房ID
+        /// Kho ID
         /// </summary>
         public string kfId { get; set; }
 
         /// <summary>
-        /// 库房名称
+        /// Tên kho
         /// </summary>
         public string kfName { get; set; }
 
         /// <summary>
-        /// 库房等级
+        /// Cấp kho
         /// </summary>
         public int kfLeve { get; set; }
 
         /// <summary>
-        /// 职位
+        /// Chức vụ
         /// </summary>
         public string dutyName { get; set; }
     }

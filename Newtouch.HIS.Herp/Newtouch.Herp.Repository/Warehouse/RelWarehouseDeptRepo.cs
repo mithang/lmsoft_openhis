@@ -10,7 +10,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库房科室
+    /// Khoa kho
     /// </summary>
     public class RelWarehouseDeptRepo : RepositoryBase<RelWarehouseDeptEntity>, IRelWarehouseDeptRepo
     {

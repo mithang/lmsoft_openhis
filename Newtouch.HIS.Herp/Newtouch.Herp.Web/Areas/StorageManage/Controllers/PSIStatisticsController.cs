@@ -8,14 +8,14 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 进销存统计
+    /// Thống kê nhập-xuất-tồn
     /// </summary>
     public class PSIStatisticsController : ControllerBase
     {
         private readonly IKcKcjzDmnService _kcKcjzDmnService;
 
         /// <summary>
-        /// 视图
+        /// Khung nhìn
         /// </summary>
         /// <returns></returns>
         public override ActionResult Index()
@@ -25,7 +25,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 进销存统计
+        /// Thống kê nhập-xuất-tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchParam"></param>

@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "耗材配送点查询";
+    ViewBag.Title = "Tra cứu điểm giao hàng vật tư tiêu hao";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -46,10 +46,10 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">耗材配送点查询</div>
+        <div class="panel-heading">Tra cứu điểm giao hàng vật tư tiêu hao</div>
         <table class="form">
             <tr>
-                <th class="formTitle">查询时间：</th>
+                <th class="formTitle">Thời gian tra cứu:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -63,17 +63,17 @@
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle ">企业名称：</th>
+                <th class="formTitle ">Tên doanh nghiệp:</th>
                 <td class="formValue" colspan="2">
-                    <input type="text" id="qy" name="qy" class="form-control" placeholder="请选择企业" autocomplete="off" style="width:70%" />
+                    <input type="text" id="qy" name="qy" class="form-control" placeholder="Vui lòng chọn doanh nghiệp" autocomplete="off" style="width:70%" />
                     <input type="hidden" id="qybm" />
                 </td>
-                <th class="formTitle">配送单号：</th>
+                <th class="formTitle">Số phiếu giao hàng:</th>
                 <td class="formValue">
-                    <input id="psdh" class="form-control" placeholder="配送单号" />
+                    <input id="psdh" class="form-control" placeholder="Số phiếu giao hàng" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                 </th>
                 <td></td>
             </tr>
@@ -86,7 +86,7 @@
     <div id="TabGrid">
         <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
             <li role="presentation" class="active">
-                <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
             </li>
             <li style="float:right">
                 <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -109,7 +109,7 @@
 
         //gridList();
 
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện ô tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -121,7 +121,7 @@
         TabGridHide();
     });
 
-    //隐藏搜索框并显示箭头
+    //Ẩn ô tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -131,22 +131,22 @@
         }
     }
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
-        //物资供应商
+        //Nhà cung cấp vật tư
         $("#qy").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             url: '/Storage/GetSupplierList',
             height: 300,
             width: 400,
-            caption: "物资供应商",
+            caption: "Nhà cung cấp vật tư",
             ajaxparameters: function () {
                 return "key=" + $("#qy").val();
             },
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'py', widthratio: 45 },
-                { label: '供应商', name: 'name', widthratio: 55 }
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#qybm").val($thistr.attr('data-py'));
@@ -172,12 +172,12 @@
             height: $(window).height() - 200,
             postData: getPostData(),
             colModel: [
-                { label: '配送单编号', name: 'PSDBH', width: 180, align: 'left' },
-                { label: '配送单号', name: 'PSDH', width: 120, align: 'left' },
-                { label: '企业名称', name: 'QYBM', width: 180, align: 'left' },
-                { label: '配送明细条数', name: 'PSMXTS', width: 80, align: 'left' },
+                { label: 'Số phiếu giao hàng', name: 'PSDBH', width: 180, align: 'left' },
+                { label: 'Số phiếu giao hàng', name: 'PSDH', width: 120, align: 'left' },
+                { label: 'Tên doanh nghiệp', name: 'QYBM', width: 180, align: 'left' },
+                { label: 'Số dòng chi tiết giao hàng', name: 'PSMXTS', width: 80, align: 'left' },
                 {
-                    label: '配送单状态', name: 'PSDZT', width: 120, align: 'left', formatter: function (val) {
+                    label: 'Trạng thái phiếu giao hàng', name: 'PSDZT', width: 120, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumPSDZT", val);
                     }
                 },
@@ -199,9 +199,9 @@
     }
 
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột,Xóa trống chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/PurchaseManage/Purchase/GetGridJsonYY155",
@@ -215,47 +215,47 @@
             }
         });
     }
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '配送明细编号', name: 'PSMXBH', width: 80, align: 'left' },
+            { label: 'Số chi tiết giao hàng', name: 'PSMXBH', width: 80, align: 'left' },
             {
-                label: '配送明细条码类型', name: 'PSMXTMLX', width: 80, align: 'left', formatter: function (val) {
+                label: 'Loại mã vạch chi tiết giao hàng', name: 'PSMXTMLX', width: 80, align: 'left', formatter: function (val) {
                     return $.enum.getDescByValue("EnumPSMXTMLX", val);
                 }
             },
-            { label: '配送明细条码', name: 'PSMXTM', width: 80, align: 'left' },
-            { label: '采购单明细编号', name: 'DDMXBH', width: 80, align: 'left' },
-            { label: '医院计划单号', name: 'YYJHDH', width: 80, align: 'left' },
-            { label: '顺序号', name: 'SXH', width: 80, align: 'left' },
-            { label: '仓位信息', name: 'CWXX', width: 80, align: 'left' },
-            { label: '销售订单号', name: 'XSDDH', width: 80, align: 'left' },
-            { label: '耗材统编代码', name: 'HCTBDM', width: 80, align: 'left' },
-            { label: '耗材细分代码', name: 'HCXFDM', width: 80, align: 'left' },
-            { label: '医院本地代码', name: 'YYBDDM', width: 80, align: 'left' },
-            { label: '品名', name: 'PM', width: 80, align: 'left' },
-            { label: '规格', name: 'GG', width: 80, align: 'left' },
-            { label: '型号', name: 'XH', width: 80, align: 'left' },
-            { label: '规格型号说明', name: 'GGXHSM', width: 80, align: 'left' },
-            { label: '单位', name: 'DW', width: 80, align: 'left' },
-            { label: '生产企业名称', name: 'SCQY', width: 80, align: 'left' },
-            { label: '生产批号', name: 'SCPH', width: 80, align: 'left' },
-            { label: '生产日期', name: 'SCRQ', width: 80, align: 'left' },
-            { label: '有效日期', name: 'YXRQ', width: 80, align: 'left' },
-            { label: '配送数量', name: 'PSL', width: 80, align: 'left' },
+            { label: 'Mã vạch chi tiết giao hàng', name: 'PSMXTM', width: 80, align: 'left' },
+            { label: 'Số chi tiết đơn mua hàng', name: 'DDMXBH', width: 80, align: 'left' },
+            { label: 'Số phiếu kế hoạch bệnh viện', name: 'YYJHDH', width: 80, align: 'left' },
+            { label: 'Số thứ tự', name: 'SXH', width: 80, align: 'left' },
+            { label: 'Thông tin vị trí kho', name: 'CWXX', width: 80, align: 'left' },
+            { label: 'Số đơn bán hàng', name: 'XSDDH', width: 80, align: 'left' },
+            { label: 'Mã thống nhất vật tư tiêu hao', name: 'HCTBDM', width: 80, align: 'left' },
+            { label: 'Mã chi tiết vật tư tiêu hao', name: 'HCXFDM', width: 80, align: 'left' },
+            { label: 'Mã nội bộ bệnh viện', name: 'YYBDDM', width: 80, align: 'left' },
+            { label: 'Tên hàng', name: 'PM', width: 80, align: 'left' },
+            { label: 'Quy cách', name: 'GG', width: 80, align: 'left' },
+            { label: 'Mẫu mã', name: 'XH', width: 80, align: 'left' },
+            { label: 'Mô tả quy cách mẫu mã', name: 'GGXHSM', width: 80, align: 'left' },
+            { label: 'Đơn vị', name: 'DW', width: 80, align: 'left' },
+            { label: 'Tên doanh nghiệp sản xuất', name: 'SCQY', width: 80, align: 'left' },
+            { label: 'Số lô sản xuất', name: 'SCPH', width: 80, align: 'left' },
+            { label: 'Ngày sản xuất', name: 'SCRQ', width: 80, align: 'left' },
+            { label: 'Ngày hiệu lực', name: 'YXRQ', width: 80, align: 'left' },
+            { label: 'Số lượng giao hàng', name: 'PSL', width: 80, align: 'left' },
         ]
     });
 
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         var kssj = new Date($("#kssj").val());
         var jssj = new Date($("#jssj").val());
         if (getDaysBetween(kssj, jssj) > 30) {
-            $.modalAlert("日期不能超过30天", 'warning');
+            $.modalAlert("Ngày không được vượt quá 30 Ngày", 'warning');
             return;
         }
         gridList();

@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Herp.Infrastructure.Enum;
 @using Newtouch.Tools;
 @{
-    ViewBag.Title = "供应商维护";
+    ViewBag.Title = "Bảo trì nhà cung cấp";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -11,13 +11,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -51,9 +51,9 @@
             url: "/SupplierManage/Supplier/GetSupplierGridJson",
             height: $(window).height() - 120,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
                 {
-                    label: "公司类型", name: "supplierType", width: 70, align: "center",
+                    label: "Loại công ty", name: "supplierType", width: 70, align: "center",
                     formatter: function (cellvalue) {
                         switch (cellvalue) {
                             case @((int)EnumSupplierType.Other):
@@ -67,21 +67,21 @@
                         }
                     }
                 },
-                { label: '供应商名称', name: 'name', width: 150, align: 'left' },
-                { label: '地址', name: 'address', width: 190, align: 'left' },
-                { label: '邮编', name: 'zipCode', width: 80, align: 'left' },
-                { label: '电话', name: 'tel', width: 80, align: 'left' },
-                { label: '传真', name: 'fax', width: 80, align: 'left' },
-                { label: '开户行', name: 'khh', width: 110, align: 'left' },
-                { label: '开户行账号', name: 'khhzh', width: 100, align: 'left' },
+                { label: 'Tên nhà cung cấp', name: 'name', width: 150, align: 'left' },
+                { label: 'Địa chỉ', name: 'address', width: 190, align: 'left' },
+                { label: 'Mã bưu điện', name: 'zipCode', width: 80, align: 'left' },
+                { label: 'Điện thoại', name: 'tel', width: 80, align: 'left' },
+                { label: 'Fax', name: 'fax', width: 80, align: 'left' },
+                { label: 'Ngân hàng mở tài khoản', name: 'khh', width: 110, align: 'left' },
+                { label: 'Số tài khoản ngân hàng', name: 'khhzh', width: 100, align: 'left' },
                 {
-                    label: "有效", name: "zt", width: 50, align: "center",
+                    label: "Hiệu lực", name: "zt", width: 50, align: "center",
                     formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
                 },
-                { label: '创建人', name: 'CreatorCode', width: 70, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '最后修改', name: 'LastModifierCode', hidden: true },
-                { label: '最后修改时间', name: 'LastModifyTime', hidden: true },
+                { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Sửa cuối', name: 'LastModifierCode', hidden: true },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', hidden: true },
                 { label: 'OrganizeId', name: 'OrganizeId', hidden: true }
             ],
             pager: "#gridPager",
@@ -96,22 +96,22 @@
         });
     }
 
-    //回车触发查询事件
+    //Nhấn Enter kích hoạt sự kiện tra cứu
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增供应商",
+            title: "Thêm nhà cung cấp mới",
             url: "/SupplierManage/Supplier/Form",
             width: "750px",
             height: "440px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -119,27 +119,27 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.modalOpen({
             id: "Form",
-            title: "修改供应商",
+            title: "Sửa nhà cung cấp",
             url: "/SupplierManage/Supplier/Form?keyValue=" + keyValue,
             width: "750px",
             height: "440px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -147,23 +147,23 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.deleteForm({
             url: "/SupplierManage/Supplier/DeleteForm",
             param: { keyValue: keyValue },
             success: function () {
-                $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết của grid
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }

@@ -7,7 +7,7 @@ using UserIdentity = Newtouch.Herp.API.Models.UserIdentity;
 namespace Newtouch.Herp.API.App_Start
 {
     /// <summary>
-    /// 用户身份解析
+    /// Phân tích danh tính người dùng
     /// </summary>
     public class UserIdentityResolver : IUserIdentityResolver<Identity>
     {

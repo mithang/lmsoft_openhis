@@ -8,7 +8,7 @@ using System.Linq;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 损益
+    /// Lãi/lỗ
     /// </summary>
     public class KcSyxxRepo : RepositoryBase<KcSyxxEntity>, IKcSyxxRepo
     {

@@ -2,7 +2,7 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "填写采购计划";
+    ViewBag.Title = "Điền kế hoạch mua hàng";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -56,23 +56,23 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">出库信息</div>
+        <div class="panel-heading">Thông tin xuất kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle">采购计划单：</th>
+                <th class="formTitle">Phiếu kế hoạch mua hàng:</th>
                 <td class="formValue">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>采购科室：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa mua hàng:</th>
                 <td class="formValue">
                     <select id="department" name="department" class="form-control"></select>
                 </td>
-                <th class="formTitle">备注：</th>
+                <th class="formTitle">Ghi chú:</th>
                 <td class="formValue">
                     <input id="remark" name="remark" type="text" class="form-control " />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="添加" />
+                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="Thêm" />
                 </th>
             </tr>
         </table>
@@ -85,9 +85,9 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 6, 7, 8 },
-    F6Text = "暂存",
-    F7Text = "重置",
-    F8Text = "提交"
+    F6Text = "Lưu tạm",
+    F7Text = "Đặt lại",
+    F8Text = "Gửi"
 })
 <script type="text/javascript">
 
@@ -104,14 +104,14 @@
         dockingTemporaryPurchasingPlan();
     });
 
-    //初始化
+    //Khởi tạo
     function init() {
         GetNewBillNo();
         $gridList.jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
         $("#remark").val("");
     }
 
-    //加载出库至科室出库单号
+    //Tải số phiếu xuất kho đến khoa
     function GetNewBillNo() {
         $.najax({
             url: "/BillManage/PurchasingPlan/GetNewPurchasingPlanBillNo?r=" + Math.random(),
@@ -123,7 +123,7 @@
         });
     }
 
-    //对接我的采购计划
+    //Kết nối kế hoạch mua hàng của tôi
     function dockingTemporaryPurchasingPlan() {
         var cgdh = getQueryString("cgdh");
         if (cgdh == null || cgdh === "") {
@@ -143,11 +143,11 @@
         });
     }
 
-    //获取url中的参数
+    //Lấy url Tham số trong
     function getQueryString(name) {
-        // 匹配目标参数
+        // Khớp tham số đích
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // Đối với querystring Khớp tham số đích
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {
@@ -155,7 +155,7 @@
         }
     }
 
-    //填充数据
+    //Điền dữ liệu
     function fillPurchasingPlanInfo(rkbmCode, cgdh, remark) {
         $("#department").val(rkbmCode);
         $("#Pdh").val(cgdh);
@@ -163,7 +163,7 @@
         QueryTemporaryPurchasingPlanDetail(cgdh);
     }
 
-    //获取暂存采购计划单明细
+    //Lấy chi tiết phiếu kế hoạch mua hàng lưu tạm
     function QueryTemporaryPurchasingPlanDetail(cgdh) {
         $.najax({
             url: "/BillManage/PurchasingPlan/GetPurchasingPlanDetail",
@@ -176,7 +176,7 @@
         });
     }
 
-    //填充Jqgrid
+    //Điền Jqgrid
     function fillJqGridByTemporaryPurchasingPlanDetail(data) {
         if (!data || data.length <= 0) return;
         $gridList.jqGrid("clearGridData");
@@ -199,12 +199,12 @@
         }
     }
 
-    //获取操作按钮html
+    //Lấy nút thao tác html
     function GetOperatehtml() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
     }
 
-    //添加明细
+    //Thêm chi tiết
     function addItem() {
         var ids = $gridList.getDataIDs();
         var lastRowoid = ids[ids.length - 1];
@@ -214,7 +214,7 @@
         $gridList.jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteItem(obj) {
         var selRowId = $(obj).parent().parent().attr("id");
         if (!!selRowId) {
@@ -222,32 +222,32 @@
         }
     }
 
-    //初始化出库明细
+    //Khởi tạo chi tiết xuất kho
     function InitJqGrid() {
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
-                { label: '操作', name: 'operate', width: 50, align: 'center' },
-                { label: '<span class="required">*</span>物资名称', name: 'wzmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
-                { label: "物资类型", name: "lbmc", width: 150, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>数量', name: 'sl', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
+                { label: '<span class="required">*</span>Tên vật tư', name: 'wzmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
+                { label: "Loại vật tư", name: "lbmc", width: 150, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Số lượng', name: 'sl', width: 70, align: 'center', editable: true, editwidth: "100%" },
                 {
-                    label: '单位', name: 'unitName', width: 70, align: 'center',
+                    label: 'Đơn vị', name: 'unitName', width: 70, align: 'center',
                     formatter: function (cellvalue, options) {
                         return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>";
                     }
                 },
-                { label: '规格', name: 'gg', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '生产厂家', name: 'sccj', width: 180, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 180, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'productId', name: 'productId', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //Có cần viền không Mặc định là true
+            editinputborderradius: false,   //Có cần bo tròn viền không Mặc định true(Có bo tròn)
             gridComplete: function () {
                 var ids = $gridList.getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -256,25 +256,25 @@
         });
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
-        $gridList.jqGrid('editRow', rowid, false, initInlineFunc);//打开编辑模式
+        $gridList.jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ chỉnh sửa
         $("#jqg_gridList_" + rowid).trigger("click");
     }
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
-        ////部分列只读
+        ////Một số cột chỉ đọc
         $("#" + rowid + "_wzmc").attr("autocomplete", "off");
         $("#" + rowid + "_lbmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_gg").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_sccj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_dwmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
-        InitProduct(rowid + "_wzmc", rowid); //物资浮层
+        InitProduct(rowid + "_wzmc", rowid); //Lớp nổi vật tư
         InitTabKey("sel_dw_" + rowid, rowid);
     }
 
-    //初始化输入码
+    //Khởi tạo mã nhập
     function InitProduct(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -285,7 +285,7 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 if ($("#ckbm").val() === "" ) {
-                    $.modalMsg("请先选择出库部门", 'warning', 1500);
+                    $.modalMsg("Vui lòng chọn khoa xuất kho trước", 'warning', 1500);
                     return false;
                 }
                 return true;
@@ -296,13 +296,13 @@
                 reqData.warehouseId = $("#ckbm").val();
                 return reqData;
             },
-            caption: "物资信息",
+            caption: "Thông tin vật tư",
             colModel: [
-                { label: '类别', name: 'lbmc', width: 120 },
-                { label: '名称', name: 'wzmc', width: 200},
-                { label: '品牌', name: 'brand', width: 90},
-                { label: '规格', name: 'gg', width: 120 },
-                { label: '生产厂家', name: 'sccj', width: 180 },
+                { label: 'Loại', name: 'lbmc', width: 120 },
+                { label: 'Tên', name: 'wzmc', width: 200},
+                { label: 'Thương hiệu', name: 'brand', width: 90},
+                { label: 'Quy cách', name: 'gg', width: 120 },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 180 },
                 { label: 'productId', name: 'productId', hidden: true },
                 { label: 'unitId', name: 'unitId', hidden: true },
                 { label: 'zxdwmc', name: 'zxdwmc', hidden: true }
@@ -313,7 +313,7 @@
         });
     }
 
-    //填充物资信息
+    //Điền thông tin vật tư
     function fillProductInfo(rowid, $thistr) {
         $("#" + rowid + "_productId").val($thistr.attr('data-productId'));
         $("#" + rowid + "_wzmc").val($thistr.attr('data-wzmc'));
@@ -325,7 +325,7 @@
         $("#" + rowid + "_sl").val("");
     }
 
-    //初始化单位
+    //Khởi tạo đơn vị
     function initDw(unitId, zxdwmc, productId, rowid) {
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append("<option data-zhyz='1' data-unitId='" + unitId + "' value='" + unitId + "'>" + zxdwmc + "</option>");
@@ -346,7 +346,7 @@
         }});
     }
 
-    //再按tab键
+    //lại theo tab Khóa
     function InitTabKey(id, rowid) {
         $("#" + id).keydown(function (e) {
             e = window.event ? window.event : e;
@@ -357,22 +357,22 @@
         });
     }
 
-    //暂存
+    //Lưu tạm
     function newtouch_event_f6() {
         submitFillPurchasingPlan(@((int)EnumAuditState.Temporary));
     }
 
-    //重置
+    //Đặt lại
     function newtouch_event_f7() {
         init();
     }
 
-    //提交
+    //Gửi
     function newtouch_event_f8() {
         submitFillPurchasingPlan(@((int)EnumAuditState.Waiting));
     }
 
-    //提交
+    //Gửi
     function submitFillPurchasingPlan(auditState) {
         if (!ValidateMain()) return;
         var list = [];
@@ -389,12 +389,12 @@
         });
         if (validationFailedArr.length > 0) {
             for (var i = 0; i < validationFailedArr.length; i++) {
-                $gridList.jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//打开编辑模式
+                $gridList.jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
             }
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("Vui lòng tích chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         $("#department").trigger("change");
@@ -411,48 +411,48 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg("操作成功", 'success', 1500);
-                    $gridList.jqGrid("clearGridData");//清空Grid
+                    $.modalMsg("Thao tác thành công", 'success', 1500);
+                    $gridList.jqGrid("clearGridData");//Xóa trống Grid
                     init();
                 } else {
                     $.modalAlert(res.message, "error");
                     var rowIds = $gridList.getDataIDs();
                     for (var i = 0; i < rowIds.length; i++) {
-                        $gridList.jqGrid('editRow', rowIds[i], false, initInlineFunc);//打开编辑模式
+                        $gridList.jqGrid('editRow', rowIds[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
                     }
                 }
             }
         });
     }
 
-    //验证主信息
+    //Kiểm tra thông tin chính
     function ValidateMain() {
         if ($("#Pdh").val() === "") {
-            $.modalMsg("采购计划单不能为空", 'warning', 1500);
+            $.modalMsg("Phiếu kế hoạch mua hàng không được để trống", 'warning', 1500);
             return false;
         }
         if ($("#department").val() === "" ) {
-            $.modalMsg("请选择采购科室", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn khoa mua hàng", 'warning', 1500);
             return false;
         }
         return true;
     }
 
-    //数值验证
+    //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
         if (rowData.wzmc === "" || rowData.productId === "") {
-            $.modalMsg('物资必选', 'error', 1000);
+            $.modalMsg('Vật tư bắt buộc chọn', 'error', 1000);
             return false;
         }
-        var reg = /^[1-9]\d*$/;//大于0的整数
+        var reg = /^[1-9]\d*$/;//Lớn hơn 0 số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("数量必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         return true;
     }
 
-    //组装提交数据
+    //Lắp ráp dữ liệu gửi
     function AssembleData(rowData, rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         return {

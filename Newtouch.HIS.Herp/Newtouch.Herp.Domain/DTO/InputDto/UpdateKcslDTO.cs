@@ -1,42 +1,42 @@
 ﻿namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 修改库存参数
+    /// Sửa tham số tồn kho
     /// </summary>
     public class UpdateKcslDTO
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 目标库房
+        /// Kho đích
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 操作人
+        /// Người thao tác
         /// </summary>
         public string userCode { get; set; }
     }

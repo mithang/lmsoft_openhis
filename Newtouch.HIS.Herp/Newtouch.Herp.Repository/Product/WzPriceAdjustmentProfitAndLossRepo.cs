@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 物资调价损益
+    /// Lãi/lỗ điều chỉnh giá vật tư
     /// </summary>
     public class WzPriceAdjustmentProfitAndLossRepo : RepositoryBase<WzPriceAdjustmentProfitAndLossEntity>, IWzPriceAdjustmentProfitAndLossRepo
     {

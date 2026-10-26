@@ -3,137 +3,137 @@
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 损益提交
+    /// Gửi lãi/lỗ
     /// </summary>
     public class LossAndProditSubmitDTO
     {
         /// <summary>
-        /// 损益情况
+        /// Tình hình lãi/lỗ
         /// </summary>
         public string syqk { get; set; }
 
         /// <summary>
-        /// 最小单位数
+        /// Số đơn vị nhỏ nhất
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 损益原因
+        /// Nguyên nhân lãi/lỗ
         /// </summary>
         public string syyy { get; set; }
 
         /// <summary>
-        /// 损益原因ID
+        /// Nguyên nhân lãi/lỗ ID
         /// </summary>
         public string syyyId { get; set; }
 
         /// <summary>
-        /// 损益标志
+        /// Cờ lãi/lỗ
         /// </summary>
         public string sybz { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string Djh { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 进价  转化因子对应进价
+        /// Giá nhập  Giá nhập tương ứng với hệ số chuyển đổi
         /// </summary>
         public decimal Jj { get; set; }
 
         /// <summary>
-        /// 零售价  转化因子对应进价
+        /// Giá bán lẻ  Giá nhập tương ứng với hệ số chuyển đổi
         /// </summary>
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// Tổng tiền bán lẻ
         /// </summary>
         public decimal Lsjze { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime Yxq { get; set; }
 
         /// <summary>
-        /// 责任人
+        /// Người chịu trách nhiệm
         /// </summary>
         public string Zrr { get; set; }
 
         /// <summary>
-        /// 责任人名称
+        /// Tên người chịu trách nhiệm
         /// </summary>
         public string zrrmc { get; set; }
 
         /// <summary>
-        /// 剩余库存 现有库存 最小单位
+        /// Tồn kho còn lại Tồn kho hiện có Đơn vị nhỏ nhất
         /// </summary>
         public int Sykc { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 单位 价格单位，与zhyz一直
+        /// Đơn vị Đơn vị giá,Và zhyz Luôn
         /// </summary>
         public string UnitId { get; set; }
 
         /// <summary>
-        /// 数量，部门单位
+        /// Số lượng,Đơn vị khoa phòng
         /// </summary>
         public int bmsl { get; set; }
 
         /// <summary>
-        /// 数量，最小单位
+        /// Số lượng,Đơn vị nhỏ nhất
         /// </summary>
         public int zxsl { get; set; }
 
         /// <summary>
-        /// 数量，带单位  
+        /// Số lượng,Kèm đơn vị  
         /// </summary>
         public string slstr { get; set; }
 

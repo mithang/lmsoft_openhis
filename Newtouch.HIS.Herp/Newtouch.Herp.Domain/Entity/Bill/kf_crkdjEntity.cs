@@ -6,104 +6,104 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 出入库单据
+    /// Chứng từ nhập/xuất kho
     /// </summary>
     [Table("kf_crkdj")]
     public class KfCrkdjEntity : IEntity<KfCrkdjEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 1.外部入库；2.外部出库；3.直接出库；4.申领出库；5.内部退货
+        /// 1.Nhập kho ngoài;2.Xuất kho ngoài;3.Xuất kho trực tiếp;4.Xuất kho lĩnh;5.Trả hàng nội bộ
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 票单号
+        /// Số phiếu
         /// </summary>
         public string Pdh { get; set; }
 
         /// <summary>
-        /// 出库部门
+        /// Khoa xuất kho
         /// </summary>
         public string ckbm { get; set; }
 
         /// <summary>
-        /// 入库部门
+        /// Khoa nhập kho
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 出库时间
+        /// Thời gian xuất kho
         /// </summary>
         public DateTime? cksj { get; set; }
 
         /// <summary>
-        /// 入库时间
+        /// Thời gian nhập kho
         /// </summary>
         public DateTime? rksj { get; set; }
 
         /// <summary>
-        /// 入库操作员
+        /// Nhân viên nhập kho
         /// </summary>
         public string rkczy { get; set; }
 
         /// <summary>
-        /// 出库操作员
+        /// Nhân viên xuất kho
         /// </summary>
         public string ckczy { get; set; }
 
         /// <summary>
-        /// 出入库方式
+        /// Hình thức nhập/xuất kho
         /// </summary>
         public string crkfs { get; set; }
 
         /// <summary>
-        /// 审核操作员
+        /// Nhân viên duyệt
         /// </summary>
         public string shczy { get; set; }
 
         /// <summary>
-        /// 0:待审核；1.通过；2.不通过
+        /// 0:Chờ duyệt;1.Thông qua;2.Không đạt
         /// </summary>
         public string auditState { get; set; }
 
         /// <summary>
-        /// 配送单号
+        /// Số phiếu giao hàng
         /// </summary>
         public string deliveryNo { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

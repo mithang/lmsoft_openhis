@@ -10,7 +10,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 供应商操作
+    /// Thao tác nhà cung cấp
     /// </summary>
     public class GysSupplierRepo : RepositoryBase<GysSupplierEntity>, IGysSupplierRepo
     {
@@ -49,7 +49,7 @@ namespace Newtouch.Herp.Repository
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="keyWord"></param>
-        /// <param name="supplierType">0：其他     1：生产商      2：经销商</param>
+        /// <param name="supplierType">0:Khác     1:Nhà sản xuất      2:Nhà phân phối</param>
         /// <param name="zt"></param>
         /// <returns></returns>
         public IList<GysSupplierEntity> GetList(string organizeId, string keyWord, int supplierType, string zt = "1")

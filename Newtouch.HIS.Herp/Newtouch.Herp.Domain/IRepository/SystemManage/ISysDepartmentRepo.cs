@@ -7,16 +7,16 @@ namespace Newtouch.Herp.Domain.IRepository
     public interface ISysDepartmentRepo : IRepositoryBase<SysDepartmentVEntity>
     {
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
-        /// <param name="orgId">医疗机构</param>
-        /// <param name="zt">有效标志。0无效1有效null、Empty所有</param>
+        /// <param name="orgId">Cơ sở y tế</param>
+        /// <param name="zt">Cờ hiệu lực.0 Không hiệu lực 1 Hiệu lực null,Empty Tất cả</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDepartmentVEntity> GetList(string orgId, string zt = null, string keyword = null);
 
         /// <summary>
-        /// 根据Code获取科室名称
+        /// Theo Code Lấy tên khoa
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.Herp.Domain.IRepository
         string GetNameByCode(string code, string orgId);
 
         /// <summary>
-        /// 根据Code获取科室实体
+        /// Theo Code Lấy thực thể khoa
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Domain.IRepository
         SysDepartmentVEntity GetEntityByCode(string code, string orgId);
 
         /// <summary>
-        /// 根据Name获取Code
+        /// Theo Name Lấy Code
         /// </summary>
         /// <param name="name"></param>
         /// <param name="orgId"></param>

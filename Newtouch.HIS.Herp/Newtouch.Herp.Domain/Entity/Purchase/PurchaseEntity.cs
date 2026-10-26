@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Domain.Entity.Purchase
 {
     /// <summary>
-    /// 采购
+    /// Mua hàng
     /// </summary>
     [Table("xt_wz_cg")]
     public class PurchaseEntity : IEntity<PurchaseEntity>
@@ -20,60 +20,60 @@ namespace Newtouch.Herp.Domain.Entity.Purchase
 
         public string cgId { get; set; }
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 订单时间
+        /// Thời gian đơn hàng
         /// </summary>
         public string ddsj { get; set; }
         /// <summary>
-        /// 操作类型
+        /// Loại thao tác
         /// </summary>
         public string czlx { get; set; }
 
         /// <summary>
-        /// 医保编码
+        /// Mã bảo hiểm y tế
         /// </summary>
         public string yybm { get; set; }
         /// <summary>
-        /// 配送点编码
+        /// Mã điểm giao hàng
         /// </summary>
         public string psdbm { get; set; }
         /// <summary>
-        /// 订单类型
+        /// Loại đơn hàng
         /// </summary>
         public string ddlx { get; set; }
         /// <summary>
-        /// 订单编号
+        /// Số đơn hàng
         /// </summary>
         public string ddbh { get; set; }
         /// <summary>
-        /// 医院计划单号
+        /// Số phiếu kế hoạch bệnh viện
         /// </summary>
         public string yyjhdh { get; set; }
         /// <summary>
-        /// 最晚到货日期
+        /// Ngày giao hàng muộn nhất
         /// </summary>
         public string zwdhrq { get; set; }
         /// <summary>
-        /// 采购方式
+        /// Hình thức mua hàng
         /// </summary>
         public string cgfs { get; set; }
         /// <summary>
-        /// 系统编码
+        /// Mã hệ thống
         /// </summary>
         public string xtbm { get; set; }
         /// <summary>
-        /// 是否含伴随服务
+        /// Có bao gồm dịch vụ đi kèm không
         /// </summary>
         public string sfhbsfw { get; set; }
         /// <summary>
-        /// 记录数
+        /// Số bản ghi
         /// </summary>
         public int jls { get; set; }
         /// <summary>
-        /// 订单状态
+        /// Trạng thái đơn hàng
         /// </summary>
         public int ddzt { get; set; }
         /// <summary>

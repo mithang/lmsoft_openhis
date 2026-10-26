@@ -8,8 +8,8 @@ using System.Data.SqlClient;
 namespace Newtouch.Herp.Infrastructure
 {
     /// <summary>
-    /// 常用到的（放Repo、DmnService都不合适的，但又要请求数据库的）
-    /// 比如获取唯一编号（自增，但有不能重复）
+    /// Thường dùng đến(Đặt Repo,DmnService đều không phù hợp,Nhưng lại phải yêu cầu cơ sở dữ liệu)
+    /// Ví dụ lấy Số hiệu duy nhất(Tự tăng,Nhưng có không thể trùng lặp)
     /// </summary>
     public class EFDBBaseFuncHelper
     {
@@ -20,7 +20,7 @@ namespace Newtouch.Herp.Infrastructure
         private IDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// 默认DB上下文
+        /// Mặc định DB Ngữ cảnh
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Herp.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文
+        /// Chỉ định DB Ngữ cảnh
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.Herp.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.DefaultDB;  //默认
+                dbType = EnumDBFactoryType.DefaultDB;  //Mặc định
             }
             IDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -53,10 +53,10 @@ namespace Newtouch.Herp.Infrastructure
             return new EFDBBaseFuncHelper(databaseFactory);
         }
 
-        #region 方法
-        //-------------------------------------示例------------------------------------------------
+        #region Phương pháp
+        //-------------------------------------Ví dụ------------------------------------------------
         ///// <summary>
-        ///// 获取主键字段唯一Id
+        ///// Lấy duy nhất trường khóa chính Id
         ///// </summary>
         ///// <param name="tableName"></param>
         ///// <returns></returns>
@@ -72,7 +72,7 @@ namespace Newtouch.Herp.Infrastructure
         //}
 
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy Trường/Nghiệp vụ Giá trị duy nhất
         /// </summary>
         /// <param name="fieldName"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace Newtouch.Herp.Infrastructure
         #endregion
     }
     /// <summary>
-    /// 上下文 类型
+    /// Ngữ cảnh Loại
     /// </summary>
     public enum EnumDBFactoryType
     {

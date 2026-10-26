@@ -9,11 +9,11 @@ namespace Newtouch.Herp.Domain.ValueObjects.Purchase
     public class PurchaseYY157VO
     {
         /// <summary>
-        /// 企业名称
+        /// Tên doanh nghiệp
         /// </summary>
         public string QYMC { get; set; }
         /// <summary>
-        /// 支付标识
+        /// Dấu hiệu thanh toán
         /// </summary>
         public string ZFBZ { get; set; }
 

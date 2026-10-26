@@ -13,7 +13,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 供应商联系人
+    /// Người liên hệ nhà cung cấp
     /// </summary>
     public class GysContactsRepo : RepositoryBase<GysContactsEntity>, IGysContactsRepo
     {

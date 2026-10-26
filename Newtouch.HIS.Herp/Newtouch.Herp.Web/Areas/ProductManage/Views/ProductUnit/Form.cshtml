@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -14,22 +14,22 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>单位名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên đơn vị:</th>
                         <td class="formValue">
-                            <input id="name" name="name" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="name" name="name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">备注：</th>
+                        <th class="formTitle">Ghi chú:</th>
                         <td class="formValue">
                             <input id="remark" name="remark" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -54,7 +54,7 @@
         }
     });
     
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -70,10 +70,10 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#name").val() === "") {
-            $.modalAlert("单位名称必填", 'warning');
+            $.modalAlert("Tên đơn vị bắt buộc nhập", 'warning');
             return false;
         }
         return true;

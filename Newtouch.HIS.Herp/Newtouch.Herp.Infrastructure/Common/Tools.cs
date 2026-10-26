@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Infrastructure.Common
 {
     /// <summary>
-    /// 工具类
+    /// Lớp công cụ
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// 过滤SQL语句,防止注入
+        /// Lọc SQL Câu lệnh,Ngăn chặn injection
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Infrastructure.Common
         }
 
         /// <summary>
-        /// 获取文件的扩展名
+        /// Lấy phần mở rộng của tệp
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>

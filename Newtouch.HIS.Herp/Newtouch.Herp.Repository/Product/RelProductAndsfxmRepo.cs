@@ -6,7 +6,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 物资收费项目对照表
+    /// Bảng đối chiếu khoản thu vật tư
     /// </summary>
     public class RelProductAndsfxmRepo : RepositoryBase<RelProductAndsfxmEntity>, IRelProductAndsfxmRepo
     {

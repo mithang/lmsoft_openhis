@@ -6,17 +6,17 @@ using Newtouch.Common.Operator;
 namespace Newtouch.Herp.Infrastructure
 {
     /// <summary>
-    /// 系统常量
+    /// Hằng số hệ thống
     /// </summary>
     public class Constants
     {
         /// <summary>
-        /// 顶级组织机构Id
+        /// Tổ chức cấp cao nhất Id
         /// </summary>
         private static string _topOrganizeId;
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chức Id(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -36,7 +36,7 @@ namespace Newtouch.Herp.Infrastructure
         }
 
         /// <summary>
-        /// 返回最小时间 1970-01-01 00:00:000
+        /// Trả về thời gian nhỏ nhất 1970-01-01 00:00:000
         /// </summary>
         public static DateTime MinDateTime
         {
@@ -44,22 +44,22 @@ namespace Newtouch.Herp.Infrastructure
         }
 
         /// <summary>
-        /// 时间格式化
+        /// Định dạng thời gian
         /// </summary>
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
         #region tag
 
         /// <summary>
-        /// 组织机构代码
+        /// Mã tổ chức
         /// </summary>
         public const string OrganizeId = "OrganizeId";
         /// <summary>
-        /// 库房ID
+        /// Kho ID
         /// </summary>
         public const string KfId = "KfId";
         /// <summary>
-        /// 当前操作员
+        /// Nhân viên thao tác hiện tại
         /// </summary>
         public const string CreatorCode = "CreatorCode";
 
@@ -67,11 +67,11 @@ namespace Newtouch.Herp.Infrastructure
 
         #region context info
         /// <summary>
-        /// 应用Id
+        /// Ứng dụng Id
         /// </summary>
         private static string _appId;
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chức Id(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string AppId
         {
@@ -84,7 +84,7 @@ namespace Newtouch.Herp.Infrastructure
         }
 
         /// <summary>
-        /// 设置当前的库房
+        /// Đặt kho hiện tại
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="value"></param>
@@ -101,7 +101,7 @@ namespace Newtouch.Herp.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的库房信息
+        /// Lấy thông tin kho hiện tại
         /// </summary>
         /// <param name="userId"></param>
         private static LoginUserCurrentKfModel GetCurrentKf(string userId)
@@ -110,7 +110,7 @@ namespace Newtouch.Herp.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的库房信息
+        /// Lấy thông tin kho hiện tại
         /// </summary>
         public static LoginUserCurrentKfModel CurrentKf
         {

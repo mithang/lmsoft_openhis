@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "采购单查询";
+    ViewBag.Title = "Tra cứu đơn mua hàng";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -18,24 +18,24 @@
     <div class="search">
         <table class="form">
             <tr>
-                <th class="formTitle">订单编号：</th>
+                <th class="formTitle">Số đơn hàng:</th>
                 <td class="formValue">
-                    <input id="txt_ddbh" name="txt_ddbh" type="text" class="form-control form-an" placeholder="请输入订单编号" />
+                    <input id="txt_ddbh" name="txt_ddbh" type="text" class="form-control form-an" placeholder="Vui lòng nhập Số đơn hàng" />
                 </td>
-                <th class="formTitle">订单时间：</th>
+                <th class="formTitle">Thời gian đơn hàng:</th>
                 <td class="formValue" colspan="3">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; margin-top:10px;float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; margin-top:10px;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td style="padding-left: 20px;">
-                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;查询&nbsp;</button>
+                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;Tra cứu&nbsp;</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân Bao gồm số bệnh án  Họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="GridList" rel="formPatSer"></table>
@@ -44,7 +44,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Cái trước window Đối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -58,12 +58,12 @@
         var obj = new Object;
         //obj.ddbh = $.request("ddbh");
         var searInfo = new gridList();
-        //加载数据
+        //Tải dữ liệu
         //searInfo.init(obj);
 
 
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#GridList").jqGrid('setGridParam', {
                 postData: {
@@ -84,37 +84,37 @@
             colModel: [
 
                 { label: 'cgId', name: 'cgId', hidden: true },
-                { label: '订单时间', name: 'ddsj', width: 60, align: 'left' },
+                { label: 'Thời gian đơn hàng', name: 'ddsj', width: 60, align: 'left' },
                 {
-                    label: '配送点', name: 'psdbm', width: 120, align: 'left', formatter: function (cellvalue) {
+                    label: 'Điểm giao hàng', name: 'psdbm', width: 120, align: 'left', formatter: function (cellvalue) {
                         return "上海明德五官科医院";
                     }
                 },
                 {
-                    label: '订单类型', name: 'ddlx', width: 80, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 1) return '医院自行订单';
-                        else if (cellvalue == 2) return '托管药库订单';
-                        else if (cellvalue == 3) return '特需药品订单';
+                    label: 'Loại đơn hàng', name: 'ddlx', width: 80, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Đơn tự đặt bệnh viện';
+                        else if (cellvalue == 2) return 'Đơn hàng kho thuốc được quản lý';
+                        else if (cellvalue == 3) return 'Đơn thuốc đặc biệt';
                         else return '';
                     }
                 },
-                { label: '订单编号', name: 'ddbh', width: 60, align: 'left' },
-                { label: '医院计划单号', name: 'yyjhdh', width: 60, align: 'left' },
-                { label: '最晚到货日期', name: 'zwdhrq', width: 60, align: 'left' },
+                { label: 'Số đơn hàng', name: 'ddbh', width: 60, align: 'left' },
+                { label: 'Số phiếu kế hoạch bệnh viện', name: 'yyjhdh', width: 60, align: 'left' },
+                { label: 'Ngày giao hàng muộn nhất', name: 'zwdhrq', width: 60, align: 'left' },
                 {
-                    label: '订单状态', name: 'ddzt', width: 60, align: 'left', formatter: function (cellvalue) {
-                        //if (cellvalue == 1) return '保存';
-                        //else if (cellvalue == 3) return '提交';
-                        //else if (cellvalue == 5) return '撤回';
-                        //else if (cellvalue == 7) return '作废';
+                    label: 'Trạng thái đơn hàng', name: 'ddzt', width: 60, align: 'left', formatter: function (cellvalue) {
+                        //if (cellvalue == 1) return 'Lưu';
+                        //else if (cellvalue == 3) return 'Gửi';
+                        //else if (cellvalue == 5) return 'Thu hồi';
+                        //else if (cellvalue == 7) return 'Hủy bỏ';
 
-                        if (cellvalue == 1) return '已保存';
-                        else if (cellvalue == 2) return '已传报';
-                        else if (cellvalue == 3) return '已验收';
+                        if (cellvalue == 1) return 'Đã lưu';
+                        else if (cellvalue == 2) return 'Đã báo cáo';
+                        else if (cellvalue == 3) return 'Đã nghiệm thu';
                         else return '';
                     }
                 },
-                { label: '明细记录数', name: 'jls', width: 80, align: 'left' },
+                { label: 'Số bản ghi chi tiết', name: 'jls', width: 80, align: 'left' },
                 { label: 'yfbm', name: 'yfbm', hidden: true },
                 { label: 'bqbm', name: 'bqbm', hidden: true },
 
@@ -131,7 +131,7 @@
         });
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp chọn một dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -152,15 +152,15 @@
         obj.jls = $gridList.jqGridRowValue().jls;
         obj.ddzt = $gridList.jqGridRowValue().ddzt;
         prevWindow.GetQueryAjax(obj);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function SearchConfirm() {
         PurchaseDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

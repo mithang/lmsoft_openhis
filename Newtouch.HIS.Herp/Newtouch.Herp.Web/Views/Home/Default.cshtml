@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>首页</title>
+    <title>Trang chủ</title>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jquery/jquery.choose.js")"></script>
@@ -124,7 +124,7 @@
         <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>待处理数
+                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>Số chờ xử lý
                 </div>
                 <div class="panel-body" style="width:100%" id="dv_needDeal"></div>
             </div>
@@ -134,7 +134,7 @@
                 <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>进销统计
+                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>Thống kê nhập-xuất
                             <div style="float: right">
                                 <span style="font-weight: 500;"><i id="i_Item1" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle;"></i></span>
                                 <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item2" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
@@ -150,7 +150,7 @@
             <div style="float: right; width: 35%;">
                 <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i style="margin-right:5px;" class="fa fa-pie-chart fa-lg"></i>今年入库统计</div>
+                        <div class="panel-heading"><i style="margin-right:5px;" class="fa fa-pie-chart fa-lg"></i>Thống kê nhập kho năm nay</div>
                         <div class="panel-body">
                             <div id="container" style="min-width:350px;height:300px"></div>
                         </div>
@@ -173,7 +173,7 @@
         });
     });
 
-    //获取待办
+    //Lấy việc cần làm
     function GetNeedDealDiv() {
         $.ajax({
             type: "Get",
@@ -188,7 +188,7 @@
         });
     }
 
-    //获取按月
+    //Lấy theo tháng
     function GetPSIByKf() {
         $.ajax({
             type: "Get",
@@ -208,10 +208,10 @@
         });
     }
 
-    //highCharts 数据展示
+    //highCharts Hiển thị dữ liệu
     function GetPSIStatisticsChart(monthlySummary) {
         var lineChartData = {
-            labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "8月", "10月", "11月", "12月"],
+            labels: ["1 Tháng", "2 Tháng", "3 Tháng", "4 Tháng", "5 Tháng", "6 Tháng", "7 Tháng", "8 Tháng", "8 Tháng", "10 Tháng", "11 Tháng", "12 Tháng"],
             datasets: [
                 {
                     label: monthlySummary[0].ItemName,
@@ -285,7 +285,7 @@
         });
     }
 
-    //获取按月
+    //Lấy theo tháng
     function GetRKCountByLx() {
         $.ajax({
             type: "Get",
@@ -299,7 +299,7 @@
         });
     }
 
-    //饼图 数据展示
+    //Biểu đồ tròn Hiển thị dữ liệu
     function GetLeaveChart(pData) {
         Highcharts.chart('container', {
             chart: {
@@ -312,7 +312,7 @@
                 text: ''
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>总数：{point.y:,.0f}'
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>Tổng Số:{point.y:,.0f}'
             },
             plotOptions: {
                 pie: {
@@ -325,7 +325,7 @@
                 }
             },
             series: [{
-                name: '占比',
+                name: 'Tỷ trọng',
                 colorByPoint: true,
                 data: pData
             }]
@@ -333,7 +333,7 @@
         $(".highcharts-credits").hide();
     }
 
-    //获取待处理总数
+    //Lấy tổng Số chờ xử lý
     function GetPendingCount() {
         $.ajax({
             type: "Get",

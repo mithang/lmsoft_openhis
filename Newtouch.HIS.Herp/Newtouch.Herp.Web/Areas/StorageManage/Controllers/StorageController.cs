@@ -16,7 +16,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 库存管理
+    /// Quản lý tồn kho
     /// </summary>
     public class StorageController : ControllerBase
     {
@@ -31,13 +31,13 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         private readonly IRelProductWarehouseRepo _relProductWarehouseRepo;
         private readonly IApplyBillApp _applyBillApp;
 
-        #region 物资获取
+        #region Lấy vật tư
 
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
-        /// <param name="key">物资名称/拼音</param>
+        /// <param name="key">Tên vật tư/Phiên âm</param>
         /// <param name="gysId"></param>
         /// <param name="deliveryNo"></param>
         /// <returns></returns>
@@ -58,9 +58,9 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
-        /// <param name="key">物资名称/拼音</param>
+        /// <param name="key">Tên vật tư/Phiên âm</param>
         /// <param name="warehouseId"></param>
         /// <returns></returns>
         [HttpGet]
@@ -70,7 +70,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 物资权限判断
+        /// Đánh giá quyền vật tư
         /// </summary>
         /// <param name="targetDepartment"></param>
         /// <param name="productId"></param>
@@ -83,10 +83,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="key">物资名称/拼音</param>
+        /// <param name="key">Tên vật tư/Phiên âm</param>
         /// <returns></returns>
         public ActionResult DepartmentStockListQueryByPage(Pagination pagination, string key)
         {
@@ -101,11 +101,11 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 下拉列表物资信息  外部出库
+        /// Thông tin vật tư trong danh sách thả xuống  Xuất kho ngoài
         /// </summary>
-        /// <param name="key">物资名称/拼音</param>
+        /// <param name="key">Tên vật tư/Phiên âm</param>
         /// <param name="gysId"></param>
-        /// <param name="deliveryNo">配送单号</param>
+        /// <param name="deliveryNo">Số phiếu giao hàng</param>
         /// <returns></returns>
         [HttpGet]
         public ActionResult QueryStockListByGys(string key, string deliveryNo, string gysId)
@@ -116,10 +116,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 库存量查询
+        #region Tra cứu lượng tồn kho
 
         /// <summary>
-        /// 库存量查询视图
+        /// Khung nhìn tra cứu lượng tồn kho
         /// </summary>
         /// <returns></returns>
         public ActionResult WarehouseStorageQuery()
@@ -129,16 +129,16 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取物资库存
+        /// Lấy tồn kho vật tư
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="keyWord">物资名称/拼音</param>
-        /// <param name="lb">类别ID</param>
-        /// <param name="kzbz">控制标志</param>
-        /// <param name="wzzt">物资状态</param>
-        /// <param name="xslkc">显示零库存  1：显示  0：不显示</param>
-        /// <param name="ygq">已过期</param>
-        /// <param name="mxyx">暂时有效的明细  true：是  false：否</param>
+        /// <param name="keyWord">Tên vật tư/Phiên âm</param>
+        /// <param name="lb">Loại ID</param>
+        /// <param name="kzbz">Cờ điều khiển</param>
+        /// <param name="wzzt">Trạng thái vật tư</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
+        /// <param name="ygq">Đã hết hạn</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         public ActionResult GetWarehouseStorage(Pagination pagination,
             string keyWord,
@@ -160,10 +160,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 根据物资ID获取各批次库存
+        /// Theo vật tư ID Lấy tồn kho từng lô
         /// </summary>
         /// <param name="proId"></param>
-        /// <param name="zt">暂时有效的明细  true：是  false：否</param>
+        /// <param name="zt">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         public ActionResult GetWarehouseStorageDetail(string proId, string zt)
         {
@@ -171,7 +171,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 修改库存状态
+        /// Sửa trạng thái tồn kho
         /// </summary>
         /// <param name="ph"></param>
         /// <param name="pc"></param>
@@ -183,11 +183,11 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 下拉物资批号批次信息
+        /// Thông tin Số lô/lô vật tư trong danh sách thả xuống
         /// </summary>
-        /// <param name="proId">物资ID</param>
-        /// <param name="gysId">供应商ID</param>
-        /// <param name="deliveryNo">配送单号</param>
+        /// <param name="proId">Vật tư ID</param>
+        /// <param name="gysId">Nhà cung cấp ID</param>
+        /// <param name="deliveryNo">Số phiếu giao hàng</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         [HttpGet]
@@ -197,7 +197,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取供应商列表
+        /// Lấy danh sách nhà cung cấp
         /// </summary>
         /// <returns></returns>
         public ActionResult GetSupplierList(string key)
@@ -207,10 +207,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
         #endregion
 
-        #region 过期库存查询
+        #region Tra cứu tồn kho hết hạn
 
         /// <summary>
-        /// 过期库存 视图
+        /// Tồn kho hết hạn Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult ExpiredStorageQuery()
@@ -220,7 +220,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取过期物资
+        /// Lấy vật tư hết hạn
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -238,10 +238,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 外部入库
+        #region Nhập kho ngoài
 
         /// <summary>
-        /// 外部入库 视图
+        /// Nhập kho ngoài Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult InStorage()
@@ -250,7 +250,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 外部入库 视图
+        /// Nhập kho ngoài Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult InStorageInlineEdit()
@@ -259,7 +259,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的入库单号
+        /// Lấy Số phiếu nhập kho mới
         /// </summary>
         /// <returns></returns>
         public ActionResult GenerateRkdh()
@@ -269,7 +269,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取出入库方式
+        /// Lấy hình thức nhập/xuất kho
         /// </summary>
         /// <returns></returns>
         public ActionResult GetStorageIOMode(string crkbz)
@@ -279,10 +279,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 入库
+        /// Nhập kho
         /// </summary>
-        /// <param name="crkdj">出入库单据</param>
-        /// <param name="crkdjmx">出入库单据明细</param>
+        /// <param name="crkdj">Chứng từ nhập/xuất kho</param>
+        /// <param name="crkdjmx">Chi tiết chứng từ nhập/xuất kho</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult SaveInStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
@@ -293,10 +293,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 入库
+        /// Nhập kho
         /// </summary>
-        /// <param name="crkdj">出入库单据</param>
-        /// <param name="crkdjmx">出入库单据明细</param>
+        /// <param name="crkdj">Chứng từ nhập/xuất kho</param>
+        /// <param name="crkdjmx">Chi tiết chứng từ nhập/xuất kho</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult TemporaryStorageInStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
@@ -308,10 +308,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 外部出库
+        #region Xuất kho ngoài
 
         /// <summary>
-        /// 外部出库 视图
+        /// Xuất kho ngoài Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult OutStorage()
@@ -320,7 +320,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 外部出库 视图
+        /// Xuất kho ngoài Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult OutStorageInlineEdit()
@@ -329,7 +329,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的入库单号
+        /// Lấy Số phiếu nhập kho mới
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -340,7 +340,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取发票信息
+        /// Lấy thông tin hóa đơn
         /// </summary>
         /// <returns></returns>
         public ActionResult GetFphAndGys(string keyWord)
@@ -349,7 +349,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 外部出库
+        /// Xuất kho ngoài
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -362,10 +362,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 直接出库 
+        #region Xuất kho trực tiếp 
 
         /// <summary>
-        /// 直接出库 视图
+        /// Xuất kho trực tiếp Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DirectDelivery()
@@ -374,7 +374,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 直接出库 视图
+        /// Xuất kho trực tiếp Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DirectDeliveryInlineEdit()
@@ -383,7 +383,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的直接出库单号
+        /// Lấy Số phiếu xuất kho trực tiếp mới
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -394,7 +394,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取入库部门(兄弟节点和子节点)
+        /// Lấy khoa nhập kho(Nút anh em và nút con)
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -404,7 +404,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 提交直接出库
+        /// Gửi xuất kho trực tiếp
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -418,10 +418,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 内部发货退回
+        #region Trả lại hàng giao nội bộ
 
         /// <summary>
-        /// 内部发货退回 视图
+        /// Trả lại hàng giao nội bộ Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DeliveryOfReturn()
@@ -430,7 +430,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 内部发货退回 视图
+        /// Trả lại hàng giao nội bộ Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DeliveryOfReturnInlineEdit()
@@ -439,7 +439,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的内部发货退回单号
+        /// Lấy Số phiếu trả lại hàng giao nội bộ mới
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -450,7 +450,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 提交内部发货退回
+        /// Gửi trả lại hàng giao nội bộ
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -463,7 +463,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取部门(父节点和兄弟节点)
+        /// Lấy khoa phòng(Nút cha và nút anh em)
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -473,10 +473,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
         #endregion
 
-        #region  出库至科室
+        #region  Xuất kho đến khoa
 
         /// <summary>
-        /// 出库至科室 视图
+        /// Xuất kho đến khoa Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DeliveryToDepartment()
@@ -485,7 +485,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 出库至科室 视图
+        /// Xuất kho đến khoa Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DeliveryToDepartmentInlineEdit()
@@ -494,7 +494,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的出库至科室单据号
+        /// Lấy Số chứng từ xuất kho đến khoa mới
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -505,7 +505,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取库房对应科室
+        /// Lấy khoa tương ứng kho
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDeptByKf(string keyword)
@@ -515,7 +515,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 保存出库到科室
+        /// Lưu xuất kho đến khoa
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="crkdjmx"></param>
@@ -523,16 +523,16 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         public ActionResult SaveDeliveryToDepartment(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
             var result = new DeliveryToDepartmentProcess(new DjInfDTO { crkdj = crkdj, crkdjmx = crkdjmx.ToList() }).Process();
-            if (result.IsSucceed)//同步科室物资-CIS
+            if (result.IsSucceed)//Đồng bộ vật tư khoa-CIS
                 _storageDmnService.SynchWz(crkdj.Pdh,this.UserIdentity.UserCode,this.OrganizeId);
             return result.IsSucceed ? Success() : Error(result.ResultMsg);
         }
         #endregion
 
-        #region 科室申领
+        #region Lĩnh vật tư khoa
 
         /// <summary>
-        /// 视图
+        /// Khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult DepartmentApply()
@@ -541,7 +541,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的科室申领单号
+        /// Lấy Số phiếu lĩnh khoa mới
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -552,7 +552,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 提交科室深林
+        /// Gửi phiếu lĩnh khoa
         /// </summary>
         /// <param name="sld"></param>
         /// <param name="sldmx"></param>
@@ -564,10 +564,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
         #endregion
 
-        #region 申领出库
+        #region Xuất kho lĩnh
 
         /// <summary>
-        /// 申领出库
+        /// Xuất kho lĩnh
         /// </summary>
         /// <returns></returns>
         public ActionResult ApplyOutStock()
@@ -576,7 +576,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 提交申领发货
+        /// Gửi lĩnh hàng giao
         /// </summary>
         /// <param name="ckmx"></param>
         /// <returns></returns>

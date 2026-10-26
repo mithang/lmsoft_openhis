@@ -3,7 +3,7 @@
     public class StockInventory
     {
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         public const string generate_inventory_info = @"
 BEGIN TRANSACTION;
@@ -149,7 +149,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 保存盘点明细
+        /// Lưu chi tiết kiểm kê
         /// </summary>
         public const string save_inventory_info = @"
 BEGIN TRANSACTION
@@ -237,7 +237,7 @@ RETURN
 ";
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         public const string end_Inventory = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects where id=object_id(N'tempdb..#pdInfo') and type='U')

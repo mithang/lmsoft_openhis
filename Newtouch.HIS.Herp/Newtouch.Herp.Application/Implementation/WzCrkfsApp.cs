@@ -5,7 +5,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 出入库方式
+    /// Hình thức nhập/xuất kho
     /// </summary>
     public class WzCrkfsApp : AppBase, IWzCrkfsApp
     {

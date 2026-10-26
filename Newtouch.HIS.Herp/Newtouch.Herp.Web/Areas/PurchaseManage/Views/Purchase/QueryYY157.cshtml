@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "耗材发票数据查询";
+    ViewBag.Title = "Tra cứu dữ liệu hóa đơn vật tư tiêu hao";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -46,10 +46,10 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">耗材发票数据查询</div>
+        <div class="panel-heading">Tra cứu dữ liệu hóa đơn vật tư tiêu hao</div>
         <table class="form">
             <tr>
-                <th class="formTitle">查询时间：</th>
+                <th class="formTitle">Thời gian tra cứu:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -63,23 +63,23 @@
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">发票代码：</th>
+                <th class="formTitle">Mã hóa đơn:</th>
                 <td class="formValue">
-                    <input id="fpdm" class="form-control" placeholder="发票代码" />
+                    <input id="fpdm" class="form-control" placeholder="Mã hóa đơn" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle ">企业名称：</th>
+                <th class="formTitle ">Tên doanh nghiệp:</th>
                 <td class="formValue" colspan="2">
-                    <input type="text" id="qy" name="qy" class="form-control" placeholder="请选择企业" autocomplete="off" style="width:70%" />
+                    <input type="text" id="qy" name="qy" class="form-control" placeholder="Vui lòng chọn doanh nghiệp" autocomplete="off" style="width:70%" />
                     <input type="hidden" id="qybm" />
                 </td>
-                <th class="formTitle">发票号：</th>
+                <th class="formTitle">Số hóa đơn:</th>
                 <td class="formValue">
-                    <input id="fph" class="form-control" placeholder="发票号" />
+                    <input id="fph" class="form-control" placeholder="Số hóa đơn" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                 </th>
                 <td></td>
             </tr>
@@ -92,7 +92,7 @@
     <div id="TabGrid">
         <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
             <li role="presentation" class="active">
-                <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
             </li>
             <li style="float:right">
                 <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -115,7 +115,7 @@
 
         //gridList();
 
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện ô tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -127,7 +127,7 @@
         TabGridHide();
     });
 
-    //隐藏搜索框并显示箭头
+    //Ẩn ô tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -137,22 +137,22 @@
         }
     }
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
-        //物资供应商
+        //Nhà cung cấp vật tư
         $("#qy").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             url: '/Storage/GetSupplierList',
             height: 300,
             width: 400,
-            caption: "物资供应商",
+            caption: "Nhà cung cấp vật tư",
             ajaxparameters: function () {
                 return "key=" + $("#qy").val();
             },
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'py', widthratio: 45 },
-                { label: '供应商', name: 'name', widthratio: 55 }
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#qybm").val($thistr.attr('data-py'));
@@ -178,23 +178,23 @@
             url: "/PurchaseManage/Purchase/GetGridJsonYY157",
             height: $(window).height() - 200,
             postData: getPostData(),
-            colModel: [{ label: '发票编号', name: 'FPBH', width: 180, align: 'left' },
-            { label: '发票代码', name: 'FPDM', width: 150, align: 'left' },
-            { label: '发票号', name: 'FPH', width: 180, align: 'left' },
-            { label: '发票日期', name: 'FPRQ', width: 100, align: 'left' },
-            { label: '发票含税总金额', name: 'FPHSZJE', width: 100, align: 'left' },
-            { label: '企业名称', name: 'QYBM', width: 180, align: 'left' },
-            { label: '医院编码', name: 'YYBM', width: 110, align: 'left' },
-            { label: '配送点编码', name: 'PSDBM', width: 100, align: 'left' },
+            colModel: [{ label: 'Số hóa đơn', name: 'FPBH', width: 180, align: 'left' },
+            { label: 'Mã hóa đơn', name: 'FPDM', width: 150, align: 'left' },
+            { label: 'Số hóa đơn', name: 'FPH', width: 180, align: 'left' },
+            { label: 'Ngày hóa đơn', name: 'FPRQ', width: 100, align: 'left' },
+            { label: 'Tổng tiền hóa đơn bao gồm thuế', name: 'FPHSZJE', width: 100, align: 'left' },
+            { label: 'Tên doanh nghiệp', name: 'QYBM', width: 180, align: 'left' },
+            { label: 'Mã bệnh viện', name: 'YYBM', width: 110, align: 'left' },
+            { label: 'Mã điểm giao hàng', name: 'PSDBM', width: 100, align: 'left' },
             {
-                label: '采购类型', name: 'CGLX', width: 80, align: 'left', formatter: function (val) {
+                label: 'Loại mua hàng', name: 'CGLX', width: 80, align: 'left', formatter: function (val) {
                     return $.enum.getDescByValue("EnumCGLX", val);
                 }
             },
-            { label: '发票备注', name: 'FPBZ', width: 80, align: 'left' },
-            { label: '发票明细条数', name: 'FPMXTS', width: 80, align: 'left' },
+            { label: 'Ghi chú hóa đơn', name: 'FPBZ', width: 80, align: 'left' },
+            { label: 'Số dòng chi tiết hóa đơn', name: 'FPMXTS', width: 80, align: 'left' },
             {
-                label: '发票状态', name: 'FPZT', width: 80, align: 'left', formatter: function (val) {
+                label: 'Trạng thái hóa đơn', name: 'FPZT', width: 80, align: 'left', formatter: function (val) {
                     return $.enum.getDescByValue("EnumFPZT", val);
                 }
             },
@@ -216,9 +216,9 @@
     }
 
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột,Xóa trống chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/PurchaseManage/Purchase/GetGridJsonYY158",
@@ -232,54 +232,54 @@
             }
         });
     }
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '发票明细编号', name: 'FPMXBH', width: 160, align: 'left' },
+            { label: 'Số chi tiết hóa đơn', name: 'FPMXBH', width: 160, align: 'left' },
             {
-                label: '是否无配送发票', name: 'SFWPSFP', width: 100, align: 'left', formatter: function (cellvalue) {
-                    if (cellvalue == 0) return '否';
-                    else if (cellvalue == 1) return '是';
+                label: 'Có hóa đơn không giao hàng không', name: 'SFWPSFP', width: 100, align: 'left', formatter: function (cellvalue) {
+                    if (cellvalue == 0) return 'Không';
+                    else if (cellvalue == 1) return 'Có';
                 }
             },
-            { label: '无配送发票说明', name: 'WPSFPSM', width: 100, align: 'left' },
+            { label: 'Mô tả hóa đơn không giao hàng', name: 'WPSFPSM', width: 100, align: 'left' },
             {
-                label: '是否冲红', name: 'SFCH', width: 80, align: 'left', formatter: function (cellvalue) {
-                    if (cellvalue == 0) return '否';
-                    else if (cellvalue == 1) return '是';
+                label: 'Có đảo ngược không', name: 'SFCH', width: 80, align: 'left', formatter: function (cellvalue) {
+                    if (cellvalue == 0) return 'Không';
+                    else if (cellvalue == 1) return 'Có';
                 }
             },
-            { label: '耗材统编代码', name: 'HCTBDM', width: 200, align: 'left' },
-            { label: '耗材细分代码', name: 'HCXFDM', width: 200, align: 'left' },
-            { label: '医院本地代码', name: 'YYBDDM', width: 80, align: 'left' },
-            { label: '规格型号说明', name: 'GGXHSM', width: 80, align: 'left' },
-            { label: '关联明细编号', name: 'GLMXBH', width: 160, align: 'left' },
-            { label: '销售订单号', name: 'XSDDH', width: 80, align: 'left' },
-            { label: '生产批号', name: 'SCPH', width: 80, align: 'left' },
-            { label: '生产日期', name: 'SCRQ', width: 80, align: 'left' },
-            { label: '有效日期', name: 'YXRQ', width: 80, align: 'left' },
-            { label: '商品数量', name: 'SPSL', width: 80, align: 'left' },
-            { label: '无税单价', name: 'WSDJ', width: 80, align: 'left' },
-            { label: '含税单价', name: 'HSDJ', width: 80, align: 'left' },
-            { label: '税率', name: 'SL', width: 80, align: 'left' },
-            { label: '税额', name: 'SE', width: 80, align: 'left' },
-            { label: '含税金额', name: 'HSJE', width: 80, align: 'left' },
-            { label: '批发价', name: 'PFJ', width: 80, align: 'left' },
-            { label: '零售价', name: 'LSJ', width: 80, align: 'left' },
-            { label: '注册证号', name: 'ZCZH', width: 160, align: 'left' },
+            { label: 'Mã thống nhất vật tư tiêu hao', name: 'HCTBDM', width: 200, align: 'left' },
+            { label: 'Mã chi tiết vật tư tiêu hao', name: 'HCXFDM', width: 200, align: 'left' },
+            { label: 'Mã nội bộ bệnh viện', name: 'YYBDDM', width: 80, align: 'left' },
+            { label: 'Mô tả quy cách mẫu mã', name: 'GGXHSM', width: 80, align: 'left' },
+            { label: 'Số chi tiết liên quan', name: 'GLMXBH', width: 160, align: 'left' },
+            { label: 'Số đơn bán hàng', name: 'XSDDH', width: 80, align: 'left' },
+            { label: 'Số lô sản xuất', name: 'SCPH', width: 80, align: 'left' },
+            { label: 'Ngày sản xuất', name: 'SCRQ', width: 80, align: 'left' },
+            { label: 'Ngày hiệu lực', name: 'YXRQ', width: 80, align: 'left' },
+            { label: 'Số lượng hàng hóa', name: 'SPSL', width: 80, align: 'left' },
+            { label: 'Đơn giá chưa thuế', name: 'WSDJ', width: 80, align: 'left' },
+            { label: 'Đơn giá bao gồm thuế', name: 'HSDJ', width: 80, align: 'left' },
+            { label: 'Thuế suất', name: 'SL', width: 80, align: 'left' },
+            { label: 'Tiền thuế', name: 'SE', width: 80, align: 'left' },
+            { label: 'Tiền bao gồm thuế', name: 'HSJE', width: 80, align: 'left' },
+            { label: 'Giá bán buôn', name: 'PFJ', width: 80, align: 'left' },
+            { label: 'Giá bán lẻ', name: 'LSJ', width: 80, align: 'left' },
+            { label: 'Số giấy chứng nhận đăng ký', name: 'ZCZH', width: 160, align: 'left' },
         ]
     });
 
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         var kssj = new Date($("#kssj").val());
         var jssj = new Date($("#jssj").val());
         if (getDaysBetween(kssj, jssj) > 30) {
-            $.modalAlert("日期不能超过30天", 'warning');
+            $.modalAlert("Ngày không được vượt quá 30 Ngày", 'warning');
             return;
         }
         gridList();

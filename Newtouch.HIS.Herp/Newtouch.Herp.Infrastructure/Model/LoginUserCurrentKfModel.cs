@@ -3,43 +3,43 @@
 namespace Newtouch.Herp.Infrastructure.Model
 {
     /// <summary>
-    /// 当前登录帐号信息
+    /// Thông tin tài khoản đang đăng nhập
     /// </summary>
     public class LoginUserCurrentKfModel
     {
         /// <summary>
-        /// 用户ID
+        /// Người dùng ID
         /// </summary>
         public string userId { get; set; }
 
         /// <summary>
-        /// 工号
+        /// Mã nhân viên
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// 员工名称
+        /// Tên nhân viên
         /// </summary>
         public string staffName { get; set; }
 
         /// <summary>
-        /// 当前库房ID
+        /// Kho hiện tại ID
         /// </summary>
         public string currentKfId { get; set; }
 
         /// <summary>
-        /// 当前库房名称
+        /// Tên kho hiện tại
         /// </summary>
         public string currentKfName { get; set; }
 
         /// <summary>
-        /// 库房等级
+        /// Cấp kho
         /// </summary>
         public int currentKfLevel { get; set; }
 
         private List<KfInfoModel> _kfList = new List<KfInfoModel>();
         /// <summary>
-        /// 归属库房
+        /// Kho thuộc về
         /// </summary>
         public List<KfInfoModel> kfList
         {
@@ -48,33 +48,33 @@ namespace Newtouch.Herp.Infrastructure.Model
         }
 
         /// <summary>
-        /// 职位
+        /// Chức vụ
         /// </summary>
         public string dutyName { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
     }
 
     /// <summary>
-    /// 库房信息
+    /// Thông tin kho
     /// </summary>
     public class KfInfoModel
     {
         /// <summary>
-        /// 当前库房ID
+        /// Kho hiện tại ID
         /// </summary>
         public string kfId { get; set; }
 
         /// <summary>
-        /// 当前库房名称
+        /// Tên kho hiện tại
         /// </summary>
         public string kfName { get; set; }
 
         /// <summary>
-        /// 库房等级
+        /// Cấp kho
         /// </summary>
         public int kfLeve { get; set; }
     }

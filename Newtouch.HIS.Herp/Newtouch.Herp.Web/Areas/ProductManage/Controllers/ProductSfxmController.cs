@@ -15,7 +15,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
 
     /// <summary>
-    /// 物资收费项目对照表
+    /// Bảng đối chiếu khoản thu vật tư
     /// </summary>
     public class ProductSfxmController : ControllerBase
     {
@@ -25,10 +25,10 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         private readonly IRelProductAndsfxmDmnService _relProductAndsfxmDmnService;
         private readonly IRelProductAndsfxmRepo _relProductAndsfxmRepo;
 
-        #region 视图
+        #region Khung nhìn
 
         /// <summary>
-        /// 数据展示 视图
+        /// Hiển thị dữ liệu Khung nhìn
         /// </summary>
         /// <returns></returns>
         public override ActionResult Index()
@@ -37,7 +37,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 新增/修改 视图
+        /// Thêm mới/Sửa Khung nhìn
         /// </summary>
         /// <returns></returns>
         public override ActionResult Form()
@@ -48,7 +48,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         #endregion
 
         /// <summary>
-        /// 物资列表
+        /// Danh sách vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sfdlCode"></param>
@@ -68,7 +68,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取物资收费项目关联关系
+        /// Lấy quan hệ liên kết khoản thu vật tư
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取所有收费项目
+        /// Lấy tất cả khoản thu
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAllSfdl()
@@ -103,7 +103,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 根据大类代码获取收费项目
+        /// Lấy khoản thu theo mã nhóm lớn
         /// </summary>
         /// <param name="sfdlCode"></param>
         /// <returns></returns>
@@ -115,7 +115,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 提交收费项目和物资绑定
+        /// Gửi gắn kết khoản thu và vật tư
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 删除关联数据
+        /// Xóa dữ liệu liên quan
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

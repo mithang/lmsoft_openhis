@@ -5,7 +5,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 供应商联系人
+    /// Nguoi lien he nha cung cap
     /// </summary>
     public interface IGysContactsRepo : IRepositoryBase<GysContactsEntity>
     {

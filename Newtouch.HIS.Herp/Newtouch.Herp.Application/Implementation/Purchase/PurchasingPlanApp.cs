@@ -13,7 +13,7 @@ using Newtouch.Tools;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 采购计划
+    /// Kế hoạch mua hàng
     /// </summary>
     public class PurchasingPlanApp : AppBase, IPurchasingPlanApp
     {
@@ -21,7 +21,7 @@ namespace Newtouch.Herp.Application.Implementation
         private readonly ICgPurchaseOrderDetailRepo _cgPurchaseOrderDetailRepo;
 
         /// <summary>
-        /// 提交采购计划
+        /// Gửi kế hoạch mua hàng
         /// </summary>
         /// <param name="pp"></param>
         /// <param name="ppmx"></param>
@@ -44,7 +44,7 @@ namespace Newtouch.Herp.Application.Implementation
                     return "";
                 }
 
-                //新增
+                //Thêm mới
                 if (!string.IsNullOrWhiteSpace(pp.remark) && System.Text.Encoding.Default.GetBytes(pp.remark).Length > 200)
                 {
                     throw new Exception("批语长度不得超过2000个字符");
@@ -70,7 +70,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 修改采购计划
+        /// Sửa kế hoạch mua hàng
         /// </summary>
         /// <param name="pp"></param>
         /// <param name="ppmx"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 保存采购计划明细
+        /// Lưu chi tiết kế hoạch mua hàng
         /// </summary>
         /// <param name="purchaseId"></param>
         /// <param name="ppmx"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 作废采购计划
+        /// Hủy kế hoạch mua hàng
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -138,7 +138,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 检查是否是暂存单
+        /// Kiểm tra có phải phiếu lưu tạm không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -152,7 +152,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 检查是否是审核不通过
+        /// Kiểm tra có phải duyệt không đạt không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -166,7 +166,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 检查是否是审核不通过或暂存采购计划单
+        /// Kiểm tra có phải duyệt không đạt hoặc phiếu kế hoạch mua hàng lưu tạm không
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -181,7 +181,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 将暂存采购计划提交审核
+        /// Gửi kế hoạch mua hàng lưu tạm để duyệt
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -197,11 +197,11 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 审核采购计划
+        /// Duyệt kế hoạch mua hàng
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="auditState"></param>
-        /// <param name="remarks">批语</param>
+        /// <param name="remarks">Lời phê</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>

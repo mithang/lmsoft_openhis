@@ -13,12 +13,12 @@ namespace Newtouch.Herp.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// 注册表（底层已经注册了一部分）
+        /// Bảng đăng ký(Tầng dưới đã đăng ký một phần)
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)
         {
-            //注册新表
+            //Đăng ký bảng mới
             modelBuilder.Entity<RelWarehouseDeptEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<RelWarehouseUserEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<KfWarehouseEntity>().RegisterTable().HasKey(p => p.Id);
@@ -47,16 +47,16 @@ namespace Newtouch.Herp.Domain.DBContext.Infrastructure
             modelBuilder.Entity<CgPurchaseOrderDetailEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<CgOrderEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<CgOrderDetailEntity>().RegisterTable().HasKey(p => p.Id);
-            //采购
+            //Mua hàng
             modelBuilder.Entity<PurchaseEntity>().RegisterTable().HasKey(p => p.cgId);
             modelBuilder.Entity<PurchaseDetailEntity>().RegisterTable().HasKey(p => p.cgmxId);
             modelBuilder.Entity<PurchaseLogEntity>().RegisterTable().HasKey(p => p.Id);
-            //退货
+            //Trả hàng
             modelBuilder.Entity<ReturnedEntity>().RegisterTable().HasKey(p => p.thId);
             modelBuilder.Entity<ReturnedDetailEntity>().RegisterTable().HasKey(p => p.thmxId);
-            //配送点
+            //Điểm giao hàng
             modelBuilder.Entity<PurchaseLocationEntity>().RegisterTable().HasKey(p => p.Id);
-            //发票
+            //Hóa đơn
             modelBuilder.Entity<PurchaseBillEntity>().RegisterTable().HasKey(p => p.Id);
 
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
