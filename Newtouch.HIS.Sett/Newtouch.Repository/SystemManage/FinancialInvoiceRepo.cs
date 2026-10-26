@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Repository
                 {
                     if (cwfp.dqfph == 0)
                     {
-                        //Cập nhật原cw_fp bản ghi 
+                        //Cập nhậtgốccw_fp bản ghi 
                         cwfp.dqfph = fphnum;
                         cwfp.LastModifyTime = DateTime.Now;
                         updateEntity = cwfp;
@@ -79,21 +79,21 @@ namespace Newtouch.HIS.Repository
                     //}
                     else if (fphnum - 1 == cwfp.dqfph)
                     {
-                        //Cập nhật原cw_fp bản ghi 
+                        //Cập nhậtgốccw_fp bản ghi 
                         cwfp.dqfph = fphnum;
                         cwfp.LastModifyTime = DateTime.Now;
                         updateEntity = cwfp;
                     }
                     else
                     {
-                        //Cập nhật原cw_fp bản ghi 
+                        //Cập nhậtgốccw_fp bản ghi 
                         cwfp.dqfph = fphnum;
                         cwfp.LastModifyTime = DateTime.Now;
                         updateEntity = cwfp;
                         #region 不需自动生成发票段
                         //var oldJsfph = cwfp.jsfph;
 
-                        ////分 đoạn 
+                        ////phân đoạn 
                         //cwfp.jsfph = fphnum - 1;
                         ////cwfp.ty = ((int)EnumCWFPTY.YTY).ToString();
                         ////cwfp.LastModifyUserId = gh;

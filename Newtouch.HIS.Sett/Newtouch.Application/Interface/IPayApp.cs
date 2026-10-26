@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Application.Interface
     public interface IPayApp
     {
         /// <summary>
-        /// Hoàn tiền(原路 trả lại lần)
+        /// Hoàn tiền(đường cũ trả lại lần)
         /// </summary>
         /// <param name="outTradeNo"></param>
         /// <param name="refundAmount">Số tiền</param>

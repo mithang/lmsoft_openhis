@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Application.Interface
         }
 
         /// <summary>
-        /// 主xử lý
+        /// chínhxử lý
         /// </summary>
         /// <returns></returns>
         protected virtual void Action(ActResult actResult)
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Application.Interface
         }
 
         /// <summary>
-        /// 异步xử lý
+        /// bất đồng bộxử lý
         /// </summary>
         protected virtual void AsyncAction(ActResult actResult)
         {

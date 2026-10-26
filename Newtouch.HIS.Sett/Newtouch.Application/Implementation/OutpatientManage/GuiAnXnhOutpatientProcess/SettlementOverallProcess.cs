@@ -5,7 +5,7 @@ using Newtouch.HIS.Proxy.guian.DTO.S25;
 namespace Newtouch.HIS.Application.Implementation.OutpatientManage
 {
     /// <summary>
-    /// Ngoại trú mô phỏng quyết toán完整流程
+    /// Ngoại trú mô phỏng quyết toánquy trình đầy đủ
     /// </summary>
     public class SettlementOverallProcess : ProcessorFun<SettlementOverallProcessDo>
     {

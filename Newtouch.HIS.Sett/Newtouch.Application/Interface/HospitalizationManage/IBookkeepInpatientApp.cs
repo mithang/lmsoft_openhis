@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Application.Interface
         /// GửiKế hoạch ghi sổ
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
-        /// <param name="xmList">Ghi sổ hạng mụcdanh sách(nếu là nhưng hạng mục, cũng cần trư ớc 包装成数 nhóm)</param>
+        /// <param name="xmList">Ghi sổ hạng mụcdanh sách(nếu là nhưng hạng mục, cũng cần trư ớc đóng gói thành nhóm)</param>
         void SubmitAccountingPlan(string zyh, IList<InpatientAccountingPlanItemDto> xmList);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.Interface
         void StopAccountingPlan(string jzjhmxIdStr, DateTime stopDate);
 
         /// <summary>
-        /// Hủy预 dừng 
+        /// Hủydự kiến dừng 
         /// </summary>
         /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void CancelPreStopAccountingPlan(string jzjhmxIdStr);

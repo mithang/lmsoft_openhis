@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application
             }
         }
         /// <summary>
-        /// LấyBHYT-Đ ặt-材料của mã giá
+        /// LấyBHYT-Đ ặt-vật liệucủa mã giá
         /// </summary>
         /// <returns></returns>
         public string GetybdmSelect()

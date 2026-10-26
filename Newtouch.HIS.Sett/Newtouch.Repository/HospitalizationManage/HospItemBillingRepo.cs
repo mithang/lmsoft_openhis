@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Repository
             {
                 sourceQuery = this.IQueryable();
             }
-            // không có加入ngày kết thúc của qua 滤 là đ ể hoàn phí
+            // không cóthêm vàongày kết thúc của qua lọc là đ ể hoàn phí
             var query1 = sourceQuery.Where(p => p.zyh == zyh
               && p.OrganizeId == orgId && p.zt == "1"
               && p.CreateTime > startTime).ToList();
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Repository
                 }).ToList();
             if (query2.Count == query1.Count)
             {
-                // không có trả lại qua 费
+                // không có trả lại qua phí
                 return query1.Where(p => p.CreateTime <= endTime).ToList();
             }
             query1 = query1.Where(p => p.CreateTime <= endTime).ToList();
@@ -79,8 +79,8 @@ namespace Newtouch.HIS.Repository
             var query = from q2 in query2
                         join q1 in query1
                         on q2.jfbbh equals q1.jfbbh
-                        // nhất đ ịnh Làq2joinq1, sau đ ó qua 滤q1 của thời gian
-                        // trả lại 完 không hiển thị
+                        // nhất đ ịnh Làq2joinq1, sau đ ó qua lọcq1 của thời gian
+                        // trả lại xong không hiển thị
                         where q1.CreateTime <= endTime && q2.sl > 0
                         select new HospItemBillingEntity
                         {
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Repository
             return query.ToList();
         }
         /// <summary>
-        /// thay đ ổi 耗材 kho tồn tại 
+        /// thay đ ổi vật tư tiêu hao kho tồn tại 
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="sl"></param>

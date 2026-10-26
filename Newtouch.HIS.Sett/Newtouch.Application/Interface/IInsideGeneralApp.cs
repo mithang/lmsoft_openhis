@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Application.Interface
     public interface IInsideGeneralApp
     {
         /// <summary>
-        /// 公tổng cộng入口
+        /// cổng vào chung
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

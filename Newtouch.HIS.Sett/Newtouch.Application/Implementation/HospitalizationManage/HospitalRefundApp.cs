@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Application
         /// tải trẻ sơ sinh 
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
-        /// <returns>Họ tên 婴儿 số </returns>
+        /// <returns>Họ tên trẻ sơ sinh số </returns>
         //public DataTable GetYehByZyh(string zyh)
         //{
 

@@ -251,7 +251,7 @@ namespace Newtouch.HIS.Application.Implementation
 
         #region 打印明细准备工作
         /// <summary>
-        /// 合 và List
+        /// hợp và List
         /// </summary>
         /// <returns></returns>
         public List<PrintSettleVO> returnMergeList(OutPatientReprintOrSuppPrintSettleDetailDto SettleDetailDto)
@@ -343,7 +343,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 整理chi tiết nội dung 
+        /// sắp xếpchi tiết nội dung 
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <param name="printDate"></param>
@@ -390,7 +390,7 @@ namespace Newtouch.HIS.Application.Implementation
                             sfxmmc = dyy.sfxmmcFanti;
                         }
                     }
-                    // Hạng mục thu phí loại lớn (取得Làxt_fjsfdl trong Củadl Vàdlmc)
+                    // Hạng mục thu phí loại lớn (lấy đượcLàxt_fjsfdl trong Củadl Vàdlmc)
                     string dl = item.dl;
                     string dlmc = item.dlmc;
                     SysPatientChargeAdditionalEntity brsffj = brsffjList.Find(t => t.sfxm == sfxm);
@@ -425,7 +425,7 @@ namespace Newtouch.HIS.Application.Implementation
 
             // loại lớn chi phí
             Dictionary<string, decimal> dlfyDict = new Dictionary<string, decimal>();
-            //草药 loại lớn 合 và in
+            //thuốc thảo dược loại lớn hợp và in
             Dictionary<string, decimal> cyfyDict = new Dictionary<string, decimal>();
 
             DateTime minDate = DateTime.Now;
@@ -526,7 +526,7 @@ namespace Newtouch.HIS.Application.Implementation
                     xdlmc = objList[i].dlmc.ToString();
                     if (!notPrintMxdlList.Contains(objList[i].dl.ToString()))
                     {
-                        //Nếu là偶数thì trái 侧,奇数thì phải 侧
+                        //Nếu làsố chẵnthì trái bên,số lẻthì phải bên
                         if (j % 2 == 0)
                         {
                             PrinLeftRowVO leftNewRow = new PrinLeftRowVO();
@@ -670,7 +670,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// In hóa đ ơn
         /// </summary>
         /// <param name="jsnm"></param>
-        /// <param name="Pagefph">窗体 truyền 进của số hóa đ ơn</param>
+        /// <param name="Pagefph">biểu mẫu truyền vàocủa số hóa đ ơn</param>
         public void PrintInvoice(string jsnm, bool isGh)
         {
             //Quyết toán ngoại trú
@@ -690,7 +690,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="dyfs"></param>
         public void ExecPrintInvoice(int jsnm, int ghnm, bool isGh, Enumdyfs dyfs)
         {
-            //整理in nội dung 
+            //sắp xếpin nội dung 
             PrintInvoiceInfoVO info = GetPrintInvoiceInfo(jsnm, ghnm, isGh, dyfs);
             string fpPath = "";
 
@@ -730,7 +730,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
 
 
-            //初始化 báo cáo nội dung 
+            //Khởi tạo báo cáo nội dung 
             if (info.IsGh)
             {
                 PrintInvoiceRegisterVO obj = ReportRegisterInitialize(info);
@@ -812,7 +812,7 @@ namespace Newtouch.HIS.Application.Implementation
                 subReportDict.Add("DetailSubReport", detailSubReportList.ToDataTable());
             }
 
-            //初始化 báo cáo nội dung 
+            //Khởi tạo báo cáo nội dung 
             if (info.IsGh)
             {
                 PrintInvoiceRegisterVO obj = ReportRegisterInitialize(info);
@@ -896,7 +896,7 @@ namespace Newtouch.HIS.Application.Implementation
                 subReportDict.Add("DetailSubReport", detailSubReportList.ToDataTable());
             }
 
-            //初始化 báo cáo nội dung 
+            //Khởi tạo báo cáo nội dung 
             if (info.IsGh)
             {
                 PrintInvoiceRegisterVO obj = ReportRegisterInitialize(info);
@@ -931,7 +931,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// Thêm bản ghi in
         /// </summary>
         /// <param name="js"></param>
-        /// <param name="Pagefph">窗体 truyền 进của số hóa đ ơn</param>
+        /// <param name="Pagefph">biểu mẫu truyền vàocủa số hóa đ ơn</param>
         /// <param name="dyfs"></param>
         /// <returns></returns>
         public void SelectInvoicePrintData(OutpatientSettlementEntity js, string Pagefph, Enumdyfs dyfs)
@@ -943,7 +943,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 xfph = fph;
             }
-            //Lấy原 hóa đ ơn của mới nhất số hóa đ ơn
+            //Lấygốc hóa đ ơn của mới nhất số hóa đ ơn
             OupatientInvoicePrintEntity lastInvoicePrintEntity = _oupatientInvoicePrintRepo.SelectOutPatientInvoicePrintByJsnm(js.jsnm, this.OrganizeId);
             if (lastInvoicePrintEntity != null)
             {
@@ -1017,20 +1017,20 @@ namespace Newtouch.HIS.Application.Implementation
             //Hạng mục Số tiền
             List<KeyValuePair<string, string>> ItemPrice = new List<KeyValuePair<string, string>>();
             Dictionary<string, decimal> dlfyDict = new Dictionary<string, decimal>();
-            //草药 loại lớn 合 và in
+            //thuốc thảo dược loại lớn hợp và in
             Dictionary<string, decimal> cyfyDict = new Dictionary<string, decimal>();
             //Hạng mục mã tên quy cách số lư ợng Đ ơn giá số tiền(tệ)
             List<Dictionary<string, string>> ItemDetails = new List<Dictionary<string, string>>();
             Dictionary<string, string> itemDetail = new Dictionary<string, string>();
             //Đ ăng ký khámchi tiết:Tên bệnh nhân:Name bệnh nhân mã nội bộ:ID thông thư ờng hoặc chuyên gia:YS khoa:KS khoa số thứ tự:KsNo ngày:dateTime
             Dictionary<string, string> GhItemDetails = new Dictionary<string, string>();
-            //窗口thông tin
+            //cửa sổthông tin
             List<string> Xwindow = new List<string>();
-            // nên 收xxx预收yyy trả lại tiền thừazzz
+            // nên thuxxxthu trướcyyy trả lại tiền thừazzz
             string account = string.Empty;
-            // phư ơng thức thanh toán 如:Tiền mặt:xx tệ,pos:yy tệ
+            // phư ơng thức thanh toán như:Tiền mặt:xx tệ,pos:yy tệ
             string PayFuc = string.Empty;
-            //分币误差
+            //Chênh lệch tiền lẻ
             string XjWc = string.Empty;
             #endregion
 
@@ -1052,7 +1052,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                     dlfyDict[dl] += item.je;
                     totalAmount += item.je;
-                    //草药 không inchi tiết
+                    //thuốc thảo dược không inchi tiết
                     if (!notPrintMxdlList.Contains(item.dl))
                     {
                         //Hạng mục mã tên quy cách số lư ợng Đ ơn giá số tiền(tệ)
@@ -1119,7 +1119,7 @@ namespace Newtouch.HIS.Application.Implementation
                     KeyValuePair<string, string> item = new KeyValuePair<string, string>(pair.Key + "：", pair.Value.ToString("0.00"));
                     ItemPrice.Add(item);
                 }
-                //Lấy窗口thông tin
+                //Lấycửa sổthông tin
                 foreach (var item in mz_cfmxList)
                 {
                     if (Xwindow.Contains(item.lyck))
@@ -1217,7 +1217,7 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 else
                 {
-                    //Tuần ngày đ ặc biệt và mục 假ngày đ ặc biệt (2015-07-01)
+                    //Tuần ngày đ ặc biệt và mục nghỉngày đ ặc biệt (2015-07-01)
                     ysShow = chargeItemEntity.sfxmmc;
                 }
                 if (registEntity.mjzbz == ((int)EnumOutPatientType.emerDiagnosis).ToString())
@@ -1233,7 +1233,7 @@ namespace Newtouch.HIS.Application.Implementation
                 GhItemDetails.Add("dateTime", registEntity.CreateTime.ToString("yyyy-MM-dd"));
                 GhItemDetails.Add("YsName", ysName);
                 info.Ks = departmentEntity.Name;
-                // thực thu xxx nên 收yyy trả lại tiền thừazzz
+                // thực thu xxx nên thuyyy trả lại tiền thừazzz
                 account = string.Format("实收{0}应收{1}找零{2}", settleEntity.xjzf.ToString("0.00"), settleEntity.ysk, settleEntity.zl);
                 //Tiền mặt:xxTệ,pos:yyTệ
                 List<OutpatientSettlementPaymentModelVO> SettlementPaymentModelList = _outPatienChargeQueryDmnService.GetSettlementPaymentModel(settleEntity.jsnm);
@@ -1242,7 +1242,7 @@ namespace Newtouch.HIS.Application.Implementation
                     PayFuc += item.xjzffsmc + ":" + item.zfje + ",";
                 }
                 PayFuc = PayFuc.TrimEnd(',');
-                //分币误差
+                //Chênh lệch tiền lẻ
                 XjWc = settleEntity.xjwc.ToString("0.00");
 
             }
@@ -1264,7 +1264,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                     info.Ks = departmentEntity.Name;
                 }
-                // thực thu xxx nên 收yyy trả lại tiền thừazzz
+                // thực thu xxx nên thuyyy trả lại tiền thừazzz
                 account = string.Format("实收{0}应收{1}找零{2}", settleEntity.xjzf.ToString("0.00"), settleEntity.ysk, settleEntity.zl);
                 //Tiền mặt:xxTệ,pos:yyTệ
                 List<OutpatientSettlementPaymentModelVO> SettlementPaymentModelList = _outPatienChargeQueryDmnService.GetSettlementPaymentModel(settleEntity.jsnm);
@@ -1273,7 +1273,7 @@ namespace Newtouch.HIS.Application.Implementation
                     PayFuc += item.xjzffsmc + ":" + item.zfje + ",";
                 }
                 PayFuc = PayFuc.TrimEnd(',');
-                //分币误差
+                //Chênh lệch tiền lẻ
                 XjWc = settleEntity.xjwc.ToString("0.00");
 
             }
@@ -1288,7 +1288,7 @@ namespace Newtouch.HIS.Application.Implementation
             info.Cash = settleEntity.xjzf.ToString("0.00");
             info.Pay = "";
             info.TotalStr = settleEntity.zje;
-            info.ExtraPay = "";//附加 thanh toán 
+            info.ExtraPay = "";//phụ thêm thanh toán 
             info.CurrentRemain = "";//KhiNămSố dư tài khoản
             info.PastRemain = "";// các năm trư ớc số dư tài khoản
             info.SocialPay = "";//BHYT quỹ chung thanh toán 
@@ -1313,7 +1313,7 @@ namespace Newtouch.HIS.Application.Implementation
             if (settleEntity.jmje > 0)
                 info.Memo = "其它费用：" + settleEntity.jmje.ToString("0.00");//Hiển thị số tiền giảm trừ
             info.CompanyName = "占位符";   //Nên là bệnh viện của thuộc tính: hóa đ ơn tiêu đ ề 
-            info.Cashier = _sysStaffRepo.GetNameByGh(settleEntity.CreatorCode, OperatorProvider.GetCurrent().OrganizeId);   //Nên là có个' tạo 人mã nhân viên' trư ờng 
+            info.Cashier = _sysStaffRepo.GetNameByGh(settleEntity.CreatorCode, OperatorProvider.GetCurrent().OrganizeId);   //Nên là cócái' tạo ngườimã nhân viên' trư ờng 
             info.Date = settleEntity.CreateTime.ToString("yyyy-MM-dd HH:mm:ss");
             info.ItemPrice = ItemPrice;
             info.GhItemDetails = GhItemDetails;
@@ -1332,7 +1332,7 @@ namespace Newtouch.HIS.Application.Implementation
                 info.Fph = lastInvoicePrintEntity.xfph;
             }
 
-            //Hạng mục大于20 dòng,只in trư ớc 20 dòng dữ liệu, và nhắc nhở đ ến 触摸屏tra cứu
+            //Hạng mụclớn hơn20 dòng,chỉin trư ớc 20 dòng dữ liệu, và nhắc nhở đ ến màn hình cảm ứngtra cứu
             if (ItemDetails.Count > 20)
             {
                 for (int i = 0; i < ItemDetails.Count; i++)
@@ -1349,7 +1349,7 @@ namespace Newtouch.HIS.Application.Implementation
                 info.ItemDetails = ItemDetails;
             }
 
-            //加床 không in phải 边hạng mụcchi tiết
+            //thêmgiường không in phải bênhạng mụcchi tiết
             if (isPrintXmmx == false)
             {
                 info.ItemDetails = new List<Dictionary<string, string>>();
@@ -1360,14 +1360,14 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 初始化 báo cáo nội dung (không phải Đ ăng ký khám)
+        /// Khởi tạo báo cáo nội dung (không phải Đ ăng ký khám)
         /// </summary>
         /// <param name="info"></param>
         private PrintInvoiceVO ReportInitialize(PrintInvoiceInfoVO info)
         {
-            // trư ờng 名& trư ờng loại nhất quán có thể 复制value đ ến mới Đ ối tư ợng
+            // trư ờng tên& trư ờng loại nhất quán có thể sao chépvalue đ ến mới Đ ối tư ợng
             var obj = info.MapperTo<PrintInvoiceInfoVO, PrintInvoiceVO>();
-            //Số tiền大写
+            //Số tiềnviết hoa
             obj.TotalStr = info.TotalStr.ToUpperMoney();
 
 
@@ -1404,15 +1404,15 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// bộ 打(Đ ăng ký khám)
+        /// bộ in(Đ ăng ký khám)
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
         private PrintInvoiceRegisterVO ReportRegisterInitialize(PrintInvoiceInfoVO info)
         {
-            // trư ờng 名& trư ờng loại nhất quán có thể 复制value đ ến mới Đ ối tư ợng
+            // trư ờng tên& trư ờng loại nhất quán có thể sao chépvalue đ ến mới Đ ối tư ợng
             var obj = info.MapperTo<PrintInvoiceInfoVO, PrintInvoiceRegisterVO>();
-            //Số tiền大写
+            //Số tiềnviết hoa
             obj.TotalStr = info.TotalStr.ToUpperMoney();
 
             string itemDetailsTxt = string.Empty;

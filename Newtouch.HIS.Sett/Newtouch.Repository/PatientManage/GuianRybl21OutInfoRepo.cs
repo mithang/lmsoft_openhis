@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// theo số nhập viện lấy贵安BHYTnhập viện phản hồi thông tin
+        /// theo số nhập viện lấyQuý AnBHYTnhập viện phản hồi thông tin
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
         /// <param name="OrganizeId">ID tổ chức</param>

@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// Tạo：张冬林
+    /// Tạo：Trương Đông Lâm
     /// Ngày tháng:2017-10-16 11:07
     /// Mô tả:Menu nhanh
     /// </summary>

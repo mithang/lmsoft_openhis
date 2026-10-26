@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPharmacyAPIDmnService _outpatientPharmacyAPIDmnService;
 
         /// <summary>
-        /// 公tổng cộng入口
+        /// cổng vào chung
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>
@@ -45,11 +45,11 @@ namespace Newtouch.HIS.Application.Implementation
 
             switch (o.OperationType)
             {
-                //case "xnhS27"://Tra cứu và 落 đ ịa S27(quyết toántra cứu)kết quả
+                //case "xnhS27"://Tra cứu và lưu đ ịa S27(quyết toántra cứu)kết quả
                 //    var pr = _guiAnOutpatientXnhApp.QueryAndRecordSettDetail(o.Content);
                 //    if (!string.IsNullOrWhiteSpace(pr)) throw new FailedException(pr);
                 //    break;
-                //case "supplementPatientBaseInfo"://补充bệnh nhân cơ bản thông tin
+                //case "supplementPatientBaseInfo"://bổ sungbệnh nhân cơ bản thông tin
                 //    var r = SupplementPatientBaseInfo(o.Content);
                 //    if (!string.IsNullOrWhiteSpace(r)) throw new FailedException(r);
                 //    break;
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 补充bệnh nhân cơ bản thông tin
+        /// bổ sungbệnh nhân cơ bản thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Application.Implementation
         //    var po = request.ToObject<PatientBaseInfoQueryRequest>();
         // if (po == null) throw new Exception(" yêu cầu tham số tuần tự hóa sau là trống, bản gốc bản tin:" + request);
         //    var brjbxx = _patientBasic.SelectPatientBasicInfoByCfh(po.cfh, po.OrganizeId);
-        // if (brjbxx == null) return string.Format(" theo số đ ơn thuốc[{0}]và cơ quanid[{1}]chưa找 đ ến hệ thống thông tin cơ bản bệnh nhân！", po.cfh, po.Organizeid);
+        // if (brjbxx == null) return string.Format(" theo số đ ơn thuốc[{0}]và cơ quanid[{1}]chưatìm đ ến hệ thống thông tin cơ bản bệnh nhân！", po.cfh, po.Organizeid);
         //    var rp = new SupplementPatientBaseInfoRequest();
         //    brjbxx.MapperTo(rp);
         //    rp.cfh = po.cfh;

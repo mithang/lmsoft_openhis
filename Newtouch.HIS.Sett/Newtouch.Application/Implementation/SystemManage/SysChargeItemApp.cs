@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// Điều kiện tra cứu,lọc出hạng mục thu phígrid
+        /// Điều kiện tra cứu,lọcrahạng mục thu phígrid
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

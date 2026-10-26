@@ -28,11 +28,11 @@ namespace Newtouch.HIS.Repository
 
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                // trư ớc thay đ ổi dấu hiệu và thời gian tạm thời 定sửa thực ra là sửa đ ến thông tin cơ bản bệnh nhân thay đ ổi bảng 
+                // trư ớc thay đ ổi dấu hiệu và thời gian tạm thời địnhsửa thực ra là sửa đ ến thông tin cơ bản bệnh nhân thay đ ổi bảng 
                 var entity = this.FindEntity(sysPatBasicInfoEntity.patid);
                 entity.Modify(keyValue);
                 this.Update(entity);
-                //再insert
+                //lạiinsert
                 sysPatBasicInfoEntity.Create(true, EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("xt_brjbxx"));
                 this.Insert(sysPatBasicInfoEntity);
             }
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// (số hồ sơ bệnh án由hệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
+        /// (số hồ sơ bệnh ándohệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         public string Getblh(string orgId)

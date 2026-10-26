@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Repository
         //}
 
         /// <summary>
-        /// 强制cập nhật số hóa đ ơn
+        /// bắt buộccập nhật số hóa đ ơn
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

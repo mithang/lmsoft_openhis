@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Repository
             }
                
         }
-        //Nhập viện补 tính phí 扣掉相 nên kho tồn tại 
+        //Nhập việnbổ sung tính phí trừ đi tương ứng nên kho tồn tại 
         public void Updatezyaddfee(string OrganizeId, decimal sl,string yfbm,string ypdm)
         {
             try
@@ -102,7 +102,7 @@ and organizeid=@orgId and zt='1'";
 
         }
         /// <summary>
-        /// Hoàn phí trả lại lần 耗材 kho tồn tại 
+        /// Hoàn phí trả lại lần vật tư tiêu hao kho tồn tại 
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="jfbbhs"></param>
@@ -114,7 +114,7 @@ and organizeid=@orgId and zt='1'";
         }
 
         /// <summary>
-        /// Nhập viện hoàn phí trả lại lần trạm bác sĩ开立耗材 kho tồn tại 
+        /// Nhập viện hoàn phí trả lại lần trạm bác sĩkêvật tư tiêu hao kho tồn tại 
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="jfbbhs"></param>

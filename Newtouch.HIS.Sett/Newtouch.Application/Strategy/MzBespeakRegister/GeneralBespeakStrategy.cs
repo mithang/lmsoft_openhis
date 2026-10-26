@@ -40,9 +40,9 @@ namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
                 mzyyghId = "";
                 userCode = "";
                 var mzBespeakRegister = request as MzBespeakRegisterVO;
-                //Đ ặt lịch đ ăng ký khám có hay không lịch trực chưa lịch trực của放 qua 
+                //Đ ặt lịch đ ăng ký khám có hay không lịch trực chưa lịch trực củađặt qua 
                 if (mzBespeakRegister.bespeakRegSchedulingDetail == null || mzBespeakRegister.bespeakRegSchedulingDetail.Count <= 0) return true; // này khoa không có lịch trực,có thể trực ti ếpĐ ăng ký khám
-                //Có hay không đ ặt lịch có đ ặt lịch của放 qua 
+                //Có hay không đ ặt lịch có đ ặt lịch củađặt qua 
                 var todayDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
                 if (mzBespeakRegister.bespeakRegDetail != null && mzBespeakRegister.bespeakRegDetail.Count > 0) //Có đ ặt lịch 
                 {
@@ -58,14 +58,14 @@ namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
                 // không có đ ặt lịch 
                 if (mzBespeakRegister.alreadyBespeakRegisterCount >= mzBespeakRegister.allBespeakMaxCount)
                 {
-                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, và đ ặt lịch Đ ã满
+                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, và đ ặt lịch Đ ãđầy
                     result.IsSucceed = false;
                     result.ResultMsg = "该科室预约已满，确定继续挂号吗？";
                     return false;
                 }
                 if ((mzBespeakRegister.alreadyBespeakRegisterCount + mzBespeakRegister.alreadyRegisterCount) >= mzBespeakRegister.allBespeakMaxCount)
                 {
-                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, đ ặt lịch chưa满,Nh ưngĐ ãĐ ăng ký kh ámĐ ăng ký khám数+Đ ã đ ặt lịch 数>= có thể đ ặt lịch 总数
+                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, đ ặt lịch chưađầy,Nh ưngĐ ãĐ ăng ký kh ámĐ ăng ký khámsố+Đ ã đ ặt lịch số>= có thể đ ặt lịch tổngsố
                     result.IsSucceed = false;
                     result.ResultMsg = "该科室挂号已满，确定继续挂号吗？";
                     return false;

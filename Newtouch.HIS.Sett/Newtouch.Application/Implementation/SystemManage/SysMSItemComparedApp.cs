@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Application
         /// <returns></returns>
         public DataTable GetListBySearch(string keyword)
         {
-            //xt_yjxmdz theo xm 找 đ ến đ ối với thực hiện khoa
+            //xt_yjxmdz theo xm tìm đ ến đ ối với thực hiện khoa
             return null;
         }
     }

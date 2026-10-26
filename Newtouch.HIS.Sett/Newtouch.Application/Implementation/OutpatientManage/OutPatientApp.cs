@@ -41,14 +41,14 @@ namespace Newtouch.HIS.Application.Implementation
             };
             foreach (var item in accDto)
             {
-                int zsl = 0;//总 tính phí số lư ợng
-                var dcsl = 0;// mỗi lần số lư ợng= điều trị lư ợng /Đ ơn vị计 lư ợng 数
+                int zsl = 0;//tổng tính phí số lư ợng
+                var dcsl = 0;// mỗi lần số lư ợng= điều trị lư ợng /Đ ơn vịtính lư ợng số
                 int? zzll = item.zll * item.sl;
                 var zje = item.Zje;
                 if (item.sfxmCode != null)
                 {
                     dcsl = CommmHelper.CalcSfxmSl(item.zll, item.dwjls, item.jjcl);
-                    //总数
+                    //tổngsố
                     zsl = (dcsl * item.sl).ToInt();
                     zje = zsl * item.dj;    //LạiTínhTổng số tiền
                 }
@@ -67,14 +67,14 @@ namespace Newtouch.HIS.Application.Implementation
                     dczll = item.zll,
                     zxcs = item.sl, // thực hiện số lần 
                     bz = item.bz,
-                    ssbz = "9",    //Trực tiếp进入 thực hiện quá trình trong như vậy không có thể thao tác hoàn phí
+                    ssbz = "9",    //Trực tiếpvào thực hiện quá trình trong như vậy không có thể thao tác hoàn phí
                     sfrq = item.jzsj
                 };
                 mzxm.Create();
                 ItemsGroupBO.xmList.Add(mzxm);
             }
 
-            // mới hạng mục 薪quyết toán
+            // mới hạng mục mớiquyết toán
             if (ItemsGroupBO.xmList != null && ItemsGroupBO.xmList.Count() > 0)
             {
                 IList<int> cfnmList = new List<int>();

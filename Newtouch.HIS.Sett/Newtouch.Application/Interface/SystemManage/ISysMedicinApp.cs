@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Application.Interface
     public interface ISysMedicinApp
     {
         /// <summary>
-        /// 检索thuốc(for dư ới 拉)
+        /// tra cứuthuốc(for dư ới kéo xuống)
         /// </summary>
         /// <param name="keywrod"></param>
         /// <returns></returns>

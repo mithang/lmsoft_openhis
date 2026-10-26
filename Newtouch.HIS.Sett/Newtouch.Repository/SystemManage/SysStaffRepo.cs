@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 职 vị Tư ơng ứng viên 工quay lạilist
+        /// chức vụ vị Tư ơng ứng viên nhân viênquay lạilist
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

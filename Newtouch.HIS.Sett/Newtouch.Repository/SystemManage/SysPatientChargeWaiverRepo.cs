@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Repository
         }
 
         ///// <summary>
-        ///// theo 首拼tra cứu hạng mục thu phí
+        ///// theo phiên âm đầutra cứu hạng mục thu phí
         ///// </summary>
         ///// <param name="parm"></param>
         ///// <returns></returns>

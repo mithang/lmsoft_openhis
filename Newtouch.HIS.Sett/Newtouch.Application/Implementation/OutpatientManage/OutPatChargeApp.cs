@@ -40,13 +40,13 @@ namespace Newtouch.HIS.Application.Implementation
     public class OutPatChargeApp : AppBase, IOutPatChargeApp
     {
         //GetOutPatRegEntity
-        private readonly IOutpatientRegistRepo _outPatRegRepo; //Đ ăng ký khám ngoại trú仓储
+        private readonly IOutpatientRegistRepo _outPatRegRepo; //Đ ăng ký khám ngoại trúkho lưu trữ
         private readonly ISysConfigRepo _sysConfigRepo; //Hệ thống ngoại trú cấu hình
         private readonly ISysPatientChargeWaiverRepo _sysPatiChargeWaiRepo; // Số tiền giảm trừ
         private readonly IOutPatientDmnService _outPatientDmnService; //Số hóa đ ơn
         private readonly ISysPatientNatureRepo _sysNatRepo; //Hệ thốngTính chất bệnh nhân
         private readonly ISysPatientBasicInfoRepo _sysPatiInfoRepo; //Thông tin cơ bản bệnh nhân
-        private readonly IBookkeepInHosDmnService _hosTempRepo; //Thu phí模版
+        private readonly IBookkeepInHosDmnService _hosTempRepo; //Thu phímẫu
         private readonly IOutPatChargeDmnService _outChargeDmnService;
 	    private readonly IPatientBasicInfoDmnService _patientBasicInfoDmnService;
         private readonly IOutPatientSettleDmnService _outPatientSettleDmnService;
@@ -72,14 +72,14 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID"); //Số thẻ không hiệu lực
             }
             var _kh = kh.Trim().ToUpper();
-            //初复诊 phán đoán số thẻ có hiệu lực hay không
+            //Khám lần đầu và tái khám phán đoán số thẻ có hiệu lực hay không
             var regEntity = _outPatRegRepo.SelectCFZ(_kh, OrganizeId);
             if (regEntity == null)
             {
                 throw new FailedCodeException("OUTPAT_CARDNO_ISINVALID");
             }
 
-            //Tính chất bệnh nhân truyền 入 không là trống,说明 nhiều tính chất bệnh nh ânĐ ãchọn một 作là tham số truyền 入
+            //Tính chất bệnh nhân truyền vào không là trống,giải thích nhiều tính chất bệnh nh ânĐ ãchọn một làmlà tham số truyền vào
             if (!string.IsNullOrEmpty(brxz))
             {
                 regEntity.brxz = brxz;
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (outchargeInfoVo == null)
                 {
                     throw new FailedCodeException("OUTPAT_PATIENT_BASICINFO_IS_NOT_EXIST");
-                    //初始化界面
+                    //Khởi tạo giao diện
                 }
                 if (outchargeInfoVo.dybh == ((int)EnumDY.bd))
                 {
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Application.Implementation
                 var propertyList = new List<OutPatChargeProperty>();
                 if (regEntityList.Count > 1)
                 {
-                    //update by hao 2017-2-28 Th êmĐ ăng ký khám nhiều tính chất bệnh nhân của窗口chọn 
+                    //update by hao 2017-2-28 Th êmĐ ăng ký khám nhiều tính chất bệnh nhân củacửa sổchọn 
                     foreach (var t in regEntityList)
                     {
                         var property = new OutPatChargeProperty
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (outchargeInfoVo == null)
                 {
                     throw new FailedCodeException("OUTPAT_PATIENT_BASICINFO_IS_NOT_EXIST");
-                    //初始化界面
+                    //Khởi tạo giao diện
                 }
                 if (outchargeInfoVo.dybh == ((int)EnumDY.bd))
                 {
@@ -217,7 +217,7 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                 }
                 if (itemVo.Count <= 0) return itemVo;
-                // phán đoán tính chất bệnh nhân có hay không大病 trư ớc 略
+                // phán đoán tính chất bệnh nhân có hay khôngbệnh nặng trư ớc chiến lược
                 if (itemVo.Count != 1) return itemVo;
                 var item = new OutPatChargeItemVO();
 
@@ -269,7 +269,7 @@ namespace Newtouch.HIS.Application.Implementation
             var yfpz = Constants.CurrentYfbm.yfbmCode;
             if (string.IsNullOrEmpty(yfpz))
             {
-                throw new FailedCodeException("OUTPAT_YP_YF_ISNULL"); //如需tra cứu sử dụng thuốc liên quan thông tin,vui lòng trư ớc cấu hình nhà thuốc ！
+                throw new FailedCodeException("OUTPAT_YP_YF_ISNULL"); //nếu cầntra cứu sử dụng thuốc liên quan thông tin,vui lòng trư ớc cấu hình nhà thuốc ！
             }
             //Tra cứu về thuốc và hạng mục
             var itemVo = _outChargeDmnService.getYpItemList(keyword, yfpz, this.OrganizeId);
@@ -277,7 +277,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lấy số đ ơn thuốc và附加费số tiền
+        /// Lấy số đ ơn thuốc vàphí phụ thêmsố tiền
         /// </summary>
         /// <param name="sfxmtype">Hạng mục thu phí loại</param>
         /// <param name="lscfh"> tạm thời số đ ơn thuốc</param>
@@ -299,7 +299,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 dto.cfh = !string.IsNullOrEmpty(lscfh) ? lscfh : _outChargeDmnService.getCflsh();
             }
-            dto.fwf = _outChargeDmnService.Calcfwfjm(brxz, dl, sfxm, dj);//附 vụ số tiền
+            dto.fwf = _outChargeDmnService.Calcfwfjm(brxz, dl, sfxm, dj);//phụ vụ số tiền
             var jeNum = (Convert.ToDouble(dj) + Convert.ToDouble(dto.fwf)) * Convert.ToDouble(sl);
             dto.jeNum = jeNum;
 
@@ -331,7 +331,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 判断同一药品是否一个处方 获取相同药品的组号 俩方法没有检测到引用，创建者如无需要，请删除 add by sunny
 
         /// <summary>
-        /// 阻止 cùng một Đ ơn thuốc录入 giống nhau thuốc
+        /// ngăn chặn cùng một Đ ơn thuốcnhập giống nhau thuốc
         /// </summary>
         /// <param name="strSfxm"></param>
         /// <param name="strYf"></param>
@@ -460,7 +460,7 @@ namespace Newtouch.HIS.Application.Implementation
             mzjs.fph = fph;
             mzjs.ysk = ysk;
             mzjs.zl = zl;
-            // mới 加 trư ờng add
+            // mới thêm trư ờng add
             mzjs.xm = gridDto[0].xm; //Họ tên
             mzjs.xb = gridDto[0].xb;
             mzjs.blh = gridDto[0].blh;
@@ -518,7 +518,7 @@ namespace Newtouch.HIS.Application.Implementation
                 throw new FailedCodeException("HOSP_ZHAOLING_IS_NEGATIVE"); //Trả lại tiền thừa
             }
 
-            //Xác minh một 些thông tin
+            //Xác minh một một sốthông tin
             if (gridDto == null || gridDto.Count < 0)
             {
                 throw new FailedCodeException("OUTPAT_BILLING_ITEM_CAN_NOT_BE_EMPTY"); // không có cần quyết toán hạng mục
@@ -596,7 +596,7 @@ namespace Newtouch.HIS.Application.Implementation
             const decimal outJmblZhxz = 0;
             decimal outJmje = 0;
             const decimal outJmjeZhxz = 0;
-            //循环 cần lưu CủaĐ ơn thuốc thuốc và hạng mục dữ liệu
+            //vòng lặp cần lưu CủaĐ ơn thuốc thuốc và hạng mục dữ liệu
             if (gridDto.Count > 0)
             {
                 var gridindex = 0;
@@ -635,7 +635,7 @@ namespace Newtouch.HIS.Application.Implementation
 
                         if (dto.isYbbr || dto.brxz == "38")
                         {
-                            // tạm thời không 做xử lý
+                            // tạm thời không làmxử lý
                         }
                         else
                         {
@@ -757,7 +757,7 @@ namespace Newtouch.HIS.Application.Implementation
                     #endregion
 
                     #region 项目
-                    if (dto.xmtype == "1" || dto.xmtype == "4")//Số lư ợng hạng mục thu phí据(Đ ơn thuốc hạng mục ngoại trừ)//Hạng mục
+                    if (dto.xmtype == "1" || dto.xmtype == "4")//Số lư ợng hạng mục thu phícăn cứ(Đ ơn thuốc hạng mục ngoại trừ)//Hạng mục
                     {
                         #region 门诊项目
 
@@ -865,7 +865,7 @@ namespace Newtouch.HIS.Application.Implementation
             jsEntity.jsxmList = jsxmList;
 
             sqlVo.fph = fph;
-            //Thêm mỗi 个Đ ối tư ợng thực thể gán giá trị 
+            //Thêm mỗi cáiĐ ối tư ợng thực thể gán giá trị 
             return sqlVo;
 
         }
@@ -942,14 +942,14 @@ namespace Newtouch.HIS.Application.Implementation
             if (outPatBasicInfoInAcc == null)
             {
                 throw new FailedCodeException("OUTPAT_PATIENT_BASICINFO_IS_NOT_EXIST");
-                //初始化界面
+                //Khởi tạo giao diện
             }
             return outPatBasicInfoInAcc;
         }
         #endregion
 
         /// <summary>
-        /// Đ ăng ký ngoại trú và nhập viện登记 theo số hồ sơ bệnh án hoặc số thẻ tra cứu thông tin cơ bản bệnh nhân
+        /// Đ ăng ký ngoại trú và nhập việnđăng ký theo số hồ sơ bệnh án hoặc số thẻ tra cứu thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="blh">Số hồ sơ bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -967,7 +967,7 @@ namespace Newtouch.HIS.Application.Implementation
             if (outPatBasicInfoInAcc == null)
             {
                 throw new FailedCodeException("OUTPAT_PATIENT_BASICINFO_IS_NOT_EXIST");
-                //初始化界面
+                //Khởi tạo giao diện
             }
             outPatBasicInfoInAcc.fzbz = _outPatRegRepo.SelectCFZ(outPatBasicInfoInAcc.kh, this.OrganizeId) == null ? (byte)0 : (byte)1;
             return outPatBasicInfoInAcc;
@@ -1020,7 +1020,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 if (accDto.OutxmDto != null && accDto.OutxmDto.Count > 0)
                 {
-                    //Hạng mục(mới 录入của hạng mục không liên kết Đ ơn thuốc)
+                    //Hạng mục(mới nhậpcủa hạng mục không liên kết Đ ơn thuốc)
                     var itemsGroupBo = new FeeItemsGroupedBO
                     {
                         cfsfrq = bacDto.sfrq,
@@ -1039,7 +1039,7 @@ namespace Newtouch.HIS.Application.Implementation
                             zfbl = item.zfbl,
                             zfxz = item.zfxz
                         };
-                        if (item.zlcs != null && item.zll != null)// rất 规版 bản 
+                        if (item.zlcs != null && item.zll != null)// rất phiên bản chuẩn bản 
                         {
                             mzxm.zzll = item.zll * item.zlcs;
                             mzxm.dczll = item.zll;
@@ -1126,7 +1126,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 补 tính phí gửi
+        /// bổ sung tính phí gửi
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bacDto"></param>
@@ -1145,7 +1145,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 if (accDto.OutxmDto != null && accDto.OutxmDto.Count > 0)
                 {
-                    //Hạng mục(mới 录入của hạng mục không liên kết Đ ơn thuốc)
+                    //Hạng mục(mới nhậpcủa hạng mục không liên kết Đ ơn thuốc)
                     var itemsGroupBo = new FeeItemsGroupedBO
                     {
                         cfsfrq = bacDto.sfrq,
@@ -1216,7 +1216,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 整合 trư ớc máy dữ liệu成 sau máy của理想trạng thái
+        /// tích hợp trư ớc máy dữ liệuthành sau máy củalý tưởngtrạng thái
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -1349,7 +1349,7 @@ namespace Newtouch.HIS.Application.Implementation
                 detail.AKE228 = item.ys;
                 detail.AKE229 = item.ysmc;
                 detail.AKE002 = item.sfxmmc;
-                //Thuốcquy cách, 生产 đ ịa 
+                //Thuốcquy cách, sản xuất đ ịa 
                 detail.AKE207 = item.dw;
                 detail.AKE212 = item.sl;
                 detail.AKE208 = item.dj;
@@ -1365,7 +1365,7 @@ namespace Newtouch.HIS.Application.Implementation
             return;
         }
         /// <summary>
-        /// Lấy nơi 需quyết toán của hạng mụcchi tiết,分BHYTvà tự chi trả hai một phần,贵安BHYT logic:BHYTcủa tải lênBHYT, tự chi trả củathanh toán tiền mặt
+        /// Lấy nơi cầnquyết toán của hạng mụcchi tiết,phânBHYTvà tự chi trả hai một phần,Quý AnBHYT logic:BHYTcủa tải lênBHYT, tự chi trả củathanh toán tiền mặt
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -1394,7 +1394,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 //if (string.IsNullOrWhiteSpace(item.ybdm))
                 //{
-                // throw new FailedException("LấyBHYTchi tiết thất bại." + " không thể 开立 không phải BHYThạng mục/Thuốc");
+                // throw new FailedException("LấyBHYTchi tiết thất bại." + " không thể kê không phải BHYThạng mục/Thuốc");
                 //}
                 FeejsMx detailOfMzjs = new FeejsMx();
                 detailOfMzjs.yka105 = item.yzlx == "1"
@@ -1482,7 +1482,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 //if (string.IsNullOrWhiteSpace(item.ybdm))
                 //{
-                // throw new FailedException("LấyBHYTchi tiết thất bại." + " không thể 开立 không phải BHYThạng mục/Thuốc");
+                // throw new FailedException("LấyBHYTchi tiết thất bại." + " không thể kê không phải BHYThạng mục/Thuốc");
                 //}
                 FeejsMx detailOfMzjs = new FeejsMx();
                 detailOfMzjs.yka105 = item.yzlx == "1"
@@ -1593,7 +1593,7 @@ namespace Newtouch.HIS.Application.Implementation
 					    tfzje += (itemtf.Value * item.dj);
 				    }
 			    }
-			    item.cxmxlsh = "";// tồn tại 放jsmxnm, này trư ờng có thể恒Lànull, đ ể 分trang lấy dữ liệu(chi tiết tải lên个数限制)
+			    item.cxmxlsh = "";// tồn tại đặtjsmxnm, này trư ờng có thểluônLànull, đ ể phântrang lấy dữ liệu(chi tiết tải lêngiới hạn số lượng)
 			    item.jbr = this.UserIdentity.UserCode;
                 if (!string.IsNullOrEmpty(item.sl.ToString()) && !string.IsNullOrEmpty(item.je.ToString()) && Convert.ToDecimal(item.sl) > 0 && Convert.ToDecimal(item.je) > 0)
 				{
@@ -1740,7 +1740,7 @@ namespace Newtouch.HIS.Application.Implementation
 		    //var hasNonYbFee = _hospFeeDmnService.CheckHasNonYbFee(zyh, orgId);
 		    //if (hasNonYbFee)
 		    //{
-		    // throw new FailedException("Đ ã产生 không phải BHYT liên quan chi phí");
+		    // throw new FailedException("Đ ãphát sinh không phải BHYT liên quan chi phí");
 		    //}
 
 		    return new object();
@@ -1768,7 +1768,7 @@ namespace Newtouch.HIS.Application.Implementation
 			//var ryzd1 = _hospMultiDiagnosisRepo.IQueryable().Where(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId == orgId).OrderBy(p => p.zdpx).FirstOrDefault();
 
 			//var ksmc = _sysDepartmentRepo.GetNameByCode(zybrxx.ks, orgId);
-            //国家 mã 
+            //quốc gia mã 
             var ysInfo = _outPatientSettleDmnService.GetDepartmentDoctorIdC(orgId, ghxx.ks, ghxx.ys);
             return new
 			{

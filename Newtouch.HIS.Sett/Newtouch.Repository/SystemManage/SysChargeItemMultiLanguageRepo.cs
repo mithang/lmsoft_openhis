@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取所有有效数据
+        /// Lấy tất cả dữ liệu hợp lệ
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeItemMultiLanguageVEntity> SelectALLEffectiveList(string orgId)

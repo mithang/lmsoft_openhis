@@ -35,7 +35,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 贵安ngoại trú BHYT nông thôn mới 
+    /// Quý Anngoại trú BHYT nông thôn mới 
     /// </summary>
     public class GuiAnOutpatientXnhApp : AppBase, IGuiAnOutpatientXnhApp
     {
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutPatChargeDmnService _outChargeDmnService;
 
         /// <summary>
-        /// mô phỏng quyết toán全流程
+        /// mô phỏng quyết toántoàn bộ quy trình
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="userCode"></param>
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// mô phỏng quyết toán, đ ơn 功 có thể 
+        /// mô phỏng quyết toán, đ ơn chức năng 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// mô phỏng quyết toán, đ ơn 功 có thể 
+        /// mô phỏng quyết toán, đ ơn chức năng 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
@@ -198,7 +198,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// nhóm 装 BHYT nông thôn mới BHYTtải lênchi tiết 
+        /// nhóm đóng gói BHYT nông thôn mới BHYTtải lênchi tiết 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -240,7 +240,7 @@ namespace Newtouch.HIS.Application.Implementation
             zlkssj = Constants.MinDate;
 
             var brxx = _outPatChargeDmnService.SelectSysPatientBasicInfoEntities(mzh, organizeId).FirstOrDefault();
-           // if (brxx == null || string.IsNullOrWhiteSpace(brxx.xnhgrbm)) return " BHYT nông thôn mới mã cá nhân 丢失,vui lòng liên hệ quản trị viên ";
+           // if (brxx == null || string.IsNullOrWhiteSpace(brxx.xnhgrbm)) return " BHYT nông thôn mới mã cá nhân bị mất,vui lòng liên hệ quản trị viên ";
             var apiResp = SiteCISAPIHelper.PatientTreatmentInfoQuery(mzh, organizeId);
             var jzxx = new PatientTreatmentInfoQueryResponseDTO();
             if (apiResp != null && apiResp.data != null)
@@ -352,7 +352,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Ngoại trú tải lên trả lại,xác minh thất bại sau trực tiếp抛出bất thư ờng
+        /// Ngoại trú tải lên trả lại,xác minh thất bại sau trực tiếpném rabất thư ờng
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -514,7 +514,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// nhóm 装hoàn phí sau cần lại tạo củachi tiết quyết toán
+        /// nhóm đóng góihoàn phí sau cần lại tạo củachi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -553,7 +553,7 @@ namespace Newtouch.HIS.Application.Implementation
                     result.tkzje += (itemtf.Value * Convert.ToDecimal(jsmx.dj));// trả lại tổng số tiền
                 }
 
-                var je = Convert.ToDecimal(num * jsmx.dj);// còn lại số lư ợng*Đ ơn giá= còn lại 总额
+                var je = Convert.ToDecimal(num * jsmx.dj);// còn lại số lư ợng*Đ ơn giá= còn lại tổngsố tiền
                 if (!string.IsNullOrWhiteSpace(jsmx.ybdm) && jsmx.ybbz == "1")
                 {
                     if (num <= 0 || je <= 0) continue;
@@ -565,7 +565,7 @@ namespace Newtouch.HIS.Application.Implementation
                         typeCode = tmpTTmllb.TTCode,
                         num = num,
                         price = jsmx.dj,
-                        totalCost = je,// còn lại số lư ợng*Đ ơn giá=总额
+                        totalCost = je,// còn lại số lư ợng*Đ ơn giá=tổngsố tiền
                         date = jsmx.klsj.ToString("yyyy-MM-dd"),
                     });
                     result.ybzje += je;
@@ -604,11 +604,11 @@ namespace Newtouch.HIS.Application.Implementation
                 var uploadResult = OutpatientUpload(mzh, organizeId, userCode, out zlkssj);
                 if (!string.IsNullOrWhiteSpace(uploadResult)) return uploadResult;
 
-                // nhóm 装chưa hoàn费chi tiết
+                // nhóm đóng góichưa hoànphíchi tiết
                 tfRequest = AssembleS21RequestDto(jsnm, tjsxmDict, mzh, OrganizeId);
                 if (tfRequest.S21RequestDto.list.Count == 0)
                 {
-                    //Hoàn toàn bộ, không 需lại tải lên
+                    //Hoàn toàn bộ, không cầnlại tải lên
                     OutpatientReturn(mzh, tfRequest.S21RequestDto.outpId, organizeId, userCode);
                     tfRequest.S21RequestDto.outpId = "";
                     return "";
@@ -619,14 +619,14 @@ namespace Newtouch.HIS.Application.Implementation
             }
             catch (Exception e)
             {
-                _outpatientXnhSettlementResultRepo.UpdateJszt(1, outpId, userCode, organizeId);//还原
+                _outpatientXnhSettlementResultRepo.UpdateJszt(1, outpId, userCode, organizeId);//khôi phục
                 LogCore.Error("XnhTuiFeiProcess error", e);
                 throw;
             }
         }
 
         /// <summary>
-        /// Hoàn phí lại mô phỏng tải lên chưa hoàn费chi tiết
+        /// Hoàn phí lại mô phỏng tải lên chưa hoànphíchi tiết
         /// </summary>
         /// <param name="tfxx"></param>
         /// <param name="organizeId"></param>
@@ -689,7 +689,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// <summary>
         /// BHYT nông thôn mới BHYT yêu cầu 
         /// </summary>
-        /// <param name="itn">Giao diện tên 例:S02</param>
+        /// <param name="itn">Giao diện tên ví dụ:S02</param>
         /// <param name="body"></param>
         /// <param name="organizeId"></param>
         /// <param name="response">Bản tin trả về</param>

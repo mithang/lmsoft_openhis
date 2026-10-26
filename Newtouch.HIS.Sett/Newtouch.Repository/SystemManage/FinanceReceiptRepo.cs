@@ -1,6 +1,6 @@
 ﻿/**********************************************************/
 // Copyright (C) 2016 Newtouch Giữ bản quyền. 
-// Description: 财务票据-tạm ứng số chứng từ biên lai
+// Description: Chứng từ tài chính-tạm ứng số chứng từ biên lai
 // Author：HLF
 // CreateDate： 2016/12/15 12:36:16 
 //**********************************************************/
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Repository
             return result;
         }
         /// <summary>
-        /// theo mã nhân viên lấy có thể sử dụng của số biên lai (không 累加pzh)
+        /// theo mã nhân viên lấy có thể sử dụng của số biên lai (không cộng dồnpzh)
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// theo mã nhân viên lấy có thể sử dụng của số biên lai (không 累加pzh)
+        /// theo mã nhân viên lấy có thể sử dụng của số biên lai (không cộng dồnpzh)
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -173,10 +173,10 @@ namespace Newtouch.HIS.Repository
         }
         /// <summary>
         /// Xác minh số biên lai 
-        /// Thứ một vị là字母
+        /// Thứ một vị làchữ cái
         /// Hoặc đ ều là chữ số 
         /// </summary>
-        /// <param name="sjhfull">完整của số biên lai </param> 
+        /// <param name="sjhfull">đầy đủcủa số biên lai </param> 
         /// <returns></returns>
         public bool checkSJH(string sjhfull, string gh, out FinanceReceiptEntity outEntity, out string type, string orgId)
         {
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.Repository
             }
 
             szm = sjhfull.Substring(0, 1);
-            //Nếu số biên lai thứ một 字符 không là chữ số,thì là首字母
+            //Nếu số biên lai thứ một ký tự không là chữ số,thì làchữ cái đầu
             if (!int.TryParse(szm, out nTemp))
             {
                 szm = sjhfull.Substring(0, 1);
@@ -217,10 +217,10 @@ namespace Newtouch.HIS.Repository
 
         /// <summary>
         /// phán đoán khi trư ớc số biên lai có hay kh ôngĐ ã đ ược sử dụng
-        /// Quay lại số biên lai 校验kết quả(true:校验 thông qua,false:Đ ãsử dụng của số biên lai hoặc chưa phân phối của số biên lai không thể sử dụng)
+        /// Quay lại số biên lai kiểm trakết quả(true:kiểm tra thông qua,false:Đ ãsử dụng của số biên lai hoặc chưa phân phối của số biên lai không thể sử dụng)
         /// </summary>
-        /// <param name="gh">Sử dụng者mã nhân viên</param>
-        /// <param name="szm">首字母</param>
+        /// <param name="gh">Sử dụngngườimã nhân viên</param>
+        /// <param name="szm">chữ cái đầu</param>
         /// <param name="value"> số biên lai </param> 
         /// <returns></returns>
         public bool checkSJIsUsedForUser(string gh, string szm, long sjh, out FinanceReceiptEntity outEntity, out string type, string orgId)
@@ -251,15 +251,15 @@ namespace Newtouch.HIS.Repository
                 {
                     if (sj.dqsjh > 0)
                     {
-                        if (sj.dqsjh == (sjh - 1)) //连 trên một lần sử dụng của số biên lai 
+                        if (sj.dqsjh == (sjh - 1)) //liên tục trên một lần sử dụng của số biên lai 
                         {
-                            //Sửa原来 bản ghi củakhi trư ớc số biên lai 
+                            //Sửaban đầu bản ghi củakhi trư ớc số biên lai 
                             FinanceReceiptEntity sjentity = sj;
                             sjentity.dqsjh = sjh;
                             sjentity.ry = gh;
                             sjentity.LastModifyTime = DateTime.Now;
                             sjentity.LastModifierCode = gh;
-                            //this.Update(sjentity);// Tại加tạm ứng CủaĐ ồng thời 才sửa số biên lai 
+                            //this.Update(sjentity);// Tạithêmtạm ứng CủaĐ ồng thời mớisửa số biên lai 
                             outEntity = sjentity;
                             type = "update";
                         }
@@ -271,7 +271,7 @@ namespace Newtouch.HIS.Repository
                         sjentity.ry = gh;
                         sjentity.LastModifyTime = DateTime.Now;
                         sjentity.LastModifierCode = gh;
-                        //this.Update(sjentity); //Không có khi trư ớc số,sửa原来của bản ghi củakhi trư ớc số biên lai 
+                        //this.Update(sjentity); //Không có khi trư ớc số,sửaban đầucủa bản ghi củakhi trư ớc số biên lai 
                         outEntity = sjentity;
                         type = "update";
                     }
@@ -287,7 +287,7 @@ namespace Newtouch.HIS.Repository
                 sjentity.szm = szm;
                 sjentity.qssjh = sjh;
                 sjentity.dqsjh = sjh;
-                sjentity.jssjh = 0;       //Kết thúc số biên lai tạm thời đ ều không 填
+                sjentity.jssjh = 0;       //Kết thúc số biên lai tạm thời đ ều không điền
                 sjentity.CreateTime = DateTime.Now;
                 sjentity.CreatorCode = gh;
                 sjentity.ry = gh;

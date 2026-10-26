@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
                 }
             }
             else
-            {//Sửa giờ theo 星 kỳ có hay không tồn tại tại thực hiện cập nhật/Thêm mới
+            {//Sửa giờ theo thứ kỳ có hay không tồn tại tại thực hiện cập nhật/Thêm mới
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.ghpbId == ghpbId && p.Weekdd == weekdd))
                 {//Cập nhật
                     //Lấy lịch trực số hiệu

@@ -76,7 +76,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// 初复诊
+        /// Khám lần đầu và tái khám
         /// </summary>
         /// <param name="kh">Đ ăng ký khám</param>
         /// <param name="orgId"></param>
@@ -202,7 +202,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// Bệnh nhân今ngày có hay kh ôngĐ ãĐ ăng ký khám
+        /// Bệnh nhânhôm nayngày có hay kh ôngĐ ãĐ ăng ký khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -254,7 +254,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
                 entity.jzbz = jzbz;
                 if (!string.IsNullOrWhiteSpace(jzys) && string.IsNullOrWhiteSpace(entity.ys))
                 {
-                    //Đ ăng ký khám giờ lịch trực chưa đ ến bác sĩ,thì dùng trạm bác sĩ qua 来của看诊bác sĩ cập nhật
+                    //Đ ăng ký khám giờ lịch trực chưa đ ến bác sĩ,thì dùng trạm bác sĩ qua đếncủakhám bệnhbác sĩ cập nhật
                     entity.ys = jzys;
                 }
                 entity.Modify();
@@ -293,7 +293,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
             {
                 if (!string.IsNullOrWhiteSpace(brxz))
                 {
-                    //Đ ăng ký khám giờ lịch trực chưa đ ến bác sĩ,thì dùng trạm bác sĩ qua 来của看诊bác sĩ cập nhật
+                    //Đ ăng ký khám giờ lịch trực chưa đ ến bác sĩ,thì dùng trạm bác sĩ qua đếncủakhám bệnhbác sĩ cập nhật
                     entity.brxz = brxz;
                 }
                 entity.Modify();
@@ -301,7 +301,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
             }
         }
         /// <summary>
-        /// Đ ăng ký khám ngoại trú không tiến hành BHYT登记 thu phí giờ tiến hành 登记 và mới tự trả thẻ là BHYT thẻ 
+        /// Đ ăng ký khám ngoại trú không tiến hành BHYTđăng ký thu phí giờ tiến hành đăng ký và mới tự trả thẻ là BHYT thẻ 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -368,7 +368,7 @@ and CardType = @cardtype ";
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="outpid">Số thứ tự bồi thư ờng</param>
-        /// <param name="userCode">Sửa人</param>
+        /// <param name="userCode">Sửangười</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public int RecordOutpId(string mzh, string outpId, string userCode, string organizeId)

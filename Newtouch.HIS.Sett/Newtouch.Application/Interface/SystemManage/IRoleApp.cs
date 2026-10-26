@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Application
     public interface IRoleApp
     {
         /// <summary>
-        /// Tổ chức vai trò danh sách 带 分trang
+        /// Tổ chức vai trò danh sách kèm phântrang
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>

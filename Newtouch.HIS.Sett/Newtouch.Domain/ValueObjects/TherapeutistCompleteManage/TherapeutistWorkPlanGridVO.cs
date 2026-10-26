@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects.TherapeutistCompleteManage
 {
     /// <summary>
-    /// 治疗师工作时间查询返回类
+    /// Lớp trả về khi tra cứu thời gian làm việc của chuyên viên trị liệu
     /// </summary>
     [NotMapped]
     public class TherapeutistWorkPlanGridVO : DoctorWorkingDaysPlanEntity
@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.TherapeutistCompleteManage
     }
 
     /// <summary>
-    /// 新增排班时，显示所有治疗师
+    /// Khi thêm mới lịch trực，hiển thị tất cả chuyên viên trị liệu
     /// </summary>
     [NotMapped]
     public class AddStaffPlanVO
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.TherapeutistCompleteManage
     }
 
     /// <summary>
-    /// 新增排班时，提交到数据库类
+    /// Khi thêm mới lịch trực，Lớp gửi lên cơ sở dữ liệu
     /// </summary>
     [NotMapped]
     public class EditPlanVO
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.TherapeutistCompleteManage
         public int ts { get; set; }
     }
     /// <summary>
-    /// 时长调整时，统计治疗师时长类
+    /// Khi điều chỉnh thời lượng，Lớp thống kê thời lượng của chuyên viên trị liệu
     /// </summary>
     [NotMapped]
     public class AdjustStaffHourVO
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.TherapeutistCompleteManage
     [NotMapped]
     public class submitTimeVO
     {
-        public string type { get; set; }//区分门诊住院
+        public string type { get; set; }//Phân biệt ngoại trú và nội trú
         public int Id { get; set; }
         public string jqRowId { get; set; }
         public string jzsj { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// (dư ới 拉)chọn dữ liệu源
+    /// (dư ới kéo xuống)chọn dữ liệunguồn
     /// </summary>
     public interface ISelectDataSourceApp
     {

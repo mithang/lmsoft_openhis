@@ -4,12 +4,12 @@ using System.Threading;
 namespace Newtouch.HIS.Application.Strategy
 {
     /// <summary>
-    /// 策略
+    /// chiến lược
     /// </summary>
     public interface ICommitStrategy
     {
         /// <summary>
-        /// thực hiện 策略
+        /// thực hiện chiến lược
         /// </summary>
         /// <param name="cts"></param>
         /// <param name="request"></param>

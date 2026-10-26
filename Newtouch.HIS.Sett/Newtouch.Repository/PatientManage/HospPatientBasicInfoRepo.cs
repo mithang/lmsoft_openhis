@@ -210,7 +210,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
         }
 
         /// <summary>
-        /// thông qua 出Quận, chuyển Quận cập nhật bệnh nhân cơ bản thông tin
+        /// thông qua raQuận, chuyển Quận cập nhật bệnh nhân cơ bản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bq"></param>
@@ -272,7 +272,7 @@ where a.OrganizeId = @orgId and a.zybz in ('1','2','3')";
             }
         }
         /// <summary>
-        /// thông qua 出Quận召 lần cập nhật bệnh nhân cơ bản thông tin
+        /// thông qua raQuậntriệu lần cập nhật bệnh nhân cơ bản thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bq"></param>

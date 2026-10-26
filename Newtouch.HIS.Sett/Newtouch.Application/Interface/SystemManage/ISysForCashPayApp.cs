@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Application
         DataTable GetListBySearch(string keyword);
 
         /// <summary>
-        /// Lấy hệ thống Phư ơng thức thanh toán tiền mặt bộ nhớ đ ệm dư ới 拉danh sách
+        /// Lấy hệ thống Phư ơng thức thanh toán tiền mặt bộ nhớ đ ệm dư ới kéo xuốngdanh sách
         /// </summary>
         /// <returns></returns>
         object GetCashPay();

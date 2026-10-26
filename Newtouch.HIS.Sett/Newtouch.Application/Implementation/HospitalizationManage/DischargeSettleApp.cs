@@ -196,7 +196,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 
         }
         /// <summary>
-        /// Chi phí bảo hiểm y tế truyền 输zje
+        /// Chi phí bảo hiểm y tế truyền tảizje
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kssj"></param>
@@ -263,7 +263,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
         {
             // Lấy thông tin bệnh nhân
             var settpatInfo = GetCancelSettlePatInfo(ref zyh, sfz, kh, cardType);
-            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, lấy của nó nhất sau một dòng
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
             var medicalInsurance = _sysConfigRepo.GetValueByCode("Inpatient_MedicalInsurance", this.OrganizeId);
             HospSettlementGAYBFeeEntity ybFee = null;
@@ -373,7 +373,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
 
             // Lấy thông tin bệnh nhân
             var settpatInfo = GetCancelSettlePatInfo(ref zyh);
-            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng(zy_js)
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, lấy của nó nhất sau một dòng(zy_js)
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
             if (lastSett.jsnm != expectedjsnm)
             {
@@ -385,7 +385,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán js.xjzffs sẽ có giá trị 
             if (!string.IsNullOrWhiteSpace(lastSett.xjzffs) && lastSett.xjzf > 0)
             {
-                refundAmount = lastSett.xjzf;  //Nên取 thanh toán của
+                refundAmount = lastSett.xjzf;  //Nênlấy thanh toán của
                 outTradeNo = lastSett.OutTradeNo;
             }
 
@@ -510,7 +510,7 @@ namespace Newtouch.HIS.Application.Implementation.HospitalizationManage
             _hospAccountingPlanDetailRepo.CheckAccountingPlanDetailStatus(zyh, this.OrganizeId);
             //2.Tại viện trạng thái phán đoán 
             GetInpatientSettlePatInfo(ref zyh);
-            //3.Có hay không产生 mới củachi phí phán đoán CheckIsExistUnSetted
+            //3.Có hay khôngphát sinh mới củachi phí phán đoán CheckIsExistUnSetted
             DateTime? startTime = null;
             startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)

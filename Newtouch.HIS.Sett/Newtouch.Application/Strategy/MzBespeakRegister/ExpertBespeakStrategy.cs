@@ -58,14 +58,14 @@ namespace Newtouch.HIS.Application.Strategy.MzBespeakRegister
                 // không có đ ặt lịch 
                 if (mzBespeakRegister.alreadyBespeakRegisterCount >= mzBespeakRegister.allBespeakMaxCount)
                 {
-                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, và đ ặt lịch Đ ã满
+                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, và đ ặt lịch Đ ãđầy
                     result.IsSucceed = false;
                     result.ResultMsg = "该专家预约已满，确定继续挂号吗？";
                     return false;
                 }
                 if ((mzBespeakRegister.alreadyBespeakRegisterCount + mzBespeakRegister.alreadyRegisterCount) >= mzBespeakRegister.allBespeakMaxCount)
                 {
-                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, đ ặt lịch chưa满,Nh ưngĐ ãĐ ăng ký kh ámĐ ăng ký khám数+Đ ã đ ặt lịch 数>= có thể đ ặt lịch 总数
+                    //Có lịch trực đ ặt lịch,khi trư ớc bệnh nhân chưa đ ặt lịch khi trư ớc khoa, đ ặt lịch chưađầy,Nh ưngĐ ãĐ ăng ký kh ámĐ ăng ký khámsố+Đ ã đ ặt lịch số>= có thể đ ặt lịch tổngsố
                     result.IsSucceed = false;
                     result.ResultMsg = "该专家挂号已满，确定继续挂号吗？";
                     return false;

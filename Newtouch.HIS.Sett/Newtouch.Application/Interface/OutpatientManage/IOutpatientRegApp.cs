@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Application.Interface
         /// Đ ăng ký khám lịch trực List
         /// </summary>
         /// <param name="keyword">Khoa/Bác sĩ</param>
-        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/急症/Phòng khám chuyên gia</param>
+        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/cấp cứu/Phòng khám chuyên gia</param>
         /// <returns></returns>
         List<RegScheduleVO> GetRegScheduleList(string keyword, string mzlx);
 
@@ -43,11 +43,11 @@ namespace Newtouch.HIS.Application.Interface
         /// <param name="isGbf"></param>
         /// <param name="ghpbId"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">Tính chất bệnh nhân由trang truyền qua 来,因là BHYTbệnh nhân có thể挂tự trả</param>
-        /// <param name="notSett">true tạm thời không 结(ngoại trú thu phí giờ cùng nhau 结),nếu không结</param>
-        /// <param name="ybjsh">BHYT端số quyết toán</param>
-        /// <param name="qzjzxh"> trư ớc 置số thứ tự khám bệnh</param>
-        /// <param name="qzmzh"> trư ớc 置số khám ngoại trú</param>
+        /// <param name="brxz">Tính chất bệnh nhândotrang truyền qua đến,vìlà BHYTbệnh nhân có thểđăng kýtự trả</param>
+        /// <param name="notSett">true tạm thời không quyết toán(ngoại trú thu phí giờ cùng nhau quyết toán),nếu khôngquyết toán</param>
+        /// <param name="ybjsh">BHYTphíasố quyết toán</param>
+        /// <param name="qzjzxh"> trư ớc đặtsố thứ tự khám bệnh</param>
+        /// <param name="qzmzh"> trư ớc đặtsố khám ngoại trú</param>
         /// <param name="mzyyghid">Đ ặt lịch đ ăng ký khám ngoại trú ID Tư ơng ứngNewtouch_CIS.dbo.mz_yygh.Id</param>
         /// <returns></returns>
         void Save(int patid, string kh, string ghly, string mjzbz,

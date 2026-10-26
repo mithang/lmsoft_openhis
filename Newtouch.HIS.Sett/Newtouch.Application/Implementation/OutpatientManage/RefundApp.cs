@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         private List<string> listSql = new List<string>();
 
         /// <summary>
-        /// 需hoàn phí chèn bảng tư ơng ứng thông tin
+        /// cầnhoàn phí chèn bảng tư ơng ứng thông tin
         /// </summary>
         public List<string> ListSql
         {
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         public JS_ENTITY accountEntity = new JS_ENTITY();
 
         /// <summary>
-        /// 需hoàn phí chèn thông tin quyết toán
+        /// cầnhoàn phí chèn thông tin quyết toán
         /// </summary>
         public JS_ENTITY AccountEntity
         {
@@ -272,7 +272,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             if (tblMzJs != null)
             {
-                //除Đ ăng ký khám của ngoài tất cả hoàn phí
+                //trừĐ ăng ký khám của ngoài tất cả hoàn phí
                 var MZJS = GetMZJSByJsnm(jsnm);
                 var tmpDr = MZJS[0];
                 int tmpGhnm = tmpDr.GHNM;
@@ -306,7 +306,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 // bản ghi trả lại số bảng 
                 List<OutpatientRegistNonAttendanceEntity> ghjsDt = new List<OutpatientRegistNonAttendanceEntity>();
-                if (fapiao.jslx == "0" && fapiao.zje > 2.0M) // trả lại phí thẻ từ,phí làm thẻ không 插 trả lại số bản ghi 
+                if (fapiao.jslx == "0" && fapiao.zje > 2.0M) // trả lại phí thẻ từ,phí làm thẻ không chèn trả lại số bản ghi 
                 {
                     //LấyĐ ăng ký khám thông tin quyết toán
                     ghjsDt = getGhjsByGhnm(tmpGhnm);
@@ -366,7 +366,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             {
 
 
-                //加床ghi sổ hoàn một phần打凭证(清 đ ơn)
+                //thêmgiườngghi sổ hoàn một phầnin chứng từ(bảng kê)
                 //if (mzJs.jslx == "1" && mzJs.jylx == "14" && mzJs.jch != 0)
                 //{
                 //    flag = false;
@@ -434,9 +434,9 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             }
 
 
-            //初始化dữ liệu
+            //Khởi tạodữ liệu
 
-            //初始化控 vụ 
+            //Khởi tạođiều khiển 
             // initControl();
             // tải dữ liệu
             loadData(mzJs, isReturnAll, mzJs.jsnm);
@@ -449,7 +449,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             mzJs.CreateTime = DateTime.Now; //Lấy hệ thống máy chủ thời gian
             mzJs.CreatorCode = userModel.UserCode; // bản ghi hoàn phí thao tác viên 
 
-            // pos máy 全额hoàn phí
+            // pos máy toàn bộ số tiềnhoàn phí
 
             #region   pos机全额退费
 
@@ -491,7 +491,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             result = fullBack(Kh, accountEntity.isGh, mzJs, ghjsDt);
 
 
-            //Thứ二 lần yêu cầu giao dịch 
+            //Thứlần thứ hai lần yêu cầu giao dịch 
             if (false == isReturnAll) //Một phần trả lại cần lại xin BHYT
             {
                 // trư ớc yêu cầu giao dịch,tại tính giao dịch 
@@ -504,7 +504,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
 
 
-            //报价 thiết bị hoàn tiền
+            //báo giá thiết bị hoàn tiền
             //string setFileName = (new Common.ConfigFile.AppConfig()).AppConfigGet("INIFileName");   // ConfigurationManager.AppSettings["INIFileName"].ToString();
             //string fileName = System.IO.Path.GetFullPath("../../") + "\\" + setFileName + ".ini";
             //IniFile Ini = new IniFile(fileName);
@@ -514,7 +514,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             if (jszffsExListForSK.Count < 2 && this.posTxj == false && false == isReturnAll)
             {
-                // nhiều phư ơng thức thanh toán 弹出hoàn tiền界面
+                // nhiều phư ơng thức thanh toán hiển thịhoàn tiềngiao diện
                 //this.btnOk.PerformClick();
                 btnOk_Click(newMzJs, accountEntity, mzJs, jsdlList);
             }
@@ -522,7 +522,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// theo hoàn toàn bộ,hoàn một phần, không hoàn 取chi tiết
+        /// theo hoàn toàn bộ,hoàn một phần, không hoàn lấychi tiết
         /// </summary>
         /// <returns>Hoàn toàn bộ,hoàn một phần, không hoàn chi tiết</returns>
         private void getRecordWithCategory(List<GridViewMx> GridViewMxList)
@@ -554,7 +554,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 取hoàn một phần, không hoàn của thông tin quyết toán (1),取hoàn toàn bộ của thông tin quyết toán(2)
+        /// lấyhoàn một phần, không hoàn của thông tin quyết toán (1),lấyhoàn toàn bộ của thông tin quyết toán(2)
         /// </summary>
         /// <returns></returns>
         private JS_ENTITY getAccountList(int flag, OutpatientSettlementEntity fapiao, MZJS tmpDr)
@@ -596,7 +596,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 DataRow tmpDataRow = GridViewMx.tag as DataRow;
                 infoSet = string.Format("{0}", GridViewMx.InfoSet);
 
-                dj = GridViewMx.DJ.ToDecimal(); //加 phí dịch vụ Đ ơn giá
+                dj = GridViewMx.DJ.ToDecimal(); //thêm phí dịch vụ Đ ơn giá
                 fwfdj = GridViewMx.FWFDJ.ToDecimal();
                 je = GridViewMx.JE.ToDecimal();
                 sl = GridViewMx.SL.ToDecimal();
@@ -618,7 +618,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 }
                 //tmpJsxm.mxbm = string.Empty;
 
-                //成 nhóm số và số đ ơn thuốc
+                //thành nhóm số và số đ ơn thuốc
                 tmpJsxm.czh = GridViewMx.czh;
                 tmpJsxm.cfh = GridViewMx.CHUFANGHAO;
 
@@ -639,7 +639,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 tmpJsxm.Xmbm = string.Format("{0}", tmpDataRow["NBDL"]);
                 returnAny.jsxmList.Add(tmpJsxm);
 
-                //Th êmĐ ăng ký khám mã nội bộlist, qua 滤 trùng lặp bản ghi 
+                //Th êmĐ ăng ký khám mã nội bộlist, qua lọc trùng lặp bản ghi 
                 int.TryParse(string.Format("{0}", tmpDataRow["GHNM"]), out tmpGhnm);
                 if (returnAny.ghnmList.Contains(tmpGhnm) == false)
                 {
@@ -703,7 +703,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             out List<OutpatientSettlementCategoryEntity> jsdl, out NB_INTERFACE_MZJS_REQ msjsReq,
             out NB_INTERFACE_MZSS_REP mzssRep)
         {
-            // không 做giảm trừ功 có thể 
+            // không làmgiảm trừchức năng 
             //if (needCalJm)
             //{
             //    if (jsEntity.jsxmList == null)
@@ -801,8 +801,8 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //if (brxz == null)
             // throw new FailedCodeException(" này bệnh nhân của tính chất bệnh nhân tại hệ thống trong không tồn tại tại,vui lòng xác nhận！");
 
-            //因là tồn tại tại kết hợp tính chất bệnh nhân, vì vậy không 做 này phán đoán 
-            //Nếu không tồn tại tạiBHYTvà tự trả chuyển 换,khi trư ớc tính chất bệnh nhân phải và đăng ký khám giống nhau 
+            //vìlà tồn tại tại kết hợp tính chất bệnh nhân, vì vậy không làm này phán đoán 
+            //Nếu không tồn tại tạiBHYTvà tự trả chuyển đổi,khi trư ớc tính chất bệnh nhân phải và đăng ký khám giống nhau 
             //if (!jsEntity.isZh)
             //{
             //    if (gh.brxz != brxz.brxz)
@@ -858,10 +858,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //{
             //    ybjylx = Constant.ybjylx.ybjylx0;
             //}
-            //BHYTbệnh nhân,và là造口袋hạng mục, tiến hành 造口袋 giao dịch 
+            //BHYTbệnh nhân,và làtúi stomahạng mục, tiến hành túi stoma giao dịch 
             //if (ybjylx != Constants.ybjylx.ybjylx0)
             //{
-            // //造口袋và không phải 造口袋hạng mục phải tách ra quyết toán
+            // //túi stomavà không phải túi stomahạng mục phải tách ra quyết toán
             //    bool zkd = isZkd(jsEntity);
             //    if (zkd)
             //    {
@@ -902,7 +902,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    }
                     //    break;
 
-                    ////大病 giao dịch 
+                    ////bệnh nặng giao dịch 
                     //case Constants.ybjylx.ybjylx2:
                     //    ybdbjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh, out isScgh);
                     //    //Phí ghi sổ
@@ -928,10 +928,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     //// giao dịch giư ờng gia đ ình 
                     //case Constants.ybjylx.ybjylx3:
-                    // // giao dịch giư ờng gia đ ình 总额(truyền cho BHYTcủa),số dư tài khoản,tổng lũy kế tiền mặt đ ã trả đoạn tự trả ngoại trú,Đ ịnh mức đoạn tự trả ngoại trú
+                    // // giao dịch giư ờng gia đ ình tổngsố tiền(truyền cho BHYTcủa),số dư tài khoản,tổng lũy kế tiền mặt đ ã trả đoạn tự trả ngoại trú,Đ ịnh mức đoạn tự trả ngoại trú
                     //    decimal jc_Jyze = 0;
                     //    //decimal jc_zhye = 0, jc_mzzfdxjzfljs = 0, jc_mzzfdde = 0;
-                    // //Có hay không nghỉ hưu, tại职cấu hình của tỷ lệ 
+                    // //Có hay không nghỉ hưu, tạichức vụcấu hình của tỷ lệ 
                     //    decimal jc_bl = 0;
                     //    if (jsEntity.jslx == "1")
                     //    {
@@ -971,7 +971,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     //    break;
 
-                    ////工伤 giao dịch 
+                    ////tai nạn lao động giao dịch 
                     //case Constants.ybjylx.ybjylx4:
                     //    ybgsjy(jsEntity.isGh, brjbxx, gh, brxz, returnValue.YB, out ybzf, out jzfy, out ybError, out sqxh);
                     //    //Phí ghi sổ
@@ -988,7 +988,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    }
                     //    break;
 
-                    ////造口袋 giao dịch 
+                    ////túi stoma giao dịch 
                     //case "ZKD":
                     //    ybmxxmjy(jsEntity.isGh, brjbxx, gh, brxz, jsEntity, out ybzf, out jzfy, out ybError, out sqxh);
                     //    //Phí ghi sổ
@@ -1143,14 +1143,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
             returnValue.YB = returnValueYB;
             returnValue.FYB = returnValueFYB;
-            // tạm thời không Quận分BHYTvà không phải BHYT
+            // tạm thời không QuậnphânBHYTvà không phải BHYT
             //jsEntity.jsxmList.Clear();
             //jsEntity.jsxmList.AddRange(xmListYB);
             //jsEntity.jsxmList.AddRange(xmListFYB);
         }
 
         /// <summary>
-        /// Có hay không造口袋
+        /// Có hay khôngtúi stoma
         /// </summary>
         /// <returns></returns>
         public bool isZkd(JS_ENTITY jsEntity)
@@ -1180,7 +1180,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             else
                 return true;
 
-            // throw new FailedCodeException("造口袋hạng mục và không phải 造口袋hạng mục không thể cùng nhau quyết toán！");
+            // throw new FailedCodeException("túi stomahạng mục và không phải túi stomahạng mục không thể cùng nhau quyết toán！");
         }
 
         /// <summary>
@@ -1221,7 +1221,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 return;
             }
 
-            // theo loại lớn Quận分có hay không tải lênBHYT
+            // theo loại lớn Quậnphâncó hay không tải lênBHYT
             foreach (jsxm_entity xm in xmList)
             {
                 if (dlDict.ContainsKey(xm.dl))
@@ -1308,7 +1308,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// Tính hạng mục thu phí không 做 tổng cộng 
+        /// Tính hạng mục thu phí không làm tổng cộng 
         /// </summary>
         /// <param name="xmList"></param>
         /// <returns>Số tiền có thể ghi sổ,Số tiền tự trả theo phân loại,Số tiền tự chi trả,Số tiền giảm trừ</returns>
@@ -1393,7 +1393,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //// theo tính chất bệnh nhân và loại lớn lấy bệnh nhânthu phí thuật toán 
                 //List<tbl_xt_brsfsf> sfList = BF<xt_brsfsf>.Instance.getBrxzAndDl(brxz, dl);
                 List<SysPatientChargeAlgorithmEntity> sfList = null;
-                //Hạng mục thuật toán 优 trư ớc cấp hơn 高
+                //Hạng mục thuật toán ưu tiên trư ớc cấp hơn cao
                 if (entity.mxnm != 0)
                 {
                     sfList = sfAllList.FindAll(t => t.brxz == brxz && t.sfxm == entity.sfxm);
@@ -1490,7 +1490,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 // theo chi phí phạm vi cần tính của số tiền
                 decimal jsedAmount = 0m;
                 decimal sfzf = 0m;
-                //Nếu có chi phí trên 线,thì theo thuật toán cấp bậc tính(thực tế 只需tínhchi phí tự chi trả) 
+                //Nếu có chi phí trên giới hạn,thì theo thuật toán cấp bậc tính(thực tế chỉcầntínhchi phí tự chi trả) 
                 foreach (SysPatientChargeAlgorithmEntity sfEntity in sfList)
                 {
                     //Nếu cùng một lô thuật toán của tính chất tự trả và chi phí phạm vi không nhất quán thì trực tiếp báo lỗi 
@@ -1683,7 +1683,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// 造口袋 giao dịch 
+        /// túi stoma giao dịch 
         /// </summary>
         //public void ybmxxmjy(bool isGh, SysPatientBasicInfoEntity brjbxx, OutpatientRegistEntity gh, SysPatientNatureEntity brxz, JS_ENTITY jsEntity,
         //    out decimal ybzf, out decimal jzfy, out bool ybError, out string sqxh)
@@ -1695,7 +1695,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
         //    if (isGh)
         //    {
-        // throw new FailedCodeException("BHYTĐ ăng ký khám không có chi tiết hạng mục实giờ giao dịch ！");
+        // throw new FailedCodeException("BHYTĐ ăng ký khám không có chi tiết hạng mụcthực tếgiờ giao dịch ！");
         //    }
         //    else
         //    {
@@ -1810,7 +1810,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 if (ybError)
                 {
 
-                    //Tự trả trùng lặp hoàn phí导致chèn nhiều dòng trùng lặp hoàn toàn bộ bản ghi 
+                    //Tự trả trùng lặp hoàn phídẫn đếnchèn nhiều dòng trùng lặp hoàn toàn bộ bản ghi 
                     if (_RefundService.getTFForFPH(mzJs.jsnm, mzJs.fph) > 0)
                     {
                         return true;
@@ -1818,7 +1818,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     List<SysPatientAccountRevenueAndExpenseEntity> szjlList =
                         new List<SysPatientAccountRevenueAndExpenseEntity>();
 
-                    //Hoàn tiền thành công,插quyết toán ngoại trú,chi tiết quyết toán ngoại trú. đ ổi quyết toán ngoại trú Củajsnm. đ ổi chi tiết quyết toán mã nội bộ.
+                    //Hoàn tiền thành công,chènquyết toán ngoại trú,chi tiết quyết toán ngoại trú. đ ổi quyết toán ngoại trú Củajsnm. đ ổi chi tiết quyết toán mã nội bộ.
                     List<OutpatientSettlementDetailEntity> mzJsmxList = getMzJsMx(mzJs.jslx, mzJs.jsnm);
 
                     //var mzJszffsList = _RefundService.GetJszffsByJsnm(mzJs.jsnm);
@@ -1827,7 +1827,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //    mzJszffsList = getJszffsEntity();
                     //}
 
-                    ////Thêm mới hệ thống bệnh nhân tài khoản 收支 bản ghi 
+                    ////Thêm mới hệ thống bệnh nhân tài khoản thu chi bản ghi 
                     //szjlList = getZhszjlList(mzJs, mzJszffsList, "T");
 
                     //List<OutpatientSettlementCategoryEntity> jsdl = _RefundService.GetJsdlByJsnm(mzJs.jsnm);
@@ -1892,7 +1892,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     // // throw new FailedCodeException(" bảo hiểm nông nghiệp giao dịch thất bại！");
                     //    //}
 
-                    // //Nếu试 tính và số tiền quyết toán không V.v.,thì做 hủy bỏ 试 tính và hủy bỏ quyết toán,lại tải trang
+                    // //Nếuthử tính và số tiền quyết toán không V.v.,thìlàm hủy bỏ thử tính và hủy bỏ quyết toán,lại tải trang
                     //    if (Convert.ToDecimal(mzssRep.bcze) != Convert.ToDecimal(rep.bcze) ||
                     //        Convert.ToDecimal(mzssRep.kbze) != Convert.ToDecimal(rep.kbze) ||
                     //        Convert.ToDecimal(mzssRep.zfze) != Convert.ToDecimal(rep.zfze))
@@ -1906,7 +1906,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //            }
                     //            catch
                     //            {
-                    // DialogHelper.DlgError(" hủy bỏ quyết toán thất bại！sẽ thông qua đ ối với 账 phư ơng thức 平帐！");
+                    // DialogHelper.DlgError(" hủy bỏ quyết toán thất bại！sẽ thông qua đ ối với sổ sách phư ơng thức cân bằng sổ sách！");
                     //            }
                     //            //isAlreadyComfirmYb = false;
                     //            //return;
@@ -1915,7 +1915,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //}
                     //else
                     //{
-                    // // trong 心 số thứ tự là trống, không 去 yêu cầu BHYTxác nhận giao dịch 
+                    // // trong trung tâm số thứ tự là trống, không đi yêu cầu BHYTxác nhận giao dịch 
                     //    if (string.IsNullOrEmpty(sqxh) == false)
                     //    {
                     // //BHYT giao dịch xác nhận yêu cầu.
@@ -1930,7 +1930,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     //if (!ybError)
                     //    throw;
 
-                    //// giư ờng gia đ ình không chuyển tự trả, tiếp tục 重试 giao dịch 
+                    //// giư ờng gia đ ình không chuyển tự trả, tiếp tục thử lại giao dịch 
                     //if (accountEntity.jch > 0)
                     //{
                     //    jxyb = true;
@@ -1949,7 +1949,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                     // // chuyển tự trả
                     //        accountEntity.isZh = true;
                     //        accountEntity.brxzbh = zfForm.currBrxzEntity.brxzbh;
-                    // //Lại初始化
+                    // //LạiKhởi tạo
                     //        FrmJS_Load(null, null);
                     //    }
 
@@ -1964,7 +1964,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //{
                 //    try
                 //    {
-                // // trong 心 số thứ tự là trống, không 去 yêu cầu BHYTxác nhận giao dịch 
+                // // trong trung tâm số thứ tự là trống, không đi yêu cầu BHYTxác nhận giao dịch 
                 //        if (string.IsNullOrEmpty(sqxh) == false)
                 //        {
                 // //BHYT giao dịch xác nhận yêu cầu.
@@ -1975,7 +1975,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //    {
                 //        if (string.IsNullOrEmpty(sqlUpdate))
                 //        {
-                // throw new FailedCodeException("BHYT mạng 问题,vui lòng lại拉 thẻ hoàn phí！");
+                // throw new FailedCodeException("BHYT mạng vấn đề,vui lòng lạikéo xuống thẻ hoàn phí！");
                 //        }
                 //    }
                 //}
@@ -1991,10 +1991,10 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                     //Lấy tài khoản thông tin
                     //tbl_xt_brzh brzh = BF<xt_brzh>.Instance.getBrzhByZh(mzJs.zh);
-                    //Hệ thống bệnh nhân tài khoản 收支 bản ghi 
+                    //Hệ thống bệnh nhân tài khoản thu chi bản ghi 
                     List<SysPatientAccountRevenueAndExpenseEntity> szjlList = getZhszjlList(newMzJs, jszffsArray, "S");
                     ;
-                    //加床ghi sổ hoàn một phần再收 không chèn收支 bản ghi 
+                    //thêmgiườngghi sổ hoàn một phầnlạithu không chènthu chi bản ghi 
                     //if (newMzJs.jslx == "1" && newMzJs.jylx == "14" && newMzJs.jch > 0)
                     //{
                     //    szjlList = new List<tbl_xt_brzhszjl>();
@@ -2079,14 +2079,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 if (tyCfList == null || tyCfList.Count == 0)
                     return true;
 
-                //Y(nhiều Đ ơn thuốc以","分隔)
+                //Y(nhiều Đ ơn thuốctheo","phân tách)
                 tyCfList.ForEach(t => reqData += t.prescriptionNo.ToString() + ",");
                 //tyCfList.ForEach(delegate(GET_CF_STATUS item)
                 //{
                 //    reqData += item.prescriptionNo.ToString() + ",";
                 //});
                 reqData = reqData.TrimEnd(',');
-                //reqData = JsonConvert.SerializeObject(reqData); // loại bỏ 加\"Củatham số
+                //reqData = JsonConvert.SerializeObject(reqData); // loại bỏ thêm\"Củatham số
 
                 // yêu cầu giao diện
                 //   WebPostAPI.API.post<GET_CF_STATUS>(Constant.InterfaceConstant.GET_CF_STATUS, reqData, out interRepPara, out statusDescription, out jsgb);
@@ -2165,14 +2165,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                                                                     //&& t.mxbm == dr["yp"].ToString()
                                                                     && t.czh == dr["czh"].ToString());
 
-                //Nếu không 收 lần thì tính hoàn toàn bộ
+                //Nếu không thu lần thì tính hoàn toàn bộ
                 decimal returnCount = 0;
                 if (jsxm == null)
                     returnCount = 0;
                 else
                     returnCount = jsxm.sl;
 
-                //Thuốc包装mã là 3,thì số lư ợng là ba cấp số lư ợng,thuốc包装mã là 4,thì số lư ợng là bốn cấp Đ ơn vị
+                //Thuốcđóng góimã là 3,thì số lư ợng là ba cấp số lư ợng,thuốcđóng góimã là 4,thì số lư ợng là bốn cấp Đ ơn vị
                 if (dr["ypbzdm"].ToString() == "3")
                     yp.thirdLevelPkgQty = decimal.ToInt32(Convert.ToDecimal(dr["sl"].ToString()) - returnCount);
                 else
@@ -2188,7 +2188,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         /// <returns></returns>
         private bool checkJs()
         {
-            //Số tiền phải thu >= số tiền thực thu - 舍入差额？
+            //Số tiền phải thu >= số tiền thực thu - Chênh lệch làm tròn？
             decimal Ytk = Convert.ToDecimal(lblYtk);
             decimal ssk = Convert.ToDecimal(lblSsk);
             decimal srce = Convert.ToDecimal(lblSrce);
@@ -2229,7 +2229,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         private void btnOk_Click(OutpatientSettlementEntity newMzJs, JS_ENTITY accountEntity,
             OutpatientSettlementEntity mzJs, List<OutpatientSettlementCategoryEntity> jsdlList)
         {
-            //Tự trả chuyển BHYT không phán đoán 旺云giao diện
+            //Tự trả chuyển BHYT không phán đoán Vượng Vângiao diện
             if (IsChangeBrxz == false)
             {
                 if (!getPrescriptionStatus())
@@ -2247,7 +2247,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             {
                 bool flag = true;
 
-                //加床ghi sổ hoàn một phần打凭证(清 đ ơn)
+                //thêmgiườngghi sổ hoàn một phầnin chứng từ(bảng kê)
                 if (newMzJs.jslx == "1" && newMzJs.jylx == "14" && newMzJs.jch != 0)
                 {
                     flag = false;
@@ -2259,18 +2259,18 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                         throw new FailedCodeException("GET_FPH_FAIL");
                         // return;
                     }
-                    //Lại xác minh票 số 
+                    //Lại xác minhphiếu số 
                     _RefundService.CheckFPH(lblFPHNew);
                 }
                 else
                 {
-                    //凭证 số 
+                    //chứng từ số 
                     if (string.IsNullOrEmpty(lblFPHNew))
                     {
                         throw new FailedCodeException("GET_SJH_FAIL");
                         //  return;
                     }
-                    //Lại验 số biên lai 
+                    //Lạikiểm tra số biên lai 
                     checkSJH(lblFPHNew);
                 }
             }
@@ -2349,7 +2349,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
 
                 #endregion
 
-                //Xác nhận một phần trả lại,lại收một phần
+                //Xác nhận một phần trả lại,lạithumột phần
                 //backPart(newMzJs, accountEntity, jszffsArray, sqxh);
                 newMzJs.CreatorCode = userModel.UserCode;
                 newMzJs.CreateTime = DateTime.Now;
@@ -2389,11 +2389,11 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //            //{
                 //            //    jc_zhye = entitySz.zhye;
                 //            //}
-                // ////历 lần ghi sổ+khi trư ớc ghi sổ và số dư tài khoản比较
-                // ////历 lần ghi sổ của总数
+                // ////lịch sử lần ghi sổ+khi trư ớc ghi sổ và số dư tài khoảnso sánh
+                // ////lịch sử lần ghi sổ củatổngsố
                 //            //decimal compareJe = 0m;
                 //            //getJcbrjzxx(Tools.AnyToInt32(newMzJs.brnm), newMzJs.brxz, newMzJs.jch, out compareJe);
-                // ////In清 đ ơn 
+                // ////Inbảng kê 
                 //            //DataTable jc = BLLFactory<mz_jsmx>.Instance.getSFQDForJsnm(newMzJs.jsnm);
                 //            ////PrintBill print = new PrintBill(jc, newMzJs.xjzf);
                 //            //tbl_xt_brjbxx brjbxx = BF<xt_brjbxx>.Instance.GetEntityByID(newMzJs.brnm.ToString());
@@ -2431,7 +2431,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //DialogResult = DialogResult.OK;
             try
             {
-                // phư ơng thức thanh toán là tiền mặt thì启动钱箱
+                // phư ơng thức thanh toán là tiền mặt thìKhởi động hộp tiền
                 //if (JszffsArray.Find(p => p.xjzffs == "0") != null)
                 //{
                 //    string setFileName = (new Common.ConfigFile.AppConfig()).AppConfigGet("INIFileName");   // ConfigurationManager.AppSettings["INIFileName"].ToString();
@@ -2441,12 +2441,12 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 //    if (!string.IsNullOrEmpty(ckpzStr))
                 //    {
                 //        SerialPort port = new SerialPort();
-                // port.PortName = ckpzStr;//设定串口
-                // port.Open();//打开串口
-                // port.Write("#$1b#$70#0#$3c#$ff");//往串口写入启动钱箱của指令
-                // port.Close();//释放串口
+                // port.PortName = ckpzStr;//Thiết lập cổng nối tiếp
+                // port.Open();//Mở cổng nối tiếp
+                // port.Write("#$1b#$70#0#$3c#$ff");//Ghi vào cổng nối tiếp lệnh khởi động hộp tiềncủalệnh
+                // port.Close();//Giải phóng cổng nối tiếp
                 //    }
-                // else { DialogHelper.DlgError("钱箱串口chưa cấu hình!"); }
+                // else { DialogHelper.DlgError("Cổng nối tiếp của hộp tiềnchưa cấu hình!"); }
                 //}
             }
             catch
@@ -2456,7 +2456,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --hoàn tiền剩 dư ới của thu tiền 
+        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --hoàn tiềncòn lại dư ới của thu tiền 
         /// </summary>
         private List<OutpatientSettlementPaymentModelEntity> getJszffsEntity(
             List<OutpatientSettlementPaymentModelEntity> jszffsListForTK)
@@ -2562,7 +2562,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             bool jsgb = false;
             try
             {
-                //Lấy thực tế cần hoàn phí của thông tin,借 dùng (LấyĐ ơn thuốc trạng thái)CủaĐ ối tư ợng
+                //Lấy thực tế cần hoàn phí của thông tin,mượn dùng (LấyĐ ơn thuốc trạng thái)CủaĐ ối tư ợng
                 List<GET_CF_STATUS> tyCfList = getTyInfo();
                 if (tyCfList == null || tyCfList.Count == 0)
                     return;
@@ -2669,7 +2669,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --原 thu tiền 
+        /// Phư ơng thức thanh toán quyết toán ngoại trú bản ghi --gốc thu tiền 
         /// </summary>
         private List<OutpatientSettlementPaymentModelEntity> getJszffsEntityForSK()
         {
@@ -2714,13 +2714,13 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         }
 
         /// <summary>
-        ///Thêm mới hệ thống bệnh nhân tài khoản 收支 bản ghi 
+        ///Thêm mới hệ thống bệnh nhân tài khoản thu chi bản ghi 
         /// </summary>
         private List<SysPatientAccountRevenueAndExpenseEntity> getZhszjlList(OutpatientSettlementEntity tempMzJs,
             List<OutpatientSettlementPaymentModelEntity> parmjszffsArray, string tsFlag)
         {
             return null;
-            //只có tài khoản thanh toán,才 sẽ có thu chi tài khoản bản ghi 
+            //chỉcó tài khoản thanh toán,mới sẽ có thu chi tài khoản bản ghi 
             //  if (brzh == null)
             //   return null;
             //List<tbl_mz_jszffs> tempjszffsArray = parmjszffsArray;
@@ -2772,7 +2772,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
             //    szjl = getSzjl(tempMzJs.jsnm, tempMzJs.zl, NewtouchHIS.MAT.Constant.szxzEnum.MZ_CZ_QK, xjzffs.xjzffsbh);
             //    szjlList.Add(szjl);
 
-            // //// tài khoản 支出
+            // //// tài khoản chi
             //    //foreach (tbl_mz_jszffs_Ex entity in tempjszffsArray)
             //    //{
             //    //    szjl = getSzjl(brzh, tempMzJs);
@@ -2857,7 +2857,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //           {
         //               if (Tools.getIniFileName("SFYXTFPZparm") != "0")
         //               {
-        // DialogHelper.DlgInfo("Khi trư ớc windows trên POS máy hoàn phí功 có thể Đ ãĐ óng,không có phư ơng pháp 做POShoàn phí thao tác！");
+        // DialogHelper.DlgInfo("Khi trư ớc windows trên POS máy hoàn phíchức năng Đ ãĐ óng,không có phư ơng pháp làmPOShoàn phí thao tác！");
         //                   return false;
         //               }
         //           }
@@ -2921,7 +2921,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         //           {
         //               if (Tools.getIniFileName("SFYXTFPZparm") != "0")
         //               {
-        // DialogHelper.DlgInfo("Khi trư ớc windows trên POS máy hoàn phí功 có thể Đ ãĐ óng,không có phư ơng pháp 做POShoàn phí thao tác！");
+        // DialogHelper.DlgInfo("Khi trư ớc windows trên POS máy hoàn phíchức năng Đ ãĐ óng,không có phư ơng pháp làmPOShoàn phí thao tác！");
         //                   return false;
         //               }
         //           }
@@ -3188,14 +3188,14 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
         #region 医保退费
 
         /// <summary>
-        /// Hoàn phí流程. mới của chưa结chi tiết tải lên
+        /// Hoàn phíquy trình. mới của chưaquyết toánchi tiết tải lên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="newwjybjsh"></param>
         /// <param name="tmxzje"> trả lại chi tiết tổng số tiền</param>
-        /// <param name="yxzje">余 dư ới tổng số tiền</param>
+        /// <param name="yxzje">còn lại dư ới tổng số tiền</param>
         public void DetailsUploadYb(string orgId, int jsnm
             , Dictionary<int, decimal> tjsxmDict
             , string newwjybjsh
@@ -3247,7 +3247,7 @@ namespace Newtouch.HIS.Application.Implementation.BusinessManage
                 detail.AKE228 = item.ys;
                 detail.AKE229 = item.ysmc;
                 detail.AKE002 = item.mc;
-                //Thuốcquy cách, 生产 đ ịa 
+                //Thuốcquy cách, sản xuất đ ịa 
                 detail.AKE207 = item.dw;
                 detail.AKE212 = item.sl.Value;
                 detail.AKE208 = item.dj;

@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
 
         }
         
-        //分trang lấyScheduledanh sách
+        //phântrang lấyScheduledanh sách
         public IList<OutBookScheduleVO> GetPagintionList(Pagination pagination, string orgId, DateTime time)
         {
             if (string.IsNullOrEmpty(orgId))
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
             return list;
         }
         /// <summary>
-        /// thực hiện tồn tại 储 quá trình 
+        /// thực hiện tồn tại lưu trữ quá trình 
         /// </summary>
         /// <returns></returns>
         public int ExecSchedule()
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Repository.OutpatientManage
             return this.ExecuteSqlCommand(sql, para);
         }        
         /// <summary>
-        /// thực hiện tồn tại 储 quá trình 
+        /// thực hiện tồn tại lưu trữ quá trình 
         /// </summary>
         /// <returns></returns>
         public int ExecSchedulebyGroup()

@@ -5,7 +5,7 @@ using Newtouch.Core.Common;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// Tạo：张冬林
+    /// Tạo：Trương Đông Lâm
     /// Ngày tháng:2017-09-30 14:21
     /// Mô tả:Cấu hình nhắc lỗi
     /// </summary>

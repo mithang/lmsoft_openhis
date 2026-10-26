@@ -9,9 +9,9 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建: tờ 冬林
+    /// Tạo bởi: Trương Đông Lâm
     /// Ngày kỳ:2017-10-16 11:07
-    /// 描 述: menu nhanh 
+    /// Mô tả: menu nhanh 
     /// </summary>
     public class SysShortcutMenuRepo : RepositoryBase<SysShortcutMenuEntity>, ISysShortcutMenuRepo
     {

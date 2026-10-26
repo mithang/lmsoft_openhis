@@ -200,7 +200,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
 
             AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi
 
-            //Lấy原来của chứng từ biên lai Entity 
+            //Lấyban đầucủa chứng từ biên lai Entity 
             oldcwsj = _finRecRepos.getSJKEntity(UserIdentity.UserCode, this.OrganizeId);
             _finRecRepos.DetacheEntity(oldcwsj);
 
@@ -227,7 +227,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             //Lưu vào cơ sở dữ liệu
             _InpatientReserveDmnService.PatZyAccDBProc(sqlVO, newzh, newcwsj, type);
             szid = zhszjl.Id;
-            //实giờ cập nhật số dư tài khoản
+            //thực tếgiờ cập nhật số dư tài khoản
             _PatientBasicInfoDmnService.updateZybrxxkExpandZhye(dto.zyh, OrganizeId, newzh.zhye);
             return true;
         }
@@ -253,7 +253,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             payEntity.OrganizeId = OrganizeId;
             payEntity.outTradeNo = dto.outTradeNo;
             ////Lấy số chứng từs
-            //// phán đoán 静态tham số cấu hình
+            //// phán đoán tĩnhtham số cấu hình
             payEntity.pzh = GetFinRepSJPZH();
             payEntity.Create(true);
             //Cập nhậtTài khoảnThông tin
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             return zyzhEntity.zhye;
         }
         /// <summary>
-        /// 取 khoản 
+        /// lấy khoản 
         /// </summary>
         /// <param name="zffsbh"></param>
         /// <param name="zffsmc"></param>
@@ -292,7 +292,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             }
             //if (string.IsNullOrEmpty(dto.zfje.ToString()) || dto.zfje >= 0)
             //{
-            // throw new FailedException("Vui lòng nhập chính xác của取 khoản số tiền(số tiền须là负 giá trị)");
+            // throw new FailedException("Vui lòng nhập chính xác củalấy khoản số tiền(số tiềnphảilàâm giá trị)");
             //}
             if (string.IsNullOrEmpty(dto.pzh))
             {
@@ -305,13 +305,13 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             FinanceReceiptEntity oldcwsj = null;
             FinanceReceiptEntity newcwsj = null;
 
-            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi 负của
+            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi âmcủa
 
             // mới của chứng từ biên lai thông tin
             FinanceReceiptEntity sjEntity = null;
             string type = string.Empty;
 
-            //Tạm ứng hoàn tiền có hay không sử dụng凭证 số 
+            //Tạm ứng hoàn tiền có hay không sử dụngchứng từ số 
             var isTopzh = _sysConfigRepo.GetBoolValueByCode("Account_Refund_pzh", OrganizeId);
 
             if (isTopzh is true)
@@ -335,7 +335,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             sqlVO.oldcwsj = oldcwsj;
             //Lưu vào cơ sở dữ liệu
             _InpatientReserveDmnService.PatZyAccDBProc(sqlVO, newzh, newcwsj, type);
-            //实giờ cập nhật số dư tài khoản
+            //thực tếgiờ cập nhật số dư tài khoản
             _PatientBasicInfoDmnService.updateZybrxxkExpandZhye(dto.zyh, OrganizeId, newzh.zhye);
             return true;
         }
@@ -393,7 +393,7 @@ namespace Newtouch.HIS.Application.Implementation.PatientManage
             sqlVO.oldcwsj = null;
             //Lưu vào cơ sở dữ liệu
             _InpatientReserveDmnService.PatZyAccDBProc(sqlVO, newAccEntity, null, "");
-            //实giờ cập nhật số dư tài khoản
+            //thực tếgiờ cập nhật số dư tài khoản
             _PatientBasicInfoDmnService.updateZybrxxkExpandZhye(dto.zyh, OrganizeId, newAccEntity.zhye);
             return true;
         }

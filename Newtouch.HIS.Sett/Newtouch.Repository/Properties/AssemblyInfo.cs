@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// Về assembly của thông thư ờng thông tin thông qua 以 dư ới 
+// Về assembly của thông thư ờng thông tin thông qua theo dư ới 
 // Thuộc tính tập điều khiển.Thay đ ổi các giá trị thuộc tính này có thể sửa
 // Thông tin liên kết với assembly.
 [assembly: AssemblyTitle("")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // Nếu hạng mục này hư ớng tới COM công khai,thì các GUID dùng cho thư viện kiểu của ID
 [assembly: Guid("f4f64484-37cf-4e87-a77c-7606a3883035")]
 
-// Assembly của thông tin phiên bản由 phía dư ới bốn 个 giá trị nhóm 成:
+// Assembly của thông tin phiên bảndo phía dư ới bốn cái giá trị nhóm thành:
 //
 //      Phiên bản chính
 //      Phiên bản phụ 

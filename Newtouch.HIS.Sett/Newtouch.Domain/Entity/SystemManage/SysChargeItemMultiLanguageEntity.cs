@@ -12,64 +12,64 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysChargeItemMultiLanguageEntity : IEntity<SysChargeItemMultiLanguageEntity>
     {
         /// <summary>
-        /// 收费项目多语言编号
+        /// Mã số đa ngôn ngữ của hạng mục thu phí
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int sfxmdyybh { get; set; }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// 收费项目繁体名称
+        /// Tên phồn thể của hạng mục thu phí
         /// </summary>
         public string sfxmmcFanti { get; set; }
 
         /// <summary>
-        /// 收费项目英文名称
+        /// Tên tiếng Anh của hạng mục thu phí
         /// </summary>
         public string sfxmmcEnglish { get; set; }
 
         /// <summary>
-        /// 收费项目日文名称
+        /// Tên tiếng Nhật của hạng mục thu phí
         /// </summary>
         public string sfxmmcJpan { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 建档人员
+        /// Người lập hồ sơ
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 建档日期
+        /// Ngày lập hồ sơ
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 变更人员
+        /// Người thay đổi
         /// </summary>
         public DateTime? LastModifierCode { get; set; }
 
         /// <summary>
-        /// 变更日期
+        /// Ngày thay đổi
         /// </summary>
         public string LastModifyTime { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

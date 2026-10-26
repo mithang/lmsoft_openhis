@@ -16,7 +16,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// Hủy quyết toán nhập viện 实现
+    /// Hủy quyết toán nhập viện triển khai
     /// </summary>
     public class HospSettCancelApp : AppBase, IHospSettCancelApp
     {
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application.Implementation
             //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospPatBasicInfo(ref zyh, kh);
 
-            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, lấy của nó nhất sau một dòng
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
 
             var resultDto = new HospSettCancelPatStatusDetailDto()
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Application.Implementation
             //Lấy thông tin bệnh nhân quyết toán nhập viện(cơ bản thông tin, tài khoản, khoaV.v.)
             var settpatinfo = getHospPatBasicInfo(ref zyh, "");
 
-            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, 取 của nó nhất sau một dòng
+            // theo số nhập viện lấy (chưa hoàn)danh sách quyết toán, lấy của nó nhất sau một dòng
             var lastSett = _hospSettlementRepo.GetValidList(zyh, this.OrganizeId).OrderByDescending(p => p.CreateTime).FirstOrDefault();
 
             if (lastSett.jsnm != expectedjsnm)
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Application.Implementation
             //BHYT giao dịch hủy quyết toán
 
             sqlVO.zyh = zyh;
-            /********* chú thích tại đ ây Củazybz nên là bản hệ thống trạng thái thay đ ổi là"Chờ thanh toán", đ ẩy cho khác hệ thống(繁云), sau đ ó (繁云)hệ thống thay đ ổi là"Khu bệnh trong ", như vậy, này bệnh nhân才 có thể ghi sổ. tại đ ây trư ớc gán giá trị thủ công *************/
+            /********* chú thích tại đ ây Củazybz nên là bản hệ thống trạng thái thay đ ổi là"Chờ thanh toán", đ ẩy cho khác hệ thống(Phồn Vân), sau đ ó (Phồn Vân)hệ thống thay đ ổi là"Khu bệnh trong ", như vậy, này bệnh nhânmới có thể ghi sổ. tại đ ây trư ớc gán giá trị thủ công *************/
             sqlVO.zybz = ((int)EnumZYBZ.Bqz).ToString();
             //sqlVO.zybz = ((int)EnumZYBZ.Djz).ToString();
             sqlVO.cyrq = null;
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 //zyh = zyList.Where(p => p.zybz == ((int)EnumZYBZ.Ycy).ToString())
                 //      .OrderByDescending(p => p.CreateTime).Select(p => p.zyh).First();
-                //if (string.IsNullOrWhiteSpace(zyh)) //说明 không có có thể hủy quyết toán của bản ghi 
+                //if (string.IsNullOrWhiteSpace(zyh)) //giải thích không có có thể hủy quyết toán của bản ghi 
                 //{
                 //    zyh = zyList.OrderByDescending(p => p.CreateTime).Select(p => p.zyh).First();
                 //}

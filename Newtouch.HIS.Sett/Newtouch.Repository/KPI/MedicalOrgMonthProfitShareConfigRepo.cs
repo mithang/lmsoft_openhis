@@ -8,9 +8,9 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建: tờ 冬林
+    /// Tạo bởi: Trương Đông Lâm
     /// Ngày kỳ:2018-01-29 15:52
-    /// 描 述: y tế cơ quan利润分成cấu hình
+    /// Mô tả: y tế cơ quanchia lợi nhuậncấu hình
     /// </summary>
     public class MedicalOrgMonthProfitShareConfigRepo : RepositoryBase<MedicalOrgMonthProfitShareConfigEntity>, IMedicalOrgMonthProfitShareConfigRepo
     {

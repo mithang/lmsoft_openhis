@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// Tạo：张冬林
+    /// Tạo：Trương Đông Lâm
     /// Ngày tháng:2018-01-29 15:52
     /// Mô tả:Cấu hình hoa hồng lợi nhuận của kỹ thuật viên điều trị
     /// </summary>

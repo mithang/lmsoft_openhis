@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// theo số nhập việntra cứu tất cả các của quyết toán bản ghi, Đ ã quyết toán và đã hủy bỏ của bản ghi tiến hành đ ối với 冲, nhận đ ược chưa hủy bút toán của dữ liệu
+        /// theo số nhập việntra cứu tất cả các của quyết toán bản ghi, Đ ã quyết toán và đã hủy bỏ của bản ghi tiến hành đ ối với đối trừ, nhận đ ược chưa hủy bút toán của dữ liệu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

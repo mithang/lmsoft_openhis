@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.SystemManage
         }
 
         /// <summary>
-        /// 附加hiển thị hộp thả xuống loại lớn 
+        /// phụ thêmhiển thị hộp thả xuống loại lớn 
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

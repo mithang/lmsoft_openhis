@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Application
     /// </summary>
     public class AccountManageApp : AppBase, IAccountManageApp
     {
-        private readonly IHosPatAccDmnService _hospatService;   //Quản lý tài khoản综合tra cứu
+        private readonly IHosPatAccDmnService _hospatService;   //Quản lý tài khoảntổng hợptra cứu
         private readonly IHospPatientBasicInfoRepo _hospatBasicRepos; //Nhập việnThông tin cơ bản bệnh nhân
         private readonly IFinanceReceiptRepo _finRecRepos; //Số chứng từ biên lai bản ghi 
         private readonly ISysPatientBasicInfoRepo _SysPatBasicInfoRepository;
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Application
             HosPatAccountActionVO hosPatInfoVo = null;
             if (!string.IsNullOrEmpty(zyh))
             {
-                //联合tra cứu thông tin bệnh nhân
+                //liên hợptra cứu thông tin bệnh nhân
                 hosPatInfoVo = _hospatService.GetHosPatInfo(zyh,OrganizeId);
                 if (hosPatInfoVo == null)
                 {
@@ -127,10 +127,10 @@ namespace Newtouch.HIS.Application
                 }
                 if (hosPatInfoVo.zh < 0)
                 {
-                    throw new FailedCodeException("HOSP_ERROR_PATIENT_THERE_IS_NO_YJJ_ACCOUNT"); //Khi trư ớc bệnh nhân không tồn tại tại预交 khoản tài khoản thông tin！
+                    throw new FailedCodeException("HOSP_ERROR_PATIENT_THERE_IS_NO_YJJ_ACCOUNT"); //Khi trư ớc bệnh nhân không tồn tại tạitạm ứng khoản tài khoản thông tin！
                 }
 
-                //Thêm tài khoản性质tên
+                //Thêm tài khoảntính chấttên
                 if (hosPatInfoVo.zhxz == ((int)EnumXTZHXZ.ZYYJKZH))
                 {
                     hosPatInfoVo.zhxzMC = EnumXTZHXZ.ZYYJKZH.GetDescription();
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Application
 
             AccPayDeposit(dto,out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi
 
-            //Lấy原来của chứng từ biên lai Entity 
+            //Lấyban đầucủa chứng từ biên lai Entity 
             oldcwsj = _finRecRepos.getSJKEntity(UserIdentity.UserCode, this.OrganizeId);
             _finRecRepos.DetacheEntity(oldcwsj);
 
@@ -294,7 +294,7 @@ namespace Newtouch.HIS.Application
 
             AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi
 
-            //Lấy原来của chứng từ biên lai Entity 
+            //Lấyban đầucủa chứng từ biên lai Entity 
             oldcwsj = _finRecRepos.getSJKEntity(UserIdentity.UserCode, this.OrganizeId);
             _finRecRepos.DetacheEntity(oldcwsj);
 
@@ -349,7 +349,7 @@ namespace Newtouch.HIS.Application
             FinanceReceiptEntity oldcwsj = null;
             FinanceReceiptEntity newcwsj = null;
 
-            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi 负của 
+            AccPayDeposit(dto, out zhszjl, out oldzh, out newzh); //Thêm bản ghi thu chi âmcủa 
 
             var sqlVO = new PatAccDataVO()
             {
@@ -447,7 +447,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 校验tiền mặt
+        /// kiểm tratiền mặt
         /// </summary>
         /// <returns></returns>
         private bool checkXj(decimal zfje)

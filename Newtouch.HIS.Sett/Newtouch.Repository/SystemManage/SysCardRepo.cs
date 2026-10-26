@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy mới 虚拟 thẻ số thẻ
+        /// Lấy mới ảomô phỏng thẻ số thẻ
         /// </summary>
         /// <returns></returns>
         public string GetCardSerialNo(string orgId)

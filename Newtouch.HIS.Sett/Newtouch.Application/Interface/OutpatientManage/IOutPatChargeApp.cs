@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Application.Interface
         string GetCfh(string sfxmtype);
 
         /// <summary>
-        /// Lấy hạng mục thu phí模版
+        /// Lấy hạng mục thu phímẫu
         /// </summary>
         /// <param name="ks">Khoa</param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Application.Interface
         List<OutpatAccInfoDto> GetOutPatBasicInfoInAcc(string IsBlh, string mzh);
 
         /// <summary>
-        /// Đ ăng ký ngoại trú và nhập viện登记 theo số hồ sơ bệnh án hoặc số thẻ tra cứu thông tin cơ bản bệnh nhân
+        /// Đ ăng ký ngoại trú và nhập việnđăng ký theo số hồ sơ bệnh án hoặc số thẻ tra cứu thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="blh">Số hồ sơ bệnh án</param>
         /// <param name="kh">Số thẻ</param>
@@ -154,7 +154,7 @@ namespace Newtouch.HIS.Application.Interface
             , string outTradeNo);
 
         /// <summary>
-        /// 补 tính phí gửi
+        /// bổ sung tính phí gửi
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bacDto"></param>
@@ -164,7 +164,7 @@ namespace Newtouch.HIS.Application.Interface
             OutServiceInfoDto2018 accDto);
 
         /// <summary>
-        /// 整合 trư ớc máy củathu phí dữ liệu成 sau máy của理想trạng thái
+        /// tích hợp trư ớc máy củathu phí dữ liệuthành sau máy củalý tưởngtrạng thái
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>

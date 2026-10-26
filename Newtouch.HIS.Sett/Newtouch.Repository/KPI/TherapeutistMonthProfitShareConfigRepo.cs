@@ -8,9 +8,9 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建: tờ 冬林
+    /// Tạo bởi: Trương Đông Lâm
     /// Ngày kỳ:2018-01-29 15:52
-    /// 描 述:Chuyên viên trị liệu利润提成cấu hình
+    /// Mô tả:Chuyên viên trị liệuhoa hồng lợi nhuậncấu hình
     /// </summary>
     public class TherapeutistMonthProfitShareConfigRepo : RepositoryBase<TherapeutistMonthProfitShareConfigEntity>, ITherapeutistMonthProfitShareConfigRepo
     {

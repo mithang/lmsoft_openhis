@@ -9,12 +9,12 @@ using Newtouch.HIS.Proxy.guian.DTO.S25;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 贵安ngoại trú BHYT nông thôn mới 
+    /// Quý Anngoại trú BHYT nông thôn mới 
     /// </summary>
     public interface IGuiAnOutpatientXnhApp
     {
         /// <summary>
-        /// mô phỏng quyết toán全流程
+        /// mô phỏng quyết toántoàn bộ quy trình
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="userCode"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Application.Interface
         string SimulationSettWholeProcess(string mzh, string userCode, string organizeId, out S24ResponseDTO s24);
 
         /// <summary>
-        /// mô phỏng quyết toán, đ ơn 功 có thể 
+        /// mô phỏng quyết toán, đ ơn chức năng 
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="zlkssj"></param>
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Application.Interface
         string Sett(string mzh, string outpId, string organizeId, string userCode, out S25ResponseDTO s25);
 
         /// <summary>
-        /// nhóm 装hoàn phí sau cần lại tạo củachi tiết quyết toán
+        /// nhóm đóng góihoàn phí sau cần lại tạo củachi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
@@ -180,7 +180,7 @@ namespace Newtouch.HIS.Application.Interface
         /// <summary>
         /// BHYT nông thôn mới BHYT yêu cầu 
         /// </summary>
-        /// <param name="itn">Giao diện tên 例:S02</param>
+        /// <param name="itn">Giao diện tên ví dụ:S02</param>
         /// <param name="body"></param>
         /// <param name="organizeId"></param>
         /// <param name="response">Bản tin trả về</param>

@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyĐ ã hoàn số tiền(bao gồm chưa知trạng thái của)
+        /// LấyĐ ã hoàn số tiền(bao gồm chưabiếttrạng thái của)
         /// </summary>
         /// <param name="outTradeNo"></param>
         /// <returns></returns>

@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.Interface
         HosSettPatStatusDetailDto GetPatHospStatusDetail(string zyh, string kh);
 
         /// <summary>
-        /// Quyết toán nhập viện bệnh nhân phân loạithu phí 预览
+        /// Quyết toán nhập viện bệnh nhân phân loạithu phí xem trước
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="jsje">Số tiền quyết toán ngăn chặn quá trình trong củachi phí thay đ ổi </param>

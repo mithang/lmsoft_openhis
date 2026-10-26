@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Application
         //string OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
 
         /// <summary>
-        /// (số hồ sơ bệnh án由hệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
+        /// (số hồ sơ bệnh ándohệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         public string Getblh()
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// In腕带
+        /// Invòng đeo tay
         /// </summary>
         /// <param name="info"></param>
         public void PrintWDInfo(WDInfoVO info)
@@ -136,7 +136,7 @@ namespace Newtouch.HIS.Application
             {
                 if (zdEntities != null && zdEntities.Count > 0)
                 {
-                    //Hủy bỏ原chẩn đoán
+                    //Hủy bỏgốcchẩn đoán
                     zdEntities.ForEach(p =>
                     {
                         p.zt = "0";

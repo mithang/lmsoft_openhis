@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Application
 
 
         /// <summary>
-        /// Lấy mới 虚拟 thẻ số thẻ
+        /// Lấy mới ảomô phỏng thẻ số thẻ
         /// </summary>
         /// <returns></returns>
         string GetCardSerialNo();

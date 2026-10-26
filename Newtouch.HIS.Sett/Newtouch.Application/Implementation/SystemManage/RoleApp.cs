@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// Tổ chức vai trò danh sách 带 分trang
+        /// Tổ chức vai trò danh sách kèm phântrang
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application
                 roleAuthorizeEntity.Create(true);
                 roleAuthorizeEntity.RoleId = roleEntity.Id;
                 roleAuthorizeEntity.ItemId = itemId;
-                roleAuthorizeEntity.zt = "1";   //始终1 hiệu lực
+                roleAuthorizeEntity.zt = "1";   //luôn luôn1 hiệu lực
                 if (moduledata.Find(t => t.Id == itemId) != null)
                 {
                     roleAuthorizeEntity.ItemType = 1;

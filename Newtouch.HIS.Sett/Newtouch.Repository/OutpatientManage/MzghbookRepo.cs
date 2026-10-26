@@ -13,9 +13,9 @@ using System.Text;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建:chl
+    /// Tạo bởi: chl
     /// Ngày kỳ:2019-12-16 17:20
-    /// 描 述: đ ặt lịch 
+    /// Mô tả: đ ặt lịch 
     /// </summary>
     public class MzghbookRepo : RepositoryBase<MzghbookEntity>, IMzghbookRepo
     {

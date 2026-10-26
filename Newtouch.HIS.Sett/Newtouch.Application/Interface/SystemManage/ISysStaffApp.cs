@@ -4,7 +4,7 @@
     {
 
         /// <summary>
-        /// Hiệu lực viên 工 tự đ ộng nhắc nhở
+        /// Hiệu lực viên nhân viên tự đ ộng nhắc nhở
         /// </summary>
         /// <returns></returns>
         object GetValidStaffList();

@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// (dư ới 拉)chọn dữ liệu源
+    /// (dư ới kéo xuống)chọn dữ liệunguồn
     /// </summary>
     public class SelectDataSourceApp : ISelectDataSourceApp
     {

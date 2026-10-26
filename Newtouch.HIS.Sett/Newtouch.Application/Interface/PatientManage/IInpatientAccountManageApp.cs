@@ -22,13 +22,13 @@ namespace Newtouch.HIS.Application.Interface.PatientManage
         /// <returns></returns>
         bool PayDepositPost(DeposDto dto, out string szid);
         /// <summary>
-        /// 取 khoản 
+        /// lấy khoản 
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         bool ReturnDepositPost(DeposDto dto);
         /// <summary>
-        /// số dư 劝 trả lại 
+        /// số dư khuyên trả lại 
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>

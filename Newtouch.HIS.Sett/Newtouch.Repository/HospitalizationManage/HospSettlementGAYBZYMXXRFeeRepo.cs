@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// Quyết toán nhập viện-chi phí bảo hiểm y tế-贵安
+    /// Quyết toán nhập viện-chi phí bảo hiểm y tế-Quý An
     /// </summary>
     public class HospSettlementGAYBZYMXXRFeeRepo : RepositoryBase<HospSettlementGAYBZYMXXRFeeEntity>, IHospSettlementGAYBZYMXXRFeeRepo
     {

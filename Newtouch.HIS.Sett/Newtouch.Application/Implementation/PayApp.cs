@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Application
         private readonly IOrderRefundInfoRepo _orderRefundInfoRepo;
 
         /// <summary>
-        /// Hoàn tiền(原路 trả lại lần)
+        /// Hoàn tiền(đường cũ trả lại lần)
         /// </summary>
         /// <param name="outTradeNo"></param>
         /// <param name="refundAmount">Số tiền</param>
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Application
                     var refundedSum = _orderRefundInfoRepo.GetRefundedSumByOutTradeNo(outTradeNo);
                     if (refundedSum + refundAmount <= payEntity.Amount)
                     {
-                        //13聚合 thanh toán hoàn phí
+                        //13tổng hợp thanh toán hoàn phí
                         if (payEntity.PayType == 13)
                         {
                             //N|BH1234567890133|20240402|0.01

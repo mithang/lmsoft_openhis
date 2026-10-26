@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// Tạo：张冬林
+    /// Tạo：Trương Đông Lâm
     /// Ngày tháng:2017-09-29 19:53
     /// Mô tả:Cấu hình nhắc lỗi
     /// </summary>

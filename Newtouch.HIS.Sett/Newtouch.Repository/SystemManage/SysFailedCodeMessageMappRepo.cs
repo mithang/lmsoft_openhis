@@ -13,9 +13,9 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建: tờ 冬林
+    /// Tạo bởi: Trương Đông Lâm
     /// Ngày kỳ:2017-09-30 14:21
-    /// 描 述:Lỗi nhắc nhở cấu hình
+    /// Mô tả:Lỗi nhắc nhở cấu hình
     /// </summary>
     public class SysFailedCodeMessageMappRepo : RepositoryBase<SysFailedCodeMessageMappEntity>, ISysFailedCodeMessageMappRepo
     {
@@ -32,9 +32,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy分trang thực thể danh sách
+        /// Lấyphântrang thực thể danh sách
         /// </summary>
-        /// <param name="pagination">分trang</param>
+        /// <param name="pagination">phântrang</param>
         /// <param name="keyword">LọcTừ khóa</param>
         public IList<SysFailedCodeMessageMappEntity> GetPagintionList(Pagination pagination, string keyword)
         {
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Repository
         /// <returns></returns>
         public IList<SysFailedCodeMessageMappEntity> GetListByOrgId(string orgId = null)
         {
-            //Tổ chức cấp cao nhất 匹配 đ ến của Mapp
+            //Tổ chức cấp cao nhất khớp đ ến của Mapp
             var topOrgMappList = _cache.Get<IList<SysFailedCodeMessageMappEntity>>(string.Format(Infrastructure.CacheKey.SysFailedCodeMessageMapListListSetKey, Constants.TopOrganizeId), () =>
             {
                 return this.IQueryable(p => (p.TopOrganizeId == null || p.TopOrganizeId == "*" || p.TopOrganizeId == Infrastructure.Constants.TopOrganizeId))
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Repository
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                //Organize 匹配 đ ến của Mapp
+                //Organize khớp đ ến của Mapp
                 var orgMappList = topOrgMappList.Where(p => p.OrganizeId == null || p.OrganizeId == "*" || p.OrganizeId == orgId).ToList();
 
                 return orgMappList.GroupBy(p => p.code)

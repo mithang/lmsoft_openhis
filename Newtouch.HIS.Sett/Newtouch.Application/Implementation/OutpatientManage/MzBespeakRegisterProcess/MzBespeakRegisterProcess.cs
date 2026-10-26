@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application.Implementation.OutpatientManage.MzBespeakRegi
         private List<MzBespeakRegisterQueryResponseDTO> _mzyygh;
 
         /// <summary>
-        /// Đ ặt lịch đ ăng ký khám thực hiện 策略
+        /// Đ ặt lịch đ ăng ký khám thực hiện chiến lược
         /// </summary>
         private List<ICommitStrategy> _strategy;
 
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Application.Implementation.OutpatientManage.MzBespeakRegi
         }
 
         /// <summary>
-        /// 效验request
+        /// kiểm trarequest
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()

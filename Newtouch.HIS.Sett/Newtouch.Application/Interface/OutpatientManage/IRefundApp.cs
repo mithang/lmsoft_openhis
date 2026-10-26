@@ -32,14 +32,14 @@ namespace Newtouch.HIS.Application.Interface.BusinessManage
         #region 医保退费
 
         /// <summary>
-        /// Hoàn phí流程. mới của chưa结chi tiết tải lên
+        /// Hoàn phíquy trình. mới của chưaquyết toánchi tiết tải lên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="newwjybjsh"></param>
-        /// <param name="tmxzje">余 dư ới tổng số tiền</param>
-        /// <param name="yxzje">余 dư ới tổng số tiền</param>
+        /// <param name="tmxzje">còn lại dư ới tổng số tiền</param>
+        /// <param name="yxzje">còn lại dư ới tổng số tiền</param>
         void DetailsUploadYb(string orgId, int jsnm
             , Dictionary<int, decimal> tjsxmDict
             , string newwjybjsh

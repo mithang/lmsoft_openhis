@@ -6,7 +6,7 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// Tạo：李鑫
+    /// Tạo：Lý Hâm
     /// Ngày tháng:2019-07-19 14:00
     /// Mô tả:Quyết toán nội trú-Chi phí BHYT-Quý An
     /// </summary>

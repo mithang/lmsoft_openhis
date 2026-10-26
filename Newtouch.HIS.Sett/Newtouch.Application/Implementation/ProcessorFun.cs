@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.Implementation
         protected Dictionary<string, string> Tags;
 
         /// <summary>
-        /// 基 loại 初始化
+        /// cơ sở loại Khởi tạo
         /// </summary>
         /// <param name="request"></param>
         protected ProcessorFun(T request)
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 异步xử lý
+        /// bất đồng bộxử lý
         /// </summary>
         /// <param name="result"></param>
         private void AsyncProcess(ActResult result)

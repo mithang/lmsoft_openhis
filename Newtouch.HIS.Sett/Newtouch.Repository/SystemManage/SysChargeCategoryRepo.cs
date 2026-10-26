@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 收取 tất cả các thu phí loại lớn (带 bộ nhớ đ ệm)
+        /// thu tất cả các thu phí loại lớn (kèm bộ nhớ đ ệm)
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeCategoryVEntity> GetLazyList(string orgId)

@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Application
     public interface ISysPatBasicInfoApp
     {
         /// <summary>
-        /// (số hồ sơ bệnh án由hệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
+        /// (số hồ sơ bệnh ándohệ thống tự đ ộng tạo)lấy mới nhất số hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         string Getblh();
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application
         void PrinZYInfo(ZYInfoVO info);
 
         /// <summary>
-        /// In腕带
+        /// Invòng đeo tay
         /// </summary>
         /// <param name="info"></param>
         void PrintWDInfo(WDInfoVO info);

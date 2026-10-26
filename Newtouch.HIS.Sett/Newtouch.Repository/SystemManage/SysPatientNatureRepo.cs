@@ -46,11 +46,11 @@ namespace Newtouch.HIS.Repository
             }
             var linq = ExtLinq.True<SysPatientNatureEntity>();
             return this.IQueryable(linq).Where(P => P.zt == "1" && P.OrganizeId == ogrId
-            && (string.IsNullOrEmpty(keyword) || P.brxzmc.Contains(keyword) || P.py.Contains(keyword) || (P.brxz.Contains(keyword)))).ToList(); //modify by caishanshan 20161217 加 个brxz của dòng vụ 
+            && (string.IsNullOrEmpty(keyword) || P.brxzmc.Contains(keyword) || P.py.Contains(keyword) || (P.brxz.Contains(keyword)))).ToList(); //modify by caishanshan 20161217 thêm cáibrxz của dòng vụ 
         }
 
         /// <summary>
-        /// Lấy thanh toán BHYT 政策 hộp thả xuống (tự đ ộng nhắc nhở)
+        /// Lấy thanh toán BHYT chính sách hộp thả xuống (tự đ ộng nhắc nhở)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

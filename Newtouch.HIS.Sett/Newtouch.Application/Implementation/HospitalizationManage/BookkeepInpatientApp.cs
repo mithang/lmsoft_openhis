@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// GửiKế hoạch ghi sổ
         /// </summary>
         /// <param name="zyh">Số nhập viện</param>
-        /// <param name="xmList">Ghi sổ hạng mục(thuốc)danh sách(nếu là đ ơn hạng mục(thuốc),vui lòng trư ớc 包装成数 nhóm)</param>
+        /// <param name="xmList">Ghi sổ hạng mục(thuốc)danh sách(nếu là đ ơn hạng mục(thuốc),vui lòng trư ớc đóng gói thành nhóm)</param>
         public void SubmitAccountingPlan(string zyh, IList<InpatientAccountingPlanItemDto> xmList)
         {
             if (xmList == null || xmList.Count == 0)
@@ -97,13 +97,13 @@ namespace Newtouch.HIS.Application.Implementation
                 ys = zyInfo.doctor;
                 ks = zyInfo.ks;
 
-                int? zzll = item.sl * item.zll;//整个ghi sổ
+                int? zzll = item.sl * item.zll;//toàn bộghi sổ
                 int dcsl = 0;// mỗi lần số lư ợng
                 int zsl;
                 if (item.sfxmCode != null)
                 {
                     dcsl = CommmHelper.CalcSfxmSl(item.zll, item.dwjls, item.jjcl);
-                    //总 lư ợng 
+                    //tổng lư ợng 
                     zsl = (dcsl * item.sl).ToInt();
                 }
                 item.yzxz = (item.yzxz ?? "").Trim();   //
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Application.Implementation
                 //    if (item.EndDate.HasValue && item.EndDate.Value <= item.StartDate)
                 //    {
                 // //Bất thư ờng: y lệnh dài hạn, ngày không là một phạm vi
-                // throw new FailedException(" dài hạn 性ghi sổ ngày phạm vi lỗi");
+                // throw new FailedException(" dài hạn tínhghi sổ ngày phạm vi lỗi");
                 //    }
                 //}
 
@@ -157,12 +157,12 @@ namespace Newtouch.HIS.Application.Implementation
                 jhmxEntityList.Add(jhmxEntity);
                 if (!string.IsNullOrWhiteSpace(item.jzjhmxId))
                 {
-                    // này là một dòng sửa lịch sử,cập nhật原纪录trạng thái 至 Đ ã dừng 
+                    // này là một dòng sửa lịch sử,cập nhậtbản ghi gốctrạng thái đến Đ ã dừng 
                     updateToStopJzjhxmIdList.Add(item.jzjhmxId);
                 }
             }
 
-            //去 领 lĩnh vực 服务 lớp 持续化 dữ liệu
+            //đi lĩnh lĩnh vực dịch vụ lớp lưu trữ bền vững dữ liệu
             _bookkeepInHosDmnService.SaveAccountingPlan(jzjhEntity, jhmxEntityList, updateToStopJzjhxmIdList);
         }
 
@@ -225,9 +225,9 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 Dictionary<string, string> jfbStr = new Dictionary<string, string>();
                 _bookkeepInHosDmnService.ExecuteAccountingPlan(this.OrganizeId, zxItem, this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, zxrq.Value, out jfbStr);
-                //刷 một dư ới kế hoạch CủaĐ ã thực hiện số lần, thực hiện trạng thái
+                //quét một dư ới kế hoạch CủaĐ ã thực hiện số lần, thực hiện trạng thái
                 _bookkeepInHosDmnService.updateHospitaljzjh(OrganizeId, zxItem.Select(p => p.jzjhmxId).ToList());
-                //Đ ã thực hiện của hạng mục phục h ồiĐ ồng bộ đ ến Tần Hoàng Đ ảo kho trung gian Tần Hoàng Đ ảo giai đoạn 3 功 có thể jfbStr 才có giá trị,skd_SyncInpatientToInterfaceBasic gọi này tồn tại 储 quá trình trư ớc có判 trống,GRS sẽ không gọi.
+                //Đ ã thực hiện của hạng mục phục h ồiĐ ồng bộ đ ến Tần Hoàng Đ ảo kho trung gian Tần Hoàng Đ ảo giai đoạn 3 chức năng jfbStr mớicó giá trị,skd_SyncInpatientToInterfaceBasic gọi này tồn tại lưu trữ quá trình trư ớc cóphán đoán trống,GRS sẽ không gọi.
                 //_bookkeepInHosDmnService.SyncInpatientToInterfaceBasic(jfbStr, OrganizeId, zxrq, UserIdentity.rygh);
             }
         }
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Hủy预 dừng 
+        /// Hủydự kiến dừng 
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         public void CancelPreStopAccountingPlan(string jzjhmxIdStr)
