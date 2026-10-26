@@ -9,7 +9,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         private static string[] badext = { "exe", "msi", "bat", "com", "sys", "aspx", "asax", "ashx" };
 
         #endregion
-        #region 文件操作
+        #region thao tác tệp
         public static bool IsExistDirectory(string directoryPath)
         {
             return Directory.Exists(directoryPath);
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
-        //删除文件
+        //xóa tệp
         public static bool DeleteFile(string Path)
         {
             if (File.Exists(Path))
@@ -100,9 +100,9 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
 
         /// <summary>
-        /// 判断目标是文件夹还是目录(目录包括磁盘)
+        /// xác định mục tiêu là thư mục hay danh mục(thư mục bao gồm đĩa)
         /// </summary>
-        /// <param name="filepath">文件名</param>
+        /// <param name="filepath">tên tệp</param>
         /// <returns></returns>
         public static bool IsDir(string filepath)
         {
@@ -130,7 +130,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 判断文件是否存在
+        /// xác định tệp có tồn tại hay không
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -138,12 +138,12 @@ namespace NewtouchHIS.Lib.Base.Utilities
         {
             if (File.Exists(filepath))
             {
-                //存在 
+                //tồn tại 
                 return true;
             }
             else
             {
-                //不存在 
+                //không tồn tại 
                 return false;
             }
         }

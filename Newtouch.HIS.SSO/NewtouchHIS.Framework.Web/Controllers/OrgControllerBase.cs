@@ -5,7 +5,7 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace NewtouchHIS.Framework.Web.Controllers
 {
     /// <summary>
-    /// 多机构 Controller基类
+    /// nhiều tổ chức Controllerlớp cơ sở
     /// </summary>
     public abstract class OrgControllerBase : BaseController
     {
@@ -15,7 +15,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// 组织机构Id
+        /// tổ chứcId
         /// </summary>
         protected string? OrganizeId
         {
@@ -31,7 +31,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// 获取权限Org
+        /// lấy quyềnOrg
         /// </summary>
         /// <param name="throwFailedException"></param>
         /// <returns></returns>
@@ -45,12 +45,12 @@ namespace NewtouchHIS.Framework.Web.Controllers
             string? orgId;
             if (UserIdentity.IsAdministrator || UserIdentity.IsRoot)
             {
-                //如果是系统管理员 则让其拉所有组织机构的数据
+                //nếu là quản trị viên hệ thống thì để nó lấy dữ liệu của tất cả các tổ chức
                 orgId = ConfigInitHelper.SysConfig?.Top_OrganizeId;
             }
             else
             {
-                //默认用当前关联用户的OrganizeId
+                //mặc định dùng ... của người dùng liên kết hiện tạiOrganizeId
                 orgId = UserIdentity.OrganizeId;
             }
             if (throwFailedException && string.IsNullOrWhiteSpace(orgId))

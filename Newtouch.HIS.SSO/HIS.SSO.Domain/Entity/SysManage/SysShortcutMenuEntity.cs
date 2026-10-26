@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 namespace HIS.SSO.Domain.Entity.SysManage
 {
 	///<summary>
-	///系统模块
+	///mô-đun hệ thống
 	///</summary>
 	[Tenant(DBEnum.UnionDb)]
 	[SugarTable("Sys_ShortcutMenu", "系统快捷菜单")]
 	public partial class SysShortcutMenuEntity : IEntity
 	{
 		/// <summary>
-		/// Desc:模块主键
+		/// Desc:khóa chính của mô-đun
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
 		[SugarColumn(IsPrimaryKey = true)]
 		public string Id { get; set; }
 		/// <summary>
-		/// Desc: 对应系统
+		/// Desc: hệ thống tương ứng
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
@@ -33,7 +33,7 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		public string AppId { get; set; }
 
 		/// <summary>
-		/// Desc:快捷菜单名称
+		/// Desc:tên menu phím tắt
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
@@ -42,7 +42,7 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		public string MenuName { get; set; }
 
 		/// <summary>
-		/// Desc:菜单地址url
+		/// Desc:địa chỉ menuurl
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
@@ -51,58 +51,58 @@ namespace HIS.SSO.Domain.Entity.SysManage
 		public string MenuUrl { get; set; }
 
 		/// <summary>
-		/// Desc:组织机构
+		/// Desc:tổ chức
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[Required(ErrorMessage = "OrganizeId不可为空")]
-		//[StringLength(50, ErrorMessage = "OrganizeId长度限制为50")]
+		//[Required(ErrorMessage = "OrganizeIdkhông được để trống")]
+		//[StringLength(50, ErrorMessage = "OrganizeIdgiới hạn độ dài là50")]
 		//public string OrganizeId { get; set; }
 		///// <summary>
-		/// Desc:创建人
+		/// Desc:người tạo
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[Required(ErrorMessage = "CreatorCode不可为空")]
-		//[StringLength(20, ErrorMessage = "CreatorCode长度限制为20")]
+		//[Required(ErrorMessage = "CreatorCodekhông được để trống")]
+		//[StringLength(20, ErrorMessage = "CreatorCodegiới hạn độ dài là20")]
 		//public string CreatorCode { get; set; }
 
 		/// <summary>
-		/// Desc:创建时间
+		/// Desc:thời gian tạo
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[Required(ErrorMessage = "Createtime不可为空")]
+		//[Required(ErrorMessage = "Createtimekhông được để trống")]
 		//public DateTime Createtime { get; set; }
 
 		/// <summary>
-		/// Desc:修改时间
+		/// Desc:thời gian sửa đổi
 		/// Default:
 		/// Nullable:True
 		/// </summary>           
 		//public DateTime? LastModifyTime { get; set; }
 
 		/// <summary>
-		/// Desc:修改人
+		/// Desc:người sửa đổi
 		/// Default:
 		/// Nullable:True
 		/// </summary>           
-		//[StringLength(20, ErrorMessage = "LastModifierCode长度限制为500")]
+		//[StringLength(20, ErrorMessage = "LastModifierCodegiới hạn độ dài là500")]
 		//public string? LastModifierCode { get; set; }
 
 		/// <summary>
-		/// Desc:排序
+		/// Desc:sắp xếp
 		/// Default:
 		/// Nullable:True
 		/// </summary>           
 		public int? px { get; set; }
 
 		/// <summary>
-		/// Desc:状态
+		/// Desc:trạng thái
 		/// Default:
 		/// Nullable:False
 		/// </summary>           
-		//[StringLength(1, ErrorMessage = "zt长度限制为1")]
+		//[StringLength(1, ErrorMessage = "ztgiới hạn độ dài là1")]
 		//public string zt { get; set; }
 	}
 }

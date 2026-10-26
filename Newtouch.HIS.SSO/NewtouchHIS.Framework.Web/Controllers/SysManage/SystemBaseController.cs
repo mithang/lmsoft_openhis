@@ -6,7 +6,7 @@ using NewtouchHIS.Lib.Framework.Filter;
 namespace NewtouchHIS.Framework.Web.Controllers.SysManage
 {
     /// <summary>
-    /// 通用查询汇总
+    /// tổng hợp truy vấn chung
     /// </summary>
     public class SystemBaseController : OrgControllerBase
     {

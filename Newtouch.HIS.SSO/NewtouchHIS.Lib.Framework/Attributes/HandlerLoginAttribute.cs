@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Framework.Attributes
 {
     /// <summary>
-    /// 自定义Attribute 不验证登录身份（给action加）
+    /// tùy chỉnhAttribute không xác minh danh tính đăng nhập（choactionthêm）
     /// </summary>
     [AttributeUsage(AttributeTargets.Method|AttributeTargets.Class, AllowMultiple = false)]
     public class HandlerLoginAttribute : Attribute

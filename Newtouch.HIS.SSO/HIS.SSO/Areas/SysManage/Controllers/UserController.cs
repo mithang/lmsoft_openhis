@@ -29,7 +29,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             _sysOrgDmnService = sysOrgDmnService;
         }
         /// <summary>
-        /// 列表页
+        /// trang danh sách
         /// </summary>
         /// <returns></returns>
         public IActionResult Selector()
@@ -51,34 +51,34 @@ namespace HIS.SSO.Areas.SysManage.Controllers
 
         }
             /// <summary>
-            /// 获取系统用户树 三级（机构+科室+用户（人员））
+            /// lấy cây người dùng hệ thống cấp ba（tổ chức+khoa+người dùng（nhân viên））
             /// </summary>
             /// <returns></returns>
             public async Task<ActionResult> GetSysUserSelectorTree(string organizeId = null, string keyValue = null, string from = null, bool isShowEmpty = false, bool isExpand = true, bool isContansChildOrg = true)
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+                organizeId = base.GetAuthOrganizeId();  //mặc định quyềnOrganizeId
             }
-            //缓存start
+            //bộ nhớ đệmstart
             var organizedata = await _sysOrgDmnService.GetOrganizeTree(organizeId);
             if (!isContansChildOrg)
             {
-                //仅当前机构
+                //chỉ tổ chức hiện tại
                 organizedata = organizedata.Where(p => p.OrganizeId == organizeId).ToList();
             }
             var treeList = new List<TreeViewModel>();
             foreach (SysOrgVo orgItem in organizedata)
             {
-                //机构科室集合
+                //tập hợp khoa của tổ chức
                 var orgDetpData = await _sysDepartmentDmnService.GetListByOrg(orgItem.OrganizeId);
-                //机构人员集合（有对应登录账户）
+                //tập hợp nhân viên tổ chức（có tài khoản đăng nhập tương ứng）
                 var orgUserStaffData = await _sysUserDmnService.GetSatffVOListByOrg(orgItem.OrganizeId, this.UserIdentity.TopOrganizeId);
-                #region 机构下所有科室
+                #region tất cả các khoa thuộc tổ chức
                 foreach (SysDepartmentEntity deptItem in orgDetpData)
                 {
                     var deptUserStaffData = orgUserStaffData.Where(p => p.DepartmentCode == deptItem.Code).ToList();
-                    #region 机构下所有用户
+                    #region tất cả người dùng thuộc tổ chức
                     foreach (SysUserStaffVO userStaffVO in deptUserStaffData)
                     {
                         TreeViewModel staffTree = new TreeViewModel();
@@ -89,7 +89,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                         staffTree.Code = userStaffVO.UserCode;
                         staffTree.hasChildren = false;
                         staffTree.showcheck = true;
-                        staffTree.checkstate = 0;   //外面赋值，方便缓存
+                        staffTree.checkstate = 0;   //gán giá trị từ bên ngoài，để tiện lưu bộ nhớ đệm
 
                         staffTree.Ex3 = orgItem.OrganizeId; //closest OrganizeId
 
@@ -101,7 +101,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                     deptTree.text = deptItem.Name;
                     deptTree.value = deptItem.Code;
                     deptTree.parentId = deptItem.ParentId == null ? orgItem.OrganizeId : deptItem.ParentId;
-                    deptTree.isexpand = isExpand;  //默认不展开，人太多
+                    deptTree.isexpand = isExpand;  //mặc định không mở rộng，quá nhiều người
                     deptTree.complete = true;
                     deptTree.showcheck = false;
                     //deptTree.hasChildren = deptUserStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -113,16 +113,16 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                 tree.id = orgItem.OrganizeId;
                 tree.text = orgItem.Name;
                 tree.value = orgItem.Code;
-                tree.parentId = orgItem.OrganizeId == organizeId ? null : orgItem.ParentId; //特殊
+                tree.parentId = orgItem.OrganizeId == organizeId ? null : orgItem.ParentId; //đặc biệt
                 tree.isexpand = true;
                 tree.complete = true;
                 tree.showcheck = false;
                 tree.hasChildren = orgDetpData.Count > 0 || orgUserStaffData.Count > 0 || organizedata.Any(p => p.ParentId == orgItem.OrganizeId);
                 treeList.Add(tree);
             }
-            //缓存end
-            IList<FirstSecond> checkedUserList = null; //已checked的用户
-            if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //角色已关联用户
+            //bộ nhớ đệmend
+            IList<FirstSecond> checkedUserList = null; //đãcheckedngười dùng của
+            if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //vai trò đã liên kết người dùng
             {
                 checkedUserList = await _userRoleAuthDmnService.GetCurUserIdListByRoleId(keyValue);
             }
@@ -134,22 +134,22 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                     if (treeItem.showcheck && checkedUserList.Any(p => p.First == treeItem.value && p.Second == treeItem.Ex3))
                     {
                         treeItem.checkstate = 1;
-                        //同时让上级展开
+                        //đồng thời để cấp trên mở rộng
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //下级有选中的，这里一定展开之
+                            thisParentNode.isexpand = true;  //cấp dưới có mục đã chọn，ở đây nhất định phải mở rộng
                         }
                     }
                 }
             }
-            if (!isShowEmpty)   //不显示多余的
+            if (!isShowEmpty)   //không hiển thị những cái thừa
             {
-                var count = 1;  //移除的行数
+                var count = 1;  //số dòng bị xóa
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //重新调整下树 移除 没有下级（下级刚被移了） 又 不显示showcheck的
+                    //điều chỉnh lại cây xóa không có cấp dưới（cấp dưới vừa bị dời đi） lại không hiển thịshowcheckcủa
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

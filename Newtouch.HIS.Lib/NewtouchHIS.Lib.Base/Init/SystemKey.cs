@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Lib.Base
 {
     /// <summary>
-    /// 通用系统变量
+    /// biến hệ thống chung
     /// </summary>
     public sealed class SystemKey
     {
@@ -17,7 +17,7 @@ namespace NewtouchHIS.Lib.Base
 
 
         /// <summary>
-        /// 组装用户Token缓存key
+        /// lắp ráp người dùngTokenbộ nhớ đệmkey
         /// </summary>
         /// <param name="account"></param>
         /// <param name="orgId"></param>
@@ -27,7 +27,7 @@ namespace NewtouchHIS.Lib.Base
             return $"{Cache_UserTokenKey}{account}_{orgId?.Replace("-", "")}";
         }
         /// <summary>
-        /// 组装机构列表
+        /// lắp ráp danh sách tổ chức
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>

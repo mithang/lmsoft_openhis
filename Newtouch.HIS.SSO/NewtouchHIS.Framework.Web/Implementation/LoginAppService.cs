@@ -10,7 +10,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
     public interface ILoginAppService : IScopedDependency
     {
         /// <summary>
-        /// 登录校验
+        /// kiểm tra đăng nhập
         /// </summary>
         /// <param name="request"></param>
         /// <param name="userCacheKey"></param>
@@ -18,7 +18,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <returns></returns>
         Task<SysUserVEntity> CheckPwdAsync(LoginBO request);
         /// <summary>
-        /// 用户数据初始化
+        /// khởi tạo dữ liệu người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <param name="userCacheKey"></param>
@@ -35,9 +35,9 @@ namespace NewtouchHIS.Framework.Web.Implementation
             Host = ConfigInitHelper.SysConfig.AppAPIHost?.HisAppBaseAPIHost ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "HisAppBaseAPIHost");
 
         }
-        #region API 列表
+        #region API danh sách
         /// <summary>
-        /// 登录校验
+        /// kiểm tra đăng nhập
         /// </summary>
         public string CheckPwdApi => $"{Host}api/login/CheckPwd";
         public string BuildLoginStatusOprApi => $"{Host}api/login/BuildLoginStatusOpr";

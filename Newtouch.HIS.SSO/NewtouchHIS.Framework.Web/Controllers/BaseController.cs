@@ -7,14 +7,14 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace NewtouchHIS.Framework.Web.Controllers
 {
     /// <summary>
-    /// 已登录 Controller基类
+    /// đã đăng nhập Controllerlớp cơ sở
     /// </summary>
     public abstract class BaseController : Controller
     {
 
         private OperatorModel? _userIdentity;
         /// <summary>
-        /// 登录用户身份
+        /// danh tính người dùng đăng nhập
         /// </summary>
         protected internal OperatorModel? UserIdentity
         {
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 列表页
+        /// trang danh sách
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,7 +40,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 表单页
+        /// trang biểu mẫu
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 返回Success
+        /// trả vềSuccess
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 返回Success
+        /// trả vềSuccess
         /// </summary>
         /// <param name="message"></param>
         /// <param name="data"></param>
@@ -71,7 +71,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 返回Error
+        /// trả vềError
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>

@@ -5,18 +5,18 @@ using NewtouchHIS.Lib.Base.Model.DRG;
 namespace NewtouchHIS.Lib.Services.DrgGroup
 {
     /// <summary>
-    /// 武汉2022版 
+    /// Vũ Hán2022bản 
     /// </summary>
     public interface IDrgWuhan2022Policy : IDrgGroupBasePolicy
     {
         ///// <summary>
-        ///// 单病案分组结果查询
+        ///// truy vấn kết quả phân nhóm một bệnh án
         ///// </summary>
         ///// <param name="record"></param>
         ///// <returns></returns>
         //Task<BusResult<DrgGroupResult>> GroupMedRecord(DrgAreaMedicalRecord record);
         ///// <summary>
-        ///// csv文件分组结果查询
+        ///// csvtruy vấn kết quả phân nhóm tệp
         ///// </summary>
         ///// <param name="record"></param>
         ///// <returns></returns>
@@ -32,7 +32,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             {
                 result.msg = "关键信息不可为空";
                 result.code = ResponseResultCode.FAIL;
-                return result;//验证失败则直接返回
+                return result;//nếu xác minh thất bại thì trả về ngay
             }
             //string str = "22082078,1,24, 9105, 3470,13050201, 6, 1,\"K63.500,K52.910\",\"00.5500,45.4300x010,45.4300x013\"";
             //var recordResult = GroupHelper.GroupRecord(str);

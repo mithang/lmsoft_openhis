@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace NewtouchHIS.Lib.Base.Filter
 {
     /// <summary>
-    /// 日志跟踪
+    /// theo dõi nhật ký
     /// </summary>
     public class LogTrackingAttribute : Attribute, IActionFilter, IExceptionFilter
     {
@@ -25,8 +25,8 @@ namespace NewtouchHIS.Lib.Base.Filter
         private bool logWithHeader = ConfigInitHelper.SysConfig?.EnableLoggingMonitorWithHeaderAttr ?? false;
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            logwatch.Start();//开始
-            //获取请求参数
+            logwatch.Start();//bắt đầu
+            //lấy tham số yêu cầu
             _request = context.ActionArguments;
             if (enableLoggingMonitor && logWithHeader)
             {

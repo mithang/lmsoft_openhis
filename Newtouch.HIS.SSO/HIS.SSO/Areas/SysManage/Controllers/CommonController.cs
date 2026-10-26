@@ -22,7 +22,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             {
                 orgId = GetAuthOrganizeId();
             }
-            ///获取角色组织机构
+            ///lấy tổ chức của vai trò
             var data = await _sysOrgDmn.GetOrganizeTree(orgId);
             List<TreeSelectCModel> treeList = data.Where(p => string.IsNullOrWhiteSpace(p.ParentId)).Select(p => new TreeSelectCModel
             {

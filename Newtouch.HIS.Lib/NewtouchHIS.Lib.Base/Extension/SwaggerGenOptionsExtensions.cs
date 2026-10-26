@@ -7,7 +7,7 @@ namespace NewtouchHIS.Lib.Base.Extension
     public static class SwaggerGenOptionsExtensions
     {
         /// <summary>
-        /// 为swagger增加Authentication报文头
+        /// làswaggertăngAuthenticationtiêu đề thông điệp
         /// </summary>
         /// <param name="option"></param>
         public static void AddAuthenticationHeader(this SwaggerGenOptions option)

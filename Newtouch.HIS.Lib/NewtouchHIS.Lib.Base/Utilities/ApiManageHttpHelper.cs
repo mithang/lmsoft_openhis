@@ -14,7 +14,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             var result = new ApiManageResult<T>();
             using (HttpClient client = new HttpClient())
             {
-                client.Timeout = new TimeSpan(0, 0, 600); // 10是秒数，用于设置超时时长
+                client.Timeout = new TimeSpan(0, 0, 600); // 10là số giây，dùng để thiết lập thời gian chờ
                 HttpContent content = new StringContent(data);
                 content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
                 client.DefaultRequestHeaders.Connection.Add("keep-alive");
@@ -32,7 +32,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return new BusResult<T> { code = ResponseResultCode.ERROR, msg = $"接口返回异常：{result?.Message}" };
         }
         /// <summary>
-        /// 支持Https请求 
+        /// hỗ trợHttpsyêu cầu 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -40,7 +40,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// <param name="header"></param>
         /// <param name="requestEncoding"></param>
         /// <param name="mediaType"></param>
-        /// <param name="CertificateCustomValid">访问的 https 网站是使用自签名证书或不受信任的证书，需要使用以下代码禁用 SSL/TLS 校验</param>
+        /// <param name="CertificateCustomValid">được truy cập https trang web đang dùng chứng chỉ tự ký hoặc chứng chỉ không đáng tin，cần dùng đoạn mã sau để vô hiệu hóa SSL/TLS kiểm tra</param>
         /// <returns></returns>
         public static async Task<BusResult<T>> PostAsync<T>(string url, string data, Dictionary<string, string> header, Encoding? requestEncoding = null, string mediaType = "application/json", bool CertificateCustomValid = false)
         {
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
                 }
-                client.Timeout = new TimeSpan(0, 0, 600); // 10是秒数，用于设置超时时长
+                client.Timeout = new TimeSpan(0, 0, 600); // 10là số giây，dùng để thiết lập thời gian chờ
                 HttpContent content = new StringContent(data);
                 if (header != null && header.Count() > 0)
                 {
@@ -83,7 +83,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
         #region get
         /// <summary>
-        /// get请求
+        /// getyêu cầu
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>

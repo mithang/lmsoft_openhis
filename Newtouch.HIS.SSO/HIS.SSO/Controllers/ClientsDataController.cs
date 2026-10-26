@@ -43,9 +43,9 @@ namespace HIS.SSO.Controllers
             }
             var data = new
             {
-                sysMajorClassList = await _organizeApp.GetsysMajorClassListAsync(OrganizeId),//大类
+                sysMajorClassList = await _organizeApp.GetsysMajorClassListAsync(OrganizeId),//nhóm lớn
                 doctorInHosBookkeep = await _organizeApp.GetStaffByDutyCodeAsync(OrganizeId),
-                commercialInsuranceList = "",//商保（暂无）
+                commercialInsuranceList = "",//bảo hiểm thương mại（tạm thời chưa có）
                 yearArr = yearArr.ToArray(),
                 monthArr = monthArr.ToArray(),
                 SysFailedCodeMessageMapList = await _organizeApp.GetSysFailedCodeMessageMapListAsync(OrganizeId),
@@ -62,14 +62,14 @@ namespace HIS.SSO.Controllers
             var data = new
             {
                 itemDetails = await _systemApp.GetItemDetailsListAsync(""),
-                sysNationalityList = await _systemApp.GetsysNationalityListAsync(""),   //国籍
-                sysNationList = await _systemApp.GetsysNationListAsync(""),//民族
-                sysPatientNatureList = await _organizeApp.GetsysatientNatureListAsync(OrganizeId),//病人性质,报销政策
-                SysForCashPayList = await _systemApp.GetSysForCashPayAsync(""),//获取现金支付方式
-                sysStaffDutyList = await _organizeApp.GetsysStaffDutyListAsync(OrganizeId),//健康教练，医生
-                sysDepartList = sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks", "mzzybz" }),    //科室
-                sysPatiAreaList = await _organizeApp.GetsysPatiAreaListAsync(OrganizeId),  //病区
-                sysWardDeptRelation = await _organizeApp.GetsysWardDeptRelationAsync(OrganizeId),  //病区
+                sysNationalityList = await _systemApp.GetsysNationalityListAsync(""),   //quốc tịch
+                sysNationList = await _systemApp.GetsysNationListAsync(""),//dân tộc
+                sysPatientNatureList = await _organizeApp.GetsysatientNatureListAsync(OrganizeId),//tính chất bệnh nhân,chính sách hoàn trả
+                SysForCashPayList = await _systemApp.GetSysForCashPayAsync(""),//lấy phương thức thanh toán tiền mặt
+                sysStaffDutyList = await _organizeApp.GetsysStaffDutyListAsync(OrganizeId),//huấn luyện viên sức khỏe，bác sĩ
+                sysDepartList = sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks", "mzzybz" }),    //khoa
+                sysPatiAreaList = await _organizeApp.GetsysPatiAreaListAsync(OrganizeId),  //khu bệnh
+                sysWardDeptRelation = await _organizeApp.GetsysWardDeptRelationAsync(OrganizeId),  //khu bệnh
                 ypjxyfdy = await _systemApp.GetDrugFormulationUsageListAsync(),
                 ypyf = await _systemApp.GetMediUsageListAsync(),
                 enums = await GetEnumList("NewtouchHIS.Base.Domain", "HIS.SSO.Domain"),

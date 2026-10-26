@@ -51,7 +51,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 更新 用户角色
+        /// cập nhật vai trò người dùng
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="organizeId"></param>

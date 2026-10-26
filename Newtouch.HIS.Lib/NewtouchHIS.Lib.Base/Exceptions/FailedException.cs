@@ -5,28 +5,28 @@ using System.Runtime.CompilerServices;
 namespace NewtouchHIS.Lib.Base.Exceptions
 {
     /// <summary>
-    /// 业务处理失败的可预测异常
+    /// ngoại lệ có thể dự đoán khi xử lý nghiệp vụ thất bại
     /// </summary>
     public class FailedException : Exception
     {
         /// <summary>
-        /// 错误代码
+        /// mã lỗi
         /// </summary>
         public string? Code { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// mô tả lỗi
         /// </summary>
         public string? Msg { get; set; }
 
         /// <summary>
-        /// 是否记入日志，默认false，不记入日志
+        /// có ghi vào nhật ký hay không，mặc địnhfalse，không ghi vào nhật ký
         /// </summary>
         public bool Log { get; set; } = false;
         public Exception? exception { get; set; } = null;
 
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
         public FailedException()
         {
@@ -34,19 +34,19 @@ namespace NewtouchHIS.Lib.Base.Exceptions
         }
 
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
-        /// <param name="msg">错误描述</param>
+        /// <param name="msg">mô tả lỗi</param>
         public FailedException(string msg)
         {
             this.Msg = msg;
         }
 
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
-        /// <param name="code">错误代码</param>
-        /// <param name="msg">错误描述</param>
+        /// <param name="code">mã lỗi</param>
+        /// <param name="msg">mô tả lỗi</param>
         public FailedException(string code, string msg)
         {
             this.Code = code;
@@ -73,11 +73,11 @@ namespace NewtouchHIS.Lib.Base.Exceptions
             }
         }
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
-        /// <param name="code">错误代码</param>
-        /// <param name="msg">错误描述</param>
-        /// <param name="log">是否记入日志</param>
+        /// <param name="code">mã lỗi</param>
+        /// <param name="msg">mô tả lỗi</param>
+        /// <param name="log">có ghi vào nhật ký hay không</param>
         public FailedException(string code, string msg, bool log)
         {
             this.Code = code;
@@ -97,24 +97,24 @@ namespace NewtouchHIS.Lib.Base.Exceptions
 
 
     /// <summary>
-    /// 业务处理失败的可预测异常（提示内容从数据库预初始化）
+    /// ngoại lệ có thể dự đoán khi xử lý nghiệp vụ thất bại（nội dung nhắc được khởi tạo trước từ cơ sở dữ liệu）
     /// </summary>
     public class FailedCodeException : FailedException
     {
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
-        /// <param name="code">错误代码</param>
+        /// <param name="code">mã lỗi</param>
         public FailedCodeException(string code)
         {
             this.Code = code;
         }
 
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
-        /// <param name="code">错误代码</param>
-        /// <param name="log">此类异常 是否记入日志（一般情况不记）</param>
+        /// <param name="code">mã lỗi</param>
+        /// <param name="log">ngoại lệ kiểu này có ghi vào nhật ký hay không（trường hợp thông thường không ghi）</param>
         public FailedCodeException(string code, bool log)
         {
             this.Code = code;

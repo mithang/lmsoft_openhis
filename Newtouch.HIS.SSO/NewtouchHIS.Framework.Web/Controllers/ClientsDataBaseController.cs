@@ -27,8 +27,8 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// 字典 分类仅有效的，字典项包括无效的（可用于显示成select）
-        /// {Type:"OrganizeType",Items:[{Code:"001",Name:"集团",zt:"1"},{Code:"002",Name:"区域",zt:"1"}]}
+        /// từ điển phân loại chỉ những cái có hiệu lực，mục từ điển bao gồm những cái không hợp lệ（có thể dùng để hiển thị thànhselect）
+        /// {Type:"OrganizeType",Items:[{Code:"001",Name:"tập đoàn",zt:"1"},{Code:"002",Name:"khu vực",zt:"1"}]}
         /// </summary>
         /// <returns></returns>
         [NonAction]
@@ -47,7 +47,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 获取三方目录对照信息
+        /// lấy thông tin đối chiếu danh mục ba bên
         /// </summary>
         /// <returns></returns>
         [NonAction]
@@ -76,7 +76,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 获取菜单
+        /// lấy menu
         /// </summary>
         /// <returns></returns>
         [NonAction]
@@ -94,7 +94,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 获取系统所有定义的枚举
+        /// lấy tất cả các enum hệ thống đã định nghĩa
         /// </summary>
         /// <returns></returns>
         [NonAction]
@@ -118,7 +118,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
                     {
                         if (enm.IsEnum)
                         {
-                            //DbLogType DbLogType_Ex视为同一个枚举
+                            //DbLogType DbLogType_Exđược coi là cùng một enum
                             var typeName = enm.Name.EndsWith("_Ex") ? enm.Name.Substring(0, enm.Name.Length - 3) : enm.Name;
                             var items = enm.getEnumNameValueDescInfo().ToList();
                             if (!result.ContainsKey(typeName))
@@ -137,7 +137,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 获取国籍
+        /// lấy quốc tịch
         /// </summary>
         /// <returns></returns>
         [NonAction]
@@ -146,7 +146,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             return await _systemApp.GetsysNationalityListAsync("");
         }
         /// <summary>
-        /// 获取民族
+        /// lấy dân tộc
         /// </summary>
         /// <returns></returns>
         [NonAction]
@@ -155,7 +155,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             return await _systemApp.GetsysNationListAsync("");
         }
         ///// <summary>
-        ///// Sett获取字典缓存
+        ///// Settlấy bộ nhớ đệm từ điển
         ///// </summary>
         ///// <returns></returns>
         //[NonAction]
@@ -171,17 +171,17 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //    }
         //    var data = new
         //    {
-        //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//病人性质,报销政策
-        //        SysForCashPayList = _systemApp.GetSysForCashPayAsync(""),//获取现金支付方式
-        //        sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//健康教练，医生
-        //        sysDepartList = _organizeApp.GetsysDepartListAsync(orgId) == null ? null : _organizeApp.GetsysDepartListAsync(orgId).ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //科室
-        //        sysPatiAreaList = _organizeApp.GetsysPatiAreaListAsync(orgId) == null ? null : _organizeApp.GetsysPatiAreaListAsync(orgId).ToJson(new[] { "bqCode", "bqmc", "py" }),  //病区
-        //        sysWardDeptRelation = _organizeApp.GetsysWardDeptRelationAsync(orgId) == null ? null : _organizeApp.GetsysWardDeptRelationAsync(orgId).ToJson(),  //病区
-        //        sysNationalityList = _systemApp.GetsysNationalityListAsync("") == null ? null : _systemApp.GetsysNationalityListAsync("").ToJson(new[] { "gjCode", "gjmc", "py" }),   //国籍
-        //        sysNationList = _systemApp.GetsysNationListAsync("") == null ? null : _systemApp.GetsysNationListAsync("").ToJson(new string[] { "mzCode", "mzmc", "py" }),//民族
-        //        sysMajorClassList = _organizeApp.GetsysMajorClassListAsync(orgId) == null ? null : _organizeApp.GetsysMajorClassListAsync(orgId).ToJson(new string[] { "dlCode", "dlmc", "py" }),//大类
+        //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//tính chất bệnh nhân,chính sách hoàn trả
+        //        SysForCashPayList = _systemApp.GetSysForCashPayAsync(""),//lấy phương thức thanh toán tiền mặt
+        //        sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//huấn luyện viên sức khỏe，bác sĩ
+        //        sysDepartList = _organizeApp.GetsysDepartListAsync(orgId) == null ? null : _organizeApp.GetsysDepartListAsync(orgId).ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //khoa
+        //        sysPatiAreaList = _organizeApp.GetsysPatiAreaListAsync(orgId) == null ? null : _organizeApp.GetsysPatiAreaListAsync(orgId).ToJson(new[] { "bqCode", "bqmc", "py" }),  //khu bệnh
+        //        sysWardDeptRelation = _organizeApp.GetsysWardDeptRelationAsync(orgId) == null ? null : _organizeApp.GetsysWardDeptRelationAsync(orgId).ToJson(),  //khu bệnh
+        //        sysNationalityList = _systemApp.GetsysNationalityListAsync("") == null ? null : _systemApp.GetsysNationalityListAsync("").ToJson(new[] { "gjCode", "gjmc", "py" }),   //quốc tịch
+        //        sysNationList = _systemApp.GetsysNationListAsync("") == null ? null : _systemApp.GetsysNationListAsync("").ToJson(new string[] { "mzCode", "mzmc", "py" }),//dân tộc
+        //        sysMajorClassList = _organizeApp.GetsysMajorClassListAsync(orgId) == null ? null : _organizeApp.GetsysMajorClassListAsync(orgId).ToJson(new string[] { "dlCode", "dlmc", "py" }),//nhóm lớn
         //        doctorInHosBookkeep = _organizeApp.GetStaffByDutyCodeAsync(orgId),
-        //        commercialInsuranceList = "",//商保（暂无）
+        //        commercialInsuranceList = "",//bảo hiểm thương mại（tạm thời chưa có）
         //        yearArr = yearArr.ToArray(),
         //        monthArr = monthArr.ToArray(),
         //        SysFailedCodeMessageMapList = _organizeApp.GetSysFailedCodeMessageMapListAsync(orgId),
@@ -190,7 +190,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //    return data;
         //}
         ///// <summary>
-        ///// CIS获取字典缓存
+        ///// CISlấy bộ nhớ đệm từ điển
         ///// </summary>
         ///// <returns></returns>
         //[NonAction]
@@ -198,15 +198,15 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //{
         //    var data = new
         //    {
-        //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//病人性质,报销政策                sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//健康教练，医生
-        //        sysNationalityList = _systemApp.GetsysNationalityListAsync("") == null ? null : _systemApp.GetsysNationalityListAsync("").ToJson(new[] { "gjCode", "gjmc", "py" }),   //国籍
-        //        sysNationList = _systemApp.GetsysNationListAsync("") == null ? null : _systemApp.GetsysNationListAsync("").ToJson(new string[] { "mzCode", "mzmc", "py" }),//民族
+        //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//tính chất bệnh nhân,chính sách hoàn trả                sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//huấn luyện viên sức khỏe，bác sĩ
+        //        sysNationalityList = _systemApp.GetsysNationalityListAsync("") == null ? null : _systemApp.GetsysNationalityListAsync("").ToJson(new[] { "gjCode", "gjmc", "py" }),   //quốc tịch
+        //        sysNationList = _systemApp.GetsysNationListAsync("") == null ? null : _systemApp.GetsysNationListAsync("").ToJson(new string[] { "mzCode", "mzmc", "py" }),//dân tộc
         //        doctorInHosBookkeep = _organizeApp.GetStaffByDutyCodeAsync(orgId),
         //    };
         //    return data;
         //}
         ///// <summary>
-        ///// PDS获取字典缓存
+        ///// PDSlấy bộ nhớ đệm từ điển
         ///// </summary>
         ///// <returns></returns>
         //[NonAction]
@@ -215,7 +215,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
         //    var data = new
         //    {
-        //        sysDepartList = _organizeApp.GetsysDepartListAsync(orgId) == null ? null : _organizeApp.GetsysDepartListAsync(orgId).ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //科室
+        //        sysDepartList = _organizeApp.GetsysDepartListAsync(orgId) == null ? null : _organizeApp.GetsysDepartListAsync(orgId).ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //khoa
         //        SysFailedCodeMessageMapList = _organizeApp.GetSysFailedCodeMessageMapListAsync(orgId),
         //        dataItems = _systemApp.GetItemDetailsListAsync(""),
         //    };

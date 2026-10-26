@@ -24,7 +24,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
             var result = default(T);
             using (HttpClient client = new HttpClient())
             {
-                client.Timeout = new TimeSpan(0, 0, 600); // 10是秒数，用于设置超时时长
+                client.Timeout = new TimeSpan(0, 0, 600); // 10là số giây，dùng để thiết lập thời gian chờ
                 HttpContent content = new StringContent(data);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 client.DefaultRequestHeaders.Connection.Add("keep-alive");
@@ -42,7 +42,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
             var result = default(T);
             using (HttpClient client = new HttpClient())
             {
-                // 构造 HTTP 请求消息
+                // khởi tạo HTTP tin nhắn yêu cầu
                 var requestMessage = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
                     Content = new StringContent(data),
                     
                 };
-                client.Timeout = new TimeSpan(0, 0, 600); // 10是秒数，用于设置超时时长
+                client.Timeout = new TimeSpan(0, 0, 600); // 10là số giây，dùng để thiết lập thời gian chờ
                 client.DefaultRequestHeaders.Connection.Add("keep-alive");
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer",token);
                 requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
             return result;
         }
         /// <summary>
-        /// 支持Https请求 
+        /// hỗ trợHttpsyêu cầu 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -73,7 +73,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="header"></param>
         /// <param name="requestEncoding"></param>
         /// <param name="mediaType"></param>
-        /// <param name="CertificateCustomValid">访问的 https 网站是使用自签名证书或不受信任的证书，需要使用以下代码禁用 SSL/TLS 校验</param>
+        /// <param name="CertificateCustomValid">được truy cập https trang web đang dùng chứng chỉ tự ký hoặc chứng chỉ không đáng tin，cần dùng đoạn mã sau để vô hiệu hóa SSL/TLS kiểm tra</param>
         /// <returns></returns>
         public async Task<T> PostAsync<T>(string url, string data, Dictionary<string, string> header, Encoding? requestEncoding = null, string mediaType = "application/json", bool CertificateCustomValid = false)
         {
@@ -88,7 +88,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
                 }
-                client.Timeout = new TimeSpan(0, 0, 600); // 10是秒数，用于设置超时时长
+                client.Timeout = new TimeSpan(0, 0, 600); // 10là số giây，dùng để thiết lập thời gian chờ
                 HttpContent content = new StringContent(data);
                 if (header != null && header.Count() > 0)
                 {
@@ -112,7 +112,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
 
         #region get
         /// <summary>
-        /// get请求
+        /// getyêu cầu
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
@@ -167,7 +167,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
 
         #region Newtouch
         /// <summary>
-        /// 普通Post方法，提交json数据，返回泛型示例
+        /// thông thườngPostphương thức，gửijsondữ liệu，trả về ví dụ generic
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -177,7 +177,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="requestEncoding"></param>
         /// <param name="responseEncoding"></param>
         /// <param name="cookies"></param>
-        /// <param name="contentType">默认json</param>
+        /// <param name="contentType">mặc địnhjson</param>
         /// <returns></returns>
         public T HttpPostStringAndRead<T>(string url, string postDataStr
             , int? timeout = 120000, string? userAgent = null, Encoding? requestEncoding = null
@@ -192,12 +192,12 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// Http请求的默认代理：’Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)‘
+        /// Httpproxy mặc định của yêu cầu：’Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)‘
         /// </summary>
         public static readonly string DefaultUserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
         /// <summary>
-        /// 请求文档类型
+        /// kiểu tài liệu yêu cầu
         /// </summary>
         public enum EnumContentType
         {
@@ -222,13 +222,13 @@ namespace NewtouchHIS.Lib.Services.HttpService
         #region GET
 
         /// <summary>
-        /// 普通Get方法，返回string（out参数http状态码）
+        /// thông thườngGetphương thức，trả vềstring（outtham sốhttpmã trạng thái）
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="responseStatusCode">HTTP状态码</param>
-        /// <param name="timeout">请求超时 时间（以毫秒为单位）</param>
+        /// <param name="responseStatusCode">HTTPmã trạng thái</param>
+        /// <param name="timeout">yêu cầu hết thời gian chờ thời gian（tính bằng mili giây）</param>
         /// <param name="userAgent"></param>
-        /// <param name="responseEncoding">响应编码，未指定时默认UTF8</param>
+        /// <param name="responseEncoding">mã hóa phản hồi，khi không chỉ định thì mặc địnhUTF8</param>
         /// <param name="cookies"></param>
         /// <returns></returns>
         public static string? HttpGetString(string url, out int responseStatusCode
@@ -252,12 +252,12 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// 普通Get方法，返回string
+        /// thông thườngGetphương thức，trả vềstring
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="timeout">请求超时 时间（以毫秒为单位）</param>
+        /// <param name="timeout">yêu cầu hết thời gian chờ thời gian（tính bằng mili giây）</param>
         /// <param name="userAgent"></param>
-        /// <param name="responseEncoding">响应编码，未指定时默认UTF8</param>
+        /// <param name="responseEncoding">mã hóa phản hồi，khi không chỉ định thì mặc địnhUTF8</param>
         /// <param name="cookies"></param>
         /// <returns></returns>
         public static string HttpGetString(string url
@@ -274,17 +274,17 @@ namespace NewtouchHIS.Lib.Services.HttpService
         #region POST
 
         /// <summary>
-        /// 普通Post方法，提交json数据，返回String（out参数http状态码）
+        /// thông thườngPostphương thức，gửijsondữ liệu，trả vềString（outtham sốhttpmã trạng thái）
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postDataStr"></param>
-        /// <param name="responseStatusCode">HTTP状态码</param>
-        /// <param name="timeout">请求超时 时间（以毫秒为单位）</param>
+        /// <param name="responseStatusCode">HTTPmã trạng thái</param>
+        /// <param name="timeout">yêu cầu hết thời gian chờ thời gian（tính bằng mili giây）</param>
         /// <param name="userAgent"></param>
-        /// <param name="requestEncoding">请求内容编码，未指定时默认UTF8</param>
-        /// <param name="responseEncoding">响应编码，未指定时默认UTF8</param>
+        /// <param name="requestEncoding">mã hóa nội dung yêu cầu，khi không chỉ định thì mặc địnhUTF8</param>
+        /// <param name="responseEncoding">mã hóa phản hồi，khi không chỉ định thì mặc địnhUTF8</param>
         /// <param name="cookies"></param>
-        /// <param name="contentType">默认form表单式提交</param>
+        /// <param name="contentType">mặc địnhformgửi dạng biểu mẫu</param>
         /// <returns></returns>
         public string HttpPostString(string url, string postDataStr
             , out int responseStatusCode
@@ -314,16 +314,16 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// 普通Post方法，提交json数据，返回String
+        /// thông thườngPostphương thức，gửijsondữ liệu，trả vềString
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postDataStr"></param>
-        /// <param name="timeout">请求超时 时间（以毫秒为单位）</param>
+        /// <param name="timeout">yêu cầu hết thời gian chờ thời gian（tính bằng mili giây）</param>
         /// <param name="userAgent"></param>
-        /// <param name="requestEncoding">请求内容编码，未指定时默认UTF8</param>
-        /// <param name="responseEncoding">响应编码，未指定时默认UTF8</param>
+        /// <param name="requestEncoding">mã hóa nội dung yêu cầu，khi không chỉ định thì mặc địnhUTF8</param>
+        /// <param name="responseEncoding">mã hóa phản hồi，khi không chỉ định thì mặc địnhUTF8</param>
         /// <param name="cookies"></param>
-        /// <param name="contentType">默认form表单式提交</param>
+        /// <param name="contentType">mặc địnhformgửi dạng biểu mẫu</param>
         /// <returns></returns>
         public string HttpPostString(string url, string postDataStr
             , int? timeout = 120000, string? userAgent = null, Encoding? requestEncoding = null
@@ -345,13 +345,13 @@ namespace NewtouchHIS.Lib.Services.HttpService
         #region private mthods
 
         /// <summary>
-        /// 普通Get方法，返回string
+        /// thông thườngGetphương thức，trả vềstring
         /// </summary>
         /// <param name="url"></param>
         /// <param name="response">HttpWebResponse</param>
-        /// <param name="timeout">请求超时 时间（以毫秒为单位）</param>
+        /// <param name="timeout">yêu cầu hết thời gian chờ thời gian（tính bằng mili giây）</param>
         /// <param name="userAgent"></param>
-        /// <param name="responseEncoding">响应编码，未指定时默认UTF8</param>
+        /// <param name="responseEncoding">mã hóa phản hồi，khi không chỉ định thì mặc địnhUTF8</param>
         /// <param name="cookies"></param>
         /// <returns></returns>
         private static string HttpGetString(string url
@@ -396,17 +396,17 @@ namespace NewtouchHIS.Lib.Services.HttpService
         }
 
         /// <summary>
-        /// 普通Post方法，提交json数据，返回String
+        /// thông thườngPostphương thức，gửijsondữ liệu，trả vềString
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postDataStr"></param>
         /// <param name="response">HttpWebResponse</param>
-        /// <param name="timeout">请求超时 时间（以毫秒为单位）</param>
+        /// <param name="timeout">yêu cầu hết thời gian chờ thời gian（tính bằng mili giây）</param>
         /// <param name="userAgent"></param>
-        /// <param name="requestEncoding">请求内容编码，未指定时默认UTF8</param>
-        /// <param name="responseEncoding">响应编码，未指定时默认UTF8</param>
+        /// <param name="requestEncoding">mã hóa nội dung yêu cầu，khi không chỉ định thì mặc địnhUTF8</param>
+        /// <param name="responseEncoding">mã hóa phản hồi，khi không chỉ định thì mặc địnhUTF8</param>
         /// <param name="cookies"></param>
-        /// <param name="contentType">默认form表单式提交</param>
+        /// <param name="contentType">mặc địnhformgửi dạng biểu mẫu</param>
         /// <returns></returns>
         public string HttpPostString(string url, string postDataStr
             , out HttpWebResponse response
@@ -420,7 +420,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
                 throw new ArgumentNullException("url");
             }
             HttpWebRequest request = null;
-            //如果是发送HTTPS请求  
+            //nếu là gửiHTTPSyêu cầu  
             if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
             {
                 ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
@@ -464,7 +464,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
                 request.CookieContainer.Add(cookies);
             }
 
-            //如果需要POST数据  
+            //nếu cầnPOSTdữ liệu  
             if (!string.IsNullOrWhiteSpace(postDataStr))
             {
                 if (requestEncoding == null)
@@ -501,7 +501,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <returns></returns>
         private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
         {
-            return true; //总是接受  
+            return true; //luôn chấp nhận  
         }
 
         #endregion

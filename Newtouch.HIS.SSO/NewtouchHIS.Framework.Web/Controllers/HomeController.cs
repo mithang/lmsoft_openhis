@@ -30,26 +30,26 @@ namespace NewtouchHIS.Framework.Web.Controllers
             HttpWebHelper.RemoveCookie(nLanguageTypeKey);
             if (!string.IsNullOrWhiteSpace(UserIdentity?.OrganizeId))
             {
-                //当前Org名称（关联Staff）
+                //hiện tạiOrgtên（liên kếtStaff）
                 ViewBag.OrgName = _organizeApp.GetNameByOrgId(this.UserIdentity.OrganizeId);
             }
             else
             {
 
-                //显示顶级组织机构的名称
+                //hiển thị tên tổ chức cấp cao nhất
                 ViewBag.OrgName = _organizeApp.GetNameByOrgId(this.UserIdentity.TopOrganizeId);
             }
 
-            //if (!this.UserIdentity.IsRoot && !this.UserIdentity.IsAdministrator)    //恒true
+            //if (!this.UserIdentity.IsRoot && !this.UserIdentity.IsAdministrator)    //hằngtrue
             //{
-            //    //当前UserId 对应的所有 医疗机构 List
+            //    //hiện tạiUserId tất cả những cái tương ứng cơ sở y tế List
             //    var mediOrgList = _organizeApp.GetMedicalOrganizeListByUserId(this.UserIdentity.UserId);
 
             //    ViewBag.MediOrgList = mediOrgList;
 
             //    if (mediOrgList != null && mediOrgList.Count() > 1)
             //    {
-            //        //是否页面加载时就必须选择Org
+            //        //khi tải trang có bắt buộc phải chọn hay khôngOrg
             //        var needChooseOrg = HttpWebHelper.GetCookie(_config.AppId + "_" + "CookieKey_ChooseOrg");
             //        ViewBag.NeedChooseOrg = !string.IsNullOrWhiteSpace(needChooseOrg);
             //    }
@@ -61,7 +61,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// Index return View之前
+        /// Index return Viewtrước đó
         /// </summary>
         public virtual void IndexBeforeReturnView()
         {

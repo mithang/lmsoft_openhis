@@ -63,10 +63,10 @@ namespace HIS.SSO.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        #region  工作台
+        #region  bàn làm việc
 
         /// <summary>
-        /// 快捷菜单list
+        /// menu phím tắtlist
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -87,7 +87,7 @@ namespace HIS.SSO.Controllers
         }
 
         /// <summary>
-		/// 快捷菜单收藏
+		/// bộ sưu tập menu phím tắt
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -130,7 +130,7 @@ namespace HIS.SSO.Controllers
         }
 
         /// <summary>
-        /// 登陆角色岗位
+        /// vai trò - vị trí đăng nhập
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -147,7 +147,7 @@ namespace HIS.SSO.Controllers
 
         }
         /// <summary>
-        /// 表格统计
+        /// thống kê bảng
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

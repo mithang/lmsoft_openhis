@@ -15,12 +15,12 @@ using NewtouchHIS.Base.Domain.Entity.SysManage;
 namespace NewtouchHIS.Framework.Web.Implementation
 {
     /// <summary>
-    /// 组织机构基础数据
+    /// dữ liệu cơ bản của tổ chức
     /// </summary>
     public interface IOrganizeAppService : ISingletonDependency
     {
         /// <summary>
-        /// 机构列表 （TopOrganize）
+        /// danh sách tổ chức （TopOrganize）
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="userCacheKey"></param>
@@ -28,7 +28,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <returns></returns>
         Task<List<SysOrgVo>> OrgListAsync(string keyword);
         /// <summary>
-        /// 获取机构名称
+        /// lấy tên tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="userCacheKey"></param>
@@ -36,49 +36,49 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <returns></returns>
         Task<string?> GetNameByOrgId(string orgId);
         /// <summary>
-        /// 人员岗位关联关系
+        /// quan hệ liên kết nhân viên - vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysStaffDutyComplexVEntity>> GetsysStaffDutyListAsync(string orgId);
         /// <summary>
-        /// 获取病人性质
+        /// lấy tính chất bệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysPatientNatureEntity>> GetsysatientNatureListAsync(string orgId);
         /// <summary>
-        /// 获取科室
+        /// lấy khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysDepartmentEntity>> GetsysDepartListAsync(string orgId);
         /// <summary>
-        /// 获取病区
+        /// lấy khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysWardVEntity>> GetsysPatiAreaListAsync(string orgId);
         /// <summary>
-        /// 根据科室获取病区
+        /// lấy khu bệnh theo khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysDepartmentWardRelationVO>> GetsysWardDeptRelationAsync(string orgId);
         /// <summary>
-        /// 获取大类
+        /// lấy nhóm lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysChargeCategoryVEntity>> GetsysMajorClassListAsync(string orgId);
         /// <summary>
-        /// 住院记账获取医生
+        /// ghi sổ nằm viện lấy bác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysDutyStaffVO>> GetStaffByDutyCodeAsync(string orgId);
         /// <summary>
-        /// 获取错误配置
+        /// lấy cấu hình lỗi
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -97,36 +97,36 @@ namespace NewtouchHIS.Framework.Web.Implementation
         #region Api
         public string OrgListApi => $"{Host}api/organize/OrgList";
         /// <summary>
-        /// 获取用户关系表
+        /// lấy bảng quan hệ người dùng
         /// </summary>
         public string sysStaffDutyListApi => $"{Host}api/organize/GetsysStaffDutyList";
         /// <summary>
-        /// 获取病人性质
+        /// lấy tính chất bệnh nhân
         /// </summary>
         public string sysPatientNatureListApi => $"{Host}api/organize/GetsysPatientNatureList";
         /// <summary>
-        /// 获取科室
+        /// lấy khoa
         /// </summary>
         public string sysDepartListApi => $"{Host}api/organize/GetsysDepartList";
         /// <summary>
-        /// 获取病区
+        /// lấy khu bệnh
         /// </summary>
         public string sysPatiAreaListApi => $"{Host}api/organize/GetsysPatiAreaList";
         /// <summary>
-        /// 根据科室获取病区
+        /// lấy khu bệnh theo khoa
         /// </summary>
         public string sysWardDeptRelationApi => $"{Host}api/organize/GetsysWardDeptRelation";
 
         /// <summary>
-        /// 获取大类
+        /// lấy nhóm lớn
         /// </summary>
         public string sysMajorClassApi => $"{Host}api/organize/GetsysMajorClassList";
        /// <summary>
-       /// 获取门诊医生
+       /// lấy bác sĩ ngoại trú
        /// </summary>
         public string StaffByDutyCodeApi => $"{Host}api/organize/GetStaffByDutyCode";
         /// <summary>
-        /// 获取错误配置
+        /// lấy cấu hình lỗi
         /// </summary>
         public string FailedCodeMessageMapApi => $"{Host}api/organize/GetSysFailedCodeMessageMapList";
 
@@ -158,7 +158,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return null;
         }
         /// <summary>
-        /// 获取用户关系表
+        /// lấy bảng quan hệ người dùng
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -167,7 +167,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysStaffDutyComplexVEntity>, string>(orgId, sysStaffDutyListApi, AppId);
         }
         /// <summary>
-        /// 病人性质表
+        /// bảng tính chất bệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -176,7 +176,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysPatientNatureEntity>, string>(orgId, sysPatientNatureListApi, AppId);
         }
         /// <summary>
-        /// 获取科室
+        /// lấy khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -185,7 +185,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysDepartmentEntity>, string>(orgId, sysDepartListApi, AppId);
         }
         /// <summary>
-        /// 获取科室
+        /// lấy khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -194,7 +194,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysWardVEntity>, string>(orgId, sysPatiAreaListApi, AppId);
         }
         /// <summary>
-        ///根据科室获取病区
+        ///lấy khu bệnh theo khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -203,7 +203,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysDepartmentWardRelationVO>, string>(orgId, sysWardDeptRelationApi, AppId);
         }
         /// <summary>
-        /// 获取大类
+        /// lấy nhóm lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -213,7 +213,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         }
 
         /// <summary>
-        /// 获取门诊医生
+        /// lấy bác sĩ ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -222,7 +222,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysDutyStaffVO>, string>(orgId, StaffByDutyCodeApi, AppId);
         }
         /// <summary>
-        /// 获取错误配置
+        /// lấy cấu hình lỗi
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

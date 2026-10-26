@@ -3,13 +3,13 @@
 namespace NewtouchHIS.Lib.Common
 {
     /// <summary>
-    /// HIS 通用枚举 
-    /// 可用于与第三方交互转换
+    /// HIS enum chung 
+    /// có thể dùng để chuyển đổi tương tác với bên thứ ba
     /// </summary>
     public static class HisEnum
     {
         /// <summary>
-        /// 访问终端类型
+        /// loại thiết bị truy cập
         /// </summary>
         public enum MediaTerminalType
         {
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Lib.Common
 
         }
         /// <summary>
-        /// 血糖测量方式
+        /// phương thức đo đường huyết
         /// </summary>
         public enum EnumXtclfs
         {
@@ -42,39 +42,39 @@ namespace NewtouchHIS.Lib.Common
             xuetang_sj,
         }
         /// <summary>
-        /// 病人性质
-        /// 定义同内部：NewtouchHIS.Domain.Enum.EnumBrxz
+        /// tính chất bệnh nhân
+        /// định nghĩa giống nội bộ：NewtouchHIS.Domain.Enum.EnumBrxz
         /// </summary>
         public enum EnumBrxz
         {
             /// <summary>
-            /// 自费
+            /// tự chi trả
             /// </summary>
             [Description("自费")]
             zf = 0,
             /// <summary>
-            /// 职工医保
+            /// bảo hiểm y tế công nhân viên
             /// </summary>
             [Description("职工医保")]
             zg = 1,
             /// <summary>
-            /// 居民医保
+            /// bảo hiểm y tế dân cư
             /// </summary>
             [Description("居民医保")]
             jm = 2,
             /// <summary>
-            /// 离休
+            /// nghỉ hưu
             /// </summary>
             [Description("离休")]
             lx = 3,
             /// <summary>
-            /// 普通医保
+            /// bảo hiểm y tế thông thường
             /// </summary>
             [Description("普通医保")]
             pt = 11,
         }
         /// <summary>
-        /// 远程诊疗状态
+        /// trạng thái khám từ xa
         /// </summary>
         public enum EmunRemoteTreatedStu
         {
@@ -92,9 +92,9 @@ namespace NewtouchHIS.Lib.Common
             yfy = 6,
         }
 
-        #region 药品相关字典
+        #region từ điển liên quan đến thuốc
         /// <summary>
-        /// 中药用法
+        /// cách dùng thuốc Đông y
         /// </summary>
         public enum EnumTCMUsage
         {
@@ -129,35 +129,35 @@ namespace NewtouchHIS.Lib.Common
         #endregion
 
 
-        #region 住院
+        #region nằm viện
         /// <summary>
-        /// 在院标志
+        /// dấu hiệu đang nằm viện
         /// </summary>
         public enum EnumZYBZ
         {
             /// <summary>
-            /// 入院登记
+            /// đăng ký nhập viện
             /// </summary>
             Xry = 0,
             /// <summary>
-            /// 病区中
+            /// trong khu bệnh
             /// </summary>
             Bqz = 1,
             /// <summary>
-            /// 病区出院（出病区）（待结账）
+            /// xuất viện khỏi khu bệnh（ra khỏi khu bệnh）（đang chờ thanh toán）
             /// </summary>
             Djz = 2,
             /// <summary>
-            /// 已出院（出院结算）
+            /// đã xuất viện（thanh toán xuất viện）
             /// </summary>
             Ycy = 3,
             /// <summary>
-            /// 转区
+            /// chuyển khu
             /// </summary>
             Zq = 7,
 
             /// <summary>
-            /// 作废记录/取消入院
+            /// bản ghi hủy bỏ/hủy nhập viện
             /// </summary>
             Wry = 9,
         }
@@ -166,37 +166,37 @@ namespace NewtouchHIS.Lib.Common
 
         #region CIS
         /// <summary>
-        /// 处方类型
+        /// loại đơn thuốc
         /// </summary>
         public enum EnumCflx
         {
             /// <summary>
-            /// 西药处方
+            /// đơn thuốc Tây y
             /// </summary>
             [Description("西药处方")]
             WMPres = 1,
             /// <summary>
-            /// 中药处方
+            /// đơn thuốc Đông y
             /// </summary>
             [Description("中药处方")]
             TCMPres = 2,
             /// <summary>
-            /// 康复处方
+            /// đơn thuốc phục hồi
             /// </summary>
             [Description("康复处方")]
             RehabPres = 3,
             /// <summary>
-            /// 检验处方
+            /// kiểm nghiệm đơn thuốc
             /// </summary>
             [Description("检验处方")]
             InspectionPres = 4,
             /// <summary>
-            /// 检查处方
+            /// kiểm tra đơn thuốc
             /// </summary>
             [Description("检查处方")]
             ExaminationPres = 5,
             /// <summary>
-            /// 常规项目处方
+            /// đơn thuốc hạng mục thông thường
             /// </summary>
             [Description("常规项目处方")]
             RegularItemPres = 6,
@@ -215,17 +215,17 @@ namespace NewtouchHIS.Lib.Common
         }
 
         /// <summary>
-        /// 诊断类型
+        /// loại chẩn đoán
         /// </summary>
         public enum EnumZdlx
         {
             /// <summary>
-            /// 主诊断
+            /// chẩn đoán chính
             /// </summary>
             [Description("主诊断")]
             Main = 1,
             /// <summary>
-            /// 副诊断
+            /// chẩn đoán phụ
             /// </summary>
             [Description("副诊断")]
             Deputy = 2

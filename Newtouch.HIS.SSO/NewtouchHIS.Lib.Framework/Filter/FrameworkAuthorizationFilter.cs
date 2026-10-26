@@ -14,12 +14,12 @@ namespace NewtouchHIS.Lib.Framework.Filter
     public class FrameworkAuthorizationFilter : IAuthorizationFilter
     {
         /// <summary>
-        /// 应用Id（在config配置 AppId）
+        /// ứng dụngId（trongconfigcấu hình AppId）
         /// </summary>
         public static string _appId { get; private set; }
 
         /// <summary>
-        /// 静态构造函数
+        /// hàm khởi tạo tĩnh
         /// </summary>
         static FrameworkAuthorizationFilter()
         {
@@ -37,7 +37,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         }
         private void Authorization(AuthorizationFilterContext filtercontext)
         {
-            //登录状态验证
+            //xác minh trạng thái đăng nhập
             HttpContext context = filtercontext.HttpContext;
             string? exception = null;
             OperatorProvider.WriteLoginUserCookie();
@@ -56,7 +56,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                     if (context.Request.IsAjaxRequest())
                     {
-                        //is ajax 请求，则返回错误代码
+                        //is ajax yêu cầu，thì trả về mã lỗi
                         filtercontext.Result = new ContentResult
                         {
                             Content = new AjaxResult
@@ -83,7 +83,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                 if (context.Request.IsAjaxRequest())
                 {
-                    //is ajax 请求，则返回错误代码
+                    //is ajax yêu cầu，thì trả về mã lỗi
                     filtercontext.Result = new ContentResult
                     {
                         Content = new AjaxResult
@@ -99,7 +99,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
                     filtercontext.Result = new RedirectResult("/Login/Index");
                 }
             }
-            //已登录
+            //đã đăng nhập
             context.Items["IDENTITY_ORGANIZEID"] = operatorModel?.OrganizeId ?? "";
         }
     }

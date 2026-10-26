@@ -52,9 +52,9 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         }
 
         /// <summary>
-        /// 下拉（选择菜单 编辑 上级）
+        /// thả xuống（chọn menu chỉnh sửa cấp trên）
         /// </summary>
-        /// <param name="justTop">仅顶级</param>
+        /// <param name="justTop">chỉ cấp cao nhất</param>
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -90,7 +90,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         }
 
         /// <summary>
-        /// 业务系统菜单列表 grid json
+        /// danh sách menu hệ thống nghiệp vụ grid json
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -130,7 +130,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
             return Content(appMenuList.ToJson());
         }
         /// <summary>
-        /// 本系统菜单列表 grid json
+        /// danh sách menu của hệ thống này grid json
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -169,7 +169,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         }
 
         /// <summary>
-        /// 提交保存菜单
+        /// gửi và lưu menu
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -191,7 +191,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
             }
             else
             {
-                //是修改行为
+                //là hành vi sửa đổi
                 if (this.OrganizeId != ConfigInitHelper.SysConfig.Top_OrganizeId
                     && this.OrganizeId != moduleEntity.OrganizeId)
                 {
@@ -215,7 +215,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         }
 
         /// <summary>
-        /// 删除菜单
+        /// xóa menu
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

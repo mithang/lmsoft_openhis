@@ -38,7 +38,7 @@ namespace NewtouchHIS.DrgGroup.wuhan_2022
         }
 
         /// <summary>
-        /// 文件分组结果
+        /// kết quả phân nhóm tệp
         /// </summary>
         /// <param name="file"></param>
         /// <param name="cols"></param>

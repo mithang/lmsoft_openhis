@@ -3,12 +3,12 @@
 namespace NewtouchHIS.Lib.Framework.Filter
 {
     /// <summary>
-    /// MVC过滤器基类
+    /// MVClớp cơ sở bộ lọc
     /// </summary>
     public abstract class ActionFilterAttributeBase : ActionFilterAttribute
     {
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
         public ActionFilterAttributeBase()
         {
@@ -16,7 +16,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         }
 
         /// <summary>
-        /// 请求对象
+        /// đối tượng yêu cầu
         /// </summary>
         //public HttpRequest request
         //{
@@ -27,7 +27,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         //}
 
         /// <summary>
-        /// 路由值
+        /// giá trị định tuyến
         /// </summary>
         //public RouteValueDictionary routeValues
         //{
@@ -39,10 +39,10 @@ namespace NewtouchHIS.Lib.Framework.Filter
         //}
 
         /// <summary>
-        /// 在路由中获取Int值
+        /// lấy trong định tuyếnIntgiá trị
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="dftVal">默认值0</param>
+        /// <param name="dftVal">giá trị mặc định0</param>
         /// <returns></returns>
         public int GetRouteIntVal(string name, int dftVal = 0)
         {
@@ -61,10 +61,10 @@ namespace NewtouchHIS.Lib.Framework.Filter
         }
 
         /// <summary>
-        /// 在路由中获取String值
+        /// lấy trong định tuyếnStringgiá trị
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="dftVal">默认值null</param>
+        /// <param name="dftVal">giá trị mặc địnhnull</param>
         /// <returns></returns>
         public string GetRouteStringVal(string name, string dftVal = null)
         {

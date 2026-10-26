@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Lib.Base.Utilities
 {
     /// <summary>
-    /// 查询条件构建器
+    /// trình xây dựng điều kiện truy vấn
     /// </summary>
     public static class PredicateBuilder
     {

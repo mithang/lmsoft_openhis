@@ -6,13 +6,13 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace NewtouchHIS.Lib.Framework.Filter
 {
     /// <summary>
-    /// 过滤器 仅处理Ajax请求的验证
+    /// bộ lọc chỉ xử lýAjaxxác minh yêu cầu
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerAjaxOnlyAttribute : ActionMethodSelectorAttribute
     {
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
         public HandlerAjaxOnlyAttribute()
         {

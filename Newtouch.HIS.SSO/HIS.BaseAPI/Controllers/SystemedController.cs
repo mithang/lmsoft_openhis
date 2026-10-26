@@ -10,8 +10,8 @@ using NewtouchHIS.Lib.Base.Model;
 namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
-    /// 系统通用API 
-    /// （涉及 Entity CRUD）
+    /// dùng chung cho hệ thốngAPI 
+    /// （liên quan Entity CRUD）
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -24,7 +24,7 @@ namespace HIS.BaseAPI.Controllers
         }
         #region Menu        
         /// <summary>
-        /// 菜单详情
+        /// chi tiết menu
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace HIS.BaseAPI.Controllers
         }
         #region cud
         /// <summary>
-        /// 添加菜单
+        /// thêm menu
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

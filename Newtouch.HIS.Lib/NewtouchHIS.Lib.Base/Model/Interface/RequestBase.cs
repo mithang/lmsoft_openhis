@@ -6,17 +6,17 @@ namespace NewtouchHIS.Lib.Base.Model
     {
         [Required(ErrorMessage = "应用Id（AppId）必传")]
         /// <summary>
-        /// 应用Id
+        /// ứng dụngId
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
-        /// 机构Id
+        /// tổ chứcId
         /// </summary>
         public string? OrganizeId { get; set; }
 
         [Required(ErrorMessage = "时间戳必传")]
         /// <summary>
-        /// 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss"
+        /// thời gian gửi yêu cầu，định dạng"yyyy-MM-dd HH:mm:ss"
         /// </summary>
         public DateTime Timestamp { get; set; }
 
@@ -25,12 +25,12 @@ namespace NewtouchHIS.Lib.Base.Model
     public class BusRequest : RequestBase
     {
         /// <summary>
-        /// 令牌类型
+        /// loại mã thông báo
         /// </summary>
         public string? TokenType { get; set; }
 
         /// <summary>
-        /// 访问令牌
+        /// mã thông báo truy cập
         /// </summary>
         public string? Token { get; set; }
     }

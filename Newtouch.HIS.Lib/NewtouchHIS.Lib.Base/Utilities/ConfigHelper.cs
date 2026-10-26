@@ -11,7 +11,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             _config = configuration;
         }
         /// <summary>
-        /// 读取appsettings.json文件中指定节点信息
+        /// đọcappsettings.jsonthông tin nút chỉ định trong tệp
         /// </summary>
         /// <param name="sessions"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return string.Empty;
         }
         /// <summary>
-        /// 读取实体信息
+        /// đọc thông tin thực thể
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="session"></param>

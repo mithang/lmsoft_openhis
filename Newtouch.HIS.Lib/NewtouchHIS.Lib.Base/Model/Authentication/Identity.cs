@@ -1,38 +1,38 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// API访问者身份
+    /// APIdanh tính người truy cập
     /// </summary>
     public abstract class Identity
     {
         /// <summary>
-        /// 应用Id
+        /// ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
 
         /// <summary>
-        /// 令牌类型（用户类型）
+        /// loại mã thông báo（loại người dùng）
         /// </summary>
         public string? TokenType { get; set; }
         public string? Token { get; set; }
 
         /// <summary>
-        /// 用户Id
+        /// người dùngId
         /// </summary>
         public string? UserId { get; set; }
 
         /// <summary>
-        /// 系统用户 Code（登录账号）
+        /// người dùng hệ thống Code（tài khoản đăng nhập）
         /// </summary>
         public string? UserCode { get; set; }
 
         /// <summary>
-        /// 系统人员 姓名
+        /// nhân viên hệ thống họ tên
         /// </summary>
         public string? UserName { get; set; }
 
         /// <summary>
-        /// 用户账户
+        /// tài khoản người dùng
         /// </summary>
         public string? Account { get; set; }
         public string? SignalConnId { get; set; }

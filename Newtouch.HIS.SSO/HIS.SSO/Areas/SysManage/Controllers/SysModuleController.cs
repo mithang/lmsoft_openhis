@@ -28,13 +28,13 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             return View(user);
         }
         /// <summary>
-        /// 系统权限树 （菜单+按钮）
+        /// cây quyền hệ thống （menu+nút）
         /// </summary>
-        /// <param name="roleId">当前角色Id</param>
+        /// <param name="roleId">vai trò hiện tạiId</param>
         /// <returns></returns>
         public async Task<ActionResult> GetPermissionTree(string roleId)
         {
-            //且有效菜单
+            //và menu có hiệu lực
             var moduledata = await _sysModuleDmnService.GetEntitybyorgId(this.OrganizeId);
             var authorizedata = new List<SysRoleAuthorizeEntity>();
             if (!string.IsNullOrEmpty(roleId))
@@ -68,7 +68,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitMenuSync(List<SysModuleExtendVO> list, string parentMenu, string parentMenuId, string fromAppId)
         {
-            //已选现有菜单
+            //menu hiện có đã chọn
             SysModuleEntity? parentEty = new SysModuleEntity();
             if (!string.IsNullOrWhiteSpace(parentMenuId))
             {
@@ -76,7 +76,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             }
             if (!string.IsNullOrWhiteSpace(parentMenu) && (parentEty == null || string.IsNullOrWhiteSpace(parentMenuId)))
             {
-                //新增父级菜单(自定义菜单)
+                //thêm menu cấp cha(menu tùy chỉnh)
                 var addParentResp = await _sysModuleDmnService.AddEntity(new SysModuleVO
                 {
                     Name = parentMenu,
@@ -90,7 +90,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                 }
                 parentMenuId = addParentResp.Data;
             }
-            //查找待导入菜单中的父级菜单是否存在  当列表中未找到父级且未选择父级时反馈失败
+            //tìm xem menu cấp cha trong menu chờ nhập có tồn tại hay không  khi không tìm thấy cấp cha trong danh sách và chưa chọn cấp cha thì phản hồi thất bại
             var selectedParentMenu = list.Where(p => !string.IsNullOrWhiteSpace(p.ParentId))?.Select(p => p.ParentId).Distinct().ToList();
             if (selectedParentMenu != null)
             {

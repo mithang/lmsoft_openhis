@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.HangFire.UI.Models.MRQC
 {
     /// <summary>
-    /// 病历质控数据
+    /// dữ liệu kiểm soát chất lượng bệnh án
     /// </summary>
     public class MrqcNoticeDataDTO
     {

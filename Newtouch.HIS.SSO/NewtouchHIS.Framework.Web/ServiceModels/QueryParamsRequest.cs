@@ -5,7 +5,7 @@ namespace NewtouchHIS.Framework.Web.ServiceModels
     public class QueryParamsRequest : QueryParamsBase
     {
         /// <summary>
-        /// 仅限有效
+        /// chỉ giới hạn có hiệu lực
         /// </summary>
         public bool? validLimit { get; set; }
 

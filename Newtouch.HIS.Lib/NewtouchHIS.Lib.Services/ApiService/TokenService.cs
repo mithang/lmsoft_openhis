@@ -19,14 +19,14 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Lib.Services.ApiService
 {
     /// <summary>
-    /// 接口访问 Token统一处理
+    /// truy cập giao diện Tokenxử lý thống nhất
     /// </summary>
     public class TokenService
     {
         #region private
         private readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// 获取鉴权中心Api地址
+        /// lấy trung tâm xác thựcApiđịa chỉ
         /// </summary>
         private readonly static string _authCenterHost = ConfigInitHelper.SysConfig?.AppAPIHost?.SiteAuthCenterHost;
         private readonly static string _appTokenCacheKey = "HisToken:App_";
@@ -37,10 +37,10 @@ namespace NewtouchHIS.Lib.Services.ApiService
             _httpClient = httpClient;
         }
         /// <summary>
-        /// App获取授权Token
+        /// Applấy ủy quyềnToken
         /// </summary>
-        /// <param name="appId">本应用Id</param>
-        /// <param name="accessAppId">申请访问应用Id</param>
+        /// <param name="appId">ứng dụng nàyId</param>
+        /// <param name="accessAppId">xin truy cập ứng dụngId</param>
         /// <returns></returns>
         public async Task<string> GetAppToken(string appId, string accessAppId)
         {
@@ -68,7 +68,7 @@ namespace NewtouchHIS.Lib.Services.ApiService
             return tokenResult?.ToJson() ?? "";
         }
         /// <summary>
-        /// 用户获取Token
+        /// người dùng lấyToken
         /// </summary>
         /// <returns></returns>
         public async Task<BusResult<string>> GetUserToken(OperatorModel user, string accessAppId)
@@ -118,20 +118,20 @@ namespace NewtouchHIS.Lib.Services.ApiService
         //    }
 
         //    var result = await _httpClient.PostAsync<Result>(uri, data, token);
-        //    //授权到期自动续期
+        //    //hết hạn ủy quyền tự động gia hạn
         //    if (result != null && result.HttpStatus == HttpStatusCode.Unauthorized)
         //    {
-        //        //鉴权失败 刷新token
+        //        //xác thực thất bại làm mớitoken
         //        token = GetUserTokenRefesh(user, token);
         //    }
         //    if (result == null || result.HttpStatus != HttpStatusCode.OK || result.BusData == null)
         //    {
-        //        throw new FailedException($"接口返回异常：\r\nRequest:{uri}\r\nResponse:{result?.ToJson()}");
+        //        throw new FailedException($"ngoại lệ giao diện trả về：\r\nRequest:{uri}\r\nResponse:{result?.ToJson()}");
         //    }
         //    var busRet = JsonConvert.DeserializeObject<BusResult<T>>(result.BusData?.ToJson());
         //    if (busRet == null)
         //    {
-        //        throw new FailedException($"业务对象映射异常：\r\nRequest:{uri}\r\nResponse:{result.BusData?.ToJson()}");
+        //        throw new FailedException($"ngoại lệ ánh xạ đối tượng nghiệp vụ：\r\nRequest:{uri}\r\nResponse:{result.BusData?.ToJson()}");
         //    }
         //    return busRet;
         //}
@@ -163,7 +163,7 @@ namespace NewtouchHIS.Lib.Services.ApiService
         /// </summary>
         private readonly static string _getUserToken = $"{_authCenterHost}api/Auth/GetUserToken";
         /// <summary>
-        /// 用户Token刷新
+        /// người dùngTokenlàm mới
         /// </summary>
         private readonly static string _userTokenRefresh = $"{_authCenterHost}api/Auth/UserTokenRefresh";
         #endregion

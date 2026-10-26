@@ -7,7 +7,7 @@ namespace NewtouchHIS.HangFire.UI.Utilities
     public static class ApiManageHelper
     {
         /// <summary>
-        /// 接口中心Host
+        /// trung tâm giao diệnHost
         /// </summary>
         public static string ApiManageHost
         {
@@ -22,27 +22,27 @@ namespace NewtouchHIS.HangFire.UI.Utilities
             }
         }
         /// <summary>
-        /// 待处理消息列表
+        /// danh sách tin nhắn đang chờ xử lý
         /// </summary>
         public static string NoticeImmediatelyWaitProcApi = $"{ApiManageHost}/api/NoticeJob/NoticeImmediatelyWaitProc";
         /// <summary>
-        /// 超时未读消息列表
+        /// danh sách tin nhắn chưa đọc quá hạn
         /// </summary>
         public static string NoticeUnReadProcApi = $"{ApiManageHost}/api/NoticeJob/NoticeUnReadProc";
         /// <summary>
-        /// 消息处理成功
+        /// xử lý tin nhắn thành công
         /// </summary>
         public static string NoticeProcSuccessApi = $"{ApiManageHost}/api/NoticeJob/NoticeProcSuccess";
         /// <summary>
-        /// 消息处理失败
+        /// xử lý tin nhắn thất bại
         /// </summary>
         public static string NoticeProcFailedApi = $"{ApiManageHost}/api/NoticeJob/NoticeProcFailed";
         /// <summary>
-        /// 消息发送成功
+        /// gửi tin nhắn thành công
         /// </summary>
         public static string NoticeSendSuccessApi = $"{ApiManageHost}/api/NoticeJob/NoticeSendSuccess";
         /// <summary>
-        /// 消息发送失败
+        /// gửi tin nhắn thất bại
         /// </summary>
         public static string NoticeSendFailedApi = $"{ApiManageHost}/api/NoticeJob/NoticeSendFailed";
 

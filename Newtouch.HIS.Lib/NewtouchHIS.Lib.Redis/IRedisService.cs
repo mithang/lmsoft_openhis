@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Lib.Redis
 {
     /// <summary>
-    /// 暂不用
+    /// tạm thời không dùng
     /// </summary>
     public interface IRedisService
     {
     
             /// <summary>
-            /// 设置缓存
+            /// thiết lập bộ nhớ đệm
             /// </summary>
             /// <typeparam name="T"></typeparam>
             /// <param name="key"></param>
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Lib.Redis
             Task<bool> SetCache<T>(string key, T value, TimeSpan? expireTime = null);
 
             /// <summary>
-            /// 获取缓存
+            /// lấy bộ nhớ đệm
             /// </summary>
             /// <typeparam name="T"></typeparam>
             /// <param name="key"></param>
@@ -33,28 +33,28 @@ namespace NewtouchHIS.Lib.Redis
             Task<T> GetCache<T>(string key);
 
             /// <summary>
-            /// 根据键精准删除
+            /// xóa chính xác theo khóa
             /// </summary>
             /// <param name="key"></param>
             /// <returns></returns>
             Task<bool> RemoveCache(string key);
 
             /// <summary>
-            /// 模糊删除，左侧匹配，右模糊
+            /// xóa mờ，khớp bên trái，mờ bên phải
             /// </summary>
             /// <param name="key"></param>
             /// <returns></returns>
             Task RemoveKeysLeftLike(string key);
 
             /// <summary>
-            /// 获取自增id
+            /// lấy tự tăngid
             /// </summary>
             /// <param name="key"></param>
             /// <returns></returns>
             Task<long> GetIncr(string key);
 
             /// <summary>
-            /// 获取自增id
+            /// lấy tự tăngid
             /// </summary>
             /// <param name="key"></param>
             /// <param name="expTimeSpan"></param>
@@ -73,7 +73,7 @@ namespace NewtouchHIS.Lib.Redis
             #endregion
 
 
-            #region 列表(List) 操作
+            #region danh sách(List) thao tác
 
             Task<long> ListLeftPushAsync(string redisKey, string redisValue);
             Task<long> ListRightPushAsync(string redisKey, string redisValue);
@@ -81,7 +81,7 @@ namespace NewtouchHIS.Lib.Redis
             #endregion
 
 
-            #region 有序集合(Sorted Set)
+            #region tập hợp có thứ tự(Sorted Set)
 
             //Task<bool> SortedSetAddAsync(string redisKey, string redisValue, DateTime time);
 

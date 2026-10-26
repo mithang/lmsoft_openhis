@@ -5,7 +5,7 @@ namespace NewtouchHIS.Lib.Base
     public class BaseEnum
     {
         /// <summary>
-        /// 模块类型
+        /// kiểu mô-đun
         /// </summary>
         public enum ModuTypeEnum
         {
@@ -16,7 +16,7 @@ namespace NewtouchHIS.Lib.Base
 
         }
         /// <summary>
-        /// 权限等级
+        /// cấp độ quyền
         /// </summary>
         public enum AuthLevEnum
         {
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Lib.Base
             root = 9999,
         }
         /// <summary>
-        /// 授权类型
+        /// loại ủy quyền
         /// </summary>
         public enum AuthTypeEnum
         {
@@ -49,7 +49,7 @@ namespace NewtouchHIS.Lib.Base
         }
 
         /// <summary>
-        /// 消息状态
+        /// trạng thái tin nhắn
         /// </summary>
         [Description("消息状态")]
         public enum NoticeStuEnum
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Lib.Base
         }
 
         /// <summary>
-        /// 消息适用范围限制
+        /// giới hạn phạm vi áp dụng tin nhắn
         /// </summary>
         [Description("消息组适用范围")]
         public enum MsgNoticeRangeEnum
@@ -88,7 +88,7 @@ namespace NewtouchHIS.Lib.Base
             AreaGroup = 31,
         }
         /// <summary>
-        /// 队列执行类型
+        /// kiểu thực thi hàng đợi
         /// </summary>
         [Description("队列执行类型")]
         public enum MsgQueueExecTypeEnum
@@ -111,7 +111,7 @@ namespace NewtouchHIS.Lib.Base
             usergroup = 2,
         }
         /// <summary>
-        /// 消息组业务类型
+        /// loại nghiệp vụ nhóm tin nhắn
         /// </summary>
         [Description("消息组业务类型")]
         public enum GroupYwlxEnum
@@ -128,14 +128,14 @@ namespace NewtouchHIS.Lib.Base
         public enum ExpireType
         {
             /// <summary>
-            /// 绝对过期
-            /// 注：即自创建一段时间后就过期
+            /// hết hạn tuyệt đối
+            /// chú ý：tức là hết hạn sau một khoảng thời gian kể từ khi tạo
             /// </summary>
             Absolute,
 
             /// <summary>
-            /// 相对过期
-            /// 注：即该键未被访问后一段时间后过期，若此键一直被访问则过期时间自动延长
+            /// hết hạn tương đối
+            /// chú ý：tức là hết hạn sau một khoảng thời gian kể từ khi khóa đó không được truy cập，nếu khóa này luôn được truy cập thì thời gian hết hạn tự động kéo dài
             /// </summary>
             Relative,
         }
@@ -143,12 +143,12 @@ namespace NewtouchHIS.Lib.Base
         public enum CacheType
         {
             /// <summary>
-            /// 使用内存缓存(不支持分布式)
+            /// dùng bộ nhớ đệm trong bộ nhớ(không hỗ trợ phân tán)
             /// </summary>
             Memory,
 
             /// <summary>
-            /// 使用Redis缓存(支持分布式)
+            /// sử dụngRedisbộ nhớ đệm(hỗ trợ phân tán)
             /// </summary>
             Redis
         }

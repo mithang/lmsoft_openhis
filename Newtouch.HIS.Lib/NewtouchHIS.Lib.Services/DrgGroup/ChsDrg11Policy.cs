@@ -6,7 +6,7 @@ using NewtouchHIS.Lib.Base.Model.DRG;
 namespace NewtouchHIS.Lib.Services.DrgGroup
 {
     /// <summary>
-    /// CHS-DRG 1.1标准版 
+    /// CHS-DRG 1.1bản tiêu chuẩn 
     /// </summary>
     public interface IChsDrg11Policy : IDrgGroupBasePolicy
     {
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             {
                 result.msg = "参数校验失败";
                 result.code = ResponseResultCode.FAIL;
-                return result;//验证失败则直接返回
+                return result;//nếu xác minh thất bại thì trả về ngay
             }
             await Task.Run(() =>
             {

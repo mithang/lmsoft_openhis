@@ -9,7 +9,7 @@ using static NewtouchHIS.Lib.Base.BaseEnum;
 namespace NewtouchHIS.Framework.Web.Controllers.SysManage
 {
     /// <summary>
-    /// 消息管理
+    /// quản lý tin nhắn
     /// </summary>
     public class SysNoticeBaseController : OrgControllerBase
     {
@@ -26,7 +26,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
             return View();
         }
         /// <summary>
-        /// 获取消息列表
+        /// lấy danh sách tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

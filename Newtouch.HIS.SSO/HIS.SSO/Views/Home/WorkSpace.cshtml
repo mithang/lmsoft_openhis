@@ -42,7 +42,7 @@
     }
 
     .bootstrap-table {
-        height: 95%; /* 或者是百分比，比如 height: 100%; */
+        height: 95%; /* hoặc là phần trăm，ví dụ height: 100%; */
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -59,19 +59,19 @@
 
 <div class="panel panel-default">
     <div id="myCarousel" class="carousel slide">
-        <!-- 轮播（Carousel）指标 -->
+        <!-- băng chuyền（Carousel）chỉ số -->
         <ol class="carousel-indicators" style="margin-bottom:-1rem;">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
 @*            <li data-target="#myCarousel" data-slide-to="2"></li>*@
         </ol>
-        <!-- 轮播（Carousel）项目 -->
+        <!-- băng chuyền（Carousel）dự án -->
         <div class="carousel-inner">
             <div class="item active">
                 <div class="app-blocktheme-blue">
-                    <span class="col-xs-4 label label-success app-item" onclick="appdomain('SETT')">结算系统</span>
-                    <span class="col-xs-4 label label-primary app-item" onclick="appdomain('CIS')">医护协同系统</span>
-                    <span class="col-xs-4 label label-warning app-item" onclick="appdomain('PDS')">药房药库系统</span>
+                    <span class="col-xs-4 label label-success app-item" onclick="appdomain('SETT')">hệ thống thanh toán</span>
+                    <span class="col-xs-4 label label-primary app-item" onclick="appdomain('CIS')">hệ thống hợp tác y tế - điều dưỡng</span>
+                    <span class="col-xs-4 label label-warning app-item" onclick="appdomain('PDS')">hệ thống nhà thuốc - kho thuốc</span>
                 </div>
                 @*			<div class="carousel-caption">
 
@@ -79,21 +79,21 @@
             </div>
             <div class="item">
                 <div class="app-blocktheme-blue">
-                    <span class="col-xs-4 label label-success app-item app-item" onclick="appdomain('EMR')">电子病历系统</span>
-                    <span class="col-xs-4 label label-warning app-item" onclick="appdomain('MRQC')">病历质控系统</span>
-                    <span class="col-xs-5 label label-info app-item" onclick="appdomain('OR')">手术系统</span>
+                    <span class="col-xs-4 label label-success app-item app-item" onclick="appdomain('EMR')">hệ thống bệnh án điện tử</span>
+                    <span class="col-xs-4 label label-warning app-item" onclick="appdomain('MRQC')">hệ thống kiểm soát chất lượng bệnh án</span>
+                    <span class="col-xs-5 label label-info app-item" onclick="appdomain('OR')">hệ thống phẫu thuật</span>
                 </div>
             </div>
 @*            <div class="item">
                 <div class="app-blocktheme-blue">
-                    <span class="col-xs-4 label label-info app-item app-item" onclick="appdomain('MR')">病案管理系统</span>
-                    <span class="col-xs-4 label label-default app-item app-item" onclick="appdomain('BASE')">后台基础数据系统</span>
-                    <span class="col-xs-5 label label-info app-item" onclick="appdomain('HERP')">物资耗材系统</span>
+                    <span class="col-xs-4 label label-info app-item app-item" onclick="appdomain('MR')">hệ thống quản lý bệnh án</span>
+                    <span class="col-xs-4 label label-default app-item app-item" onclick="appdomain('BASE')">hệ thống dữ liệu cơ bản phía sau</span>
+                    <span class="col-xs-5 label label-info app-item" onclick="appdomain('HERP')">hệ thống vật tư tiêu hao</span>
                     
                 </div>
             </div>*@
         </div>
-        <!-- 轮播（Carousel）导航 -->
+        <!-- băng chuyền（Carousel）điều hướng -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="fa fa-chevron-left" style="margin-top:45%;" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -105,11 +105,11 @@
     </div>
     <hr />
     <div class="panel-heading navb-bg" style="font-size:16px">
-        <i class="fa fa-star icon-theme-highlight"></i> <strong class="icon-theme-info">快速访问</strong>
+        <i class="fa fa-star icon-theme-highlight"></i> <strong class="icon-theme-info">truy cập nhanh</strong>
         <div class="topPanel pull-right col-sm-2">
             <div class="search">
                 <div class="input-group">
-                    <input id="txt_keyword" type="text" class="form-control" placeholder="功能名称">
+                    <input id="txt_keyword" type="text" class="form-control" placeholder="tên chức năng">
                     <span class="input-group-btn">
                         <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     </span>
@@ -121,19 +121,19 @@
     </ul>
     <hr />
     <div class="panel-heading navb-bg" style="font-size:16px">
-        <i class="fa fa-line-chart icon-theme-warning"></i> <strong class="icon-theme-info">工作台 · 统计分析</strong>
+        <i class="fa fa-line-chart icon-theme-warning"></i> <strong class="icon-theme-info">bàn làm việc · phân tích thống kê</strong>
     </div>
 
 
     <div id="dv_table">
         <form class="form-inline" role="form" style="padding:0.5rem;">
             <div class="form-group" id="dv_tjrq">
-                <label class="control-label text-title" for="tjrq">统计日期</label>
+                <label class="control-label text-title" for="tjrq">ngày thống kê</label>
                 <input id="tjrq" type="text" class="forme-default input-wdatepicker" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})"
                        onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked:function(){ refreshTab();} })" value="@DateTime.Now.ToString("yyyy-MM-dd")">
             </div>
             <div class="form-group pull-right">
-                <label class="control-label text-title" for="sel_Duty"><i class="fa fa-vcard-o icon-theme-warning"></i> 岗  位</label>
+                <label class="control-label text-title" for="sel_Duty"><i class="fa fa-vcard-o icon-theme-warning"></i> Vị  trí</label>
                 <select id="sel_Duty" class="forme-default">
                 </select>
             </div>
@@ -194,9 +194,9 @@
     function DutyTabInit() {
         var $thisval = $("#sel_Duty").val();
         switch ($thisval) {
-            case "tollman": //收费员
+            case "tollman": //nhân viên thu phí
                 $("#dv_tjrq").show();
-                tabtypeName = "收费员";
+                tabtypeName = "nhân viên thu phí";
                 columns = [
                     {
                         field: 'Id',
@@ -204,7 +204,7 @@
                     },
                     {
                         field: 'brxz',
-                        title: '患者类型',
+                        title: 'loại bệnh nhân',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -212,7 +212,7 @@
                     },
                     {
                         field: 'ghrc',
-                        title: '挂号数',
+                        title: 'số lượng đăng ký khám',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -220,7 +220,7 @@
                     },
                     {
                         field: 'thrc',
-                        title: '退号数',
+                        title: 'số lượng hủy đăng ký khám',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -228,7 +228,7 @@
                     },
                     {
                         field: 'jsje',
-                        title: '结算金额',
+                        title: 'số tiền thanh toán',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -236,7 +236,7 @@
                     },
                     {
                         field: 'tfje',
-                        title: '退费金额',
+                        title: 'số tiền hoàn trả',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -246,14 +246,14 @@
                 break;
             case "Doctor":
                 $("#dv_tjrq").show();
-                tabtypeName = "医生";
+                tabtypeName = "bác sĩ";
                 columns = [
                     {
                         field: 'Id',
                         visible: false
                     }, {
                         field: 'brxz',
-                        title: '患者类型',
+                        title: 'loại bệnh nhân',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -261,7 +261,7 @@
                     },
                     {
                         field: 'jzrc',
-                        title: '就诊人数',
+                        title: 'số lượng người khám',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -269,7 +269,7 @@
                     },
                     {
                         field: 'kfje',
-                        title: '开方金额',
+                        title: 'số tiền kê đơn',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -277,7 +277,7 @@
                     },
                     {
                         field: 'jsje',
-                        title: '结算金额',
+                        title: 'số tiền thanh toán',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -287,14 +287,14 @@
                 break;
             case "Nurse":
                 $("#dv_tjrq").hide();
-                tabtypeName = "护士";
+                tabtypeName = "y tá";
                 columns = [
                     {
                         field: 'Id',
                         visible: false
                     }, {
                         field: 'brxz',
-                        title: '患者类型',
+                        title: 'loại bệnh nhân',
                         halign: 'center',
                         align: 'center',
                         width: '20',
@@ -302,7 +302,7 @@
                     },
                     {
                         field: 'yrqrc',
-                        title: '今日入区',
+                        title: 'vào khu hôm nay',
                         halign: 'center',
                         align: 'center',
                         width: '10',
@@ -310,7 +310,7 @@
                     },
                     {
                         field: 'wrqrc',
-                        title: '今日待入区',
+                        title: 'chờ vào khu hôm nay',
                         halign: 'center',
                         align: 'center',
                         width: '10',
@@ -318,7 +318,7 @@
                     },
                     {
                         field: 'jrcqrc',
-                        title: '今日出区',
+                        title: 'ra khỏi khu hôm nay',
                         halign: 'center',
                         align: 'center',
                         width: '10',
@@ -326,7 +326,7 @@
                     },
                     {
                         field: 'jrwcqrc',
-                        title: '在院人次',
+                        title: 'lượt người đang nằm viện',
                         halign: 'center',
                         align: 'center',
                         width: '10',
@@ -334,7 +334,7 @@
                     },
                     {
                         field: 'zcw',
-                        title: '总床位数',
+                        title: 'tổng số giường',
                         halign: 'center',
                         align: 'center',
                         width: '10',
@@ -342,7 +342,7 @@
                     },
                     {
                         field: 'sycw',
-                        title: '剩余床位数',
+                        title: 'số giường trống còn lại',
                         halign: 'center',
                         align: 'center',
                         width: '10',
@@ -358,8 +358,8 @@
         //$("#tabtype").val(tabtypeName);
         var $table = $('#table');
         $table.bootstrapTable({
-            url: "/Home/GetDutyTotalList", //服务器返回数据的网址
-            method: 'POST',                      //数据请求方式
+            url: "/Home/GetDutyTotalList", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             height: '100%',
             queryParams: {
@@ -367,7 +367,7 @@
                 tjrq: $("#tjrq").val()
             },
             classes: "table table-bordered table-striped table-hover",
-            theadClasses: "table-light",//设置表头样式
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
             idField: 'Id',
             showColumns: false,
             columns: columns,
@@ -387,10 +387,10 @@
                 GetLeaveChart(data);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>正在加载中，请稍候</span>";
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
             },
             formatNoMatches: function () {
-                return "暂无数据";
+                return "chưa có dữ liệu";
             }
         });
     }
@@ -422,7 +422,7 @@
             var labelcss = !v.AppId ? 'text-success' : '';
             if (!!v && v.Id != null) {
                 var li = '  <li>'
-                    + ' <div class="dv-data" data-appId=' + v.AppId + ' data-MenuUrl=' + v.MenuUrl + ' data-MenuName=' + v.MenuName + ' title="功能名称:' + v.MenuName + '">'
+                    + ' <div class="dv-data" data-appId=' + v.AppId + ' data-MenuUrl=' + v.MenuUrl + ' data-MenuName=' + v.MenuName + ' title="tên chức năng:' + v.MenuName + '">'
                     + ' </div>'
                     + ' <span class="' + labelcss + '" title="" style="cursor:pointer;font-size:16px"><i class="fa fa-hand-o-right icon-theme-info"></i> ' + v.MenuName + '</span>'
                     + ' </li >';
@@ -457,17 +457,17 @@
                 }
             },
             error: function (request, error, ex) {
-                $.modalAlert("服务不可访问：[" + ex + "]", 'error');
+                $.modalAlert("dịch vụ không thể truy cập：[" + ex + "]", 'error');
             }
         });
     }
 
-    /**********************************数据统计**********************************/
+    /**********************************thống kê dữ liệu**********************************/
     function GetSalaryChart(data) {
         //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
         var OutpatientList = [];
         var InpatientList = [];
-        //折线图 获取就诊人数
+        //biểu đồ đường lấy số người khám
         if (data) {
             OutpatientList = data.OutpatientList;
             InpatientList = data.InpatientList
@@ -482,33 +482,33 @@
                 zoomType: 'none'
             },
             title: {
-                text: '就诊人数/在院人数'
+                text: 'số lượng người khám/số người đang nằm viện'
             },
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    'Tháng 1',
+                    'Tháng 2',
+                    'Tháng 3',
+                    'Tháng 4',
+                    'Tháng 5',
+                    'Tháng 6',
+                    'Tháng 7',
+                    'Tháng 8',
+                    'Tháng 9',
+                    'Tháng 10',
+                    'Tháng 11',
+                    'Tháng 12'
                 ]
             },
             yAxis: {
                 title: {
-                    text: '单位 (人)'
+                    text: 'đơn vị (người)'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}人</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y}người</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -520,14 +520,14 @@
                 }
             },
             series: [{
-                name: "门诊",
+                name: "ngoại trú",
                 color: '#999EFF',
                 data: [
                     2, 0, 10, 29, 50, 12, 79, 80, 98, 100, 23
                     //OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
                 ]
             }, {
-                name: "住院",
+                name: "nằm viện",
                 color: '#FFBC75',
                 data: [
                     102, 99, 110, 129, 150, 112, 179, 180, 198, 100, 123
@@ -539,12 +539,12 @@
 
     function GetLeaveChart(data) {
         //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
-        //饼状图 获取就诊人数
+        //biểu đồ tròn lấy số người khám
         var array = [];
-        var title = "就诊类别统计";
+        var title = "thống kê loại khám";
         var $thisval = $("#sel_Duty").val();
         if ($thisval == "tollman") {
-            title = "就诊类别统计";
+            title = "thống kê loại khám";
             $.each(data, function (e) {
                 if (this.brxz != "合计") {
                     array.push([this.brxz, this.ghrc]);
@@ -566,7 +566,7 @@
             });
         }
         if (array.length == 0) {
-            array.push(["人次", 0]);
+            array.push(["lượt người", 0]);
         }
 
         $('#leavechart').highcharts({
@@ -579,7 +579,7 @@
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '{point.name}: <b>{point.y}人</b>'
+                pointFormat: '{point.name}: <b>{point.y}người</b>'
             },
             plotOptions: {
                 pie: {
@@ -587,7 +587,7 @@
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.y}人',
+                        format: '<b>{point.name}</b>: {point.y}người',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
@@ -597,9 +597,9 @@
             series: [{
                 type: 'pie',
                 //data: [
-                //    ['自费', 100],
-                //    ['城镇职工', 109],
-                //    ['居民', 27]
+                //    ['tự chi trả', 100],
+                //    ['công nhân viên thành thị', 109],
+                //    ['dân cư', 27]
                 //]
                 data: array
             }]
@@ -634,7 +634,7 @@
             success: function (lastdata) {
                 if (lastdata != null) {
                     for (var i = 0; i < lastdata.length; i++) {
-                        rtnobj.str.push(lastdata[i].wbegin.substring(5, 10) + "至" + (lastdata[i].wend).substring(5, 10));
+                        rtnobj.str.push(lastdata[i].wbegin.substring(5, 10) + "đến" + (lastdata[i].wend).substring(5, 10));
                         var isOutpatientPush = false;
                         $.each(data.OutpatientList, function (ii, v) {
                             if (v.wbegin == lastdata[i].wbegin && v.wend == lastdata[i].wend) {
@@ -663,26 +663,26 @@
                 zoomType: 'none'
             },
             title: {
-                text: '就诊人数/在院人数'
+                text: 'số lượng người khám/số người đang nằm viện'
             },
             subtitle: {
-                text: new Date().getFullYear() + "年最近10周人数统计",
+                text: "Thống kê số người 10 tuần gần nhất năm " + new Date().getFullYear(),
             },
             xAxis: {
                 categories: rtnobj.str,
                 labels: {
-                    rotation: 10, //倾斜的角度
+                    rotation: 10, //góc nghiêng
                 }
             },
             yAxis: {
                 title: {
-                    text: '单位 (人)'
+                    text: 'đơn vị (người)'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}人</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y}người</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -694,11 +694,11 @@
                 }
             },
             series: [{
-                name: "门诊",
+                name: "ngoại trú",
                 color: '#999EFF',
                 data: rtnobj.dataoutpatient
             }, {
-                name: "住院",
+                name: "nằm viện",
                 color: '#FFBC75',
                 data: rtnobj.datainpatient
             }

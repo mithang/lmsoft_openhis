@@ -8,19 +8,19 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
     public interface IDrgGroupBasePolicy
     {
         /// <summary>
-        /// 病例批量分组分析
+        /// phân tích phân nhóm hàng loạt bệnh án
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
         Task<BusResult<List<DrgGroupResult>>> GroupMedRecordAsync(DrgAreaMedicalRecordS record);
         /// <summary>
-        /// 患者病案首页分组分析
+        /// phân tích phân nhóm trang đầu bệnh án của bệnh nhân
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
         Task<BusResult<DrgGroupResult>> GroupMedRecordAsync(DrgAreaMedicalRecord record);
         /// <summary>
-        /// 文件数据分组分析
+        /// phân tích phân nhóm dữ liệu tệp
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             {
                 throw new FailedException("文件信息不可为空");
             }
-            //默认上传路径
+            //đường dẫn tải lên mặc định
             var defaultPath = $"{Directory.GetCurrentDirectory()}{ConfigInitHelper.SysConfig!.FileConfig!.DrgDataFileDirPath ?? ""}";
             if (!(!string.IsNullOrWhiteSpace(request.FilePath) && File.Exists(defaultPath + request.FilePath + request.FileName)))
             {

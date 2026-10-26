@@ -57,7 +57,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             }
             if (string.IsNullOrWhiteSpace(OrganizeId))
             {
-                return null;    //不返回
+                return null;    //không trả về
             }
 
             var data = new
@@ -86,7 +86,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
         public ActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
-            //主要是为了唯一主键
+            //chủ yếu là để có khóa chính duy nhất
             if (!string.IsNullOrEmpty(keyValue))
             {
                 roleEntity.ModifiedEntity(OrganizeId, UserIdentity.UserCode, true);
@@ -108,7 +108,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                     roleAuthorizeEntity.Id = Guid.NewGuid().ToString();
                     roleAuthorizeEntity.RoleId = roleEntity.Id;
                     roleAuthorizeEntity.ItemId = itemId.ToString();
-                    roleAuthorizeEntity.zt = "1";   //始终1 有效
+                    roleAuthorizeEntity.zt = "1";   //luôn luôn1 có hiệu lực
                     roleAuthorizeEntityList.Add(roleAuthorizeEntity);
                 }
             }
@@ -116,7 +116,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             return (ActionResult)Success("操作成功。");
         }
         /// <summary>
-        /// 保存角色用户关联关系
+        /// lưu quan hệ liên kết vai trò - người dùng
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

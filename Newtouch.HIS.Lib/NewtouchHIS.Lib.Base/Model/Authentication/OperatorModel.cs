@@ -2,118 +2,118 @@
 {
 
     /// <summary>
-    /// 登录用户 身份信息
+    /// người dùng đăng nhập thông tin danh tính
     /// </summary>
     public class OperatorModel
     {
         /// <summary>
-        /// 系统用户 Id
+        /// người dùng hệ thống Id
         /// </summary>
         public string? UserId { get; set; }
 
         /// <summary>
-        /// 系统人员 Id
+        /// nhân viên hệ thống Id
         /// </summary>
         public string? StaffId { get; set; }
 
         /// <summary>
-        /// 系统用户 Code（登录账号）
+        /// người dùng hệ thống Code（tài khoản đăng nhập）
         /// </summary>
         public string? UserCode { get; set; }
 
         /// <summary>
-        /// 系统人员 工号
+        /// nhân viên hệ thống mã nhân viên
         /// </summary>
         public string? rygh { get; set; }
 
         /// <summary>
-        /// 系统人员 姓名
+        /// nhân viên hệ thống họ tên
         /// </summary>
         public string? UserName { get; set; }
 
         /// <summary>
-        /// 系统人员 科室Code
+        /// nhân viên hệ thống khoaCode
         /// </summary>
         public string? DepartmentCode { get; set; }
 
         /// <summary>
-        /// 想当前登录用户 开放的系统药房部门Code List
+        /// muốn người dùng đăng nhập hiện tại bộ phận dược của hệ thống mởCode List
         /// </summary>
         public List<string>? yfbmCodeList { get; set; }
 
         /// <summary>
-        /// 系统用户 角色List
+        /// người dùng hệ thống vai tròList
         /// </summary>
         public List<string>? RoleIdList { get; set; }
 
         /// <summary>
-        /// 系统用户 角色List
+        /// người dùng hệ thống vai tròList
         /// </summary>
         public List<string>? RoleCodeList { get; set; }
 
         /// <summary>
-        /// 系统用户是否是某某医疗机构的管理员（具体的单一医院、诊所）
-        /// 也要求关联单一系统人员
+        /// người dùng hệ thống có phải là quản trị viên của một cơ sở y tế nào đó hay không（một bệnh viện cụ thể duy nhất、phòng khám）
+        /// cũng yêu cầu liên kết với một nhân viên hệ thống duy nhất
         /// </summary>
         public bool IsHospAdministrator { get; set; }
 
         /// <summary>
-        /// 系统用户 是否是系统管理员
-        /// 与IsHospAdministrator的区别：不服务于具体的医疗机构（医院、诊所）
+        /// người dùng hệ thống có phải là quản trị viên hệ thống hay không
+        /// vàIsHospAdministratorsự khác biệt của：không phục vụ một cơ sở y tế cụ thể（bệnh viện、phòng khám）
         /// </summary>
         public bool IsAdministrator { get; set; }
 
         /// <summary>
-        /// 系统用户 是否是root账户
-        /// 与Administrator的区别：甚至更高级别的权限，一般不向客户开放
+        /// người dùng hệ thống có phải làroottài khoản
+        /// vàAdministratorsự khác biệt của：thậm chí quyền cấp cao hơn，thông thường không mở cho khách hàng
         /// </summary>
         public bool IsRoot { get; set; }
 
         /// <summary>
-        /// 登录IP
+        /// đăng nhậpIP
         /// </summary>
         public string? LoginIPAddress { get; set; }
 
         /// <summary>
-        /// 登录IP 所定位到的地址
+        /// đăng nhậpIP địa chỉ đã xác định được
         /// </summary>
         public string? LoginIPAddressName { get; set; }
 
         /// <summary>
-        /// 登录时间
+        /// thời gian đăng nhập
         /// </summary>
         public DateTime? LoginTime { get; set; }
 
         /// <summary>
-        /// 组织机构Id（已经定位到了具体医院）（系统供多家组织机构使用，且统一部署时可借助于此字段）
+        /// tổ chứcId（đã xác định được bệnh viện cụ thể）（hệ thống phục vụ nhiều tổ chức，và khi triển khai thống nhất có thể nhờ vào trường này）
         /// </summary>
         public string? OrganizeId { get; set; }
 
         /// <summary>
-        /// 顶级组织机构
+        /// tổ chức cấp cao nhất
         /// </summary>
         public string? TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 应用Id（在config配置 AppId）
+        /// ứng dụngId（trongconfigcấu hình AppId）
         /// </summary>
         public string? AppId { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// tên khoa
         /// </summary>
         public string? DepartmentName { get; set; }
 
         /// <summary>
-        /// 身份令牌
+        /// mã thông báo danh tính
         /// </summary>
         public string? token { get; set; }
         /// <summary>
-        /// SSO 通用token
+        /// SSO chungtoken
         /// </summary>
         public string? access_token { get; set; }
         /// <summary>
-        /// 是否需要选择机构
+        /// có cần chọn tổ chức hay không
         /// </summary>
         public bool NeedChooseOrgFlag { get; set; } = false;
     }

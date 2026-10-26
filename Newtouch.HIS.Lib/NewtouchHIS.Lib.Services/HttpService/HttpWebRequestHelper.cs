@@ -24,13 +24,13 @@ namespace NewtouchHIS.Lib.Services.HttpService
                 request.Method = method;
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;
-                request.Timeout = 10000; // 超时时间，毫秒单位
+                request.Timeout = 10000; // thời gian chờ，đơn vị mili giây
                 using (var stream = request.GetRequestStream())
                 {
                     stream.Write(byteData, 0, data.Length);
                 }
-                var response = (HttpWebResponse)request.GetResponse(); // 发送请求
-                using (var resStream = response.GetResponseStream()) // 读取数据
+                var response = (HttpWebResponse)request.GetResponse(); // gửi yêu cầu
+                using (var resStream = response.GetResponseStream()) // đọc dữ liệu
                 {
                     using (var reader = new StreamReader(resStream, Encoding.UTF8))
                     {
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
             {
                 if (request != null)
                 {
-                    request.Abort(); // 释放资源
+                    request.Abort(); // giải phóng tài nguyên
                 }
             }
             return result;

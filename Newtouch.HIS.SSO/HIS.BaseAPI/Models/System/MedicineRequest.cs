@@ -5,7 +5,7 @@
 
     }
     /// <summary>
-    /// 药品用法
+    /// cách dùng thuốc
     /// </summary>
     public class DrugUsageRequest
     {

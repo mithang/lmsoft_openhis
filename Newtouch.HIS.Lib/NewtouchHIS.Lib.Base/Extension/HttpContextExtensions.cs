@@ -25,7 +25,7 @@ namespace NewtouchHIS.Lib.Base.Extension
             return request.HttpContext.Request.Scheme + "://" + request.HttpContext.Request.Host + requestFeature?.RawTarget;
         }
         /// <summary>
-        /// 对恶意请求的自定义检查
+        /// kiểm tra tùy chỉnh đối với yêu cầu độc hại
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace NewtouchHIS.Lib.Base.Extension
             return false;
         }
         /// <summary>
-        /// 判断请求是否是Ajax
+        /// xác định yêu cầu có phải làAjax
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

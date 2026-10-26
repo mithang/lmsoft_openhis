@@ -11,111 +11,111 @@ namespace NewtouchHIS.Lib.Services.CacheService
 {
     public interface ICacheService
     {
-        #region 设置缓存 
+        #region thiết lập bộ nhớ đệm 
         /// <summary>
-        /// 设置缓存
+        /// thiết lập bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
-        /// <param name="value">值</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
+        /// <param name="value">giá trị</param>
         void SetCache(string key, object value);
         /// <summary>
-        /// 设置缓存
+        /// thiết lập bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
-        /// <param name="value">值</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
+        /// <param name="value">giá trị</param>
         Task SetCacheAsync(string key, object value);
 
         /// <summary>
-        /// 设置缓存
-        /// 注：默认过期类型为绝对过期
+        /// thiết lập bộ nhớ đệm
+        /// chú ý：kiểu hết hạn mặc định là hết hạn tuyệt đối
         /// </summary>
-        /// <param name="key">缓存Key</param>
-        /// <param name="value">值</param>
-        /// <param name="timeout">过期时间间隔</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
+        /// <param name="value">giá trị</param>
+        /// <param name="timeout">khoảng thời gian hết hạn</param>
         void SetCache(string key, object value, TimeSpan timeout);
 
         /// <summary>
-        /// 设置缓存
-        /// 注：默认过期类型为绝对过期
+        /// thiết lập bộ nhớ đệm
+        /// chú ý：kiểu hết hạn mặc định là hết hạn tuyệt đối
         /// </summary>
-        /// <param name="key">缓存Key</param>
-        /// <param name="value">值</param>
-        /// <param name="timeout">过期时间间隔</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
+        /// <param name="value">giá trị</param>
+        /// <param name="timeout">khoảng thời gian hết hạn</param>
         Task SetCacheAsync(string key, object value, TimeSpan timeout);
 
         /// <summary>
-        /// 设置缓存
-        /// 注：默认过期类型为绝对过期
+        /// thiết lập bộ nhớ đệm
+        /// chú ý：kiểu hết hạn mặc định là hết hạn tuyệt đối
         /// </summary>
-        /// <param name="key">缓存Key</param>
-        /// <param name="value">值</param>
-        /// <param name="timeout">过期时间间隔</param>
-        /// <param name="expireType">过期类型</param>  
+        /// <param name="key">bộ nhớ đệmKey</param>
+        /// <param name="value">giá trị</param>
+        /// <param name="timeout">khoảng thời gian hết hạn</param>
+        /// <param name="expireType">kiểu hết hạn</param>  
         void SetCache(string key, object value, TimeSpan timeout, ExpireType expireType);
 
         /// <summary>
-        /// 设置缓存
-        /// 注：默认过期类型为绝对过期
+        /// thiết lập bộ nhớ đệm
+        /// chú ý：kiểu hết hạn mặc định là hết hạn tuyệt đối
         /// </summary>
-        /// <param name="key">缓存Key</param>
-        /// <param name="value">值</param>
-        /// <param name="timeout">过期时间间隔</param>
-        /// <param name="expireType">过期类型</param>  
+        /// <param name="key">bộ nhớ đệmKey</param>
+        /// <param name="value">giá trị</param>
+        /// <param name="timeout">khoảng thời gian hết hạn</param>
+        /// <param name="expireType">kiểu hết hạn</param>  
         Task SetCacheAsync(string key, object value, TimeSpan timeout, ExpireType expireType);
         #endregion
 
-        #region 获取缓存
+        #region lấy bộ nhớ đệm
 
         /// <summary>
-        /// 获取缓存
+        /// lấy bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         string GetCache(string key);
 
         /// <summary>
-        /// 获取缓存
+        /// lấy bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         Task<string> GetCacheAsync(string key);
         /// <summary>
-        /// 获取缓存
+        /// lấy bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         T GetCache<T>(string key);
         /// <summary>
-        /// 获取缓存
+        /// lấy bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         Task<T> GetCacheAsync<T>(string key);
 
         #endregion
 
-        #region 删除缓存
+        #region xóa bộ nhớ đệm
 
         /// <summary>
-        /// 清除缓存
+        /// xóa bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         void RemoveCache(string key);
 
         /// <summary>
-        /// 清除缓存
+        /// xóa bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         Task RemoveCacheAsync(string key);
 
         #endregion
 
-        #region 刷新缓存
+        #region làm mới bộ nhớ đệm
         /// <summary>
-        /// 刷新缓存
+        /// làm mới bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         void RefreshCache(string key);
         /// <summary>
-        /// 刷新缓存
+        /// làm mới bộ nhớ đệm
         /// </summary>
-        /// <param name="key">缓存Key</param>
+        /// <param name="key">bộ nhớ đệmKey</param>
         Task RefreshCacheAsync(string key);
         #endregion
     }
@@ -171,7 +171,7 @@ namespace NewtouchHIS.Lib.Services.CacheService
             string cacheKey = BuildKey(key);
             if (expireType == ExpireType.Absolute)
             {
-                //这里没转换标准时间，Linux时区会有问题？
+                //ở đây chưa chuyển đổi thời gian chuẩn，Linuxmúi giờ sẽ có vấn đề？
                 _cache.SetString(cacheKey, value.ToJson(), new DistributedCacheEntryOptions
                 {
                     AbsoluteExpiration = new DateTimeOffset(DateTime.Now + timeout)
@@ -191,7 +191,7 @@ namespace NewtouchHIS.Lib.Services.CacheService
             string cacheKey = BuildKey(key);
             if (expireType == ExpireType.Absolute)
             {
-                //这里没转换标准时间，Linux时区会有问题？
+                //ở đây chưa chuyển đổi thời gian chuẩn，Linuxmúi giờ sẽ có vấn đề？
                 await _cache.SetStringAsync(cacheKey, value.ToJson(), new DistributedCacheEntryOptions
                 {
                     AbsoluteExpiration = new DateTimeOffset(DateTime.Now + timeout)

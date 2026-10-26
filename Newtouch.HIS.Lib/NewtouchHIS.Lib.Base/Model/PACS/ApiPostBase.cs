@@ -21,7 +21,7 @@ namespace NewtouchHIS.Lib.Base.Model.PACS
 
     public class reqBody {
 
-        #region 科室
+        #region khoa
 
         public string? hosCode { get; set; }
         public string? name { get; set; }
@@ -30,14 +30,14 @@ namespace NewtouchHIS.Lib.Base.Model.PACS
         public string? sourceCode { get; set; }
         #endregion
 
-        #region 医生
+        #region bác sĩ
 
         public string? deptCode { get; set; }
         public string? deptName { get; set; }
         #endregion
 
 
-        #region 获取pacs报告结果
+        #region lấypacskết quả báo cáo
         public string pid { get; set; }
         public string applyNo { get; set; }
         public string checkTime { get; set; }

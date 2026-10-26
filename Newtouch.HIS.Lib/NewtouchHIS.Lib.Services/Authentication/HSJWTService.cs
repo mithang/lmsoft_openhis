@@ -15,7 +15,7 @@ namespace NewtouchHIS.Lib.Services.Authentication
 {
 
     /// <summary>
-    /// 对称可逆加密
+    /// mã hóa đối xứng có thể đảo ngược
     /// </summary>
     public class HSJWTService : IJWTService
     {

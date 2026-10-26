@@ -5,7 +5,7 @@ using System.Collections.Concurrent;
 namespace NewtouchHIS.Lib.Services.Logger
 {
     /// <summary>
-    /// 日志帮助实现类
+    /// lớp triển khai trợ giúp nhật ký
     /// </summary>
     public class LogHelper : ILoggerHelper
     {
@@ -23,7 +23,7 @@ namespace NewtouchHIS.Lib.Services.Logger
         }
 
         /// <summary>
-        /// 获取记录器
+        /// lấy trình ghi
         /// </summary>
         /// <param name="source">soruce</param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace NewtouchHIS.Lib.Services.Logger
 
         /* Log a message object */
         /// <summary>
-        /// 调试信息
+        /// thông tin gỡ lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -51,7 +51,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Debug(source.GetType(), message);
         }
         /// <summary>
-        /// 调试信息
+        /// thông tin gỡ lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -61,7 +61,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Debug(source.GetType(), string.Format(message, ps));
         }
         /// <summary>
-        /// 调试信息
+        /// thông tin gỡ lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -74,7 +74,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             }
         }
         /// <summary>
-        /// 关键信息
+        /// thông tin quan trọng
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -83,7 +83,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Info(source.GetType(), message);
         }
         /// <summary>
-        /// 关键信息
+        /// thông tin quan trọng
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -96,7 +96,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             }
         }
         /// <summary>
-        /// 警告信息
+        /// thông tin cảnh báo
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Warn(source.GetType(), message);
         }
         /// <summary>
-        /// 警告信息
+        /// thông tin cảnh báo
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -118,7 +118,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             }
         }
         /// <summary>
-        /// 错误信息
+        /// thông tin lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -127,7 +127,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Error(source.GetType(), message);
         }
         /// <summary>
-        /// 错误信息
+        /// thông tin lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -140,7 +140,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             }
         }
         /// <summary>
-        /// 失败信息
+        /// thông tin thất bại
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -149,7 +149,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Fatal(source.GetType(), message);
         }
         /// <summary>
-        /// 失败信息
+        /// thông tin thất bại
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -164,7 +164,7 @@ namespace NewtouchHIS.Lib.Services.Logger
         /* Log a message object and exception */
 
         /// <summary>
-        /// 调试信息
+        /// thông tin gỡ lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -174,7 +174,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Debug(source.GetType(), message, exception);
         }
         /// <summary>
-        /// 调试信息
+        /// thông tin gỡ lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -184,7 +184,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             GetLogger(source).Debug(message, exception);
         }
         /// <summary>
-        /// 关键信息
+        /// thông tin quan trọng
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -194,7 +194,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Info(source.GetType(), message, exception);
         }
         /// <summary>
-        /// 关键信息
+        /// thông tin quan trọng
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -204,7 +204,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             GetLogger(source).Info(message, exception);
         }
         /// <summary>
-        /// 警告信息
+        /// thông tin cảnh báo
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -214,7 +214,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Warn(source.GetType(), message, exception);
         }
         /// <summary>
-        /// 警告信息
+        /// thông tin cảnh báo
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -224,7 +224,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             GetLogger(source).Warn(message, exception);
         }
         /// <summary>
-        /// 错误信息
+        /// thông tin lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -234,7 +234,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Error(source.GetType(), message, exception);
         }
         /// <summary>
-        /// 错误信息
+        /// thông tin lỗi
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -244,7 +244,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             GetLogger(source).Error(message, exception);
         }
         /// <summary>
-        /// 失败信息
+        /// thông tin thất bại
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>
@@ -254,7 +254,7 @@ namespace NewtouchHIS.Lib.Services.Logger
             Fatal(source.GetType(), message, exception);
         }
         /// <summary>
-        /// 失败信息
+        /// thông tin thất bại
         /// </summary>
         /// <param name="source">source</param>
         /// <param name="message">message</param>

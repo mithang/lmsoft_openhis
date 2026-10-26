@@ -1,28 +1,28 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// API响应
+    /// APIphản hồi
     /// </summary>
     public class ResponseBase
     {
         /// <summary>
-        /// 业务返回码
+        /// mã trả về nghiệp vụ
         /// </summary>
         public ResponseResultCode code { get; set; }
 
         /// <summary>
-        /// 业务返回码描述
+        /// mô tả mã trả về nghiệp vụ
         /// </summary>
         public string? msg { get; set; }
 
         /// <summary>
-        /// 响应数据（ResponseResultCode.SUCCESS时的返回数据）
+        /// dữ liệu phản hồi（ResponseResultCode.SUCCESSdữ liệu trả về khi đó）
         /// </summary>
         public object? data { get; set; }
 
     }
     /// <summary>
-    /// 过渡类 仅用于调用his内部Api
+    /// lớp chuyển tiếp chỉ dùng để gọihisnội bộApi
     /// </summary>
     public class ResponseBaseOld : ResponseBase
     {
@@ -35,48 +35,48 @@
     public enum ResponseResultCode
     {
         /// <summary>
-        /// 默认值
+        /// giá trị mặc định
         /// </summary>
         Default = -1,
         /// <summary>
-        /// 成功
+        /// thành công
         /// </summary>
         SUCCESS = 10000,
 
         /// <summary>
-        /// 服务器内部错误（程序发生异常）
+        /// lỗi nội bộ máy chủ（chương trình xảy ra ngoại lệ）
         /// </summary>
         ERROR = 20000,
         /// <summary>
-        /// Token无效
+        /// Tokenkhông hợp lệ
         /// </summary>
         INVALIDTOKEN = 40000,
         /// <summary>
-        /// 鉴权失败
+        /// xác thực thất bại
         /// </summary>
         FAILOfAuth = 40001,
         /// <summary>
-        /// 重复请求
+        /// yêu cầu trùng lặp
         /// </summary>
         FAILOfRequestRepeat = 40002,
         /// <summary>
-        /// 业务处理失败:	具体失败原因参见接口返回的错误码    
+        /// xử lý nghiệp vụ thất bại:	nguyên nhân thất bại cụ thể xem mã lỗi giao diện trả về    
         /// </summary>
         FAIL = 40004,
         /// <summary>
-        /// 配置初始化异常
+        /// ngoại lệ khởi tạo cấu hình
         /// </summary>
         FAILOfConfigInit=400040,
         /// <summary>
-        /// 密码错误
+        /// mật khẩu sai
         /// </summary>
         FAILOfPwdError = 400041,
         /// <summary>
-        /// 空值校验
+        /// kiểm tra giá trị trống
         /// </summary>
         FAILOfEmpty = 410001,
         /// <summary>
-        /// 重复值校验
+        /// kiểm tra giá trị trùng lặp
         /// </summary>
         FAILOfExists = 410002,
 

@@ -9,7 +9,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.Lib.Base.Middleware
 {
     /// <summary>
-    /// 异常处理中间件
+    /// phần mềm trung gian xử lý ngoại lệ
     /// </summary>
     public class ExceptionHandleMiddleware
     {
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Lib.Base.Middleware
             _logger.LogError(logError);
             if (environment.IsDevelopment())
             {
-                //错误信息
+                //thông tin lỗi
                 switch (e)
                 {
                     case FailedException ex:
@@ -67,7 +67,7 @@ namespace NewtouchHIS.Lib.Base.Middleware
             }
             else
             {
-                //错误信息
+                //thông tin lỗi
                 switch (e)
                 {
                     case FailedException ex:

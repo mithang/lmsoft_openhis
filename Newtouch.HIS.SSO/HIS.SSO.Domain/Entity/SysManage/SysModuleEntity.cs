@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations;
 namespace HIS.SSO.Domain.Entity
 {
     ///<summary>
-    ///系统模块
+    ///mô-đun hệ thống
     ///</summary>
     [Tenant(DBEnum.UnionDb)]
     [SugarTable("Sys_Module", "系统模块")]
     public partial class SysModuleEntity : IEntity
     {
         /// <summary>
-        /// Desc:模块主键
+        /// Desc:khóa chính của mô-đun
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -21,7 +21,7 @@ namespace HIS.SSO.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:父级
+        /// Desc:cấp cha
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -29,7 +29,7 @@ namespace HIS.SSO.Domain.Entity
         public string ParentId { get; set; }
 
         /// <summary>
-        /// Desc:名称
+        /// Desc:tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -46,7 +46,7 @@ namespace HIS.SSO.Domain.Entity
         public string? EnName { get; set; }
 
         /// <summary>
-        /// Desc:编码
+        /// Desc:mã hóa
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -54,7 +54,7 @@ namespace HIS.SSO.Domain.Entity
         public string? Code { get; set; }
 
         /// <summary>
-        /// Desc:图标
+        /// Desc:biểu tượng
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -62,7 +62,7 @@ namespace HIS.SSO.Domain.Entity
         public string? Icon { get; set; }
 
         /// <summary>
-        /// Desc:连接
+        /// Desc:kết nối
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -70,7 +70,7 @@ namespace HIS.SSO.Domain.Entity
         public string? UrlAddress { get; set; }
 
         /// <summary>
-        /// Desc:目标
+        /// Desc:mục tiêu
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -78,14 +78,14 @@ namespace HIS.SSO.Domain.Entity
         public string? Target { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           
         public int? px { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           

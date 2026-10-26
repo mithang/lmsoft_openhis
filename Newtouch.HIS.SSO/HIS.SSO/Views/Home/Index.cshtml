@@ -1,9 +1,9 @@
 ﻿@using NewtouchHIS.Lib.Base.Utilities;
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //khi tải trang có bắt buộc phải chọn hay khôngOrg
     var mediOrgList = new List<string>();// ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
-                                         //是否页面加载时就必须选择Org
+                                         //khi tải trang có bắt buộc phải chọn hay khôngOrg
     var needChooseOrg = false; //(ViewBag.NeedChooseOrg as bool?) ?? false;
 }
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>开源医疗统一平台</title>
+    <title>nền tảng thống nhất y tế mã nguồn mở</title>
     <link rel="shortcut icon" href="@MvcHelper.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
@@ -49,16 +49,16 @@
                             <li>
                                 <a class="btn btnshrink" id="make-small-nav"><i class="fa fa-dedent"></i></a>
                             </li>
-                            <li><a title="快速访问"><i class="fa fa-external-link-square"></i></a></li>
+                            <li><a title="truy cập nhanh"><i class="fa fa-external-link-square"></i></a></li>
                             <li>
-                                <a class="menuItem" data-target="iframe" data-cnname="工作台" title="工作台" data-appid="" data-id="2" href="/Home/WorkSpace/" data-index="10">工作台</a>
+                                <a class="menuItem" data-target="iframe" data-cnname="bàn làm việc" title="bàn làm việc" data-appid="" data-id="2" href="/Home/WorkSpace/" data-index="10">bàn làm việc</a>
                             </li>
                            @* <li onclick="@(mediOrgList != null && mediOrgList.Count > 1 ? "showSwitchOrgPrompt();" : "return;")">
                                 <a>
                                     <b>@Html.Raw(ViewBag.OrgName)</b>
                                     @if (mediOrgList != null && mediOrgList.Count > 1)
                                     {
-                                        <i id="iSwitchOrg" title="切换机构" class="fa fa-hospital-o"></i>
+                                        <i id="iSwitchOrg" title="chuyển tổ chức" class="fa fa-hospital-o"></i>
                                     }
                                 </a>
                             </li>*@
@@ -77,7 +77,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">đang tải dữ liệu，vui lòng chờ một chút…</div>
     </div>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/site.js", false)"></script>
@@ -307,7 +307,7 @@
         function showSwitchOrgPrompt(force) {
             $.modalOpen({
                 id: "FormSwitchOrg",
-                title: "切换医疗机构",
+                title: "chuyển cơ sở y tế",
                 url: "/Home/UserOrgChoose",
                 width: "400px",
                 height: "260px",
@@ -317,12 +317,12 @@
         }
 
         $(function () {
-            //Home/Index加载时强制选择医疗机构
+            //Home/Indexkhi tải bắt buộc chọn cơ sở y tế
         @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
                 });
     </script>
     <script type="text/javascript">
-        //Home/Index页面加载完成之后 再加载iframe
+        //Home/Indexsau khi tải trang xong tải lạiiframe
         $(window).load(function () {
             $('.mainContent .Newtouch_iframe').each(function () {
                 if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {

@@ -11,8 +11,8 @@ namespace NewtouchHIS.Lib.Base.Utilities
             _SiteStaticHost = ConfigInitHelper.SysConfig.AppAPIHost?.SiteStaticHost ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "SiteStaticHost");
         }
         /// <summary>
-        /// 静态资源Host
-        /// config配置SiteStaticHost
+        /// tài nguyên tĩnhHost
+        /// configcấu hìnhSiteStaticHost
         /// </summary>
         public static string? SiteStaticHost
         {
@@ -22,8 +22,8 @@ namespace NewtouchHIS.Lib.Base.Utilities
             }
         }
         /// <summary>
-        /// 资源版本号
-        /// 避免静态资源缓存 用的，对应config Version
+        /// số phiên bản tài nguyên
+        /// tránh bộ nhớ đệm tài nguyên tĩnh được dùng，tương ứngconfig Version
         /// </summary>
         public static string ver
         {
@@ -40,7 +40,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 域 http://sample.com/
+        /// miền http://sample.com/
         /// </summary>
         public static string SiteStaticDomain
         {
@@ -57,10 +57,10 @@ namespace NewtouchHIS.Lib.Base.Utilities
             }
         }
         /// <summary>
-        /// 返回带软件版本号的静态资源Uri
+        /// trả về tài nguyên tĩnh kèm số phiên bản phần mềmUri
         /// </summary>
-        /// <param name="url">url 如'~/Home/Index'</param>
-        /// <param name="isInSiteStatic">是否资源在独立的静态Domain</param>
+        /// <param name="url">url ví dụ'~/Home/Index'</param>
+        /// <param name="isInSiteStatic">tài nguyên có ở dạng tĩnh độc lập hay khôngDomain</param>
         /// <returns></returns>
         public static string GetStaticResourceScriptUrl(string url, bool isInSiteStatic = true)
         {

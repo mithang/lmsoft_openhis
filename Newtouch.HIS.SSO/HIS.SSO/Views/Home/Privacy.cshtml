@@ -1,15 +1,15 @@
 ﻿@using NewtouchHIS.Lib.Base.Utilities;
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //khi tải trang có bắt buộc phải chọn hay khôngOrg
     var mediOrgList = new List<string>();// ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
-                                         //是否页面加载时就必须选择Org
+                                         //khi tải trang có bắt buộc phải chọn hay khôngOrg
     var needChooseOrg = false; //(ViewBag.NeedChooseOrg as bool?) ?? false;
 }
 <!DOCTYPE html>
 <html>
 <head>
-    <title>工作门户</title>
+    <title>cổng công việc</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="@MvcHelper.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
@@ -203,7 +203,7 @@
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 @*<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>*@
                 <i class="fa fa-cloud bi me-2"></i>
-                <span class="fs-4">开源医疗HIS</span>
+                <span class="fs-4">y tế mã nguồn mởHIS</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">

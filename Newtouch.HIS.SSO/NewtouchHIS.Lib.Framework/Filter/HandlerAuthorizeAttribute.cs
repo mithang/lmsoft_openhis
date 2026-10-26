@@ -15,18 +15,18 @@ using ResultType = NewtouchHIS.Lib.Base.Model.ResultType;
 namespace NewtouchHIS.Lib.Framework.Filter
 {
     /// <summary>
-    /// 过滤器 访问权限验证
+    /// bộ lọc xác minh quyền truy cập
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerAuthorizeAttribute : ActionFilterAttribute
     {
         /// <summary>
-        /// 应用Id（在config配置 AppId）
+        /// ứng dụngId（trongconfigcấu hình AppId）
         /// </summary>
         public static string _appId { get; private set; }
 
         /// <summary>
-        /// 静态构造函数
+        /// hàm khởi tạo tĩnh
         /// </summary>
         static HandlerAuthorizeAttribute()
         {
@@ -39,9 +39,9 @@ namespace NewtouchHIS.Lib.Framework.Filter
         private static Func<IList<string>, string, string, bool>? _func;
 
         /// <summary>
-        /// 注册权限验证 的 方法
+        /// đăng ký xác minh quyền của phương thức
         /// </summary>
-        /// <param name="func">角色列表、模块Id，链接（不带参数），返回是否验证通过</param>
+        /// <param name="func">danh sách vai trò、mô-đunId，liên kết（không mang tham số），trả về việc xác minh có thành công hay không</param>
         public static void Register(Func<IList<string>, string, string, bool> func)
         {
             _func = func;
@@ -49,7 +49,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
 
         /// <summary>
-        /// （重写）Called by the ASP.NET MVC framework before the action method executes.
+        /// （ghi đè）Called by the ASP.NET MVC framework before the action method executes.
         /// </summary>
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -75,7 +75,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                     if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
-                        //is ajax 请求，则返回错误代码
+                        //is ajax yêu cầu，thì trả về mã lỗi
                         filterContext.Result = new ContentResult
                         {
                             Content = new AjaxResult
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
-                    //is ajax 请求，则返回错误代码
+                    //is ajax yêu cầu，thì trả về mã lỗi
                     filterContext.Result = new ContentResult
                     {
                         Content = new AjaxResult

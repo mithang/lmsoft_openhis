@@ -56,14 +56,14 @@ namespace NewtouchHIS.HangFire.Core
                 var settings = provider.GetService<IOptions<HangfireSettings>>().Value;
                 //ConfigFromEnv(settings); Docker
                 var queues = settings.JobQueues.Select(m => m.ToLower()).Distinct().ToList();
-                var workerCount = Math.Max(Environment.ProcessorCount, settings.WorkerCount); //工作线程数，当前允许的最大线程，默认20
+                var workerCount = Math.Max(Environment.ProcessorCount, settings.WorkerCount); //số luồng làm việc，luồng tối đa hiện được phép，mặc định20
 
 
                 config.ServerName = settings.ServerName;
                 config.ServerTimeout = TimeSpan.FromMinutes(4);
-                config.SchedulePollingInterval = TimeSpan.FromSeconds(5);//秒级任务需要配置短点，一般任务可以配置默认时间，默认15秒
-                config.ShutdownTimeout = TimeSpan.FromMinutes(30); //超时时间
-                config.Queues = queues.ToArray(); //队列
+                config.SchedulePollingInterval = TimeSpan.FromSeconds(5);//nhiệm vụ cấp giây cần cấu hình ngắn hơn，nhiệm vụ thông thường có thể cấu hình thời gian mặc định，mặc định15giây
+                config.ShutdownTimeout = TimeSpan.FromMinutes(30); //thời gian chờ
+                config.Queues = queues.ToArray(); //hàng đợi
                 config.WorkerCount = workerCount;
             });
 
@@ -176,19 +176,19 @@ namespace NewtouchHIS.HangFire.Core
             app.UseHangfireHttpJob().UseHangfireDashboard(hangfireSettings.StartUpPath, dashbordConfig);
 
             if (!string.IsNullOrEmpty(hangfireSettings.ReadOnlyPath))
-                //只读面板，只能读取不能操作 
+                //bảng chỉ đọc，chỉ có thể đọc, không thể thao tác 
                 app.UseHangfireDashboard(hangfireSettings.ReadOnlyPath, new DashboardOptions
                 {
                     IgnoreAntiforgeryToken = true,
-                    AppPath = hangfireSettings.StartUpPath, //返回时跳转的地址
-                    DisplayStorageConnectionString = false, //是否显示数据库连接信息
+                    AppPath = hangfireSettings.StartUpPath, //địa chỉ chuyển hướng khi trả về
+                    DisplayStorageConnectionString = false, //có hiển thị thông tin kết nối cơ sở dữ liệu hay không
                     IsReadOnlyFunc = Context => true
                 });
 
             return app;
         }
 
-        #region Docker运行的参数配置https://github.com/yuzd/Hangfire.HttpJob/wiki/000.Docker-Quick-Start
+        #region Dockercấu hình tham số chạyhttps://github.com/yuzd/Hangfire.HttpJob/wiki/000.Docker-Quick-Start
 
 
         private static void ConfigFromEnv(HangfireSettings settings)

@@ -17,8 +17,8 @@
   "BusinessDB": {
     "DefaultConn": "Data Source={{ .DatabaseHost}};Initial Catalog={0};User ID={{ .DatabaseUser }};Password={{ .DatabasePassword }};",
     "MainDB": "UnionDb",
-    "MainDBFirstMode": true, //数据库初始化模式，true 默认当前上下文为MainDB，false 默认上下文为 EntityAttr标注
-    "EnabledMutiDB": true, //开启多库管理
+    "MainDBFirstMode": true, //chế độ khởi tạo cơ sở dữ liệu，true ngữ cảnh hiện tại mặc định làMainDB，false ngữ cảnh mặc định là EntityAttrghi chú
+    "EnabledMutiDB": true, //bật quản lý đa thư viện
     "DBConf": [
       {
         "ConnId": "BaseDb",
@@ -71,25 +71,25 @@
       }
     ]
   },
-  //自定义扩展配置 AppSettings 默认查找目录
+  //cấu hình mở rộng tùy chỉnh AppSettings thư mục tìm kiếm mặc định
   "AppConfigExt": {
-    //菜单是否显示Description
+    //menu có hiển thị hay khôngDescription
     "IS_ShowDescToMenuTitle": false,
     
   },
   "AccessConfig": {
-    //"页面domain（嵌套其他域页面，并执行js" "要设置成同一域）"
+    //"trangdomain（trang miền khác được lồng，và thực hiệnjs" "cần đặt thành cùng một miền）"
     "Document_Domain": "{{ .PublicIP }}",
-    //访问地址域名限制（类似百度http会自动重定向到https）
+    //giới hạn tên miền địa chỉ truy cập（tương tự Baiduhttpsẽ tự động chuyển hướng đếnhttps）
     "AccessDomain": ""
   },
   "BusinessConfig": {
     "LoginStatusKeepMinute": 100,
-    //登录次数过多，账号自动锁定 的 时间段（单位：分）
+    //số lần đăng nhập quá nhiều，tài khoản tự động khóa của khoảng thời gian（đơn vị：phân）
     "LoginFailedTimesLimit_Minutes": 60,
-    //登录次数过多，账号自动锁定 的 最大次数
+    //số lần đăng nhập quá nhiều，tài khoản tự động khóa của số lần tối đa
     "LoginFailedTimesLimit_Count": 3,
-    //顶级机构编码
+    //mã tổ chức cấp cao nhất
     "Top_OrganizeId": "d8ee85f8-d8d1-4b5c-bd9e-1761f44242d8",
     "AppId": "His.SSO",
     "AppName": "统一平台",
@@ -108,17 +108,17 @@
       "SiteOrWebHost": "http://{{ .PublicIP }}:{{ .Services.PublicWebPort.Or }}/",
       "SiteHerpWebHost": "http://{{ .PublicIP }}:{{ .Services.PublicWebPort.Herp }}/",
       "HisAppBaseAPIHost": "http://{{ .PublicIP }}:{{ .Services.PublicWebPort.HisBaseAPI }}/",
-      //任务调度系统
+      //hệ thống lập lịch nhiệm vụ
       "ScheduleJobHost": null,
-      //消息中心
+      //trung tâm tin nhắn
       "SiteNoticeCenterHost": null,
-      //接口中心
+      //trung tâm giao diện
       "SiteApiManageHost": "http://{{ .PublicIP }}:{{ .Services.PublicWebPort.WebAPIManage }}/",
-      //鉴权中心
+      //trung tâm xác thực
       "SiteAuthCenterHost": "http://{{ .PublicIP }}:{{ .Services.PublicWebPort.AuthCenter }}/",
-      //外部站点
+      //trang web bên ngoài
       "OuterMediaMeettingAPIHost": "https://61.172.179.30:17015/",
-      //云诊所
+      //phòng khám đám mây
       "OuterClinicSystemAPIHost": "http://61.172.179.48:19020/"
     },
     "AppAPIHostName": {
@@ -135,23 +135,23 @@
       "SiteHerpWebHost": "HERP",
       "HisSSOHost": "His.SSO"
     },
-    //换取统一token方法名
+    //đổi lấy thống nhấttokentên phương thức
     "UALoginAddress": "Login/UALogin",
     "CorsWithOrigins": "http://localhost:28341/",
-    //开启Action日志跟踪 文本日志写入 调试时为true  否则默认false 
+    //bậtActiontheo dõi nhật ký ghi nhật ký văn bản khi gỡ lỗi làtrue  nếu không thì mặc địnhfalse 
     "EnableLoggingMonitorAttr": false,
-    //日志跟踪是否包含Header
+    //theo dõi nhật ký có bao gồm hay khôngHeader
     "EnableLoggingMonitorWithHeaderAttr": false,
     "DrgGroupVersion": "chs_drg_11",
-    //文件管理配置
+    //cấu hình quản lý tệp
     "FileConfig": {
-      //本地文件默认路径
+      //đường dẫn mặc định của tệp cục bộ
       "LocalFileBaseDir": "/File",
-      //本地文件默认网络访问路径Host
+      //đường dẫn truy cập mạng mặc định của tệp cục bộHost
       "LocalFileBaseNetUrl": "",
       "DrgDataFileDir": "/Drg"
     },
-    //远程诊疗第三方服务接口，为空则默认初始值
+    //giao diện dịch vụ bên thứ ba khám từ xa，nếu trống thì mặc định giá trị ban đầu
     "RemoteTreated": {
       "SKey": "",
       "Organization": ""

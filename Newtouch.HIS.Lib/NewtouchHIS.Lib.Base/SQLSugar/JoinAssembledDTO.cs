@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Base.SQLSugar
 {
     /// <summary>
-    /// 组装连表查询
+    /// lắp ráp truy vấn liên bảng
     /// </summary>
     public class JoinAssembledDTO
     {

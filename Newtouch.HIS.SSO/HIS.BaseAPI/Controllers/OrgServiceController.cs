@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
-    /// 组织机构基础服务接口
+    /// giao diện dịch vụ cơ bản của tổ chức
     /// </summary>
     [Route("api/organize")]
     [ApiController]
@@ -32,7 +32,7 @@ namespace HIS.BaseAPI.Controllers
             _sysFailedCodeMessageMappDmnService = sysFailedCodeMessageMappDmnService;
         }
         /// <summary>
-        /// 机构列表（Toporganize归属）
+        /// danh sách tổ chức（Toporganizethuộc về）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysOrgVo>> { code = ResponseResultCode.SUCCESS, Data = orgList };
         }
         /// <summary>
-        /// 人员岗位关联关系
+        /// quan hệ liên kết nhân viên - vị trí
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysStaffDutyComplexVEntity>> { code = ResponseResultCode.SUCCESS, Data = sysStaffDutyList };
         }
         /// <summary>
-        /// 获取科室
+        /// lấy khoa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysDepartmentEntity>> { code = ResponseResultCode.SUCCESS, Data = sysDepartList };
         }
         /// <summary>
-        /// 获取病区信息
+        /// lấy thông tin khu bệnh
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysWardVEntity>> { code = ResponseResultCode.SUCCESS, Data = sysPatiAreaList };
         }
         /// <summary>
-        /// 获取收费大类信息
+        /// lấy thông tin nhóm lớn thu phí
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysChargeCategoryVEntity>> { code = ResponseResultCode.SUCCESS, Data = sysMajorClassList };
         }
         /// <summary>
-        /// 住院记账获取门诊医生
+        /// ghi sổ nằm viện lấy bác sĩ ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysDutyStaffVO>> { code = ResponseResultCode.SUCCESS, Data = doctorInHosBookkeep };
         }
         /// <summary>
-        /// 病人性质,报销政策
+        /// tính chất bệnh nhân,chính sách hoàn trả
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -144,7 +144,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysPatientNatureEntity>> { code = ResponseResultCode.SUCCESS, Data = sysPatientNatureList };
         }
         /// <summary>
-        /// 根据科室获取病区
+        /// lấy khu bệnh theo khoa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -160,7 +160,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysDepartmentWardRelationVO>> { code = ResponseResultCode.SUCCESS, Data = sysPatientNatureList };
         }
         /// <summary>
-        /// 获取报错信息
+        /// lấy thông tin báo lỗi
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

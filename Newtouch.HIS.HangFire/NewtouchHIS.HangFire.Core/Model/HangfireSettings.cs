@@ -13,17 +13,17 @@
         public JobAppAPIHost AppAPIHost { get; set; }
     }
     /// <summary>
-    /// 各系统接口配置
+    /// cấu hình giao diện các hệ thống
     /// </summary>
     public class JobAppAPIHost
     {
         public string JobHost { get; set; }
         /// <summary>
-        /// 接口中心
+        /// trung tâm giao diện
         /// </summary>
         public string? SiteApiManageHost { get; set; }
         /// <summary>
-        /// 消息中心接口
+        /// giao diện trung tâm tin nhắn
         /// </summary>
         public string? SiteNoticeCenterHost { get; set; }
     }

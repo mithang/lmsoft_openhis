@@ -33,11 +33,11 @@
             </a>
             <ul class="dropdown-menu list-group">
 @*                <li class="list-group-item">
-                    <span class="label label-success">质控</span>
+                    <span class="label label-success">kiểm soát chất lượng</span>
                 </li>*@
                 <li class="list-group-item">
                     <a class="menuItem" data-id="noticeInfo" href="/SysManage/Notice/Index">
-                        <i class="fa fa-angle-double-right"></i>消息中心
+                        <i class="fa fa-angle-double-right"></i>trung tâm tin nhắn
                     </a>
                 </li>
             </ul>
@@ -51,13 +51,13 @@
         <li class="dropdown hidden-xs">
             @if (_httpContextAccessor.HttpContext?.Request.Path.Value?.Contains("SSOIndex") ?? true)
             {
-                <a title="切换旧版视图" href="/Home/Index">
+                <a title="chuyển sang giao diện cũ" href="/Home/Index">
                     <i class="fa fa-exchange"></i>
                 </a>
             }
             else
             {
-                <a title="切换新版视图" href="/Home/SSOIndex">
+                <a title="chuyển sang giao diện mới" href="/Home/SSOIndex">
                     <i class="fa fa-exchange"></i>
                 </a>
             }
@@ -70,10 +70,10 @@
             </a>
 
             <ul class="dropdown-menu pull-right">
-                @* <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/PersonalInfo"><i class="fa fa-user"></i>个人信息</a></li> *@
-                @*<li><a href="javascript:void(0);" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>*@
+                @* <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/PersonalInfo"><i class="fa fa-user"></i>thông tin cá nhân</a></li> *@
+                @*<li><a href="javascript:void(0);" onclick="layer.msg('xóa bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>xóa bộ nhớ đệm</a></li>*@
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>皮肤设置</a>
+                    <a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>thiết lập giao diện</a>
                     <div class="tab-pane" id="control-sidebar-home-tab">
                     </div>
                 </li>
@@ -81,7 +81,7 @@
                     if (loginFromFlag == "SSO")
                     {
                         <li class="divider" style="margin: 0px 0;"></li>
-                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>返回首页</a></li>
+                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>quay lại trang chủ</a></li>
                         <li class="divider" style="margin: 0px 0;"></li>
                     }
                     else
@@ -89,7 +89,7 @@
                         <li class="divider"></li>
                     }
                 }
-                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>thoát an toàn</a></li>
             </ul>
         </li>
     </ul>

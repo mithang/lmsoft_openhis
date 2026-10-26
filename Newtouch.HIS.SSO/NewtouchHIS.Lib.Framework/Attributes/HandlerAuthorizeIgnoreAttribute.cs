@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Framework.Attributes
 {
     /// <summary>
-    /// 自定义Attribute 
+    /// tùy chỉnhAttribute 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class HandlerAuthorizeIgnoreAttribute : Attribute

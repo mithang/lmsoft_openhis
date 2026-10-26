@@ -4,12 +4,12 @@
     {
     }
     /// <summary>
-    /// 异常类-Rj加密异常（帮助区分异常类型）
+    /// lớp ngoại lệ-Rjngoại lệ mã hóa（giúp phân biệt loại ngoại lệ）
     /// </summary>
     public class RijndaelEncryptException : Exception
     {
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
         public RijndaelEncryptException()
         {
@@ -17,12 +17,12 @@
         }
     }
     /// <summary>
-    /// 异常类-Rj解密异常（帮助区分异常类型）
+    /// lớp ngoại lệ-Rjngoại lệ giải mã（giúp phân biệt loại ngoại lệ）
     /// </summary>
     public class RijndaelDecrptyException : Exception
     {
         /// <summary>
-        /// 构造函数
+        /// hàm khởi tạo
         /// </summary>
         public RijndaelDecrptyException()
         {

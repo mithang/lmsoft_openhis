@@ -15,17 +15,17 @@ using SqlSugar;
 namespace NewtouchHIS.Framework.Web.Implementation
 {
     /// <summary>
-    /// 系统基础功能及字典服务
+    /// chức năng cơ bản và dịch vụ từ điển của hệ thống
     /// </summary>
     public interface ISystemAppService : IScopedDependency
     {
         /// <summary>
-        /// 当前登录用户菜单
+        /// menu người dùng đăng nhập hiện tại
         /// </summary>
         /// <returns></returns>
         Task<List<SysModuleVO>?> GetUserMenuAsync(bool? validLimit = true);
         /// <summary>
-        /// 获取系统菜单
+        /// lấy menu hệ thống
         /// </summary>
         /// <param name="request"></param>
         /// <param name="userCacheKey"></param>
@@ -33,7 +33,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <returns></returns>
         Task<List<SysModuleVO>> GetMenuListAsync(MenuAuthRequest request, string userCacheKey, OperatorModel? user = null);
         /// <summary>
-        /// 菜单树
+        /// cây menu
         /// </summary>
         /// <param name="request"></param>
         /// <param name="userCacheKey"></param>
@@ -41,48 +41,48 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <returns></returns>
         Task<List<SysModuleWithChildVO>> GetMenuExtendAsync(MenuAuthRequest request, string userCacheKey, OperatorModel? user = null);
         /// <summary>
-        /// 菜单详情查询
+        /// truy vấn chi tiết menu
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         Task<SysModuleEntity> GetMenubyIdAsync(string keyValue);
 
         /// <summary>
-        /// 获取国籍
+        /// lấy quốc tịch
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<SysNationalityVEntity>> GetsysNationalityListAsync(string request);
         /// <summary>
-        /// 获取民族
+        /// lấy dân tộc
         /// </summary>
         /// <param name="request"></param>
         Task<List<SysNationVEntity>> GetsysNationListAsync(string request);
         /// <summary>
-        /// 获取现金支付方式
+        /// lấy phương thức thanh toán tiền mặt
         /// </summary>
         /// <param name="request"></param>
         Task<List<SysCashPaymentModelEntity>> GetSysForCashPayAsync(string request);
         Task<List<SysItemExtendVO>> GetItemDetailsListAsync(string request);
         /// <summary>
-        /// 获取已注册APP列表
+        /// lấy những cái đã đăng kýAPPdanh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<AuthAppVO>> GetRegAppListAsync();
         /// <summary>
-        /// 获取药品用法
+        /// lấy cách dùng thuốc
         /// </summary>
         /// <returns></returns>
         Task<List<DrugUsageEntity>?> GetMediUsageListAsync();
         /// <summary>
-        /// 获取剂型用法关系
+        /// lấy quan hệ dạng bào chế - cách dùng
         /// </summary>
         /// <returns></returns>
         Task<List<DrugFormulationUsageVO>?> GetDrugFormulationUsageListAsync();
     }
     /// <summary>
-    /// 系统通用接口
+    /// giao diện dùng chung của hệ thống
     /// </summary>
     public class SystemAppService : AppServiceBase, ISystemAppService
     {
@@ -92,51 +92,51 @@ namespace NewtouchHIS.Framework.Web.Implementation
             Host = ConfigInitHelper.SysConfig.AppAPIHost?.HisAppBaseAPIHost ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "HisAppBaseAPIHost");
         }
         /// <summary>
-        /// 获取菜单列表
+        /// lấy danh sách menu
         /// </summary>
         public string GetMenuListApi => $"{Host}api/System/GetMenuList";
         /// <summary>
-        /// 获取菜单列表，可选数据库
+        /// lấy danh sách menu，cơ sở dữ liệu tùy chọn
         /// </summary>
         public string GetMenuListbyDBApi => $"{Host}api/System/GetAppMenuList";
 
         /// <summary>
-        /// 系统字典表
+        /// bảng từ điển hệ thống
         /// </summary>
         public string GetItemDetailsListApi => $"{Host}api/System/GetItemDetailsList";
         /// <summary>
-        /// 用户数据初始化
+        /// khởi tạo dữ liệu người dùng
         /// </summary>
         public string BuildLoginStatusOprApi => $"{Host}api/System/BuildLoginStatusOpr";
         /// <summary>
-        /// 获取国籍信息
+        /// lấy thông tin quốc tịch
         /// </summary>
         public string GetsysNationalityListApi => $"{Host}api/System/GetsysNationalityList";
         /// <summary>
-        /// 获取民族信息
+        /// lấy thông tin dân tộc
         /// </summary>
         public string GetsysNationListApi => $"{Host}api/System/GetsysNationList";
         /// <summary>
-        /// 获取现金支付方式
+        /// lấy phương thức thanh toán tiền mặt
         /// </summary>
         public string GetSysForCashPayListApi => $"{Host}api/System/GetSysForCashPayList";
         /// <summary>
-        /// 获取已注册APP
+        /// lấy những cái đã đăng kýAPP
         /// </summary>
         public string GetRegAppListApi => $"{Host}api/System/GetRegAppList";
         /// <summary>
-        /// 药品用法
+        /// cách dùng thuốc
         /// </summary>
         public string DrugUsageApi => $"{Host}api/System/GetMediUsageList";
         /// <summary>
-        /// 获取药品剂型用法对照关系
+        /// lấy quan hệ đối chiếu dạng bào chế - cách dùng thuốc
         /// </summary>
         public string DrugFormulationUsageListApi => $"{Host}api/System/GetDrugFormulationUsageList";
 
 
-        #region Entity操作
+        #region Entitythao tác
         /// <summary>
-        /// 菜单信息查询
+        /// truy vấn thông tin menu
         /// </summary>
         public string Menu_QuerybyId => $"{Host}api/Systemed/GetMenubyId";
 
@@ -185,7 +185,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysItemExtendVO>, string>(request, GetItemDetailsListApi);
         }
         /// <summary>
-        /// 获取国籍
+        /// lấy quốc tịch
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -195,7 +195,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return NationalityVEntity;
         }
         /// <summary>
-        /// 获取民族
+        /// lấy dân tộc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -204,7 +204,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<SysNationVEntity>, string>(request, GetsysNationListApi);
         }
         /// <summary>
-        /// 获取现金支付方式
+        /// lấy phương thức thanh toán tiền mặt
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -214,7 +214,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return sysCashPaymentModelEntities;
         }
         /// <summary>
-        /// 获取已注册APP列表
+        /// lấy những cái đã đăng kýAPPdanh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -223,7 +223,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<List<AuthAppVO>, string>(null, GetRegAppListApi);
         }
         /// <summary>
-        /// 获取药品用法
+        /// lấy cách dùng thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -234,7 +234,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return resp.Data;
         }
         /// <summary>
-        /// 获取药品剂型用法
+        /// lấy dạng bào chế - cách dùng thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

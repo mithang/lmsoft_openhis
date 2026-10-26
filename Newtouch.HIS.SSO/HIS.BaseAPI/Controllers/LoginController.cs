@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
-    /// 用户登录验证
+    /// xác minh đăng nhập người dùng
     /// </summary>
     [Route("api/login")]
     [ApiController]
@@ -22,7 +22,7 @@ namespace HIS.BaseAPI.Controllers
             _sysCacheDmn = sysCacheDmn;
         }
         /// <summary>
-        /// 用户登录密码验证
+        /// xác minh mật khẩu đăng nhập người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ namespace HIS.BaseAPI.Controllers
         }
 
         /// <summary>
-        /// 用户数据初始化
+        /// khởi tạo dữ liệu người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<OperatorModel> { code = ResponseResultCode.SUCCESS, Data = userOpr };
         }
         /// <summary>
-        /// token换取用户身份信息
+        /// tokenđổi lấy thông tin danh tính người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -31,14 +31,14 @@
         if (callbackType == 'json') {
             treeSeleData = $("#userStaffTree").getCheckedNodeObjArray();
             if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('chọn tối đa một mục', 'warning');
                 return;
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values对应的UserId/
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứngUserId/
             if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('chọn tối đa một mục', 'warning');
                 return;
             }
             treeSeleData = String(treeSeleData);
@@ -48,11 +48,11 @@
 
         }
         else if (fromDialog) {
-            //默认行为，callback上一Dialog的方法
+            //hành vi mặc định，callbacktrướcDialogphương thức
             top.top.window.frames[fromDialog].userStaffTreeCallback(treeSeleData);
         }
         else {
-            //默认行为，callback上一页面的方法
+            //hành vi mặc định，callbackphương thức của trang trước
             $.currentWindow().window.userStaffTreeCallback(treeSeleData);
         }
     }

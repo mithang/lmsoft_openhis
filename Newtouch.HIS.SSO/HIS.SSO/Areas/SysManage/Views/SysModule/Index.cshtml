@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>sửa đổi</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>xóa</a>
         </div>
     </div>
     <div class="search">
@@ -24,9 +24,9 @@
                 <td>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <input id="ck_valid" type="checkbox" class="form-check" title="仅查看有效菜单" checked />
+                            <input id="ck_valid" type="checkbox" class="form-check" title="chỉ xem menu có hiệu lực" checked />
                         </span>
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -42,7 +42,7 @@
         @if (Model.SyncAuthed ?? false)
         {
             <div class="btn-group">
-                <a class="btn btn-success" onclick="syncAppMenu()"><i class=" fa fa-terminal" aria-hidden="true"></i> 菜单导入</a>
+                <a class="btn btn-success" onclick="syncAppMenu()"><i class=" fa fa-terminal" aria-hidden="true"></i> nhập menu</a>
             </div>
         }
 
@@ -67,13 +67,13 @@
     var $table = $('#table');
     function mounted() {
         $table.bootstrapTable({
-            url: "/SysManage/SysModule/GetTreeGridJson", //服务器返回数据的网址
-            method: 'POST',                      //数据请求方式
+            url: "/SysManage/SysModule/GetTreeGridJson", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             height: $(window).height() - 96,
             queryParams: queryParams,
             classes: "table table-bordered table-striped table-hover",
-            theadClasses: "table-light",//设置表头样式
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
             idField: 'Id',
             showColumns: false,
             columns: [
@@ -86,9 +86,9 @@
                     visible: false
                 }, {
                     field: 'Icon',
-                    title: '图标',
+                    title: 'biểu tượng',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '5',
                     widthUnit: '%',
                     formatter: function (value, row, index) {
@@ -102,18 +102,18 @@
 
                 }, {
                     field: 'Name',
-                    title: '名称',
+                    title: 'tên',
                     halign: 'center',
                     width: '20',
                     widthUnit: '%',
                 },
                 {
                     field: 'zt',
-                    title: '状态',
+                    title: 'trạng thái',
                     halign: 'center',
                     //sortable: true,
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '5',
                     widthUnit: '%',
                     formatter: function (cellvalue) {
@@ -122,15 +122,15 @@
                 },
                 {
                     field: 'AppId',
-                    title: '应用Id',
+                    title: 'ứng dụngId',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '10',
                     widthUnit: '%',
                 },
                 {
                     field: 'UrlAddress',
-                    title: '路径',
+                    title: 'đường dẫn',
                     halign: 'center',
                     width: '35',
                     widthUnit: '%',
@@ -149,8 +149,8 @@
             uniqueId: 'Id',
             onLoadSuccess: function (data) {
                 $table.treegrid({
-                    initialState: "expanded",//展开
-                    treeColumn: 1,//指明第几列数据改为树形
+                    initialState: "expanded",//mở rộng
+                    treeColumn: 1,//chỉ rõ cột dữ liệu thứ mấy chuyển thành dạng cây
                     //expanderExpandedClass: "glyphicon glyphicon-triangle-bottom",
                     //expanderCollapsedClass: "glyphicon glyphicon-triangle-right",
                     onChange: function () {
@@ -169,22 +169,22 @@
                 bstableSelected($table, "Id", [row.Id], $element);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>正在加载中，请稍候</span>";
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
             },
             formatNoMatches: function () {
-                return "暂无数据";
+                return "chưa có dữ liệu";
             }
 
         });
         $table.bootstrapTable('hideLoading');
 
     }
-    //请求的参数
+    //tham số yêu cầu
     function queryParams(params) {
         var data = {
-            //每页多少条数据
+            //mỗi trang có bao nhiêu dòng dữ liệu
             limit: params.limit,
-            //请求第几页
+            //yêu cầu trang thứ mấy
             offset: params.offset,
             order: params.order,
             sort: params.sort,
@@ -197,12 +197,12 @@
         return data;
     }
 
-    //对应的函数进行判断；
+    //hàm tương ứng thực hiện phán đoán；
     function checkFormatter(value, row, index) {
-        if (row.type)//type 为是否选中状态值
+        if (row.type)//type là giá trị trạng thái có được chọn hay không
             return {
-                disabled: false,//设置是否可用
-                checked: true//设置选中
+                disabled: false,//đặt có thể dùng hay không
+                checked: true//đặt đã chọn
             };
         return value;
     }
@@ -212,11 +212,11 @@
         $table.bootstrapTable('refresh', { queryParams: queryParams });
     }
 
-    //新增
+    //thêm mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增菜单",
+            title: "thêm menu",
             url: "/SysManage/SysModule/Form",
             width: "700px",
             height: "440px",
@@ -227,23 +227,23 @@
             }
         });
     }
-    //修改
+    //sửa đổi
     function btn_edit(row) {
         if (!!!row) {
             var selrows = $table.bootstrapTable("getSelections");
             row = selrows != null && selrows[0] != null ? selrows[0] : null;
         }
         if (!!!row) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("vui lòng chọn một thông tin", 'warning');
             return;
         }
         if (!!!row.OrganizeId && '@(!string.IsNullOrEmpty(Model.OrganizeId) && Model.OrganizeId != Model.TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("không có quyền sửa đổi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改菜单",
+            title: "sửa menu",
             url: "/SysManage/SysModule/Form?keyValue=" + row.Id,
             width: "700px",
             height: "440px",
@@ -254,16 +254,16 @@
             }
         });
     }
-    //删除
+    //xóa
     function btn_delete() {
         var selrows = $table.bootstrapTable("getSelections");
         var row = selrows != null && selrows[0] != null ? selrows[0] : null;
         if (!!!row) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("vui lòng chọn một thông tin", 'warning');
             return;
         }
         if (!!!row.OrganizeId && '@(!string.IsNullOrEmpty(ViewBag.OrganizeId) && ViewBag.OrganizeId != ViewBag.TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("không có quyền sửa đổi", 'warning');
             return;
         }
         $.deleteForm({
@@ -278,7 +278,7 @@
     function syncAppMenu() {
         $.modalOpen({
             id: "SyncMenuForm",
-            title: "业务系统菜单导入",
+            title: "nhập menu hệ thống nghiệp vụ",
             url: "/SysManage/SysModule/SyncForm",
             width: "70%",
             height: "80%",

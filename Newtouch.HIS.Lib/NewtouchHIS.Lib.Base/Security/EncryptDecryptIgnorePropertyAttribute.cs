@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.Core.Common.Security
 {
     /// <summary>
-    /// 属性不参与加密、解密
+    /// thuộc tính không tham gia mã hóa、giải mã
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class EncryptDecryptIgnorePropertyAttribute : Attribute

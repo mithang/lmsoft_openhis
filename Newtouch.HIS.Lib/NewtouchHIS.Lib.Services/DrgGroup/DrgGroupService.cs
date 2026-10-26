@@ -5,7 +5,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.DRGEnum;
 namespace NewtouchHIS.Lib.Services.DrgGroup
 {
     /// <summary>
-    /// Drg分组策略
+    /// Drgchiến lược phân nhóm
     /// </summary>
     public class DrgGroupService : IDrgGroupService
     {

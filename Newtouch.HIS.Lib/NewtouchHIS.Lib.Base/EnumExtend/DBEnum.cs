@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Lib.Base.EnumExtend
 {
     /// <summary>
-    /// 多租户
+    /// đa thuê bao
     /// </summary>
     public enum DBEnum
     {

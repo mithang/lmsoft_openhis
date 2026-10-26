@@ -10,18 +10,18 @@ namespace NewtouchHIS.Framework.Web.Implementation
     public interface IAuthCenterAppService
     {
         /// <summary>
-        /// App访问Token
+        /// Apptruy cậpToken
         /// </summary>
         /// <returns></returns>
         Task<string> GetAppToken(string accessAppId);
         /// <summary>
-        /// 用户Token获取
+        /// người dùngTokenlấy
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
         Task<string> GetUserToken(OperatorModel user, string accessAppId);
         /// <summary>
-        /// 用户Token续期
+        /// người dùngTokengia hạn
         /// </summary>
         /// <param name="user"></param>
         /// <param name="token"></param>
@@ -32,15 +32,15 @@ namespace NewtouchHIS.Framework.Web.Implementation
     {
         private readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// 服务提供应用Id
+        /// ứng dụng cung cấp dịch vụId
         /// </summary>
         internal string? AppId;
         /// <summary>
-        /// 请求服务AppId
+        /// yêu cầu dịch vụAppId
         /// </summary>
         internal string? ClientAppId;
         /// <summary>
-        /// 应用Host地址
+        /// ứng dụngHostđịa chỉ
         /// </summary>
         internal string? Host;
         public AuthCenterAppService(IHttpClientHelper httpClient)
@@ -49,26 +49,26 @@ namespace NewtouchHIS.Framework.Web.Implementation
             ClientAppId = ConfigInitHelper.SysConfig.AppId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "AppId");
             Host = ConfigInitHelper.SysConfig.AppAPIHost?.SiteAuthCenterHost ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "SiteAuthCenterHost");
         }
-        #region 接口列表
+        #region danh sách giao diện
         /// <summary>
-        /// App访问Token
+        /// Apptruy cậpToken
         /// </summary>
         public string GetAppTokenApi => $"{Host}api/Auth/GetAppToken";
         /// <summary>
-        /// 用户访问Token
+        /// người dùng truy cậpToken
         /// </summary>
         public string GetUserTokenApi => $"{Host}api/Auth/GetUserToken";
         /// <summary>
-        /// 用户Token续期
+        /// người dùngTokengia hạn
         /// </summary>
         public string UserTokenRefreshApi => $"{Host}api/Auth/UserTokenRefresh";
 
         #endregion
         /// <summary>
-        /// App获取授权Token
+        /// Applấy ủy quyềnToken
         /// </summary>
-        /// <param name="appId">本应用Id</param>
-        /// <param name="accessAppId">申请访问应用Id</param>
+        /// <param name="appId">ứng dụng nàyId</param>
+        /// <param name="accessAppId">xin truy cập ứng dụngId</param>
         /// <returns></returns>
         public async Task<string> GetAppToken(string accessAppId)
         {
@@ -81,7 +81,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         }
 
         /// <summary>
-        /// 用户获取Token
+        /// người dùng lấyToken
         /// </summary>
         /// <returns></returns>
         public async Task<string> GetUserToken(OperatorModel user, string accessAppId)
@@ -103,7 +103,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithTokenAsync(reqObj.ToJson(), GetUserTokenApi, null);
         }
         /// <summary>
-        /// 用户Token续期
+        /// người dùngTokengia hạn
         /// </summary>
         /// <param name="user"></param>
         /// <param name="token"></param>

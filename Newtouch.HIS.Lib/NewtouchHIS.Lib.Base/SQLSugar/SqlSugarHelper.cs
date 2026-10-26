@@ -5,9 +5,9 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
     public class SqlSugarHelper
     {
         /// <summary>
-        /// 初始化SqlSugarClient
+        /// khởi tạoSqlSugarClient
         /// </summary>
-        /// <returns>返回SqlSugarClient对象</returns>
+        /// <returns>trả vềSqlSugarClientđối tượng</returns>
         public static SqlSugarClient GetInstance(DbType dbType, string dbName)
         {
             var strConnectionString = string.Empty;
@@ -56,7 +56,7 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
 
 
         /// <summary>
-        /// 根据表生产实体
+        /// tạo thực thể theo bảng
         /// </summary>
         /// <param name="path"></param>
         public static void DbFirst(DbType dbType, string path, Dictionary<string, string> tabledic, string dbName)
@@ -65,28 +65,28 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
             List<string> tablename = tabledic.Values.ToList();
             //db.DbFirst.IsCreateAttribute().CreateClassFile(path);
             var db = GetInstance(dbType, dbName);
-            //ALL所有表  
+            //ALLtất cả các bảng  
             //List<DbTableInfo> list = db.DbMaintenance.GetTableInfoList().Where(x => x.Name.Contains("mr")).ToList();
             List<DbTableInfo> list = db.DbMaintenance.GetTableInfoList().Where(x => tablename.Contains("ALL") ? x.Name.IsNormalized() : tablename.Contains(x.Name.Trim())).ToList();
-            //所有视图
+            //tất cả các khung nhìn
             List<DbTableInfo> viewList = db.DbMaintenance.GetViewInfoList().Where(p => tablename.Contains(p.Name.Trim())).ToList();
 
             var allList = list.Concat(viewList);
 
-            //循环所有的表和视图 他们属于同一个类 DbTableInfo
+            //lặp qua tất cả các bảng và khung nhìn chúng thuộc cùng một lớp DbTableInfo
             foreach (DbTableInfo table in allList)
             {
-                //首字母转大写 
+                //chuyển chữ cái đầu thành chữ hoa 
                 string table_name = table.Name.Substring(0, 1).ToUpper() + table.Name.Substring(1).ToLower().Replace("_", "");
-                //映射表增加 实体名称 和表名称
+                //tăng bảng ánh xạ tên thực thể và tên bảng
                 db.MappingTables.Add(table_name, table.Name);
-                //根据表名 获取所有表字段
+                //theo tên bảng lấy tất cả các trường của bảng
                 List<DbColumnInfo> dd = db.DbMaintenance.GetColumnInfosByTableName(table.Name);
                 var @base = tabledic.FirstOrDefault(q => tablename.Contains("ALL") ? q.Value == "ALL" : q.Value == table.Name).Key;
                 foreach (DbColumnInfo item in dd)
                 {
                     string columnname = item.DbColumnName.ToLower();
-                    //映射字段添加 （字段名，字段名，表名）
+                    //thêm trường ánh xạ （tên trường，tên trường，tên bảng）
                     db.MappingColumns.Add(columnname, columnname, table_name);
                 }
                 db.DbFirst.
@@ -102,7 +102,7 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
                 })
                 .SettingPropertyDescriptionTemplate(old =>
                 {
-                    //自定义的模板
+                    //mẫu tùy chỉnh
                     return old;//GetPropertyDescriptionTemplate();
                 })
                 .SettingPropertyTemplate((columns, temp, type) =>
@@ -135,7 +135,7 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
         }
 
         /// <summary>
-        /// 命名空间的模板
+        /// mẫu của không gian tên
         /// </summary>
         /// <returns></returns>
         public static string GetClassTemplate()
@@ -156,7 +156,7 @@ namespace {Namespace}
         }
 
         /// <summary>
-        /// 字段的模板
+        /// mẫu của trường
         /// </summary>
         /// <returns></returns>
         public static string GetPropertyDescriptionTemplate()
@@ -170,18 +170,18 @@ namespace {Namespace}
         }
 
 
-        #region 通用方法
+        #region phương thức chung
         /// <summary>
-        /// 拼接出完整的Sql，方便查看
+        /// nối thành đầy đủSql，để tiện xem
         /// </summary>
         public class ToSqlExplain
         {
             public static string GetSql(KeyValuePair<string, SugarParameter[]> queryString)
             {
-                var sql = queryString.Key;//sql语句
-                var par = queryString.Value;//参数
+                var sql = queryString.Key;//sqlcâu lệnh
+                var par = queryString.Value;//tham số
 
-                //字符串替换MethodConst1x会替换掉MethodConst1所有要从后往前替换,不能用foreach,后续可以优化
+                //thay thế chuỗiMethodConst1xsẽ thay thếMethodConst1tất cả cần thay từ sau ra trước,không thể dùngforeach,sau này có thể tối ưu
                 for (int i = par.Length - 1; i >= 0; i--)
                 {
                     if (par[i].ParameterName.StartsWith("@") && par[i].ParameterName.Contains("UnionAll"))
@@ -208,7 +208,7 @@ namespace {Namespace}
                 {
                     if (par[i].ParameterName.StartsWith("@"))
                     {
-                        //值拼接单引号 拿出来的sql不会报错
+                        //giá trị nối dấu nháy đơn được lấy rasqlsẽ không báo lỗi
                         sql = sql.Replace(par[i].ParameterName, "'" + Convert.ToString(par[i].Value) + "'");
                     }
                 }

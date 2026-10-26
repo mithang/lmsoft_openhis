@@ -49,11 +49,11 @@ namespace NewtouchHIS.Lib.DataBaseSvr
             //{
             //    ConnectionString = DbConfig.DBConf,
             //    DbType = DbType.SqlServer,
-            //    InitKeyType = InitKeyType.Attribute,//从特性读取主键和自增列信息
+            //    InitKeyType = InitKeyType.Attribute,//đọc thông tin khóa chính và cột tự tăng từ đặc tính
             //    IsAutoCloseConnection = true, 
 
             //});
-            //调式代码 用来打印SQL 
+            //mã gỡ lỗi dùng để inSQL 
             Db.Aop.OnLogExecuting = (sql, pars) =>
             {
                 Console.WriteLine(sql + "\r\n" +
@@ -62,9 +62,9 @@ namespace NewtouchHIS.Lib.DataBaseSvr
             };
 
         }
-        //注意：不能写成静态的
-        public SqlSugarClient Db;//用来处理事务多表查询和复杂的操作
-        public SimpleClient<T> CurrentDb { get { return new SimpleClient<T>(Db); } }//用来操作当前表的数据
+        //chú ý：không thể viết thành tĩnh
+        public SqlSugarClient Db;//dùng để xử lý truy vấn đa bảng giao dịch và các thao tác phức tạp
+        public SimpleClient<T> CurrentDb { get { return new SimpleClient<T>(Db); } }//dùng để thao tác dữ liệu của bảng hiện tại
 
         //public SqlSugarScopeProvider dbProvider(string ConnId) => Db.GetConnectionScope(ConnId);
         //public SqlSugarScopeProvider dbProviderAttr => Db.GetConnectionScopeWithAttr<T>();

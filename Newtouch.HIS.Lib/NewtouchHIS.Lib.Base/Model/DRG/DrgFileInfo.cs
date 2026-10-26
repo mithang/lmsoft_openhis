@@ -3,19 +3,19 @@
     public class DrgFileInfo
     {
         /// <summary>
-        /// 文件名
+        /// tên tệp
         /// </summary>
         public string FileName { get; set; }
         /// <summary>
-        /// 文件路径
+        /// đường dẫn tệp
         /// </summary>
         public string FilePath { get; set; }
         /// <summary>
-        /// 文件类型
+        /// kiểu tệp
         /// </summary>
         public string FileExtName { get; set; }
         /// <summary>
-        /// 文件列名
+        /// tên cột tệp
         /// </summary>
         public string[] FileCols { get; set; }
         public bool? IsTmpFile { get; set; } = true;
@@ -24,7 +24,7 @@
     public class DrgAreaFileInfo : DrgFileInfo
     {
         /// <summary>
-        /// 分组器版本
+        /// phiên bản bộ phân nhóm
         /// </summary>
         public string version { get; set; }
         public int? versionPolicy { get; set; }

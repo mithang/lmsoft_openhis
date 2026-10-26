@@ -13,7 +13,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
-    /// 系统通用API
+    /// dùng chung cho hệ thốngAPI
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -36,7 +36,7 @@ namespace HIS.BaseAPI.Controllers
         }
         #region Menu
         /// <summary>
-        /// 获取用户系统菜单列表(主库)
+        /// lấy danh sách menu hệ thống người dùng(thư viện chính)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysModuleVO>> { code = ResponseResultCode.SUCCESS, Data = list != null ? list.Adapt<List<SysModuleVO>>() : null };
         }
         /// <summary>
-        /// 获取业务系统用户菜单列表
+        /// lấy danh sách menu người dùng hệ thống nghiệp vụ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysModuleVO>> { code = ResponseResultCode.SUCCESS, Data = list != null ? list.Adapt<List<SysModuleVO>>() : null };
         }
         /// <summary>
-        /// 获取应用系统菜单列表（限管理员同步用）
+        /// lấy danh sách menu hệ thống ứng dụng（chỉ quản trị viên dùng để đồng bộ）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace HIS.BaseAPI.Controllers
 
         #endregion
         /// <summary>
-        /// 系统字典表
+        /// bảng từ điển hệ thống
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace HIS.BaseAPI.Controllers
 
         }
         /// <summary>
-        /// 获取国籍
+        /// lấy quốc tịch
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -118,7 +118,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysNationalityVEntity>> { code = ResponseResultCode.SUCCESS, Data = sysNationalityList };
         }
         /// <summary>
-        /// 获取民族
+        /// lấy dân tộc
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -129,7 +129,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysNationVEntity>> { code = ResponseResultCode.SUCCESS, Data = sysNationList };
         }
         /// <summary>
-        /// 获取现金支付方式
+        /// lấy phương thức thanh toán tiền mặt
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -140,7 +140,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysCashPaymentModelEntity>> { code = ResponseResultCode.SUCCESS, Data = sysCashPaymentModelEntity };
         }
         /// <summary>
-        /// 获取已注册应用列表
+        /// lấy danh sách ứng dụng đã đăng ký
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -151,9 +151,9 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<AuthAppVO>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
 
-        #region 药品
+        #region thuốc
         /// <summary>
-        /// 药品用法
+        /// cách dùng thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -165,7 +165,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<DrugUsageEntity>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 获取药品剂型用法对照关系
+        /// lấy quan hệ đối chiếu dạng bào chế - cách dùng thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

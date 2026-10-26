@@ -18,7 +18,7 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         }
 
         /// <summary>
-        /// 频次用量
+        /// tần suất - liều lượng
         /// </summary>
         public enum EnumChineseMedicineRecipelFrequency
         {
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
             chineseMedicineRecipelFrequency_2 = 2,
         }
         /// <summary>
-        /// 剂量单位
+        /// đơn vị liều lượng
         /// </summary>
         public enum EnumMedicalDosisUnit
         {
@@ -53,8 +53,8 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         }
     }
     /// <summary>
-    /// 制剂单位 
-    /// 对应 HIS:[xt_ypdw]
+    /// đơn vị bào chế 
+    /// tương ứng HIS:[xt_ypdw]
     /// </summary>
     public enum EnumMedicalPreparationUnit
     {
@@ -79,14 +79,14 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         [Description("瓶")]
         medicalPreparationUnit_9 = 526,
         [Description("本")]
-        medicalPreparationUnit_10 = 513, //张
+        medicalPreparationUnit_10 = 513, //tờ
         [Description("ug")]
         medicalPreparationUnit_11 = 590,
         [Description("丸")]
         medicalPreparationUnit_12 = 516
     }
     /// <summary>
-    /// 包装单位
+    /// đơn vị đóng gói
     /// </summary>
     public enum EnumMedicalPackUnit
     {
@@ -97,11 +97,11 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         [Description("盒")]
         medicalPackUnit_2 = 532,
         [Description("箱")]
-        medicalPackUnit_3 = -1, //HIS 未定义
+        medicalPackUnit_3 = -1, //HIS chưa được định nghĩa
         [Description("板")]
-        medicalPackUnit_5 = -2, //HIS 未定义
+        medicalPackUnit_5 = -2, //HIS chưa được định nghĩa
         [Description("罐")]
-        medicalPackUnit_6 = -3, //HIS 未定义
+        medicalPackUnit_6 = -3, //HIS chưa được định nghĩa
         [Description("支")]
         medicalPackUnit_7= 512,
         [Description("个")]
@@ -114,7 +114,7 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         medicalPackUnit_11= 513
     }
     /// <summary>
-    /// 西药用法
+    /// cách dùng thuốc Tây y
     /// </summary>
     public enum EnumWesternMedicineUse
     {
@@ -123,31 +123,31 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         [Description("静脉注射")]
         westernMedicineUse_1 = 404,
         [Description("饭前")]
-        westernMedicineUse_2 = -2, //HIS 未定义
+        westernMedicineUse_2 = -2, //HIS chưa được định nghĩa
         [Description("饭后")]
-        westernMedicineUse_3 = -3, //HIS 未定义
+        westernMedicineUse_3 = -3, //HIS chưa được định nghĩa
         [Description("皮下注射")]
         westernMedicineUse_4 = 401,
         [Description("含化")]
-        westernMedicineUse_5 = 3, //his 舌下用药
+        westernMedicineUse_5 = 3, //his dùng thuốc dưới lưỡi
         [Description("外敷")]
         westernMedicineUse_6 = 8,
         [Description("静脉滴注")]
         westernMedicineUse_7 = 405
     }
     /// <summary>
-    /// 中药用法
+    /// cách dùng thuốc Đông y
     /// </summary>
     public enum EnumChineseMedicineRecipelUse
     {
         [Description("煎服")]
         chineseMedicineRecipelUse_0 = 1,
         [Description("熬服")]
-        chineseMedicineRecipelUse_1 = -1, //HIS 未定义
+        chineseMedicineRecipelUse_1 = -1, //HIS chưa được định nghĩa
         [Description("水冲服")]
-        chineseMedicineRecipelUse_2 = -2,  //HIS 未定义
+        chineseMedicineRecipelUse_2 = -2,  //HIS chưa được định nghĩa
         [Description("泡服")]
-        chineseMedicineRecipelUse_3 = 4,//his 烊化
+        chineseMedicineRecipelUse_3 = 4,//his dương hóa
         [Description("冲服")]
         chineseMedicineRecipelUse_4 = 700,
         [Description("穴位注射")]

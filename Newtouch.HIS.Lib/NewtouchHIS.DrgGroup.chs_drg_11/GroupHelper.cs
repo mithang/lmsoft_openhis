@@ -56,7 +56,7 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
             }).ToList());
         }
         /// <summary>
-        /// 文件分组结果
+        /// kết quả phân nhóm tệp
         /// </summary>
         /// <param name="file"></param>
         /// <param name="cols"></param>

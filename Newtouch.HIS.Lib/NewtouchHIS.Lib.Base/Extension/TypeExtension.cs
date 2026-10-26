@@ -4,7 +4,7 @@ using System.Reflection;
 namespace NewtouchHIS.Lib.Base.Extension
 {
     /// <summary>
-    /// Type扩展
+    /// Typemở rộng
     /// </summary>
     public static class TypeExtension
     {
@@ -14,7 +14,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         private static ConcurrentDictionary<RuntimeTypeHandle, PropertyInfo[]> typesProperties = new ConcurrentDictionary<RuntimeTypeHandle, PropertyInfo[]>();
 
         /// <summary>
-        /// 获取 Type 的 PropertyInfo List
+        /// lấy Type của PropertyInfo List
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         private static ConcurrentDictionary<RuntimeTypeHandle, ConcurrentDictionary<PropertyInfo, string>> typesPropertyInfoNamePairCollection = new ConcurrentDictionary<RuntimeTypeHandle, ConcurrentDictionary<PropertyInfo, string>>();
 
         /// <summary>
-        /// 获取 Type 的 PropertyInfo、Name Pair Collection
+        /// lấy Type của PropertyInfo、Name Pair Collection
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                 return dict;
             }
             dict = new ConcurrentDictionary<PropertyInfo, string>();
-            //反射获取type的所有属性
+            //lấy bằng phản chiếutypetất cả các thuộc tính của
             var propertyList = type.GetPropertyList();
             foreach (PropertyInfo property in propertyList)
             {
@@ -63,7 +63,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                     }
                     if (!string.IsNullOrWhiteSpace(name) && !dict.ContainsKey(property))
                     {
-                        //属于该赋值项
+                        //thuộc về mục gán giá trị đó
                         dict.TryAdd(property, name);
                     }
                 }
@@ -73,7 +73,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 获取对象的某个属性值
+        /// lấy giá trị một thuộc tính của đối tượng
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -93,7 +93,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 根据属性名称 获取PropertyInfo
+        /// theo tên thuộc tính lấyPropertyInfo
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName"></param>
@@ -111,7 +111,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 给属性赋值
+        /// gán giá trị cho thuộc tính
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="propertyName"></param>
@@ -163,7 +163,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 给属性赋值
+        /// gán giá trị cho thuộc tính
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="property"></param>

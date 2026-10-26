@@ -6,7 +6,7 @@ namespace NewtouchHIS.Lib.Base.Model
     {
         public Request() { }
         /// <summary>
-        /// 业务请求数据
+        /// dữ liệu yêu cầu nghiệp vụ
         /// </summary>
         public T? Data { get; set; }
 
@@ -16,13 +16,13 @@ namespace NewtouchHIS.Lib.Base.Model
     public class RequestBus<T> : BusRequest
     {
         /// <summary>
-        /// 业务请求数据
+        /// dữ liệu yêu cầu nghiệp vụ
         /// </summary>
         public T? Data { get; set; }
     }
 
     /// <summary>
-    /// 自动封装Request
+    /// tự động đóng góiRequest
     /// </summary>
     public static class RequestApiGen
     {

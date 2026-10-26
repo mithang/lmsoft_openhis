@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
-    /// 系统用户
+    /// người dùng hệ thống
     /// </summary>
     [Route("api/sysuser")]
     [ApiController]
@@ -20,7 +20,7 @@ namespace HIS.BaseAPI.Controllers
             _sysUserDmn = sysUserDmn;
         }
         /// <summary>
-        /// 获取系统用户（分页）
+        /// lấy người dùng hệ thống（phân trang）
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -31,7 +31,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<PageResponseRow<List<SysUserVO>>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 机构用户树（科室分组）
+        /// cây người dùng tổ chức（phân nhóm khoa）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

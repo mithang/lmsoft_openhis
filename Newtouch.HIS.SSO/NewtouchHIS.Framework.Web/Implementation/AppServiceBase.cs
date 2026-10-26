@@ -23,7 +23,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
     {
         protected readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// 鉴权Token换取
+        /// xác thựcTokenđổi lấy
         /// </summary>
         protected readonly IAuthCenterAppService _authCenterApp;
 
@@ -32,30 +32,30 @@ namespace NewtouchHIS.Framework.Web.Implementation
             _httpClient = httpClient;
             _authCenterApp = authCenterApp;
         }
-        //获取当前用户
+        //lấy người dùng hiện tại
         protected OperatorModel? currentUser => OperatorProvider.GetCurrent();
         protected string TopOrganizeId = ConfigInitHelper.SysConfig.Top_OrganizeId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "Top_OrganizeId");
         /// <summary>
-        /// 服务提供应用Id
+        /// ứng dụng cung cấp dịch vụId
         /// </summary>
         protected string? AppId;
         /// <summary>
-        /// 请求服务AppId
+        /// yêu cầu dịch vụAppId
         /// </summary>
         protected string ClientAppId = ConfigInitHelper.SysConfig.AppId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "AppId");
         /// <summary>
-        /// 应用Host地址
+        /// ứng dụngHostđịa chỉ
         /// </summary>
         protected string? Host;
         /// <summary>
-        /// 接口列表
+        /// danh sách giao diện
         /// </summary>
         protected static List<AppAPIMethods>? Methods;
         public async virtual Task<List<AppAPIMethods>>? GetMethodsAsync() => await Task.Run(() => Methods);
         public async virtual Task<AppAPIHostDic> GetServiceAsync()
             => await Task.Run(() => new AppAPIHostDic { AppId = AppId, Host = Host });
         /// <summary>
-        /// token 缓存key
+        /// token bộ nhớ đệmkey
         /// </summary>
         /// <param name="userCacheKey"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             };
         }
         /// <summary>
-        /// Post 接口调用(匿名)
+        /// Post gọi giao diện(ẩn danh)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -99,7 +99,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return busRet;
         }
         /// <summary>
-        /// Post 接口调用（token）
+        /// Post gọi giao diện（token）
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -126,7 +126,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return busRet;
         }
         /// <summary>
-        /// 自动组装用户信息
+        /// tự động lắp ráp thông tin người dùng
         /// </summary>
         /// <typeparam name="TResp"></typeparam>
         /// <typeparam name="TRequest"></typeparam>
@@ -159,7 +159,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return await HttpPostWithToken<TResp, TRequest>(request, method, null, user);
         }
         /// <summary>
-        /// HttpPost 携带Token 接口组装
+        /// HttpPost mang theoToken lắp ráp giao diện
         /// </summary>
         /// <typeparam name="TResp"></typeparam>
         /// <typeparam name="TRequest"></typeparam>
@@ -171,7 +171,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// <exception cref="FailedException"></exception>
         public async Task<TResp> HttpPostWithToken<TResp, TRequest>(Request<TRequest> request, string method, string userCacheKey, OperatorModel user)
         {
-            //读取token
+            //đọctoken
             if (string.IsNullOrEmpty(user.UserCode)|| (string.IsNullOrEmpty(user.OrganizeId)&& string.IsNullOrEmpty(user.TopOrganizeId)))
             {
                 throw new FailedException(ResponseResultCode.FAILOfAuth,"用户身份信息异常:工号/机构信息不可为空");

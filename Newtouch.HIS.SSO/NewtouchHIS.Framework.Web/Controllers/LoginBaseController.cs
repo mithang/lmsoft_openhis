@@ -22,21 +22,21 @@ namespace NewtouchHIS.Framework.Web.Controllers
             _sysUserVDmn = sysUserVDmn;
         }
         /// <summary>
-        /// override时，请最后return base.Index();
+        /// overridekhi，vui lòng cuối cùngreturn base.Index();
         /// </summary>
         public virtual IActionResult Index()
         {
-            //写入客户端Id
+            //ghi vào máy kháchId
             HttpWebHelper.WriteCookie(ConfigInitHelper.SysConfig.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
-            //是否需要验证码
+            //có cần mã xác minh hay không
             ViewBag.IsCheckChkCode = ConfigInitHelper.SysConfig.Is_CheckChkCode;
 
             return View();
         }
 
         /// <summary>
-        /// 获取验证码
+        /// lấy mã xác minh
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -47,23 +47,23 @@ namespace NewtouchHIS.Framework.Web.Controllers
             CommonTools gen = new CommonTools();
             var stream = gen.GetVerifyCode(out code);
 
-            //验证码 5分钟内有效
+            //mã xác minh 5có hiệu lực trong vài phút
             RedisHelper.SetString(clientId + "_chkCode", code, new TimeSpan(0, 5, 0));
 
             return File(stream, @"image/Gif");
         }
 
         /// <summary>
-        /// 验证验证码的正确性
+        /// xác minh tính đúng đắn của mã xác minh
         /// </summary>
         /// <param name="code"></param>
-        /// <returns>验证码正确 返回true，否则返回false</returns>
+        /// <returns>mã xác minh đúng trả vềtrue，nếu không thì trả vềfalse</returns>
         [NonAction]
         public virtual bool CheckChkCode(string code)
         {
             if (ConfigInitHelper.SysConfig.Is_CheckChkCode ?? true)
             {
-                //登录验证码 验证
+                //mã xác minh đăng nhập xác minh
                 var clientId = HttpWebHelper.GetCookie(ConfigInitHelper.SysConfig.AppId + "_ClientId");
                 var chkCode = RedisHelper.GetString(clientId + "_chkCode");
                 if (string.IsNullOrWhiteSpace(chkCode) || code.ToLower() != chkCode.ToLower())
@@ -88,7 +88,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             {
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = "用户信息异常" }.ToJson());
             }
-            //仅用作token换取
+            //chỉ dùng làmtokenđổi lấy
             OperatorModel oprInit = new OperatorModel
             {
                 UserCode = logResult.Account,
@@ -107,7 +107,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 登录身份 保存之前再处理
+        /// danh tính đăng nhập xử lý lại trước khi lưu
         /// </summary>
         /// <param name="opr"></param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         }
 
         /// <summary>
-        /// 退出登录
+        /// thoát đăng nhập
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -137,16 +137,16 @@ namespace NewtouchHIS.Framework.Web.Controllers
             if (!string.IsNullOrWhiteSpace(loginFromFlag))
             {
                 HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
-                ////退出SSO登录
+                ////thoátSSOđăng nhập
                 //var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");
                 //return Redirect(url);
             }
 
             return RedirectToAction("Index", "Login");
         }
-        #region 统一授权登录
+        #region đăng nhập ủy quyền thống nhất
         /// <summary>
-        /// 统一授权获取跳转地址
+        /// lấy địa chỉ chuyển hướng qua ủy quyền thống nhất
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -194,7 +194,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //视为null
+                    addr = null;    //được coi lànull
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());

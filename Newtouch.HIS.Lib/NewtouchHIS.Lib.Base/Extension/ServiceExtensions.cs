@@ -28,7 +28,7 @@ namespace NewtouchHIS.Lib.Base.Extension
 
             ConfigInitHelper.DbConfig = configuration.GetSection("BusinessDB").Get<BusinessDB>();
             ConfigInitHelper.SysConfig = configuration.GetSection("BusinessConfig").Get<BusinessConfig>();
-            #region 测试中 
+            #region đang kiểm tra 
             //services.AddSingleton(new AppSettings(configuration));
             //ConfigInitHelper.RedisConfig = configuration.GetSection("RedisConfig").Get<RedisDB>();
             #endregion
@@ -40,7 +40,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         #region IOC        
         public static IServiceCollection AddDependencyService(this IServiceCollection services)
         {
-            #region 依赖注入
+            #region tiêm phụ thuộc
             var baseType = typeof(IDependency);
             var path = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
             var getFiles = Directory.GetFiles(path, "*.dll");  //.Where(o=>o.Match())
@@ -81,7 +81,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// automapper 注入
+        /// automapper tiêm vào
         /// </summary>
         /// <param name="services"></param>
         /// <param name="assemblies"></param>
@@ -96,7 +96,7 @@ namespace NewtouchHIS.Lib.Base.Extension
             return services;
         }
         /// <summary>
-        /// Mapster注入
+        /// Mapstertiêm vào
         /// </summary>
         /// <param name="services"></param>
         /// <param name="assemblies"></param>
@@ -119,12 +119,12 @@ namespace NewtouchHIS.Lib.Base.Extension
 
         #region JWT
         /// <summary>
-        /// jwt鉴权逻辑配置
+        /// jwtcấu hình logic xác thực
         /// </summary>
         /// <param name="services"></param>
         /// <param name="enable"></param>
         /// <param name="jwtOptions"></param>
-        /// 授权API 获取负载信息
+        /// ủy quyềnAPI lấy thông tin tải trọng
         /// base.HttpContext.AuthenticatAsync().Result.Principal.Claims
         /// <returns></returns>
         public static IServiceCollection JWTAuthentication(this IServiceCollection services, bool enable, SSOAuthIdentity jwtOptions)
@@ -135,10 +135,10 @@ namespace NewtouchHIS.Lib.Base.Extension
                 {
                     options.TokenValidationParameters = new()
                     {
-                        ValidateIssuer = true,//是否验证发行商
-                        ValidateAudience = false,//是否验证受众者
-                        ValidateLifetime = true,//是否验证失效时间
-                        ValidateIssuerSigningKey = true,//是否验证签名键
+                        ValidateIssuer = true,//có xác minh bên phát hành hay không
+                        ValidateAudience = false,//có xác minh đối tượng nhận hay không
+                        ValidateLifetime = true,//có xác minh thời gian hết hiệu lực hay không
+                        ValidateIssuerSigningKey = true,//có xác minh khóa ký hay không
                         ValidIssuer = jwtOptions.Issuer,
                         ValidAudience = jwtOptions.Audience,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.AppSecret)),
@@ -150,7 +150,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                         //OnAuthenticationFailed = context => { 
 
                         //},
-                        //权限验证失败触发
+                        //kích hoạt khi xác minh quyền thất bại
                         OnChallenge = context =>
                         {
                             context.HandleResponse();
@@ -221,45 +221,45 @@ namespace NewtouchHIS.Lib.Base.Extension
 
                 services.AddSingleton<ISqlSugarClient>(o =>
                 {
-                    //多租户循环添加AOP
+                    //thêm lặp đa thuê baoAOP
                     SqlSugarScope sqlSugar = new SqlSugarScope(configConnection);
                     configConnection.ForEach(c =>
                     {
                         SqlSugarScopeProvider client = sqlSugar.GetConnectionScope(c.ConfigId);
-                        //每次Sql执行前事件
+                        //mỗi lầnSqlsự kiện trước khi thực hiện
                         client.Aop.OnLogExecuting = (sql, pars) =>
                         {
                             //var queryString = new KeyValuePair<string, SugarParameter[]>(sql, pars);
                             //if (sql.StartsWith("UPDATE") || sql.StartsWith("INSERT"))
                             //{
                             //    Console.ForegroundColor = ConsoleColor.Blue;
-                            //    Console.WriteLine($"==============新增/修改操作==============");
+                            //    Console.WriteLine($"==============thêm mới/thao tác sửa đổi==============");
                             //    Console.WriteLine(ToSqlExplain.GetSql(queryString));
                             //}
                             //if (sql.StartsWith("DELETE"))
                             //{
                             //    Console.ForegroundColor = ConsoleColor.Red;
-                            //    Console.WriteLine($"==============删除操作==============");
+                            //    Console.WriteLine($"==============thao tác xóa==============");
                             //}
                             //if (sql.StartsWith("SELECT"))
                             //{
                             //    Console.ForegroundColor = ConsoleColor.Green;
-                            //    Console.WriteLine($"==============查询操作==============");
+                            //    Console.WriteLine($"==============thao tác truy vấn==============");
                             //}
                             //Console.WriteLine(ToSqlExplain.GetSql(queryString));
                             //Console.ForegroundColor = ConsoleColor.White;
                         };
-                        //每次Sql执行后事件
+                        //mỗi lầnSqlsự kiện sau khi thực hiện
                         client.Aop.OnLogExecuted = (sql, pars) =>
                         {
-                            //执行时间超过10秒
+                            //thời gian thực hiện vượt quá10giây
                             if (client.Ado.SqlExecutionTime.TotalSeconds > 5)
                             {
                                 Console.WriteLine(sql);
                             }
                         };
 
-                        ////SQL报错
+                        ////SQLbáo lỗi
                         //client.Aop.OnError = (exp) =>
                         //{
                         //    var data = new Result
@@ -283,16 +283,16 @@ namespace NewtouchHIS.Lib.Base.Extension
         #region Swagger
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
-            #region 添加swagger注释
+            #region thêmswaggerchú thích
             services.AddSwaggerGen(c =>
             {
                 //c.SwaggerDoc("v1", new OpenApiInfo
                 //{
                 //    Version = "v1",
-                //    Title = "OpenHIS开源综合Api"
+                //    Title = "OpenHIStổng hợp mã nguồn mởApi"
                 //});
-                c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{AppDomain.CurrentDomain.FriendlyName}.xml"), true);//WebAPI项目XML文件
-                //c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SugarProjectCore.xml"), true);//其他项目所需的XML文件
+                c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{AppDomain.CurrentDomain.FriendlyName}.xml"), true);//WebAPIdự ánXMLtệp
+                //c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SugarProjectCore.xml"), true);//những thứ các dự án khác cầnXMLtệp
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -323,7 +323,7 @@ namespace NewtouchHIS.Lib.Base.Extension
 
 
         /// <summary>
-        /// 添加日志
+        /// thêm nhật ký
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
@@ -340,7 +340,7 @@ namespace NewtouchHIS.Lib.Base.Extension
 
 
         /// <summary>
-        /// Web 通用自定义组件
+        /// Web thành phần tùy chỉnh chung
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
@@ -349,7 +349,7 @@ namespace NewtouchHIS.Lib.Base.Extension
             ConfigServiceBase(services, config);
             services.AddDependencyService();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //HttpContext 访问组件
+            //HttpContext thành phần truy cập
             HttpWebHelper.servicesCollection = services;
             services.AddStackExchangeRedisCache(options =>
             {
@@ -361,14 +361,14 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 接口 通用自定义组件
+        /// giao diện thành phần tùy chỉnh chung
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
         /// <returns></returns>
         public static IServiceCollection AddCorsService(this IServiceCollection services)
         {
-            //配置跨域服务
+            //cấu hình dịch vụ đa miền
             services.AddCors(options =>
             {
                 options.AddPolicy("Cors", p =>
@@ -396,7 +396,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         #region private
         private static IServiceCollection ConfigServiceBase(this IServiceCollection services, IConfiguration config)
         {
-            #region 全局配置
+            #region cấu hình toàn cục
             ConfigInitHelper.DbConfig = config.GetSection("BusinessDB").Get<BusinessDB>();
             ConfigInitHelper.SysConfig = config.GetSection("BusinessConfig").Get<BusinessConfig>();
             ConfigInitHelper.AccessSetting = config.GetSection("BusinessConfig").Get<AccessConfig>();
@@ -407,7 +407,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
         #endregion
 
-        #region 暂停使用
+        #region tạm dừng sử dụng
         public static IServiceCollection AddSqlsugarBaseDB(this IServiceCollection services, IConfiguration configuration)
         {
             if (string.IsNullOrWhiteSpace(ConfigInitHelper.DbConfig!.DefaultConn) && ConfigInitHelper.DbConfig.DBConf.Count > 0)
@@ -415,7 +415,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                 return services;
             }
             var dbMain = ConfigInitHelper.DbConfig.DBConf.FirstOrDefault();
-            //注册SqlSugar
+            //đăng kýSqlSugar
             services.AddSingleton<ISqlSugarClient>(s =>
             {
                 SqlSugarScope sqlSugar = new SqlSugarScope(new ConnectionConfig()
@@ -427,10 +427,10 @@ namespace NewtouchHIS.Lib.Base.Extension
                 },
                db =>
                {
-                   //单例参数配置，所有上下文生效
+                   //cấu hình tham số đơn lẻ，có hiệu lực với mọi ngữ cảnh
                    db.Aop.OnLogExecuting = (sql, pars) =>
                    {
-                       //获取作IOC作用域对象
+                       //lấy tácIOCđối tượng phạm vi
                        var appServive = s.GetService<IHttpContextAccessor>();
                        var obj = appServive?.HttpContext?.RequestServices.GetService<ILogger>();
                        Console.WriteLine("AOP" + obj!.GetHashCode());
@@ -438,17 +438,17 @@ namespace NewtouchHIS.Lib.Base.Extension
                });
                 return sqlSugar;
             });
-            //业务库是动态添加的，只要注入主库就行
+            //thư viện nghiệp vụ được thêm động，chỉ cần tiêm thư viện chính là được
             return services;
         }
 
         #region IOC
         /// <summary>
-        /// 服务层注入
+        /// tiêm tầng dịch vụ
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="assemblyString">程序集名称（反射加载程序集使用）</param>
-        /// <param name="endsWithName">规范化服务层类结尾名称，默认以Service结尾，忽略大小写</param>
+        /// <param name="assemblyString">tên assembly（dùng tải assembly bằng phản chiếu）</param>
+        /// <param name="endsWithName">chuẩn hóa tên kết thúc lớp tầng dịch vụ，mặc định theoServicekết thúc，bỏ qua chữ hoa chữ thường</param>
         /// <returns></returns>
         public static IServiceCollection ServiceInjection(this IServiceCollection services, string assemblyString = "", string endsWithName = "")
         {
@@ -491,11 +491,11 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 仓储层注入
+        /// tiêm tầng kho
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="assemblyString">程序集名称（反射加载程序集使用）</param>
-        /// <param name="endsWithName">规范化仓库层类结尾名称，默认以Repository结尾，忽略大小写</param>
+        /// <param name="assemblyString">tên assembly（dùng tải assembly bằng phản chiếu）</param>
+        /// <param name="endsWithName">chuẩn hóa tên kết thúc lớp tầng kho，mặc định theoRepositorykết thúc，bỏ qua chữ hoa chữ thường</param>
         /// <returns></returns>
         public static IServiceCollection RepositoryInjection(this IServiceCollection services, string assemblyString = "", string endsWithName = "")
         {

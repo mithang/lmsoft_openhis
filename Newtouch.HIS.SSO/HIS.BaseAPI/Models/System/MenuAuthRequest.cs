@@ -3,7 +3,7 @@
 namespace HIS.BaseAPI.Models.System
 {
     /// <summary>
-    /// 角色授权菜单列表
+    /// danh sách menu ủy quyền vai trò
     /// </summary>
     public class MenuAuthRequest
     {
@@ -13,11 +13,11 @@ namespace HIS.BaseAPI.Models.System
         public string? DB { get; set; }
         public string? UserId { get; set; }
         /// <summary>
-        /// 仅限有效菜单
+        /// chỉ giới hạn menu có hiệu lực
         /// </summary>
         public bool ValidLimit { get; set; } = true;
         /// <summary>
-        /// 应用Id
+        /// ứng dụngId
         /// </summary>
         public string? MenuAppId { get; set; }
     }

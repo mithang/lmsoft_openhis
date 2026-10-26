@@ -8,7 +8,7 @@ namespace NewtouchHIS.Lib.Base.Extension
     public static class EnumExtensions
     {
         /// <summary>
-        /// 获取特性 (DisplayAttribute) 的名称；如果未使用该特性，则返回枚举的名称。
+        /// lấy đặc tính (DisplayAttribute) tên của；nếu chưa dùng đặc tính này，thì trả về tên của enum。
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
@@ -22,7 +22,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 获取特性 (DisplayAttribute) 的说明；如果未使用该特性，则返回枚举的名称。
+        /// lấy đặc tính (DisplayAttribute) mô tả của；nếu chưa dùng đặc tính này，thì trả về tên của enum。
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 获取特性 (DescriptionAttribute) 的说明；如果未使用该特性，则返回枚举的名称。
+        /// lấy đặc tính (DescriptionAttribute) mô tả của；nếu chưa dùng đặc tính này，thì trả về tên của enum。
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 直接获取特性（更轻量、更容易使用，不用封装“获取每一个自定义特性”的扩展方法）
+        /// lấy trực tiếp đặc tính（nhẹ hơn、dễ sử dụng hơn，không cần đóng gói“lấy từng đặc tính tùy chỉnh”phương thức mở rộng của）
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumValue"></param>
@@ -64,7 +64,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 根据枚举类型获取枚举项信息
+        /// lấy thông tin mục enum theo kiểu enum
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// （呈现枚举下拉用）获取 SelectList Text：Name Value：Id
+        /// （dùng để hiển thị danh sách thả xuống của enum）lấy SelectList Text：Name Value：Id
         /// </summary>
         /// <param name="enumeration"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）获取 SelectList Text：Desc Value：Id
+        ///// （dùng để hiển thị danh sách thả xuống của enum）lấy SelectList Text：Desc Value：Id
         ///// </summary>
         ///// <param name="enumeration"></param>
         ///// <returns></returns>
@@ -101,10 +101,10 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）获取 SelectList Text：Desc Value：Id
+        ///// （dùng để hiển thị danh sách thả xuống của enum）lấy SelectList Text：Desc Value：Id
         ///// </summary>
         ///// <param name="enumeration"></param>
-        ///// <param name="selectedValue">选中项</param>
+        ///// <param name="selectedValue">mục đã chọn</param>
         ///// <returns></returns>
         //public static SelectList ToDescSelectList(this System.Enum enumeration, object selectedValue)
         //{
@@ -112,7 +112,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）提供部分选项  Text：Desc Value：Id
+        ///// （dùng để hiển thị danh sách thả xuống của enum）cung cấp một phần tùy chọn  Text：Desc Value：Id
         ///// </summary>
         ///// <param name="enumeration"></param>
         ///// <param name="someValues"></param>
@@ -129,11 +129,11 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）提供部分选项  Text：Desc Value：Id
+        ///// （dùng để hiển thị danh sách thả xuống của enum）cung cấp một phần tùy chọn  Text：Desc Value：Id
         ///// </summary>
         ///// <param name="enumeration"></param>
         ///// <param name="someValues"></param>
-        ///// <param name="selectedValue">选中项</param>
+        ///// <param name="selectedValue">mục đã chọn</param>
         ///// <returns></returns>
         //public static SelectList ToSomeDescSelectList(this System.Enum enumeration, string someValues, object selectedValue)
         //{

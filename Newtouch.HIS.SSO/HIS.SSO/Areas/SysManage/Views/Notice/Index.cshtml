@@ -18,11 +18,11 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group" id="noticeStuGroup">
-            <a class="btn btn-default active">全部消息</a>
-            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.UnSend)"><i class="fa fa-circle icon-theme-warning"></i> 未发送</a>
-            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Send)"><i class="fa fa-circle icon-theme-info"></i> 已发送</a>
-            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Read)"><i class="fa fa-circle icon-theme-success"></i> 已读</a>
-            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Wait)"><i class="fa fa-circle icon-theme-danger"></i> 待处理</a>
+            <a class="btn btn-default active">tất cả tin nhắn</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.UnSend)"><i class="fa fa-circle icon-theme-warning"></i> chưa gửi</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Send)"><i class="fa fa-circle icon-theme-info"></i> đã gửi</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Read)"><i class="fa fa-circle icon-theme-success"></i> đã đọc</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Wait)"><i class="fa fa-circle icon-theme-danger"></i> đang chờ xử lý</a>
         </div>
     </div>
     <div class="search">
@@ -30,7 +30,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="关键字" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="từ khóa" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -45,11 +45,11 @@
                 <td>
                     <div class="input-group">
                         <select class="form-control selctcontrol-green" id="msgtype">
-                            <option value="1">收件箱</option>
-                            <option value="2">发件箱</option>
+                            <option value="1">hộp thư đến</option>
+                            <option value="2">hộp thư đi</option>
                             @if (ViewBag.IsHospAdministrator)
                             {
-                                <option value="999">消息管理</option>
+                                <option value="999">quản lý tin nhắn</option>
                             }
                         </select>
                     </div>
@@ -81,12 +81,12 @@
         });
 
     });
-    //请求的参数
+    //tham số yêu cầu
     function queryParams(params) {
         var data = {
-            //每页多少条数据
+            //mỗi trang có bao nhiêu dòng dữ liệu
             limit: params.limit,
-            //请求第几页
+            //yêu cầu trang thứ mấy
             offset: params.offset,
             order: params.order,
             sort: params.sort,
@@ -102,13 +102,13 @@
     var $table = $('#table');
     function mounted() {
         $table.bootstrapTable({
-            url: "/SysManage/Notice/GetNoticeList", //服务器返回数据的网址
-            method: 'POST',                      //数据请求方式
+            url: "/SysManage/Notice/GetNoticeList", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             height: $(window).height() - 96,
             queryParams: queryParams,
             classes: "table table-bordered table-striped table-hover",
-            theadClasses: "table-light",//设置表头样式
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
             idField: 'Id',
             showColumns: false,
             columns: [
@@ -127,9 +127,9 @@
 
                 {
                     field: 'AppId',
-                    title: '消息内容',
+                    title: 'nội dung tin nhắn',
                     halign: 'center',
-                    align: 'left',   //水平内容对齐方式
+                    align: 'left',   //căn lề nội dung theo chiều ngang
                     width: '25',
                     widthUnit: '%',
                     formatter: function (cellvalue, row) {
@@ -142,11 +142,11 @@
 
                 {
                     field: 'NoticeStu',
-                    title: '消息状态',
+                    title: 'trạng thái tin nhắn',
                     halign: 'center',
                     //sortable: true,
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '5',
                     widthUnit: '%',
                     formatter: function (cellvalue) {
@@ -163,7 +163,7 @@
                             return '<span><i class="fa fa-circle icon-theme-danger"></i> ' + '@(NoticeStuEnum.Wait.GetDescription())' + '</span>';
                         }
                         else {
-                            return '异常';
+                            return 'ngoại lệ';
                         }
                     }
                 },
@@ -173,17 +173,17 @@
                     visible: false
                 }, {
                     field: 'GroupName',
-                    title: '消息组',
+                    title: 'nhóm tin nhắn',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '10',
                     widthUnit: '%',
                 },
                 {
                     field: 'GroupYwlx',
-                    title: '业务类型',
+                    title: 'loại nghiệp vụ',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '5',
                     widthUnit: '%',
                     formatter: function (cellvalue) {
@@ -201,29 +201,29 @@
                 },
                 {
                     field: 'SendFromName',
-                    title: '发件人',
+                    title: 'người gửi',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '10',
                     widthUnit: '%',
                 },
                 {
                     field: 'RecipientName',
-                    title: '收件人',
+                    title: 'người nhận',
                     halign: 'center',
                     width: '10',
                     widthUnit: '%',
                 },
                 // {
                 //     field: 'Content',
-                //     title: '消息模板',
+                //     title: 'mẫu tin nhắn',
                 //     halign: 'center',
                 //     width: '10',
                 //     widthUnit: '%',
                 // },
                 {
                     field: 'ContentData',
-                    title: '消息内容',
+                    title: 'nội dung tin nhắn',
                     halign: 'center',
                     width: '20',
                     widthUnit: '%',
@@ -231,18 +231,18 @@
                 },
                 {
                     field: 'AppName',
-                    title: '来源',
+                    title: 'nguồn',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '5',
                     widthUnit: '%',
                     //sortable: true,
                 },
                 {
                     field: 'CreateTime',
-                    title: '发送时间',
+                    title: 'thời gian gửi',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '8',
                     widthUnit: '%',
                     formatter: function (cellvalue) {
@@ -251,9 +251,9 @@
                 },
                 {
                     field: 'LastModifyTime',
-                    title: '最近更新',
+                    title: 'cập nhật gần nhất',
                     halign: 'center',
-                    align: 'center',   //水平内容对齐方式
+                    align: 'center',   //căn lề nội dung theo chiều ngang
                     width: '8',
                     widthUnit: '%',
                     formatter: function (cellvalue) {
@@ -272,19 +272,19 @@
             //treeShowField: 'Name',
             //parentIdField: 'ParentId',
             uniqueId: 'Id',
-            //******分页设置****
-            //toolbar: '.btn-toolbar',            //工具按钮用哪个容器 #toolbar
+            //******thiết lập phân trang****
+            //toolbar: '.btn-toolbar',            //nút công cụ dùng vùng chứa nào #toolbar
             //toolbarAlign: 'left',
-            pagination: true,                   //是否显示分页（*）
-            pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-            pageSize: 30,                       //每页的记录行数（*）
-            pageList: [5, 50, 100],            //可供选择的每页的行数（*）
+            pagination: true,                   //có hiển thị phân trang hay không（*）
+            pageNumber: 1,                      //tải ban đầu trang đầu tiên，mặc định trang đầu tiên,và ghi lại
+            pageSize: 30,                       //số dòng bản ghi mỗi trang（*）
+            pageList: [5, 50, 100],            //số dòng mỗi trang có thể chọn（*）
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
-            sortable: true,                     //是否启用排序
-            sortOrder: "desc",                   //排序方式
-            sidePagination: 'server',           //分页方式：client客户端分页，server服务端分页（*）
-            //******分页设置****
+            sortable: true,                     //có bật sắp xếp hay không
+            sortOrder: "desc",                   //phương thức sắp xếp
+            sidePagination: 'server',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            //******thiết lập phân trang****
             onLoadSuccess: function (data) {
 
             },
@@ -300,10 +300,10 @@
                 noticeReadProc(row.Id);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>正在加载中，请稍候</span>";
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
             },
             formatNoMatches: function () {
-                return "暂无数据";
+                return "chưa có dữ liệu";
             }
 
         });
@@ -312,12 +312,12 @@
     }
 
 
-    //对应的函数进行判断；
+    //hàm tương ứng thực hiện phán đoán；
     function checkFormatter(value, row, index) {
-        if (row.type)//type 为是否选中状态值
+        if (row.type)//type là giá trị trạng thái có được chọn hay không
             return {
-                disabled: false,//设置是否可用
-                checked: true//设置选中
+                disabled: false,//đặt có thể dùng hay không
+                checked: true//đặt đã chọn
             };
         return value;
     }

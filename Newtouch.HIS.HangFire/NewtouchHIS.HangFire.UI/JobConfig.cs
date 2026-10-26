@@ -8,15 +8,15 @@ namespace NewtouchHIS.HangFire.UI
     [ManagementPage("任务管理")]
     public class JobConfig
     {
-        [Hangfire.Dashboard.Management.Support.Job] //必须要声明这个属性 
+        [Hangfire.Dashboard.Management.Support.Job] //bắt buộc phải khai báo thuộc tính này 
 
         [DisplayName("任务标题")]
 
         [Description("任务描述")]
 
-        [AutomaticRetry(Attempts = 0)] //重试次数
+        [AutomaticRetry(Attempts = 0)] //số lần thử lại
 
-        [DisableConcurrentExecution(90)]//禁用并行执行
+        [DisableConcurrentExecution(90)]//vô hiệu hóa thực hiện song song
 
         public string Test(PerformContext context, IJobCancellationToken token,
 

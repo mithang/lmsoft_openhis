@@ -4,7 +4,7 @@ using System.Text;
 namespace NewtouchHIS.Lib.Base.Security
 {
     /// <summary>
-    /// MD5加密
+    /// MD5mã hóa
     /// </summary>
     public class MD5Encrypt
     {
@@ -23,10 +23,10 @@ namespace NewtouchHIS.Lib.Base.Security
         }
 
         /// <summary>
-        /// MD5加密
+        /// MD5mã hóa
         /// </summary>
-        /// <param name="str">加密字符</param>
-        /// <param name="code">加密位数16/32</param>
+        /// <param name="str">ký tự mã hóa</param>
+        /// <param name="code">số chữ số mã hóa16/32</param>
         /// <returns></returns>
         public static string Md5(string str, int code, bool uppercase = true)
         {

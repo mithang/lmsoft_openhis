@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Framework.Web.ServiceModels
 {
     /// <summary>
-    /// 角色授权菜单列表
+    /// danh sách menu ủy quyền vai trò
     /// </summary>
     public class MenuAuthRequest
     {
@@ -13,21 +13,21 @@ namespace NewtouchHIS.Framework.Web.ServiceModels
         public string? DB { get; set; }
         public string? UserId { get; set; }
         /// <summary>
-        /// （菜单）业务系统AppId
+        /// （menu）hệ thống nghiệp vụAppId
         /// </summary>
         public string? MenuAppId { get; set; }
         /// <summary>
-        /// 仅限有效菜单
+        /// chỉ giới hạn menu có hiệu lực
         /// </summary>
         public bool ValidLimit { get; set; } = true;
         /// <summary>
-        /// 是否显示已同步
+        /// có hiển thị đã đồng bộ hay không
         /// </summary>
         public bool? ShowSync { get; set; }=false;
         
     }
     /// <summary>
-    /// 新增菜单
+    /// thêm menu
     /// </summary>
     public class MenuAddRequest : SysModuleVO
     {

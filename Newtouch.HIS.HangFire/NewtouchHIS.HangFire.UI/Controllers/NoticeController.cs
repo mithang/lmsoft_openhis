@@ -28,7 +28,7 @@ namespace NewtouchHIS.HangFire.UI.Controllers
             _appId = ConfigInitHelper.SysConfig.AppId;
         }
         /// <summary>
-        /// 病历质控消息处理
+        /// xử lý tin nhắn kiểm soát chất lượng bệnh án
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -36,7 +36,7 @@ namespace NewtouchHIS.HangFire.UI.Controllers
         public async Task<string> MrqcNoticeBeginProcAsync()
         {
             string procIds = string.Empty;
-            //循环任务 查找未处理消息
+            //nhiệm vụ lặp lại tìm tin nhắn chưa xử lý
             var msgList = await ApiManageHttpHelper.PostAsync<List<MsgNoticeQueueBasicVO>>($"{ApiManageHelper.NoticeImmediatelyWaitProcApi}", (new Request<object>
             {
                 AppId = _appId,
@@ -135,7 +135,7 @@ namespace NewtouchHIS.HangFire.UI.Controllers
             return procIds;
         }
         /// <summary>
-        /// 超时未读消息重发
+        /// gửi lại tin nhắn chưa đọc quá hạn
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -143,7 +143,7 @@ namespace NewtouchHIS.HangFire.UI.Controllers
         public async Task<string> MrqcNoticeUnReadProcAsync()
         {
             string procIds = string.Empty;
-            //循环任务 查找未处理消息
+            //nhiệm vụ lặp lại tìm tin nhắn chưa xử lý
             var msgList = await ApiManageHttpHelper.PostAsync<List<MsgNoticeQueueBasicVO>>($"{ApiManageHelper.NoticeUnReadProcApi}", (new Request<object>
             {
                 AppId = _appId,
