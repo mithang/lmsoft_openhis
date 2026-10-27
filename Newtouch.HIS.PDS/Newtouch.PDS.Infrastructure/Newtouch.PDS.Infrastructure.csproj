@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>Newtouch.PDS.Infrastructure</AssemblyName>
+    <RootNamespace>Newtouch.PDS</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.100" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NPOI" Version="2.6.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- net6.0 vendor base layer (read-only references; run copy is never modified) -->
+    <Reference Include="NewtouchHIS.Lib.Base">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Framework">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Dead duplicates in the original tree: the original old-style csprojs
+         explicitly exclude these (only the Base/ versions are compiled). -->
+    <Compile Remove="PharmacyDrugStorage\SysMedicineSupplierRepo.cs" />
+    <Compile Remove="IRepository\PharmacyDrugStorage\ISysMedicineSupplierRepo.cs" />
+  </ItemGroup>
+
+</Project>

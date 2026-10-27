@@ -1,0 +1,102 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "examForm";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+
+<form id="form1">
+    <div class="container" style="padding:0;">
+        <div class="tab-content" style="margin-top:10px;padding-right:10px;">
+            <div role="tabpanel" class="tab-pane fade in active">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Bảo hiểm y tếĐơn thuốcSố hiệu:</th>
+                        <td class="formValue" style="width:70px;padding-right:50px;">
+                            <input id="hiRxno" name="hiRxno" disabled="disabled" type="text" class="form-control" placeholder="" />
+                        </td>
+                        <th class="formTitle">Bảo hiểm y tếDược sĩHọ tên:</th>
+                        <td class="formValue" style="width:70px;padding-right:50px;">
+                            <input id="pharName" name="pharName" disabled="disabled" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Bảo hiểm y tếDược sĩMã:</th>
+                        <td class="formValue" style="width:70px;padding-right:50px;">
+                            <input id="pharCode" name="pharCode" disabled="disabled" type="text" class="form-control" placeholder="" />
+                        </td>
+                        <th class="formTitle">Đơn thuốcDuyệtTrạng tháiTên:</th>
+                        <td class="formValue" style="width:70px;padding-right:50px;">
+                            <input id="rxChkStasCodg" name="rxChkStasCodg" disabled="disabled" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Đơn thuốcDuyệtÝ kiến:</th>
+                        <td class="formValue" style="width:70px;padding-right:50px;">
+                            <input id="rxChkOpnn" name="rxChkOpnn" disabled="disabled" type="text" class="form-control" placeholder="" />
+                        </td>
+                        <th class="formTitle">Đơn thuốcDuyệtThời gian:</th>
+                        <td class="formValue" style="width:70px;padding-right:50px;">
+                            <input id="rxChkTime" name="rxChkTime" disabled="disabled" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script lang="javascript">
+
+
+    var hisId = $.request("hisId");
+    var cfh = $.request("cfh");
+
+    initForm();
+
+    //初始化表单
+    function initForm() {
+        if (hisId != null && hisId != "") {
+            $.ajax({
+                url: "http://127.0.0.1:33333/api/YiBao/ElectronicPrescription_D006",
+                dataType: "json",
+                data: { hisId: hisId, cfh: cfh, operatorId: '@curOpr.UserCode', operatorName: '@curOpr.UserName', orgId: '@curOpr.OrganizeId' },
+                type: "POST",
+                async: false,
+                success: function (ajaxdata) {
+                    var tfReturn = eval('(' + ajaxdata + ')');
+                    if (tfReturn.infcode == "0" || tfReturn.infcode == 0)
+                    {
+                        var data1 = eval('(' + tfReturn.output + ')');
+                        if (data1.code == 0 || data1.code == "0") {
+                            var obj = eval('(' + data1.encData + ')');
+                            $("#hiRxno").val(obj.hiRxno);
+                            $("#pharName").val(obj.pharName);
+                            $("#pharCode").val(obj.pharCode);
+                            $("#rxChkStasCodg").val(obj.rxChkStasCodg == "1" ? "DuyệtThông qua" : (obj.rxChkStasCodg == "2" ? "DuyệtKhông thông qua" : "Chờ duyệt"));
+                            $("#rxChkOpnn").val(obj.rxChkOpnn);
+                            $("#rxChkTime").val(obj.rxChkTime);
+                        }
+                        else {
+                            $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + data1.message, 'error');
+                            return;
+                        }
+                    }
+                    else {
+                        $.modalAlert("Điện tửĐơn thuốcDuyệtKết quảTra cứuthất bại:" + tfReturn.err_msg, 'error');
+                        return;
+                    }
+                },
+                error: function (request, error, ex) {
+                    $.loading(false);
+                    $.modalAlert('Bảo hiểm y tếDịch vụ【Điện tửĐơn thuốcDuyệtKết quảTra cứu】Không thể truy cập:' + ex, 'error');
+                }
+            })
+        }
+    }
+
+</script>
+
+
+

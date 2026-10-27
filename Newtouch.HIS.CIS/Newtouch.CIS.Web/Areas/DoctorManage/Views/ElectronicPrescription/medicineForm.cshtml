@@ -1,0 +1,105 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "examForm";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+
+<table class="form">
+    <tr>
+        <th class="formTitle">Bảo hiểm y tếĐơn thuốcSố hiệu:</th>
+        <td class="formValue">
+            <input id="hiRxno" name="hiRxno" type="text" disabled="disabled" class="form-control" placeholder="" />
+        </td>
+        <th class="formTitle">Bảo hiểm y tếQuyết toánThời gian:</th>
+        <td class="formValue">
+            <input id="setlTime" name="setlTime" type="text" disabled="disabled" class="form-control" placeholder="" />
+        </td>
+        <th></th>
+        <td></td>
+        <th></th>
+        <td></td>
+        <th></th>
+        <td></td>
+    </tr>
+</table>
+<div class="gridPanel">
+    <table id="gridList"></table>
+</div>
+
+<script lang="javascript">
+
+
+    var hisId = $.request("hisId");
+    var cfh = $.request("cfh");
+    $(function () {
+        debugger;
+        gridListData();
+        initForm();
+    });
+
+    //初始化表单
+    function initForm() {
+        $.ajax({
+            url: "http://127.0.0.1:33333/api/YiBao/ElectronicPrescription_D007",
+            dataType: "json",
+            data: { hisId: hisId, cfh: cfh, operatorId: '@curOpr.UserCode', operatorName: '@curOpr.UserName', orgId: '@curOpr.OrganizeId' },
+            type: "POST",
+            async: false,
+            success: function (ajaxdata) {
+                var tfReturn = eval('(' + ajaxdata + ')');
+                if (tfReturn.infcode == 0 || tfReturn.infcode == "0") {
+                    var data1 = eval('(' + tfReturn.output + ')');
+                    if (data1.code == 0 || data1.code == "0") {
+                        var data2 = eval('(' + data1.encData + ')');
+                        $("#hiRxno").val(data2.hiRxno);
+                        $("#setlTime").val(data2.setlTime);
+                        $("#gridList").newtouchLocalDataGrid({
+                            autowidth: false,
+                            unwritten: false,
+                            caption: "Đơn thuốcThông tin",
+                        }, data2.seltdelts);
+                    } else {
+                        $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + data1.message, 'error');
+                        return;
+                    }
+                }
+                else {
+                    $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + tfReturn.err_msg, 'error');
+                    return;
+                }
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                $.modalAlert('Bảo hiểm y tếDịch vụ【Điện tửĐơn thuốcLấy thuốcKết quảTra cứu】Không thể truy cập:' + ex, 'error');
+            }
+        })
+    }
+    function gridListData() {
+        var $gridList = $("#gridList");
+        var captionCon = "Đơn thuốcLấy thuốcThông tin";
+        $gridList.dataGrid({
+            height: $(window).height() - 200,
+            caption: captionCon,
+            multiselect: false,
+            unwritten: false,
+            colModel: [
+                { label: 'Số hiệu thuốc cơ sở y dược', name: 'medinsListCodg', width: 120, align: 'left' },
+                { label: 'Tên chung', name: 'drugGenname', width: 120, align: 'left' },
+                { label: 'Tên thương mại thuốc', name: 'drugProdname', width: 120, align: 'left' },
+                { label: 'Dạng bào chế thuốc', name: 'drugDosform', width: 80, align: 'left' },
+                { label: 'ThuốcQuy cách', name: 'drugSpec', width: 80, align: 'left' },
+                { label: 'Số lượng', name: 'ent', width: 80, align: 'left' },
+                { label: 'Số phê duyệt', name: 'aprvno', width: 100, align: 'left' },
+                { label: 'Số lô', name: 'bchno', width: 80, align: 'left' },
+                { label: 'Sản xuấtSố lô', name: 'manuLotnum', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'prdrName', width: 120, align: 'left' }
+            ],
+            viewrecords: true
+        });
+    }
+</script>
+
+
+

@@ -1,0 +1,164 @@
+﻿@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Quy tắc văn bản bệnh án";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .dv-left {
+        width: 25%;
+        float: left;
+    }
+
+    .dv-right {
+        float: left;
+        margin-left: 5px;
+        width: 73%;
+        /*background-color:*/
+    }
+</style>
+<div id="treeDiv" class="gridPanel dv-left">
+    <table id="gridList"></table>
+</div>
+
+<div id="blgz" class="gridPanel dv-right" style="background-color:#ffffff;">
+    <table id="gridRightList"></table>
+
+    @Html.Partial("_BottomButtonsView", new Newtouch.EMR.Web.Models.BottomButtonViewModel()
+    {
+    ShowKeyList = new[] { 2,3,4},
+    F2Text = "Thêm mới",
+    F3Text = "Sửa",
+    F4Text = "Xóa",
+    })
+</div>
+<script>
+    $(function () {
+       
+        gridList();
+        gridRightList();
+    });
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/MedicalRecordManage/MedicalRules/GetBllxTree",
+            unwritten: false,
+            treeGrid: true,
+            treeGridModel: "adjacency",
+            ExpandColumn: "bllxmc",
+            async: true,
+            height: $(window).height() - 96,
+            rownumbers: false,
+            colModel: [
+                { label: "ID", name: "Id", hidden: true, key: true },
+                { label: 'bllx', name: 'bllx', width: 80, align: 'center', hidden: true },
+                {
+                    label: 'Tên bệnh án', name: 'bllxmc', width: 100, align: 'left', formatter: function (cellvalue, options, rowobject) {
+                        if (rowobject.IsRoot != 1) {
+                            return '<span class="glyphicon glyphicon-file" style="color:#6ff3ad; font-size: 13px;"></span> ' + rowobject.bllxmc;
+                        }
+                        else {
+                            return rowobject.bllxmc;
+                        }
+                    }
+                },
+                {
+                    label: 'Tên bệnh án', name: 'bllxmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
+                        return rowobject.bllxmc;
+                    }
+                }
+            ],
+            onSelectRow: function (rowid, status) {
+                var rowData = $("#gridList").jqGrid('getRowData', rowid);
+                $("#gridRightList").jqGrid('setGridParam', {
+                    postData: { keyword: rowData.bllx },
+                    page: 1,
+                }).trigger('reloadGrid');
+            }
+        });
+    }
+    function gridRightList() {
+        var $gridrightList = $("#gridRightList");
+        $gridrightList.dataGrid({
+            caption: "Hạng mục danh sách quy tắc",
+            url: "/MedicalRecordManage/MedicalRules/GetRulesList",
+            postData: { keyword: "" },
+            rownumbers: false,
+            height: $(window).height() - 123,
+            colModel: [
+                { label: "Id", name: "Id", hidden: true, key: true },
+                { label: "Bllx", name: "Bllx", hidden: true, },
+                { label: "Loại bệnh án", name: "RulesType", width: 100, align: "center", },
+                { label: "Giới hạn số ngày", name: "RulesDay", width: 100, align: "center", },
+                { label: "Mô tả", name: "Remark", width: 200, align: "center", },
+                { label: "Thứ tự hiển thị", name: "Px", width: 80, align: "left" },
+            ],
+            unwritten: false,
+            viewrecords: true,
+
+        });
+    }
+
+    function newtouch_event_f2() {
+        var seleRow = $("#gridList").jqGridRowValue();
+        if (!!!seleRow.bllx) {
+            $.modalAlert("Vui lòng chọn một loại bệnh án", "error");
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mục quy tắc bệnh án",
+            url: "/MedicalRecordManage/MedicalRules/Form?" + "bllx=" + seleRow.bllx + "&bllxmc=" + seleRow.bllxmc1 + "&czlx=" + "insert",
+            width: "640px",
+            height: "350px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function newtouch_event_f3() {
+        btn_edit();
+    }
+    function btn_edit() {
+        var seleRow = $("#gridRightList").jqGridRowValue();
+        if (!!!seleRow.Id) {
+            $.modalAlert("Vui lòng chọn một hạng mục quy tắc", "error");
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa mục quy tắc bệnh án",
+            url: "/MedicalRecordManage/MedicalRules/Form?" + "Id=" + seleRow.Id + "&czlx=" + "update",
+            width: "640px",
+            height: "350px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function newtouch_event_f4() {
+        var seleRow = $("#gridRightList").jqGridRowValue();
+        if (!!!seleRow.Id) {
+            $.modalAlert("Vui lòng chọn một quy tắc bệnh án cần xóa", "error");
+            return;
+        }
+        $.modalConfirm("Có xóa quy tắc này không", function (flag) {
+            if (flag) {
+                $.najax({
+                    url: "/MedicalRecordManage/MedicalRules/RulesDel",
+                    data: { Id: seleRow.Id },
+                    dataType: "json",
+                    success: function (res) {
+                        $.modalAlert("Xóa thành công", 'warning');
+                        $("#gridRightList").jqGrid('setGridParam', {
+                            postData: { keyword: seleRow.Bllx },
+                        }).trigger('reloadGrid');
+                    }
+                });
+
+            } else {
+                return false;
+            }
+        });
+    }
+</script>

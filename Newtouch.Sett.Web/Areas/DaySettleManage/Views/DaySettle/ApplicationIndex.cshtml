@@ -1,0 +1,315 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+
+@{
+	ViewBag.Title = "ApplicationIndex";
+	Layout = "~/Views/Shared/_Index.cshtml";
+	var opr = OperatorProvider.GetCurrent();
+}
+
+<form name="form1">
+	<div class="panel panel-default">
+		<table class="form">
+			<tr>
+				<th class="formTitle" id="thCZRQ">Ngày quyết toán：</th>
+				<td class="formValue" colspan="2">
+					<input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+					<span style="margin-left:2%;float:left;">—</span>
+					<input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :40%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+
+					
+				</td>
+				<th class="formTitle">Loại quyết toán：</th>
+				<td class="formValue">
+					<select class="form-control" id="jslx" style="width:140px;">
+						<option value="">Tất cả</option>
+					</select>
+				</td>
+				<th class="formTitle">Loại bảo hiểm：</th>
+				<td class="formValue">
+					<select class="form-control" id="xzlx" style="width:140px;">
+						<option value="">Tất cả</option>
+					</select>
+				</td>
+				<td class="formValue">
+					<input type="button" id="btn_search_tj" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Thống kê" />
+					<input type="button" id="btn_search_dzz" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="Đối chiếu tổng sổ" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="background-color: #fff;">
+		<table id="gridJSList"></table>
+	</div>
+	<div style="background-color: #fff; margin-top:5px;">
+		<table id="gridJSMXList"></table>
+	</div>
+	<div class="gridPanel">
+		<table id="gridJSList"></table>
+		<div id="gridPager"></div>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th class="formTitle" valign="top" style="padding-top: 0px;">
+					Kết quả đối chiếu sổ sách：
+				</th>
+				<td class="formValue" colspan="5">
+					<textarea id="dzjg" name="dzjg" class="form-control" style="height: 100px; width:1000px; resize:none;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</form>
+
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+
+		getclrtypeList();
+		getinsutypeList();
+        //结算主记录
+        gridJSListData();
+    });
+	function getclrtypeList() {
+
+		$.ajax({
+			type: "POST",
+			url: "/DaySettleManage/DaySettle/Getclr_type",
+			//data: { mllx: mzlx },
+			dataType: "json",
+			async: false,
+			success: function (ajaxresp) {
+
+				$.each(ajaxresp, function () {
+					var option = "<option value='" + this.value + "'>" + this.label + "</option>";
+					$("#jslx").append(option);
+				});
+			}
+		});
+	}
+
+	function getinsutypeList() {
+
+		$.ajax({
+			type: "POST",
+			url: "/DaySettleManage/DaySettle/Getinsutype",
+			//data: { mllx: mzlx },
+			dataType: "json",
+			async: false,
+			success: function (ajaxresp) {
+
+				$.each(ajaxresp, function () {
+					var option = "<option value='" + this.value + "'>" + this.label + "</option>";
+					$("#xzlx").append(option);
+				});
+			}
+		});
+	}
+
+    function gridJSListData() {
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSList");
+        $gridJsList.dataGrid({
+			postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val(), qslx: $("#jslx").val(), xz: $("#xzlx").val()},
+            height: 250,
+			url: "/DaySettleManage/DaySettle/GetQszdd",
+            colModel: [
+				{ label: 'Loại quyết toán', name: 'qslbmc', width: 100, align: 'left' },
+				{ label: 'Loại quyết toán', name: 'qslb', width: 100, hidden: true, align: 'left' },
+				{ label: 'Loại bảo hiểm', name: 'xzmc', width: 130, align: 'left' },
+				{ label: 'Loại bảo hiểm', name: 'xz', width: 100, hidden: true, align: 'left' },
+                { label: 'Có hay không khác địa phương', name: 'sfyd', width: 60, align: 'left' },
+                { label: 'Ngày bắt đầu', name: 'ksrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Ngày kết thúc', name: 'jsrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+				{ label: 'Tổng chi phí', name: 'zfy', width: 80, align: 'left' },
+				{ label: 'Quỹ Số tiền thanh toán', name: 'jjzfje', width: 80, align: 'left' },
+				{ label: 'Thanh toán tài khoản cá nhân', name: 'grzh', width: 80, align: 'left' },
+				{ label: 'Thanh toán tiền mặt Số tiền', name: 'xjzfje', width: 80, align: 'left' },
+                { label: 'Số giao dịch quyết toán', name: 'jsbs', width: 80, align: 'left' },
+				{ label: 'Có hay không Hoàn phí', name: 'sftf', width: 80, align: 'left' },
+
+				{ label: 'Quỹ chung bảo hiểm y tế cơ bản cho người lao động thành thị', name: 'czzgtcjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ chung bảo hiểm y tế cơ bản cho người lao động thành thị lượt người', name: 'czzgtcjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ tài khoản cá nhân bảo hiểm y tế cơ bản cho người lao động thành thị', name: 'czzgzhjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ tài khoản cá nhân bảo hiểm y tế cơ bản cho người lao động thành thị lượt người', name: 'czzgzhjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ trợ cấp y tế công chức', name: 'gywbzjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ trợ cấp y tế công chức lượt người', name: 'gywbzjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ trợ cấp chi phí y tế lớn', name: 'deylbzjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ trợ cấp chi phí y tế lớn lượt người', name: 'deylbzjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo đảm y tế cho cán bộ nghỉ hưu', name: 'lxrybzjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo đảm y tế cho cán bộ nghỉ hưu lượt người', name: 'lxrybzjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ trợ cấp y tế cho quân nhân khuyết tật cấp 1 đến 6', name: 'cjbzjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ trợ cấp y tế cho quân nhân khuyết tật cấp 1 đến 6lượt người', name: 'cjbzjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo hiểm y tế bổ sung doanh nghiệp', name: 'qybzyljj', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo hiểm y tế bổ sung doanh nghiệp lượt người', name: 'qybzyljjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo hiểm y tế cơ bản cho cư dân thành thị và nông thôn', name: 'cxjmjbyljj', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo hiểm y tế cơ bản cho cư dân thành thị và nông thôn lượt người', name: 'cxjmjbyljjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo hiểm y tế bệnh nặng cho cư dân thành thị và nông thôn', name: 'cxjmdbyljj', hidden: true, align: 'left' },
+				{ label: 'Quỹ bảo hiểm y tế bệnh nặng cho cư dân thành thị và nông thôn lượt người', name: 'cxjmdbyljjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ ưu đãi', name: 'yfjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ ưu đãi lượt người', name: 'yfjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ sinh sản', name: 'syjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ sinh sản lượt người', name: 'syjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ khác', name: 'qtjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ khác lượt người', name: 'qtjjrc', hidden: true, align: 'left' },
+				{ label: 'Quỹ Nhị Ất', name: 'eyjj', hidden: true, align: 'left' },
+				{ label: 'Quỹ Nhị Ất lượt người', name: 'eyjjrc', hidden: true, align: 'left' },
+            ],
+            pager: "#gridPager",
+            sortname: gridSort,
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                console.log(rowid);
+            },
+            gridComplete: function (gridJszbList) {
+                jszbList = null;
+                if (gridJszbList && gridJszbList.rows) {
+                    jszbList = gridJszbList.rows;
+                    console.log(jszbList);
+                }
+            }
+        });
+
+        //查询事件
+        $("#btn_search_tj").click(function () {
+            $('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+            $gridJsList.jqGrid('setGridParam', {
+				postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val(), qslx: $("#jslx").val(), xz: $("#xzlx").val()},
+				url: '/DaySettleManage/DaySettle/GetQszdd',
+                //page: 1,
+            }).trigger('reloadGrid');
+        });
+	}
+
+
+	$("#btn_search_dzz").click(function () {
+		var seleRowid = $("#gridJSList").jqGrid("getGridParam", "selrow");
+		if (!(seleRowid)) {
+			$.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+			return;
+		}
+
+		var rowData = $("#gridJSList").jqGrid('getRowData', seleRowid);
+		var ksrq = $("#txtCreateTimestart").val()+" 00:00:00";
+		var jsrq = $("#txtCreateTimeEnd").val()+" 23:59:59";
+		var predata = {
+			hisId: "0",
+			operatorId: '@(opr.rygh)',
+			operatorName:'@(opr.UserName)',
+			insuplc_admdvs: "",
+			stmt_begndate: ksrq,
+			stmt_enddate: jsrq,
+			insutype: rowData.xz,
+			clr_type: rowData.qslb,
+			setl_optins: "",
+			medfee_sumamt: rowData.zfy,
+			fund_pay_sumamt: rowData.jjzfje,
+			acct_pay: rowData.grzh,
+			fixmedins_setl_cnt: rowData.jsbs,
+			refd_setl_flag:"",
+		};
+
+		$.ajax({
+			type: "POST",
+			url: "http://127.0.0.1:33333/api/YiBao/ReconciliationMain_3201",
+			data: predata,
+			dataType: "json",
+			async: false,
+			success: function (data) {
+			    var refinfo = eval('(' + data + ')');
+			    if (refinfo.infcode == "0" || refinfo.infcode == 0)
+			    {
+			        var msg = refinfo.output.stmtinfo.stmt_rslt == 1 ? "Số tiền trung tâm BHYT lớn hơn số tiền truyền vào" : refinfo.output.stmtinfo.stmt_rslt == 0 ? "cân bằng sổ" : "?";
+			        if (refinfo.output.stmtinfo.stmt_rslt == "0") {
+			            $("#dzjg").val(rowData.ksrq +"đến"+ rowData.jsrq + "," + rowData.xzmc + "Quyết toán đối chiếu tổng sổ: cân bằng sổ");
+			            insertsqb(rowData);
+			        } else {
+			            $("#dzjg").val(refinfo.output.stmtinfo.stmt_rslt_dscr);
+			        }
+			    }else
+			        $.modalAlert("Đối chiếu tổng sổ BHYT thất bại：" + refinfo.err_msg, 'error');
+			},
+			error: function (request, error, ex) {
+			    $.modalAlert("Dịch vụ BHYT【3201】(BHYT Đối chiếu tổng sổ)Không thể truy cập：[" + ex + "]", 'error');
+			}
+		});
+
+
+	});
+
+	function insertsqb(rowdata) {
+
+	    var ksrq = $("#txtCreateTimestart").val() + " 00:00:00";
+		var jsrq = $("#txtCreateTimeEnd").val()+" 23:59:59";
+
+		var date = $("#txtCreateTimestart").val();
+		var datearr = date.split('-');
+
+		var qsny = datearr[0] + datearr[1];
+		var predata = {
+			qslb: rowdata.qslb,
+			xz: rowdata.xz,
+			sfyd: rowdata.sfyd,
+			ksrq:ksrq,
+			jsrq: jsrq,
+			zfy: rowdata.zfy,
+			jjzfje: rowdata.jjzfje,
+			grzh: rowdata.grzh,
+			ybrkfyze: rowdata.zfy,
+			xjzfze: rowdata.xjzfje,
+			qsrc: rowdata.jsbs,
+			qsny: qsny,
+			czzgtcjj: rowdata.czzgtcjj,/*城镇职工基本医疗保险统筹基金*/
+			czzgtcjjrc: rowdata.czzgtcjjrc,/*城镇职工基本医疗保险统筹基金人次*/
+			czzgzhjj: rowdata.czzgzhjj,/*城镇职工基本医疗保险个人账户基金*/
+			czzgzhjjrc: rowdata.czzgzhjjrc,/*城镇职工基本医疗保险个人账户基金*/
+			gywbzjj: rowdata.gywbzjj,/*公务员医疗补助基金*/
+			gywbzjjrc: rowdata.gywbzjjrc,/*公务员医疗补助基金*/
+			deylbzjj: rowdata.deylbzjj,/*大额医疗费用补助基金*/
+			deylbzjjrc: rowdata.deylbzjjrc,/*大额医疗费用补助基金*/
+			lxrybzjj: rowdata.lxrybzjj,/*离休人员医疗保障基金*/
+			lxrybzjjrc: rowdata.lxrybzjjrc,/*离休人员医疗保障基金*/
+			cjbzjj: rowdata.cjbzjj,/*一至六级残疾军人医疗补助基金*/
+			cjbzjjrc: rowdata.cjbzjjrc,/*一至六级残疾军人医疗补助基金*/
+			qybzyljj: rowdata.qybzyljj,/*企业补充医疗保险基金*/
+			qybzyljjrc: rowdata.qybzyljjrc,/*企业补充医疗保险基金*/
+			cxjmjbyljj: rowdata.cxjmjbyljj,/*城乡居民基本医疗保险基金*/
+			cxjmjbyljjrc: rowdata.cxjmjbyljjrc,/*城乡居民基本医疗保险基金*/
+			cxjmdbyljj: rowdata.cxjmdbyljj,/*城乡居民大病医疗保险基金*/
+			cxjmdbyljjrc: rowdata.cxjmdbyljjrc,/*城乡居民大病医疗保险基金*/
+			yljzjj: rowdata.yljzjj,/*医疗救助基金*/
+			yljzjjrc: rowdata.yljzjjrc,/*医疗救助基金人次*/
+			yfjj: rowdata.yfjj,/*优抚基金*/
+			yfjjrc: rowdata.yfjjrc,/*优抚基金人次*/
+			syjj: rowdata.syjj,/*生育基金*/
+			syjjrc: rowdata.syjjrc,/*生育基金人次*/
+			qtjj: rowdata.qtjj,/*其他基金*/
+			qtjjrc: rowdata.qtjjrc,/*其他基金人次*/
+			eyjj: rowdata.eyjj,/*二乙基金*/
+			eyjjrc: rowdata.eyjjrc,/*二乙基金人次*/
+			sqzt: 0,
+			create_user: '@(opr.rygh)',
+		};
+		//console.log(predata);
+		$.ajax({
+			type: "POST",
+			url: "/DaySettleManage/DaySettle/inserqssq",
+			data: predata,
+			dataType: "json",
+			async: false,
+			success: function (data) {
+				var refinfo = eval('(' + data + ')');
+				//console.log(refinfo);
+
+
+			}
+		});
+
+	}
+
+</script>
+

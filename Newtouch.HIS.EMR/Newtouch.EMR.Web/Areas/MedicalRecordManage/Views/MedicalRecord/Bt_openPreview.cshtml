@@ -1,0 +1,12 @@
+﻿@{
+    Layout = null;
+}
+
+<a href="#" class="easyui-linkbutton l-btn l-btn-small l-btn-plain" title="Xem" data-options=" iconCls:'icon-copy',plain:true" onclick="openPreview();">Xem </a>
+<script type="text/javascript">
+
+    function openPreview()
+    {
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Bệnh án xem", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreViewEdit?blid=" + $("#blid").val() + "&bllx=" + $("#bllx").val() });
+    }
+</script>

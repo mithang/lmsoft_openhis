@@ -1,0 +1,919 @@
+@{
+    ViewBag.Title = "Bệnh nhân Quản lý";
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+    //是否和医保交易
+    var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
+    //是否和新农合交易
+    var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
+    //医保所属地
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+    //出生年月的格式 是否精确到具体时间
+    var csnyFormat = "yyyy-MM-dd";
+    if (SysConfigReader.Bool("PatientBasicInfo_Birthday_withTime", false).Value)
+    {
+        csnyFormat = "yyyy-MM-dd HH:mm:ss"; ;
+    }
+}
+<style>
+    .formTitle span {
+        color: red;
+    }
+
+    .tab-content #basicInfo table tr td {
+        border: 0;
+    }
+
+    input[id$="sheng"], input[id$="shi"], input[id$="xian"] {
+        width: 70%;
+    }
+
+    input[id$="nlshow"] {
+        width: 50%;
+    }
+</style>
+@Html.Partial("_YibaoCommonView")
+<form id="form1">
+    <div class="panel panel-default">
+        @*<ul class="nav nav-tabs" role="tablist" id="myTab">
+                <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">患者基本信息</a></li>
+                <li role="presentation"><a href="#extentInfo" role="tab" data-toggle="tab">拓展信息</a></li>
+            </ul>*@
+        <div class="panel-heading navb-bg">
+            Thông tin cơ bản
+        </div>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="basicInfo">
+                @*<input type="hidden" id="py" name="py" />*@
+                <input type="hidden" id="patid" name="patid" />
+                <div id="divYktRegister" class="tab-pane fade in active">
+                    <input type="hidden" id="py" name="py" />
+                    <table class="form" style="width: 98%; border: 0">
+                        <tr>
+                            <td class="formTitle">
+                                <span>*</span>Số thẻ
+                            </td>
+                            <td class="formValue">
+                                <input type="text" id="kh" class="form-control form-an">
+                                <!-- 默认空白，非医保卡 -->
+                                <input type="hidden" id="cardtype" value="" />
+                                <input type="hidden" id="cbdbm" value="" />
+                                <input type="hidden" id="sbbh" value="" />
+                                <input type="hidden" id="accountattr" value="" />
+                                <input type="hidden" id="cblb" value="" />
+                                <!--地域编号 0本地 1外地 此处用于异地医保标记-->
+                                <input type="hidden" id="dybh" value="" />
+                                <input type="hidden" id="xzlx" value="" />
+                                <input type="hidden" id="grbh" value="" />
+                            </td>
+                            <td class="formTitle"><span>*</span>Số hồ sơ bệnh án</td>
+                            <td class="formValue">
+                                <input type="text" id="blh" class="form-control form-an">
+                            </td>
+                            <td class="formTitle"><span>*</span>Tên bệnh nhân</td>
+                            <td class="formValue">
+                                <input type="text" id="xm" name="xm" class="form-control form-an">
+                            </td>
+                            <td class="formTitle" style="display:none"><span>*</span>Tính chất bệnh nhân</td>
+                            <td class="formValue">
+                                @*style="display:none"*@
+                                <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
+                            </td>
+                            <td class="formTitle"><span>*</span>Giới tính</td>
+                            <td class="formValue">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        <input type="radio" id="xb" value="1" name="xb" class="form-control form-an">
+                                        Nam
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" id="xb" value="2" name="xb" class="form-control form-an">
+                                        Nữ
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div id="divYktModify" class="tab-pane fade in active" style="display:none">
+                    <table class="form" style="width: 98%; border: 0">
+                        <tr>
+                            <td class="formTitle"><span>*</span>Số hồ sơ bệnh án</td>
+                            <td class="formValue">
+                                <input type="text" id="blh" class="form-control form-an">
+                            </td>
+                            <td class="formTitle"><span>*</span>Tên bệnh nhân</td>
+                            <td class="formValue">
+                                <input type="text" id="xm" name="xm" class="form-control form-an">
+                            </td>
+                            <td class="formTitle" style="display:none"><span>*</span>Tính chất bệnh nhân</td>
+                            <td class="formValue" style="display:none">
+                                <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
+                            </td>
+                            <td class="formTitle"><span>*</span>Phiên âm</td>
+                            <td class="formValue">
+                                <input type="text" id="py" name="py" class="form-control form-an">
+                            </td>
+                            <td class="formTitle"><span>*</span>Giới tính</td>
+                            <td class="formValue">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        <input type="radio" id="xb" value="1" name="xb" class="form-control form-an">
+                                        Nam
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" id="xb" value="2" name="xb" class="form-control form-an">
+                                        Nữ
+                                    </label>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+
+                </div>
+                @*<div class="panel-heading navb-bg">
+                        基础信息
+                    </div>*@
+                <table class="form" style="width: 98%; border: 0">
+                    @*<tr>*@
+                    <tr>
+                        <td class="formTitle"><span class="zjclass">*</span>loại giấy tờ</td>
+                        <td class="formValue formDdlSelectorTd">
+                            @Html.DropDownList("zjlx", EnumZJLX.sfz.ToDescSelectList(), new { @class = "form-control form-an" })
+                        </td>
+                        <td class="formTitle"><span>*</span>Số giấy tờ</td>
+                        <td class="formValue">
+                            <input type="text" id="zjh" name="zjh" onblur="valiPatZjh()" class="form-control form-an">
+                        </td>
+                        <td class="formTitle"><span>*</span>Năm sinh</td>
+                        <td class="formValue">
+                            <input id="csny" type="text" data-dateFmt="@(csnyFormat)" class="form-control input-wdatepicker form-an" onfocus="WdatePicker({
+    onpicked: function () { setAge($(this).val()); return true; }, dateFmt: '@(csnyFormat)'
+})" />
+                        </td>
+                        <td class="formTitle">Tuổi</td>
+                        <td class="formValue">
+                            <input type="text" id="nlshow" class="form-control form-an" style="float: left" />
+                            <select class="form-control" id="nlshowdw" style="width:50px;">
+                                <option value=""></option>
+                                <option value="1" selected="selected">tuổi</option>
+                                <option value="2">tháng</option>
+                                <option value="3">Ngày</option>
+                                <option value="4"> giờ</option>
+                            </select>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+
+                        <td class="formTitle">quốc tịch</td>
+                        <td class="formValue">
+                            <select id="gj2" class="form-control form-an">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                        <td class="formTitle">Dân tộc</td>
+                        <td class="formValue">
+                            <select id="mz2" class="form-control form-an">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+
+                        <td class="formTitle"><span></span>Quê quán</td>
+                        <td class="formValue">
+                            <input type="text" id="jg" name="jg" class="form-control form-an">
+                        </td>
+                        <td class="formTitle">Nghề nghiệp</td>
+                        <td class="formValue">
+                            <select id="zy" class="form-control form-an">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">Phương thức liên hệ tốt nhất</td>
+                        <td class="formValue formDdlSelectorTd">
+                            <select id="zjlxfs" class="form-control">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                        <td class="formTitle">WeChat</td>
+                        <td class="formValue">
+                            <input type="text" id="wechat" class="form-control form-an">
+                        </td>
+                        <td class="formTitle">Email</td>
+                        <td class="formValue">
+                            <input type="text" id="email" name="email" class="form-control form-an">
+                        </td>
+                        <td class="formTitle">Điện thoại di động</td>
+                        <td class="formValue">
+                            <input type="text" id="phone" name="phone" class="form-control form-an">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">Điện thoại</td>
+                        <td class="formValue">
+                            <input type="text" id="dh" name="dh" class="form-control form-an">
+                        </td>
+                        <td class="formTitle">Nguồn bệnh nhân</td>
+                        <td class="formValue formDdlSelectorTd">
+                            <select class="form-control form-an-end" id="brly" name="brly">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+
+                        <td class="formTitle">hôn nhân Không</td>
+                        <td class="formValue formDdlSelectorTd">
+                            @*<select class="form-control form-an-end" id="hf" name="hf">
+                                <option value="">==请选择==</option>
+                            </select>*@
+                            @Html.DropDownList("hf", EnumHF.wh.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control form-an" })
+                        </td>
+
+                        <td class="formTitle">Trình độ học vấn</td>
+                        <td class="formValue">
+                            <select id="xl" class="form-control form-an">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr id="citylist_XDZ">
+                        <td class="formTitle">Địa chỉ hiện tại：</td>
+                        <td class="formValue">
+                            <select name="province" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">Tỉnh (quận, thành phố)</td>
+                        <td class="formValue">
+                            <select name="city" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">thành phố</td>
+                        <td class="formValue">
+                            <select name="area" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formTitle"><span style="float:left;color:#475059">Huyện</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ：</span></td>
+                        <td class="formValue"><input type="text" id="xian_dz" class="form-control form-an" /></td>
+
+                    </tr>
+
+                    <tr id="citylist_CSD">
+                        <td class="formTitle">Nơi sinh：</td>
+                        <td class="formValue">
+                            <select name="province" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+
+                        </td>
+                        <td class="formValue">Tỉnh (quận, thành phố)</td>
+                        <td class="formValue">
+                            <select name="city" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">thành phố</td>
+                        <td class="formValue">
+                            <select name="area" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formTitle"><span style="float:left;color:#475059">Huyện</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ：</span></td>
+                        <td class="formValue">
+                            <input type="text" id="cs_dz" class="form-control form-an form-an-end" />
+                        </td>
+                        <td class="formTitle" style="padding-right:60px">
+                            <input type="button" class="btn btn-primary" id="btnsyy" value="Giống trên" onclick="GetDefaultCityToCurrent('_CSD');" />
+                        </td>
+                    </tr>
+
+                    <tr id="citylist_HKDZ">
+                        <td class="formTitle">Địa chỉ hộ khẩu：</td>
+                        <td class="formValue">
+                            <select name="province" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">Tỉnh (quận, thành phố)</td>
+                        <td class="formValue">
+                            <select name="city" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">thành phố</td>
+                        <td class="formValue">
+                            <select name="area" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formTitle"><span style="float:left;color:#475059">Huyện (quận)</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ：</span></td>
+                        <td class="formValue"><input type="text" id="hu_dz" class="form-control form-an" /></td>
+                        <td class="formTitle" style="padding-right:60px">
+                            <input type="button" class="btn btn-primary" id="btnsyy" value="Giống trên" onclick="GetDefaultCityToCurrent('_HKDZ');" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">Quan hệ người liên hệ khẩn cấp</td>
+                        <td class="formValue formDdlSelectorTd">
+                            <select id="jjllrgx" name="jjllrgx" class="form-control form-an">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                        <td class="formTitle">Người liên lạc khẩn cấp</td>
+                        <td class="formValue">
+                            <input type="text" id="jjllr" class="form-control form-an">
+                        </td>
+                        <td class="formTitle">Điện thoại liên lạc khẩn cấp</td>
+                        <td class="formValue">
+                            <input type="text" id="jjlldh" name="jjlldh" class="form-control form-an">
+                        </td>
+                    </tr>
+                    <tr id="citylist_JJLXRDZ">
+                        <td class="formTitle">Người liên hệ địa chỉ：</td>
+                        <td class="formValue">
+                            <select name="province" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">Tỉnh (quận, thành phố)</td>
+                        <td class="formValue">
+                            <select name="city" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formValue">thành phố</td>
+                        <td class="formValue">
+                            <select name="area" class="form-control form-an">
+                                <option>Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <td class="formTitle">Huyện (quận) &nbsp;&nbsp; địa chỉ：</td>
+                        <td class="formValue"><input type="text" id="jjlxr_dz" class="form-control form-an" /></td>
+                        <td class="formTitle" style="padding-right:60px">
+                            <input type="button" class="btn btn-primary" id="btnsyy" value="Giống trên" onclick="GetDefaultCityToCurrent('_JJLXRDZ');" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @*<div id="extentInfo" role="tabpanel" class="tab-pane fade in">*@
+            <table class="form" style="width: 98%; border: 0">
+                <tr>
+                    <td class="formTitle">Đơn vị</td>
+                    <td class="formValue">
+                        <input type="text" id="dwmc" class="form-control form-an">
+                    </td>
+
+                    <td class="formTitle">Địa chỉ đơn vị</td>
+                    <td class="formValue">
+                        <input type="text" id="dwdz" class="form-control form-an">
+                    </td>
+                    <td class="formTitle">Đơn vị Điện thoại</td>
+                    <td class="formValue">
+                        <input type="text" id="dwdh" class="form-control form-an form-an-end">
+                    </td>
+
+                    @*<td class="formTitle">备注</td>
+                        <td class="formValue">
+                            <input type="text" id="bz" class="form-control form-an form-an-end">
+                        </td>*@
+                </tr>
+                <tr>
+                    <td class="formTitle">Mã bưu điện nơi sinh</td>
+                    <td class="formValue">
+                        <input type="text" id="cs_yb" class="form-control form-an">
+                    </td>
+
+                    <td class="formTitle">Mã bưu điện địa chỉ hiện tại</td>
+                    <td class="formValue">
+                        <input type="text" id="xian_yb" class="form-control form-an">
+                    </td>
+                    <td class="formTitle">Mã bưu điện nơi đăng ký hộ khẩu</td>
+                    <td class="formValue">
+                        <input type="text" id="hu_yb" class="form-control form-an form-an-end">
+                    </td>
+                    <td class="formTitle">Mã bưu điện đơn vị</td>
+                    <td class="formValue">
+                        <input type="text" id="dwyb" class="form-control form-an form-an-end">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="formTitle">Tiền sử dị ứng</td>
+                    <td class="formValue">
+                        <input type="text" id="gms" class="form-control form-an form-an-end">
+                    </td>
+                    <td class="formTitle">Tiền sử bệnh</td>
+                    <td class="formValue">
+                        <input type="text" id="jbs" class="form-control form-an form-an-end">
+                    </td>
+                    <td class="formTitle">Ghi chú</td>
+                    <td class="formValue">
+                        <input type="text" id="bz" class="form-control form-an form-an-end">
+                    </td>
+                </tr>
+            </table>
+            @*</div>*@
+        </div>
+    </div>
+</form>
+<form id="formPatSer" style="margin:2px;margin-top:10px;">
+    <div class="gridPanel" id="divPatCard">
+        <table id="patGridList" rel="formPatSer"></table>
+    </div>
+</form>
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/PatientManage/HospiterRes/PatientBasic.js",false)"></script>
+<script src="~/Content/js/jquery.citys.js"></script>
+<script type="text/javascript">
+    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
+    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+
+    var zjpz = "@ViewBag.zjpz";
+    var khpz = "@ViewBag.khpz";
+    var blhpz = "@ViewBag.blhpz";
+    var xnkCardType = "@((int)EnumCardType.XNK)";
+    var ybkCardType = "@((int)EnumCardType.YBJYK)";
+</script>
+
+
+@if (openYbSett == true || openXnhSett == true)
+{
+    <script type="text/javascript">
+        var patientform = JSON.parse(localStorage.getItem("patientform"));
+        var khsc = true;
+        var blhsc = true;
+        $(function () {
+            debugger;
+            if (!!patientform) {
+                fillForm();
+                localStorage.removeItem("patientform");
+            }
+            else {
+                brxzinit();
+
+            }
+
+            if (!!keyValue) {
+                $("#kh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+                $("#blh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+                $.najax({
+                    url: "/PatientManage/HospiterRes/GetFormJson?T=" + new Date(),
+                    data: { "keyValue": keyValue },
+                    dataType: 'json',
+                    async: false,
+                    success: function (rep) {
+                        if (rep.state !== 'error') {
+                            $("#form1").formSerialize(rep);
+                            cityref = rep;
+                            if (rep["brxz"]) {
+                                $("#brxzmc").attr("data-label", rep["brxz"]);
+                            }
+                            if (rep["zjlx"]) {
+                                var type = rep["zjlx"].trim();
+                                switch (type) {
+                                    case "1":
+                                        type = "CMND/CCCD";
+                                        break;
+                                    case "2":
+                                        type = "Hộ chiếu";
+                                        break;
+                                    case "3":
+                                        type = "Chứng minh sĩ quan";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+
+                            if (rep["gjCode"]) {
+                                $("#gj2").val(rep["gjCode"]).trigger('change');
+                            }
+                            if (rep["mzCode"]) {
+                                $("#mz2").val(rep["mzCode"]).trigger('change');
+                            }
+                            if (rep["brxzmc"] && rep["brxz"]) {
+                                $("#brxzmc").attr("data-label", rep["brxz"]);
+                                $("#brxzmc").val(rep["brxzmc"]);
+                            }
+
+                            if (rep["jjllrgx"]) {
+                                $("#jjllrgx").find("option[value='" + rep["jjllrgx"] + "']").attr("selected", true).trigger('change');
+                            }
+                            setAge(rep.csny);
+                        }
+                        else {
+                            $.modalClose();
+                        }
+                    },
+                    errorCallback: function (err) {
+                        $.loading(false);
+                    }
+                });
+            }
+            else {
+                //是新登记
+                if (khpz === 'ON') {
+                    $("#kh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+                }
+                if (blhpz == 'ON') {
+                    //病历号自动生成
+                    $("#blh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+                }
+                if (khpz === 'ON' || blhpz === 'ON') {
+                    //同步请求后台 获取最新虚拟卡号/自动生成病历号
+                    $.ajax({
+                        url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
+                        data: { khsc: khsc, blhsc: blhsc },
+                        dataType: "json",
+                        async: false,
+                        cache: false,
+                        success: function (data) {
+                            $('#kh').val(data.kh);
+                            $('#blh').val(data.blh);
+                        }
+                    });
+                    if (!!patientform) {
+                        if (!!patientform.blh) {
+                            $('#blh').val(patientform.blh);
+                        }
+
+                        if (!!patientform.kh) {
+                            $('#kh').val(patientform.kh);
+                        }
+                    } else {
+                        $('#nlshow').val("");
+                        $('#mz').val("");
+                        $("#hf").val("");
+                        
+                        //默认显示国籍gj2 -43
+                        $("#gj2").val("CHN").trigger('change');
+                        //默认联系方式zjlxfs
+                        $("#zjlxfs").val("shoujihao").trigger('change');
+                        //默认现住址20-1-8 citylist_XDZ
+                        //setTimeout(function () {
+                        //    setTheDefaultCity();
+                        //}, 1000);
+                    }
+                }
+            }
+        });
+
+        //填充
+        function fillForm() {
+            if (patientform) {//社保
+                var yibaoCardInfo = patientform;
+                if (yibaoCardInfo) {
+                    switch (yibaoCardInfo.ybVer) {
+                        case "shanghaiV5":
+                            shanghaiV5(yibaoCardInfo);
+                            break;
+                        case "gjyb":
+                            gjyb(yibaoCardInfo);
+                            break;
+                        default:
+                            setzfk(yibaoCardInfo);
+                            break;
+                    }
+                } else {
+                    $.loading(false);
+                    $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại! Nguyên nhân thất bại: trung tâm BHYT không trả về thông tin, vui lòng thử lại!", 'error');
+                }
+            }
+        }
+        function setzfk(yibaoCardInfo) {
+            $("#brxzmc").val('Tự chi trả').attr("data-label", '0');
+            $('#cardtype').val(yibaoCardInfo.jzlx);
+        }
+
+        function shanghaiV5(yibaoCardInfo) {
+            
+            var ybfyxzCompResult;
+            if (yibaoCardInfo.xxfhm === "P001") {
+                var ybPatInfo = yibaoCardInfo.sm01;
+                if (ybPatInfo) {
+                    if (yibaoCardInfo.kh == null || yibaoCardInfo.kh == "") {
+                        $.ajax({
+                            url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
+                            data: { khsc: khsc, blhsc: blhsc },
+                            dataType: "json",
+                            async: false,
+                            cache: false,
+                            success: function (data) {
+                                yibaoCardInfo.kh = data.kh;
+                            }
+                        });
+                    } else {
+                        $('#kh').val(yibaoCardInfo.kh);
+                    }
+                    if (!!!keyValue) {
+                        //是新增
+                        $('#cardtype').val(yibaoCardInfo.jzlx);
+                        $('#kh').val(yibaoCardInfo.kh);    //个人编号 暂作为系统卡号
+                    }
+                    else {
+                        //是修改
+                        if ($('#kh').val() !== yibaoCardInfo.kh) {
+                            $.modalAlert("Lỗi: không phải cùng một thẻ", 'error');
+                            return false;
+                        }
+                    }
+                    $('#cardtype').val(yibaoCardInfo.jzlx);
+
+                    $('#cblb').val(ybPatInfo.accountattr);
+                    //重庆医保，根据返回的行政区划编码区分本地和异地就医人员，本地就医人员的行政区划编码长度小于6位，异地就医人员的行政区划编码为6位
+                    //新接口统筹区划统一6位50开头var bkbz = sm01Info.accountattr.substr(11, 1)
+                    if (ybPatInfo.accountattr.substr(11, 1) == "Y") {
+                        $('#dybh').val("1");
+                    } else {
+                        $('#dybh').val("0");
+                    }
+                    khsc = false;
+                    //社保编号
+                    $('#sbbh').val(yibaoCardInfo.kh);  //个人编号
+                    //参保地编码
+                    $('#cbdbm').val(ybPatInfo.xzqh);    //分中心编号
+                    $('#phone').val(ybPatInfo.lxdh);
+                    $('#accountattr').val(ybPatInfo.accountattr);
+                    //身份证 等等赋值
+                    $('#xm').val(ybPatInfo.xm);    //姓名
+                    //证件类型 医保字典0身份证 1护照
+                    var thisZjlx = '1';
+                    if (!!thisZjlx)
+                        $("#zjlx").val(thisZjlx).trigger('change');
+                    if (!!ybPatInfo.sfzh) {
+                        $('#zjh').val(ybPatInfo.sfzh);   //证件号
+                    }
+                    var idCard = ybPatInfo.sfzh;
+                    var birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+                    $('#csny').val(birthday);
+                    setAge($('#csny').val());
+                    $('#xian_dz').val(ybPatInfo.txdz);//使用地址
+                    //性别 医保字典1男2女
+                    $("input[name=xb]").parent().removeClass('active');
+                    $("input[name=xb]").removeAttr('checked'); 
+                    if (ybPatInfo.xb == '1')
+                        $("input[name=xb]:eq(0)").trigger('click'); //男
+                    else if (ybPatInfo.xb == '2')
+                        $("input[name=xb]:eq(1)").trigger('click'); //女
+                    
+                    $("#brxzmc").val(yibaoCardInfo.brxzmc).attr("data-label", yibaoCardInfo.brxzdm);
+
+                }
+                else {
+                    $.modalAlert(yibaoCardInfo.fhxx, 'error');
+                    return false;
+                }
+            } else
+                $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.fhxx, 'error');
+        }
+
+        function gjyb(yibaoCardInfo) {
+            var thisZjlx;
+            var ybfyxzCompResult;
+            var ybPatInfo2;
+            if (yibaoCardInfo.infcode == "0" || yibaoCardInfo.infcode === 0) {
+                var ybPatInfo = yibaoCardInfo.output.baseinfo;
+                if (yibaoCardInfo.output.insuinfo.length > 1) {
+                    for (var i = 0; i < yibaoCardInfo.output.insuinfo.length; i++) {
+                        if (yibaoCardInfo.output.insuinfo[i].paus_insu_date)
+                            continue;
+                        else {
+                            ybPatInfo2 = yibaoCardInfo.output.insuinfo[i];
+                            break;
+                        }
+                    }
+                } else
+                    ybPatInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
+                //var ybPatInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                if (ybPatInfo) {
+                    if (yibaoCardInfo.kh == null || yibaoCardInfo.kh == "") {
+                        $.ajax({
+                            url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
+                            data: { khsc: khsc, blhsc: blhsc },
+                            dataType: "json",
+                            async: false,
+                            cache: false,
+                            success: function (data) {
+                                yibaoCardInfo.kh = data.kh;
+                            }
+                        });
+                    } else {
+                        $('#kh').val(yibaoCardInfo.kh);
+                    }
+                    if (!!!keyValue) {
+                        //是新增
+                        $('#cardtype').val(yibaoCardInfo.jzlx);
+                        $('#kh').val(yibaoCardInfo.kh);    //个人编号 暂作为系统卡号
+                    }
+                    else {
+                        //是修改
+                        if ($('#kh').val() !== yibaoCardInfo.kh) {
+                            $.modalAlert("Lỗi: không phải cùng một thẻ", 'error');
+                            return false;
+                        }
+                    }
+                    $('#cardtype').val(yibaoCardInfo.jzlx);
+
+                    $('#cblb').val(ybPatInfo2.psn_type);
+                    //重庆医保，根据返回的行政区划编码区分本地和异地就医人员，本地就医人员的行政区划编码长度小于6位，异地就医人员的行政区划编码为6位
+                    //新接口统筹区划统一6位50开头
+                    if (!!ybPatInfo2.insuplc_admdvs && ybPatInfo2.insuplc_admdvs.length == 6 && yibaoCardInfo.kh != null && yibaoCardInfo.kh.substring(0, 1) == "#") {
+                        $('#dybh').val("1");
+                    } else {
+                        $('#dybh').val("0");
+                    }
+                    $('#xzlx').val(ybPatInfo2.insutype);//险种类型
+                    $('#grbh').val(ybPatInfo.psn_no);//人员编号
+                    $('#accountattr').val(ybPatInfo.accountattr);//账户标志
+                    khsc = false;
+                    //社保编号
+                    $('#sbbh').val(yibaoCardInfo.kh);  //个人编号
+                    //参保地编码
+                    $('#cbdbm').val(ybPatInfo2.insuplc_admdvs);    //分中心编号
+                    //$('#phone').val(ybPatInfo.lxdh);
+                    //身份证 等等赋值
+                    $('#xm').val(ybPatInfo.psn_name);    //姓名
+                    //证件类型 医保字典0身份证 1护照
+                    thisZjlx = '1';
+                    if (!!thisZjlx)
+                        $("#zjlx").val(thisZjlx).trigger('change');
+                    if (!!ybPatInfo.certno) {
+                        $('#zjh').val(ybPatInfo.certno);   //证件号
+                        var birth = ybPatInfo.brdy;
+                        $('#csny').val($.getDate({ date: birth })); //出生年月
+                        setAge($('#csny').val());  //年龄计算
+                    }
+                    //$('#xian_dz').val(ybPatInfo.zz);//使用地址
+                    //性别 医保字典1男2女
+                    $("input[name=xb]").parent().removeClass('active');
+                    $("input[name=xb]").removeAttr('checked'); 
+                    if (ybPatInfo.gend == '1')
+                        $("input[name=xb]:eq(0)").trigger('click'); //男
+                    else if (ybPatInfo.gend == '2')
+                        $("input[name=xb]:eq(1)").trigger('click'); //女
+
+                    $("#brxzmc").val(yibaoCardInfo.brxzmc).attr("data-label", yibaoCardInfo.brxzdm);
+                    //var resultObjArr = new Array();
+                    //$.each(top.window.clients.sysPatientNatureList, function (idx, val) {
+                    //    if (val.xzlx && val.xzlx == ybPatInfo2.insutype) {
+                    //        resultObjArr.push(val);
+                    //    }
+                    //});
+                    //if (!!resultObjArr) {
+                    //    if (resultObjArr.length == 0) {
+                    //        var instype = "";
+                    //        instype = ybPatInfo2.insutype;
+                    //        $.ajax({
+                    //            url: "/PatientManage/HospiterRes/GetBrxzbyxzlx",
+                    //            data: { xzlx: instype },
+                    //            dataType: "json",
+                    //            async: false,
+                    //            cache: false,
+                    //            success: function (data) {
+                    //                if (!!data) {
+                    //                    $("#brxzmc").val(data.brxzmc).attr("data-label", data.brxz);
+                    //                }
+                    //                else {
+                    //                    $("#brxzmc").val('普通医保').attr("data-label", '1');
+                    //                }
+                    //            }
+                    //        });
+                    //    }
+                    //    else {
+                    //        $("#brxzmc").val(resultObjArr[0].brxzmc).attr("data-label", resultObjArr[0].brxz);
+                    //    }
+
+                    //}
+                    //else {
+                    //    $("#brxzmc").val('普通医保').attr("data-label", '11');
+                    //}
+                }
+                else {
+                    $.modalAlert(yibaoCardInfo.err_msg, 'error');
+                    return false;
+                }
+            } else
+                $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
+        }
+
+        function getcitycode(data) {
+            $("tr[id*='citylist_']").each(function (i, e) {
+                
+                var sncode = "";
+                var sicode = "";
+                var qxcode = "";
+                if (e.id.indexOf('_XDZ') != -1) {
+                    sncode = $(this).find(" select[name='province']").find("option:contains('" + data.xian_sheng + "')").val();
+                    $(this).find(" select[name='province']").val(sncode).trigger("change");
+                    sicode = $(this).find(" select[name='city']").find("option:contains('" + data.xian_shi + "')").val();
+                    $(this).find(" select[name='city']").val(sicode).trigger("change");
+                    qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.xian_xian + "')").val();
+                    $(this).find(" select[name='area']").val(qxcode).trigger("change");
+                }
+                else if (e.id.indexOf('_CSD') != -1) {
+                    sncode = $(this).find(" select[name='province']").find("option:contains('" + data.cs_sheng + "')").val();
+                    $(this).find(" select[name='province']").val(sncode).trigger("change");
+                    sicode = $(this).find(" select[name='city']").find("option:contains('" + data.cs_shi + "')").val();
+                    $(this).find(" select[name='city']").val(sicode).trigger("change");
+                    qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.cs_xian + "')").val();
+                    $(this).find(" select[name='area']").val(qxcode).trigger("change");
+                }
+                else if (e.id.indexOf('_HKDZ') != -1) {
+                    sncode = $(this).find(" select[name='province']").find("option:contains('" + data.hu_sheng + "')").val();
+                    $(this).find(" select[name='province']").val(sncode).trigger("change");
+                    sicode = $(this).find(" select[name='city']").find("option:contains('" + data.hu_shi + "')").val();
+                    $(this).find(" select[name='city']").val(sicode).trigger("change");
+                    qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.hu_xian + "')").val();
+                    $(this).find(" select[name='area']").val(qxcode).trigger("change");
+                }
+                else if (e.id.indexOf('_JJLXRDZ') != -1) {
+                    sncode = $(this).find(" select[name='province']").find("option:contains('" + data.jjlxr_sheng + "')").val();
+                    $(this).find(" select[name='province']").val(sncode).trigger("change");
+                    sicode = $(this).find(" select[name='city']").find("option:contains('" + data.jjlxr_shi + "')").val();
+                    $(this).find(" select[name='city']").val(sicode).trigger("change");
+                    qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.jjlxr_xian + "')").val();
+                    $(this).find(" select[name='area']").val(qxcode).trigger("change");
+                }
+            });
+        }
+
+        function savecitycode(savedata) {
+            $("tr[id*='citylist_']").each(function (i, e) {
+                debugger
+                if (e.id.indexOf('_XDZ') != -1) {
+                    //$('#citylist_CSD select[name="province"] option:selected').text()
+                    savedata.xian_sheng = $(this).find(" select[name='province'] option:selected ").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.xian_shi = $(this).find(" select[name='city'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.xian_xian = $(this).find(" select[name='area'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                }
+                else if (e.id.indexOf('_CSD') != -1) {
+                    savedata.cs_sheng = $(this).find(" select[name='province'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.cs_shi = $(this).find(" select[name='city'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.cs_xian = $(this).find(" select[name='area'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                }
+                else if (e.id.indexOf('_HKDZ') != -1) {
+                    savedata.hu_sheng = $(this).find(" select[name='province'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.hu_shi = $(this).find(" select[name='city'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.hu_xian = $(this).find(" select[name='area'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                }
+                else if (e.id.indexOf('_JJLXRDZ') != -1) {
+                    savedata.jjlxr_sheng = $(this).find(" select[name='province'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.jjlxr_shi = $(this).find(" select[name='city'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.jjlxr_xian = $(this).find(" select[name='area'] option:selected").text().replace(' - Vui lòng chọn - ', '');
+                    savedata.lxrdz = savedata.jjlxr_sheng + savedata.jjlxr_shi + savedata.jjlxr_xian + $("#jjlxr_dz").val();
+                }
+            });
+            return savedata;
+        }
+
+        function setTheDefaultCity() {
+            $("tr[id*='citylist_']").each(function (i, e) {
+                var sncode = "";
+                var sicode = "";
+                var qxcode = "";
+                if (e.id.indexOf('_XDZ') != -1) {
+                    sncode = $(this).find(" select[name='province']").find("option:contains('Quảng Tây')").val();
+                    $(this).find(" select[name='province']").val(sncode).trigger("change");
+                    sicode = $(this).find(" select[name='city']").find("option:contains('南宁')").val();
+                    $(this).find(" select[name='city']").val(sicode).trigger("change");
+                    qxcode = $(this).find(" select[name='area']").find("option:contains('隆安')").val();
+                    $(this).find(" select[name='area']").val(qxcode).trigger("change");
+                }
+            });
+        }
+
+        function GetDefaultCityToCurrent(type) {
+            $("tr[id*='citylist_']").each(function (i, e) {
+                var sncode = "";
+                var sicode = "";
+                var qxcode = "";
+                if (e.id.indexOf(type) != -1) {
+                    var xian_sheng = $("#citylist_XDZ").find(" select[name='province'] option:selected ").text();
+                    var xian_shi = $("#citylist_XDZ").find(" select[name='city'] option:selected").text();
+                    var xian_xian = $("#citylist_XDZ").find(" select[name='area'] option:selected").text();
+                    sncode = $(this).find(" select[name='province']").find("option:contains('" + xian_sheng + "')").val();
+                    $(this).find(" select[name='province']").val(sncode).trigger("change");
+                    sicode = $(this).find(" select[name='city']").find("option:contains('" + xian_shi + "')").val();
+                    $(this).find(" select[name='city']").val(sicode).trigger("change");
+                    qxcode = $(this).find(" select[name='area']").find("option:contains('" + xian_xian + "')").val();
+                    $(this).find(" select[name='area']").val(qxcode).trigger("change");
+                }
+            });
+
+        }
+
+        $(window).load(function () {
+            if (fromly === "yktmodify") {
+                setTimeout(function () {
+                    getcitycode(cityref);
+                }, 2000);
+            }
+        });
+    </script>
+}

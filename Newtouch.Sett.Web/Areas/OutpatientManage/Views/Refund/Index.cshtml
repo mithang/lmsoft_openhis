@@ -1,0 +1,447 @@
+@{
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style>
+    thead tr th {
+        background-color: #eee;
+        line-height: 30px;
+        padding-left: 15px;
+    }
+
+    tbody tr td {
+        line-height: 30px;
+        padding-left: 15px;
+    }
+
+    .cellvalue {
+        width: 90%;
+        line-height: 25px;
+    }
+
+    .redBord {
+        border-color: red;
+    }
+</style>
+<div class="panel panel-default" style="margin-bottom:0;">
+    <div class="panel-heading navb-bg">
+        Tra cứu hoàn phí ngoại trú
+    </div>
+    <div style="padding: 2px;padding-right:20px;">
+        <table class="form" style="width:96%;">
+            <tr>
+                <td class="formTitle">Số thẻ：</td>
+                <td class="formValue">
+                    <input id="kh" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ">
+
+                </td>
+                <td class="formTitle">từ：</td>
+                <td class="formValue">
+
+                    <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
+                                onpicked: function () {getAge($(this).val());return true;}})" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
+                </td>
+                <td class="formTitle">đến：</td>
+                <td class="formValue">
+                    <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
+                                onpicked: function () {getAge($(this).val());return true;}})" id="js" value="@DateTime.Now.AddDays(1).ToString("yyy-MM-dd")" />
+                </td>
+                <td class="formTitle"></td>
+                <td class="formValue">
+                    <button id="BtnQuery" class="btn btn btn-default btn-md dropdown-text">Tra cứu</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+<form id="tabGrid">
+    <table class="form" style="border:solid 1px #ddd;" id="tableStyle">
+        <thead>
+            <tr>
+                <th>Loại bệnh nhân</th>
+                <th>Khoa đăng ký khám</th>
+                <th>Bác sĩ</th>
+                <th>Số hóa đơn</th>
+                <th>ghi sổ</th>
+                <th>Tự chi trả</th>
+                <th>Tự chi trả theo loại</th>
+                <th>Tự chi trả</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="brlx"></td>
+                <td id="ghks"></td>
+                <td id="ys"></td>
+                <td id="fph"></td>
+                <td id="jz"></td>
+                <td id="zifei"></td>
+                <td id="flzf"></td>
+                <td id="zf"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <div class="gridPanel">
+        <table id="gridListTuifei" rel="tabGrid"></table>
+    </div>
+</form>
+
+<br />
+<div class="panel panel-default" style="margin-bottom:0;">
+    <div class="panel-heading navb-bg">
+        Hoàn phí
+    </div>
+    <div style="padding: 2px;padding-right:20px;">
+        <table class="form" style="width:96%;">
+            <tr>
+                <td class="formTitle">Tự chi trả：</td>
+                <td class="formValue">
+                    <input class="form-control newtouch_Readonly" type="text" id="zifu" value="" />
+                </td>
+                <td class="formTitle">Phải hoàn：</td>
+                <td class="formValue">
+                    <input class="form-control newtouch_Readonly" type="text" id="yingtui" value="" />
+                </td>
+                <td class="formTitle"></td>
+                <td class="formValue"></td>
+                <td class="formTitle"></td>
+                <td class="formValue"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 6 },
+    F6Text = "Hoàn phí"
+})
+
+<script>
+
+    $(function() {
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        $(window).resize(function() {
+            initLayout("tabGrid");
+        });
+
+        var txt_keyword = document.getElementById('kh');
+        txt_keyword.addEventListener('keydown',
+            function(event) {
+                event = event || window.event;
+                if (event.keyCode === 13) {
+
+                    btnQueryFph();
+                }
+            });
+
+        //xóa
+        newtouch_event_f4();
+
+        $("#brlx").html("<font color='red'>TạmKhông cóthông tin</font>");
+        gridListTuifei([]); //danh sách hoàn phí
+
+
+        //tra cứu
+        $("#BtnQuery").click(function() {
+            clearFPYSInfo();
+            if ($("#kh").val() === "") {
+                $.modalAlert("Vui lòng nhập số thẻ", "warning");
+                return;
+            }
+            btnQueryFph();
+
+        });
+    });
+
+    var jsnm; //lấy mã nội bộ quyết toán nhận được từ cửa sổ bật lên
+
+    //xóa hóa đơnbác sĩthông tin
+    function clearFPYSInfo() {
+        $("#brlx").html("<font color='red'>TạmKhông cóthông tin</font>");
+        $("#ghks").html("");
+        $("#ys").html("");
+        $("#fph").html("");
+        $("#flzf").html("");
+        $("#zf").html("");
+        $("#jz").html("");
+        $("#zifei").html("");
+    }
+
+    function btnQueryFph() {
+        var obj = new Object;
+        obj.kh = $.trim($("#kh").val());
+        obj.startTime = $.trim($("#ks").val());
+        obj.endTime = $.trim($("#js").val());
+        GetQueryFphAjax(obj);
+    }
+
+    //tra cứu hóa đơn
+    function GetQueryFphAjax(obj) {
+        $.loading(true, "Đang yêu cầu dữ liệu..."); 
+        $.najax({
+            type: "POST",
+            url: "@Url.Action("btnQueryFph")",
+            data: obj,
+        dataType: "json",
+        cache: false,
+        success: function (ajaxresp) {
+            localStorage.setItem("fapiaodata", JSON.stringify(ajaxresp.data));
+            $('#gridListFPH').jqGrid("clearGridData");
+            $('#gridListTuifei').jqGrid("clearGridData");
+            //bật cửa sổ danh sách hóa đơn
+            $.modalOpen({
+                id: "QueFPList",
+                title: "Tra cứu hoàn phí ngoại trú",
+                url: "/OutpatientManage/Refund/QueFpList?r=" + Math.random(),
+                width: "700px",
+                height: "600px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].PatSearchConfirm(); //trong sự kiện cửa sổ bật lên
+                    //gọitra cứu hóa đơnquyết toánthông tin
+
+                }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
+            });
+            
+        },
+        errorCallback: function (err) {
+            $.loading(false);
+        },
+        complete: function () {
+            isLoadingIIII = false;
+            $.loading(false);
+        }
+    }); 
+    }
+
+    function getDetail(jsnm) {
+        $.najax({
+            type: "POST",
+            url: "@Url.Action("GetGridViewMxByJsnm")",
+            data: { jsnm: jsnm },
+            cache: false,
+            dataType: "json",
+            success: function (ajaxresp) {
+                $('#gridListTuifei').jqGrid("clearGridData");
+                gridListTuifei(ajaxresp.data);
+                $(".IS_RETURN").click(function () {
+                    var czh = $(this).attr("name");
+                    if (czh != "0") {
+                        var isTrue = $(this).is(':checked');
+                        if (isTrue) {
+                            $("[name ='" + czh + "' ]:checkbox").prop("checked", "checked");
+
+                        } else {
+                            $("[name ='" + czh + "' ]:checkbox").attr("checked", false);
+                        }
+                    }
+                });
+            },
+            errorCallback: function (err) {
+            },
+            complete: function () {
+                 isLoadingIIII = false;
+                $.loading(false);
+            }
+
+        });
+    }
+
+    //danh sách hoàn phí
+    function gridListTuifei(mydata) {
+        var $gridList = $("#gridListTuifei");
+        $gridList.dataNewGrid({
+            height: 180,
+            autowidth: false,
+            width: $("#tabGrid").width() - 2,
+            caption: "Hoàn phíDanh sách",
+            colModel: [
+                    { label: 'id', name: 'id', hidden: true },
+                    { label: 'CF_MXNM', name: 'CF_MXNM', hidden: true },
+                    { label: 'InfoSet', name: 'InfoSet', hidden: true },
+                    { label: 'DL', name: 'DL', hidden: true },
+                    { label: 'czh', name: 'czh', hidden: true },
+                    { label: 'Số đơn thuốc', name: 'CHUFANGHAO', width: 150, align: 'left' },
+                    { label: 'Loại', name: 'DLMC', width: 80, align: 'left' },
+                    { label: 'sfxm', name: 'SFXM', hidden: true },
+                    { label: 'xmnm', name: 'XMNM', hidden: true },
+                    { label: 'zfxz', name: 'ZFXZ', hidden: true },
+                    { label: 'nbdl', name: 'NBDL', hidden: true },
+                    { label: 'ghnm', name: 'GHNM', hidden: true },
+                    { label: 'Tên khoản mục', name: 'YPMC', width: 150, align: 'left' },
+                    { label: 'Đơn vị', name: 'DANWEI', width: 80, align: 'left' },
+                    { label: 'Đơn giá', name: 'DJ', width: 80, align: 'left' },
+                    { label: 'Tỷ lệ tự chi trả', name: 'ZFBL', width: 80, align: 'left' },
+                    { label: 'Số lượng', name: 'SL', width: 80, align: 'left' },
+                    {
+                        label: 'Số lượng hoàn', name: 'RETURNS_SL', width: 80, align: 'left',
+                        formatter: function (cellvalue) {
+                            return "<input name='IS_RETURN' type='text' class='tuishuliang' style='height: 30px; width: 35px;line-height: 30px;' checked value='" +
+                                cellvalue +
+                                "' />";
+                        }
+                    },
+                    { label: 'Số tiền', name: 'JE', width: 80, align: 'left' },
+                    {
+                        label: 'hoàn', name: 'IS_RETURN', width: 80, align: 'left', editable: true, edittype: 'checkbox', formatter: function (cellvalue) {
+                            var IS_RETURNAndCzh = cellvalue.split(",");
+                            return IS_RETURNAndCzh[0] == '1' ? "<input name='" + IS_RETURNAndCzh[1] + "' class='IS_RETURN' type='checkbox' checked='checked' value='' />" : "<input name='" + IS_RETURNAndCzh[0] + "' type='checkbox'    value='' />"
+                        }
+                    }
+            ]
+        }, mydata);
+        if (mydata.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+        }
+    }
+
+    //hoàn phí
+    function Refund() {
+        var flag = true;
+        var tuifei = $("#gridListTuifei").jqGrid('getGridParam', 'data');
+        var IS_RETURN = $("#gridListTuifei").find(".IS_RETURN");
+        var RETURNS_SL = $("#gridListTuifei").find(".tuishuliang");
+
+        var refund = 0;
+        var count = 0;
+        if (RETURNS_SL.length > 0) {
+            RETURNS_SL.each(function () {
+                var tsl = $(this).val();
+                if (tuifei[count].SL < tsl) {
+                    $.modalAlert("Số lượng hoàn không được lớn hơn số lượng！", "error");
+                    $(this).addClass("redBord");
+                    flag = false;
+
+                } else {
+                    tuifei[count].RETURNS_SL = tsl;
+                }
+                count++;
+            });
+        }
+        count = 0;
+        if (IS_RETURN.length > 0) {
+            IS_RETURN.each(function () {
+                var isTrue = $(this).is(':checked');
+                if (isTrue) {
+                    tuifei[count].IS_RETURN = true;
+
+
+                } else {
+                    tuifei[count].IS_RETURN = false;
+                }
+                count++;
+            });
+        } else {
+            $.modalAlert("Không có khoản mục hoàn phí được chọn！", "error");
+            flag = false;
+        }
+
+        for (var j = 0; j < tuifei.length; j++) {
+            if (tuifei[j].IS_RETURN) {
+
+                refund = refund + parseFloat(tuifei[j].DJ) * tuifei[j].RETURNS_SL;
+            }
+        }
+
+        if (flag) {
+            var kh = $("#kh").val();
+            var refundData = JSON.stringify(tuifei).toString();
+            $.modalConfirm("Bạn có chắc muốnHoàn phíkhông？", function (flag) {
+                if (flag) {
+                    $.loading(true, "Đang yêu cầu dữ liệu...");
+
+                    if (jsnm && kh) {
+                        $.najax({
+                            type: "POST",
+                            async: false,
+                            url: "@Url.Action("btnReturn")",
+                            data: { kh: kh, jsnm: jsnm, refundData: refundData },
+                            dataType: "json",
+                            cache: false,
+                            success: function (ajaxresp) {
+                                var msg = "Hoàn phí thành công！Số tiền phải hoàn là：";
+                                if (ajaxresp.data) {
+                                    msg = msg + $("#yingtui").val();
+                                } else {
+                                    msg = msg + refund;
+                                }
+                                $.modalAlert(msg, ajaxresp.state);
+                                $("#zifu").val("");
+                                $("#yingtui").val("");
+                                $('#gridListTuifei').jqGrid("clearGridData");
+                                clearFPYSInfo();//xóa dữ liệu
+                            },
+                            errorCallback: function (err) {
+                                $.loading(false);
+                            },
+                            complete: function () {
+                                $.loading(false);
+                            }
+                        });
+                    } else {
+                        $.modalAlert("Dữ liệu chưa đầy đủ，Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
+                    }
+                }
+            }, false);
+        }
+
+    }
+
+
+    //tra cứuquyết toánbản ghi
+    function chajilu(jsnm) {
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "@Url.Action("GetMZJSByJsnm")",
+            data: { jsnm: jsnm },
+            dataType: "json",
+            cache: false,
+            success: function (ajaxresp) {
+                if (ajaxresp.state === 'success' && ajaxresp.data != null && ajaxresp.data.length>0) {
+                    var result = ajaxresp.data[0];
+                    $("#brlx").html(result.BRXZMC);
+                    $("#ghks").html(result.KSMC);
+                    $("#ys").html(result.RYMC);
+                    getDetail(jsnm);
+
+                }
+            },
+            errorCallback: function (err) {
+            },
+            complete: function () {
+                isLoadingIIII = false;
+                $.loading(false);
+            }
+        });
+    }
+
+    ///tảihóa đơnvàthông tin chi phí khác
+    function loadFpData(data) {
+        jsnm = data.jsnm;
+        $("#fph").html(data.fph);
+        $("#flzf").html(data.flzffy);
+        $("#zf").html(data.zffy);
+        $("#jz").html(data.jzfy);
+        $("#zifei").html(data.zlfy);
+        $("#zifu").val(data.zffy);
+        $("#yingtui").val(data.zje);
+        chajilu(data.jsnm);
+    }
+
+    //phím tắt：xóa
+    function newtouch_event_f4() {
+        clearFPYSInfo();
+        $('#gridListTuifei').jqGrid("clearGridData");
+    }
+
+    //phím tắt：F6：hoàn phí
+    function newtouch_event_f6() {
+        Refund();
+    }
+
+</script>

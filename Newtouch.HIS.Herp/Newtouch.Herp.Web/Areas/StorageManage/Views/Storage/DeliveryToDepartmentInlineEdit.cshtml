@@ -1,0 +1,627 @@
+@using Newtouch.Herp.Infrastructure.Enum;
+@{
+    ViewBag.Title = "Giao hàng tới khoa";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style>
+    .req {
+        color: red;
+    }
+
+    .inline {
+        width: 80%;
+        display: inline;
+    }
+
+    .PriceInline {
+        width: 70%;
+        display: inline;
+    }
+
+    #dv-detail table th {
+        border: solid 1px #ddd;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    #dv-detail .ui-jqgrid-labels, #dv-detail .jqgrow .ui-row-ltr {
+        height: 30px;
+        vertical-align: middle;
+    }
+
+
+    #dv-detail table td {
+        border: solid 1px #ddd;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    #dv-detail input[role=textbox] {
+        padding: 2px 2px;
+    }
+
+    .input-wdatepicker-native {
+        height: auto;
+        width: 90px;
+        border: 0;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 6px 6px;
+        text-align: left;
+    }
+
+    #gridList .ckbox label {
+        margin-top: 24px;
+    }
+
+    .sp-ckze {
+        color: #ff0000;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:10px;">
+        <div class="panel-heading">Thông tin xuất kho</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Số phiếu xuất kho：</th>
+                <td class="formValue">
+                    <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
+                </td>
+                <th class="formTitle"><span class="required">*</span>Khoa nhập</th>
+                <td class="formValue">
+                    <input type="text" id="rkbm" name="rkbm" data-rkbmId="" placeholder="Vui lòng chọn kho nhập trước" class="form-control required" autocomplete="off" />
+                </td>
+                <th class="formTitle"><span class="required">*</span>Hình thức xuất kho：</th>
+                <td class="formValue">
+                    <select id="crkfs" class="form-control required"></select>
+                </td>
+                <th class="formTitle" style="width:60px;">
+                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="Thêm" />
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<div style="float: left; line-height: 35px; font-weight: bolder;">
+    <span>Lần nàyTổng xuất kho(đ)：</span>
+    <span class="sp-ckze">0.00</span>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
+{
+    ShowKeyList = new[] { 7, 8 },
+    F7Text = "Đặt lại",
+    F8Text = "Gửi"
+})
+<script type="text/javascript">
+
+    var $gridList = $("#gridList");
+    $(".toolbar").css("width", "20%");
+    $(function () {
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        init();
+        BackspaceRkbm();
+        $("#crkfs").bindSelect({ url: "/Storage/GetStorageIOMode?crkbz=1", id: "Id", text: "crkfsmc" });
+        $("#btn_add").click(function () {
+            $gridList.jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
+        });
+    });
+
+    //Khởi tạo
+    function init() {
+        $('#gridList').jqGrid("clearGridData");//Xóa trắngGrid
+        $gridList.clearGridData();
+        GetNewCkzksdh();
+        InitJqGrid();
+        $gridList.jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
+    }
+
+    //Tải số phiếu xuất kho tới khoa
+    function GetNewCkzksdh() {
+        $.najax({
+            url: "/StorageManage/Storage/GetNewCkzksdh?r=" + Math.random(),
+            dataType: "text",
+            type: "Get",
+            success: function (data) {
+                $("#Pdh").val(data);
+            }
+        });
+    }
+
+    //Lấy nút thao táchtml
+    function GetOperatehtml() {
+        return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
+    }
+
+    //Khởi tạoKhoa nhập
+    $("#rkbm").newtouchBatchFloatingSelector({
+        height: 300,
+        width: 300,
+        clickautotrigger: true,
+        ajaxmethod: 'Get',
+        caption: "Khoa nhập",
+        url: "/StorageManage/Storage/GetDeptByKf",
+        ajaxreqdata: function () {
+            var reqData = {};
+            reqData.keyword = $("#rkbm").val();
+            return reqData;
+        },
+        colModel: [
+            { label: 'deptId', name: 'deptId', hidden: true },
+            { label: 'Tên kho', name: 'deptName', widthratio: 100 }
+        ],
+        itemdbclickhandler: function ($thistr) {
+            $("#rkbm").val($thistr.attr('data-deptName')).attr("data-rkbmId", $thistr.attr('data-deptId'));
+            return;
+        }
+    });
+
+    //Xóa kho nhập
+    function BackspaceRkbm() {
+        $("#rkbm").keydown(function (e) {
+            var e = window.event ? window.event : e;
+            var keyCode = e.which ? e.which : e.keyCode;
+            if (keyCode === 8) {//tab
+                $("#rkbm").val("").attr("data-rkbmId", "");
+            }
+        });
+    }
+
+    //Thêm chi tiết
+    function addItem() {
+        var ids = $gridList.getDataIDs();
+        var lastRowoid = ids[ids.length - 1];
+        var dataRow = {
+            operate: GetOperatehtml()
+        };
+        $gridList.jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
+    }
+
+    //Xóa chi tiết
+    function deleteItem(obj) {
+        var selRowId = $(obj).parent().parent().attr("id");
+        if (!!selRowId) {
+            $gridList.jqGrid("delRowData", selRowId);
+        }
+    }
+
+    //Khởi tạo chi tiết xuất kho
+    function InitJqGrid() {
+        $gridList.newtouchLocalDataGrid({
+            data: [],
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
+            rownumbers: true,  //Có hiển thị số thứ tự không
+            multiselect: true,
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            unwritten: false,
+            colModel: [
+                { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
+                { label: '<span class="required">*</span>Tên vật tư', name: 'wzmc', width: 105, align: 'center', editable: true, editwidth: "100%" },
+                { label: "Loại vật tư", name: "lbmc", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Lô', name: 'pc', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Số lượng', name: 'sl', width: 45, align: 'center', editable: true, editwidth: "100%" },
+                {
+                    label: 'Đơn vị', name: 'unitName', width: 50, align: 'center',
+                    formatter: function (cellvalue, options) {
+                        return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>";
+                    }
+                },
+                { label: '<span class="required">*</span>Số lô', name: 'ph', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Tồn kho', name: 'slstr', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Ngày sản xuất', name: 'scrq', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 105, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Đơn giá nhập', name: 'jj', width: 75, align: 'center', editable: true, editwidth: "100%"},
+                { label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'zhyz', name: 'zhyz', hidden: true, editable: true },
+                { label: 'lsj', name: 'lsj', editable: true,  hidden: true },
+                { label: 'lsze', name: 'lsze', editable: true,  hidden: true },
+                { label: 'kykcsl', name: 'kykcsl', hidden: true, editable: true },
+                { label: 'ckbmkc', name: 'ckbmkc', hidden: true, editable: true },
+                { label: 'productId', name: 'productId', hidden: true, editable: true },
+                { label: 'fph', name: 'fph', hidden: true, editable: true },
+                { label: 'bmjj', name: 'bmjj', hidden: true, editable: true},
+                { label: 'minjj', name: 'minjj', hidden: true, editable: true },//Giá nhập đơn vị nhỏ nhất
+                { label: 'minlsj', name: 'minlsj', hidden: true, editable: true }
+            ],
+            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            gridComplete: function () {
+                var ids = $gridList.getDataIDs();
+                var lastRowoid = ids[ids.length - 1];
+                EnableInlineEditBox(lastRowoid);
+            },
+            onSelectRow: function(id){   
+                Calculatebcjjze();
+            }
+        });
+    }
+
+    //Bật chỉnh sửa trong dòng
+    function EnableInlineEditBox(rowid) {
+        $gridList.jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ chỉnh sửa
+        $("#jqg_gridList_" + rowid).trigger("click");
+    }
+
+    //Khởi tạo Lớp nổi
+    function initInlineFunc(rowid) {
+        //Một số cột chỉ đọc
+        $("#" + rowid + "_wzmc").attr("autocomplete", "off");
+        $("#" + rowid + "_lbmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_ph").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_slstr").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_gg").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_scrq").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_yxq").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_lsj").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_lsze").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_zhyz").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_sccj").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_jj").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_jjze").css('background-color', '#f6f7fb').attr('readonly', 'true');
+
+        InitProduct(rowid + "_wzmc", rowid); //Lớp nổi vật tư
+        InitTabKey("sel_dw_" + rowid, rowid);
+    }
+
+    //Khởi tạo mã nhập
+    function InitProduct(id, rowid) {
+        $("#" + id).newtouchBatchFloatingSelector({
+            clickautotrigger: true,
+            height: 300,
+            width: 920,
+            id: 'selectProduct',
+            url: '/StorageManage/Storage/DepartmentStockListQuery',
+            ajaxmethod: 'Get',
+            inputtextcheck: function () {
+                if ($("#rkbm").val() === "" ||
+                    $("#rkbm").attr("data-rkbmId") === "") {   //Bỏrơikhoảng trắng hai đầu
+                    $.modalAlert("Vui lòng chọn kho nhập trước", 'warning');
+                    return false;
+                }
+                return true;
+            },
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.key = $("#" + id).val();
+                return reqData;
+            },
+            caption: "Thông tin vật tư",
+            colModel: [
+                { label: 'Loại', name: 'lbmc', width: 120 },
+                { label: 'Tên', name: 'name', width: 200, align: "left" },
+                { label: 'Tồn kho', name: 'slstr', width: 100 },
+                { label: 'Quy cách', name: 'gg', width: 120 },
+                {
+                    label: 'Đơn giá bán lẻ', name: 'bmlsj', width: 90, align: "right",
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.00";
+                    }
+                },
+                { label: 'Đơn vị', name: 'bmdwmc', width: 50 },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 180, align: "left" },
+                { label: 'Id', name: 'Id', hidden: true },
+                { label: 'kykcsl', name: 'kykcsl', hidden: true },
+                { label: 'zhyz', name: 'zhyz', hidden: true },
+                { label: 'bmdwmc', name: 'bmdwmc', hidden: true },
+                { label: 'bmdwId', name: 'bmdwId', hidden: true },
+                { label: 'zxdwId', name: 'zxdwId', hidden: true },
+                { label: 'minlsj', name: 'minlsj', hidden: true },
+                { label: 'fph', name: 'fph', hidden: true },
+                { label: 'mindwmc', name: 'mindwmc', hidden: true }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                fillProductInfo(rowid, $thistr);
+            }
+        });
+    }
+
+    //Điền thông tin vật tư
+    function fillProductInfo(rowid, $thistr) {
+        $("#" + rowid + "_slstr").val($thistr.attr('data-slstr'));
+        $("#" + rowid + "_lbmc").val($thistr.attr('data-lbmc'));
+        $("#" + rowid + "_productId").val($thistr.attr('data-Id'));
+        $("#" + rowid + "_wzmc").val($thistr.attr('data-name'));
+        $("#" + rowid + "_gg").val($thistr.attr('data-gg'));
+        $("#" + rowid + "_sccj").val($thistr.attr('data-supplierName'));
+        $("#" + rowid + "_lsj").val($thistr.attr('data-bmlsj'));
+        $("#" + rowid + "_rkbmkc").val($thistr.attr('data-kykcsl'));
+        $("#" + rowid + "_minlsj").val($thistr.attr('data-minlsj'));
+        ChangeDw(rowid);
+        initDw($thistr, rowid);
+        $("#" + rowid + "_sl").val("");
+        $("#" + rowid + "_lsze").val("");
+        $("#sel_dw_" + rowid).trigger("change");
+        $("#" + rowid + "_pc").attr("autocomplete", "off");
+        InitPc(rowid + "_pc", rowid);
+
+        $("#" + rowid + "_sl").keyup(function () {
+            if (CheckKc(rowid)) {
+                CalculateJj(rowid);
+                CalculationLsze(rowid);
+            }
+        });
+    }
+
+    //Khởi tạo đơn vị
+    function initDw($thistr, rowid) {
+        $("#sel_dw_" + rowid).empty();
+        if ($thistr.attr('data-bmdwmc') !== $thistr.attr('data-mindwmc')) {
+            $("#sel_dw_" + rowid).append("<option data-zhyz='1' value='" + $thistr.attr('data-zxdwId') + "'>" + $thistr.attr('data-mindwmc') + "</option>");
+        }
+        $("#sel_dw_" + rowid).append("<option data-zhyz='" + $thistr.attr('data-zhyz') + "' value='" + $thistr.attr('data-bmdwId') + "'>" + $thistr.attr('data-bmdwmc') + "</option>");
+        $("#sel_dw_" + rowid).trigger("change");
+    }
+
+    //Chuyển đổi đơn vị
+    function ChangeDw(rowid) {
+        $("#sel_dw_" + rowid).change(function () {
+            $("#" + rowid + "_zhyz").val($(this).find("option:selected").attr("data-zhyz"));
+            CalculateJj(rowid);
+            CalculationLsze(rowid);
+        });
+    }
+
+    //Sự kiện kiểm tra tồn kho
+    function CheckKc(rowid) {
+        var sl = Number($("#" + rowid + "_sl").val());
+        var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
+        if (!reg.test(sl)) {
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            return false;
+        }
+        var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
+        if (isNaN(zhyz)) {
+            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên！", "warning", 1500);
+            return false;
+        }
+        var maxsl = Number($("#" + rowid + "_kykcsl").val());
+        if (zhyz * sl > maxsl) {
+            $.modalMsg("Số lượng không được vượt quá tổng tồn kho", "error", 1000);
+            $("#" + rowid + "_sl").val("");
+            return false;
+        }
+        return true;
+    }
+
+    //Tính tổng bán lẻ
+    function CalculationLsze(rowid) {
+        var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
+        var minlsj = Number($("#" + rowid + "_minlsj").val());
+        $("#" + rowid + "_lsj").val((minlsj * zhyz).toFixed(4));
+        var sl = Number($("#" + rowid + "_sl").val());
+        $("#" + rowid + "_lsze").val((zhyz * sl * minlsj).toFixed(2));
+    }
+
+    //Tại hóa đơn nhấn lạitabPhím
+    function InitTabKey(id, rowid) {
+        $("#" + id).keydown(function (e) {
+            var e = window.event ? window.event : e;
+            var keyCode = e.which ? e.which : e.keyCode;
+            if (keyCode === 9) {//tab
+                $(this).parent().parent().find(".fa-plus-square-o").trigger("click");
+            }
+        });
+    }
+
+    //Khởi tạo lô thuốc
+    function InitPc(id, rowid) {
+        $("#" + id).newtouchBatchFloatingSelector({
+            height: 300,
+            width: 870,
+            clickautotrigger: true,
+            url: "/StorageManage/Storage/ProductBatchQuery",
+            ajaxmethod: 'Get',
+            inputtextcheck: function () {
+                if ($("#" + rowid + "_productId").val().replace(/(^\s*)|(\s*$)/g, "") === "" ||
+                    $("#" + rowid + "_wzmc").val().replace(/(^\s*)|(\s*$)/g, "") === "") {   //Bỏrơikhoảng trắng hai đầu
+                    $.modalAlert("Vui lòng chọn vật tư trước", 'warning');
+                    return false;
+                }
+                return true;
+            },
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.proId = $("#" + rowid + "_productId").val();
+                reqData.keyword = $("#" + id).val();
+                return reqData;
+            },
+            colModel: [
+                { label: 'Số lô', name: 'ph', width: 120 },
+                { label: 'Lô', name: 'pc', width: 200 },
+                { label: 'Số lượng', name: 'slstr', width: 100 },
+                { label: 'Đơn giá nhập', name: 'jjdwdj', width: 90, align: "right" },
+                {
+                    label: 'Tổng giá nhập', name: 'jjzje', width: 90,
+                    formatter: function (cellvalue) { return cellvalue.toFixed(2); }
+                },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Ngày sản xuất', name: 'scrq', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'kykcsl', name: 'kykcsl', hidden: true },
+                { label: 'fph', name: 'fph', hidden: true },
+                { label: 'minjj', name: 'minjj', hidden: true },
+                { label: 'bmjj', name: 'bmjj', hidden: true },
+                { label: 'kcsl', name: 'kcsl', hidden: true }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#" + rowid + "_ph").val($thistr.attr('data-ph'));
+                $("#" + rowid + "_pc").val($thistr.attr('data-pc'));
+                $("#" + rowid + "_slstr").val($thistr.attr('data-slstr'));
+                $("#" + rowid + "_yxq").val($thistr.attr('data-yxq'));
+                $("#" + rowid + "_kykcsl").val($thistr.attr('data-kykcsl'));
+                $("#" + rowid + "_scrq").val($thistr.attr('data-scrq'));
+                $("#" + rowid + "_bmjj").val($thistr.attr('data-bmjj'));
+                $("#" + rowid + "_minjj").val($thistr.attr('data-minjj'));
+                $("#" + rowid + "_fph").val($thistr.attr('data-fph'));
+                $("#" + rowid + "_sl").val("");
+                $("#" + rowid + "_lsze").val("");
+                CalculateJj(rowid);
+            }
+        });
+    }
+
+    //Tính toánGiá nhập
+    function CalculateJj(rowid) {
+        var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
+        var minJj = parseFloat($("#" + rowid + "_minjj").val());
+        if (isNaN(zhyz)|| isNaN(minJj)) return;
+        $("#" + rowid + "_jj").val((minJj * zhyz).toFixed(4));
+        var sl = Number($("#" + rowid + "_sl").val());
+        $("#" + rowid + "_jjze").val((zhyz * sl * minJj).toFixed(2));
+        Calculatebcjjze();
+    }
+
+    //Tính lần nàyTổng giá nhập
+    function Calculatebcjjze() {
+        var r = 0;
+        $.each($gridList.find("input[type=checkbox]:checked"), function () {
+            var rowid = $(this).parent().parent().parent().attr("id");
+            var jjze = parseFloat($("#" + rowid + "_jjze").val());
+            if (!isNaN(jjze)) {
+                r += jjze;
+            }
+        });
+        $(".sp-ckze").html(r.toFixed(2));
+
+        //var rowIds = $gridList.getDataIDs();
+        //if (rowIds != null && rowIds.length > 0) {
+        //    var r = 0;
+        //    for (var i = 0; i < rowIds.length; i++) {
+        //        var jjze = parseFloat($("#" + rowIds[i] + "_jjze").val());
+        //        if (!isNaN(jjze)) {
+        //            r += jjze;
+        //        }
+        //    }
+        //    $(".sp-ckze").html(r.toFixed(2));
+        //} else {
+        //    $(".sp-ckze").html("0.00");
+        //}
+    }
+
+    //Xuất kho
+    function newtouch_event_f8() {
+        if (!ValidateMain()) return;
+        var list = [];
+        var validationFailedArr = [];
+        $.each($gridList.find("input[type=checkbox]:checked"), function () {
+            var rowid = $(this).parent().parent().parent().attr("id");
+            $gridList.saveRow(rowid, null, null, null, function (callbackRowId) { }, null, null);
+            var rowData = $gridList.jqGrid('getRowData', rowid);
+            if (!Validately(rowData, rowid)) {
+                validationFailedArr.push(rowid);
+                return;
+            }
+            list.push(AssembleData(rowData, rowid));
+        });
+        if (validationFailedArr.length > 0) {
+            for (var i = 0; i < validationFailedArr.length; i++) {
+                $gridList.jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
+            }
+            return;
+        }
+        if (list.length === 0) {
+            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa！", 'warning', 1000);
+            return;
+        }
+        var crkdj = Object();
+        crkdj.auditState ="@((int)EnumAuditState.Waiting)";
+        crkdj.Pdh = $("#Pdh").val();
+        crkdj.deliveryNo = "";
+        crkdj.crkfs = $("#crkfs").val();
+        crkdj.ckbm = "";
+        crkdj.rkbm = $("#rkbm").attr("data-rkbmId");
+        $.najax({
+            url: "/StorageManage/Storage/SaveDeliveryToDepartment",
+            type: "POST",
+            alerterror: false,
+            data: { crkdj: crkdj, crkdjmx: list },
+            dataType: "json",
+            success: function (res) {
+                if (res.state === "success") {
+                    $.modalAlert("Xuất kho thành công", 'success');
+                    newtouch_event_f7();//Nhập/xuất kho：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                } else {
+                    $.modalAlert(res.message, "error");
+                    var rowIds = $gridList.getDataIDs();
+                    for (var i = 0; i < rowIds.length; i++) {
+                        $gridList.jqGrid('editRow', rowIds[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
+                    }
+                }
+            }
+        });
+    }
+
+    //Phiếu xuất kho mới
+    function newtouch_event_f7() {
+        newtouch_globalevent_f4(null, {
+            container: "#form1",
+            inner: false
+        });
+        $("#rkbm").val("").attr("data-rkbmId", "");
+        init();
+    }
+
+    //Xác minh thông tin chính
+    function ValidateMain() {
+        if ($("#Pdh").val() === "") {
+            $.modalMsg("Số phiếu xuất kho không được để trống", 'warning', 1500);
+            return false;
+        }
+        if ($("#rkbm").val() === "" || $("#rkbm").attr("data-rkbmId") === "") {
+            $.modalMsg("Vui lòng chọnKhoa nhập", 'warning', 1500);
+            return false;
+        }
+        return true;
+    }
+
+    //Xác minh số
+    function Validately(rowData, rowid) {
+        if (rowData.wzmc === "" || rowData.productId === "") {
+            $.modalMsg('Bắt buộc chọn vật tư', 'error', 1000);
+            return false;
+        }
+        var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
+        if (!reg.test(rowData.sl)) {
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            return false;
+        }
+        if (rowData.pc === "" || rowData.ph === "") {
+            $.modalMsg("Lô、Số lô không được để trống！", "warning", 1000);
+            return false;
+        }
+        return true;
+    }
+
+    //Ghép dữ liệu gửi
+    function AssembleData(rowData, rowid) {
+        var lsj = parseFloat(rowData.lsj);
+        var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
+        var minjj = parseFloat(rowData.minjj);
+        var jj = (minjj*zhyz).toFixed(4);
+        return {
+            productId: rowData.productId,
+            lsj: isNaN(lsj) ? 0 : lsj.toFixed(4),
+            jj: jj,
+            zje: rowData.zje,
+            sl: rowData.sl,
+            ckbmkc: rowData.kykcsl,
+            unitId: $("#sel_dw_" + rowid).val(),
+            unitName: $("#sel_dw_" + rowid).find("option:selected").text(),
+            zhyz: zhyz ,
+            sccj: rowData.sccj,
+            yxq: rowData.yxq,
+            scrq: rowData.scrq,
+            fph: rowData.fph,
+            pc: rowData.pc,
+            ph: rowData.ph,
+            remark: ""
+        };
+    }
+</script>

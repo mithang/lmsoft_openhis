@@ -1,0 +1,30 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtouch.EMR.Infrastructure", "Newtouch.EMR.Infrastructure\Newtouch.EMR.Infrastructure.csproj", "{E1A2B3C4-0001-4000-8000-000000000001}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtouch.EMR.Web", "Newtouch.EMR.Web\Newtouch.EMR.Web.csproj", "{E1A2B3C4-0002-4000-8000-000000000002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtouch.EMR.API", "Newtouch.EMR.API\Newtouch.EMR.API.csproj", "{145C6134-E0FC-4930-9474-D7019B5C2620}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1A2B3C4-0001-4000-8000-000000000001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A2B3C4-0001-4000-8000-000000000001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A2B3C4-0001-4000-8000-000000000001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A2B3C4-0001-4000-8000-000000000001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1A2B3C4-0002-4000-8000-000000000002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A2B3C4-0002-4000-8000-000000000002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A2B3C4-0002-4000-8000-000000000002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A2B3C4-0002-4000-8000-000000000002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{145C6134-E0FC-4930-9474-D7019B5C2620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{145C6134-E0FC-4930-9474-D7019B5C2620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{145C6134-E0FC-4930-9474-D7019B5C2620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{145C6134-E0FC-4930-9474-D7019B5C2620}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

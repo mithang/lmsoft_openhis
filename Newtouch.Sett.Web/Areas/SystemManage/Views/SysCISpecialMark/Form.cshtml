@@ -1,0 +1,44 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    span {
+        color: red;
+    }
+</style>
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysCISpecialMark/Form.js",false)"></script>
+<form id="form1">
+    <table class="form">
+        <tr>
+            <td class="formTitle">Khoản thu phí</td>
+            <td class="formValue"><input class="form-control" id="sfxmmc" name="sfxmmc" type="text" /></td>
+            <td class="formTitle">Tính chất bệnh nhân<span>*</span></td>
+            <td class="formValue"><input class="form-control" id="brxzmc" name="brxzmc" type="text" /></td>
+        </tr>
+        <tr>
+            <td class="formTitle">Hiệu lực<span>*</span></td>
+            <td class="formValue">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="1" class="form-control"> Có
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="0" class="form-control"> Không
+                    </label>
+                </div>
+            </td>
+            <td class="formTitle"></td>
+            <td class="formValue"></td>
+        </tr>
+        <tr>
+            <td class="formTitle">Nhân viên lập hồ sơ</td>
+            <td class="formValue">
+                <input class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
+            </td>
+            <td class="formTitle">Ngày lập hồ sơ</td>
+            <td class="formValue"><input class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" readonly="readonly" /></td>
+        </tr>
+    </table>
+</form>

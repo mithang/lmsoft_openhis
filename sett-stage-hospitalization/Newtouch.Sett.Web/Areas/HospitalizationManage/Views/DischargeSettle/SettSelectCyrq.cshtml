@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "SettSelectCyrq";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 55px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Ngày xuất viện：</th>
+                <td class="formValue">
+                    <input class="form-control input-wdatepicker required" id="cyrq" name="cyrq"
+                           value=@DateTime.Now.ToString("yyyy-MM-dd") type="text"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script>
+    var cyrq = $.request("cyrq");
+    if (cyrq) {
+        $('#cyrq').val($.getDate({ date: cyrq }));
+        //$('#cyrq').attr('disabled', 'disabled');
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var date = $('#cyrq').val();
+        if ($.getDate() < date) {   //định dạng giống nhau，Có thể so sánh trực tiếp
+            $.modalAlert("Không thể tiến hànhquyết toán xuất viện sớm", 'warning');
+            return false;
+        }
+        return date;
+    }
+</script>

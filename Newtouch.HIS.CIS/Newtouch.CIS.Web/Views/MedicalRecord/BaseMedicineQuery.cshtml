@@ -1,0 +1,122 @@
+
+@{
+    ViewBag.Title = "BaseMedicineQuery";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <td class="formTitle">
+                    Thực hiệnLoại:
+                </td>
+                <td class="formValue">
+                    <select class="form-control" id="zxdlb">
+                        <option value="">Vui lòng chọn</option>
+                        <option value="ynyp">Trong việnThuốc</option>
+                        <option value="zlxm">Khám chữa bệnhMục</option>
+                        <option value="ynhc">Trong việnVật tư tiêu hao</option>
+                    </select>
+                <td class="formTitle">
+                    MụcMã:
+                </td>
+                <td class="formValue">
+                    <input id="xmbm" type="text" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Tên mục:
+                </td>
+                <td class="formValue"> <input id="xmmc" type="text" class="form-control"></td>
+                <td class="formTitle">
+                    <input id="ck_kc" type="checkbox" /><label for="ck_kc">Không hiển thị tồn kho bằng 0</label>
+                </td>
+                <td class="formValue">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:80px;" value="Tra cứu" />
+                </td>
+                <td class="formTitle">
+                </td>
+                <td class="formValue">
+                </td>
+                <td class="formTitle">
+                </td>
+                <td class="formValue">
+                    
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <table id="gridList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("gridPanel");
+        });
+        gridList();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        //var obj = new Object();
+        //obj.mbmc = $('#mbmc').val();
+        //obj.mblx = $('#mblx').val();
+        var zxdlb = $("#zxdlb").val();
+        var xmbm = $("#xmbm").val();
+        var ck_kc = "1";
+        if ($('#ck_kc').is(':checked')) {
+            ck_kc = "0";
+        }
+        $gridList.dataGrid({
+            postData: { zxdlb: $("#zxdlb").val(), xmbm: xmbm, xmmc: $("#xmmc").val(), ck_kc: ck_kc},
+            url: "/MedicalRecord/GetBaseMedicinetList",
+            height: $(window).height() - 130,
+            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            autowidth: true,
+            colModel: [
+                { label: "MụcMã", name: "ypCode", width: 70, align: 'left' },
+                { label: 'Tên mục', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'Chi phíLoại', name: 'yplb', width: 50, align: 'left' },
+                { label: 'Tồn khoSố lượng', name: 'klsl', width: 70, align: 'left' },
+                //{ label: '药品属性', name: 'ypxzmc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'Giá bán sỉ', name: 'pfj', width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'deptdw', width: 50, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'Sử dụngTrạng thái', name: 'syzt', width: 50, align: 'left' },
+                { label: 'Ngừng sử dụngDấu hiệu', name: 'ypzt', width: 65, align: 'left' },
+                { label: "Khóa chính", name: "ypId", hidden: true, key: true },
+                { label: 'Phòng banMã', name: 'yfbmCode', width: 80, align: 'left' },
+                { label: 'Phòng banTên', name: 'yfbmmc', width: 100, align: 'left' }
+            ],
+            pager: "#gridPager",
+            sortname: 'ypmc asc',
+            viewrecords: true,
+            gridComplete: function () {
+              
+            }
+        });
+        $("#btn_search").click(
+            
+            function () {
+                var ck_kc = "1";
+                if ($('#ck_kc').is(':checked')) {
+                    ck_kc = "0";
+                }
+            $gridList.jqGrid('setGridParam', {
+                postData: { zxdlb: $("#zxdlb").val(), xmbm: $("#xmbm").val(), xmmc: $("#xmmc").val(), ck_kc: ck_kc },
+                pager: "#gridPager",
+                sortname: 'ypmc asc',
+            }).trigger('reloadGrid');
+        });
+    }
+
+</script>

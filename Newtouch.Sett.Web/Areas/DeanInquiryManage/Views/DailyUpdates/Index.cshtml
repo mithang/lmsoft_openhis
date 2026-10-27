@@ -1,0 +1,257 @@
+@{
+    ViewBag.Title = "khi ngày động";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .bk {
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .drdt_top {
+            display: flex;
+            justify-content: space-around;
+            color:#ffffff;
+        }
+
+            .drdt_top div {
+                width: 19.6%;
+                height: 90px;
+                background-color:#ffffff;
+                text-align:center;
+            }
+        .drdt_center {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+        .drdt_center_child {
+            width: 24.5%;
+            height: 35%;
+            background-color: #ffffff;
+        }
+        .drdt_down {
+            display: flex;
+            justify-content: space-around;
+        }
+        .drdt_down_child {
+            width: 49.5%;
+            height: 35%;
+            background-color: #ffffff;
+        }
+        img {
+        width:25px;
+        height:25px;
+        }
+        .down_border {
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<div id="main_div">
+    <div class="drdt_top">
+        <div style="background-color: #fc8675;">
+            <h4>Tổng thu nhập bệnh viện(đồng)</h4>
+            <h3 id="yyzsr">0</h3>
+        </div>
+        <div style="background-color: #65cea7;">
+            <h4>Thu nhập ngoại trú(đồng)</h4>
+            <h3 id="mzsr">0</h3>
+        </div>
+        <div style="background-color: #f3ce85;">
+            <h4>Lượt người ngoại trú (lượt)</h4>
+            <h3 id="mzrc">0</h3>
+        </div>
+        <div style="background-color: #00c0ef">
+            <h4>Thu nhập nội trú(đồng)</h4>
+            <h3 id="zysr">0</h3>
+        </div>
+        <div style="background-color: #fc8675;">
+            <h4>Số người xuất viện(người)</h4>
+            <h3 id="cyrs">0</h3>
+        </div>
+    </div>
+    <div class="drdt_center">
+        <div class="drdt_center_child">
+            <div class="panel-heading down_border">
+                <i class="fa fa-table fa-lg" style="padding-right:5px;"></i>Tình hình ngoại trú hôm nay
+            </div>
+            <table id="gridJSListjrdtmz"></table>
+        </div>
+
+        <div class="drdt_center_child">
+            <div class="panel-heading down_border">
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Đơn thuốc ngoại trú
+            </div>
+            <table id="gridJSListmzcf"></table>
+        </div>
+        <div class="drdt_center_child">
+            <div class="panel-heading down_border">
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Ngoại trú Chi phí
+            </div>
+            <table id="gridJSListmzfy"></table>
+        </div>
+        <div class="drdt_center_child">
+            <div class="panel-heading down_border">
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Thống kê đăng ký khám ngoại trú
+            </div>
+            <table id="gridJSListmzghtj"></table>
+        </div>
+    </div>
+    <div class="drdt_down">
+        <div class="drdt_down_child">
+            <div class="panel-heading down_border">
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Tỷ lệ lấp đầy giường nội trú
+            </div>
+            <table id="gridJSListzyzcl"></table>
+        </div>
+        <div class="drdt_down_child">
+            <div class="panel-heading down_border">
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Thống kê bệnh nhân nội trú
+            </div>
+            <table id="gridJSListzyhztj"></table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var interval = 5 * 60 * 1000; // 5分钟的毫秒数
+    $(function () {
+
+        $('#main_div').height($(window).height());
+        gridJSListData();
+        setInterval(function () {
+            // 每隔五分钟执行一次
+            gridJSListData();
+        }, interval);
+    });
+
+    function gridJSListData() {
+       
+        //banner统计数据
+        $.ajax({
+            type: "GET",
+            url: "/DeanInquiryManage/DailyUpdates/GetJRDTBanner",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data != null) {
+                    $("#yyzsr").text(data.yyzsr);
+                    $("#mzsr").text(data.mzsr);
+                    $("#mzrc").text(data.mzrc);
+                    $("#zysr").text(data.zysr);
+                    $("#cyrs").text(data.cyrs);
+                }
+            },
+            error: function (request, error, ex) {
+                $.modalAlert("Tra cứu thất bại");
+            }
+        });
+
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListjrdtmz");
+        $gridJsList.dataGrid({
+            height: $(window).height() * 0.5 - 130,
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetJrdt",
+            colModel: [
+                { label: 'Ngoại trú Khoa', name: 'mzks',  align: 'left' },
+                { label: 'Đã khám', name: 'yjz',  align: 'left' },
+                { label: 'khám trong', name: 'jzz', align: 'left' },
+                { label: 'chờ khám', name: 'djz',  align: 'left' }
+            ],
+            sortname: gridSort,
+            viewrecords: true
+        });
+
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListmzcf");
+        $gridJsList.dataGrid({
+            height: $(window).height() * 0.5 - 130,
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetMzcf",
+            colModel: [
+                { label: 'Khoản mục', name: 'xm',align: 'left' },
+                { label: 'Số lượng', name: 'sl',align: 'left' }
+            ],
+            sortname: gridSort,
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+            },
+            gridComplete: function (gridJszbList) {
+
+            },
+            ondblClickRow: function (row) {
+            }
+        });
+
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListmzfy");
+        $gridJsList.dataGrid({
+            height: $(window).height() * 0.5 - 130,
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetMzfy",
+            colModel: [
+                { label: 'Chi phí Phân loại', name: 'fyfl',align: 'left' },
+                { label: 'Số tiền', name: 'je', align: 'left' },
+                { label: 'Tỷ trọng(%)', name: 'zb', align: 'left' }
+            ],
+            sortname: gridSort,
+            viewrecords: true
+        });
+
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListzyzcl");
+        $gridJsList.dataGrid({
+            height: $(window).height() * 0.5 - 130,
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetZyzcl",
+            colModel: [
+                { label: 'Khoản mục', name: 'xm', align: 'left' },
+                { label: 'Số lượng', name: 'sl',align: 'left' }
+            ],
+            sortname: gridSort,
+            viewrecords: true
+        });
+
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListmzghtj");
+        $gridJsList.dataGrid({
+            height: $(window).height() * 0.5 - 130,
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetMzghtj",
+            colModel: [
+                { label: 'Loại đăng ký khám', name: 'ghlx', align: 'left' },
+                { label: 'Số lượng', name: 'sl', align: 'left' }
+            ],
+            sortname: gridSort,
+            viewrecords: true
+        });
+
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListzyhztj");
+        $gridJsList.dataGrid({
+            height: $(window).height() * 0.5 - 130,
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetZyhztj",
+            colModel: [
+                { label: 'Khoản mục', name: 'xm', align: 'left' },
+                { label: 'Số lượng', name: 'sl', align: 'left' }
+            ],
+            sortname: gridSort,
+            viewrecords: true
+        });
+    }
+</script>

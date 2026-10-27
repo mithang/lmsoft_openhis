@@ -1,0 +1,248 @@
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Kỹ thuật y tếQuản lý-Kỹ thuật y tếThực hiệnTra cứu";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .form .formTitle {
+        position: relative;
+        left: 0px;
+        text-align: right;
+        white-space: nowrap;
+        font-weight: normal;
+        width: 60px;
+        padding-right: 10px;
+        padding-left: 5px;
+    }
+</style>
+<form name="form1">
+    <div class="panel panel-default">
+        <table class="form">
+            <tr>
+                <th class="formTitle" id="thshrq">Thực hiệnThời gian:</th>
+                <td class="formValue" colspan="2">
+                    <input id="txtkssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <span style="margin-left: 2%; float: left;">—</span>
+                    <input id="txtjssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                </td>
+                <th class="formTitle">Bệnh nhânLoại:</th>
+                <td class="formValue" >
+                    <select class="form-control" id="hzlx">
+                        <option value="qb" selected>Tất cả</option>
+                        <option value="mz">Ngoại trú</option>
+                        <option value="zy" selected>Nhập viện</option>
+                    </select>
+                </td>
+                <th class="formTitle">Chi phíLoại:</th>
+                <td class="formValue">
+                    <select class="form-control" id="fylx">
+                        <option value="qb" selected>Tất cả</option>
+                        <option value="jy">Kiểm tra</option>
+                        <option value="jc">Xét nghiệm</option>
+                    </select>
+                </td>
+                <th class="formTitle">PhiếuLoại:</th>
+                <td class="formValue">
+                    <select class="form-control" id="sqdlx">
+                        <option value="" selected>Tất cả</option>
+                    </select>
+                </td>
+                <td class="formValue" colspan="2">
+                    <input id="txt_keyword" name="txt_keyword" type="text" style="width:80%;float:left" class="form-control" placeholder="Vui lòng nhập tên bệnh nhân/số khám bệnh/số CMND-CCCD/số phiếu" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formValue" colspan="2">
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
+                    <input type="button" id="btn_result" class="btn btn-primary btn-md" style="margin-left: 10px; width: 100px;" value="Báo cáoKết quảTải lên&Xem" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        sqdlxinit();
+        gridListData();
+    });
+
+    //费用类型关联申请单
+    $("#fylx").change(function(){
+        sqdlxinit();
+    })
+
+    function sqdlxinit() {
+        $("#sqdlx").empty();
+        $("#sqdlx").append("<option value='qb'>Tất cả</option>");
+        var type = $("#fylx").val()=="jy"?@((int)EnumjyjcmbLx.jy):$("#fylx").val()=="jc"?@((int)EnumjyjcmbLx.jc):0;
+        $.najax({
+            url: "/TemplateManage/InspectionTemplate/SelectGridList?type=" + type,
+            dataType: "json",
+            type: "POST",
+            success: function (resp) {
+                $.each(resp, function () {
+                    var option = "<option value='" + this.mbmc + "'>" + this.mbmc + "</option>";
+                    $("#sqdlx").append(option);
+                });
+            }
+        });
+    }
+
+    var checkTrigger = false;
+    var list = new Array();
+    var liststu = false;
+    var j = 0;
+    function gridListData() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 120,
+            url: "@Url.Action("GetJyjcExecRecordJson")",
+            multiselect: true,
+            colModel: [
+                { label: 'Id', name: 'Id', align: 'center', width: 50, key: true, hidden: true },
+                {
+                    label: 'Bệnh nhânLoại', name: 'hzlx', width: 60, align: 'center', formatter: function (val) {
+                        return val=="1"?"Ngoại trú":"Nhập viện"
+                    }
+                },
+                { label: 'Số khám bệnh/Số nhập viện', name: 'mzzyh', width: 90, align: 'center' },
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
+                { label: 'CMND/CCCD', name: 'zjh', align: 'center', width: 120 },
+                {
+                    label: 'Chi phíLoại', name: 'fylx', align: 'center', width: 80, formatter: function (val) {
+                        if(val=="4" ||val=="6")
+                            return "Xét nghiệm"
+                        if(val=="5" ||val=="7")
+                            return "Kiểm tra"
+                    }
+                },
+                { label: 'Số phiếu', name: 'sqdh', align: 'center', width: 130 },
+                { label: 'PhiếuLoại', name: 'sqdlx', align: 'center', width: 70 },
+                { label: 'Tên mục', name: 'ztmc', width: 90, align: 'center' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'center' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'center' },
+                { label: 'Chi phíSố lượng', name: 'sl', width: 50, align: 'center' },
+                { label: 'Số tiền', name: 'je', width: 50, align: 'center' },
+                { label: 'Người ghi nhận chi phí', name: 'jzr', width: 80, align: 'center' },
+                { label: 'Ghi nhận chi phíThời gian', name: 'kdrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Lập phiếuKhoa', name: 'kdksmc', width: 100, align: 'center' },
+                { label: 'Lập phiếuBác sĩ', name: 'kdysmc', width: 100, align: 'center' },
+                { label: 'Người thực hiện', name: 'zxr', width: 80, align: 'center' },
+                { label: 'Thực hiệnThời gian', name: 'zxrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 100, align: 'center' },
+            ],
+            onSelectRow: function (rowIndex, s) {
+                if (!checkTrigger) {
+                    var len = 0;
+                    var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
+                    var ids = $("#gridList").jqGrid('getRowData_AllLine');
+                    liststu = s; //同步状态
+                    if (rowData.sqdh != "") {
+                        for (var i = 0; i < ids.length; i++) {
+                            if (ids[i].sqdh === rowData.sqdh && ids[i].sqdh !== "") {
+                                if (s === true) {
+                                    if (rowIndex !== ids[i].Id) {
+                                        list[len] = ids[i].Id;
+                                        len += 1;
+                                    }
+                                }
+                                else {
+                                    if (rowIndex !== ids[i].Id) {
+                                        list[len] = ids[i].Id;
+                                        len += 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    checkTrigger = true;
+                }
+
+                if (list.length > 0) {
+
+                    for (j; j < list.length; j++) {
+                        if (liststu) //同组选中
+                        {
+                            j = j + 1;
+                            $("#gridList").jqGrid("setSelection", list[j - 1], true);
+
+                        }
+                        else { //同组取消选中
+                            //j = j + 1;
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                        }
+
+                    }
+                }
+
+                j = 0;
+                checkTrigger = false;
+                list = new Array();
+                liststu = false;
+            },
+            pager: "#gridPager",
+            sortname: " zxrq asc,sqdh",
+            viewrecords: true
+        });
+
+        $("#btn_search").click(function () {
+            btn_search();
+        });
+    }
+    function btn_search()
+    {
+        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $("#gridList").jqGrid('setGridParam', {
+            postData: getSearchPostData(),
+            url: '@Url.Action("GetJyjcExecRecordJson")'
+        }).trigger('reloadGrid');
+    }
+
+    function getSearchPostData() {
+        var keyword = $("#txt_keyword").val();
+        var kssj = $("#txtkssj").val();
+        var jssj = $("#txtjssj").val();
+        var hzlx = $("#hzlx").val();
+        var fylx = $("#fylx").val();
+        var sqdlx = $("#sqdlx").val();
+        return {
+            keyword: keyword, kssj: kssj, jssj: jssj, hzlx: hzlx, fylx: fylx, sqdlx: sqdlx
+        };
+    };
+
+    //上传报告图片文件
+    $("#btn_result").click(function(){
+       
+        debugger
+        var selectedRowData = $("#gridList").jqGrid("getGridParam", "selarrrow").map(function(rowId) {
+            return $("#gridList").jqGrid("getRowData", rowId); // 获取选中行的数据
+        });
+        if (selectedRowData.length == 0) {
+            $.modalAlert("Vui lòng chọn phiếu cần tải lên", 'warning');
+            return;
+        }
+        var sqdcnt=Array.from(new Set(selectedRowData.map(item => item.sqdh)));
+        if (sqdcnt.length > 1) {
+            $.modalAlert("Phiếu không thể chọn nhiều!", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "ApplyFormUpload",
+            title: "Báo cáoTải lênXem trước",
+            url:"/NurseManage/OrderExecution/ApplyFormUpload?sqdh="+selectedRowData[0].sqdh,
+            width: "800px",
+            height: "700px",
+            btn: null
+        });
+    })
+
+</script>

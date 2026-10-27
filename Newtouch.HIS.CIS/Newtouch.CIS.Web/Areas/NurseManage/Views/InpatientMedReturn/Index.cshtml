@@ -1,0 +1,401 @@
+
+@{
+    ViewBag.title = "Y lệnhTrả thuốc";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var tysqPrinturl = SysConfigReader.OrgReportLink("tysqdPrint");//门诊常规项目处方单
+}
+@using Newtouch.Infrastructure;
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+
+<style>
+    .dv-left {
+        width: 16%;
+        float: left;
+    }
+
+    .dv-left-tree {
+        overflow-y: auto;
+        border-radius: 4px;
+        background: white;
+    }
+
+    .dv-left-title {
+        /*padding: 6px 10px;*/
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-color:#ddd;
+        background-color: white;
+    }
+
+    .dv-right {
+        width: 83.6%;
+        float: right;
+        margin-left: 2px;
+    }
+
+    .dv-right-order {
+        width: 100%;
+    }
+
+    .dv-grid {
+        width: 100%;
+    }
+</style>
+
+
+<div class="dv-body">
+    <div class="dv-left">
+        <div class="panel panel-default">
+            <div class="panel-heading navb-bg">
+                Điều kiện lọc
+            </div>
+            <table class="form" style="width:95%">
+                <tbody>
+                    <tr>
+                        <th class="formTitle">Họ tên/Số nhập viện:</th>
+                        <td class="formValue">
+                            <input id="keyword" type="text" class="form-control">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dv-left-title">
+            Danh sách bệnh nhân
+        </div>
+        <div class="dv-left-tree" id="PatTreeList"></div>
+    </div>
+    <div class="dv-right">
+        <div class="dv-right-order">
+            <div class="panel panel-default">
+                <div class="panel-heading navb-bg">
+                    Điều kiện lọc
+                    
+                </div>
+                <div>
+                    <table class="form">
+                        <tr>
+                            <th class="formTitle">Tên thuốc:</th>
+                            <td class="formValue">
+                                <input id="txt_name" type="text" class="form-control" placeholder="Tên thuốc" />
+                            </td>
+                            <th class="formTitle">Ngày bắt đầu:</th>
+                            <td class="formValue">
+                                <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
+                            </td>
+                            <th class="formTitle">Ngày kết thúc:</th>
+                            <td class="formValue">
+                                <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
+                            </td>
+                            <td class="formTitle">
+                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                            </td>
+                            @*<td class="formTitle">
+                                <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="退药确认" />
+                            </td>*@
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="gridPanel">
+                <table id="gridList"></table>
+            </div>
+            <div>
+                <div class="topPanel">
+                    <div class="toolbar" style="float:right">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" onclick="refleshMedList()"><span class="fa fa-refresh"></span></a>
+                        </div>
+                        <div class="btn-group">
+                            <a authorize="yes" class="btn btn-primary" onclick="returnConfirm()">
+                                <i class="fa fa-plus"></i>Trả thuốcXác nhận
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".dv-body").height($(window).height());
+    $(".dv-body").width($(window).width());
+    //var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 90;
+    //$(".dv-right").width(rightWidth);
+   // $(".dv-left").width(260);
+    //$(".dv-left-tree").height($(window).height() - 70);
+    var keyword = $("#txt_name").val();
+    var kssj = $("#txt_ksrq").val();
+    var jssj = $("#txt_jsrq").val();
+    var zyh = "";
+
+    $(function () {
+        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+            $(".dv-body").height($(window).height());
+            $(".dv-body").width($(window).width());
+        });
+        $('#gridList').jqGrid("clearGridData");
+
+        getPatTreeList();
+        gridList("");
+
+        //搜索病人信息
+        $('#keyword').keyup(function () {
+            getPatTreeList();
+        });
+
+    });
+
+    function getPatTreeList() {
+        $("#PatTreeList").treeview({
+            height: $(window).height() - 120,
+            slimscroll: false,
+            showcheck: false,
+            url: "/NurseManage/InpatientMedReturn/GetPatWardTree?keyword=" + $('#keyword').val(),
+            onnodeclick: function (item) {
+                if (item.value && item.Ex1=="c")
+                {
+                    zyh = item.val;
+                    $('#gridList').jqGrid('setGridParam', {
+                        postData: { patInfo: item.value, keyword: keyword, kssj: kssj, jssj: jssj }
+                    }).trigger("reloadGrid");
+                }
+
+            }
+        });
+        $("#btn_search").click(function () {
+            keyword = $("#txt_name").val();
+            kssj = $("#txt_ksrq").val();
+            jssj = $("#txt_jsrq").val();
+            var patcheck = $("#PatTreeList").getCurrentNode();
+            if (patcheck != null && patcheck != "undefined") {
+                if (patcheck.Ex1 == "c") {
+                    $("#gridList").jqGrid('setGridParam', {
+                        postData: { patInfo: patcheck.value, keyword: keyword, kssj: kssj, jssj: jssj },
+                    }).trigger('reloadGrid');
+                }
+            } else {
+                $.modalAlert("Vui lòng chọn trướcBệnh nhân!", 'warning');
+                return;
+            }
+        });
+    }
+
+    //回车事件
+    $('#txt_name').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    //刷新列表
+    function refleshMedList() {
+        $("#btn_search").trigger('click');
+    }
+
+    //function refleshMedList() {
+    //    $("#btn_search").trigger('click');
+    //}
+    
+    var checkTrigger = false;
+    var list = new Array();
+    var liststu = false;
+    var j = 0;
+    function gridList(patzyh) {
+
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { patList: patzyh, keyword: keyword, kssj: kssj, jssj: jssj },
+            url: "/NurseManage/InpatientMedReturn/GetGridJson",
+            editurl: "clientArray",
+            height: $(window).height() - 170,
+            colModel: [
+                { label: 'ThuốcId', name: 'Id', align: 'center', width: 100, hidden: true,key:true},
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 100 },
+                { label: 'zyh', name: 'zyh', align: 'center', hidden: true, },
+                { label: 'yzlx', name: 'yzlx', align: 'center', hidden: true, },
+                { label: 'Tính chất y lệnh', name: 'yzxz', align: 'center', width: 50, formatter: function (cellvalue) { if(cellvalue==2) return "Dài hạn"; if(cellvalue==1) return "Tạm thời"; } },
+                { label: 'Tên thuốc', name: 'ypmc', align: 'center', width: 180 },
+                { label: 'Thực hiệnNgày', name: 'zxrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Số lượng phát thuốc', name: 'ypsl', align: 'center', width: 80 },
+                { label: 'Số lượng có thể trả', name: 'ktsl', align: 'center', width: 80 },
+                {
+                    label: 'Đề nghịTrả thuốcSố lượng', name: 'tsl', align: 'center', width: 80, editable: true, editrules: { integer: true, minValue: 1 }, align: "left"},
+                { label: 'ThuốcĐơn vị', name: 'ypdw', align: 'center', width: 60 },
+                { label: 'ThuốcĐơn giá', name: 'ypdj', align: 'center', width: 50 },
+                //{ label: '医生', name: 'ysxm', align: 'center', width: 50 },
+                { label: 'Số thứ tự nhóm', name: 'fzxh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } }
+            ],
+            //sortname: 'fzxh desc',
+            viewrecords: true,
+            multiselect: true,
+            onSelectAll: function (aRowids, status) {
+                EnableInlineEditBox();
+            },
+            onSelectRow: function (rowIndex,s) {           
+                if (!checkTrigger) {
+                    var len=0;
+                    var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
+                    var ids = $("#gridList").jqGrid('getRowData_AllLine');
+
+                    liststu = s; //同步状态
+                    for (var i = 0; i < ids.length; i++) {
+                        if (ids[i].fzxh == rowData.fzxh && ids[i].fzxh != "" && ids[i].zxrq == rowData.zxrq) {
+                            if (s == true) {
+                                if (rowIndex != ids[i].Id) {
+                                    list[len] = ids[i].Id;
+                                    len += 1;
+                                }
+                            }
+                            else {
+                                if (rowIndex != ids[i].Id) {
+                                    list[len] = ids[i].Id;
+                                    len += 1;
+                                }
+                            }
+                        }
+                    }
+                    checkTrigger = true;
+                }
+                
+                if (list.length > 0) {
+
+                    for (j = j; j < list.length; j++) {
+                        if (liststu) //同组选中
+                        {
+                            j = j + 1;
+                            $("#gridList").jqGrid("setSelection", list[j-1], true);
+                            //$("#gridList").jqGrid('editRow', list[j - 1], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+                            //});
+                            $("#gridList").editRow(list[j], null, null, null, function (callbackRowId) {});
+                        }
+                        else { //同组取消选中
+                            //j = j + 1;
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow   
+                            //$("#gridList").saveRow(rowIndex, null, null, null, function (callbackRowId) { }, null, null);
+                            var selectrowid = list[j];
+                            $("#gridList").saveRow(selectrowid, null, null, null, function (callbackRowId) { }, null, null);
+                        }
+
+                    }
+                }
+
+                j = 0;
+                checkTrigger = false;
+                list = new Array();
+                liststu = false;
+                if (s) {
+                    $gridList.jqGrid('editRow', rowIndex, true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+                    });
+
+                } else {
+                    $gridList.saveRow(rowIndex, null, null, null, function (callbackRowId) { }, null, null);
+                }
+            }
+
+        });
+    }
+
+    //启用行内编辑框
+    function EnableInlineEditBox(rowId) {
+        if (rowId) {
+            $("#gridList").jqGrid('editRow', rowId, true, null, null, null, null, function (callbackRowId) {
+                ;
+            });
+        }
+        else {
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            for (var i = 0; i < rowIds.length; i++) {
+                EnableInlineEditBox(rowIds[i]);
+            }
+        }
+    }
+
+
+    function returnConfirm()
+    {
+        $.modalConfirm("Xác nhận đề nghị trả thuốc đã chọn hiện tại?", function (flag) {
+            if (flag) {
+
+                //获取所有行Id，遍历使编辑框处于保存状态
+                var rowIds = $("#gridList").jqGrid('getDataIDs');
+                for (var i = 0; i < rowIds.length; i++) {
+                    $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+                }
+                var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+                //判断退数量
+                for (var i = 0; i < selRowIds.length; i++) {
+                    var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+                    if (!rowData) {
+                        break;
+                    }
+                    if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
+                        //启用行内编辑框
+                        EnableInlineEditBox(selRowIds[i]);
+                        $.modalAlert("Mục(" + rowData.ypmc + ") số lượng trả để trống, vui lòng xác nhận.", 'warning');
+                        return;
+                    }
+                    if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl == "") {
+                        //启用行内编辑框
+                        EnableInlineEditBox(selRowIds[i]);
+                        return;
+                    }
+                    if (parseInt(rowData.tsl) > parseInt(rowData.ktsl)) {
+                        //启用行内编辑框
+                        EnableInlineEditBox(selRowIds[i]);
+                        $.modalAlert("Số lượng trả lớn hơn số lượng có thể trả, vui lòng xác nhận<br/>" + rowData.ypmc, 'warning');
+                        return;
+                    }
+                }
+
+                var medobjs = new Array();
+                var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
+                $(ids).each(function (index, id) {
+
+                    var row = $("#gridList").jqGrid('getRowData', id);
+                    var medobj = {};
+                    medobj.Id = row.Id;
+                    medobj.tsL = row.tsl;
+                    medobj.yzlx = row.yzlx;
+                    medobjs.push(medobj);
+                    //medIds += row.Id + ",";
+                });
+
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/NurseManage/InpatientMedReturn/MedReturnSubmit",
+                    data: { medIds: JSON.stringify(medobjs) },
+                    dataType: "json",
+                    async: false,
+                    success: function (ajaxresp) {                   
+                        if (ajaxresp.state == "error"||ajaxresp.state =="")
+                        {                            
+                            setTimeout(function () {
+                                $.modalMsg(ajaxresp.message, 'error');
+                            }, 1000);
+
+                        }
+                        else {
+                            setTimeout(function () {
+                                $.modalMsg('Trả thuốcthành công', 'success');
+                            }, 1000);
+                            var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
+							var zyh = $("#gridList").jqGrid('getRowData', ids[0]).zyh;
+							//先注释老报表打印 新报表还未做
+                            @*var rpturl = '@Html.Raw(tysqPrinturl)';
+                            if (rpturl) {
+                                window.open(rpturl + "&zyh=" + zyh + "&tyxh=" + ajaxresp.data, "_blank", "height = 500, width = 1195, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
+                            }*@
+                        }
+                        refleshMedList();
+                    }
+                });
+            }
+        });
+
+
+
+    }
+</script>

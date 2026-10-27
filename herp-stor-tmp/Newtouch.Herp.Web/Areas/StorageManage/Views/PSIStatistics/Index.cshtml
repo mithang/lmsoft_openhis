@@ -1,0 +1,260 @@
+@using Newtouch.Herp.Infrastructure;
+@using Newtouch.Herp.Infrastructure.Enum;
+@{
+    ViewBag.Title = "Thống kê nhập-xuất-tồn";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
+}
+<style>
+    #btn_search {
+        width: 45px;
+        font-weight: bolder;
+        margin: 0 10px;
+    }
+
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading">
+            Điều kiện tra cứu
+        </div>
+        <div style="padding-right:10px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Thời gian bắt đầu：</th>
+                    <td class="formValue" style="width:145px;">
+                        <select id="ddlKSSJ" class="form-control"></select>
+                    </td>
+                    <th class="formTitle">Thời gian kết thúc：</th>
+                    <td class="formValue" style="width:145px;">
+                        <select id="ddlJSSJ" class="form-control"></select>
+                    </td>
+                    <th class="formTitle">Trạng thái vật tư：</th>
+                    <td class="formValue " style="width: 60px;">
+                        @Html.DropDownList("ddlWZZT", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <th class="formTitle">Loại vật tư：</th>
+                    <td class="formValue formDdlSelectorTd" colspan="2" style="width:260px;">
+                        <select id="ddlWZLB" class="form-control">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Tên vật tư：</th>
+                    <td class="formValue">
+                        <input id="txtSrm" type="text" class="form-control" placeholder="Tên vật tư/Phiên âm" />
+                    </td>
+                    <td class="formValue" colspan="7" style="padding-left:20px;">
+                        <input id="chk_Show" type="checkbox" style="float:left;" />
+                        <label for="chk_Show" style="display: block;float: left; margin: 3px 0 0 2px;">Hiển thị vật tư chưa phát sinh nhập-xuất-tồn</label>
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Thống kê" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In báo cáo" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridDrugsInfo"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+    <div class="panel panel-default" style="margin-top:5px; margin-bottom: 0">
+        <div style="padding-right:10px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Tổng nhập kho：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtRKLSZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Tổng xuất kho：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtCKLSZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Tổng lãi lỗ do điều chỉnh giá：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtTJSYZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Tổng lãi lỗ：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtSYLSZE" class="form-control newtouch_Readonly" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        initialddlYPLBList();//Khởi tạoLoại vật tư
+        initialddljzsjList();//TảiKết chuyểnThời gian
+        gridDrugsInfoData();//Tải chi tiết vật tư
+        $("#btn_print").click(function () {
+            if (!'@reportUrl') { $.modalAlert('Báo cáo SSRS chưa được chuyển đổi sang .NET Core, vui lòng sử dụng lưới dữ liệu trên trang.', 'warning'); return; }
+            window.open('@reportUrl' + "?tempCode=1271" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId" +
+                "&shzt=@(((int) EnumAuditState.Adopt).ToString())"+
+                "&kssj=" + $('#ddlKSSJ').val() +
+                "&jssj=" + ($("#ddlJSSJ").val() === "" || $("#ddlJSSJ").val() == undefined ? "@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" : $("#ddlJSSJ").val()) +
+                "&keyWord=" + ($('#txtSrm').val() === "" ? "n" : $('#txtSrm').val()) +
+                "&lbId=" + ($('#ddlWZLB').val() === "" ? "n" : $('#ddlWZLB').val()) +
+                "&endOfToday=" + ($("#ddlJSSJ").val() === "" || $("#ddlJSSJ").val() == undefined ? "1" : "0") +
+                "&noPSI=" + ($("#chk_Show")[0].checked ? "1" : "0") +
+                "&zt=" + ($("#ddlWZZT").val() === "" ? "n" : $("#ddlWZZT").val()));
+        });
+    });
+
+    function initialddljzsjList() {
+        $("#ddlKSSJ").html("");
+        $("#ddlKSSJ").bindSelect({
+            url: "/StorageManage/StockCarryOver/GetlsjzDateTime",
+            id: "value",
+            text: "text"
+        });
+        $("#ddlJSSJ").html("");
+        $("#ddlJSSJ").bindSelect({
+            url: "/StorageManage/StockCarryOver/GetJzJssjDateTime",
+            id: "value",
+            text: "text"
+        });
+    }
+
+    //Loại vật tư
+    function initialddlYPLBList() {
+        $("#ddlWZLB").bindSelect({
+            url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
+        });
+    }
+
+    //Bản ghi chính của phiếu
+    function gridDrugsInfoData() {
+        var $gridDrugsInfoData = $("#gridDrugsInfo");
+        $gridDrugsInfoData.dataGrid({
+            height: $(window).height() - 230,
+            url: "/StorageManage/PSIStatistics/PSIStatisticsInfoList",
+            postData: getSearchPostData(),
+            colModel: [
+                { label: 'Loại', name: 'lbmc', width: 120, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'GiáĐơn vị', name: 'bmdwmc', width: 60, align: 'center' },
+                { label: 'Đầu kỳSố lượng', name: 'qcsl', width: 80, align: 'right' },
+                {
+                    label: 'Đầu kỳTổng bán lẻ', name: 'qclsze', hidden: true,
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Số lượng nhập kho', name: 'rksl', width: 90, align: 'right' },
+                {
+                    label: 'Tổng bán lẻ nhập kho', name: 'rklsze', width: 100, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Số lượng xuất kho', name: 'cksl', width: 90, align: 'right' },
+                {
+                    label: 'Tổng bán lẻ xuất kho', name: 'cklsze', width: 100, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Số lượng lãi lỗ', name: 'sysl', width: 90, align: 'right' },
+                {
+                    label: 'Tổng bán lẻ lãi lỗ', name: 'sylsze', width: 100, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Cuối kỳSố lượng', name: 'qmsl', width: 90, align: 'right' },
+                {
+                    label: 'Cuối kỳTổng bán lẻ', name: 'qmlsze', hidden: true,
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                {
+                    label: 'Điều chỉnh giáTổng lãi lỗ', name: 'tjsyze', width: 100, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'productId', name: 'productId', hidden: true }
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'wzmc desc',
+            viewrecords: true,
+            loadComplete: function (data) {
+                StatisticsZE();//Tổng thống kê
+            }
+        });
+
+        //Thống kê
+        $("#btn_search").click(function () {
+            if ($("#ddlKSSJ").val() >= $("#ddlJSSJ").val() && $("#ddlJSSJ").val() !== "") {
+                $.modalAlert("Kết thúcKết chuyểnThời gian cầnLớntại kỳ sổ sách bắt đầu", 'warning');
+                return;
+            }
+            //Xóa trắngGrid
+            $('#gridDrugsInfo').jqGrid("clearGridData");
+            $gridDrugsInfoData.jqGrid('setGridParam', {
+                postData: getSearchPostData()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //Điều kiện tra cứu
+    function getSearchPostData() {
+        return {
+            ksjzsj: $("#ddlKSSJ").val(),
+            jsjzsj: $("#ddlJSSJ").val(),
+            wzzt: $("#ddlWZZT").val(),
+            srm: $("#txtSrm").val(),
+            dl: $("#ddlWZLB").val(),
+            noPSI: $("#chk_Show")[0].checked ? "1" : "0"
+        };
+    };
+
+    //Tổng thống kê
+    function StatisticsZE() {
+        var statisticsRklsze = 0;  //Tổng bán lẻ nhập kho
+        var statisticsCklsze = 0;  //Tổng bán lẻ xuất kho
+        var statisticsTjsyze = 0;  //Tổng lãi lỗ do điều chỉnh giá
+        var statisticsSylsze = 0;  //Tổng bán lẻ lãi lỗ
+        var count = $("#gridDrugsInfo").getGridParam('records');
+        if (count > 0) {
+            var rowIds = $("#gridDrugsInfo").getDataIDs();
+            for (var i = 0; i < rowIds.length; i++) {
+                var getRowRklsze = $("#gridDrugsInfo").getRowData(rowIds[i]).rklsze;
+                var getRowCklsze = $("#gridDrugsInfo").getRowData(rowIds[i]).cklsze;
+                var getRowTjsyze = $("#gridDrugsInfo").getRowData(rowIds[i]).tjsyze;
+                var getRowSylsze = $("#gridDrugsInfo").getRowData(rowIds[i]).sylsze;
+                statisticsRklsze = statisticsRklsze + parseFloat(getRowRklsze);//Tổng bán lẻ nhập kho
+                statisticsCklsze = statisticsCklsze + parseFloat(getRowCklsze);//Tổng bán lẻ xuất kho
+                statisticsTjsyze = statisticsTjsyze + parseFloat(getRowTjsyze);//Tổng lãi lỗ do điều chỉnh giá
+                statisticsSylsze = statisticsSylsze + parseFloat(getRowSylsze);//Tổng bán lẻ lãi lỗ
+            }
+            statisticsRklsze = roundingBy4she6ru5chengshuang(statisticsRklsze, 2);//Tổng bán lẻ nhập kho
+            statisticsCklsze = roundingBy4she6ru5chengshuang(statisticsCklsze, 2);//Tổng bán lẻ xuất kho
+            statisticsTjsyze = roundingBy4she6ru5chengshuang(statisticsTjsyze, 2);//Tổng lãi lỗ do điều chỉnh giá
+            statisticsSylsze = roundingBy4she6ru5chengshuang(statisticsSylsze, 2);//Tổng bán lẻ lãi lỗ
+        }
+        $("#txtRKLSZE").val(statisticsRklsze);
+        $("#txtCKLSZE").val(statisticsCklsze);
+        $("#txtTJSYZE").val(statisticsTjsyze);
+        $("#txtSYLSZE").val(statisticsSylsze);
+    }
+
+</script>

@@ -1,0 +1,499 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Khu bệnhPhòngGiườngBảo trì";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style>
+    .dv-body {
+        /*background-color: #00a0e9;*/
+    }
+
+    .dv-left {
+        width: 250px;
+        float: left;
+    }
+
+    .dv-left-title {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        background-color: #00a0e9;
+        text-align: center;
+        color: white;
+    }
+
+    .dv-right {
+        float: left;
+        margin-left: 5px;
+    }
+
+    .dv-right-room {
+        width: 100%;
+    }
+
+    .dv-right-bed {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .sp-showOrClose {
+        margin: 0 20px;
+        float: right;
+        cursor: pointer;
+        color: rgb(0, 160, 234);
+        font-size: 1.8rem;
+    }
+
+    .dv-grid {
+        width: 100%;
+    }
+
+    #dv_bed_grid {
+        display: none;
+    }
+</style>
+<div class="dv-body">
+    <div class="dv-left">
+        <div class="dv-left-title">Khu bệnhDanh sách</div>
+        <table id="gridBqList"></table>
+    </div>
+    <div class="dv-right">
+        <div class="dv-right-room">
+            <div class="topPanel">
+                <div class="toolbar">
+                    <div class="btn-group">
+                        <a class="btn btn-primary" onclick="RefreshRoom()"><span class="fa fa-refresh"></span></a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="AddRoom()">
+                            <i class="fa fa-plus"></i>PhòngTạo mới
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="UpdateRoom()">
+                            <i class="fa fa-pencil-square-o"></i>PhòngSửa
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusRoom()">
+                            <i class="fa fa-pencil-square-o"></i>Bổ sungThuộc tính
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="DeleteRoom()">
+                            <i class="fa fa-trash-o"></i>PhòngXóa
+                        </a>
+                    </div>
+                </div>
+                <span class="sp-showOrClose">
+                    <i class="fa fa-angle-down fa-lg" aria-hidden="true" onclick="roomShowOrClose(1)"></i>
+                    <i class="fa fa-angle-up fa-lg" aria-hidden="true" onclick="roomShowOrClose(0)"></i>
+                </span>
+            </div>
+            <div class="dv-grid" id="dv_room_grid">
+                <table id="gridRoomList"></table>
+            </div>
+        </div>
+        <div class="dv-right-bed">
+            <div class="topPanel">
+                <div class="toolbar">
+                    <div class="btn-group">
+                        <a class="btn btn-primary" onclick="RefreshBed()"><span class="fa fa-refresh"></span></a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="AddBed()">
+                            <i class="fa fa-plus"></i>Giường bệnhTạo mới
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="UpdateBed()">
+                            <i class="fa fa-pencil-square-o"></i>Giường bệnhSửa
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusBed()">
+                            <i class="fa fa-pencil-square-o"></i>Bổ sungThuộc tính
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="AddCosts()">
+                            <i class="fa fa-pencil-square-o"></i>Mục thu phí liên quan
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a authorize="yes" class="btn btn-primary" onclick="DeleteBed()">
+                            <i class="fa fa-trash-o"></i>Giường bệnhXóa
+                        </a>
+                    </div>
+                </div>
+                <span class="sp-showOrClose">
+                    <i class="fa fa-angle-down fa-lg" aria-hidden="true" onclick="roomShowOrClose(1)"></i>
+                    <i class="fa fa-angle-up fa-lg" aria-hidden="true" onclick="roomShowOrClose(0)"></i>
+                </span>
+            </div>
+            <div class="dv-grid" id="dv_bed_grid">
+                <table id="gridBedList"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<script lang="javascript">
+    var bqList = [
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10008", bqName: "Khu Bắc tầng 6" }
+    ];
+    var roomList = [
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" }
+    ];
+    var bedList = [
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" }
+    ];
+    $(".dv-body").height($(window).height());
+    $(".dv-body").width($(window).width());
+    var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 25;
+    $(".dv-right").width(rightWidth);
+    $(function() {
+        $(window).resize(function() { //浏览器窗口调整大小时重新计算宽高
+            $(".dv-body").height($(window).height());
+            $(".dv-body")($(window).width());
+        });
+        $('#gridBqList').jqGrid("clearGridData");
+        $('#gridBqList').newtouchLocalDataGrid(null, bqList);
+    });
+
+    //病区 
+    $('#gridBqList').newtouchLocalDataGrid({
+        width: $(".dv-left").width(),
+        height: $(window).height() - 70,
+        unwritten: false,
+        colModel: [
+            { label: 'Mã', name: 'bqCode', width: 80, align: 'center' },
+            { label: 'Khu bệnh', name: 'bqName', width: 80, align: 'center' }
+        ],
+        rownumbers: false,
+        ondblClickRow: function(rowid) {
+            $('#gridRoomList').jqGrid("clearGridData");
+            $('#gridRoomList').newtouchLocalDataGrid(null, roomList);
+        }
+    });
+
+    //房间 
+    $('#gridRoomList').newtouchLocalDataGrid({
+        height: $(window).height() - 145,
+        unwritten: false,
+        colModel: [
+            { label: 'Số phòng', name: 'roomNo', align: 'center', width: 120 },
+            { label: 'Tên', name: 'roomName', align: 'center', width: 120 },
+            { label: 'Khu bệnh', name: 'bqName', align: 'center', width: 120 },
+            { label: 'Cấp độ', name: 'roomlevel', align: 'center', width: 120 },
+            { label: 'Khoa', name: 'roomDept', align: 'center', width: 120 },
+            { label: 'Trạng thái', name: 'roomZt', align: 'center', width: 120 }
+        ],
+        rownumbers: false,
+        ondblClickRow: function(rowid) {
+            ShowBedList();
+        }
+    });
+
+    //床位信息展示
+    function ShowBedList() {
+        $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
+        $("#dv_bed_grid").show(400);
+        $('#gridBedList').jqGrid("clearGridData");
+        $("#gridBedList").setGridWidth(rightWidth);
+        $('#gridBedList').newtouchLocalDataGrid(null, bedList);
+    }
+
+    //床位
+    $('#gridBedList').newtouchLocalDataGrid({
+        height: ($(window).height() - 100) / 2 - 45,
+        width: rightWidth,
+        shrinkToFit: true,
+        unwritten: false,
+        colModel: [
+            { label: 'Số giường', name: 'bedNo', align: 'center', width: 100 },
+            { label: 'Giường bệnhLoại', name: 'bedType', align: 'center', width: 80 },
+            { label: 'Đặc biệtDấu hiệu', name: 'tsbz', align: 'center', width: 100 },
+            { label: 'Có hay khôngKích hoạt', name: 'zt', align: 'center', width: 80 },
+            { label: 'Có chiếm giường không', name: 'sfzc', align: 'center', width: 100 },
+            { label: 'Nhập việnBác sĩ', name: 'zysy', align: 'left', width: 100 },
+            { label: 'Điều trị chínhBác sĩ', name: 'zzys', align: 'left', width: 100 },
+            { label: 'Chủ nhiệmBác sĩ', name: 'zrys', align: 'left', width: 100 }
+        ],
+        rownumbers: false
+    });
+
+    //房间列表扩大缩小
+    function roomShowOrClose(v) {
+        switch (v) {
+        case 0: //收起
+            if ($("#dv_room_grid").css('display') !== 'none') {
+                if ($("#dv_bed_grid").css('display') === 'none') {
+                    $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
+                    $('#gridRoomList').jqGrid("clearGridData");
+                    $("#gridRoomList").newtouchLocalDataGrid(null, roomList);
+                    $("#dv_bed_grid").show(400);
+                    $("#gridBedList").setGridHeight(($(window).height() - 100) / 2 - 45);
+                    $("#gridBedList").setGridWidth(rightWidth);
+                    $('#gridBedList').jqGrid("clearGridData");
+                    $('#gridBedList').newtouchLocalDataGrid(null, bedList);
+                } else {
+                    $("#dv_room_grid").hide(300);
+                    $('#gridBedList').jqGrid("clearGridData");
+                    $("#gridBedList").setGridHeight($(window).height() - 145);
+                    $('#gridBedList').newtouchLocalDataGrid(null, bedList);
+                }
+            }
+            break;
+        case 1: //展开
+            if ($("#dv_room_grid").css('display') === 'none') {
+                $("#dv_room_grid").show(400);
+                $('#gridRoomList').jqGrid("clearGridData");
+                $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
+                $('#gridRoomList').newtouchLocalDataGrid(null, roomList);
+                $("#gridBedList").setGridHeight(($(window).height() - 100) / 2 - 45);
+                $('#gridBedList').jqGrid("clearGridData");
+                $('#gridBedList').newtouchLocalDataGrid(null, bedList);
+            } else {
+                $("#dv_bed_grid").hide(300);
+                $('#gridRoomList').jqGrid("clearGridData");
+                $("#gridRoomList").setGridHeight($(window).height() - 145);
+                $('#gridRoomList').newtouchLocalDataGrid(null, roomList);
+            }
+            break;
+        }
+    }
+
+    //添加病房
+    function AddRoom() {
+        var keyValue = $("#gridBqList").jqGridRowValue().bqCode;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một khu bệnh", 'warning');
+            return;
+        }
+        OpenRoomForm("");
+    }
+
+    //修改病房
+    function UpdateRoom() {
+        var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
+            return;
+        }
+        OpenRoomForm(keyValue);
+    }
+
+    //delete room
+    function DeleteRoom() {
+        var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/NurseManage/WardMaintenance/DeleteRoomForm",
+            param: { keyValue: $("#gridRoomList").jqGridRowValue().roomNo },
+            success: function() {
+                $.currentWindow().$("#gridRoomList").trigger("reloadGrid");
+            }
+        });
+    }
+
+    //附加属性
+    function AttributesPlusRoom() {
+        var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "AttributesPlusRoomForm",
+            title: "Giường bệnhBổ sungThuộc tính",
+            url: "/NurseManage/WardMaintenance/AttributesPlusRoomForm?keyWord=" + keyValue,
+            width: "500px",
+            height: "550px",
+            callBack: function(iframeId) {
+                $("#gridRoomList").resetSelection();
+                $("#gridRoomList").trigger("reloadGrid");
+                $.modalClose("AttributesPlusRoomForm");
+            }
+        });
+    }
+
+    function OpenRoomForm(roomNo) {
+        var title = roomNo === "" ? "Thêm mớiPhòng" : "SửaPhòng";
+        $.modalOpen({
+            id: "RoomForm",
+            title: title,
+            url: "/NurseManage/WardMaintenance/RoomForm?RoomNo=" + roomNo,
+            width: "500px",
+            height: "360px",
+            callBack: function(iframeId) {
+                $("#gridRoomList").resetSelection();
+                $("#gridRoomList").trigger("reloadGrid");
+                $.modalClose("RoomForm");
+            }
+        });
+    }
+
+    //刷新病房
+    function RefreshRoom() {
+        $('#gridRoomList').jqGrid("clearGridData");
+        $('#gridRoomList').newtouchLocalDataGrid(null, roomList);
+    }
+
+    //添加病房
+    function AddBed() {
+        var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
+            return;
+        }
+        OpenBedForm("");
+    }
+
+    //修改病房
+    function UpdateBed() {
+        var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
+            return;
+        }
+        OpenBedForm(keyValue);
+    }
+
+    //床位附加属性
+    function AttributesPlusBed() {
+        var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "AttributesPlusBedForm",
+            title: "Phòng bệnhBổ sungThuộc tính",
+            url: "/NurseManage/WardMaintenance/AttributesPlusBedForm?keyWord=" + keyValue,
+            width: "500px",
+            height: "550px",
+            callBack: function(iframeId) {
+                $("#gridBedList").resetSelection();
+                $("#gridBedList").trigger("reloadGrid");
+                $.modalClose("AttributesPlusBedForm");
+            }
+        });
+    }
+
+    //delete room
+    function DeleteBed() {
+        var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/NurseManage/WardMaintenance/DeleteBedForm",
+            param: { keyValue: $("#gridBedList").jqGridRowValue().bedNo },
+            success: function() {
+                $.currentWindow().$("#gridBedList").trigger("reloadGrid");
+            }
+        });
+    }
+
+    //刷新床位
+    function RefreshBed() {
+        $('#gridBedList').jqGrid("clearGridData");
+        $('#gridBedList').newtouchLocalDataGrid(null, bedList);
+    }
+
+    function OpenBedForm(bedNo) {
+        var title = bedNo === "" ? "Thêm mớiGiường bệnh" : "SửaGiường bệnh";
+        $.modalOpen({
+            id: "BedForm",
+            title: title,
+            url: "/NurseManage/WardMaintenance/BedForm?bedNo=" + bedNo,
+            width: "500px",
+            height: "360px",
+            callBack: function(iframeId) {
+                $("#gridBedList").resetSelection();
+                $("#gridBedList").trigger("reloadGrid");
+                $.modalClose("BedForm");
+            }
+        });
+    }
+
+    //关联收费项目
+    function AddCosts() {
+        var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "BedBindingCostForm",
+            title: "Quản lý phí giường bệnh",
+            url: "/NurseManage/WardMaintenance/BedBindingCostForm?keyValue" + keyValue + "&zyh=''" ,
+            width: "500px",
+            height: "480px",
+            callBack: function (iframeId) {
+                $.modalClose("BedBindingCostForm");
+            }
+        });
+    }
+
+</script>

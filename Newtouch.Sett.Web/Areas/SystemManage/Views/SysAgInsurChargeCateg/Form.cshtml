@@ -1,0 +1,67 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/Shared/Form.css",false)" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysAgInsurChargeCateg/Form.js",false)" type="text/javascript"></script>
+
+<form id="form1">
+    <div class="container">
+        <div class="formValue col-xs-6">
+            <label>Mã</label>
+            <div id="selectOption">
+                <select class="form-control" name="dl" id="dl">
+                    <option>Vui lòng chọn</option>
+                </select>
+            </div>
+        </div>
+        <div class="formValue col-xs-6">
+            <label>Phiên âm</label>
+            <input type="text" class="form-control" id="py" name="py" />
+        </div>
+        <div class="formValue col-xs-6">
+            <label>phạm vi</label>
+            <div id="selectOption">
+                <select class="form-control" name="mzzybz" id="mzzybz">
+                    <option>Vui lòng chọn</option>
+                </select>
+            </div>
+        </div>
+        <div class="formValue col-xs-6">
+            <label>Hiệu lực</label>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default">
+                    <input type="radio" name="zt" id="zt" value="1"> Có
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="zt" id="zt" value="0"> Không
+                </label>
+            </div>
+        </div>
+        <div class="formValue col-xs-6">
+            <label>Sắp xếp</label>
+            <div id="selectOption">
+                <select class="form-control" name="px" id="px">
+                    <option>Vui lòng chọn</option>
+                </select>
+            </div>
+        </div>
+        <div class="formValue col-xs-6" style="float:right">
+            <label>Nhân viên lập hồ sơ</label>
+            @*<input class="form-control" id="jdry" name="jdry" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />*@
+            <input class="form-control" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
+        </div>
+        <div class="formValue col-xs-6">
+            <label>Ngày lập hồ sơ</label>
+            @*<input class="form-control" id="bgbz" name="bgbz" value="0" style="display:none" type="text" />
+                <input class="form-control" id="bgrq" name="bgrq" style="display:none" value=@DateTime.Now type="text" />
+                <input class="form-control" id="jdrq" name="jdrq" value=@DateTime.Now type="text" readonly="readonly" />*@
+            <input class="form-control" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" readonly="readonly" />
+        </div>
+
+    </div>
+</form>
+
+

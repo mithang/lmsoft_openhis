@@ -1,0 +1,45 @@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    $(function () {
+    });
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        //$.submitForm({
+        //    url: "/SystemManage/Area/SubmitForm?keyValue=" + keyValue,
+        //    param: $("#form1").formSerialize(),
+        //    success: function () {
+        //        $.currentWindow().$("#gridList").resetSelection();
+        //        $.currentWindow().$("#gridList").trigger("reloadGrid");
+        //    }
+        //})
+    }
+</script>
+<form id="form1">
+    <div class="mail-box">
+        <div class="mail-header">Gửi tin nhắn</div>
+        <div class="mail-body">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Gửi đến </th>
+                    <td class="formValue">
+                        <input id="txtPphone" name="txt_Account" type="text" class="form-control required" placeholder="Nhập nhiều số điện thoại, phân tách bằng ký tự tiếng Anh ," />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle"  valign="top" style="padding-top: 5px;">Nội dung tin nhắn</th>
+                    <td class="formValue">
+                        <textarea id="txt_Content" class="form-control required" style="height: 60px;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mail-body" style="text-align: right;">
+            <a href="javascript:void()" onclick="submitForm()" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-reply"></i>Gửi</a>
+        </div>
+    </div>
+</form>

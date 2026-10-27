@@ -1,0 +1,26 @@
+
+@{
+    Layout = null;
+}
+
+<form id="form1">
+    <table class="form" style="margin-top:10px;">
+        <tr>
+            <th class="formTitle"><span class="required">*</span>MẫuTên: </th>
+            <td class="formValue">
+                <input id="mbmc" name="mbmc" type="text" class="form-control required" />
+            </td>
+            <td class="formTitle"><span class="required">*</span>Loại mẫu:</td>
+            <td class="formValue">
+                <select id="mblx" class="form-control required">
+                    <option value="">==Vui lòng chọn==</option>
+                </select>
+            </td>
+            <td class="formValue">
+                <input type="button" id="" class="btn btn-primary" value="Lưu" style="margin-left:20%; width:20%;" onclick="Save()" />
+                <input type="button" id="" class="btn btn-primary" value="Xóa" style="margin-left:10%; width:20%;" onclick="Delete()" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</form>

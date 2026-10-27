@@ -1,0 +1,101 @@
+@{
+    ViewBag.Title = "HealthyUpload";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form name="form1" autocomplete="off">
+    <div class="panel panel-default" style="">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 0px;padding-right:0px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">tải lên Ngày:</th>
+                    <td class="formValue">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd  00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <span style="margin-left:0;float:left">—</span>
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+
+                    <th class="formTitle">tải lên Loại：</th>
+                    <td class="formValue">
+                        <select id="selsclx">
+                            <option value="">Tất cả</option>
+                            <option value="TB_YL_MZ_Medical_Record">Ngoại trú bản ghi khám Bảng</option>
+                            <option value="TB_CIS_Prescription_Detail">Ngoại trú chi tiết đơn thuốc Bảng</option>
+                            <option value="TB_HIS_MZ_Fee_Detail">Thu phí ngoại trú chi tiết Bảng</option>
+                            <option value="TB_YL_ZY_Medical_Record">Nhập viện bản ghi khám Bảng</option>
+                            <option value="TB_CIS_DrAdvice_Detail">Nhập viện y lệnh chi tiết Bảng</option>
+                            <option value="TB_HIS_ZY_Fee_Detail">Nhập viện Thu phí chi tiết Bảng</option>
+                            <option value="TB_RIS_Report">Bảng báo cáo kiểm tra hình ảnh y học</option>
+                            <option value="TB_Operation_Detail">Phẫu thuật chi tiết Bảng</option>
+                            <option value="TB_DIC_Department">Bệnh viện của Khoa Bảng từ điển</option>
+                            <option value="TB_DIC_Practitioner">Nhân viên y tế Bảng từ điển</option>
+                            <option value="TB_DIC_MEDICINES">Thuốc mục lục Bảng từ điển</option>
+                            <option value="TB_DIC_Materials">Không phải Thuốc mục lục Bảng từ điển</option>
+                        </select>&nbsp;&nbsp;&nbsp;
+                        <input type="button" class="btn btn-primary btn-md" id="btnsyy" value="Tra cứu" />
+                    </td>
+                    <th class="formTitle"></th>
+                    <th class="formValue"></th>
+
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+    <div style="margin-top:10px;">
+        <div class="gridPanel">
+            <table id="registedList"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        gridlist();
+    });
+    function postdata() {
+        return {
+            ksrq: $("#kssj").val(),
+            jsrq: $("#jssj").val(),
+            tabname: $("#selsclx").val(),
+        };
+
+    }
+    function gridlist() {
+        var $gridList = $("#registedList");
+        $gridList.dataGrid({
+            url: "/PatientManage/SysPatientMedicalRecord/GetHealthUpload",
+            height: $(window).height() - 205,
+            caption: "Danh sách",
+            postData: postdata(),
+            colModel:  [
+			{ label: 'Id', name: 'Id', key: true, hidden: true },
+
+			{ label: 'Tên bảng', name: 'TabName', width: 160, align: 'left' },
+			{ label: 'Tên bảng', name: 'TabNameDesc', width: 160, align: 'left' },
+			{ label: 'Trạng thái truyền', name: 'statusName', width: 100, align: 'left' },
+            {
+                label: 'Ngày truyền', name: 'createtime', width: 120, align: 'left',
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d H:m:s', newformat: 'Y-m-d H:m:s' }
+            },
+            { label: 'Nguyên nhân truyền thất bại', name: 'err_msg', width: 100, align: 'left' }
+			
+            ],
+            pager: "#gridPager",
+            sortname: 'Createtime desc',
+            multiselect: false,
+            viewrecords: true
+        });
+        $("#btnsyy").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: postdata(),
+            }).trigger('reloadGrid');
+        });
+    }
+   
+</script>
+

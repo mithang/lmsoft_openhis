@@ -1,0 +1,93 @@
+
+@{
+    ViewBag.Title = "Thu nhập nội trú Thống kê";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/highcharts/modules/exporting.js")"></script>
+<script>
+    $(function () {
+        loadChart();
+    });
+
+    function loadChart() {
+        var OutpatientList = [];
+        $.ajax({
+            url: "/HighchartsManage/Inpatient/GetInpatientSalaryNum?r=" + Math.random(),
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.data) {
+                    OutpatientList = data.data;
+                } else {
+                    for (var i = 0; i < 12; i++) {
+                        OutpatientList.push([0]);
+                    }
+                }
+            }
+        })
+        $('#salarychart').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Thu nhập nội trú Thống kê'
+            },
+            xAxis: {
+                categories: [
+                    'một tháng',
+                    'hai tháng',
+                    'ba tháng',
+                    'bốn tháng',
+                    'năm tháng',
+                    'sáu tháng',
+                    'bảy tháng',
+                    'tám tháng',
+                    'chín tháng',
+                    'mười tháng',
+                    'mười một tháng',
+                    'mười hai tháng'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Đơn vị (đồng)'
+                }
+            },
+            tooltip: {
+                valueSuffix: 'đồng',
+                headerFormat: "{point.key}:",
+                pointFormat: '<tr><td>{point.y}<td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                showInLegend: false,
+                data: [
+                        OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
+                ]
+            }]
+        });
+    }
+</script>
+<div class="rows" style="margin-bottom: 1%; overflow: hidden;">
+    <div style="float: left; width: 98%;">
+        <div style="border: 1px solid #e6e6e6; background-color: #fff;">
+            <div class="panel panel-default">
+                <div class="panel-body" style="padding-bottom: 0px;">
+                    <div id="salarychart" style="height: 440px; width: 100%; padding-right: 10px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

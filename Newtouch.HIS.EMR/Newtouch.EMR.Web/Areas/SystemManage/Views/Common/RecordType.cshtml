@@ -1,0 +1,183 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="mb-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới Nhóm lớn</a>
+        </div>
+        <div class="btn-group">
+            <a id="mb-addchild" authorize="yes" class="btn btn-primary" onclick="btn_addchild()"><i class="fa fa-plus"></i>Tạo mới Thư mục con</a>
+        </div>
+        <div class="btn-group">
+            <a id="mb-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Nhóm lớn bệnh án" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList" style="width:100%;"></table>
+    
+</div>
+<script>
+    $(function () {
+        gridList();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
+            url: "/SystemManage/Common/GetBllxListTreeGrid",
+            height: $(window).height() - 128,
+            treeGrid: true,
+            treeGridModel: "adjacency",
+            ExpandColumn: "bllxcode",
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "ParentId", name: "ParentId", hidden: true },
+                { label: "IsRoot", name: "IsRoot", hidden: true },
+                {
+                    label: "Loại nghiệp vụ", name: "mzbz", width: 60, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == "1") {
+                            return "Ngoại trú"
+                        }
+                        else if (cellvalue == "0") {
+                            return "Nội trú"
+                        }
+                        else {
+                            return "Không giới hạn"
+                        }
+                    }
+                },
+                { label: "Nhóm lớn bệnh án", name: "bllxmc", width: 100, align: 'left'},
+                { label: "Mã rút gọn", name: "bllxcode", width: 80, align: 'center', },
+                { label: 'Mã định danh nhóm lớn bệnh án', name: 'bllx', width: 80, align: 'left' },
+                { label: "Vị trí liên quan", name: "RelDutysDesc", width: 200, align: 'left', },
+                { label: "Sắp xếp", name: "px", width: 80, align: 'center', },
+                { label: "Hiệu lực", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'center' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Sửa đổi lần cuối', name: 'LastModifierCode', width: 60, align: 'center' },
+                { label: 'Thời gian sửa đổi lần cuối', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+            ],
+            //pager: "#gridPager",
+            sortname: 'bllx asc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    });
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mới nhóm lớn bệnh án",
+            url: "/SystemManage/Common/RecordTypeForm",
+            width: "600px",
+            height: "550px",
+            //btn: null,
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_edit() {
+        debugger;
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn nhóm lớn bệnh án", 'warning');
+            return;
+        }
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var rowData = $("#gridList").jqGrid('getRowData', keyValue);
+        if (rowData.IsRoot=="0") {
+            $.modalOpen({
+                id: "Form",
+                title: "Sửa Thư mục con",
+                url: "/SystemManage/Common/RecordTypeChildForm?keyValue=" + keyValue,
+                width: "400px",
+                height: "300px",
+                btn: null,
+                callBack: function (iframeId) {
+                    top.frames[iframeId].submitForm();
+                }
+            });
+        }
+        else {
+            $.modalOpen({
+                id: "Form",
+                title: "Sửa nhóm lớn bệnh án",
+                url: "/SystemManage/Common/RecordTypeForm?keyValue=" + keyValue,
+                width: "600px",
+                height: "550px",
+                //btn: null,
+                callBack: function (iframeId) {
+                    top.frames[iframeId].submitForm();
+                }
+            });
+        }
+    }
+
+    function btn_addchild() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mới thư mục con bệnh án",
+            url: "/SystemManage/Common/RecordTypeChildForm",
+            width: "400px",
+            height: "300px",
+            btn: null,
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_delete()
+    {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        $.deleteForm({
+            url: "/SystemManage/Common/DeleteForm",
+            param: { keyValue: keyValue },
+            success: function (data) {
+                if (data.state == "success") {
+                    $.modalAlert('Xóa thành công', 'success');
+                }
+                else {
+                    $.modalAlert(data.message, 'error');
+                }
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>

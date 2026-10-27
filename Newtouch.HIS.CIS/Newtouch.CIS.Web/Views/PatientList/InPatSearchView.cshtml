@@ -1,0 +1,137 @@
+@{
+    ViewBag.Title = "InPatSearchView";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<style>
+    .table-responsive {
+        border: 0px solid #ddd;
+    }
+</style>
+<form>
+    <div class="topPanel" style="border-bottom:1px solid rgb(221, 221, 221);margin-bottom: -1%;">
+        <table class="form">
+            <tr>
+                <th class="formTitle" style="width:48px;padding-right:4px">Khu bệnh:</th>
+                <td class="formValue" style="width:100px;">
+                    <select class="form-control" id="bq" name="bq">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+
+                <th class="formTitle" style="width:48px;padding-right:4px">Số giường:</th>
+                <td class="formValue">
+                    <input id="ch" name="ch" type="text" class="form-control" placeholder="Vui lòng nhậpSố giường" />
+                </td>
+                <th class="formTitle">Số nhập viện:</th>
+                <td class="formValue">
+                    <input id="zyh" name="zyh" type="text" class="form-control" placeholder="Vui lòng nhậpSố nhập viện" />
+                </td>
+                <th class="formTitle" style="width:48px;padding-right:4px">Họ tên:</th>
+                <td class="formValue">
+                    <input id="xm" name="xm" type="text" class="form-control" placeholder="Vui lòng nhậpHọ tên" />
+
+                </td>
+                <td style="padding-left:20px;" class="formValue">
+                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--患者信息 包括住院号  姓名 -->
+    <div class="gridPanel" style="margin-top:1%; margin-left:1%">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+    var zybz = $.request("zybz");
+    var allowunselected = $.request("allowunselected");
+
+    $(function () {
+        var zyh = $.request("zyh");
+        var xm = decodeURI(decodeURI($.request("xm")));
+        if (zyh) {
+            $("#zyh").val(zyh);
+        }
+        if (xm) {
+            $("#xm").val(xm);
+        }
+
+        $("#bq").bindSelect({
+            url: "/SystemManage/BaseData/GetAuthedWardSelectJson",
+        });
+
+        $("#bq").change(function () {
+            $("#btn_search").trigger('click');
+        });
+
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            height: $(window).height() - 200,
+            url: "/PatientList/InPatSearchInfo?zybz=" + zybz + "&t=" + Math.random(),
+            postData: { zyh: $("#zyh").val(), ch: $("#ch").val(), xm: $("#xm").val(), bq: $("#bq").val() },
+            caption: 'Nhập việnBệnh nhânThông tinDanh sách',
+            colModel: [
+                { label: 'Khu bệnh', name: 'WardName', width: 100, align: 'left' },
+                { label: 'Số bệnh án', name: 'blh', width: 120, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 60, align: 'left', key: true },
+                { label: 'Số giường', name: 'bedCode', width: 60, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+                {
+                    label: 'Giới tính', name: 'sex', width: 70, align: 'left', formatter: function (cellvalue) {
+                        return $.getGender(cellvalue);
+                    }
+                },
+                {
+                    label: 'Tuổi', name: 'birth', width: 100, align: 'left', formatter: function (cellvalue) {
+                        return GetAgeByCsny(cellvalue);
+                    }
+                },
+                { label: 'Ngày nhập viện', name: 'ryrq', hidden: true }
+            ],
+            ondblClickRow: function (rowid) {
+                var frameId = window.name;
+                top.$('div#' + frameId + '').siblings('div.layui-layer-btn').find('a.layui-layer-btn0').trigger('click');
+            },
+            pager: "#gridPager",
+            sortname: 'rqrq desc',
+            viewrecords: true
+        });
+
+        //查询
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { zyh: $("#zyh").val(), ch: $("#ch").val(), xm: $("#xm").val(), bq: $("#bq").val(), r: Math.random() },
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    });
+
+    //回车
+    $('#zyh,#xm').keydownEnterEvent(function () {
+        $("#btn_search").trigger('click');
+    })
+
+    function AcceptClick(callBack) {
+        var data = $("#gridList").jqGridRowValue();
+        if (data) {
+            var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+            if (!(allowunselected == 'true') && !(seleRowid)) {
+                $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+                return;
+            }
+            var rowData = null;
+            if (!!(seleRowid)) {
+                rowData = $("#gridList").jqGrid('getRowData', seleRowid);
+            }
+            callBack(rowData);
+            $.modalClose();
+        }
+        else {
+            $.modalAlert("Hiện tại chưa chọn dữ liệu!", "warning");
+            return;
+        }
+    }
+
+</script>

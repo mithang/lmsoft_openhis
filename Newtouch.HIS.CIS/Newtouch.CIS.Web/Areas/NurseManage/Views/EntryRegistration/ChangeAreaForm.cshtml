@@ -1,0 +1,57 @@
+
+@{
+    ViewBag.Title = "Bệnh nhânChuyển khu";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default" style="padding-right:10px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Khu bệnh:</th>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="sel_inpatientArea" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script lang="javascript">
+    $(function () {
+        initinpatientList();
+    });
+    function initinpatientList() {
+        $("#sel_inpatientArea").bindSelect({
+            //url: "/SystemManage/BaseData/GetAuthedWardSelectJson",
+            url: "/NurseManage/EntryRegistration/TreeViewdata",
+        });
+
+        $("#sel_inpatientArea").removeAttr("style");
+    }
+    function SaveChangeArea()
+    {
+        var bqdm = $('#sel_inpatientArea').val();
+        if (bqdm == "" || bqdm==null) {
+            $.modalAlert('Vui lòng chọnKhu bệnh!', 'warning');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/EntryRegistration/SaveChangeArea",
+            data: { zyh: '@ViewBag.zyh', bqdm: $('#sel_inpatientArea').val() },
+            dataType: "json",
+            async: false,
+            success: function (ajaxresp) {
+                if (ajaxresp.state == "success") {
+                    $.modalMsg('Chuyển khuthành công', 'success');
+                }
+                else {
+                    $.modalAlert(ajaxresp.message, 'warning');
+                }
+                clearData();
+            }
+        });
+    }
+    </script>

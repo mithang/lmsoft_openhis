@@ -1,0 +1,25 @@
+# Build outputs
+bin/
+obj/
+publish/
+out/
+# Logs
+*.log
+# Screenshots (delivered in chat, kept locally — not pushed; per-app progress .md kept)
+shots/
+shots-*/
+shots*/
+!shots-roles/
+shots-roles/*
+!shots-roles/*.md
+# IDE / user files
+.vs/
+*.user
+*.suo
+.vscode/
+# Test results
+TestResults/
+*.trx
+# OS
+.DS_Store
+Thumbs.db

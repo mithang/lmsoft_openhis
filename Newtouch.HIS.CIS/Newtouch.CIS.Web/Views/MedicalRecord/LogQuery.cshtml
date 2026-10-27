@@ -1,0 +1,191 @@
+
+@{
+    ViewBag.Title = "LogQuery";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@*<style>
+	.form .formTitle {
+		position: relative;
+		left: 0px;
+		text-align: right;
+		white-space: nowrap;
+		font-weight: normal;
+		width: 60px;
+		padding-right: 10px;
+		padding-left: 5px;
+	}
+</style>*@
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+	        <tr>
+		        
+		        <th class="formTitle">Số bệnh án/Họ tên:</th>
+		        <td class="formValue">
+			        <input type="text" class="form-control" id="txtxm" name="txtxm"/>
+		        </td>
+		        <td class="formTitle">Bác sĩHọ tên:</td>
+		        <td class="formValue">
+			        <input id="txt_doctor" name="txt_doctor" type="text" class="form-control required"/>
+		        </td>
+		        <td style="width: 20px"></td>
+		        <th class="formTitle" id="thCZRQ">Thao tácNgày:</th>
+		        <td class="formValue" colspan="3">
+			        <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"/>
+			        <span style="margin-left: 2%; float: left;">—</span>
+			        <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"/>
+		        </td>
+		        <td class="formValue" colspan="2">
+			        <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu"/>
+			        <input type="button" id="btn_export" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Xuất"/>
+		        </td>
+	        </tr>
+            <tr><th class="formTitle">Bệnh nhânTuổi:</th>
+	            <td class="formValue">
+		            <select class="form-control" id="hznl">
+			            <option value="" selected>Tất cả</option>
+			            <option value="1">Lớn hơn35Tuổi tròn</option>
+		            </select>
+	            </td>
+	            <th class="formTitle">Đường huyếtHuyết áp:</th>
+	            <td class="formValue">
+		            <select class="form-control" id="xtxy">
+			            <option value="" selected>Tất cả</option>
+			            <option value="1">Có giá trị</option>
+		            </select>
+	            </td>
+	            <td style="width: 20px"></td>
+	            <th class="formTitle">XuấtTất cả:</th>
+	            <td class="formValue">
+		            <select class="form-control" id="qbdc">
+			            <option value="" selected>Không</option>
+			            <option value="1">Có</option>
+		            </select>
+	            </td>
+			</tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridJSList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        //结算主记录
+        gridJSListData();
+    });
+    $("#txt_doctor").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+    //门诊挂号结算查询
+    function gridJSListData() {
+        var $gridJsList = $("#gridJSList");
+        $gridJsList.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 160,
+            url: "@Url.Action("OutpatientPatientQuery")",
+            colModel: [
+                { label: 'jzId', name: 'jzId', hidden: true, align: 'left' },
+                { label: 'Khám bệnhNgày', name: 'jzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: '日期', name: 'createtime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 80 },
+                { label: 'Họ tên phụ huynh', name: 'jzxm', align: 'center', width: 80 },
+                { label: 'Số điện thoại', name: 'dhhm', align: 'center', width: 80 },
+                {
+                    label: 'Giới tính', name: 'xb', align: 'center', width: 50, formatter: function (val) {
+                        return $.getGender(val);
+                    }
+                },
+                { label: 'Tuổi', name: 'nlshow', align: 'center', width: 50 },
+                { label: 'Nghề nghiệp', name: 'zy', width: 80, align: 'left' },
+                { label: 'Địa chỉ', name: 'dz', width: 80, align: 'left' },
+                { label: 'Khởi phátNgày', name: 'fbsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                 { label: 'Nhiệt độ', name: 'tiwen', width: 80, align: 'left' },
+                { label: 'Huyết áp', name: 'xueya', width: 80, align: 'left' },
+                { label: 'Khám lần đầu/tái khám', name: 'cfz', width: 80, align: 'left' },
+                { label: 'Triệu chứng chính', name: 'zs', width: 80, align: 'left' },
+                { label: 'Chẩn đoánTên', name: 'zdmc', width: 80, align: 'left' },
+                { label: 'Xử lý', name: 'clfa', width: 80, align: 'left' },
+                { label: 'Chữ ký bác sĩ', name: 'jzys', width: 80, align: 'left' },
+                { label: 'Hiệu lựcSố giấy tờ', name: 'sfzh', width: 130, align: 'left' },
+                { label: 'Điện thoại', name: 'ContactNum', width: 100, align: 'left' },
+                { label: 'Chuyên khoa', name: 'ghksmc', width: 80, align: 'left' },
+                { label: 'Đường huyết', name: 'xuetang', width: 80, align: 'left' },
+                { label: 'Bệnh sử hiện tại', name: 'xbs', width: 80, align: 'left' },
+                { label: 'Ghi chú', name: 'bz', width: 100, align: 'left' },
+            ],
+            pager: "#gridPager",
+            sortname: " jzsj asc",
+            viewrecords: true
+        });
+
+        $("#btn_search").click(function () {
+            $('#gridJSList').jqGrid("clearGridData");//先清空明细
+            $gridJsList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+                url: '@Url.Action("OutpatientPatientQuery")'
+            }).trigger('reloadGrid');
+        });
+    }
+    function clearData() {
+        $("#txt_doctor").val("");
+        $("#txt_doctor").attr("data-StaffGh", "");
+    }
+    var jszbList = null;
+
+    function getSearchPostData() {
+        var xm = $("#txtxm").val();
+        var sfrqTimestart = $("#txtCreateTimestart").val();
+        var sfrqTimeEnd = $("#txtCreateTimeEnd").val();
+        var ysgh="";// = $("#txt_doctor").attr("data-StaffGh");
+        if (!!$("#txt_doctor").attr("data-StaffGh") && !!$("#txt_doctor").val()) {
+            ysgh = $("#txt_doctor").attr("data-StaffGh");
+        }
+        var hznl1 = $("#hznl").val();
+        var xtxy1 = $("#xtxy").val();
+	    var qbdc1 = $("#qbdc").val();
+        return {
+        	keyword: xm, kssj: sfrqTimestart, jssj: sfrqTimeEnd, jzysgh: ysgh, hznl: hznl1, xtxy: xtxy1, qbdc: qbdc1
+        };
+    };
+
+
+    
+    $("#btn_export").click(function () {
+    	var ysgh = "";
+	    var hznl1 = $("#hznl").val();
+	    var xtxy1 = $("#xtxy").val();
+	    var qbdc1 = $("#qbdc").val();
+        if (!!$("#txt_doctor").attr("data-StaffGh") && !!$("#txt_doctor").val()) {
+            ysgh = $("#txt_doctor").attr("data-StaffGh");
+        }
+	    var uri = "/MedicalRecord/Export?" +
+		    "keyword=" +
+		    $("#txtxm").val() +
+		    "&kssj=" +
+		    $("#txtCreateTimestart").val() +
+		    "&jssj=" +
+		    $("#txtCreateTimeEnd").val() +
+		    "&jzysgh=" +
+		    ysgh +
+		    "&hznl=" +
+		    hznl1 +
+		    "&xtxy=" +
+		    xtxy1 +
+		    "&qbdc=" +
+		    qbdc1;
+        if (uri) {
+            window.open(uri);
+        }
+    })
+
+</script>

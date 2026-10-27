@@ -1,0 +1,92 @@
+@{
+    ViewBag.Title = "MicroPay";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div id="form">
+    <div style="padding-top: 20px; margin-right: 30px;">
+        <table class="form">
+            <tr>
+                <td class="formTitle">Giải thích thanh toán:</td>
+                <td class="formValue">
+                    <span id="subject"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Số tiền thanh toán:</td>
+                <td class="formValue">
+                    <span id="total_amount"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span class="required">*</span>Mã thanh toán:</td>
+                <td class="formValue">
+                    <input id="auth_code" name="auth_code" type="text" class="form-control required" placeholder="Vui lòng quét hoặc nhập tay mã thanh toán" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    var out_trade_no = $.request("out_trade_no");
+    var subject = $.request("subject");
+    var total_amount = $.request("total_amount");
+    var djjesszffs = $.request("djjesszffs");
+    var patid = $.request("patid");
+    $(function () {
+        initControl();
+
+        $('#subject').html(subject);
+        $('#total_amount').html(total_amount);
+    });
+
+    function initControl() {
+        $('#auth_code').trigger('focus');
+
+        $('#auth_code').keyupEnterEvent(function (e) {
+            setTimeout("top.$('div#' + window.name + '').siblings('div.layui-layer-btn').find('a.layui-layer-btn0').trigger('click');", 200);
+            return false;
+        });
+    }
+
+    var func = null;
+
+    function AcceptClick(callBack) {
+        //if (!$('#form').formValid()) {
+        //    return false;
+        //}
+        var auth_code = $('#auth_code').val();
+        if (!out_trade_no || !subject || !total_amount || !auth_code) {
+            return false;
+        }
+        var postData = {
+            out_trade_no: out_trade_no,
+            subject: subject,
+            total_amount: total_amount,
+            auth_code: auth_code,
+            djjesszffs: djjesszffs,
+            patid: patid,
+        };
+        $.najax({
+            url: "/PayManage/MicroPay/MicroPaySubmit",
+            data: postData,
+            type: "post",
+            loadingtext: "Đang thu tiền...",
+            success: function (ajaxResp) {
+                //Thu tiền thành công
+                $.modalMsg('Thu tiền thành công', 'success', 800);
+                //
+                func = function () {
+                    console.log(ajaxResp.data);
+                    callBack(ajaxResp.data);
+                    $.modalClose();
+                };
+                setTimeout('func();', 1000);
+            },
+            errorCallback: function () {
+                //Thu tiền thất bại
+
+            }
+        });
+    }
+</script>

@@ -1,0 +1,80 @@
+
+@{
+    ViewBag.Title = "CancelRegister";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    $(function () {
+        gridList();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PatientManage/HospiterRes/GetRegisterGridJson",
+            height: $(window).height() - 195,
+            colModel: [
+                { label: "Khóa chính", name: "patid", hidden: true, key: true },
+                { label: 'Số thẻ', name: 'CardNo', width: 100, align: 'left' },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 100, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+                { label: 'Trình độ học vấn', name: 'xl', width: 50, align: 'left' },
+                {
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        return $.getGender(cellvalue);
+                    }
+                },
+                { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
+                {
+                    label: 'Năm sinh', name: 'csny', width: 80, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                {
+                    label: 'loại giấy tờ', name: 'zjlx', width: 70, align: 'left',
+                    formatter: function (cellvalue) {
+                        if (cellvalue) {
+                            if (cellvalue.trim() === "1") {
+                                // EnumZJLX
+                                return "CMND/CCCD";
+                            } else if (cellvalue.trim() === "2") {
+                                return "Hộ chiếu";
+                            } else if (cellvalue.trim() === "3") {
+                                return "Chứng minh sĩ quan";
+                            } else {
+                                return "Khác";
+                            }
+                        }
+                        return "";
+                    }
+                },
+                 { label: 'Số giấy tờ', name: 'zjh', width: 150, align: 'left' },
+                 {
+                     label: 'Tuổi', name: 'nlshow', width: 50, align: 'left', formatter: function (cellvalue, a, b) {
+                         return getAgeFromBirthTime({ begin: b.csny }).text;
+                     }
+                 },
+                 { label: 'Điện thoại', name: 'dh', width: 100, align: 'left' },
+                 { label: 'Người liên hệ khẩn cấp', name: 'jjllr', width: 100, align: 'left' },
+                 { label: 'Điện thoại người liên hệ', name: 'jjlldh', width: 100, align: 'left' },
+                 { label: 'CreateTime', name: 'CreateTime', hidden: true },
+
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            rowNum: '10',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#xm").val(), kh: $("#searchkh").val(), blh: $("#blh").val() }
+            }).trigger('reloadGrid');
+        });
+    }
+</script>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+

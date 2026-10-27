@@ -1,0 +1,564 @@
+﻿@using Newtouch.OR.ManageSystem.Infrastructure
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+	body {
+		filter: drop-shadow(0 1em 1em rgba(0, 0, 0, 0.2));
+		background: #fff;
+	}
+
+	p {
+		/*box-sizing: border-box;
+		display: flex;
+		align-items:  center;
+		justify-content: space-between;
+		position: relative;*/
+		margin: 1.0em auto;
+		border: solid 0.5em transparent;
+		padding: 0.2em;
+		width: 15em;
+		height: 2.8em;
+		border-radius: 2.5em;
+		background: Linear-gradient(#dbdbdb, #fff) content-box, Linear-gradient(var(--slist)) padding-box, Linear-gradient(#fff, #dcdcdc) border-box;
+		font: bold 1.5em/ 1.375 trebuchet ms, verdana, sans-serif;
+		text-align: center;
+		text-indent: 1em;
+		-webkit-clip-path: inset(0 round 2.5em);
+		clip-path: inset(0 round 2.5em);
+		counter-increment: c;
+	}
+
+</style>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<link href="~/Content/css/card.css" rel="stylesheet" />
+<form id="formarrangement">
+	<div class="panel">
+		<div id="dv_apply" style="width:30%;float:left;">
+			<p style="--slist: #90cbb7,#2fb1a9;">
+				<span id="xm">Nguyễn Văn A</span><br />
+				<span id="xb" style="font-size:13px;">Nam，26 tuổi</span>
+			</p>
+			<table class="form">
+				<tr>
+					<th class="formTitle">Số nhập viện:</th>
+					<td class="formValue" id="zyh">001</td>
+					<th class="formTitle">Khoa phòng:</th>
+					<td class="formValue" id="bq" style="width: 90px;">Khoa 1</td>
+				</tr>
+				<tr>
+					<th class="formTitle">Số giường:</th>
+					<td class="formValue" id="ch">C098</td>
+				</tr>
+				<tr>
+					<th class="formTitle">Chẩn đoán nhập viện:</th>
+					<td class="formValue" colspan="2" id="ryzd">Viêm ruột thừa</td>
+				</tr>
+			</table>
+			<table class="form" style="font-size:13px;border-radius: 4px;box-shadow: 0 0 2px #808080 inset;padding: 5px 15px 5px 15px;font-weight:bold;">
+				<tr>
+					<td class="formValue"></td>
+				</tr>
+				<tr>
+					<td class="formValue" colspan="2" style="border-bottom:solid;border-bottom-left-radius:5px;border-bottom-color:#90cbb7;">
+						<span style="padding-left:10px;">Chi tiết đơn đăng ký phẫu thuật</span>
+					</td>
+				</tr>
+				<tr style="height:50px;">
+					<th class="formTitle">Tên phẫu thuật được đăng ký:</th>
+					<td class="formValue" id="ssmcn"></td>
+				</tr>
+				<tr style="height:50px;">
+					<th class="formTitle">Bác sĩ mổ chính được đăng ký:</th>
+					<td class="formValue" id="ysxm"></td>
+				</tr>
+				<tr style="height:50px;">
+					<th class="formTitle">Thời gian phẫu thuật được đăng ký:</th>
+					<td class="formValue" id="sssj"></td>
+				</tr>
+				<tr style="height:50px;">
+					<th class="formTitle">Trạng thái đơn:</th>
+					<td class="formValue" id="sqzt" data-enumtype="EnumSqzt">Chờ duyệt</td>
+				</tr>
+			</table>
+		</div>
+		<div id="dv_arrange" style="width:70%;float:right;">
+			<div class="panel-heading" style="border-bottom-color:#90cbb7;border-bottom-left-radius:20px;">
+				<span class="glyphicon glyphicon-tags" style="color: rgb(255, 140, 60);"></span>
+				<span style="font-weight:bold;font-size:14px;padding-left:10px;">Sắp xếp phẫu thuật</span>
+			</div>
+			<div id="dv_step1">
+				<table class="form">
+					<tr>
+						<th class="formTitle"><span class="required">*</span>Tên phẫu thuật dự kiến:</th>
+						@*<td class="formValue formDdlSelectorTd" colspan="3">
+			<input id="ssmc" type="text" readonly="readonly" class="form-control required" />
+		</td>*@
+						<td class="formValue" colspan="3">
+							<table id="tablessmc">
+								<tr>
+									<td>
+										<i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
+									</td>
+
+									<td class="formValue">
+										<input type="text" class="form-control activeValue focusInput ssmcText" id="ssmc" name="ssmc" readonly="readonly"/>
+										<input id="ssdm" type="hidden" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle "><span class="required">*</span>Thời gian phẫu thuật:</th>
+						<td class="formValue" colspan="2">
+							<input id="sssj2" type="text" class="form-control input-wdatepicker formClearIgnore required" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+						</td>
+						<td class="formValue"></td>
+					</tr>
+					<tr>
+						<th class="formTitle"><span class="required">*</span>Phương pháp gây mê:</th>
+						<td class="formValue formDdlSelectorTd">
+							<select id="mzfs" name="mzfs" class="form-control required" style="width:95%;float:left;">
+								<option value="">===Vui lòng chọn=== </option>
+								<option value="1"> Gây mê toàn thân </option>
+								<option value="2">Gây mê cục bộ</option>
+								<option value="3">Gây mê châm cứu</option>
+								<option value="4">Gây mê phối hợp</option>
+							</select>
+						</td>
+						<th class="formTitle">Vị trí phẫu thuật:</th>
+						<td class="formValue formDdlSelectorTd">
+							<input id="ssbw" type="text" class="form-control" />
+						</td>
+						<td class="formValue"></td>
+					</tr>
+					<tr>
+						<td class="formTitle"><span class="required">*</span>Phòng mổ:</td>
+						<td class="formValue formDdlSelectorTd">
+							<select id="oproom" name="oproom" class="form-control required">
+								<option value=""> ==Vui lòng chọn== </option>
+								@*<option value="2">手术室2</option>
+									<option value="3">手术室3</option>*@
+							</select>
+						</td>
+						<td class="formTitle">Ca mổ:</td>
+						<td class="formValue">
+							<input id="sstc" type="text" class="form-control" />
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle"><span class="required">*</span>Cách ly:</th>
+						<td class="formValue formDdlSelectorTd">
+							<select id="isgl" name="isgl" class="form-control required" style="width:95%;float:left;">
+								<option value="2">Không</option>
+								<option value="1">Có </option>
+
+							</select>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			<div class="panel-heading" style="border-bottom-color:#90cbb7;border-bottom-left-radius:20px;">
+				<span class="glyphicon glyphicon-tags" style="color: rgb(255, 140, 60);"></span>
+				<span style="font-weight:bold;font-size:14px;padding-left:10px;">Sắp xếp nhân viên y tế</span>
+			</div>
+			<div id="dv_step2">
+				<table class="form">
+					<tr>
+						<th class="formTitle"><span class="required">*</span>Bác sĩ mổ chính:</th>
+						<td class="formValue formDdlSelectorTd required">
+							<input id="code1" class="required" type="hidden" />
+							<input id="ysgh" attr-code="" attr-zjm="" name="ysgh" type="text" class="form-control required" autocomplete="off" />
+
+						</td>
+						<th class="formTitle"></th>
+						<td class="formValue"></td>
+						<th class="formTitle"></th>
+						<td class="formValue"></td>
+					</tr>
+					<tr>
+						<th class="formTitle">Phụ mổ 1:</th>
+						<td class="formValue formDdlSelectorTd">
+							<input id="zlys1" type="hidden" />
+							<input id="zlys1name" attr-code="" attr-zjm="" name="zlys1name" type="text" class="form-control" autocomplete="off" />
+
+						</td>
+						<th class="formTitle">Phụ mổ 2:</th>
+						<td class="formValue formDdlSelectorTd">
+							<input id="zlys2" type="hidden" />
+							<input id="zlys2name" attr-code="" attr-zjm="" name="zlys2name" type="text" class="form-control" autocomplete="off" />
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle">Y tá lưu động:</th>
+						<td class="formValue formDdlSelectorTd">
+							<input id="xhhs" type="hidden" />
+							<input id="xhhsname" attr-code="" attr-zjm="" name="xhhsname" type="text" class="form-control" autocomplete="off" />
+						</td>
+						<th class="formTitle"></th>
+						<td class="formValue"></td>
+					</tr>
+					<tr>
+						<th class="formTitle">Y tá rửa tay:</th>
+						<td class="formValue formDdlSelectorTd">
+							<input id="xshs" type="hidden" />
+							<input id="xshsname" attr-code="" attr-zjm="" name="xshsname" type="text" class="form-control" autocomplete="off" />
+						</td>
+						<th class="formTitle"></th>
+						<td class="formValue"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="panel-heading" style="border-bottom-color:#90cbb7;border-bottom-left-radius:20px;">
+				<span class="glyphicon glyphicon-tags" style="color: rgb(255, 140, 60);"></span>
+				<span style="font-weight:bold;font-size:14px;padding-left:10px;">Vui lòng kiểm tra kỹ lịch phẫu thuật trên</span>
+			</div>
+            <div style="padding-top:30px;width:300px;float:right;">
+                <table>
+                    <tr>
+                        <td style="padding-right:10px;">
+                            <a class='btn btn-default' id="cancel" style='width:80px;background:#c1958f;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="cancelArrange();"><span class="glyphicon glyphicon-remove">Hủy lịch</span></a>
+                        </td>
+                        <td style="padding-right:10px;">
+                            <a class='btn btn-default' id="submit" style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="submitArrange();"><span class="glyphicon glyphicon-ok">Lưu lịch</span></a>
+                        </td>
+                        <td>
+                            <a class='btn btn-default' id="print" style='width:80px;background:#2fb1a9;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="printArrange();"><span class="glyphicon glyphicon-print">In phiếu thông báo</span></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+		</div>
+	</div>
+</form>
+<script>
+    var applyno = "";
+	$(function () {
+		getArrangeInfo();
+		getApplyInfo();
+		getSelectBind();
+	});
+
+	function getSelectBind() {
+		$("#oproom").bindSelect({
+			url: "/Operation/Common/GetRoomlist",
+			id: "Code",
+			text: "Name",
+			minimumResultsForSearch: 0
+		});
+		$("#mzfs").bindSelect({
+			url: "/Operation/Common/GetAneslist",
+			id: "AnesCode",
+			text: "AnesName"
+		});
+		//$("#ysgh").bindSelect({
+		//	url: "/Operation/Common/GetStafflist",
+		//	id: "rygh",
+		//	text: "ryxm",
+		//	minimumResultsForSearch: 0
+		//});
+		//$("#zlys1").bindSelect({
+		//	url: "/Operation/Common/GetStafflist",
+		//	id: "rygh",
+		//	text: "ryxm"
+		//});
+		//$("#zlys2").bindSelect({
+		//	url: "/Operation/Common/GetStafflist",
+		//	id: "rygh",
+		//	text: "ryxm"
+		//});
+		//$("#xhhs").bindSelect({
+		//	url: "/Operation/Common/GetStafflist",
+		//	id: "rygh",
+		//	text: "ryxm"
+		//});
+		//$("#xshs").bindSelect({
+		//	url: "/Operation/Common/GetStafflist",
+		//	id: "rygh",
+		//	text: "ryxm"
+		//});
+		$("#ysgh").staffFloatingSelector({
+			organizeId: '',
+			width: 200,
+			itemdbclickhandler: function ($this) {
+				$("#ysgh").val($this.attr('data-name')).attr("attr-code", $this.attr('data-id')).attr("attr-zjm", $this.attr('data-zjm'));
+				var name = $("#code1").val($this.attr('data-name')).val();
+				var code = $("#code1").val($this.attr('data-code')).val();
+				$("#ysgh").html(name);
+				$("#code1").html(code);
+			}
+		});
+		$("#zlys1name").staffFloatingSelector({
+			organizeId: '',
+			width: 200,
+			itemdbclickhandler: function ($this) {
+				$("#zlys1name").val($this.attr('data-name')).attr("attr-code", $this.attr('data-id')).attr("attr-zjm", $this.attr('data-zjm'));
+				var name = $("#zlys1").val($this.attr('data-name')).val();
+				var code = $("#zlys1").val($this.attr('data-code')).val();
+				$("#zlys1name").html(name);
+				$("#zlys1").html(code);
+			}
+		});
+		$("#zlys2name").staffFloatingSelector({
+			organizeId: '',
+			width: 200,
+			itemdbclickhandler: function ($this) {
+				$("#zlys2name").val($this.attr('data-name')).attr("attr-code", $this.attr('data-id')).attr("attr-zjm", $this.attr('data-zjm'));
+				var name = $("#zlys2").val($this.attr('data-name')).val();
+				var code = $("#zlys2").val($this.attr('data-code')).val();
+				$("#zlys2name").html(name);
+				$("#zlys2").html(code);
+			}
+		});
+		$("#xhhsname").staffFloatingSelector({
+			organizeId: '',
+			width: 200,
+			itemdbclickhandler: function ($this) {
+				$("#xhhsname").val($this.attr('data-name')).attr("attr-code", $this.attr('data-id')).attr("attr-zjm", $this.attr('data-zjm'));
+				var name = $("#xhhs").val($this.attr('data-name')).val();
+				var code = $("#xhhs").val($this.attr('data-code')).val();
+				$("#xhhsname").html(name);
+				$("#xhhs").html(code);
+			}
+		});
+		$("#xshsname").staffFloatingSelector({
+			organizeId: '',
+			width: 200,
+			itemdbclickhandler: function ($this) {
+				$("#xshsname").val($this.attr('data-name')).attr("attr-code", $this.attr('data-id')).attr("attr-zjm", $this.attr('data-zjm'));
+				var name = $("#xshs").val($this.attr('data-name')).val();
+				var code = $("#xshs").val($this.attr('data-code')).val();
+				$("#xshsname").html(name);
+				$("#xshs").html(code);
+			}
+		});
+	}
+
+
+	//手术名称 新增icon
+	$('#tablessmc .plusToggleCircle').click(function () {
+		var number = $('#tablessmc .ssmcText').length + 1;
+		//var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+		var $newTr = $('<tr><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td class="formValue"><input type="text" readonly="readonly" id="ssmc' + number + '" name="ssmc' + number + '" class="form-control activeValue focusInput ssmcText" /><input id="ssdm' + number + '" type="hidden" /></td></tr>');
+		$newTr.appendTo($(this).closest('table'));
+		//手术名称浮层
+		//bindssmcFloatingSelector(number);
+	});
+
+	//删除icon
+	$('#formarrangement').on('click', '.minusToggleCircle', function () {
+		$(this).closest('tr').remove();
+	});
+
+	//主手术浮层
+	//bindssmcFloatingSelector(0);
+	
+
+	var applyInfo = {};
+	function getApplyInfo() {
+		var keyValue = $.request("keyValue");
+		var sqzt = $.request("sqzt");
+		$.ajax({
+			url: "/Operation/OpArrangement/GetApplyInfoByKey?keyValue=" + keyValue,
+			data: { keyValue: "" },
+			dataType: "json",
+			success: function (data) {
+				//手术申请信息
+				arrangeInfo = data;
+				var xb = data.xb == 1 ? "Nam" : "Nữ";
+				xb += data.nl == null ? "" : "，" + data.nl;
+				$("#xm").html(data.xm);
+				$("#xb").html(xb);
+				$("#zyh").html(data.zyh);
+				$("#bq").html(data.bq);
+				$("#ch").html(data.ch);
+				$("#ryzd").html(data.zd);
+				$("#ssmcn").html(data.ssmcn);
+				$("#ysxm").html(data.ysxm);
+				$("#sssj").html(data.sssj.replace("T", " "));
+                $("#sqzt").html(data.sqzt);
+
+				applyno = data.Applyno;
+
+				//手术名称
+				var number = data.ss.length;
+				if (number > 0) {//主手术
+					$("#ssmc").val(data.ss[0].ssmc);
+					$("#ssdm").val(data.ss[0].ssdm);
+				}
+				for (var i = 1; i < number; i++) {
+					var n = i + 1;
+					//if ($("#ssdm" + n).val() == "") {
+					if ($("#ssdm" + n).length <= 0) {
+						//添加icon 并赋值
+						$('#tablessmc .plusToggleCircle').click();
+						$("#ssmc" + n).val(data.ss[i].ssmc);
+						$("#ssdm" + n).val(data.ss[i].ssdm);
+					}
+				}
+			}
+		});
+	}
+
+	var arrangeInfo = {};
+	function getArrangeInfo() {
+		var ApplyId = $.request("keyValue");
+		//var sqzt = $.request("sqzt");
+		$.ajax({
+			url: "/Operation/OpArrangement/GetArrangeObjByApplyId?ApplyId=" + ApplyId,
+			data: { ApplyId: "" },
+			dataType: "json",
+			success: function (data) {
+				$("#formarrangement").formSerialize(data);
+				//手术排班信息
+				//$("#ssmc").val(data.ssmcn);
+				if (data.sssj != null) {
+					$("#sssj2").val(data.sssj.replace("T", " "));
+				}
+				$("#mzfs").val(data.AnesCode).trigger("change");
+				$("#ysgh").val(data.ysxm);
+				$("#ssbw").val(data.ssbw);
+				//$("#roomlist").val(data.oproom);
+				//$("#roomlist").get(0).value = data.oproom;
+				//$("#roomlist").find("option[value ='C3']").attr("selected", true);
+				$("#sstc").val(data.oporder);
+				//$("#isgl").val(data);
+				//$("#zdyslist").val(data.ysgh);
+				//$("#sszl1").val(data.zlys1);
+				//$("#sszl2").val(data.zlys2);
+				//$("#ssxhhs").val(data.xhhs);
+				//$("#ssxshs").val(data.xshs);
+				//var ssxshs = $("#ssxshs option:selected").text();
+				//$("#ssxshs").val(ssxshs);
+				//$("#ssxhhs option[value='ys07']").attr("selected", "selected");
+				//按钮显示隐藏
+				if (data.sqzt == '@((int)EnumSSzt.dpb)') {
+					$("#cancel").hide();
+                    $("#submit").show();
+                    $("#print").hide();
+				} else if (data.sqzt == '@((int)EnumSSzt.ypb)') {
+					$("#cancel").show();
+                    $("#submit").show();
+                    $("#print").show();	
+				} else if (data.sqzt == '@((int)EnumSSzt.yzf)') {
+					$("#cancel").hide();
+                    $("#submit").hide();
+                    $("#print").hide();
+                } else if (data.sqzt == '@((int)EnumSSzt.yzx)')
+                {
+                    $("#cancel").hide();
+                    $("#submit").hide();
+                    $("#print").show();
+                }
+                else {
+					$("#cancel").hide();
+                    $("#submit").show();
+                    $("#print").hide();
+				}
+			}
+		});
+	}
+
+	//保存排班
+	function submitArrange() {
+
+		if (!$('#formarrangement').formValid()) {
+			return false;
+		}
+
+		var arrangeObj = {
+			ApplyId: arrangeInfo.Id,
+			Applyno: arrangeInfo.Applyno,
+			ssxh: arrangeInfo.ssdm,
+			zyh: arrangeInfo.zyh,
+			xm: arrangeInfo.xm,
+			ks: arrangeInfo.ks,
+			bq: arrangeInfo.bq,
+			ch: arrangeInfo.ch,
+			zd: arrangeInfo.zd,
+			sqzt: 2,
+			ssmc: arrangeInfo.ssmcn,
+			ssdm: arrangeInfo.ssdm,
+			//sssj: arrangeInfo.sssj,
+			sssj: $("#sssj2").val(),
+			ysgh: $("#code1").val() == "" ? arrangeInfo.ysgh : $("#code1").val(),
+			ysxm: $("#ysgh").val(),
+			AnesCode: $("#mzfs").val(),
+			oproom: $("#oproom").val(),
+			oporder: $("#sstc").val(),
+			zlys1: $("#zlys1").val(),
+			zlys2: $("#zlys2").val(),
+			zlys3: null,
+			zlys4: null,
+			xhhs: $("#xhhs").val(),
+			xshs: $("#xshs").val(),
+			ssbw: $("#ssbw").val(),
+			zt: 1,
+		}
+		if (arrangeObj.sssj == "") {
+			$.modalAlert("Vui lòng nhập thời gian phẫu thuật", 'warning');
+		} else {
+		//不可填
+		$("#sssj2").attr("disabled", "disabled");
+		$("#mzfs").attr("disabled", "disabled");
+		$("#ssbw").attr("readonly", true);
+		$("#oproom").attr("disabled", "disabled");
+		$("#sstc").attr("readonly", true);;
+		$("#isgl").attr("disabled", "disabled");
+		$("#ysgh").attr("disabled", "disabled");
+		$("#zlys1").attr("disabled", "disabled");
+		$("#zlys2").attr("disabled", "disabled");
+		$("#xhhs").attr("disabled", "disabled");
+		$("#xshs").attr("disabled", "disabled");
+		var keyValue = $.request("keyValue");
+
+		
+		$.submitForm({
+			url: "/Operation/OpArrangement/submitForm?keyValue=" + keyValue,
+			param: arrangeObj,
+			success: function () {
+				//getApplyInfo();
+                //getArrangeInfo();
+                location.reload();
+			}
+			});
+
+		}
+
+	}
+
+	//取消排班
+	function cancelArrange() {
+		window.$.modalConfirm("Bạn có chắc muốn hủy??", function (flag) {
+			if (!flag) {
+				return false;
+			}
+			return true;
+		});
+		var keyValue = $.request("keyValue");
+		if (!!!keyValue) {
+			window.$.modalAlert("Hủy lịch thất bại", 'warning');
+			return false;
+		}
+		window.$.deleteForm({
+			url: "/Operation/OpArrangement/DeleteForm",
+			param: { keyValue: keyValue },
+			success: function () {
+				$.modalMsg("Hủy thành công", "success");
+				$("#gridList").trigger("reloadGrid");
+			}
+		});
+		return true;
+	}
+
+	function showOPmaterial() {
+
+    }
+
+    function printArrange() {
+        window.open("/ReportManage/Report/OperationNoticeReport?zyh=" + $("#zyh").val() + "&applyno=" + arrangeInfo.Applyno);
+    }
+</script>

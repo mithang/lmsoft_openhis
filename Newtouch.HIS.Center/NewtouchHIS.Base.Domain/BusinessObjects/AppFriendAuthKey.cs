@@ -1,0 +1,46 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NewtouchHIS.Base.Domain
+{
+    /// <summary>
+    /// 生成授权key
+    /// </summary>
+    public class AppFriendAuthKey
+    {
+        /// <summary>
+        /// Desc:授权ID
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public string? AuthId { get; set; }
+
+        /// <summary>
+        /// Desc:应用通用Id
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public string? AppId { get; set; }
+
+        /// <summary>
+        /// Desc:Tên ứng dụng
+        /// Default:
+        /// Nullable:False
+        public string? AppName { get; set; }
+        public string? FriendId { get; set; }
+        public string? FriendAppId { get; set; }
+        public string? AuthLevs { get; set; }
+        public DateTime? TimeSpanNow { set; get; } = DateTime.Now;
+
+    }
+    /// <summary>
+    /// Đăng kýToken key
+    /// App to Friend
+    /// </summary>
+    public class AppFriendAuthKeyRequest {
+        [Required(ErrorMessage = "Xin cấp quyềnAppId không được để trống")]
+        public string AppId { get; set; }
+        public string? FriendAppId { get; set; }
+    }
+
+
+}

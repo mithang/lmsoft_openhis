@@ -1,0 +1,257 @@
+
+@{
+    ViewBag.Title = "JYJLQueryUpload";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var reportUrl = "";
+    var ReportSystemCode = "";
+}
+<div class="rows">
+	<div class="panel panel-default">
+		<table class="form">
+			<tr>
+				<th class="formTitle">Ngày bắt đầu：</th>
+				<td class="formValue">
+					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
+				</td>
+				<th class="formTitle">Ngày kết thúc：</th>
+				<td class="formValue">
+					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+						   value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+				</td>
+				<th class="formTitle"></th>
+                <td class="formValue" style="padding-left:20px;">
+                    <input type="button" id="btn_search" onclick="jyjlsearch();" class="btn btn-primary btn-md" value="phát sinh" style="width:55px" />
+                    <input type="button" id="btn_searchtotxt" onclick="searchtotxt();" class="btn btn-primary btn-md" value="tải lên" style="width:55px" />
+                    <input type="button" id="btn_searchhztotxt" onclick="searchhztotxt();" class="btn btn-primary btn-md" value="tổng hợp phát sinh" style="width:55px" />
+                </td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="ui-layout" id="layout" style="height:100%;width:100%;">
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+       gridList();
+	});
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/ReportManage/Report/GetJyjlData",
+            height: $(window).height()-200,
+            postData: getpostData(),
+            colModel: [
+                { label: 'Số giao dịch', name: 'lsh', width: 60, align: 'left' },
+                { label: 'Cơ sở Mã', name: 'jgdm', width: 60, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 60, align: 'left' },
+                { label: 'Tài khoản dấu hiệu', name: 'zhbz', width: 60, align: 'left' },
+                { label: 'Loại bệnh nhân', name: 'brlx', width: 60, align: 'left' },
+                { label: 'khám Số lần', name: 'jzcs', width: 60, align: 'left' },
+                { label: 'giao dịch Thời gian', name: 'jysj', width: 60, align: 'left' },
+                { label: 'Loại quyết toán', name: 'jslx', width: 60, align: 'left' },
+                { label: 'giao dịch Tổng chi phí', name: 'jyzfy', width: 60, align: 'left' },
+                { label: 'khi năm Thanh toán từ tài khoản', name: 'dnzhzf', width: 60, align: 'left' },
+                { label: 'các năm trước Thanh toán từ tài khoản', name: 'lnzhzf', width: 60, align: 'left' },
+                { label: 'Tiền mặt tự trả theo đoạn', name: 'zfdxj', width: 60, align: 'left' },
+                { label: 'đoạn khởi trả Tiền mặt', name: 'qfdxj', width: 60, align: 'left' },
+                { label: 'Tiền mặt quỹ chung theo đoạn', name: 'tcdxj', width: 60, align: 'left' },
+                { label: 'Tài khoản quỹ chung theo đoạn', name: 'tcdzh', width: 60, align: 'left' },
+                { label: 'Thanh toán từ quỹ chung', name: 'tczj', width: 60, align: 'left' },
+                { label: 'Tiền mặt bổ sung theo đoạn', name: 'fjdxj', width: 60, align: 'left' },
+                { label: 'Tài khoản bổ sung theo đoạn', name: 'fjdzh', width: 60, align: 'left' },
+                { label: 'bổ sung Thanh toán', name: 'fjzf', width: 60, align: 'left' },
+                { label: 'BHYT tổng số phạm vi', name: 'ybfwze', width: 60, align: 'left' },
+                { label: 'Không phải BHYT tổng số phạm vi', name: 'fybfwzf', width: 60, align: 'left' },
+                { label: 'BHYT Loại', name: 'yblx', width: 60, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fphm', width: 60, align: 'left' },
+                { label: 'Hoàn phí dấu hiệu', name: 'tfbz', width: 60, align: 'left' },
+                { label: 'Ngày bắt đầu', name: 'ksrq', width: 60, align: 'left' },
+                { label: 'trừ âm dấu hiệu', name: 'jfbz', width: 60, align: 'left' },
+                { label: 'trừ âm Số tiền', name: 'jfje', width: 60, align: 'left' }, 
+                
+            ],
+            pager: "#gridPager",
+            sortname: 'jysj desc',
+            viewrecords: true,
+        });
+
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getpostData(),
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+    function getpostData() {
+        return {
+             ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val()
+        };
+    }
+    function searchtotxt() {
+        $.najax({
+            type: "POST",
+            url: "/ReportManage/Report/Ybsjsctotxt",
+            data: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val()},
+            dataType: "json",
+            success: function (ajaxresp) {
+                var strtxt = "";
+                for (var i = 0; i < ajaxresp.length; i++) {
+                    strtxt += ajaxresp[i].lsh + "    ";
+                    strtxt += ajaxresp[i].jgdm + "    ";
+                    strtxt += ajaxresp[i].kh+ "    ";
+                    strtxt += ajaxresp[i].zhbz + "    ";
+                    strtxt += ajaxresp[i].brlx + "    ";
+                    strtxt += ajaxresp[i].jzcs + "    ";
+                    strtxt += ajaxresp[i].jysj + "    ";
+                    strtxt += ajaxresp[i].jslx + "    ";
+                    strtxt += ajaxresp[i].jyzfy + "    ";
+                    strtxt += ajaxresp[i].dnzhzf + "    ";
+                    strtxt += ajaxresp[i].lnzhzf + "    ";
+                    strtxt += ajaxresp[i].zfdxj + "    ";
+                    strtxt += ajaxresp[i].qfdxj + "    ";
+
+                    strtxt += ajaxresp[i].tcdxj + "    ";
+                    strtxt += ajaxresp[i].tcdzh + "    ";
+                    strtxt += ajaxresp[i].tczj + "    ";
+                    strtxt += ajaxresp[i].fjdxj + "    ";
+                    strtxt += ajaxresp[i].fjdzh + "    ";
+                    strtxt += ajaxresp[i].fjzf + "    ";
+                    strtxt += ajaxresp[i].ybfwze + "    ";
+
+                    strtxt += ajaxresp[i].fybfwzf + "    ";
+                    strtxt += ajaxresp[i].yblx + "    ";
+                    strtxt += ajaxresp[i].fphm + "    ";
+                    strtxt += ajaxresp[i].tfbz + "    ";
+                    strtxt += ajaxresp[i].ksrq + "    ";
+                    strtxt += ajaxresp[i].jfbz + "    ";
+                    strtxt += ajaxresp[i].jfje + "    ";
+                    strtxt += "\t\n";     
+                }
+                var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
+                saveAs(blob, "bản ghi giao dịch kho.txt");
+            }
+        });
+    }
+    function searchhztotxt() {
+        $.najax({
+            type: "POST",
+            url: "/ReportManage/Report/Ybsjsctotxt",
+            data: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val() },
+            dataType: "json",
+            success: function (ajaxresp) {
+                var strtxt = "";
+                for (var i = 0; i < ajaxresp.length; i++) {
+                    strtxt += ajaxresp[i].lsh + "    ";
+                    strtxt += ajaxresp[i].jgdm + "    ";
+                    strtxt += ajaxresp[i].kh + "    ";
+                    strtxt += ajaxresp[i].zhbz + "    ";
+                    strtxt += ajaxresp[i].brlx + "    ";
+                    strtxt += ajaxresp[i].jzcs + "    ";
+                    strtxt += ajaxresp[i].jysj + "    ";
+                    strtxt += ajaxresp[i].jslx + "    ";
+                    strtxt += ajaxresp[i].jyzfy + "    ";
+                    strtxt += ajaxresp[i].dnzhzf + "    ";
+                    strtxt += ajaxresp[i].lnzhzf + "    ";
+                    strtxt += ajaxresp[i].zfdxj + "    ";
+                    strtxt += ajaxresp[i].qfdxj + "    ";
+
+                    strtxt += ajaxresp[i].tcdxj + "    ";
+                    strtxt += ajaxresp[i].tcdzh + "    ";
+                    strtxt += ajaxresp[i].tczj + "    ";
+                    strtxt += ajaxresp[i].fjdxj + "    ";
+                    strtxt += ajaxresp[i].fjdzh + "    ";
+                    strtxt += ajaxresp[i].fjzf + "    ";
+                    strtxt += ajaxresp[i].ybfwze + "    ";
+
+                    strtxt += ajaxresp[i].fybfwzf + "    ";
+                    strtxt += ajaxresp[i].yblx + "    ";
+                    strtxt += ajaxresp[i].fphm + "    ";
+                    strtxt += ajaxresp[i].tfbz + "    ";
+                    strtxt += ajaxresp[i].ksrq + "    ";
+                    strtxt += ajaxresp[i].jfbz + "    ";
+                    strtxt += ajaxresp[i].jfje + "    ";
+                    strtxt += "\t\n";
+                }
+                var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
+                saveAs(blob, "bản ghi giao dịch kho.txt");
+            }
+        });
+        $.najax({
+            type: "POST",
+            url: "/ReportManage/Report/YbMjzdbghtxt",
+            data: { ksrq: $("#ksrqdbgh").val(), jsrq: $("#jsrqdbgh").val() },
+            dataType: "json",
+            success: function (ajaxresp) {
+                var strtxt = "";
+                for (var i = 0; i < ajaxresp.length; i++) {
+                    strtxt += ajaxresp[i].lsh + "    ";
+                    strtxt += ajaxresp[i].kh + "    ";
+                    strtxt += ajaxresp[i].ksbm + "    ";
+                    strtxt += ajaxresp[i].ksmc + "    ";
+                    strtxt += ajaxresp[i].ghf + "    ";
+                    strtxt += ajaxresp[i].zlf + "    ";
+                    strtxt += ajaxresp[i].jyzfy + "    ";
+                    strtxt += ajaxresp[i].ybfwze + "    ";
+                    strtxt += ajaxresp[i].fybfwze + "    ";
+                    strtxt += ajaxresp[i].jysj + "    ";
+                    strtxt += ajaxresp[i].yblx + "    ";
+                    strtxt += ajaxresp[i].jslx + "    ";
+                    strtxt += ajaxresp[i].tfbz + "    ";
+                    strtxt += ajaxresp[i].jzlsh + "    ";
+                    strtxt += "\t\n";
+                }
+                var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
+                saveAs(blob, "ngoại trú Cấp cứu Bệnh nặng Đăng ký khám kho.txt");
+            }
+        });
+        $.najax({
+            type: "POST",
+            url: "/ReportManage/Report/GetMjzjcsfDatatxt",
+            data: { ksrq: $("#ksrqjcsf").val(), jsrq: $("#jsrqjcsf").val() },
+            dataType: "json",
+            success: function (ajaxresp) {
+                var strtxt = "";
+                for (var i = 0; i < ajaxresp.length; i++) {
+                    strtxt += ajaxresp[i].yblsh + "    ";
+                    strtxt += ajaxresp[i].kh + "    ";
+                    strtxt += ajaxresp[i].ksbm + "    ";
+                    strtxt += ajaxresp[i].ksmc + "    ";
+                    strtxt += ajaxresp[i].ysgh + "    ";
+                    strtxt += ajaxresp[i].ysxm + "    ";
+                    strtxt += ajaxresp[i].cfbh + "    ";
+                    strtxt += ajaxresp[i].fylb + "    ";
+                    strtxt += ajaxresp[i].xmmc + "    ";
+                    strtxt += ajaxresp[i].xmdw + "    ";
+                    strtxt += ajaxresp[i].xmdj + "    ";
+                    strtxt += ajaxresp[i].xmsl + "    ";
+                    strtxt += ajaxresp[i].xmje + "    ";
+                    strtxt += ajaxresp[i].jyje + "    ";
+                    strtxt += ajaxresp[i].ybfwje + "    ";
+                    strtxt += ajaxresp[i].bxbz + "    ";
+                    strtxt += ajaxresp[i].jysj + "    ";
+                    strtxt += ajaxresp[i].yblx + "    ";
+                    strtxt += ajaxresp[i].jslx + "    ";
+                    strtxt += ajaxresp[i].tfbz + "    ";
+                    strtxt += ajaxresp[i].lsh + "    ";
+                    strtxt += ajaxresp[i].xflsh + "    ";
+                    strtxt += ajaxresp[i].yptym + "    ";
+                    strtxt += ajaxresp[i].zczh + "    ";
+                    strtxt += ajaxresp[i].mxxmgg + "    ";
+                    strtxt += "\t\n";
+                }
+                var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
+                saveAs(blob, "Kho thu phí giường tại nhà bệnh nặng cấp cứu ngoại trú.txt");
+            }
+        });
+    }
+</script>

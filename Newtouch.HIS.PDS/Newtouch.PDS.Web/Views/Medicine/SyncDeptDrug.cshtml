@@ -1,0 +1,139 @@
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form2">
+    <div class="panel panel-default">
+        <table class="form">
+            <tr>
+                <td class="formTitle">Từ khóa：</td>
+                <td class="formValue">
+                    <input type="text" id="srm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
+                </td>
+                <td class="formTitle">Loại thuốc：</td>
+                <td class="formValue formDdlSelectorTd">
+                    <select class="form-control" id="yplb">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <td class="formTitle">Dạng bào chế thuốc：</td>
+                <td class="formValue formDdlSelectorTd">
+                    <select class="form-control" id="ypjx" name="ypjx">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <td class="formTitle" rowspan="2">
+                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<div class="gridPanel">
+    <table id="tbypGridList"></table>
+    <div id="tbypGridPager" rel="form2"></div>
+</div>
+<script lang="javascript">
+    var $gridList = $("#tbypGridList");
+    $(function () {
+        initialddlYPLBList();
+        initialddlJXList();
+        tbypGridList();
+    });
+
+    //药品类别
+    function initialddlYPLBList() {
+        $("#yplb").bindSelect({
+            url: "/PharmacyDrugStorage/GetMedicineCategoryList"
+        });
+    }
+
+    //药品剂型
+    function initialddlJXList() {
+        $("#ypjx").bindSelect({
+            url: "/PharmacyDrugStorage/GetMedicineFormulationList",
+            id: "jxCode",
+            text: "jxmc"
+        });
+    }
+
+    //待选药品加载
+    function tbypGridList() {
+        $gridList.dataGrid({
+            url: "/Medicine/GettbypGridJson",
+            postData: $("#form1").formSerialize(),
+            height: 400,
+            colModel: [
+                { label: "Khóa chính", name: "ypId", hidden: true, key: true },
+                { label: "Loại", name: "yplb", width: 70, align: 'left' },
+                { label: "Mã thuốc", name: "ypCode", width: 70, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'Dạng bào chế', name: 'jxmc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'deptdw', width: 50, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'bmypId', name: 'bmypId', hidden: true }
+            ],
+            multiselect: true,
+            pager: "#tbypGridPager",
+            sortname: 'bmypId asc , ypmc asc',
+            viewrecords: true,
+            gridComplete: function () {
+                var ids = $gridList.getDataIDs();
+                if (ids != null && ids.length > 0) {
+                    for (var i = 0; i < ids.length; i++) {
+                        var data = $gridList.getRowData(ids[i]);
+                        if (data.bmypId !== '') {
+                            $("#jqg_tbypGridList_" + ids[i]).attr("checked", true);
+                        }
+                    }
+                }
+            },
+            onSelectAll: function (rowids, statue) {
+                if (rowids != null && rowids.length > 0) {
+                    if (statue) {//Chọn tất cả
+                        Save(rowids, 0);
+                    } else { //全部取消
+                        $.modalConfirm("Bạn có chắc muốn xóa tất cả không?？", function (flag) {
+                            if (flag) {
+                                Save(rowids, 1);
+                            }
+                        });
+                    }
+                }
+            },
+            onSelectRow: function (rowids, statue) {
+                if (statue) {//选中
+                    Save(rowids, 0);
+                } else { //Hủy
+                    Save(rowids, 1);
+                }
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: $("#form2").formSerialize()
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //提交 operateType=0:添加  1：删除
+    function Save(items, opereateType) {
+        $.najax({
+            type: "POST",
+            url: "/Medicine/FreshList",
+            dataType: "json",
+            data: { "yp": items, "opereateType": opereateType },
+            success: function (ajaxresp) {
+                if (ajaxresp.state === 'success') {
+                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    $.modalMsg("Đồng bộ thành công", 'success', 1500);
+                }
+            }
+        });
+    }
+</script>

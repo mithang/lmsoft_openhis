@@ -1,0 +1,244 @@
+@{
+    ViewBag.Title = "Tra cứu xếp thuốc ngoại trú";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    #btn_search {
+        height: 45px;
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Thông tin lọc đơn thuốc
+        </div>
+        <div>
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Họ tên：</td>
+                    <td class="formValue">
+                        <input type="text" id="xm" class="form-control" placeholder="Vui lòng nhập họ tên" />
+                    </td>
+                    <td class="formTitle">Số thẻ：</td>
+                    <td class="formValue">
+                        <input type="text" id="cardNo" class="form-control" placeholder="Vui lòng nhập số thẻ" />
+                    </td>
+                    <td class="formTitle">Số hóa đơn：</td>
+                    <td class="formValue">
+                        <input type="text" id="invoiceNo" class="form-control" placeholder="Vui lòng nhập số hóa đơn" />
+                    </td>
+                    <td class="formTitle" rowspan="2">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Khoa：</td>
+                    <td class="formValue">
+                        <input type="text" id="ksmc" name="ksmc" placeholder="Vui lòng chọn khoa" class="form-control" />
+                        <input type="hidden" id="ksdm" name="ksdm" value="" />
+                    </td>
+                    <td class="formTitle"><span class="required">*</span>Thời gian thu phí：</td>
+                    <td class="formValue">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <td class="formTitle"><span class="required">*</span>đến：</td>
+                    <td class="formValue">
+                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<div style="float: left; width: 35%;" class="gridPanel">
+    <table id="gridList"></table>
+</div>
+<div style="float: left; width: 64.5%;margin-left: 0.5%; " class="gridPanel">
+    <table id="gridmxList"></table>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 6,7 },
+    F6Text = "Hủy xếp thuốc",
+    F7Text = "In"
+})
+<script>
+    var $gridList = $("#gridList");
+    var $gridmxList = $("#gridmxList");
+    $(".toolbar").width(200);
+    $(function () {
+        gridList();
+        gridmxList();
+    });
+
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    //初始化科室
+    $("#ksmc").newtouchBatchFloatingSelector({
+        height: 200,
+        width: 360,
+        clickautotrigger: true,
+        url: "/DrugStorage/GetTheLowerKsCodeList",
+        ajaxmethod: 'POST',
+        ajaxreqdata: function () {
+            var reqData = {};
+            reqData.keyword = $.trim($("#ksmc").val());
+            return reqData;
+        },
+        caption: "Khoa",
+        colModel: [
+            { label: 'Mã khoa', name: 'Code', width: 100 },
+            { label: 'Tên khoa', name: 'Name', width: 220 }
+        ],
+        itemdbclickhandler: function ($thistr) {
+            $("#ksmc").val($thistr.attr("data-Code"));
+            $("#ksdm").val($thistr.attr("data-Name"));
+            return;
+        }
+    });
+
+    //处方
+    function gridList() {
+        $gridList.dataGrid({
+            url: "/OutPatientPharmacy/QueryDrugArrangementRp",
+            postData: AssembleParam(),
+            height: $(window).height() - 190,
+            caption: "Chi tiết đơn thuốc",
+            colModel: [
+                { label: 'Số thẻ', name: 'CardNo', align: 'left', width: 80 },
+                { label: 'Họ tên', name: 'xm', align: 'left', width: 60 },
+                { label: 'Số đơn thuốc', name: 'cfh', align: 'left', width: 90 },
+                { label: 'Thời gian thu phí', name: 'sfsj', align: 'left', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Thời gian xếp thuốc', name: 'CreateTime', align: 'left', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Bác sĩ kê đơn', name: 'ysmc', align: 'left', width: 60 }
+            ],
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                $gridmxList.jqGrid("clearGridData");
+                var data = $gridList.jqGrid('getRowData', rowid);
+                $gridmxList.jqGrid('setGridParam', {
+                    url: "/OutPatientPharmacy/QueryDrugArrangementRpDetail",
+                    postData: { cfh: data.cfh, cardNo: data.CardNo }
+                }).trigger('reloadGrid');
+            },
+            gridComplete: function () {
+                $gridmxList.jqGrid("clearGridData");
+                var ids = new Array();
+                //getDataIDs()返回当前grid里所有数据的id
+                ids = $gridList.getDataIDs();
+                if (ids == null || ids.length <= 0) return;
+                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                $gridList.setSelection(ids[0], true);
+                var data = $gridList.jqGrid('getRowData', ids[0]);
+                if (data == null) return;
+                $gridmxList.jqGrid('setGridParam', {
+                    url: "/OutPatientPharmacy/QueryDrugArrangementRpDetail?r=" + Math.random(),
+                    postData: { cfh: data.cfh, cardNo: data.CardNo }
+                }).trigger('reloadGrid');
+            },
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //组装请求参数
+    function AssembleParam() {
+        return {
+            xm: $("#xm").val(),
+            cardNo: $("#cardNo").val(),
+            invoiceNo: $("#invoiceNo").val(),
+            ksmc: $("#ksmc").val(),
+            kssj: $("#kssj").val(),
+            jssj: $("#jssj").val(),
+            jszt: 1
+        };
+    }
+
+    //处方明细
+    function gridmxList() {
+        $gridmxList.dataGrid({
+            url: "",
+            height: $(window).height() - 230,
+            caption: "Chi tiết đơn thuốc",
+            shrinkToFit: true,
+            colModel: [
+                { label: 'Tên thuốc', name: 'ypmc', align: 'left', width: 120 },
+                { label: 'Quy cách', name: 'gg', align: 'left', width: 80 },
+                { label: 'Số lượng', name: 'sl', align: 'right', width: 40 },
+                { label: 'Đơn vị', name: 'dw', align: 'left', width: 55 },
+                { label: 'Nhà sản xuất', name: 'ycmc', align: 'left', width: 130 },
+                { label: 'Liều dùng', name: 'jl', align: 'right', width: 60 },
+                { label: 'Đơn vị liều', name: 'jldw', align: 'left', width: 55 },
+                { label: 'Cách dùng', name: 'yfmc', align: 'left', width: 60 },
+                { label: 'Lời dặn bác sĩ', name: 'yszt', align: 'left', width: 100 }
+            ],
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //取消排药
+    function newtouch_event_f6() {
+        $.modalConfirm("Bạn có chắc muốn hủy xếp thuốc không?？", function (flag) {
+            if (!flag) return;
+            var id = $gridList.jqGrid("getGridParam", "selrow");
+            if (!id) {
+                $.modalMsg("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+                return;
+            }
+            var data = $gridList.jqGrid('getRowData', id);
+            if (data == null) {
+                $.modalMsg("Tham số không hợp lệ！", 'warning');
+                return;
+            }
+            $.najax({
+                type: "POST",
+                url: "/OutPatientPharmacy/DrugArrangementReturn",
+                dataType: "json",
+                data: { cfh: data.cfh, cardNo: data.CardNo },
+                success: function (res) {
+                    if (res.state === "success") {
+                        $.modalMsg('Hủy thành công', 'success', 1000);
+                        $gridList.jqGrid("clearGridData");
+                        $gridList.resetSelection();
+                        $("#btn_search").trigger("click");
+                    } else {
+                        $.modalAlert(res.message, Error);
+                    }
+                }
+            });
+        });
+    }
+
+    //取消排药
+    function newtouch_event_f7() {
+        var id = $gridList.jqGrid("getGridParam", "selrow");
+        if (!id) {
+            $.modalMsg("Vui lòng chọn đơn thuốc cần in！", 'warning');
+            return;
+        }
+        var data = $gridList.jqGrid('getRowData', id);
+        if (data == null) {
+            $.modalMsg("Tham số không hợp lệ！", 'warning');
+            return;
+        }
+        window.open("/Report/PrintReport?type=MZPY_Bill&param=OrganizeId=@ViewBag.OrganizeId" + "|yfbmCode=@ViewBag.yfbmCode" + "|cfh=" + data.cfh);
+    }
+
+</script>

@@ -1,0 +1,607 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Y lệnhQuản lý";
+    Layout = null;
+    var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
+    //长期医嘱打印单是否显示签名
+    var isShowSign = SysConfigReader.String("IS_ShowSigner");
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+<style>
+    /*已执行*/
+    .orginal {
+        color: blue;
+    }
+    /*已审核*/
+    .ysh {
+        background-color: white;
+        color: black;
+    }
+    /*已停止*/
+    .grey {
+        color: grey;
+    }
+    /*已作废*/
+    .red {
+        color: red;
+    }
+    /*DC*/
+    .pink {
+        color: pink;
+    }
+
+    .toolbar {
+        width: 45% !important;
+        margin: 10px 30px 12px;
+    }
+</style>
+<div id="linkyzcx" role="tabpanel" class="tab-pane">
+    <div class="topPanel" style="width: 99%; margin-top: -15px; border-radius: 5px;height:unset !important">
+        <table class="form" style="margin-left:5px;">
+            <tr>
+                <td colspan="3" id="btnKeywordTypeGourp">
+                    <input type="button" id="btn_dryz" class="panelposition btn btn-default btn-md" value="Trong ngàyY lệnh">
+                    <input type="button" id="btn_cqyz" class="panelposition btn btn-default btn-md" value="Y lệnh dài hạn">
+                    <input type="button" id="btn_lsyz" class="panelposition btn btn-default btn-md" value="Y lệnh tạm thời">
+                    <span style="margin:auto 5px">|</span>
+                    <input type="button" id="btn_wsh" class="panelposition btn btn-md btn-restore active" value="Chưa duyệt">
+                    <input id="zyh" type="text" value="00001" style="display:none;" class="form-control" />
+                </td>
+                <td class="formTitle">
+                    Y lệnhLoại:
+                </td>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="yzlx" class="form-control required"></select>
+                </td>
+                <td class="formValue" style="width:15%;margin-left:10px">
+                    <div id="panelposition" style="margin-left:30px">
+                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cảY lệnh</label>
+                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="yx" />Hiệu lựcY lệnh</label>
+                    </div>
+                </td>
+                @*<th class="formTitle">住院号：</th>
+                    <td class="formValue">
+                        <input id="zyh" type="text" class="form-control" value="00001" />
+                    </td>*@
+                <th class="formTitle">Ngày bắt đầu:</th>
+                <td class="formValue">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() } })" value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                </td>
+                <th class="formTitle">Ngày kết thúc:</th>
+                <td class="formValue">
+                    <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() }  })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </td>
+                <td class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" onclick="btn_search()" style="margin-right:10px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="contentPanel" style="width: 99%; height: 84%;margin-top: 2px;">
+        <div style="background-color: #fff;width:100%;">
+            <table id="gridPatientList"></table>
+            <div id="gridPatPager"></div>
+        </div>
+    </div>
+    <table style="width:420px;height:20px; margin-top:10px;margin-left:10px; float:left; color:#274b6d">
+        <tr>
+            <td>
+                <label style="height:7px;width:25px;background-color:blue; border:1px solid #ddd"></label>
+            </td>
+            <td>Thực hiệnDài hạn/Tạm thời</td>
+            <td>
+                <label style="height:7px;width:25px;background-color:red; border:1px solid #ddd"></label>
+            </td>
+            <td>Hủy bỏTạm thời</td>
+            <td>
+                <label style="height:7px;width:25px;background-color:grey; border:1px solid #ddd"></label>
+            </td>
+            <td>DừngDài hạn</td>
+            <td>
+                <label style="height:7px;width:25px;background-color:black;  border:1px solid #ddd"></label>
+            </td>
+            <td>Chưa thực hiện dài hạn/tạm thời</td>
+        </tr>
+    </table>
+    @Html.Partial("~/Areas/DoctorManage/Views/Apply/ReportTree.cshtml")
+    <input type="button" id="btn_BindingFee" style="position:relative;top:10px;" class="btn btn-primary" value="Y lệnh phụ" onclick="BindingFeeManage()" />
+    @Html.Partial("_BottomButtonsYzPrintView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 2, 3,6, 8 },
+    F2Text = "InDài hạn",
+    F3Text = "InTạm thời",
+    F5Text = "Làm mới",
+    F6Text = "Phiếu theo dõi 3 chỉ số",
+    F8Text = "InThuốc gây nghiện - hướng thần"
+})
+</div>
+<div id="context-menu">
+    <ul class="dropdown-menu" role="menu" style="min-width: 115px;">
+        <li><a href="javascript:;" tabindex="-1" menuitem=1>Y lệnh phụ</a></li>
+    </ul>
+</div>
+<script src="~/Content/js/bootstrap-contextmenu.min.js"></script>
+<script>
+      var newlist = new Array();
+    var last = "";//上一个组号
+    var isshowSign = '@isShowSign';
+    //当前选中医嘱对象
+    var currentyzobj = {};
+    var yzcxzyh = "";
+    $(function () {
+        init_yzcx(currentZyh);
+        gridPatientList();
+        $('#gridPatientList').clearGridData();
+        $('#btnKeywordTypeGourp').on('click', '.btn', function () {
+            if ($(this).attr('id') == "btn_dryz" || $(this).attr('id') == "btn_wsh") {
+                if (!$(this).hasClass('active')) {
+                    $(this).siblings('.btn').removeClass('btn-restore').removeClass('active').addClass('btn-default');
+                }
+            } else {
+                if ($('#btn_dryz').hasClass("active")) {
+                    $('#btn_dryz').removeClass('btn-restore').removeClass('active').addClass('btn-default');
+                }
+                if ($('#btn_wsh').hasClass("active")) {
+                    $('#btn_wsh').removeClass('btn-restore').removeClass('active').addClass('btn-default');
+                }
+            }
+            if ($(this).hasClass("active")) {
+                $(this).removeClass('btn-restore').removeClass('active').addClass('btn-default');
+            } else {
+                $(this).removeClass('btn-default').addClass('btn-restore active');
+            }
+            btn_search();
+        });
+
+        $("#yzlx").bindSelect({
+            url: "/DoctorManage/DoctorsAdvice/GetyzlxContain"
+        });
+    });
+
+    function init_yzcx(zyh)
+    {
+        if (!yzcxzyh)
+            yzcxzyh = zyh;
+        getPatTreeList();
+        btn_search();
+        $("#PatTreeList_"+yzcxzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+    }
+
+    function getPatTreeList() {
+        $("#PatTreeList").treeview({
+            height: $(window).height(),
+            slimscroll: false,
+            url: "/NurseManage/InpatientList/GetPatWardTree?zyzt=" + $('#zyzt').val() + "&keyword=" + $('#keyword').val(),
+            onnodeclick: function (item) {
+                if (item.value && item.Ex1=="c")
+                {
+                    yzcxzyh=item.value;
+                    $("#zyh").val(item.value);
+                    $('#kssj').val($.getDate({ date: item.Ex5 }));
+                    btn_search();
+                }
+            }
+        });
+        $("#PatTreeList_"+yzcxzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+    }
+
+    function BindingFeeManage() {
+        var keyValue = $("#gridPatientList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            let res = confirm('Chưa chọn mục/thuốc, có tiếp tục không?');
+            if (res == true) {
+                $.modalOpen({
+                    id: "BindingFeeForm",
+                    title: "Y lệnh phụ",
+                    url: "/NurseManage/OrderExecution/BindingFeeForm?zyh=" + $("#zyh").val() + "&yzid=" + "",
+                    width: "1000px",
+                    height: "700px",
+                    btn: ['Xác nhận'],
+                    callBack: function (iframeId) {
+                        btn_search();
+                        //var Obj = top.frames[iframeId].submitForm();
+                        $.modalClose("BindingFeeForm");
+                    },
+                    cancelCallBack: function (iframeId) {
+                        btn_search();
+                        $.modalClose("BindingFeeForm");
+                    }
+                });
+            }
+            return;
+        }
+        else {
+            $.modalOpen({
+                id: "BindingFeeForm",
+                title: "Y lệnh phụ",
+                url: "/NurseManage/OrderExecution/BindingFeeForm?zyh=" + $("#zyh").val() + "&yzid=" + keyValue,
+                width: "1000px",
+                height: "700px",
+                btn: ['Xác nhận'],
+                callBack: function (iframeId) {
+                    btn_search();
+                    //var Obj = top.frames[iframeId].submitForm();
+                    $.modalClose("BindingFeeForm");
+                },
+                cancelCallBack: function (iframeId) {
+                    btn_search();
+                    $.modalClose("BindingFeeForm");
+                }
+            });
+        }
+    }
+    //删除并解绑医嘱
+    function DeleteBindManage(Id,yzlb) {
+        let res = confirm('Có hủy bỏ/dừng y lệnh này không?');
+        if (res == true) {
+            var yzxz = "2";
+            if (yzlb=="临") {
+                yzxz = "1";
+            }
+            $.ajax({
+                url: "/NurseManage/OrderExecution/DeleteBind",
+                data: { zyh:$("#zyh").val(), yzid: Id, yzxz: yzxz },
+                dataType: "json",
+                type: "POST",
+                async: false,
+                success: function (data) {
+                    if (data != null && data.message != "") {
+                        $.modalAlert("Hủy bỏ/Dừngthất bại!" + data.message, 'warning');
+                        return;
+                    }
+                    else {
+                        $.modalAlert("Hủy bỏ/Dừngthành công!", 'success');
+                        btn_search();
+                        return;
+                    }
+                }
+            });
+        }
+    }
+    $('#gridPatientList').contextmenu({
+        target: '#context-menu',
+        before: function (e, context) {
+            $('#gridPatientList').data("contextmenu-rowId", $(e.target).closest('tr').attr('id'));
+        },
+        onItem: function (context, e) {
+            var menuName = $(e.target).text();
+            var tt = $('#gridPatientList').jqGrid('getRowData', $('#gridPatientList').data('contextmenu-rowId'));
+            if (menuName == "Y lệnh phụ") {
+                $.modalOpen({
+                    id: "BindingFeeForm",
+                    title: "Y lệnh phụ",
+                    url: "/NurseManage/OrderExecution/BindingFeeForm?zyh=" + $("#zyh").val() + "&yzid=" + tt.Id,
+                    width: "1000px",
+                    height: "700px",
+                    btn: ['Xác nhận'],
+                    callBack: function (iframeId) {
+                        btn_search();
+                        //var Obj = top.frames[iframeId].submitForm();
+                        $.modalClose("BindingFeeForm");
+                    },
+                    cancelCallBack: function (iframeId) {
+                        btn_search();
+                        $.modalClose("BindingFeeForm");
+                    }
+                });
+            }
+        }
+    });
+
+    function gridPatientList() {
+        $('#gridPatientList').dataGrid({
+            url:"/DoctorManage/DoctorsAdvice/AdviceGridView",
+            height: $(window).height() - 220,
+            postData: getSearchPostData(),
+            unwritten: false,
+            pager: '#gridPatPager',
+            //sortname: 'zh,yzlb,yzlx,kssj desc',
+            //sortname: 'yzlx,kssj desc,zh,Px',
+            sortname: 'yzh desc,px,kssj desc,zh',
+            rownumbers: true,
+            rowNum: 100, //每页显示记录数
+            colModel: [
+                { label: 'Y lệnhID', name: 'Id', align: 'center', width: 50, hidden: true },
+                {label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50},
+                {
+                    label: 'Y lệnhLoại', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
+                        return $.enum.getDescByValue("EnumYzlx", val)
+                    }
+                },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 40 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 60 },
+                { label: 'Bác sĩ', name: 'ysmc', align: 'center', width: 40 },
+                {
+                    label: 'Y lệnh phụ', name: 'isfsyz', align: 'center', width: 60,hidden: true , formatter: function (val, option, row) {
+                        if (row.isfsyz != null && row.isfsyz != "") {
+                            return " <label style='color:red'>(Y lệnh phụ)</label>";
+                        }
+                        else {
+                            return "";
+                        }
+                    }
+                },
+                { label: 'Y lệnh', name: 'yzmc', align: 'center', width: 160,formatter: function (val, options, rowObject){
+                    if (rowObject["isfsyz"]){
+                        return " <label style='color:red'>(Phụ)</label>"+val;
+                    }else
+                    {
+                        return val;
+                    }
+                }},
+                { label: 'Liều lượng', name: 'yzjl', align: 'center', width: 30 },
+                { label: 'Cách dùng', name: 'yfmc', align: 'center', width: 30 },
+                { label: 'Tần suất', name: 'yzpcmc', align: 'center', width: 30 },
+                {label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30},
+                {
+                    label: 'DừngThời gian', name: 'tzsj', align: 'center', width: 110, formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: 'DừngBác sĩ', name: 'tzr', align: 'center', width: 50 },
+				{ label: 'Người thực hiện', name: 'zxr', align: 'center', width: 50 },
+				{ label: 'Khoa thực hiện', name: 'deptName', align: 'center', width: 60 },
+                { label: 'yztag', name: 'yztag', align: 'center', hidden: true },
+                { label: 'iszt', name: 'iszt', align: 'center', hidden: true },
+                { label: 'yfztbs', name: 'yfztbs', align: 'center', hidden: true },
+                { label: 'Thuốc gây nghiện - hướng thần', name: 'yztagName', align: 'center', width: 30 },
+                { label: 'Số y lệnh', name: 'yzh', align: 'center', width: 60, hidden: true },
+                {
+                    label: 'ThuốcTổng lượng', name: 'zycldw', align: 'center', width: 50
+                },
+                { label: 'Tính phí', name: 'isjf', align: 'center', width: 30,formatter:function(val){
+                    return $.enum.getDescByValue("EnumSF", val);
+                    }
+                 },
+                 {
+                     label: 'Test da', name: 'ispscs', align: 'center', width: 30, formatter: function (val) {
+                         return $.enum.getDescByValue("EnumSF", val);
+                     }
+                 },
+                 { label: 'Chuyển sang tự chi trả', name: 'zzfbz', align: 'center', width: 40,formatter:function(val){
+                      return $.enum.getDescByValue("EnumSF", val);
+                      }
+                 },
+                 { label: 'Cuối cùngThực hiệnThời gian', name: 'zxsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
+                 {
+                    label: 'Trạng thái', name: 'yzzt', align: 'center', width: 40, formatter: function (val, options, rowObject) {
+                        if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DC状态
+                            //有Thực hiện时间，取已Thực hiện状态，有审核时间，取已审核状态
+                            if (rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
+                              return "Thực hiện";
+                            } else {
+                                return "Duyệt";
+                            }
+                        } else if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.TZ).ToString())) {
+                            if (rowObject["yzlb"] == "长") {
+                                return "Dừng";
+                            } else {
+                                return "Hủy bỏ";
+                            }
+                        }
+                        return $.enum.getDescByValue("EnumYzzt", val)
+                    }
+                 },
+                { label: 'Thao tác', name: 'cz', align: 'center', width: 70, title: false , formatter: function (val, option, row) {
+                        if (row.isfsyz != null && row.isfsyz != "") {
+                            return "<span style='color:red' onclick='DeleteBindManage(\"" + row.Id + "\",\"" + row.yzlb +"\")' title='Hủy bỏDừng' >Hủy bỏDừng</span>";
+                        }
+                        else {
+                            return "";
+                        }
+                       }
+                 }],
+
+                gridComplete: function () {
+                    var ids = $("#gridPatientList").jqGrid('getDataIDs');
+                    for (i = 0; i < ids.length; i++) {
+                        var rowData = $("#gridPatientList").jqGrid('getRowData', ids[i]);
+                        if (rowData.yzzt == "Thực hiện") {
+                            $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('orginal');
+                        } else
+                            if (rowData.yzzt == "Chờ duyệt" || rowData.yzzt == "Duyệt") {
+                                $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('ysh');
+                            } else
+                                if (rowData.yzzt == "Dừng") {
+                                    $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('grey');
+                                } else if (rowData.yzzt == "Hủy bỏ") {
+                                    $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('red');
+                                }
+                        //组号生成特殊符号
+                        var returnval = "";
+                        if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
+                            if (last == rowData.zh) {
+                                returnval = "Ở giữa";
+                                if (i == (ids.length-1)) {//最后一个
+                                    returnval = "Kết thúc";
+                                    last = "";
+                                }
+                            } else if (last !== rowData.zh) {
+                                if (last !== "") {
+                                    setlastrowzuhao(ids[i]);
+                                }
+                                returnval = "Bắt đầu";
+                            }
+                            $("#gridPatientList").setCell(ids[i], "zh", '<img src="../../../../Content/img/'+ returnval+'.png" />');//setCell 设置单格样式 值 或属性
+                        } else if (last !== rowData.zh && last!=="") {
+                            setlastrowzuhao(ids[i]);
+                        }
+                        last = rowData.zh;
+                    }
+                },
+                onSelectRow: function (rowid) {
+                    var obj = $("#gridPatientList").jqGrid('getRowData', rowid);
+                    onSelectyzobj(obj);
+                }
+         });
+    }
+    //设置上一行组号
+    function setlastrowzuhao(rowid) {
+        var lastrow = parseInt(rowid) - 1;
+        $("#gridPatientList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
+    }
+    function onSelectyzobj(obj) {
+        currentyzobj.Id = obj.Id;//医嘱id
+        currentyzobj.yznr = obj.yznr;//医嘱内容
+        currentyzobj.yztag = obj.yztag;//精麻医嘱
+    }
+    function getSearchPostData() {
+        var wsh = false;
+        var dryz = false;
+        var yzlb = "Dài hạn/Tạm thời";
+        if ($('#btn_wsh').hasClass("active")) {//未审核
+            wsh = true;
+        } else
+            if ($('#btn_dryz').hasClass("active")) {
+                dryz = true;
+            } else if (($('#btn_cqyz').hasClass("active") && $('#btn_lsyz').hasClass("active"))) {
+                var yzlb = "Dài hạn/Tạm thời";
+            } else if ($('#btn_cqyz').hasClass("active") && !$('#btn_lsyz').hasClass("active")) {
+                var yzlb = "长";
+            } else if (!$('#btn_cqyz').hasClass("active") && $('#btn_lsyz').hasClass("active")) {
+                var yzlb = "临";
+            }
+        var yx = $('input[name="optionsRadios"]:checked').val();//var yx = $('#panelposition').val();
+        var kssj = $('#kssj').val();
+        var jssj = $('#jssj').val();
+        var yzlx = $('#yzlx').val();
+        return { dryz: dryz, yzlb: yzlb, wsh: wsh, yx: yx, kssj: kssj, jssj: jssj, yzlx: yzlx, zyh: $("#zyh").val() };
+    }
+    function newtouch_event_f6() {
+        var zyh = $("#zyh").val();
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Phiếu theo dõi 3 chỉ sốTra cứu(Điều dưỡng)", enName: "", url: "/NurseManage/InpatientVitalSigns/TemperatureChartIndex?zyh=" + zyh + "&yshsbz=2" });
+    }
+    function btn_search() {
+        last = "";
+        $("#gridPatientList").clearGridData();
+        $("#gridPatientList").jqGrid('setGridParam', {
+            url: "/DoctorManage/DoctorsAdvice/AdviceGridView",
+            postData: getSearchPostData()
+        }).trigger("reloadGrid");
+    }
+    $('#yzlx').change(function () {
+        btn_search();
+    });
+    $('#panelposition').click(function () {
+        btn_search();
+    });
+
+    //续打
+    //function newtouch_event_f8() {
+    //    $.modalOpen({
+    //        id: "ContinuePrint",
+    //        title: "续打",
+    //        url: "/DoctorManage/DoctorsAdvice/ContinuePrint",
+    //        width: "550px",
+    //        height: "300px",
+    //        callBack: function (iframeId) {
+
+    //            $.modalClose("AdviceLeaveHospitalStop");
+    //        }
+    //    });
+    //}
+
+    //刷新
+    function newtouch_event_f4() {
+        btn_search();
+    }
+
+    ///判断当前病人是否存在未审核的长期医嘱
+    function boolwsh(zyh, callback) {
+        $.najax({
+            url: "/DoctorManage/DoctorsAdvice/boolwsh)",
+            dataType: "json",
+            data: { zyh: zyh },
+            async: true,
+            type: "POST",
+            success: function () {
+                callback(false);
+            }, error: function () {
+                callback(true);
+            }
+        });
+    }
+
+    //打印长期医嘱
+    function newtouch_event_f2() {
+        var zyh = $("#zyh").val();
+
+        var isSign = "0";
+        if (isshowSign && isshowSign === '1') {
+            isSign = "1";
+        }
+        if($('#ck_printgoon').is(':checked'))
+        {
+            $.modalAlert("Y lệnh dài hạn không hỗ trợ in tiếp, vui lòng không tick chọn in tiếp", "warning");
+            //yzContinuePrint(zyh,"2",isSign);
+        }
+        else{
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: zyh+"-Y lệnh dài hạn", enName: "", url: "/SystemManage/YzPreView/YzPreView?zyh=" + zyh+ "&orgId="+'@curOpr.OrganizeId'+"&isSign="+isSign+"&yzlx="+"Y lệnh dài hạn", AppId: "EMR" });
+            //var uri = '@reportUrl' + "?tempCode=28" +"&zyh="+zyh+ "&orgId=" + '@curOpr.OrganizeId' + "&isSign=" + isSign;
+            //window.open(uri);
+            //window.open("/ReportManage/Report/PrintCqyzReport?zyh=" + zyh + "&isShowSign=" + isSign, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+        }
+    }
+    //打印临时医嘱
+    function newtouch_event_f3() {
+        var zyh = $("#zyh").val();
+        var isSign = "0";
+        if (isshowSign && isshowSign === '1') {
+            isSign = "1";
+        }
+        if($('#ck_printgoon').is(':checked'))
+        {
+            yzContinuePrint(zyh,"1",isSign);
+        }
+        else{
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: zyh+"-Y lệnh tạm thời", enName: "", url: "/SystemManage/YzPreView/YzPreView?zyh=" + zyh+ "&orgId="+'@curOpr.OrganizeId'+"&isSign="+isSign+"&yzlx="+"Y lệnh tạm thời", AppId: "EMR" });
+            //var uri = '@reportUrl' + "?tempCode=28" +"&zyh="+zyh+ "&orgId=" + '@curOpr.OrganizeId' + "&isSign=" + isSign;
+            //window.open(uri);
+            //window.open("/ReportManage/Report/PrintLsyzReport?zyh=" + zyh + "&isShowSign=" + isSign, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+
+        }
+
+    }
+    function yzContinuePrint(zyh,yzlx,isSign)
+    {
+        var title="In tiếp y lệnh tạm thời";
+        if(yzlx=="2")
+        {
+            title="In tiếp y lệnh dài hạn";
+        }
+        $.modalOpen({
+            id: "ContinuePrint",
+            title: title,
+            url: "/DoctorManage/DoctorsAdvice/ContinuePrint?zyh=" + zyh + "&isShowSign=" + isSign+ "&yzlx=" + yzlx,
+            width: "650px",
+            height: "300px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].ContinuePrint();
+                $.loading(false);
+                $.modalClose("ContinuePrint");
+            }
+        });
+    }
+    //打印精麻医嘱
+    function newtouch_event_f8()
+    {
+        var yzobj=(JSON.stringify(currentyzobj) != "{}");
+        if(yzobj)
+        {
+            if(currentyzobj.yztag=="")
+            {
+                $.modalAlert("Nội dung y lệnh"+(currentyzobj.yznr) +"Không phải y lệnh thuốc gây nghiện - hướng thần nên không thể in!", "warning");
+                return;
+            }
+            window.open('@reportUrl' + "?tempCode=1300" + "&systemCode=" + '@Html.Raw(ReportSystemCode)'+ "&zyh=" + $("#zyh").val() +"&orgId=" + '@curOpr.OrganizeId' +"&Id=" + currentyzobj.Id, "_blank", "height = 500, width = 1195, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
+        }
+        else{
+            $.modalAlert("Vui lòng chọn y lệnh thuốc gây nghiện - hướng thần cần in", "warning");
+            return;
+        }
+
+    }
+</script>
+

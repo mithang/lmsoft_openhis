@@ -1,0 +1,100 @@
+using Newtouch.OR.ManageSystem.Domain.Entity;
+using Newtouch.OR.ManageSystem.Domain.IRepository;
+using System.Collections.Generic;
+using NewtouchHIS.Lib.Base.Model;
+using System.Text;
+using SqlSugar;
+using NewtouchHIS.Lib.Base.Exceptions;
+using System.Linq;
+namespace Newtouch.OR.ManageSystem.Repository
+{
+    /// <summary>
+    /// 创 建：chl
+    /// 日 期：2019-11-06 10:22
+    /// 描 述：切口等级
+    /// </summary>
+    public class ORNotchGradeRepo : RepositoryBase<ORNotchGradeEntity>, IORNotchGradeRepo
+    {
+        /// <summary>
+        /// 默认构造函数
+        /// </summary>
+        /// <param name="databaseFactory">EF上下文工厂</param>
+        public ORNotchGradeRepo()
+        {
+            
+        }
+
+        /// <summary>
+        /// 获取分页实体列表
+        /// </summary>
+        /// <param name="pagination">分页</param>
+        /// <param name="keyword">筛选关键字</param>
+        public IList<ORNotchGradeEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId)
+        {
+            var sql = new StringBuilder();
+            sql.Append("select * from OR_NotchGrade(nolock) where zt != 0");
+            List<SugarParameter> pars = null;
+            if (!string.IsNullOrWhiteSpace(organizeId))
+            {
+                pars = pars ?? new List<SugarParameter>();
+                sql.Append(" and organizeid = @organizeId");
+                pars.Add(new SugarParameter("@organizeId", organizeId));
+            }
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                pars = pars ?? new List<SugarParameter>();
+                sql.Append(" and(1 = 2");
+                sql.Append(" or Code like @keyword");
+                sql.Append(" or Name like @keyword");
+                sql.Append(")");
+                pars.Add(new SugarParameter("@keyword", "%" + keyword.Trim() + "%"));
+            }
+            return this.QueryWithPage<ORNotchGradeEntity>(sql.ToString(), pagination, pars == null ? null : pars.ToArray());
+        }
+
+        /// <summary>
+        /// 保存表单（新增、修改）
+        /// </summary>
+        /// <param name="entity">实体对象</param>
+        /// <param name="keyValue">主键值</param>
+        public int SubmitForm(ORNotchGradeEntity entity, string keyValue)
+        {
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                if (this.IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.zt == "1"))
+                {
+                    throw new FailedException("Mã không được trùng lặp");
+                }
+                var dbEntity = this.FindEntity(keyValue);
+                //properties
+                dbEntity.Code = entity.Code;
+                dbEntity.Name = entity.Name;
+
+                EntityHelper.Modify(dbEntity, keyValue);
+                return Update(dbEntity);
+            }
+            else
+            {
+                if (this.IQueryable().Any(p => p.Code == entity.Code))
+                {
+                    throw new FailedException("Mã không được trùng lặp");
+                }
+                EntityHelper.Create(entity, true);
+                return Insert(entity);
+            }
+        }
+
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="keyValue">主键值</param>
+        public int DeleteForm(string keyValue)
+        {
+            var dbEntity = this.FindEntity(keyValue);
+            //properties
+            dbEntity.zt = "0";
+            EntityHelper.Modify(dbEntity, keyValue);
+            return Update(dbEntity);
+        }
+    }
+}

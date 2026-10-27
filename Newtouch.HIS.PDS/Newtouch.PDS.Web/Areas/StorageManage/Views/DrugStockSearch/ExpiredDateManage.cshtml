@@ -1,0 +1,198 @@
+
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Lấy và nghiệm thu hóa đơn";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+
+
+<style>
+    /*.inline {
+        width: 80%;
+        display: inline;
+    }
+
+    .PriceInline {
+        width: 70%;
+        display: inline;
+    }
+
+    #dv-detail table th {
+        border: solid 1px #ddd;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    #dv-detail .ui-jqgrid-labels, #dv-detail .jqgrow .ui-row-ltr {
+        height: 30px;
+        vertical-align: middle;
+    }
+
+
+    #dv-detail table td {
+        border: solid 1px #ddd;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    #dv-detail input[role=textbox] {
+        padding: 2px 2px;
+    }
+
+    #gridList .ckbox label {
+        margin-top: 24px;
+    }*/
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:10px;">
+        <div class="panel-heading">Thông tin tồn kho</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle ">Từ khóa：</th>
+                <td class="formValue">
+                    <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Tên thuốc/Mã" autocomplete="off" style="width:60%" />
+                </td>
+
+                <td class="formValue" style="width:115px;">
+                    <div class="ckbox ckmargin">
+                        <input id="chk_NoShow0KC" type="checkbox" /><label for="chk_NoShow0KC">Không hiển thị tồn kho bằng 0</label>
+                    </div>
+                </td>
+
+                <th class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                </th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+        InitFloat();
+
+        gridList();
+    });
+
+
+    //初始化浮层
+    function InitFloat() {
+
+    }
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/StorageManage/DrugStockSearch/GetStockExpiredSearchByPage",
+            height: $(window).height() - 200,
+            postData: {
+                keyword: $("#keyword").val(), show0kc : $("#chk_NoShow0KC").is(":checked") ? "0" : "1"},
+            editurl: "clientArray",  //行编辑不向服务器提交数据
+            colModel: [
+
+                //{ label: 'Id', name: 'Id', hidden: true },
+                { label: 'Mã thuốc', name: 'ypdm', width: 80, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'Quy cách thuốc', name: 'gg', width: 120, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 60, align: 'center' },
+                { label: 'Nơi sản xuất thuốc', name: 'ycmc', width: 100, align: 'left' },
+                { label: 'Số lượng tồn kho', name: 'slStr', width: 60, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsjdjdw', width: 80, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Lô', name: 'pc', width: 120, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 60, align: 'left' },
+                { label: 'Tồn khoId', name: 'kcId', width: 100, align: 'left', hidden: true },
+                { label: 'Thời gian tạo', name: 'createtime', width: 100, align: 'left', hidden: true },
+                { label: 'Thao tác', name: 'action', align: 'center', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Sửa hạn sử dụng' onclick='updateRow($(this).parent().parent().attr(\"id\"))'/>"; } },
+            ],
+
+            multiselect: false,
+
+            pager: "#gridPager",
+            sortname: 'ypdm,yxq ,createtime asc',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                //btn_selectrow(rowid);
+            },
+            gridComplete: function () {
+                EnableInlineEditBox();
+            }
+        });
+    }
+
+    //查询
+    $('#btn_search').click(function () {
+        $("#gridList").jqGrid('setGridParam', {
+            url: '/StorageManage/DrugStockSearch/GetStockExpiredSearchByPage',
+            postData: { keyword: $("#keyword").val(), show0kc: $("#chk_NoShow0KC").is(":checked") ? "0" : "1" }, page: 1
+        }).trigger('reloadGrid');
+
+        gridList();
+    });
+
+
+    function updateRow(rowid) {
+        var rowData = $("#gridList").jqGrid('getRowData', rowid);
+        if (rowData == null) {
+            $.modalMsg("Không tìm thấy dòng hiện tại", 'error');
+        }
+        $.modalOpen({
+            id: "ExpiredDateForm",
+            title: "Sửa hạn sử dụng",
+            url: "/StorageManage/DrugStockSearch/ExpiredDateForm?kcId=" + rowData.kcId + "&yxq=" + rowData.yxq,
+            width: "500px",
+            height: "400px",
+            callBack: function (iframeId) {
+                var obj = top.frames[iframeId].SubmitForm();
+
+                $.submitForm({
+                    url: "/StorageManage/DrugStockSearch/UpdateExpired",
+                    param: { kcId: obj.kcId, yxq: obj.yxq },
+                    success: function () {
+                        $.modalMsg('Sửa thành công', 'success');
+                        $("#btn_search").trigger('click');
+                        $.modalClose();
+                        callback();
+                    }
+                });
+
+                $.modalClose("ExpiredDateForm");
+
+            }
+        });
+    }
+
+
+    function EnableInlineEditBox() {
+        var ids = $("#gridList").getDataIDs();
+        $.each(ids, function () {
+            var rowid = String(this);
+            //打开编辑模式
+            $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);
+        })
+    }
+
+    function initInlineFunc(rowid) {
+        //$("#" + rowid + "_ypdm").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        //$("#" + rowid + "_ypmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_gg").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_dw").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_ycmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_slStr").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_lsjdjdw").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_pc").css('background-color', '#f6f7fb').attr('readonly', 'true');
+        $("#" + rowid + "_ph").css('background-color', '#f6f7fb').attr('readonly', 'true');
+    }
+
+
+</script>
+
+

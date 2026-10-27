@@ -1,0 +1,457 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Thêm đăng ký";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var keyValue = $.request("keyValue");
+    var sfzh;
+    var age;
+    var vcity = {
+        11: "Bắc Kinh",
+        12: "Thiên Tân",
+        13: "Hà Bắc",
+        14: "Sơn Tây",
+        15: "Nội Mông",
+        21: "Liêu Ninh",
+        22: "Cát Lâm",
+        23: "Hắc Long Giang",
+        31: "Thượng Hải",
+        32: "Giang Tô",
+        33: "Chiết Giang",
+        34: "An Huy",
+        35: "Phúc Kiến",
+        36: "Giang Tây",
+        37: "Sơn Đông",
+        41: "Hà Nam",
+        42: "Hồ Bắc",
+        43: "Hồ Nam",
+        44: "Quảng Đông",
+        45: "Quảng Tây",
+        46: "Hải Nam",
+        50: "Trùng Khánh",
+        51: "Tứ Xuyên",
+        52: "Quý Châu",
+        53: "Vân Nam",
+        54: "Tây Tạng",
+        61: "Thiểm Tây",
+        62: "Cam Túc",
+        63: "Thanh Hải",
+        64: "Ninh Hạ",
+        65: "Tân Cương",
+        71: "Đài Loan",
+        81: "Hồng Kông",
+        82: "Ma Cao",
+        91: "Nước ngoài"
+    };
+    $(function () {
+        init();
+        if (!!keyValue) {
+            $("#blh").val(keyValue);
+        }
+        $('#zjh').bind("keydown blur",
+            function (e) {
+                if (((e.keyCode === 13 && e.type === "keydown") || e.type === "blur") && $('#zjlx').val() === "1") {
+                    var len = $(this).val().length;
+                    var sfzh = $(this).val();
+                    if (len === 15 || len === 18) {
+                        var csrq;
+                        csrq = sfzh.substr(6, 8);
+                        if ((len === 15 && csrq) || len === 18) {
+                            csrq = csrq.replace(/(.{4})(.{2})/, "$1-$2-");
+                            //lấygiới tính
+                            var xb;
+                            if (parseInt(sfzh.charAt(16) / 2) * 2 != sfzh.charAt(16))
+                                xb = 1;
+                            else
+                                xb = 0;
+                            //lấynămtuổi
+                            var myDate = new Date();
+                            var month = myDate.getMonth() + 1;
+                            var day = myDate.getDate();
+                            age = myDate.getFullYear() - sfzh.substring(6, 10) - 1;
+                            if (sfzh.substring(10, 12) < month ||
+                                sfzh.substring(10, 12) == month && sfzh.substring(12, 14) <= day) {
+                                age++;
+                            }
+                            $('#csny').val(csrq);
+                            if (xb == 0) {
+                                if ($("input[name=xb]:eq(0)").parent().hasClass('active')) {
+                                    $("input[name=xb]:eq(0)").parent().removeClass('active');
+                                }
+                                $("input[name=xb]:eq(1)").attr("checked", 'checked'); //nữ
+                                $("input[name=xb]:eq(1)").parent().addClass('active');
+                            } else {
+                                if ($("input[name=xb]:eq(1)").parent().hasClass('active')) {
+                                    $("input[name=xb]:eq(1)").parent().removeClass('active');
+                                }
+                                $("input[name=xb]:eq(0)").attr("checked", 'checked'); //nam
+                                $("input[name=xb]:eq(0)").parent().addClass('active');
+                            }
+                            $('#nl').val(age);
+                        }
+                    }
+                }
+            });
+
+        //theohọ tênlấy phiên âm
+        $('#xm').blur(function () {
+            $('#py').val($(this).toPinyin());
+
+        });
+        $("#jsr").keyupEnterEvent(function () {
+            submitForm();
+        });
+    });
+
+    function init() {
+        //quốc tịch
+        $("#gj").newtouchBindSelect({
+            id: "gjCode",
+            text: "gjmc",
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.window.newtouchclients.sysNationalityList) {
+                    $.each(top.window.newtouchclients.sysNationalityList,
+                        function (idx, val) {
+                            resultObjArr.push(val);
+                        });
+                }
+                return resultObjArr;
+            }
+        });
+
+    }
+
+    function submitForm() {
+        var data = $("#form1").formSerialize();
+        if (AddData_Check()) {
+            $.submitForm({
+                url: "/PatientManage/HospiterRes/SubmitForm?addmzInfo=true",
+                param: data,
+                success: function () {
+                    $.loading(false);
+                    if ($.currentWindow().$("#blh").length === 1) {
+                        //đăng ký khám ngoại trúđăng ký miễn thẻ
+                        $.currentWindow().searchPatInfo(data.blh);
+                        $.modalClose();
+                    }
+                }
+            });
+        }
+    }
+
+    checkCard = function () {
+        var card = $("#zjh").val().toUpperCase();
+        $("#zjh").val(card);
+        if ($('#zjlx').val() !== "1") {
+            if (card === '') {
+                $.modalAlert('Vui lòng nhập số giấy tờ，Số giấy tờ không được trống', 'warning');
+                return false;
+            }
+            return true;
+        }
+
+        //làkhônglàtrống
+        if (card === '') {
+            $.modalAlert('Vui lòng nhập số CMND/CCCD，Số CMND/CCCD không được trống', 'warning');
+            // $("#zjh").focus;
+            return false;
+        }
+        //kiểm tra độ dài，loại
+        if (isCardNo(card) === false) {
+            $.modalAlert('Số CMND/CCCD bạn nhập không đúng，Vui lòng nhập lại', 'warning');
+            //$("#zjh").focus;
+            return false;
+        }
+        //kiểm tratỉnh
+        if (checkProvince(card) === false) {
+            $.modalAlert('Hai ký tự đầu CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
+            //$("#zjh").focus;
+            return false;
+        }
+        //kiểm tra sinhngày
+        if (checkBirthday(card) === false) {
+            $.modalAlert('Ngày sinh trong số CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
+            //$("#zjh").focus();
+            return false;
+        }
+        //xét nghiệmvị trícủakiểm tra
+        if (checkParity(card) === false) {
+            $.modalAlert('Ký tự kiểm tra CMND/CCCD của bạn không đúng,Vui lòng nhập lại', 'warning');
+            // $("#zjh").focus();
+            return false;
+        }
+        return true;
+    };
+
+
+    //kiểm trasố làkhôngphù hợp quy chuẩn，bao gồm độ dài，loại
+    isCardNo = function (card) {
+        //CMND/CCCDsốlà15vị tríhoặcngười18vị trí，15khi ở vị trí đầy đủlàchữ số，18trước vị trí17vị trílàchữ số，nhấtsaumột vị trí là vị trí kiểm tra，có thểlàchữ sốhoặcký tựX
+        var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
+        if (reg.test(card) === false) {
+            return false;
+        }
+
+        return true;
+    };
+
+    //lấyCMND/CCCDhai vị trí đầu,kiểm tra tỉnh
+    checkProvince = function (card) {
+        var province = card.substr(0, 2);
+        if (vcity[province] == undefined) {
+            return false;
+        }
+        return true;
+    };
+
+    //kiểm trasinhngàylàkhôngđúng
+    checkBirthday = function (card) {
+        var len = card.length;
+        //CMND/CCCD15khi ở vị trí，thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（2vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（3vị trí），đềulàchữ số
+        if (len == '15') {
+            var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
+            var arr_data = card.match(re_fifteen);
+            var year = arr_data[2];
+            var month = arr_data[3];
+            var day = arr_data[4];
+            var birthday = new Date('19' + year + '/' + month + '/' + day);
+            return verifyBirthday('19' + year, month, day, birthday);
+        }
+        //CMND/CCCD18khi ở vị trí，thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（4vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（4vị trí），vị trí kiểm tra cuối có thểlàX
+        if (len == '18') {
+            var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
+            var arr_data = card.match(re_eighteen);
+            var year = arr_data[2];
+            var month = arr_data[3];
+            var day = arr_data[4];
+            var birthday = new Date(year + '/' + month + '/' + day);
+            return verifyBirthday(year, month, day, birthday);
+        }
+        return false;
+    };
+
+    //kiểm trangàykỳ
+    verifyBirthday = function (year, month, day, birthday) {
+        var now = new Date();
+        var now_year = now.getFullYear();
+        //nămthángngàylàkhônghợp lý
+        if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {
+            //xác địnhnămphầncủaphạm vi（3tuổiđến100tuổigiữa)
+            var time = now_year - year;
+            if (time >= 3 && time <= 100) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    };
+
+    //vị trí kiểm tracủakiểm tra
+    checkParity = function (card) {
+        //15chuyển vị trí18vị trí
+        card = changeFivteenToEighteen(card);
+        sfzh = card;
+        var len = card.length;
+        if (len == '18') {
+            var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+            var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+            var cardTemp = 0, i, valnum;
+            for (i = 0; i < 17; i++) {
+                cardTemp += card.substr(i, 1) * arrInt[i];
+            }
+            valnum = arrCh[cardTemp % 11];
+            if (valnum == card.substr(17, 1)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    };
+
+    //15chuyển vị trí18vị tríCMND/CCCDsố
+    changeFivteenToEighteen = function (card) {
+        if (card.length == '15') {
+            var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+            var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+            var cardTemp = 0, i;
+            card = card.substr(0, 6) + '19' + card.substr(6, card.length - 6);
+            for (i = 0; i < 17; i++) {
+                cardTemp += card.substr(i, 1) * arrInt[i];
+            }
+            card += arrCh[cardTemp % 11];
+            return card;
+        }
+        return card;
+    };
+
+    function AddData_Check() {
+        var blh = $("#blh").val();
+        if (blh == null || blh === "" || blh == undefined) {
+            $.modalAlert("Vui lòng điền số hồ sơ bệnh án", 'warning');
+            $("#blh").focus();
+            return false;
+        }
+        var xm = $("#xm").val();
+        if (xm == null || xm === "" || xm == undefined) {
+            $.modalAlert("Vui lòng điền họ tên", 'warning');
+            $("#xm").focus();
+            return false;
+        }
+        var zjlx = $("#zjlx").val();
+        if (zjlx == null || zjlx === "" || zjlx == undefined) {
+            $.modalAlert("Vui lòng chọn loại giấy tờ", 'warning');
+            $("#zjlx").focus();
+            return false;
+        }
+        //var zjh = $("#zjh").val();
+        ////tạm thời bỏ xác thực danh tính----liixn 20190816
+        //if (!checkCard()) {
+        //    return false;
+        //}
+        var csny = $("#csny").val();
+        if (csny == null || csny === "" || csny == undefined) {
+            $.modalAlert("Vui lòng điền năm sinh", 'warning');
+            $("#csny").focus();
+            return false;
+        }
+
+        var nl = $("#nl").val();
+        if (nl == null || nl === "" || nl == undefined) {
+            $.modalAlert("Vui lòng điền tuổi", 'warning');
+            $("#nl").focus();
+            return false;
+        }
+
+        //giới tính
+        var xb = false;
+        $('input[name="xb"]').each(function () {
+            var $this = $(this);
+            if ($this.parent().hasClass("active")) {
+                xb = true;
+                $("#xb").val();
+            }
+        });
+        if (!xb) {
+            $.modalAlert("Vui lòng chọn giới tính！", 'warning');
+            return false;
+        }
+        return true;
+    }
+
+    /*tính tuổi theo ngày sinh*/
+    function jsGetAge(strBirthday) {
+        var returnAge;
+        var strBirthdayArr = strBirthday.split("-");
+        var birthYear = strBirthdayArr[0];
+        var birthMonth = strBirthdayArr[1];
+        var birthDay = strBirthdayArr[2];
+
+        d = new Date();
+        var nowYear = d.getFullYear();
+        var nowMonth = d.getMonth() + 1;
+        var nowDay = d.getDate();
+
+        if (nowYear == birthYear) {
+            returnAge = 0;//cùng năm thì là0tuổi
+        }
+        else {
+            var ageDiff = nowYear - birthYear; //chênh lệch năm
+            if (ageDiff > 0) {
+                if (nowMonth == birthMonth) {
+                    var dayDiff = nowDay - birthDay;//chênh lệch ngày
+                    if (dayDiff < 0) {
+                        returnAge = ageDiff - 1;
+                    }
+                    else {
+                        returnAge = ageDiff;
+                    }
+                }
+                else {
+                    var monthDiff = nowMonth - birthMonth;//chênh lệch tháng
+                    if (monthDiff < 0) {
+                        returnAge = ageDiff - 1;
+                    }
+                    else {
+                        returnAge = ageDiff;
+                    }
+                }
+            }
+            else {
+                returnAge = -1;//trả về-1 cho thấy nhập ngày sinh sai muộn hơn hôm nay
+            }
+        }
+        $("#nl").val(returnAge);
+    }
+</script>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .formTitle span {
+        color: red;
+    }
+
+    .tab-content #basicInfo table tr td {
+        border: 0;
+    }
+</style>
+<form id="form1">
+    <input type="hidden" id="py" name="py" />
+    <table class="form" style="width: 98%; border: 0; margin-top: 10px">
+        <tr>
+            <td class="formTitle"><span class="required">*</span>Số hồ sơ bệnh án：</td>
+            <td class="formValue">
+                <input type="text" id="blh" class="form-control form-an ">
+            </td>
+            <td class="formTitle"><span>*</span>Tên bệnh nhân：</td>
+            <td class="formValue">
+                <input type="text" id="xm" name="xm" class="form-control form-an ">
+            </td>
+            <td class="formTitle">Điện thoại di động：</td>
+            <td class="formValue">
+                <input type="text" id="phone" name="phone" class="form-control form-an ">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle"><span>*</span>giấy tờLoại：</td>
+            <td class="formValue">
+                @Html.DropDownList("zjlx", EnumZJLX.sfz.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control" })
+            </td>
+            <td class="formTitle"><span>*</span>Số giấy tờ：</td>
+            <td class="formValue">
+                <input type="text" id="zjh" name="zjh" class="form-control form-an ">
+            </td>
+            <td class="formTitle"><span>*</span>Năm sinh：</td>
+            <td class="formValue">
+                <input id="csny" type="text" class="form-control form-an  input-wdatepicker" onfocus="WdatePicker({
+    onpicked: function () {jsGetAge($(this).val());return true;}})" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle"><span>*</span>Tuổi：</td>
+            <td class="formValue">
+                <input type="text" id="nl" name="nl" class="form-control form-an ">
+            </td>
+            <td class="formTitle"><span>*</span>Giới tính：</td>
+            <td class="formValue">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" id="xb" value="1" name="xb" class="form-control form-an ">
+                        Nam
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" id="xb" value="0" name="xb" class="form-control form-an ">
+                        Nữ
+                    </label>
+                </div>
+            </td>
+            <td class="formTitle">Người giới thiệu：</td>
+            <td class="formValue">
+                <input type="text" id="jsr" name="jsr" class="form-control form-an form-an-end">
+            </td>
+        </tr>
+    </table>
+</form>

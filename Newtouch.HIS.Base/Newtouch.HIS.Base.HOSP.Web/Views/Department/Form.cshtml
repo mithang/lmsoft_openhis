@@ -1,0 +1,207 @@
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div class="container" style="margin-top: 1px; margin-left: -4%; ">
+        <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" style="margin-top: 6px; margin-left: 48px; margin-right: 105px;" id="basicInfo">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Tổ chức:</th>
+                        <td class="formValue formDdlSelectorTd">
+                            <select id="OrganizeId" name="OrganizeId" class="form-control required">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Khoa cấp trên:</th>
+                        <td class="formValue formDdlSelectorTd">
+                            <select class="form-control" id="ParentId" name="ParentId">
+                                <option value="">==Vui lòng chọn==</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Tên:</th>
+                        <td class="formValue"><input type="text" class="form-control required" id="Name" name="Name" placeholder="Vui lòng nhập tên" /></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Mã:</th>
+                        <td class="formValue"><input type="text" class="form-control required" id="Code" name="Code" placeholder="Vui lòng nhập mã" /></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Mã khoa quốc gia:</th>
+                        <td class="formValue">
+                            <input type="text" id="ybksbm" name="ybksbm" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Cờ ngoại trú/nội trú:</th>
+                        <td class="formValue formDdlSelectorTd">
+                            <select id="mzzybz" name="mzzybz" class="form-control required">
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="0">Chung</option>
+                                <option value="1">Ngoại trú</option>
+                                <option value="2">Nội trú</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Mã đầu chữ:</th>
+                        <td class="formValue">
+                            <input id="py" name="py" type="text" class="form-control required" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Thứ tự:</th>
+                        <td class="formValue">
+                            <input id="px" name="px" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Cờ kỹ thuật y tế:</th>
+                        <td class="formValue" style="padding-top: 1px;">
+                            <div class="ckbox">
+                                <input id="yjbz" name="yjbz" type="checkbox"><label for="yjbz"></label>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Khoa thực hiện:</th>
+                        <td class="formValue" style="padding-top: 1px;">
+                            <div class="ckbox">
+                                <input id="zxks" name="zxks" type="checkbox"><label for="zxks"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Khoa chẩn trị:</th>
+                        <td class="formValue" style="padding-top: 1px;">
+                            <div class="ckbox">
+                                <input id="zlks" name="zlks" type="checkbox"><label for="zlks"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Hiệu lực:</th>
+                        <td class="formValue" style="padding-top: 1px;">
+                            <div class="ckbox">
+                                <input id="zt" name="zt" type="checkbox"><label for="zt"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        initControl();
+        if (!!keyValue) {
+            $.najax({
+                url: "/Department/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+
+                    $("#OrganizeId").prop("disabled", true);
+                }
+            });
+        }
+        else {
+            var newOrgId = $.request('orgId');
+            if (newOrgId) {
+                $("#OrganizeId").val(newOrgId).trigger('change');
+            }
+        }
+    });
+
+    function initControl() {
+        //组织机构下拉框
+        $("#OrganizeId").bindSelect({
+            url: "/Organize/GetChildTreeSelectJson",
+        });
+        //组织对应的科室下拉框加载
+        $("#OrganizeId").bind("change", function () {
+            var organizeId = $(this).val();
+            $("#ParentId").bindSelect({
+                url: "/Department/GetTreeSelectJson?treeidFieldName=Id&organizeId=" + organizeId,
+            });
+        });
+        //首拼
+        $('#Name').keyup(function () {
+            $('#py').val($(this).toShouPin());
+        })
+
+        //$("#ybksbm").bindSelect({
+        //    url: "/ItemsData/GetSelectJson",
+        //    param: { code: "Occupation" }
+        //});
+
+
+	
+		$('#ybksbm').newtouchFloatingSelector({
+			width: 350,
+			height: 200,
+			caption: "Khoa quốc gia",
+			url: '/ItemsData/GetSelectJson', 
+            clickautotrigger: true,
+            ajaxparameters: function ($thistr) {
+                return 'code=Occupation&keyword=' + $.trim($('#ybksbm').val());
+            },
+			itemdbclickhandler: function ($thistr) {
+				$('#ybksbm').val($thistr.attr('data-id'));
+			},
+			colModel: [
+				{ label: 'Mã khoa quốc gia', name: 'id', widthratio: 50 },
+				{ label: 'Tên khoa quốc gia', name: 'text', widthratio: 50 }
+			
+			]
+		});
+
+    }
+
+    var anPrevOrg = null;
+    $('#Code').focus(function () {
+        var organizeId = $("#OrganizeId").val();
+        if (!!!keyValue && ($.trim($(this).val()) === '' || organizeId != anPrevOrg)) {
+            anPrevOrg = organizeId;
+            $.najax({
+                url: "/HOME/GetNewFieldUniqueValue?topOrgIdIsStar=false&initFieldLength=8&fieldName=Sys_Department.Code&orgId=" + organizeId + "&r=" + Math.random(),
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    $('#Code').val(data.data);
+                }
+            });
+        }
+    });
+
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: "/Department/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                top.top.$.clientsRefresh(); //刷新缓存
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>

@@ -1,0 +1,135 @@
+
+@{
+    ViewBag.title = "AuditTips";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .form .formTitle {
+        width: 80px;
+        padding-right: 5px;
+    }
+
+    .radio input[type=radio], .radio-inline input[type=radio] {
+        margin-left: -16px;
+    }
+
+    .radio-inline {
+        line-height: 22px;
+        margin-left: 30px;
+        width: 35px;
+    }
+</style>
+
+<form id="form1">
+    <div style="padding-top: 10px; margin-right: 20px;margin-left: 10px;">
+        <div class="gridPanel">
+            <table id="gridList"></table>
+            @*<div id="gridPager"></div>*@
+        </div>
+    </div>
+</form>
+
+
+<script>
+    $(function () {
+        var patzyh = $.request("ajaxresp");
+        gridList(patzyh);
+    });
+    function gridList(patzyh) {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { patList: patzyh },
+            url: "/NurseManage/OrderAudit/Displayinformation",
+            height: $(window).height() - 130,
+            colModel: [
+                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
+                {
+                    label: 'Tính chất y lệnh', name: 'yzxz', align: 'center', width: 50, formatter: function (val) {
+                        return $.enum.getDescByValue("EnumYzxz", val);
+                    } },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center',width:80 },
+                { label: 'Họ tên', name: 'xm', align: 'center',width:80 },
+                { label: 'Tên thuốc', name: 'xmmc', align: 'center', width: 150 },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
+                { label: 'Có hay khôngCầnTest da', name: 'ispscs', align: 'center', width: 80 },
+                { label: 'Result', name: 'Result', align: 'center', width: 80, hidden: true },
+                { label: 'Kết quả test da', name: 'Remark', align: 'center', width: 80, hidden: true }
+                ,
+                {
+                    label: "Thao tác", name: "", width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowobject) {
+                        if (rowobject.ispscs == "未录入") {
+                            return '<a class="btn btn-primary" title="Bổ sung"  onclick="printMxData(\'' + rowobject.yzid + '\',\'' + rowobject.zyh + '\',\'' + rowobject.yzxz + '\')">Bổ sung</a>';
+                            
+                        }
+                        else {
+                            //return '<a class="btn btn-default"  style="width: 26%;" >已录入</a>';
+                            return "";
+                            
+                        }
+                    }
+                }
+            ],
+            onSelectRow: function (rowIndex, s) {
+                
+            }
+        });
+    }
+
+    
+    
+
+    function printMxData(yzid,zyh,yzxz) {
+        var patzyh = $.request("ajaxresp");
+
+            $.modalOpen({
+                id: "InpatientVitalSignsForm",
+                title: "Test daNhập",
+                url: "/NurseManage/OrderAudit/Inputresults",
+                width: "400px",
+                height: "200px",
+                //showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+                leftlalbelchecked: true,
+                //leftlabeltext: "连续录入",
+                leftlalbelcheckedasClose: false,
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick(function (patData) {
+
+                        $.ajax({
+                            url: "/NurseManage/OrderAudit/Enteragain",
+                            dataType: "json",
+                            data: { "zyh": zyh, "yzid": yzid, "lrjg": patData ,"yzlb":yzxz},
+                            type: "post",
+                            success: function (data) {
+                                
+                                if (s = "Test daNhậpthành công") {
+                                    $.modalMsg('Test daNhậpthành công', 'success');
+                                    window.location.replace("/NurseManage/OrderAudit/AuditTips?ajaxresp=" + patzyh);
+                                    
+                                    $('#gridList').jqGrid("reloadGrid");
+                                    
+                                }
+                                else {
+                                    $.modalMsg('Nhập thất bại hoặc đã nhập', 'error');
+                                    window.location.replace("/NurseManage/OrderAudit/AuditTips?ajaxresp=" + patzyh);
+                                    $('#gridList').jqGrid("reloadGrid");
+                                }
+                            }
+                        });
+                        
+
+
+                    });
+                }
+            });
+    }
+
+
+
+
+     
+
+
+</script>
+
+

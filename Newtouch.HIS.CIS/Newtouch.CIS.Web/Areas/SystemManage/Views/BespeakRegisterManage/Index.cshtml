@@ -1,0 +1,94 @@
+@{
+    ViewBag.Title = "Đăng ký hẹn khámBảo trì";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="KhoaTên/Chuyên giaTên" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script>
+    $(function () {
+        gridList();
+        $("#selyf").change(function () {
+            $("#btn_search").trigger("click");
+        });
+        $("#selitem").change(function () {
+            $("#btn_search").trigger("click");
+        });
+    })
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/BespeakRegisterManage/GetTreeGridJson",
+            height: $(window).height() - 120,
+            postData: { keyword: $("#txt_keyword").val() },
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Khoa', name: 'ksmc', width: 120, align: 'left' },
+                { label: 'Ngoại trúLoại', name: 'mzlx', width: 100, align: 'left' },
+                { label: 'Ngày', name: 'regDate', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Khung giờ', name: 'regTime', width: 80, align: 'left' },
+                { label: 'Chuyên gia', name: 'zjmc', width: 120, align: 'left' },
+                { label: 'Tổng số đặt hẹn', name: 'bespeakMaxCount', width: 60, align: 'left' },
+                { label: "Hiệu lực", name: "zt", width: 50, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 80, align: 'left' },
+                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val()},
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/SystemManage/BespeakRegisterManage/DeleteForm",
+            param: { keyValue: keyValue },
+            success: function () {
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+
+</script>

@@ -1,0 +1,78 @@
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var EmrEdiForUrl = AppSettings.GetConfig("KyEmrEdiForUrl");
+}
+<style>
+    .design-template-wrapper {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        height: 800px;
+    }
+</style>
+<script src="@EmrEdiForUrl/iframe/HmEditorIfame.js"></script>
+<div class="design-template-wrapper" id="editorContainer">
+</div>
+
+<script>
+    var editorInstance;
+    var id = "Editor_" + new Date().getTime();
+    var templateId;
+    var templateName;
+    var zyh = $.request('zyh');
+    var blid = $.request('blid');
+    var bllx = $.request('bllx');
+
+    $(function () {
+        // Tạo trình soạn thảo
+        HMEditorLoader.createEditorAsync({
+            container: "#editorContainer",
+            id: id,
+            style: {
+                width: '100%',
+                height: '100%',
+                border: '1px solid #ddd'
+            },
+            editorConfig: {
+                // Cấu hình trình soạn thảo
+            },
+            // Cài đặt chế độ
+            designMode: false,  // Có bật chế độ thiết kế không
+            allowModifyDatasource: true,
+            reviseMode: false,  // Có bật chế độ sửa đổi không
+            readOnly: false,     // Có bật chế độ chỉ đọc không
+            customParams: {     // Tham số tùy chỉnh
+
+            }
+        })
+            .then(function (result) {
+                // Khởi tạo trình soạn thảo hoàn tất
+                editorInstance = result; console.log(12);
+                $.ajax({
+                    type: "POST",
+                    url: "/RecordManage/Record/LoadMedicalRecordHtml",
+                    data: { blid: blid, bllx: bllx, zyh: zyh },
+                    dataType: "json",
+                    async: false,
+                    success: function (respdata) {
+                        console.log(respdata);
+                        editorInstance.setDocContent({
+                            code: respdata.templateId,
+                            docTplName: respdata.templateName,
+                            docContent: respdata.xmldata
+                        });
+                        templateId = respdata.templateId;
+                        templateName = respdata.templateName;
+                    }
+                })
+            })
+            .catch(function (error) {
+                console.error("Khởi tạo trình soạn thảo thất bại:", error);
+            });
+    });
+</script>

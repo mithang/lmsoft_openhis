@@ -1,0 +1,58 @@
+
+@{
+    ViewBag.Title = "From";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div id="table" class="panel panel-default" style="margin-top:2px;margin-left:10px;margin-right: 10px;">
+    <div class="panel-heading navb-bg" style="height:15px; color:black;font-weight:bold; ">
+        Hiển thị chi tiết y lệnh
+    </div>
+    <div class="gridPanel" style="height:auto; width:100%;">
+        <table id="scmxgridList"></table>
+    </div>
+</div>
+
+<script>
+    var zyh = $.request("zyh");
+    var types = $.request("types");
+    $(function () {
+        if (!!zyh && zyh != null) {
+            var colmodel = [{ label: "mở đơn Bác sĩ", name: "kdys", width: 60, align: "left" },
+            { label: "mở đơn Khoa", name: "kdks", width: 80, align: "left" },
+            { label: "Nội dung y lệnh", name: "xmmc", width: 450, align: "left" },
+            { label: "Ngày lập phiếu", name: "kdrq", width: 120, align: "left" },
+            ];
+            if (types == "4402") {
+                colmodel = [{ label: "mở đơn Bác sĩ", name: "kdys", width: 60, align: "left" },
+                { label: "mở đơn Khoa", name: "kdks", width: 80, align: "left" },
+                { label: "Nội dung y lệnh", name: "xmmc", width: 450, align: "left" },
+                { label: "Ngày lập phiếu", name: "kdrq", width: 120, align: "left" },
+                ];
+            } else if (types == "4501") {
+                colmodel = [{ label: "mở đơn Bác sĩ", name: "kdys", width: 60, align: "left" },
+                { label: "mở đơn Khoa", name: "kdks", width: 80, align: "left" },
+                { label: "kiểm tra bộ", name: "xmmc", width: 160, align: "left" },
+                { label: "Ấn tượng lâm sàng kiểm tra", name: "lcyx", width: 400, align: "left" },
+                { label: "Ngày lập phiếu", name: "kdrq", width: 120, align: "left" },
+                ];
+            } else if (types == "4502") {
+                colmodel = [{ label: "xét nghiệm Khoản mục", name: "xmmc", width: 120, align: "left" },
+                { label: "Tên tiếng Anh của hạng mục xét nghiệm", name: "xmywmc", width: 100, align: "left" },
+                { label: "Giá trị nguy kịch", name: "wjz", width: 40, align: "left" },
+                { label: "Khoản mục Đơn vị", name: "xmdw", width: 100, align: "left" },
+                { label: "tham khảo Giá trị", name: "ckz", width: 100, align: "left" },
+                { label: "xét nghiệm kết quả", name: "jyjg", width: 70, align: "left" },
+                ];
+            }
+            var $cbxxgridList = $("#scmxgridList");
+            $cbxxgridList.dataGrid({
+                url: "/DRGManage/DRGTradUpload/GetGridyzList",
+                height: 350,
+                postData: { zyh: zyh, types: types },
+                colModel: colmodel
+            });
+        }
+    });
+
+</script>

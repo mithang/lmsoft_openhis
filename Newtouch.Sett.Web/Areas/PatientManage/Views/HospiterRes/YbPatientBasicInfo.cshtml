@@ -1,0 +1,1996 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "BHYT thông tin bệnh nhân";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@{
+    //是否和新农合交易
+    var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
+    //是否和医保交易
+    var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
+    //医保患者必须一次结掉
+    bool? ybSettOnce = (openYbSett ?? false) && (SysConfigReader.Bool("Outpatient_ChargeFee_yb_SettOnce") ?? false);
+    var opr = OperatorProvider.GetCurrent();
+    //医保所属地
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+}
+<style type="text/css">
+    .form .formTitleTh {
+        position: relative;
+        left: 0px;
+        text-align: right;
+        white-space: nowrap;
+        font-weight: normal;
+        width: 120px;
+        padding-right: 0px;
+    }
+
+    .form .formTitleAccount {
+        position: relative;
+        left: 0px;
+        text-align: right;
+        white-space: nowrap;
+        font-weight: normal;
+        width: 200px;
+        padding-right: 0px;
+    }
+
+    .form .formValueYb {
+        position: relative;
+        width: auto;
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active">
+        <a href="#jzxxcx" data-toggle="tab">Thông tin khám bệnh Tra cứu</a>
+    </li>
+    <li>
+        <a href="#yljgxxcx" data-toggle="tab">Cơ sở y tế thông tin Tra cứu</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="jzxxcx">
+        <div class="panel panel-default" style="margin-bottom: 4px;">
+            <div class="panel-heading navb-bg">
+                Điều kiện lọc
+            </div>
+
+            <div style="padding-right:20px;">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Loại：</th>
+                        <td class="formValue" style="width:180px">
+                            @Html.DropDownList("sel_rptype", EnumYbQuery.rydyxs.ToDescSelectList(), new { @class = "form-control form-an" })
+                        </td>
+                        <th class="formTitle">Ngày bắt đầu：</th>
+                        <td class="formValue">
+                            <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
+                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
+                        </td>
+                        <th class="formTitle">Ngày kết thúc：</th>
+                        <td class="formValue">
+                            <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
+                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
+                        </td>
+                        <td class="formTitle" style="width:50px">
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btkhsr" value="Tra cứu" onclick="GetYbInfo()" />
+                        </td>
+                        <td class="formValue">
+                            @Html.Partial("YibaoRedCardCommon")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Loại y tế：</th>
+                        <td class="formValue" style="width: 180px">
+                            @Html.DropDownList("sel_yllb", Enumyllb.ptmz.ToDescSelectList(), new { @class = "form-control form-an" })
+
+                        </td>
+                        <th class="formTitle">quyết toánID：</th>
+                        <td class="formValue">
+                            <input type="text" id="settId" name="settId" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle">khámID：</th>
+                        <td class="formValue">
+                            <input type="text" id="jzId" name="jzId" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle">Số phiếu báo cáo：</th>
+                        <td class="formValue">
+                            <input type="text" id="rpotc_no" name="rpotc_no" class="form-control" placeholder="tại5401trong Lấy" style="width:150px" />
+                        </td>
+                        <td class="formValue">
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btkhsr" value="Đăng xuất" onclick="SiginOut()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle 420-show">Số trang hiện tại:</th>
+                        <td class="formValue 420-show style=' width:150px'">
+                            <input type="text" id="jzxx_page_num" class="form-control" style="height:26px;width:90px;display:inline" value="" />
+                            <input type="button" id="btn_jzxx_next" class="btn btn-primary btn-md" value="Trang sau" />
+                        </td>
+                        <th class="formTitle 420-show">Lượng dữ liệu trang này:</th>
+                        <td class="formTitle 420-show">
+                            <input type="text" id="jzxx_page_size" class="form-control" style="height:16px" value="" />
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-bottom: 4px;">
+            <div class="panel-heading navb-bg">
+                Thông tin cơ bản
+            </div>
+            <div style="padding-right:0px; text-align:center">
+                <table class="form">
+                    <tr>
+                        <th class="formTitleTh">Số hiệu nhân viên：</th>
+                        <td class="formValueYb" style="width: 120px;">
+                            <label id="rybh"></label>
+                        </td>
+                        <th class="formTitleTh">Số giấy tờ：</th>
+                        <td class="formValueYb" style="width: 120px;">
+                            <label id="zjhm"></label>
+                        </td>
+                        <td class="formTitleTh">Họ tên：</td>
+                        <td class="formValueYb">
+                            <label id="xm"></label>
+                        </td>
+                        <td class="formTitleTh">Giới tính：</td>
+                        <td class="formValueYb">
+                            <label id="xb"></label>
+                        </td>
+                        @*<th class="formTitleTh">民族：</th>
+                            <td class="formValueYb">
+                                <label id="mz"></label>
+                            </td>*@
+
+                    </tr>
+                    <tr>
+                        <th class="formTitleTh">Ngày sinh：</th>
+                        <td class="formValueYb">
+                            <label id="csny"></label>
+                        </td>
+                        <th class="formTitleTh">Tuổi：</th>
+                        <td class="formValueYb">
+                            <label id="nl"></label>
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-bottom: 4px;">
+            <div class="panel-heading navb-bg">
+                thông tin Danh sách
+            </div>
+            <div style="padding-right:20px;">
+                <form id="formPat2">
+                    <div class="gridPanel" style="margin-top:10px;border-radius:5px;">
+                        @*<table id="gridList"></table>*@
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @* 医疗结构信息查询 tap *@
+    <div class="tab-pane fade" id="yljgxxcx">
+        <div class="panel panel-default" style="margin-bottom: 4px;">
+            <div class="panel-heading navb-bg">
+                Điều kiện lọc
+            </div>
+
+            <div style="padding-right:20px;">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Loại：</th>
+                        <td class="formValue" style="width:180px">
+                            @Html.DropDownList("sel_jgcxtype", EnumYbJGQuery.jgxx.ToDescSelectList(), new { @class = "form-control form-an" })
+                        </td>
+                        <th class="formTitle 1201-show">Tên cơ sở y dược：</th>
+                        <td class="formValue 1201-show" style="width: 180px">
+                            <input type="text" id="fixmedins_name" name="fixmedins_name" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle  1201-show">Mã số cơ sở y dược：</th>
+                        <td class="formValue  1201-show">
+                            <input type="text" id="fixmedins_code" name="fixmedins_code" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle time-show">Ngày bắt đầu：</th>
+                        <td class="formValue  time-show">
+                            <input id="jg_kssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
+                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
+                        </td>
+                        <th class="formTitle  time-show">Ngày kết thúc：</th>
+                        <td class="formValue  time-show">
+                            <input id="jg_jssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
+                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
+                        </td>
+                        <td class="formTitle 3607-show">*Số trang hiện tại:</td>
+                        <td class="formValue 3607-show  style='width:150px'">
+                            <input type="text" id="page_num" class="form-control" style="height:26px;width:90px;display:inline" value="" />
+                            <input type="button" id="btn_yljgxxcx_next" class="btn btn-primary btn-md" value="Trang sau" />
+                        </td>
+                        <td class="formTitle 3607-show">*Lượng dữ liệu trang này:</td>
+                        <td class="formTitle 3607-show">
+                            <input type="text" id="page_size" class="form-control" style="height:16px" value="" />
+                        </td>
+                        <td class="formTitle" style="width:50px">
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="jg_btkhsr" value="Tra cứu" onclick="GetYbJGInfo()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle 35-show">Mã mục lục cơ sở y dược：</th>
+                        <td class="formValue 35-show" style="width: 180px">
+                            <input type="text" id="medins_list_codg" name="medins_list_codg" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle 35-show">Số giao dịch lô của cơ sở y dược chỉ định：</th>
+                        <td class="formValue 35-show">
+                            <input type="text" id="fixmedins_bchno" name="fixmedins_bchno" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle 35-show">Mã mục lục y tế：</th>
+                        <td class="formValue 35-show">
+                            <input type="text" id="med_list_codg" name="med_list_codg" class="form-control" style="width:150px" />
+                        </td>
+                        <th class="formTitle 35-show">khámID：</th>
+                        <td class="formValue 35-show">
+                            <input type="text" id="mdtrt_id" name="mdtrt_id" class="form-control" style="width:150px" />
+                        </td>
+                        <td class="formTitle 3607-show">*Năm tháng quyết toán:</td>
+                        <td class="formValue 3607-show">
+                            <input id="setl_ym" type="text" class="form-control input-wdatepicker" style="width:120px; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyyMM")" onfocus="WdatePicker({ dateFmt: 'yyyyMM' })" />
+                        </td>
+                        <th class="formTitle 3607-show">quyết toánID：</th>
+                        <td class="formValue 3607-show">
+                            <input type="text" id="setl_id" name="setl_id" class="form-control" style="width:150px" />
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-bottom: 4px;">
+            <div style="padding-right:20px;">
+                <form id="jg_formPat">
+                    <div class="jg_gridPanel" style="margin-top:10px;border-radius:5px;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
+    var ybSettOnce = '@ybSettOnce' === 'True'; //开关配置：医保患者是否一次结
+    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    var cqPatInfo = {};                       //患者读卡信息
+
+    $('#jzId').newtouchBatchFloatingSelector({
+        width: 700,
+        height: 200,
+        caption: "Chọn khám",
+        clickautotrigger: true,
+        url: "/PatientManage/HospiterRes/Getjzjsxx",
+        ajaxparameters: function ($thisinput) {
+            var jzid = $thisinput.val().trim();
+            return "keyword=" + jzid + "&grbh=" + cqPatInfo.grbh + "&type=1";
+        },
+        itemdbclickhandler: function ($thistr, $thisinput) {
+            $("#jzId").val($thistr.attr("data-jzid"));
+        },
+        colModel: [
+            { label: 'Ngoại trú Số nhập viện', name: 'zymzh', width: 120, align: 'left' },
+            { label: 'Loại', name: 'type', width: 50, align: 'center' },
+            { label: 'khám ID', name: 'jzid', width: 150, align: 'center' },
+            { label: 'Thời gian khám', name: 'jzsj', width: 200, align: 'center' }
+        ]
+    });
+    $('#settId').newtouchBatchFloatingSelector({
+        width: 700,
+        height: 200,
+        caption: "Chọn khám",
+        clickautotrigger: true,
+        url: "/PatientManage/HospiterRes/Getjzjsxx",
+        ajaxparameters: function ($thisinput) {
+            var jsid = $thisinput.val().trim();
+            return "keyword=" + jsid + "&grbh=" + cqPatInfo.grbh + "&type=2";
+        },
+        itemdbclickhandler: function ($thistr, $thisinput) {
+            $("#settId").val($thistr.attr("data-jylsh"));
+        },
+        colModel: [
+            { label: 'Ngoại trú Số nhập viện', name: 'zymzh', width: 120, align: 'left' },
+            { label: 'Loại', name: 'type', width: 50, align: 'center' },
+            { label: 'quyết toán ID', name: 'jylsh', width: 150, align: 'center' },
+            { label: 'khám ID', name: 'jzid', width: 150, align: 'center' },
+            { label: 'Thời gian quyết toán', name: 'jssj', width: 200, align: 'center' }
+        ]
+    });
+
+    function SiginOut()
+    {
+        var siginout = { operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', sign_no:"" };
+
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/DoSigin9002",
+            dataType: "json",
+            data: siginout,
+            async: false,
+            success: function (data) {
+                var qtReg = eval('(' + data + ')');
+                if (qtReg) {
+                    if (qtReg.infcode == "0" && !!qtReg.output.signoutoutb.sign_time) {
+                        $.modalAlert("Đăng xuất thành công", 'success');
+                    }
+                }
+            },
+            error: function () {
+                $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+            }
+        });
+    }
+
+    //-----------------------------就诊信息查询页面 start-----------------------------//
+    function GetYbInfo()
+    {
+        var type = $('#sel_rptype').val();
+        if (type=="1")
+        {
+            var dyxsData = { begntime: $('#kssj').val(),psn_no: cqPatInfo.grbh, insutype:cqPatInfo.xzlx,med_type: $('#sel_yllb').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetPersonnelTreatment_2001",
+                dataType: "json",
+                data: dyxsData,
+                async: false,
+                success: function (data) {
+                    var TbMzReg = eval('(' + data + ')');
+                    if (TbMzReg) {
+                        if (TbMzReg.infcode == "0" && !!TbMzReg.output.trtinfo) {
+                            gridListData(TbMzReg.output.trtinfo,type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(TbMzReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+
+        }
+        else if(type=="2")
+        {
+            var rcData = { begntime: $('#kssj').val(), endtime: $('#jssj').val(), med_type:'21', mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetRegistration_5201",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.mdtrtinfo) {
+                            gridListData(refReg.output.mdtrtinfo, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "3")
+        {
+            var rcData = { setl_id: $('#settId').val(), mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetDiagnosis_5202",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.diseinfo) {
+                            gridListData(refReg.output.diseinfo, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "4")
+        {
+            var rcData = { setl_id: $('#settId').val(), mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetHospitaSettlement_5203",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    debugger;
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.setlinfo) {
+                            gridListData(refReg.output.setlinfo, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "5")
+        {
+            var rcData = { setl_id: $('#settId').val(), mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetHospitaSettlement_5204",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output) {
+                            gridListData(refReg.output, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "6")
+        {
+            var rcData = { begntime: $('#kssj').val(), endtime: $('#jssj').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetSpecialDisease_5205",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.feedetail) {
+                            gridListData(refReg.output.feedetail, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "7")
+        {
+            var rcData = { psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetPeopleTotalInfo_5206",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.cuminfo) {
+                            gridListData(refReg.output.cuminfo, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "8")
+        {
+            var tsbData = { psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/SlowDisease_5301",
+                dataType: "json",
+                data: tsbData,
+                async: false,
+                success: function (data) {
+                    var TbMzReg = eval('(' + data + ')');
+                    if (TbMzReg) {
+                        if (TbMzReg.infcode == "0" && !!TbMzReg.output.feedetail) {
+                            gridListData(TbMzReg.output.feedetail, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(TbMzReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+
+        }
+        else if (type == "9")
+        {
+            var rcData = { biz_appy_type:"01", psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetPersonnel_5302",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.psnfixmedin) {
+                            gridListData(refReg.output.psnfixmedin, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "10")
+        {
+            var rcData = { begntime: $('#kssj').val(), endtime: $('#jssj').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetInHospital_5303",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                            gridListData(refReg.output.data, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "11")
+        {
+            var rcData = { begntime: $('#kssj').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetTurnHospital_5304",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.refmedin) {
+                            gridListData(refReg.output.refmedin, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "5401")
+        {
+            var rcData = { psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetBilgiteminfo_5401",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.bilgiteminfo) {
+                            gridListData(refReg.output.bilgiteminfo, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "5402")
+        {
+            var rcData = { rpotc_no: $('#rpotc_no').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetCheckreportdetails_5402",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output) {
+                            gridListData5402(refReg.output. type);
+                        }
+                        else {
+                            gridListData5402("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "4207")
+        {
+            var rcData = { page_num: $('#jzxx_page_num').val(), page_size: $('#jzxx_page_size').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)' };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetSelfPayPatientsFsiOwnpayPatnFeeListDDTO_4207",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                            gridListData(refReg.output.data, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');  
+                }
+            });
+        }
+        else if (type == "4208")
+        {
+            var rcData = { page_num: $('#jzxx_page_num').val(), page_size: $('#jzxx_page_size').val(), begntime: $('#kssj').val(), endtime: $('#jssj').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)'};
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetSelfPayPatientsMdtrtinfo_4208",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                            gridListData(refReg.output.data, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+        else if (type == "4209")
+        {
+            var rcData = { page_num: $('#jzxx_page_num').val(), page_size: $('#jzxx_page_size').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)' };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetSelfPayPatientsDiseinfo_4209",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                            gridListData(refReg.output.data, type);
+                        }
+                        else {
+                            gridListData("", type);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+
+    }
+
+    function gridListData(mydata, type) {
+        var colModel;
+
+        var captionCon = "";
+        switch (type) {
+            case '1':
+                captionCon = "Hưởng chế độ Danh sách";
+                colModel = [
+                    { label: 'Số hiệu nhân viên', name: 'psn_no', width: 105,align: 'center' },
+                    {
+                        label: 'Loại kiểm tra chế độ', name: "trt_chk_type", width: 105, align: 'center', formatter: function (val) {
+                            return $.enum.getDescByValue("Enumdyjclx", val);
+                        }
+                    },
+                     {
+                         label: 'Quỹ Thanh toán Loại Mã', name: 'fund_pay_type', width: 105, align: 'center'
+                     },
+                    { label: 'Quỹ Thanh toán Loại', name: 'fund_pay_type', width: 105, align: 'center', formatter: function (val) {
+                        return $.enum.getDescByValue("Enumjjzflx", val);
+                    }
+                    },
+
+                    {
+                        label: 'Dấu hiệu hưởng chế độ khoản quỹ', name: 'trt_enjymnt_flag', width: 105, align: 'center', formatter: function (val) {
+                            return $.enum.getDescByValue("Enumdyxsbz", val);
+                        }
+                    },
+                    { label: 'Ngày bắt đầu', name: 'begndate', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                    { label: 'Ngày kết thúc', name: 'enddate', width: 125, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                    { label: 'Kết quả kiểm tra chế độ', name: 'trt_chk_rslt', width: 105, align: 'center' },
+                ];
+                break;
+            case "2":
+                captionCon = "Thông tin khám bệnh";
+                colModel = [
+                   { label: 'khámID', name: 'mdtrt_id', width: 55,  align: 'center' },
+                   { label: 'Giờ bắt đầu', name: 'begntime', width: 105, formatter: "number", align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                   { label: 'Giờ kết thúc', name: 'endtime', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                   { label: 'Nhập viện/Số khám ngoại trú', name: 'ipt_otp_no', width: 105, align: 'center' },
+                   { label: 'Bác sĩ điều trị chính Mã', name: 'atddr_no', width: 105, align: 'center' },
+                   { label: 'Tên bác sĩ điều trị chính', name: 'chfpdr_name', width: 105, align: 'center'},
+                   { label: 'Mã khoa', name: 'adm_dept_codg', width: 85, align: 'center' },
+                   { label: 'Tên khoa', name: 'adm_dept_name', width: 85, align: 'center' },
+                   { label: 'Mã loại bệnh', name: 'dise_codg', width: 85, align: 'center' },
+                    { label: 'Tên loại bệnh', name: 'dise_name', width: 85, align: 'center' },
+                ];
+                break;
+            case "3":
+                captionCon = "Thông tin chẩn đoán";
+                colModel = [
+                  { label: 'khámID', name: 'mdtrt_id', width: 55, align: 'center' },
+                  {
+                      label: 'Loại chẩn đoán', name: 'diag_type', width: 105, formatter: function (val) {
+                          return $.enum.getDescByValue("Enumzdlx", val);
+                      }
+                  },
+                  {
+                      label: 'Dấu hiệu chẩn đoán chính', name: 'maindiag_flag', width: 105, align: 'center', formatter: function (val) {
+                          return $.enum.getDescByValue("Enumdyxsbz", val);
+                      }
+                  },
+                  { label: 'Mã chẩn đoán', name: 'diag_code', width: 60, align: 'center' },
+                  { label: 'Tên chẩn đoán', name: 'diag_name', width: 105, align: 'center' },
+                  { label: 'Chẩn đoán Khoa', name: 'diag_dept', width: 105, align: 'center' },
+                  { label: 'Chẩn đoán Bác sĩ Mã', name: 'dise_dor_no', width: 85, align: 'center' },
+                  { label: 'Chẩn đoán Tên bác sĩ', name: 'dise_dor_name', width: 105, align: 'center' },
+                  { label: 'Thời gian chẩn đoán', name: 'diag_time', width: 105, align: 'center',formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                ];
+                break;
+            case "4":
+                captionCon = "Thông tin quyết toán";
+                colModel = [
+                     { label: 'quyết toánID', name: 'setl_id', width: 85, align: 'center' },
+                     { label: 'khám ID', name: 'mdtrt_id', width: 85 },
+                     { label: 'Ngày bắt đầu', name: 'begndate', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                     { label: 'Ngày kết thúc', name: 'enddate', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                     { label: 'Thời gian quyết toán', name: 'setl_time', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                     { label: 'Tổng phí y tế', name: 'medfee_sumamt', width: 85, align: 'center' },
+                     { label: 'quỹ chung Quỹ', name: 'hifp_pay', width: 85, align: 'center' },
+                     { label: 'Trợ cấp công vụ', name: 'cvlserv_pay', width: 85, align: 'center' },
+                     { label: 'Trợ cấp doanh nghiệp', name: 'hifes_pay', width: 85, align: 'center' },
+                     { label: 'dân cư Bệnh nặng', name: 'hifmi_pay', width: 85, align: 'center' },
+                     { label: 'Quỹ lớn cho người lao động', name: 'hifob_pay', width: 85, align: 'center' },
+                     { label: 'Cứu trợ y tế', name: 'maf_pay', width: 85, align: 'center' },
+                     { label: 'Thanh toán cá nhân', name: 'psn_pay', width: 85, align: 'center' },
+                     { label: 'Tài khoản cá nhân', name: 'acct_pay', width: 85, align: 'center' }
+                ];
+                break;
+            case "5":
+                captionCon = "Chi tiết phí";
+                colModel = [
+                     { label: 'quyết toánID', name: 'setl_id', width: 65, align: 'center' },
+                     { label: 'khámID', name: 'mdtrt_id', width: 65 },
+                     { label: 'Chi phí Số giao dịch', name: 'feedetl_sn', width: 65, align: 'center' },
+                     { label: 'Số lượng', name: 'cnt', width: 55, align: 'center'},
+                     { label: 'Đơn giá', name: 'pric', width: 55, align: 'center' },
+                     { label: 'Tổng số tiền', name: 'det_item_fee_sumamt', width: 60, align: 'center' },
+                     { label: 'Tổng số tiền tự chi trả', name: 'fulamt_ownpay_amt', width: 60, align: 'center' },
+                     { label: 'Số tiền vượt giá giới hạn', name: 'overlmt_amt', width: 60, align: 'center' },
+                     { label: 'Số tiền tự trả trước', name: 'preselfpay_amt', width: 60, align: 'center' },
+                     { label: 'Phạm vi phù hợp chính sách', name: 'inscp_scp_amt', width: 60, align: 'center' },
+                     { label: 'Danh mục BHYT Mã', name: 'hilist_code', width: 80, align: 'center' },
+                     { label: 'Danh mục BHYT Tên', name: 'hilist_name', width: 100, align: 'center' },
+                     { label: 'Mã mục lục y tế', name: 'med_list_codg', width: 100, align: 'center' },
+                     { label: 'mở đơn Mã khoa', name: 'bilg_dept_codg', width: 70, align: 'center' },
+                     { label: 'mở đơn Tên khoa', name: 'bilg_dept_name', width: 100, align: 'center' }
+                ];
+                break;
+            case "6":
+                captionCon = "Bản ghi dùng thuốc bệnh mạn tính đặc biệt của nhân viên";
+                colModel = [
+     { label: 'Chi phí Số giao dịch', name: 'feedetl_sn', width: 105, align: 'center' },
+     { label: 'Số lượng', name: 'cnt', width: 105, align: 'center' },
+     { label: 'Đơn giá', name: 'pric', width: 105, align: 'center' },
+     { label: 'Thời gian phát sinh chi phí', name: 'fee_ocur_time', width: 125, align: 'center' },
+      { label: 'Danh mục BHYT Mã', name: 'hilist_code', width: 105, align: 'center' },
+     { label: 'Danh mục BHYT Tên', name: 'hilist_name', width: 105, align: 'center' },
+     { label: 'Mã mục lục y tế', name: 'med_list_codg', width: 105, align: 'center' },
+     { label: 'Mã mục lục cơ sở y dược', name: 'medins_list_codg', width: 105, align: 'center' },
+     { label: 'Tên mục lục cơ sở y dược', name: 'medins_list_name', width: 105, align: 'center' }
+
+                ];
+                break;
+            case "7":
+                captionCon = "Thông tin lũy kế của nhân viên";
+                colModel = [
+                     {
+                         label: 'Loại bảo hiểm', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumxzlx", val);
+                         }
+                     },
+                     { label: 'Năm', name: 'year', width: 105, align: 'center' },
+                     { label: 'Năm tháng lũy kế', name: 'cum_ym', width: 105, align: 'center' },
+                     { label: 'Mã loại lũy kế', name: 'cum_type_code', width: 125, align: 'center' },
+                     { label: 'Giá trị lũy kế', name: 'cum', width: 105, align: 'center' }
+                ];
+                break;
+            case "8":
+                captionCon = "Tra cứu hồ sơ bệnh đặc biệt của nhân viên";
+                colModel = [
+                     { label: 'Mã mục lục loại bệnh mạn tính/đặc biệt ngoại trú', name: 'opsp_dise_code', width: 105, align: 'center' },
+                     { label: 'Tên loại bệnh mạn tính/đặc biệt ngoại trú', name: 'opsp_dise_name', width: 405, align: 'center' },
+                     { label: 'Ngày bắt đầu', name: 'begndate', width: 105, align: 'center' },
+                     { label: 'Ngày kết thúc', name: 'enddate', width: 105, align: 'center' }
+                ];
+                break;
+            case "9":
+                captionCon = "Tra cứu thông tin chỉ định của nhân viên";
+                colModel = [
+                     {
+                         label: 'Loại bảo hiểm', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumxzlx", val);
+                         }
+                     },
+                     { label: 'Số thứ tự chỉ định', name: 'fix_srt_no', width: 105, align: 'center' },
+                     { label: 'Mã số cơ sở y dược chỉ định', name: 'fixmedins_code', width: 105, align: 'center' },
+                     { label: 'Tên cơ sở y dược chỉ định', name: 'fixmedins_name', width: 125, align: 'center' },
+                     { label: 'Ngày bắt đầu', name: 'begndate', width: 105, align: 'center' },
+                     { label: 'Ngày kết thúc', name: 'enddate', width: 125, align: 'center' }
+                ];
+                break;
+            case "10":
+                captionCon = "Tra cứu thông tin đang nằm viện";
+                colModel = [
+                     { label: 'khámID', name: 'mdtrt_id', width: 105, align: 'center' },
+                     {
+                         label: 'Loại bảo hiểm', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumxzlx", val);
+                         }
+                     },
+                     { label: 'Ngày bắt đầu', name: 'begndate', width: 105, align: 'center' },
+                     {
+                         label: 'Loại y tế', name: 'med_type', width: 125, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumyllb", val);
+                         }
+                     },
+                     { label: 'Nhập viện/Số khám ngoại trú', name: 'ipt_otp_no', width: 105, align: 'center' },
+                     { label: 'khác địa phương dấu hiệu', name: 'out_flag', width: 125, align: 'center' }
+                ];
+                break;
+            case "11":
+                captionCon = "Tra cứu thông tin chuyển viện";
+                colModel = [
+                     {
+                         label: 'Loại bảo hiểm', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumxzlx", val);
+                         }
+                     },
+                     {
+                         label: 'Nguồn khai báo', name: 'dcla_souc', width: 105, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumsbly", val);
+                         }
+                     },
+                     { label: 'Mã chẩn đoán', name: 'diag_code', width: 105, align: 'center' },
+                     { label: 'Tên chẩn đoán', name: 'diag_name', width: 125, align: 'center' },
+                     { label: 'Mã số cơ sở y dược chỉ định chuyển đến', name: 'reflin_medins_no', width: 105, align: 'center' },
+                     { label: 'Chuyển Vào Bệnh viện Tên', name: 'reflin_medins_name', width: 125, align: 'center' },
+                     {
+                         label: 'khác địa phương dấu hiệu', name: 'out_flag', width: 105, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumdyxsbz", val);
+                         }
+                     },
+                     { label: 'Chuyển viện Ngày', name: 'refl_date', width: 125, align: 'center' },
+                     { label: 'Giờ bắt đầu', name: 'begndate', width: 105, align: 'center' },
+                     { label: 'Giờ kết thúc', name: 'enddate', width: 125, align: 'center' },
+                     {
+                         label: 'Dấu hiệu bệnh viện đồng ý chuyển viện', name: 'hosp_agre_refl_flag', width: 125, align: 'center', formatter: function (val) {
+                             return $.enum.getDescByValue("Enumdyxsbz", val);
+                         }
+                     }
+                ];
+                break;
+            case "5401":
+                captionCon = "Khoản mục Công nhận lẫn nhau thông tin";
+                colModel = [
+                    { label: 'Số hiệu nhân viên', name: 'psn_no', width: 180, align: 'center' },
+                    { label: 'Số phiếu báo cáo', name: 'rpotc_no', width: 130, align: 'center' },
+                    { label: 'Ngày báo cáo', name: 'rpt_date', width: 80, align: 'center' },
+                    { label: 'Báo cáo đơn Loại Mã', name: 'rpotc_type_code', width: 100, align: 'center' },
+                    { label: 'Mã cơ sở', name: 'fixmedins_code', width: 80, align: 'center' },
+                    { label: 'Tên phiếu báo cáo kiểm tra', name: 'exam_rpotc_name', width: 120, align: 'center' },
+                    { label: 'Ngày báo cáo', name: 'rpt_date', width: 60, align: 'center' },
+                    { label: 'Dấu hiệu kết quả kiểm tra dương tính', name: 'exam_rslt_poit_flag', width: 120, align: 'center' },
+                    { label: 'kiểm tra kết quả bất thường dấu hiệu', name: 'exam_rslt_abn', width: 120, align: 'center' },
+                    { label: 'Tên phiếu báo cáo kiểm tra', name: 'exam_rpotc_name', width: 120, align: 'center' },
+                    { label: 'Kết luận kiểm tra', name: 'examCcls', width: 150, align: 'center' }
+                ];
+                break;
+            case "4207":
+                captionCon = "Chi tiết phí khám bệnh của bệnh nhân tự trả";
+                colModel = [
+                    { label: 'ID khám tại cơ sở y dược', name: 'fixmedinsMdtrtId', width: 90, align: 'center' },
+                    { label: 'Thời gian phát sinh chi phí', name: 'feeOcurTime', width: 120, align: 'center' },
+                    { label: 'Tên cơ sở y dược chỉ định', name: 'fixmedinsName', width: 120, align: 'center' },
+                    { label: 'Số lượng', name: 'cnt', width: 60, align: 'center' },
+                    { label: 'Đơn giá', name: 'pric', width: 60, align: 'center' },
+                    { label: 'chi tiết Khoản mục Tổng số phí', name: 'detItemFeeSumamt', width: 100, align: 'center' },
+                    { label: 'Tên mục lục cơ sở y dược', name: 'medinsListName', width: 120, align: 'center' },
+                    { label: 'mở đơn Tên khoa', name: 'bilgDeptName', width: 100, align: 'center' },
+                    { label: 'Tên bác sĩ kê đơn', name: 'bilgDrName', width: 100, align: 'center' },
+                    { label: 'Tổng số tiền tự chi trả', name: 'fulamtOwnpayAmt', width: 100, align: 'center' },
+                    { label: 'Số tiền tự chi trả vượt giá giới hạn', name: 'overlmtSelfpay', width: 100, align: 'center' },
+                    { label: 'Tên người xử lý', name: 'opterName', width: 100, align: 'center' },
+                    { label: 'Thời gian xử lý', name: 'optTime', width: 100, align: 'center' }
+
+
+                    //{ label: '记账流水号', name: 'bkkpSn', width: 90, align: 'center' },
+                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
+                    //{ label: '医疗目录编码', name: 'medListCodg', width: 150, align: 'center' },
+                    //{ label: '医药机构目录编码', name: 'medinsListCodg', width: 450, align: 'center' },
+                    //{ label: '医疗收费项目类别', name: 'medChrgitmType', width: 18, align: 'center' },
+                    //{ label: '商品名', name: 'prodname', width: 600, align: 'center' },
+                    //{ label: '开单科室编码', name: 'bilgDeptCodg', width: 90, align: 'center' },
+                    //{ label: '开单医生编码', name: 'bilgDrCode', width: 90, align: 'center' },
+                    //{ label: '受单科室编码', name: 'acordDeptCodg', width: 90, align: 'center' },
+                    //{ label: '受单科室名称', name: 'acordDeptName', width: 300, align: 'center' },
+                    //{ label: '受单医生编码', name: 'acordDrCode', width: 90, align: 'center' },
+                    //{ label: '受单医生姓名', name: 'acordDrName', width: 150, align: 'center' },
+                    //{ label: '中药使用方式', name: 'tcmdrugUsedWay', width: 18, align: 'center' },
+                    //{ label: '外检标志', name: 'etipFlag', width: 9, align: 'center' },
+                    //{ label: '外检医院编码', name: 'etipHospCode', width: 90, align: 'center' },
+                    //{ label: '出院带药标志', name: 'dscgTkdrugFlag', width: 9, align: 'center' },
+                    //{ label: '单次剂量描述', name: 'sinDosDscr', width: 600, align: 'center' },
+                    //{ label: '使用频次描述', name: 'usedFrquDscr', width: 600, align: 'center' },
+                    //{ label: '周期天数', name: 'prdDays', width: 12, align: 'center' },
+                    //{ label: '用药途径描述', name: 'medcWayDscr', width: 600, align: 'center' },
+                    //{ label: '备注', name: 'memo', width: 1500, align: 'center' },
+                    //{ label: '先行自付金额', name: 'preselfpayAmt', width: 48, align: 'center' },
+                    //{ label: '符合政策范围金额', name: 'inscpAmt', width: 48, align: 'center' },
+                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
+                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
+                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
+                    //{ label: '创建人', name: 'crterId', width: 60, align: 'center' },
+                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
+                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
+                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
+                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
+                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
+                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' },
+                    //{ label: '审核通过标识', name: 'chkPassFlag', width: 9, align: 'center' },
+                    //{ label: '处方号', name: 'rxno', width: 90, align: 'center' }
+                ];
+                break;
+            case "4208":
+                captionCon = "Thông tin khám bệnh của bệnh nhân tự trả";
+                colModel = [
+                    { label: 'ID khám tại cơ sở y dược', name: 'fixmedinsMdtrtId', width: 120, align: 'center' },
+                    { label: 'Tên cơ sở y dược chỉ định', name: 'fixmedinsName', width: 120, align: 'center' },
+                    { label: 'Số giấy tờ', name: 'certno', width: 150, align: 'center' },
+                    { label: 'Tên nhân viên', name: 'psnName', width: 100, align: 'center' },
+                    { label: 'Giới tính', name: 'gend', width: 50, align: 'center' },
+                    { label: 'Giờ bắt đầu', name: 'begntime', width: 100, align: 'center' },
+                    { label: 'Giờ kết thúc', name: 'endtime', width: 100, align: 'center' },
+                    { label: 'Loại y tế', name: 'medType', width: 50, align: 'center' },
+                    { label: 'Nhập viện/Số khám ngoại trú', name: 'iptOtpNo', width: 90, align: 'center' },
+                    { label: 'Số hồ sơ bệnh án', name: 'medrcdno', width: 90, align: 'center' },
+                    { label: 'Mô tả chẩn đoán nhập viện', name: 'admDiagDscr', width: 150, align: 'center' },
+                    { label: 'Mô tả bệnh chính', name: 'mainCondDscr', width: 150, align: 'center' },
+                    { label: 'Ngoại trú Thông tin chẩn đoán', name: 'otpDiagInfo', width: 150, align: 'center' },
+                    { label: 'Tên bác sĩ điều trị chính', name: 'chfpdrName', width: 100, align: 'center' },
+                    { label: 'Tổng chi phí y tế', name: 'medfeeSumamt', width: 60, align: 'center' },
+                    { label: 'Hoàn thành dấu hiệu', name: 'cpltFlag', width: 60, align: 'center' },
+
+                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
+                    //{ label: '人员证件类型', name: 'psnCertType', width: 18, align: 'center' },
+                    //{ label: '民族', name: 'naty', width: 9, align: 'center' },
+                    //{ label: '出生日期', name: 'brdy', width: 180, align: 'center' },
+                    //{ label: '年龄', name: 'age', width: 12, align: 'center' },
+                    //{ label: '联系人姓名', name: 'conerName', width: 150, align: 'center' },
+                    //{ label: '联系电话', name: 'tel', width: 150, align: 'center' },
+                    //{ label: '联系地址', name: 'addr', width: 1500, align: 'center' },
+                    //{ label: '主诊医师代码', name: 'chfpdrCode', width: 90, align: 'center' },
+                    //{ label: '入院科室编码', name: 'admDeptCodg', width: 90, align: 'center' },
+                    //{ label: '入院科室名称', name: 'admDeptName', width: 300, align: 'center' },
+                    //{ label: '入院床位', name: 'admBed', width: 90, align: 'center' },
+                    //{ label: '病区床位', name: 'wardareaBed', width: 150, align: 'center' },
+                    //{ label: '转科室标志', name: 'trafDeptFlag', width: 18, align: 'center' },
+                    //{ label: '出院主诊断代码', name: 'dscgMaindiagCode', width: 60, align: 'center' },
+                    //{ label: '出院科室编码', name: 'dscgDeptCodg', width: 90, align: 'center' },
+                    //{ label: '出院科室名称', name: 'dscgDeptName', width: 300, align: 'center' },
+                    //{ label: '出院床位', name: 'dscgBed', width: 90, align: 'center' },
+                    //{ label: '离院方式', name: 'dscgWay', width: 9, align: 'center' },
+                    //{ label: '病种编号', name: 'diseNo', width: 90, align: 'center' },
+                    //{ label: '病种名称', name: 'diseName', width: 1500, align: 'center' },
+                    //{ label: '手术操作代码', name: 'oprnOprtCode', width: 90, align: 'center' },
+                    //{ label: '手术操作名称', name: 'oprnOprtName', width: 1500, align: 'center' },
+                    //{ label: '在院状态', name: 'inhospStas', width: 9, align: 'center' },
+                    //{ label: '死亡日期', name: 'dieDate', width: 180, align: 'center' },
+                    //{ label: '住院天数', name: 'iptDays', width: 48, align: 'center' },
+                    //{ label: '计划生育服务证号', name: 'fpscNo', width: 150, align: 'center' },
+                    //{ label: '生育类别', name: 'matnType', width: 18, align: 'center' },
+                    //{ label: '计划生育手术类别', name: 'birctrlType', width: 18, align: 'center' },
+                    //{ label: '晚育标志', name: 'latechbFlag', width: 9, align: 'center' },
+                    //{ label: '孕周数', name: 'gesoVal', width: 6, align: 'center' },
+                    //{ label: '胎次', name: 'fetts', width: 9, align: 'center' },
+                    //{ label: '胎儿数', name: 'fetusCnt', width: 9, align: 'center' },
+                    //{ label: '早产标志', name: 'pretFlag', width: 9, align: 'center' },
+                    //{ label: '妊娠时间', name: 'preyTime', width: 180, align: 'center' },
+                    //{ label: '计划生育手术或生育日期', name: 'birctrlMatnDate', width: 180, align: 'center' },
+                    //{ label: '伴有并发症标志', name: 'copFlag', width: 9, align: 'center' },
+                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
+                    //{ label: '备注', name: 'memo', width: 1500, align: 'center' },
+                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
+                    //{ label: '经办人姓名', name: 'opterName', width: 150, align: 'center' },
+                    //{ label: '经办时间', name: 'optTime', width: 180, align: 'center' },
+                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
+                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
+                    //{ label: '创建人ID', name: 'crterId', width: 60, align: 'center' },
+                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
+                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
+                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
+                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
+                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' },
+                    //{ label: '住院主诊断名称', name: 'dscgMaindiagName', width: 900, align: 'center' },
+                    //{ label: '电子票据代码', name: 'elecBillCode', width: 150, align: 'center' },
+                    //{ label: '电子票据号码', name: 'elecBillnoCode', width: 150, align: 'center' },
+                    //{ label: '电子票据校验码', name: 'elecBillChkcode', width: 18, align: 'center' },
+                    //{ label: '扩展字段', name: 'expContent', width: 12000, align: 'center' }
+                ];
+                break;
+            case "4209":
+                captionCon = "Chi tiết phí khám bệnh của bệnh nhân tự trả";
+                colModel = [
+                    { label: 'Thông tin chẩn đoán ID', name: 'diagInfoId', width: 90, align: 'center' },
+                    { label: 'ID khám tại cơ sở y dược', name: 'fixmedinsMdtrtId', width: 120, align: 'center' },
+                    { label: 'Loại chẩn đoán vào/ra viện', name: 'inoutDiagType', width: 120, align: 'center' },
+                    { label: 'Loại chẩn đoán', name: 'diagType', width: 60, align: 'center' },
+                    { label: 'Mã chẩn đoán', name: 'diagCode', width: 60, align: 'center' },
+                    { label: 'Tên chẩn đoán', name: 'diagName', width: 100, align: 'center' },
+                    { label: 'Chẩn đoán Khoa', name: 'diagDept', width: 100, align: 'center' },
+                    { label: 'Tên bác sĩ chẩn đoán', name: 'diagDrName', width: 100, align: 'center' },
+                    { label: 'Thời gian chẩn đoán', name: 'diagTime', width: 180, align: 'center' },
+                    { label: 'Tình trạng bệnh khi nhập viện', name: 'admCond', width: 200, align: 'center' },
+                    { label: 'Tên người xử lý', name: 'opterName', width: 150, align: 'center' },
+                    { label: 'Thời gian xử lý', name: 'optTime', width: 180, align: 'center' }
+
+                   
+                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
+                    //{ label: '主诊断标志', name: 'maindiagFlag', width: 9, align: 'center' },
+                    //{ label: '诊断排序号', name: 'diagSrtNo', width: 6, align: 'center' },
+                    //{ label: '诊断医师代码', name: 'diagDrCode', width: 90, align: 'center' },
+                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
+                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
+                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
+                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
+                    //{ label: '创建人ID', name: 'crterId', width: 60, align: 'center' },
+                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
+                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
+                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
+                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
+                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' }
+                ];
+                break;
+        }
+        $("#gbox_gridList").remove();
+        $("#gbox_gridList2").remove();
+        $("#gbox_gridList3").remove();
+        $(".gridPanel").append('<table id="gridList"></table>');
+        $('#gridList').jqGrid("clearGridData");
+        var $gridList = $("#gridList");
+
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 330,
+            autowidth: false,
+            unwritten: false,
+            width: $("#formPat2").width() - 10,
+            caption: captionCon,
+            colModel: colModel,
+        }, mydata);
+    }
+
+    function gridListData5402(mydata, type) {
+        var checkreportdetails;
+        var inspectionreportinformation;
+        var inspectiondetails;
+        if (mydata) {
+            checkreportdetails = mydata.checkreportdetails;
+            inspectionreportinformation = mydata.inspectionreportinformation;
+            inspectiondetails = mydata.inspectiondetails;
+        } else {
+            checkreportdetails = "";
+            inspectionreportinformation = "";
+            inspectiondetails = "";
+        }
+
+        $("#gbox_gridList").remove();
+        $("#gbox_gridList2").remove();
+        $("#gbox_gridList3").remove();
+
+        var checkreportdetailsCaptionCon = "Báo cáo kiểm tra chi tiết thông tin";
+        var checkreportdetailsColModel = [
+            { label: 'Số hiệu nhân viên', name: 'psn_no', width: 180, align: 'center' },
+            { label: 'Số phiếu báo cáo', name: 'rpotc_no', width: 130, align: 'center' },
+            { label: 'Ngày báo cáo', name: 'rpt_date', width: 120, align: 'center' },
+            { label: 'Báo cáo đơn Loại Mã', name: 'rpotc_type_code', width: 150, align: 'center' },
+            { label: 'Tên phiếu báo cáo kiểm tra', name: 'exam_rpotc_name', width: 150, align: 'center' },
+            { label: 'Dấu hiệu kết quả kiểm tra dương tính', name: 'exam_rslt_poit_flag', width: 150, align: 'center' },
+            { label: 'kiểm tra bất thường dấu hiệu', name: 'exam_rslt_abn', width: 120, align: 'center' },
+            { label: 'Bác sĩ báo cáo', name: 'bilgDrName', width: 150, align: 'center' },
+            { label: 'Kết luận kiểm tra', name: 'exam_ccls', width: 300, align: 'center' }
+        ];
+        $(".gridPanel").append('<table id="gridList"></table>');
+        $('#gridList').jqGrid("clearGridData");
+        var $gridList = $("#gridList");
+
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 330,
+            autowidth: false,
+            unwritten: false,
+            width: $("#formPat2").width() - 10,
+            caption: checkreportdetailsCaptionCon,
+            colModel: checkreportdetailsColModel,
+        }, checkreportdetails);
+
+        var inspectionreportinformationCaptionCon = "Báo cáo xét nghiệm thông tin";
+        var inspectionreportinformationColModel = [
+            { label: 'Số hiệu nhân viên', name: 'psn_no', width: 180, align: 'center' },
+            { label: 'Số phiếu báo cáo', name: 'rpotc_no', width: 150, align: 'center' },
+            { label: 'xét nghiệm-Mã khoản mục', name: 'exam_item_code', width: 150, align: 'center' },
+            { label: 'xét nghiệm-Tên khoản mục', name: 'exam_item_name', width: 150, align: 'center' },
+            { label: 'Ngày báo cáo', name: 'rpt_date', width: 150, align: 'center' },
+            { label: 'Bác sĩ báo cáo', name: 'rpot_doc', width: 150, align: 'center' }
+        ];
+;
+        $(".gridPanel").append('<table id="gridList2"></table>');
+        $('#gridList2').jqGrid("clearGridData");
+        var $gridList2 = $("#gridList2");
+
+        $gridList2.newtouchLocalDataGrid({
+            height: $(window).height() - 330,
+            autowidth: false,
+            unwritten: false,
+            width: $("#formPat2").width() - 10,
+            caption: inspectionreportinformationCaptionCon,
+            colModel: inspectionreportinformationColModel,
+        }, inspectionreportinformation);
+
+        var inspectiondetailsCaptionCon = "xét nghiệm chi tiết thông tin";
+        var inspectiondetailsColModel = [
+            { label: 'Số phiếu báo cáo', name: 'rpotc_no', width: 150, align: 'center' },
+            { label: 'xét nghiệm phương thức', name: 'exam_mtd', width: 120, align: 'center' },
+            { label: 'tham khảo Giá trị', name: 'ref_val', width: 60, align: 'center' },
+            { label: 'Xét nghiệm - Đơn vị đo lường', name: 'exam_unt', width: 120, align: 'center' },
+            { label: 'Xét nghiệm - Kết quả (số liệu)', name: 'exam_rslt_val', width: 120, align: 'center' },
+            { label: 'Xét nghiệm - Kết quả (định tính)', name: 'exam_rslt_qual', width: 200, align: 'center' },
+            { label: 'xét nghiệm-Chi tiết mục Mã', name: 'exam_item_detl_code', width: 150, align: 'center' },
+            { label: 'xét nghiệm-Chi tiết mục Tên', name: 'exam_item_detl_name', width: 150, align: 'center' },
+            { label: 'Dấu hiệu kết quả kiểm tra/xét nghiệm bất thường', name: 'exam_rslt_abn', width: 150, align: 'center' }
+        ];
+
+        $(".gridPanel").append('<table id="gridList3"></table>');
+        $('#gridList3').jqGrid("clearGridData");
+        var $gridList3 = $("#gridList3");
+
+        $gridList3.newtouchLocalDataGrid({
+            height: $(window).height() - 330,
+            autowidth: false,
+            unwritten: false,
+            width: $("#formPat2").width() - 10,
+            caption: inspectiondetailsCaptionCon,
+            colModel: inspectiondetailsColModel,
+        }, inspectiondetails);
+    }
+
+    function ReadCardCall(readCardObj) {
+        $("#rybh").html(cqPatInfo.grbh);
+        $("#zjhm").html(cqPatInfo.sfzh);
+        $("#xm").html(cqPatInfo.xm);
+        $("#xb").html(readCardObj.cardInfo1.gend == "1" ? "Nam" : "Nữ");
+        //$("#mz").html(cardInfo1.naty);
+        $("#csny").html(readCardObj.cardInfo1.brdy);
+        $("#nl").html(readCardObj.cardInfo1.age + "tuổi");
+        $.loading(false);
+    }
+
+    $("#btn_yljgxxcx_next").click(function () {
+        $("#jzxx_page_num").val($("#jzxx_page_num").val() + 1);
+        GetYbInfo();
+    });
+
+    showJZXXQuery();
+
+    function showJZXXQuery() {
+        var type = $('#sel_rptype').val();
+        if (type.startsWith("420")) {
+            $('.420-show').show();
+            $("#jzxx_page_num").val(1);
+            $("#jzxx_page_size").val(20);
+        } else {
+            $('.420-show').hide();
+        }
+    }
+
+    $('#sel_rptype').change(function () {
+        showJZXXQuery();
+    });
+
+    //-----------------------------就诊信息查询页面 end-----------------------------//
+
+
+    //-----------------------------医疗机构信息查询页面 start---------------------------//
+    function GetYbJGInfo() {
+        $.loading(true);
+        var type = $('#sel_jgcxtype').val();
+        if (type === "1201") {
+            if (!$('#fixmedins_name').val() && !$('#fixmedins_code').val()) {
+                $.loading(false);
+                $.modalAlert("Tên cơ sở y dược và mã số cơ sở y dược phải nhập một trong hai", 'error');
+                return;
+            }
+            var rcData = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1", fixmedins_name: $('#fixmedins_name').val(), fixmedins_code: $('#fixmedins_code').val() };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetfixmedinsInfo1201",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0" && !!refReg.output.medinsinfo) {
+                            jgGridListData(refReg.output.medinsinfo, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        } else if (type === "3508") {
+            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+                $.loading(false);
+                $.modalAlert("Mã mục lục cơ sở y dược và số giao dịch lô của cơ sở y dược chỉ định phải nhập một trong hai", 'error');
+                return;
+            }
+            if (!$('#jg_kssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian bắt đầu", 'error');
+                return;
+            }
+            if (!$('#jg_jssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian quyết toán", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
+                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
+                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetProductInventoryInfo_3508",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        } else if (type === "3509") {
+            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+                $.loading(false);
+                $.modalAlert("Mã mục lục cơ sở y dược và số giao dịch lô của cơ sở y dược chỉ định phải nhập một trong hai", 'error');
+                return;
+            }
+            if (!$('#jg_kssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian bắt đầu", 'error');
+                return;
+            }
+            if (!$('#jg_jssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian quyết toán", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
+                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
+                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetProductInventoryChangeRecord_3509",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }else if (type === "3510") {
+            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+                $.loading(false);
+                $.modalAlert("Mã mục lục cơ sở y dược và số giao dịch lô của cơ sở y dược chỉ định phải nhập một trong hai", 'error');
+                return;
+            }
+            if (!$('#jg_kssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian bắt đầu", 'error');
+                return;
+            }
+            if (!$('#jg_jssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian quyết toán", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
+                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
+                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetProductSourcingInfo_3510",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }else if (type === "3511") {
+            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+                $.loading(false);
+                $.modalAlert("Mã mục lục cơ sở y dược và số giao dịch lô của cơ sở y dược chỉ định phải nhập một trong hai", 'error');
+                return;
+            }
+            if (!$('#jg_kssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian bắt đầu", 'error');
+                return;
+            }
+            if (!$('#jg_jssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian quyết toán", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
+                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
+                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetProductSalesInfo_3511",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        } else if (type === "3512") {
+            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val() && !$('#med_list_codg').val()) {
+                $.loading(false);
+                $.modalAlert("Mã mục lục cơ sở y dược, số giao dịch lô của cơ sở y dược chỉ định và mã mục lục y tế phải nhập một trong các mục", 'error');
+                return;
+            }
+            if (!$('#jg_kssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian bắt đầu", 'error');
+                return;
+            }
+            if (!$('#jg_jssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian quyết toán", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
+                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(), med_list_codg: $('#med_list_codg').val(),
+                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetProductTraceabilityInfo_3512",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        } else if (type === "3513") {
+            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val() && !$('#med_list_codg').val() && !$('#mdtrt_id').val()) {
+                $.loading(false);
+                $.modalAlert("Mã mục lục cơ sở y dược, số giao dịch lô của cơ sở y dược chỉ định, mã mục lục y tế và id quyết toán phải nhập một trong các mục", 'error');
+                return;
+            }
+            if (!$('#jg_kssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian bắt đầu", 'error');
+                return;
+            }
+            if (!$('#jg_jssj').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền thời gian quyết toán", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
+                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(), med_list_codg: $('#med_list_codg').val(),
+                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val(), mdtrt_id: $('#mdtrt_id').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetProductSaleTraceabilityInfo_3513",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        } else if (type === "3607") {
+            if (!$('#setl_ym').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền Năm tháng quyết toán", 'error');
+                return;
+            }
+            if (!$('#page_num').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền số trang phân trang", 'error');
+                return;
+            }
+            if (!$('#page_size').val()) {
+                $.loading(false);
+                $.modalAlert("Vui lòng điền phân trang Số lượng", 'error');
+                return;
+            }
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId",
+                setl_ym: $('#setl_ym').val(), page_num: $('#page_num').val(), page_size: $('#page_size').val(),
+                setl_id: $('#setl_id').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetSettlementQualityControlResults_3607",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output.data, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        } else if (type === "5101") {
+
+            var rcData = {
+                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId"
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/GetDepartmentInfo_5101",
+                dataType: "json",
+                data: rcData,
+                async: false,
+                success: function (data) {
+                    var refReg = eval('(' + data + ')');
+                    if (refReg) {
+                        if (refReg.infcode == "0") {
+                            jgGridListData(refReg.output.feedetail, type);
+                        }
+                        else {
+                            jgGridListData("", type);
+                            $.loading(false);
+                            $.modalAlert(refReg.err_msg, 'error');
+                        }
+                    }
+                },
+                error: function () {
+                    $.modalAlert("Không thể truy cập dịch vụ", 'warning');
+                }
+            });
+        }
+    }
+
+    $("#btn_yljgxxcx_next").click(function () {
+        $("#page_num").val($("#page_num").val() + 1);
+        GetYbJGInfo();
+    });
+
+    function jgGridListData(mydata, type) {
+        var colModel;
+        var captionCon = "";
+        switch (type) {
+            case "1201":
+                captionCon = "Y dược Cơ sở thông tin";
+                colModel = [
+                    { label: 'Mã số cơ sở y dược chỉ định', name: 'fixmedins_code', width: 105, align: 'center' },
+                    { label: 'Tên cơ sở y dược chỉ định', name: 'fixmedins_name', width: 160, align: 'center' },
+                    { label: 'Mã tín dụng xã hội thống nhất', name: 'uscc', width: 200, align: 'center' },
+                    { label: 'Loại cơ sở dịch vụ y tế chỉ định', name: 'fixmedins_type', width: 120, align: 'center' },
+                    { label: 'Hạng bệnh viện', name: 'hosp_lv', width: 100, align: 'center' }
+                ];
+                break;
+            case "3508":
+                captionCon = "Thông tin tồn kho hàng hóa của cơ sở y dược chỉ định";
+                colModel = [
+                    { label: 'Hiệu lực kỳ Đến', name: 'expyEnd', width: 80, align: 'center' },
+                    { label: 'Mã mục lục y tế', name: 'medListCodg', width: 80, align: 'center' },
+                    { label: 'Mã số khu vực quỹ chung', name: 'poolareaNo', width: 80, align: 'center' },
+                    { label: 'tồn kho Số lượng', name: 'invCnt', width: 50, align: 'center' },
+                    { label: 'Mã mục lục cơ sở y dược', name: 'medinsListCodg', width: 80, align: 'center' },
+                    { label: 'Ghi chú', name: 'memo', width: 50, align: 'center' },
+                    { label: 'Thời gian cập nhật dữ liệu', name: 'updtTime', width: 80, align: 'center' },
+                    { label : "Ngày sản xuất", name : "manuDate", width : 80, align : "center" },
+                    { label : "Tên người xử lý", name : "opterName", width : 50, align : "center" },
+                    { label : "Số bản ghi duy nhất của dữ liệu", name : "rid", width : 40, align : "center" },
+                    { label : "Thời gian tạo dữ liệu", name : "crteTime", width : 80, align : "center" },
+                    { label : "tồn kho Ngày", name : "invdate", width : 80, align : "center" },
+                    { label : "Hiệu lực dấu hiệu", name : "valiFlag", width : 3, align : "center" },
+                    { label : "Mã số cơ sở y dược chỉ định", name : "fixmedinsCode", width : 30, align : "center" },
+                    { label : "Dấu hiệu thuốc kê đơn", name : "rxFlag", width : 3, align : "center" },
+                    { label : "Dấu hiệu mục đặc biệt của mục lục", name : "listSpItemFlag", width : 3, align : "center" },
+                    { label : "Số giao dịch lô của cơ sở y dược chỉ định", name : "fixmedinsBchno", width : 30, align : "center" },
+                    { label : "Thời gian xử lý", name : "optTime", width : 80, align : "center" },
+                    { label : "ID người xử lý", name : "opterId", width : 20, align : "center" },
+                    { label : "Số lô sản xuất", name : "manuLotnum", width : 30, align : "center" },
+                    { label : "Tên mục lục cơ sở y dược", name : "medinsListName", width : 100, align : "center" },
+                    { label : "Người tạo Họ tên", name : "crterName", width : 50, align : "center" },
+                    { label : "Số giao dịch tồn kho hàng hóa của cơ sở y dược chỉ định", name : "medinsProdInvNo", width : 30, align : "center" },
+                    { label : "Người tạo ID", name : "crterId", width : 20, align : "center" },
+                    { label : "Mã số cơ sở xử lý", name : "optinsNo", width : 20, align : "center" },
+                    { label : "Dấu hiệu bán lẻ", name : "trdnFlag", width : 3, align : "center" }
+                ];
+                break;
+            case "3509":
+                captionCon = "Bản ghi thay đổi tồn kho hàng hóa của cơ sở y dược chỉ định";
+                colModel = [
+                    { label : "Thời gian thay đổi tồn kho", name : "invChgTime", width : 80, align : "center" },
+                    { label : "Mã mục lục y tế", name : "medListCodg", width : 50, align : "center" },
+                    { label : "Mã số khu vực quỹ chung", name : "poolareaNo", width : 6, align : "center" },
+                    { label : "Tên người xử lý thay đổi tồn kho", name : "invChgOpterName", width : 50, align : "center" },
+                    { label : "Mã số cơ sở tạo", name : "crteOptinsNo", width : 20, align : "center" },
+                    { label : "Mã mục lục cơ sở y dược", name : "medinsListCodg", width : 150, align : "center" },
+                    { label : "Ghi chú", name : "memo", width : 50, align : "center" },
+                    { label : "Thời gian cập nhật dữ liệu", name : "updtTime", width : 80, align : "center" },
+                    { label : "Tên người xử lý", name : "opterName", width : 50, align : "center" },
+                    { label : "Số bản ghi duy nhất của dữ liệu", name : "rid", width : 40, align : "center" },
+                    { label : "Thời gian tạo dữ liệu", name : "crteTime", width : 50, align : "center" },
+                    { label : "Hiệu lực dấu hiệu", name : "valiFlag", width : 3, align : "center" },
+                    { label : "Mã số cơ sở y dược chỉ định", name : "fixmedinsCode", width : 30, align : "center" },
+                    { label : "Loại thay đổi tồn kho", name : "invChgType", width : 6, align : "center" },
+                    { label : "Dấu hiệu thuốc kê đơn", name : "rxFlag", width : 3, align : "center" },
+                    { label : "Số giao dịch thay đổi tồn kho hàng hóa của cơ sở y dược chỉ định", name : "medinsProdInvChgNo", width : 30, align : "center" },
+                    { label : "Dấu hiệu mục đặc biệt của mục lục", name : "listSpItemFlag", width : 3, align : "center" },
+                    { label : "Số giao dịch lô của cơ sở y dược chỉ định", name : "fixmedinsBchno", width : 30, align : "center" },
+                    { label : "Thời gian xử lý", name : "optTime", width : 80, align : "center" },
+                    { label : "ID người xử lý", name : "opterId", width : 20, align : "center" },
+                    { label : "Tên mục lục cơ sở y dược", name : "medinsListName", width : 100, align : "center" },
+                    { label : "Số lượng", name : "cnt", width : 50, align : "center" },
+                    { label : "Đơn giá", name : "pric", width : 50, align : "center" },
+                    { label : "Người tạo Họ tên", name : "crterName", width : 50, align : "center" },
+                    { label : "Người tạo ID", name : "crterId", width : 20, align : "center" },
+                    { label : "Mã số cơ sở xử lý", name : "optinsNo", width : 20, align : "center" },
+                    { label : "Dấu hiệu bán lẻ", name : "trdnFlag", width : 3, align : "center" }
+                ];
+                break;
+            case "3510":
+                captionCon = "Thông tin mua hàng hóa của cơ sở y dược chỉ định";
+                colModel = [
+                    { label : "Hiệu lực kỳ Đến", name : "expyEnd", width : 80, align : "center" },
+                    { label : "Mã mục lục y tế", name : "medListCodg", width : 50, align : "center" },
+                    { label : "Mã số khu vực quỹ chung", name : "poolareaNo", width : 6, align : "center" },
+                    { label : "Mã số cơ sở tạo", name : "crteOptinsNo", width : 20, align : "center" },
+                    { label : "Mã mục lục cơ sở y dược", name : "medinsListCodg", width : 150, align : "center" },
+                    { label : "Ghi chú", name : "memo", width : 50, align : "center" },
+                    { label : "Dấu hiệu trả lại hàng hóa", name : "prodRetnFlag", width : 6, align : "center" },
+                    { label : "Thời gian cập nhật dữ liệu", name : "updtTime", width : 80, align : "center" },
+                    { label : "Ngày sản xuất", name : "manuDate", width : 80, align : "center" },
+                    { label : "Tên người xử lý", name : "opterName", width : 50, align : "center" },
+                    { label : "Số bản ghi duy nhất của dữ liệu", name : "rid", width : 40, align : "center" },
+                    { label : "Thời gian tạo dữ liệu", name : "crteTime", width : 80, align : "center" },
+                    { label : "Tên doanh nghiệp sản xuất", name : "prodentpName", width : 80, align : "center" },
+                    { label : "Hiệu lực dấu hiệu", name : "valiFlag", width : 3, align : "center" },
+                    { label : "Số văn bản phê duyệt", name : "aprvno", width : 100, align : "center" },
+                    { label : "Mã số cơ sở y dược chỉ định", name : "fixmedinsCode", width : 30, align : "center" },
+                    { label : "Số giao dịch mua hàng hóa của cơ sở y dược chỉ định", name : "medinsProdPurcNo", width : 30, align : "center" },
+                    { label : "Dấu hiệu thuốc kê đơn", name : "rxFlag", width : 3, align : "center" },
+                    { label : "Dấu hiệu mục đặc biệt của mục lục", name : "listSpItemFlag", width : 3, align : "center" },
+                    { label : "Số hóa đơn mua hàng", name : "purcInvoNo", width : 50, align : "center" },
+                    { label : "Số giao dịch lô của cơ sở y dược chỉ định", name : "fixmedinsBchno", width : 30, align : "center" },
+                    { label : "Thời gian xử lý", name : "optTime", width : 100, align : "center" },
+                    { label : "ID người xử lý", name : "opterId", width : 20, align : "center" },
+                    { label : "Thời gian nhập kho mua/trả hàng", name : "purcRetnStoinTime", width : 100, align : "center" },
+                    { label : "Số lô sản xuất", name : "manuLotnum", width : 30, align : "center" },
+                    { label : "Tên mục lục cơ sở y dược", name : "medinsListName", width : 100, align : "center" },
+                    { label : "Tên nhà cung cấp", name : "splerName", width : 200, align : "center" },
+                    { label : "Dấu hiệu tặng hàng hóa", name : "prodGeayFlag", width : 3, align : "center" },
+                    { label : "Tên người xử lý mua/trả hàng", name : "purcRetnOpterName", width : 50, align : "center" },
+                    { label : "Mã hóa đơn mua hàng", name : "purcInvoCodg", width : 50, align : "center" },
+                    { label : "Người tạo Họ tên", name : "crterName", width : 50, align : "center" },
+                    { label : "Người tạo ID", name : "crterId", width : 20, align : "center" },
+                    { label : "Mã số cơ sở xử lý", name : "optinsNo", width : 20, align : "center" },
+                    { label : "Số giấy phép nhà cung cấp", name : "splerPmtno", width : 50, align : "center" },
+                    { label : "Đơn giá giao dịch cuối cùng", name : "finlTrnsPric", width : 100, align : "center" },
+                    { label : "Số lượng mua/trả hàng", name : "purcRetnCnt", width : 100, align : "center" },
+                    { label : "Số phiếu kèm hàng", name : "dyntNo", width : 50, align : "center" }
+
+                ];
+                break;
+            case "3511":
+                captionCon = "Thông tin bán hàng hóa của cơ sở y dược chỉ định";
+                colModel = [
+                    { label : "Hiệu lực kỳ Đến", name : "expyEnd", width : 100, align : "center" },
+                    { label : "Loại giấy tờ dược sĩ", name : "pharCertType", width : 3, align : "center" },
+                    { label : "Tên người xử lý bán/trả hàng", name : "selRetnOpterName", width : 50, align : "center" },
+                    { label : "Mã mục lục y tế", name : "medListCodg", width : 50, align : "center" },
+                    { label : "Mã số khu vực quỹ chung", name : "poolareaNo", width : 6, align : "center" },
+                    { label : "quyết toán ID", name : "setlId", width : 30, align : "center" },
+                    { label : "Mã số cơ sở tạo", name : "crteOptinsNo", width : 20, align : "center" },
+                    { label : "Mã mục lục cơ sở y dược", name : "medinsListCodg", width : 150, align : "center" },
+                    { label : "Ghi chú", name : "memo", width : 50, align : "center" },
+                    { label : "Thời gian cập nhật dữ liệu", name : "updtTime", width : 100, align : "center" },
+                    { label : "Chi phí BHYT Loại quyết toán", name : "hiFeesetlType", width : 6, align : "center" },
+                    { label : "Ngày sản xuất", name : "manuDate", width : 100, align : "center" },
+                    { label : "Tên người xử lý", name : "opterName", width : 50, align : "center" },
+                    { label : "Số hiệu nhân viên", name : "psnNo", width : 30, align : "center" },
+                    { label : "Số bản ghi duy nhất của dữ liệu", name : "rid", width : 40, align : "center" },
+                    { label : "Thời gian tạo dữ liệu", name : "crteTime", width : 100, align : "center" },
+                    { label : "Số giấy tờ dược sĩ", name : "pharCertno", width : 50, align : "center" },
+                    { label : "Hiệu lực dấu hiệu", name : "valiFlag", width : 3, align : "center" },
+                    { label : "Số giấy tờ", name : "certno", width : 80, align : "center" },
+                    { label : "Mã số cơ sở y dược chỉ định", name : "fixmedinsCode", width : 30, align : "center" },
+                    { label : "Dấu hiệu thuốc kê đơn", name : "rxFlag", width : 3, align : "center" },
+                    { label : "Số chứng chỉ hành nghề dược sĩ", name : "pharPracCertNo", width : 50, align : "center" },
+                    { label : "Dấu hiệu mục đặc biệt của mục lục", name : "listSpItemFlag", width : 3, align : "center" },
+                    { label : "Số giao dịch lô của cơ sở y dược chỉ định", name : "fixmedinsBchno", width : 30, align : "center" },
+                    { label : "Thời gian xử lý", name : "optTime", width : 80, align : "center" },
+                    { label : "Tên nhân viên", name : "psnName", width : 50, align : "center" },
+                    { label : "Mã giám sát điện tử", name : "elecSupnCodg", width : 20, align : "center" },
+                    { label : "Tên bác sĩ kê đơn", name : "bilgDrName", width : 50, align : "center" },
+                    { label : "ID người xử lý", name : "opterId", width : 20, align : "center" },
+                    { label : "Số lô sản xuất", name : "manuLotnum", width : 30, align : "center" },
+                    { label : "Tên mục lục cơ sở y dược", name : "medinsListName", width : 100, align : "center" },
+                    { label : "Loại giấy tờ nhân viên", name : "psnCertType", width : 6, align : "center" },
+                    { label : "Thời gian bán/trả hàng", name : "selRetnTime", width : 100, align : "center" },
+                    { label : "Số lượng bán/trả hàng", name : "selRetnCnt", width : 100, align : "center" },
+                    { label : "Người tạo Họ tên", name : "crterName", width : 50, align : "center" },
+                    { label : "Tên dược sĩ", name : "pharName", width : 50, align : "center" },
+                    { label : "Loại giấy tờ bác sĩ kê đơn", name : "prscDrCertType", width : 3, align : "center" },
+                    { label : "Người tạo ID", name : "crterId", width : 20, align : "center" },
+                    { label : "Số giấy tờ bác sĩ kê đơn", name : "prscDrCertno", width : 50, align : "center" },
+                    { label : "Mã số cơ sở xử lý", name : "optinsNo", width : 20, align : "center" },
+                    { label : "Dấu hiệu bán lẻ", name : "trdnFlag", width : 3, align : "center" },
+                    { label : "Đơn giá giao dịch cuối cùng", name : "finlTrnsPric", width : 50, align : "center" },
+                    { label : "Số giao dịch bán hàng hóa của cơ sở y dược chỉ định", name : "medinsProdSelNo", width : 30, align : "center" }
+                ];
+                break;
+            case "3512":
+                captionCon = "Thông tin truy xuất hàng hóa nhập kho của cơ sở y dược chỉ định";
+                colModel = [
+                    { label : "Mã số cơ sở y dược chỉ định", name : "fixmedinsCode", width : 100, align : "center" },
+                    { label : "Mã mục lục cơ sở y dược", name : "medinsListCodg", width : 150, align : "center" },
+                    { label : "Số giao dịch lô của cơ sở y dược chỉ định", name : "fixmedinsBchno", width : 30, align : "center" },
+                    { label : "Mã mục lục cơ sở y dược", name : "medinsListCodg", width : 150, align : "center" },
+                    { label : "Mã mục lục y tế", name : "medListCodg", width : 50, align : "center" },
+                    { label : "Tên mục lục cơ sở y dược", name : "medinsListName", width : 150, align : "center" },
+                    { label : "Mã truy xuất thuốc", name : "drugTracCodg", width : 100, align : "center" },
+                    { label : "Hiệu lực dấu hiệu", name : "valiFlag", width : 50, align : "center" },
+                    { label : "ID người xử lý", name : "opterId", width : 20, align : "center" },
+                    { label : "Người tạo Họ tên", name : "crterName", width : 100, align : "center" },
+                    { label : "Người tạo ID", name : "crterId", width : 100, align : "center" },
+                    { label : "Mã số cơ sở xử lý", name : "optinsNo", width : 100, align : "center" }
+
+                ];
+                break;
+            case "3513":
+                captionCon = "Thông tin truy xuất bán hàng hóa của cơ sở y dược chỉ định";
+                colModel = [
+                    { label : "Mã số cơ sở y dược chỉ định", name : "fixmedinsCode", width : 100, align : "center" },
+                    { label : "Mã mục lục y tế", name : "medListCodg", width : 72, align : "center" },
+                    { label : "Mã mục lục cơ sở y dược", name : "medinsListCodg", width : 100, align : "center" },
+                    { label : "Tên mục lục cơ sở y dược", name : "medinsListName", width : 100, align : "center" },
+                    { label : "Số giao dịch lô của cơ sở y dược chỉ định", name : "fixmedinsBchno", width : 100, align : "center" },
+                    { label : "khám ID", name : "mdtrtId", width : 100, align : "center" },
+                    { label : "khám Loại quyết toán", name : "mdtrtSetlType", width : 50, align : "center" },
+                    { label : "ghi sổ Số giao dịch", name : "bkkpSn", width : 80, align : "center" },
+                    { label : "Mã truy xuất thuốc", name : "drugTracCodg", width : 80, align : "center" },
+                    { label : "Số hiệu nhân viên", name : "psnNo", width : 80, align : "center" },
+                    { label : "Loại giấy tờ nhân viên", name : "psnCertType", width : 72, align : "center" },
+                    { label : "Số giấy tờ", name : "certno", width : 80, align : "center" },
+                    { label : "Tên nhân viên", name : "psnName", width : 80, align : "center" },
+                    { label : "Ghi chú", name : "memo", width : 50, align : "center" },
+                    { label : "Dấu hiệu bán lẻ", name : "trdnFlag", width : 36, align : "center" },
+                    { label : "Thời gian cập nhật dữ liệu", name : "updtTime", width : 80, align : "center" },
+                    { label : "Tên người xử lý", name : "opterName", width : 100, align : "center" },
+                    { label : "Số bản ghi duy nhất của dữ liệu", name : "rid", width : 100, align : "center" },
+                    { label : "Thời gian tạo dữ liệu", name : "crteTime", width : 80, align : "center" },
+                    { label : "Thời gian xử lý", name : "optTime", width : 80, align : "center" },
+                    { label : "ID người xử lý", name : "opterId", width : 80, align : "center" },
+                    { label : "Người tạo Họ tên", name : "crterName", width : 80, align : "center" },
+                    { label : "Người tạo ID", name : "crterId", width : 80, align : "center" },
+                    { label : "Mã số cơ sở xử lý", name : "optinsNo", width : 80, align : "center" }
+
+                ];
+                break;
+            case "3607":
+                captionCon = "quyết toán bảng Kết quả kiểm soát chất lượng";
+                colModel = [
+                    { label: "Mã số cơ sở y dược chỉ định", name: "fixmedins_code", width: 100, align: "center" },
+                    { label: "Tên cơ sở y dược chỉ định", name: "fixmedins_name", width: 120, align: "center" },
+                    { label: "Năm tháng quyết toán", name: "setl_ym", width: 100, align: "center" },
+                    { label: "quyết toán ID", name: "setl_id", width: 100, align: "center" },
+                    { label: "Số hiệu nhân viên", name: "psn_no", width: 100, align: "center" },
+                    { label: "Tên nhân viên", name: "psn_name", width: 100, align: "center" },
+                    { label: "Loại giấy tờ nhân viên", name: "psn_cert_type", width: 80, align: "center" },
+                    { label: "Số giấy tờ", name: "cert_no", width: 100, align: "center" },
+                    { label: "Kết quả kiểm soát chất lượng", name: "qltctrl_rslt", width: 50, align: "center" },
+                    { label: "Mức độ lỗi", name: "err_lv", width: 50, align: "center" },
+                    { label: "Cờ hoàn trả", name: "retn_flag", width: 50, align: "center" },
+                    { label: "Số phiên bản kiểm soát chất lượng", name: "qltctrl_ver", width: 80, align: "center" },
+                    { label: "Trạng thái nhóm", name: "grp_stas", width: 50, align: "center" },
+                    { label: "Kiểm soát chất lượng quyết toán bảng kết quả chi tiết thông tin", name: "detl_list", width: 200, align: "center" }
+                ];
+                break;
+            case "5101":
+                captionCon = "Khoa thông tin";
+                colModel = [
+                    { label: "Bệnh viện Mã khoa", name: "hosp_dept_codg", width: 80, align: "center" },
+                    { label: "Bệnh viện Tên khoa", name: "hosp_dept_name", width: 80, align: "center" },
+                    { label: "Giờ bắt đầu", name: "begntime", width: 110, align: "center" },
+                    { label: "Giờ kết thúc", name: "endtime", width: 100, align: "center" },
+                    { label: "Giới thiệu", name: "itro", width: 80, align: "center" },
+                    { label: "Tên người phụ trách khoa", name: "dept_resper_name", width: 100, align: "center" },
+                    { label: "Điện thoại người phụ trách khoa", name: "dept_resper_tel", width: 100, align: "center" },
+                    { label: "Phạm vi dịch vụ y tế của khoa", name: "dept_med_serv_scp", width: 150, align: "center" },
+                    { label: "Khoa", name: "caty", width: 100, align: "center" },
+                    { label: "Ngày thành lập khoa", name: "dept_estbdat", width: 100, align: "center", formatter: "date", formatoptions: { newformat: "Y-m-d" } },
+                    { label: "Số giường bệnh được phê duyệt", name: "aprv_bed_cnt", width: 80, align: "center" },
+                    { label: "Số giường bệnh được BHYT công nhận", name: "hi_crtf_bed_cnt", width: 80, align: "center" },
+                    { label: "Mã số khu vực quỹ chung", name: "poolarea_no", width: 80, align: "center" },
+                    { label: "Số bác sĩ", name: "dr_psncnt", width: 80, align: "center" },
+                    { label: "Số dược sĩ", name: "phar_psncnt", width: 80, align: "center" },
+                    { label: "Y tá Số người", name: "nurs_psncnt", width: 80, align: "center" },
+                    { label: "Số kỹ thuật viên", name: "tecn_psncnt", width: 80, align: "center" },
+                    { label: "Ghi chú", name: "memo", width: 80, align: "center" }
+                ];
+                break;
+        }
+        $("#gbox_gridList").remove();
+        $(".jg_gridPanel").append('<table id="jg_gridList"></table>');
+        $('#jg_gridList').jqGrid("clearGridData");
+        var $gridList = $("#jg_gridList");
+
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 330,
+            autowidth: false,
+            unwritten: false,
+            width: $("#jg_formPat").width() - 10,
+            caption: captionCon,
+            colModel: colModel,
+        }, mydata);
+        $.loading(false);
+    }
+
+    //页面加载时执行
+    showTH();
+    //判断医疗机构信息展示什么搜索条件
+    function showTH() {
+        var type = $('#sel_jgcxtype').val();
+        if (type === '1201') {
+            $('.1201-show').show(); // 显示医药机构信息
+            $('.time-show').hide();
+            $('.35-show').hide();
+            $('.3607-show').hide();
+        } else if (type === '3607') {
+            $('.3607-show').show();
+            $('.1201-show').hide();
+            $('.time-show').hide();
+            $('.35-show').hide();
+            $("#page_num").val(1);
+            $("#page_size").val(100);
+        } else if (type.startsWith("35")) {
+            $('.1201-show').hide(); // 隐藏医药机构信息
+            $('.time-show').show();
+            $('.35-show').show();
+            $('.3607-show').hide();
+        } else if (type === "5101") {
+            $('.3607-show').hide();
+            $('.1201-show').hide();
+            $('.time-show').hide();
+            $('.35-show').hide();
+        } else {
+            $.modalAlert("Loại không nhận dạng được", 'error');
+        }
+    }
+
+    $('#sel_jgcxtype').change(function () {
+        showTH();
+    });
+
+    //-----------------------------医疗机构信息查询页面 end---------------------------//
+</script>

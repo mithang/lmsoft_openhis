@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Trang danh sách bảng phần tử";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .dv-left {
+        width: 20%;
+        float: left;
+    }
+
+    .dv-right {
+        float: left;
+        margin-left: 5px;
+        width: 79%;
+        /*background-color:*/
+    }
+</style>
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+      
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
+
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="toCS()"><i class="fa fa-pencil-square-o"></i>Đồng bộ sang trình sửa mẫu</a>
+
+        </div>
+    </div>
+</div>
+
+        <table id="gridList"></table>
+
+
+<div id="treeDiv" class="gridPanel dv-left">
+    @await Component.InvokeAsync("YsList")
+</div>
+<div id="Blys" class="gridPanel dv-right" style="background-color:#ffffff;">
+    @await Component.InvokeAsync("BlysForm")
+</div>
+
+
+<script>
+    function SetBlysHeight() {
+        //debugger;
+        var ctl = document.getElementById("Blys");
+        if (ctl != null) {
+            if (ctl.getAttribute("ismobiledevice") != "true") {
+           
+                var h = document.documentElement.clientHeight - ctl.offsetTop - 20;
+                ctl.style.height = h + "px";
+            }
+            else {
+                if (document.body.clientWidth < 400) {
+                    document.getElementById("cboFileName").style.width = "100%";
+                }
+            }
+        }
+    }
+    window.setTimeout(SetBlysHeight, 300);
+    window.setInterval(SetBlysHeight, 1000);
+    function btn_add() {
+        $("#tijiao").html("Thêm mới");
+        clearInput();
+    }
+    function clearInput()
+    {
+        $("#Blys form input").each(function () {
+            $(this).val('');
+        });
+
+        //$(".screen-window form select").each(function () {
+        //    $(this).val('');
+        //});
+    }
+    function btn_edit() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+
+        var flag = $("#tijiao").html();
+        if (flag=="Sửa" || flag=="修改")
+        {
+
+        var keyValue = $("#Id").val();
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn phần tử", 'warning');
+            return;
+        }
+        var postData = $("#form1").formSerialize();
+        
+        $.submitForm({
+            url: "/Blys/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.modalMsg("Sửa thành công", 'success');
+                getYsTree();
+                btn_add();
+            }
+        });
+        } else {
+            var key= "";
+            var postData = $("#form1").formSerialize();
+            $.submitForm({
+                url: "/Blys/SubmitForm?keyValue=" + key,
+                param: postData,
+                success: function () {
+                  
+                    getYsTree();
+                    btn_add();
+                    $.modalMsg("Thêm mới thành công", 'success');
+                }
+            });
+        }
+
+       
+
+    }
+
+    function GetFormJson(keyValue) {
+        if (!!keyValue) {
+            $.ajax({
+                url: "/Blys/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    }
+
+    //删除
+    function btn_delete() {
+        var delYSID = $("#Id").val();
+        if (delYSID === undefined) {
+            $.modalMsg("Vui lòng chọn phần tử cần xóa", 'warning');
+            return;
+        }
+        $.modalConfirm("Bạn có chắc chắn muốn xóa không??",
+            function (flag) {
+                if (flag) {
+                    $.najax({
+                        url: "@Url.Action("DeleteForm", "Blys")",
+                        dataType: "json",
+                        data: { delYSID: delYSID },
+                        type: "POST",
+                        success: function () {
+                            $.loading(false);
+                            $.modalMsg("Xóa thành công", 'success');
+                            getYsTree();
+                            btn_add();
+                        }
+                    });
+                }
+            });
+    }
+    function toCS() {
+        $.najax({
+            url: "@Url.Action("toCS", "Blys")",
+        type: "POST",
+        success: function () {
+            $.loading(false);
+            $.modalMsg("Đồng bộ thành công", 'success');
+      
+        }
+    });
+    }
+</script>

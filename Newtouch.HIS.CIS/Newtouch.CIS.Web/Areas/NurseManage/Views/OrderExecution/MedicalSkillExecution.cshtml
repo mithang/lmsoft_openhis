@@ -1,0 +1,341 @@
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Kỹ thuật y tếQuản lý-Kỹ thuật y tếKhoaThực hiện";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .form .formTitle {
+        position: relative;
+        left: 0px;
+        text-align: right;
+        white-space: nowrap;
+        font-weight: normal;
+        width: 60px;
+        padding-right: 10px;
+        padding-left: 5px;
+    }
+</style>
+<form name="form1">
+    <div class="panel panel-default">
+        <table class="form">
+            <tr>
+                <th class="formTitle" id="thshrq" style="width:50px">DuyệtThời gian:</th>
+                <td class="formValue" colspan="3" style="width:330px">
+                    <input id="txtkssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <span style="margin-left: 2%; float: left;">—</span>
+                    <input id="txtjssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                </td>
+                <th class="formTitle" style="width:50px">Thực hiệnTrạng thái:</th>
+                <td class="formValue" style="width:110px">
+                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />Chưa thực hiện</label>
+                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />Đã thực hiện</label>
+                </td>
+                <th class="formTitle">Bệnh nhânLoại:</th>
+                <td class="formValue">
+                    <select class="form-control" id="hzlx">
+                        <option value="qb" >Tất cả</option>
+                        <option value="mz">Ngoại trú</option>
+                        <option value="zy" selected>Nhập viện</option>
+                    </select>
+                </td>
+                <th class="formTitle">Chi phíLoại:</th>
+                <td class="formValue">
+                    <select class="form-control" id="fylx">
+                        <option value="qb" selected>Tất cả</option>
+                        <option value="jy" >Xét nghiệm</option>
+                        <option value="jc">Kiểm tra</option>
+                    </select>
+                </td>
+                <th class="formTitle" >PhiếuLoại:</th>
+                <td class="formValue">
+                    <select class="form-control" id="sqdlx">
+                        <option value="qb" selected>Tất cả</option>
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="formValue" colspan="3">
+                    <input id="txt_keyword" name="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập tên bệnh nhân/số khám bệnh/số CMND-CCCD/số phiếu" />
+                </td>
+                <td class="formValue" colspan="2">
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
+                </td>
+                <th></th>
+                <td></td>
+                <th></th>
+                <td></td>
+                <th></th>
+                <td></td>
+                <td class="formValue" >
+                    <input type="button" id="btn_Exec" class="btn btn-primary btn-md" style="margin-left: 0px; " value="Thực hiện hàng loạt" />
+                    <input type="button" id="btn_CancalExec" class="btn btn-primary btn-md" style="margin-left: 0px; background:red" value="HủyThực hiện" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        $("#btn_CancalExec").hide();
+        sqdlxinit();
+        gridListData();
+    });
+
+    function sqdlxinit() {
+        $("#sqdlx").empty();
+        $("#sqdlx").append("<option value='qb'>Tất cả</option>");
+        var type = $("#fylx").val()=="jy"?@((int)EnumjyjcmbLx.jy):$("#fylx").val()=="jc"?@((int)EnumjyjcmbLx.jc):0;
+        $.najax({
+            url: "/TemplateManage/InspectionTemplate/SelectGridList?type=" + type,
+            dataType: "json",
+            type: "POST",
+            success: function (resp) {
+                $.each(resp, function () {
+                    var option = "<option value='" + this.mbId + "'>" + this.mbmc + "</option>";
+                    $("#sqdlx").append(option);
+                });
+            }
+        });
+    }
+
+    var checkTrigger = false;
+    var list = new Array();
+    var liststu = false;
+    var j = 0;
+    function gridListData() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            multiselect: true,
+            postData: getSearchPostData(),
+            height: $(window).height() - 160,
+            url: "@Url.Action("GetJyjcExecGridJson")",
+            colModel: [
+                { label: 'Id', name: 'Id', align: 'center', width: 50, key: true, hidden: true },
+                { label: 'cfh', name: 'cfh', align: 'left',hidden:true },
+                { label: 'Bệnh nhânLoại', name: 'hzlx', width: 60, align: 'left' },
+                { label: 'Số khám bệnh/Số nhập viện', name: 'mzzyh', width: 90, align: 'left' },
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
+                { label: 'CMND/CCCD', name: 'zjh', align: 'center', width: 120 },
+                { label: 'cflx', name: 'cflx', align: 'center', width: 80 ,hidden:true},
+                { label: 'Chi phíLoại', name: 'cflxstr', align: 'center', width: 80 },
+                { label: 'Số phiếu', name: 'sqdh', align: 'center', width: 130 },
+                { label: 'PhiếuLoại', name: 'sqdlx', align: 'center', width: 70 },
+                { label: 'Tên mục', name: 'ztmc', width: 90, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
+                { label: 'Chi phíSố lượng', name: 'sl', width: 50, align: 'left' },
+                { label: 'dj', name: 'dj', width: 50, align: 'left', hidden: true },
+                { label: 'Số tiền', name: 'je', width: 50, align: 'left' },
+                { label: 'Người thực hiện', name: 'zxr', width: 70, align: 'left' },
+                { label: 'Thực hiệnNgày', name: 'zxrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 100, align: 'left' },
+                { label: 'Người ghi nhận chi phí', name: 'jzr', width: 80, align: 'left' },
+                { label: 'Ghi nhận chi phíThời gian', name: 'kdrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'zxks', name: 'zxks', width: 100, align: 'left', hidden: true },
+                { label: 'kdks', name: 'kdks', width: 100, align: 'left', hidden: true },
+                { label: 'kdys', name: 'kdys', width: 100, align: 'left', hidden: true },
+                { label: 'shr', name: 'shr', width: 100, align: 'left', hidden: true },
+                { label: 'ztId', name: 'ztId', width: 100, align: 'left', hidden: true },
+                { label: 'ztmc', name: 'ztmc', width: 100, align: 'left', hidden: true },
+                { label: 'Lập phiếuKhoa', name: 'kdksmc', width: 100, align: 'left' },
+                { label: 'Lập phiếuBác sĩ', name: 'kdysmc', width: 100, align: 'left' }
+            ],
+            pager: "#gridPager",
+            sortname: " kdrq asc,sqdh",
+            viewrecords: true,
+            gridComplete: function () {
+                if ($('input[name="optionsRadios"]:checked').val() == 0) {
+                    //$("#gridList").jqGrid("showCol", "sqdh");
+                    $("#gridList").jqGrid("hideCol", "zxr");
+                    $("#gridList").jqGrid("hideCol", "zxrq");
+                    $("#gridList").jqGrid("hideCol", "zxksmc");
+                } else {
+                    //$("#gridList").jqGrid("hideCol", "sqdh");
+                    $("#gridList").jqGrid("showCol", "zxr");
+                    $("#gridList").jqGrid("showCol", "zxrq");
+                    $("#gridList").jqGrid("showCol", "zxksmc");
+                }
+            },
+            onSelectRow: function (rowIndex, s) {
+                if (!checkTrigger) {
+                    var len = 0;
+                    var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
+                    var ids = $("#gridList").jqGrid('getRowData_AllLine');
+                    liststu = s; //同步状态
+                    if (rowData.sqdh != "") {
+                        for (var i = 0; i < ids.length; i++) {
+                            if (ids[i].sqdh === rowData.sqdh && ids[i].sqdh !== "") {
+                                if (s === true) {
+                                    if (rowIndex !== ids[i].Id) {
+                                        list[len] = ids[i].Id;
+                                        len += 1;
+                                    }
+                                }
+                                else {
+                                    if (rowIndex !== ids[i].Id) {
+                                        list[len] = ids[i].Id;
+                                        len += 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    checkTrigger = true;
+                }
+
+                if (list.length > 0) {
+
+                    for (j; j < list.length; j++) {
+                        if (liststu) //同组选中
+                        {
+                            j = j + 1;
+                            $("#gridList").jqGrid("setSelection", list[j - 1], true);
+
+                        }
+                        else { //同组取消选中
+                            //j = j + 1;
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                        }
+
+                    }
+                }
+
+                j = 0;
+                checkTrigger = false;
+                list = new Array();
+                liststu = false;
+            }
+        });
+
+        $("#btn_search").click(function () {
+            btn_search();
+        });
+    }
+    //查询
+    function btn_search()
+    {
+        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $("#gridList").jqGrid('setGridParam', {
+            postData: getSearchPostData(),
+            url: '@Url.Action("GetJyjcExecGridJson")'
+        }).trigger('reloadGrid');
+    }
+    $("#fylx").change(function(){
+        sqdlxinit();
+    })
+
+    //grid 参数
+    function getSearchPostData() {
+        var keyword = $("#txt_keyword").val();
+        var kssj = $("#txtkssj").val();
+        var jssj = $("#txtjssj").val();
+        var hzlx = $("#hzlx").val();
+        var fylx = $("#fylx").val();
+        var sqdlx = $("#sqdlx").val();
+        var zxzt = $('input[name="optionsRadios"]:checked').val();
+        return {
+            keyword: keyword, kssj: kssj, jssj: jssj, hzlx: hzlx, fylx: fylx, sqdlx: sqdlx,zxzt:zxzt
+        };
+    };
+    //Thực hiện状态变更
+    $("input[name='optionsRadios']").click(function () {
+        var yzxz = $('input[name="optionsRadios"]:checked').val();
+        if (yzxz == 0) {
+            $("#btn_Exec").show();
+            $("#btn_CancalExec").hide();
+
+        } else {
+            $("#btn_Exec").hide();
+            $("#btn_CancalExec").show();
+        }
+        btn_search();
+    });
+    //Thực hiện
+    $("#btn_Exec").click(function () {
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn phiếu cần thực hiện", 'warning');
+            return;
+        }
+        var array = new Array();
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+            var sqdobj = {
+                mzzyh: rowData.mzzyh,
+                hzlx: rowData.hzlx == "Ngoại trú" ? "1" : "2",
+                xm: rowData.hzxm,
+                fylx: rowData.cflx,
+                sqdlx: rowData.sqdlx,
+                sqdh: rowData.sqdh,
+                sl: rowData.sl,
+                dj: rowData.dj,
+                je: rowData.je,
+                zxks: rowData.zxks,
+                kdks: rowData.kdks,
+                ztId: rowData.ztId,
+                ztmc: rowData.ztmc,
+                kdrq: rowData.kdrq,
+                kdys: rowData.kdys,
+                shr: rowData.shr,
+                dw: rowData.dw,
+                gg: rowData.gg,
+            }
+            array.push(sqdobj)
+        }
+        $.ajax({
+            type: "POST",
+            url: "/NurseManage/OrderExecution/jyjcExec",
+            data: { jyjclist: array },
+            dataType: "json",
+            success: function (ajaxresp) {
+                if (ajaxresp.state === "success") {
+                    $.modalAlert("Thực hiệnthành công", 'warning');
+
+                    btn_search();
+                }
+                else {
+                    $.modalAlert(ajaxresp.message, 'warning');
+                }
+            }
+        });
+    });
+    //取消Thực hiện
+    $("#btn_CancalExec").click(function () {
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn phiếu cần hủy thực hiện", 'warning');
+            return;
+        }
+        var array = new Array();
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+            array.push(rowData.sqdh)
+        }
+        $.ajax({
+            type: "POST",
+            url: "/NurseManage/OrderExecution/CancaljyjcExec",
+            data: { jyjclist: array },
+            dataType: "json",
+            success: function (ajaxresp) {
+                if (ajaxresp.state === "success") {
+                    $.modalAlert("HủyThực hiệnthành công", 'warning');
+
+                    btn_search();
+                }
+                else {
+                    $.modalAlert(ajaxresp.message, 'warning');
+                }
+            }
+        });
+    });
+
+</script>

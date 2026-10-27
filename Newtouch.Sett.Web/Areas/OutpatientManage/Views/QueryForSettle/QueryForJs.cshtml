@@ -1,0 +1,199 @@
+@{
+    ViewBag.Title = "Tra cứu thông tin quyết toán";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@Html.Partial("_YibaoCommonView")
+<style>
+    table tr td span {
+        font-size:25px;
+        color:lightcoral;
+    }
+</style>
+<div class="panel">
+    <div style="border-bottom:1px solid rgb(221, 221, 221);">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Loại tra cứu：</th>
+                <td class="formValue">
+                    <select id="jslx" class="form-control">
+                        <option value="0">Chưa quyết toán</option>
+                        <option value="1">Đã quyết toán</option>
+                    </select>
+                </td>
+                <th class="formTitle">Số BHXH：</th>
+                <td class="formValue">
+                    <input id="sbbh" name="sbbh" type="text" class="form-control" placeholder="Vui lòng nhập số BHXH" />
+                </td>
+                <td>
+                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:40%;margin-left:10%;" value="Tra cứu" />
+                </td>
+                <td></td>
+                <td></td>
+            </tr>           
+        </table>
+    </div>
+    <div id="wjs" style="border-bottom:1px solid rgb(221, 221, 221);margin-top:20px;">
+        <table class="table" id="tb1">
+            <tr>
+                <th class="formTitle">Số BHXH</th>
+                <th class="formTitle">Bệnh việnMã</th>
+                <th class="formTitle">Số quyết toán</th>
+                <th class="formTitle">Tên tính chất chi phí</th>
+                <th class="formTitle">CóKhôngTự chi trả</th>
+            </tr>
+            <tr>                
+                <td><span id="DAC001"></span></td>
+                <td><span id="AAZ107"></span></td>
+                <td><span id="DKE005"></span></td>
+                <td><span id="AKE556_C"></span></td>
+                <td><span id="DKE164"></span></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Tên tính chất BHYT</th>
+                <th class="formTitle">Tên loại BHYT</th> 
+                <th class="formTitle">Tổng chi phí</th>
+                <th class="formTitle">Thanh toán tiền mặt</th>
+                <th class="formTitle">Thông thường có thể hoàn trảChi phí</th>
+            </tr>
+            <tr>
+                <td><span id="DKC003_C"></span></td>
+                <td><span id="DKC002_C"></span></td>
+                <td><span id="ZFY"></span></td>
+                <td><span id="XJZF"></span></td>
+                <td><span id="YBFY"></span></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Đặc biệtTổng chi phí</th>
+                <th class="formTitle">Tự chi trả đặc biệtChi phí</th>
+                <th class="formTitle">Thanh toán tài khoản cơ bản</th>
+                <th class="formTitle">Thanh toán tài khoản bổ sung công</th>
+                <th class="formTitle">Thời gian quyết toán</th>
+            </tr>
+            <tr>
+                <td><span id="TSFY"></span></td>
+                <td><span id="TSFYZL"></span></td>
+                <td><span id="JBZF"></span></td>
+                <td><span id="GBZF"></span></td>
+                <td><span id="AKE293"></span></td>
+            </tr>
+        </table>
+    </div>
+    <div id="yjs" style="border-bottom:1px solid rgb(221, 221, 221);margin-top:20px;display:none;height:500px;overflow-y:auto">
+        <table class="table" id="tb2">
+            <tr>
+                <th>Số BHXH</th>
+                <th>Bệnh việnMã</th>
+                <th>Số quyết toán</th>
+                <th>Tính chất chi phí</th>
+                <th>CóKhôngTự chi trả</th>
+                <th>Tính chất BHYT</th>
+                <th>Loại BHYT</th>
+                <th>Thời gian quyết toán</th>
+                <th>Tổng chi phí</th>
+                <th>Thanh toán tiền mặt</th>
+                <th>Thông thường có thể hoàn trảChi phí</th>
+                <th>Đặc biệtTổng chi phí</th>
+                <th>Tự chi trả đặc biệtChi phí</th>
+                <th>Thanh toán tài khoản cơ bản</th>
+                <th>Thanh toán tài khoản bổ sung công</th>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#btn_search").click(function () {  
+        var jslx = $("#jslx").val();//loại quyết toán
+        var sbbh = $("#sbbh").val();//số BHXH
+        if (sbbh == "") {
+            $.modalAlert("Số BHXH không được trống", 'warning');
+            return false;
+        }
+        $.loading(true);
+        setTimeout(function () {
+            if (jslx == "0") {
+                $("#wjs").show()
+                $("#yjs").hide();
+                var wjsobj = $.yibao.QUnSettleFee(sbbh);
+                $.loading(false);
+                if (wjsobj && wjsobj.Code == 0) {
+                    $("#DAC001").html(wjsobj.Data.DAC001);
+                    $("#AAZ107").html(wjsobj.Data.AAZ107);
+                    $("#DKE005").html(wjsobj.Data.DKE005);
+                    $("#AKE556_C").html(wjsobj.Data.AKE556_C);
+                    $("#DKE164").html(wjsobj.Data.DKE164);
+                    $("#DKC003_C").html(wjsobj.Data.DKC003_C);
+                    $("#DKC002_C").html(wjsobj.Data.DKC002_C);
+                    $("#AKE293").html(wjsobj.Data.AKE293);
+                    $("#ZFY").html(wjsobj.Data.ZFY);
+                    $("#XJZF").html(wjsobj.Data.XJZF);
+                    $("#YBFY").html(wjsobj.Data.YBFY);
+                    $("#TSFY").html(wjsobj.Data.TSFY);
+                    $("#TSFYZL").html(wjsobj.Data.TSFYZL);
+                    $("#JBZF").html(wjsobj.Data.JBZF);
+                    $("#GBZF").html(wjsobj.Data.GBZF);
+                }
+                else {
+                    $("#DAC001").html("Không có");
+                    $("#AAZ107").html("Không có");
+                    $("#DKE005").html("Không có");
+                    $("#AKE556_C").html("Không có");
+                    $("#DKE164").html("Không có");
+                    $("#DKC003_C").html("Không có");
+                    $("#DKC002_C").html("Không có");
+                    $("#AKE293").html("Không có");
+                    $("#ZFY").html("Không có");
+                    $("#XJZF").html("Không có");
+                    $("#YBFY").html("Không có");
+                    $("#TSFY").html("Không có");
+                    $("#TSFYZL").html("Không có");
+                    $("#JBZF").html("Không có");
+                    $("#GBZF").html("Không có");
+                }
+            }
+            else {
+                $("#wjs").hide()
+                $("#yjs").show();
+                $("#tb2  tr:not(:first)").empty("");
+                var jsobj = $.yibao.QSettleFee(sbbh);
+                $.loading(false);
+                if (jsobj && jsobj.Code == 0) {
+                    var tb = document.getElementById("tb2");
+                    var td;
+                    for (var i = 0; i < jsobj.Data.length; i++) {
+                        var tr = tb.insertRow(i + 1);//thêm dòng mới，ichính là vị trí cần thêm
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].DAC001;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].AAZ107;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].DKE005;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].AKE556_C;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].DKE164;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].DKC003_C;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].DKC002_C;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].AKE293;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].ZFY;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].XJZF;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].YBFY;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].TSFY;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].TSFYZL;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].JBZF;
+                        td = tr.insertCell();
+                        td.innerHTML = jsobj.Data[i].GBZF;
+                    }
+                }
+            }
+        }, 1000);
+    })
+</script>

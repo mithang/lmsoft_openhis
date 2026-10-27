@@ -1,0 +1,190 @@
+
+@{
+    ViewBag.Title = "DrugDelivery";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<form id="form1">
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form" style="width:50%">
+                <tr>
+                    <th class="formTitle">Từ khóa</th>
+                    <td class="formValue">
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Số thẻ Họ tên Số hóa đơn" />
+                    </td>
+                    <td class="formValue">
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="gridPanel">
+    <div style="margin-bottom:10px; width:40%;float:left">
+        <table id="gridFYCF"></table>
+    </div>
+    <div style="width:59%;float:left; margin-left:10px">
+        <table id="gridFYCFInfo"></table>
+    </div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new[] { 7, 8 },
+    F7Text = "Phát thuốc",
+    F8Text = "Phát tất cả thuốc"
+})
+
+<script>
+    $(function () {
+        gridFYCF();
+        gridFYDetail([]);
+    });
+    //处方列表
+    function gridFYCF() {
+        var $gridCf = $("#gridFYCF");
+        $gridCf.dataGrid({
+            height: $(window).height() - 218,
+            caption: "Danh sách đơn thuốc",
+            url: "/OutPatientPharmacy/SearchCfList",
+            postData: { keyword: $("#txtINPUTCODE").val() },
+            colModel: [
+                { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'center' },
+                { label: 'Tuổi', name: 'nl', width: 40, align: 'center' },
+                { label: 'Số thẻ', name: 'CardNo', width: 100, align: 'center' },
+                { label: 'Số đơn thuốc', name: 'cfh', width: 130, align: 'center' },
+                { label: 'Loại bệnh nhân', name: 'brxzmc', width: 60, align: 'center' },
+                { label: 'Số tiền', name: 'je', width: 80, align: 'center' },
+                { label: 'Thời gian thu phí', name: 'sfsj', width: 120, align: 'center' }
+            ],
+            onSelectRow_page: function (rowid, status) {
+                $.najax({
+                    type: "Get",
+                    url: "/OutPatientPharmacy/SearchCfmx?cfh=" + $gridCf.jqGrid('getRowData', rowid).cfh,
+                    dataType: "json",
+                    success: function (res) {
+                        var detailData = [];
+                        if (res.length > 0) {
+                            for (var k = 0; k < res.length; k++) {
+                                detailData.push(res[k]);
+                            }
+                            $(".unwritten").hide();
+                        } else {
+                            $(".unwritten").show();
+                        }
+                        $("#gridFYCFInfo").resetSelection();
+                        $('#gridFYCFInfo').jqGrid("clearGridData");
+                        $("#gridFYCFInfo").newtouchLocalDataGrid(null, detailData);
+                    }
+                });
+            }
+        });
+        $("#btn_search").click(function () {
+            $('#gridFYCF').jqGrid("clearGridData");
+            $("#gridFYCF").jqGrid('setGridParam', {
+                postData: { keyword: $("#txtINPUTCODE").val() }
+            }).trigger('reloadGrid');
+            $("#gridFYCFInfo").resetSelection();
+            $('#gridFYCFInfo').jqGrid("clearGridData");
+            $("#gridFYCFInfo").newtouchLocalDataGrid(null, detailData);
+        });
+    }
+
+    //处方明细
+    function gridFYDetail() {
+        var $gridCfInfo = $("#gridFYCFInfo");
+        $gridCfInfo.newtouchLocalDataGrid({
+            caption: "Chi tiết đơn thuốc",
+            height: $(window).height() - 218,
+            //unwritten: false,
+            colModel: [
+                { label: 'Mã thuốc', name: 'ypCode', width: 70, align: 'center' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'center' },
+                { label: 'Số lô', name: 'ph', width: 90, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 50, align: 'center' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'center' },
+                { label: 'Đơn giá', name: 'dj', width: 60, align: 'center' },
+                { label: 'Số tiền', name: 'je', width: 60, align: 'left' },
+                { label: 'Liều dùng', name: 'jl', width: 50, align: 'center' },
+                { label: 'Đơn vị liều', name: 'jldw', width: 50, align: 'center' },
+                { label: 'Cách dùng', name: 'yfmc', width: 60, align: 'center' },
+                { label: 'Lời dặn bác sĩ', name: 'yszt', width: 120, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Nhóm thuốc', name: 'czh', width: 100, align: 'left' }
+            ]
+        });
+    }
+
+    //发药
+    function newtouch_event_f7() {
+        var id = $("#gridFYCF").jqGrid("getGridParam", "selrow");
+        if (id) {
+            var data = $("#gridFYCF").jqGrid('getRowData', id);
+            $.najax({
+                type: "POST",
+                url: "/OutPatientPharmacy/ExecDeliveryDrug?pCfh=" + data.cfh,
+                dataType: "json",
+                success: function (res) {
+                    if (res.state === "success") {
+                        $.modalMsg('Phát thuốc thành công', 'success', 1000);
+                        $("#gridFYCF").jqGrid("clearGridData");
+                        $("#gridFYCF").resetSelection();
+                        $("#gridFYCF").trigger("reloadGrid");
+                        $("#gridFYCFInfo").jqGrid("clearGridData");
+                        $("#gridFYCFInfo").resetSelection();
+                        $("#gridFYCFInfo").trigger("reloadGrid");
+                    } else {
+                        $.modalAlert(res.message, Error);
+                    }
+                },
+                error: function (res) {
+                    $.modalAlert(res.message, Error);
+                }
+            });
+        } else {
+            $.modalAlert("Vui lòng chọn thông tin đơn thuốc！", 'warning');
+        }
+    }
+
+    //全部发药
+    function newtouch_event_f8() {
+        var ids = $("#gridFYCF").getDataIDs();
+        var cfh = [];
+        $.each(ids, function (idx, val) {
+            cfh.push($("#gridFYCF").jqGrid('getRowData', val)["cfh"]);
+        });
+        if (cfh.length <= 0) {
+            $.modalAlert("Không có đơn thuốc cần phát thuốc！", 'warning');
+            return;
+        }
+        $.najax({
+            type: "POST",
+            url: "/OutPatientPharmacy/ExecAllDeliveryDrug",
+            data: { cfh: cfh },
+            dataType: "json",
+            success: function (res) {
+                if (res.state === "success") {
+                    $.modalMsg('Phát thuốc thành công', 'success', 1000);
+                    $("#gridFYCF").jqGrid("clearGridData");
+                    $("#gridFYCF").resetSelection();
+                    $("#gridFYCF").trigger("reloadGrid");
+                    $("#gridFYCFInfo").jqGrid("clearGridData");
+                    $("#gridFYCFInfo").resetSelection();
+                    $("#gridFYCFInfo").trigger("reloadGrid");
+
+                } else {
+                    $.modalAlert(res.message, Error);
+                }
+            },
+            error: function (res) {
+                $.modalAlert(res.message, Error);
+            }
+        });
+    }
+</script>

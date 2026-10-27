@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Herp — Hệ thống quản lý vật tư (ASP.NET Core 6.0)</title>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
+</head>
+<body style="padding: 30px; font-family: sans-serif;">
+    <h2>Herp — Hệ thống quản lý vật tư (bản ASP.NET Core 6.0)</h2>
+    <p>Đăng nhập thành công. Chọn khu vực chức năng:</p>
+    <ul>
+        <li><a href="/WarehouseManage/Warehouse/Index">Quản lý kho (WarehouseManage)</a></li>
+        <li><a href="/BillManage/ApplyBill/Index">Quản lý phiếu (BillManage)</a></li>
+        <li><a href="/DeliveryManage/Delivery/Index">Quản lý giao hàng (DeliveryManage)</a></li>
+        <li><a href="/DepartmentManage/Department/Index">Quản lý khoa phòng (DepartmentManage)</a></li>
+        <li><a href="/LicenceManage/Licence/Index">Quản lý giấy phép (LicenceManage)</a></li>
+        <li><a href="/ProductManage/Product/Index">Quản lý vật tư (ProductManage)</a></li>
+        <li><a href="/PurchaseManage/Purchase/Index">Quản lý mua sắm (PurchaseManage)</a></li>
+        <li><a href="/StorageManage/Storage/Index">Quản lý tồn kho (StorageManage)</a></li>
+        <li><a href="/SupplierManage/Supplier/Index">Quản lý nhà cung cấp (SupplierManage)</a></li>
+        <li><a href="/SystemManage/System/Index">Quản lý hệ thống (SystemManage)</a></li>
+        <li><a href="/Report/Index">Báo cáo (SSRS — cần máy chủ báo cáo riêng)</a></li>
+        <li><a href="/Home/KfChange">Chuyển kho hiện tại</a></li>
+    </ul>
+    <p style="color:#666;">Lưu ý: các liên kết tới khu vực chưa chuyển đổi sẽ trả về trang thông báo rõ ràng, không phải lỗi 404.</p>
+    <p><a href="/Login/OutLogin">Đăng xuất</a></p>
+</body>
+</html>

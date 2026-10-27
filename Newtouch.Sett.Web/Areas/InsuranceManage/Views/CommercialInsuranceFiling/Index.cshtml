@@ -1,0 +1,186 @@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Số hồ sơ bệnh án" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        gridList();
+
+        $("#txt_keyword").keyupEnterEvent(function () {
+            $("#btn_search").trigger("click");
+        });
+    });
+
+    //明细
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/InsuranceManage/CommercialInsuranceFiling/SelectCommercialInsuranceFilingList",
+            postData: getSearchPostData(),
+            height: $(window).height() - 130,
+            colModel: [
+                { label: "sbbabId", name: "sbbabId", width: 100, align: "center", hidden: true },
+                { label: "Số hồ sơ bệnh án", name: "blh", width: 90, align: "center" },
+                { label: "Họ tên", name: "xm", width: 80, align: "center" },
+                {
+                    label: "Tuổi", name: "nlshow", width: 80, align: "center", formatter: function (cellvalue, a, b) {
+                        return getAgeFromBirthTime({ begin: b.csny }).text;
+                    }
+                },
+                { label: "Số giấy tờ", name: "zjh", width: 130, align: "center" },
+                { label: "Công ty bảo hiểm", name: "bxName", width: 130, align: "center" },
+                { label: "Công ty bảo hiểm", name: "bxCode", width: 130, align: "center", hidden: true },
+                { label: "mã nội bộ bệnh nhân", name: "patId", width: 100, align: "center", hidden: true },
+                {
+                    label: "Ngày bắt đầu",
+                    name: "ksrq",
+                    width: 100,
+                    align: "center",
+                    formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                {
+                    label: "Ngày kết thúc",
+                    name: "jsrq",
+                    width: 100,
+                    align: "center",
+                    formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                { label: "Số lần", name: "zcs", width: 100, align: "center" },
+                { label: "còn lại Số lần", name: "sycs", width: 100, align: "center" }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: getSearchPostData(),
+                    page: 1,
+                    url: "/InsuranceManage/CommercialInsuranceFiling/SelectCommercialInsuranceFilingList"
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var keyword = $("#txt_keyword").val();
+        return { keyword: keyword };
+    };
+
+    //新建
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm hồ sơ bảo hiểm thương mại",
+            url: "/InsuranceManage/CommercialInsuranceFiling/Form",
+            width: "550px",
+            height: "470px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    //修改
+    function btn_edit() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa thông tin",
+            url: "/InsuranceManage/CommercialInsuranceFiling/Form?sbbabId=" + sbbabId,
+            width: "550px",
+            height: "470px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    //删除
+    function btn_delete() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
+        $.deleteForm({
+            url: "/InsuranceManage/CommercialInsuranceFiling/DeleteForm",
+            param: { sbbabId: sbbabId },
+            success: function () {
+                $("#gridList").trigger("reloadGrid");
+            }
+        });
+    }
+
+    //详情
+    function btn_details() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        var count = $("#gridList").getGridParam("reccount");
+        if (count === 0) {
+            $.modalAlert("Chưa chọn dòng", 'warning');
+            return;
+        }
+        var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
+        $.modalOpen({
+            id: "Details",
+            title: "Xem tổ chức",
+            url: "/InsuranceManage/CommercialInsuranceFiling/Form?sbbabId=" + sbbabId,
+            width: "550px",
+            height: "570px",
+            btn: null
+        });
+    }
+
+</script>

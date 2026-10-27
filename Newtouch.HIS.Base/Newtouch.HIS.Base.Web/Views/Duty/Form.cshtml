@@ -1,0 +1,80 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 30px;">
+        <table class="form">
+            <tr>
+                <td class="formTitle"><span class="required">*</span>Tên:</td>
+                <td class="formValue">
+                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span class="required">*</span>Mã:</td>
+                <td class="formValue">
+                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Mô tả:</td>
+                <td class="formValue">
+                    <input id="Description" name="Description" type="text" class="form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Thứ tự:</th>
+                <td class="formValue">
+                    <input id="px" name="px" type="text" class="form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;">Trạng thái:</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <div class="ckbox">
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        initControl();
+        if (!!keyValue) {
+            $.najax({
+                url: "/Duty/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+
+    function initControl() {
+
+    }
+
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        $.submitForm({
+            url: "/Duty/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>

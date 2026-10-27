@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    @Html.Partial("_FrontReference")
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
+    <script type="text/javascript">
+        try {
+            if (!window.clients) {
+                $.ajax({
+                    url: "/ClientsData/GetAsyncClientsDataJson", type: "GET", dataType: "json",
+                    async: false, timeout: 5000,
+                    success: function (d) { window.clients = { enums: d.enums, itemDetails: d.itemDetails }; },
+                    error: function () { window.clients = { enums: [], itemDetails: null }; }
+                });
+            }
+        } catch (e) { window.clients = { enums: [], itemDetails: null }; }
+    </script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/select2/select2.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/select2/select2.min.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wizard/wizard.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wizard/wizard.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+    <script src="/js/emr-vi.js"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/datepicker/WdatePicker.js")"></script>
+
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jQuery.Hz2Py-min.js")" type="text/javascript"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <!-- jqgrid -->
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.min.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
+    <script src="/js/jqgrid/grid.locale-vi.js"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/page.common.js", false)"></script>
+    @Html.Partial("_BrowseAdaptiveSupport")
+</head>
+<body>
+    @RenderBody()
+    @Html.AntiForgeryToken()
+</body>
+</html>

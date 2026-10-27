@@ -1,0 +1,415 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var isEditPatientMedicalRecord = ViewBag.IsEditPatientMedicalRecord as bool?;
+    var opr = OperatorProvider.GetCurrent();
+    //医保所属地
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+}
+<style>
+    @@media screen and (min-width:600px) {
+        #btn_ {
+            width: 160px;
+        }
+
+        .form .formTitle {
+            width: 55px;
+        }
+
+        .form .formValue {
+            width: 100px;
+        }
+    }
+
+    @@media screen and (min-width:1000px) {
+        .form .formTitle {
+            width: 25px;
+        }
+
+        .form .formValue {
+            width: 60px;
+        }
+    }
+</style>
+<form>
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                @*<th class="formTitle">病历号：</th>
+        <td class="formValue">
+            <input type="text" class="form-control form-an" id="blh" />
+        </td>*@
+                <th class="formTitle">Từ khóa：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control form-an" id="zjh" placeholder="Họ tên/Phiên âm/Số hồ sơ bệnh án/Số giấy tờ"/>
+                </td>
+                <td class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an"  value="Tra cứu" />
+                </td>
+
+                <td class="formValue">
+                     @Html.Partial("YibaoRedCardCommon")
+                    &nbsp;&nbsp;
+                    
+                </td>
+                <th class="formTitle">
+                    <button type="button" class="btn btn-primary" id="noCardRes" value="Làm thẻ thông hành" onclick="btn_NocardRes(1)">Làm thẻ thông hành</button>
+                   
+                </th>
+                <td class="formValue">
+                    <input type="button" id="btn_qy" class="btn btn-md btn-primary form-an " value="Kích hoạt thẻ một cửa" />
+                    <input type="button" id="btn_stop" class="btn btn-md btn-primary form-an" value="Dừng thẻ một cửa" />
+                    <a href="~/File/医保中间件下载.zip">Tải xuống phần mềm trung gian BHYT</a>
+                </td>
+                <th class="formTitle"></th>
+                <td class="formValue"></td>
+            </tr>
+        </table>
+        <div class="panel-heading navb-bg">
+            Thông tin cơ bản của bệnh nhân
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue" style="width:80px;">
+                    <label id="xm"></label>
+                </td>
+                <th class="formTitle">Giới tính：</th>
+                <td class="formValue">
+                    <label id="xb"></label>
+                </td>
+                <th class="formTitle">Tuổi：</th>
+                <td class="formValue">
+                    <label id="nl"></label>
+                </td>
+                <td class="formTitle">Khám lần đầu/tái khám：</td>
+                <td class="formValue">
+                    <label id="cfz"></label>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="formTitle">
+                    Số giấy tờ：
+                </td>
+                <td class="formValue">
+                    <label id="lbzjh"></label>
+                </td>
+                <td class="formTitle">
+                    Ngày sinh：
+                </td>
+                <td class="formValue">
+                    <label id="csrq"></label>
+                </td>
+                <td class="formTitle">
+                    Điện thoại liên hệ：
+                </td>
+                <td class="formValue">
+                    <label id="lxdh"></label>
+                </td>
+                <td class="formTitle">
+                    địa chỉ：
+                </td>
+                <td class="formValue">
+                    <label id="dz"></label>
+                </td>
+            </tr>
+        </table>
+        <div class="panel-heading navb-bg">
+            Bệnh nhân Danh sách
+        </div>
+        <div class="gridPanel">
+            <table id="gridList"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 6 },
+    F6Hidden = !(isEditPatientMedicalRecord.Value),
+    F6Text = "Lịch sử Hồ sơ",
+})
+<script>
+    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    $(function () {
+        $("#readCard").show();
+        //$("#btkhsr").css('display', 'none');
+        gridList();
+
+        $("#blh").keyupEnterEvent(function () {
+            $("#btn_search").trigger("click");
+        });
+    });
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PatientManage/HospiterRes/GetGridJson",
+            postData: getSearchPostData(),
+            height: $(window).height() - @(!(isEditPatientMedicalRecord.Value) ? "200" : "190"),
+            colModel: [
+                { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
+                { label: 'CardId', name: 'CardId', width: 100, align: 'left', hidden: true },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 80, align: 'left' },
+                //{ label: '患者性质', name: 'brxzmc', width: 120, align: 'left' },
+                //{ label: '卡类型', name: 'cardTypeName', width: 120, align: 'left' },
+                {
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        return $.getGender(cellvalue);
+                    }
+                },
+                { label: 'Số giấy tờ', name: 'zjh', width: 160, align: 'left' },
+
+                 { label: 'cardType', name: 'cardType', width: 160, align: 'left', hidden: true  },
+                { label: 'Nguồn bệnh nhân', name: 'brly', width: 80, align: 'left' },
+                {
+                    label: 'Năm sinh', name: 'csny', width: 100, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                { label: 'Thời gian tạo mới', name: 'CreateTime', width: 160, align: 'left',formatter: "date", formatoptions: {
+                    srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                {
+                    label: "thẻ Quản lý", name: "", width: 100, align: 'center', formatter(val, option, row) {
+
+                        return "<a class='btn btn-default' style='width:60px;font-weight:bold;textalign:center;' onclick='CardNoInfo(" + option.rowId + ")'>khám thẻ Quản lý</a>";
+
+                    }
+                }
+            ],
+            pager: "#gridPager",
+            sortname: 'createtime desc',
+            rowNum: '10',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            clear();
+            //if($("#zjh").val())
+            //{
+            //    GetQueryFphAjax({
+            //        blh: null,
+            //        kh: null,
+            //        zjh: $("#zjh").val(),
+            //        ly:'Y',
+            //    });
+            //}
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+                page: 1,
+            }).trigger('reloadGrid');
+
+        });
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var zjh=$("#zjh").val();
+        return {zjh: zjh};
+
+    }
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Nhập viện đăng ký",
+            url: "/PatientManage/HospiterRes/Register",
+            width: "700px",
+            height: "530px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_edit() {
+        var patientform = JSON.parse(localStorage.getItem("patientform"));
+        if (!!patientform) {
+            localStorage.removeItem("patientform");
+        }
+        var keyValue = $("#gridList").jqGridRowValue().patId;
+        if(!!!keyValue){
+            return;
+        }
+        $.modalOpen({
+            id: "Details",
+            title: "Xem/Sửa Thẻ một cửa thông tin",
+            url: "/PatientManage/HospiterRes/PatientBasic?keyValue=" + keyValue+"&parent=patientlist"+"&fromly=yktmodify",
+            width: "1050px",
+            height: "550px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    $('#btn_qy').click(function () {
+        var seleRow = check();
+        if (!!!seleRow) {
+            return;
+        }
+        var patId=seleRow.patId;
+        updateZt(patId,"1");
+    });
+    $('#btn_stop').click(function () {
+        var seleRow = check();
+        if (!!!seleRow) {
+            return;
+        }
+        var patId=seleRow.patId;
+        updateZt(patId,"0");
+    });
+
+    function updateZt(patId,isqy)
+    {
+        $.ajax({
+            type: "POST",
+            url: "/PatientManage/HospiterRes/UpdateZt",
+            data: {"patId":patId,"isqy":isqy},
+            dataType: "json",
+            async: true,
+            success: function (resp) {
+                $("#btn_search").trigger("click");
+                $.modalAlert("Sửa Thành công", 'warning');
+            }
+        });
+    }
+
+    function check() {
+        var seleRow = $("#gridList").jqGridRowValue();
+        var patId = seleRow.patId;
+        if (!!!patId) {
+            $.modalAlert("Chưa chọn bản ghi nào", "error");
+            return;
+        }
+        return seleRow;
+    }
+
+    function btn_NocardRes(t){
+        
+        var patientform = JSON.parse(localStorage.getItem("patientform"));
+        if(t!=null&&t===1)
+        {
+            localStorage.removeItem("patientform");
+        }
+        var url="/PatientManage/HospiterRes/PatientBasic?T=" + new Date()+ "&parent=patientlist"+"&fromly=yktregister";
+        if(t!=1)
+        {
+            url+="&keyValue=" + t;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Làm thẻ thông hành",
+            url: url,
+            width: "1050px",
+            height: "550px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+
+    }
+
+    function btn_selfPayCard()
+    {
+        $.modalAlert("Chức năng đang phát triển", "warning");
+    }
+    function CallbackPatientQuery(blh) {
+        //GetQueryFphAjax({ blh: blh });
+    }
+
+    function newtouch_event_f6(){
+        var keyValue = $("#gridList").jqGridRowValue().blh;
+        if(!!!keyValue){
+            $.modalAlert("Vui lòng chọn một Bệnh nhân", "warning");
+            return;
+        }
+        $.modalOpen({
+            id: "PatientMedicalRecordList",
+            title: "Bệnh nhân Lịch sử Hồ sơ",
+            url: "/PatientManage/SysPatientMedicalRecord/Index?blh=" + keyValue,
+            width: "900px",
+            height: "600px",
+            btn: null,
+            callBack: function (iframeId) {
+
+            }
+        });
+    }
+    function clear()
+    {
+        $("#xm").html("");
+        $("#xb").html("");
+        $("#cfz").html("");
+        $("#nl").html("");
+        $("#lbzjh").html("");
+        $("#csrq").html("");
+        $("#lxdh").html("");
+        $("#dz").html("");
+    }
+
+    ////医保业务
+   
+    var patModel = null;
+    function GetQueryFphAjax(obj, funcSuccCallback){
+        
+        $.najax({
+            url: "/PatientManage/HospiterRes/GetOutpatientBasicInfo",
+            data: obj,
+            dataType: "json",
+            async: false,
+            success: function (rep) {
+                patModel = rep.data;
+                $("#xm").html(patModel.xm);
+                $("#xb").html($.getGender(patModel.xb));
+                $("#cfz").html(patModel.fzbz!==0 ? 'Tái khám':'Khám lần đầu');
+                $("#nl").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T',' ') }).text);
+                $("#lbzjh").html(patModel.zjh);
+                $("#csrq").html(patModel.csny);
+                $("#lxdh").html(patModel.phone);
+                $("#dz").html(patModel.dz);
+            },
+            alertbierror: false,
+            errorCallback: function (rep){
+                if(rep.code === 'OUTPAT_REGIST_ISINVALID')
+                {
+                    $.modalConfirm("Thẻ một cửa chưa đăng ký, có đăng ký không?", function (flag) {
+                        if (flag) {
+                            btn_NocardRes();
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function ReadCardCall(readCardObj)
+    {
+        localStorage.setItem("patientform", JSON.stringify(readCardObj.yibaoCardInfo));
+        GetQueryFphAjax({ blh: null, kh:  readCardObj.yibaoCardInfo.kh , zjh:  readCardObj.yibaoCardInfo.qtjz, cardType:readCardObj.ybkCardType },
+                        function () {
+                        });
+    }  
+    
+
+    function CardNoInfo(rowid) {
+        var rowdata = $('#gridList').jqGrid('getRowData', rowid);
+        $.modalOpen({
+            id: "LogDetailsView",
+            title: "khám thẻ Quản lý",
+            url: "/PatientManage/HospiterRes/CardManagement?patId=" + rowdata.patId + "&xm=" + rowdata.xm,
+            width: "700px",
+            height: "530px",
+            btn: [],
+            //callBack: function (iframeId) {
+            //    top.frames[iframeId].$.modalClose();
+            //}
+        });
+    }
+</script>

@@ -1,0 +1,120 @@
+
+@{
+    ViewBag.Title = "Ngoại trúKhám bệnhChi tiết";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Ngày:</th>
+                <td class="formValue" style="width:10%">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                </td>
+                <td class="formValue" style="width:8px;float:left;">-</td>
+                <td class="formValue" style="width:10%;float:left;">
+                    <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
+                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </td>
+                <th class="formTitle">Ngoại trúSố thẻ/Họ tên/Khoa:</th>
+                <td class="formValue">
+                    <input id="keyword" type="text" class="form-control" placeholder="Ngoại trúSố thẻ/Họ tên/Khoa" />
+                </td>
+                <td class="formValue" colspan="2">
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
+                    <input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="In" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        //查询列表
+        gridList();
+    });
+    //门诊挂号结算查询
+    function gridList() {
+        var $gridJsList = $("#gridList");
+        $gridJsList.dataGrid({
+            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), keyword: $("#keyword").val()},
+            height: $(window).height() - 160,
+            url: "/DoctorManage/OutpatientQuery/GetConsultDetailGridJson",
+            colModel: [
+                { label: 'Mã số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+                { label: 'Tên bệnh nhân', name: 'xm', align: 'left', width: 110 },
+                { label: 'Giới tính', name: 'xb', align: 'center', width: 50 },
+                { label: 'Tuổi', name: 'nl', align: 'right', width: 50 },
+                { label: 'Khám bệnhKhoa', name: 'ks', width: 80, align: 'left' },
+                { label: 'Khám bệnhBác sĩ', name: 'ys', width: 80, align: 'left' },
+                { label: 'Khám bệnhLoại', name: 'jzlx', align: 'center', width: 50 },
+                { label: 'Khám lần đầu', name: 'cz', align: 'center', width: 50 },
+                { label: 'Thời gian bắt đầu', name: 'zlkssj', align: 'left', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Kết thúcThời gian', name: 'zljssj', align: 'left', width: 120, formatter: function (val) { return val != "" && val != undefined ? $.getTime({ date: val }) : ""; } },
+                { label: 'Khám bệnhTrạng thái', name: 'jzzt', align: 'center', width: 50 },
+                { label: 'ChínhChẩn đoánTên', name: 'zdmc', width: 150, align: 'left' },
+                { label: 'Khám bệnhSố thẻ', name: 'jzkh', align: 'left', width: 70 },
+                { label: 'Tái khámNgày', name: 'fzrq', align: 'left', width: 80 },
+                { label: 'Ngày sinh', name: 'csny', align: 'left', width: 60, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Số CMND/CCCD', name: 'zjh', align: 'left', width: 120 },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', align: 'center', width: 70 },
+                //{ label: '医疗证号', name: 'ylzh', align: 'center', width: 50 },
+                { label: 'Nghề nghiệp', name: 'zy', align: 'left', width: 50 },
+                { label: 'Dân tộc', name: 'mz', align: 'left', width: 50 },
+                //{ label: '血型', name: 'xx', align: 'center', width: 50 },
+                { label: 'Khám lần đầuNgày', name: 'czrq', align: 'left', width: 80 },
+                { label: 'Gia đìnhĐiện thoại', name: 'dh', align: 'left', width: 50 },
+                { label: 'Địa chỉ gia đình', name: 'xian_dz', align: 'left', width: 50 },
+                { label: 'Đơn vịTên', name: 'dwmc', align: 'left', width: 50 },
+                { label: 'Đơn vịĐiện thoại', name: 'dwdh', align: 'left', width: 50 },
+                { label: 'Quan hệ người đi cùng', name: 'lxrgx', align: 'left', width: 65 },
+                { label: 'Người đi cùngHọ tên', name: 'lxr', align: 'left', width: 65 },
+                { label: 'Người đi cùngĐiện thoại', name: 'lxrdh', align: 'center', width: 65 },
+                { label: 'Người đi cùngĐơn vị', name: 'lxrdw', align: 'left', width: 65 },
+                { label: 'Người đi cùngĐịa chỉ', name: 'jjlxr_dz', align: 'left', width: 65 },
+            ],
+            pager: "#gridPager",
+            sortname: " zlkssj asc",
+            rownumbers: true,  //是否显示Số thứ tự
+            viewrecords: true
+        });
+
+        $("#btn_search").click(function () {
+            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $gridJsList.jqGrid('setGridParam', {
+                postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), keyword: $("#keyword").val() },
+                url: "/DoctorManage/OutpatientQuery/GetConsultDetailGridJson",
+            }).trigger('reloadGrid');
+        });
+    }
+
+
+    $("#btn_print").click(function () {
+        var uri = '@Html.Raw(reportUrl)' + "?tempCode=1244" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&kssj=" + $('#kssj').val() + "&jssj=" + $('#jssj').val() + "&jzys=" + '@curOpr.rygh' + "&keyword=" + $('#keyword').val();
+        if (uri) {
+            window.open(uri);
+        }
+    })
+
+
+
+</script>

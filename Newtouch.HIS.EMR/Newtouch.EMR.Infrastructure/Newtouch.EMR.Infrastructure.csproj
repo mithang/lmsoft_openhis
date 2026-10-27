@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>Newtouch.EMR.Infrastructure</AssemblyName>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.100" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- net6.0 vendor base layer (read-only references; run copy is never modified) -->
+    <Reference Include="NewtouchHIS.Lib.Base">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Framework">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

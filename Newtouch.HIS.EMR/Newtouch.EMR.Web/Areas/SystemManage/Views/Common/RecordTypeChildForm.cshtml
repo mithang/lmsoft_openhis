@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <table class="form" style="width:95%;">
+        <tr>
+            <th class="formTitle" style="height: 35px;"><span class="required">*</span>Nhóm lớn bệnh án</th>
+            <td class="formValue" style="padding-top: 1px;">
+                <select id="ParentId" name="ParentId" class="form-control required"></select>
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle">Sắp xếp</th>
+            <td class="formValue">
+                <input id="px" name="px" type="text" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle"><span class="required">*</span>Thư mục con Mô tả</th>
+            <td class="formValue">
+                <input id="bllxmc" name="bllxmc" type="text" class="form-control required" />
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle" style="height: 35px;">Trạng thái</th>
+            <td class="formValue" style="padding-top: 1px;">
+                <div class="ckbox">
+                    <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="formTitle"></th>`
+            <td class="formValue">
+                <input id="btn_submit" name="btn_submit" type="button" value="Nộp" onclick="submitForm()" class="btn btn-primary" style="width:80px;text-align:center;float:right;" />
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        $("#ParentId").bindSelect({
+            url: "/SystemManage/Common/GetBllxList",
+            id: "Id",
+            text: "Name"
+        });
+        if (!!keyValue) {           
+            $.najax({
+                url: "/SystemManage/Common/GetBllxbyId",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+
+    function submitForm() {
+        var postData = $("#form1").formSerialize();
+        postData.ParentId = $("#ParentId option:selected").val();
+        $.submitForm({
+            url: "/SystemManage/Common/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function (data) {
+                if (data.state == "success") {
+                    $.modalMsg('Lưu thành công', 'success');
+                    $.currentWindow().$("#gridList").resetSelection();
+                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+                }
+                else {
+                    $.modalMsg(data.message, 'error');
+                }
+
+                $.modalClose();
+            }
+        });
+    }
+</script>

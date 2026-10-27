@@ -1,0 +1,199 @@
+@using NewtouchHIS.Lib.Framework.Operator
+@using Newtouch.Herp.Infrastructure.Enum
+@{
+    ViewBag.Title = "Bảo trì vật tư";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa fa-trash-o"></i>Xóa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td class="formTitle">Loại：</td>
+                <td class="formValue formDdlSelectorTd">
+                    <div class="input-group" style="width:120px">
+                        <select class="form-control" id="lb">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </div>
+                </td>
+                <td class="formTitle" style="padding-left:10px;">Trạng thái vật tư：</td>
+                <td class="formValue formDdlSelectorTd" style="width:75px">
+                    <div class="input-group">
+                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Phiên âm" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script lang="javascript">
+    $(function () {
+        init();
+        gridList();
+    });
+    function init() {
+
+        $("#lb").bindSelect({
+            url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
+        });
+    }
+
+    //get data
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/ProductManage/Product/GetProductGridJson",
+            postData: {
+                lb: $("#lb option:selected").val(),
+                zt: $("#wzzt option:selected").val(),
+                keyWord: $("#txt_keyword").val()
+            },
+            height: $(window).height() - 120,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên vật tư', name: 'name', width: 130, align: 'left' },
+                { label: 'Mã bảo hiểm y tế quốc gia', name: 'gjybdm', width: 100, align: 'left' },
+                { label: 'Loại', name: 'typeName', width: 190, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 120, align: 'left' },
+                { label: 'Kiểu mẫu, quy cách', name: 'gg', width: 120, align: 'left' },
+                { label: 'Đơn vị nhỏ nhất', name: 'minUnit', width: 60, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 150, align: 'left' },
+                {
+                    label: "Hiệu lực", name: "zt", width: 50, align: "center",
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
+                },
+                { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', hidden: true },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', hidden: true },
+                { label: 'OrganizeId', name: 'OrganizeId', hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+            {
+                postData: {
+                    lb: $("#lb option:selected").val(),
+                    zt: $("#wzzt option:selected").val(),
+                    keyWord: $("#txt_keyword").val()
+                }
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //Sự kiện tra cứu khi nhấn Enter
+    $("#txt_keyword").keydownEnterEvent(function() {
+        $("#btn_search").trigger("click");
+    });
+
+    //Thêm mới
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm vật tư",
+            url: "/ProductManage/Product/Form",
+            width: "750px",
+            height: "750px",
+            showleftlalbel: true,//Hiển thị khi thêm mới'nút Xác nhận và đóng'
+            leftlalbelchecked: false,
+            leftlabeltext: "Nhập liên tục",
+            leftlalbelcheckedasClose: false,
+            callBack: function (iframeId, isClose) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                    if(isClose == undefined || isClose === true) {
+                        top.frames[iframeId].$.modalClose();
+                    }
+                });
+            }
+        });
+    }
+
+    //Sửa
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
+            $.modalAlert("Không có quyền sửa", 'warning');
+            return;
+        }*@
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa vật tư",
+            url: "/ProductManage/Product/Form?keyValue=" + keyValue,
+            width: "750px",
+            height: "750px",
+            leftlalbelchecked: false,
+            leftlalbelcheckedasClose: false,
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function() {
+                    $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                    top.frames[iframeId].$.modalClose();
+                });
+            }
+        });
+    }
+
+    //Xóa
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
+            $.modalAlert("Không có quyền sửa", 'warning');
+            return;
+        }*@
+        $.deleteForm({
+            url: "/ProductManage/Product/DeleteForm",
+            param: { keyValue: keyValue },
+            success: function () {
+                $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+            }
+        });
+    }
+
+</script>

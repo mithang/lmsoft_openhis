@@ -1,0 +1,93 @@
+﻿<script>
+
+    function GetblData(jydm, blId) {
+        if (!!jydm) {
+            $.najax({
+                url: "/MedicalRecordManage/MedicalRecord/GetBlxxbyJydm",
+                data: { blId: blId, jydm: jydm },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data != null && data != undefined) {
+                        var ret = Upload(data);
+                        if (ret == 1) {
+                            $.najax({
+                                url: "/MedicalRecordManage/MedicalRecord/UpdateYBUploadStu",
+                                data: { blId: blId},
+                                dataType: "json",
+                                async: false,
+                                success: function (data) {
+                                    if (data.state == "success") {
+                                        $.modalAlert(data.message, "success");
+
+                                    }
+                                    else {
+                                        $.modalAlert(data.message, "error");
+                                    }
+                                }
+                            });
+                        }
+                        return ret;
+                    }
+                    else {
+                        $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
+                    }
+                }
+            });
+        }
+        return 0;
+    }
+    //病案首页
+    function GetbasyData(zyh,jydm) {
+        var ret = 0;
+        if (!!jydm) {
+            $.najax({
+                url: "/MRHomePage/MRHomePage/HomePageUploadJS",
+                data: { zyh: zyh, jydm: jydm },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data != null && data != undefined) {
+                        ret = Upload(data);
+                    }
+                    else {
+                        $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
+                    }
+                }
+            });
+        }
+        return ret;
+    }
+
+
+    function Upload(jsondata) {
+        $.najax({
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            dataType: "json",
+            data: jsondata,      
+            type: "POST",
+            async: true,
+            success: function (ajaxdata) {
+                if (!!ajaxdata) {
+                    var resp = JSON.parse(ajaxdata);
+                    if (resp.code == "-1") {
+                        $.modalAlert("Tải lên thất bại" + resp.message, "error");
+                    }
+                    else {
+                        $.modalAlert("Tải lên thành công", "success");
+                        return 1;
+                    }
+                }
+                else
+                    $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $.modalAlert("Tải lên thất bại." + jqXHR.readyState + ";" + errorThrown, "error");
+            },
+        });
+
+        return 0;
+    }
+
+</script>

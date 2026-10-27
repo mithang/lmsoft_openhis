@@ -1,0 +1,137 @@
+
+@{
+	ViewBag.Title = "Xét nghiệmBáo cáoGiá trị bất thường";
+	Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="formPatSer" style="margin:2px;margin-top:10px;">
+	<div class="gridPanel">
+		<div>
+			<table class="form">
+				<tr>
+                    <th class="formTitle">Số phiếu:</th>
+					<td class="formValue">
+						<input id="sqdhtx" type="text" class="form-control" placeholder="Số phiếu" />
+					</td>
+					<th class="formTitle">Tên bộ mẫu:</th>
+					<td class="formValue">
+						<input id="ztmc" type="text" class="form-control" placeholder="Tên bộ mẫu" />
+					</td>
+					<td class="formValue">
+						&nbsp;&nbsp;
+						<input id="ycbz" type="checkbox" checked placeholder="Có hay khôngChỉ tra cứu bất thường" /><label for="ycbz">Có hay khôngChỉ tra cứu bất thường</label>
+						&nbsp;&nbsp;
+						<input type="button" id="btn_search" class="btn btn-primary" value=" Tra cứu " />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table id="gridList" rel="formPatSer"></table>
+			<div id="gridPager" style="padding-right:20%"></div>
+		</div>
+	</div>
+</form>
+<script>
+	var mzzyh = $.request("mzzyh");
+	var type = $.request("type");
+	$(function () {
+		gridList();
+	})
+	$('#btn_search').click(function () {
+		//$("#gridList").clearGridData();
+		var ztmc = $('#ztmc').val();
+		var sqdht = $('#sqdhtx').val();
+		var ycbz = "1";
+		if ($('#ycbz').is(':checked')) {
+			ycbz = "0";
+		}
+		$("#gridList").jqGrid('setGridParam', {
+			postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, ycbz: ycbz, sqdht: sqdht },
+		}).trigger('reloadGrid'); //重新加载当前表格
+	});
+
+	function gridList() {
+		var ztmc = $('#ztmc').val();
+		var ycbz = "1";
+		if ($('#ycbz').is(':checked')) {
+			ycbz = "0";
+		}
+		var sqdht = $('#sqdhtx').val();
+		var $gridList = $("#gridList");
+		$gridList.dataGrid({
+			url: "/MedicalRecord/GetLisSqdyczGridJson",
+			multiselect: true,
+			postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, ycbz: ycbz, sqdht: sqdht },
+			width: $("#formPatSer").width() - 10,
+			height: $(window).height() - 120,
+			colModel: [
+				{ label: 'id', name: 'Id', align: 'center', key: true, hidden: true },
+				{ label: 'sqdlx', name: 'sqdlx', align: 'center', hidden: true },
+				{ label: 'Số phiếu', name: 'sqdh', align: 'center', width: '130px' },
+				{ label: 'Tên bộ mẫu', name: 'ztmc', align: 'center', width: '200px' },
+				{ label: 'Tên mục', name: 'xmzwmc', align: 'left', width: '130px' },
+				{ label: 'Giá trị kết quả', name: 'jyjg', align: 'center', width: '40px' },
+				{ label: 'Kết quảBất thường', name: 'gdbj', align: 'center', width: '50px' },
+				{ label: 'Giới hạn dưới tham chiếu', name: 'ckzdx', align: 'center', width: '60px' },
+				{ label: 'Giới hạn trên tham chiếu', name: 'ckzgx', align: 'center', width: '60px' },
+				{ label: 'Giá trị tham chiếuPhạm vi', name: 'ckz', align: 'center', width: '80px' }
+			],
+            pager: "#gridPager",
+            sortname: 'sqdh desc',
+			viewrecords: true,
+			unwritten: false,
+			loadComplete: function () {
+				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //获取数据总条
+				if (rowNum==0) {
+					if ($("#norecords").html() == null) {
+						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>Không có mục giá trị bất thường!</div>");
+					}
+					$("#norecords").show();//显示提示信息
+				} else {
+					$("#norecords").remove();
+					$("#norecords").hide();//隐藏提示信息
+				}
+			}
+		});
+	}
+
+	function addlistpubs() {
+        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//选中的id
+
+        var rowids = $("#gridList").jqGrid("getDataIDs");
+        var rowData = new Array();
+        for (var k = 0; k < rowids.length; k++) {
+            var curk = $("#" + rowids[k]).find(":checkbox");
+            if (curk[0].checked) {
+                var rows = $("#gridList").jqGrid('getRowData', rowids[k]);
+                rowData.push(rows);
+            }
+        }
+        var outstr = "";
+        var ztmcjl = "";
+        for (var i = 0; i < rowData.length; i++) {
+            //var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+            if (ztmcjl == rowData[i].ztmc) {
+                outstr += "";
+            } else {
+                outstr += "Bộ mẫu[" + rowData[i].ztmc + "]";
+            }
+            
+			if (rowData[i].sqdlx=="4") {//为检验报告
+				if (rowData[i].gdbj != '') {
+                    outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + " " + rowData[i].gdbj + " Giá trị tham chiếu,phạm vi giá trị tham chiếu là" + rowData[i].ckz + ";";
+				} else {
+                    outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + ",phạm vi giá trị tham chiếu là" + rowData[i].ckz + ";";
+				}
+            } else if (rowData[i].sqdlx == "5") {//为检查报告
+                outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + ";";
+			}
+			
+            ztmcjl = rowData[i].ztmc;
+        }
+        
+		return outstr;
+	}
+
+</script>

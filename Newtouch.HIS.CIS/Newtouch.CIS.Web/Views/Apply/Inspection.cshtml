@@ -1,0 +1,365 @@
+@{
+    ViewBag.Title = "Inspection";
+    Layout = null;
+}
+
+<div id="linkjy" role="tabpanel" class="tab-pane" style="width:70.5%; float:right; margin-right: 10px; border:solid 1px #ddd; margin-top: 3px;">
+    <div style="background-color: #fff;">
+        <table id="gridjy"></table>
+    </div>
+    @*divGridjy-旧版*@
+    <div id="divGridjy" style="display:none;">
+        <table id="alreadyJYAppliedList"></table>
+    </div>
+    <div id="divGridjyzh" style="background-color:white">
+        <table id="alreadyJYAppliedGroupList"></table>
+    </div>
+    <table class="form">
+        <tr>
+            <td class="formTitle">
+                Ấn tượng lâm sàng
+            </td>
+            <td class="formValue">
+                <input id="txt_jy_lcyx" name="txt_jy_lcyx" type="text" class="form-control" />
+            </td>
+            <td class="formTitle">
+                Đề nghịGhi chú
+            </td>
+            <td class="formValue">
+                <input id="txt_jy_sqbz" name="txt_jy_sqbz" type="text" class="form-control" />
+            </td>
+            <td style="width:100px;"></td>
+            <td style="width:100px;"></td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td>
+                <input type="button" class="btn btn-primary" value="Quay lạiBệnh án" style="display:table-cell" onclick="SaveInspectionbyZt()" />
+            </td>
+            <td class="formValue">
+                <input type="button" class="btn btn-primary" value="F3:LưuPhiếu" style="display:table-cell" onclick="SaveInspectionbyZt('1')" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var jyflag = 0;
+    var jylocaldata = new Array();
+    var thsNewJyCfh = null; //处方号
+    function init_Inspection() {
+        jylocaldata = new Array();
+        thsNewJyCfh = null;
+        if (window.alldataArray.jycf) {
+            jylocaldata = $.jsonWhere($.deepClone.clone(window.alldataArray.jycf), function (icf) {
+                if (!!!icf.cfh) {
+                    thsNewJyCfh = icf.cfh;
+                    return true;
+                }
+                return false;
+            });
+        }
+        else {
+            window.alldataArray.jycf = new Array(); //方便后面使用$.each()
+        }
+
+        if (!!!thsNewJyCfh) {
+            thsNewJyCfh = GetNewPresNo();
+        }
+
+        if (jyflag == 0) {   //该页面初始化
+            gridjy();
+            gridAlreadyJYApplied();
+            gridAlreadyJYGroupApplied();
+            jyflag = 1;
+        }
+        else {
+            //$("#gridjy").clearGridData();
+            //$('#alreadyJYAppliedList').clearGridData();
+            //
+            //$('#alreadyJYAppliedList').newtouchLocalDataGrid(null, jylocaldata);
+            EnableInspectionInlineEditBox();
+        }
+    }
+
+    //处方列表
+    function gridjy() {
+        var $gridjy = $("#gridjy");
+        $gridjy.dataGrid({
+            caption: "ChọnBộ mẫu",
+            height: 130,
+            //multiselect: true,
+            unwritten: false,
+            colModel: [
+                { label: 'Tên mục', name: 'xmmc', width: 200, align: 'left' },
+                { label: 'MụcMã', name: 'xmCode', width: 120, align: 'left' },
+                {
+                    label: 'Đơn giá', name: 'dj', width: 100, align: 'left', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+                { label: 'Đơn vị', name: 'dw', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 80, align: 'left' },
+                { label: 'zxks', name: 'zxks', width: 60, align: 'left', hidden: true },
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 80, align: 'left' },
+                { label: 'Có hay khôngBảo hiểm y tế', name: 'sfyb', width: 60, align: 'center' },
+                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', hidden: true },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' }
+            ],
+            gridComplete: function () {
+                //隐藏grid底部滚动条
+                $gridjy.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
+            }
+            //onSelectRow: function (rowid, status) {
+            //    gridjycheck([rowid], status);
+            //},
+            //onSelectAll: function (aRowids, status) {
+            //    gridjycheck(aRowids, status);
+            //}
+        });
+    }
+
+    function gridjycheck(aRowids, status) {
+        $.each(aRowids, function () {
+            if (status === true) {
+                var data = $("#gridjy").getRowData(this);
+                if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && data.sfyb == "否") {
+                    $.modalAlert("Bệnh nhân này là bệnh nhân BHYT, không thể chọn mục tự chi trả [" + data.xmmc + "】", "warning");
+                    $("#gridjy").jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                    return false;
+                }
+                addJYRow(this);
+            }
+            else {
+                deleteJYRow(this);
+            }
+        });
+        CalculateInsPresJYAmount($("#gridjy"));
+    }
+
+    function addJYRow(sourceRowid) {
+        var sourceRowData = $("#gridjy").getRowData(sourceRowid);
+        var rowIds = $("#alreadyJYAppliedList").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+            var currRow = $("#alreadyJYAppliedList").getRowData(rowIds[i]);
+            if (currRow.xmCode === sourceRowData.xmCode) {
+                return; //已添加过  //不能重复加
+            }
+        }
+        //Thực hiệnadd
+        var aRowData = {};
+        aRowData.xmmc = sourceRowData.xmmc;
+        aRowData.xmCode = sourceRowData.xmCode;
+        aRowData.dj = sourceRowData.dj;
+        aRowData.dw = sourceRowData.dw;
+        aRowData.sl = sourceRowData.sl;
+        aRowData.zxks = sourceRowData.zxks;
+        aRowData.zxksmc = sourceRowData.zxksmc;
+        aRowData.ztId = sourceRowData.ztId;
+        aRowData.ztmc = sourceRowData.ztmc;
+        $('#alreadyJYAppliedList').newtouchLocalDataGrid(null, aRowData);
+        EnableInspectionInlineEditBox();
+    }
+
+    function deleteJYRow(sourceRowid) {
+        var sourceRowData = $("#gridjy").getRowData(sourceRowid);
+        var rowIds = $("#alreadyJYAppliedList").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+            var currRow = $("#alreadyJYAppliedList").getRowData(rowIds[i]);
+            if (currRow.xmCode === sourceRowData.xmCode) {
+                //Thực hiện移除
+                $('#alreadyJYAppliedList').jqGrid("delRowData", rowIds[i]);
+                return;
+            }
+        }
+    }
+
+    //计算申请单金额
+    function CalculateInsPresJYAmount($grid) {
+        var totalAmount = 0.00;
+        var allData = $grid.jqGrid('getRowData_AllLine', null, true);
+        $.each(allData, function () {
+            if (!!this.zhje) {
+                totalAmount += parseFloat(this.zhje);
+            }
+            else {
+                var sl = $("#alreadyJYAppliedList input[name=sl]").val();
+                totalAmount += parseFloat(this.dj) * parseFloat(sl);
+            }
+
+        });
+        $grid.jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:" + "<label style='color:red;'>￥"
+            + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+    }
+
+    function gridAlreadyJYApplied() {
+        //init 已开申请单
+        $('#alreadyJYAppliedList').newtouchLocalDataGrid({
+            height: $(window).height() - 390,
+            unwritten: false,
+            editurl: "clientArray",  //行编辑不向服务器提交数据
+            caption: "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00",
+            colModel: [
+                { label: 'Tên mục', name: 'xmmc', width: 200, align: 'left' },
+                { label: 'MụcMã', name: 'xmCode', width: 200, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 120, align: 'left' },
+                {
+                    label: 'Số lượng', name: 'sl', width: 80, align: 'left', editable: true,editoptions: {
+                        dataEvents: [
+                            {
+                                type: 'change',
+                                fn: function (e) {
+                                    CalculateInsPresJYAmount($('#alreadyJYAppliedList'));
+                                }
+                            }
+                        ]
+                    } },
+                { label: 'Đơn vị', name: 'dw', width: 120, align: 'left' },
+                { label: 'zxks', name: 'zxks', width: 60, align: 'left', hidden: true },
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 120, align: 'left' },
+                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left',  hidden: true },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' }]
+        });
+    }
+    function EnableInspectionInlineEditBox() {
+        var ids = $("#alreadyJYAppliedList").getDataIDs();
+        $.each(ids, function () {
+            var rowid = String(this);
+            //打开编辑模式
+            $("#alreadyJYAppliedList").jqGrid('editRow', rowid, false);
+        });
+
+    }
+
+    //保存
+    function SaveJY(savetodb, justUpdateAlldataArray) {
+        //作为一个新处方
+        var gridjyData = $("#alreadyJYAppliedList").jqGrid('getRowData_AllLine', null, true);
+        $.each(gridjyData, function () {
+            this.lcyx = $('#txt_jy_lcyx').val();
+            this.sqbz = $('#txt_jy_sqbz').val();
+            this.sl = $('#alreadyJYAppliedList input[name=sl]').val();
+            delete this.jqRowId;   //去掉jqRowId
+        });
+
+        //清空临床印象、申请备注
+        $('#txt_jc_lcyx').val('');
+        $('#txt_jc_sqbz').val('');
+
+        window.alldataArray.jycf = $.jsonWhere(window.alldataArray.jycf, function (icfmx) {
+            if (!!!icfmx.cfId) {
+                return false;   //编辑列表里有
+            }
+            return true;
+        });
+
+        $.each(gridjyData, function () {
+            this.cfh = thsNewJyCfh;
+            window.alldataArray.jycf.push(this);
+        });
+        if (!(justUpdateAlldataArray == true)) {
+            if (savetodb == '1') {
+                if (SaveData(false, function () {
+                    $.modalAlert("PhiếuLưu thành công", 'success');
+                    thsNewJyCfh = GetNewPresNo();
+                })) {
+                    $("#gridjy").clearGridData();
+                    $('#alreadyJYAppliedList').clearGridData();
+                }
+                $("#alreadyJYAppliedList").jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00");   //重置caption属性值
+            }
+            else {
+                //跳回病历页
+                $('#myTab [href="#linkbl"]').trigger('click'); //初始化显示哪个tab
+                //病例页重新加载处方，处方数据发生了变更
+                triggleActive();
+            }
+        }
+        else {
+            triggleActive();
+        }
+    }
+
+    /********************************************************/
+    //显示选择检验组合
+    function gridAlreadyJYGroupApplied() {
+        $('#alreadyJYAppliedGroupList').newtouchLocalDataGrid({
+            height: $(window).height() - 410,
+            unwritten: false,
+            caption: "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00",
+            editurl: "clientArray",
+            colModel: [
+                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', key: true, hidden: true },
+                { label: 'mbId', name: 'mbId', width: 60, align: 'left', hidden: true },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 300, align: 'left' },
+                {
+                    label: 'Số tiền', name: 'zhje', width: 100, align: 'center', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' } },
+                { label: 'zxksdm', name: 'zxksdm', width: 60, align: 'center', hidden: true },
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 150, align: 'center' },
+                { label: 'Thao tác', name: 'action', width: 150, align: 'center' },
+            ],
+            gridComplete: function () {
+            }
+        });
+    }
+
+    function SaveInspectionbyZt(savetodb, justUpdateAlldataArray) {
+        //作为一个新处方
+        var gridjyData;
+        var rowIds = $("#alreadyJYAppliedGroupList").jqGrid('getDataIDs');
+       
+        //清空临床印象、申请备注
+        $('#txt_jc_lcyx').val('');
+        $('#txt_jc_sqbz').val('');
+
+        window.alldataArray.jycf = $.jsonWhere(window.alldataArray.jycf, function (icfmx) {
+            if (!!!icfmx.cfId) {
+                return false;   //编辑列表里有
+            }
+            return true;
+        });
+        if (rowIds.length > 0) {
+            var mbId = $("#alreadyJYAppliedGroupList").getRowData(rowIds[0]).mbId;
+            $.najax({
+                url: "/TemplateManage/InspectionTemplate/GetGPackageDetailByZtIdArray",
+                data: { ztId: rowIds, mbId: mbId },
+                dataType: "json",
+                type: "POST",
+                async: false,
+                success: function (data) {
+                    gridjyData = data;
+                    $.each(gridjyData, function () {
+                        this.lcyx = $('#txt_jy_lcyx').val();
+                        this.sqbz = $('#txt_jy_sqbz').val();
+                        this.ztmbId = mbId;
+                        this.cfh = thsNewJyCfh;
+                        window.alldataArray.jycf.push(this);
+                    });
+
+                }
+            });
+        }
+        if (!(justUpdateAlldataArray == true)) {
+            if (savetodb == '1') {
+                if (SaveData(false, function () {
+                    $.modalAlert("PhiếuLưu thành công", 'success');
+                    thsNewJyCfh = GetNewPresNo();
+                })) {
+                    $("#gridjy").clearGridData();
+                    $('#alreadyJYAppliedGroupList').clearGridData();
+                }
+                $("#alreadyJYAppliedGroupList").jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00");   //重置caption属性值
+            }
+            else {
+                //跳回病历页
+                $('#myTab [href="#linkbl"]').trigger('click'); //初始化显示哪个tab
+                //病例页重新加载处方，处方数据发生了变更
+                triggleActive();
+            }
+        }
+        else {
+            triggleActive();
+        }
+    }
+</script>
+

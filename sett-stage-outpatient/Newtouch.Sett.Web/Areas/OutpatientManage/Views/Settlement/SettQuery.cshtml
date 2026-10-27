@@ -1,0 +1,165 @@
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form>
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Từ khóa：</th>
+                <td class="formValue">
+                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số hồ sơ bệnh án/Số khám ngoại trú">
+                </td>
+                <th class="formTitle">Ngày quyết toán：</th>
+                <td class="formValue" colspan="2">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left:1%;float:left">—</span>
+                    <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <th class="formTitle" style="height: 35px;"></th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <div class="ckbox">
+                        <input id="containsTF" name="containsTF" type="checkbox" checked="checked"><label for="containsTF">Bao gồm hoàn phí</label>
+                    </div>
+                </td>
+                <td class="formValue">
+                    <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
+                </td>
+                <th class="formTitle"></th>
+                <td class="formValue"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 9 },
+    F9Text = "XuấtExcel",
+})
+
+<script>
+    $(function () {
+        initControl();
+        gridList();
+    })
+
+    var gridOptins = {
+        url: "/OutpatientManage/Settlement/GetSettlementGridJson",
+        height: $(window).height() - 185,
+        postData: getSearchPostData(),
+        colModel: [
+            { label: 'Số khám ngoại trú', name: 'mzh', width: 105, align: 'left', key: true },
+            { label: 'blh', name: 'blh', hidden: true },
+            { label: 'jsnm', name: 'jsnm', hidden: true },
+            { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+             {
+                 label: 'Giới tính', name: 'xb', width: 35, align: 'center', formatter: function (cellvalue) {
+                     return $.getGender(cellvalue);
+                 }
+             },
+            { label: 'Tính chất chi phí', name: 'brxzmc', width: 60, align: 'left' },
+            { label: 'Đầu tiênChẩn đoán', name: 'zdmc', width: 100, align: 'left' },
+             {
+                 label: 'Trạng thái quyết toán', name: 'jszt', width: 50, align: 'center', formatter: function (cellvalue) {
+                     return cellvalue == 2 ? "Hoàn phí" : (cellvalue == 1 ? "Thu phí" : "");
+                 }
+             },
+            {
+                label: 'Ngày quyết toán', name: 'jsrq', width: 80, align: 'left',
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            },
+            { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'left' },
+            {
+                label: 'Tổng số tiền', name: 'jszje', width: 60, align: 'left', formatter: moneyFormat
+            },
+            {
+                label: 'Thanh toán tiền mặt', name: 'jsxjzf', width: 60, align: 'left', formatter: moneyFormat
+            },
+            { label: 'Phương thức thanh toán tiền mặt', name: 'zffsmcstr', width: 80, align: 'left' },
+            {
+                label: 'Chi phí thông thường BHYT', name: 'YBFY', width: 80, align: 'left', formatter: moneyFormat
+            },
+            {
+                label: 'Thanh toán tài khoản cơ bản', name: 'JBZF', width: 80, align: 'left', formatter: moneyFormat
+            },
+            {
+                label: 'Thanh toán tài khoản bổ sung công', name: 'GBZF', width: 80, align: 'left', formatter: moneyFormat
+            },
+        ],
+        pager: "#gridPager",
+        rowNum: 10,
+        sortname: 'jsrq desc',
+        viewrecords: true
+    };
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid(gridOptins);
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function getSearchPostData() {
+        return { keyword: $("#txt_keyword").val(), kssj: $("#kssj").val(), jssj: $("#jssj").val(), containsTF: $("#containsTF").is(":checked") };
+    }
+
+    function moneyFormat(cellvalue, a, b) {
+        var str = cellvalue ? cellvalue.toFixed(2) : "0.00";
+        if (b.jszt && b.jszt == '2' && parseFloat(cellvalue) > 0) {
+            str = '-' + str;
+        }
+        return str;
+    }
+
+    //sự kiện nhấn Enter
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    $('#containsTF').click(function () {
+        setTimeout("$('#btn_search').trigger('click');", 100);
+    });
+
+    function initControl() {
+
+    }
+
+    var exportCols = null;
+    function newtouch_event_f9() {
+        exportCols = new Array();
+        $.each(gridOptins.colModel, function () {
+            if (!(this.hidden === true)) {
+                exportCols.push({ Heading: this.label, Name: this.name, Width: this.width });
+            }
+        });
+        Export();
+    }
+
+    function Export() {
+        var url = "/OutpatientManage/Settlement/SettlementExportExcel?r=" + Math.random();
+        url += "&keyword=" + $('#txt_keyword').val();
+        url += "&kssj=" + $('#kssj').val();
+        url += "&jssj=" + $('#jssj').val();
+        url += "&containsTF=" + $("#containsTF").is(":checked");
+        url += "&colStanWidth=" + "70";  //cột chuẩn độ rộng cột
+        var cols = JSON.stringify(exportCols);
+        top.$.cookie('ExportExcelCols', cols, { path: "/" });
+        //url += "&cols=" + encodeURIComponent(cols);
+
+        window.open(url);
+    }
+
+</script>
+
+

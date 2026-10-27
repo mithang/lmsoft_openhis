@@ -1,0 +1,200 @@
+﻿@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var opeator = OperatorProvider.GetCurrent();
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            @if (opeator.IsAdministrator || opeator.IsRoot || true)
+            {
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a onclick="btn_template()" href="javascript:void()">Cấu hình mẫu quản lý</a></li>
+                </ul>
+            }
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_sync()"><i class="fa fa-pencil-square-o"></i>Đồng bộ</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên cấu hình/Mã cấu hình" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+        <a title="Xem tất cả hạng mục cấu hình" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">Xem tất cả hạng mục cấu hình</a>
+
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    
+</div>
+
+<script>
+    $(function () {
+        gridList();
+
+    })
+
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { keyword: $("#txt_keyword").val() },
+            url: "/SystemManage/SysConfig/GetGridJson",
+            height: $(window).height() - 128,
+            colModel: [
+                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                  { label: "Tên", name: "Name", width: 200, align: 'left'},
+                  { label: 'Mã', name: 'Code', width: 150, align: 'left' },
+                  { label: 'Value', name: 'Value', width: 150, align: 'left' },
+                  { label: 'Mô tả', name: 'Memo', width: 200, align: 'left' },
+                    { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Sửa đổi lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa đổi lần cuối', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            ],
+        });
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mới cấu hình",
+            url: "/SystemManage/SysConfig/Form",
+            width: "550px",
+            height: "570px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa cấu hình",
+            url: "/SystemManage/SysConfig/Form?keyValue=" + keyValue,
+            width: "550px",
+            height: "570px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //删除
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var IsA='@opeator.IsAdministrator';
+        var IsR='@opeator.IsRoot';
+        if (IsA == "False" && IsR == "False")
+        {
+            if ($("#gridList").jqGridRowValue().Value == "")
+            {
+                // == ""? 不好
+                $.modalAlert("Cấu hình mẫu này không thể xóa", 'warning');
+                return;
+            }
+        }
+        $.deleteForm({
+            url: "/SystemManage/SysConfig/DeleteForm",
+            param: { keyValue: keyValue },
+            success: function () {
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+            }
+        });
+    }
+    function btn_sync() {
+        $.modalConfirm("Bạn có chắc muốn đồng bộ tất cả tham số hệ thống??", function (r) {
+            if (r) {
+                $.loading(true, 'Đang đồng bộ dữ liệu...');
+                $.najax({
+                    url: "/Home/SyncSysConfigParams",
+                    type: "POST",
+                    data: {orgId: '@(opeator.OrganizeId)'},
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        $.modalAlert(data.message, data.state);
+                        $('#btn_search').trigger('click');
+                        $.loading(false);
+                    }
+                });
+            } else {
+
+            }
+        });
+    }
+
+    function btn_ShowAllConfig() {
+        $.modalOpen({
+            id: "Form",
+            title: "Xem tất cả hạng mục cấu hình",
+            url: "/SystemManage/SysConfig/ConfigsPreviewIndex",
+            width: "850px",
+            height: "570px",
+            btn: null
+        });
+    }
+
+    function btn_template()
+    {
+        $.modalOpen({
+            id: "Template",
+            title: "Cấu hình mẫu",
+            url: "/SystemManage/SysConfig/TemplateIndex",
+            width: "900px",
+            height: "500px",
+            btn: null,
+        });
+
+    }
+
+</script>

@@ -1,0 +1,104 @@
+@* DCSoft editor stub (.NET Core) — replaces the original 1322-line _DCSW.JS.
+   The DCSoft ActiveX/WASM writer has NO .NET Core build, so there is no real editor here.
+   This file keeps every function name the editor views call, as no-op stubs that surface
+   the same Vietnamese notice (so pages do not throw JS errors), and attaches no-op
+   methods to the #myWriterControl element (DCExecuteCommand, Load/Save, dialogs, ...).
+   It is NOT a working editor: document content cannot be loaded, edited or saved here.
+   Server-side writer-service actions already return explicit error JSON (see Stubs). *@
+<script language="javascript">
+    window.dcryzd = [];
+    var DCSW_NOTICE = "Trình soạn thảo bệnh án DCSoft chưa khả dụng trong phiên bản .NET Core này. Nội dung bệnh án không thể soạn thảo, tải lên hay lưu từ trang này.";
+    function dcswNotice() {
+        try {
+            if (window.$ && $.modalAlert) { $.modalAlert(DCSW_NOTICE, 'warning'); }
+            else { alert(DCSW_NOTICE); }
+        } catch (e) { /* notice must never break the page */ }
+        var el = document.getElementById('myWriterControl');
+        if (el && !el.querySelector('.dcsw-notice')) {
+            var d = document.createElement('div');
+            d.className = 'dcsw-notice';
+            d.style.cssText = 'padding:16px;border:1px solid #f0ad4e;background:#fcf8e3;color:#8a6d3b;border-radius:4px;';
+            d.textContent = DCSW_NOTICE;
+            el.appendChild(d);
+        }
+    }
+    function dcswNoop() { return false; }
+    function dcswEmptyString() { return ""; }
+    function dcswNull() { return null; }
+    // --- functions the editor views call (kept as stubs) ---
+    function OpenDocument() { dcswNotice(); return false; }
+    function Signaturedefault(id, imgbase64, rygh, name) { dcswNotice(); return false; }
+    function Signature() { dcswNotice(); return false; }
+    function setPopUp(bool) { return false; }
+    function WriterControl_OnLoad(rootElement) { dcswNotice(); return false; }
+    function SetCtlHeight() {
+        var el = document.getElementById('myWriterControl');
+        if (el) { el.style.minHeight = '600px'; }
+        return false;
+    }
+    function EventBeforePaste() { return true; }
+    function EventBeforeCopy() { return true; }
+    function selectText() { return false; }
+    function validateResult_Click() { dcswNotice(); return false; }
+    function MyValueValidate() { dcswNotice(); return false; }
+    function BindingDCWriterClientControl(ctl) { dcswNotice(); return false; }
+    // Aliases/tokens referenced by demo pages (never a real control).
+    function DCWriterClientControl() { return null; }
+    function DCWriterControllerClass() { return null; }
+    function WebWriterControl_51_Init() { return null; }
+    var DCWriterWeb = null;
+    var DCWriterServicePage = null;
+    // --- attach no-op methods/properties to the writer element ---
+    function dcswStubElement() {
+        var el = document.getElementById('myWriterControl');
+        if (!el || el.__dcswStubbed) { return; }
+        el.__dcswStubbed = true;
+        var methods = ['DCExecuteCommand', 'LoadDocumentFromBase', 'LoadDocumentFromBase64String',
+            'LoadDocumentFromString', 'LoadDocumentFromFile', 'LoadDocument', 'DocumentLoad',
+            'UserLoginByParameter', 'CleanViewMode', 'SetJumpPrintMode', 'LoadPrintPreview',
+            'LoadPrintPreviewWithPermissionMark', 'ClosePrintPreview', 'FocusAdjacent',
+            'setMouseDragScrollMode', 'SetElementTextByID', 'GetElementTextByID', 'DownLoadFile',
+            'PrintDocument', 'ClearDocumentBody', 'CASignature', 'Undo', 'TableRowPopUpWindow',
+            'TablePopUpWindow', 'TableCellPopUpWindow', 'SetTableRowAttribute', 'SetTableCellAttribute',
+            'SetParagraphStyleByElement', 'SetContextMenu', 'SetChildElements', 'SelectSubDocument',
+            'QRCodeDialog', 'PageNumberDialog', 'NavigateByUserTrackInfo', 'MedicalExpressionDialog',
+            'MediaDialog', 'LoadDocumentFromFile', 'LabelDialog', 'InsertControlHostDialog',
+            'InputFieldDialog', 'ImageDialog', 'HorizontalLineDialog', 'GetAllInputFields',
+            'ChangeDocumentSettings', 'ButtonDialog', 'BarCodeDialog', 'NewComment',
+            'CheckboxAndRadioDialog', 'GetDocumentUserTrackInfos', 'EventAfterPrintPreview',
+            'EventDropdownEditor', 'EventBeforePrint', 'BuildFrame', 'CurrentTableRow'];
+        methods.forEach(function (m) { try { el[m] = dcswNoop; } catch (e) { } });
+        var stringMethods = ['SaveDocumentToBase', 'SaveDocumentToBase64String', 'SaveDocumentToString',
+            'GetDocumentText', 'SelectionText'];
+        stringMethods.forEach(function (m) {
+            try {
+                el[m] = function () { dcswNotice(); return ""; };
+            } catch (e) { }
+        });
+        try { el.CurrentInputField = dcswNull; } catch (e) { }
+        try { el.CurrentTable = dcswNull; } catch (e) { }
+        try { el.CurrentTableCell = dcswNull; } catch (e) { }
+        try { el.CurrnetElement = null; } catch (e) { }
+        try { el.Options = {}; } catch (e) { }
+        try { el.DocumentOptions = {}; } catch (e) { }
+        try { el.DocumentFooter = {}; } catch (e) { }
+        try { el.InComplexViewMode = false; } catch (e) { }
+        try { el.IsPrintPreview = false; } catch (e) { }
+        try { el.preserveScrollPosition = false; } catch (e) { }
+        try { el.GetContentDocument = dcswNull; } catch (e) { }
+        window.dcWriter = el;
+        dcswNotice._shown = true;
+        if (!el.querySelector('.dcsw-notice')) {
+            var d = document.createElement('div');
+            d.className = 'dcsw-notice';
+            d.style.cssText = 'padding:16px;border:1px solid #f0ad4e;background:#fcf8e3;color:#8a6d3b;border-radius:4px;';
+            d.textContent = DCSW_NOTICE;
+            el.appendChild(d);
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', dcswStubElement);
+    } else {
+        dcswStubElement();
+    }
+</script>

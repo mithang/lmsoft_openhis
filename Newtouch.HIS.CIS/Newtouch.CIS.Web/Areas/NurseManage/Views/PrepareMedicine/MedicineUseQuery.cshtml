@@ -1,0 +1,99 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "MedicineInfo";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .trSelected {
+        background-color: #87CEEB !important;
+    }
+
+    #btn_search {
+        height: 45px;
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            ThuốcLọcThông tin
+        </div>
+        <div>
+            <table class="form" style="width:40%;">
+                <tr>
+                    <td class="formTitle">Thuốc:</td>
+                    <td class="formValue">
+                        <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhậpThuốcMã Pinyin Tên" />
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" style="height:70%"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <table id="gridList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+   
+</form>
+
+<script>
+    var $gridList = $("#gridList");
+    var par = new Object();
+    $(function () {
+        gridList();
+    });
+
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    function gridList() {
+        $gridList.dataGrid({
+            url: "/PrepareMedicine/GetypGridJson",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - 235,
+            colModel: [
+                { label: "Khóa chính", name: "kcId", hidden: true, key: true },
+                { label: "ksbm", name: "ypdm", hidden: true },
+                { label: "bqbm", name: "ypdm", hidden: true  },
+                { label: "yfbmCode", name: "ypdm", hidden: true  },
+                { label: "ThuốcMã", name: "ypdm", width: 70, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'KhoaTên', name: 'ksmc', width: 80, align: 'left' },
+                { label: 'Khu bệnhTên', name: 'bqmc', width: 70, align: 'left' },
+                { label: 'Nhà thuốcTên', name: 'yfbmmc', width: 50, align: 'left' },
+                { label: "Số lô", name: "ph", width: 80, align: 'left' },
+                { label: "Lô", name: "pc", width: 70, align: 'left' },
+                { label: "Tồn khoSố lượng", name: "kcsl", width: 50, align: 'left' },
+                { label: "Số lượng đóng băng", name: "djsl", width: 50, align: 'left' },
+                { label: "Trả thuốcDấu hiệu", name: "tybz", width: 50, align: 'left' },
+                { label: "Giá nhập", name: "jj", width: 50, align: 'left' },
+                { label: "Số lượng lẻ", name: "zhyz", width: 50, align: 'left' },
+                { label: 'Nơi sản xuấtDanh mục', name: 'cd', width: 50, align: 'left' }
+                //{ label: 'syzt', name: 'syzt', hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'ypmc asc',
+            viewrecords: true,
+            gridComplete: function () {
+                //afterCompleteFunction();
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                url: "/PrepareMedicine/GetypGridJson?r=" + Math.random(),
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+        });
+    }
+    
+</script>

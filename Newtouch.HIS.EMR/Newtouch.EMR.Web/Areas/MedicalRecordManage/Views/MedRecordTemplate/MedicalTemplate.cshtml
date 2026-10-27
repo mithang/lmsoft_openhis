@@ -1,0 +1,3013 @@
+﻿@using Newtouch.Infrastructure;
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var opeator = OperatorProvider.GetCurrent();
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("EmrEdiForUrl");
+}
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<link href="~/Content/css/fui.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui/easyui.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui/icon.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui-ribbon/ribbon.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui-ribbon/ribbon-icon.css" />
+<script type="text/javascript" src="~/Content/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="~/Content/jquery-easyui-ribbon/jquery.ribbon.js"></script>
+<link href="~/Content/jquery-easyui-ribbon/MedicalRecordEdit.css" rel="stylesheet" />
+<link href="~/Content/css/WebDemo.css" rel="stylesheet" />
+<link href="~/Content/css/style.css" rel="stylesheet" />
+
+
+<script src="@Html.Raw(EmrEdiForUrl)ServicePage.aspx?wasmres=dcwriter5.js"></script>
+<script src="@Html.Raw(EmrEdiForUrl)jquery/jquery-1.7.2.min.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Content/js/domtool.js"></script>
+
+        <div class="btn-group">
+            <a id="mb-add" authorize="yes" class="btn btn-primary" onclick="TemplateSave()"><i class="fa fa-plus"></i>Lưu</a>
+        </div>
+
+
+
+<div class="easyui-ribbon" id="sqcd"
+     style="width: 100%; height: 140px; border: 1px solid #afafaf;position:relative;">
+    <div title="Tệp">
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Tạo mới" class="easyui-linkbutton" data-options="plain:true"
+                   onclick="btn_add()">Tạo mới</a><br />
+                <a href="#" title="Mở cửa sổ chỉnh sửa" class="easyui-linkbutton" data-options="plain:true"
+                   onclick="openwindow()">Mở cửa sổ chỉnh sửa</a><br />
+                <a href="#" title="Lưu" class="easyui-linkbutton" onclick="TemplateSave();"
+                   data-options="plain:true">Lưu</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" title="Xuất ra xml tệp" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DownLoadFile('xml');"
+                   data-options="plain:true">Xuất ra xml tệp</a><br />
+                <a href="#" title="Xuất ra tệp PDF" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DownLoadFile('PDF');"
+                   data-options="plain:true">Xuất ra tệp PDF</a><br />
+                <a href="#" title="Xuất ra rtf tệp" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DownLoadFile('rtf');"
+                   data-options="plain:true">Xuất ra rtf tệp</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" title="Xuất ra txt tệp" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DownLoadFile('txt');"
+                   data-options="plain:true">Xuất ra txt tệp</a><br />
+                <a href="#" title="Xuất ra hình ảnh" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DownLoadFile('longimg');"
+                   data-options="plain:true">Xuất ra hình ảnh</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="In trực tiếp" class="easyui-linkbutton" onclick="PrintDocument();"
+                   data-options="plain:true">In trực tiếp</a><br />
+                <a href="#" title="Xem trước khi in" class="easyui-linkbutton" onclick="OpenPreview();"
+                   data-options="plain:true">Xem trước khi in</a><br />
+                <a href="#" title="Hủy xem trước" class="easyui-linkbutton" onclick="ClosePrintPreview();"
+                   data-options="plain:true">Hủy xem trước</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Chế độ biểu mẫu" class="easyui-linkbutton" onclick="changeview(this);"
+                   data-options="plain:true">Chế độ biểu mẫu</a><br />
+                <a href="MergeDocument.html" target="_blank" title="Chế độ lưu dấu vết" class="easyui-linkbutton"
+                   data-options="plain:true">Chế độ lưu dấu vết</a><br />
+                <a href="#" title="Chế độ tự động thu phóng" class="easyui-linkbutton" onclick="changeAutoZoom(this);"
+                   data-options="plain:true">Chế độ tự động thu phóng</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Lấy văn bản đang chọn" class="easyui-linkbutton"
+                   onclick="alert(document.getElementById('myWriterControl').SelectionText());"
+                   data-options="plain:true">Lấy văn bản đang chọn</a><br />
+                <a href="#" title="Lấy phần đang chọn HTML" class="easyui-linkbutton" onclick="setHtml();"
+                   data-options="plain:true">Lấy phần đang chọn HTML</a><br />
+                <a href="#" title="Lấy phần đang chọn XML" class="easyui-linkbutton" onclick="setXml();"
+                   data-options="plain:true">Lấy phần đang chọn XML</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Đặt văn bản trường nhập hiện tại" class="easyui-linkbutton" onclick="MySetElementText();"
+                   data-options="plain:true">Đặt văn bản trường nhập hiện tại</a><br />
+                <a href="#" class="easyui-linkbutton" title="Xóa trường nhập hiện tại" data-options="plain:true"
+                   onclick="DeleteField()">Xóa trường nhập hiện tại</a><br />
+                <a href="#" class="easyui-linkbutton" title="Đặt danh sách thả xuống tùy chỉnh" data-options="plain:true"
+                   onclick="CustomDropdownList();">Đặt danh sách thả xuống tùy chỉnh</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Đặt menu phím tắt" class="easyui-linkbutton"
+                   onclick="MySetContextMenu();" data-options="plain:true">Đặt menu phím tắt</a><br />
+                <a href="#" title="Cài đặt trang" class="easyui-linkbutton" onclick="ChangeDocumentSettings();"
+                   style="margin-top: 26px;" data-options="plain:true">Cài đặt trang</a>
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Kiểm tra tài liệu" style="margin-top: 13px;"
+                   data-options=" plain:true" onclick="MyValueValidate();">Kiểm tra tài liệu</a><br />
+                <a href="#" class="easyui-linkbutton" data-options=" plain:true">
+                    <select id="validateResult" style="width: 120px;"
+                            onchange="validateResult_Click();"></select>
+                </a><br />
+            </div>
+            <div class="ribbon-group-sep"></div>
+        </div>
+    </div>
+    <div title="Chỉnh sửa">
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Căn trái"
+                   data-options=" iconCls:'icon-align-left',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleLeft', false, null);">Căn trái</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn phải"
+                   data-options=" iconCls:'icon-align-right',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleRight', false, null);">Căn phải</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn giữa"
+                   data-options=" iconCls:'icon-align-center',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleCenter', false, null);">Căn giữa</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Căn trái hình ảnh"
+                   data-options=" iconCls:'icon-imle',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'left');">Hình ảnh căn trái</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn phải hình ảnh"
+                   data-options=" iconCls:'icon-imri',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'right');">Hình ảnh căn phải</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn giữa hình ảnh"
+                   data-options=" iconCls:'icon-imce',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'center');">Hình ảnh căn giữa</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Khoảng cách trước đoạn" id="rowspacingup"
+                   data-options=" iconCls:'icon-dqj',plain:true">Khoảng cách trước đoạn</a><br />
+                <a href="#" class="easyui-linkbutton" title="Khoảng cách sau đoạn" id="rowspacingdown"
+                   data-options=" iconCls:'icon-dhj',plain:true">Khoảng cách sau đoạn</a><br />
+                <a href="#" class="easyui-linkbutton" title="Khoảng cách dòng" id="lineheight"
+                   data-options=" iconCls:'icon-hjj',plain:true">Khoảng cách dòng</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Danh sách có thứ tự"
+                   data-options=" iconCls:'icon-numbers',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertorderedlist', true, null);">Danh sách có thứ tự</a><br />
+                <a href="#" class="easyui-linkbutton" title="Danh sách không thứ tự"
+                   data-options=" iconCls:'icon-bullets',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertunorderedlist', true, null);">Danh sách không thứ tự</a><br />
+                <a href="#" class="easyui-linkbutton" title="Thụt đầu dòng"
+                   data-options=" iconCls:'icon-inde',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Indent', true, null);">Thụt đầu dòng</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chỉ số trên"
+                   data-options=" iconCls:'icon-superscript',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Superscript', true, null);">Chỉ số trên</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chỉ số dưới"
+                   data-options=" iconCls:'icon-subscript',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Subscript', true, null);">Chỉ số dưới</a><br />
+                <a href="#" class="easyui-linkbutton" title="Đậm"
+                   data-options=" iconCls:'icon-bold',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);">Đậm</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chữ hoa"
+                   data-options=" iconCls:'icon-uppercase-font',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('ToupperCase', false, null);">Chữ hoa</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chữ thường"
+                   data-options=" iconCls:'icon-lowercase-font',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('TolowerCase', false, null);">Chữ thường</a><br />
+                <a href="#" class="easyui-linkbutton" title="Nghiêng"
+                   data-options=" iconCls:'icon-italic',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic', true, null);">Nghiêng</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Gạch ngang"
+                   data-options=" iconCls:'icon-strikethrough',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);">Gạch ngang</a><br />
+                <a href="#" class="easyui-linkbutton" title="Gạch chân"
+                   data-options=" iconCls:'icon-underline',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', false, null);">Gạch chân</a><br />
+                <a href="#" class="easyui-linkbutton" title="Viền ký tự"
+                   data-options=" iconCls:'icon-zfbk',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Fontborder', true, null);">Viền ký tự</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton clickMenu" title="Màu nền"
+                   data-options=" iconCls:'icon-fontbg',plain:true" id="backcolor">Màu nền</a>
+                <br />
+                <a href="#" class="easyui-linkbutton clickMenu" title="Màu chữ"
+                   data-options=" iconCls:'icon-fontf',plain:true" id="fontcolor">Màu chữ</a>
+                <br />
+                <a href="#" class="easyui-linkbutton clickMenu" title="Cỡ chữ" id="fontsize"
+                   data-options=" iconCls:'icon-fontsize',plain:true">Cỡ chữ</a>
+                <br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton clickMenu" title="Phông chữ"
+                   data-options=" iconCls:'icon-fontfa',plain:true" id="fontfa">Phông chữ</a>
+                <br />
+                <a href="#" class="easyui-linkbutton" title="Xóa cỡ chữ"
+                   data-options=" iconCls:'icon-eraser-font',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('removefontsize', true, 'inherit');">Xóa cỡ chữ</a><br />
+                <a href="#" class="easyui-linkbutton" title="Xóa phông chữ"
+                   data-options=" iconCls:'icon-eraser-font',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('removeformat', true, 'inherit');">Xóa phông chữ</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+    </div>
+    <div title="Chèn">
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn hình ảnh"
+                   data-options=" iconCls:'icon-picture-large',iconAlign:'top',size:'large'"
+                   style="border: 0; padding-top: 15px;"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('DCInsertImage', false, null);">Chèn hình ảnh</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn thời gian"
+                   data-options=" iconCls:'icon-time-large',iconAlign:'top',size:'large'"
+                   style="border: 0; padding-top: 15px;"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Time', false, null);">Chèn thời gian</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn ngày"
+                   data-options=" iconCls:'icon-data-large',iconAlign:'top',size:'large'"
+                   style="border: 0; padding-top: 15px;"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Date', false, null);">Chèn ngày</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn dấu phân cách"
+                   data-options=" iconCls:'icon-fyf-large',iconAlign:'top',size:'large'"
+                   style="border: 0; padding-top: 15px;"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('pagebreak', false, null);">Chèn dấu phân cách</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn siêu liên kết"
+                   data-options=" iconCls:'icon-link',plain:true"
+                   onclick="document.get element by id('my writer control').DCExecute command('link', true, 'Siêu liên kết,http://dcwriter.cn');"
+                   id="inserlinka">Siêu liên kết</a><br />
+                <a href="#" class="easyui-linkbutton" title="Hủy siêu liên kết"
+                   data-options=" iconCls:'icon-unlink',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('unlink', true, null);">Hủy siêu liên kết</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn ký tự đặc biệt"
+                   data-options=" iconCls:'icon-tszf',plain:true" id="insertszf">Chèn ký tự đặc biệt</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn trường nhập tuổi"
+                   data-options=" iconCls:'icon-age',plain:true" val="InsertAgeField"
+                   onclick="MyExecuteCommand(this);">Chèn trường nhập tuổi</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn trường nhập giới tính"
+                   data-options=" iconCls:'icon-sex',plain:true" val="InsertSexField"
+                   onclick="MyExecuteCommand(this);">Chèn trường nhập giới tính</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn trường nhập ngày"
+                   data-options=" iconCls:'icon-date',plain:true" val="InsertDateTime"
+                   onclick="MyExecuteCommand(this);">Chèn trường nhập ngày</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn nút"
+                   data-options=" iconCls:'icon-button',plain:true" val="InsertInputButton"
+                   onclick="MyExecuteCommand(this);">Chèn nút</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn hộp kiểm"
+                   data-options=" iconCls:'icon-fxk',plain:true" val="InsertInputCheckbox"
+                   onclick="MyExecuteCommand(this);">Chèn hộp kiểm</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn nút radio"
+                   data-options=" iconCls:'icon-dxk',plain:true" val="InsertInputRadio"
+                   onclick="MyExecuteCommand(this);">Chèn nút radio</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn chú thích" data-options="plain:true"
+                   onclick="insertNewComment();">Chèn chú thích</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn số trang" data-options="plain:true"
+                   onclick="dcInsertPageInfo();">Chèn số trang</a><br />
+                
+                data-options="plain:true"
+
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <a href="#" title="Biểu thức y học đã chèn" class="easyui-linkbutton" data-options="plain:true"
+               onclick="MedicalExpressionMenuV5()">Biểu thức y học đã chèn</a>
+            
+                <select id="MedicalExpressionMenu">
+                    <option>Chọn biểu thức y học để chèn</option>
+                </select>
+
+        </div>
+        <div class="ribbon-group-sep"></div>
+    </div>
+    <div title="Bảng">
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Chèn bảng" id="insert_table"
+                   data-options=" iconCls:'icon-table-large',iconAlign:'top',size:'large'"
+                   style="border: 0; padding-top: 15px;">Chèn bảng</a><br />
+            </div>
+            <div class="ribbon-toolbar">
+                <a href="#" class="easyui-linkbutton" title="Xóa bảng"
+                   data-options=" iconCls:'icon-tabledel-large',iconAlign:'top',size:'large'"
+                   style="border: 0; padding-top: 15px;"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletetable', true, null);">Xóa bảng</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <div class="ribbon-toolbar">
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng trước bảng"
+                       data-options=" iconCls:'icon-inserttext',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertparagraphbeforetable', true, null);">Chèn dòng trước bảng</a><br />
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng"
+                       data-options=" iconCls:'icon-inserth',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertrowup', true, null);">Chèn dòng phía trên</a><br />
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng"
+                       data-options=" iconCls:'icon-inserth',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_InsertRowDown', true, null);">Chèn dòng phía dưới</a><br />
+                </div>
+                <div class="ribbon-toolbar">
+                    <a href="#" class="easyui-linkbutton" title="Chèn cột"
+                       data-options=" iconCls:'icon-insertl',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnleft', true, null);">Chèn cột bên trái</a><br />
+                    <a href="#" class="easyui-linkbutton" title="Chèn cột"
+                       data-options=" iconCls:'icon-insertl',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnRight', true, null);">Chèn cột bên phải</a><br />
+                    
+
+                </div>
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <div class="ribbon-toolbar">
+                    <a href="#" title="Xóa dòng" class="easyui-linkbutton"
+                       data-options=" iconCls:'icon-delh',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deleterow', true, null);">Xóa dòng</a><br />
+                    <a href="#" title="Xóa cột" class="easyui-linkbutton"
+                       data-options=" iconCls:'icon-dell',plain:true"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletecolumn', true, null);">Xóa cột</a><br />
+                </div>
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Tách thành dòng" class="easyui-linkbutton"
+                   data-options=" iconCls:'icon-chaifen',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittorows', true, null);">Tách thành dòng</a><br />
+                <a href="#" title="Tách thành cột" class="easyui-linkbutton"
+                   data-options=" iconCls:'icon-chaifen',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittocols', true, null);">Tách thành cột</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+        <div class="ribbon-group">
+            <div class="ribbon-toolbar">
+                <a href="#" title="Gộp ô sang phải" class="easyui-linkbutton"
+                   data-options=" iconCls:'icon-hebing',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_MergeCell', false, null);">Gộp ô</a><br />
+                <a href="#" title="Gộp ô xuống dưới" class="easyui-linkbutton"
+                   data-options=" iconCls:'icon-hebing',plain:true"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_SplitCellExt', true, null);">Tách ô</a><br />
+            </div>
+        </div>
+        <div class="ribbon-group-sep"></div>
+    </div>
+    <span class="shouqi" style="display: none;">
+        <span class="shouqiUl">Thu gọn danh sách</span>
+        <span class="shouqiMenu">Thu gọn menu</span>
+    </span>
+</div>
+<div class="xmlIfr">
+    <div class="mask" id="mask" style="display: none;"></div>
+    
+    <div class="panel combo-p" id="table" style="display: none;">
+        <div class="combo-panel panel-body panel-body-noheader" title=""
+             style="width: 78px; border: 0;">
+            <input type="text" id="row"
+                   onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
+                   placeholder="Dòng" autocomplete="off"
+                   style="float: left; width: 20px; margin-right: 10px;" />
+            *
+            <input type="text" id="column"
+                   onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                   onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
+                   placeholder="Cột" autocomplete="off" style="width: 20px; margin-left: 10px;" />
+            <input type="button" id="qd" style="width: 78px;" value="Xác nhận" />
+        </div>
+    </div>
+    
+    <div class="panel combo-p" id="fontsizeli" style="display: none;">
+        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+            <div id="font10" class="combobox-item" style="font-size: 10px; cursor: pointer;">
+                10px
+            </div>
+            <div id="font12" class="combobox-item" style="font-size: 12px; cursor: pointer;">
+                12px
+            </div>
+            <div id="font14" class="combobox-item" style="font-size: 14px; cursor: pointer;">
+                14px
+            </div>
+            <div id="font16" class="combobox-item" style="font-size: 16px; cursor: pointer;">
+                16px
+            </div>
+            <div id="font24" class="combobox-item" style="font-size: 24px; cursor: pointer;">
+                24px
+            </div>
+            <div id="font32" class="combobox-item" style="font-size: 32px; cursor: pointer;">
+                32px
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel combo-p" id="fontf" style="display: none;">
+        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+            <div id="fontfh" class="combobox-item"
+                 style="font-size: 10px; cursor: pointer; font-family: 黑体;">黑体</div>
+            <div id="fontfs" class="combobox-item"
+                 style="font-size: 12px; cursor: pointer; font-family: 宋体;">宋体</div>
+            <div id="fontfw" class="combobox-item"
+                 style="font-size: 14px; cursor: pointer; font-family: 微软雅黑;">
+                微软雅黑
+            </div>
+            <div id="fontfk" class="combobox-item"
+                 style="font-size: 14px; cursor: pointer; font-family: 楷体;">楷体</div>
+        </div>
+    </div>
+    
+    <div class="panel combo-p" id="rowspacingup1" style="display: none;">
+        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+            <div id="up5" class="combobox-item" style="cursor: pointer;">5px</div>
+            <div id="up10" class="combobox-item" style="cursor: pointer;">10px</div>
+            <div id="up15" class="combobox-item" style="cursor: pointer;">15px</div>
+            <div id="up20" class="combobox-item" style="cursor: pointer;">20px</div>
+            <div id="up25" class="combobox-item" style="cursor: pointer;">25px</div>
+        </div>
+    </div>
+    
+    <div class="panel combo-p" id="rowspacingdown1" style="display: none;">
+        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+            <div id="down5" class="combobox-item" style="cursor: pointer;">5px</div>
+            <div id="down10" class="combobox-item" style="cursor: pointer;">
+                10px
+            </div>
+            <div id="down15" class="combobox-item" style="cursor: pointer;">
+                15px
+            </div>
+            <div id="down20" class="combobox-item" style="cursor: pointer;">
+                20px
+            </div>
+            <div id="down25" class="combobox-item" style="cursor: pointer;">
+                25px
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel combo-p" id="lineheight1" style="display: none;">
+        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+            <div id="li1" class="combobox-item" style="cursor: pointer;">1</div>
+            <div id="li15" class="combobox-item" style="cursor: pointer;">1.5</div>
+            <div id="li175" class="combobox-item" style="cursor: pointer;">
+                1.75
+            </div>
+            <div id="li2" class="combobox-item" style="cursor: pointer;">2</div>
+            <div id="li3" class="combobox-item" style="cursor: pointer;">3</div>
+            <div id="li4" class="combobox-item" style="cursor: pointer;">4</div>
+            <div id="li5" class="combobox-item" style="cursor: pointer;">5</div>
+        </div>
+    </div>
+    
+    <div class="fui-panel fui-widget fui-container fui-ppanel fui-colorpicker fui-ppanel-position"
+         id="fcolor" rule="ColorPicker" style="display: none;">
+        <div class="fui-panel-content">
+            <div class="fui-colorpicker-container">
+                <div class="fui-colorpicker-toolbar">
+                    <div class="fui-colorpicker-preview"
+                         style="background-color: rgb(247, 150, 70); border-color: rgb(247, 150, 70);">
+                    </div>
+                </div>
+                <div class="fui-colorpicker-title">Màu chung</div>
+                <div class="fui-colorpicker-commoncolor fgclor">
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line0">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #ffffff; border-color: #eeeeee;"
+                              data-color="#ffffff"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #000000; border-color: #000000;"
+                              data-color="#000000"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #eeece1; border-color: #eeece1;"
+                              data-color="#eeece1"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #1f497d; border-color: #1f497d;"
+                              data-color="#1f497d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4f81bd; border-color: #4f81bd;"
+                              data-color="#4f81bd"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c0504d; border-color: #c0504d;"
+                              data-color="#c0504d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #9bbb59; border-color: #9bbb59;"
+                              data-color="#9bbb59"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #8064a2; border-color: #8064a2;"
+                              data-color="#8064a2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4bacc6; border-color: #4bacc6;"
+                              data-color="#4bacc6"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #f79646; border-color: #f79646;"
+                              data-color="#f79646"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line1">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #f2f2f2; border-color: #f2f2f2;"
+                              data-color="#f2f2f2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #808080; border-color: #808080;"
+                              data-color="#808080"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #ddd8c2; border-color: #ddd8c2;"
+                              data-color="#ddd8c2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c6d9f1; border-color: #c6d9f1;"
+                              data-color="#c6d9f1"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #dbe5f1; border-color: #dbe5f1;"
+                              data-color="#dbe5f1"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #f2dbdb; border-color: #f2dbdb;"
+                              data-color="#f2dbdb"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #eaf1dd; border-color: #eaf1dd;"
+                              data-color="#eaf1dd"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #e5dfec; border-color: #e5dfec;"
+                              data-color="#e5dfec"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #daeef3; border-color: #daeef3;"
+                              data-color="#daeef3"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #fde9d9; border-color: #fde9d9;"
+                              data-color="#fde9d9"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line2">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #d9d9d9; border-color: #d9d9d9;"
+                              data-color="#d9d9d9"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #595959; border-color: #595959;"
+                              data-color="#595959"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c4bc96; border-color: #c4bc96;"
+                              data-color="#c4bc96"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #8db3e2; border-color: #8db3e2;"
+                              data-color="#8db3e2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #b8cce4; border-color: #b8cce4;"
+                              data-color="#b8cce4"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #e5b8b7; border-color: #e5b8b7;"
+                              data-color="#e5b8b7"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #d6e3bc; border-color: #d6e3bc;"
+                              data-color="#d6e3bc"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #ccc0d9; border-color: #ccc0d9;"
+                              data-color="#ccc0d9"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #b6dde8; border-color: #b6dde8;"
+                              data-color="#b6dde8"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #fbd4b4; border-color: #fbd4b4;"
+                              data-color="#fbd4b4"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line3">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #bfbfbf; border-color: #bfbfbf;"
+                              data-color="#bfbfbf"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #404040; border-color: #404040;"
+                              data-color="#404040"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #938953; border-color: #938953;"
+                              data-color="#938953"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #548dd4; border-color: #548dd4;"
+                              data-color="#548dd4"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #95b3d7; border-color: #95b3d7;"
+                              data-color="#95b3d7"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #d99594; border-color: #d99594;"
+                              data-color="#d99594"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c2d69b; border-color: #c2d69b;"
+                              data-color="#c2d69b"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #b2a1c7; border-color: #b2a1c7;"
+                              data-color="#b2a1c7"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #92cddc; border-color: #92cddc;"
+                              data-color="#92cddc"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #fabf8f; border-color: #fabf8f;"
+                              data-color="#fabf8f"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line4">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #a6a6a6; border-color: #a6a6a6;"
+                              data-color="#a6a6a6"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #262626; border-color: #262626;"
+                              data-color="#262626"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4a442a; border-color: #4a442a;"
+                              data-color="#4a442a"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #17365d; border-color: #17365d;"
+                              data-color="#17365d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #365f91; border-color: #365f91;"
+                              data-color="#365f91"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #943634; border-color: #943634;"
+                              data-color="#943634"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #76923c; border-color: #76923c;"
+                              data-color="#76923c"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #5f497a; border-color: #5f497a;"
+                              data-color="#5f497a"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #31849b; border-color: #31849b;"
+                              data-color="#31849b"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #e36c0a; border-color: #e36c0a;"
+                              data-color="#e36c0a"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line5">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #7f7f7f; border-color: #7f7f7f;"
+                              data-color="#7f7f7f"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #0d0d0d; border-color: #0d0d0d;"
+                              data-color="#0d0d0d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #1c1a10; border-color: #1c1a10;"
+                              data-color="#1c1a10"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #0f243e; border-color: #0f243e;"
+                              data-color="#0f243e"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #243f60; border-color: #243f60;"
+                              data-color="#243f60"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #622423; border-color: #622423;"
+                              data-color="#622423"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4e6128; border-color: #4e6128;"
+                              data-color="#4e6128"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #3f3151; border-color: #3f3151;"
+                              data-color="#3f3151"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #205867; border-color: #205867;"
+                              data-color="#205867"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #974706; border-color: #974706;"
+                              data-color="#974706"></span>
+                    </div>
+                </div>
+                <div class="fui-colorpicker-title">Màu chuẩn</div>
+                <div class="fui-colorpicker-standardcolor fui-colorpicker-colors  fgclor">
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #c00000; border-color: #c00000;"
+                          data-color="#c00000"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #ff0000; border-color: #ff0000;"
+                          data-color="#ff0000"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #ffc000; border-color: #ffc000;"
+                          data-color="#ffc000"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #ffff00; border-color: #ffff00;"
+                          data-color="#ffff00"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #92d050; border-color: #92d050;"
+                          data-color="#92d050"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #00b050; border-color: #00b050;"
+                          data-color="#00b050"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #00b0f0; border-color: #00b0f0;"
+                          data-color="#00b0f0"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #0070c0; border-color: #0070c0;"
+                          data-color="#0070c0"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #002060; border-color: #002060;"
+                          data-color="#002060"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #7030a0; border-color: #7030a0;"
+                          data-color="#7030a0"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="fui-panel fui-widget fui-container fui-ppanel fui-colorpicker fui-ppanel-position"
+         id="bcolor" rule="ColorPicker" style="display: none;">
+        <div class="fui-panel-content">
+            <div class="fui-colorpicker-container">
+                <div class="fui-colorpicker-toolbar">
+                    <div class="fui-colorpicker-preview"
+                         style="background-color: rgb(247, 150, 70); border-color: rgb(247, 150, 70);">
+                    </div>
+                </div>
+                <div class="fui-colorpicker-title">Màu chung</div>
+                <div class="fui-colorpicker-commoncolor bgclor">
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line0">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #ffffff; border-color: #eeeeee;"
+                              data-color="#ffffff"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #000000; border-color: #000000;"
+                              data-color="#000000"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #eeece1; border-color: #eeece1;"
+                              data-color="#eeece1"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #1f497d; border-color: #1f497d;"
+                              data-color="#1f497d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4f81bd; border-color: #4f81bd;"
+                              data-color="#4f81bd"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c0504d; border-color: #c0504d;"
+                              data-color="#c0504d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #9bbb59; border-color: #9bbb59;"
+                              data-color="#9bbb59"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #8064a2; border-color: #8064a2;"
+                              data-color="#8064a2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4bacc6; border-color: #4bacc6;"
+                              data-color="#4bacc6"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #f79646; border-color: #f79646;"
+                              data-color="#f79646"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line1">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #f2f2f2; border-color: #f2f2f2;"
+                              data-color="#f2f2f2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #808080; border-color: #808080;"
+                              data-color="#808080"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #ddd8c2; border-color: #ddd8c2;"
+                              data-color="#ddd8c2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c6d9f1; border-color: #c6d9f1;"
+                              data-color="#c6d9f1"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #dbe5f1; border-color: #dbe5f1;"
+                              data-color="#dbe5f1"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #f2dbdb; border-color: #f2dbdb;"
+                              data-color="#f2dbdb"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #eaf1dd; border-color: #eaf1dd;"
+                              data-color="#eaf1dd"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #e5dfec; border-color: #e5dfec;"
+                              data-color="#e5dfec"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #daeef3; border-color: #daeef3;"
+                              data-color="#daeef3"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #fde9d9; border-color: #fde9d9;"
+                              data-color="#fde9d9"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line2">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #d9d9d9; border-color: #d9d9d9;"
+                              data-color="#d9d9d9"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #595959; border-color: #595959;"
+                              data-color="#595959"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c4bc96; border-color: #c4bc96;"
+                              data-color="#c4bc96"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #8db3e2; border-color: #8db3e2;"
+                              data-color="#8db3e2"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #b8cce4; border-color: #b8cce4;"
+                              data-color="#b8cce4"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #e5b8b7; border-color: #e5b8b7;"
+                              data-color="#e5b8b7"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #d6e3bc; border-color: #d6e3bc;"
+                              data-color="#d6e3bc"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #ccc0d9; border-color: #ccc0d9;"
+                              data-color="#ccc0d9"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #b6dde8; border-color: #b6dde8;"
+                              data-color="#b6dde8"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #fbd4b4; border-color: #fbd4b4;"
+                              data-color="#fbd4b4"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line3">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #bfbfbf; border-color: #bfbfbf;"
+                              data-color="#bfbfbf"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #404040; border-color: #404040;"
+                              data-color="#404040"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #938953; border-color: #938953;"
+                              data-color="#938953"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #548dd4; border-color: #548dd4;"
+                              data-color="#548dd4"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #95b3d7; border-color: #95b3d7;"
+                              data-color="#95b3d7"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #d99594; border-color: #d99594;"
+                              data-color="#d99594"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #c2d69b; border-color: #c2d69b;"
+                              data-color="#c2d69b"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #b2a1c7; border-color: #b2a1c7;"
+                              data-color="#b2a1c7"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #92cddc; border-color: #92cddc;"
+                              data-color="#92cddc"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #fabf8f; border-color: #fabf8f;"
+                              data-color="#fabf8f"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line4">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #a6a6a6; border-color: #a6a6a6;"
+                              data-color="#a6a6a6"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #262626; border-color: #262626;"
+                              data-color="#262626"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4a442a; border-color: #4a442a;"
+                              data-color="#4a442a"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #17365d; border-color: #17365d;"
+                              data-color="#17365d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #365f91; border-color: #365f91;"
+                              data-color="#365f91"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #943634; border-color: #943634;"
+                              data-color="#943634"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #76923c; border-color: #76923c;"
+                              data-color="#76923c"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #5f497a; border-color: #5f497a;"
+                              data-color="#5f497a"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #31849b; border-color: #31849b;"
+                              data-color="#31849b"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #e36c0a; border-color: #e36c0a;"
+                              data-color="#e36c0a"></span>
+                    </div>
+                    <div class="fui-colorpicker-colors fui-colorpicker-colors-line5">
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #7f7f7f; border-color: #7f7f7f;"
+                              data-color="#7f7f7f"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #0d0d0d; border-color: #0d0d0d;"
+                              data-color="#0d0d0d"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #1c1a10; border-color: #1c1a10;"
+                              data-color="#1c1a10"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #0f243e; border-color: #0f243e;"
+                              data-color="#0f243e"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #243f60; border-color: #243f60;"
+                              data-color="#243f60"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #622423; border-color: #622423;"
+                              data-color="#622423"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #4e6128; border-color: #4e6128;"
+                              data-color="#4e6128"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #3f3151; border-color: #3f3151;"
+                              data-color="#3f3151"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #205867; border-color: #205867;"
+                              data-color="#205867"></span>
+                        <span class="fui-colorpicker-item"
+                              style="background-color: #974706; border-color: #974706;"
+                              data-color="#974706"></span>
+                    </div>
+                </div>
+                <div class="fui-colorpicker-title">Màu chuẩn</div>
+                <div class="fui-colorpicker-standardcolor fui-colorpicker-colors  bgclor">
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #c00000; border-color: #c00000;"
+                          data-color="#c00000"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #ff0000; border-color: #ff0000;"
+                          data-color="#ff0000"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #ffc000; border-color: #ffc000;"
+                          data-color="#ffc000"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #ffff00; border-color: #ffff00;"
+                          data-color="#ffff00"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #92d050; border-color: #92d050;"
+                          data-color="#92d050"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #00b050; border-color: #00b050;"
+                          data-color="#00b050"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #00b0f0; border-color: #00b0f0;"
+                          data-color="#00b0f0"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #0070c0; border-color: #0070c0;"
+                          data-color="#0070c0"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #002060; border-color: #002060;"
+                          data-color="#002060"></span>
+                    <span class="fui-colorpicker-item"
+                          style="background-color: #7030a0; border-color: #7030a0;"
+                          data-color="#7030a0"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="tszfa" style="display: none;">
+        <div id="aaa" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
+            <span style="font-size: 16px;">Chèn ký tự</span>
+            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimg"
+                 src="~/Content/img/close2.png" />
+        </div>
+        <div id="tabHeads" class="tabhead">
+            <span tabsrc="tsfh" class="focus">Ký tự đặc biệt</span>
+            <span tabsrc="lmsz" class="">Ký tự La Mã</span>
+            <span tabsrc="szfh" class="">Ký tự toán học</span>
+            <span tabsrc="rwfh" class="">Ký tự y học</span>
+        </div>
+        <div id="tabBodys" class="tabbody" style="overflow:auto">
+            <div id="tsfh">
+                <span>, </span><span>.</span><span>·</span><span>ˉ</span><span>ˇ</span><span>¨</span><span>〃</span><span>々</span><span>—</span><span>～</span><span>‖</span><span>…</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>〔</span><span>〕</span><span>〈</span><span>〉</span><span>《</span><span>》</span><span>「</span><span>」</span><span>『</span><span>』</span><span>〖</span><span>〗</span><span>【</span><span>】</span><span>±</span><span>×</span><span>÷</span><span>∶</span><span>∧</span><span>∨</span><span>∑</span><span>∏</span><span>∪</span><span>∩</span><span>∈</span><span>∷</span><span>√</span><span>⊥</span><span>∥</span><span>∠</span><span>⌒</span><span>⊙</span><span>∫</span><span>∮</span><span>≡</span><span>≌</span><span>≈</span><span>∽</span><span>∝</span><span>≠</span><span>≮</span><span>≯</span><span>≤</span><span>≥</span><span>∞</span><span>∵</span><span>∴</span><span>♂</span><span>♀</span><span>°</span><span>′</span><span>″</span><span>℃</span><span>＄</span><span>¤</span><span>￠</span><span>￡</span><span>‰</span><span>§</span><span>№</span><span>☆</span><span>★</span><span>○</span><span>●</span><span>◎</span><span>◇</span><span>◆</span><span>□</span><span>■</span><span>△</span><span>▲</span><span>※</span><span>→</span><span>←</span><span>↑</span><span>↓</span><span>〓</span><span>〡</span><span>〢</span><span>〣</span><span>〤</span><span>〥</span><span>〦</span><span>〧</span><span>〨</span><span>〩</span><span>㊣</span><span>㎎</span><span>㎏</span><span>㎜</span><span>㎝</span><span>㎞</span><span>㎡</span><span>㏄</span><span>㏎</span><span>㏑</span><span>㏒</span><span>㏕</span><span>︰</span>
+            </div>
+            <div id="lmsz" style="display: none;">
+                <span>ⅰ</span><span>ⅱ</span><span>ⅲ</span><span>ⅳ</span><span>ⅴ</span><span>ⅵ</span><span>ⅶ</span><span>ⅷ</span><span>ⅸ</span><span>ⅹ</span><span>Ⅰ</span><span>Ⅱ</span><span>Ⅲ</span><span>Ⅳ</span><span>Ⅴ</span><span>Ⅵ</span><span>Ⅶ</span><span>Ⅷ</span><span>Ⅸ</span><span>Ⅹ</span><span>Ⅺ</span><span>Ⅻ</span>
+            </div>
+            <div id="szfh" style="display: none;">
+                <span>⒈</span><span>⒉</span><span>⒊</span><span>⒋</span><span>⒌</span><span>⒍</span><span>⒎</span><span>⒏</span><span>⒐</span><span>⒑</span><span>⒒</span><span>⒓</span><span>⒔</span><span>⒕</span><span>⒖</span><span>⒗</span><span>⒘</span><span>⒙</span><span>⒚</span><span>⒛</span><span>⑴</span><span>⑵</span><span>⑶</span><span>⑷</span><span>⑸</span><span>⑹</span><span>⑺</span><span>⑻</span><span>⑼</span><span>⑽</span><span>⑾</span><span>⑿</span><span>⒀</span><span>⒁</span><span>⒂</span><span>⒃</span><span>⒄</span><span>⒅</span><span>⒆</span><span>⒇</span><span>①</span><span>②</span><span>③</span><span>④</span><span>⑤</span><span>⑥</span><span>⑦</span><span>⑧</span><span>⑨</span><span>⑩</span><span>㈠</span><span>㈡</span><span>㈢</span><span>㈣</span><span>㈤</span><span>㈥</span><span>㈦</span><span>㈧</span><span>㈨</span><span>㈩</span>
+            </div>
+            <div id="rwfh" style="display: none;">
+                <span>RP</span><span>P.O</span><span>INJ.</span><span>MIXT.</span><span>TAD.</span><span>SOL.</span><span>CO.</span><span>PR.</span><span>I.D</span><span>I.V</span><span>I.V.GTT.</span><span>IH</span><span>IM</span><span>O.M</span><span>O.N</span><span>HS.</span><span>AM.</span><span>PM.</span><span>A.C.</span><span>P.C.</span><span>SOS.</span><span>ST.</span><span>QD</span><span>BID</span><span>TID</span><span>QOD</span><span>QH</span><span>Q2H</span><span>Q3H</span><span>MCG</span><span>MG</span><span>G</span><span>ML</span><span>sig</span><span>qd</span><span>bid</span><span>tid</span><span>qid</span><span>qh</span><span>q2h</span><span>q4h</span><span>q6h</span><span>qn</span><span>qod</span><span>biw</span><span>hs</span><span>am</span><span>pm</span><span>St</span><span>DC</span><span>prn</span><span>sos</span><span>ac</span><span>pc</span><span>12n</span><span>12mn</span><span>gtt</span><span>ID</span><span>IH</span><span>IM</span><span>IV</span><span>aa</span><span>et</span><span>Rp.</span><span>sig./S.</span><span>St./Stat.</span><span>Cit.</span><span>s.o.s.</span><span>p.r.n</span><span>a.c.</span><span>p.c.</span><span>a.m.</span><span>p.m.</span><span>q.n.</span><span>h.s.</span><span>q.h.</span><span>q.d.</span><span>B.i.d.</span><span>T.i.d.</span><span>Q.i.d.</span><span>q.4h.</span><span>p.o.</span><span>
+                    ad
+                    us.int.
+                </span><span>
+                    ad
+                    us.ext.
+                </span><span>H.</span><span>im./M.</span><span>iv./V.</span><span>
+                    iv
+                    gtt.
+                </span><span>Inhal.</span><span>O.D.</span><span>O.L.</span><span>O.S.</span><span>O.U.</span><span>No./N.</span><span>s.s</span><span>ug.</span><span>mg.</span><span>g.</span><span>kg.</span><span>ml.</span><span>L.</span><span>q.s</span><span>Ad.</span><span>Aq.</span><span>Aq.dest.</span><span>Ft.</span><span>Dil</span><span>M.D.S.</span><span>Co./Comp.</span><span>Mist</span><span>Pulv.</span><span>Amp.</span><span>Emul.</span><span>Syr.</span><span>Tr.</span><span>Neb.</span><span>Garg.</span><span>rtt./gutt.</span><span>collyr.</span><span>Ocul.</span><span>Liq.</span><span>Sol.</span><span>Lot.</span><span>Linim.</span><span>Crem.</span><span>Ung.</span><span>Past.</span><span>Ol.</span><span>Enem.</span><span>Supp.</span><span>Tab.</span><span>Pil.</span><span>Caps.</span><span>Inj.</span><span>po</span><span>im</span><span>iv</span><span>ivgtt</span><span>qd</span><span>bid</span><span>tid</span><span>qid</span><span>q8h</span><span>qn</span><span>Rp</span><span>sig</span><span>prn</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="zshtml" style="display: none;">
+        <div id="htmltop" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
+            <span style="font-size: 16px;">Html văn bản</span>
+            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimga"
+                 src="~/Content/img/close2.png" />
+        </div>
+        <div class="tabbody">
+            <textarea id="htmlcon"></textarea>
+        </div>
+    </div>
+    
+    <div id="zsxml" style="display: none;">
+        <div id="xmltop" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
+            <span style="font-size: 16px;">Xml văn bản</span>
+            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimgb"
+                 src="~/Content/img/close2.png" />
+        </div>
+        <div class="tabbody">
+            <textarea id="xmlcon"></textarea>
+        </div>
+    </div>
+    
+    <div class="maska" id="inserlink" style="display: none;">
+        <div>nhập văn bản:<input type="text" id="inslinktext" style="width: 120px;" /></div>
+        <div>Nhập liên kết:<input type="text" id="inslink" style="width: 120px;" /></div>
+        <div class="linkqd">
+            <input type="button" style="margin-right: 20px;" id="inslinkb" value="Xác nhận" /><input id="inslinkc" type="button" value="Hủy" />
+        </div>
+    </div>
+    
+    <div id='NewComment_box'>
+        <div class="tit">
+            <img style="position: absolute; right: 20px; top: 20px; cursor: pointer;"
+                 src="~/Content/img/close2.png" />
+        </div>
+        <div class="cont">
+            <p>Vui lòng nhập nội dung chú thích:</p>
+            <input type="text" class="text" />
+            <p style="text-align: right;">Người chú thích:李四主任医师<br />Người dùng ID:lisi</p>
+            <input type="button" value="Nộp" class="sub" />
+            <input type="button" value="Hủy" class="quit" />
+        </div>
+    </div>
+    
+    <div class="newBox">
+        <div class="boxClose"></div>
+        <div class="boxNav">
+            <div class="boxHeader" style="padding-bottom: 24px;">
+                <span class="headerTitle">Cài đặt trang</span>
+            </div>
+            <div class="boxContent">
+                <div class="boxSetting">
+                    <div class="setting-section">
+                        <div class="setting-left">
+                            <span class="setting-name">Hướng trang</span>
+                        </div>
+                        <div class="setting-right">
+                            <div class="radioBtn broadwise">
+                                <div class="btnSelect"></div>
+                                <span>Ngang</span>
+                                <div class="selected select-left" style="display: none"></div>
+                            </div>
+                            <div class="radioBtn endwise" style="margin-left:23px;">
+                                <div class="btnSelect"></div><span>Dọc</span>
+                                <div class="selected select-right" style="display: block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-section" style="margin-top: 29px;">
+                        <div class="setting-left">
+                            <span class="setting-name">Kích thước trang</span>
+                        </div>
+                        <div class="setting-right">
+                            <select class="select-button"></select>
+                        </div>
+                    </div>
+                    <div class="setting-section" style="margin-top: 28px;">
+                        <div class="setting-left">
+                            <span class="setting-name">Kích thước trang</span>
+                        </div>
+                        <div class="setting-right">
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">Cao</span>
+                            <div class="number-input height-size" style="width: 66px;">
+                                <input type="number" class="pad-input broadwiseNumber" value=""
+                                       style="width: 100%;">
+                                <div class="height-top"
+                                     onclick="addNumber('.broadwiseNumber','.error-text')">
+                                    <div class="carrow-top"></div>
+                                </div>
+                                <div class="height-bottom"
+                                     onclick="jianNumber('.broadwiseNumber','.error-text')">
+                                    <div class="carrow-bottom"></div>
+                                </div>
+                                <span class="error-text">Giá trị hợp lệ là100đến500</span>
+                            </div>
+                            <span>mm</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">Rộng</span>
+                            <div class="number-input width-size" style="width: 66px;">
+                                <input type="number" class="pad-input directionNumber" value=""
+                                       style="width: 100%;">
+                                <div class="width-top" onclick="addNumber('.directionNumber','.text2')">
+                                    <div class="carrow-top"></div>
+                                </div>
+                                <div class="width-bottom"
+                                     onclick="jianNumber('.directionNumber','.text2')">
+                                    <div class="carrow-bottom"></div>
+                                </div>
+                                <span class="text2">Giá trị hợp lệ là100đến500</span>
+                            </div>
+                            <span>mm</span>
+                        </div>
+                    </div>
+                    <div class="setting-section" style="margin-top: 28px;">
+                        <div class="setting-left">
+                            <span class="setting-name">Lề trang</span>
+                        </div>
+                        <div class="setting-right">
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">Lề trên</span>
+                            <div class="number-input height-size" style="width: 66px;">
+                                <input type="number" class="pad-input TopbroadwiseNumber" value="11.9"
+                                       style="width: 100%;">
+                                <div class="height-top"
+                                     onclick="addNumber('.TopbroadwiseNumber','.error-text')">
+                                    <div class="carrow-top"></div>
+                                </div>
+                                <div class="height-bottom"
+                                     onclick="jianNumber('.TopbroadwiseNumber','.error-text')">
+                                    <div class="carrow-bottom"></div>
+                                </div>
+                                <span class="error-text">Giá trị hợp lệ là0đến500</span>
+                            </div>
+                            <span>mm</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">Lề dưới</span>
+                            <div class="number-input width-size" style="width: 66px;">
+                                <input type="number" class="pad-input BottomdirectionNumber" value="9.9"
+                                       style="width: 100%;">
+                                <div class="width-top" onclick="addNumber('.BottomdirectionNumber','.text2')">
+                                    <div class="carrow-top"></div>
+                                </div>
+                                <div class="width-bottom"
+                                     onclick="jianNumber('.BottomdirectionNumber','.text2')">
+                                    <div class="carrow-bottom"></div>
+                                </div>
+                                <span class="text2">Giá trị hợp lệ là0đến500</span>
+                            </div>
+                            <span>mm</span>
+                        </div>
+                    </div>
+                    <div class="setting-section" style="margin-top: 28px;">
+                        <div class="setting-left">
+                            <span class="setting-name">Lề trang</span>
+                        </div>
+                        <div class="setting-right">
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">Lề trái</span>
+                            <div class="number-input height-size" style="width: 66px;">
+                                <input type="number" class="pad-input LeftbroadwiseNumber" value="24.9"
+                                       style="width: 100%;">
+                                <div class="height-top"
+                                     onclick="addNumber('.LeftbroadwiseNumber','.error-text')">
+                                    <div class="carrow-top"></div>
+                                </div>
+                                <div class="height-bottom"
+                                     onclick="jianNumber('.LeftbroadwiseNumber','.error-text')">
+                                    <div class="carrow-bottom"></div>
+                                </div>
+                                <span class="error-text">Giá trị hợp lệ là0đến500</span>
+                            </div>
+                            <span>mm</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">Lề phải</span>
+                            <div class="number-input width-size" style="width: 66px;">
+                                <input type="number" class="pad-input RightdirectionNumber" value="24.9"
+                                       style="width: 100%;">
+                                <div class="width-top" onclick="addNumber('.RightdirectionNumber','.text2')">
+                                    <div class="carrow-top"></div>
+                                </div>
+                                <div class="width-bottom"
+                                     onclick="jianNumber('.RightdirectionNumber','.text2')">
+                                    <div class="carrow-bottom"></div>
+                                </div>
+                                <span class="text2">Giá trị hợp lệ là0đến500</span>
+                            </div>
+                            <span>mm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxBottom">
+                    <div class="bottomBtn quxiao">Hủy</div>
+                    <div class="bottomBtn queding">Xác nhận</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<iframe id="mainIframeleft" style="width:15%;height:900px;float:left;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/LeftMedicalTemplate" frameborder="0" scrolling="auto"></iframe>
+<div class="blbj" style="width:70%; height:900px;float:left;overflow-y: auto;border-radius: 4px;background: white;">
+    
+    
+    <form method="post" action="#">
+        
+                @Html.Raw(ViewBag.WriterControlHtml)
+
+        <div id="myWriterControl" dctype="WriterControlForWASM" RuleVisible="false" ContentRenderMode="NormalHtmlEditable"  ClientContextMenuType="Custom"  style="width:100%; background-color: #7cb9e8;">
+           
+        </div>
+    </form>
+</div>
+<iframe id="mainIframeright" style="width:15%;height:900px;float:right;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/RightMedicalTemplate" frameborder="0" scrolling="auto"></iframe>
+<script>
+    var mburl = "";//"\\File\\Template\\出院病历\\测试出院病历模板1.xml";
+    window.addEventListener('message', function (e) {
+        debugger;
+        if (e.data.Turl != null && e.data.Turl != undefined) {
+            var d = e.data.Turl;
+            mburl = d.replace(/\\/g, "\\");
+            //FileOpen();
+            FileOpenV5(); //5.0编辑器
+        }
+        if (e.data.ysdata != null && e.data.ysdata != undefined) {
+            if (e.data.mxlist != null && e.data.mxlist.length > 0) {
+                if ((e.data.ysdata.yslx == "2")) {
+                    InsertDropDowmListInputFieldCd(e.data.ysdata, e.data.mxlist);
+                } else { InsertDropDowmListInputField(e.data.ysdata, e.data.mxlist);}
+            } else {
+            if (e.data.ysdata.yslx == "5") {
+                InsertDateTimeInputField(e.data.ysdata);
+            } else if (e.data.ysdata.yslx == "3") {
+                InsertDateTimeInputFieldDate(e.data.ysdata);
+            } else if (e.data.ysdata.yslx == "4") {
+                InsertDateTimeInputFieldTime(e.data.ysdata);
+            }
+            else if (e.data.ysdata.yslx == "6") {
+                InsertNumericInputField(e.data.ysdata);
+            } else {
+                console.log(e.data.ysdata);
+                if (e.data.ysdata.DataSource.includes("yzdy") || e.data.ysdata.DataSource.includes("hldy") || e.data.ysdata.DataSource.includes("hljl") )
+                {
+                    SetTableRowField(e.data.ysdata);InsertTableCellField(e.data.ysdata);
+                }
+                else{
+                    InsertInputField(e.data.ysdata);
+                }
+                }
+            }
+            //alert(e.data.ysdata.ysmc);
+            //InsertDropDowmListInputField(e.data.ysdata)
+            //InsertInputField(e.data.ysdata.ysmc, e.data.ysdata.BindingPath, e.data.ysdata.DataSource);
+        }
+    })
+    //数值绑定
+    function InsertNumericInputField(data) {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "UserEditable": true,
+            "ToolTip": "Vui lòng nhập giá trị số",
+            "BackgroundText": data.ysmc,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "InnerEditStyle": "Numeric",
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "Deleteable": true,
+            "ContentReadonly": false,
+            "DataSource": data.DataSource,
+            "BindingPath":data.DataSource + "/" + data.BindingPath,
+        };
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field);
+        }
+    }
+    //日期时间绑定
+    function InsertDateTimeInputField(data) {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "UserEditable": true,
+            "ToolTip": "Vui lòng nhập thời gian",
+            "BackgroundText": data.ysmc,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "InnerEditStyle": "DateTime",
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "Deleteable": true,
+            "ContentReadonly": false,
+            "DataSource": data.DataSource,
+            "BindingPath": data.DataSource + "/" + data.BindingPath,
+        };
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field);
+        }
+    }
+    //日期绑定
+    function InsertDateTimeInputFieldDate(data) {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "UserEditable": true,
+            "ToolTip": "Vui lòng nhập thời gian",
+            "BackgroundText": data.ysmc,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "InnerEditStyle": "Date",
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "Deleteable": true,
+            "ContentReadonly": false,
+            "DataSource": data.DataSource,
+            "BindingPath":data.DataSource + "/" + data.BindingPath,
+        };
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field);
+        }
+    }
+    //时间绑定
+    function InsertDateTimeInputFieldTime(data) {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "UserEditable": true,
+            "ToolTip": "Vui lòng nhập thời gian",
+            "BackgroundText": data.ysmc,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "InnerEditStyle": "Time",
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "Deleteable": true,
+            "ContentReadonly": false,
+            "DataSource": data.DataSource,
+            "BindingPath": data.DataSource + "/" + data.BindingPath,
+        };
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field);
+        }
+    }
+    //下拉列表绑定
+    function InsertDropDowmListInputField(data, mxlist) {
+        debugger;
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "ContentReadonly": false,
+            "ToolTip": "Vui lòng chọn",
+            "BackgroundText": data.ysmc,
+            "EnableValueValidate": true,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "InnerEditStyle": "DropdownList",
+            "innermultiselect": "fasle",
+            "EditorActiveMode": "MouseClick",
+        };
+        var content = "";
+        if (mxlist!=null) {
+            for (var i = 0; i < mxlist.length; i++) {
+                if ((i + 1) == mxlist.length) {
+                    content += "{" + '"Text":"' + mxlist[i].YsmxName + '","Value":"' + mxlist[i].YsmxCode + '"' + "}";
+                }
+                else {
+                    content += "{" + '"Text":"' + mxlist[i].YsmxName + '","Value":"' + mxlist[i].YsmxCode + '"' + "},";
+                }
+            }
+        }
+        var tiemlist = "[" + content  + "]";
+        options["ListItems"] = $.parseJSON(tiemlist);
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+        }
+    }
+    //下拉列表绑定
+    function InsertDropDowmListInputFieldCd(data, mxlist) {
+        debugger;
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "ContentReadonly": false,
+            "ToolTip": "Vui lòng chọn",
+            "BackgroundText": data.ysmc,
+            "EnableValueValidate": true,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "InnerEditStyle": "DropdownList",
+            "innermultiselect": "true",
+            "EditorActiveMode": "MouseClick",
+        };
+        var content = "";
+        if (mxlist != null) {
+            for (var i = 0; i < mxlist.length; i++) {
+                if ((i + 1) == mxlist.length) {
+                    content += "{" + '"Text":"' + mxlist[i].YsmxName + '","Value":"' + mxlist[i].YsmxCode + '"' + "}";
+                }
+                else {
+                    content += "{" + '"Text":"' + mxlist[i].YsmxName + '","Value":"' + mxlist[i].YsmxCode + '"' + "},";
+                }
+            }
+        }
+        var tiemlist = "[" + content + "]";
+        options["ListItems"] = $.parseJSON(tiemlist);
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+        }
+    }
+    function InsertInputField(data) {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "UserEditable": true,
+            "ToolTip": "Vui lòng nhập" + data.ysmc,
+            "BackgroundText": data.ysmc,
+            "Name": data.BindingPath,
+            "ID": data.Id,
+            "InnerEditStyle": "Text",
+            "StartBorderText": "[",
+            "EndBorderText": "]",
+            "Deleteable": true,
+            "ContentReadonly": false,
+            "DataSource": data.DataSource,
+            "BindingPath": data.DataSource + "/" + data.BindingPath,
+        };
+        var field = ctl.DCExecuteCommand("InsertInputField", true, options);
+        if (field != null) {
+            ctl.FocusAdjacent("afterEnd", field);
+        }
+    }
+    function InsertTableCellField(data) {
+        debugger;
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            bindingpath: data.BindingPath, //数据源路径
+        }
+        ctl.SetTableCellAttribute(null, options) //第一个参数为指定的元素, 若为null则表示光标所在位置的单元格
+    }
+    function SetTableRowField(data)
+    {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            datasource: "peopledatasource",//data.DataSource, //数据源
+        }
+        ctl.SetTableRowAttribute(null, options) //第一个参数为指定的元素, 若为null则表示光标所在位置的表格行
+    }
+    function dcInsertPageInfo() {
+        //var ctl = document.getElementById("myWriterControl");
+        //var doc = ctl.GetContentDocument();
+        //var footer = doc.querySelector("[dctype='XTextDocumentFooterElement']");
+        //var p = footer.querySelector("p");
+        //p.style.textAlign = "center";
+        //p.setAttribute("align", "center");
+        //ctl.FocusAdjacent("afterBegin", p);
+        //var options = {
+        //    ID: "pageinfo1",
+        //    Height: "65",
+        //    Width: "400",
+        //    ValueType: "PageIndex",
+        //    FormatString: "第[%PageIndex%]页 共[%NumOfPages%]页",
+        //    Caption: "页码"
+        //};
+        //ctl.DCExecuteCommand('InsertPageInfoElement', false, options)
+        var ctl = document.getElementById('myWriterControl');
+        var options =
+              [
+                {
+                    'pageinfo': {
+                        ID: "pageinfo1",
+                        Height: "65",
+                        Width: "400",
+                        ValueType: "PageIndex",
+                        FormatString: "Thứ[%Page index%]Trang Tổng cộng[%Num of pages%]Trang",
+                    },
+                }
+              ];
+        var footer = ctl.DocumentFooter;
+        ctl.SetChildElements(footer, options, "beforebegin", true, false);
+        var newStyle =
+            {
+                "Align": "Center"
+            };
+        ctl.SetParagraphStyleByElement("pageinfo1", newStyle);
+    }
+
+    $(function () {
+        //var ctl = document.getElementById("myWriterControl");//获取当前编辑器对象
+        //ctl.DCExecuteCommand('FileNew', false, false);
+
+        //MySetContextMenu();
+        //document.getElementById("myWriterControl").style.height = "800px";
+        MedicalExpressionMenu();
+        init();
+        ymsz();
+        //var ctl = document.getElementById("myWriterControl");
+    });
+    var selectList = [{
+        "name": "A3",
+        "widthmm": 297,
+        "heightmm": 420,
+        "Landscape": "false" //纵向
+    }, {
+        "name": "A4",
+        "widthmm": 210,
+        "heightmm": 297,
+        "Landscape": "false"
+    }, {
+        "name": "A5",
+        "widthmm": 148,
+        "heightmm": 210,
+        "Landscape": "false"
+    }, {
+        "name": "B4",
+        "widthmm": 250,
+        "heightmm": 353,
+        "Landscape": "false"
+    }, {
+        "name": "B5",
+        "widthmm": 176,
+        "heightmm": 250,
+        "Landscape": "false"
+    }, {
+        "name": "Tùy chỉnh",
+        "widthmm": 200,
+        "heightmm": 500,
+        "Landscape": "false"
+    }]
+    function ymsz() {
+        for (let i in selectList) {
+            let name = selectList[i].name;
+            let widthMm = selectList[i].widthmm;
+            let heightMm = selectList[i].heightmm;
+            let landScape = selectList[i].Landscape;
+            $(".select-button").append(
+                `<option value="${name}" Landscape="${landScape}" dataWidth="${widthMm}" dataHeight="${heightMm}">${name}</option>`
+            )
+        }
+    }
+    function MySetContextMenu() {
+        var ctl = document.getElementById("myWriterControl");
+        //编辑器右键菜单
+        var jsonMenu = [
+            {
+                cmdName: 'copy',
+            },
+            {
+                label: 'Cắt(Ctrl + x)',
+                cmdName: 'cut',
+                exec: function () {
+                    ctl.DCExecuteCommand('Cut', true, null)
+                },
+            },
+            {
+                label: 'Dán',
+                cmdName: 'paste',
+                exec: function () {
+                    ctl.DCExecuteCommand('Paste', true, null) //粘贴内部复制或者剪切的
+                },
+            },
+            '-',
+            {
+                label: 'Thuộc tính phần tử',
+                // icon: 'aligntd',
+                cmdName: 'aligntd',
+                exec: function () {
+                    ctl.DCExecuteCommand('elementproperties', true)
+                },
+            },
+            '-',
+            {
+                label: 'Thuộc tính ô',
+                // icon: 'aligntd',
+                cmdName: 'aligntd',
+                exec: function () {
+                    var CurrentTable = ctl.CurrentTable()
+                    if (CurrentTable != null) {
+                        ctl.TableCellPopUpWindow();
+                    }
+                },
+            },
+            '-',
+            {
+                label: 'Thuộc tính bảng',
+                cmdName: 'edittable',
+                exec: function () {
+                    var CurrentTable = ctl.CurrentTable()
+                    if (CurrentTable != null) {
+                        ctl.TablePopUpWindow()
+                    }
+                },
+            },
+            {
+                label: 'Thuộc tính dòng bảng',
+                cmdName: 'edittd',
+                exec: function () {
+                    var CurrentTableRow = ctl.CurrentTableRow()
+                    if (CurrentTableRow != null) {
+                        ctl.TableRowPopUpWindow()
+                    }
+                },
+            },
+            {
+                label: 'Xóa bảng',
+                cmdName: 'deletetable',
+                exec: function () {
+                    var currenttable = ctl.CurrentTable()
+                    if (currenttable != null) {
+                        ctl.DCExecuteCommand('Table_DeleteTable', false, null)
+                    }
+                },
+            },
+            {
+                label: 'Xóa dòng bảng',
+                cmdName: 'deleterow',
+                exec: function () {
+                    var currentRow = ctl.CurrentTableRow()
+                    if (currentRow != null) {
+                        ctl.DCExecuteCommand('Table_DeleteRow', false, null)
+                    }
+                },
+            },
+            {
+                label: 'Chèn dòng bảng phía trên',
+                cmdName: 'insertrow',
+                exec: function () {
+                    var currentRow = ctl.CurrentTableRow()
+                    if (currentRow != null) {
+                        ctl.DCExecuteCommand('Table_InsertRowUp', false, null)
+                    }
+                },
+            },
+            {
+                label: 'Chèn dòng bảng phía dưới',
+                cmdName: 'insertrownext', //edui-for-insertrownext
+                exec: function () {
+                    var currentRow = ctl.CurrentTableRow()
+                    if (currentRow != null) {
+                        ctl.DCExecuteCommand('Table_InsertRowDown', false, null)
+                    }
+                },
+            },
+            {
+                label: 'Chèn cột bảng bên trái',
+                cmdName: 'insertcol',
+                exec: function () {
+                    var currentRow = ctl.CurrentTableRow()
+                    if (currentRow != null) {
+                        ctl.DCExecuteCommand(
+                            'Table_InsertColumnLeft',
+                            false,
+                            null
+                        )
+                    }
+                },
+            },
+            {
+                label: 'Chèn cột bảng bên phải',
+                cmdName: 'insertcolnext',
+                exec: function () {
+                    var currentRow = ctl.CurrentTableRow()
+                    if (currentRow != null) {
+                        ctl.DCExecuteCommand(
+                            'Table_InsertColumnRight',
+                            false,
+                            null
+                        )
+                    }
+                },
+            },
+            {
+                label: 'Gộp ô sang phải',
+                cmdName: 'mergeright',
+                exec: function () {
+                    var currentCell = ctl.CurrentTableCell()
+                    if (currentCell != null) {
+                        ctl.DCExecuteCommand('mergeright', false, null)
+                    }
+                },
+            },
+            {
+                label: 'Gộp ô xuống dưới',
+                cmdName: 'mergedown',
+                exec: function () {
+                    var currentCell = ctl.CurrentTableCell()
+                    if (currentCell != null) {
+                        ctl.DCExecuteCommand('mergedown', false, null)
+                    }
+                },
+            },
+        ]
+        ctl.SetContextMenu(jsonMenu)
+    }
+    function FileOpen() {
+        var ctl = document.getElementById("myWriterControl");
+        ctl.ClearDocumentBody();
+        ctl.preserveScrollPosition = true;
+        var fileName = mburl;
+        //在服务器端响应控件的EventReadFileContenClearDocumentBodyt事件, 即可使用AJAX模式加载文档.
+        ctl.LoadDocumentFromFile(fileName, null);
+    }
+    function TemplateSave() {
+        if (mburl == "") {
+            alert("Vui lòng chọn mẫu bệnh án!");
+            return;
+        }
+        var ctl = document.getElementById("myWriterControl");
+
+        //ctl.DCExecuteCommand('FileSave', true, mburl);
+        //alert("保存成功");
+        FileSavev5(); //5.0编辑器
+
+    }
+    function init() {
+
+        //var ctl = document.getElementById("myWriterControl");
+        //function Build() {
+        //    if (ctl) {
+        //        BindingDCWriterClientControl(ctl);
+        //        ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
+        //            var styleDom = document.createElement("style");
+        //             解决宋体打印问题
+        //            var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
+        //            styleDom.innerHTML = cssStr;
+        //            var page = PrintPreviewDoc.querySelector("div[pageindex]");
+        //            if (page) {
+        //                page.appendChild(styleDom);
+        //            }
+        //        }
+        //    }
+        //    FileOpen();
+        //}
+        //Build();
+        //var ctl = document.getElementById("myWriterControl");
+        //// 绑定控件
+        //BindingDCWriterClientControl(ctl);
+        //var data = "";
+        // 创建编辑器框架
+        //ctl.BuildFrame(function () {
+        //    debugger;
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/MedRecordTemplate/GetTemplateXml",
+        //        data: { templateType: "0", templateName: "长期医嘱" },
+        //        dataType: "json",
+        //        async: false,
+        //        success: function (respdata) {
+        //            debugger;
+        //            var jsonData = JSON.stringify(respdata);
+        //            data = JSON.parse(jsonData);
+        //            ctl.LoadDocumentFromString(data.xmldata, "xml");
+        //            console.log(data.xmldata);
+        //        }
+        //    });
+        //});
+
+    }
+    // 插入表格操作
+    var insertTable = function (btn, opt) {
+        if (!btn) { return; }
+        this.btn = btn;
+        opt = opt || {};
+        this.box = null; //弹框
+        this.inBox = null;
+        this.pickUnLight = null;
+        this.pickLight = null;
+        this.status = null;
+        this.minSize = opt.min || [5, 5]; //最小列数和行数
+        this.maxSize = opt.max || [15, 15]; //最大列数和行数
+        this.insert = opt.insert; //回调
+        this.nowSize = []; //当前选择尺寸
+        this.isInit = { create: false, bind: false };
+        this.bind();
+    }
+    insertTable.prototype = {
+        init: function () {
+            if (this.isInit.create) { return; }
+            this.isInit.create = true;
+            var id = 'in_tab_box_' + String(Math.ceil(Math.random() * 100000) + String(new Date().getTime())),
+                html = '<div class="in_tab_box" id="' + id + '">';
+            html += '<div class="itb_con">';
+            html += '<div class="itb_picker_unlight"></div>';
+            html += '<div class="itb_picker_light"></div>';
+            html += '</div>';
+            html += '<div class="itb_picker_status"></div>';
+            html += '</div>';
+            $("body").append(html);
+            this.box = $("#" + id);
+            this.inBox = this.box.find(".itb_con");
+            this.pickAll = this.box.find(".itb_picker_all");
+            this.pickUnLight = this.box.find(".itb_picker_unlight");
+            this.pickLight = this.box.find(".itb_picker_light");
+            this.status = this.box.find(".itb_picker_status");
+            this.setBg(this.minSize[0], 0);
+            this.setBg(this.minSize[1], 1);
+            this.status.text(0 + 'Cột x ' + 0 + 'Dòng');
+        },
+        bind: function () {
+            var T = this,
+                pos, //弹框显示位置
+                m,
+                bPos, //弹框可选区域位置
+                mPos; //鼠标位置
+            this.btn.click(function () {
+                if (!T.isInit.create) { T.init(); } //初始化弹框
+                if (!T.isInit.bind) { B(); } //初始化事件
+                m = $(this);
+                if (T.box.is(":hidden")) {
+                    pos = {
+                        top: m.offset().top,
+                        left: m.offset().left + m.outerWidth() + 2
+                    }
+                    T.box.css({
+                        "top": pos.top,
+                        "left": pos.left,
+                        "z-index": 999999
+                    }).fadeIn(100);
+                    bPos = {
+                        top: T.inBox.offset().top,
+                        left: T.inBox.offset().left
+                    }
+                    $(document).bind("click", function () { T.hide(); });
+                } else {
+                    T.hide();
+                }
+                return false;
+            })
+            function B() {
+                T.isInit.bind = true;
+                T.inBox.mousemove(function (e) {
+                    mPos = {
+                        x: e.clientX,
+                        y: e.clientY
+                    }
+                    if (mPos.x < bPos.left || mPos.y < bPos.top) { return; }
+                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18); //列数
+                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18); //行数
+                    if (T.nowSize[0] >= T.minSize[0] && T.nowSize[0] < T.maxSize[0]) {
+                        T.setBg(T.nowSize[0] + 1, 0);
+                    } else if (T.nowSize[0] < T.minSize[0]) {
+                        T.setBg(T.minSize[0], 0);
+                    } else {
+                        T.nowSize[0] = T.maxSize[0];
+                    }
+                    if (T.nowSize[1] >= T.minSize[1] && T.nowSize[1] < T.maxSize[1]) {
+                        T.setBg(T.nowSize[1] + 1, 1);
+                    } else if (T.nowSize[1] < T.minSize[1]) {
+                        T.setBg(T.minSize[1], 1);
+                    } else {
+                        T.nowSize[1] = T.maxSize[1];
+                    }
+                    T.pickLight.css({
+                        "width": T.nowSize[0] + 'em',
+                        "height": T.nowSize[1] + 'em'
+                    })
+                    T.status.text(T.nowSize[0] + 'Cột x ' + T.nowSize[1] + 'Dòng');
+                })
+                //单击确认插入表格
+                T.box.click(function () {
+                    if (T.nowSize[0] > 0 && T.nowSize[0] <= T.maxSize[0] && T.nowSize[1] > 0 && T.nowSize[1] <= T.maxSize[1]) {
+                        var rows = T.nowSize[1],
+                            cols = T.nowSize[0];
+                        try { T.insert(rows, cols); } catch (e) { }
+                    }
+                })
+            }
+        },
+        //调整背景区域
+        setBg: function (size, t) {
+            if (t == 0) {
+                this.inBox.width(size + 'em');
+                this.pickUnLight.width(size + 'em');
+            } else {
+                this.inBox.height(size + 'em');
+                this.pickUnLight.height(size + 'em');
+            }
+        },
+        //隐藏弹框
+        hide: function () {
+            var T = this;
+            this.box.fadeOut(100, function () {
+                //重置
+                T.setBg(T.minSize[0], 0);
+                T.setBg(T.minSize[1], 1);
+                T.pickLight.css({
+                    "width": '0',
+                    "height": '0'
+                })
+            });
+        }
+    }
+    new insertTable($("#insert_table"), {
+        min: [4, 4],
+        max: [20, 20],
+        insert: function (rows, cols) {
+            //这里只返回所选行数rows和列数cols,插入后的效果和样式需自定义,以下只是做简单的示例
+            //alert('插入了一个'+rows+'行'+cols+'列的表格');
+
+            var ttt = rows + "," + cols;
+            document.getElementById('myWriterControl').DCExecuteCommand('inserttable', true, ttt);
+
+
+            //var html = '<table>';
+            //for (var i = 0; i < rows; i++) {
+            //    html += '<tr>';
+            //    for (var j = 0; j < cols; j++) {
+            //        html += '<td></td>';
+            //    }
+            //    html += '</tr>';
+            //}
+            //html += '</table>';
+            //this.btn.siblings("table").remove();
+            //this.btn.after(html);
+        }
+    });
+    // 关闭按钮
+    $("#closeimg").click(function () {
+        $("#tszfa").hide();
+        $("#mask").hide();
+    })
+    //插入批注
+    function insertNewComment() {
+        $("#mask").show();
+        var $NewComment = $("#NewComment_box");
+        $NewComment.show().find("input.text").focus().val("");
+    }
+    $("#NewComment_box input.sub").click(function () {
+        var text = $("#NewComment_box input.text").val();
+        if (text != "") {
+            NewComment(text);
+        }
+        $("#mask").hide();
+        $("#NewComment_box").hide();
+    })
+    $("#NewComment_box input.quit,#NewComment_box img").click(function () {
+        $("#mask").hide();
+        $("#NewComment_box").hide();
+    })
+    function NewComment(text) {
+        var opts = {
+            Text: text,
+            UserName: "李四主任医师",
+            UserID: "lisi"
+        }
+        document.getElementById("myWriterControl").NewComment(opts);
+    }
+    // 插入按钮
+    function MyInsertButtonInputField() {
+        var ctl = document.getElementById("myWriterControl");
+        var options = {
+            "ID": "123",
+            "ToolTip": "Đây là một nút",
+            "ContentReadonly": false,
+            "SpecifyWidth": 10,
+            "inputtype": "button",
+            "value": "Nút",
+            "EnableValueValidate": true,
+            "InnerEditStyle": "input",
+            "EditorActiveMode": "MouseClick"
+        };
+        ctl.DCExecuteCommand("InsertInput", true, options);
+    }
+    $("#MedicalExpressionMenu").change(function () {
+        var ctl = document.getElementById("myWriterControl");
+        var doc = ctl.GetContentDocument();
+        var MedicalExpressionElement = $(doc).find("[dctype='XTextNewMedicalExpressionElement']");
+        var index = MedicalExpressionElement.length;
+        //console.log($(this).val())
+        var ExpressionStyle = $(this).find("option:selected").attr("ExpressionStyle");
+        var Values = $(this).find("option:selected").attr("Values");
+        //console.log(ExpressionStyle)
+        MyInsertMedicalExpression(index, ExpressionStyle, Values);
+        $(this).find("option:eq(0)").attr("selected", "selected");
+        var img = $(doc).find("#expression" + index);
+        if (img.is(":visible") == false) {
+            img.parent().after(img);
+        }
+        //模拟dblclick事件
+        img.trigger("dblclick");
+    })
+    //设置自定义下拉列表
+    function CustomDropdownList() {
+        var ctl = document.getElementById('myWriterControl');
+        if (ctl.EventDropdownEditor == null) {
+            // 绑定控件的EventDropdownEditor事件.
+            // 提供自定义的下拉列表内容.
+            ctl.EventDropdownEditor = function (args) {
+                args.container.style.overflowY = 'auto';
+                var sel = document.createElement("input");
+                sel.type = "text";
+                sel.placeholder = "Vui lòng nhập từ khóa lọc";
+                sel.style.width = "200px";
+                args.container.appendChild(sel);
+                sel.oninput = function () {
+                    var reg = new RegExp(this.value);
+                    console.log(reg);
+                    //console.log(this.value);
+                    var chil = this.parentNode.children;
+                    for (let i = 0; i < chil.length; i++) {
+                        if (chil[i].getAttribute("type") == "button") {
+                            chil[i].style.display = "block";
+                            console.log(!reg.test(chil[i].value));
+                            if (!(reg).test(chil[i].value)) {
+                                chil[i].style.display = "none";
+                            } else {
+                                chil[i].style.display = "block";
+                            }
+                        }
+                    }
+                }
+                //if (args.element.id == "123")// 在这里可以判断输入域元素编号
+                //{
+                for (var iCount = 0; iCount < 20; iCount++) {
+                    var btn = document.createElement("input");
+                    btn.type = "button";
+                    btn.style.display = "block";
+                    btn.value = "Giá trị số" + iCount;
+                    btn.style.width = "200px";
+                    btn.onclick = function () {
+                        args.setValue(
+                            this.value, // 输入域文本值
+                            this.value + "_value");// 输入域数值
+                        args.close();// 关闭下拉列表
+                    };
+                    // args.container是承载内容的一个DIV元素.
+                    args.container.appendChild(btn);
+                    //args.container.appendChild(document.createElement("br"));
+                }//for
+                args.container.style.width = "210px";
+                args.container.style.height = "300px";
+                //}
+            }
+        }
+        else {
+            ctl.EventDropdownEditor = null;
+        }
+    }
+    // 页面设置
+    function ChangeDocumentSettings() {
+        $(".newBox").show();
+        $("#mask").show();
+    }
+
+    $(".bottomBtn.queding").click(function () {
+        var broadWise = $(".broadwiseNumber").val();
+        var direction = $(".directionNumber").val();
+        var Topdirection = $(".TopbroadwiseNumber").val();
+        var Bottomdirection = $(".BottomdirectionNumber").val();
+        var Leftdirection = $(".LeftbroadwiseNumber").val();
+        var Rightdirection = $(".RightdirectionNumber").val();
+        var opts = {
+            "PaperKind": "Custom",//自定义
+            "PaperWidth": direction,//宽度
+            "PaperHeight": broadWise,//高度
+            "TopMargin": Topdirection,//上边距
+            "BottomMargin": Bottomdirection,//下边距
+            "LeftMargin": Leftdirection,//左边距
+            "RightMargin": Rightdirection,//右边距
+            "Landscape": "false"//横向, 纵向
+        };
+        var ctl = document.getElementById("myWriterControl");
+        ctl.ChangeDocumentSettings(opts);
+        $(".newBox").hide();
+        $("#mask").hide();
+    })
+    $(".bottomBtn.quxiao,.boxClose").click(function () {
+        $(".newBox").hide();
+        $("#mask").hide();
+    })
+    $(".radioBtn").click(function () {
+        $(this).find(".selected").show();
+        $(this).siblings(".radioBtn").find(".selected").hide();
+        var flag = $(".select-right").is(":hidden");//true 横向 | false 纵向
+        var broadWise = $(".broadwiseNumber").val();
+        var direction = $(".directionNumber").val();
+        if (broadWise > direction) {
+            var small = direction;
+            var big = broadWise;
+        } else {
+            var small = broadWise;
+            var big = direction;
+        }
+        if (flag) {
+            $(".broadwiseNumber").val(small);
+            $(".directionNumber").val(big);
+        } else {
+            $(".broadwiseNumber").val(big);
+            $(".directionNumber").val(small);
+        }
+    })
+    $(".broadwiseNumber").val(selectList[0].heightmm);
+    $(".directionNumber").val(selectList[0].widthmm);
+    $(".select-button").change(function () {
+        var flag = $(".select-right").is(":hidden");//true 横向 | false 纵向
+        var index = $(this).find("option:selected").index();
+        if (flag) {
+            $(".broadwiseNumber").val(selectList[index].widthmm)
+            $(".directionNumber").val(selectList[index].heightmm)
+        } else {
+            $(".broadwiseNumber").val(selectList[index].heightmm)
+            $(".directionNumber").val(selectList[index].widthmm)
+        }
+    })
+    function compare() {
+        var broadWise = $(".broadwiseNumber").val();
+        var direction = $(".directionNumber").val();
+        if (broadWise < direction) {
+            $(".select-left").show();
+            $(".select-right").hide();
+        } else {
+            $(".select-left").hide();
+            $(".select-right").show();
+        }
+    }
+    function addNumber(name, name2) {
+        var nameVal = $(name).val()
+        var m = accAdd(nameVal, 0.1);
+        $(name).val(m);
+        if ($(name).val() >= 100 && $(name).val() <= 500) {
+            $(name2).css("display", "none");
+            $(name).css("border", "1px solid #d4d4d4")
+        } else {
+            $(name2).css("display", "block")
+            $(name).css("border", "1px solid #ef4e2f")
+        }
+        compare();
+        $(".select-button").val("Tùy chỉnh");
+    }
+    function jianNumber(name, name2) {
+        var nameVal = $(name).val()
+        var m = accSub(nameVal, 0.1);
+        $(name).val(m);
+        if ($(name).val() >= 100 && $(name).val() <= 500) {
+            $(name2).css("display", "none");
+            $(name).css("border", "1px solid #d4d4d4")
+        } else {
+            $(name2).css("display", "block");
+            $(name).css("border", "1px solid #ef4e2f")
+        }
+        compare();
+        $(".select-button").val("Tùy chỉnh");
+    }
+
+  
+    //******************都昌5.0编辑器版**************//
+    //编辑器渲染完成事件
+    function WriterControl_OnLoad(rootElement) {
+
+        //右键菜单
+        rootElement.EventShowContextMenu = function (eventSender, args) {
+            var typename = args.ElementType;
+            var ele = rootElement.CurrentElement()
+            var eleement = rootElement.GetElementProperties(ele)
+            // console.log(eleement,"元素属性")
+            if (eleement.TypeName == "XTextParagraphFlagElement") {
+                var previouselement = rootElement.GetElementProperties(eleement.PreviousElement);
+                if (previouselement.TypeName != "XTextParagraphFlagElement") {
+                    console.log(previouselement.TypeName, "Loại phần tử")
+                }
+            }
+            // console.log(typename,"元素属性11")
+            if (typename != null && typename != "") {
+                typename = typename.toLowerCase();
+                var options = [
+                   {
+                       label: 'Hoàn tác',
+                       exec: () => {
+                           console.log('Hoàn tác')
+                           eventSender.DCExecuteCommand('Undo', false, null);
+                       },
+                   },
+                   {
+                       label: 'Làm lại',
+                       exec: () => {
+                           console.log('Làm lại')
+                           eventSender.DCExecuteCommand('Redo', false, null);
+                       },
+                   },
+                   '-',
+                   {
+                       label: 'Sao chép(Ctrl+C)',
+                       exec: () => {
+                           console.log('Sao chép(Ctrl+C)')
+                           eventSender.DCExecuteCommand('Copy', false, null);
+                       },
+                   },
+                   {
+                       label: 'Dán(Ctrl+V)',
+                       exec: () => {
+                           eventSender.DCExecuteCommand('Paste', false, null);
+                       },
+                   },
+                   {
+                       label: 'Cắt(Ctrl+X)',
+                       exec: () => {
+                           eventSender.DCExecuteCommand('Cut', false, null);
+                       },
+                   },
+                   {
+                       label: 'Sao chép văn bản thuần',
+                       exec: () => {
+                           eventSender.DCExecuteCommand('CopyAsText', false, null);
+                       },
+                   },
+                   {
+                       label: 'Dán văn bản thuần',
+                       exec: () => {
+                           console.log('Dán văn bản thuần')
+                           eventSender.DCExecuteCommand('PasteAsText', false, null);
+                       },
+                   },
+                   '-',
+                   {
+                       label: 'Thuộc tính phần tử',
+                       exec: () => {
+                           // console.log(previouselement,"前一个元素")
+                           if (eleement.TypeName == "XTextParagraphFlagElement") {
+                               ElementDialog(previouselement, previouselement.TypeName)
+                               return;
+                           }
+                           var e = eventSender.DCExecuteCommand('ElementProperties', true, null);
+                           // eventSender.FocusAdjacent("afterEnd", e)
+                       },
+                   },
+                   '-',
+                   {
+                       label: 'Thuộc tính ô',
+                       exec: () => {
+                           var CurrentTable = eventSender.CurrentTable()
+                           if (CurrentTable != null) {
+                               eventSender.TableCellPopUpWindow();
+                           }
+                       }
+                   },
+                    {
+                        label: 'Thuộc tính bảng',
+                        exec: () => {
+                            var CurrentTable = eventSender.CurrentTable()
+                            if (CurrentTable != null) {
+                                eventSender.TablePopUpWindow();
+                            }
+                        }
+                    },
+                    {
+                        label: 'Thuộc tính dòng bảng',
+                        exec: () => {
+                            var CurrentTable = eventSender.CurrentTable()
+                            if (CurrentTable != null) {
+                                eventSender.TableRowPopUpWindow();
+                            }
+                        }
+                    },
+                   '-',
+                   {
+                       label: 'Bảng dòng cột',
+                       exec: () => {
+
+                       },
+                       subMenu: [
+                          {
+                              label: 'Xóa bảng',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_DeleteTable", false, null);
+                              },
+                          },
+                          {
+                              label: 'Xóa dòng bảng',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_DeleteRow", false, null);
+                              },
+                          },
+                          {
+                              label: 'Xóa bảng cột',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_DeleteColumn", false, null);
+                              },
+                          },
+                          {
+                              label: 'Chèn dòng phía trên',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_InsertRowUp", false, null);
+                              },
+                          },
+                          {
+                              label: 'Chèn dòng phía dưới',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_InsertRowDown", false, null);
+                              },
+                          },
+                          {
+                              label: 'Chèn cột bên trái',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_InsertColumnLeft", false, null);
+                              },
+                          },
+                          {
+                              label: 'Chèn cột bên phải',
+                              exec: () => {
+                                  eventSender.DCExecuteCommand("Table_InsertColumnRight", false, null);
+                              },
+                          },
+                       ]
+                   },
+                ];
+                ContextMenu(options, args, eventSender);
+            }
+
+        }
+
+        var options = {
+            "BehaviorOptions": {
+                "AcceptDataFormats": "Text",
+                "ActiveCheckInstallWindowsMediaPlayer": false,
+                "AllowDeleteJumpOutOfField": true,
+                "AllowDragContent": false,
+                "AppErrorHandleMode": "ThrowException",
+                "AutoActiveSystemTaskbarBeforeShowDialog": false,
+                "AutoAssistInsertString": false,
+                "AutoAssistInsertStringDetectTextLength": 0,
+                "AutoClearInvalidateCharacter": true,
+                "AutoClearTextFormatWhenPasteOrInsertContent": false,
+                "AutoCreateInstanceInProperty": false,
+                "AutoDocumentValueValidate": false,
+                "AutoFixElementIDWhenInsertElements": true,
+                "AutoFocusWhenOpenDocument": true,
+                "AutoIgnoreLastEmptyPage": true,
+                "AutoRefreshUserTrackInfos": false,
+                "AutoSaveIntervalInSecond": 0,
+                "AutoSaveScriptAssemblyToTempFile": true,
+                "AutoScrollToCaretWhenGotFocus": false,
+                "AutoShowScriptErrorMessage": false,
+                "AutoTranslateDescString": null,
+                "AutoTranslateSourceString": null,
+                "AutoUpdateButtonVisible": false,
+                "AutoUppercaseFirstCharInFirstLine": false,
+                "CheckedValueBindingHandledForTableRow": true,
+                "CloneSerialize": true,
+                "CommentEditableWhenReadonly": false,
+                "CommentVisibility": "Auto",
+                "CompressLayoutForFieldBorder": true,
+                "CompressXMLContent": false,
+                "ContinueHeaderParagrahStyle": false,
+                "CreationDataFormats": "All",
+                "CustomPromptForbitCheckMRID": null,
+                "CustomWarringCheckMRID": null,
+                "DataObjectRange": "OS",
+                "DebugMode": false,
+                "DefaultEditorActiveMode": "None",
+                "DesignMode": false,
+                "DisableCheckMRIDWhenMRIDIsEmptyForOuterDataObject": false,
+                "DisplayFormatToInnerValue": true,
+                "DocumentTextOutputMode": "Normal",
+                "DoubleClickToEditComment": true,
+                "DoubleClickToSelectWord": true,
+                "EnableAIForSuspiciousContent": false,
+                "EnableCalculateControl": true,
+                "EnableCheckControlLoaded": false,
+                "EnableChineseFontSizeName": true,
+                "EnableCollapseSection": false,
+                "EnableCompressUserHistories": true,
+                "EnableContentChangedEventWhenLoadDocument": false,
+                "EnableContentLock": true,
+                "EnableControlHostAtDesignTime": true,
+                "EnableCopySource": true,
+                "EnableDataBinding": true,
+                "EnabledCache100KBImageData": true,
+                "EnabledElementEvent": true,
+                "EnableDeleteReadonlyEmptyContainer": true,
+                "EnabledShowWinTaskBarProgress": false,
+                "EnableEditElementValue": true,
+                "EnableElementEvents": true,
+                "EnableExpression": true,
+                "EnableHyperLink": true,
+                "EnableKBEntryRangeMask": true,
+                "EnableLogUndo": true,
+                "EnableScript": true,
+                "EnableSetJumpPrintPositionWhenPreview": true,
+                "EncodingCodePageForWriteRTF": 936,
+                "ExcludeKeywords": null,
+                "ExtendingPrintDialog": true,
+                "FastInputMode": false,
+                "FillCommentToUserTrackList": false,
+                "ForceCollateWhenPrint": false,
+                "ForcePopupFormTopMost": false,
+                "ForceRaiseEventAfterFieldContentEdit": false,
+                "FormView": "Normal",
+                "GeneratePageContentVersion": false,
+                "GlobalSpecifyDebugModeValue": false,
+                "HandleCommandException": true,
+                "IgnoreDataBindingWhenMissValue": true,
+                "IgnorePrintableAreaOffset": false,
+                "IgnoreTopBottomPaddingWhenGridLineLayout": false,
+                "ImageCompressSaveMode": "Prompt",
+                "ImageShapeEditorBackgroundMenuItemConfig": null,
+                "InsertCommentBindingUserTrack": false,
+                "InsertDocumentWithCheckMRID": "None",
+                "LicenseServicePageUrl": null,
+                "LocalAutoSaveWorkDirectory": null,
+                "LockScrollPositionWhenStrictFormViewMode": false,
+                "MaximizedPrintPreviewDialog": false,
+                "MaxTextLengthForPaste": 0,
+                "MaxZoomRate": 5,
+                "MinCountForDropdownListSpellCodeArea": 4,
+                "MinImageFileSizeForConfirmCompressSaveMode": 51200,
+                "MinZoomRate": 0.2,
+                "MoveCaretWhenDeleteFail": true,
+                "MoveFieldWhenDragWholeContent": true,
+                "MoveFocusHotKey": "Tab",
+                "NewExpressionExecuteMode": true,
+                "NotificationWorkingTimeout": 2000,
+                "OutputBackgroundTextToRTF": true,
+                "OutputFieldBorderTextToContentText": true,
+                "OutputFormatedXMLSource": true,
+                "PageLineUnderPageBreak": false,
+                "ParagraphFlagFollowTableOrSection": true,
+                "ParseCrLfAsLineBreakElement": false,
+                "PowerfulCommentCommand": true,
+                "PreserveClipbardDataWhenExit": false,
+                "Printable": true,
+                "PromptForExcludeSystemClipboardRange": true,
+                "PromptForRejectFormat": true,
+                "PromptJumpBackForSearch": true,
+                "PromptProtectedContent": "None",
+                "RaiseQueryListItemsWhenUserEditText": false,
+                "RemoveLastParagraphFlagWhenInsertDocument": false,
+                "ResetTextFormatWhenCreateNewLine": false,
+                "SaveBodyTextToXml": true,
+                "SelectionTextIncludeBackgroundText": true,
+                "SetParagraphFlagHeightUsePreElement": true,
+                "ShowDebugMessage": false,
+                "ShowNoLicenseFunctionRisk": true,
+                "ShowTooltip": true,
+                "SimpleElementProperties": false,
+                "SmoothScrollView": true,
+                "SpecifyDebugMode": false,
+                "SpeedupByMultiThread": true,
+                "StdLablesForImageEditor": null,
+                "TableCellOperationDetectDistance": 3,
+                "ThreeClickToSelectParagraph": true,
+                "TitleForToolTip": null,
+                "UseNewValueExpressionEngine": true,
+                "ValidateIDRepeatMode": "None",
+                "ValidateUserIDWhenEditDeleteComment": false,
+                "WeakMode": false,
+                "WidelyRaiseFocusEvent": false,
+                "WordBreak": "Normal",
+                "XMLContentEncodingName": null
+            },
+            "EditOptions": {
+                "AutoInsertTableRowWhenMoveToNextCell": true,
+                "ClearFieldValueWhenCopy": false,
+                "CloneWithoutElementBorderStyle": true,
+                "CloneWithoutLogicDeletedContent": false,
+                "CopyInTextFormatOnly": false,
+                "CopyWithoutInputFieldStructure": false,
+                "FixSizeWhenInsertImage": true,
+                "FixWidthWhenInsertTable": true,
+                "GridLinePreviewText": "DCWriter   Ͼ       Ϣ Ƽ    ޹ ˾     з   רҵ ĵ  Ӳ    ĵ  ༭    ",
+                "KeepTableWidthWhenInsertDeleteColumn": true,
+                "TabKeyToFirstLineIndent": true,
+                "TabKeyToInsertTableRow": true,
+                "ValueValidateMode": "LostFocus"
+            },
+            "SecurityOptions": {
+                "AutoEnablePermissionWhenUserLogin": true,
+                "CAMode": "Software",
+                "CanModifyDeleteSameLevelContent": true,
+                "CAServerIP": null,
+                "CAServerPort": 0,
+                "CreatorTipFormatString": null,
+                "DeleterTipFormatString": null,
+                "EnableLogicDelete": true,
+                "EnablePermission": true,
+                "PowerfulSignDocument": true,
+                "RealDeleteOwnerContent": false,
+                "ShowFlagForOnlySoftwareSign": true,
+                "ShowLogicDeletedContent": true,
+                "ShowNewContentMarkForFirstHistory": true,
+                "ShowPermissionMark": true,
+                "ShowPermissionTip": true,
+                "TrackVisibleLevel0": {
+                    "BackgroundColor": "#00FFFFFF",
+                    "DeleteLineColor": "#FF7F50",
+                    "DeleteLineNum": 1,
+                    "Enabled": true,
+                    "UnderLineColor": "#ADD8E6",
+                    "UnderLineColorNum": 1,
+                    "UnderLineStyle": "Single"
+                },
+                "TrackVisibleLevel1": {
+                    "BackgroundColor": "#00FFFFFF",
+                    "DeleteLineColor": "#FF0000",
+                    "DeleteLineNum": 1,
+                    "Enabled": true,
+                    "UnderLineColor": "#0000FF",
+                    "UnderLineColorNum": 1,
+                    "UnderLineStyle": "Single"
+                },
+                "TrackVisibleLevel2": {
+                    "BackgroundColor": "#FFFFE0",
+                    "DeleteLineColor": "#FF0000",
+                    "DeleteLineNum": 2,
+                    "Enabled": true,
+                    "UnderLineColor": "#0000FF",
+                    "UnderLineColorNum": 2,
+                    "UnderLineStyle": "Single"
+                },
+                "TrackVisibleLevel3": {
+                    "BackgroundColor": "#FFFFE0",
+                    "DeleteLineColor": "#FF0000",
+                    "DeleteLineNum": 2,
+                    "Enabled": true,
+                    "UnderLineColor": "#0000FF",
+                    "UnderLineColorNum": 2,
+                    "UnderLineStyle": "Single"
+                }
+            },
+            "ViewOptions": {
+                "AdornTextBackColor": "#64808080",
+                "AdornTextVisibility": "Hidden",
+                "AutoZoomDropdownListFontSize": true,
+                "BackgroundTextColor": "#808080",
+                "BothBlackWhenPrint": false,
+                "CommentDateFormatString": "yyyy-MM-dd HH:mm:ss",
+                "CommentFontName": null,
+                "CommentFontSize": 10,
+                "DefaultAdornTextType": "DataSource",
+                "DefaultInputFieldHighlight": "Enabled",
+                "DefaultInputFieldTextColor": "#00FFFFFF",
+                "DefaultLineColorForImageEditor": "#00000000",
+                "DropdownListFontName": null,
+                "DropdownListFontSize": 0,
+                "EmphasisMarkSize": 10,
+                "EnableEncryptView": true,
+                "EnableFieldTextColor": false,
+                "EnableRightToLeft": true,
+                "FieldBackColor": "#00FFFFFF",
+                "FieldBorderColor": "#00000000",
+                "FieldBorderElementPixelWidth": 1,
+                "FieldBorderPrintVisibility": "Default",
+                "FieldFocusedBackColor": "#00FFFFFF",
+                "FieldHoverBackColor": "#00FFFFFF",
+                "FieldInvalidateValueBackColor": "#FFFF00",
+                "FieldInvalidateValueForeColor": "#F08080",
+                "FieldTextColor": "#000000",
+                "FieldTextPrintColor": "#00FFFFFF",
+                "GraphicsSmoothingMode": "None",
+                "GridLineStyle": "Solid",
+                "HeaderBottomLineWidth": 1,
+                "HiddenFieldBorderWhenLostFocus": true,
+                "HiddenTableBorderJumpPrintPage": false,
+                "HighlightProtectedContent": false,
+                "IgnoreFieldBorderWhenPrint": true,
+                "ImageInterpolationMode": "High",
+                "LayoutDirection": "LeftToRight",
+                "MaskColorForJumpPrint": "#640000FF",
+                "MinTableColumnWidth": 50,
+                "NewInputContentUnderlineColor": "#00FFFFFF",
+                "NoneBorderColor": "#D3D3D3",
+                "NormalFieldBorderColor": "#0000FF",
+                "OldWhitespaceWidth": false,
+                "PageMarginLineLength": 30,
+                "PreserveBackgroundTextWhenPrint": true,
+                "PrintBackgroundText": false,
+                "PrintGridLine": false,
+                "PrintImageAltText": false,
+                "ProtectedContentBackColor": "#00000000",
+                "ReadonlyFieldBackColor": "#D3D3D3",
+                "ReadonlyFieldBorderColor": "#808080",
+                "SectionBorderVisibility": "All",
+                "SelectionHightlightMaskColor": "#320000FF",
+                "ShowBackgroundCellID": false,
+                "ShowCellNoneBorder": true,
+                "ShowExpressionFlag": true,
+                "ShowFieldBorderElement": true,
+                "ShowFormButton": false,
+                "ShowGlobalGridLineInTableAndSection": true,
+                "ShowGrayMaskOverDisableContentParty": true,
+                "ShowGridLine": false,
+                "ShowHeaderBottomLine": true,
+                "ShowInputFieldStateTag": true,
+                "ShowLineNumber": false,
+                "ShowPageBreak": false,
+                "ShowParagraphFlag": false,
+                "ShowRedErrorMessageForPaint": true,
+                "SpecifyExtenGridLineStep": 0,
+                "SupportUG": false,
+                "TableCellBorderVisibility": "All",
+                "TagColorForModifiedField": "#0000FF",
+                "TagColorForNormalField": "#FF0000",
+                "TagColorForReadonlyField": "#808080",
+                "TagColorForValueInvalidateField": "#FF0000",
+                "TextRenderStyle": "ClearTypeGridFit",
+                "UnEditableFieldBorderColor": "#FF0000",
+                "UseLanguage2": false,
+                "ShowFieldBorderTextInTheMiddle": false
+            }
+        }
+
+        //var result = rootElement.LoadDocumentFromString(xx, 'xml');
+        var ctl = document.getElementById("myWriterControl");
+        //ctl.LoadDocumentFromString(xx, 'xml');
+        ctl.DCExecuteCommand('FileNew', false, false);
+    }
+    function ContextMenu(options, menuObj, rootElement) {
+        if (options != null && Array.isArray(options)) {
+            if (menuObj) {
+                //获取到包裹元素
+                var pageContainer = rootElement.querySelector('[dctype=page-container]');
+                //判断是否为打印预览
+                if (rootElement.IsPrintPreview()) {
+                    pageContainer = rootElement.querySelector('[dctype=page-printpreview]');
+                }
+                //判断是否存在dcContextMenu的元素
+                var hasContextMenu = pageContainer.querySelector('#dcContextMenu');
+                if (!hasContextMenu) {
+                    var meunDiv = document.createElement('div');
+                    meunDiv.setAttribute('id', 'dcContextMenu')
+                    pageContainer.appendChild(meunDiv);
+                    meunDiv.innerHTML = `<div class="dcMenu-line"></div>`;
+                    hasContextMenu = meunDiv;
+                    //判断是否有css
+                    var dcHead = document.head;
+                    //判断是否存在对应的css
+                    var hasContextMenuCss = dcHead.querySelector('#ContextMenuCss');
+                    if (!hasContextMenuCss) {
+                        var newCssString = `
+                    #dcContextMenu{
+                        position: absolute;
+                        margin: 0;
+                        padding: 2px;
+                        border-width: 1px;
+                        border-style: solid;
+                        background-color: #fafafa;
+                        border-color: #ddd;
+                        color: #444;
+                        box-shadow: rgb(204, 204, 204) 2px 2px 3px;
+                        min-width: 144px;
+                        /* left: 8px;
+                        top: 481.672px;
+                        overflow: hidden;*/
+                        z-index: 110008;
+                        display: none;
+                    }
+                    #dcContextMenu div.dcMenu-item:hover{
+                        color: rgb(0, 0, 0);
+                        border-color: rgb(183,210,255);
+                        background: rgb(234,242,255);
+                    }
+                    #dcContextMenu .dcMenu-line{
+                        position: absolute;
+                        left: 26px;
+                        top: 0;
+                        height: 100%;
+                        font-size: 1px;
+                        border-left: 1px solid #ccc;
+                        border-right: 1px solid #fff;
+                    }
+                    #dcContextMenu .dcMenu-item{
+                        position: relative;
+                        white-space: nowrap;
+                        cursor: pointer;
+                        margin: 0px;
+                        padding: 0px;
+                        font-size: 12px;
+                        overflow: hidden;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: transparent;
+                        box-sizing: content-box;
+                    }
+                    #dcContextMenu .dcMenu-item .dcMenu-text{
+                        float: left;
+                        padding-left: 28px;
+                        padding-right: 20px;
+                        font-size: 12px;
+                    }
+
+                    #dcContextMenu .dcMenu-icon{
+                        position: absolute;
+                        width: 16px;
+                        height: 16px;
+                        left: 2px;
+                        top: 50%;
+                        margin-top: -8px;
+                    }
+                    #dcContextMenu .dcMenu-sep{
+                        margin: 3px 0px 3px 25px;
+                        font-size: 1px;
+                        border-top: 1px solid #ccc;
+                        border-bottom: 1px solid #fff;
+                    }
+                    #dcContextMenu .secondaryMenu{
+                        position: absolute;
+                        z-index: 110011;
+                        margin: 0;
+                        padding: 2px;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: #ddd;
+                        min-width: 144px;
+                        overflow: hidden;
+                        display: none;
+                        background-color: #fafafa;
+                    }
+                    #dcContextMenu .dcMenu-rightarrow {
+                        position: absolute;
+                        width: 16px;
+                        height: 16px;
+                        right: 0;
+                        top: 50%;
+                        margin-top: -8px;
+                        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAYAAACm53kpAAAAZ0lEQVR42u2VMQ7AMAgD+f9XeYBHd+mA2IqrJFJ8EkMGrNiCJMIYY86Eh2otDYA7dNgq2/kLEEzwhxDGGrURQxGlN97gUUrxQCU9DM33ALjYQA0vlRGCcPEUjGxdgasfQX+DxphreAA2tk8BzQnbmgAAAABJRU5ErkJggg==) no-repeat -32px center;
+                    }`
+                        var ContextMenuCss = document.createElement('style');
+                        ContextMenuCss.setAttribute('id', 'ContextMenuCss');
+                        dcHead.appendChild(ContextMenuCss);
+                        ContextMenuCss.innerHTML = newCssString;
+
+                        //页面滚动
+                        pageContainer.addEventListener('scroll', function () {
+                            var hasContextMenu = rootElement.querySelector('#dcContextMenu');
+                            if (hasContextMenu) {
+                                hasContextMenu.remove();
+                            }
+                        })
+                        //丢失焦点
+                        window.addEventListener('blur', function () {
+                            var hasContextMenu = rootElement.querySelector('#dcContextMenu');
+                            if (hasContextMenu) {
+                                hasContextMenu.remove();
+                            }
+                        })
+                    }
+
+                } else {
+                    //存在时, 清空所有item和sep的元素
+                    var allItem = hasContextMenu.querySelectorAll('.dcMenu-item, .dcMenu-sep');
+                    for (var i = 0; i < allItem.length; i++) {
+                        allItem[i].remove();
+                    }
+                }
+                var containerHeight = 0;
+                if (Array.isArray(options) && options.length > 0) {
+                    //根据options显示元素
+                    for (var option = 0; option < options.length; option++) {
+                        if (typeof options[option] == 'object') {
+                            var thisItem = insertItem(options[option], hasContextMenu, true);
+                            //判断是否存在subMenu, 如果需要更多可以使用递归调用
+                            if (options[option].subMenu && Array.isArray(options[option].subMenu)) {
+                                var secondaryMenu = document.createElement('div');
+                                secondaryMenu.setAttribute('class', 'secondaryMenu');
+                                secondaryMenu.innerHTML = `<div class="dcMenu-line"></div>`;
+                                hasContextMenu.appendChild(secondaryMenu);
+                                for (var meun = 0; meun < options[option].subMenu.length; meun++) {
+                                    insertItem(options[option].subMenu[meun], secondaryMenu, false)
+                                }
+                                var rightItem = document.createElement('div');
+                                rightItem.setAttribute('class', 'dcMenu-rightarrow');
+                                thisItem.appendChild(rightItem);
+                                //添加事件
+                                thisItem.addEventListener('mouseenter', function (e) {
+                                    //console.log(e)
+                                    //console.log($(e.target))
+                                    //找到下一个子元素
+                                    var targetEle = e.target.nextElementSibling;
+                                    targetEle.style.top = e.target.offsetTop + 'px';
+                                    targetEle.style.left = e.target.offsetLeft + e.target.offsetWidth + 'px';
+                                    targetEle.style.display = 'block';
+                                })
+                                thisItem.addEventListener('mouseleave', function (e) {
+                                    var targetEle = e.target.nextElementSibling;
+                                    targetEle.style.display = 'none';
+                                })
+                                secondaryMenu.addEventListener('mouseenter', function (e) {
+                                    var targetEle = e.target.previousElementSibling;
+                                    e.target.style.top = targetEle.offsetTop + 'px';
+                                    e.target.style.left = targetEle.offsetLeft + targetEle.offsetWidth + 'px';
+                                    e.target.style.display = 'block';
+                                })
+                                secondaryMenu.addEventListener('mouseleave', function (e) {
+                                    e.target.style.display = 'none';
+                                })
+
+                            }
+                        } else if (typeof options[option] == 'string' && options[option] == '-') {
+                            var sepEle = document.createElement('div');
+                            sepEle.setAttribute('class', 'dcMenu-sep');
+                            hasContextMenu.appendChild(sepEle);
+                            containerHeight += 8;
+                        }
+                    }
+                    var pageElement = menuObj.PageElement;
+                    //计算展示的高度
+                    var minHeight = pageContainer.scrollTop;
+                    var maxHeight = minHeight + pageContainer.clientHeight;
+                    containerHeight = containerHeight ? containerHeight + 6 : 0
+                    hasContextMenu.style.height = containerHeight + 'px';
+                    hasContextMenu.style.left = pageElement.offsetLeft + menuObj.X + 'px';
+                    var cursorTop = pageElement.offsetTop + menuObj.Y;
+                    var menuLastHeight = cursorTop + containerHeight;
+                    //计算最下方的距离是否够显示全
+                    if (menuLastHeight > maxHeight) {
+                        //显示不全
+                        var topHasSpacing = -minHeight;
+                        //判断上边是否存在足够的距离
+                        if (topHasSpacing > containerHeight) {
+                            //距离足够
+                            hasContextMenu.style.top = cursorTop - containerHeight + 'px'
+                        } else {
+                            //距离不够
+                            if ((maxHeight - cursorTop) > (cursorTop - minHeight)) {
+                                //下方的距离大于上方
+                                hasContextMenu.style.top = cursorTop + 'px';
+                            } else {
+                                //上方的距离大于下方
+                                hasContextMenu.style.top = cursorTop - containerHeight + 'px'
+                            }
+                        }
+                    } else {
+                        //显示全
+                        hasContextMenu.style.top = cursorTop + 'px';
+                    }
+                    hasContextMenu.style.display = 'block';
+                }
+            }
+        }
+
+        //插入内部的item项
+        function insertItem(options, hasContextMenu, needHeight) {
+            if (typeof options == 'object') {
+                var itemEle = document.createElement('div');
+                itemEle.setAttribute('class', 'dcMenu-item');
+                itemEle.style.cssText = 'height: 22px;line-height: 22px';
+                hasContextMenu.appendChild(itemEle);
+                itemEle.innerHTML = `
+                <div class="dcMenu-text" style="height: 22px; line-height: 22px;">${options.label}</div>
+                <div class="dcMenu-icon"></div>
+            `;
+                itemEle.addEventListener('mousedown', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                })
+                itemEle.onclick
+                itemEle.addEventListener('click', function () {
+                    options.exec();
+                    hasContextMenu.remove();
+                })
+                if (needHeight) {
+                    containerHeight += 24;
+                }
+                return itemEle;
+            } else if (typeof options == 'string' && options == '-') {
+                var sepEle = document.createElement('div');
+                sepEle.setAttribute('class', 'dcMenu-sep');
+                hasContextMenu.appendChild(sepEle);
+                if (needHeight) {
+                    containerHeight += 24;
+                }
+                return sepEle;
+            }
+        }
+    }
+
+    function ElementDialog(element, typename) {
+        var ctl = document.getElementById("myWriterControl");
+        console.log(typename)
+        typename = typename.toLowerCase();
+        if (typename == "xtextinputfieldelement") {
+            ctl.InputFieldDialog(element, false);
+            return true;
+        }
+        if (typename == "xtextradioboxelement") {
+            ctl.CheckboxAndRadioDialog(element, false);
+            return true;
+        }
+        if (typename == "xtextcheckboxelement") {
+            ctl.CheckboxAndRadioDialog(element, false);
+            return true;
+        }
+        if (typename == "xtextnewbarcodeelement") {
+            ctl.BarCodeDialog(element, false);
+
+        }
+        if (typename == "xtexttdbarcodeelement") {
+            ctl.QRCodeDialog(element, false);
+
+        }
+        if (typename == "xtextlabelelement") {
+            ctl.LabelDialog(element, false);
+
+        }
+        if (typename == "xtexthorizontallineelement") {
+            ctl.HorizontalLineDialog(element, false);
+
+        }
+        if (typename == "xtextimageelement") {
+            ctl.ImageDialog(element, false);
+
+        }
+        if (typename == "xtextpageinfoelement") {
+            ctl.PageNumberDialog(element, false);
+
+        }
+        if (typename == "xtextbuttonelement") {
+            ctl.ButtonDialog(element, false);
+
+        }
+        if (typename == "xtextnewmedicalexpressionelement") {
+            ctl.MedicalExpressionDialog(element, false);
+
+        }
+        if (typename == "xtextmediaelement") {
+            ctl.MediaDialog(element, false);
+
+        }
+        if (typename == "xtextcontrolhostelement") {
+            ctl.InsertControlHostDialog(element, false);
+
+        }
+    }
+    //加载病历模板
+    function FileOpenV5()
+    {
+        var ctl = document.getElementById("myWriterControl");
+        ctl.ClearDocumentBody();
+        ctl.preserveScrollPosition = true;
+        var fileName = mburl;
+        $.ajax({
+            type: "POST",
+            url: "/MedRecordTemplate/GetTemplateXml",
+            data: {templateUrl: fileName },
+            dataType: "json",
+            async: false,
+            success: function (respdata) {
+                debugger;
+                var jsonData = JSON.stringify(respdata);
+                data = JSON.parse(jsonData);
+                ctl.LoadDocumentFromString(data.xmldata, "xml");
+                //ctl.DCExecuteCommand('NormalViewMode', false, null);
+            },
+            error: function (request, error, ex) {
+                $.modalAlert('Tải bệnh án thất bại:' + ex, 'error');
+            }
+        });
+
+      
+    }
+    //保存病历模板
+    function FileSavev5()
+    {
+    debugger
+        var ctl = document.getElementById("myWriterControl");
+        var xmldata = ctl.SaveDocumentToBase64String("xml");
+        $.ajax({
+            type: "POST",
+            url: "/MedRecordTemplate/SaveTemplateXml",
+            data: {templateUrl:mburl, templateData: xmldata },
+            dataType: "json",
+            async: false,
+            success: function (respdata) {
+                debugger
+                if (respdata.state == "error")
+                    alert("Lưu mẫu bệnh án thất bại:" + respdata.message);
+                else
+                    alert("Lưu mẫu bệnh án thành công");
+            },
+            error: function (request, error, ex) {
+                $.modalAlert('Lưu thất bại:' + ex, 'error');
+            }
+        });
+    }
+
+</script>
+
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+<script>
+
+    function btn_add() {
+        debugger;
+        $.modalOpen({
+            id: "Form",
+            title: "Tạo mới mẫu bệnh án",
+            url: "/MedicalRecordManage/MedRecordTemplate/Form?ly="+"template",
+            width: "700px",
+            height: "650px",
+            btn: null,
+            callBack: function (iframeId) {
+                debugger;
+                top.frames[iframeId].submitForm();
+                //TemplateSave();
+            }
+        });
+    }
+    function openwindow() {
+        var url = window.location.href;
+        window.open(url);
+    }
+</script>

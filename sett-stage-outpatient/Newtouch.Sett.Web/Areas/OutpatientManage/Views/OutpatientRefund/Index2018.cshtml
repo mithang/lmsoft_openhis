@@ -1,0 +1,1821 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Hoàn phí ngoại trú";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    //làkhôngvàBHYTgiao dịch
+    var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
+    //làkhôngvàgiao dịch hợp tác nông thôn mới
+    var openXnhSett = (bool)SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett", false);
+    var opr = OperatorProvider.GetCurrent();
+    //liên kết báo cáo phiếu thu phí
+    var invoiceReportUrl = SysConfigReader.OrgReportLink("OutpatientCharge");
+    //sau khi thu phí thành côngsaulàkhôngin trực tiếpngoại trúbiên lai khám
+    var autoPrintFP = SysConfigReader.Bool("Outpatient_ChargeFee_AutoPrint");
+    //cách in phiếu thu phí
+    var invoicePrintMethod = SysConfigReader.String("Outpatient_ChargeFeeInvoice_PrintMethod");
+    //BHYTđịa phương trực thuộc，phân biệt hệ thống sẽ thực hiện ở đâuBHYTlogic
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+    //làkhônghỗ trợhoàn một nửa đơn thuốc
+    var Outpatient_PreRefund_Partreturn = SysConfigReader.Bool("Outpatient_PreRefund_Partreturn");
+    var reportUrl = "";
+    var ReportSystemCode = "";
+}
+@Html.Partial("_YibaoCommonView")
+<style>
+    .toolbar {
+        width: 57% !important;
+    }
+</style>
+<div class="panel panel-default" style="margin-bottom: 4px;">
+    <div class="panel-heading navb-bg">
+        Điều kiện lọc
+    </div>
+    <div style="padding-right:20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Số khám ngoại trú：</th>
+                <td class="formValue" colspan="2">
+                    <input type="text" class="form-control" id="query_mzh" placeholder="" style="float: left; width:60%" />
+                    <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" style="margin-left:10px;" title="Chọn bệnh nhân" value="Tra cứu" onclick="GetPatSerarchView($('#query_mzh').val());">
+                </td>
+                <td class="formValue" style="width:150px">
+                    @Html.Partial("YibaoRedCardCommon")
+                </td>
+                <th class="formTitle">Ngày thu phí：</th>
+                <td class="formValue" colspan="2">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { $('#btn_search').trigger('click'); } })" />
+                    <span style="margin-left:2%;float:left;">—</span>
+                    <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { $('#btn_search').trigger('click'); } })" />
+                </td>
+                <td>
+                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="margin-left:10%;" value="Tìm kiếm" />
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default" style="margin-bottom: 4px;">
+    <div class="panel-heading navb-bg">
+        Thông tin quyết toán
+    </div>
+    <div style="padding-right:20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
+                <td class="formValue" style="width:120px;">
+                    <label id="blh"></label>
+                </td>
+                <td class="formTitle">Số khám ngoại trú：</td>
+                <td class="formValue">
+                    <label id="mzh"></label>
+                </td>
+                <td class="formTitle">Tính chất chi phí：</td>
+                <td class="formValue">
+                    <label id="brxzmc"></label>
+                </td>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue">
+                    <label id="xm"></label>
+                </td>
+                <th class="formTitle">Giới tính：</th>
+                <td class="formValue">
+                    <label id="xb"></label>
+                </td>
+                <th class="formTitle">Tuổi：</th>
+                <td class="formValue">
+                    <label id="nlshow"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Thời gian quyết toán：</th>
+                <td class="formValue">
+                    <label id="settTime"></label>
+                </td>
+                <td class="formTitle">Số tiền quyết toán：</td>
+                <td class="formValue">
+                    <label id="zje"></label>
+                </td>
+                <td class="formTitle">Số tiền thanh toán：</td>
+                <td class="formValue">
+                    <label id="xjzf"></label>
+                </td>
+                <td class="formTitle">Phương thức thanh toán：</td>
+                <td class="formValue">
+                    <label id="xjzffsmc"></label>
+                </td>
+                <td class="formTitle">Ngày thu phí：</td>
+                <td class="formValue">
+                    <label id="sfrq"></label>
+                </td>
+                <td class="formTitle">Số hóa đơn：</td>
+                <td class="formValue">
+                    <label id="fph"></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <div class="panel-heading navb-bg" style="height: 24px;line-height: 24px;border-bottom: 1px solid #ddd;">
+        <lable style="font-weight: bold; float:left;">Chi tiết tính phí</lable>
+        <table style="width:200px;height:20px;margin-left:90px; color:#274b6d">
+            <tr>
+                <td>
+                    <label style="height:7px;width:36px;background-color:#d9edf7; border:1px solid #ddd"></label>
+                </td>
+                <td>Khoản mục</td>
+                <td>
+                    <label style="height:7px;width:36px;background-color:#feefb3; border:1px solid #ddd"></label>
+                </td>
+                <td>Thuốc</td>
+            </tr>
+        </table>
+    </div>
+    <table id="gridList"></table>
+</div>
+<table id="tblShowJhKqtTip" style="display:none;width:400px;height:20px; margin-top:10px;margin-left:10px; float:left; color:#274b6d">
+    <tr>
+        <td>Chú thích：Khoản phí này có thể bấm trực tiếp nút hoàn phí，tiến hành<span style="color:red;">Hoàn toàn bộ và hủy kế hoạch</span></td>
+    </tr>
+</table>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 6 },
+    F6Text = "Hoàn phí"
+})
+
+<script>
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var openXnhSett = '@openXnhSett' === 'True'; //cấu hình công tắc：có dùng quy trình giao dịch hợp tác nông thôn mới không
+    var medicalInsurance = '@medicalInsurance';
+    var orgId = '@(opr.OrganizeId)';
+    var cardInfo;
+    var currejlsx;
+    var sfqt = true; //có hoàn toàn bộ không
+    var tjscfh = [];
+    var tjsypcfh = [];
+    $(function() {
+        gridList();
+
+    });
+
+    //ngủ
+    function sleep(numberMillis) {
+        var now = new Date();
+        var exitTime = now.getTime() + numberMillis;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime)
+                return;
+        }
+    }
+    //nhập taythẻ BHXHsố
+    //function GetPatSbkh() {
+    //    $.modalOpen({
+    //        id: "sbkhInput",
+    //        title: "số thẻnhập",
+    //        url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random(),
+    //        width: "300px",
+    //        height: "150px",
+    //        callBack: function (iframeId) {
+    //            top.frames[iframeId].PatSbkhData();
+    //        }
+    //    });
+    //}
+
+    //tra cứu bệnh nhân
+    function GetPatSerarchView(mzh) {
+        var blh = $('#query_blh').val();
+        var mzh = $('#query_mzh').val();
+        if (!!!blh) {
+            blh = '';
+        };
+        if (!!!mzh) {
+            mzh = '';
+        };
+        $.modalOpen({
+            id: "patSearch",
+            title: "Tra cứu bệnh nhân",
+            url: "/OutpatientManage/OutpatientRefund/SysPatEntitiesReView?t=" + Math.random() + "&blh=" + blh + "&mzh=" + mzh,
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid();
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
+        });
+    }
+
+    //quyết toánbảng chínhList
+    var jszbList = [];
+    var thisJszb = null;
+
+    //
+    var patModel = null;
+
+    //chọncủabệnh nhân callback
+    function GetQueryFphAjax(obj) {
+        patModel = null;
+        $.loading(true, "Đang yêu cầu thông tin bệnh nhân，Vui lòng chờ...");
+        $.ajax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatCharge/GetpatientAccountInfo",
+            data: obj,
+            dataType: "json",
+            cache: false,
+            async: true,
+            success: function (ajaxresp) {
+                if (ajaxresp.state === 'success' && ajaxresp.data && ajaxresp.data.OutpatAccInfoDto) {
+                    if (ajaxresp.data.OutpatAccListDto != null && ajaxresp.data.OutpatAccListDto.length > 1) {
+                        sessionStorage.setItem('OutpatAccListDto', JSON.stringify(ajaxresp.data.OutpatAccListDto));
+                        $.modalOpen({
+                            id: "patSearch",
+                            title: "Tra cứu bản ghi khám",
+                            url: "/OutpatientManage/OutpatCharge/OutpatAccListView?kh=" + obj.kh +"&zjh="+obj.zjh+ "&cardType=" + obj.cardType,
+                            width: "750px",
+                            height: "500px",
+                            callBack: function (iframeId) {
+                                //hàm gọi lại khi nhấn xác nhận trên cửa sổ
+                                top.frames[iframeId].PatDbGrid();
+                            }
+                        });
+                    } else {
+                        chooseOneMzjl(ajaxresp.data.OutpatAccInfoDto);
+                    }
+                }
+                else if (ajaxresp.state === 'error') {
+                    $.modalAlert("Không lấy được bản ghi khám có thể hoàn", 'warning');
+                }
+            },
+            complete: function () {
+                $.loading(false);
+            }
+        });
+    }
+
+    //chọn mộtngoại trúbản ghi khám
+    function chooseOneMzjl(outpatAccInfoDto) {
+        if (outpatAccInfoDto && !!!outpatAccInfoDto.brxz) {
+            $.modalAlert("Thông tin bệnh nhân bất thường，Thiếu tính chất chi phí", 'warning');
+            return false;
+        }
+        if (outpatAccInfoDto && !!!outpatAccInfoDto.CardTypeName) {
+            $.modalAlert("Loại thẻ bệnh nhân bất thường", 'warning');
+            return false;
+        }
+        //gán thông tin cơ bản cá nhân
+        patModel = outpatAccInfoDto;
+        setPatInfoModel(outpatAccInfoDto);
+        $('#btn_search').trigger('click');
+    }
+
+    //khởi tạo thông tin bệnh nhân
+    function setPatInfoModel(patModel) {
+        //
+        $('#query_blh').val(patModel.blh);
+        $('#query_mzh').val(patModel.mzh);
+        //
+        $('#blh').html(patModel.blh);
+        $('#xm').html(patModel.xm);
+        $('#xb').html($.getGender(patModel.xb));
+        $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+        $('#mzh').html(patModel.mzh);
+        $('#brxzmc').html(patModel.brxzmc);
+    }
+
+    //kế hoạch trị liệu chưa thực hiện có thể hoàn toàn bộ
+    var zljhwzxkqt;
+    //chi tiết tính phí
+
+    var checkTrigger = false;
+    var list = new Array();
+    var liststu = false;
+    var j = 0;
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            height: $(window).height() - 290,
+            unwritten: false,
+            postData: {},
+            editurl: "clientArray",
+            url: "/OutpatientManage/OutpatientRefund/RefundableDetailQuery",
+            colModel: [
+                { label: "jsmxnm", name: "jsmxnm", key: true, hidden: true },
+                {
+                    label: "Loại", name: "feeType", width: 40, align: "left",
+                    formatter: function (val) {
+                        if (val) {
+                            if (val === 1) {
+                                return "Thuốc";
+                            }
+                            else if (val === 2) {
+                                return "Khoản mục";
+                            }
+                        } else {
+                            return '';
+                        }
+                    }
+                },
+                { label: "Số đơn thuốc", name: "cfh", width: 150, align: "left" },
+                { label: "Tên loại đơn thuốc", name: "cflxmc", width: 150, align: "left", hidden: true  },
+                { label: "Trạng thái đơn đề nghị", name: "sqdzt", width: 150, align: "left", hidden: true  },
+                { label: "Loại chi phí", name: "dlmc", width: 70, align: "left" },
+                { label: "Tên", name: "mc", width: 180, align: "left" },
+                { label: "Nhóm thuốc", name: "czh", width: 60, align: "left" },
+                {
+                    label: "Đơn giá", name: "dj", width: 60, align: "left",
+                    formatter: function (val) {
+                        if (val || val === 0) {
+                            return val.toFixed(4);
+                        } else {
+                            return '';
+                        }
+                    }
+                },
+                { label: "ztId", name: "ztId", width: 50, align: "left", hidden: true },
+                { label: "cfnm", name: "cfnm", width: 50, align: "left" , hidden: true },
+                { label: "Số lượng", name: "sl", width: 50, align: "left" },
+                { label: "Số lượng có thể hoàn", name: "ktsl", width: 50, align: "left" },
+                { label: "Số lượng hoàn", name: "tsl", width: 80, editable: '@(Outpatient_PreRefund_Partreturn)' == 'False' ? false:true, editrules: { integer: true, minValue: 1 }, align: "left"},
+                { label: "Đơn vị", name: "dw", width: 50, align: "left" },
+                {
+                    label: "Số tiền", name: "jsmxje", width: 80, align: "left",
+                    formatter: function (val) {
+                        if (val || val === 0) {
+                            return val.toFixed(2);
+                        } else {
+                            return '';
+                        }
+                    }
+                },
+                { label: "Loại quyết toán", name: "jslx", width: 40, align: "left", hidden: true }
+            ],
+            multiselect: true,
+            viewrecords: true,
+            onSelectRow: function (rowId,s) {
+                if ('@(Outpatient_PreRefund_Partreturn)' === 'False') {
+                    debugger
+                    if (!checkTrigger) {
+                        var len = 0;
+                        var rowData = $("#gridList").jqGrid('getRowData', rowId);
+                        var ids = $("#gridList").jqGrid('getRowData_AllLine');
+
+                        liststu = s; //trạng thái đồng bộ
+                        for (var i = 0; i < ids.length; i++) {
+                            if (ids[i].cfh === rowData.cfh && ids[i].cfh !== "") {
+                                if (s === true) {
+                                    if (rowId !== ids[i].jsmxnm) {
+                                        list[len] = ids[i].jsmxnm;
+                                        len += 1;
+                                    }
+                                }
+                                else {
+                                    if (rowId !== ids[i].jsmxnm) {
+                                        list[len] = ids[i].jsmxnm;
+                                        len += 1;
+                                    }
+                                }
+                            }
+                            if(ids[i].jslx==rowData.jslx && ids[i].jslx=="0")
+                            {
+                                if (s === true) {
+                                    if (rowId !== ids[i].jsmxnm) {
+                                        list[len] = ids[i].jsmxnm;
+                                        len += 1;
+                                    }
+                                }
+                                else {
+                                    if (rowId !== ids[i].jsmxnm) {
+                                        list[len] = ids[i].jsmxnm;
+                                        len += 1;
+                                    }
+                                }
+                            }
+                        }
+                        checkTrigger = true;
+                    }
+
+                    if (list.length > 0) {
+                        for (j = j; j < list.length; j++) {
+                            if (liststu) //chọn cùng nhóm
+                            {
+                                j = j + 1;
+                                $("#gridList").jqGrid("setSelection", list[j - 1], true);
+
+                            }
+                            else { //hủy chọn cùng nhóm
+                                //j = j + 1;
+                                $("#gridList").jqGrid("setSelection", list[j], false);      //hủy không kích hoạtonselectrow
+                            }
+                        }
+                    }
+
+                    j = 0;
+                    checkTrigger = false;
+                    list = new Array();
+                    liststu = false;
+                } else {
+                    EnableInlineEditBox(rowId); //bật sửa trước
+                    $("#" + $.jgrid.jqID(rowId) + "_tsl").focus();
+                }
+            },
+            gridComplete: function (gridData) {
+                zljhwzxkqt = false;
+                $('#tblShowJhKqtTip').hide();
+                if (gridData && gridData.length > 0) {
+                    zljhwzxkqt = true;
+                    $.each(gridData, function () {
+                        if (this.feeType == "1") {
+                            //1thuốc
+                            zljhwzxkqt = false;
+                        }
+                        else if (!(this.zljhwzx === true)) {
+                            zljhwzxkqt = false;
+                        }
+                    });
+                }
+                if (zljhwzxkqt == true) {
+                    $('#tblShowJhKqtTip').show();
+                }
+                var ids = $gridList.getDataIDs();
+                for (i = 0; i < ids.length; i++) {
+                    var rowData = $gridList.getRowData(ids[i]);
+                    if (rowData && rowData.feeType) {
+                        //tô màu
+                        if (rowData.feeType == "Thuốc") {
+                            $gridList.find('tr[id="' + ids[i] + '"]').addClass('warning');
+                        }
+                        if (rowData.feeType == "Khoản mục") {
+                            $gridList.find('tr[id="' + ids[i] + '"]').addClass('info');
+                        }
+                    }
+                }
+                //bật khung sửa trong dòng
+                EnableInlineEditBox();
+            },
+            loadComplete: function (data) {
+                if (!(data && data.length)) {
+                    $.modalAlert('Tạm thời không có chi tiết có thể hoàn', 'warning');
+                    return;
+                }
+            }
+        });
+
+        $("#btn_search").click(function () {
+            newtouch_event_f4();
+
+            var mzh = $('#mzh').html();
+            if (!mzh) {
+                mzh = $('#query_mzh').val();
+            }
+            var kssj = $('#kssj').val();
+            var jssj = $('#jssj').val();
+            if (!!!mzh) {
+                $.modalAlert("Vui lòng chọn bệnh nhân", 'warning');
+                return;
+            }
+            if (kssj && jssj && (kssj > jssj)) {
+                $.modalAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc", 'warning');
+                return;
+            }
+            debugger;
+            //var strurl = "/OutpatientManage/OutpatientRefund/RefundableJsQuery";    //dùng chung
+		    strurl = "/OutpatientManage/OutpatientRefund/RefundableChongQingQuery";
+            //tra cứujsnm
+            $.najax({
+                type: "GET",
+                url: strurl,
+                data: { mzh: mzh, kssj: kssj, jssj: jssj },
+                success: function (data) {
+                    if (data && data.length) {
+                        jszbList = data;
+                        if (data.length > 1) {
+                            //bật chọnquyết toán
+                            sessionStorage.setItem("jsdata", JSON.stringify(data));
+                            $.modalOpen({
+                                id: "FormQueJsList2018",
+                                title: "Chọn quyết toán",
+                                url: "/OutpatientManage/OutpatientRefund/QueJsList2018",
+                                width: "700px",
+                                height: "350px",
+                                callBack: function (iframeId) {
+                                    $.currentWindow(iframeId).AcceptClick(function (jsnm) {
+                                        reloadGrid(jsnm);
+                                    });
+                                }
+                            });
+                        }
+                        else {
+                            reloadGrid(data[0].jsnm);
+                        }
+                    }
+                    else {
+                        $.modalAlert("Không có quyết toán liên quan", 'warning');
+                        return;
+                    }
+                }
+            });
+        })
+    }
+
+    function reloadGrid(jsnm) {
+        debugger;
+        if (thisJszb === null && !!jsnm) {
+            var matchedJszbList = $.jsonWhere(jszbList, function (v) {
+                return v.jsnm == jsnm;
+            });
+            if (matchedJszbList.length == 1) {
+                thisJszb = matchedJszbList[0];
+            }
+        }
+        if (thisJszb) {
+            if (!(thisJszb.jszje && thisJszb.jszje > 0)) {
+                $.modalMsg("ĐãKhông cócó thểSố tiền hoàn", "warning");
+                return;
+            }
+            //ngàykỳ thông tin số tiền
+            $('#settTime').html($.getTime({ date: thisJszb.CreateTime, second: false }));
+            $('#zje').html(thisJszb.jszje ? ovpraseFloat(thisJszb.jszje).toFixed(2) : '0.00');
+            $('#xjzf').html(thisJszb.jsxjzf ? ovpraseFloat(thisJszb.jsxjzf).toFixed(2) : '0.00');
+            $('#sfrq').html($.getDate({ date: thisJszb.sfrq }));
+            $('#fph').html(thisJszb.fph);
+            $('#xjzffsmc').html(thisJszb.xjzffsmc);
+            //grid
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { jsnm: thisJszb.jsnm }
+            }).trigger('reloadGrid');
+        }
+    }
+
+    //bật khung sửa trong dòng
+    function EnableInlineEditBox(rowId) {
+        if (rowId) {
+            $("#gridList").jqGrid('editRow', rowId, true, null, null, null, null, function (callbackRowId) {
+                ;
+            });
+        }
+        else {
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            for (var i = 0; i < rowIds.length; i++) {
+                EnableInlineEditBox(rowIds[i]);
+            }
+        }
+    }
+
+    //tạogridđiều kiện tra cứu
+    function getSearchPostData() {
+        return {};
+    };
+
+    //f4
+    function newtouch_event_f4() {
+        $('#gridList').jqGrid("clearGridData");
+        jszbList = [];
+        tjscfh = [];
+        tjsypcfh = [];
+        thisJszb = null;
+        //quyết toánthông tin
+        $('#settTime').html('');
+        $('#zje').html('');
+        $('#xjzf').html('');
+        $('#fph').html('');
+        $('#sfrq').html('');
+        $('#xjzffsmc').html('');
+    }
+
+    //xác nhận hoàn phí
+    function newtouch_event_f6() {
+        currejlsx=$("#gridList").jqGrid('getRowData_AllLine')[0].jslx;
+
+        //lấydòng đã chọnId
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds.length === 0) {
+            if (zljhwzxkqt === true) {
+                $.modalConfirm("Kế hoạch chưa thực hiện，Xác nhận hoàn toàn bộ và hủy kế hoạch", function (flag) {
+                    if (flag) {
+                        setTimeout('jhqttf();', 50);
+                    }
+                });
+                return;
+            }
+            else {
+                $.modalAlert("Vui lòng chọn trước thông tin cần hoàn phí", 'warning');
+                return;
+            }
+        }
+        var rowData;
+        if ('@(Outpatient_PreRefund_Partreturn)' !== 'False') {
+            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            for (var i = 0; i < rowIds.length; i++) {
+                $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            }
+
+            //xác định hoànsố lượng
+            for (var i = 0; i < selRowIds.length; i++) {
+                rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+                if (!rowData) {
+                    break;
+                }
+                if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") === "") {
+                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng hoàn làtrống，Vui lòng xác nhận。", 'warning');
+                    EnableInlineEditBox(selRowIds[i]);//bật khung sửa trong dòng
+                    return;
+                }
+                if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl === "") {
+                    EnableInlineEditBox(selRowIds[i]);//bật khung sửa trong dòng
+                    return;
+                }
+                if (ovpraseFloat(rowData.tsl) > ovpraseFloat(rowData.ktsl)) {
+                    $.modalAlert("Số lượng hoànlớn hơnSố lượng có thể hoàn，Vui lòng xác nhận<br/>" + rowData.mc, 'warning');
+                    EnableInlineEditBox(selRowIds[i]);//bật khung sửa trong dòng
+                    return;
+                }
+            }
+        } else {
+            //xác định hoànsố lượng
+            for (var i = 0; i < selRowIds.length; i++) {
+                rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+                if (!rowData) {
+                    break;
+                }
+                if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") === "") {
+                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng hoàn làtrống，Vui lòng xác nhận。", 'warning');
+                    $("#gridList").jqGrid("setSelection", selRowIds[i], false);
+                    return;
+                }
+                if (rowData.ktsl <= 0 || isNaN(rowData.ktsl) || rowData.ktsl === "") {
+                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng có thể hoàn là0，Không thể hoàn phí。Vui lòng đến nhà thuốc trả thuốc trước。", 'warning');
+                    $("#gridList").jqGrid("setSelection", selRowIds[i], false);
+                    return;
+                }
+                if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl === "") {
+                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng hoàn là0，Vui lòng xác nhận。", 'warning');
+                    $("#gridList").jqGrid("setSelection", selRowIds[i], false);
+                    return;
+                }
+                if (ovpraseFloat(rowData.tsl) > ovpraseFloat(rowData.ktsl)) {
+                    $.modalAlert("Số lượng hoànlớn hơnSố lượng có thể hoàn，Vui lòng xác nhận<br/>" + rowData.mc, 'warning');
+                    $("#gridList").jqGrid("setSelection", selRowIds[i], false);
+                    return;
+                }
+                if (ovpraseFloat(rowData.ktsl) != ovpraseFloat(rowData.sl)) {
+                    $.modalAlert("Khoản mục（" + rowData.mc + "）Chưa hoàn toàn bộ thuốc Không thể hoàn phí。Vui lòng đến nhà thuốc trả thuốc trước。", 'warning');
+                    $("#gridList").jqGrid("setSelection", selRowIds[i], false);
+                    return;
+                }
+                if (rowData.cflxmc == "Kiểm tra đơn thuốc" && (rowData.sqdzt == "2" || rowData.sqdzt == "3")) {
+                    $.modalAlert("Khoản mục kiểm tra này（" + rowData.mc + "） Đã đăng ký hoặc đã có báo cáo Không thể hoàn phí", 'warning');
+                    $("#gridList").jqGrid("setSelection", selRowIds[i], false);
+                    return;
+                }
+            }
+        }
+        /****************************begin xác định có hoàn toàn bộ không*****************************************/
+        var data = $("#gridList").jqGrid('getRowData_AllLine', true, true);//true:dòng đã chọn
+        var alldata = $("#gridList").jqGrid('getRowData_AllLine', null, true); //tất cả các dòng
+        var tjscfhobj = [];
+
+        var fistvalarray=$.jsonWhere(data, function (a) {
+            var allcfhcnt = 0;
+            var selectedcnt = 0;
+            $.jsonWhere(alldata, function (b) {
+                if (a.cfh === b.cfh) {
+                    allcfhcnt++;
+                }
+            });
+            $.jsonWhere(data, function (c) {
+                if (a.cfh === c.cfh) {
+                    selectedcnt++;
+                }
+            });
+           if (allcfhcnt === selectedcnt) {
+               if ($.inArray(a.cfh, tjscfhobj) < 0) {
+                   tjscfhobj.push(a.cfh);
+               }
+               return a;
+           }
+        });
+        var aaa = [];
+        $.each(fistvalarray, function (a, v) {
+            var i = $.inArray(v.cfh, tjscfh);
+            if (v.tsl === v.ktsl) {
+                if (i < 0 && $.inArray(v.cfh, aaa) < 0 && !!v.cfh) {
+                    tjscfh.push(v.cfh);
+                    if (v.feeType == "Thuốc")
+                        tjsypcfh.push(v.cfh);
+                }
+            } else {
+                if ($.inArray(v.cfh, aaa) < 0) {
+                    aaa.push(v.cfh);
+                }
+                if (i > -1) {
+                    tjscfh.splice(i, 1);
+                    tjsypcfh.splice(i, 1);
+                }
+            }
+        });
+
+        /****************************end xác định có hoàn toàn bộ không*****************************************/
+        //ở đâyybjshlàThường Thụcybjsh，Quý AnBHYTquyết toánmã sốprm_yka103,Trùng KhánhBHYTgiao dịchsố giao dịchjylsh，làtích hợp mã，vì vậy dùng chung trường này
+        if (!!thisJszb.ybjsh) {
+            //điBHYThoàn phí
+	        chongqingtuifei(data);
+        }
+        else {
+            debugger
+            //quyết toánbảng chính
+            sessionStorage.setItem("needRefundJszb", JSON.stringify(thisJszb));
+            //chi tiết hoàn phí
+            sessionStorage.setItem("needRefundData", JSON.stringify(data));
+            //height
+            var openHeight = 300;
+            openHeight += 30 * data.length;
+            openHeight = openHeight + "px";
+
+			var cfhlist = [];
+			var cgcfhlist = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].cflxmc == "Kiểm tra đơn thuốc" && (data[i].sqdzt != "2" || data[i].sqdzt != "3") && (data[i].sqdzt == "0" || data[i].sqdzt == "" || data[i].sqdzt=="4")) {
+                    cfhlist.push(data[i].cfh);
+				}
+				if (data[i].cflxmc == "Vật tư y tế") {
+					cgcfhlist.push(data[i].cfh);
+				}
+            }
+			var pasccfhlist = Array.from(new Set(cfhlist));
+			cgcfhlist = Array.from(new Set(cgcfhlist));
+            //console.log(pasccfhlist);
+            //bật biểu mẫu xác nhận hoàn phí
+            $.modalOpen({
+                id: "Form",
+                title: "Xác nhận hoàn phí",
+                url: "/OutpatientManage/OutpatientRefund/DetailConfirmForm?mzh=" + patModel.mzh,
+                width: "600px",
+                height: openHeight,
+                callBack: function (iframeId) {
+                    //if (pasccfhlist.length > 0) {
+                    //    $.ajax({
+                    //        type: "POST",
+                    //        url: "/OutpatientManage/OutpatientRefund/retApplicationform",
+                    //        data: { mzh: patModel.mzh, cfhList: pasccfhlist },
+                    //        dataType: "json",
+                    //        async: true,
+                    //        success: function (repjson) { }
+                    //    });
+					//}
+                    $.currentWindow(iframeId).AcceptClick(function (ajaxresp) {
+                        //thu hồi hóa đơn cũ（hủy hóa đơn cũ）//in phiếu thu phí mới
+                        if (ajaxresp && ajaxresp.data) {
+                            refundPrintInvoiceReq(thisJszb.fph, patModel, ajaxresp.data);
+                        }
+                        if (tjscfh.length>0) {
+                            UpdateChargeTbz(tjscfh, tjsypcfh);
+                        }
+                        if (cgcfhlist.length > 0) {
+                            //khoahoàn tồn kho vật tư y tế
+                            $.ajax({
+                                type: "POST",
+                                url: "/OutpatientManage/OutpatCharge/TuiHuiwzdj",
+                                data: { cfh: cgcfhlist },
+                                dataType: "json",
+                                async: true,
+                                success: function (repjson) {
+                                }
+                            });
+                        }
+                        //HIShoàn phí thành công
+                        $.modalAlert(ajaxresp.message, 'success');
+                        //writeOffEBill(patModel.mzh, thisJszb.jsnm);
+                        newtouch_event_f4();
+                    });
+                }
+            });
+        }
+    }
+
+    //cập nhật hoàndấu hiệu
+    function UpdateChargeTbz(tcfh, tjsypcfh) {
+        $.ajax({
+            type: "POST",
+            data: { tcfh: tcfh, typcfh: tjsypcfh },
+            url: "@Url.Action("UpdateChargeTbz")",
+            dataType: "json"
+        });
+    }
+    //dừng toàn bộ hoàn phí theo kế hoạch
+    function jhqttf() {
+        $.najax({
+            type: "POST",
+            data: { jsnm: thisJszb.jsnm },
+            url: "/OutpatientManage/OutpatientRefund/AccountPlanRefundAll",
+            dataType: "json",
+            loadingtext: "Đang yêu cầu hoàn toàn bộ，Vui lòng chờ…",
+            success: function (ajaxresp) {
+                $.modalAlert("Hoàn toàn bộ thành công，và kế hoạch đã bị hủy", 'success');
+                //
+                newtouch_event_f4();
+            }
+        });
+    }
+
+    //trì hoãngọihàm trợ giúp
+    var timeoutFunc = null;
+    var timeoutFuncParam1 = null;
+    var timeoutFuncParam2 = null;
+    var timeoutFuncParam3 = null;
+    var timeoutFuncParam4 = null;
+    function invokeTimeoutFunc() {
+        if (timeoutFunc) {
+            timeoutFunc(timeoutFuncParam1, timeoutFuncParam2, timeoutFuncParam3, timeoutFuncParam4);
+        }
+    }
+
+    function refundPrintInvoiceReq(oldFph, newTempPatModel, newJszbInfo) {
+        //1、in hóa đơn mới
+        printNewInvoice(newTempPatModel, newJszbInfo);
+        //2、sau đósauhủy hóa đơn gốc lại
+        if (!!oldFph) {
+            if ('@(invoicePrintMethod)' == 'ActiveX') {
+                //hủy hóa đơn gốc
+                var cancelInvoiceResult = $.printAX.CancelInvoice('032001800104', oldFph);
+            }
+        }
+    }
+    function writeOffEBill(mzh, jsnm) {
+        debugger;
+        var requestJson = { "BusinessName": "Hủy hóa đơn (đỏ)", "paySerialNo": mzh, "paySettlementNo": jsnm, "Operator":"@(opr.UserName)", "Reason": "Hủy hoàn phí ngoại trú" }
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
+            dataType: "json",
+            data: requestJson,
+            async: false,
+            success: function (data) {
+                if (data.code == "0") {
+                    $.modalAlert("Hủy vé điện tử thành công", 'success');
+                }
+                else {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert("Không tra cứu được thông tin hóa đơn điện tử phí khám ngoại trú[" + data.mes + "]", 'error');
+                    return;
+                }
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                isuccer = false;
+                $.modalAlert('Không tra cứu được thông tin hóa đơn điện tử phí khám ngoại trú[' + ex + ']', 'error');
+                return;
+            }
+        });
+    }
+
+    function printNewInvoice(newTempPatModel, newJszbInfo) {
+        if (newJszbInfo && !!newJszbInfo.jsnm && !(newJszbInfo.ytw == true)) {
+            if ('@(invoicePrintMethod)' == 'ActiveX') {
+                //mở hóa đơn mới
+                axPrintInvoiceBySettInfo(newTempPatModel, newJszbInfo);
+            }
+            else {
+                //thìinRSbáo cáo
+                var uri = '@reportUrl' + "?tempCode=02" + "&hospitalCode=" + orgId + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&jsnm=" + newJszbInfo.jsnm;
+                window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+
+                @*var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + newJszbInfo.jsnm;
+                window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");*@
+
+            }
+        }
+        //elsekhông cầncầnin hóa đơn mới
+    }
+
+    var xnkCardType = "@((int)EnumCardType.XNK)";
+    var ybkCardType = "@((int)EnumCardType.YBJYK)";
+
+    function ovpraseFloat(val) {
+        if (!val) {
+            val = 0;
+        }
+        return parseFloat(val);
+    }
+</script>
+@if (openYbSett == true || openXnhSett)
+{
+    @*<div id="readCard" style="position: absolute; top: 38px; left: 418px; font-size: 20px; color: orangered; display: none;">
+
+            <i class="fa fa-id-card" style="font-size: 25px;" title="Đọc thẻ"></i>
+            <div style="position: absolute; top: 0px; left: 30px; font-size: 12px; width: 35px;">
+                <select id="readCardCardType" class="form-control" style="padding: 0px; height: 22px; margin-left: 1px;">
+                    @if (openYbSett == true)
+                    {
+                        <option value="03">BHXH</option>
+                    }
+                    <option value="01">BHXH(điện)</option>
+                    <option value="02">thân</option>
+                </select>
+            </div>
+        </div>*@
+    <script type="text/javascript">
+        //đọc thẻ BHYT
+        var referDomPoint = getDOMPositionPoint($('#btnsyy')[0]);
+        $("#readCard").show();
+
+        //đã chọnthành viên nào đó
+        function GetSelectedpatient(obj) {
+            if (!!obj) {
+                $.najax({
+                    type: "GET",
+                    url: "/OutpatientManage/OutpatCharge/GetPatientkh",
+                    data: { xnhgrbm: obj.xnhgrbm },
+                    dataType: "json",
+                    success: function (resp) {
+                        if (!!resp && !!resp.kh) {
+                            GetQueryFphAjax({ kh: resp.kh, cardType: resp.cardType, isTF: true});
+                        } else {
+                            $.modalAlert("Lấy thông tin số thẻ thất bại", 'error');
+                        }
+                    }
+                });
+            } else {
+                $.modalAlert("Làm mới hợp tác nông thônBHYTthẻLấy thông tin thất bại", 'error');
+            }
+        }
+        function ReadCardCall(readCardObj) {
+            cqPatInfo.jslx = "1";
+            GetQueryFphAjax({ kh: readCardObj.yibaoCardInfo.kh, zjh: readCardObj.yibaoCardInfo.qtjz, cardType: readCardObj.ybkCardType });
+        }
+
+        var newOutpId = "";
+
+		//Trùng KhánhBHYThoàn phí
+        function chongqingtuifei(tmx) {
+
+            var tjsxmDictObj = {};
+            var tcfArr = new Array();
+            var msg = "";
+	        $.each(tmx, function () {
+	            tjsxmDictObj[this.jsmxnm] = this.tsl;
+	            var tjsxmDict = {};
+	            tjsxmDict.tjsmxnm = this.jsmxnm;
+	            tjsxmDict.tsl = this.tsl;
+	            tcfArr.push(tjsxmDict);
+	        });
+	        $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán，Vui lòng chờ…');
+	        var cqybjyDenySettleReturn;
+	        var payoptype = {
+	            operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh, hisId: patModel.mzh
+	        };
+	        switch (cqPatInfo.ybVer) {
+	            case "shanghaiV5":
+	                payoptype.totalexpense = "";//số tiền giao dịch hủy lấy từ máy chủ
+	                payoptype.translsh = thisJszb.ybjsh;
+	                payoptype.xsywlx = "1";
+	                payoptype.sflx = "1";
+	                payoptype.cardtype = cqPatInfo.jzlx;
+	                payoptype.carddata = cqPatInfo.carddata;
+	                payoptype.cxly = "1";
+	                $.ajax({
+	                    type: "POST",
+	                    url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SK01",
+	                    dataType: "json",
+	                    data: payoptype,
+	                    async: false,
+	                    success: function (data) {
+	                        cqybjyDenySettleReturn = eval('(' + data + ')');
+	                    },
+	                    error: function (request, error, ex) {
+	                        msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【SK01】)Không thể truy cập：[" + ex + "]";
+	                    }
+	                });
+	                break;
+	            default:
+	                payoptype.setl_id = thisJszb.ybjsh;
+	                payoptype.mdtrt_id = thisJszb.jzid;
+	                payoptype.psn_no = cqPatInfo.grbh;
+	                $.ajax({
+	                    type: "POST",
+	                    url: "http://127.0.0.1:33333/api/YiBao/UpSettlement_2208",
+	                    dataType: "json",
+	                    data: payoptype,
+	                    async: false,
+	                    success: function (data) {
+	                        cqybjyDenySettleReturn = eval('(' + data + ')');
+
+	                    },
+	                    error: function (request, error, ex) {
+	                        msg = "Dịch vụ BHYT(Giao dịch hủy quyết toán ngoại trú【2208】)Không thể truy cập：[" + ex + "]";
+	                    }
+	                });
+	                break;
+	        }
+	        if (cqybjyDenySettleReturn) {
+	            if (cqybjyDenySettleReturn.infcode == "0" || cqybjyDenySettleReturn.infcode == 0
+               || cqybjyDenySettleReturn.xxfhm == "P001") {
+	                var queryMx = { jsnm: thisJszb.jsnm, tjsxmDict: tjsxmDictObj, mzh: patModel.mzh,
+                        pch: thisJszb.pch, yllb: thisJszb.yllb, bzbm: thisJszb.bzbm, tcfArr:tcfArr };
+	                setTimeout(function () {
+	                    $.loading(true, 'Đang tải chi tiết lên，Vui lòng chờ...');
+	                    CQmxsc(queryMx,
+					        function (mxxx) {
+					            setTimeout(function () {
+					                $.loading(true, 'Đang quyết toán BHYT，Vui lòng chờ...');
+					                CQybjs(mxxx,
+                                        function (mxxx, newybjyCqFeeReturn) {
+                                            var mztfProDto = { ZFY: mxxx.zje, XJZF: mxxx.xjzfys };
+                                            setTimeout(function () {
+                                                $.loading(true, 'Đang quyết toán BHYT，Vui lòng chờ...');
+                                                GuiAnYbHISRefundSettlement(tjsxmDictObj,
+                                                    ovpraseFloat(mxxx.tfzje).toFixed(4),
+                                                    null,//cqybjyDenySettleReturn.output.setlinfo.setl_id,
+                                                    newybjyCqFeeReturn.ybjslsh,
+                                                    newybjyCqFeeReturn,
+                                                    null,//cqybjyDenySettleReturn.output.setlinfo,
+                                                    mztfProDto,
+                                                    function (hisSuccessAjaxResp) {
+                                                        //3、modalAlertthông tin chênh lệch  xem tham số truyền
+                                                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                                                            $.modalAlert(hisSuccessAjaxResp.message, 'error');
+                                                        } else {
+                                                            $.modalAlert("Chi phí đã hoàn<br/><b>Hoàn chênh lệch thanh toán：<span style='color:red;'>" +
+                                                                (ovpraseFloat(thisJszb.jsxjzf) - ovpraseFloat(hisSuccessAjaxResp.data.jsxjzf)).toFixed(2) +
+                                                                "</span></b>",
+                                                                'success');
+                                                            //cập nhật hoàndấu hiệu
+                                                            if (tjscfh.length > 0) {
+                                                                UpdateChargeTbz(tjscfh, tjsypcfh);
+                                                            }
+                                                        }
+                                                        //hóa đơn điện tử Quảng Tây
+                                                        //writeOffEBill(patModel.mzh, thisJszb.jsnm);//đảo đỏ hóa đơn
+                                                        newtouch_event_f4();
+
+                                                    });
+                                            },
+                                                50);
+                                        });
+					            },
+							        50);
+					        });
+	                },
+                        50);
+	            } else {
+	                $.modalAlert(Veremg(cqybjyDenySettleReturn), 'error');
+	                $.loading(false);
+	                return;
+	            }
+	        } else {
+	            $.modalAlert("Dịch vụ BHYT(Hủy quyết toán ngoại trú)Thông tin trả về trống", 'error');
+	            $.loading(false);
+	            return;
+	        }
+        }
+        function Veremg(ybffxxobj) {
+            var msg = "";
+            if (cqPatInfo.ybVer == "shanghaiV5") {
+                msg = ybffxxobj.fhxx;
+            }
+            else {
+                msg = ybffxxobj.err_msg;
+            }
+            return msg;
+        }
+
+		function CQmxsc(queryMx,funcSuccCallback) {
+	        var ybzje = 0.00;
+			var tfzje = 0.00;
+	        var succTimes = 0;
+	        var zfzje = 0.00;
+	        var jylsh = tradeNo();
+	        var jzid;
+	        var yllb;
+            var rybh;
+            var cfh;
+	        var isuccer = true;//tải lên chi tiết có thành công không
+
+	        $.najax({
+	            url: "/OutpatientManage/OutpatCharge/GetCQDetailsMzjsYbTfh",
+	            loading: false,
+	            async: false,
+	            type: 'POST',
+	            data: getPostData(queryMx),
+	            success: function (ajaxResp) {
+	                if (ajaxResp) {
+	                    if (sfqt) {
+	                        sfqt = false;
+	                    }
+	                    ybzje = ajaxResp.ybzje;
+	                    tfzje = ajaxResp.tfzje;
+	                    jzid = ajaxResp.jzid;
+	                    yllb = queryMx.yllb;
+                        rybh = ajaxResp.rybh;
+                        cfh = ajaxResp.cfh;
+                        zfzje = ajaxResp.zfzje;
+	                    //mỗi lần làm lạitải lên，trướcđemtrước đâytải lêncủa，nhưng chưaquyết toáncủahoàn đơn thuốc
+                        var mxscobj = { hisId: queryMx.mzh, mdtrt_id: jzid, chrg_bchno: queryMx.pch, psn_no: rybh,
+                            operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+                        switch(cqPatInfo.ybVer){
+                            case "shanghaiV5":
+                                mxscobj.cardtype = cqPatInfo.jzlx;
+                                mxscobj.carddata = cqPatInfo.carddata;
+                                mxscobj.jylsh = thisJszb.ybjsh;
+                                mxscobj.ishtqz = "Y";//số hóa đơn chi tiết lấy từ máy chủ BHYT
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SN02",
+                                    data: mxscobj,
+                                    dataType: "json",
+                                    async: false,
+                                    success: function (data) {
+                                    }
+                                });
+                                break;
+                            default:
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://127.0.0.1:33333/api/YiBao/UpFeedetail_2205",
+                                    data: mxscobj,
+                                    dataType: "json",
+                                    async: false,
+                                    success: function (data) {
+                                        var tfReturn = eval('(' + data + ')');
+                                        if (tfReturn) {
+                                            if (tfReturn.infcode == "0" || tfReturn.infcode == 0) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    data: { zymzh: queryMx.mzh, cfh: cfh, pch: queryMx.pch },
+                                                    url: "/OutpatientManage/OutpatCharge/UpDateUploadPch",
+                                                    dataType: "json",
+                                                    async: false,
+                                                    success: function (resp) {
+                                                        //thất bạitạm thời không làmxử lý
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        if (currejlsx == "0") {
+                                            $.najax({
+                                                type: "GET",
+                                                url: "/OutpatientManage/OutpatCharge/GetCQjzdjInfo?mzh=" + patModel.mzh,
+                                                dataType: "json",
+                                                loadingtext: "Đang yêu cầuHISHủy đăng ký khám，Vui lòng chờ…",
+                                                async: false,
+                                                success: function (ajaxresp) {
+                                                    if (ajaxresp && ajaxresp.mdtrt_id) {
+                                                        var payoptype = { 'mdtrt_id': ajaxresp.mdtrt_id, "psn_no": cqPatInfo.grbh, insuplc_admdvs: cqPatInfo.xzqh, "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', 'hisId': patModel.mzh, 'ipt_otp_no': patModel.mzh };
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: "http://127.0.0.1:33333/api/YiBao/RegisteredUndo_2202",
+                                                            dataType: "json",
+                                                            data: payoptype,
+                                                            async: false,
+                                                            success: function (data) {
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+
+                                break;
+                        }
+	                    mxscobj.jzid = jzid;
+	                    mxscobj.pch = jylsh;
+	                    mxscobj.rybh =rybh;
+	                    mxscobj.hisId = patModel.mzh;
+	                    mxscobj.orgId = '@(opr.OrganizeId)';
+	                    mxscobj.jsnm = queryMx.jsnm;
+	                    mxscobj.type = "3";
+	                    mxscobj.bzbm = queryMx.bzbm;
+	                    mxscobj.tjsxmDict = queryMx.tcfArr;//hoàn một nửa đơn thuốc
+	                    if (ybzje>0)
+	                    {
+	                        if(cqPatInfo.ybVer=="shanghaiV5")
+	                        {
+	                            mxscobj.jzdyh = "";//lấy từ máy chủ
+	                            mxscobj.djh = patModel.mzh;
+	                            mxscobj.bcmxylfyze = ybzje;
+	                            mxscobj.jslxbz = "120";
+	                            mxscobj.zfzje = zfzje;
+	                            mxscobj.ybzje = ybzje;
+	                            mxscobj.chrg_bchno = jylsh; /* số giao dịch */
+	                            $.ajax({
+	                                type: "POST",
+	                                url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_MzSN01",
+	                                data: mxscobj,
+	                                dataType: "json",
+	                                async: false,
+	                                success: function (data) {
+	                                    var upDataReturn = eval('(' + data + ')');
+	                                    if (!upDataReturn) {
+	                                        isuccer = false;
+	                                        $.modalAlert("Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thông tin trả về trống", 'error');
+	                                        return;
+	                                    }
+	                                    if (upDataReturn.xxfhm != "P001") {
+	                                        $.loading(false);
+	                                        isuccer = false;
+	                                        $.modalAlert("Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại：" + upDataReturn.fhxx, 'error');
+	                                        return;
+	                                    }
+	                                }
+	                            });
+	                        }
+	                        else{
+	                            $.ajax({
+	                                type: "POST",
+	                                url: "http://127.0.0.1:33333/api/YiBao/Feedetail_2204",
+	                                data: mxscobj,
+	                                dataType: "json",
+	                                async: false,
+	                                success: function (data) {
+	                                    var upDataReturn = eval('(' + data + ')');
+	                                    if (upDataReturn.infcode != "0") {
+	                                        $.loading(false);
+	                                        isuccer = false;
+	                                        $.modalAlert("Tải chi tiết đơn thuốc lên thất bại：" + upDataReturn.err_msg, 'error');
+	                                        return;
+	                                    }
+	                                    else {
+	                                        $.ajax({
+	                                            type: "POST",
+	                                            data: {
+	                                                zymzh: queryMx.mzh, jytype: "1", cfh: cfh, pch: jylsh
+	                                            },
+	                                            url: "/OutpatientManage/OutpatCharge/SaveUploadPch",
+	                                            dataType: "json",
+	                                            async: false,
+	                                            success: function (resp) {
+	                                            }
+	                                        });
+	                                    }
+	                                }
+	                            });
+	                        }
+	                    }
+
+	                } else {
+	                    $.loading(false);
+	                    $.modalAlert("BHYTTải chi tiết lênThất bại", 'error');
+	                    return;
+	                }
+	            },
+	            error: function () {
+	                $.loading(false);
+	                $.modalAlert("BHYTTải chi tiết lênThất bại", 'error');
+	                return;
+	            }
+	        });
+			$.loading(false);
+			//
+			if (isuccer && funcSuccCallback) {
+	        	setTimeout(function () {
+	        	    var mxxx = { zfzje: zfzje, ybzje: ybzje, tfzje: tfzje, jzid: jzid, yllb: yllb, rybh: rybh, chrg_bchno: jylsh ,bzbm:queryMx.bzbm};
+			        funcSuccCallback(mxxx);
+		        }, 50);
+	        }
+        }
+        //điều kiện tra cứu
+		function getPostData(queryMx) {
+	        var mzh = patModel.mzh;
+			return {mzh: mzh,jsnm:queryMx.jsnm,tjsxmDict:queryMx.tjsxmDict };
+
+        }
+		function CQybjs(mxxx, funcSuccCallback) {
+			var xmzje = ovpraseFloat(mxxx.ybzje) + ovpraseFloat(mxxx.zfzje);
+			var jzlx = cqPatInfo.mdtrt_cert_type;
+			var predata = {
+			    operatorId: '@(opr.rygh)',
+			    operatorName: '@(opr.UserName)',
+			    orgId: '@(opr.OrganizeId)',
+			    insuplc_admdvs: cqPatInfo.xzqh,
+			    psn_no: mxxx.rybh,
+			    mdtrt_cert_type: cqPatInfo.mdtrt_cert_type,
+			    mdtrt_cert_no: jzlx == "01" ? cqPatInfo.ecToken : (jzlx == "02" ? cqPatInfo.sfzh : cqPatInfo.sbkh),
+			    med_type: mxxx.yllb,
+			    medfee_sumamt: xmzje,
+			    psn_setlway: "01",
+			    mdtrt_id: mxxx.jzid,
+			    chrg_bchno: mxxx.chrg_bchno,
+			    acct_used_flag: "1",
+			    insutype: cqPatInfo.xzlx,
+			    hisId: patModel.mzh
+			};
+
+			if (ovpraseFloat(mxxx.ybzje).toFixed(2) == "0.00") ////đã không còn chi phí BHYT liên quan
+	        {
+				//BHYTđã không còncóchi phí，giả mạoBHYTtrả vềgiá trị
+		        var ybjyCqFeeReturn = {
+		        	jylsh: "111111111",//giá trị không thể sửa，máy chủ sẽ xác định，nếu là111111111，thì không ghi vào bảng ghi nhận quyết toán BHYT nữa--Trùng Khánh
+			        cqtczf: 0,
+			        zhzf: 0,
+			        gwybz: 0,
+			        cqxjzf: 0,
+			        delpje: 0,
+			        zhye: 0,
+			        mzjzje: 0,
+			        zxjssj: $.getDate()
+		        };
+		        //hisquyết toánxác nhận（bao gồmBHYTquyết toánxác nhận）
+		        //theosaumáy tra racủakết quả，nếunàybệnh nhâncólập tự lậpcủakhoản mục（khôngcómã BHYT），thìquyết toánlúccủatổng số tiền，điền tổngcủatổng hợptổng số tiền
+		        //nếu chỉcóBHYTkhoản mục，thìbằngBHYTquyết toáncủaBHYTtrả vềkết quảlàcho phép tiến hànhquyết toán
+		        mxxx.zje = xmzje;
+		        mxxx.xjzfys = ovpraseFloat(mxxx.zfzje) + ovpraseFloat(ybjyCqFeeReturn.cqxjzf);
+		        if (funcSuccCallback) {
+			        setTimeout(function () {
+				        funcSuccCallback(mxxx, ybjyCqFeeReturn);
+			        }, 50);
+		        }
+			} else {
+			    var prejsurl = ""; var jsurl="";
+			    switch (cqPatInfo.ybVer) {
+			        case "shanghaiV5":
+			            predata.cardtype = cqPatInfo.jzlx;
+			            predata.carddata = cqPatInfo.carddata;
+			            predata.personspectag = cqPatInfo.accountattr.substr(3, 1);
+			            predata.yllb = "S11";
+			            predata.persontype = "0"; // 0bệnh nhân thường 1：tai nạn lao động
+			            predata.gsrdh = "";
+			            predata.dbtype = "";
+			            predata.jzdyh = "";//lấy từ máy chủ
+			            predata.xsywlx = "1";
+			            predata.chrg_bchno = mxxx.chrg_bchno;
+			            prejsurl="http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SI11";
+			            jsurl="http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SI12";
+			            break;
+			        default:
+			            prejsurl="http://127.0.0.1:33333/api/YiBao/AccounSettlement_2206";
+			            jsurl="http://127.0.0.1:33333/api/YiBao/Settlement_2207";
+			            break;
+			    }
+
+		        var ybjsSettReturn1;
+		        var ybjsSettReturn;
+		        $.ajax({
+			        type: "POST",
+			        url: prejsurl,
+			        data: predata,
+			        dataType: "json",
+			        async: false,
+			        success: function (data) {
+				        ybjsSettReturn1 = eval('(' + data + ')');
+			        }
+		        });
+		        if (ybjsSettReturn1) {
+		            if (ybjsSettReturn1.infcode == "0" || ybjsSettReturn1.infcode == 0
+                        || ybjsSettReturn1.xxfhm == "P001") {
+		                if (cqPatInfo.ybVer == "shanghaiV5") {
+		                    predata.jssqxh = ybjsSettReturn1.xxnr.jssqxh;
+		                }
+				        $.ajax({
+					        type: "POST",
+					        url: jsurl,
+					        data: predata,
+					        dataType: "json",
+					        async: false,
+					        success: function (data) {
+						        ybjsSettReturn = eval('(' + data + ')');
+					        }
+				        });
+				        if (ybjsSettReturn) {
+					        $.loading(false);
+					        if (ybjsSettReturn.infcode == "0" || ybjsSettReturn.infcode == 0
+                                || ybjsSettReturn.xxfhm == "P001") {
+					            var ybjyCqFeeReturn;
+					            if (cqPatInfo.ybVer == "shanghaiV5")
+					            {
+					                ybjyCqFeeReturn = ybjsSettReturn.xxnr;
+					                ybjyCqFeeReturn.ybzje = mxxx.ybzje;
+					                ybjyCqFeeReturn.ybjslsh = ybjyCqFeeReturn.lsh;
+					                mxxx.xjzfys = ovpraseFloat(mxxx.zfzje) + ovpraseFloat(ybjyCqFeeReturn.fybjsfwfyze);
+					            }
+					            if (cqPatInfo.ybVer=="gjyb"){
+					                var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
+					                ybjyCqFeeReturn.ybjslsh = ybjyCqFeeReturn.setl_id;
+					                ybjyCqFeeReturn.cqtczf = ybjyCqFeeReturn.hifp_pay;
+					                ybjyCqFeeReturn.zhzf = ybjyCqFeeReturn.acct_pay;
+					                ybjyCqFeeReturn.cqxjzf = ybjyCqFeeReturn.psn_cash_pay;
+					                ybjyCqFeeReturn.gwybz = ybjyCqFeeReturn.cvlserv_pay;
+					                ybjyCqFeeReturn.delpje = ybjyCqFeeReturn.hifob_pay;
+					                ybjyCqFeeReturn.dbzddyljgdz = ybjyCqFeeReturn.hosp_part_amt;
+					                ybjyCqFeeReturn.zhye = ybjyCqFeeReturn.balc;
+					                ybjyCqFeeReturn.pch = mxxx.chrg_bchno;
+					                ybjyCqFeeReturn.yllb = mxxx.yllb;
+					                ybjyCqFeeReturn.bzbm = mxxx.bzbm;
+					                ybjyCqFeeReturn.jylsh = ybjyCqFeeReturn.setl_id;
+					                mxxx.xjzfys = ovpraseFloat(mxxx.zfzje) + ovpraseFloat(ybjyCqFeeReturn.cqxjzf);
+					            }
+						        //hisquyết toánxác nhận（bao gồmBHYTquyết toánxác nhận）
+						        //theosaumáy tra racủakết quả，nếunàybệnh nhâncólập tự lậpcủakhoản mục（khôngcómã BHYT），thìquyết toánlúccủatổng số tiền，điền tổngcủatổng hợptổng số tiền
+						        //nếu chỉcóBHYTkhoản mục，thìbằngBHYTquyết toáncủaBHYTtrả vềkết quảlàcho phép tiến hànhquyết toán
+						        mxxx.zje = xmzje;
+						        if (funcSuccCallback) {
+							        setTimeout(function () {
+								        funcSuccCallback(mxxx, ybjyCqFeeReturn);
+							        }, 50);
+						        }
+					        } else {
+						        $.loading(false);
+						        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú)Thất bại：" +Veremg(ybjsSettReturn), 'error');
+						        return;
+					        }
+				        } else {
+					        $.loading(false);
+					        $.modalAlert("Dịch vụ BHYT(Quyết toán ngoại trú)Thông tin trả về trống", 'error');
+					        return;
+				        }
+			        } else {
+				        $.loading(false);
+				        $.modalAlert("Dịch vụ BHYT(Quyết toán trước ngoại trú)Thất bại："+Veremg(ybjsSettReturn1), 'error');
+				        return;
+			        }
+		        } else {
+			        $.loading(false);
+			        $.modalAlert("Dịch vụ BHYT(Quyết toán trước ngoại trú)Thông tin trả về trống", 'error');
+			        return;
+		        }
+		        $.loading(false);
+	        }
+
+		}
+        function Veremg(ybffxxobj)
+        {
+            var msg = "";
+            if (cqPatInfo.ybVer == "shanghaiV5") {
+                msg = ybffxxobj.fhxx;
+            }
+            else {
+                msg = ybffxxobj.err_msg;
+            }
+            return msg;
+        }
+        //BHYThoàn tácghi nhận
+        function guianMzhtResult(reqData) {
+            $.najax({
+                type: "POST",
+                data: { dto: reqData },
+                url: "/OutpatientManage/OutpatientRefund/MzhtResult",
+                dataType: "json",
+                success: function () {
+                    //$.modalAlert("quyết toánghi hoàn tác thành công", 'warning');
+                }
+            });
+        }
+		//Trùng Khánhđảo quyết toán BHYTthông tintrả vềghi nhận
+        function chongqingMzhtResult(reqData) {
+	        $.najax({
+		        type: "POST",
+		        data: {
+		        	entity: reqData, jslb: "2"
+		        },
+		        url: "/OutpatientManage/OutpatCharge/SaveChongQing99HQ",
+		        dataType: "json",
+		        loading: false,
+		        success: function () {
+
+		        }
+	        });
+        }
+        //BHYTgiao dịch HISxác nhận hoàn phí
+        function GuiAnYbHISRefundSettlement(tjsxmDict, tmxZje, hcybjsh, newwjybjsh, newybfeeRelated, hcybfeeRelated, guianMztfProDto, funcSuccCallback) {
+            $.najax({
+                type: "POST",
+                data: {
+                    mzh: patModel.mzh, jsnm: thisJszb.jsnm, tjsxmDict: tjsxmDict, expectedTmxZje: tmxZje
+                    , hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
+                    , hcybfeeRelated: hcybfeeRelated
+                    , newybfeeRelated: newybfeeRelated
+                    , guianMztfProDto: guianMztfProDto
+                    , outpId: newOutpId
+                },
+                url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
+                dataType: "json",
+                loadingtext: "Đang yêu cầuHISHoàn phíquyết toán，Vui lòng chờ…",
+                success: function (ajaxresp) {
+                    if (funcSuccCallback) {
+                        //thu hồi hóa đơn cũ（hủy hóa đơn cũ）//in phiếu thu phí mới
+                        if (ajaxresp && ajaxresp.data) {
+                            //var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + ajaxresp.data.jsnm;
+                            //window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+                        }
+                        //
+                        funcSuccCallback(ajaxresp);
+                    }
+                }
+            }); $.loading(false);
+        }
+        //lấyquyết toánbệnh nhân thông tin bệnh nhân
+        function funcGetSettPatientInfo(funcSuccCallback) {
+            $.najax({
+                type: "POST",
+                url: "/OutpatientManage/OutpatCharge/GetSettPatientInfo?mzh=" + patModel.mzh,
+                loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng chờ...",
+                dataType: "json",
+                success: function (ajaxresp) {
+                    var data = ajaxresp.data;
+                    //gốcđăng ký khámcủaybjsh
+                    if (!data.ybjsh) {
+                        $.modalAlert("Bất thường khi quyết toán，Thiếu số quyết toán BHYT", 'warning');
+                        return;
+                    }
+                    if (!data.sbbh) {
+                        $.modalAlert("Bất thường khi quyết toán，Thiếu số BHXH", 'warning');
+                        return;
+                    }
+                    if (!data.jzyy) {
+                        $.modalAlert("Bất thường khi quyết toán，ThiếuLý do khám", 'warning');
+                        return;
+                    }
+                    if (!data.ys || !data.ysmc) {
+                        $.modalAlert("Bất thường khi quyết toán，Thiếu xuất việnBác sĩthông tin", 'warning');
+                        return;
+                    }
+                    if (!data.ks || !data.ksmc) {
+                        $.modalAlert("Bất thường khi quyết toán，Thiếu xuất việnKhoathông tin", 'warning');
+                        return;
+                    }
+                    if (!data.zdicd10 || !data.zdmc) {
+                        $.modalAlert("Bất thường khi quyết toán，Thiếu xuất việnChẩn đoánthông tin", 'warning');
+                        return;
+                    }
+                    if (funcSuccCallback) {
+                        timeoutFunc = funcSuccCallback;
+                        timeoutFuncParam1 = data;
+                        //khácParamkhông cập nhật cũng không sao
+                        setTimeout("invokeTimeoutFunc();", 50);
+                    }
+                }
+            });
+        }
+
+        //BHYTquyết toán lại
+        function ybReSett(tjsxmDictObj, ybReq, ybfyxzCompResult) {
+            $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán，Vui lòng chờ…');
+            timeoutFunc = function () {
+                //BHYThoàn phí（xác nhận hoàn） trả vềhaisố quyết toán mộtđảo đỏ một mớicủachưa quyết toán
+                var ybjyDenySettleReturn = $.yibao.DenySettle($('#readCardCardType').val(), thisJszb.ybjsh, ybReq.sbbh, ybReq.AKE279, ybReq.AKE278);
+                $.loading(false);
+                if (ybjyDenySettleReturn.Code === 0) {
+                    //saumặt phảinàyđều thành công，khôngthìphiền phức
+                    var hcybjsh = ybjyDenySettleReturn.Data.DKE005A;
+                    var newwjybjsh = ybjyDenySettleReturn.Data.DKE005B;
+                    var hcybfeeRelated = ybjyDenySettleReturn.Data;
+                    var hcybfeeRelated = { ZFY: -40, XJZF: -36, JBYE: 2079.41, GBYE: 0 };
+                    DetailsUploadYb(tjsxmDictObj, newwjybjsh, function (newmxscResp) {
+                        if (newmxscResp.data.yxzje > 0) {
+                            //chưa hoàn xong
+                            ybSettWtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, newmxscResp.data.tmxzje, newmxscResp.data.yxzje, hcybjsh, newwjybjsh);
+                        }
+                        else {
+                            //đã hoàn xong
+                            ybSettYtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, ybfyxzCompResult, newmxscResp.data.tmxzje, hcybjsh, newwjybjsh);
+                        }
+                    });
+                }
+                else {
+                    $.modalAlert(ybjyDenySettleReturn.ErrorMsg, 'error');
+                    return;
+                }
+            };
+            setTimeout("invokeTimeoutFunc();", 50);
+        }
+
+        //chưa hoàn xong quyết toán lại（BHYTquyết toán trước+quyết toánxác nhận） + HISquyết toán lại
+        function ybSettWtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, tmxzje, yxzje, hcybjsh, newwjybjsh) {
+            $.loading(true, 'Đang quyết toán lại BHYT，Vui lòng chờ…');
+            timeoutFunc = function () {
+                //1、BHYTquyết toán lại
+                var ybjySettleClinicAReturn = $.yibao.SettleClinicA($('#readCardCardType').val(), newwjybjsh, ybReq.sbbh, yxzje, ybReq.jzyy, ybReq.AKE181, ybReq.AKC195, ybReq.ys, ybReq.ysmc, ybReq.zdicd10, ybReq.zdmc, ybReq.AKE279, ybReq.AKE278, ybReq.ks, ybReq.ksmc);
+                $.loading(false);
+                if (ybjySettleClinicAReturn.Code == 0) {
+                    var newybfeeRelated = ybjySettleClinicAReturn.Data;
+                    //2、HIShoàn phí
+                    YbHISRefundSettlement(hcybfeeRelated, tjsxmDictObj, tmxzje, hcybjsh, newwjybjsh, newybfeeRelated, function (hisSuccessAjaxResp) {
+                        //3、modalAlertthông tin chênh lệch
+                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                            $.modalAlert(hisSuccessAjaxResp.message, 'error');
+                        }
+                        else {
+                            $.modalAlert("Đã hoàn một phần<br/><b>Hoàn chênh lệch thanh toán：<span style='color:red;'>" + (thisJszb.XJZF - newybfeeRelated.jsxjzf) + "</span></b>", 'success');
+                        }
+                        //
+                        newtouch_event_f4();
+                    });
+                }
+                else {
+                    $.modalAlert('Quyết toán lại BHYT thất bại，Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjySettleClinicAReturn.ErrorMsg, 'error');
+                    return;
+                }
+            };
+            setTimeout("invokeTimeoutFunc();", 50);
+        }
+
+        //đã hoàn xong quyết toán lại（BHYThủyđăng ký khám） + HISquyết toán lại
+        function ybSettYtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, ybfyxzCompResult, tmxzje, hcybjsh, newwjybjsh) {
+            $.loading(true, 'ĐangBHYTHủy quyết toán，Vui lòng chờ…');
+            timeoutFunc = function () {
+                //1、BHYThủyđăng ký khám
+                var ybjyDenyRegReturn = $.yibao.DenyReg(newwjybjsh, ybReq.sbbh, ybfyxzCompResult.TTCode);
+                $.loading(false);
+                if (ybjyDenyRegReturn.Code == 0) {
+                    //nhất địnhcầnchonull，khôngcầncho trốngđối tượng
+                    var newybfeeRelated = null;
+                    //2、HIShoàn phí
+                    YbHISRefundSettlement(hcybfeeRelated, tjsxmDictObj, tmxzje, hcybjsh, newwjybjsh, newybfeeRelated, function (hisSuccessAjaxResp) {
+                        //3、alertđã hoàn xong
+                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                            $.modalAlert(hisSuccessAjaxResp.message, 'error');
+                        }
+                        else {
+                            $.modalAlert("Đã hoàn hết<br/><b>Hoàn chênh lệch thanh toán：<span style='color:red;'>" + (thisJszb.XJZF - 0) + "</span></b>", 'success');
+                            if (tjscfh.length>0) {
+                                UpdateChargeTbz(tjscfh, tjsypcfh);
+                            }
+                        }
+                        //
+                        newtouch_event_f4();
+                    });
+                }
+                else {
+                    $.modalAlert('BHYTHủy đăng ký khámThất bại，Vui lòng nhanh chóng liên hệ quản trị viên<br/>' + ybjyDenyRegReturn.ErrorMsg, 'error');
+                    return;
+                }
+            };
+            setTimeout("invokeTimeoutFunc();", 50);
+        }
+
+        //BHYTgiao dịch HISxác nhận hoàn phí
+        function YbHISRefundSettlement(hcybfeeRelated, tjsxmDict, tmxZje, hcybjsh, newwjybjsh, newybfeeRelated, funcSuccCallback) {
+            $.najax({
+                type: "POST",
+                data: {
+                    mzh: patModel.mzh, jsnm: thisJszb.jsnm, tjsxmDict: tjsxmDict, expectedTmxZje: tmxZje
+                    , hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
+                    , hcybfeeRelated: hcybfeeRelated
+                    , newybfeeRelated: newybfeeRelated
+                },
+                url: "/OutpatientManage/OutpatientRefund/YbRefundSettlement",
+                dataType: "json",
+                loadingtext: "Đang yêu cầuHISHoàn phíquyết toán，Vui lòng chờ…",
+                success: function (ajaxresp) {
+                    if (funcSuccCallback) {
+                        //thu hồi hóa đơn cũ（hủy hóa đơn cũ）//in phiếu thu phí mới
+                        if (ajaxresp && ajaxresp.data) {
+                            refundPrintInvoiceReq(thisJszb.fph, patModel, ajaxresp.data);
+                            //writeOffEBill(patModel.mzh, thisJszb.jsnm); //hóa đơn điện tử Quảng Tây
+                        }
+                        //
+                        funcSuccCallback(ajaxresp);
+                    }
+                }
+            });
+        }
+        //giao dịchsố giao dịch
+        const tradeNo = function () {
+            const now = new Date()
+            const year = now.getFullYear();
+            let month = now.getMonth() + 1;
+            let day = now.getDate();
+            let hour = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            String(month).length < 2 ? (month = Number("0" + month)) : month;
+            String(day).length < 2 ? (day = Number("0" + day)) : day;
+            String(hour).length < 2 ? (hour = Number("0" + hour)) : hour;
+            String(minutes).length < 2 ? (minutes = Number("0" + minutes)) : minutes;
+            String(seconds).length < 2 ? (seconds = Number("0" + seconds)) : seconds;
+            const yyyyMMddHHmmss = `${year}${month}${day}${hour}${minutes}${seconds}`;
+            return yyyyMMddHHmmss + '_' + Math.random().toString(36).substr(2, 9);
+        };
+
+    </script>
+}
+@if (invoicePrintMethod == "ActiveX")
+{
+    <script type="text/javascript">
+        //theoquyết toánin thông tinAXhóa đơn
+        //var newTempPatModel = { xm: null, mzh: null, ksmc: null, ysmc: null};
+        //var newJszbInfo = { jsnm: null, ybjsh: null, jszje: null, jsxjzf: null, YBZHZC: null, JBYE: null, GBYE: null };
+        function axPrintInvoiceBySettInfo(paramNewTempPatModel, paramNewJszbInfo) {
+            newTempPatModel = $.deepClone.clone(paramNewTempPatModel);
+            newJszbInfo = $.deepClone.clone(paramNewJszbInfo);
+            if (newJszbInfo && !!newJszbInfo.jsnm && !isNaN(newJszbInfo.jszje) && parseFloat(newJszbInfo.jszje) > 0 && !(newJszbInfo.ytw == true)) {
+                if ('@(invoicePrintMethod)' == 'ActiveX') {
+                    //mở hóa đơn mới
+                    $.najax({
+                        type: "POST",
+                        url: "/OutpatientManage/OutpatientRefund/RefundableDetailQuery?jsnm=" + newJszbInfo.jsnm,
+                        dataType: "json",
+                        loading: false,
+                        success: function (detailList) {
+                            if (detailList && detailList.length) {
+                                //activeXin
+                                var axFpInitJson = {};
+                                axFpInitJson.InfoClientName = newTempPatModel.xm;
+                                axFpInitJson.InfoClientTaxCode = '';
+                                axFpInitJson.InfoClientBankAccount = '';
+                                axFpInitJson.InfoClientAddressPhone = '';   //mobile?
+                                axFpInitJson.InfoSellerBankAccount = '101290001017805087';
+                                axFpInitJson.InfoSellerAddressPhone = 'Đường Trường Giang Tây, thành phố Thường Thục 52491397';
+                                axFpInitJson.InfoTaxRate = 0;
+                                var theFpNote = "";
+                                if (!!newTempPatModel.sbbh) {
+                                    theFpNote += 'Số BHXH：' + newTempPatModel.sbbh + ";";
+                                }
+                                theFpNote += 'Số thứ tự khám：' + newTempPatModel.mzh + ";";
+                                theFpNote += 'HISSố quyết toán：' + newJszbInfo.jsnm + ";";
+                                if (!!newJszbInfo.ybjsh) {
+                                    theFpNote += 'Số quyết toán BHYT：' + newJszbInfo.ybjsh + ";";
+                                }
+                                if (newTempPatModel.ksmc) {
+                                    theFpNote += newTempPatModel.ksmc + ";";
+                                }
+                                if (newTempPatModel.ysmc) {
+                                    theFpNote += newTempPatModel.ysmc + ";";
+                                }
+                                if (!isNaN(newJszbInfo.jszje) && newJszbInfo.jszje != null && newJszbInfo.jszje != undefined) {
+                                    theFpNote += 'Tổng số tiền：' + ovpraseFloat(newJszbInfo.jszje).toFixed(2) + ";";
+                                }
+                                if (!isNaN(newJszbInfo.jsxjzf) && newJszbInfo.jsxjzf != null && newJszbInfo.jsxjzf != undefined) {
+                                    theFpNote += 'Thanh toán tiền mặt：' + ovpraseFloat(newJszbInfo.jsxjzf).toFixed(2) + ";";
+                                }
+                                if (!isNaN(newJszbInfo.YBZHZC) && newJszbInfo.YBZHZC != null && newJszbInfo.YBZHZC != undefined) {
+                                    theFpNote += 'Chi tài khoản：' + ovpraseFloat(newJszbInfo.YBZHZC).toFixed(2) + ";";
+                                }
+                                if (!isNaN(newJszbInfo.JBYE) && newJszbInfo.JBYE != null && newJszbInfo.JBYE != undefined) {
+                                    theFpNote += 'Số dư tài khoản cá nhân：' + ovpraseFloat(newJszbInfo.JBYE).toFixed(2) + ";";
+                                }
+                                if (!isNaN(newJszbInfo.GBYE) && newJszbInfo.GBYE != null && newJszbInfo.GBYE != undefined) {
+                                    theFpNote += 'Số dư tài khoản bổ sung công：' + ovpraseFloat(newJszbInfo.GBYE).toFixed(2) + ";";
+                                }
+                                axFpInitJson.InfoNotes = theFpNote.substring(0, (theFpNote.length - 1));
+                                axFpInitJson.InfoInvoicer = '@(opr.UserName)';
+                                axFpInitJson.InfoChecker = '';
+                                axFpInitJson.InfoCashier = '';
+                                axFpInitJson.InfoListName = '';
+                                axFpInitJson.InfoBillNumber = '';
+                                var axFpInvoiceItemJson = [];
+                                $.each(detailList, function () {
+                                    if (parseFloat(this.dj) == 0 || parseFloat(this.sl) == 0) {
+                                        return; //bỏ qua số tiền0của
+                                    }
+                                    if (!isNaN(this.sl) && parseInt(this.sl) > 0) {
+                                        axFpInvoiceItemJson.push({
+                                            ListGoodsName: this.mc,
+                                            ListTaxItem: "4001",
+                                            ListStandard: "",
+                                            ListUnit: this.dw,
+                                            ListNumber: this.sl,
+                                            ListPrice: parseFloat(this.dj).toFixed(2),
+                                            ListAmount: parseFloat(this.jsmxje).toFixed(2),
+                                            ListPriceKind: 0,
+                                            ListTaxAmount: 0,
+                                        });
+                                    }
+                                });
+                                //activeX BHYTin giao dịch
+                                //activeX in tự chi trả
+                                axPrintInvoice(newJszbInfo.jsnm, axFpInitJson, axFpInvoiceItemJson);
+                            }
+                        }
+                    });
+                }
+                //else phảinàyđã ở bên ngoàixử lý inRSbáo cáo
+            }
+            //elsekhông cầncầnin hóa đơn mới
+        }
+
+        //AXin hóa đơn
+        function axPrintInvoice(jsnm, axFpInitJson, axFpInvoiceItemJson) {
+            var printInvoiceReturn = $.printAX.PrintInvoice(JSON.stringify(axFpInitJson), JSON.stringify(axFpInvoiceItemJson));
+            if (printInvoiceReturn && printInvoiceReturn.Code == 0) {
+                //in hóa đơn，trả vềđã thành công
+                var axFpInfo = printInvoiceReturn.Data;
+                if (axFpInfo.InfoNumber) {
+                    //cập nhậtquyết toánbảng chínhcủafphtrường
+                    $.najax({
+                        type: "POST",
+                        data: {
+                            jsnm: jsnm,
+                            fph: axFpInfo.InfoNumber
+                        },
+                        url: "/OutpatientManage/OutpatCharge/UpdateSettedFph",
+                        dataType: "json",
+                        loading: false,
+                        success: function (ajaxresp) {
+
+                        }
+                    });
+                }
+            }
+            else {
+                $.modalAlert(printInvoiceReturn.ErrorMsg, 'error');
+                return;
+            }
+        }
+    </script>
+}

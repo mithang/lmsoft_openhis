@@ -1,0 +1,225 @@
+
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Lấy và nghiệm thu đơn giao hàng";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+
+<script src="~/Content/js/index.js"></script>
+
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:10px;">
+        <div class="panel-heading">Thông tin phân phối</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle "><span class="required">*</span>Chọn doanh nghiệp dược：</th>
+                <td class="formValue">
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn công ty dược" autocomplete="off" style="width:60%" />
+                    <input type="hidden" id="yqbm" />
+                </td>
+
+                <th class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Lấy chi tiết" />
+                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="Nghiệm thu chi tiết" />
+                </th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+        InitFloat();
+
+        //gridList();
+    });
+
+
+    //初始化浮层
+    function InitFloat() {
+        //药企
+        $("#yq").newtouchBatchFloatingSelector({
+            clickautotrigger: true,
+            height: 200,
+            width: 400,
+            url: "/Medicine/MedicineSupplierList",
+            ajaxmethod: 'Get',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $.trim($("#yq").val());
+                return reqData;
+            },
+            colModel: [
+                { label: 'Mã công ty dược', name: 'gysCode', widthratio: 30 },
+                { label: 'Công ty dược', name: 'gysmc', widthratio: 70 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#yqbm").val($thistr.attr('data-gysCode'));
+                $("#yq").val($thistr.attr('data-gysmc'));
+                return;
+            }
+        });
+    }
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/OutOrInStoredManage/Purchase/GetDeliveryGridJson",
+            height: $(window).height() - 200,
+            postData: { qybm: $("#yqbm").val(), psmxbh: '' },
+            colModel: [
+                { label: 'Số đơn phân phối', name: 'PSDH', width: 80, align: 'left' },
+                { label: 'Mã công ty dược', name: 'YQBM', width: 80, align: 'left' },
+                { label: 'Mã điểm phân phối', name: 'PSDBM', width: 80, align: 'left' },
+                { label: 'Ngày tạo đơn phân phối', name: 'CJRQ', width: 100, align: 'left' },
+                { label: 'Số chi tiết phân phối', name: 'PSMXBH', width: 140, align: 'left' },
+                { label: 'Mã vạch đơn phân phối', name: 'PSDTM', width: 100, align: 'left' },
+                {
+                    label: 'Loại đóng thùng', name: 'ZXLX', width: 100, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Phân phối ghép thùng hàng hóa nhiều quy cách';
+                        else if (cellvalue == 2) return 'Nguyên thùng là hàng hóa cùng quy cách';
+                        else if (cellvalue == 3) return 'Hàng hóa cùng quy cách trong cùng một lần phân phối được phân bố trong nhiều thùng';
+                    }
+                },
+                {
+                    label: 'Loại mua hàng', name: 'CGLX', width: 80, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Đấu thầu phạm vi BHYT';
+                        else if (cellvalue == 2) return 'Phạm vi BHYT chưa đấu thầu';
+                        else if (cellvalue == 3) return 'Đấu thầu phạm vi BHYT không trúng thầu';
+                        else if (cellvalue == 4) return 'Lên mạng phạm vi BHYT';
+                        else if (cellvalue == 5) return 'Lên mạng phạm vi tự trả';
+                        else if (cellvalue == 6) return 'Mua tập trung gắn giá - lượng cấp thành phố';
+                        else if (cellvalue == 9) return 'Khác';
+                    }
+                },
+                {
+                    label: 'Loại hàng hóa', name: 'SPLX', width: 60, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Loại thuốc';
+                        else if (cellvalue == 2) return 'Loại vật tư y tế';
+                        else if (cellvalue == 3) return 'Loại thiết bị y tế';
+                        else if (cellvalue == 9) return 'Khác';
+                    }
+                },
+                {
+                    label: 'Loại thuốc', name: 'YPLX', width: 100, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Chế phẩm sinh học';
+                        else if (cellvalue == 2) return 'Thuốc thành phẩm Đông y';
+                        else if (cellvalue == 3) return 'Thuốc thang Đông y';
+                        else if (cellvalue == 4) return 'Chế phẩm tự chế';
+                        else if (cellvalue == 5) return 'Vắc-xin dùng cho miễn dịch';
+                        else if (cellvalue == 6) return 'Thuốc hoặc thuốc thử dùng cho xét nghiệm phòng lab';
+                        else if (cellvalue == 7) return 'Thuốc hoặc thuốc thử dùng cho kiểm tra y học';
+                        else if (cellvalue == 8) return 'Thuốc hóa dược';
+                        else if (cellvalue == 9) return 'Khác';
+                    }
+                },
+                { label: 'Mã thống nhất hàng hóa', name: 'ZXSPBM', width: 190, align: 'left' },
+                { label: 'Tên sản phẩm', name: 'CPM', width: 120, align: 'left' },
+                { label: 'Dạng bào chế thuốc', name: 'YPJX', width: 80, align: 'left' },
+                { label: 'Quy cách', name: 'GG', width: 80, align: 'left' },
+                {
+                    label: 'Chất liệu bao bì', name: 'BZDWXZ', width: 100, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Đơn vị bán lẻ nhỏ nhất của hàng hóa';
+                        else if (cellvalue == 2) return 'Đóng gói lớn, đóng gói đơn giản';
+                    }
+                },
+                { label: 'Tên đơn vị đóng gói', name: 'BZDWMC', width: 80, align: 'left' },
+                { label: 'Tên đơn vị dùng thuốc', name: 'YYDWMC', width: 80, align: 'left' },
+                { label: 'Số lượng chứa trong bao bì', name: 'BZNHSL', width: 80, align: 'left' },
+                { label: 'Tên doanh nghiệp sản xuất', name: 'SCQYMC', width: 150, align: 'left' },
+                { label: 'Số lô sản xuất', name: 'SCPH', width: 80, align: 'left' },
+                { label: 'Ngày sản xuất', name: 'SCRQ', width: 80, align: 'left' },
+                { label: 'Ngày hiệu lực', name: 'YXRQ', width: 80, align: 'left' },
+                { label: 'Số kế hoạch', name: 'JHDH', width: 80, align: 'left' },
+                { label: 'Số đơn hàng bán', name: 'XSDDH', width: 90, align: 'left' },
+                { label: 'Số chi tiết đơn hàng liên quan', name: 'DDMXBH', width: 160, align: 'left' },
+                { label: 'Số thứ tự', name: 'SXH', width: 80, align: 'left' },
+                { label: 'Số lượng phân phối', name: 'PSL', width: 80, align: 'left' },
+            ],
+
+            multiselect: false,
+
+            pager: "#gridPager",
+            sortname: 'PSDH',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                //btn_selectrow(rowid);
+            },
+            gridComplete: function () {
+                var ids = $("#gridList").getDataIDs();
+                var num = ids.length - 1;
+                for (i = 0; i <= num; i++) {
+                    //var lastRowoid = ids[ids.length - 1];
+                    var lastRowoid = ids[i];
+                    EnableInlineEditBox(lastRowoid);
+                }
+            }
+        });
+        $("#btn_search").click(function () {
+            $('#gridList').jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
+                postData: { qybm: $("#yq").val(), psmxbhcxtj: '' },
+            }).trigger('reloadGrid');
+        });
+    }
+
+
+    //启用行内编辑
+    function EnableInlineEditBox(rowid) {
+        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ sửa
+        $("#jqg_gridList_" + rowid).trigger("click");
+    }
+
+    //初始化 浮层
+    function initInlineFunc(rowid) {
+        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">Nghiệm thu trước</option><option value="2">Nghiệm thu phòng lab</option>');//验收类型
+    }
+
+    //获取明细
+    $('#btn_search').click(function () {
+        if ($("#yq").val() == "" || $("#yq").val() == null) {
+            $.modalAlert("Vui lòng chọn nhà cung cấp", 'warning');
+            return;
+        }
+        gridList();
+    });
+
+    //Nghiệm thu chi tiết
+    $('#btn_accept').click(function () {
+        var rowData = $("#gridList").jqGridRowValue();
+        if (rowData == null) {
+            $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
+            return;
+        }
+        var postData = {
+            YQBM: rowData.YQBM,
+            PSMXBH: rowData.PSMXBH,
+            PSDTM: rowData.PSDTM,
+            ZXSPBM: rowData.ZXSPBM,
+            PSL: rowData.PSL,
+            SCPH: rowData.SCPH,
+            YSJG: "1",  //0 验收不通过 1 验收通过
+            YSJGBZ: rowData.YSJGBZ,
+        }
+
+        $.submitForm({
+            url: "/OutOrInStoredManage/Purchase/DeliveryAccept",
+            param: postData,
+            success: function () {
+                $.modalMsg('Nghiệm thu thành công', 'success');
+                $.modalClose();
+            }
+        });
+    });
+
+
+</script>
+
+

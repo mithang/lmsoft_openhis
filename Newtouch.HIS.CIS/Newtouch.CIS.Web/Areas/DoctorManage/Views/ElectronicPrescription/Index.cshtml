@@ -1,0 +1,313 @@
+
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Điện tửĐơn thuốcQuản lý";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+
+<!DOCTYPE html>
+<style>
+    .showbotton {
+        display: none;
+        position: fixed;
+        bottom: 5px;
+        right: 0;
+        z-index: 9999;
+        background-color: #ccc;
+        width: 50px;
+        height: 44px;
+        filter: alpha(Opacity=90);
+        -moz-opacity: 0.9;
+        opacity: 0.9;
+        cursor: pointer;
+        border-radius: 100px 0 0 100px;
+    }
+
+    #TabGrid {
+        width: 100%;
+        position: fixed;
+        bottom: 10px;
+        right: 0;
+        z-index: 8888;
+        background-color: #253443;
+        filter: alpha(Opacity=92);
+        -moz-opacity: 0.92;
+        opacity: 0.92;
+        box-shadow: 0px 2px 10px #909090;
+    }
+
+        #TabGrid > * {
+            filter: alpha(Opacity=92);
+            -moz-opacity: 0.92;
+            opacity: 0.92;
+        }
+
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <form>
+        <div class="panel panel-default">
+            <table class="form">
+                <tr>
+
+                    <th class="formTitle">Thời gian đơn hàng:</th>
+                    <td class="formValue" colspan="3">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <span style="margin-left:1%;float:left">—</span>
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">Từ khóa:</th>
+                    <td class="formValue" colspan="3">
+                        <input id="xm" type="text" class="form-control" placeholder="Số khám ngoại trú/Họ tên" style="width:20%; float:left;" />
+                    </td>
+                    <td class="formValue title">
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+        <div class="gridPanel">
+            <table id="gridList"></table>
+            <div id="gridPager"></div>
+        </div>
+        @*<div id="TabGrid">
+            <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
+                <li role="presentation" class="active">
+                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                </li>
+                <li style="float:right">
+                    <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
+                </li>
+            </ul>
+            <div id="dv_djmx" style="">
+                <table id="gridDJMXInfo"></table>
+            </div>
+        </div>
+        <div class="showbotton">
+            <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
+        </div>*@
+        <div class="panel panel-default">
+            <input type="button" id="btn_back" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Đơn thuốcHủy bỏ" />
+            <input type="button" id="btn_search_cf" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Đơn thuốcTra cứu" />
+            <input type="button" id="btn_search_exam" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="DuyệtTra cứu" />
+            <input type="button" id="btn_search_medicine" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Lấy thuốcTra cứu" />
+
+        </div>
+    </form>
+</body>
+</html>
+
+
+<script>
+
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
+    $(function () {
+        initControl();
+        gridList();
+    })
+
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/DoctorManage/ElectronicPrescription/GetGridJson",
+            height: $(window).height() - 200,
+            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), xm: $("#xm").val() },
+            colModel: [
+
+                { label: 'cfId', name: 'cfId', hidden: true ,key:true},
+                { label: 'Số đơn thuốc', name: 'cfh', width: 120, align: 'left' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 120, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
+                {
+                    label: 'Loại giấy tờ', name: 'zjlx', width: 120, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'CMND/CCCD cư dân (sổ hộ khẩu)';
+                        if (cellvalue == 2) return 'Giấy chứng nhận sĩ quan Quân Giải phóng Nhân dân Trung Quốc';
+                        if (cellvalue == 3) return 'Giấy chứng nhận cảnh sát vũ trang nhân dân Trung Quốc';
+                        if (cellvalue == 4) return 'Hộ chiếu Đặc khu Hồng Kông/Giấy thông hành cư dân Hồng Kông-Ma Cao đi lại nội địa';
+                        if (cellvalue == 5) return 'Hộ chiếu Đặc khu Ma Cao/Giấy thông hành cư dân Hồng Kông-Ma Cao đi lại nội địa';
+                        if (cellvalue == 6) return 'Giấy thông hành cư dân Đài Loan đi lại đại lục';
+                        if (cellvalue == 7) return 'Giấy phép cư trú vĩnh viễn cho người nước ngoài';
+                        if (cellvalue == 8) return 'Hộ chiếu người nước ngoài';
+                        if (cellvalue == 9) return 'Giấy chứng nhận người khuyết tật';
+                        if (cellvalue == 10) return 'Giấy chứng nhận thân nhân liệt sĩ quân đội';
+                        if (cellvalue == 11) return 'Giấy phép làm việc cho người nước ngoài';
+                        if (cellvalue == 12) return 'Giấy chứng nhận chuyên gia nước ngoài';
+                        if (cellvalue == 13) return 'Thẻ nhà báo thường trú cho người nước ngoài';
+                        if (cellvalue == 14) return 'Giấy phép làm việc cho nhân viên Đài Loan-Hồng Kông-Ma Cao';
+                        if (cellvalue == 15) return 'Giấy chứng nhận chuyên gia định cư về nước (đến Trung Quốc)';
+                        if (cellvalue == 16) return 'Hộ chiếu Trung Quốc';
+                        if (cellvalue == 17) return 'Giấy phép cư trú cho cư dân Hồng Kông-Ma Cao-Đài Loan';
+                        if (cellvalue == 90) return 'Thẻ bảo hiểm xã hội';
+                        if (cellvalue == 99) return 'Giấy tờ khác';
+                        if (cellvalue == 990201) return 'Giấy chứng sinh y học';
+                        if (cellvalue == 990102) return 'Mã hộ nghèo';
+                        else return '';
+                    }
+                },
+                { label: 'Số giấy tờ', name: 'zjh', width: 120, align: 'left' },
+                {
+                    label: 'DuyệtTrạng thái', name: 'shzt', width: 80, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == '无效') return 'Chưa duyệt';
+                        else if (cellvalue == 'Hiệu lực') return 'Đã duyệt';
+                        else return cellvalue;
+                    }
+                },
+                { label: 'Dược sĩDuyệtÝ kiến', name: 'ysshyj', width: 80, align: 'left' },
+                { label: 'Lấy thuốcTrạng thái', name: 'qyzt', width: 80, align: 'left' },
+                { label: 'Đơn thuốcTrạng thái', name: 'cfzt', width: 80, align: 'left' },
+                { label: 'Đăng ký khámKhoa', name: 'ghks', width: 120, align: 'left' },
+                { label: 'Lập phiếuKhoa', name: 'kdks', width: 120, align: 'left' },
+                { label: 'Đăng ký khámNgày', name: 'ghsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Đơn thuốcKêNgày', name: 'cfklrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            ],
+
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'cfh',
+            viewrecords: true,
+            //ondblClickRow: function (rowid, iRow, iCol, e) {
+            //    btn_selectrow(rowid);
+            //}
+            loadComplete: function () {
+                var ids = $("#gridList").jqGrid('getRowData_AllLine');
+                for (var i = 0; i < ids.length; i++) {
+                    //var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
+                    if (!(ids[i].ysshyj == null || ids[i].ysshyj == "" || ids[i].ysshyj == undefined)) {
+                        $('#gridList tr[id="' + ids[i].cfId + '"]').css("color", "red")
+                    }
+                }
+            }
+        });
+        $("#btn_search").click(function () {
+            //$('#gridDJMXInfo').jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
+                postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), xm:  $("#xm").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+    
+
+    function initControl() {
+
+    }
+
+    //撤销
+    $('#btn_back').click(function () {
+        var rowData = $("#gridList").jqGridRowValue();
+        if (rowData == null) {
+            $.modalAlert("Vui lòng chọn đơn thuốc cần hủy bỏ", 'warning');
+            return;
+        }
+        if (rowData.shzt != "Hiệu lực" && rowData.shzt != "已审核" ) {
+            $.modalAlert("Vui lòng chọn đơn thuốc điện tử đã tải lên", 'warning');
+            return;
+        }
+        if (rowData.qyzt != "未Sử dụng" ) {
+            $.modalAlert("Vui lòng chọn đơn thuốc điện tử chưa lấy thuốc", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "backForm",
+            title: "Điện tửĐơn thuốcHủy bỏ",
+            url: "/DoctorManage/ElectronicPrescription/backForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh+"&cxys="+ '@(opr.rygh)',
+            width: "20%",
+            height: "20%",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm(function (data) {
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+            //callBack: function (iframeId) {
+            //    $.currentWindow(iframeId).SubmitForm(function () {
+            //        $.modalClose("backForm");
+            //        $("#gridList").resetSelection();
+            //        $("#gridList").trigger("reloadGrid");
+            //    });
+            //}
+        });
+    });
+
+    //处方查询
+    $('#btn_search_cf').click(function () {
+
+        var rowData = $("#gridList").jqGridRowValue();
+        if (rowData == null) {
+            $.modalAlert("Vui lòng chọn đơn thuốc cần tra cứu", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "cfForm",
+            title: "Điện tửĐơn thuốcTra cứu",
+            url: "/DoctorManage/ElectronicPrescription/cfForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
+            width: "90%",
+            height: "90%",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+        });
+    });
+
+    //审核查询
+    $('#btn_search_exam').click(function () {
+        var rowData = $("#gridList").jqGridRowValue();
+        if (rowData.length=="0") {
+            $.modalAlert("Vui lòng chọn đơn thuốc cần tra cứu", 'warning');
+            return;
+        }
+        if (rowData.shzt == "已撤回" ) {
+            $.modalAlert("Đơn thuốc đã thu hồi không thể tra cứu", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "examForm",
+            title: "Điện tửĐơn thuốcDuyệtKết quả",
+            url: "/DoctorManage/ElectronicPrescription/examForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
+            width: "35%",
+            height: "32%",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+        });
+    });
+
+    //取药查询
+    $('#btn_search_medicine').click(function () {
+        var rowData = $("#gridList").jqGridRowValue();
+        if (rowData.length=="0") {
+            $.modalAlert("Vui lòng chọn đơn thuốc cần tra cứu", 'warning');
+            return;
+        }
+        if (rowData.shzt == "已撤回") {
+            $.modalAlert("Đơn thuốc đã thu hồi không thể tra cứu", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "medicineForm",
+            title: "Điện tửĐơn thuốcLấy thuốcKết quả",
+            url: "/DoctorManage/ElectronicPrescription/medicineForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
+            width: "60%",
+            height: "45%",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+        });
+    });
+
+    
+    
+</script>

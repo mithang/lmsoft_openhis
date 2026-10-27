@@ -1,0 +1,86 @@
+
+@{
+
+    Layout = null;
+}
+
+
+
+<div style="padding-left:10px;">
+    <table id="gridzdList"></table>
+    <div id="gridzdPager"></div>
+</div>
+
+
+
+
+<script>
+    $(function () {
+
+        ZdListGrid();
+
+    })
+
+    function ZdListGrid() {
+        var $gridList = $("#gridzdList");
+        $gridList.dataGrid({
+            postData: {
+
+                //zyh: $("#zyh").text(),
+                //zyh: $("#zyh").val(),
+                zyh: "00027",
+            },
+            url: "/PatientManage/PatientCenter/GetZdGridList",
+            autowidth: true,
+            height: $(window).height() - 120,
+            colModel: [
+                { label: "Id", name: "Id", hidden: true },
+                //{
+                //    label: "操作", name: "编辑", width: 60, align: 'center', formatter: function (row, option, data) {
+                //        debugger
+                //        return '<input type="button" onclick="btn_edit(' + option.rowid + ')" />';
+                //    }
+                //},
+                //{ label: "病案号", name: "BAH", width: 60, align: 'center', editor: "text" },
+                { label: "Số nhập viện", name: "ZYH", width: 60, align: 'center', editor: "text" },
+                { label: "Chẩn đoán xuất viện", name: "JBMC", width: 180, align: 'center', editor: "text" },
+                { label: "Bệnh Mã", name: "JBDM", width: 100, align: 'center', editor: "text" },
+                { label: "RYBQ", name: "RYBQ", hidden: true },
+                { label: "Tình trạng bệnh khi nhập viện", name: "RYBQMS", width: 80, align: 'center', editor: "text" },
+                { label: "CYQK", name: "CYQK", hidden: true },
+                { label: "xuất viện trường hợp", name: "CYQKMS", width: 60, align: 'center', editor: "text" },
+                { label: "ZDOrder", name: "ZDOrder", hidden: true },
+                {
+                    label: "Loại chẩn đoán", name: "Zdlx", width: 80, align: 'left', editor: "text", formatter: function (row, option, data) {
+                        if (data.ZDOrder == 1) {
+                            return "Chẩn đoán chính";
+                        }
+                        else
+                            return "Khác Chẩn đoán";
+                    }
+                },
+                { label: "zt", name: "zt", hidden: true },
+                {
+                    label: "Trạng thái", name: "ztsm", width: 80, align: 'center', editor: "text", formatter: function (row, option, data) {
+                        if (data.zt == "0") {
+                            return "Hủy bỏ";
+                        }
+                        else {
+                            return "Bình thường";
+                        }
+                    }
+                }
+            ],
+            sortname: "ZDOrder asc",
+            rowNum: 15,
+            pager: "#gridzdPager",
+            viewrecords: false
+
+        });
+        jQuery("#gridzdList").jqGrid('sortableRows');
+
+    }
+
+
+</script>
+

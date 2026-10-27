@@ -1,0 +1,634 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "tạm ứng Quản lý";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    //预交金充值收据报表链接
+    //var yjjReportUrl = SysConfigReader.OrgReportLink("yjjsjxdy");
+    var reportUrl = "";
+    var curOpr = OperatorProvider.GetCurrent();
+
+    //预交金退款是否使用凭证号
+    var openRefundpzh = SysConfigReader.Bool("Account_Refund_pzh");
+}
+<form id="form1">
+    <div class="rows" style="margin-bottom: 1%;" id="basicInfo">
+        <div class="panel panel-default" style="margin-bottom:0;">
+            <div class="panel-heading navb-bg">
+                Thông tin cơ bản của bệnh nhân
+            </div>
+            <table class="form" style="margin-left: 10px;">
+                <tr>
+                    <th class="formTitle"><span style="color:red">*</span><label id="lbl_kh">Số nhập viện/Họ tên：</label> </th>
+                    <td class="formValue" colspan="2">
+                        <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Ít nhất1ký tự" />
+                    </td>
+                    <td class="formTitle">
+                        Họ tên：
+                    </td>
+                    <td class="formValue">
+                        <label id="xm"></label>
+                    </td>
+                    <td class="formTitle">Giới tính：</td>
+                    <td class="formValue">
+                        <label id="xb"></label>
+                    </td>
+                    <td class="formTitle">Tuổi：</td>
+                    <td class="formValue">
+                        <label id="nlshow"></label>
+                    </td>
+                    <td class="formTitle">
+                        <label id="zjlx">Số CMND/CCCD：</label>
+                        <input hidden="hidden" id="hiddenzjlx" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <label id="zjh"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Điện thoại di động：</td>
+                    <td class="formValue"><label id="phone"></label></td>
+                    <td class="formTitle">Mức cảnh báo(￥)</td>
+                    <td class="formValue"><label id="bje"></label></td>
+                    <td class="formTitle"></td>
+                    <td class="formValue">
+                        <input type="hidden" id="brxzmc" />
+                        <input type="text" hidden value="" id="patid" name="patid" />
+                        <input type="text" hidden value="" id="zyh" name="zyh" />
+                        <input type="text" hidden value="" id="zhCode" name="zhCode" />
+                        <input type="text" hidden value="" id="zhxz" name="zhxz" />
+                        <input type="text" hidden id="zhye" name="zhye" value="">
+                    </td>
+                    <td class="formTitle"></td>
+                    <td class="formValue"></td>
+                    <td class="formValue"><input type="hidden" id="patid" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<!--收支清单-->
+<form id="formPat2">
+    <div class="gridPanel" style="margin-top:10px;border-radius:5px;">
+        <table id="gridList" rel="formPat2"></table>
+    </div>
+</form>
+<!--预交款充值退费-->
+<div class="panel panel-default" style="margin-top:10px;">
+    <div class="panel-heading navb-bg">
+        Tiền tạm ứng
+    </div>
+    <div style="padding: 2px;padding-right:20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Phương thức thanh toán：</th>
+                <td class="formValue">
+                    <select id="ddlzffs" name="zffs" class="form-control required"></select>
+                </td>
+                <th class="formTitle"><span class="required">*</span>Số tiền：</th>
+                <td class="formValue">
+                    <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="Vui lòng nhập số tiền" />
+                </td>
+                <th class="formTitle">Số chứng từ：</th>
+                <td class="formValue">
+                    <input type="text" id="txtlpzh" class="form-control newtouch_Readonly" style="width: 49.5%;display: inline;" value="" />
+                    <a id="receipt" class="btn btn-primary" onclick=""><i class="fa"></i>Số chứng từ</a>
+                </td>
+                <th class="formTitle">Ghi chú：</th>
+                <td class="formValue"><input type="text" id="memo" class="form-control" value="" /></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="ReceiptPanel"></table>
+</div>
+<!--按钮工具条-->
+<div class="toolbar toolbarfloat">
+    <a id="acc_addMoney" class="btn btn-primary" onclick="sjPrint()"><i class="fa fa-plus"></i> In bổ sung</a>
+    <a id="acc_addMoney" class="btn btn-primary" onclick="PayDeposit()"><i class="fa fa-plus"></i> nạp tiền</a>
+    <a id="acc_reMoney" class="btn btn-primary" onclick="Refund()"><i class="fa fa-minus"></i> Rút tiền</a>
+    <a id="acc_reMoney" class="btn btn-primary" onclick="RefundOverAccount()"><i class="fa fa-minus"></i> Hoàn toàn bộ số dư</a>
+    <a class="btn btn-primary" onclick="RefreshAccount()"><span class="glyphicon glyphicon-refresh"> Làm mới Tài khoản</span></a>
+</div>
+<style>
+    #yeCon {
+        padding-left: 25px;
+        color: red;
+    }
+</style>
+
+<script>
+    var reqzhxz = $.request("zhxz");
+    var patid = "";
+    var zyh = "";
+    $(function () {
+        if (!reqzhxz) {
+            reqzhxz = "";
+        }
+        else if (reqzhxz == "zy") {
+            reqzhxz = '@((int)EnumXTZHXZ.ZYYJKZH)';
+            $("#zhxz").val(reqzhxz);
+
+
+        }
+        else if (reqzhxz == "mz") {
+            reqzhxz = '@((int)EnumXTZHXZ.MZYJKZH)';
+            $("#zhxz").val(reqzhxz);
+
+        }
+        $("#receipt").click(function () {
+            showReceiptPanel(); //弹出凭证号窗口
+        });
+
+        //治疗项目选择浮层绑定
+        $('#keyword').newtouchBatchFloatingSelector({
+            width: 500,
+            height: 200,
+            caption: "Chọn bệnh nhân",
+            clickautotrigger: true,
+            url: "/PatientManage/HospiterRes/PatYjjSearchInfo",
+            ajaxparameters: function ($thisinput) {
+                var keyword = $thisinput.val().trim();
+                return "keyword=" + keyword+"&type="+$.request("zhxz");
+            },
+            itemdbclickhandler: function ($thistr, $thisinput) {
+                patid = $thistr.attr("data-patid");
+                zyh = $thistr.attr("data-zyh");
+                $("#zyh").val(zyh);
+                GetQuerypatientInfoAjax(patid,zyh);
+            },
+            colModel: [
+                { label: 'Khóa chính', name: 'patid', hidden: true },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left', hidden: true },
+                { label: 'Số nhập viện', name: 'zyh', width: 90, align: 'center' },
+                { label: 'Đang nằm viện dấu hiệu', name: 'zybz', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 120, align: 'center' },
+                { label: 'Năm sinh', name: 'csny', hidden: true, width: 100, align: 'center' },
+                {
+                    label: 'Giới tính', name: 'xb', width: 70, align: 'center', formatter: function (cellvalue) {
+                        return $.getGender(cellvalue);
+                    }
+                },
+                { label: 'Tuổi', name: 'nl', align: 'center', width: 80 },
+                //{ label: '年龄', name: 'nlshow', width: 80, align: 'left', formatter: function (cellvalue, a, b) {
+                //        return getAgeFromBirthTime({ begin: b.csny }).text;
+                //    }
+                //},
+                { label: 'brly', name: 'brly', align: 'left', hidden: true },
+                { label: 'zjh', name: 'zjh', align: 'left', hidden: true },
+                { label: 'brxz', name: 'brxz', align: 'left', hidden: true },
+                { label: 'kh', name: 'kh', align: 'left', hidden: true },
+                { label: 'phone', name: 'phone', align: 'left', hidden: true },
+                { label: 'dy', name: 'dy', align: 'left', hidden: true },
+                { label: 'zjlx', name: 'zjlx', align: 'left', hidden: true },
+                { label: 'sycs', name: 'sycs', align: 'left', hidden: true },
+                { label: 'dybh', name: 'dybh', align: 'left', hidden: true },
+                { label: 'lxr', name: 'lxr', align: 'left', hidden: true },
+                { label: 'lxrgx', name: 'lxrgx', align: 'left', hidden: true },
+                { label: 'lxrdh', name: 'lxrdh', align: 'left', hidden: true },
+
+            ]
+        });
+        gridListData([]);
+        $(window).resize(function () {
+            initLayout("formPat2");
+        });
+
+        $("#ddlzffs").newtouchBindSelect({
+            id: "xjzffs",
+            text: "xjzffsmc",
+            datasource: function () {
+                //遍历数据源
+                var resultObjArr = new Array();
+                $.each(top.clients.SysForCashPayList, function (idx, val) {
+                    if (val.zhxz == 'a') {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+            }
+        });
+
+        GetSJPZH();
+
+    });
+
+
+    function GetQuerypatientInfoAjax(patid,zyh) {
+        $.najax({
+            type: "POST",
+            url: "@Url.Action("PatAccountInfo")",
+            data: { zyh: zyh, zhxz: $("#zhxz").val() },
+            dataType: "json",
+            cache: false,
+            alertbierror: false,
+            success: function (ajaxresp) {
+                $('#gridList').jqGrid("clearGridData");
+                $("#yeCon").text("Số dư tài khoản：0.00đồng");
+                $("#txtmoney").val("");
+                $.loading(false);
+                var accPayInfoList = ajaxresp.data.accPayInfoList;
+                var patInfo = ajaxresp.data.patInfo;
+                if (patInfo != "[]") {
+                    setPatInfoModel(ajaxresp.data.patInfo);
+                }
+                if (accPayInfoList.length > 0) {
+                    gridListData(ajaxresp.data.accPayInfoList);
+                }                                                                                                                                                                                                    
+            },
+            errorCallback: function (rtnval) {
+                if (rtnval.message == "缺少账户") {
+                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản，Có hay không Tạo mới", function (f) {
+                        if (f) {
+                            $.najax({
+                                type: "POST",
+                                url: "/SystemManage/InpatientAccountManage/AddReserveAccount",
+                                data: { patid:patid,zyh: zyh, zhxz: $("#zhxz").val() },
+                                dataType: "json",
+                                cache: false,
+                                alertbierror: false,
+                                success: function (res) {
+                                    GetQuerypatientInfoAjax(patid,zyh);
+                                    $('#gridList').jqGrid("clearGridData");
+                                    $("#yeCon").text("Số dư tài khoản：0.00đồng");
+                                    $("#txtmoney").val("");
+                                    //ClearMoney();
+                                    //$('#yeCon').val("0.00");
+                                }
+                            });
+                        }
+                    })
+                } else {
+                    $.modalAlert(rtnval.message,"warning");
+                }
+            }
+        });
+    }
+
+    //弹出获取凭证号的窗口
+    function showReceiptPanel() {
+        var cardNo = $("#keyword").val();
+        if (cardNo) {
+            $.modalOpen({
+                id: "ReceiptPanel",
+                title: "Chọn Số chứng từ",
+                url: "/PatientManage/AccountManage/ChooseReceipt?t=" + Math.random(),
+                width: "300px",
+                height: "200px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].ReceiptConfirm();
+                }//窗口点确定的回调函数
+            });
+        } else {
+            $.modalAlert("Vui lòng chọn bệnh nhân", 'warning');
+            $("#keyword").focus();
+        }
+    }
+
+    //获取病人基本信息界面显示
+    function setPatInfoModel(patModel) {
+        $("#xb").html($.getGender(patModel.xb));
+        $("#csny").html((patModel.csny && patModel.csny.length >= 10 ? patModel.csny.substring(0, 10) : ""));
+        $("#zjh").html(patModel.zjh);
+        $("#xm").html(patModel.xm);
+        $("#nlshow").html( patModel.nl);
+        $("#blh").val(patModel.blh);
+        $("#patid").val(patModel.patid);
+        $("#phone").html(patModel.phone);
+        $("#bje").html(patModel.bje);
+        $("#hiddenzjlx").val(patModel.zjlx);
+        $("#brxzmc").val(patModel.brxz);
+        $("#zhCode").val(patModel.zhCode);
+        $("#zhxz").val(patModel.zhxz);
+        $("#keyword").val(patModel.zyh);
+    }
+
+    //账户收支列表
+    function gridListData(mydata) {
+        $('#gridList').jqGrid("clearGridData");
+        var $gridList = $("#gridList");
+        var zhye = "0.00";
+        if (mydata != [] && mydata.length > 0) {
+            zhye = mydata[0].zhye.toFixed(2);
+        }
+        $("#zhye").val(zhye); //value赋值
+        var captionCon = "Bảng thu chi tài khoản";
+        captionCon += '<label style="height: 7px; width: 36px; background-color:#DDDDFF; border: 1px solid #ddd;margin-left: 40px;"></label> nạp tiền ' ;
+        captionCon += '<label style="height: 7px; width: 36px; background-color:#ACD6FF; border: 1px solid #ddd;margin-left: 40px;"></label> Rút tiền ';
+        captionCon += "<span id='ye Con'>Số dư tài khoản：" + zhye + "đồng</span>";
+        $gridList.dataNewGrid({
+            height: $(window).height() - 330,
+            autowidth: false,
+            width: $("#formPat2").width() - 10,
+            caption: captionCon,
+            colModel: [
+                { label: 'Số tiền thu chi', name: 'szje', width: 105, formatter: "number",align: 'center' },
+                { label: 'Số tiền tài khoản', name: 'zhye', width: 105, formatter: "number", align: 'center' },
+                { label: 'Số chứng từ', name: 'pzh', width: 105, align: 'center' },
+                { label: 'Nhân viên thu chi', name: 'Creator', width: 105, align: 'center' },
+                { label: 'Phương thức thanh toán/hoàn tiền', name: 'xjzffsmc', width: 105, align: 'center' },
+                { label: 'Ngày thu chi', name: 'CreateTime', width: 125, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ghi chú', name: 'memo', width: 105, align: 'center' },
+                {
+                    label: 'Tính chất thu chi', name: 'szxz', width: 105, align: 'center',
+                    formatter: function (val) {
+                        return $.enum.getDescByValue("EnumSZXZ", val)
+                    }
+                }, { label: 'Id', name: 'Id', hidden: true },
+            ], gridComplete: function () {
+                var ids = $gridList.getDataIDs();
+                for (i = 0; i < ids.length; i++) {
+                    var rowData = $gridList.getRowData(ids[i]);
+                    if (rowData && rowData.szxz == "充值" || rowData.szxz == "住院结算退回") {
+                        $gridList.find('tr[id="' + ids[i] + '"]').css("background-color", "#DDDDFF");
+                    } else if (rowData && (rowData.szxz == "取款" || rowData.szxz == "住院结算" || rowData.szxz == "退余额" )) {
+                        $gridList.find('tr[id="' + ids[i] + '"]').css("background-color", "#ACD6FF");
+                    }
+                }
+            },
+            onSelectRow: function (rowid, status) {
+                btn_edit();
+            }
+        }, mydata);
+
+        if (mydata.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+        }
+        $("#yeCon").text("Số dư tài khoản：" + zhye + "đồng");
+    }
+
+    var patid,
+        zh,
+        zhxz,
+        zffsbh,
+        zffsmc,
+        zfmoney,
+        pzh;
+    //充值和退款判断
+    function CheckDeposit() {
+        patid = $("#patid").val();
+        zyh = $("#zyh").val();
+        zh = $('#zhCode').val();
+        zhxz = $('#zhxz').val();
+        if (!!!patid || !!!zyh) {
+            $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+            return false;
+        }
+        var reg = /^(-?\d+)(\.\d+)?$/;
+        zfmoney = $("#txtmoney").val();
+        var ddlzffs = $("#ddlzffs option:selected");//获取选中的项
+        zffsbh = ddlzffs.val();//拿到选中项的值
+        zffsmc = ddlzffs.text();//拿到选中项的文本
+        pzh = $("#txtlpzh").val();
+        if (zffsbh == -1 || zffsmc == "") {
+            $.modalAlert("Thiếu phương thức thanh toán", 'warning');
+            return false;
+        }
+        if (zfmoney == "" || zfmoney == undefined) {
+            $.modalAlert("Thiếu số tiền thanh toán", 'warning');
+            return false;
+        } else {
+            if (!reg.test(zfmoney)) {
+                $.modalAlert("Định dạng số tiền không đúng", 'warning');
+                return false;
+            }
+        }
+        if (pzh == "" || pzh == undefined) {
+            $.modalAlert("Thiếu số chứng từ", 'warning');
+            return false;
+        }
+        return true;
+    }
+
+
+    //充值前台验证金额和是否选择支付类型
+    function PayDeposit() {
+        zfmoney = $("#txtmoney").val();
+        if (parseFloat(zfmoney) < 0 || zfmoney == "" || isNaN(zfmoney) == true) {
+            $.modalAlert("Thiếu số tiền thanh toán(Số tiền không thể thấp hơn 0 đồng)", 'warning');
+            return false;
+        }
+        if (CheckDeposit()) {
+            PayDepositPost(zffsbh, zffsmc, zfmoney, pzh, patid, zh, zhxz);
+        }
+    }
+
+    //预交金充值
+    function PayDepositPost(zffsbh, zffsmc, zfmoney, pzh, patid,zh, zhxz) {
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "/SystemManage/InpatientAccountManage/PayDepositPost",
+            data: {
+                zffsbh: zffsbh, zffsmc: zffsmc,zyh:zyh,
+                zfje: zfmoney, pzh: pzh, zh: zh,
+                zhxz: zhxz, patid: patid, szxz:@Html.Raw((int)EnumSZXZ.cz), memo: $("#memo").val()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null && resdata.data.flag) {
+                    $.loading(false);
+                    $.modalMsg("Nạp tiền thành công", 'success');
+                    ClearMoney(); //清空
+                    getZhInfo(zh); //账户收支记录
+
+                    var reqzhxz=$.request("zhxz")=='zy'?'Nhập viện':'Ngoại trú'
+                    var orgId = '@curOpr.OrganizeId';
+                    var uri = '@Html.Raw(reportUrl)' + "?tempCode=04" + "&szid=" + resdata.data.szId + "&patId=" + patid + "&orgId=" + orgId;
+                    window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+                }
+            }, errorCallback: function (rtnval) {
+                if (rtnval.message == "当前收据号已使用！") {
+                    GetSJPZH();
+                }
+                $.modalAlert(rtnval.message, "warning");
+            }
+        });
+
+    }
+
+
+    //清空
+    function ClearMoney() {
+        $('#gridList').jqGrid("clearGridData");
+        //清空金额输入框
+        $("#txtmoney").val("");
+        $('#zhye').val("0.00");
+        $("#memo").val("");
+        //获取凭证号
+        GetSJPZH();
+        GetQuerypatientInfoAjax(patid,zyh);
+    }
+
+    //获取凭证号
+    function GetSJPZH() {
+        $.najax({
+            type: "POST",
+            url: "/PatientManage/AccountManage/GetReceipt",
+            data: {},
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null && resdata.data != "") {
+                    $("#txtlpzh").val(resdata.data);
+                    return resdata.data;
+                } else {
+                    $("#txtlpzh").val("");
+                    return "";
+                }
+            }
+        });
+    }
+    var gridIMoney = "";//当前选中的收支金额
+    var gridIpzh = ""; //当前选中的凭证号
+    var gridId = "";//当前选中的Id，是否已退的根据
+    //点击事件
+    function btn_edit() {
+        var szje = $("#gridList").jqGridRowValue().szje;
+        var pzh = $("#gridList").jqGridRowValue().pzh;
+        gridId = $("#gridList").jqGridRowValue().Id;
+        gridIMoney = szje;
+        gridIpzh = pzh;
+        if (parseFloat(gridIMoney) > 0) {
+            $("#txtmoney").val('-' + szje);
+        } else {
+            return;
+        }
+        $("#txtlpzh").val(pzh);
+    }
+
+    //充值收据补打
+    function sjPrint()
+    {
+        var pzh = $("#txtlpzh").val();
+        if (gridIpzh == "" || pzh != gridIpzh) {
+            $.modalAlert("Vui lòng chọn một nạp tiền chi tiết", 'warning');
+            return false;
+        }
+
+        var reqzhxz=$.request("zhxz")=='zy'?'Nhập viện':'Ngoại trú'
+        var orgId = '@curOpr.OrganizeId';
+        var uri = '@Html.Raw(reportUrl)' + "?tempCode=04" + "&szid=" + gridId + "&patId=" + patid + "&orgId=" + orgId;
+        window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+        
+    }
+
+
+    //取款
+    function Refund() {
+        var money = $("#txtmoney").val();
+        var pzh = $("#txtlpzh").val();
+        var zhye = $("#zhye").val();
+        zyh = $("#zyh").val();
+        if (zyh) {
+            $.modalAlert("Thông tin bệnh nhân không được để trống", 'warning');
+        }
+        if (parseFloat(money) == 0) {
+            $.modalAlert("Rút tiền Số tiền không thể là0đồng", 'warning');
+            return false;
+        }
+        else if ((parseFloat(money) > 0 && parseFloat(zhye) - parseFloat(money) < 0) ||
+            (parseFloat(money) < 0 && parseFloat(zhye) + parseFloat(money) < 0)) {
+            $.modalAlert("Số dư tài khoản hiện tại không đủ", 'warning');
+            return false;
+        }
+
+        if (CheckDeposit()) {
+            ReturnDepositPost(zffsbh, zffsmc, zfmoney, pzh, patid,zh, zhxz);
+        }
+    }
+
+    function ReturnDepositPost(zffsbh, zffsmc, zfmoney, pzh, patid,zh, zhxz) {
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "/SystemManage/InpatientAccountManage/ReturnDepositPost",
+            data: {
+                zffsbh: zffsbh, zffsmc: zffsmc, zfje: zfmoney,zyh:$("#zyh").val(),
+                pzh: pzh, zh: zh, zhxz: zhxz, patid: patid, szxz:@Html.Raw(((int)EnumSZXZ.qk)), memo: $("#memo").val()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null && resdata.data) {
+                    $.loading(false);
+                    $.modalMsg("Hoàn tiền Thành công", 'success');
+                    ClearMoney();
+                    //调用账户收支清单
+                    getZhInfo(zh);
+
+                }
+            }
+        });
+    }
+
+
+    //余额全退
+    function RefundOverAccount() {
+        patid = $("#patid").val();
+        zh = $('#zhCode').val();
+        zhxz = $('#zhxz').val();
+        var zhye = $("#zhye").val();
+        if (!!!patid) {
+            $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+            return false;
+        }
+        if (parseFloat(zhye) <= 0) {
+            $.modalAlert("hiện tại Tài khoản Không có Số dư có thể hoàn", 'warning');
+            return false;
+        }
+        var reg = /^(-?\d+)(\.\d+)?$/;
+        zfmoney = "-" +$("#zhye").val();
+        var ddlzffs = $("#ddlzffs option:selected");//获取选中的项
+        zffsbh = ddlzffs.val();//拿到选中项的值
+        zffsmc = ddlzffs.text();//拿到选中项的文本
+        if (zffsbh == -1 || zffsmc == "") {
+            $.modalAlert("Thiếu phương thức thanh toán", 'warning');
+            return false;
+        }
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "/SystemManage/InpatientAccountManage/RefundAccount",
+            data: {
+                zffsbh: zffsbh, zffsmc: zffsmc, zfje: zfmoney,zyh:$("#zyh").val(),
+                zh: zh, patid: patid, szxz:@Html.Raw(((int)EnumSZXZ.tye)), memo: $("#memo").val()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null) {
+                    $.loading(false);
+                    ClearMoney();
+                    //调用账户收支清单
+                    getZhInfo(zh);
+                    $.modalMsg("Hoàn toàn bộ thành công", 'success');
+                }
+            }
+        });
+    }
+
+    function RefreshAccount() {
+        GetQuerypatientInfoAjax($("#patid").val(),$("#zyh").val());
+    }
+
+    //查询账户
+    function getZhInfo() {
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "/SystemManage/InpatientAccountManage/GetBasicZhInfoJson",
+            data: { zh: zh },
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null && resdata.data) {
+                    $.loading(false);
+                    gridListData(resdata.data);
+                }
+            }
+        });
+    }
+
+</script>

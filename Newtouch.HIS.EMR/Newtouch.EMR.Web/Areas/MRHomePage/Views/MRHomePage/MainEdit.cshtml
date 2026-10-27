@@ -1,0 +1,1158 @@
+﻿
+@{
+    Layout = null;
+    var justshow = ViewBag.justshow;
+    //报表链接
+    var reportUrl = EmrConfig.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = EmrConfig.GetAppConfigValue("ReportSystemCode");
+}
+<style>
+    .divtab {
+        padding-top: 50px;
+        /*height: 435px;*/
+        border-bottom: 2px double #f3a517;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }   
+
+    .newgridrow {
+        background-color: #d4e220;
+    }
+</style>
+<form id="frm_edit">
+    <div id="dv_edit" style="background-color:#ffffff;">
+		<ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:100%;">
+			<li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">Thông tin bệnh nhân</a></li>
+			<li role="presentation"><a href="#linkzd" role="tab" data-toggle="tab">Danh sách chẩn đoán</a></li>
+			<li role="presentation"><a href="#linkzyinfo" role="tab" data-toggle="tab">Thông tin nhập viện</a></li>
+			<li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">Danh sách phẫu thuật</a></li>
+			<li role="presentation"><a href="#linkfee" role="tab" data-toggle="tab">Thông tin chi phí</a></li>
+			<li role="presentation"><a href="#linfyxx" role="tab" data-toggle="tab">Thông tin trang phụ</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="dv-pat" class="divtab" style="display: none;">
+				@Html.Partial("MainPatInfo")
+			</div>
+			<div id="dv-zd" class="divtab" style="display: none;">
+				@Html.Partial("MainDiag")
+			</div>
+			<div id="dv-op" class="divtab" style="display: none;">
+				@Html.Partial("MainOplist")
+			</div>
+			<div id="dv-zyinfo" class="divtab" style="display: none;">
+				@Html.Partial("MainZyInfo")
+			</div>
+			<div id="dv-fee" class="divtab" style="display: none;">
+				@Html.Partial("MainFeeInfo")
+			</div>
+			<div id="dv-fy" class="divtab" style="display: none;">
+				@Html.Partial("MainFyInfo")
+			</div>
+            <div style="margin-top:5px;margin-bottom:3px;width:100%;height:23px; float:right;position: fixed;bottom:6px;">
+                
+
+
+                @if ((justshow == null ? "" : justshow).Equals("true"))
+                {
+                    @Html.Partial("_BottomButtonsView", new Newtouch.EMR.Web.Models.BottomButtonViewModel()
+                    {
+                        ShowKeyList = new int[] { 8,9 },
+                        //F2Text="保存基本信息",
+                        //F3Text = "保存诊断",
+                        //F6Text = "保存手术",
+                        //F7Text = "完整病案保存",
+                        F8Text = "Xem trước và in",
+                        F9Text = "Xem trước in trang phụ"
+                        //F10Text = "同步费用"
+                    })
+                }
+                else
+                {
+                    @Html.Partial("_BottomButtonsView", new Newtouch.EMR.Web.Models.BottomButtonViewModel()
+                    {
+                        ShowKeyList = new int[] { 2, 3, 6, 7,8,9,10 },
+                        F2Text="Lưu thông tin cơ bản",
+                        F3Text = "Lưu chẩn đoán",
+                        F6Text = "Lưu phẫu thuật",
+                        F7Text = "Lưu toàn bộ hồ sơ bệnh án",
+                        F8Text = "Xem trước và in",
+                        F9Text = "Xem trước in trang phụ",
+                        F10Text = "Đồng bộ chi phí"
+                    })
+                }
+
+
+            </div>
+		</div>
+
+    </div>
+</form>
+<script>
+    var keyValue = $.request("keyValue");
+    var zyh = $.request("zyh");
+    var mbbh = $.request("mbbh");
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
+    //var savedata = {};
+    $(function () {
+        $.ajax({
+            url: "/MRHomePage/MRHomePage/GetFormJson",
+            data: { keyValue: keyValue,zyh:zyh },
+            dataType: "json",
+            success: function (data) {
+                if (data != null && data.state == "error") {
+                    $.modalAlert(data.message, "error");
+                    return;
+                }
+                /*if (data.R_GJ != 156) {
+                    data.SFZH = "";
+                }*/
+                data.GMYW = data.GMYW ? data.GMYW : '-';
+                $("#frm_edit").formSerialize(data);
+                if (data != null) {
+                    //GG MZ ZY HY RYKB CYKB ZKKB
+                    $("#GJ").attr("data-code", data.R_GJ);
+                    $("#MZ").attr("data-code", data.R_MZ);
+                    $("#ZY").attr("data-code", data.R_ZY);
+                    $("#HY").attr("data-code", data.R_HY);
+                    $("#GX").attr("data-code", data.R_GX);
+                    $("#CYKB").attr("data-code", data.R_CYKB);
+                    $("#ZKKB").attr("data-code", data.R_ZKKB);
+                    $("#RYKB").attr("data-code", data.R_RYKB);
+                    $("#CYBF").attr("data-code", data.R_CYBF);
+                    $("#RYBF").attr("data-code", data.R_RYBF);
+                    getcitycode(data);
+                    SyncFee(JSON.stringify(data));
+
+                    /*Đặt giá trị mặc định */
+                    //入院途径
+                    debugger;
+                    $('#select2-RYTJ-container').each(function () {
+                        var myvalue = 'Ngoại trú';
+                        $(this).html(myvalue);
+                    });
+                    $('#select2-RYTJ-container').attr('title', 'Ngoại trú');
+                    $('#RYTJ option').filter(function () { return $(this).text() == 'Ngoại trú'; }).attr('selected', true);
+                }
+                else {
+                    $.modalAlert("Trích xuất thông tin cơ bản bệnh nhân thất bại","error");
+                }
+            }
+        });
+        tabInit();
+        $("td span[role=combobox]").each(function () {
+            $(this).attr("style", "border:none");
+        });
+    });
+
+    function getcitycode(data) {
+        $("div[id*='citylist_']").each(function (i, e) {
+            var sncode = "";
+            var sicode = "";
+            var qxcode = "";
+            if (e.id.indexOf('_XZZ') != -1) {
+                sncode = $(this).find(" select[name='province']").find("option:contains('" + data.XZZ_SN + "')").val();
+                $(this).find(" select[name='province']").val(sncode).trigger("change");
+                sicode = $(this).find(" select[name='city']").find("option:contains('" + data.XZZ_SI + "')").val();
+                $(this).find(" select[name='city']").val(sicode).trigger("change");
+                qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.XZZ_QX + "')").val();
+                $(this).find(" select[name='area']").val(qxcode).trigger("change");
+            }
+            else if (e.id.indexOf('_CSD') != -1) {
+                sncode = $(this).find(" select[name='province']").find("option:contains('" + data.CSD_SN + "')").val();
+                $(this).find(" select[name='province']").val(sncode).trigger("change");
+                sicode = $(this).find(" select[name='city']").find("option:contains('" + data.CSD_SI + "')").val();
+                $(this).find(" select[name='city']").val(sicode).trigger("change");
+                qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.CSD_QX + "')").val();
+                $(this).find(" select[name='area']").val(qxcode).trigger("change");
+            }
+            else if (e.id.indexOf('_HKDZ') != -1) {
+                sncode = $(this).find(" select[name='province']").find("option:contains('" + data.HKDZ_SN + "')").val();
+                $(this).find(" select[name='province']").val(sncode).trigger("change");
+                sicode = $(this).find(" select[name='city']").find("option:contains('" + data.HKDZ_SI + "')").val();
+                $(this).find(" select[name='city']").val(sicode).trigger("change");
+                qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.HKDZ_QX + "')").val();
+                $(this).find(" select[name='area']").val(qxcode).trigger("change");
+            }
+            else if (e.id.indexOf('_LXRDZ') != -1) {
+                sncode = $(this).find(" select[name='province']").find("option:contains('" + data.LXRDZ_SN + "')").val();
+                $(this).find(" select[name='province']").val(sncode).trigger("change");
+                sicode = $(this).find(" select[name='city']").find("option:contains('" + data.LXRDZ_SI + "')").val();
+                $(this).find(" select[name='city']").val(sicode).trigger("change");
+                qxcode = $(this).find(" select[name='area']").find("option:contains('" + data.LXRDZ_QX + "')").val();
+                $(this).find(" select[name='area']").val(qxcode).trigger("change");
+            }
+        });
+    }
+
+    function savecitycode(savedata) {
+        $("div[id*='citylist_']").each(function (i, e) {
+            if (e.id.indexOf('_XZZ') != -1) {
+                //$('#citylist_CSD select[name="province"] option:selected').text()
+                savedata.XZZ_SN = $(this).find(" select[name='province'] option:selected ").text();
+                savedata.XZZ_SI = $(this).find(" select[name='city'] option:selected").text();
+                savedata.XZZ_QX = $(this).find(" select[name='area'] option:selected").text();
+                savedata.R_XZZ_SN = $(this).find(" select[name='province'] option:selected ").val();
+                savedata.R_XZZ_SI = $(this).find(" select[name='city'] option:selected").val();
+                savedata.R_XZZ_QX = $(this).find(" select[name='area'] option:selected").val();
+            }
+            else if (e.id.indexOf('_CSD') != -1) {
+                savedata.CSD_SN = $(this).find(" select[name='province'] option:selected").text();
+                savedata.CSD_SI = $(this).find(" select[name='city'] option:selected").text();
+                savedata.CSD_QX = $(this).find(" select[name='area'] option:selected").text();
+                savedata.R_CSD_SN = $(this).find(" select[name='province'] option:selected ").val();
+                savedata.R_CSD_SI = $(this).find(" select[name='city'] option:selected").val();
+                savedata.R_CSD_QX = $(this).find(" select[name='area'] option:selected").val();
+            }
+            else if (e.id.indexOf('_HKDZ') != -1) {
+                savedata.HKDZ_SN = $(this).find(" select[name='province'] option:selected").text();
+                savedata.HKDZ_SI = $(this).find(" select[name='city'] option:selected").text();
+                savedata.HKDZ_QX = $(this).find(" select[name='area'] option:selected").text();
+                savedata.R_HKDZ_SN = $(this).find(" select[name='province'] option:selected ").val();
+                savedata.R_HKDZ_SI = $(this).find(" select[name='city'] option:selected").val();
+                savedata.R_HKDZ_QX = $(this).find(" select[name='area'] option:selected").val();
+            }
+            else if (e.id.indexOf('_LXRDZ') != -1) {
+                savedata.LXRDZ_SN = $(this).find(" select[name='province'] option:selected").text();
+                savedata.LXRDZ_SI = $(this).find(" select[name='city'] option:selected").text();
+                savedata.LXRDZ_QX = $(this).find(" select[name='area'] option:selected").text();
+                savedata.R_LXRDZ_SN = $(this).find(" select[name='province'] option:selected ").val();
+                savedata.R_LXRDZ_SI = $(this).find(" select[name='city'] option:selected").val();
+                savedata.R_LXRDZ_QX = $(this).find(" select[name='area'] option:selected").val();
+            }
+        });
+
+        return savedata;
+    }
+
+
+    function tabInit  () {
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+            switch ($(this).attr('href')) {
+                case "#linkpat":
+                    $("#dv-pat").show();
+                    $("#dv-op").hide();
+                    $("#dv-zd").hide();
+                    $("#dv-zyinfo").hide();
+					$("#dv-fee").hide();
+					$("#dv-fy").hide();
+                    break;
+                case "#linkop":
+                    $("#dv-pat").hide();
+                    $("#dv-op").show();
+                    $("#dv-zd").hide();
+                    $("#dv-zyinfo").hide();
+					$("#dv-fee").hide();
+					$("#dv-fy").hide();
+                    OpListGrid();
+                    break;
+                case "#linkzd":
+                    $("#dv-pat").hide();
+                    $("#dv-zd").show();
+                    $("#dv-op").hide();
+                    $("#dv-zyinfo").hide();
+					$("#dv-fee").hide();
+					$("#dv-fy").hide();
+                    ZdListGrid();
+
+                    break;
+                case "#linkzyinfo":
+                    $("#dv-zyinfo").show();
+                    $("#dv-op").hide();
+                    $("#dv-pat").hide();
+                    $("#dv-zd").hide();
+					$("#dv-fee").hide();
+					$("#dv-fy").hide();
+                    break;
+                case "#linkfee":
+                    $("#dv-zyinfo").hide();
+                    $("#dv-op").hide();
+                    $("#dv-pat").hide();
+					$("#dv-zd").hide();
+					$("#dv-fy").hide();
+                    $("#dv-fee").show();
+                    FyListGrid();
+					break;
+				case "#linfyxx":
+					$("#dv-zyinfo").hide();
+					$("#dv-op").hide();
+					$("#dv-pat").hide();
+					$("#dv-zd").hide();
+					$("#dv-fee").hide();
+					$("#dv-fy").show();
+					FyListGrid();
+					break;
+            }
+
+        });
+
+        $('#myTab a:first').trigger('click');
+    }
+
+    function amountcheck(str) {
+        //金额 只允许正数
+        //var exp = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/; 
+        //金额 允许正(+)负数
+        //var exp = /(^([+-]?)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^([+-]?)(0){1}$)|(^([+-]?)[0-9]\.[0-9]([0-9])?$)/; 
+
+        //金额 允许正负数
+        var exp = /(^([-]?)[1-9]([0-9]+)?(\.[0-9]{1,4})?$)|(^([-]?)(0){1}$)|(^([-]?)[0-9]\.[0-9]([0-9])?$)/;
+        if (exp.test(str)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //费用格式校验
+    function amtCheck() {
+        var jecheck = "";
+        $("#dv_fee input[attr-desc]").each(
+            function () {
+                var fee = $(this).val();
+                if (fee != "" && fee != undefined) {
+                    if (!amountcheck(fee)) {
+                        jecheck += $(this).attr('attr-desc') + "Định dạng sai;";
+                    }
+                }
+            }
+        );
+
+        return jecheck;
+    }
+    //患者信息参数
+    function getfromPara() {
+        var para = $("#frm_edit").formSerialize();
+        savecitycode(para);
+        $("input[data-code]").each(function () {
+            var code = $(this).attr("data-code");
+            var name = "R_" + $(this).attr("name");
+            para[name] = code;
+        }
+        );
+        $("input[data-staffgh]").each(function () {
+            var code = $(this).attr("data-staffgh");
+            var name = "R_" + $(this).attr("name");
+            para[name] = code;
+        }
+        );
+
+        return para;
+    }
+    function getSex() {
+        var para = getfromPara();
+        var idCard = para.SFZH;
+        var sexStr = "";
+        if (parseInt(idCard.slice(-2, -1)) % 2 == 1) {
+            sexStr = "Nam";
+        } else {
+            sexStr = "Nữ";
+        }
+        return sexStr;
+    };
+    function getnl() {
+            var para = getfromPara();
+            var idCard = para.SFZH;
+            var ageDate = new Date()
+            var month = ageDate.getMonth() + 1
+            var day = ageDate.getDate()
+            var age = ageDate.getFullYear() - idCard.substring(6, 10) - 1
+            if (idCard.substring(10, 12) < month || idCard.substring(10, 12) === month && idCard.substring(12, 14) <= day) {
+                age++
+            }
+            if (age <= 0) {
+                age = 1
+            }
+            return age
+    }
+    function testandverify(para){
+        var gj = para.GJ;
+        if (para.XM == "") {
+            $.modalAlert('Thông tin bệnh nhân Tên bệnh nhânchưa điền', 'warning');
+            return false;
+        }
+        if (para.JKKH == "") {
+            $.modalAlert('Thông tin bệnh nhân Số hồ sơ bệnh ánchưa điền', 'warning');
+            return false;
+        }
+        if (para.GJ == "") {
+            $.modalAlert('Thông tin bệnh nhân Quốc tịchchưa điền', 'warning');
+            $("#GJ").focus();
+            return false;
+        }
+        if (para.MZ == "") {
+            $.modalAlert('Thông tin bệnh nhân Dân tộcchưa điền', 'warning');
+            return false;
+        }
+        if (para.GG == "") {
+            $.modalAlert('Thông tin bệnh nhân Quê quánchưa điền', 'warning');
+            return false;
+        }
+        if (para.NL == "") {
+            $.modalAlert('Thông tin bệnh nhân Tuổichưa điền', 'warning');
+            return false;
+        }
+        if (para.BZYZSNL > 365) {
+            $.modalAlert('Thông tin bệnh nhân (Tuổi chưa đủ1tuổi tròn)Tuổi không được lớn hơn365', 'warning');
+            return false;
+        }
+        if (para.BZYYSNL > 31) {
+            $.modalAlert('Thông tin bệnh nhân (Tuổi chưa đủ1tháng tuổi)Tuổi không được lớn hơn31', 'warning');
+            return false;
+        }
+        if (para.BZYZSNL != "" && para.BZYZSNL <= 28 && para.XSERYTZ=="") {
+            $.modalAlert('Thông tin bệnh nhân Tuổi trẻ sơ sinh nhỏ hơn hoặc bằng28ngày thì phải điền【Cân nặng nhập viện của trẻ sơ sinh】', 'warning');
+            return false;
+        }
+        if (para.BZYYSNL != "" && para.BZYYSNL <= 28 && para.XSERYTZ == "") {
+            $.modalAlert('Thông tin bệnh nhân Tuổi trẻ sơ sinh nhỏ hơn hoặc bằng28ngày thì phải điền【Cân nặng nhập viện của trẻ sơ sinh】', 'warning');
+            return false;
+        }
+        if (para.XSERYTZ != "" && (para.XSERYTZ < 100 || para.XSERYTZ >9999 )) {
+            $.modalAlert('Thông tin bệnh nhân Khoảng cân nặng trẻ sơ sinh là100g-9999g', 'warning');
+            return false;
+        }
+        if (para.XSECSTZ != "" && (para.XSECSTZ < 100 || para.XSECSTZ > 9999)) {
+            $.modalAlert('Thông tin bệnh nhân Khoảng cân nặng trẻ sơ sinh là100g-9999g', 'warning');
+            return false;
+        }
+        if (para.ZY == "") {
+            $.modalAlert('Thông tin bệnh nhân Nghề nghiệpchưa điền', 'warning');
+            return false;
+        }
+        if (para.CSD == "" && gj == "中国") {
+            $.modalAlert('Thông tin bệnh nhân Địa chỉ nơi sinhchưa điền', 'warning');
+            return false;
+        }
+        if (para.XZZ == "" && gj == "中国") {
+            $.modalAlert('Thông tin bệnh nhân Địa chỉ hiện tạichưa điền', 'warning');
+            return false;
+        }
+        if (para.DH == "") {
+            $.modalAlert('Thông tin bệnh nhân Điện thoại địa chỉ hiện tạichưa điền', 'warning');
+            return false;
+        }
+        if (para.XZZYB == "") {
+            $.modalAlert('Thông tin bệnh nhân Mã bưu chính địa chỉ hiện tạichưa điền', 'warning');
+            return false;
+        }
+        if (para.HKDZ == "" && gj == "中国") {
+            $.modalAlert('Thông tin bệnh nhân Địa chỉ hộ khẩuchưa điền', 'warning');
+            return false;
+        }
+        if (para.GZDWJDZ == "" ) {
+            $.modalAlert('Thông tin bệnh nhân Chưa điền địa chỉ nơi làm việc', 'warning');
+            return false;
+        }
+        if (para.DWDH == "") {
+            $.modalAlert('Thông tin bệnh nhân Chưa điền điện thoại cơ quan', 'warning');
+            return false;
+        }
+        if (para.DWYB == "") {
+            $.modalAlert('Thông tin bệnh nhân Chưa điền mã bưu chính cơ quan', 'warning');
+            return false;
+        }
+        if (para.LXRXM == "") {
+            $.modalAlert('Thông tin bệnh nhân Người liên hệchưa điền', 'warning');
+            return false;
+        }
+        if (para.GX == "") {
+            $.modalAlert('Thông tin bệnh nhân Quan hệ người liên hệchưa điền', 'warning');
+            return false;
+        }
+        if (para.LXRDH == "") {
+            $.modalAlert('Thông tin bệnh nhân Điện thoại người liên hệchưa điền', 'warning');
+            return false;
+        }
+        if (para.LXRDZ == "") {
+            $.modalAlert('Thông tin bệnh nhân Địa chỉ người liên hệchưa điền', 'warning');
+            return false;
+        }
+        if (para.MZZD == "" && para.RYZD == "") {
+            $.modalAlert('Thông tin bệnh nhân: Chẩn đoán đông-tây y ngoại trú (cấp cứu) phải điền ít nhất một', 'warning');
+            return false;
+        }
+        //if (para.RYZD == "") {
+        //    $.modalAlert('患者信息 入院诊断没有填写', 'warning');
+        //    return false;
+        //}
+        var idCard = para.SFZH;
+        let birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+        var ss = getSex();
+        var tt = getnl();
+        var yb = /^\d{6}$/;
+        var dh = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+        var zjh = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        if (para.SFZH != "" && !zjh.exec(para.SFZH) && gj == "中国") {
+            $.modalAlert('Thông tin bệnh nhân Định dạng CMND không chính xác', 'warning');
+            return false;
+        }
+        if (para.XZZYB != "" && !yb.exec(para.XZZYB)) {
+            $.modalAlert('Thông tin bệnh nhân Mã bưu chính địa chỉ hiện tại định dạng không chính xác', 'warning');
+            return false;
+        }
+        if (para.HKDYB != "" && !yb.exec(para.HKDYB)) {
+            $.modalAlert('Thông tin bệnh nhân Địa chỉ hộ khẩu mã bưu chính định dạng không chính xác', 'warning');
+            return false;
+        }
+        if (para.DWYB != "" && !yb.exec(para.DWYB)) {
+            $.modalAlert('Thông tin bệnh nhân Mã bưu chính địa chỉ làm việc định dạng không chính xác', 'warning');
+            return false;
+        }
+        if (para.DH != "" && !dh.exec(para.DH)) {
+            $.modalAlert('Thông tin bệnh nhân Điện thoại địa chỉ hiện tại định dạng không chính xác', 'warning');
+            return false;
+        }
+        if (para.DWDH != "" && !dh.exec(para.DWDH)) {
+            $.modalAlert('Thông tin bệnh nhân Điện thoại địa chỉ làm việc định dạng không chính xác', 'warning');
+            return false;
+        }
+        if (para.LXRDH != "" && !dh.exec(para.LXRDH)) {
+            $.modalAlert('Thông tin bệnh nhân Điện thoại người liên hệ định dạng không chính xác', 'warning');
+            return false;
+        }
+        if (!!para.SFZH && tt != para.NL) {
+            $.modalAlert('Thông tin bệnh nhân Tuổivới số CMND/CCCDkhông khớp', 'warning');
+            return false;
+        }
+        var qq;
+        if (ss == "Nam") {
+            qq = 1;
+        }
+        else {
+            qq = 2;
+        }
+
+        if (!!para.SFZH && qq != para.XB) {
+            $.modalAlert('Thông tin bệnh nhân Giới tínhvới số CMND/CCCDkhông khớp', 'warning');
+            return false;
+        }
+        if (!!para.SFZH && birthday != para.CSRQ) {
+            $.modalAlert('Thông tin bệnh nhân Ngày sinhvới số CMND/CCCDkhông khớp', 'warning');
+            return false;
+        }
+        var jecheck = amtCheck();
+        if (jecheck != "") {
+            $.modalAlert(jecheck, 'warning');
+            return false
+        }
+        if (para.LXRXM != "" && (para.GX + para.LXRDH) == "") {
+            $.modalAlert('Đã nhập người liên hệ,Chưa điền thông tin liên quan đến người liên hệ', 'warning');
+            return false;
+        }
+        if (para.LXRXM == "" && para.GX != "") {
+            $.modalAlert('Chưa nhập người liên hệ,Không được điền thông tin liên quan đến người liên hệ', 'warning');
+            return false;
+        }
+        if (para.LXRXM == "" && para.LXRDH != "") {
+            $.modalAlert('Chưa nhập người liên hệ,Không được điền thông tin liên quan đến người liên hệ', 'warning');
+            return false;
+        }
+        if (para.LXRXM == "" && para.LXRDZ_SN != "") {
+            $.modalAlert('Chưa nhập người liên hệ,Không được điền thông tin liên quan đến người liên hệ', 'warning');
+            return false;
+        }
+        if (para.RYTJ == "") {
+            $.modalAlert('Thông tin bệnh nhân Đường nhập viện không được để trống', 'warning');
+            return false;
+        }
+        if (para.RYTJ != 3 && para.QTYLJGZR != "") {
+            $.modalAlert('Thông tin bệnh nhân Đường nhập viện không phải chuyển từ cơ sở y tế khác, Không được điền chuyển từ cơ sở y tế khác', 'warning');
+            return false;
+        }
+        if (para.RYTJ == 3 && para.QTYLJGZR == "") {
+            $.modalAlert('Thông tin bệnh nhân chưa điền chuyển từ cơ sở y tế khác', 'warning');
+            return false
+        }
+        if (para.RYSJ == "") {
+            $.modalAlert('Thông tin bệnh nhân Thời gian nhập việnkhông được để trống', 'warning');
+            return false
+        }
+        if (para.RYKB == "" || para.RYBF == "") {
+            $.modalAlert('Thông tin bệnh nhân Chuyên khoa nhập việnkhông được để trống', 'warning');
+            return false
+        }
+        if (para.CYSJ != "" && para.RYSJ > para.CYSJ  ) {
+            $.modalAlert('Thông tin bệnh nhân Thời gian nhập việnkhông đượclớn hơn ra viện thời gian', 'warning');
+            return false
+        }
+        if (para.CYSJ != "") {
+            // 计算两个日期之间的毫秒差
+            var differenceInMilliseconds = Date.parse(para.CYSJ) - Date.parse(para.RYSJ);
+            // 将毫秒差转换为天数(不包含不满一天的部分)
+            var days = Math.floor(differenceInMilliseconds / 1000 / 86400);
+            // 如果有剩余的毫秒(即不满一天的部分), 加一天
+            if (differenceInMilliseconds % (1000 * 86400) !== 0) {
+                days += 1;
+            }
+            //if (para.SJZYTS != days) {
+            //    $.modalAlert('患者信息 入院时间和出院时间计算的天数【' + days + '】跟实际住院天数【' + para.SJZYTS + '】不等', 'warning');
+            //    return false
+            //}
+            //var date = parseInt((Date.parse(para.CYSJ) - Date.parse(para.RYSJ)) / 1000 / 86400);
+        }
+        if (para.QJCS != "" && para.QJCGCS == "") {
+            $.modalAlert('Thông tin bệnh nhân Số lần cấp cứu không được để trống,chưa điền số lần thành công', 'warning');
+            return false;
+        }
+        if (para.QJCS == "" && para.QJCGCS != "") {
+            $.modalAlert('Thông tin bệnh nhân Số lần cấp cứu để trống,không được điền số lần thành công', 'warning');
+            return false;
+        }
+        if (para.LYFS != 5 &&para.QJCS != para.QJCGCS) {
+            $.modalAlert('Thông tin bệnh nhân Khi cách rời viện không phải tử vong Số lần cấp cứubằng số lần thành công', 'warning');
+            return false;
+        }
+        if (para.LYFS == 5 && (parseInt(para.QJCS) != parseInt(para.QJCGCS) + 1)) {
+            $.modalAlert('Thông tin bệnh nhân Khi cách rời viện là tử vong Số lần cấp cứu thành công bằng Số lần cấp cứu-1', 'warning');
+            return false;
+        }
+        if (gj == "中国" && !$('#frm_edit').formValid()) {
+            $.modalAlert('Thông tin điền chưa đầy đủ!', 'warning');
+            return false;
+        }
+        if (para.WBYY != "" && para.H23 == "") {
+            $.modalAlert('Thông tin nhập viện Tổn thương, Nguyên nhân bên ngoài gây ngộ độc, Mã bệnh là bắt buộc', 'warning');
+            return false;
+        }
+        if (para.H23 != "" && para.WBYY == "") {
+            $.modalAlert('Thông tin nhập viện Mã bệnh không được để trống, Tổn thương, Nguyên nhân bên ngoài gây ngộ độc là bắt buộc', 'warning');
+            return false;
+        }
+        if (para.BLZD != "" && para.BLZDDM == "" && para.BLZD != "-") {
+            $.modalAlert('Thông tin nhập viện Chẩn đoán bệnh lý không được để trống, Mã bệnh là bắt buộc', 'warning');
+            return false;
+        }
+        if (para.BLZDDM != "" && para.BLZD == "") {
+            $.modalAlert('Thông tin nhập viện Mã bệnh là bắt buộc không được để trống, Chẩn đoán bệnh lý là bắt buộc', 'warning');
+            return false;
+        }
+        if (para.BLZD != "" && para.BLH == "" && para.BLZD != "-") {
+            $.modalAlert('Thông tin nhập viện Chẩn đoán bệnh lý không được để trống, Số bệnh lý là bắt buộc', 'warning');
+            return false;
+        }
+        if (para.BLZD == "" && para.BLH != "") {
+            $.modalAlert('Thông tin nhập viện Chẩn đoán bệnh lý để trống, không được điền số bệnh lý', 'warning');
+            return false;
+        }
+        if (para.YWGM != 2 && para.GMYW != "-" && para.GMYW != "") {
+            $.modalAlert('Thông tin nhập viện Không có dị ứng thuốc, không được điền thuốc dị ứng', 'warning');
+            return false
+        }
+        if (para.YWGM == 2 && para.GMYW == "") {
+            $.modalAlert('Thông tin nhập viện chưa điền thuốc dị ứng', 'warning');
+            return false
+        }
+        var ids = $("#gridzdList").getDataIDs();
+        var i = 0;
+        if (ids.length > 0) {
+            for (i = 0; i < ids.length; i++) {
+                if (($("#gridzdList").getRowData(ids[i])).CYQK == 4 && para.LYFS != 5) {
+                    $.modalAlert('Thông tin nhập viện Khi tình hình ra viện trong chẩn đoán ra viện là tử vong, Cách rời viện phải là tử vong', 'warning');
+                    return false;
+                };
+                if (($("#gridzdList").getRowData(ids[i])).CYQK != 4 && para.QJCS != para.QJCGCS) {
+                    $.modalAlert('Thông tin bệnh nhân Khi tình hình ra viện không phải tử vong Số lần cấp cứu cần bằng số lần thành công', 'warning');
+                    return false;
+                };
+                if (($("#gridzdList").getRowData(ids[i])).CYQK == 4 && (parseInt(para.QJCS) != parseInt(para.QJCGCS) + 1)) {
+                    $.modalAlert('Thông tin bệnh nhân Khi tình hình ra viện là tử vong Số lần cấp cứu thành công cần bằng số lần cấp cứu-1', 'warning');
+                    return false;
+                };
+            }
+        }
+        if (para.LYFS == 5 && para.SWHZSJ == "") {
+            $.modalAlert('Thông tin nhập viện Cách rời viện là tử vong, chưa chọn khám nghiệm tử thi bệnh nhân tử vong', 'warning');
+            return false;
+        }
+        if (para.LYFS != 5 && (para.SWHZSJ != "" && para.SWHZSJ != "2")) {
+            $.modalAlert('Thông tin nhập viện Cách rời viện không phải tử vong,không được điền khám nghiệm tử thi bệnh nhân tử vong', 'warning');
+            return false;
+        }
+        if (para.SZ == "" && (para.SZQXZ + para.SZQXY + para.SZQXN) > 0) {
+            $.modalAlert('Thông tin nhập viện Chưa chọn tái khám,Không được điền thời hạn tái khám', 'warning');
+            return false;
+        }
+        if (para.SZ == "1" && (para.SZQXZ == "" && para.SZQXY == "" && para.SZQXN == "")) {
+            $.modalAlert('Thông tin nhập viện Đã chọn tái khám,chưa điền thời hạn tái khám', 'warning');
+            return false;
+        }
+        if (para.SZ == "2" && (para.SZQXZ + para.SZQXY + para.SZQXN) > 0) {
+            $.modalAlert('Thông tin nhập viện Chưa chọn tái khám,Không được điền thời hạn tái khám', 'warning');
+            return false;
+        }
+        if (para.KZR == "") {
+            $.modalAlert('Thông tin nhập viện Chủ nhiệm khoakhông được để trống', 'warning');
+            return false;
+        }
+        if (para.ZRYS == "") {
+            $.modalAlert('Thông tin nhập viện Chủ nhiệm(Phó chủ nhiệm)Bác sĩkhông được để trống', 'warning');
+            return false;
+        }
+        if (para.ZZYS == "") {
+            $.modalAlert('Thông tin nhập viện Bác sĩ chẩn trị chínhkhông được để trống', 'warning');
+            return false;
+        }
+        if (para.ZZYS1 == "") {
+            $.modalAlert('Thông tin nhập viện Bác sĩ điều trị chínhkhông được để trống', 'warning');
+            return false;
+        }
+        if (para.ZYYS == "") {
+            $.modalAlert('Thông tin nhập viện Bác sĩ nội trúkhông được để trống', 'warning');
+            return false;
+        }
+        if (para.ZRHS == "") {
+            $.modalAlert('Thông tin nhập viện Điều dưỡng chịu trách nhiệm không được để trống', 'warning');
+            return false;
+        }
+        if (para.BMY == "") {
+            $.modalAlert('Thông tin nhập viện Nhân viên mã hóakhông được để trống', 'warning');
+            return false;
+        }
+        if (para.ZKRQ != "" && para.ZKRQ < para.CYSJ) {
+            $.modalAlert('Thông tin bệnh nhân Ngày kiểm soát chất lượng【' + para.ZKRQ + '】phảilớn hơn ra viện thời gian【' + para.CYSJ+'】', 'warning');
+            return false
+        }
+        if (para.WCLCLJ == 1 && para.TCYY == "") {
+            $.modalAlert('Thông tin nhập viện chưa điền lý do thoát', 'warning');
+            return false
+        }
+        if (para.WCLCLJ != 1 && para.TCYY != "" && para.TCYY != "-") {
+            $.modalAlert('Thông tin nhập viện Hoàn thành đường đi lâm sàng,không được điền lý do thoát', 'warning');
+            return false
+        }
+        if (para.SFBY == 2 && para.BYYY == "") {
+            $.modalAlert('Thông tin nhập viện chưa chọn nguyên nhân biến dị', 'warning');
+            return false
+        }
+        if (para.SFZZYJH == 2 && para.MD == "") {
+            $.modalAlert('Thông tin nhập viện chưa điền mục đích', 'warning');
+            return false
+        }
+
+        if (para.SFZZYJH != 2 && para.MD != "" && para.MD != "-") {
+            $.modalAlert('Thông tin nhập viện: Có kế hoạch tái nhập viện trong 31 ngày sau khi ra viện không, không được điền mục đích', 'warning');
+            return false
+        }
+        if (para.LYFS == 3 && para.WSY_YLJG == "") {
+            $.modalAlert('Thông tin nhập viện chưa điền chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã,Tên cơ sở y tế dự kiến tiếp nhận', 'warning');
+            return false;
+        }
+        if (para.LYFS == 2 && para.YZZY_YLJG == "") {
+            $.modalAlert('Thông tin nhập viện chưa điền tên cơ sở y tế dự kiến tiếp nhận khi chuyển viện theo y lệnh', 'warning');
+            return false;
+        }
+        if (para.SSLCLJ != 1 && para.WCLCLJ != "") {
+            $.modalAlert('Thông tin nhập viện Không áp dụng quản lý đường đi lâm sàng,không được điền đã hoàn thành đường đi lâm sàng', 'warning');
+            return false;
+        }
+        if (para.SSLCLJ == 2 && para.WCLCLJ == "-") {
+            $.modalAlert('Thông tin nhập viện Áp dụng quản lý đường đi lâm sàng,Chưa điền đã hoàn thành đường đi lâm sàng hay chưa', 'warning');
+            return false;
+        }
+        if (para.WCLCLJ == 2 && para.TCYY == "") {
+            $.modalAlert('Thông tin nhập viện Chưa hoàn thành đường đi lâm sàng,chưa điền nguyên nhân', 'warning');
+            return false;
+        }
+        if (para.LYFS != 2 && para.YZZY_YLJG != "" && para.YZZY_YLJG != "-") {
+            $.modalAlert('Thông tin nhập viện Cách rời viện không phải chuyển viện theo y lệnh, Không được điền tên cơ sở y tế dự kiến tiếp nhận khi chuyển viện theo y lệnh', 'warning');
+            return false;
+        }
+
+        if (para.LYFS != 3 && para.WSY_YLJG != "" && para.WSY_YLJG != "-") {
+            $.modalAlert('Thông tin nhập viện Cách rời viện không phải chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã, Không được điền tên cơ sở y tế dự kiến tiếp nhận khi chuyển viện theo y lệnh', 'warning');
+            return false;
+        }
+        if (para.SFBY != 1 && para.BYYY != "") {
+            $.modalAlert('Thông tin nhập viện Không có biến dị, không được điền nguyên nhân biến dị', 'warning');
+            return false;
+        }
+        if (para.RYQ_T == "" || para.RYQ_XS == "" || para.RYQ_F=="") {
+            //$.modalAlert('住院信息 颅脑损伤患者昏迷(入院前)时间必填', 'warning');
+            //return false;
+        }
+        if (para.RYH_T == "" || para.RYH_XS == "" || para.RYH_F == "") {
+            //$.modalAlert('住院信息 颅脑损伤患者昏迷(入院后)时间必填', 'warning');
+            //return false;
+        }
+        if (para.YYGRQK == 1 && para.YYGRSSXG != "") {
+            $.modalAlert('Thông tin trang phụ Tình trạng nhiễm khuẩn bệnh viện không có, Không được điền thao tác liên quan đến nhiễm khuẩn bệnh viện', 'warning');
+            return false;
+        }
+        if (para.YYGRQK == 1 && para.YYGRSFQRXG != "") {
+            $.modalAlert('Thông tin trang phụ Tình trạng nhiễm khuẩn bệnh viện không có, Không được điền thao tác liên quan đến nhiễm khuẩn bệnh viện', 'warning');
+            return false;
+        }
+        if (para.YYGRQK == 2 && para.YYGRSSXG == "") {
+            $.modalAlert('Thông tin trang phụ Có tình trạng nhiễm khuẩn bệnh viện, Chưa điền thao tác liên quan đến nhiễm khuẩn bệnh viện', 'warning');
+            return false;
+        }
+        if (para.YYGRQK == 2 && para.YYGRSFQRXG == "") {
+            $.modalAlert('Thông tin trang phụ Có tình trạng nhiễm khuẩn bệnh viện, Chưa điền thao tác liên quan đến nhiễm khuẩn bệnh viện', 'warning');
+            return false;
+        }
+        if (para.KJYWSYQK != "" && para.KJYWMC1 == "" && para.KJYWMC2 == "" && para.KJYWMC3 == "" && para.KJYWMC4 == "" && para.KJYWMC5 == "" && para.KJYWMC6 == "") {
+            $.modalAlert('Thông tin trang phụ Tình hình sử dụng kháng sinh, chưa điền tên kháng sinh', 'warning');
+            return false;
+        }
+        if (para.SFFSYC == 1 && para.SFZYQJFS != "") {
+            $.modalAlert('Thông tin trang phụ Không xảy ra loét do tì đè, Không được điền thao tác liên quan đến loét do tì đè', 'warning');
+            return false;
+        }
+        if (para.SFFSYC == 1 && para.YCFQ != "") {
+            $.modalAlert('Thông tin trang phụ Không xảy ra loét do tì đè, Không được điền thao tác liên quan đến loét do tì đè', 'warning');
+            return false;
+        }
+        if (para.SFFSYC == 2 && para.SFZYQJFS == "") {
+            $.modalAlert('Thông tin trang phụ Có phản ứng loét do tì đè,Chưa điền thao tác liên quan đến loét do tì đè', 'warning');
+            return false;
+        }
+        if (para.SFFSYC == 2 && para.YCFQ == "") {
+            $.modalAlert('Thông tin trang phụ Có phản ứng loét do tì đè,Chưa điền thao tác liên quan đến loét do tì đè', 'warning');
+            return false;
+        }
+        if (para.SFFSYC == 2 && para.YFFYDYW == "") {
+            $.modalAlert('Thông tin trang phụ Có phản ứng truyền dịch,Chưa điền thao tác liên quan đến truyền dịch', 'warning');
+            return false;
+        }
+        if (para.SFFSYC == 2 && para.SYLCBX == "") {
+            $.modalAlert('Thông tin trang phụ Có phản ứng truyền dịch,Chưa điền thao tác liên quan đến truyền dịch', 'warning');
+            return false;
+        }
+        if (para.SYFY == 0 && para.YFFYDYW != "" && para.YFFYDYW != "-") {
+            $.modalAlert('Thông tin trang phụ Không có phản ứng truyền dịch, Không được điền thao tác liên quan đến truyền dịch', 'warning');
+            return false;
+        }
+        if (para.SYFY == 0 && para.SYLCBX != "" && para.SYLCBX != "-") {
+            $.modalAlert('Thông tin trang phụ Không có phản ứng truyền dịch, Không được điền thao tác liên quan đến truyền dịch', 'warning');
+            return false;
+        }
+        if (para.ZYSFDDHZC == 1 && para.ZYDDHZCDCD != "") {
+            $.modalAlert('Thông tin trang phụ Trong thời gian nằm viện không xảy ra ngã hoặc rơi khỏi giường, Không được điền thao tác liên quan đến ngã hoặc rơi khỏi giường', 'warning');
+            return false;
+        }
+        if (para.ZYSFDDHZC == 2 && para.ZYDDHZCDCD == "") {
+            $.modalAlert('Thông tin trang phụ Trong thời gian nằm viện xảy ra ngã hoặc rơi khỏi giường, Chưa điền thao tác liên quan đến ngã hoặc rơi khỏi giường', 'warning');
+            return false;
+        }
+        if (para.ZYSFDDHZC == 2 && para.DDHZCDYY == "") {
+            $.modalAlert('Thông tin trang phụ Trong thời gian nằm viện xảy ra ngã hoặc rơi khỏi giường, Chưa điền thao tác liên quan đến ngã hoặc rơi khỏi giường', 'warning');
+            return false;
+        }
+        if (para.ZYSFDDHZC == 1 && para.DDHZCDYY != "") {
+            $.modalAlert('Thông tin trang phụ Trong thời gian nằm viện không xảy ra ngã hoặc rơi khỏi giường, Không được điền thao tác liên quan đến ngã hoặc rơi khỏi giường', 'warning');
+            return false;
+        }
+        var xindex = para.HXB + para.XXB + para.XJ + para.QX + para.ZTXHS + para.BDB + para.LCD + para.QT
+        if (xindex > 0 && para.SXFY == 3) {
+            $.modalAlert('Khi có lượng máu truyền, Phản ứng truyền máu không được là chưa truyền', 'warning');
+            return false;
+        }
+        if (xindex <= 0 && para.SXFY != 3) {
+            $.modalAlert('Khi không có lượng máu truyền, Phản ứng truyền máu phải là chưa truyền', 'warning');
+            return false;
+        }
+        if (ovpraseFloat(para.ZFY)<=0) {
+            $.modalAlert('Thông tin chi phí Tổng chi phí nằm viện của bệnh nhân phải lớn hơn 0', 'warning');
+            return false;
+        }
+        if (ovpraseFloat(para.ZFY) < ovpraseFloat(para.ZFJE)) {
+            $.modalAlert('Thông tin chi phí Tổng chi phí nằm viện của bệnh nhân phải lớn hơn số tiền tự trả', 'warning');
+            return false;
+        }
+        if (ovpraseFloat(para.FSSZLXMF) < ovpraseFloat(para.WLZLF) ) {
+            $.modalAlert('Thông tin chi phí Phí hạng mục điều trị không phẫu thuậtphảilớn hơnbằng phí vật lý trị liệu lâm sàng', 'warning');
+            return false;
+        }
+        if (ovpraseFloat(para.SSZLF) < (ovpraseFloat(para.MAF) + ovpraseFloat(para.SSF))) {
+            $.modalAlert('Thông tin chi phí Phí điều trị phẫu thuật phải lớn hơn hoặc bằng tổng phí gây mê và phí phẫu thuật', 'warning');
+            return false;
+        }
+        if (ovpraseFloat(para.XYF) < ovpraseFloat(para.KJYWF)) {
+            $.modalAlert('Thông tin chi phí Chi phí thuốc tâyphảilớn hơnbằng chi phí kháng sinh', 'warning');
+            return false;
+        }
+    }
+    function ovpraseFloat(val) {
+        if (!val) {
+            val = 0;
+        }
+        return parseFloat(val);
+    }
+    //功能键操作区
+	function newtouch_event_f2() {
+        var para = getfromPara();
+        if (testandverify(para)==false) {
+            return false;
+        };
+        $.submitForm({
+            url: "/MRHomePage/MRHomePage/SubmitPatBasic?keyValue=" + keyValue + "&mbbh=" + mbbh,
+            param: para,
+            success: function (data) {
+                if (data.state == "success") {
+                    $.modalAlert("Thông tin bệnh nhân lưu thành công", 'success');
+                } else {
+                    $.modalAlert(data.message, 'warning');
+                }
+            }
+        })
+    }
+    //诊断保存
+	function newtouch_event_f3() {
+	    var msg = "";
+	    var ids = $("#gridzdList").getDataIDs();
+	    var rows = [];
+	    var i = 0;
+	    if (ids.length > 0) {
+	        for (i = 0; i < ids.length; i++) {
+	            rows.push($("#gridzdList").getRowData(ids[i]));
+	        }
+	    }
+	    $.ajax({
+	        url: "/MRHomePage/MRHomePage/SubmitZdList",
+	        data: { dto: rows, zyh: $("#ZYH").val(), "Code": "DiagnosticSave" },
+	        type: "post",
+	        loading: "Đang gửi dữ liệu...",
+	        async: false,
+	        success: function (data) {debugger;
+	            var obj = JSON.parse(data);
+	            if(obj.state == "success"){
+	                if (obj.data == "") {
+	                    $.modalAlert("Lưu thông tin chẩn đoán thành công", 'success');
+	                }else{
+	                    window.setTimeout(function () {  
+	                        if (obj.data == "Lưu thông tin chẩn đoán thành công") {
+	                            $.modalAlert(obj.data, 'success');
+	                            jQuery("#gridzdList").jqGrid().trigger('reloadGrid');
+	                        }
+	                        else {
+	                            $.modalAlert(obj.data, 'warning');
+	                        }
+	                    }, 10);
+	                }
+	            }else{
+	                $.modalAlert(obj.message, 'warning');
+	            }
+	        },error: function (request, error, ex) {
+	            $.loading(false);
+	            $.modalAlert('Lưu thất bại:' + ex, 'error');
+	        }
+	    });
+
+	}
+    //手术列表
+    function newtouch_event_f6() {
+        var msg = "";
+        var ids = $("#gridopList").getDataIDs();
+		var rows = [];
+        if (ids.length > 0) {
+			for (i = 0; i < ids.length; i++) {
+				var date = $("#gridopList").getRowData(ids[i]);
+				if (date.SSLX == 'Phẫu thuật theo lịch') {
+					date.SSLX = 0;
+				} else {
+					date.SSLX = 1;
+				}
+				rows.push(date);
+            }
+		}
+
+        $.ajax({
+            url: "/MRHomePage/MRHomePage/SubmitOpList",
+            data: { dto: rows },
+            loading: "Đang gửi dữ liệu...",
+            type: "post",
+            success: function (data) {
+                window.setTimeout(function () {
+                    var obj = JSON.parse(data);
+                    if (obj.state == "success") {
+                        $.modalAlert("Phẫu thuậtthông tin lưu thành công", 'success');
+                        jQuery("#gridopList").jqGrid().trigger('reloadGrid');
+                    }
+                    else {
+                        $.modalAlert(obj.message, 'warning');
+                    }
+                }, );
+
+            }
+        });
+    }
+
+    function getzdGrid() {
+        var ids = $("#gridzdList").getDataIDs();
+        //var ids = $("#gridzdList").jqGrid('getDataIDs');
+        var rows = [];
+        var i = 0;
+        if (ids.length > 0) {
+            for (i = 0; i < ids.length; i++) {
+                rows.push($("#gridzdList").getRowData(ids[i]));
+            }
+        }
+        return rows;
+    }
+    function getopGrid() {
+        var ids = $("#gridopList").getDataIDs();
+        var rows = [];
+        var i = 0;
+        if (ids.length > 0) {
+            for (i = 0; i < ids.length; i++) {
+                rows.push($("#gridopList").getRowData(ids[i]));
+            }
+        }
+        return rows;
+    }
+
+    function newtouch_event_f7() {
+        var para = getfromPara();
+        if (testandverify(para) == false) {
+            return false;
+        };
+        $.submitForm({
+            url: "/MRHomePage/MRHomePage/SubmitPatBasic?mbbh=" + mbbh+"&keyValue=" + keyValue,
+            param: para,
+            success: function (data) {
+                if (data.state == "success") {
+                    var zdrows = getzdGrid();
+                    var oprows = getopGrid();
+                    $.ajax({
+                        url: "/MRHomePage/MRHomePage/SubmitMR?keyValue=" + keyValue,
+                        data: { zddto: zdrows, opdto: oprows, zyh: $("#ZYH").val(), "Code": "DiagnosticSave" },
+                        loading: "Đang gửi dữ liệu...",
+                        type: "post",
+                        success: function (data) {
+                            window.setTimeout(function () {
+                                var obj = JSON.parse(data);
+                                if (obj.state == "success") {
+                                    $.modalAlert("Lưu thành công", 'success');
+                                    jQuery("#gridopList").jqGrid().trigger('reloadGrid');
+                                    jQuery("#gridzdList").jqGrid().trigger('reloadGrid');
+                                }
+                                else {
+                                    $.modalAlert(obj.message, 'warning');
+                                }
+                            }, 10);
+
+                        }
+                    });
+                    debugger;
+
+                } else {
+                    $.modalAlert(data.message, 'warning');
+                }
+            }
+        })
+
+    }
+
+    function newtouch_event_f8() {
+        var url = '@reportUrl' + "?tempCode=1312" + "&hospitalCode=" + orgId + "&systemCode=" + '@reportSystemCode';
+        window.open(url + "&orgId=" + orgId + "&zyh=" + zyh);
+
+    }
+    /*InTrang phụ*/
+    function newtouch_event_f9() {
+        var zyh = $("#ZYH").val();
+        var url = '@reportUrl' + "?tempCode=1296" + "&hospitalCode=" + orgId + "&systemCode=" + '@reportSystemCode';
+        window.open(url + "&orgId=" + orgId + "&zyh=" + zyh);
+
+    }
+
+    function newtouch_event_f10() {
+        $.modalConfirm("Đồng bộ dữ liệu sẽ đặt lại trang, Vui lòng xác nhận có đặt lại không?", function (flag) {
+            if (flag) {
+                $.ajax({
+                    url: "/MRHomePage/MRHomePage/GetFormJsonFee?keyValue=" + keyValue,
+                    data: { zyh: zyh },
+                    loading: "Đang đồng bộ dữ liệu...",
+                    type: "post",
+                    success: function (data) {
+                        SyncFee(data);
+                        $.modalAlert("Đồng bộ hoàn tất", 'success');
+                    }
+                });
+
+            };
+        });
+    }
+
+    function SyncFee(data) {
+        var jsonObj = JSON.parse(data);
+        for (var item in jsonObj) {
+            if ($("#dv_fee input[id=" + item + "]").length > 0 && !!jsonObj[item]) {
+                $("#dv_fee input[id=" + item + "]").val(parseFloat(jsonObj[item]).toFixed(2));
+            }
+            else {
+                $("#dv_fee input[id=" + item + "]").val("");
+            }
+        }
+    }
+    /******************************************************/
+    //上传医保
+    function newtouch_event_f101() {
+        GetblData("7600");
+        if (ret == 1) {
+            GetblData("7610");
+        }
+    }
+
+    function GetblData(jydm) {
+        var ret = 0;
+        if (!!jydm) {
+            $.najax({
+                url: "/MRHomePage/MRHomePage/HomePageUploadJS",
+                data: { zyh: $("#ZYH").val(), jydm: jydm },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data != null && data != undefined) {
+                        ret = Upload(data);
+                    }
+                    else {
+                        $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
+                    }
+                }
+            });
+        }
+        return ret;
+    }
+
+
+    function Upload(jsondata) {
+        $.ajax({
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            dataType: "json",
+            data: jsondata,
+            type: "POST",
+            async: true,
+            success: function (ajaxdata) {
+                if (!!ajaxdata) {
+                    var resp = JSON.parse(ajaxdata);
+                    if (resp.code == "-1") {
+                        $.modalAlert("Tải lên thất bại" + resp.message, "error");
+                    }
+                    else {
+                        $.modalAlert("Tải lên thành công", "success");
+                        UpdateYbUpload();
+                        return 1;
+                    }
+                }
+                else
+                    $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
+
+            }
+        });
+    }
+
+    function UpdateYbUpload() {
+        $.najax({
+            url: "/MRHomePage/MRHomePage/UpdateUploadStu",
+            data: { zyh: $("#ZYH").val() },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+            }
+        });
+    }
+
+</script>

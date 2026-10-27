@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "GetSettlementItems";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div class="gridPanel" style="margin-top:10px;">
+    <div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Tên thu phí：</th>
+                <td class="formValue">
+                    <input id="sfmc" type="text" class="form-control" placeholder="Tên thu phí" />
+                </td>
+                <td class="formValue">
+                    &nbsp;&nbsp;
+                    <input type="button" id="btn_search" class="btn btn-primary" value=" Truy vấn " />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    var zyh = $.request("zyh");
+    var dlCode = $.request("dlCode");
+    var jsnms = $.request("jsnms");
+    $(function () {
+        gridInit();
+    });
+    $('#btn_search').click(function () {
+        //$("#gridList").clearGridData();
+
+        var mc = $('#sfmc').val();
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { zyh: zyh, dlCode: dlCode, jsnms: jsnms, mc: mc },
+        }).trigger('reloadGrid'); //Nạp lại bảng hiện tại
+    });
+    function gridInit() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { zyh: zyh, dlCode: dlCode,jsnms: jsnms,mc:"" },
+            url: "/HospitalizationManage/Settlement/GetSettleItemFrom",
+            height: $(window).height() - 120,
+            colModel: [
+                { label: 'Nhóm phí', name: 'dlmc', align: 'center', width: 80 },
+                { label: 'thuộc tính', name: 'zfxz', align: 'center', width: 40 },
+                { label: 'Tên thu phí', name: 'sfxmmc', align: 'left', width: 150 },
+                { label: 'Quy cách', name: 'gg', align: 'center', width: 60 },
+                { label: 'Đơn vị', name: 'jfdw', align: 'center', width: 60 },
+                {
+                    label: 'Đơn giá', name: 'dj', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+                },
+                { label: 'Số lượng', name: 'sl', align: 'center', width: 30 },
+                { label: 'zyh', name: 'zyh', align: 'center', hidden: true },
+                {
+                    label: 'phí', name: 'je', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+                },
+                { label: 'Có tự phí hay không', name: 'zzfbz', align: 'center', width: 50 },
+                { label: 'Ngày tính giá', name: 'tdrq', align: 'center', width: 100 },
+
+            ],
+            pager: "#gridPager",
+            sortname: 'tdrq',
+            viewrecords: true,
+            //rowNum:20
+        });
+    }
+</script>
+

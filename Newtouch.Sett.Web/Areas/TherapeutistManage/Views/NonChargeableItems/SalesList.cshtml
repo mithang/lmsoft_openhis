@@ -1,0 +1,150 @@
+
+@{
+    ViewBag.Title = "SalesList";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<!DOCTYPE html>
+<script>
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 210,
+            datatype: "local",
+            unwritten: false,
+            colModel: [
+                 { label: "Khóa chính", name: "patid", hidden: true },
+                 { label: 'Tên khoản mục', name: 'dlmc', width: 100, align: 'left', editor: "text" },
+                 { label: 'Nhân viên bán hàng', name: 'xsry', width: 100, align: 'left', editor: "text" },
+                 { label: 'Phân loại', name: 'flmc', width: 100, align: 'left', editor: "text" },
+                 { label: 'Đơn giá', name: 'dj', width: 100, align: 'left', editor: "text" },
+                 { label: 'Số lượng', name: 'dw', width: 100, align: 'left', editor: "text" },
+                 { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 100, align: 'left', editor: "text" },
+                 { label: 'Tổng số tiền', name: 'je', width: 100, align: 'left', editor: "text" },
+                 { label: 'Thời gian thao tác', name: 'czsj', width: 100, align: 'left', editor: "text" }
+            ],
+            pager: "#gridPager",
+            sortname: 'desc',
+            rowNum: '10',
+            viewrecords: true
+        });
+
+        var mydata = [
+            { id: "1", sfxm: "1", dlmc: "Xe lăn", py: "LunYi", dw: "1", dj: "￥11700", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000001", mzzybz: "Ngoại trú", je: "￥100.20", czsj: "2017-04-10", xsry: "张三" },
+            { id: "2", sfxm: "2", dlmc: "Khẩu trang", py: "KouZhao", dw: "1", dj: "￥15", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000002", mzzybz: "dùng chung", je: "￥100.20", czsj: "2017-04-10", xsry: "李四" },
+            { id: "3", sfxm: "3", dlmc: "Ghế massage", py: "AnMoYi", dw: "2", dj: "￥5400", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000003", mzzybz: "Nhập viện", je: "￥100.20", czsj: "2017-04-10", xsry: "王五" }
+        ];
+        for (var i = 0; i <= mydata.length; i++) {
+            $gridList.jqGrid('addRowData', i + 1, mydata[i]);
+        }
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa thông tin",
+            url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "520px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        $.deleteForm({
+            url: "",//"/SystemManage/SysChargeItem/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().sfxmbh },
+            success: function () {
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_details() {
+        var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
+        $.modalOpen({
+            id: "Details",
+            title: "Xem tổ chức",
+            url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "560px",
+            btn: null,
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: "",//"/SystemManage/SysChargeItem/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+                $.loading(false);
+            }
+        })
+    }
+</script>
+<form id="form1">
+    <div class="panel panel-default" style="margin-top:5px;">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Giờ bắt đầu</td>
+                    <td class="formValue">
+                        <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                    </td>
+                    <td class="formTitle">Giờ kết thúc</td>
+                    <td class="formValue">
+                        <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                    </td>
+                    <td class="formTitle">Từ khóa</td>
+                    <td class="formValue">
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Tên" />
+                    </td>
+                    <td class="formTitle">
+                        Nhân viên bán hàng:
+                    </td>
+                    <td class="formValue">
+                        <select id="Cl" class="form-control">
+                            <option value="PT">张三</option>
+                            <option value="OT">李四</option>
+                            <option value="OT">王五</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">
+                        Phân loại:
+                    </td>
+                    <td class="formValue">
+                        <select id="Cl" class="form-control">
+                            <option value="PT">Dụng cụ</option>
+                            <option value="OT">Thực phẩm bảo vệ sức khỏe</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div style="margin-left:20px">
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 9 },
+    F9Text = "Xuất"
+})
+

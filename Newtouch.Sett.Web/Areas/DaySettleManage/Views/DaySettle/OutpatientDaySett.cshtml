@@ -1,0 +1,177 @@
+@{
+    ViewBag.Title = "OutpatientDaySett";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .newform-control {
+        height: 24px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        padding-left: 5px;
+        resize: none;
+        border-radius: 4px;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .newformTitle {
+        position: relative;
+        left: 0px;
+        text-align: right;
+        white-space: nowrap;
+        font-weight: normal;
+        padding-right: 15px;
+    }
+
+    .form-control:focus {
+        -webkit-box-shadow: inset 0 0px 1px rgba(0,0,0,.075) !important;
+    }
+</style>
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <th class="newformTitle">Ngày quyết toán：</th>
+                <td>
+                    <input readonly id="kssj" type="text" class="newform-control form-control" placeholder="trên lần Ngày quyết toán" style="width: 88%;">
+                </td>
+                <th class="newformTitle">—</th>
+                <td>
+                    <input readonly id="jssj" type="text" class="newform-control form-control" placeholder="này lần Ngày quyết toán" style="width: 88%;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+    
+<div class="gridPanel" style="margin-top:1%">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 6, 7 },
+    F6Text = "Xác nhận quyết toán",
+    F7Text = "Hủy quyết toán"
+})
+<script>
+    $(function () {
+        getLastDaySettTime();
+        gridList();
+    })
+
+    //获取上次日结算时间
+    function getLastDaySettTime() {
+        $.najax({
+            url: "/DaySettleManage/DaySettle/GetLastDaySettTime",
+            dataType: "json",
+            data: { mzzybz: "0" },
+            type: "POST",
+            success: function (data) {
+                $("#kssj").val(data.data);
+            }
+        });
+    }
+
+    //日结算明细
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/DaySettleManage/DaySettle/GetDaySettListJson",
+            postData: getSearchPostData(),
+            height: $(window).height() - 175,
+            colModel: [
+             { label: "Khóa chính", name: "Id", hidden: true, key: true },
+             {
+                 label: "này lần Số tiền quyết toán", name: "bcje", width: 100, align: "left",
+                 formatter: function (val) {
+                     if (val) {
+                         return val.toFixed(2);
+                     } else {
+                         return "0.00"
+                     }
+                 }
+             },
+             { label: "Số hóa đơn", name: "fphs", width: 400, align: "center" },
+             { label: "Người quyết toán", name: "CreatorName", width: 150, align: "center" },
+             { label: "quyết toán Giờ bắt đầu", name: "LastJsTime", width: 150, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+             { label: "quyết toán Giờ kết thúc", name: "CreateTime", width: 150, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        return { mzzybz: "0" };
+    };
+
+    //日结算确认
+    function newtouch_event_f6() {
+        $.modalConfirm("xác nhận Có hay không tiến hành quyết toán？", function (flag) {
+            if (!flag) {
+                return;
+            }
+            else {
+                $.najax({
+                    type: "POST",
+                    url: "/DaySettleManage/DaySettle/SaveOutpatientDaySettle",
+                    dataType: "json",
+                    success: function (data) {
+                        $.modalAlert("Thao tác thành công", 'success');
+                        $.modalClose();
+                        $("#gridList").jqGrid('clearGridData');  //清空表格
+                        $("#gridList").jqGrid('setGridParam').trigger("reloadGrid");
+                    },
+                    errorCallback: function (err) {
+                        $.modalAlert(err.message, 'error');
+                        $.modalClose();
+                    }
+                });
+            }
+        });
+    }
+
+    //退费确认
+    function newtouch_event_f7() {
+        //获取选中行Id
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn trước cần Hủy quyết toán của thông tin", 'warning');
+            return;
+        }
+        //弹出确认窗口
+        $.modalConfirm("xác nhận Có hay không tiến hành quyết toán？", function (flag) {
+            if (!flag) {
+                return;
+            }
+            else {
+                $.najax({
+                    type: "POST",
+                    url: "/DaySettleManage/DaySettle/CancleDaySettleInfo",
+                    data: { Id: seleRowid },
+                    dataType: "json",
+                    success: function (data) {
+                        $.modalAlert("Thao tác thành công", 'success');
+                        $.modalClose();
+                        $("#gridList").jqGrid('clearGridData');  //清空表格
+                        $("#gridList").jqGrid('setGridParam').trigger("reloadGrid");
+                    },
+                    errorCallback: function (err) {
+                        $.modalAlert(err.message, 'error');
+                        $.modalClose();
+                    }
+                });
+            }
+        });
+    }
+</script>

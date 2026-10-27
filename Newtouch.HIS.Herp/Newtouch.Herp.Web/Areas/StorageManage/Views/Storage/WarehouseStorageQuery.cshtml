@@ -1,0 +1,345 @@
+@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure;
+@using NewtouchHIS.Lib.Base.Extension
+@{
+    ViewBag.Title = "Tra cứu vật tư của khoa hiện tại";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
+
+}
+<style>
+    #btn_search {
+        width: 45px;
+        font-weight: bolder;
+    }
+
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+
+    #TabGrid {
+        width: 100%;
+        position: fixed;
+        bottom: 10px;
+        right: 0;
+        z-index: 8888;
+        background-color: #253443;
+        filter: alpha(Opacity=95);
+        -moz-opacity: 0.95;
+        opacity: 0.95;
+        box-shadow: 0px 2px 10px #909090;
+    }
+
+        #TabGrid > * {
+            filter: alpha(Opacity=95);
+            -moz-opacity: 0.95;
+            opacity: 0.95;
+        }
+
+    .showbotton {
+        display: none;
+        position: fixed;
+        bottom: 5px;
+        right: 0;
+        z-index: 9999;
+        background-color: #ccc;
+        width: 50px;
+        height: 44px;
+        filter: alpha(Opacity=90);
+        -moz-opacity: 0.9;
+        opacity: 0.9;
+        cursor: pointer;
+        border-radius: 100px 0 0 100px;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">Điều kiện lọc</div>
+        <div style="padding-right:10px;">
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Tên vật tư：</td>
+                    <td class="formValue" s>
+                        <input type="text" id="keyWord" class="form-control" placeholder="Phiên âm/Tên" />
+                        <input type="hidden" id="productId" value="" />
+                    </td>
+                    <td class="formTitle">Loại：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="lb">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Trạng thái sử dụng：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="kzbz" name="kzbz">
+                            <option value="">Tất cả</option>
+                            <option value="1">Bình thường</option>
+                            <option value="0">Kiểm soát</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Trạng thái vật tư：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <td class="formTitle">Hiển thị tồn kho bằng 0：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="xslkc" name="xslkc">
+                            <option value="1">Có</option>
+                            <option value="0">Không</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Đã hết hạn：</th>
+                    <td class="formValue">
+                        <div class="ckbox">
+                            <input id="ygq" name="ygq" type="checkbox"><label for="ygq">Có</label>
+                        </div>
+                        <div class="ckbox" style="float:right;">
+                            <input id="mxyx" name="mxyx" type="checkbox" class="ckbox" checked />
+                            <label for="mxyx">Có</label>
+                        </div>
+                        <label style="float:right;line-height: 20px; margin-right:10px;">Chỉ hiển thị tồn kho hiệu lực：</label>
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In báo cáo" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <table id="gridList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+<div id="TabGrid">
+    <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
+        <li role="presentation" class="active">
+            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết phiếu</a>
+        </li>
+        <li style="float:right">
+            <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
+        </li>
+    </ul>
+    <div id="dv_mx">
+        <table id="gridMxInfo"></table>
+    </div>
+</div>
+<div class="showbotton">
+    <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
+</div>
+<script>
+    var $gridMxList = $("#gridMxInfo");
+    $(function () {
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        $(".hiding,.rows,#dv_search,.toolbar,.panel-default").click(function () {
+            TabGridHide();
+        });
+        $(".showbotton").click(function () {
+            $(".showbotton").animate({ width: 'hide' },
+                "fast",
+                function () {
+                    $("#TabGrid").animate({ left: '0px' }, "slow");
+                });
+        });
+        Initial();
+    });
+
+    //Gắn sự kiện phím Enter
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    //Khởi tạo
+    function Initial() {
+        getLbSelectTree();
+        gridList();
+        gridMxInfo();
+        TabGridHide();;
+        var ygq = getQueryString("ygq");
+        if (ygq != null && ygq === "true") {
+            $("#ygq").attr("checked", "checked");
+        }
+       $("#btn_print").click(function () {
+            if (!'@reportUrl') { $.modalAlert('Báo cáo SSRS chưa được chuyển đổi sang .NET Core, vui lòng sử dụng lưới dữ liệu trên trang.', 'warning'); return; }
+            var z = $('input[name=mxyx]:checked').length > 0 ? "1" : "";
+            window.open('@reportUrl' + "?tempCode=1269" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId" +
+               "&keyWord=" + ($('#keyWord').val() === "" ? "n" : $('#keyWord').val()) +
+                "&lbId=" + ($('#lb').val() === "" ? "n" : $('#lb').val()) +
+                "&kzbz=" + ($('#kzbz').val() === "" ? "n" : $('#kzbz').val()) +
+                "&wzzt=" + ($('#wzzt').val() === "" ? "n" : $('#wzzt').val()) +
+                "&xslkc=" + $('#xslkc').val() +
+                "&ygq=" + ($('#ygq').is(":checked") ? "1" : "0") +
+                "&zt=" + z);
+        });
+    }
+
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
+    function TabGridHide() {
+        var tabGridwith = $("#TabGrid").width() + 200;
+        if ($(".showbotton").is(":hidden")) {
+            $("#TabGrid").animate({ left: tabGridwith },
+                "slow",
+                function () {
+                    $(".showbotton").animate({ width: 'show' }, "fast");
+                });
+        }
+    }
+
+    //Loại
+    function getLbSelectTree() {
+        $("#lb").bindSelect({
+            url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
+        });
+    }
+
+    //Thông tin bảng chính
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/StorageManage/Storage/GetWarehouseStorage",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
+            colModel: [
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 110, align: 'left' },
+                { label: 'Loại', name: 'lb', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'slStr', width: 80, align: 'right' },
+                {
+                    label: 'Đơn giá bán lẻ', name: 'lsj', width: 80, align: 'right', hidden: true,
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }
+                },
+                { label: 'Đơn vị đơn giá', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
+                {
+                    label: 'Tổng bán lẻ', name: 'lsze', width: 80, align: 'right', hidden: true,
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                {
+                    label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Thương hiệu', name: 'brand', width: 100, align: 'center' },
+                { label: 'Hạn sử dụng', name: 'yxqStr', width: 70, align: 'left', hidden: true },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+                { label: "productId", name: "productId", hidden: true, key: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'wzmc asc',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                var z = $('input[name=mxyx]:checked').length > 0 ? "1" : "";
+                $gridMxList.jqGrid('setGridParam',
+                    {
+                        url: "/StorageManage/Storage/GetWarehouseStorageDetail",
+                        postData: { proId: $("#gridList").getRowData(rowid).productId, zt: z }
+                    }).trigger('reloadGrid');
+                $(".showbotton").click();
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: $("#form1").formSerialize()
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //Thông tin chi tiết
+    function gridMxInfo() {
+        $gridMxList.dataGrid({
+            url: "",
+            postData: "",
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 200,
+            colModel: [
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 120, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 120, align: 'left' },
+                { label: 'Số lượng tồn kho', name: 'bmkcslStr', width: 80, align: 'right' },
+                { label: 'Số lượng đóng băng', name: 'bmdjslStr', width: 80, align: 'right' },
+                {
+                    label: 'Đơn giá nhập', name: 'jj', width: 80, align: 'right',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
+                    }
+                },
+                { label: 'Đơn vị đơn giá', name: 'bmdwmc', width: 70, align: 'center' },
+                {
+                    label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'right',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                {
+                    label: 'Trạng thái', name: 'zt', width: 50, align: 'center', formatter: function (val, options) {
+                        return val === "1" ? "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-on\"></i>" : "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-off\"></i>";
+                    }
+                },
+                { label: 'productId', name: 'productId', hidden: true }
+            ]
+        });
+    }
+
+    //Thiết lập tồn khoHiệu lựcvàKhông
+    function operateZt(obj) {
+        var zt = "1";
+        var ph = $gridMxList.getRowData($(obj).attr("rowId")).ph;
+        var pc = $gridMxList.getRowData($(obj).attr("rowId")).pc;
+        var proId = $gridMxList.getRowData($(obj).attr("rowId")).productId;
+        if ($(obj).hasClass("fa-toggle-off")) {
+            $(obj).removeClass("fa-toggle-off").addClass("fa-toggle-on");
+            zt = "1";
+        } else {
+            $(obj).removeClass("fa-toggle-on").addClass("fa-toggle-off");
+            zt = "0";
+        }
+
+        $.najax({
+            url: "/StorageManage/Storage/UpdateKcxxZt",
+            type: "POST",
+            data: { proId: proId, ph: ph, pc: pc, zt: zt },
+            dataType: "json",
+            success: function (data) {
+                if (data.state === 'success') {
+                    //$.modalMsg("SửaTrạng thái tồn khoThành công", "success", 1000);
+                }
+                else {
+                    $.modalMsg(data, "error", 1000);
+                }
+            }
+        });
+    }
+
+    //LấyurlTrongcủaTham số
+    function getQueryString(name) {
+        // Khớp tham số đích
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var result = window.location.search.substr(1).match(reg); // ĐốiquerystringKhớp tham số đích
+        if (result != null) {
+            return decodeURIComponent(result[2]);
+        } else {
+            return null;
+        }
+    }
+
+</script>

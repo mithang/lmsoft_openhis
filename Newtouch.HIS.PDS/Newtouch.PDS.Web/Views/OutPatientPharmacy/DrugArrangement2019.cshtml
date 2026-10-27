@@ -1,0 +1,317 @@
+
+@{
+    ViewBag.Title = "Xếp thuốc ngoại trú";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    #dv_cfInfo {
+        height: 45px;
+    }
+
+        #dv_cfInfo ul {
+            list-style: none;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        #dv_cfInfo li {
+            white-space: nowrap;
+            display: inline-block;
+            margin: 3px 20px;
+        }
+</style>
+<form id="form1">
+    <div class="panel-default" style="float: left; width:27%;">
+        <table id="gridPatients"></table>
+        <div id="gridPatientsPager" rel="form1"></div>
+    </div>
+    <div id="dv_right" style="float: left; width: 72.5%; margin-left:0.5%;">
+        <div class="panel" id="dv_rightTop">
+            <div class="panel-default panel-heading">
+                <span style="font-weight: bold;">Thông tin đơn thuốc</span>
+                <span class="glyphicon glyphicon-menu-up" aria-hidden="true" style="float: right;"></span>
+            </div>
+            <div id="dv_cfInfo">
+                <ul>
+                    <li>
+                        <span class="formTitle">Họ tên：</span>
+                        <label id="lab_name" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Tuổi：</span>
+                        <label id="lab_nl" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Bác sĩ：</span>
+                        <label id="lab_ysmc" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle ">Số thẻ：</span>
+                        <label id="lab_cardNo" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Tổng số tiền：</span>
+                        <label id="lab_zje" type="text" value=""></label>
+                        <label id="lab_je" type="text" value="" style="display:none;"></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Tính chất bệnh nhân：</span>
+                        <label id="lab_brxzmc" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Khoa：</span>
+                        <label id="lab_ksmc" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Số hóa đơn：</span>
+                        <label id="lab_fph" type="text" value=""></label>
+                    </li>
+                    <li>
+                        <span class="formTitle">Số đơn thuốc：</span>
+                        <label id="lab_cfh" type="text" value=""></label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="dv_cfmx" style="overflow-x: auto; width: 100%; margin-top: 5px;">
+            <table id="gridCfmx"></table>
+        </div>
+        @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+       {
+           ShowKeyList = new[] { 7, 8 },
+           F8Text = "Xếp tất cả thuốc",
+           F7Text = "Xếp thuốc"
+       })
+    </div>
+</form>
+
+<script>
+    var cfsheight = $(window).height() - 60;
+    var cfxxwidth = $(window).width() - $("#dv_left").width() - 10;
+    var $gridPatients = $("#gridPatients");
+    var $gridCfmx = $("#gridCfmx");
+    $gridPatients.jqGrid("clearGridData");
+    $gridCfmx.jqGrid("clearGridData");
+
+    $(function () {
+        initLayout();
+        $(window).resize(function () {
+            initLayout();
+        });
+        gridPatients();
+        gridCfmx();
+        ShowOrClose();
+    });
+
+    //自适应
+    function initLayout() {
+        $("#dv_cfmx").height($(window).height() - $("#dv_cfInfo").height() - 90);
+        $("#gridCfmx").setGridHeight($(window).height() - $("#dv_cfInfo").height() - 160);
+    }
+
+    //处方信息展开合并
+    function ShowOrClose() {
+        $(".glyphicon").click(function () {
+            if ($(this).hasClass("glyphicon-menu-up")) {
+                $(this).removeClass("glyphicon-menu-up");
+                $(this).addClass("glyphicon-menu-down");
+                $("#dv_cfInfo").hide();
+            } else {
+                $(this).removeClass("glyphicon-menu-down");
+                $(this).addClass("glyphicon-menu-up");
+                $("#dv_cfInfo").show();
+            }
+            initLayout();
+        });
+    }
+
+    //获取处方信息
+    function gridPatients() {
+        $gridPatients.dataGrid({
+            height: cfsheight - 50,
+            url: "/OutPatientPharmacy/GetXmAndSfsj?r=" + Math.random(),
+            caption: "Danh sách bệnh nhân",
+            colModel: [
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Số thẻ', name: 'CardNo', width: 80, align: 'center' }
+            ],
+            beforeRequest: function () {
+                $("#gridPatientsPager_left").hide();
+                $("#gridPatientsPager_right").hide();
+            },
+            pager: "#gridPatientsPager",
+            sortname: 'xm asc',
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                var data = $gridPatients.jqGrid('getRowData', rowid);
+                $gridCfmx.jqGrid('setGridParam', {
+                    postData: { cardNo: data.CardNo, xm: data.xm },
+                    url: "/OutPatientPharmacy/RpDetailQuery"
+                }).trigger('reloadGrid');
+            },
+            gridComplete: function () {
+                $gridCfmx.jqGrid("clearGridData");
+                var ids = new Array();
+                //getDataIDs()返回当前grid里所有数据的id
+                ids = $gridPatients.getDataIDs();
+                if (ids == null || ids.length <= 0) return;
+                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                $gridPatients.setSelection(ids[0], true);
+                var pdata = $gridPatients.jqGrid('getRowData', ids[0]);
+                if (pdata == null) return;
+                $gridCfmx.jqGrid('setGridParam', {
+                    url: "/OutPatientPharmacy/RpDetailQuery?r=" + Math.random(),
+                    postData: { cardNo: pdata.CardNo, xm: pdata.xm }
+                }).trigger('reloadGrid');
+            }
+        });
+    }
+
+    //获取处方明细
+    function gridCfmx() {
+        $gridCfmx.dataGrid({
+            url: "",
+            caption: "Chi tiết đơn thuốc",
+            height: $(window).height() - $("#dv_cfInfo").height() - 160,
+            colModel: [
+                { label: 'Số hóa đơn', name: 'fph', align: 'left', width: 80 },
+                { label: 'Số đơn thuốc', name: 'cfh', align: 'left', width: 120 },
+                { label: 'Tên thuốc', name: 'ypmc', align: 'left', width: 110 },
+                { label: 'Quy cách', name: 'gg', align: 'left', width: 50 },
+                { label: 'Số lượng', name: 'sl', align: 'right', width: 40 },
+                { label: 'Đơn vị', name: 'dw', align: 'left', width: 55 },
+                {
+                    label: 'Đơn giá', name: 'dj', align: 'right', width: 50,
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
+                    }
+                },
+                {
+                    label: 'Số tiền', name: 'je', align: 'right', width: 50,
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                { label: 'Nhà sản xuất', name: 'ycmc', align: 'left', width: 110 },
+                { label: 'Liều dùng', name: 'jl', align: 'right', width: 60 },
+                { label: 'Đơn vị liều', name: 'jldw', align: 'left', width: 55 },
+                { label: 'Cách dùng', name: 'yfmc', align: 'left', width: 60 },
+                { label: 'Lời dặn bác sĩ', name: 'yszt', align: 'left', width: 100 },
+                { label: 'Bác sĩ thực hiện', name: 'CreatorCode', align: 'center', width: 60 },
+                {
+                    label: 'Thời gian thu phí', name: 'sfsj', align: 'left', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
+                },
+                { label: 'Nhóm thuốc', name: 'czh', align: 'left', width: 50 }
+            ],
+            loadComplete: function (e) {
+                var id = $gridPatients.jqGrid('getGridParam', 'selrow');
+                var data = $gridPatients.jqGrid('getRowData', id);
+                $.najax({
+                    type: "get",
+                    url: "/OutPatientPharmacy/GetCfInfo",
+                    data: { cardNo: data.CardNo, xm: data.xm },
+                    dataType: "json",
+                    success: function (res) {
+                        if (res != null) {
+                            $("#lab_name").html(res.xm);
+                            $("#lab_cfh").html(res.cfh);
+                            $("#lab_cfh").attr("title", res.cfhComplete);
+                            $("#lab_cardNo").html(res.CardNo);
+                            $("#lab_fph").html(res.Fph);
+                            $("#lab_fph").attr("title", res.FphComplete);
+                            $("#lab_zje").html(res.Zje);
+                            $("#lab_je").html(res.je);
+                            $("#lab_sfsj").html(res.ShowSfsj);
+                            $("#lab_brxzmc").html(res.brxzmc);
+                            $("#lab_nl").html(res.nl);
+                            $("#lab_ysmc").html(res.ysmc);
+                            $("#lab_ksmc").html(res.ksmc);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    //Xếp tất cả thuốc
+    function newtouch_globalevent_f8() {
+        var pats = new Array();
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:默认所有行；param3：trueQuay lạiobject
+        $(gridPatients).each(function () {
+            pats.push({
+                "CardNo": this.CardNo,
+                "xm": this.xm
+            });
+        });
+        if (pats.length <= 0) return;
+        $.modalConfirm("Bạn có chắc muốn xếp tất cả thuốc không?？", function (flag) {
+            if (!flag) return;
+            $.najax({
+                url: "/OutPatientPharmacy/DrugArrangementV2",
+                dataType: "json",
+                type: "Post",
+                data: { patients: pats },
+                cache: false,
+                success: function (res) {
+                    if (res.state === "success") {
+                        $.modalMsg('Cấp thuốc thành công！', 'success', 2000);
+                        $gridPatients.jqGrid("clearGridData");
+                        $gridPatients.trigger('reloadGrid');
+                        $("#gridCfmx").jqGrid("clearGridData");
+                        cleanCfInfo();
+                    } else {
+                        $.modalAlert(res.message, 'error');
+                    }
+                }
+            });
+        });
+    }
+
+    //单个人号排药
+    function newtouch_globalevent_f7() {
+        var id = $("#gridPatients").jqGrid("getGridParam", "selrow");
+        if (!id) {
+            $.modalAlert("Vui lòng chọn bệnh nhân xếp thuốc trước", 'warning');
+            return;
+        }
+        var patient = new Array();
+        patient.push({
+            "CardNo": $("#gridPatients").jqGridRowValue().CardNo,
+            "xm": $("#gridPatients").jqGridRowValue().xm
+        });
+        $.najax({
+            url: "/OutPatientPharmacy/DrugArrangementV2",
+            dataType: "json",
+            type: "Post",
+            data: { patients: patient },
+            cache: false,
+            success: function (res) {
+                if (res.state === "success") {
+                    $.modalMsg('Cấp thuốc thành công！', 'success', 2000);
+                    $gridPatients.jqGrid("clearGridData");
+                    $gridPatients.trigger('reloadGrid');
+                    $("#gridCfmx").jqGrid("clearGridData");
+                    cleanCfInfo();
+                } else {
+                    $.modalAlert(res.message, 'error');
+                }
+            }
+        });
+    }
+
+    //清理处方信息
+    function cleanCfInfo() {
+        $("#lab_name").html("");
+        $("#lab_cfh").html("");
+        $("#lab_cardNo").html("");
+        $("#lab_fph").html("");
+        $("#lab_zje").html("");
+        $("#lab_je").html("");
+        $("#lab_sfsj").html("");
+        $("#lab_brxzmc").html("");
+        $("#lab_nl").html("");
+        $("#lab_ysmc").html("");
+        $("#lab_ksmc").html("");
+    }
+</script>

@@ -1,0 +1,314 @@
+@using Newtouch.Infrastructure;
+@using Newtouch.Tools;
+@{
+	Layout = null;
+	Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<form>
+	<div class="panel panel-default">
+		<div class="panel-heading navb-bg">
+			Điều kiện lọc
+		</div>
+		<table class="form">
+			<tr>
+				<th class="formTitle"></th>
+				<td class="formValue" colspan="2">
+					<input type="radio" name="radios" class="radios" value="qb" checked="checked">Tất cả
+					<input type="radio" name="radios" class="radios" value="yd">Đã đối mã
+					<input type="radio" name="radios" class="radios" value="wd">Chưa đối mã
+				</td>
+				<th class="formTitle">Tên vật tư:</th>
+				<td class="formValue" colspan="2">
+					<input id="txt_keyword" type="text" style="width:200px;" class="form-control form-an" placeholder="Tên vật tư">
+				</td>
+				<td class="formValue">
+					<input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tìm kiếm" />
+				</td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="gridPanel">
+		<table id="gridList"></table>
+		<div id="gridPager"></div>
+	</div>
+	<div class="panel panel-default">
+		<div class="toolbar" style="margin-left:2%">
+			<div class="btn-group">
+				<label>Nguồn dữ liệu:</label>
+			</div>
+			<div class="btn-group">
+				<select id="DataSource" name="DataSource"  style="width:200px; height:15px;"  class="form-control form-an">
+					<option value="1">Chế độ xem hệ thống</option>
+					<option value="2">Thư mục tải BHYT</option>
+				</select>
+			</div>
+			<div class="btn-group">
+				<label>Tên vật tư BHYT:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Tên vật tư BHYT">
+			</div>
+			<div class="btn-group">
+				<label>Số đăng ký lưu hành:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Số đăng ký BHYT">
+			</div>
+			<div class="btn-group">
+				<label>Doanh nghiệp vật tư:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Doanh nghiệp vật tư BHYT">
+			</div>
+			<div class="btn-group">
+				<input type="button" id="btn_searchyb" class="btn btn-primary" value="Tìm kiếm"/>
+			</div>
+			<div class="btn-group">
+				<input type="button" id="btn_save" class="btn btn-primary" value="Đối mã"/>
+			</div>
+		</div>
+		@*<table class="form">
+			<tr>
+				<th class="formTitle">耗材代码：</th>
+				<td class="formValue" colspan="3">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="耗材代码">
+				</td>
+
+				<td class="formValue" colspan="2">
+					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+				</td>
+				<td class="formValue" colspan="2">
+					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" />
+				</td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+			</tr>
+		</table>*@
+	</div>
+	<div style="background-color: #fff; margin-top:5px;">
+		<table id="gridJSMXList"></table>
+	</div>
+</form>
+
+
+<script>
+	$(function () {
+		gridList();
+		$("#btn_searchyb").click(function () {
+			$('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
+			btn_selectmx();
+		});
+
+		$("#btn_save").click(function () {
+
+			btn_save();
+		});
+	});
+	function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "@Url.Action("Getclxxlist")",
+			height: 240,
+            postData: getpostData(),
+              colModel: [
+				  { label: "Khóa chính", name: "sfxmId", hidden: true, key: true },
+				{ label: 'Tên vật tư', name: 'ypmc', width: 200, align: 'center',  sortable: false, frozen: true},
+				{ label: "Mã BHYT quốc gia", name: "gjybdm", width: 180, align: 'center', sortable: false, frozen: true},
+				{ label: "Tên BHYT quốc gia", name: "gjybmc", width: 200, align: 'center', sortable: false },
+				{ label: 'Quy cách', name: 'gg', width: 110, align: 'center', sortable: false},
+				  { label: 'Số đăng ký', name: 'ypzsm', width: 140, align: 'center', sortable: false },
+				//{ label: '剂型', name: 'jxmc', width: 60, align: 'center', sortable: false },
+				{ label: 'Nhà sản xuất', name: 'ycmc', width: 180, align: 'center', sortable: false },
+				{
+					label: 'Tính chất tự trả', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
+						switch (parseInt(b.zfxz)) {
+						case @((int)EnumZiFuXingZhi.ZF):
+                            return "@EnumZiFuXingZhi.ZF.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Jia):
+							return "@EnumZiFuXingZhi.Jia.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Yi):
+							return "@EnumZiFuXingZhi.Yi.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Bing):
+                            return "@EnumZiFuXingZhi.Bing.GetDescription()";
+						default:
+                            return "";
+                        }
+					}
+				},
+				{ label: "Mã BHYT", name: "ybdm", width: 110, align: 'center', sortable: false },
+				{ label: 'Mã Pinyin', name: 'py', width: 100, align: 'center', sortable: false },
+				{ label: "Mã vật tư", name: "sfxmcode", width: 100, align: 'center', sortable: false },
+			],
+            pager: "#gridPager",
+            sortname: ' CreateTime desc',
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                btn_selectrow();
+            },
+            gridComplete: function (gridJszbList) {
+                jszbList = null;
+                if (gridJszbList && gridJszbList.rows) {
+                    jszbList = gridJszbList.rows;
+                }
+            }
+        });
+
+        $("#btn_search").click(function () {
+            $('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
+            $gridList.jqGrid('setGridParam', {
+                postData: getpostData(),
+                page: 1,
+			}).trigger('reloadGrid');
+			$("#txt_gjybdm").val("");
+			$("#txt_pzwh").val("");
+			$("#txt_scqy").val("");
+        });
+	}
+
+
+	//结算明细 jGrid声明
+	$('#gridJSMXList').newtouchLocalDataGrid({
+		height: $(window).height() - 520,
+		caption: "Thông tin vật tư BHYT",
+		unwritten: false,
+		colModel: [
+			{ label: 'Mã vật tư quốc gia', name: 'hcdm', width: 180, align: 'center' },
+			//{ label: '医保名称', name: 'zcmc', width: 200, align: 'center' },
+			{ label: 'Tên vật tư BHYT', name: 'djcpmc', width: 80, align: 'center' },
+			{ label: 'Số quy cách mẫu', name: 'ggxhs', width: 100, align: 'center' },
+			{ label: 'Doanh nghiệp vật tư', name: 'hcqy', width: 180, align: 'center' },
+			{ label: 'Số đăng ký lưu hành', name: 'zcbah', width: 130, align: 'center' },
+			{ label: 'Người đăng ký', name: 'zcbar', width: 180, align: 'center' },
+			{ label: 'Tính chất BHYT', name: 'ybxz', width: 80, align: 'center'},
+			{ label: 'Tên chung BHYT', name: 'ybtym', width: 120, align: 'center' },
+			{ label: 'Chất liệu', name: 'cz', width: 100, align: 'center' },
+			{ label: 'Đặc điểm', name: 'tz', width: 80, align: 'center' },
+			{ label: 'Mã Pinyin', name: 'pym', width: 80, align: 'center' },
+			{ label: 'Phân loại cấp 1', name: 'yjfl', width: 140, align: 'center' },
+			{ label: 'Phân loại cấp 2', name: 'ejfl', width: 120, align: 'center' },
+			{ label: 'Phân loại cấp 3', name: 'sjfl', width: 100, align: 'center' },
+			//{ label: '最小包装数量', name: 'zxbzsl', width: 40, align: 'center' },
+			//{ label: '最小制剂单位', name: 'zxzjdw', width: 40, align: 'center' },
+			//{ label: '最小包装单位', name: 'zxbzdw', width: 80, align: 'center' },
+			//{ label: '编号', name: 'bh', width: 80, align: 'center' },
+
+
+		],
+		viewrecords: true,
+		//ondblClickRow: function (row) {
+		//	btn_clickrow();
+		//}
+	});
+
+	function btn_selectmx() {
+
+		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');
+		if (!ypid) {
+			$.modalMsg("Vui lòng chọn thông tin vật tư cần đối mã", "warning", 1000);
+			return false;
+		}
+		console.log($("#txt_gjybdm").val());
+		var pzwh = $("#txt_pzwh").val();
+		var scqy = $("#txt_scqy").val();
+		$('#gridJSMXList').jqGrid("clearGridData");
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("GetYbclxxlist")",
+			data: { gjybdm: $("#txt_gjybdm").val(), ypmc: scqy, py: '', pzwh: pzwh,dataSource: $("#DataSource").val() },
+			dataType: "json",
+			success: function (ajaxresp) {
+
+				$('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
+			}
+		});
+	}
+	function btn_selectrow() {
+		var gjybdm = $("#gridList").jqGridRowValue().gjybdm;
+		var ypmc = $("#gridList").jqGridRowValue().sfxmmc;
+		var yppy = $("#gridList").jqGridRowValue().py;
+		var pzwh = "";//$("#gridList").jqGridRowValue().pzwh;
+		if (gjybdm != null && gjybdm != "") {
+			$("#txt_gjybdm").val(gjybdm)
+		} else {
+			$("#txt_gjybdm").val(ypmc);
+		}
+		$("#txt_pzwh").val("");
+		$("#txt_scqy").val("");
+		console.log(gjybdm);
+		//每次单击，先清空上一条明细 和合计
+		$('#gridJSMXList').jqGrid("clearGridData");
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("GetYbclxxlist")",
+			data: { gjybdm: $("#txt_gjybdm").val(), ypmc: '', py: '', pzwh: '' ,dataSource: $("#DataSource").val()},
+			dataType: "json",
+			success: function (ajaxresp) {
+				$('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
+			}
+		});
+	}
+
+
+	//保存对码
+	function btn_save() {
+
+		var ypids = $("#gridList").jqGrid('getGridParam', 'selrow');
+		if (!ypids) {
+			$.modalMsg("Vui lòng chọn thông tin vật tư cần đối mã", "warning", 1000);
+			return false;
+		}
+		var ybid = $("#gridJSMXList").jqGrid('getGridParam', 'selrow');
+		if (!ybid ){
+			$.modalMsg("Vui lòng chọn thông tin vật tư BHYT", "warning", 1000);
+			return false;
+		}
+		var ybxx = {
+			hcdm: $("#gridJSMXList").jqGridRowValue().hcdm,
+			djcpmc: $("#gridJSMXList").jqGridRowValue().djcpmc,
+			zcbah: $("#gridJSMXList").jqGridRowValue().zcbah,
+			ybxz: $("#gridJSMXList").jqGridRowValue().ybxz,
+		};
+		var ypId = $("#gridList").jqGridRowValue().sfxmId;
+		var ybxz = ybxx.ybxz == "甲" ? "4" : ybxx.ybxz == "乙" ? "5" : ybxx.ybxz == "丙" ? "6" : "1";
+		console.log(ypId);
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("SaveYpcl")",
+			data: { ybxx: ybxx, ypId: ypId},
+			dataType: "json",
+			success: function (data) {
+
+				if (data != null && data !== "") {
+					//gridList();
+					$.modalAlert("Đối mã vật tư này thành công", 'success');
+					//$("#txt_gjybdm").val("");
+					//$('#btn_search').trigger('click');
+					$("#txt_pzwh").val("");
+					$("#txt_scqy").val("");
+					var datarow = {
+						gjybdm: $("#gridJSMXList").jqGridRowValue().hcdm,
+						gjybmc: $("#gridJSMXList").jqGridRowValue().djcpmc,
+						pzwh: $("#gridJSMXList").jqGridRowValue().zcbah,
+					};
+					$("#gridList").jqGrid('setRowData', ypids, datarow);
+				}
+			}
+		});
+	}
+
+
+	function getpostData() {
+		return {
+			keyword: $("#txt_keyword").val(), type: $('input:radio:checked').val() ,dataSource: $("#DataSource").val()
+		};
+	}
+
+</script>

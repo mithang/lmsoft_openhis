@@ -1,0 +1,135 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Dị ứngThông tinQuản lý";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form1">
+    <div style="margin: 10px; margin-bottom: 0px;">
+        <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
+            <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+            Vui lòng điềnThông tin dị ứng!
+        </div>
+        <div class="panel panel-default">
+            <table class="form">
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Thuốc</th>
+                    <td class="formValue">
+                        <select id="ypCode" class="form-control required">
+                            <option value="">===Vui lòng chọn===</option>
+                        </select>
+                    </td>                 
+                </tr>
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Kết quả test da</th>
+                    <td class="formValue">
+                        <div class="ckbox">
+                            <input id="yin" name="checkbox0" type="checkbox" value="Âm tính" autocomplete="off" checked><label for="yin">Âm tính</label>
+                        </div>
+                        <div class="ckbox">
+                            <input id="yang" name="checkbox0" type="checkbox" value="Dương tính" autocomplete="off"><label for="yang">Dương tính</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Dị ứng với loại thuốc này</th>
+                    <td class="formValue">
+                        <div class="ckbox" id="ksslb">
+                            <input id="0" name="checkbox1" type="checkbox" autocomplete="off"><label for="0">Không</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Ghi chú:</th>
+                    <td class="formValue">
+                        <textarea id="txt_remark" class="form-control required" style="width:98.5%;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<script>
+    var blh = $.request("blh");
+    var xm = $.request("xm");
+    var sex = $.request("sex");
+    var cfmxid = $.request("cfmxid");
+    var yzId = $.request("yzId");
+    var xmcode = $.request("xmcode");
+    var xmmc = $.request("xmmc");
+    $(function () {
+        $("#form1 input[name='checkbox0']").bind('click', function () {
+            //当前的checkbox是否选中
+            if (this.checked) {
+                $("#form1 input[name='checkbox0']").not(this).attr("checked", false);
+            } else {
+                this.checked = true
+            }
+        });
+
+        //绑定抗生素
+        $("#ypCode").bindSelect({
+            url: "@Url.Action("GetKssYpListJson")",
+            id: "ypCode",
+            text: "ypmc"
+        });
+        $("#ypCode").change(function () {
+            $.najax({
+                url: "@Url.Action("GetKssYpLbJson")",
+                data: { ypCode: $(this).val() },
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                    if (data.state === "success" && data.data.length > 0) {
+                        var _html = "";
+                        $.each(data.data, function (id, val) {
+                            _html += '<input id="' + val.Id + '" name="checkbox1" type="checkbox" value="' + val.Id + '" autocomplete="off"><label for="' + val.Id + '">' + val.typeName + '</label>';
+                        });
+                        $("#ksslb").html(_html);
+                    }
+                    else {
+                        $("#ksslb").html('<input id="0" name="checkbox1" type="checkbox" autocomplete="off"><label for="0">Không</label>');
+                    }
+                }
+            });
+        });
+    });
+
+    //过敏信息确认
+    function AcceptClick(callBack) {
+        if (!!!$("#ypCode").val() && !!!$("#txt_remark").val()) {
+            $.modalAlert("Vui lòng chọn thuốc dị ứng hoặc điền thông tin dị ứng!", 'warning');
+            return;
+        }
+        var postData = new Object();
+        postData["blh"] = blh;
+        postData["xm"] = xm;
+        postData["sex"] = sex;
+        postData["xmCode"] = xmcode;
+        postData["xmmc"] = xmmc;
+        var Result;
+        $("#form1 input[name='checkbox0']:checked").each(function () {
+            Result = $(this).val();
+        });
+        postData["Result"] = Result;
+        postData["gmlx"] = $("#form1 input[name='checkbox1']")[0].value;
+        postData["Remark"] = $("#txt_remark").val();
+        if (cfmxid) {
+            postData["mzzybz"] = "1";
+            postData["yzid"] = "";
+            postData["cfmxid"] = cfmxid;
+        } else {
+            postData["mzzybz"] = "2";
+            postData["yzid"] = yzId;
+            postData["cfmxid"] = "";
+        }        
+        postData["ypCode"] = $("#ypCode").val();
+        $.submitForm({
+            url: "/NurseManage/Allergy/SaveAllergyInfo",
+            param: { postData: postData },
+            success: function () {
+                callBack();
+                $.modalClose();
+            }
+        });
+    }
+</script>

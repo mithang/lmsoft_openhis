@@ -1,0 +1,100 @@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()">
+                <i class="fa fa-plus"></i>Tạo mới
+            </a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()">
+                <i class="fa fa-pencil-square-o"></i>Sửa
+            </a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-authorg" authorize="yes" class="btn btn-primary" onclick="btn_authorg()">
+                <i class="fa fa-pencil-square-o"></i>Ủy quyền cơ sở
+            </a>
+        </div>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+</div>
+
+<script>
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/Application/GetGridJson",
+            height: $(window).height() - 96,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên', name: 'Name', width: 150, align: 'left' },
+             { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            ]
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm ứng dụng mới",
+            url: "/Application/Form",
+            width: "400px",
+            height: "320px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa ứng dụng",
+            url: "/Application/Form?keyValue=" + keyValue,
+            width: "400px",
+            height: "320px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_authorg() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Ủy quyền cơ sở",
+            url: "/Application/Organizes?keyValue=" + keyValue,
+            width: "400px",
+            height: "520px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,372 @@
+﻿
+@{
+	Layout = null;
+}
+<div id="dv_edit_diag">
+	<div style="width:65%;float:left;padding-left:10px;">
+		<table id="gridzdList"></table>
+		
+	</div>
+	<div class="dv_tip" style="width:30%;float:right;padding-right:10px;border:2px solid #a6e6a5;height:400px;">
+		<div><input type="hidden" id="zd_rowid" name="zd_rowid" /></div>
+		<div style="padding:50px 20px 50px 20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle "><span style="color:red;">*</span> Loại:</th>
+                    <td class="formValue">
+                        <label><input type="radio" id="radioTreating" checked="checked" name="optionsRadios" class="optionsRadios formClearIgnore" value="WM" ) />Tây y</label>
+                        <label><input type="radio" id="radioTreated" name="optionsRadios" class="optionsRadios formClearIgnore" value="TCM" />Đông y</label>
+                    </td>
+                </tr>
+                <tr id="xyzdlx">
+                    <th class="formTitle ">Loại chẩn đoán:</th>
+                    <td class="formValue">
+                        <select name="zdlx" id="zdlx" class="form-control" data-enumtype="EnumZdlxbs">
+                        </select>
+                    </td>
+                </tr>
+                <tr id="zyzdlx" style="display:none">
+                    <th class="formTitle ">Loại chẩn đoán:</th>
+                    <td class="formValue">
+                        <select name="zdlx2" id="zdlx2" class="form-control" data-enumtype="EnumZyZdlxbs">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle "><span style="color:red;">*</span> Chẩn đoán ra viện:</th>
+                    <td class="formValue">
+                        <input id="zd_cyzd" name="zd_cyzd" class="form-control" attr-zddm="" attr-ICD10="" autocomplete="off" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle ">Tình hình ra viện:</th>
+                    <td class="formValue">
+                        <select id="zd_cyqk" name="zd_cyqk" class="form-control" data-enumtype="EnumCyqk"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle ">Tình trạng bệnh lúc nhập viện:</th>
+                    <td class="formValue">
+                        <select id="zd_rybq" name="zd_rybq" class="form-control" data-enumtype="EnumRybq"></select>
+                    </td>
+                </tr>
+                
+            <th class="formTitle ">Thứ tự</th>
+            <td class="formValue">
+                <input id="zd_px" name="zd_px" class="form-control" />
+            </td>
+
+                <tr>
+                    <th class="formTitle "></th>
+                    <td class="formValue">
+                        <input id="btn_submit_zd" type="button" class="btn btn-default" value="Lưu" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle "></th>
+                    <td class="formValue">
+                        <input id="btn_del_zd" type="button" class="btn btn-default" value="Xóa chẩn đoán" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle "></th>
+                    <td class="formValue">
+                        <input id="btn_reset_zd" type="button" class="btn btn-default" value="Làm mới danh sách" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
+                    </td>
+                </tr>
+            </table>
+		</div>
+	</div>
+</div>
+<script>
+	//var addlist = [];
+	var zddata = {};
+	function getzddata() {
+	    var zdlx = "";
+	    if ($("input[name='optionsRadios']:checked").val() == "WM") {
+	        zdlx = $("#zdlx").val();
+	    }
+	    else {
+	        zdlx = $("#zdlx2").val();
+	    }
+		zddata = {
+			BAH: $("#BAH").val(),
+			ZYH: $("#ZYH").val(),
+			JBMC: $("#zd_cyzd").val(),
+			JBDM: $("#zd_cyzd").attr("attr-ICD10"),
+			RYBQ: $("#zd_rybq").val(),
+			RYBQMS: $("#zd_rybq option:selected").text(),
+			CYQK: $("#zd_cyqk").val(),
+			CYQKMS: $("#zd_cyqk option:selected").text(),
+			ZDOrder: $("#zd_px").val(),
+			ZDLX: zdlx,
+			ZDLB:$("input[name='optionsRadios']:checked").val(),
+			ztsm: ""
+
+		};
+	}
+
+	function DelteJQ() {
+		$("#zd_cyzd").val('')
+	}
+
+	$(function () {
+        $("#btn_submit_zd").click(function () {
+            debugger;
+			var zd = $("#zd_cyzd").val();
+			if (zd != null && zd != undefined && zd != "") {
+				getzddata();
+
+				var $grid = $("#gridzdList");
+				var gridids = $grid.jqGrid('getDataIDs');
+				var maxRowId = 0;
+				//在行号序列中获取最大的编号
+                if (gridids.length > 0) {
+                    maxRowId = Math.max.apply(Math, $grid.jqGrid('getDataIDs'));
+                } else {
+                    zddata.ZDOrder = 1;
+                }
+
+				var rowid = $("#zd_rowid").val(); //是否属于修改诊断
+				if (rowid != null && rowid != undefined && rowid != "" && parseInt(rowid) > 0) {
+					var rowdata = $grid.jqGrid("getRowData", rowid);
+					if (zddata.JBDM == rowdata.JBDM) {
+						$grid.jqGrid("setRowData", rowid, zddata);
+						$.modalAlert("Nhập thành công", 'success');
+						DelteJQ()
+						return true;
+					}
+				}
+
+				//debugger
+				//新增
+				var result = checkZddm(zddata);
+				if (result) {
+					$grid.jqGrid("addRowData", maxRowId + 1, zddata, 'last');
+					DelteJQ()
+					//addlist.push(zddata.JBDM);
+				}
+				else {
+					$.modalAlert("Chẩn đoán chính/Chẩn đoán chính đã tồn tại hoặc đã có chẩn đoán giống nhau.", 'error');
+				}
+
+			}
+			else {
+				$.modalAlert("Vui lòng chọn chẩn đoán", 'warning');
+			}
+
+		});
+
+		$("#btn_del_zd").click(function () {
+			var rowid = $("#zd_rowid").val();
+			if (rowid != null && rowid != undefined && rowid != "" && parseInt($("#zd_rowid").val()) > 0) {
+				getzddata();
+				zddata.zt = 0;
+				zddata.ztsm = 'Hủy hiệu lực';
+				jQuery("#gridzdList").jqGrid("setRowData", rowid, zddata);
+				$.modalAlert("Hủy hiệu lực thành công", 'success');
+				//jQuery("#gridzdList").jqGrid("setCell", rowid, "zt", "0");
+				//debugger
+				//jQuery("#gridzdList").jqGrid("setCell", rowid, "ztsm", "作废");
+			}
+			else {
+				$.modalAlert("Vui lòng chọn chẩn đoán", 'warning');
+			}
+		});
+		$("#btn_reset_zd").click(function () {
+
+			jQuery("#gridzdList").jqGrid().trigger('reloadGrid');
+		});
+	});
+
+	function checkZddm(newrow) {
+		var isadd = true;
+		var ids = $("#gridzdList").getDataIDs();
+		if (ids.length > 0) {
+			$(ids).each(function (i) {
+				var rows = $("#gridzdList").getRowData(i + 1);
+				if (rows.JBDM == newrow.JBDM) {
+					isadd = false;
+				}
+				else if (rows.ZDLB==newrow.ZDLB && rows.ZDLX==newrow.ZDLX&& rows.ZDLX=="1")
+				{
+				    isadd = false;
+				}
+			})
+
+			//if (addlist.length > 0) {
+			//    addlist.forEach((item, index, array) => {
+			//        if (item == newrow.JBDM) {
+			//            isadd = false;
+			//        }
+			//    });
+			//}
+
+		}
+		return isadd;
+
+	}
+
+	function ZdListGrid() {
+		var $gridList = $("#gridzdList");
+		//var queryJson = {
+		//    bah: $("#BAH").val(),
+		//    zyh: $("#ZYH").val(),
+		//}
+		$gridList.dataGrid({
+			postData: {
+				//queryJson: JSON.stringify(queryJson)
+				bah: $("#BAH").val(),
+				zyh: $("#ZYH").val(),
+			},
+			url: "/MRHomePage/MRHomePage/GetZdGridList",
+			autowidth: true,
+			height: $(window).height() - 120,
+			colModel: [
+				{ label: "Id", name: "Id", hidden: true },
+				//{
+				//    label: "操作", name: "编辑", width: 60, align: 'center', formatter: function (row, option, data) {
+				//        debugger
+				//        return '<input type="button" onclick="btn_edit(' + option.rowid + ')" />';
+				//    }
+				//},
+                { label: "ZDLB", name: "ZDLB", width: 60, align: 'left', editor: "text", hidden: true },
+                {
+                    label: "Loại chẩn đoán", name: "ZDLBMC", width: 60, align: 'left', editor: "text", formatter: function (row, option, data) {
+                        if (data.ZDLB == "WM") {
+                            return "Tây y";
+                        }
+                        else if (data.ZDLB == "TCM") {
+                            return "Đông y";
+                        }
+                    }
+                },
+                { label: "Số hồ sơ bệnh án", name: "BAH", width: 60, align: 'left', editor: "text" },
+				{ label: "Số nhập viện", name: "ZYH", width: 60, align: 'left', editor: "text" },
+				{ label: "Chẩn đoán ra viện", name: "JBMC", width: 180, align: 'left', editor: "text" },
+				{ label: "Mã bệnh", name: "JBDM", width: 80, align: 'left', editor: "text" },
+				{ label: "RYBQ", name: "RYBQ", hidden: true },
+				{ label: "Tình trạng bệnh lúc nhập viện", name: "RYBQMS", width: 60, align: 'left', editor: "text" },
+				{ label: "CYQK", name: "CYQK", hidden: true },
+				{ label: "Tình hình ra viện", name: "CYQKMS", width: 60, align: 'left', editor: "text" },
+				{ label: "ZDOrder", name: "ZDOrder", hidden: true },
+                { label: "ZDLX", name: "ZDLX", width: 50, hidden: true },
+				{
+					label: "Loại chẩn đoán", name: "Zdlxmc", width: 80, align: 'left', editor: "text", formatter: function (row, option, data) {
+					    if (data.ZDLB == "TCM" && data.ZDLX=="1")
+						{
+						    return "Chẩn đoán chính";
+						}
+					    else if (data.ZDLB == "TCM" && data.ZDLX == "2") {
+						    return "Chứng chính";
+						}
+						else if (data.ZDLB == "WM" && data.ZDLX == "1") {
+						    return "Chẩn đoán chính";
+						}
+						else if (data.ZDLB == "WM" && data.ZDLX == "2") {
+						    return "Chẩn đoán phụ";
+						}
+					    else if (data.ZDOrder == 1) {
+					       return "Chẩn đoán chính";
+					   }
+						else
+					        return "Chẩn đoán phụ";
+					}
+				},
+				{ label: "zt", name: "zt", hidden: true },
+				{
+					label: "Trạng thái", name: "ztsm", width: 50, align: 'center', editor: "text", formatter: function (row, option, data) {
+						if (data.zt == "0") {
+							return "Hủy hiệu lực";
+						}
+						else {
+							return "Bình thường";
+						}
+					}
+				}
+			],
+			onSelectRow: function (row, option, data) {
+				debugger
+				var rowData = $('#gridzdList').jqGrid('getRowData', row);
+				$("#zd_cyzd").val(rowData.JBMC);
+				$("#zd_cyzd").attr("attr-ICD10", rowData.JBDM);
+				$("#zd_cyqk").val(rowData.CYQK).trigger("change");
+				$("#zd_rybq").val(rowData.RYBQ).trigger("change");
+				$("#zd_px").val(rowData.ZDOrder);
+				$("#zd_rowid").val(row);
+				if (rowData.ZDLB == "WM") {
+				    $("input[name='optionsRadios'][value='WM']").prop("checked", true);
+				    $("input[name='optionsRadios'][value='TCM']").prop("checked", false);
+				}
+				else {
+				    $("input[name='optionsRadios'][value='WM']").prop("checked", false);
+				    $("input[name='optionsRadios'][value='TCM']").prop("checked", true);
+				}
+				$('#zdlx').val(rowData.ZDLX);
+			},
+			loadComplete: function () {
+
+			},
+			/*caption: "Danh sách chẩn đoán",*/
+			sortname: "ZDOrder asc",
+			//rowNum: 15,
+			//pager: "#gridzdPager",
+			viewrecords: false
+
+		});
+		//jQuery("#gridzdList").jqGrid('navGrid', '#gridzdPager', { edit: false, add: false, del: false });
+		jQuery("#gridzdList").jqGrid('sortableRows');
+		//SettlementQuery();
+	}
+
+	$("#zd_cyzd").zxyzdFloatingSelector({
+	    ajaxparameters: function ($thisinput) {
+	        var zdlx="";
+	        if ($("input[name='optionsRadios']:checked").val() == "WM") {
+	            zdlx = $("#zdlx").val();
+	        }
+	        else {
+	            zdlx = $("#zdlx2").val();
+	        }
+	        return "keyword=" + $.trim($thisinput.val()) + "&zdlx=" + $("input[name='optionsRadios']:checked").val() + "&zdtype=" + zdlx;
+	    },
+		width: 600,
+		itemdbclickhandler: function ($this) {
+			$("#zd_cyzd").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-zdCode')).attr("attr-ICD10", $this.attr('data-icd10'));
+		}
+	});
+	$("input[name='optionsRadios']").change(function () {
+	    debugger;
+	   
+	    if ($("input[name='optionsRadios']:checked").val() == "WM") {
+	        $("#xyzdlx").show();
+	        $("#zyzdlx").hide() 
+	    } else {
+	        $("#xyzdlx").hide(); 
+	        $("#zyzdlx").show(); 
+	    }
+	})
+	//function btn_edit(val) {
+	//    alert(val);
+	//}
+	//提示结算病人不能添加诊断
+	function SettlementQuery() {
+		$.ajax({
+			//url: "/MRHomePage/MRHomePage/SettlementQuery",
+			url: "/MRHomePage/MRHomePage/DiagnosticSave",
+			dataType: "json",
+			//data: { "zyh": $("#ZYH").val() },
+			data: { "Code": "DiagnosticSave" },
+			type: "POST",
+			async: false,
+			success: function (result) {
+				if (result[0].Value == 'off' || result[0].Value == 'OFF') {
+					//$("#btn_submit_zd").attr("disabled", "true");
+					//$("#btn_del_zd").attr("disabled", "true");
+					$.modalAlert("Bệnh nhân đã quyết toán không được thêm chẩn đoán", 'warning');
+				}
+			}
+		})
+
+	}
+</script>

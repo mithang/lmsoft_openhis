@@ -1,0 +1,427 @@
+﻿@using Newtouch.Infrastructure;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style>
+    .form .formTitle {
+        padding-right: 0px;
+    }
+
+    #gridListxz tr td {
+    border:none;
+    }
+   
+</style>
+
+<div class="panel panel-default">
+    <table class="form">
+        <tr>
+            <th class="formTitle" style="width:60px;">Ngày:</th>
+            <td class="formValue" style="width:100px;">
+                <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+                       onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                       onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick(); } })"
+                       value="@DateTime.Now.ToString("yyyy-MM-01")" />
+            </td>
+            <td class="formValue" style="width:20px;text-align:center;">---</td>
+            <td class="formValue" style="width:100px;">
+                <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+                       onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                       onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick();  } })"
+                       value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            </td>
+            <th class="formTitle" style="text-align:right;width:70px;">Nội dung y lệnh:</th>
+            <td class="formValue" style="width:90px;">
+                <input id="keyword" type="text" class="form-control" style="width:90px;">
+            </td>
+            <th class="formTitle" style="text-align:right;width:70px;">Loại y lệnh:</th>
+            <td class="formValue formDdlSelectorTd" style="width:55px">
+                <select id="yzlb" name="yzlb" class="form-control " style="width:50px;">
+                    <option value="0">Tất cả</option>
+                    <option value="1"> Dài hạn </option>
+                    <option value="2"> Tạm thời </option>
+                </select>
+            </td>
+            <th class="formTitle" style="text-align:right;width:70px;">Kiểu y lệnh:</th>
+            <td class="formValue formDdlSelectorTd" style="width:65px">
+                <select id="yzlx" name="yzlx" class="form-control " style="width:60px;">
+                    <option value="1"> Tất cả </option>
+                    <option value="2"> Thuốc </option>
+                    <option value="3"> Văn bản </option>
+                    <option value="4"> Thuốc mang về khi ra viện </option>
+                    <option value="5"> Hạng mục </option>
+                    <option value="6"> Xét nghiệm </option>
+                    <option value="7"> kiểm tra </option>
+                    <option value="8"> Y lệnh ăn uống </option>
+                    <option value="9"> Phẫu thuật </option>
+                    <option value="10"> Thuốc đông y </option>
+                    <option value="11"> Phục hồi chức năng </option>
+                </select>
+            </td>
+            <th class="formTitle" style="text-align:right;width:70px;">Trạng thái y lệnh:</th>
+            <td class="formValue formDdlSelectorTd" style="width:60px">
+                <select id="yzzt" name="yzzt" class="form-control " style="width:50px;">
+                    <option value="5"> Tất cả </option>
+                    <option value="0"> Chờ duyệt </option>
+                    <option value="1"> Duyệt </option>
+                    <option value="2"> Thực hiện </option>
+                    <option value="3"> Thu hồiDC </option>
+                    <option value="4"> Dừng </option>
+                </select>
+            </td>
+            <th>
+                <button type="button" class="btn btn-default" style="width:50px; margin-left:5px;" onclick="Timeclick()">Tìm kiếm</button>
+            </th>
+        </tr>
+    </table>
+</div>
+<div>
+    <div style="width:750px;float:left;">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+
+    <div style="width:215px;float:left;border:1px solid #bdbdbd">
+        <table id="gridListxz"></table>
+        <div id="gridPagerxz"></div>
+        
+    </div>
+    
+</div>
+
+
+
+
+<script>
+    var zyh = $.request("zyh");
+    
+    $(function () {
+        RYSJ();
+        GridInit();
+        
+        $('#keyword').keyup(function () {
+            GridInit();
+        });
+
+        
+
+    });
+
+    var checkBox = [];
+    var cPage = 0;
+
+    function GridInit() {
+        var keyword = $('#keyword').val();
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/MedicalRecordManage/MedicalRecord/Orderablequery",
+            postData: { zyh: zyh, keyword: keyword },
+            autowidth: true,
+            height: $(window).height() - 120,
+            colModel: [
+                { label: 'Id', name: 'Id', width: 60, hidden: true, key: true },
+                { label: 'Loại', name: 'yzlb', width: 30 },
+                {
+                    label: 'Loại', name: 'yzlx', width: 30, formatter: function (cellvalue) {
+                        if (cellvalue == "2")
+                            return "Thuốc";
+                        else if (cellvalue == "3")
+                            return "Văn bản";
+                        else if (cellvalue == "4")
+                            return "Thuốc mang về khi ra viện";
+                        else if (cellvalue == "5")
+                            return "Hạng mục";
+                        else if (cellvalue == "6")
+                            return "Xét nghiệm";
+                        else if (cellvalue == "7")
+                            return "kiểm tra";
+                        else if (cellvalue == "8")
+                            return "Y lệnh ăn uống";
+                        else if (cellvalue == "9")
+                            return "Phẫu thuật";
+                        else if (cellvalue == "10")
+                            return "Thuốc đông y";
+                        else if (cellvalue == "11")
+                            return "Phục hồi chức năng";
+                        else
+                            return "";
+                    } },
+                { label: 'Số nhập viện', name: 'zyh', width: 50, hidden: true },
+                { label: 'Khoa', name: 'DeptCode', width: 80 },
+                { label: 'Thời gian bắt đầu', name: 'kssj', width: 100 },
+                { label: 'Bác sĩ', name: 'ysgh', width: 60 },
+                {
+                    label: 'Nội dung y lệnh', name: 'yznr', width: 180, formatter: function (val) {
+                        if (val != null) {
+                            if (val.indexOf("[停]") != -1) {
+                                return "<span style='color:red'>[Dừng]</span>" + val.replace("[停]", "")
+                            }
+                            else
+                                return val;
+                        }
+
+                        else return "";
+                    } },
+                { label: 'Thực hiện thời gian', name: 'zxsj', width: 80 },
+                { label: 'Trạng thái y lệnh', name: 'yzzt', width: 80, hidden: true }
+            ],
+            ondblClickRow: function (row) {
+                var rowData = $('#gridList').jqGrid('getRowData', row);
+                var rowdatajson = JSON.stringify(rowData);
+                console.info("rowData:" + rowdatajson);
+                
+                AcceptClick(rowdatajson);
+            },
+            sortname: "Id desc",
+            rowNum: 15,
+            pager: "#gridPager",
+            viewrecords: false,
+            multiselect: true,
+            
+            gridComplete: function () {
+                
+            },
+            onPaging: function (pgButton) {
+                cPage++; //翻页事件
+            },
+            loadComplete: function (data) {
+                if (cPage == 0) {
+                    checkBox = [];//每次加载清空选中状态
+                }
+                cPage = 0;
+                //此处需要注意页面值是动态加载数据还是一次性加载全部数据, 写法不一样, 这里是动态加载页面数据
+                var rowArr = data.rows;
+
+                if (checkBox.length > 0) {
+                    for (var i = 0; i < rowArr.length; i++) {
+                        for (var j = 0; j < checkBox.length; j++) {
+                            if (rowArr[i].id == checkBox[j].id) {
+                                $("#gridList").jqGrid('setSelection', rowArr[i].id);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }, onSelectRow: function (rowId, status) {
+                
+                if (status) {
+                    var idss = "";
+                    if (checkBox.indexOf(rowId) == -1) {
+                        //根据id获取整行数据
+                        var values = $("#gridList").jqGrid("getRowData", rowId);
+                        //向数组插入数据
+                        checkBox.push(values);
+                        
+                        var rowArr = $("#gridListxz").jqGrid('getRowData');// 获取所有行数据 会有个bug 少了最后一行
+                        //处理少一行bug
+                        var allCountID = $("#gridListxz").jqGrid('getDataIDs'); //这里获取所有行 主键id 是全的
+                        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //单独用最后一个 ID 获取行数据 并 追加到 集合里
+                        
+                        if (rowArr == null || rowArr == "") {
+                            addRowData(values.Id, values.yznr);
+                        }
+                        else {
+                            for (var i = 0; i < rowArr.length; i++) {
+                                if (values.Id == rowArr[i].Id) {
+                                    idss = rowArr[i].Id;
+                                    console.info(rowArr);
+                                }
+                            }
+                            if (idss != values.Id) {
+                                addRowData(values.Id, values.yznr);
+                                idss = "";
+                            }
+                            
+                        }
+                    }
+                } else {
+                    deleteCheckBox(rowId);
+                    
+                    $("#gridListxz").jqGrid("delRowData", rowId);
+                }
+            },
+            onSelectAll: function (rowids, statue) {
+                var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+                if (statue) {
+                   
+                    for (var i = 0; i < selRowIds.length; i++) {
+                        var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+
+                        addRowData(rowData.Id, rowData.yznr);
+                       
+
+                        var rowArr = $("#gridListxz").jqGrid('getRowData');// 获取所有行数据 会有个bug 少了最后一行
+                        //处理少一行bug
+                        var allCountID = $("#gridListxz").jqGrid('getDataIDs'); //这里获取所有行 主键id 是全的
+                        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //单独用最后一个 ID 获取行数据 并 追加到 集合里
+                        
+                    }
+                }
+                else {
+
+                    var dataids = rowids;
+                    for (var i = 0; i < dataids.length; i++) {
+                        //var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+                        //deleteCheckBox(dataids[i]);
+                        $("#gridListxz").jqGrid("delRowData", dataids[i]);
+                    }
+                }
+               
+            },
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "Id"
+            }
+        });
+        
+        $('#gridList').jqGrid('navGrid', '#gridPager', {
+            refresh: false,
+            edit: false,
+            add: false,
+            del: false,
+            search: false,
+            position: "right"
+        });
+        
+    }
+
+
+    //选中内容展示
+        jQuery("#gridListxz").jqGrid(
+            {
+                colModel: [
+                    { label: 'Id', name: 'Id', width: 60, hidden: true, key: true },
+                    { label: 'Nội dung y lệnh đã chọn', name: 'yznr', width: 210 }
+                ],
+                sortname: 'Id desc',
+                //multiselect: true,
+                height: $(window).height() - 120,
+                unwritten: false
+                
+            });
+    
+
+
+
+
+    function deleteCheckBox(rowId) {
+        for (var i = 0; i < checkBox.length; i++) {
+            if (checkBox[i].id == rowId) {
+                //根据索引值删除checkBox中的数据
+                checkBox.splice(i, 1);
+            }
+        }
+    }
+
+    function AcceptClick(callBack) {
+
+
+        var rowArr = $("#gridListxz").jqGrid('getRowData');// 获取所有行数据 会有个bug 少了最后一行
+        //处理少一行bug
+        var allCountID = $("#gridListxz").jqGrid('getDataIDs'); //这里获取所有行 主键id 是全的
+        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //单独用最后一个 ID 获取行数据 并 追加到 集合里
+
+
+
+        var strID = "";
+        for (var i = 0; i < rowArr.length; i++) {
+            strID += "," + rowArr[i].yznr;
+        }
+        
+        callBack(strID);
+        $.modalClose();
+    }
+
+
+
+    function Timeclick() {
+        var yzlb = $('#yzlb').val();
+        var myselect = document.getElementById("yzlx");
+        var index = myselect.selectedIndex;
+        var yzlx = myselect.options[index].value;
+        if (yzlb == "0") {
+            yzlb = "";
+        }
+        else if (yzlb == "1") {
+            yzlb = "Dài hạn";
+        }
+        else {
+            yzlb = "Tạm thời";
+        }
+
+        if (yzlx == "1") {
+            yzlx = "";
+        }
+        var yzzt = $('#yzzt').val();
+        if (yzzt == "5") {
+            yzzt = "";
+        }
+        var keyword = $('#keyword').val();
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { kssj: $("#ksrq").val(), jssj: $("#jsrq").val(), zyh: zyh, keyword: keyword, yzlb: yzlb, yzlx: yzlx, yzzt: yzzt },
+        }).trigger('reloadGrid');
+    }
+
+
+
+
+     function addRowData(Id,yznr) {
+        var rowData = $("#gridListxz").jqGrid('getGridParam', 'records');
+         var dataRow = {
+             Id: Id,
+             yznr: yznr
+        };
+
+         $("#gridListxz").jqGrid("addRowData", Id, dataRow, "last");
+        //$("#gridListxz").jqGrid('saveRow', rowData + 1);
+        
+    }
+
+
+    //function deleterow() {
+    //    //删除指定行
+    //    function DeleteRowByRowId(gridID, rowId) {
+    //        $("#" + gridID).jqGrid("delRowData", rowId);
+    //    }
+    //}
+
+
+    //删除选中行
+    function DeleteSelectRow() {
+        //获取选中行rowId
+        var ids = jQuery("#gridListxz").jqGrid("getGridParam", "selarrrow");
+        //删除行
+        for (var i = ids.length - 1; i >= 0; i--) {
+            $("#gridListxz").jqGrid("delRowData", ids[i]);
+        }
+    }
+
+    function RYSJ() {
+        $.ajax({
+            url: "/MedicalRecordManage/MedicalRecord/RYRQ",
+            dataType: "json",
+            async: false,
+            type: "post",
+            data: { zyh: zyh },
+            success: function (req) {
+
+                $('#ksrq').val(req[0].ryrq);
+            },
+            
+            error: function () {
+              
+            }
+        });
+    }
+
+
+
+</script>
+
+

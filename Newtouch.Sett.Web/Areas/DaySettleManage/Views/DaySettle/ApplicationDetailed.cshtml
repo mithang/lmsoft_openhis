@@ -1,0 +1,306 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+
+@{
+	ViewBag.Title = "ApplicationDetailed";
+	Layout = "~/Views/Shared/_Index.cshtml";
+	var opr = OperatorProvider.GetCurrent();
+}
+<style>
+	.red {
+		color: red;
+	}
+</style>
+<form name="form1">
+	<div class="panel panel-default">
+		<table class="form">
+			<tr>
+				<th class="formTitle" id="thCZRQ">Ngày quyết toán：</th>
+				<td class="formValue" colspan="2">
+					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:130px; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+					<span style="margin-left:2%;float:left;">—</span>
+					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :130px;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+				</td>
+				<th class="formTitle">Loại quyết toán：</th>
+				<td class="formValue">
+					<select class="form-control" id="jslx" style="width:140px;"></select>
+				</td>
+				@*<th class="formTitle">险种类型：</th>
+				<td class="formValue">
+					<select class="form-control" id="xzlx" style="width:140px;"></select>
+				</td>*@
+				<td  class="formValue">
+					<input type="button" id="btn_search_tj" class="btn btn-primary btn-md"  value="Thống kê" />
+					<input type="button" id="btn_search_dmx" class="btn btn-primary btn-md"  value="Bắt đầu đối chiếu sổ sách chi tiết" />
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+
+	<div class="gridPanel" style="width:98%">
+		<table id="gridJSList"></table>
+		<div id="gridPager"></div>
+	</div>
+
+	<div class="gridPanel" style="width:98%">
+		<table id="gridJSList1"></table>
+		<div id="gridPager1"></div>
+	</div>
+
+
+</form>
+
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+		getclrtypeList();
+		//getinsutypeList();
+        //结算主记录
+        gridJSListData();
+        gridJSListData1();
+    });
+
+
+	function getclrtypeList() {
+
+		$.ajax({
+			type: "POST",
+			url: "/DaySettleManage/DaySettle/Getclr_type",
+			//data: { mllx: mzlx },
+			dataType: "json",
+			async: false,
+			success: function (ajaxresp) {
+
+				$.each(ajaxresp, function () {
+					var option = "<option value='" + this.value + "'>" + this.label + "</option>";
+					$("#jslx").append(option);
+				});
+			}
+		});
+	}
+
+	function getinsutypeList() {
+
+		$.ajax({
+			type: "POST",
+			url: "/DaySettleManage/DaySettle/Getinsutype",
+			//data: { mllx: mzlx },
+			dataType: "json",
+			async: false,
+			success: function (ajaxresp) {
+
+				$.each(ajaxresp, function () {
+					var option = "<option value='" + this.value + "'>" + this.label + "</option>";
+					$("#xzlx").append(option);
+				});
+			}
+		});
+	}
+	
+    function gridJSListData() {
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSList");
+        $gridJsList.dataGrid({
+            //postData: getSearchPostData(),
+			height: 300,
+			caption: "Số giao dịch quyết toán：0",
+            url: "",
+            colModel: [
+                { label: 'Mã cá nhân', name: 'grbm', width: 180, align: 'left' },
+                { label: 'khám ID', name: 'jzid', width: 140, align: 'left' },
+                { label: 'quyết toán ID', name: 'jsid', width: 140, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+				{
+					label: 'BHYT Ngày quyết toán', name: 'ybjsrq', width: 130, align: 'left',
+					formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Tổng chi phí', name: 'zfy', width: 80, align: 'left' },
+				{ label: 'Quỹ Số tiền thanh toán', name: 'jjzfje', width: 80, align: 'left' },
+				{ label: 'Số tiền tài khoản cá nhân', name: 'acct_pay', width: 80, align: 'left' },
+				{ label: 'Thanh toán tiền mặt Số tiền', name: 'psn_cash_pay', width: 80, align: 'left' },
+				{ label: 'đồng chi trả Số tiền thanh toán', name: 'gjje', width: 80, align: 'left' },
+                { label: 'Có hay không Hoàn phí', name: 'sftf', width: 80, align: 'left' },
+                { label: 'Loại thanh toán', name: 'bxlx', width: 100, align: 'left' },
+                { label: 'CMND/CCCD', name: 'sfz', width: 120, align: 'left' },
+                { label: 'Nơi tham gia bảo hiểm', name: 'sjh', width: 80, align: 'left' },
+                //{ label: '收据编号', name: 'sjh', width: 80, align: 'left' },
+                { label: 'Loại quyết toán', name: 'qslb', width: 80, align: 'left' },
+                { label: 'Loại bảo hiểm', name: 'xz', width: 80, align: 'left' },
+            ],
+            //pager: "#gridPager",
+            //sortname: gridSort,
+			unwritten: false,
+			viewrecords: true,
+			//footerrow: true,
+			//userDataOnFooter: true,
+			loadComplete: function () {
+
+				var gridData = $("#gridJSList").jqGrid('getRowData_AllLine');
+				var sl = gridData.length;
+				var zfy = 0.00;
+				var jjzfje = 0.00;
+				var grzhje = 0.00;
+				var xjzfje = 0.00;
+				if (sl>0) {
+					$.each(gridData, function () {
+						zfy += parseFloat(this.zfy);
+						jjzfje += parseFloat(this.jjzfje);
+						grzhje += parseFloat(this.acct_pay);
+						xjzfje += parseFloat(this.psn_cash_pay);
+						
+					});
+				}
+				zfy = parseFloat(zfy).toFixed(2);
+				jjzfje = parseFloat(jjzfje).toFixed(2);
+				grzhje = parseFloat(grzhje).toFixed(2);
+				xjzfje = parseFloat(xjzfje).toFixed(2);
+				var textcaption = "Số giao dịch quyết toán：" + sl + "（trong đó Tổng chi phí：" + zfy + " Quỹ Số tiền thanh toán：" + jjzfje + " Tài khoản Số tiền thanh toán：" + grzhje + " Thanh toán tiền mặt Số tiền：" + xjzfje + " ）";
+				$("#gridJSList").jqGrid("setCaption", textcaption);
+				
+				//$("#gridJSList").jqGrid('footerData', 'set', { name: "count", count: gridData.length });
+
+			},
+            onSelectRow_page: function (rowid) {
+                //console.log(rowid);
+            },
+            gridComplete: function (gridJszbList) {
+                //jszbList = null;
+                //if (gridJszbList && gridJszbList.rows) {
+                //    jszbList = gridJszbList.rows;
+                //}
+            }
+        });
+
+        //统计按钮点击事件 
+        $("#btn_search_tj").click(function () {
+			$('#gridJSList').jqGrid("clearGridData");//先清空明细
+            $gridJsList.jqGrid('setGridParam', {
+				postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), jslx: $("#jslx").val(), xzlx: '' },
+				url: '/DaySettleManage/DaySettle/GetQsmx',
+                //page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+	$("#btn_search_dmx").click(function () {
+
+		var ksrq = $("#ksrq").val() +" 00:00:00";
+		var jsrq = $("#jsrq").val() +" 23:59:59";
+		var ts = Date.parse(jsrq) - Date.parse(ksrq)+1;
+		//if (ts >= 11) {
+		//	$.modalAlert("间隔时间大于10天，清算明细对账", 'warning');
+		//	return false;
+		//}
+
+		var predata = {
+			hisId : "",
+			operatorId : '@(opr.rygh)',
+		    operatorName: '@(opr.UserName)',
+		    orgId: '@(opr.OrganizeId)',
+			insuplc_admdvs : "",
+			stmt_begndate: ksrq,
+			stmt_enddate: jsrq,
+			insutype: '',
+			clr_type: $("#jslx").val(),
+			setl_optins : "",
+			medfee_sumamt : 0.00,
+			fund_pay_sumamt : 0.0,
+			acct_pay : 0.00,
+			fixmedins_setl_cnt : 0,
+			fileName : "fymxsc"
+		};
+		var refinfo;
+		$.ajax({
+			type: "POST",
+			url: "http://127.0.0.1:33333/api/YiBao/ReconciliationDetail_3202",
+			data: predata,
+			dataType: "json",
+			async: false,
+			success: function (data) {
+			    refinfo = eval('(' + data + ')');
+			},
+			error: function (request, error, ex) {
+			    $.modalAlert("Dịch vụ BHYT【3202】(BHYT đối với sổ chi tiết)Không thể truy cập：[" + ex + "]", 'error');
+			}
+		});
+
+		if (refinfo) {
+		    if (refinfo.infcode == "0" || refinfo.infcode == 0)
+		    {
+		        if (refinfo.result && refinfo.result.length > 0)
+		        {
+		            $('#gridJSList1').jqGrid("clearGridData");//先清空明细
+		            $('#gridJSList1').jqGrid('setGridParam', {
+		                postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), jslx: $("#jslx").val(), xzlx: '' },
+		                url: '/DaySettleManage/DaySettle/GetQsmx_1',
+		                //page: 1,
+		            }).trigger('reloadGrid');
+		        }
+		    } else {
+		        $.modalAlert("Đối chiếu tổng sổ BHYT thất bại：" + refinfo.err_msg, 'error');
+		    }
+		} else {
+		    $.modalAlert("Dịch vụ BHYT【3202】(BHYT đối với sổ chi tiết)Chưa trả về thông tin", 'error');
+		}
+
+	});
+
+    function gridJSListData1() {
+        var gridSort = 'CreateTime asc';
+        var $gridJsList1 = $("#gridJSList1");
+        $gridJsList1.dataGrid({
+            //postData: getSearchPostData(),
+            height: 200,
+            url: "",
+            colModel: [
+                { label: 'Nhân viên ID', name: 'ryid', width: 100, align: 'left' },
+                { label: 'khám ID', name: 'jzid', width: 100, align: 'left' },
+                { label: 'quyết toán ID', name: 'jsid', width: 100, align: 'left' },
+                { label: 'Kết quả đối chiếu sổ sách', name: 'dzjg', width: 100, align: 'left' },
+                { label: 'Ghi chú', name: 'bz', width: 100, align: 'left' },
+                { label: 'Tổng phí y tế', name: 'ylfze', width: 100, align: 'left' },
+                { label: 'Tổng số tiền quỹ thanh toán', name: 'jjzfze', width: 100, align: 'left' },
+                { label: 'Tổng số tiền thanh toán tài khoản cá nhân', name: 'grzhzfze', width: 100, align: 'left' },
+                { label: 'Gửi bản tinID', name: 'fsfbwid', width: 100, align: 'left' },
+                { label: 'Hoàn phí quyết toán dấu hiệu', name: 'tfjsbz', width: 100, align: 'left' },
+            ],
+            //pager: "#gridPager1",
+            //sortname: gridSort,
+			viewrecords: true,
+			footerrow: true,
+			userDataOnFooter: true,
+			loadComplete: function () {
+
+				//var gridData = $("#gridJSList1").jqGrid('getGridParam', 'data');
+			},
+            onSelectRow_page: function (rowid) {
+               // console.log(rowid);
+            },
+            gridComplete: function () {
+				var ids = $("#gridJSList1").jqGrid('getDataIDs');
+				for (i = 0; i < ids.length; i++) {
+					var rowData = $("#gridJSList1").jqGrid('getRowData', ids[i]);
+					if (rowData.bz.length >4) {
+						$('#gridJSList1 tr[id="' + ids[i] + '"]').addClass('red');
+					} 
+					
+				}
+			},
+        });
+
+        //查询事件
+        $("#btn_search_tj").click(function () {
+			$('#gridJSList1').jqGrid("clearGridData");//先清空明细
+			$gridJsList1.jqGrid('setGridParam', {
+				postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), jslx: $("#jslx").val(), xzlx: ''},
+				url: '/DaySettleManage/DaySettle/GetQsmx_1',
+                //page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+</script>
+

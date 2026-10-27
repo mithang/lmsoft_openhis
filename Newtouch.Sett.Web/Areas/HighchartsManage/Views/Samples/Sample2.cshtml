@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Biểu đồ đường cong</title>
+    <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
+    <script>
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: 'Nhiệt độ trung bình tháng',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Nguồn：Dữ liệu chính thức của cục khí tượng',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ['một tháng', 'hai tháng', 'ba tháng', 'bốn tháng', 'năm tháng', 'sáu tháng', 'bảy tháng', 'tám tháng', 'chín tháng', 'mười tháng', 'mười một tháng', 'mười hai tháng']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Nhiệt độ (°C)'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value + '°'
+                        }
+                    }
+                },
+                tooltip: {
+                    crosshairs: true,
+                    shared: true
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            radius: 4,
+                            lineColor: '#666666',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Bắc Kinh',
+                    marker: {
+                        symbol: 'square'
+                    },
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+                        y: 26.5,
+                        marker: {
+                            symbol: 'url(/Content/Images/Icon32/weather_sun.png)'
+                        }
+                    }, 23.3, 18.3, 13.9, 9.6]
+
+                }, {
+                    name: 'Quảng Châu',
+                    marker: {
+                        symbol: 'diamond'
+                    },
+                    data: [{
+                        y: 3.9,
+                        marker: {
+                            symbol: 'url(/Content/Images/Icon32/snow_rain.png)'
+                        }
+                    }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                }]
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>

@@ -1,0 +1,981 @@
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:123	在行号序列中获取最大的编号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:130	是否属于修改诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:142	新增	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:170	作废	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:228	操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:228	编辑	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainDiag.cshtml:352	提示结算病人不能添加诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainFYInfo.cshtml:221	输液反映	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:174	伤口裂开	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:174	出血或血肿	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:177	呼吸衰竭	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:182	医源性气胸	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:185	髋关节骨折	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:189	生理与代谢紊乱	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:196	手术过程中异物遗留	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:199	肺栓塞	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:202	肺部感染	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:204	深静脉血栓	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:210	医源性意外穿刺伤	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:211	医源性撕裂伤	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:213	败血症	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:217	其他	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:332	请选择手术开始日期	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:336	请选择手术结束日期	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:340	去除术前准备天数的空格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:359	麻醉医生为必填项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:363	麻醉方式为必填项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:367	麻醉等级为必填项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:371	麻醉开始时间为必填项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:421	在行号序列中获取最大的编号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:427	是否属于修改诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:475	把	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:475	装换成时间戳	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOpEdit.cshtml:475	方便比较	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOplist.cshtml:54	切口愈	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainOplist.cshtml:54	合等级	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainPatInfo.cshtml:418	门诊诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:374	诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:445	未查	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:446	未查	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:446	未查	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:451	离院方式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:459	血型	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:475	输血反应	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:484	病案质量	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:491	过敏药物	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:494	死亡患者尸检	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainZyInfo.cshtml:503	实施临床路径	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:5	报表链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:62	保存基本信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:63	保存诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:64	保存手术	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:65	完整病案保存	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:68	同步费用	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:130	入院途径	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:295	金额	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:295	只允许正数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:297	金额	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:297	允许正	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:297	负数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:300	金额	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:300	允许正负数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:308	费用格式校验	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:324	患者信息参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:424	中国	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:428	中国	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:440	中国	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:477	患者信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:477	入院诊断没有填写	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:487	中国	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:581	计算两个日期之间的毫秒差	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:583	将毫秒差转换为天数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:583	不包含不满一天的部分	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:585	如果有剩余的毫秒	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:585	即不满一天的部分	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:585	加一天	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:590	患者信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:590	入院时间和出院时间计算的天数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:590	跟实际住院天数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:590	不等	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:611	中国	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:772	住院信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:772	颅脑损伤患者昏迷	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:772	入院前	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:772	时间必填	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:776	住院信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:776	颅脑损伤患者昏迷	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:776	入院后	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:776	时间必填	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:883	功能键操作区	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:901	诊断保存	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:944	手术列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:1091	上传医保	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/MRHomePage/MainEdit.cshtml:1123	智能审核	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/Report/BasyReport.cshtml:27	正在请求报表页面	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MRHomePage/Views/Report/BasyReport.cshtml:41	刷新列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/CTGLList.cshtml:196	删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/DiagList.cshtml:67	未选择新的诊断	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/DiagList.cshtml:67	确认清空	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/DiagList.cshtml:76	请选中一条信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/ShowTab.cshtml:45	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/ShowTab.cshtml:74	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/ShowTab.cshtml:271	删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blctgl/YXFHlist.cshtml:81	医学符号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Bljgh/Index.cshtml:126	保存时验证	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Bljgh/Index.cshtml:126	和	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Bljgh/Index.cshtml:126	一致	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Bljgh/Index.cshtml:151	保存时验证	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Bljgh/Index.cshtml:151	和	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Bljgh/Index.cshtml:151	一致	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blys/Index.cshtml:88	修改	comparison literal (adjacent to ==/!=)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blys/Index.cshtml:139	删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blys/YSList.cshtml:71	对于移动设备不设置控件高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Blys/YSList.cshtml:95	修改	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:173	张三	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:846	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:851	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:856	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:861	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:870	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:877	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:883	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:889	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:897	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:903	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:907	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:967	南京都昌信息科技有限公司	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:967	南京都昌信息科技有限公司	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:995	绑定控件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/BlTemplate.cshtml:998	创建编辑器框架	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:76	出院病历	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:76	测试出院病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:77	侧病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:82	模板类型查询	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:86	回车搜索	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:91	模板类型	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:97	模板列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:116	禁用条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:126	禁用条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:133	文书模板右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:137	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:140	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:140	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:164	新建模板操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:178	保存病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:198	侧病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:200	右侧元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:256	右侧元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:258	创建编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:267	编辑器配置项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:269	模式设置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:270	是否启用设计模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:272	是否启用修订模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:273	是否启用只读模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:274	自定义参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:279	编辑器初始化完成	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:283	根据命令类型执行不同操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:285	保存命令执行完成	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:293	设置默认内容	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:294	开始制作模板内容	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:301	对于现代浏览器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:306	入院记录	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:310	组织机构代码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:314	性别	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:318	加载文书模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:357	节点类型	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:358	是否自动添加数据元标题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalOpenEditor.cshtml:375	数字文本	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:18	保存文档	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:18	保存	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:43	插入年龄域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:47	插入性别域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:51	插入日期域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:55	插入复选框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:59	插入单选框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:63	插入按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:77	插入年龄输入域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:85	年龄	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:99	插入性别输入域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:121	这里的第一个参数可以是	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:125	插入日期输入域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:142	插入按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:159	插入复选框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/TemplateEdit.cshtml:184	插入单选框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:232	组织机构下拉框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:237	组织对应的科室下拉框加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:300	控制关系加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:363	创建人	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:364	创建时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:365	最后修改	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:366	最后修改时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:374	启用则可选	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:386	目的值	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:389	选中当前	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:398	选中当前	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:428	保存权限	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Form.cshtml:490	双击病历大类处理	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:196	组织机构下拉框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:201	组织对应的科室下拉框加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:265	控制关系加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:346	创建人	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:347	创建时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:348	最后修改	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:349	最后修改时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:357	启用则可选	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:369	目的值	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:372	选中当前	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:381	选中当前	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/FormQX.cshtml:404	保存权限	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Index.cshtml:110	回车事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/Index.cshtml:119	仅个人模板可修改删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/LeftMedicalTemplate.cshtml:68	禁用条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/LeftMedicalTemplate.cshtml:77	禁用条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/LeftMedicalTemplate.cshtml:86	右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/LeftMedicalTemplate.cshtml:90	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/LeftMedicalTemplate.cshtml:93	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/LeftMedicalTemplate.cshtml:93	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:445	黑体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:445	黑体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:447	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:447	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:449	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:450	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:453	楷体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:453	楷体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1056	李四主任医师	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1227	出院病历	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1227	测试出院病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1234	编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1267	数值绑定	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1289	日期时间绑定	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1311	日期绑定	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1333	时间绑定	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1355	下拉列表绑定	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1387	这里的第一个参数可以是	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1390	下拉列表绑定	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1422	这里的第一个参数可以是	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1450	数据源路径	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1452	第一个参数为指定的元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1452	若为	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1452	则表示光标所在位置的单元格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1458	数据源	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1460	第一个参数为指定的元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1460	若为	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1460	则表示光标所在位置的表格行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1475	第	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1475	页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1475	共	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1475	页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1476	页码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1502	获取当前编辑器对象	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1516	纵向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1556	编辑器右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1572	粘贴内部复制或者剪切的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1713	在服务器端响应控件的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1713	事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1713	即可使用	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1713	模式加载文档	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1724	保存成功	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1725	编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1736	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1737	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1737	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1749	绑定控件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1752	创建编辑器框架	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1758	长期医嘱	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1772	插入表格操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1777	弹框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1782	最小列数和行数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1783	最大列数和行数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1784	回调	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1785	当前选择尺寸	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1814	弹框显示位置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1816	弹框可选区域位置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1817	鼠标位置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1819	初始化弹框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1820	初始化事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1850	列数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1851	行数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1872	单击确认插入表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1882	调整背景区域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1892	隐藏弹框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1896	重置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1910	这里只返回所选行数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1910	和列数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1910	插入后的效果和样式需自定义	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1910	以下只是做简单的示例	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1911	插入了一个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1911	行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1911	列的表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1930	关闭按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1935	插入批注	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1956	李四主任医师	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1961	插入按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1992	模拟	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1992	事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1995	设置自定义下拉列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1999	绑定控件的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:1999	事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2000	提供自定义的下拉列表内容	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2025	在这里可以判断输入域元素编号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2035	输入域文本值	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2036	输入域数值	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2037	关闭下拉列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2039	是承载内容的一个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2039	元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2052	页面设置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2066	自定义	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2067	宽度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2068	高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2069	上边距	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2070	下边距	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2071	左边距	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2072	右边距	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2073	横向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2073	纵向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2087	横向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2087	纵向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2108	横向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2108	纵向	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2159	都昌	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2159	编辑器版	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2160	编辑器渲染完成事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2163	右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2168	元素属性	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2175	元素属性	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2230	前一个元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2622	获取到包裹元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2624	判断是否为打印预览	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2628	判断是否存在	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2628	的元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2636	判断是否有	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2638	判断是否存在对应的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2734	页面滚动	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2741	丢失焦点	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2751	存在时	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2751	清空所有	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2751	和	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2751	的元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2759	根据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2759	显示元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2763	判断是否存在	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2763	如果需要更多可以使用递归调用	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2775	添加事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2779	找到下一个子元素	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2808	计算展示的高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2816	计算最下方的距离是否够显示全	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2818	显示不全	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2820	判断上边是否存在足够的距离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2822	距离足够	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2825	距离不够	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2827	下方的距离大于上方	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2830	上方的距离大于下方	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2835	显示全	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2843	插入内部的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2843	项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2936	加载病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedRecordTemplate/MedicalTemplate.cshtml:2963	保存病历模板	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:130	记录	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:130	选中的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:131	初始化显示哪个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:146	重新加载当前表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:155	重新加载当前表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:228	检查报告	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:246	报告	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:256	双击选中某行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:328	检查结果	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:436	请至少选择一行检验结果导出	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Form.cshtml:453	请至少选择一行检验结果导出	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:25	广东省惠亚	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:26	某医院病案首页	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:28	常州市中医医院超声检查诊断书	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:29	某医院待产记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:30	藏文演示文档	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:31	常州市第一人民医院护理记录单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:32	福建孟超肝胆医院护理记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:34	中华人民共和国传染病报告卡	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:39	某医院临时医嘱单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:40	天津人民医院病患者入院评估表	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:41	某医院入院记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:44	某医院手术安排表	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:45	某某医院临床检查化验申请单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:46	福建孟超肝胆医院血糖录入	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:47	某医院血液净化记录单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:48	南京机关医院医嘱单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:49	某医院影像申请单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:50	佛山市南海区中医院住院病历	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:51	三门县人民医院住院病历	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:52	沈阳军区总医院急诊医学部急诊病历	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:53	福建孟超肝胆医院住院志	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:54	南京都昌科技量表	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:68	预览	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:71	留痕视图	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:74	新建	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:76	打开	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:78	保存	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:80	复制	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:82	黏贴	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:84	剪切	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:86	格式刷	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:88	删除	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:90	撤销	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:92	重复	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:94	字体	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:96	加粗	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:98	倾斜	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:100	下划线	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:102	样式	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:104	文本颜色	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:106	简体转繁体	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:109	繁体转简体	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:112	边框和底纹	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:115	段落	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:118	标题层次	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:121	插入文本输入域	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:123	插入单选框	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:125	插入复选框	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:127	插入单选复选分组	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:129	插入图片	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:131	插入日期	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:133	插入日期	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:135	插入一维条码	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:138	插入二维条码	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:141	插入医学表达式	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:144	表格属性	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:146	表格属性	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:148	表格行属性	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:150	插入批注	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:152	表单视图	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:155	阅读视图	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:157	清除全部痕迹	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:160	权限相关	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:163	查看	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:163	代码	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:166	字数统计	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:169	关于	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:172	管理员模式	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:175	放大	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:178	缩小	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:180	命令	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:195	张三	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:196	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:218	住院证	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:223	广东省惠亚	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:227	某医院病案首页	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:235	常州市中医医院超声检查诊断书	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:239	某医院待产记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:243	藏文演示文档	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:247	常州市第一人民医院护理记录单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:251	福建孟超肝胆医院护理记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:259	中华人民共和国传染病报告卡	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:273	某医院临时医嘱单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:277	天津人民医院病患者入院评估表	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:281	某医院入院记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:285	天津人民医院病程记录	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:291	某医院手术安排表	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:295	某某医院临床检查化验申请单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:299	福建孟超肝胆医院血糖录入	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:303	某医院血液净化记录单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:307	南京机关医院医嘱单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:311	某医院影像申请单	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:315	佛山市南海区中医院住院病历	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:319	三门县人民医院住院病历	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:323	沈阳军区总医院急诊医学部急诊病历	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:327	福建孟超肝胆医院住院志	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:331	南京都昌科技量表	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:337	新建	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:343	打开	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:349	保存	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:359	复制	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:365	粘贴	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:371	剪切	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:377	格式刷	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:384	删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:390	撤销	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:396	恢复	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:402	字体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:408	加粗	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:414	倾斜	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:420	下划线	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:426	下划线样式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:432	颜色	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:438	简体转繁体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:444	繁体转简体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:451	边框和底纹	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:457	段落	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:463	标题层次	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:471	插入文本输入域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:477	插入单选框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:483	插入复选框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:489	插入单选复选分组	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:495	插入图片	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:501	插入日期	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:507	插入日期输入域	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:513	插入二维码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:519	插入条形码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:525	插入医学表达式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:531	插入表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:537	表格属性	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:543	表格行属性	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:549	插入批注	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:555	表单视图	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:562	阅读视图	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:569	清除全部痕迹	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:576	是否显示标尺	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:584	查找和替换	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:591	字数统计	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:598	字体名称	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:606	关于	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:613	管理员权限	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:620	放大	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:628	缩小	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:636	命令清单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:644	打印预览	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:650	用户登录	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:653	张三	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:656	关于	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:676	加载知识库	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:677	代码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:679	加载文档	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Index.cshtml:680	代码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdit.cshtml:21	保存文档	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdit.cshtml:21	保存	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdit.cshtml:33	上传医保	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdit.cshtml:155	智能审核	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdit.cshtml:181	病历编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditDemo.cshtml:33	保存文档	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditDemo.cshtml:33	保存	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditDemo.cshtml:84	共	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditDemo.cshtml:84	条信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditDemo.cshtml:84	请输入序号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditDemo.cshtml:103	对于移动设备不设置控件高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:76	创建编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:86	编辑器配置项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:88	模式设置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:89	是否启用设计模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:91	是否启用修订模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:92	是否启用只读模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:93	自定义参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:98	编辑器初始化完成	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:118	根据命令类型执行不同操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:143	保存病历	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:162	加载备份历史病历	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEditV2.cshtml:187	医嘱插入文书	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreViewEdit.cshtml:50	对于移动设备不设置控件高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:159	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:159	转码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:159	如果不是当前地址链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:159	可以在这里填写需要的链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:160	分割字符串	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:160	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:160	切割成数组形式的对象	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:162	再次分割成数组	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:163	如果匹配输出结果	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:187	新编辑器病历格式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/RecordList.cshtml:191	病历操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAdd.cshtml:18	保存文档	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAdd.cshtml:18	保存	filename inside url()
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAdd.cshtml:23	医生签名	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAdd.cshtml:29	上传医保	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:39	首次保存返回值	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:69	创建编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:79	编辑器配置项	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:81	模式设置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:82	是否启用设计模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:84	是否启用修订模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:85	是否启用只读模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:86	自定义参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:91	编辑器初始化完成	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:113	动态添加属性	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:139	姓名	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:140	李四	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:144	民族	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:145	汉族	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:149	婚姻状况	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:150	未婚	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:162	模板内容	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:165	测试病历名称	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:170	根据命令类型执行不同操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:191	设置默认内容	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:192	开始制作模板内容	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:199	保存病历	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:214	病历模板保存失败	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:224	更新病历	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:244	医嘱插入文书	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MedicalRecordEdiForAddV2.cshtml:250	获取测试用数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:86	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:86	转码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:86	如果不是当前地址链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:86	可以在这里填写需要的链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:87	分割字符串	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:87	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:87	切割成数组形式的对象	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:89	再次分割成数组	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:90	如果匹配输出结果	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:101	对于移动设备不设置控件高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:125	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:125	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:136	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:137	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:137	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:149	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:150	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/MergeView.cshtml:150	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:186	翻页事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:190	每次加载清空选中状态	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:193	此处需要注意页面值是动态加载数据还是一次性加载全部数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:193	写法不一样	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:193	这里是动态加载页面数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:211	根据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:211	获取整行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:213	向数组插入数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:216	获取所有行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:216	会有个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:216	少了最后一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:217	处理少一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:218	这里获取所有行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:218	主键	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:218	是全的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:219	单独用最后一个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:219	获取行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:219	并	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:219	追加到	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:219	集合里	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:254	获取所有行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:254	会有个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:254	少了最后一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:255	处理少一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:256	这里获取所有行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:256	主键	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:256	是全的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:257	单独用最后一个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:257	获取行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:257	并	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:257	追加到	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:257	集合里	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:295	选中内容展示	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:316	根据索引值删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:316	中的数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:325	获取所有行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:325	会有个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:325	少了最后一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:326	处理少一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:327	这里获取所有行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:327	主键	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:327	是全的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:328	单独用最后一个	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:328	获取行数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:328	并	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:328	追加到	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:328	集合里	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:388	删除指定行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:395	删除选中行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:397	获取选中行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/Order_information.cshtml:399	删除行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:92	病历编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:100	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:100	转码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:100	如果不是当前地址链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:100	可以在这里填写需要的链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:101	分割字符串	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:101	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:101	切割成数组形式的对象	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:103	再次分割成数组	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:104	如果匹配输出结果	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:116	对于移动设备不设置控件高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:141	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:141	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:153	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:154	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:154	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:166	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:167	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PreView.cshtml:167	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:81	提交按钮的点击操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:83	延迟	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:83	秒钟	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:101	病历编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:108	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:108	转码	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:108	如果不是当前地址链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:108	可以在这里填写需要的链接	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:109	分割字符串	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:109	将	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:109	切割成数组形式的对象	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:111	再次分割成数组	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:112	如果匹配输出结果	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:124	对于移动设备不设置控件高度	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:148	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:148	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:160	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:161	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:161	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:173	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:174	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/PrintView.cshtml:174	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:53	重新加载当前表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:59	重新加载当前表格	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:87	状态	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:88	有执行时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:88	取已执行状态	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:88	有审核时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/MedicalRecord/YZForm.cshtml:88	取已审核状态	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:464	绑定字典	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:477	保存时验证	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:477	和	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:477	一致	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:497	录入日期不能小于入院日期	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:502	录入日期不能大于出院日期	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Form.cshtml:544	保存成功回调	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/SSForm.cshtml:463	绑定字典	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/SSForm.cshtml:476	保存时验证	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/SSForm.cshtml:476	和	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/SSForm.cshtml:476	一致	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/SSForm.cshtml:530	保存成功回调	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/WZForm.cshtml:497	绑定字典	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/WZForm.cshtml:510	保存时验证	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/WZForm.cshtml:510	和	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/WZForm.cshtml:510	一致	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/WZForm.cshtml:564	保存成功回调	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:177	浏览器窗口调整大小时重新计算宽高	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:183	护士患者一览	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:190	设置冻结列	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:309	日期	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:309	时间点	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:309	相关状态	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:374	二级菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:399	查询条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:419	请求修改该行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:431	请求作废该行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:483	新增时显示	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:483	确认并关闭按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:503	新增时显示	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:503	确认并关闭按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:523	新增时显示	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/Index.cshtml:523	确认并关闭按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/OpenOutForm.cshtml:84	开始时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/OpenOutForm.cshtml:84	结束时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/OpenPutForm.cshtml:82	开始时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/NursingRecord/OpenPutForm.cshtml:82	结束时间	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:143	初次加载患者树标志	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:148	浏览器窗口调整大小时重新加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:148	的宽	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:163	患者病历列表树	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:212	禁用条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:227	病案首页分离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:251	回车触发查询事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:290	右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:294	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:297	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:297	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:384	右键菜单展示版	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:388	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:391	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:391	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:407	在院患者不提交病案	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:429	患者列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:443	出生年月	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:481	岁	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Outpatient/Index.cshtml:543	不可编辑	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:296	当前页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:297	共	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:297	页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:320	赋值	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:348	下拉框找不到该选项就不选	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:373	点击列表模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:379	点击	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:379	模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:391	清除选中病人	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:399	选中当前病人	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:401	病人姓名	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:402	性别	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:403	年龄	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:404	住院号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:405	病人性质	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:408	请求在病区病人信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:417	当前页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:418	共	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:418	页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:423	创建病人	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:432	创建病人	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:459	当前选中病人对象	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:465	搜索统计选项卡切换	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:561	初始化	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:563	默认隐藏	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:564	请求在病区病人信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:683	隐藏	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:683	底部滚动条	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:693	获取已出区病人信息	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:805	隐藏	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/Index.cshtml:805	底部滚动条	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEdit.cshtml:36	住院号	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEdit.cshtml:37	门诊号	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:11	住院号	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:12	门诊号	option/param/submit value (data)
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:103	双击病历大类处理	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:126	入院病例	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:126	出院病例	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:126	首次病程	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:126	病案首页不能重复新建	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:153	新版编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:158	病历操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:217	入院病例	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:217	出院病例	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:217	首次病程	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:217	病案首页不能重复新建	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MedRecordTreeEditV2.cshtml:264	新版编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MrqcAdd.cshtml:60	合计	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/MrqcAdd.cshtml:83	回车事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:101	初次加载患者树标志	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:109	医生站患者一览	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:112	浏览器窗口调整大小时重新加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:112	的宽	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:157	患者病历列表树	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:221	病案首页分离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:245	回车触发查询事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:263	右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:267	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:270	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:270	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:292	右键菜单展示版	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:296	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:299	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:299	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:321	病案首页分离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:325	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:328	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:328	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:334	报表管理器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:339	病案首页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:339	测试	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:348	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:351	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:351	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:382	患者列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:471	出院患者添加可提交按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatHistoricalMedRecord.cshtml:486	岁	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:160	初次加载患者树标志	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:170	浏览器窗口调整大小时重新加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:170	的宽	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:222	患者病历列表树	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:285	禁用条件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:301	病案首页分离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:305	病程记录增加合并打印菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:329	回车触发查询事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:371	右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:375	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:378	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:378	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:480	上传医保	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:484	正在请求上传	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:484	请稍候	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:498	该病历无需上传医保	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:546	右键菜单展示版	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:550	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:553	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:553	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:578	病案首页分离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:582	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:585	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:585	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:591	报表管理器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:596	病案首页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:596	测试	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:675	上传医保	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:679	正在请求上传	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:679	请稍候	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:684	该病历无需上传医保或缺少医保代码配置	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:696	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:699	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:699	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:715	右键菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:715	病程记录	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:715	合并打印	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:720	获取元数据	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:723	的目的是给下面的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:723	传递参数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:823	上传医保	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:827	正在请求上传	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:827	请稍候	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:841	该病历无需上传医保	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:884	病历操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:895	在院患者不提交病案	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:920	患者列表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1025	出院患者添加可提交按钮	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1046	岁	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1080	新增病历文书	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1158	不可编辑	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1181	将病案首页从文档编辑器中分离	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1205	新版编辑器开关	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1211	病历操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1215	患者病历已提交病案	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1215	不可编辑	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1223	病历提交到病案系统	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1268	病历退回	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1313	病历质控	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1325	不可编辑	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/PatInfo/PatMedRecordList.cshtml:1329	病历质控	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_BllxTree.cshtml:20	机动处理	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_BllxTree.cshtml:20	双击操作	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:84	黑体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:84	黑体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:85	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:85	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:86	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:86	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:87	楷体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_Style_Toolbar.cshtml:87	楷体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:81	字体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:82	黑体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:82	楷体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:82	宋体	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:82	微软雅黑	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:99	字体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_ToolBar.cshtml:109	背景色	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_UploadToYB.cshtml:40	病案首页	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/Shared/_UploadToYB.cshtml:65	智能审核	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:116	当	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:116	事件发生时调用	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:116	函数	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:247	表格编辑完	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:247	数据保存完后	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:247	编辑状态还在	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:247	调用该方法清除该状态	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:341	初始化一个数组	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:341	容器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:341	用来存放	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:393	第一次点击编辑时添加一行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:423	工号	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:423	正在编辑中	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/MedicalRecordManage/Views/TemplateDesign/HljlGraph.cshtml:483	编辑结束预览模式	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/Common/RecordType.cshtml:91	回车事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/Common/RecordTypeForm.cshtml:144	访问授权表	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysConfig/Index.cshtml:127	删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysConfig/Index.cshtml:140	不好	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysLog/Index.cshtml:101	回车触发查询事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysModule/Index.cshtml:110	回车触发查询事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysModule/Index.cshtml:115	新增	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysModule/Index.cshtml:132	修改	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysModule/Index.cshtml:159	删除	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysRole/Form.cshtml:104	组织机构下拉框	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysRole/Index.cshtml:78	回车事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysRole/Index.cshtml:144	用户人员树回调方法	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysStaff/Selector.cshtml:31	让其他的都不选中	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysStaff/Selector.cshtml:31	但不包括其父级的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysUser/Index.cshtml:82	回车事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysUser/Selector.cshtml:28	让其他的都不选中	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysUser/Selector.cshtml:28	但不包括其父级的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysUser/Selector.cshtml:50	对应的是	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysUser/PersonalInfo.cshtml:75	密码复杂度不够	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/SysUser/PersonalInfo.cshtml:80	密码复杂度不够	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:76	打开文档	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:119	在服务器端响应控件的	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:119	事件	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:119	即可使用	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:119	模式加载文档	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:125	初始加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:173	解决宋体打印问题	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:174	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:174	宋体	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Areas/SystemManage/Views/YzPreView/YzPreView.cshtml:184	病历编辑器	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:11	在线	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:18	常用菜单	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:30	合同	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:36	产品	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:42	客户	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:52	湖北天天数链技术有限公司	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/_IndexNavCol.cshtml:53	天天开源软件	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/UserOrgChoose.cshtml:4	是否页面加载时就必须选择	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/UserOrgChoose.cshtml:31	必须选择医疗机构	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/UserOrgChoose.cshtml:46	用完立	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/Index.cshtml:3	是否页面加载时就必须选择	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/Index.cshtml:5	是否页面加载时就必须选择	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/Index.cshtml:313	加载时强制选择医疗机构	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/Index.cshtml:318	页面加载完成之后	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Home/Index.cshtml:318	再加载	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Login/Index.cshtml:85	湖北天天数链技术有限公司	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Login/Index.cshtml:86	天天开源软件	must-keep/proper noun/font
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Login/Index.cshtml:91	窗体分辨率自适应	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Shared/_OrganizeIdDDLToolbarSearchView.cshtml:24	清空选中行	comment
+/home/hatch/workspace/openhis-core/Newtouch.HIS.EMR/Newtouch.EMR.Web/Views/Shared/Error.cshtml:13	微软雅黑	must-keep/proper noun/font

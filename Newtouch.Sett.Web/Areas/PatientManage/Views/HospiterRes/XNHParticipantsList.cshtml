@@ -1,0 +1,79 @@
+@{
+    ViewBag.Title = "hợp tác nông thôn mới Tham gia bảo hiểm người Danh sách";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var from = (ViewBag.from as string) ?? "";
+}
+
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    var $gridList = $("#gridList");
+
+    $(function () {
+        gridList();
+        var data = JSON.parse(localStorage.getItem("jrespdata"));
+        if (!!data) {
+            $('#gridList').newtouchLocalDataGrid(null, data);
+            localStorage.removeItem("jrespdata");
+        }
+    });
+
+
+    function gridList() {
+        $gridList.newtouchLocalDataGrid({
+            unwritten: false,
+            height: $(window).height() - 70,
+            colModel: [
+                { label: 'memberId', name: 'memberId', hidden: true },
+                { label: 'medicalNo', name: 'medicalNo', hidden: true },
+                { label: 'Họ tên', name: 'memberName', width: 100, align: 'left' },
+                {
+                    label: 'Giới tính', name: 'memberSex', width: 30, align: 'left', formatter: function (cellvalue) {
+                        return $.getGender(cellvalue);
+                    }
+                },
+                { label: 'Số CMND/CCCD', name: 'idCard', width: 160, align: 'left' },
+                { label: 'Tuổi', name: 'memberAge', width: 50, align: 'left' },
+                {
+                    label: 'Năm sinh', name: 'birthday', width: 90, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                { label: 'địa chỉ', name: 'areaName', width: 160, align: 'left' },
+                { label: 'Số dư tài khoản', name: 'account', width: 50, align: 'left' },
+                { label: 'Tham gia bảo hiểm Trạng thái', name: 'memberStauts', width: 50, align: 'left' },
+                { label: 'Thường Nhập viện Tổng chi phí', name: 'hosTotalCost', width: 75, align: 'left' },
+                { label: 'Chi phí trong BHYT của nhập viện thường', name: 'hosInsuranceCost', width: 85, align: 'left' },
+                { label: 'Thường Nhập viện bồi thường Chi phí', name: 'hosCompens', width: 85, align: 'left' },
+            ],
+            pager: "#gridPager",
+            sortname: 'isnull(LastModifyTime, CreateTime) desc',
+            rowNum: '15',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                PatDbGrid(rowid);
+            }
+        });
+    }
+
+    function PatDbGrid(rowId) {
+        var rowData = $gridList.jqGrid('getRowData', rowId);
+        var obj = new Object();
+        obj.xnhgrbm = rowData.memberId;
+        obj.xnhylzh = rowData.medicalNo;
+        obj.xm = rowData.memberName;
+        obj.xb = rowData.memberSex;
+        obj.zjlx =@((int)EnumZJLX.sfz);
+        obj.brxzmc = "hợp tác nông thôn mới";
+        obj.brxzcode = "8";
+        obj.zjh = rowData.idCard;
+        obj.csny = rowData.birthday;
+        obj.xian_dz = rowData.areaName;
+        obj.zhye = rowData.account;
+        $.currentWindow().GetSelectedpatient(obj);
+        $.modalClose();
+    }
+</script>
+
+

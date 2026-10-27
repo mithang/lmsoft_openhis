@@ -1,0 +1,151 @@
+
+@{
+    ViewBag.Title = "ChargeTemplateIndex";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+        </div>
+        <div class="btn-group">
+            <select id="yxbz" style="height:25px">
+                <option value="1">Hiệu lực</option>
+                <option value="0">không hợp lệ</option>
+            </select>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script type="text/javascript">
+
+    var $gridList = $("#gridList");
+    $gridList.dataGrid({
+        url: "/SystemManage/SysParameterConfig/ChargeTemplate_GetGridJson",
+        postData: { keyword: $("#txt_keyword").val(), yxbz: $("#yxbz").val() },
+        height: $(window).height() - 146,
+        colModel: [
+            { label: "Khóa chính", name: "sfmbbh", hidden: true, key: true },
+            { label: 'Mã', name: 'sfmb', width: 100, align: 'left' },
+            { label: 'Tên mẫu thu phí', name: 'sfmbmc', width: 150, align: 'left' },
+            {
+                label: "Dấu hiệu ngoại trú/nội trú", name: "mzzybz", width: 60, align: "center",
+                formatter: function (cellvalue) {
+                    if (cellvalue == "0") {
+                        return "dùng chung"
+                    } else if (cellvalue == "1") {
+                        return "Ngoại trú"
+                    } else {
+                        return "Nhập viện"
+                    }
+                }
+            },
+            {
+                label: "Hiệu lực", name: "zt", width: 60, align: "center",
+                formatter: function (cellvalue) {
+                    return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
+                }
+            },
+            { label: 'Khoa hạng mục thu phí', name: 'ks', width: 100, align: 'left' },
+            { label: 'Tổng số tiền', name: 'zje', width: 100, align: 'left' },
+            {
+                label: 'Thời gian tạo mới', name: 'CreateTime', width: 100, align: 'left',
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            },
+        ],
+        sortname: 'sfmb asc',
+        pager: "#gridPager",
+        viewrecords: true,
+        rowNum: 15,
+    });
+
+    $("#btn_search").click(function () {
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { keyword: $("#txt_keyword").val(), yxbz: $("#yxbz").val() },
+            page: 1,
+        }).trigger('reloadGrid');
+    });
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    function btn_add() {
+        $.modalOpen({
+            id: "ChargeTemplateIndexEditForm",
+            title: "Thêm mới mẫu thu phí",
+            url: "/SystemManage/SysParameterConfig/ChargeTemplate_EditForm",
+            width: "800px",
+            height: "610px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().sfmbbh;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "ChargeTemplateIndexEditForm",
+            title: "Sửa mẫu thu phí",
+            url: "/SystemManage/SysParameterConfig/ChargeTemplate_EditForm?keyValue=" + keyValue,
+            width: "800px",
+            height: "610px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_delete() {
+
+        var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//根据上面的rowKey获得本行的所有数据
+
+        var keyValue = $("#gridList").jqGridRowValue().sfmbbh;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/SystemManage/SysParameterConfig/deleteid",
+            param: { keyValue: keyValue },
+            success: function () {
+                $("#gridList").jqGrid('setGridParam', {
+                    postData: { keyword: $("#txt_keyword").val(), yxbz: $("#yxbz").val() },
+                }).trigger('reloadGrid');
+            }
+        })
+    }
+</script>

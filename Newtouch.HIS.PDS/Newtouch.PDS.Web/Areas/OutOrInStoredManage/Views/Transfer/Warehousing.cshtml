@@ -1,0 +1,355 @@
+@using Newtouch.Infrastructure;
+@using Newtouch.HIS.Web.Core.Extensions;
+@{
+    ViewBag.Title = "Nhập kho điều chuyển";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var ffzt = new[] {
+        (int) EnumSLDDeliveryStatus.None,
+        (int) EnumSLDDeliveryStatus.Part,
+    };
+}
+
+<style>
+    .txt-ffsl {
+        height: 18px;
+        line-height: 20px;
+        margin: 3px !important;
+        width: 80px;
+    }
+
+    .form-control {
+        padding: 0 3px;
+    }
+</style>
+
+<form id="form1" style="overflow-x: hidden;">
+    <div class="panel panel-default" style="margin-bottom: 5px;">
+        <div class="panel-heading">Thông tin lọc</div>
+        <table class="form">
+            <tr>
+                <td class="formTitle">Số đơn đăng ký：</td>
+                <td class="formValue"><input type="text" id="sldh" name="sldh" class="form-control" placeholder="Vui lòng nhập số đơn lĩnh" /></td>
+                <th class="formTitle"><span class="required">*</span>Nhà thuốc phát thuốc：</th>
+                <td class="formValue">
+                    <input type="text" id="fybmmc" name="fybmmc" class="form-control" placeholder="Vui lòng chọn nhà thuốc phát thuốc" autocomplete="off" />
+                    <input type="hidden" id="fybm" />
+                </td>
+                <th class="formTitle" style="width: 75px;padding-right: 0;">Ngày：</th>
+                <td class="formValue" style="width:130px;">
+                    <input id="startDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                </td>
+                <th class="formTitle" style="width: 35px;padding-right: 0;">Đến：</th>
+                <td class="formValue" style="width:130px;">
+                    <input id="endDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                </td>
+                <td class="formTitle">Trạng thái phát thuốc：</td>
+                <td class="formValue">
+                    @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToSomeDescSelectList(String.Join(",", ffzt)), "Tất cả", new { @class = "form-control" })
+                </td>
+                <td class="formTitle">
+                    <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv_right" style="float: left; margin-left: 305px;">
+        <table id="MedicineGridList"></table>
+        <div id="gridPager2" rel="form1"></div>
+        @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+   {
+       ShowKeyList = new[] { 8 },
+       F8Text = "Nhập kho"
+   })
+    </div>
+    <div id="dv_left" class="panel panel-default" style="float: left; width:300px; margin-left:-100%;">
+        <table id="parentgridList"></table>
+    </div>
+</form>
+<script>
+    var globalData = [];
+    var medicineData = [];
+    var lastRowId;
+    var fymx = $(window).width() - $("#dv_left").width() - 5;
+    var $MedicineGridList = $("#MedicineGridList");
+
+    $(function () {
+        initLayout();
+        $(window).resize(function () {
+            initLayout();
+        });
+        gridList();
+        medicineGridList([]);
+        InitBackspaceKey("fybmmc");
+        initFybm();
+    });
+
+    //按backspace键清楚所有
+    function InitBackspaceKey(id) {
+        $("#" + id).keydown(function (e) {
+            var e = window.event ? window.event : e;
+            var keyCode = e.which ? e.which : e.keyCode;
+            if (keyCode === 8) {
+                $("#" + id).val("");
+            }
+        });
+    }
+
+    //自适应
+    function initLayout() {
+        $("#dv_right").width(fymx);
+    }
+
+    //初始化发药部门
+    function initFybm() {
+        $("#fybmmc").newtouchBatchFloatingSelector({
+            clickautotrigger: true,
+            height: 200,
+            width: 400,
+            url: "GetYfbmList",
+            ajaxmethod: 'Get',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $.trim($("#fybmmc").val());
+                return reqData;
+            },
+            colModel: [
+                { label: 'Mã khoa', name: 'yfbmCode', widthratio: 40 },
+                { label: 'Tên khoa', name: 'yfbmmc', widthratio: 60 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#fybmmc").val($thistr.attr('data-yfbmmc'));
+                $("#fybm").val($thistr.attr('data-yfbmCode'));
+                return;
+            }
+        });
+    }
+
+    function gridList() {
+        var $gridList = $("#parentgridList");
+        $gridList.dataGrid({
+            caption: "Thông tin lĩnh",
+            url: "RequestInfo",
+            height: $(window).height() - 190,
+            postData: $("#form1").formSerialize(),
+            colModel: [
+                {
+                    label: 'Trạng thái phát thuốc', name: 'ffzt', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        switch (cellvalue) {
+                            case @((int)EnumSLDDeliveryStatus.None): return "Chưa nhập kho";
+                            case @((int)EnumSLDDeliveryStatus.Part): return "Nhập kho một phần";
+                            case @((int)EnumSLDDeliveryStatus.All): return "Đã nhập kho";
+                            case @((int)EnumSLDDeliveryStatus.Abandon): return "Đã kết thúc";
+                        }
+                    }
+                },
+                { label: "Số đơn đăng ký", name: "Sldh", width: 120, align: 'left' },
+                { label: 'Thời gian đăng ký', name: 'CreateTime', width: 85, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' } },
+                { label: 'Tên khoa dược', name: 'yfbmmc', width: 100, align: 'left' },
+                {
+                    label: 'Kết thúc', name: '', width: 40, align: 'center', formatter: function (cellvalue, options, rowObject) {
+                        if (rowObject.ffzt === @((int)EnumSLDDeliveryStatus.Abandon)||rowObject.ffzt === @((int)EnumSLDDeliveryStatus.All)) {
+                            return "";
+                        }
+                        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"Kết thúc\" onclick=\"btn_Abandon('" + arguments[1].rowId + "'," + rowObject.ffzt + ");\" />";
+                    }
+                },
+                { label: "Khóa chính", name: "sldId", hidden: true, key: true },
+                { label: "ffzt", name: "ffzt", hidden: true }
+            ],
+            sortname: 'ffzt ,CreateTime desc',
+            multiselect: true,
+            viewrecords: false,
+            beforeRequest: function () {
+                $("#gridPager1_left").hide();
+                $("#gridPager1_right").hide();
+            },
+            onSelectRow_page: function (rowid, status) {
+                if (!status) {
+                    var newMedicineData = [];
+                    for (var i = 0; i < medicineData.length; i++) {
+                        if (medicineData[i].sldId !== rowid) {
+                            newMedicineData.push(medicineData[i]);
+                        }
+                    }
+                    medicineData = [];
+                    medicineData = newMedicineData;
+
+                    if (medicineData.length === 0) {
+                        $(".unwritten").show();
+                    } else {
+                        $(".unwritten").hide();
+                    }
+                    $MedicineGridList.jqGrid("clearGridData");
+                    $MedicineGridList.newtouchLocalDataGrid(null, medicineData);
+                    return;
+                }
+                var data = $("#parentgridList").jqGrid('getRowData', rowid);
+                var sldId = data.sldId;
+                if (data.ffzt === '@((int)EnumSLDDeliveryStatus.Abandon)') {
+                    $("#jqg_parentgridList_" + rowid).hide();
+                    $.modalAlert("Bản ghi này đã kết thúc", "warning");
+                    return;
+                } else if (data.ffzt === '@((int)EnumSLDDeliveryStatus.All)') {
+                    $("#jqg_parentgridList_" + rowid).hide();
+                    $.modalAlert("Bản ghi này đã phát hết thuốc", "warning");
+                    return;
+                }
+                $.najax({
+                    type: "Get",
+                    url: "RequestMedicineInfo?sldId=" + sldId,
+                    dataType: "json",
+                    success: function (res) {
+                        if (res != null && res.length > 0) {
+                            for (var k = 0; k < res.length; k++) {
+                                res[k].Slbm = data.Slbm;
+                                medicineData.push(res[k]);
+                            }
+                            if (medicineData.length === 0) {
+                                $(".unwritten").show();
+                            } else {
+                                $(".unwritten").hide();
+                            }
+                            $MedicineGridList.jqGrid("clearGridData");
+                            $MedicineGridList.newtouchLocalDataGrid(null, medicineData);
+                        }
+                    }
+                });
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+            medicineData = [];
+            $MedicineGridList.jqGrid("clearGridData");
+            $MedicineGridList.trigger("reloadGrid");
+        });
+    }
+
+    //终止
+    function btn_Abandon(id, zt) {
+        if (zt === @((int)EnumSLDDeliveryStatus.None) || zt === @((int)EnumSLDDeliveryStatus.Part)) {
+            $.najax({
+                url: "/DrugStorage/Abandonzt?id=" + id,
+                dataType: "json",
+                cache: false,
+                success: function (res) {
+                    if (res.state === "success") {
+                        $.modalMsg("Kết thúc thành công！", 'success', 1000);
+                    }
+                    $("#parentgridList").resetSelection();
+                    $("#parentgridList").trigger("reloadGrid");
+                    $MedicineGridList.jqGrid("clearGridData");
+                    $(".unwritten").show();
+                }
+            });
+        }
+    }
+
+    function medicineGridList() {
+        $MedicineGridList.newtouchLocalDataGrid({
+            autoScroll: true,
+            caption: "Thông tin thuốc",
+            height: $(window).height() - 220,
+            editurl: "clientArray",  //行编辑不向服务器提交数据
+            colModel: [
+                {
+                    label: 'Số lượng phát hiện tại', name: 'fysl', width: 55, align: 'center'
+                },//包装单位数量
+                { label: 'Đơn vị', name: 'bzdw', width: 40, align: 'center' },
+                { label: 'Số lượng đã phát', name: 'yfslStr', width: 55, align: 'right' },
+                { label: 'Số lượng lĩnh', name: 'Sl', width: 55, align: 'right' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 110, align: 'left' },
+                { label: 'Giá bán buôn', name: 'Pfj', width: 50, align: 'right' },
+                { label: 'Giá bán lẻ', name: 'Lsj', width: 50, align: 'right' },
+                { label: 'Tổng giá bán buôn', name: 'Pjze', width: 50, align: 'right' },
+                { label: 'Tổng giá lẻ', name: 'lsje', width: 50, align: 'right' },
+                { label: "sldmxId", name: "sldmxId", hidden: true },
+                { label: 'Mã thuốc', name: 'Ypdm', hidden: true },
+                { label: 'Khoa lĩnh', name: 'Slbm', hidden: true },
+                { label: 'Hệ số chuyển đổi（Đơn vị đóng gói）', name: 'zhyz', hidden: true },
+                { label: 'Số lượng lĩnh', name: 'Slsl', hidden: true },
+                { label: 'Số lượng đã phát', name: 'yfsl', hidden: true },
+                { label: 'Số lượng tồn kho', name: 'kcsl', hidden: true },
+                { label: 'Đơn lĩnhID', name: 'sldId', hidden: true },
+                { label: 'Khoa xuất kho', name: 'Ckbm', hidden: true },
+                { label: 'pc', name: 'pc', hidden: true },
+                { label: 'Ph', name: 'Ph', hidden: true },
+                { label: 'sldh', name: 'sldh', hidden: true },
+                { label: 'Yxq', name: 'Yxq', hidden: true },
+                { label: 'crkmxId', name: 'crkmxId', hidden: true },
+                { label: 'jj', name: 'jj', hidden: true },
+                { label: 'Rkzhyz', name: 'Rkzhyz', hidden: true }
+            ],
+            pager: "#gridPager2",
+            sortname: 'ypmc desc',
+            viewrecords: true
+        });
+    }
+
+    //入库
+    function newtouch_event_f8() {
+        var kcInfoJsonSave = $MedicineGridList.jqGrid('getRowData_AllLine');
+        if (kcInfoJsonSave === [] || kcInfoJsonSave.length === 0) {
+            $.modalAlert("Phát thuốc thất bại,Không có thông tin thuốc！", 'error');
+            return false;
+        }
+
+        debugger;
+        var b = false;
+        var dic = [];
+        $.each(kcInfoJsonSave, function (index, item) {
+            var obj={
+                        Ypdm: item.Ypdm,
+                        Kcsl: item.Slsl,
+                        Pc: item.pc,
+                        Ph: item.Ph,
+                        sldh: item.sldh,
+                        sldId: item.sldId,
+                        sldmxId: item.sldmxId,
+                        Yxq: item.Yxq,
+                        crkmxId: item.crkmxId,
+                        jj: item.jj,
+                        Rkzhyz: item.Rkzhyz,
+                        Ckbm:item.Ckbm,
+                    };
+            for (var i = 0; i < dic.length; i++) {
+                if (dic[i].key === obj.Ckbm) {
+                    dic[i].value.push(obj);
+                    b = true;
+                    break;
+                }
+            }
+            if (!b) {
+                dic.push({ 'key': obj.Ckbm, 'value': [obj] });
+            }
+        });
+
+        $.najax({
+            type: "POST",
+            url: "ExecHandOutMedicineByReq",
+            data: { rkdmx: dic },
+            dataType: "json",
+            success: function (res) {
+                medicineData = [];
+                if (res.state === "success") {
+                    $.modalMsg('Nhập kho thành công', 'success', 1000);
+                    $("#parentgridList").resetSelection();
+                    $("#parentgridList").trigger("reloadGrid");
+                    $('#parentgridList').jqGrid("clearGridData");
+
+                    $MedicineGridList.resetSelection();
+                    $MedicineGridList.trigger("reloadGrid");
+                    $MedicineGridList.jqGrid("clearGridData");
+                } else if (res.state === "error") {
+                    $.modalAlert(res.message, 'error');
+                }
+            }
+        });
+    }
+
+</script>
+

@@ -1,0 +1,256 @@
+@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure;
+@model dynamic
+@{
+    ViewBag.Title = "Tra cứu";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
+}
+<style>
+    #btn_search {
+        float: left;
+        margin-left: 25px;
+        margin-right: 10px;
+        width: 45px;
+        font-weight: bolder;
+    }
+
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+        float: left;
+    }
+
+    #btn_backIndex {
+        float: left;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading">Điều kiện tra cứu</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Ngày：</th>
+                <td class="formValue">
+                    <select id="ddlRQ" class="form-control"></select>
+                </td>
+                <th class="formTitle">Từ khóa：</th>
+                <td class="formValue">
+                    <input id="txtSRM" type="text" class="form-control" placeholder="Tên vật tư/Phiên âm" />
+                </td>
+                <th class="formTitle">Trạng thái vật tư：</th>
+                <td class="formValue">
+                    @Html.DropDownList("ddlwzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Loại vật tư：</th>
+                <td class="formValue">
+                    <select id="ddllb" class="form-control">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <th class="formTitle">Hiển thị tồn kho：</th>
+                <td class="formValue">
+                    @Html.DropDownList("ddlKCXS", EnumKCXS.None.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                </td>
+                <td class="formTitle" colspan="2">
+                    <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" />
+                    <input type="button" id="btn_print" class="btn btn-primary" value="In báo cáo" />
+                    <input type="button" id="btn_backIndex" class="btn btn-primary" value="Về trang chủ" style="float:right;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="margin-bottom: 0;">
+        <div class="panel-heading">
+            <span>Kiểm kê tồn khoThông tin | Theo lô:</span>
+            <i id="i-noPc" onclick="accordingBatch(this)" class="fa fa-toggle-off" style="margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;"></i>
+        </div>
+    </div>
+    <div id="dv-gridKCInfoNoPc">
+        <table id="gridKCInfoNoPc"></table>
+        <div id="gridPagerNoPc" rel="form1"></div>
+    </div>
+    <div id="dv-gridKCInfo">
+        <table id="gridKCInfo"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+<script>
+    var $gridKCInfo = $("#gridKCInfo");
+    var $gridKCInfoNoPc = $("#gridKCInfoNoPc");
+    $(function () {
+        $("#btn_backIndex").click(function () {//Quay lại
+            window.location.href = "Index";
+        });
+        Initial();
+        //$("#btn_search").trigger("click");
+    });
+
+    //Khởi tạo kiểm kê
+    function Initial() {
+        GetPdsj();
+        $("#ddllb").bindSelect({
+            url: "/WarehouseManage/Warehouse/GetBmWzLb",
+            id: "Id",
+            text: "lbmc"
+        });
+        gridKCInfo();
+        gridKCInfoNoPc();
+        $("#dv-gridKCInfo").hide();
+        $("#btn_print").click(function () {
+            if (!'@reportUrl') { $.modalAlert('Báo cáo SSRS chưa được chuyển đổi sang .NET Core, vui lòng sử dụng lưới dữ liệu trên trang.', 'warning'); return; }
+            var pdsj = $("#ddlRQ option:selected").text();
+            if (!pdsj && !pdId) {
+                return false;
+            }
+             if ($("#i-noPc").hasClass("fa-toggle-off")) {
+                 var url = '@reportUrl' + "?tempCode=1262" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId' + "&warehouseId=" + '@Constants.CurrentKf.currentKfId';
+                url += "&pdId=" + $("#ddlRQ option:selected").val();
+                url += "&keyWord=" + ($("#txtSRM").val() === "" ? "n" : $("#txtSRM").val());
+                url += "&zt=" + ($("#ddlwzzt").val() === "" ? "n" : $("#ddlwzzt").val());
+                url += "&lbId=" + ($("#ddllb").val() === "" ? "n" : $("#ddllb").val());
+                    url += "&kcxs=" + ($("#ddlKCXS").val() == "" || null ? "-1" : $("#ddlKCXS").val());
+                window.open(url);
+            } else {
+                 var url = '@reportUrl' + "?tempCode=1263" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId' + "&warehouseId=" + '@Constants.CurrentKf.currentKfId';
+                url += "&pdId=" + $("#ddlRQ option:selected").val();
+                url += "&keyWord=" + ($("#txtSRM").val() === "" ? "n" : $("#txtSRM").val());
+                url += "&zt=" + ($("#ddlwzzt").val() === "" ? "n" : $("#ddlwzzt").val());
+                url += "&lbId=" + ($("#ddllb").val() === "" ? "n" : $("#ddllb").val());
+                url += "&kcxs=" + ($("#ddlKCXS").val() == "" || null ? "-1" : $("#ddlKCXS").val());
+                window.open(url);
+            }
+        });
+    }
+
+    //Lấy thời gian kiểm kê
+    function GetPdsj() {
+        $("#ddlRQ").empty();//Xóa trắng trước，Rồi điền
+        $("#ddlRQ").bindSelect({
+            url: "/StorageManage/StockInventory/GetPdsj",
+            id: "pdId",
+            text: "pdsj"
+        });
+    }
+
+    //Có theo lô hay không
+    function accordingBatch(obj) {
+        if ($(obj).hasClass("fa-toggle-off")) {
+            $(obj).removeClass("fa-toggle-off");
+            $(obj).addClass("fa-toggle-on");
+            $("#dv-gridKCInfo").show();
+            $("#dv-gridKCInfoNoPc").hide();
+        } else {
+            $(obj).removeClass("fa-toggle-on");
+            $(obj).addClass("fa-toggle-off");
+            $("#dv-gridKCInfo").hide();
+            $("#dv-gridKCInfoNoPc").show();
+        }
+        $("#btn_search").trigger("click");
+    }
+
+    //Thông tin tồn kho
+    function gridKCInfo() {
+        $gridKCInfo.dataGrid({
+            height: $(window).height() - 225,
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            colModel: [
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'Số lượng lý thuyết', name: 'llsl', width: 80, align: 'left' },
+                { label: '(Thực)Số khoa', name: 'deptSjsl', width: 70, align: 'center' },
+                { label: 'Đơn vị', name: 'deptdw', width: 40, align: 'left' },
+                { label: '(Thực)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'center' },
+                { label: 'Đơn vị', name: 'zxdw', width: 40, align: 'center' },
+                { label: 'Hệ số', name: 'zhyz', width: 40, align: 'center' },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' } },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 60, align: 'left' },
+                { label: 'Thành tiền bán lẻ(Lý)', name: 'lllsje', width: 70, align: 'left' },
+                { label: 'Thành tiền bán lẻ(Thực)', name: 'sjlsje', width: 70, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
+                { label: 'pdmxId', name: 'pdmxId', hidden: true },
+                { label: 'Vật tưID', name: 'productId', hidden: true }
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+    }
+
+    //Thông tin tồn kho
+    function gridKCInfoNoPc() {
+        $gridKCInfoNoPc.dataGrid({
+            height: $(window).height() - 225,
+            postData: getSearchPostData(),
+            url: "/StorageManage/StockInventory/QueryInventoryInfoListNoPc?r=" + Math.random(),
+            colModel: [
+                { label: 'Tên vật tư', name: 'wzmc', width: 150, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                { label: 'Số lượng lý thuyết', name: 'llsl', width: 80, align: 'right' },
+                { label: '(Thực)Số khoa', name: 'deptSjsl', width: 70, align: 'right' },
+                { label: 'Đơn vị', name: 'deptdw', width: 50, align: 'center' },
+                { label: '(Thực)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'right' },
+                { label: 'Đơn vị', name: 'zxdw', width: 50, align: 'center' },
+                { label: 'Hệ số', name: 'zhyz', width: 40, align: 'center' },
+                {
+                    label: 'Giá bán lẻ', name: 'lsj', width: 80, align: 'right',
+                    formatter: function (val) { return val.toFixed(4); }
+                },
+                {
+                    label: 'Thành tiền bán lẻ(Lý)', name: 'lllsje', width: 80, align: 'right',
+                    formatter: function (val) { return val.toFixed(2); }
+                },
+                {
+                    label: 'Thành tiền bán lẻ(Thực)', name: 'sjlsje', width: 80, align: 'right',
+                    formatter: function (val) { return val.toFixed(2); }
+                },
+                { label: 'Phiên âm', name: 'py', width: 120, align: 'left' },
+                { label: 'Vật tưID', name: 'productId', hidden: true }
+            ],
+            multiselect: false,
+            pager: "#gridPagerNoPc",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+
+        $("#btn_search").click(function () {//GắnTra cứuTra cứu
+            if ($("#i-noPc").hasClass("fa-toggle-off")) {
+                $gridKCInfoNoPc.jqGrid('setGridParam',
+                    {
+                        postData: getSearchPostData(),
+                    }).trigger('reloadGrid');
+            } else {
+                $gridKCInfo.jqGrid('setGridParam',
+                    {
+                        postData: getSearchPostData(),
+                        url: "/StorageManage/StockInventory/QueryInventoryInfoList"
+                    }).trigger('reloadGrid');
+            }
+        });
+    }
+
+    //Điều kiện tra cứu
+    function getSearchPostData() {
+        var pdId = $("#ddlRQ option:selected").val();
+        var pdsj = $("#ddlRQ option:selected").text();
+        var keyWord = $("#txtSRM").val();
+        var wzzt = $("#ddlwzzt").val();
+        var lb = $("#ddllb").val();
+        var kcxs = $("#ddlKCXS").val();
+        if (!pdsj && !pdId) {
+            return false;
+        }
+        if (kcxs === "" || kcxs == null) {
+            kcxs = -1;
+        }
+        return { pdsj: pdsj, pdId: pdId, keyWord: keyWord, wzzt: wzzt, lb: lb, kcxs: kcxs };
+    };
+</script>

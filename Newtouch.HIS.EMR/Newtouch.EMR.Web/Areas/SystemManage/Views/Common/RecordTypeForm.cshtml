@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
+        <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+        Mã định danh nhóm lớn bệnh án, Mã rút gọn và bảng nghiệp vụ sau khi lưu không thể sửa, Vui lòng xác nhận chính xác rồi nộp.
+    </div>
+    <div style="width:40%;float:left">
+        <table class="form" style="width:95%;">
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Loại nghiệp vụ</th>
+                <td class="formValue">
+                    <select id="mzbz" name="mzbz" class="form-control required">
+                        <option value="0">Nội trú</option>
+                        <option value="1">Ngoại trú</option>
+                        <option value="2" selected>Không giới hạn</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Mã định danh nhóm lớn</th>
+                <td class="formValue">
+                    <input id="bllx" name="bllx" type="text" class="form-control required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Nhóm lớn Tên</th>
+                <td class="formValue">
+                    <input id="bllxmc" name="bllxmc" type="text" class="form-control required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Mã rút gọn nhóm lớn</th>
+                <td class="formValue">
+                    <input id="bllxcode" name="bllxcode" type="text" class="form-control required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Bảng nghiệp vụ liên kết</th>
+                <td class="formValue">
+                    <input id="relTB" name="relTB" type="text" class="form-control required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Sắp xếp</th>
+                <td class="formValue">
+                    <input id="px" name="px" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;"><span class="required">*</span>Menu quản lý</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <select id="MenuLev" name="MenuLev" class="form-control required">
+                        <option value="1">Không có</option>
+                        <option value="2">Thời gian(yyyy-MM)</option>
+                        
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"></th>
+                <td class="formValue">
+                    <input id="MenuLevName" name="MenuLevName" type="text" class="form-control" placeholder="Thư mục con Tên" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;">Trạng thái</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <div class="ckbox">
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;">Vị trí được ủy quyền</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <span class="glyphicon glyphicon-hand-right" style="color: rgb(255, 140, 60);font-size:20px;" title="Vui lòng chọn danh sách vị trí bên phải"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="width:55%;float:right;padding-right:20px;">
+        <div class="gridPanel" style="width:90%;padding-left:30px;">
+            <table id="gridListForm"></table>
+            <div id="gridPager"></div>
+            
+        </div>
+    </div>
+
+
+</form>
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        gridList();
+        if (!!keyValue) {
+            $("#bllx").attr("readonly", "readonly");
+            $("#bllxcode").attr("readonly", "readonly");
+            $.najax({
+                url: "/SystemManage/Common/GetBllxbyId",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+
+        $("#MenuLev").change(function (a) {
+            var lev = $("#MenuLev option:selected").val();
+            $("#MenuLevName").val("");
+            if (lev == "3") {
+                $("#MenuLevName").removeAttr("readonly");                
+            }
+            else {
+                $("#MenuLevName").attr("readonly", "readonly");
+                if (lev == "2") {
+                    $("#MenuLevName").val("Ngày:yyyy-MM");
+                }
+            }
+        });
+    });
+
+    function gridList() {
+        var $gridList = $("#gridListForm");
+        $gridList.dataGrid({
+            url: "/SystemManage/Common/GetDutyList",
+            postData: { dutyCode: "", bllxId: keyValue },
+            height: 350,
+            colModel: [
+                { label: 'Khóa chính quan hệ', name: 'Id', hidden: true },
+                { label: 'Khóa chính vị trí', name: 'Code', hidden: true },
+                { label: 'ischeck', name: 'ischeck', hidden: true },
+                { label: 'Tên vị trí', name: 'Name', width: 100, align: 'center' },
+            ],
+            multiselect: true,
+            viewrecords: true,
+            sortname:"ischeck desc",
+            //caption: "访问授权表",
+            loadComplete: function () {
+                var ids = $("#gridListForm").jqGrid('getRowData_AllLine');
+                for (var i = 1; i <= ids.length; i++) {
+                    var rowData = $("#gridListForm").jqGrid('getRowData', i);
+                    if (rowData.ischeck == 1) {
+                        $("#gridListForm").jqGrid('setSelection', i);
+                    }
+                }
+
+            }
+        });
+    }
+
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        if (!(/(^[1-9]\d*$)/.test($("#px").val()))) {
+            $.modalMsg("Vui lòng nhập số thứ tự sắp xếp chính xác(Số nguyên dương)", 'warning');
+            return false;
+        }
+        var lev = $("#MenuLev option:selected").val();
+        if (lev == "3" && !$("#MenuLevName").val()) {
+            $.modalMsg("Thư mục tùy chỉnh không được để trống");
+            return false;
+        }
+        
+        var postData = $("#form1").formSerialize();
+        postData.RelDutys = "";
+        var selRowIds = jQuery("#gridListForm").jqGrid("getGridParam", "selarrrow");
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#gridListForm").jqGrid('getRowData', selRowIds[i]);
+            postData.RelDutys += rowData.Code + ",";
+        }
+
+        $.submitForm({
+            url: "/SystemManage/Common/SubmitForm?keyValue=" + keyValue,
+            param: postData,
+            success: function (data) {
+                if (data.state == "success") {
+                    $.modalMsg('Lưu thành công', 'success');
+                    $.currentWindow().$("#gridList").resetSelection();
+                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+                }
+                else {
+                    $.modalMsg(data.message, 'error');
+                }
+
+                $.modalClose();
+            }
+        });
+
+    }
+
+
+</script>

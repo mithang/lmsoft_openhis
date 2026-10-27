@@ -1,0 +1,32 @@
+@{
+    ViewBag.Title = ViewBag.PageName ?? "Quản trị hệ thống";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><i class="fa fa-refresh"></i>Làm mới</a>
+        </div>
+    </div>
+</div>
+<div style="padding: 30px;">
+    <h3>@(ViewBag.PageName ?? "Quản trị hệ thống")</h3>
+    <p>
+        Trang này thuộc nhóm chức năng quản trị hệ thống. Trong bản gốc, các trang này do
+        các controller dùng chung của Framework (chỉ có file nhị phân, không có mã nguồn) phục vụ.
+    </p>
+    <p>
+        Trong bản port .NET 6, các chức năng quản trị hệ thống (người dùng, vai trò, module,
+        tham số hệ thống, nhật ký) được phục vụ bởi cổng SSO. Vui lòng sử dụng cổng SSO để
+        thực hiện các tác vụ quản trị.
+    </p>
+    <p>
+        <a class="btn btn-primary" href="http://127.0.0.1:5208/" target="_blank">
+            <i class="fa fa-external-link"></i>Mở cổng SSO (máy chủ cục bộ)
+        </a>
+    </p>
+    <p style="color: #888;">
+        Lưu ý: trang này chỉ là thông báo chuyển hướng, không hiển thị dữ liệu giả.
+        Các view gốc của trang vẫn được giữ nguyên trong mã nguồn để tham khảo.
+    </p>
+</div>

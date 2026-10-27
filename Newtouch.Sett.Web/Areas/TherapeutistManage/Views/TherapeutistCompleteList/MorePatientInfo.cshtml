@@ -1,0 +1,75 @@
+
+@{
+    ViewBag.Title = "MorePatientInfo";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1" class="form">
+    <div class="rows" style="margin-bottom: 1%; margin-top:5px;" id="HosBasicInfo">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                thông tin bệnh nhân
+            </div>
+            <table>
+                <tr>
+                    <td class="formTitle">
+                        Số thẻ:
+                    </td>
+                    <td class="formValue">
+                        <input type="text" id="kh" class="form-control newtouch_Readonly" value="C1221" />
+                    </td>
+                    <td class="formTitle">
+                        Số nhập viện:
+                    </td>
+                    <td class="formValue">
+                        <input type="text" id="zyh" class="form-control newtouch_Readonly" value="164193" />
+                    </td>
+                    <td class="formTitle">
+                        Tính chất bệnh nhân:
+                    </td>
+                    <td class="formValue">
+                        <input type="text" id="brxzmc" class="form-control newtouch_Readonly" value="Tự chi trả" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">
+                        Trạng thái:
+                    </td>
+                    <td class="formValue">
+                        <input type="text" id="zybz" class="form-control newtouch_Readonly" value="xuất viện" />
+                    </td>
+                    <td class="formTitle">Họ tên:</td>
+                    <td class="formValue">
+                        <input type="text" id="xm" class="form-control newtouch_Readonly" value="张三" />
+                    </td>
+                    <td class="formTitle">Giới tính:</td>
+                    <td>
+                        <div class="btn-group formValue" data-toggle="buttons">
+                            <label class="btn btn-default" disabled>
+                                <input type="radio" checked="checked" id="xb" value="1" name="xb" class="form-control" />Nam
+                            </label>
+                            <label class="btn btn-default" disabled>
+                                <input type="radio" id="xb" value="0" name="xb" class="form-control" />Nữ
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Ngày sinh:</td>
+                    <td class="formValue">
+                        <input class="form-control newtouch_Readonly" disabled readonly="readonly" type="text" value="1993-05-02" id="csny" />
+                    </td>
+                    <td class="formTitle">hiện tại Khoa:</td>
+                    <td class="formValue">
+                        <input type="text" id="ksmc" class="form-control newtouch_Readonly" disabled="disabled" value="Khoa Nội 1" />
+                    </td>
+                    <td class="formTitle">Giường bệnh số:</td>
+                    <td class="formValue">
+                        <input type="text" id="cw" class="form-control newtouch_Readonly" disabled="disabled" value="34" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,61 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default" style="padding-right:10px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Số phòng:</th>
+                <td class="formValue">
+                    <input id="txt_roomNo" name="txt_roomNo" type="text" class="form-control newtouch_Readonly required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>PhòngTên:</th>
+                <td class="formValue">
+                    <input id="txt_roomName" name="txt_roomName" type="text" class="form-control required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Phòng bệnhCấp độ:</th>
+                <td class="formValue">
+                    <select id="sel_leve" name="sel_leve" class="form-control required">
+                        <option value="1">Phòng bệnh thường</option>
+                        <option value="2">VipPhòng bệnh</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Khoa:</th>
+                <td class="formValue">
+                    <select id="sel_dept" name="sel_dept" class="form-control required">
+                        <option value="1">Khoa điều dưỡng</option>
+                        <option value="2">Khoa phục hồi chức năng</option>
+                        <option value="3">Khoa nội</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <div class="ckbox">
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" valign="top" style="padding-top: 5px;">Ghi chú:</th>
+                <td class="formValue">
+                    <textarea id="Description" name="Description" class="form-control" style="height: 60px;"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script lang="javascript">
+
+</script>

@@ -1,0 +1,160 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div style="padding: 20px 35px 0 2px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Tính chất bệnh nhân</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="brxz" name="brxz" required />
+                </td>
+                <th class="formTitle">nhóm lớn</th>
+                <td class="formValue">
+                    <select id="dl" name="dl" class="form-control" required>
+                        <option value="">Vui lòng chọn</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Khoản thu phí</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="sfxm" name="sfxm" required />
+                </td>
+                <th class="formTitle">Miễn giảm Tỷ lệ</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="jmbl" name="jmbl" required />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Nhân viên lập hồ sơ</th>
+                <td class="formValue">
+                    <input type="text" class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode />
+                </td>
+                <th class="formTitle">Ngày lập hồ sơ</th>
+                <td class="formValue">
+                    <input type="text" class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Hiệu lực</th>
+                <td class="formValue">
+                    <div class="ckbox">
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        InitControl();
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/SysPatiChargeWaiver/GetFormJson?r=" + Math.random(),
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                    $('#brxz').attr("data-brxz", data.brxz)
+                        .val(data.brxzmc);
+                    $('#sfxm').attr("data-sfxm", data.sfxm)
+                        .val(data.sfxmmc);
+                }
+            });
+        }
+    })
+
+    //病人性质浮层
+    $("#brxz").newtouchFloatingSelector({
+        height: 200,
+        width: 300,
+        filter: function (keyword) {
+            if (!keyword) {
+                return null;
+            }
+            //遍历数据源，用keyword来筛选出结果
+            var resultObjArr = new Array();
+            $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
+                if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
+                    resultObjArr.push(val);
+                }
+            });
+            return resultObjArr;
+
+        },
+        caption: "Tính chất bệnh nhân",
+        colModel: [
+            { label: 'Mã số', name: 'brxzbh', widthratio: 25 },
+            { label: 'Mã', name: 'brxz', widthratio: 25 },
+            { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
+        ],
+        itemdbclickhandler: function ($thistr) {
+            $("#brxz").val($thistr.attr('data-brxzmc'))
+                .attr('data-brxz', $thistr.attr('data-brxz'))
+            return;
+        }
+    });
+
+    //收费项目
+    $('#sfxm').newtouchFloatingSelector({
+        width: 600,
+        height: 280,
+        caption: "Khoản thu phí",
+        url: '/SystemManage/SysChargeItem/GetChargeItemSelectData',
+        ajaxparameters: function () {
+            if ($.trim($('#sfxm').val()).length == 0) {
+                return;
+            }
+            return "keyword=" + $.trim($('#sfxm').val());
+        },
+        itemdbclickhandler: function ($thistr) {
+            $('#sfxm').attr('data-sfxm', $thistr.attr('data-sfxm'))
+                .val($thistr.attr('data-sfxmmc'));
+        },
+        colModel: [{ label: 'Khoản thu phí', name: 'sfxm', widthratio: 10 },
+            { label: 'Tên hạng mục thu phí', name: 'sfxmmc', widthratio: 15 },
+            { label: 'Phiên âm', name: 'py', widthratio: 10 },
+            { label: 'Đơn vị', name: 'dw', widthratio: 7 },
+            { label: 'Đơn giá', name: 'dj', widthratio: 8 },
+            { label: 'nhóm lớn', name: 'dl', widthratio: 10 },
+            { label: 'Dấu hiệu ngoại trú/nội trú', name: 'mzzybz', widthratio: 13 }
+        ]
+    });
+
+    function InitControl() {
+        dlList();
+    }
+
+    function dlList() {
+        $("#dl").bindSelect({
+            url: "/SystemManage/SysPatiChargeLogic/GetdlSelect"
+        });
+    }
+
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var params = $("#form1").formSerialize();
+        params['brxz'] = $('#brxz').attr('data-brxz');
+        params['sfxm'] = $('#sfxm').attr('data-sfxm');
+        $.submitForm({
+            url: "/SystemManage/SysPatiChargeWaiver/SubmitForm?keyValue=" + keyValue,
+            param: params,
+            success: function () {
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+

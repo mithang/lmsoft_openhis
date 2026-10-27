@@ -1,0 +1,341 @@
+@{
+    ViewBag.Title = "Nhập việnDị ứngThông tinQuản lý";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    #btn_search {
+        width: 45px;
+        font-weight: bolder;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading navb-bg">
+        Điều kiện lọc
+    </div>
+    <div style="padding: 2px;">
+        <table class="form">
+            <tr>
+                <td class="formTitle">Từ khóa:</td>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="keyword" placeholder="Số chứng từ/Họ tên" />
+                </td>
+                <td class="formTitle">Khoa:</td>
+                <td class="formValue formDdlSelectorTd">
+                    <select class="form-control" id="lb">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <td class="formTitle">Trạng thái:</td>
+                <td class="formValue formDdlSelectorTd">
+                    <select class="form-control" id="lb">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <td class="formTitle">Thời gian:</td>
+                <td class="formValue">
+                    <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-01")">
+                </td>
+                <td class="formTitle" style="width:5px">đến</td>
+                <td class="formValue">
+                    <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </td>
+                <td class="formTitle">
+                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel" style="width: 45%;float:left;">
+    <table id="gridListPatient"></table>
+    <div id="gridPager1" rel="form1"></div>
+</div>
+<div class="gridPanel" style="margin-left:0.5%;width:54.5%;float:left;">
+    <table id="gridListPs"></table>
+    <div id="gridPager2" rel="form1"></div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new[] { 7, 8 },
+    F7Text = "Thực hiện",
+    F8Text = "HủyThực hiện"
+})
+<script>
+    var localdata = [];
+    var deldata = [];//删除对象
+    var $gridMxList = $("#gridListPs");
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            
+        });
+        Initial();
+    });
+
+    //初始化
+    function Initial() {
+        getLbSelectTree();
+        gridList();
+        gridMxInfo();
+    }
+
+    //类别
+    function getLbSelectTree() {
+        $("#lb").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.itemDetails) {
+                    $.each(top.clients.itemDetails, function (idx, val) {
+                        if (val.Type === "SSDFL") {
+                            $.each(val.Items, function (key, value) {
+                                $('#lb').append('<option value="' + value.Code + '">' + value.Name + '</option>');
+                            });
+                        }
+                    });
+                }
+                return resultObjArr;
+            }
+        });
+        $('#lb').change(function () {
+            $('#btn_search').trigger('click');
+        });
+    }
+
+    //主表信息
+    function gridList() {
+        var $gridList = $("#gridListPatient");
+        $gridList.dataGrid({
+            url: "/NurseManage/",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - document.getElementById('gridListPatient').offsetTop - 120,
+            colModel: [
+                { label: 'Id', name: 'Id', key: true, hidden: true },
+                { label: 'Nguồn', name: 'Name', width: 30, align: 'center' },
+                { label: 'Số chứng từ', name: 'py', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'DietBigType', width: 50, align: 'center' },
+                {
+                    label: 'Giới tính', name: 'DietType', width: 30, align: 'center', formatter: function (cellvalue) {
+                        return $.enum.getDescByValue("EnumSSLB", cellvalue);
+                    }
+                },
+                { label: 'Tuổi', name: 'bdsfxm', width: 30, align: 'center' },
+                { label: 'Số nhập viện', name: 'bdsfxm', width: 50, align: 'center' },
+                { label: 'Số giường', name: 'bdsfxm', width: 50, align: 'center' },
+                { label: 'Khoa', name: 'bdsfxm', width: 50, align: 'center' }
+            ],
+            pager: "#gridPager1",
+            rowNum: '15',
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                localdata = [];
+                ajaxmxList();
+            },
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: getgridListPar()
+                }).trigger('reloadGrid');
+        });
+    }
+
+    function ajaxmxList() {
+        var Id = $("#gridList").jqGridRowValue().Id;
+        $.najax({
+            url: "@Url.Action("GetGridMXList")",
+            data: { Id: Id },
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function (data) {
+                localdata = data;
+                $.each(localdata, function () {
+                    this.action = getActionStr()
+                });
+                $gridMxList.jqGrid('setGridParam', {
+                    datatype: 'local',
+                    data: localdata,
+                }).trigger("reloadGrid");
+            }
+        });
+    }
+
+    //明细信息
+    function gridMxInfo() {
+        $gridMxList.dataGrid({
+            url: "/NurseManage/",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - document.getElementById('gridListPs').offsetTop - 120,
+            multiselect: true,
+            colModel: [
+                { label: 'Id', name: 'Id', key: true, hidden: true },
+                { label: 'Tên mục', name: 'Name', width: 100, align: 'center' },
+                { label: 'MụcQuy cách', name: 'py', width: 50, align: 'center' },
+                { label: 'Số lượng', name: 'py', width: 50, align: 'center' },
+                { label: 'Đơn giá', name: 'py', width: 50, align: 'center' },
+                { label: 'Số tiền', name: 'py', width: 50, align: 'center' },
+                { label: 'Người thực hiện', name: 'py', width: 50, align: 'center' },
+                { label: 'Trạng thái', name: 'py', width: 50, align: 'center' },
+                { label: 'Kết quả', name: 'py', width: 50, align: 'center' },
+                { label: 'Ghi chú', name: 'py', width: 50, align: 'center' }
+            ],
+            pager: "#gridPager2",
+            rowNum: '15',
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+
+            },
+        });
+    }
+
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mớiSuất ăn",
+            url: "/NurseManage/DietaryAdvice/Form",
+            width: "700px",
+            height: "300px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick(function (data) {
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "SửaSuất ăn",
+            url: "/NurseManage/DietaryAdvice/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "300px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $.currentWindow().$("#gridList").resetSelection();
+                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+
+                });
+
+            }
+        });
+    }
+
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "@Url.Action("DeleteForm")",
+            param: { keyValue: keyValue },
+            success: function () {
+                $.modalMsg("Xóa thành công","warning");
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+
+    function getgridListPar() {
+        var lb = $('#lb').val();
+        var keyword = $('#keyword').val();
+        return { lb: lb, keyword: keyword }
+    }
+
+    function newsfxmData() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin suất ăn", 'warning');
+            return;
+        }
+         var dataRow = {
+             Id: Math.random().toString() + new Date().getMilliseconds(),
+             action: getActionStr(),
+             baseId: $("#gridList").jqGridRowValue().Id
+            };
+        $gridMxList.jqGrid("addRowData", undefined, dataRow, "last");
+    }
+
+    function getActionStr() {
+        return "<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteRowData($(this).parent().parent().attr(\"id\"))'></i>";
+    }
+
+    function saveData() {
+
+        //获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $gridMxList.jqGrid('getDataIDs');
+        if (rowIds < 1) {
+            $.modalAlert("Hiện tại không có nội dung suất ăn đã lưu", 'warning');
+            return;
+        }
+        for (var i = 0; i < rowIds.length; i++) {
+            var saveResult = $gridMxList.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+
+            if (!saveResult) {
+                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
+                return;   //保存失败，则return
+            }
+        }
+
+        var gridMxData = $gridMxList.jqGrid('getRowData_AllLine', null, true);
+        if (gridMxData.length < 1) {
+            $.modalAlert("Hiện tại không có nội dung y lệnh đã lưu", 'warning');
+        }
+
+        $.each(gridMxData, function () {
+            delete this.action;
+             });
+       
+
+        $.najax({
+            url: "@Url.Action("SaveData")",
+            data: { gridMxData: gridMxData, deldata: deldata },
+            dataType: "json",
+            type: "POST",
+            async: false,
+            success: function (data) {
+                $.modalMsg("Lưu thành công", "success");
+                $(".hiding").click();
+            }
+        });
+    }
+    //删除明细
+    function deleteRowData(selRowId) {
+        if (!!selRowId) {
+            var Id = $gridMxList.jqGrid('getRowData', selRowId).Id;
+            $gridMxList.jqGrid("delRowData", selRowId);
+            if (Id.indexOf("0.") == '-1') {//记录下来，从数据库删除
+                deldata.push(Id);
+            }
+        }
+    }
+
+    //新增
+    function newtouch_event_f7() {
+        var key = "";
+        $.modalOpen({
+            id: "Form",
+            title: "Thông tin dị ứng",
+            url: "/NurseManage/Infusion/AllergyForm?id=" + key,
+            width: "500px",
+            height: "340px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $("#gridListPatient").resetSelection();
+                    $("#gridListPatient").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+</script>

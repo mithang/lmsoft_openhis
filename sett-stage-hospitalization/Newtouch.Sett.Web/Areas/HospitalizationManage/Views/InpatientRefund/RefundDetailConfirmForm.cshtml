@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "RefundDetailConfirmForm";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form name="form1">
+    <div style="padding-top: 4%;padding-left:10%;">
+        <table class="form" id="tr_detail">
+            <tr>
+                <th class="formValue">Tên mục</th>
+                <th class="formValue">Đơn giá</th>
+                <th class="formValue">Số lượng hoàn</th>
+                <th class="formValue">hoànSố tiền</th>
+            </tr>
+        </table>
+        <div style="font-size:larger;position:fixed;bottom:50px;">
+            <label>Tổng cộng：</label><label style="color:red;">￥&nbsp;</label><label style="color:red;" id="zje"></label>
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+
+        var data = localStorage.getItem("needRefundData");
+        if (!data) {
+            return;
+        }
+        var needRefundData = JSON.parse(data);
+        var zje = 0;
+        for (var i = 0; i < needRefundData.length; i++) {
+            var je = roundingBy4she6ru5chengshuang((parseFloat(needRefundData[i].dj) * parseFloat(needRefundData[i].tsl)), 2);
+            $('#tr_detail').append('<tr><td class="formValue"> <label >' + needRefundData[i].sfxmmc + '</label></td><td class="formValue"> <label >' + needRefundData[i].dj + '</label></td><td class="formValue"> <label >' + needRefundData[i].tsl + '</label></td><td class="formValue"> <label >' + je + '</label></td></tr>');
+
+            //Tính số tiền
+            zje = roundingBy4she6ru5chengshuang((parseFloat(zje) + parseFloat(je)),2);
+        }
+        $('#zje').text(zje);
+        $('#zje').addClass('moneybg');
+
+    })
+
+</script>

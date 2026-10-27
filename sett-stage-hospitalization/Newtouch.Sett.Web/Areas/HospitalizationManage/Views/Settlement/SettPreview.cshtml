@@ -1,0 +1,307 @@
+@using Newtouch.Sett.Infrastructure;
+@using Newtouch.Sett.Domain;
+@model Newtouch.Sett.Domain.HosSettPatClassifyChargePreviewDto
+@{
+    ViewBag.Title = "SettPreview";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<style type="text/css">
+    .table {
+        margin-bottom: 1%;
+    }
+
+        .table > tbody > tr > td, .table > tbody > tr > th {
+            font-weight: normal;
+            border: 0;
+            line-height: 1.0;
+            padding:5px 1px;
+        }
+</style>
+
+<div style="margin:2% 7% 0 7%;">
+    <table class="table">
+        <tr>
+            <th class="text-right">Mã nhập viện：</th>
+            <td class="text-left">
+                @Model.HospSettPatInfo.zyh
+            </td>
+            <th class="text-right">Số thẻ：</th>
+            <td class="text-left">
+                @Model.HospSettPatInfo.kh
+            </td>
+            <th class="text-right">Họ tên：</th>
+            <td class="text-left">
+                @Model.HospSettPatInfo.xm
+            </td>
+            <th class="text-right">Giới tính：</th>
+            <td class="text-left">@(Model.HospSettPatInfo.xb == null ? "" : ((EnumSex)(Model.HospSettPatInfo.xb.ToInt(-1))).GetDescription(""))</td>
+        </tr>
+        <tr>
+            <th class="text-right">Tuổi：</th>
+            <td class="text-left">
+                @Model.HospSettPatInfo.csny.ToAge()
+            </td>
+            <th class="text-right">ghi sổ：</th>
+            <td class="text-left">
+                @Model.jzfy.ToString("0.00")
+            </td>
+            <th class="text-right">Tự trả theo loại：</th>
+            <td class="text-left">
+                @Model.flzf.ToString("0.00")
+            </td>
+            <th class="text-right">Tự trả：</th>
+            <td class="text-left">
+                @Model.zifu.ToString("0.00")
+            </td>
+        </tr>
+        <tr>
+            <th class="text-right"></th>
+            <td class="text-left"></td>
+            <th class="text-right"></th>
+            <td class="text-left"></td>
+            <th class="text-right">Tự phí：</th>
+            <td class="text-left">
+                @Model.zifei.ToString("0.00")
+            </td>
+            <th class="text-right">Khác：</th>
+            <td class="text-left">
+                @Model.jmje.ToString("0.00")
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="rows" style="margin:0 3%;margin-top: 0.5%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading">
+            quyết toán phí
+        </div>
+        <div class="panel-body" style="padding: 5px 15px;">
+            <div>
+                @*款项Thao tác*@
+                <table class="form">
+                    <tr>
+                        <td class="formValue">
+                            <select id="ddlZYJSChargeType" class="form-control required"></select>
+                        </td>
+                        <td class="formValue" style="width:100px;">
+                            <input type="text" id="txtszje" class="form-control form-control-focus" />
+                        </td>
+                        <td class="formValue">
+                            &nbsp;
+                            <i class="fa fa-plus-circle fa-lg" id="btn_Add" style="cursor:pointer;" onclick="btn_add()"></i>
+                            &nbsp;&nbsp;
+                            <i class="fa fa-minus-circle fa-lg" id="btn_Remove" style="cursor:pointer;" onclick="btn_delete()"></i>
+                        </td>
+                        <td class="formValue">
+                            Số dư tài khoản：@Model.zhye
+                        </td>
+                    </tr>
+                </table>
+                <table id="tbZhszGridList"></table>
+            </div>
+            <div style="margin-top:1%;">
+                <table class="table" style="margin-left:2%;font-size:14px;">
+                    <tr>
+                        <th class="text-right"></th>
+                        <td class="text-left"></td>
+                        <th class="text-right"></th>
+                        <td class="text-left"></td>
+                        <th class="text-right" style="font-weight:700;">Số phải thu：</th>
+                        <td class="text-left" id="tdYsk">
+                            <span>@Model.yingshoukuan.ToString("0.00")</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-right" style="font-weight:700;color:red;">Tiền thừa：</th>
+                        <td class="text-left" id="tdZhaoling" style="color:red;">
+                            <span>@Model.zhaoling.ToString("0.00")</span>
+                        </td>
+                        <th class="text-right">Chênh lệch làm tròn：</th>
+                        <td class="text-left">
+                            @Model.srce.ToString("0.00")
+                        </td>
+                        <th class="text-right" style="font-weight:700;">Thực thu：</th>
+                        <td class="text-left" id="tdSsk">
+                            <span>@Model.ssk.ToString("0.00")</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-top:1%;">
+                <table>
+                    <tr class="form">
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="txtfph" readonly="readonly" disabled value="@Model.fph" placeholder="Vui lòng chọn số hóa đơn" />
+                        </td>
+                        <td class="formValue">
+                            <input type="button" class="btn btn-default btn-md" value="Chọn số hóa đơn " onclick="ShowInvoicePanel()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //Bản ghi nộp tiền của bệnh nhân jGridkhai báo
+    $('#tbZhszGridList').newtouchLocalDataGrid({
+        height: 80,
+        unwritten: false,
+        sortable: false,
+        colModel: [
+            { label: 'Phương thức thanh toánMã', name: 'zffs', hidden: true },
+            { label: 'Phương thức thanh toán', name: 'zffsmc', width: 100, align: 'left' },
+            { label: 'Số tiền thanh toán', name: 'zfje', width: 100, align: 'left' },
+            { label: 'Tài khoản thanh toán', name: 'zfzh', width: 200, align: 'left' }
+        ]
+    });
+
+    var yjjzhzhxz = '@Model.HospSettPatInfo.zyyjjzhzhxz';
+    var yjjzhzffs = "";//đối vớiphảicủaxjzffs
+    var yjjzhzffsmc = "";//đối vớiphảicủaxjzffs
+
+    $("#ddlZYJSChargeType").newtouchBindSelect({
+        id: "xjzffs",
+        text: "xjzffsmc",
+        datasource: function () {
+            //Duyệt nguồn dữ liệu
+            var resultObjArr = new Array();
+            if(top.clients && top.clients.SysForCashPayList){
+                $.each(top.clients.SysForCashPayList, function (idx, val) {
+                    if (val.zhxz == yjjzhzhxz || val.zhxz == 'a') {
+                        if (val.zhxz == yjjzhzhxz) {
+                            yjjzhzffs = val.xjzffs;
+                            yjjzhzffsmc = val.xjzffsmc;
+                        }
+                        resultObjArr.push(val);
+                    }
+                });
+            }
+            return resultObjArr;
+        }
+    });
+
+    $(function () {
+        if (!yjjzhzhxz || !yjjzhzffs || !yjjzhzffsmc || $('#ddlZYJSChargeType option[value=' + yjjzhzffs + ']').length == 0) {
+            throw new Error('zhxz error');
+        }
+
+        $("#ddlZYJSChargeType").val($('#ddlZYJSChargeType option:first').attr('value'));
+        $('#ddlZYJSChargeType option[value=' + yjjzhzffs + ']').attr('disabled', 'disabled').trigger("change");
+
+        $('#tbZhszGridList').newtouchLocalDataGrid(null, [{ zffs: yjjzhzffs, zffsmc: yjjzhzffsmc, zfje: '@(Model.zhye.ToString("0.00"))', zfzh: "@((Model.HospSettPatInfo.zyyjjzh ?? 0) > 0 ? Model.HospSettPatInfo.zyyjjzh.Value.ToString() : "")" }]);
+    });
+
+    function btn_add() {
+        var chargeType = $("#ddlZYJSChargeType").val();
+        var chargeTypeText = $("#ddlZYJSChargeType option:selected").text();
+        var szje = $("#txtszje").val();
+        $("#txtszje").val('');  //
+        if (szje) {
+            szje = parseFloat(szje).toFixed(2);
+            if (szje == 0 || isNaN(szje) || szje > 200000) {
+                return;
+            }
+        }
+        if (chargeType && chargeTypeText && szje) {
+            //một phương thức thanh toán Phán đoán thêm trùng lặp
+            if (chargeType == yjjzhzffs) {
+                return;
+            }
+            $('#tbZhszGridList').newtouchLocalDataGrid(null, [{ zffs: chargeType, zffsmc: chargeTypeText, zfje: szje, zfzh: "" }]);
+        }
+        reCalcZhaoling();
+    };
+
+    function btn_delete() {
+        var rowid = jQuery("#tbZhszGridList").jqGrid("getGridParam", "selrow");
+        if ($("#tbZhszGridList").jqGrid('getRowData', rowid)["zffs"] == yjjzhzffs) {
+            return; //Tài khoảntạm ứng Bản ghi không thể xóa
+        }
+        if (rowid) {
+            $('#tbZhszGridList').jqGrid("delRowData", rowid);
+        }
+        reCalcZhaoling();
+    };
+
+    //Tính lại tiền thừa
+    function reCalcZhaoling() {
+        var ysk = $.trim($("#tdYsk span").text());
+        var ssk = 0;
+        var rowIds = $("#tbZhszGridList").getDataIDs();
+        $.each(rowIds, function (idx, val) {
+            var zfjestr = $("#tbZhszGridList").jqGrid('getRowData', val)["zfje"];
+            if (zfjestr) {
+                var zfje = parseFloat(parseFloat(zfjestr).toFixed(2));
+                ssk += zfje;
+            }
+        });
+        $('#tdSsk span').html(ssk.toFixed(2));
+        $('#tdZhaoling span').html((ssk - ysk).toFixed(2));
+    }
+
+    $('#txtszje').keydown(function (event) {
+        event = event || window.event;
+        if (event.keyCode == 13) {
+            if ($('#btn_Add:visible').length == 1) {
+                btn_add();
+            }
+        }
+    });
+
+    //Bật cửa sổ số hóa đơn
+    function ShowInvoicePanel() {
+        $.modalOpen({
+            id: "InvoiceNoChoosePanel",
+            title: "Chọn số hóa đơn",
+            url: "/OutpatientManage/OutpatientReg/ChooseInvoice?from=FormShowSett",
+            width: "300px",
+            height: "200px",
+            callBack: function (iframeId) {
+                top.InvoiceNoChoosePanel.checkFPH();    //Hàm gọi lại khi nhấn xác nhận tại cửa sổ
+            }
+        });
+    }
+
+    //Gửiquyết toán
+    function submitSett() {
+        var postData = {};
+        postData['zyh'] = '@(Model.zyh)';
+        postData['fph'] = $('#txtfph').val(); //'@(Model.fph)';
+        postData['expectedcyrq'] = '@(Model.expectedcyrq)';  //
+        postData['expectedyjjzhye'] = '@(Model.zhye)';  //
+        //Số tiềnquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+        postData['expectedjsje'] = @(Model.expectedjsje);
+        //Tiền thừa kỳ vọng Ngăn thay đổi trong quá trình
+        postData['expectedzhaoling'] = $('#tdZhaoling span').text();
+        if($('#tdZhaoling span').text() && parseFloat($.trim($('#tdZhaoling span').text())) < 0){
+            $.modalAlert("Tiền thừa không được âm", 'error');
+            return;
+        }
+        //Số tiềnquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+        postData['shishoukuan'] = $('#tdSsk span').text();
+        //Phương thức thanh toán json串
+        var xjzfArr = new Array();
+        var rowIds = $("#tbZhszGridList").getDataIDs();
+        $.each(rowIds, function (idx, val) {
+            var thisRowData = $("#tbZhszGridList").jqGrid('getRowData', val);
+            xjzfArr.push({xjzffs : thisRowData['zffs'], zfje : parseFloat(thisRowData['zfje']), zfzh : parseInt(thisRowData['zfzh'])});
+        });
+        postData['xjzfListStr'] = JSON.stringify(xjzfArr);
+
+        $.submitForm({
+            url: "/HospitalizationManage/Settlement/SubmitSett",
+            param: postData,
+            successwithtipmsg: false,
+            success: function (data) {
+                //Bật một lớp khác Kết quảquyết toán 方法定义tạiIndextrong
+                $.currentWindow().window.showSettSuccessDialog(data.data.yingshoukuan, data.data.ssk, data.data.srce, data.data.zhaoling);
+                $.currentWindow().window.newtouch_globalevent_f4();
+            }
+        })
+    }
+
+</script>

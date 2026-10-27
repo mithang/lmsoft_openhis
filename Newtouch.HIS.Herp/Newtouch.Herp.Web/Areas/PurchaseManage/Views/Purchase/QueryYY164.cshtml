@@ -1,0 +1,102 @@
+
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Lấy thông tin doanh nghiệp";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+<script src="~/Content/js/index.js"></script>
+
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:10px;">
+        <div class="panel-heading">Lấy thông tin doanh nghiệp</div>
+        <table class="form">
+            <tr style="float:left;">
+                <th class="formTitle">Mã doanh nghiệp:</th>
+                <td class="formValue">
+                    <input id="qybm" class="form-control" placeholder="Mã doanh nghiệp" />
+                </td>
+                <th class="formTitle">Tên doanh nghiệp:</th>
+                <td class="formValue">
+                    <input id="qymc" class="form-control" placeholder="Tên doanh nghiệp" />
+                </td>
+                <th class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                </th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+        //gridList();
+    });
+
+    
+
+    function getPostData() {
+        return {
+            QYBM: $("#qybm").val() ,
+            QYMC: $("#qymc").val() ,
+            QYBMCXTJ :'',
+        };
+    }
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PurchaseManage/Purchase/GetGridJsonYY164",
+            height: $(window).height() - 200,
+            postData: getPostData(),
+            colModel: [
+                { label: 'Mã doanh nghiệp', name: 'QYBM', width: 180, align: 'left' },
+                { label: 'Tên doanh nghiệp', name: 'QYMC', width: 220, align: 'left' },
+                { label: 'Địa chỉ doanh nghiệp', name: 'QYDZ', width: 300, align: 'left' },
+                { label: 'Người liên hệ', name: 'LXR', width: 120, align: 'left' },
+                { label: 'Số điện thoại liên hệ', name: 'LXDH', width: 140, align: 'left' },
+
+            ],
+            multiselect: false,
+            //pager: "#gridPager",
+            //sortname: '',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                //btn_selectrow(rowid);
+            }
+        });
+        $("#btn_search").click(function () {
+            $('#gridList').jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
+                postData: getPostData(),
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //Lấy chi tiết
+    $('#btn_search').click(function () {
+
+        if (($("#qybm").val() == '' || $("#qybm").val() == null) && ($("#qymc").val() == '' || $("#qymc").val() == null)) {
+            //弹出确认窗口
+            $.modalConfirm("Có xác nhận lấy toàn bộ thông tin doanh nghiệp không?", function (flag) {
+                if (flag) {
+                    gridList();
+                }
+                else {
+                    return;
+                }
+            });
+        } else {
+            gridList();
+        }
+
+    });
+</script>
+
+

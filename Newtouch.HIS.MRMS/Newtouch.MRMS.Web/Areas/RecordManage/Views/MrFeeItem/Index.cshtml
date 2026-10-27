@@ -1,0 +1,242 @@
+@{
+	ViewBag.Title = "Nhóm thu phí";
+	Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style>
+    body {
+        background-color:white;    
+    }
+	.dv-left {
+		width: 20%;
+		float: left;
+	}
+
+	.dv-left-tree {
+		overflow-y: auto;
+		border-radius: 4px;
+		background: white;
+	}
+
+	.dv-left-title {
+		padding: 6px 10px;
+		border-bottom: 1px solid transparent;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		border-color: #ddd;
+		background-color: white;
+	}
+
+	.dv-rightt {
+        width:79%;
+		float: right;
+		margin-left: 5px;
+        border:1px solid #ddd;
+	}
+
+</style>
+
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+
+<div style="width:100%;">
+	<div class="dv-left">
+		<div class="dv-left-title">Nhóm thu phí</div>
+		<div class="dv-left-tree" id="FeeTreeList"></div>
+	</div>
+    <div class="dv-rightt">
+        <div class="topPanel">
+            <div class="toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-primary" onclick="refreshData()"><span class="fa fa-refresh"></span></a>
+                </div>
+                <div class="btn-group">
+                    <a id="btn_add" class="btn btn-primary" onclick="btn_add()" style="display:none;">
+                        <i class="fa fa-plus"></i>Thêm mới
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="gridPanel">
+            <table id="gridList1"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$(".dv-body").height($(window).height());
+	$(".dv-body").width($(window).width());
+	var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 25;
+	$(".dv-right").width(rightWidth);
+	$(".dv-left-tree").height($(window).height() - 70);
+
+	$(function () {
+		$(window).resize(function () {//Tính lại rộng/cao khi thay đổi kích thước cửa sổ trình duyệt
+			$(".dv-body").height($(window).height());
+			$(".dv-body").width($(window).width());
+		});
+		$('#gridList1').jqGrid("clearGridData");
+		//$('#gridList1').newtouchLocalDataGrid(null, orderList);
+		getFeeTreeList();
+		GridInit();
+		//Ẩn nút thêm mới
+
+	});
+
+
+
+	//Tải cây
+	var treeNodeSelected = "";
+	function getFeeTreeList() {
+		$("#FeeTreeList").treeview({
+			height: $(window).height() - 40,
+			slimscroll: false,
+			showcheck: true,
+			url: "/RecordManage/MrFeeItem/getFeeTree",
+			onnodeclick: function (item) {
+				var id = item.value;
+				treeNodeSelected = item;
+				$('#gridList1').jqGrid('setGridParam', {
+					postData: { id:id }
+				}).trigger("reloadGrid");
+				//Hiện nút thêm mới
+				$("#btn_add").attr("style", "display:block;");
+			},
+		});
+	}
+
+	function confirmEnding(str, target) {
+		   var start = str.length - target.length;
+		   var arr = str.substr(start, target.length);
+		if (arr == target) {
+			return str.replace(target,'');
+		
+		}
+		return str;
+		
+	}
+
+	//Chọn liên tiếp tất cả nút con
+	function checkAllSon(node) {
+		$('#FeeTreeList').treeview('checkNode', node.nodeId, { silent: true });
+		if (node.nodes != null && node.nodes.length > 0) {
+			for (var i in node.nodes) {
+				checkAllSon(node.nodes[i]);
+			}
+		}
+	}
+	//Hủy chọn liên tiếp tất cả nút con
+	function uncheckAllSon(node) {
+		$('#FeeTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
+		if (node.nodes != null && node.nodes.length > 0) {
+			for (var i in node.nodes) {
+				uncheckAllSon(node.nodes[i]);
+			}
+		}
+	}
+
+	function GridInit() {
+		var $gridList1 = $("#gridList1");
+		$gridList1.dataGrid({
+			postData: { id: "" },
+			url: "/RecordManage/MrFeeItem/GetPagintionListById",
+			autowidth: true,
+			height: $(window).height() - 118,
+			colModel: [
+				{ label: "Id", name: "Id", hidden: true },
+				{ label: "Tên nhóm thu phí", name: "name", width: 150, align: 'left' },
+				{ label: "Khoản thu", name: "sfxm", width: 120, align: 'left' },
+				{ label: "Tên khoản thu", name: "sfxmmc", width: 350, align: 'left' },
+				//{ label: "Nhóm thu phí", name: "feetypecode", width: 180, align: 'left' },
+				{
+					label: "Thao tác", name: "", width: 120, align: 'center', formatter(val, option, row) {
+                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;' onclick=btn_delete('" + row.Id + "')>Xóa hiện tại</a>" ;
+					}
+				}
+			],
+			sortname: "ID desc",
+			rowNum: 13,
+			pager: "#gridPager",
+			viewrecords: true,
+			ondblClickRow: function () {
+				btn_edit();
+			},
+		});
+		$("#btn_search").click(function () {
+			$("#gridList1").jqGrid('setGridParam', {
+				postData: { keyword: $("#txt_keyword").val() }, page: 1
+			}).trigger('reloadGrid');
+		});
+	}
+	
+
+	function btn_add() {
+		//var keyValue = $("#gridList1").jqGridRowValue().Id;
+		//if (!!!keyValue) {
+		//    $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+		//    return false;
+		//}
+		var postData = treeNodeSelected;
+		var keyValue = treeNodeSelected.value;
+		var code = treeNodeSelected.id;
+		var name = treeNodeSelected.text;
+		$.modalOpen({
+			id: "updateForm",
+			title: "Thêm nhóm thu phí khoản mục",
+			url: "/RecordManage/MrFeeItem/Form?keyValue=" + keyValue+"&code="+code+"&name="+name,
+			postData: postData,
+			width: "800px",
+			height: "700px",
+			//btn: null,
+			callBack: function (iframeId) {
+				$.currentWindow(iframeId).AcceptClick(function () {
+					//$("#gridList1").resetSelection();
+					//$("#gridList1").trigger("reloadGrid");
+					$('#gridList1').jqGrid('setGridParam', {
+						postData: { id: keyValue }
+					}).trigger("reloadGrid");
+				});
+				//$('#gridList1').jqGrid('setGridParam', {
+				//	postData: { id: id }
+				//}).trigger("reloadGrid");
+			}
+		});
+	}
+
+	function btn_delete(keyValue) {
+		window.$.modalConfirm("Bạn có chắc muốn xóa?？", function (flag) {
+			if (!flag) {
+				return false;
+			}
+			return true;
+		});
+		if (!!!keyValue) {
+			window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+			return false;
+		}
+		window.$.deleteForm({
+			url: "/RecordManage/MrFeeItem/DeleteForm",
+			param: { keyValue: keyValue },
+			success: function () {
+				$.modalMsg("Xóa thành công", "success");
+				$('#gridList1').jqGrid('setGridParam', {
+					postData: { id: treeNodeSelected.value }
+				}).trigger("reloadGrid");
+				$("#btn_search").trigger("click");
+			}
+		});
+		return true;
+	}
+
+	function refreshData() {
+		if (treeNodeSelected == "") {
+			$.reload();
+		} else {
+			$('#gridList1').jqGrid('setGridParam', {
+				postData: { id: treeNodeSelected.value }
+			}).trigger("reloadGrid");
+		}
+	}
+
+</script>

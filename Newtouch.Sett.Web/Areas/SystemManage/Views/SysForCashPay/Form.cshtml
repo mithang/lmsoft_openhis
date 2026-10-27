@@ -1,0 +1,93 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+@*<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysForCashPay/Form.js",false)"></script>*@
+@*<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/Shared/Form.css",false)" rel="stylesheet" />*@
+<form id="form1">
+    <div class="container">
+        <div class="row">
+            <div class="formValue col-xs-6">
+                <label>Mã</label>
+                <input class="form-control" id="xjzffs" name="xjzffs" />
+            </div>
+            <div class="formValue col-xs-6">
+                <label>Phương thức thanh toán tiền mặt</label>
+                <input class="form-control" id="xjzffsmc" name="xjzffsmc" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="formValue col-xs-6">
+                <label>Hiệu lực</label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="1"> Có
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="0"> Không
+                    </label>
+                </div>
+            </div>
+            <div class="formValue col-xs-6">
+                <label>Có hay không Thanh toán từ tài khoản</label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="1"> Có
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="0"> Không
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="formValue col-xs-6">
+                <label>Nhân viên lập hồ sơ</label>
+                @*<input class="form-control" id="jdry" name="jdry" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />*@
+                <input class="form-control" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
+            </div>
+            <div class="formValue col-xs-6">
+                <label>Ngày lập hồ sơ</label>
+                @*<input class="form-control" id="bgbz" name="bgbz" value="0" style="display:none" type="text" />
+                    <input class="form-control" id="bgrq" name="bgrq" style="display:none" value=@DateTime.Now type="text" />
+                    <input class="form-control" id="jdrq" name="jdrq" value=@DateTime.Now type="text" readonly="readonly" />*@
+                <input class="form-control" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" readonly="readonly" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+
+
+    var keyValue = $.request("keyValue");
+    $(function () {
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/SysForCashPay/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    })
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: "/SystemManage/SysForCashPay/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.loading(false);
+            }
+        })
+    }
+</script>

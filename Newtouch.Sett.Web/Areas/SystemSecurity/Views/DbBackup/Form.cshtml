@@ -1,0 +1,66 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    $(function () {
+        initControl();
+    });
+    function initControl() {
+        $("#F_DbName").bindSelect()
+        $("#F_BackupType").bindSelect()
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            loading: "Đang sao lưu dữ liệu...",
+            url: "/SystemSecurity/DbBackup/SubmitForm",
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+
+<form id="form1">
+    <div style="margin-bottom: 0px; border-radius: 0px;" class="alert alert-warning alert-dismissable">
+        <strong>chú ý：</strong>&nbsp;Sau khi sao lưu thành công, vui lòng tải tệp sao lưu về lưu tại máy cục bộ!
+    </div>
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Tên cơ sở dữ liệu</th>
+                <td class="formValue">
+                    <select id="F_DbName" name="F_DbName" class="form-control required">
+                        <option value="NewtouchBase">NewtouchBase</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Tên bản sao lưu</th>
+                <td class="formValue">
+                    <input id="F_FileName" name="F_FileName" type="text" class="form-control required"  value="@DateTime.Now.ToString("yyyyMMddHHmmssfff")" placeholder="Vui lòng nhập tên bản sao lưu" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Chế độ sao lưu</th>
+                <td class="formValue">
+                    <select id="F_BackupType" name="F_BackupType" class="form-control required">
+                        <option value="1">Sao lưu đầy đủ</option>
+                        <option value="2">Sao lưu khác biệt</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" valign="top" style="padding-top: 11px;">Mô tả bản sao lưu
+                </th>
+                <td class="formValue">
+                    <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

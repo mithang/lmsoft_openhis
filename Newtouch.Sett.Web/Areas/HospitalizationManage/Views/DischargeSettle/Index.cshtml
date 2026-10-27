@@ -1,0 +1,1336 @@
+@using Newtouch.Sett.Domain;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    //Có thểquyết toán hay không Bệnh nhân đang ở khoa bệnh
+    var isSettContainsBQZ = SysConfigReader.Bool("HOSP_Sett_Contains_BQZ", false).Value;
+    var brzybzType = ((int)EnumZYBZ.Djz).ToString();
+    if (isSettContainsBQZ)
+    {
+        brzybzType += "," + ((int)EnumZYBZ.Bqz).ToString();
+    }
+    //Có vớiCPOEliên thôngGiao diện
+    //var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
+    //Nơi quản lý BHYT
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+    //Có giao dịch với BHYT hay không
+    var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
+    //Có giao dịch với nông thôn mới hay không
+    var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
+
+    //thu phí thành côngSaulàkhôngTrực tiếpInBiên lai
+    var autoPrintFP = SysConfigReader.Bool("Inpatient_Sett_AutoPrint");
+    //thu phíChứng từIn方式
+    var invoicePrintMethod = SysConfigReader.String("Inpatient_Sett_Invoice_PrintMethod");
+    //Báo cáo biên lailiên kết
+    var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSetts");
+
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+@Html.Partial("_YibaoCommonView")
+<div class="rows" style="margin-bottom: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading navb-bg">
+            Thông tin bệnh nhân nhập viện
+        </div>
+        <table class="form" style="width:96%;">
+            <tbody>
+                <tr>
+                    <th class="formTitle">Mã nhập viện：</th>
+                    <td class="formValue">
+                        <input class="form-control" type="text" id="search_zyh" value="" />
+                    </td>
+                    <td class="formTitle" style="width:40px">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView();">
+                    </td>
+                    <td class="formValue" style="width:140px">
+                        @if (openYbSett == true || openXnhSett == true)
+                        {
+                            @Html.Partial("YibaoRedCardCommon")
+                        }
+                    </td>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <label id="xm"></label>
+                    </td>
+                    <th class="formTitle">Giới tính：</th>
+                    <td class="formValue">
+                        <label id="xb"></label>
+                    </td>
+                    <th class="formTitle">Tuổi：</th>
+                    <td class="formValue">
+                        <label id="nlshow"></label>
+                    </td>
+                    <th class="formTitle">Chẩn đoán xuất viện：</th>
+                    <td class="formValue">
+                        <label id="cyzd"></label>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    @*<th class="formTitle"></th>*@
+                    <td class="formTitle" colspan="2">
+                        <input id="ckgrzhbz" type="checkbox" checked="checked" /><label for="ckgrzhbz">Cờ tài khoản cá nhân</label>
+                    </td>
+                    <th class="formTitle">Tính chất phí：</th>
+                    <td class="formValue">
+                        <label id="brxzmc"></label>
+                    </td>
+                    <th class="formTitle">Số ngày nằm viện：</th>
+                    <td class="formValue">
+                        <label id="zyts"></label>
+                    </td>
+                    <th class="formTitle">Ngày sinh：</th>
+                    <td class="formValue">
+                        <label id="csny"></label>
+                    </td>
+                    <th class="formTitle">Ngày nhập viện：</th>
+                    <td class="formValue">
+                        <label id="ryrq"></label>
+                    </td>
+                    <th class="formTitle">Ngày xuất viện：</th>
+                    <td class="formValue">
+                        <label id="cyrq"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="gridPanel" style="margin-top:1%">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 8 },
+    F8Text = "quyết toán",
+    //F9Text = "Chuyểnthu phí tự phí",
+    //F9ExtInlineStyle = "color:black;"
+})
+
+<script>
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
+    var isXnhjyjz;//Lần khám hiện tại có giao dịch nông thôn mới hay không
+    var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//Thời gian hiện tại
+    var isnewyb = "0";//0  BHYT quốc gia 1 BHYT Thượng Hải giai đoạn 5
+    var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ BHYT
+    var xnkCardType = "@((int)EnumCardType.XNK)";//Loại thẻ ảo
+    var medicalInsurance = '@medicalInsurance';//Nơi quản lý BHYTCấu hình:区分Bệnh viện所属BHYT区域
+    var ybIsReadCard = false;
+    $(function () {
+        gridListData();
+    });
+    $("#readCard").show();
+    //Truy vấn bằng Enter
+    $('#search_zyh').keydownEnterEvent(function () {
+        ajaxLoadDataResult({ zyh: $('#search_zyh').val() ,ver:'2'});
+    })
+
+    //Truy vấn bệnh nhân(nhập viện)
+    function GetPatSerarchView() {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Truy vấn bệnh nhân",
+            url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@(brzybzType)' + "&t=" + Math.random() + "&zyh=" + $("#search_zyh").val(),
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                //Gọi truy vấn số thẻ và mã nhập viện
+            }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
+        });
+    }
+
+    //Nhập tay số thẻ BHXH
+    function GetPatSbkh() {
+        $.modalOpen({
+            id: "sbkhInput",
+            title: "Nhập số thẻ",
+            url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random(),
+            width: "300px",
+            height: "150px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatSbkhData();
+            }
+        });
+    }
+
+    //Bệnh nhân đã chọn callback
+    function getPatInfoAjax(selePatInfo) {
+        if (selePatInfo && selePatInfo.zyh) {
+            ajaxLoadDataResult({ zyh: selePatInfo.zyh,ver:'2' });
+        }
+        else {
+            $('#search_zyh').val('');
+        }
+    }
+
+    //
+    var patModel = null;
+    //
+    var jszje = 0.00;
+
+    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    function ajaxLoadDataResult(obj, funcSuccCallback) {
+        //Xóa một chút
+        newtouch_globalevent_f4();
+
+        $.najax({
+            type: "POST",
+            url: "/HospitalizationManage/DischargeSettle/GetInpatientSettleStatusDetail",
+            data: obj,
+            dataType: "json",
+            success: function (ajaxresp) {
+                //Thông tin bệnh nhân nhập viện
+                patModel = ajaxresp.data.InpatientSettPatInfo;
+                cqPatInfo.zymzh = patModel.zyh;//Mã nhập viện
+                $('#search_zyh').val(patModel.zyh);
+                isYbjyjz = openYbSett && (patModel.brxzlb != '0');
+                isXnhjyjz = openXnhSett && patModel.brxz == '8' && patModel.CardType == "@((int)Newtouch.Sett.Domain.EnumCardType.XNHJYK)";
+
+                $('#xm').html(patModel.xm);
+                $('#xb').html($.getGender(patModel.xb));
+                $('#nlshow').html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+                //$('#ryzd').html(patModel.ryzdmc);
+                $('#brxzmc').html(patModel.brxzmc);
+                $('#cyzd').html(patModel.cyzd);
+                $('#zyts').html(patModel.zyts);
+                $('#csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+                $('#ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+                $('#cyrq').html(patModel.cyrq ? patModel.cyrq.substring(0, 10) : '');
+                if (isYbjyjz) {
+                    var bkbz =cqPatInfo.accountattr ? cqPatInfo.accountattr.substr(11, 1):"";
+                    var gbbz =cqPatInfo.accountattr ? cqPatInfo.accountattr.substr(1, 1) :"";//Bảo hiểm cán bộ 1
+                    if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
+                        isnewyb = "1";
+                    }
+                }
+                if (ajaxresp.data.GroupFeeVOList && ajaxresp.data.GroupFeeVOList.length) {
+                    loadJfmxByZyh(ajaxresp.data.GroupFeeVOList);
+                }
+                else {
+                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    return false;
+                }
+            },
+            errorCallback: function (data) {
+                newtouch_globalevent_f4();
+                $('#search_zyh').trigger('focus');
+            }
+        });
+    }
+
+    //Tổng số tiềnTổng cộng
+    function loadJfmxByZyh(data) {
+        //$('#gridList').jqGrid("clearGridData");   //sớmF4过
+        $("#gridList").newtouchLocalDataGrid(null, data);
+        //Tổng số tiền
+        var zje = 0.00;
+        $.each(data, function () {
+            if (this.je) {
+                zje += this.je;
+            }
+        });
+        if (zje) {
+            jszje = zje.toFixed(2);
+            $("#yeCon").text(ovpraseFloat(zje).toFixed(2));
+        }
+    }
+
+    function newtouch_event_f4() {
+        $('#search_zyh').val('');
+        $('#xm').html('');
+        $('#xb').html('');
+        $('#nlshow').html('');
+        //$('#ryzd').html('');
+        $('#brxzmc').html('');
+        $('#cyzd').html('');
+        $('#zyts').html('');
+        $('#csny').html('');
+        $('#ryrq').html('');
+        $('#cyrq').html('');
+        patModel = null;
+        jszje = 0.00;
+        $('#yeCon').text('0.00');
+        $('#gridList').jqGrid("clearGridData");
+    }
+
+    //Liên kếtgrid
+    function gridListData() {
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 225,
+            unwritten: false,
+            caption: captionCon,
+            colModel: [
+                { label: 'Loại phí', name: 'dlmc', width: 100, align: 'left' },
+                {
+                    label: 'Số tiền', name: 'je', width: 500, align: 'left', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+            ],
+        });
+    }
+
+    //Lưuquyết toán
+    function newtouch_event_f8() {
+        if (!patModel || !patModel.zyh) {
+            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            return;
+        }
+        var data = $("#gridList").jqGrid('getRowData_AllLine');
+        if (!(data && data.length)) {
+            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            return;
+        }
+        if (!patModel.ryrq) {
+            $.modalAlert("Ngày nhập việnlàtrống", 'warning');
+            return;
+        }
+
+        //LIS PACS Sau khi trả về trạng thái báo cáo mới đượcthu phí
+         $.ajax({
+            type: "POST",
+            dataType: "json", //Trả vềjsonDữ liệu định dạng
+             url: "/DischargeSettle/CountLisIncompletezy",
+             data: { "zyh": patModel.zyh },
+            async: false,
+            success: function (data) {
+                var num = data.num;
+                if (num > 0) {
+                    //$.modalAlert("Tồn tại báo cáo chưa hoàn thành,Không thểquyết toán", 'warning');
+                    //return;
+                }
+            }
+        });
+
+        if (isYbjyjz) {
+            if (!ybIsReadCard) {
+                $.modalAlert("quyết toán bệnh nhân BHYT，Vui lòng đọc thẻ trước！", 'warning');
+                return;
+            }
+            if (isnewyb == "1") {
+                setTimeout(function () {
+                    shybmxsc(
+                        function (mxxx) {
+                            $.loading(true, 'Đangquyết toán BHYT，Vui lòng đợi...');
+                            setTimeout(function () {
+                                shybjs(mxxx);
+                            });
+                        });
+                },
+                    50);
+            }
+            else {
+                $.loading(true, 'Đang sửa đăng ký khám，Vui lòng đợi...');
+                setTimeout(function () {
+                    CQjzdj(function (jzxx) {
+                        $.loading(true, 'Đang làm thủ tục xuất viện，Vui lòng đợi...');
+                        setTimeout(function () {
+                            CQmxsc(jzxx,
+                                function (mxxx) {
+                                    $.loading(true, 'Đangquyết toán BHYT，Vui lòng đợi...');
+                                    setTimeout(function () {
+                                        CQybjs(jzxx, mxxx);
+                                    });
+                                });
+                        },
+                            50);
+                    });
+                },
+                    50);
+            }
+        }
+        else {
+            hisSubmit();
+        }
+    }
+    function newtouch_event_f9() {
+        if (!patModel || !patModel.zyh) {
+            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            return;
+        }
+        var data = $("#gridList").jqGrid('getRowData_AllLine');
+        if (!(data && data.length)) {
+            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            return;
+        }
+        if (!patModel.ryrq) {
+            $.modalAlert("Ngày nhập việnlàtrống", 'warning');
+            return;
+        }
+        if (!isYbjyjz) {
+            $.modalAlert("Bệnh nhân này không phải bệnh nhân BHYT，Không cần chuyển tự phí，Vui lòngthu phí trực tiếp", 'warning');
+            return;
+        }
+        var xmzje = waitSubmitItems();
+        $.modalConfirm("sẽChuyển thànhquyết toán tự phí，Có xác nhậnquyết toán tự phí hay không？",
+            function (flag) {
+                if (!flag) {
+                    return;
+                } else {
+                    isYbjyjz = false;
+                    hisSubmit();
+                }
+            });
+    }
+    //
+    function shybhisSubmit(isYbjyjz, ybjyFeeReturn, isXnhjyjz, xnhjyFeeReturn) {
+        //
+        var zyh = patModel.zyh;
+        var ryrq = $.getDate({ date: patModel.ryrq });
+        var cyrq = patModel.cyrq;
+        var zje = ovpraseFloat(jszje).toFixed(2);
+        //
+        var widthpx = "700px";
+        var heightpx = "550px";
+        var hzjslx = "0";//0Tự phí  1BHYT  8bảo hiểm nông nghiệp
+        var s13OtherResponseDto;
+        if (isYbjyjz && ybjyFeeReturn) {
+            sessionStorage.setItem('ybjyFeeReturn', JSON.stringify(ybjyFeeReturn));
+            sessionStorage.setItem('cqPatInfo', JSON.stringify(cqPatInfo));
+            widthpx = "700px";
+            heightpx = "600px";
+            hzjslx = "1";
+        }
+
+		var openUrl = "/HospitalizationManage/DischargeSettle/SettConfirmForm?zyh=" + zyh;
+        openUrl += "&ryrq=" + (!!ryrq ? ryrq : '');
+        openUrl += "&zje=" + (!!zje ? ovpraseFloat(zje).toFixed(2) : '');
+        openUrl += "&xjzfys=" + (!!zje ? ovpraseFloat(zje).toFixed(2) : '');
+        openUrl += "&patid=" + patModel.patId;
+        openUrl += "&isXnhjy=" + (!!isXnhjyjz);
+        openUrl += "&isYbjy=" + (!!isYbjyjz) + "&brxz=" + patModel.brxz + "&brxzmc=" + patModel.brxzmc,
+        $.modalOpen({
+            id: "ConfirmFeeForm",
+            title: "quyết toán xuất viện",
+            url: openUrl,
+            width: widthpx,
+            height: heightpx,
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick(function (feeRelated, outTradeNo) {
+                    feeRelated.ver = "2";
+                    feeRelated.ybjslsh = ybjyFeeReturn.lsh;
+                    //HISXác nhận结
+                    $.najax({
+                        url: "/HospitalizationManage/DischargeSettle/SaveSettle",
+                        dataType: "json",
+                        data: { zyh: zyh, expectedcyrq: feeRelated.cyrq, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, xnhfeeRelated: s13OtherResponseDto, jslx: hzjslx, outTradeNo: outTradeNo },
+                        type: "POST",
+                        success: function (ajaxresp) {
+                            var message = "";
+
+                            var isYbjyjzTemp = isYbjyjz;
+                            var ybjyFeeReturnTemp = $.deepClone.clone(ybjyFeeReturn);
+
+                            $.modalMsg("quyết toán thành công" + message, 'success');
+                            $.modalClose("ConfirmFeeForm");
+                            newtouch_event_f4();
+
+                            //In hóa đơn
+                            if (ajaxresp.data && ajaxresp.data.jsnm) {
+                                //BHYT Quảng Tây特có
+                                //openInvoice(zyh, ajaxresp.data.jsnm);
+                                @*if ('@(autoPrintFP)' == 'True') {
+                                    //Ngược lại in báo cáo
+                                    var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + ajaxresp.data.jsnm;
+                                    window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");}*@
+                            }
+                        }
+                    });
+                });
+                return;
+            },
+            cancelCallBack: function (iframeId) {
+                //Hủyquyết toán xuất viện，Làm thủ tục xuất việnhoàn trả
+                if (isYbjyjz) {
+                    var cqybjyDenySettleReturn;
+                    var payoptype = {
+                        hisId: zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)','xsywlx':"1",
+                        'carddata': cqPatInfo.carddata, 'cardtype': cqPatInfo.cardtype, "insuplc_admdvs": cqPatInfo.xzqh,
+                        'sflx': "2", 'translsh': ybjyFeeReturn.lsh, 'totalexpense': ybjyFeeReturn.totalexpense, 'cxly': "0"
+                    };
+                    	$.ajax({
+		                    type: "POST",
+                            url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SK01",
+		                    dataType: "json",
+		                    data: payoptype,
+		                    async: false,
+		                    success: function (data) {
+			                    cqybjyDenySettleReturn = eval('(' + data + ')');
+		                    }
+	                    });
+                    if (cqybjyDenySettleReturn.xxfhm === "P001") {
+                        //UpOutMdtrtinfo(payoptype);
+	                    } else {
+	                    }
+	                    $.loading(false);
+                }
+            }
+        });
+    }
+    function hisSubmit(isYbjyjz, ybjyFeeReturn, isXnhjyjz, xnhjyFeeReturn) {
+        //
+        var zyh = patModel.zyh;
+        var ryrq = $.getDate({ date: patModel.ryrq });
+        var cyrq = patModel.cyrq;
+        var zje = ovpraseFloat(jszje).toFixed(2);
+        //
+        var widthpx = "700px";
+        var heightpx = "550px";
+        var hzjslx = "0";//0Tự phí  1BHYT  8bảo hiểm nông nghiệp
+        var s13OtherResponseDto;
+        if (isYbjyjz && ybjyFeeReturn) {
+            sessionStorage.setItem('ybjyFeeReturn', JSON.stringify(ybjyFeeReturn));
+            sessionStorage.setItem('cqPatInfo', JSON.stringify(cqPatInfo));
+            widthpx = "700px";
+            heightpx = "600px";
+            hzjslx = "1";
+            ybjyFeeReturn.cqtczf = ybjyFeeReturn.hifp_pay;
+            ybjyFeeReturn.zhzf = ybjyFeeReturn.acct_pay;
+            ybjyFeeReturn.cqxjzf = ybjyFeeReturn.psn_cash_pay;
+            ybjyFeeReturn.gwybz = ybjyFeeReturn.cvlserv_pay;
+            ybjyFeeReturn.delpje = ybjyFeeReturn.hifob_pay;
+            ybjyFeeReturn.dbzddyljgdz = ybjyFeeReturn.hosp_part_amt;
+            ybjyFeeReturn.zhye = ybjyFeeReturn.balc;
+            ybjyFeeReturn.jylsh = ybjyFeeReturn.setl_id;
+            ybjyFeeReturn.zxjssj = ybjyFeeReturn.setl_time;
+        }
+
+		var openUrl = "/HospitalizationManage/DischargeSettle/SettConfirmForm?zyh=" + zyh;
+        openUrl += "&ryrq=" + (!!ryrq ? ryrq : '');
+        openUrl += "&zje=" + (!!zje ? ovpraseFloat(zje).toFixed(2) : '');
+        openUrl += "&xjzfys=" + (!!zje ? ovpraseFloat(zje).toFixed(2) : '');
+        openUrl += "&patid=" + patModel.patId;
+        openUrl += "&isXnhjy=" + (!!isXnhjyjz);
+        openUrl += "&isYbjy=" + (!!isYbjyjz) + "&brxz=" + patModel.brxz + "&brxzmc=" + patModel.brxzmc,
+        $.modalOpen({
+            id: "ConfirmFeeForm",
+            title: "quyết toán xuất viện",
+            url: openUrl,
+            width: widthpx,
+            height: heightpx,
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick(function (feeRelated, outTradeNo) {
+                    feeRelated.ver = "2";
+                    if (isYbjyjz)
+                        feeRelated.ybjslsh=ybjyFeeReturn.setl_id;
+                    //HISXác nhận结
+                    $.najax({
+                        url: "/HospitalizationManage/DischargeSettle/SaveSettle",
+                        dataType: "json",
+                        data: { zyh: zyh, expectedcyrq: feeRelated.cyrq, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, xnhfeeRelated: s13OtherResponseDto, jslx: hzjslx, outTradeNo: outTradeNo },
+                        type: "POST",
+                        success: function (ajaxresp) {
+                            var message = "";
+
+                            var isYbjyjzTemp = isYbjyjz;
+                            var ybjyFeeReturnTemp = $.deepClone.clone(ybjyFeeReturn);
+
+                            $.modalMsg("quyết toán thành công" + message, 'success');
+                            $.modalClose("ConfirmFeeForm");
+                            newtouch_event_f4();
+
+                            //In hóa đơn
+                            if (ajaxresp.data && ajaxresp.data.jsnm) {
+                                //openInvoice(zyh, ajaxresp.data.jsnm);
+                                @*if ('@(autoPrintFP)' == 'True') {
+                                    //Ngược lại in báo cáo
+                                   var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + ajaxresp.data.jsnm;
+                                    window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+                                 }*@
+                            }
+                        }
+                    });
+                });
+                return;
+            },
+            cancelCallBack: function (iframeId) {
+                //Hủyquyết toán xuất viện，Làm thủ tục xuất việnhoàn trả
+                if (isYbjyjz) {
+                        var cqybjyDenySettleReturn;
+                        var payoptype = { hisId:zyh,'setl_id': ybjyFeeReturn.setl_id, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': ybjyFeeReturn.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
+                    	$.ajax({
+		                    type: "POST",
+		                    url: "http://127.0.0.1:33333/api/YiBao/HospitaUpSettlement_2305",
+		                    dataType: "json",
+		                    data: payoptype,
+		                    async: false,
+		                    success: function (data) {
+			                    cqybjyDenySettleReturn = eval('(' + data + ')');
+		                    }
+	                    });
+                    	if (cqybjyDenySettleReturn.infcode == "0") {
+                    	    UpOutMdtrtinfo(payoptype);
+	                    } else {
+                    	    $.modalAlert('Đảo ngược quyết toán nhập viện thất bại：' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công，Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
+	                    }
+	                    $.loading(false);
+                }
+            }
+        });
+    }
+    //Lập hóa đơn
+    function openInvoice(zyh, jsnm) {
+        var requestJson = { "BusinessName": "Lập hóa đơn", "paySerialNo": zyh, "paySettlementNo": jsnm, "type": "nhập viện", "PlaceCode": "003" };//Điểm lập hóa đơn tạm ghi cố định003
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
+            dataType: "json",
+            data: requestJson,
+            async: false,
+            success: function (data) {
+                if (data.code == "0") {
+                   $.loading(true, 'Đang lập hóa đơn điện tử，Vui lòng đợi...');
+                   setTimeout(function () {
+                   if ('@(autoPrintFP)' === 'True')
+                   window.open(data.data.pictureUrl,"_blank",
+                       "height=1000, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+                       $.loading(false);
+                   }, 3000);
+                }
+                else {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert('Lập chứng từ thất bại[' + data.mes + ']', 'error');
+                    return;
+                }
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                isuccer = false;
+                $.modalAlert('Lập chứng từ bất thường[' + ex + ']', 'error');
+                return;
+            }
+        });
+    }
+    //In hóa đơn
+    function printFp(jsnm) {
+        var requestJson = { "BusinessName": "Xemhóa đơn", "paySettlementNo": jsnm}
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
+            dataType: "json",
+            data: requestJson,
+            async: false,
+            success: function (data) {
+                if (data.code == "0") {
+                    window.open(data.data.pictureUrl,
+                        "_blank",
+                        "height=1000, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+                }
+                else {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert("Không truy vấn được thông tin hóa đơn điện tửnộp phí nhập viện[" +data.mes + "]", 'error');
+                    return;
+                }
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                isuccer = false;
+                $.modalAlert('Không truy vấn được thông tin hóa đơn điện tửnộp phí nhập viện[' + ex + ']', 'error');
+                return;
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    //Logic BHYT
+
+	//BHYT
+    function CQjzdj(funcSuccCallback) {
+	    $.ajax({
+		    type: "POST",
+		    url: "/PatientManage/HospiterRes/GetCQjzdjInfo",
+		    data: { zyh: patModel.zyh },
+		    dataType: "json",
+		    cache: false,
+		    async: false,
+		    success: function (payoptype) {
+		    	if (!payoptype) {
+				    $.loading(false);
+				    $.modalAlert("Lấy đăng ký khám nhập viện thất bại", 'error');
+				    return;
+		    	}
+		    	payoptype.mdtrt_cert_type = cqPatInfo.ybklx;
+		    	payoptype.orgId = "@opr.OrganizeId";
+		        cqPatInfo.grbh = payoptype.psn_no;
+		        var jzxx = { mdtrt_id: payoptype.mdtrt_id, med_type: payoptype.med_type, djxx: payoptype, orgId: '@(opr.OrganizeId)' };
+		        funcSuccCallback(jzxx);
+		        //$.ajax({
+		        //    type: "POST",
+		        //    url: "http://127.0.0.1:33333/api/YiBao/HospitaMdtrtinfo_2403",
+		        //    dataType: "json",
+		        //    data: payoptype,
+		        //    async: false,
+		        //    success: function (data) {
+		        //        var medicalReg = eval('(' + data + ')');
+		        //        if (medicalReg) {
+		        //            if (medicalReg.infcode == "0") {
+		        //                var jzxx = { mdtrt_id: payoptype.mdtrt_id, med_type: payoptype.med_type, djxx: payoptype };
+		        //                funcSuccCallback(jzxx);
+		        //            }
+		        //            else {
+		        //                $.loading(false);
+		        //                $.modalAlert("Thay đổi thông tin nhập viện thất bại：" + medicalReg.err_msg, 'error');
+		        //                return;
+		        //            }
+		        //        }
+		        //    }
+		        //});
+		    }
+	    });
+    }
+    function shybmxsc(funcSuccCallback) {
+        var n = 1;
+        var ybzje = 0.00;
+        var succTimes = 0;
+        var mxnum = 0;
+        var isuccer = true;//Tải lên chi tiết có thành công hay không
+        //var zfzje = 0.00;
+        var cyrq;
+
+        $.najax({
+            type: "GET",
+            data: {
+                zyh: patModel.zyh, jssj: $.getDate() + " 23:59:59", jsbz: "1"
+            },
+            url: "/HospitalizationManage/DischargeSettle/ValialUploadDataShyb",
+            dataType: "json",
+            async: false,
+            loading: false,
+            success: function (ajaxResp) {
+                var jfbh = ajaxResp.jfbh;
+                if (jfbh) {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
+                    return;
+                }
+                else {
+                    $.najax({
+                        type: "GET",
+                        data: {
+                            mzzyh: patModel.zyh, jssj: $.getDate() + " 23:59:59"
+                        },
+                        url: "/HospitalizationManage/DischargeSettle/GetCQAlreadyUploadFeeDetailsV2",
+                        dataType: "json",
+                        async: false,
+                        loading: false,
+                        success: function (ajaxResp) {
+                            ybzje = ajaxResp.ybzje;
+                            cyrq = ajaxResp.csrq;
+                        }
+                    });
+                }
+            }
+        });
+
+        $.loading(false);
+        if (funcSuccCallback && isuccer) {
+            setTimeout(function () {
+                var mxxx = { ybzje: ybzje, cyrq: cyrq };
+                funcSuccCallback(mxxx);
+            }, 50);
+        }
+    }
+    function CQmxsc(jzxx,funcSuccCallback) {
+	    var n = 1;
+	    var ybzje = 0.00;
+	    var succTimes = 0;
+	    var mxnum = 0;
+	    var isuccer = true;//Tải lên chi tiết có thành công hay không
+        //var zfzje = 0.00;
+	    var cyrq;
+
+	    $.najax({
+	        type: "GET",
+	        data: {
+	            zyh: patModel.zyh, jssj: $.getDate() + " 23:59:59", jsbz: "1"
+	        },
+	        url: "/HospitalizationManage/DischargeSettle/ValialUploadData",
+	        dataType: "json",
+	        async: false,
+	        loading: false,
+	        success: function (ajaxResp) {
+	            var jfbh = ajaxResp.jfbh;
+	            if (jfbh) {
+	                $.loading(false);
+	                isuccer = false;
+	                $.modalAlert(jfbh + "Chưa tải lên BHYT,Vui lòng truy vấn và tải lên tại trangquyết toán trước!", 'error');
+	                return;
+	            }
+	            else {
+	                $.najax({
+	                    type: "GET",
+	                    data: {
+	                        mzzyh: patModel.zyh, jssj: $.getDate() + " 23:59:59"
+	                    },
+	                    url: "/HospitalizationManage/DischargeSettle/GetCQAlreadyUploadFeeDetailsV2",
+	                    dataType: "json",
+	                    async: false,
+	                    loading: false,
+	                    success: function (ajaxResp) {
+	                        ybzje = ajaxResp.ybzje;
+	                        cyrq = ajaxResp.csrq;
+	                    }
+	                });
+	                $.ajax({
+	                    type: "POST",
+	                    url: "http://127.0.0.1:33333/api/YiBao/HospitaUpSettlement_2402",
+	                    dataType: "json",
+	                    data: jzxx.djxx,
+	                    async: false,
+	                    success: function (data) {
+	                        var cyblReg = eval('(' + data + ')');
+                            if (cyblReg.infcode == "0" || cyblReg.infcode == 0) {
+	                        }
+	                        else {
+	                            $.loading(false);
+	                            isuccer = false;
+	                            $.modalAlert("Làm thủ tục xuất việnThất bại：" + cyblReg.err_msg, 'error');
+	                            return;
+	                        }
+	                    },
+	                    error: function (request, error, ex) {
+	                        $.loading(false);
+	                        isuccer = false;
+	                        $.modalAlert("Dịch vụ BHYT【2402】(Làm thủ tục xuất viện)không thể truy cập：[" + ex + "]", 'error');
+	                        return;
+	                    }
+	                });
+	            }
+	        }
+	    });
+
+	    $.loading(false);
+	    if (funcSuccCallback && isuccer) {
+		    setTimeout(function () {
+			    var mxxx = {ybzje: ybzje,cyrq:cyrq };
+			    funcSuccCallback(mxxx);
+		    }, 50);
+	    }
+    }
+    function shybjs(mxxx) {
+        var jzlx = cqPatInfo.ybklx
+        var predata = {
+                    operatorId: '@(opr.rygh)',
+                    operatorName: '@(opr.UserName)',
+                    insuplc_admdvs: cqPatInfo.insuplc_admdvs,
+                    orgId: '@(opr.OrganizeId)',
+                    hisId: patModel.zyh,//Mã nhập viện
+                    personspectag: cqPatInfo.accountattr.substr(3, 1),//0：thông thường 1：Nghỉ hưunghỉ hưu 2：Thương tật 3：Chăm sóc sức khỏe cán bộchỉ định,
+                    yllb: "S21",
+                    persontype: "0",
+                    gsrdh: "",
+                    xsywlx: "1",
+                    cyjsbz: "0"
+                };
+        var ybjsSettReturn1;
+        var ybjsSettReturn;
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SI51",
+            data: predata,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                ybjsSettReturn1 = eval('(' + data + ')');
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                $.modalAlert("Dịch vụ BHYT【SI51】(quyết toán trước)không thể truy cập：[" + ex + "]", 'error');
+                return;
+            }
+        });
+        if (ybjsSettReturn1) {
+            if (ybjsSettReturn1.xxfhm === "P001") {
+                predata.jssqxh = ybjsSettReturn1.xxnr.jssqxh;
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SI52",
+                    data: predata,
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        ybjsSettReturn = eval('(' + data + ')');
+                    }
+                });
+                if (ybjsSettReturn) {
+                    $.loading(false);
+                    if (ybjsSettReturn.xxfhm === "P001") {
+                        var ybjyCqFeeReturn = ybjsSettReturn.xxnr;
+                        //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
+                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT），Thì tổng số tiền khiquyết toán，Điền tổng số tiền tổng hợp
+                        //Nếu chỉ có mục BHYT，Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
+                        ybjyCqFeeReturn.his_hisfyze = jszje;
+                        ybjyCqFeeReturn.ybzje = mxxx.ybzje;
+                        //ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
+                        shybhisSubmit(true, ybjyCqFeeReturn, false, null);
+                    } else {
+                        $.loading(false);
+                        $.modalAlert(ybjsSettReturn.fhxx, 'error');
+                        return;
+                    }
+                } else {
+                    $.loading(false);
+                    $.modalAlert("Gọi giao diện BHYT thất bại", 'error');
+                    return;
+                }
+            } else {
+                $.loading(false);
+                $.modalAlert(ybjsSettReturn1.fhxx, 'error');
+                return;
+            }
+        } else {
+            $.loading(false);
+            $.modalAlert("Gọi giao diện BHYT【SI52】quyết toán trước thất bại,Vui lòng thử lại!", 'error');
+            return;
+        }
+
+    }
+    function CQybjs(jzxx, mxxx) {
+        debugger;
+        var jzlx = cqPatInfo.mdtrt_cert_type;
+        var acct_used_flag = "";
+        if ($('#ckgrzhbz').is(':checked')) {
+            acct_used_flag = "1";
+        } else
+            acct_used_flag = "0";
+        var predata = {
+            psn_no: cqPatInfo.grbh,
+            mdtrt_cert_type:jzlx,
+            mdtrt_cert_no: jzlx == "01" ? cqPatInfo.ecToken : (jzlx == "02" ? cqPatInfo.sfzh : cqPatInfo.sbkh),
+            medfee_sumamt: mxxx.ybzje,
+            psn_setlway: "01",
+            mdtrt_id: jzxx.mdtrt_id,
+            insutype: cqPatInfo.xzlx,
+            mid_setl_flag: "0",
+            insuplc_admdvs: cqPatInfo.xzqh,
+            operatorId: '@(opr.rygh)',
+            operatorName: '@(opr.UserName)',
+            orgId: '@(opr.OrganizeId)',
+            hisId: patModel.zyh,
+            acct_used_flag: acct_used_flag,
+            dscgTime: mxxx.cyrq
+        };
+        var ret = CQGetFph();
+        if (!ret.rs) {
+            $.modalAlert("Lấy số hóa đơn thất bại:" + rs.msg, 'error');
+            return;
+        }
+        predata.invono = ret.fph;
+        var ybjsSettReturn1;
+        var ybjsSettReturn;
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/HospitaSettlement_2303",
+            data: predata,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                ybjsSettReturn1 = eval('(' + data + ')');
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                $.modalAlert("Dịch vụ BHYT【2303】(quyết toán trước)không thể truy cập：[" + ex + "]", 'error');
+            }
+        });
+        if (ybjsSettReturn1) {
+            if (ybjsSettReturn1.infcode == "0"||ybjsSettReturn1.infcode == 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:33333/api/YiBao/HospitaSettlement_2304",
+                    data: predata,
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        ybjsSettReturn = eval('(' + data + ')');
+                    }
+                });
+                if (ybjsSettReturn) {
+                    $.loading(false);
+                    if (ybjsSettReturn.infcode == "0" || ybjsSettReturn.infcode == 0) {
+                        var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
+                        //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
+                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT），Thì tổng số tiền khiquyết toán，Điền tổng số tiền tổng hợp
+                        //Nếu chỉ có mục BHYT，Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
+                        ybjyCqFeeReturn.his_hisfyze = jszje;
+                        ybjyCqFeeReturn.ybzje = mxxx.ybzje;
+                        ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
+                        hisSubmit(true, ybjyCqFeeReturn, false, null);
+                    } else {
+                        var payoptype = { hisId: patModel.zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': jzxx.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
+                        UpOutMdtrtinfo(payoptype);
+                        $.loading(false);
+                        $.modalAlert(ybjsSettReturn.err_msg, 'error');
+                        return;
+                    }
+                } else {
+                    $.loading(false);
+                    $.modalAlert("Gọi giao diện BHYT thất bại", 'error');
+                    return;
+                }
+            } else {
+                var payoptype = { hisId: patModel.zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': jzxx.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
+                UpOutMdtrtinfo(payoptype);
+                $.loading(false);
+                $.modalAlert(ybjsSettReturn1.err_msg, 'error');
+                return;
+            }
+        } else {
+            var payoptype = { hisId: patModel.zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': jzxx.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
+            UpOutMdtrtinfo(payoptype);
+            $.loading(false);
+            $.modalAlert("Gọi giao diện BHYT【2303】quyết toán trước thất bại,Vui lòng thử lại!", 'error');
+            return;
+        }
+
+    }
+    function UpOutMdtrtinfo(payoptype)
+    {
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/HospitaUpOutMdtrtinfo_2405",
+            dataType: "json",
+            data: payoptype,
+            async: true,
+            success: function (data) {
+                var cxcyReturn = eval('(' + data + ')');
+                if (cxcyReturn.infcode != '0') {
+                    $.modalAlert('Hủy xuất việnThất bại：' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
+                }
+            }
+        });
+    }
+    /* lấySố hóa đơn */
+    function CQGetFph() {
+        var rs = false;
+        var msg = "";
+        var fph = "";
+
+        $.ajax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientReg/GetInvoice?r=" + Math.random(),
+            data: {},
+            dataType: "text",
+            async: false,
+            success: function (data) {
+                if (!!!data) {
+                    msg = "HISdịch vụ(lấySố hóa đơn)Thông tin trả về trống";
+                    return;
+                }
+                if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
+                    msg = "HISdịch vụ(lấySố hóa đơn)Nội dung trả về lỗi：" + data;
+                    return;
+                }
+                rs = true;
+                fph = data;
+            },
+            error: function (request, error, ex) {
+                msg = "HISdịch vụ(lấySố hóa đơn)không thể truy cập：[" + ex + "]";
+            }
+        });
+
+        return { rs: rs, fph: fph, msg: msg };
+    }
+
+    function upLoadReturnData(retdata) {
+        $.najax({
+            url: '/HospitalizationManage/DischargeSettle/upLoadReturnData',
+            data: { upReturnData: retdata, patzyh: zyh },
+            type: 'POST',
+            success: function () {
+
+            }
+        });
+    }
+    //Truy vấnđiều kiện
+    function getSearchPostData(n) {
+        var zyh = patModel.zyh;
+        var pagination = {
+            rows: 50,
+            page: n + 1,
+            sidx: 'yka105 asc'
+        };
+        return { pagination: pagination, zyh: zyh };
+
+    }
+    //Truy vấnđiều kiện
+    function getSearchCQPostData(n) {
+	    var zyh = patModel.zyh;
+	    var pagination = {
+	        rows: 10,
+	        page: 1,
+		    //page: n + 1,
+		    sidx: ' cxmxlsh asc'
+	    };
+	    return { pagination: pagination, zyh: zyh };
+
+    }
+    function ovpraseFloat(val) {
+        if (!val) {
+            val = 0.00;
+        }
+        return parseFloat(val);
+    }
+    //Lấy bệnh nhânquyết toán Thông tin bệnh nhân
+    function funcGetSettPatientInfo(funcSuccCallback) {
+        $.najax({
+            url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + patModel.zyh,
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng đợi...",
+            type: 'POST',
+            success: function (ajaxResp) {
+                //
+                if (funcSuccCallback) {
+                    setTimeout(function () {
+                        funcSuccCallback(ajaxResp.data);
+                    }, 50);
+                }
+            }
+        });
+    }
+    //quyết toán nhập viện
+    function realSettle(gzyb_CyblOut, ybRealSettleReq) {
+        var ybjyPreSettReturn;// = $.guianyibao.ZyFeejs(JSON.stringify(ybPreSettleReq));
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:12345/api/YiBao/ZyFeejs",
+            contentType: 'application/json',
+            data: JSON.stringify(ybRealSettleReq),
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                ybjyPreSettReturn = eval('(' + data + ')');
+            }
+        });
+        //
+        $.loading(false);
+        if (ybjyPreSettReturn.Code == 0) {
+            var ybReturnData = ybjyPreSettReturn.Data;
+            ybReturnData.astr_jylsh = ybjyPreSettReturn.jylsh;
+            ybReturnData.astr_jyyzm = ybjyPreSettReturn.jyyzm;
+            //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
+            //组装Yêu cầu参数
+            ybReturnData.prm_akc190 = ybRealSettleReq.prm_akc190,
+                ybReturnData.prm_yab003 = ybRealSettleReq.prm_yab003,
+                ybReturnData.prm_aka130 = ybRealSettleReq.prm_aka130,
+                ybReturnData.prm_ykb065 = ybRealSettleReq.prm_ykb065,
+                ybReturnData.prm_hisfyze = ybRealSettleReq.prm_hisfyze,
+                ybReturnData.prm_yka110 = ybRealSettleReq.prm_yka110,
+                ybReturnData.prm_aae013 = ybRealSettleReq.prm_aae013,
+                ybReturnData.prm_aae011 = ybRealSettleReq.prm_aae011,
+                ybReturnData.prm_ykc141 = ybRealSettleReq.prm_ykc141,
+                //
+                ybReturnData.his_hisfyze = jszje,
+                //
+                ybReturnData.cyblastr_jylsh = gzyb_CyblOut.jylsh,
+                ybReturnData.cyblastr_jyyzm = gzyb_CyblOut.jyyzm,
+                hisSubmit(true, ybReturnData,false,null);
+        }
+        else {
+            var ybReturn;
+            var cyblhtData = {
+                prm_akc190: ybRealSettleReq.prm_akc190,
+                prm_aac001: ybRealSettleReq.prm_aac001,
+                prm_yab003: ybRealSettleReq.prm_yab003,
+                prm_aka130: ybRealSettleReq.prm_aka130,
+                prm_aae036: "",
+                prm_ykb065: ybRealSettleReq.prm_ykb065,
+                prm_ykc141: "ly"
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:12345/api/YiBao/ZyCyblht",
+                contentType: 'application/json',
+                data: JSON.stringify(cyblhtData),
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    ybReturn = eval('(' + data + ')');
+                }
+            });
+            if (ybReturn.Code == 0) {
+                var parameter = { "astr_jylsh": ybReturn.jylsh, "astr_jyyzm": ybReturn.jyyzm };
+                $.ajax({
+                    url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
+                    data: parameter,
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                    }
+                });
+            }
+            $.modalAlert(ybjyPreSettReturn.ErrorMsg, 'error');
+            return;
+        }
+    }
+
+    //quyết toán trước BHYT
+    function preSettle(ybPreSettleReq, funcSuccCallback) {
+        //quyết toán trước
+        var ybReturn;
+        var mnjsData = {
+            prm_akc190: ybPreSettleReq.prm_akc190,
+            prm_aac001: ybPreSettleReq.prm_aac001,
+            prm_yab003: ybPreSettleReq.prm_yab003,
+            prm_aka130: ybPreSettleReq.prm_aka130,
+            prm_ykb065: ybPreSettleReq.prm_ykb065,
+            prm_hisfyze: ybPreSettleReq.prm_hisfyze //用BHYTmột phầncủaTổng số phí（不bao gồm不vàGiao dịch BHYTcủatoàn bộTự phímột phần）
+        };
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:12345/api/YiBao/ZyMnjs",
+            contentType: 'application/json',
+            data: JSON.stringify(mnjsData),
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                ybReturn = eval('(' + data + ')');
+            }
+        });
+        $.loading(false);
+        if (ybReturn && ybReturn.Code==0) {
+            setTimeout(function () {
+                funcSuccCallback();
+            }, 50);
+        }
+        else {
+            $.loading(false);
+            $.modalAlert(ybReturn.ErrorMsg, 'error');
+            return;
+        }
+    }
+
+    //贵州Làm thủ tục xuất viện BHYTThao tác-Mã nhập viện
+    function gzyb_Cybl(funcSuccCallback) {
+        if (!patModel.cyrq) {
+            $.loading(false);
+            $.modalAlert("Ngày xuất việnlàtrống", 'error');
+            return;
+        }
+        var isSuccess = false;
+        var gzyb_CyblOut;
+        $.najax({
+            url: "/PatientManage/HospiterRes/GetGuianRyblOutInfoByZyh",
+            data: { zyh: patModel.zyh },
+            dataType: 'json',
+            async: false,
+            success: function (rep) {
+                if (rep) {
+                    var gzyb_Cybl = new Object();
+                    gzyb_Cybl.prm_akc190 = rep.prm_akc190; //Số hiệu khám
+                    gzyb_Cybl.prm_aac001 = rep.prm_aac001; //Số thẻ
+                    gzyb_Cybl.prm_aka130 = rep.prm_aka130; //Loại thanh toán
+                    gzyb_Cybl.prm_akc195 = "9"; //Lý do xuất viện (1、Khỏi bệnh；2、Đỡ hơn；3、Tử vong；4Chuyển viện;5quyết toán giữa kỳ bệnh tâm thần(Chỉquyết toán giữa kỳ khoán ngày bệnh tâm thần sử dụng);9 Khác)
+                    gzyb_Cybl.prm_akc194 = patModel.cyrq.replace('T', ' '); //Ngày xuất viện
+                    gzyb_Cybl.prm_akc196 = patModel.cyzdicd10; //Chẩn đoán xuất viện
+                    gzyb_Cybl.prm_ykc015 = patModel.ksmc; //Khoa xuất viện(Khoalàtrong文,Không thể làm mã)
+                    gzyb_Cybl.prm_ykc016 = patModel.cw; //Giường xuất viện
+                    gzyb_Cybl.prm_ykc017 = '@(opr.UserName)'; //Tên người xử lý
+                    //gzyb_Cybl.prm_ykc018 = curTime; //Thời gian xử lý xuất viện
+                    gzyb_Cybl.prm_ykc018 = $.getTime(); //Thời gian xử lý xuất viện
+                    $.najax({
+                        url: "/Com/GetSysNowDate",
+                        data: { format: "yyyy-MM-dd HH:mm:ss" },
+                        dataType: 'text',
+                        async: false,
+                        success: function (strTime) {
+                            gzyb_Cybl.prm_ykc018 = strTime; //Thời gian xử lý xuất viện
+                        }
+                    });
+                    gzyb_Cybl.prm_yab003 = rep.prm_yab003; //trung tâm chi nhánhSố hiệu
+                    gzyb_Cybl.prm_ykd065 = ""; //Mã chẩn đoán phụ xuất viện
+                    gzyb_Cybl.prm_ykd018 = ""; //Mã chẩn đoán bệnh xuất viện thứ nhất
+                    gzyb_Cybl.prm_ykd019 = ""; //Mã chẩn đoán bệnh xuất viện thứ hai
+                    gzyb_Cybl.prm_ykd020 = ""; //Mã chẩn đoán bệnh xuất viện thứ ba
+                    gzyb_Cybl.prm_ykd021 = ""; //Mã chẩn đoán bệnh xuất viện thứ tư
+                    gzyb_Cybl.prm_ykd022 = ""; //Mã chẩn đoán bệnh xuất viện thứ năm
+                    gzyb_Cybl.prm_ykd023 = ""; //Mã chẩn đoán bệnh xuất viện thứ sáu
+                    gzyb_Cybl.prm_ykd024 = ""; //Mã chẩn đoán bệnh xuất viện thứ bảy
+                    gzyb_Cybl.prm_ykd025 = ""; //Mã chẩn đoán bệnh xuất viện thứ tám
+                    gzyb_Cybl.prm_ykb065 = rep.prm_ykb065; //Bảo hiểm xã hộiphương pháp
+                   // var gzyb_CyblOut;// = $.guianyibao.ZyCybl(JSON.stringify(gzyb_Cybl)); //Gọi giao diện làm thủ tục xuất viện
+                    $.ajax({
+                        type: "POST",
+                        url: "http://127.0.0.1:12345/api/YiBao/ZyCybl",
+                        contentType: 'application/json',
+                        data: JSON.stringify(gzyb_Cybl),
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            gzyb_CyblOut = eval('(' + data + ')');
+                        }
+                    });
+                    if (gzyb_CyblOut) {
+                        if (gzyb_CyblOut.Code != 0) {
+                            $.loading(false);
+                            $.modalAlert("Làm thủ tục xuất viện BHYTThất bại：" + gzyb_CyblOut.ErrorMsg, 'error');
+                            return;
+                        }
+                        else{
+                            isSuccess = true;
+                        }
+                    } else {
+                        $.loading(false);
+                        $.modalAlert("Lấy thông tin phản hồi làm thủ tục xuất viện BHYT thất bại", 'error');
+                        return;
+                    }
+                } else {
+                    $.loading(false);
+                    $.modalAlert("Không thể lấy thông tin BHYT làm thủ tục nhập viện", 'error');
+                    return;
+                }
+            }
+        });
+
+        $.loading(false);
+        //
+        if (isSuccess && funcSuccCallback) {
+            setTimeout(function () {
+                funcSuccCallback(gzyb_CyblOut);
+            }, 50);
+        }
+    }
+</script>
+<script type="text/javascript">
+    //
+
+    function ReadCardCall(readCardObj) {
+        cqPatInfo.jslx = "2";
+        ybIsReadCard = true;
+        ajaxLoadDataResult({ kh: readCardObj.yibaoCardInfo.kh, sfz: readCardObj.yibaoCardInfo.qtjz, cardType: readCardObj.ybkCardType, ver: '2' });
+    }
+
+    /*****************************************Nông thôn mới****************************************/
+    //Dữ liệu trả về danh sách người tham gia nông thôn mới đã chọn
+    function GetSelectedpatient(obj) {
+        if (!!obj) {
+            obj.readCardCardType = $('#readCardCardType').val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetZyhByGrbm")",
+                data: { xnhgrbm: obj.xnhgrbm, sfjs: "0" },
+            dataType: "json",
+                async: false,
+                success: function (resp) {
+                    if (!!resp.data) {
+                        ajaxLoadDataResult({ zyh: resp.data });
+                    }
+                    else {
+                        $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm + "】khôngcóTruy vấntớiđãRa khoa、Bệnh nhân nhập viện chờquyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa！", 'warning');
+                        return;
+                    }
+                }
+            });
+        }
+    }
+</script>

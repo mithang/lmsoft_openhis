@@ -1,0 +1,56 @@
+@{
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    $(function () {
+        var storage = window.localStorage;
+        var json = storage.getItem("mList");
+        var jsonObj = JSON.parse(json);
+        gridlist(jsonObj);
+    });
+
+    function gridlist(mList) {
+        $("#gridlist").dataGrid({
+            autoScroll: true,
+            caption: "Thông tin thuốc",
+            height: 200,
+            colModel: [
+                { label: 'Mã thuốc', name: 'ypCode', width: 50, align: 'left' },
+                { label: "Khóa chính", name: "sldmxId", hidden: true, key: true },
+                { label: 'Số đơn lĩnh', name: 'sldh', width: 50, align: 'left', hidden: true, },
+                 { label: 'Pinyin', name: 'py', width: 50, align: 'left', hidden: true, },
+                 { label: 'Số lô', name: 'Ph', width: 100, align: 'left' },
+                 { label: 'Số lô', name: 'pc', hidden: true, width: 50, align: 'left' },
+                 { label: 'Ngày hiệu lực', name: 'Yxrq', width: 120, align: 'left' },
+                 { label: 'Nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                 { label: 'Đơn vị', name: 'bzdw', width: 50, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+                { label: 'Giá bán buôn', name: 'Pfj', width: 50, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'Số lượng lĩnh', name: 'Sl', width: 50, align: 'left' },
+                { label: 'Số lượng đã phát', name: 'yfsl', align: 'left' },
+                { label: 'Số lượng phát', name: 'ffsl', align: 'left' },
+                { label: 'Tổng giá bán buôn', name: 'Pjze', width: 50, align: 'left' },
+                 { label: 'Tổng giá lẻ', name: 'Ljze', width: 50, align: 'left' },
+                 { label: 'Hệ số chuyển đổi', name: 'Zhyz', align: 'left', hidden: true, }
+            ],
+            pager: "#gridPager",
+            sortname: 'sldmxId desc',
+            viewrecords: true
+        });
+        if (mList.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+            for (var i = 0; i < mList.length; i++) {
+                jQuery("#gridlist").jqGrid('addRowData', i + 1, mList[i]);
+            }
+            $("#gridList").trigger("reloadGrid");
+        }
+    }
+</script>
+
+<div class="gridPanel">
+    <div style="margin-bottom:10px">
+        <table id="gridlist"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</div>

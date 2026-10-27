@@ -1,0 +1,197 @@
+@{
+    ViewBag.Title = "Đối chiếu hạng mục thu phí của vật tư";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="panel panel-default">
+    <div style="padding-right:10px;">
+        <table class="form">
+            <tr>
+                <td class="formValue" style="width: 160px;">
+                    <div class="btn-group">
+                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+                    </div>
+                </td>
+                <th class="formTitle">Hạng mục lớn thu phí：</th>
+                <td class="formValue">
+                    <select class="form-control" id="selSfdl">
+                        <option value="">==Tất cả==</option>
+                    </select>
+                </td>
+                <th class="formTitle">Loại vật tư：</th>
+                <td class="formValue">
+                    <select class="form-control" id="selProductType">
+                        <option value="">==Tất cả==</option>
+                    </select>
+                </td>
+                <th class="formTitle" style="width: 50px;">Trạng thái：</th>
+                <td class="formValue" style="width: 60px;">
+                    <select class="form-control" id="selZt">
+                        <option value="">=Tất cả=</option>
+                        <option value="1">Hiệu lực</option>
+                        <option value="0">Không hiệu lực</option>
+                    </select>
+                </td>
+                <td class="formValue">
+                    <div class="btn-group" id="dv_search">
+                        <a class="btn btn-primary"><span class="fa fa-search"></span></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script lang="javascript">
+
+    var $gridList = $("#gridList");
+    $(function () {
+        gridList();
+        Init();
+    });
+
+    //Khởi tạo
+    function Init() {
+        //Đang tải hạng mục lớn
+        $("#selSfdl").bindSelect({
+            url: "/ProductManage/ProductSfxm/GetAllSfdl"
+        });
+        //Đang tải loại vật tư
+        $("#selProductType").bindSelect({
+            url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
+        });
+    }
+
+
+    //get data
+    function gridList() {
+        $gridList.dataGrid({
+            url: "/ProductManage/ProductSfxm/GetProductSfxmGridJson",
+            postData: getPostData(),
+            height: $(window).height() - 125,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hạng mục lớn", name: "sfdlmc", width: 100, align: "left" },
+                { label: "Tên hạng mục", name: "sfxmmc", width: 100, align: "left" },
+                { label: "Loại vật tư", name: "productTypeName", width: 100, align: "left" },
+                { label: 'Tên vật tư', name: 'productName', width: 100, align: 'left' },
+                {
+                    label: "Hiệu lực", name: "zt", width: 50, align: "center",
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
+                },
+                { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', hidden: true },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+        $("#dv_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: getPostData()
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //Lắp ráp tham số yêu cầu
+    function getPostData() {
+        return {
+            sfdlCode: $("#selSfdl").val(),
+            productTypeId: $("#selProductType").val(),
+            zt: $("#selZt").val()
+        };
+    }
+
+    //Sự kiện tra cứu khi nhấn Enter
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#dv_search").trigger("click");
+        }
+    });
+
+    //Thêm mới
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mới",
+            url: "/ProductManage/ProductSfxm/Form",
+            width: "550px",
+            height: "310px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //Sửa
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa",
+            url: "/ProductManage/ProductSfxm/Form?keyValue=" + keyValue,
+            width: "550px",
+            height: "310px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //Xóa
+    function btn_delete() {
+        $.modalConfirm("Bạn có chắc muốn xóa quan hệ đối chiếu này không?？",
+            function (flag) {
+                if (flag) {
+                    var keyValue = $("#gridList").jqGridRowValue().Id;
+                    if (!!!keyValue) {
+                        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+                        return;
+                    }
+                    $.najax({
+                        url: "/ProductManage/ProductSfxm/DeleteForm",
+                        data: { keyValue: keyValue },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.state === "success") {
+                                $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
+                                $("#gridList").resetSelection();
+                                $("#gridList").trigger("reloadGrid");
+                            } else {
+                                if (data.state != null) {
+                                    $.modalMsg(data.state, 'warning', 1500);
+                                } else {
+                                    $.modalMsg("Xóa thất bại", 'warning', 1500);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+    }
+
+</script>

@@ -1,0 +1,227 @@
+@{
+    ViewBag.Title = "ItemSales";
+
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    $(function () {
+        gridListData([]);
+        $(".moreInfo").hide();
+        $("#disBtn").click(function () {
+            $(".moreInfo").fadeToggle();//.show();
+        });
+
+        $("#dm").change(function () {
+            var val = this.value;
+            switch (val) {
+                case "0":
+                    $("#fl").val("Điều trị bằng tác nhân vật lý");
+                    $("#zfy").val("5");
+                    $("#dj").val("5");
+                    break;
+                case "1":
+                    $("#fl").val("Vận động, hoạt động, ngôn ngữ");
+                    $("#zfy").val("60");
+                    $("#dj").val("60");
+                    break;
+                case "2":
+                    $("#fl").val("Châm pháp, cứu pháp, giác hơi pháp");
+                    $("#zfy").val("3");
+                    $("#dj").val("3");
+                    break;
+                default:
+                    $("#txtsfbz").val("");
+                    $("#txtzfy").val("");
+                    $("#txtzlsc").val("");
+                    break;
+            }
+        });
+
+        $("#sl").blur(function () {
+            var $this = Number($(this).val());
+            dj = $("#dj").val();
+            $("#zfy").val(dj * Number($this));
+        });
+
+        $("#sl,#xs,#ks,#mc").keydown(function (event) {
+            if ((event.keyCode || event.which) == 13) {
+                newtouch_globalevent_f6();
+            }
+        });
+    });
+
+    function newtouch_globalevent_f6() {
+        var $gridList = $("#gridList");
+        var mydata = [{ id: "1", sfxm: $("#dm").find("option:selected").text(), fl: $("#fl").val(), xs: $("#xs").val(), dj: $("#dj").val(), sl: $("#sl").val(), zfbl: "0.0", zfy: $("#dj").val() * $("#sl").val(), mc: $("#mc").val() }]
+        ;
+        gridListData(mydata);
+        $gridList.jqGrid('setGridParam', "unWritten:'false'").trigger("reloadGrid");
+        $("#total").html("￥" + $("#gridList").getCol('zfy', false, 'sum'));
+        clearJZInfo();
+    }
+
+    function newtouch_globalevent_f7() {
+        var rowid = $('#gridList').jqGrid('getGridParam', 'selrow');
+        EditSelectItem(rowid);
+    }
+
+    function newtouch_globalevent_f8() {
+        var rowid = $('#gridList').jqGrid('getGridParam', 'selrow');
+        $("#gridList").jqGrid('delRowData', rowid);
+    }
+    //清除记账信息
+    function clearJZInfo() {
+        newtouch_globalevent_f4(null, {
+            container: "#HosBasicInfo",
+            inner: false
+        });
+    }
+
+    //绑定grid
+    function gridListData(mydata) {
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 345,
+            shrinkToFit: true,
+            footerrow: true,
+            colModel: [
+                { label: "Khóa chính", name: "patid", hidden: true },
+                { label: 'Khoản thu phí', name: 'sfxm', width: 100, align: 'left', editor: "text" },
+                  { label: 'Phân loại', name: 'fl', width: 300, align: 'left', editor: "text" },
+                { label: 'Nhân viên bán hàng', name: 'xs', width: 300, align: 'left', editor: "text" },
+                { label: 'Đơn giá', name: 'dj', width: 100, align: 'left', editor: "text" },
+                { label: 'Số lượng', name: 'sl', width: 100, align: 'left', editor: "text" },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 100, align: 'left', editor: "text" },
+                { label: 'Tổng số tiền', name: 'zfy', width: 100, align: 'left', editor: "text" },
+            { label: 'Tên bệnh nhân', name: 'mc', width: 300, align: 'left', editor: "text" }
+            ],
+            ondblClickRow: function (rowid) {
+                EditSelectItem(rowid);
+            }
+        });
+
+        for (var i = 0; i <= mydata.length; i++) {
+            $gridList.jqGrid('addRowData', i + 1, mydata[i]);
+        }
+    }
+
+    function EditSelectItem(rowid) {
+        var rowData = $("#gridList").jqGrid("getRowData", rowid);
+        $('#form1').formSerialize(rowData);
+        switch (rowData.sfxm) {
+            case "红外线治疗":
+                ddlval = "0";
+                break;
+            case "超声药物透入治疗":
+                ddlval = "1";
+                break;
+            case "普通针刺（体针）":
+                ddlval = "2";
+                break;
+            default:
+                ddlval = "===Vui lòng chọn===";
+                break;
+        }
+        $("#dm").val(ddlval);
+        $("#gridList").jqGrid('delRowData', rowid);
+    }
+    function getMorePatientInfo() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thông tin thêm",
+            url: "/TherapeutistCompleteList/MorePatientInfo",
+            width: "900px",
+            height: "260px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+</script>
+<style>
+    span {
+        color: red;
+    }
+</style>
+<form id="form1" style="margin-left:20px;">
+    <div class="rows" id="HosBasicInfo">
+        <div class="panel panel-default" style="margin-bottom: 0;">
+            <div class="panel-heading">
+                ghi sổ thông tin
+            </div>
+            <table class="form" style="width:98%;margin-top:10px;">
+                <tr>
+                    <td class="formTitle">Khoản thu phí:<span>*</span></td>
+                    <td class="formValue">
+                        <select id="dm" class="form-control">
+                            <option value="">===Vui lòng chọn===</option>
+                            <option value="0">Điều trị bằng tia hồng ngoại</option>
+                            <option value="1">Điều trị thẩm thấu thuốc bằng siêu âm</option>
+                            <option value="2">Châm cứu thường (thể châm)</option>
+                        </select>
+                    </td>
+
+                    <td class="formTitle">Phân loại:</td>
+                    <td class="formValue"><input type="text" id="fl" class="form-control newtouch_Readonly" /></td>
+                    <td class="formTitle">Nhân viên bán hàng:</td>
+                    <td class="formValue"><input type="text" id="xs" class="form-control" /></td>
+                    <td class="formTitle">Khoa:</td>
+                    <td class="formValue">
+                        <input type="text" id="ks" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Đơn giá:</td>
+                    <td class="formValue"><input type="text" id="dj" class="form-control newtouch_Readonly" /></td>
+
+                    <td class="formTitle">Số lượng:</td>
+                    <td class="formValue"><input type="text" id="sl" class="form-control" value="1" /></td>
+                    <td class="formTitle">Tổng số tiền:</td>
+                    <td class="formValue"><input type="text" id="zfy" class="form-control newtouch_Readonly" /></td>
+                    <td class="formTitle">Tên bệnh nhân:</td>
+                    <td class="formValue"><input type="text" id="mc" class="form-control" /></td>
+
+                </tr>
+            </table>
+        </div>
+
+        @Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
+   {
+       ShowKeyList = new int[] { 6, 7, 8 },
+       F6Text = "Thêm",
+       F7Text = "Sửa",
+       F8Text = "Xóa"
+   })
+    </div>
+</form>
+<div class="gridPanel" style="margin-top: 50px">
+    <table id="gridList"></table>
+</div>
+<div class="rows" style="" id="HosBasicInfo">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Phải thu
+        </div>
+        <table class="form">
+            <tr>
+                <td class="formTitle">Số tiền phải thu</td>
+                <td class="formValue">
+                    <span style="color:red;font-size:large;"><strong id="total">￥150.00</strong></span>
+                </td>
+                <td class="formTitle">Số tiền thực thu</td>
+                <td class="formValue">
+                    <input type="text" id="txtINPUTCODE" class="form-control" />
+                </td>
+                <td class="formTitle">Tiền thừa</td>
+                <td class="formValue"></td>
+                <td class="formTitle"></td>
+                <td class="formValue"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 4, 9 },
+    F9Text = "Lưu"
+})

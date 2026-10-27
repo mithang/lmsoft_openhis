@@ -1,0 +1,115 @@
+
+@{
+    ViewBag.Title = "ChoosecwReceipt";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="formReceipt">
+    <div style="margin-top:40px;margin-right:40px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle dialogText">Số chứng từ：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="txtpzh" name="txtpzh" required value="">
+                </td>
+            </tr>
+        </table>
+        <div class="errorDiv">
+            <span id="lblMsg"></span>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        var sjh = $.currentWindow().$("#txtlpzh").val();
+        if(sjh){
+            $("#txtpzh").val(sjh);
+        } else
+        {
+            //lấysố chứng từ biên lai
+            GetReceiptByEmpCode();
+        }
+    })
+
+    function GetReceiptByEmpCode() {
+        $.najax({
+            url: "/PatientManage/AccountManage/GetReceipt",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data) {
+                if (data.data) {
+                    $("#txtpzh").val("");
+                    $("#lblMsg").text(data.data);
+                }
+            }
+        });
+    }
+
+    //xác nhận
+    function ReceiptConfirm()
+    {
+        var pzh = $("#txtpzh").val();
+        if (checkPZH(pzh))
+        {
+            checkExitPZH(pzh);
+        }
+    }
+
+    //quy tắc xác thực số chứng từ phía trướcthì
+    function checkPZH(pzh)
+    {
+        var szm = pzh.substring(0, 1);
+        var reg = new RegExp("^[0-9]*$");
+        //nếusố hóa đơnký tự đầu tiên không phảichữ số，thì làđầuchữ cái
+        if (!reg.test(szm))
+        {
+            szm = pzh.substring(0, 1);
+            if (!reg.test(pzh.substring(1,pzh.length-1)))
+            {
+                var msg = "Số biên lai ngoài ký tự đầu phải là số。";
+                $("#lblMsg").text(msg);
+                return false;
+             }
+        }
+        else
+        {
+            szm = "";
+            if (!reg.test(pzh))
+            {
+                var msg = "Số biên lai phải là số。";
+                $("#lblMsg").text(msg);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //saumáy xác thực số chứng từ
+    function checkExitPZH(pzh)
+    {
+        $.najax({
+            type: "POST",
+            url: "/PatientManage/AccountManage/CheckReceipt",
+            data: { pzh: pzh },
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata.data) {
+                    $.currentWindow().$("#txtlpzh").val(pzh);
+                    $.modalClose();
+                }
+            },
+            errorCallback: function (errdata) {
+                $.modalClose();
+            }
+        });
+    }
+
+    //hủy
+    function ReceiptCancle()
+    {
+        $.modalClose();
+    }
+</script>

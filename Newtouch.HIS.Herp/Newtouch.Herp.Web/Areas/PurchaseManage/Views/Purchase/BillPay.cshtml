@@ -1,0 +1,209 @@
+
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Xác nhận thanh toán hóa đơn";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+
+<script src="~/Content/js/index.js"></script>
+<style>
+    /*.inline {
+        width: 80%;
+        display: inline;
+    }
+
+    .PriceInline {
+        width: 70%;
+        display: inline;
+    }
+
+    #dv-detail table th {
+        border: solid 1px #ddd;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    #dv-detail .ui-jqgrid-labels, #dv-detail .jqgrow .ui-row-ltr {
+        height: 30px;
+        vertical-align: middle;
+    }
+
+
+    #dv-detail table td {
+        border: solid 1px #ddd;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    #dv-detail input[role=textbox] {
+        padding: 2px 2px;
+    }
+
+    #gridList .ckbox label {
+        margin-top: 24px;
+    }*/
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:10px;">
+        <div class="panel-heading">Thông tin mua sắm</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Ngày:</th>
+                <td class="formValue" style="width:10%">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                </td>
+                <td class="formValue" style="width:8px;float:left;">-</td>
+                <td class="formValue" style="width:10%;float:left;">
+                    <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
+                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </td>
+                <th class="formTitle "><span class="required">*</span>Nhà cung cấp:</th>
+                <td class="formValue">
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" style="width:60%" />
+                    <input type="hidden" id="yqbm" />
+                </td>
+
+                <th class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Lấy chi tiết" />
+                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="Xác nhận thanh toán" />
+                </th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        @*<div id="gridPager"></div>*@
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+        InitFloat();
+
+        //gridList();
+    });
+
+
+    //初始化浮层
+    function InitFloat() {
+        //Nhà cung cấp vật tư
+        $("#yq").newtouchBatchFloatingSelector({
+            clickautotrigger: true,
+            url: '/Storage/GetSupplierList',
+            height: 300,
+            width: 400,
+            caption: "Nhà cung cấp vật tư",
+            ajaxparameters: function () {
+                return "key=" + $("#yq").val();
+            },
+            colModel: [
+                { label: 'Id', name: 'Id', hidden: true },
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#yqbm").val($thistr.attr('data-py'));
+                $("#yq").val($thistr.attr('data-name'));
+            }
+        });
+    }
+    
+    function getPostData() {
+        var kssj = $("#kssj").val().replace(/\-/g, "");
+        var jssj = $("#jssj").val().replace(/\-/g, "");
+        var yqbm = $("#yqbm").val();
+        return {
+            QSRQ: kssj, JZRQ: jssj, QYBM: yqbm, FPDM: " ", FPH: " ", FPBHCXTJ:" "
+        }
+    }
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PurchaseManage/Purchase/GetBillPayGridJson",
+            height: $(window).height() - 200,
+            postData: getPostData(),
+            colModel: [
+                { label: 'Số hóa đơn', name: 'FPBH', width: 140, align: 'left' },
+                { label: 'Mã hóa đơn', name: 'FPDM', width: 140, align: 'left' },
+                { label: 'Số hóa đơn', name: 'FPH', width: 140, align: 'left' },
+                { label: 'Ngày hóa đơn', name: 'FPRQ', width: 80, align: 'left' },
+                { label: 'Tổng số tiền hóa đơn đã gồm thuế', name: 'FPHSZJE', width: 100, align: 'left' },
+                { label: 'Tên doanh nghiệp', name: 'QYMC', width: 150, align: 'left' },
+                { label: 'Mã doanh nghiệp', name: 'QYBM', width: 150, align: 'left',hidden:true },
+                { label: 'Mã bệnh viện', name: 'YYBM', width: 80, align: 'left' },
+                { label: 'Mã điểm giao hàng', name: 'PSDBM', width: 80, align: 'left' },
+                { label: 'Trạng thái hóa đơn', name: 'FPZT', width: 60, align: 'left' ,hidden:true},
+                { label: 'Dấu hiệu thanh toán', name: 'ZFBZ', width: 60, align: 'left' },
+            ],
+
+            multiselect: false,
+
+            //pager: "#gridPager",
+            sortname: 'FPH',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                //btn_selectrow(rowid);
+            }
+        });
+        $("#btn_search").click(function () {
+            $('#gridList').jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
+                postData:  getPostData() ,
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //Lấy chi tiết
+    $('#btn_search').click(function () {
+        if ($("#yq").val() == "" || $("#yq").val() == null) {
+            $.modalAlert("Vui lòng chọn nhà cung cấp", 'warning');
+            return ;
+        }
+        var kssj = new Date($("#kssj").val());
+        var jssj = new Date($("#jssj").val());
+        if (getDaysBetween(kssj,jssj) > 30) {
+
+            $.modalAlert("Ngày không được vượt quá30 ngày", 'warning');
+            return;
+        }
+        gridList();
+    });
+
+    //Nghiệm thu chi tiết
+    $('#btn_accept').click(function () {
+        var rowData = $("#gridList").jqGridRowValue();
+        if (rowData == null) {
+            $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
+            return;
+        }
+        //var psmxbh = rowData.PSMXBH;
+        //var hctbdm = rowData.HCTBDM;
+        //var scph = rowData.SCPH;
+        //var pssl = rowData.PSSL
+        $.modalOpen({
+            id: "Form",
+            title: "Xác nhận thanh toán",
+            url: "/PurchaseManage/Purchase/BillPayForm?FPID=" + rowData.FPBH + "&FPDM=" + rowData.FPDM + "&FPH=" + rowData.FPH + "&QYBM=" + rowData.QYBM +  "&FPHSZJE=" + rowData.FPHSZJE,
+            width: "350px",
+            height: "150px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].SubmitForm();
+                //$.modalClose("Form");
+                //$('#btn_search').trigger('click');
+            }
+        });
+    });
+    
+
+</script>
+
+

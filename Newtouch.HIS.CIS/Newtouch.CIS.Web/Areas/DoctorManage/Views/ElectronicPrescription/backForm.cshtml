@@ -1,0 +1,79 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "backForm";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+<form>
+    <div class="panel panel-default">
+        <table class="form" style="margin-top:20px;">
+            <tr>
+
+                <th class="formTitle">Hủy bỏNguyên nhân:</th>
+                <td class="formValue">
+                    <input id="cxyy" type="text" class="form-control" style="width:75%; float:left;" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</form>
+
+<script>
+
+
+    var hisId = $.request("hisId");
+    var cfh = $.request("cfh");
+    var cxys = $.request("cxys");
+    var cxyy = $("#cxyy").val();
+
+
+    //保存
+    function submitForm() {
+        if (!DataValidate()) {
+            return;
+        }
+        var postData = $("#form1").formSerialize();
+        postData.hisId = hisId;
+        postData.cfh = cfh;
+        postData.cxys = cxys;
+        postData.cxyy = $("#cxyy").val();
+        postData.operatorId= '@curOpr.UserCode';
+        postData.operatorName = '@curOpr.UserName';
+        postData.orgId= '@(curOpr.OrganizeId)';
+
+        $.submitForm({
+            url: "http://127.0.0.1:33333/api/YiBao/ElectronicPrescription_D004",
+            param: postData,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var refdata=eval('(' + data + ')');
+                if (refdata.infcode === "0") {
+                    $.modalMsg('Hủy bỏthành công', 'success');
+                    //callback();
+                } else {
+                    $.loading(false);
+                    $.modalAlert('Hủy bỏĐiện tửĐơn thuốcthất bại:' + refdata.err_msg, 'error');
+                }
+
+            },
+            error: function (request, error, ex) {
+                $.loading(false);
+                $.modalAlert('Bảo hiểm y tếDịch vụ【Hủy bỏĐiện tửĐơn thuốc】Không thể truy cập:' + ex, 'error');
+            }
+        });
+    }
+
+
+    //数据效验
+    function DataValidate() {
+        if ($("#cxyy").val() === "") {
+            $.modalAlert("Vui lòng điềnHủy bỏNguyên nhân", 'warning');
+            return false;
+        }
+        return true;
+    }
+
+</script>

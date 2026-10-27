@@ -1,0 +1,558 @@
+﻿@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var opeator = OperatorProvider.GetCurrent();
+}
+<script src="~/Content/js/BootstrapMenu.min.js"></script>
+<style>
+    ul, li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+        ul#allKindPat {
+            width: 25px;
+            float: left;
+        }
+
+            ul#allKindPat li.selectedli {
+                background-color: rgba(111, 243, 173, 0.5);
+                text-decoration-color: white;
+            }
+
+            ul#allKindPat li {
+                background-color: rgba(215, 242, 252, 0.86);
+                margin-bottom: 2px;
+                text-align: center;
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                user-select: none;
+                padding: 3px 6px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: transparent;
+                border-image: initial;
+                border-radius: 4px;
+            }
+
+    .dv-left {
+        width: 40%;
+        float: left;
+    }
+
+    .dv-right {
+        float: left;
+        margin-left: 5px;
+        width: 58%;
+        /*background-color:*/
+    }
+
+    #patList {
+        float: left;
+        background-color: #FFF;
+    }
+
+    .clearboth {
+        clear: both;
+    }
+</style>
+<div id="patList" class="gridPanel dv-left">
+    <div class="topPanel">
+        <div class="search">
+            <table>
+                <tr>
+                    <td>
+                        <div id="dv_tool">
+                            <div class="input-group">
+                                <input id="txt_keyword" type="text" class="form-control" placeholder="Tên bệnh nhân/Số khám ngoại trú" style="width:180px;">
+                                <span class="input-group-btn" style="float:left;">
+                                    <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="dv_bl_tool" style="display:none;">
+                            <div style="float:left;width:30%;">
+                                <select id="sel_RecordStu" name="sel_RecordStu" data-enumtype="EnumRecordStu">
+                                    <option value="">Trạng thái bệnh án(Tất cả) </option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="width:70%;float:left;padding-top:10px;">
+                                <input id="txt_cyts" type="text" class="form-control" style="width:30%;float:left;" placeholder="Số ngày ra viện" />
+                                <input id="txt_keyword1" type="text" class="form-control" placeholder="Tên bệnh nhân/Số nhập viện" style="width:50%;float:left;">
+                                <span class="input-group-btn" style="float:left;">
+                                    <button id="btn_search1" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <ul id="allKindPat" role="tablist">
+            
+                <a role="tab" data-toggle="tab" onclick="init(0)">Bệnh nhân của tôi</a>
+
+            <li role="presentation" class="selectedli">
+                <a href="#div_mz" role="tab" data-toggle="tab" onclick="init(1)">Ngoại trú</a>
+            </li>
+            <li role="presentation">
+                <a href="#div_jz" role="tab" data-toggle="tab" onclick="init(2)">Cấp cứu</a>
+            </li>
+        </ul>
+        <div id="div_Patlist" style="margin-left: 25px;margin-right:10px;">
+            <table id="gridListPat"></table>
+            <div id="gridPagerPat"></div>
+        </div>
+    </div>
+</div>
+<div id="dv_Medlist" class="gridPanel dv-right">
+    <div class="topPanel">
+        <div class="toolbar" style="float:left;margin-right: 5px;">
+            <div id="divPatientBasicInfo" style="position: fixed;top: 10px;z-index: 100009;width: 29%;line-height: 40px;font-size: 18px;white-space: nowrap;text-overflow: ellipsis;left: 40%;text-align:left;padding-left: 18px;color:#07bbf1;">
+                <input type="hidden" id="mzh" name="mzh" />
+            </div>
+        </div>
+        <div class="toolbar" style="float:right;margin-right: 5px;">
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="Refresh()"><span class="fa fa-refresh"></span></a>
+            </div>
+            
+                    <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới bệnh án</a>
+
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_addnew()"><i class="fa fa-plus"></i>Tạo mới bệnh án new</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa bệnh án</a>
+            </div>
+            <div class="btn-group" id="dv_btn_commit" style="display:none;">
+                <a class="btn btn-primary" onclick="btn_commit()"><i class="glyphicon glyphicon-saved"></i>Nộp bệnh án</a>
+            </div>
+        </div>
+    </div>
+    <table id="gridList"></table>
+</div>
+
+<script>
+    var currentobj = [];
+    var flag = 0; //初次加载患者树标志
+    var zyh = "";
+    var thistype = 1;
+
+    $(function () {
+        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+            window.initLayout("div_Patlist");
+            window.initLayout("dv_Medlist");
+        });
+
+        $("#allKindPat").children().click(function () {
+            $("#allKindPat").children().removeClass("selectedli")
+
+            $(this).addClass("selectedli")
+        });
+
+        GetPatList();
+        gridList();
+    })
+
+    //患者病历列表树
+    function gridList() {
+        //debugger
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            treeGrid: true,
+            treeGridModel: "adjacency",
+            ExpandColumn: "Blzt",
+            url: "/MedicalRecordManage/Outpatient/GetMedRecordTree",
+            //postData: { mzh: zyh },
+            height: $(window).height() - 96,
+            colModel: [
+                { label: "Quan hệ bệnh án iD", name: "Id", hidden: true, key: true },
+                { label: "Nhóm lớn bệnh án iD", name: "BllxId", hidden: true },
+                { label: "Số khám ngoại trú", name: "mzh", hidden: true },
+                { label: "Bệnh án iD", name: "BlId", hidden: true },
+                { label: "Mã định danh loại bệnh án", name: "bllx", hidden: true },
+                { label: "Cờ kiểm soát quyền đọc/sửa tệp", name: "ctrlLevel", hidden: true },
+                {
+                    label: 'Tên bệnh án', name: 'Name', width: 200, align: 'left',
+                    formatter: function (cellvalue, options, rowobject) {
+                        if (rowobject.parentId == null) {
+                            return cellvalue + '<i id="addCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color:#6ff3ad; font-size: small;"></i>';
+                        }
+                        else
+                            return '<span class="glyphicon glyphicon-file" style="color:#6ff3ad; font-size: 13px;"></span> ' + cellvalue;
+                    }
+                },
+                {
+                    label: "Trạng thái bệnh án", name: "Blzt", width: 80, align: "center",hidden:true, formatter: function (cellvalue) {
+                        if (cellvalue == "1")
+                            return "Đã ký";
+                        else if (cellvalue == "0")
+                            return "Chưa ký";
+                        else
+                            return "";
+                    }
+                },
+                { label: 'Tên bác sĩ', name: 'Docname', width: 80, align: 'center' },
+                { label: "Mã nhân viên bác sĩ", name: "Doccode", hidden: true },
+                { label: 'Ngày bệnh án', name: 'Blrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày cập nhật', name: 'LastModifierCode', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+
+            ],
+            onSelectRow: function (rowid, status) {
+                if (status == true) {                    
+                    var rowData = $("#gridList").jqGrid('getRowData', rowid);
+                    var patData = $("#gridListPat").jqGrid('getGridParam', 'selrow');
+                    if (patData != null && patData != "undefied") {
+                        if (rowData.parent == null || rowData.parent == "") {//禁用条件
+                            btn_addnew();//btn_add();
+                        }
+                    }
+                    else {
+                        $.modalAlert("Vui lòng chọn bệnh nhân1", 'warning');
+                    }
+                }
+            },
+            onRightClickRow: function (rowid, irow, icol, e) {
+                var rowData = $("#gridList").jqGrid('getRowData', rowid);
+                if (rowData.mzh != "") {
+                    var patselRowId = $("#gridListPat").jqGrid('getGridParam', 'selrow');
+                    var patData = $("#gridListPat").jqGrid('getRowData', patselRowId);
+                    if (patData.RecordStu == '@((int)EnumRecordStu.wtj)' || patData.RecordStu == '@((int)EnumRecordStu.th)') {
+                        //2020-3-16 chl 病案首页分离
+                        if ('@ViewBag.IsEnableEditor' == "true" && rowData.bllx == '@((int)EnumBllx.basy)') {
+                            initBasyrightMenu(rowData);
+                        }
+                        else {
+                            initrightMenu(rowData);
+                        }
+                    }
+                    else {
+                        if ('@ViewBag.IsEnableEditor' == "true" && rowData.bllx == '@((int)EnumBllx.basy)') {
+                            initBasyrightMenuJustShow(rowData);
+                        }
+                        else {
+                            initrightMenuJustShow(rowData);
+                        }
+
+                    }
+                }
+            }
+
+
+        });
+    }
+
+    //回车触发查询事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    $("#btn_search").click(function () {
+        $("#gridListPat").jqGrid('setGridParam', {
+            postData: { keyword: $("#txt_keyword").val(), zyh: "" },
+        }).trigger('reloadGrid');
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { mzh: "" },
+        }).trigger('reloadGrid');
+        $('#divPatientBasicInfo').html("");
+        $('#mzh').val("");
+    });
+
+    $("#btn_search1").click(function () {
+        if (isNaN($("#txt_keyword1").val())) {
+
+        }
+        $("#gridListPat").jqGrid('setGridParam', {
+            postData: {
+                keyword: $("#txt_keyword1").val(),
+                zyh: "",
+                cyts: $("#txt_cyts").val(),
+                blzt: $("#sel_RecordStu option:selected").val()},
+        }).trigger('reloadGrid');
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { mzh: "" },
+        }).trigger('reloadGrid');
+        $('#divPatientBasicInfo').html("");
+        $('#mzh').val("");
+    });
+
+    function Refresh() {
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { mzh: $('#mzh').val() },
+        }).trigger('reloadGrid');
+    }
+    //右键菜单
+    function initrightMenu(rowData) {
+        var p = '.gridPanel tr[id=' + rowData.Id + ']';
+        var menu = new BootstrapMenu(p, {
+            //fetchElementData获取元数据
+            fetchElementData: function ($rowElem) {
+                var data = rowData;
+                return data;    //return的目的是给下面的onClick传递参数
+            },
+            actions: [{
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
+                width: 300,
+                onClick: function (obj) {
+                    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&mzh=" + obj.mzh, AppId:"EMR"});
+                }
+            },
+            {
+                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xóa bệnh án',
+                width: 300,
+                onClick: function (obj) {
+
+                    if (obj.Doccode == '@opeator.rygh') {
+                        $.modalConfirm("Xác nhận xóa bệnh án này?", function (flag) {
+                            if (flag) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/MedicalRecordManage/PatInfo/UpdatePatMedRecordRel",
+                                    dataType: "json",
+                                    data: { blId: obj.BlId, blgxId: obj.Id, blName:obj.Name },
+                                    async: false,
+                                    success: function (ajaxresp) {
+                                        if (ajaxresp.state == "error" || ajaxresp.state == "") {
+                                            setTimeout(function () {
+                                                $.modalMsg(ajaxresp.message, 'error');
+                                            }, 1000);
+                                        }
+                                        else {
+                                            setTimeout(function () {
+                                                $.modalMsg('Xóa thành công', 'success');
+                                            }, 1000);
+                                        }
+                                        $("#gridList").jqGrid('setGridParam', {
+                                            postData: { mzh: obj.mzh },
+                                        }).trigger('reloadGrid');
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                    else {
+                        $.modalMsg("Rất tiếc, Không đủ quyền", 'error');
+                    }
+
+                }
+            }, {
+                name: '<span class="glyphicon glyphicon-ok-sign" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Mở khóa bệnh án',
+                width: 300,
+                onClick: function (obj) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/MedicalRecord/LockRecord",
+                        dataType: "json",
+                        data: { blid: obj.BlId, bllx: obj.bllx, isToLock: 2 },
+                        async: false,
+                        success: function (ajaxresp) {
+                            $.modalMsg(ajaxresp.message, ajaxresp.state);
+                        }
+                    });
+
+
+                }
+            }, {
+                name: '<span class="glyphicon glyphicon-send" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Lưu thành mẫu cá nhân',
+                width: 300,
+                onClick: function (obj) {
+                    $.modalOpen({
+                        id: "Form",
+                        title: "Tạo mới mẫu bệnh án",
+                        url: "/MedicalRecordManage/MedRecordTemplate/Form?blId=" + obj.BlId + "&bllx=" + obj.bllx + "&mbly=0",
+                        width: "700px",
+                        height: "600px",
+                        btn: null,
+                        callBack: function (iframeId, a) {
+                            top.frames[iframeId].submitForm();
+                        }
+                    });
+                }
+            }
+           ]
+        });
+    }
+
+    //右键菜单展示版
+    function initrightMenuJustShow(rowData) {
+        var p = '.gridPanel tr[id=' + rowData.Id + ']';
+        var menu = new BootstrapMenu(p, {
+            //fetchElementData获取元数据
+            fetchElementData: function ($rowElem) {
+                var data = rowData;
+                return data;    //return的目的是给下面的onClick传递参数
+            },
+            actions: [{
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
+                width: 300,
+                onClick: function (obj) {
+                    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&mzh=" + obj.mzh, AppId:"EMR"});
+                }
+            }
+           ]
+        });
+    }
+
+    
+
+    function init(type) {
+        //在院患者不提交病案
+        //if (type == 2) {
+        //    $("#dv_btn_commit").show();
+        //    $("#dv_bl_tool").show();
+        //    $("#dv_tool").hide();
+        //}
+        //else {
+        //    $("#dv_btn_commit").hide();
+        //    $("#dv_bl_tool").hide();
+        //    $("#dv_tool").show();
+        //}
+        $("#gridListPat").jqGrid('setGridParam', {
+            postData: { mjzbz: type },
+        }).trigger('reloadGrid');
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { mzh: "" },
+        }).trigger('reloadGrid');
+        $('#divPatientBasicInfo').html("");
+        $('#mzh').val("");
+    }
+
+
+    //患者列表
+    function GetPatList() {
+        var $gridListPat = $("#gridListPat");
+        $gridListPat.dataGrid({
+            url: "/MedicalRecordManage/Outpatient/PatList",
+            height: $(window).height() - 150,
+            colModel: [
+                { label: 'jzId', name: 'jzId', hidden: true, key: true },
+                { label: 'Loại bệnh nhân', name: 'brxzmc', width: 60, align: 'left' },                
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+                {
+                    label: 'Giới tính', name: 'xb', width: 30, align: 'center'
+                },
+                { label: 'Tuổi', name: 'nlshow', width: 50, align: 'center' },
+                //{ label: '出生年月', name: 'csny', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Ngày đăng ký khám', name: 'ghsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
+                { label: 'Khoa', name: 'ghksmc', width: 100, align: 'left' },
+                { label: 'Bác sĩ', name: 'ghys', width: 60, align: 'left' },
+                {
+                    label: 'Trạng thái khám bệnh', name: 'jzzt', width: 50, align: 'left', formatter: function (val, option, row) {
+                        return $.enum.getDescByValue("EnumJzzt", val);
+                    }
+                },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 50, align: 'left' },
+                { label: 'RecordStu', name: 'RecordStu', hidden: true },
+            ],
+            pager: "#gridPagerPat",
+            sortname: 'mzh desc',
+            viewrecords: true,
+            onSelectRow: function (row) {
+                //debugger
+                var rowData = $('#gridListPat').jqGrid('getRowData', row);
+                $("#gridList").jqGrid('setGridParam', {
+                    postData: { mzh: rowData.mzh }
+                }).trigger('reloadGrid');
+
+
+                
+                if (rowData.zybz == '@((int)EnumZYBZ.Djz)' || rowData.zybz == '@((int)EnumZYBZ.Ycy)') {
+                    if (rowData.RecordStu != '@((int)EnumRecordStu.ytj)' && $("#dv_btn_commit").is(":hidden")) {
+                        $("#dv_btn_commit").show();
+                    }
+                }
+                else {
+                    if (!$("#dv_btn_commit").is(":hidden")) {
+                        $("#dv_btn_commit").hide();
+                    }
+
+
+                $('#divPatientBasicInfo').html("Thông tin bệnh nhân:"
+                    + rowData.xm
+                    + '&nbsp;/&nbsp;' + $.getGender(rowData.xb)
+                    //+ '&nbsp;/&nbsp;' + window.currentobj.age + "岁"
+                    //+ '&nbsp;/&nbsp;' + window.currentobj.brxzmc
+                    + '&nbsp;/&nbsp;' + rowData.mzh
+                    //+ '&nbsp;/&nbsp;' + rowData.RecordStusm
+                    //+ '<span id="sp_RecordStu" style="display:none;">' + rowData.RecordStu+'</span>'
+                );
+                $('#mzh').val(rowData.mzh);
+
+            }
+        });
+    }
+
+    /****************************************************************************************
+     Thao tác bệnh án
+     ****************************************************************************************/
+    
+    //2021-1-8
+    function btn_addnew() {
+        var blRowIds = $("#gridList").jqGrid('getGridParam', 'selrow');
+        var MRData = $("#gridList").jqGrid('getRowData', blRowIds);
+        var bllx = MRData.bllx;
+        var patselRowId = $("#gridListPat").jqGrid('getGridParam', 'selrow');
+        var patData = $("#gridListPat").jqGrid('getRowData', patselRowId);
+
+        if (patData.mzh != undefined && patData.mzh != null) {
+            if (patData.RecordStu == '@((int)EnumRecordStu.wtj)'||patData.RecordStu == '@((int)EnumRecordStu.th)') {
+                $.modalOpen({
+                    id: "Form",
+                    title: "Thêm ngoại trú bệnh án",
+                    url: "/MedicalRecordManage/PatInfo/MedRecordTreeEditV2?keyValue=" + blRowIds + "&bllx=" + bllx + "&mzh=" + patData.mzh,
+                    width: "900px",
+                    height: "750px",
+                    callBack: function (iframeId) {
+                        $.currentWindow(iframeId).AcceptClick(function () {
+                            $("#gridList").resetSelection();
+                            $("#gridList").trigger("reloadGrid");
+                        });
+                    }
+                });
+            }
+            else {
+                $.modalAlert("Bệnh án bệnh nhân đã nộp cho phòng hồ sơ, Không thể chỉnh sửa.", 'warning');
+            }
+        }
+        else {
+            $.modalAlert("Vui lòng chọn bệnh nhân", 'warning');
+        }
+
+    }
+    function btn_edit() {
+        //debugger
+        var patselRowId = $("#gridListPat").jqGrid('getGridParam', 'selrow');
+        var patData = $("#gridListPat").jqGrid('getRowData', patselRowId);
+        if (patData.mzh != undefined && patData.mzh != null) {
+            if (patData.RecordStu == '@((int)EnumRecordStu.wtj)'||patData.RecordStu == '@((int)EnumRecordStu.th)') {
+                var keyValue = $("#gridList").jqGridRowValue().Id;
+                var blData = $("#gridList").jqGrid('getRowData', keyValue);
+                if (!!!keyValue) {
+                    $.modalAlert("Vui lòng chọn văn bản bệnh án", 'warning');
+                    return;
+                }
+                if (!!!blData.BlId) {
+                    // $.modalAlert("不可编辑", 'warning');
+                    return;
+                }
+
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&mzh=" + blData.mzh, AppId: "EMR" });
+            }
+            else {
+                $.modalAlert("Bệnh án bệnh nhân đã nộp cho phòng hồ sơ, Không thể chỉnh sửa.", 'warning');
+            }
+        }
+        else {
+            $.modalAlert("Vui lòng xác nhận thông tin bệnh nhân", 'warning');
+        }
+    }   
+
+</script>

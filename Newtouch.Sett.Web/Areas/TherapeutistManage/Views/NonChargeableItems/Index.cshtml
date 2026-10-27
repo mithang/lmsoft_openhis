@@ -1,0 +1,194 @@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<script>
+    $(function () {
+        gridList();
+        $('.menuItem').on('click', window.parent.$.Newtouchtab.addTab);
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 185,
+            datatype: "local",
+            unwritten: false,
+            colModel: [
+                { label: "Khóa chính", name: "sfxmbh", hidden: true, key: true },
+                //{ label: "代码", name: "sfxm", width: 80, align: 'left' },
+                { label: 'Khoản thu phí', name: 'sfxmmc', width: 100, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 80, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 80, align: 'left' },
+                { label: 'nhóm lớn', name: 'dlmc', width: 100, align: 'left' },
+                { label: 'Phân loại', name: 'flmc', width: 100, align: 'left' },
+                { label: 'Tỷ lệ tự chi trả', name: 'zfbl', width: 50, align: 'left' },
+                { label: 'Mã BHYT', name: 'ybdm', width: 100, align: 'left' },
+                { label: 'Mã giá', name: 'wjdm', width: 100, align: 'left' },
+                 {
+                     label: 'phạm vi', name: 'mzzybz', width: 80, align: 'left',
+                     formatter: function (cellvalue) {
+                         if (cellvalue == "0") {
+                             return "dùng chung";
+                         } else if (cellvalue == "1") {
+                             return "Ngoại trú";
+                         } else if (cellvalue == "2") {
+                             return "Nhập viện";
+                         } else {
+                             return "";
+                         }
+                     }
+                 }, {
+                     label: 'Thực hiện', name: 'ssbz', width: 50, align: 'left',
+                     formatter: function (cellvalue) {
+                         if (cellvalue == 0) {
+                             return "Có"
+                         } else {
+                             return "Không"
+                         }
+                     }
+                 },
+    {
+        label: 'Đặc biệt', name: 'tsbz', width: 50, align: 'left',
+        formatter: function (cellvalue) {
+            if (cellvalue == 0) {
+                return "Có"
+            } else {
+                return "Không"
+            }
+        }
+    },
+    {
+        label: 'Cảnh báo', name: 'jsbz', width: 50, align: 'left',
+        formatter: function (cellvalue) {
+            if (cellvalue == 0) {
+                return "Có"
+            } else {
+                return "Không"
+            }
+        }
+    },
+    { label: 'Khoản thu phí', name: 'sfbz', width: 50, align: 'left' },
+    {
+        label: 'Hiệu lực', name: 'zt', width: 50, align: 'left',
+        formatter: function (cellvalue) {
+            if (cellvalue == 0) {
+                return "không hợp lệ"
+            } else {
+                return "Hiệu lực"
+            }
+        }
+    }],
+            pager: "#gridPager",
+            sortname: 'desc',
+            rowNum: '10',
+            viewrecords: true
+        });
+
+        var mydata = [
+            { id: "1", sfxm: "1", sfxmmc: "Xe lăn", py: "LunYi", dw: "chiếc", dj: "￥11700", dlmc: "Khoản mục không điều trị", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000001", mzzybz: "Ngoại trú", ssbz: "1", sfbz: 1 },
+            { id: "2", sfxm: "2", sfxmmc: "Khẩu trang", py: "KouZhao", dw: "túi", dj: "￥15", dlmc: "Khoản mục không điều trị", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000002", mzzybz: "dùng chung", ssbz: "1", sfbz: 1 },
+            { id: "3", sfxm: "3", sfxmmc: "Ghế massage", py: "AnMoYi", dw: "chiếc", dj: "￥5400", dlmc: "Khoản mục không điều trị", flmc: "Dụng cụ", zfbl: "0", ybdm: "", wjdm: "10000003", mzzybz: "Nhập viện", ssbz: "1", sfbz: 1 }
+        ];
+        for (var i = 0; i <= mydata.length; i++) {
+            $gridList.jqGrid('addRowData', i + 1, mydata[i]);
+        }
+    }
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Bảo trì khoản thu phí",
+            url: "/ItemBaseInfo/Add",
+            width: "800px",
+            height: "520px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa thông tin",
+            url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "520px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        $.deleteForm({
+            url: "",//"/SystemManage/SysChargeItem/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().sfxmbh },
+            success: function () {
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_details() {
+        var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
+        $.modalOpen({
+            id: "Details",
+            title: "Xem tổ chức",
+            url: "",//"/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "560px",
+            btn: null,
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: "",//"/SystemManage/SysChargeItem/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+                $.loading(false);
+            }
+        })
+    }
+</script>
+<form id="form1">
+    <div class="panel panel-default" style="margin-top:5px;">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Giờ bắt đầu</td>
+                    <td class="formValue">
+                        <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                    </td>
+                    <td class="formTitle">Giờ kết thúc</td>
+                    <td class="formValue">
+                        <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                    </td>
+                    <td class="formTitle">Từ khóa</td>
+                    <td class="formValue">
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Tên" />
+                    </td>
+                    <td colspan="2">
+                        <div style="margin-left:40px">
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                            <a class="menuItem btn btn-primary" onclick="btn_add()">Thêm mục mới</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+

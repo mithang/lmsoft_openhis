@@ -1,0 +1,132 @@
+@{
+    ViewBag.Title = "Danh sách hẹn đăng ký khám";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var from = (ViewBag.from as string) ?? "";
+}
+<style>
+    .table-responsive {
+        border: 0;
+    }
+
+    .ui-jqgrid .ui-jqgrid-pager .ui-pager-table {
+        width: 90%;
+    }
+</style>
+
+<!--Thông tin bệnh nhân Bao gồm số hồ sơ bệnh án  Họ tên -->
+<form id="formPatSer" style="margin:2px;margin-top:10px;">
+    <div class="gridPanel">
+        <table id="patGridList" rel="formPatSer"></table>
+        <div id="gridPager" style="padding-right:20%"></div>
+    </div>
+</form>
+<script>
+    //cái trước đówindowđối tượng
+    var prevWindow;
+    if ('@(from)' !== '') {
+        prevWindow = top.top.frames['@(from)'];
+    }
+    else {
+        prevWindow = $.currentWindow();
+    }
+
+    $(function () {
+
+        var obj = new Object;
+        obj.mzlx = $.request("mzlx");
+        obj.patid = $.request("patid");
+        //tổ hợp thu phí
+        obj.isfeegroup = $.request("isfeegroup");
+        var searInfo = new PatSearchInfo();
+        //tảidữ liệu
+        searInfo.init(obj);
+
+    });
+    var PatSearchInfo = (function () {
+        //tảidanh sách
+        var loadGrid = function (data) {
+            var $gridList = $("#patGridList");
+            $gridList.dataGrid({
+                height: $(window).height() - 150,
+                autowidth: false,
+                width: $("#formPatSer").width() - 10,
+                url: "@Url.Action("GetIsMzghBook")",
+                postData: { mzlx: data.mzlx, patid: data.patid, isfeegroup: data.isfeegroup },
+                caption: 'Khoa hẹn đăng ký khám',
+                colModel: [
+                    { label: 'ghpbId', name: 'ScheduId', hidden: true, key: true },
+                    { label: 'BookId', name: 'BookId', hidden: true },
+                    { label: 'zlxm', name: 'zlxm', width: 100, align: 'left',hidden:true },
+                    { label: 'ghlx', name: 'ghlx', width: 120, align: 'left', hidden: true },
+                    { label: 'QueueNo', name: 'QueueNo', width: 120, align: 'left', hidden: true },
+                    { label: 'OutDate', name: 'OutDate', width: 120, align: 'left', hidden: true },
+                    { label: 'ysgh', name: 'ysgh', width: 120, align: 'left', hidden: true },
+                    { label: 'ysxm', name: 'ysxm', width: 120, align: 'left', hidden: true },
+                    { label: 'Regtype', name: 'Regtype', width: 120, align: 'left', hidden: true },
+                    { label: 'Title', name: 'Title', width: 120, align: 'left', hidden: true },
+                    { label: 'AppId', name: 'AppId', width: 120, align: 'left', hidden: true },
+                    { label: 'ks', name: 'ks', hidden: true, width: 120, align: 'left', hidden: true },
+                    { label: 'Khoa đăng ký khám', name: 'ksmc', width: 120, align: 'left' },
+                    { label: 'Khoản mục đăng ký khám', name: 'sfxmmc', width: 120, align: 'left' },
+                    { label: 'Khoản mục chẩn trị', name: 'zlxmmc', width: 120, align: 'left' },
+                    { label: 'Khoảng thời gian', name: 'PeriodDesc', width: 100, align: 'left' }
+                ],
+                pager: "#gridPager",
+                sortname: 'OutDate desc',
+                viewrecords: false
+            });
+        };
+
+        var myPatSearchInfo = function (data) {
+
+        }
+
+        //tảisự kiện
+        myPatSearchInfo.prototype.init = function (data) {
+            loadGrid(data);
+        };
+        return myPatSearchInfo;
+    }());
+
+    //jqGrid nhấn đúpđã chọndòng nào đó
+    function btn_edit() {
+        PatSearchConfirm();
+    }
+
+    function PatDbGrid() {
+        var $gridList = $("#patGridList");
+        var seleRowid = jQuery("#patGridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        var obj = new Object();
+        obj.ScheduId = $gridList.jqGridRowValue().ScheduId;
+        obj.zlxm = $gridList.jqGridRowValue().zlxm;
+        obj.ghlx = $gridList.jqGridRowValue().ghlx;
+        obj.ks = $gridList.jqGridRowValue().ks;
+        obj.ksmc = $gridList.jqGridRowValue().ksmc;
+        obj.sfxmmc = $gridList.jqGridRowValue().sfxmmc;
+        obj.zlxmmc = $gridList.jqGridRowValue().zlxmmc;
+        obj.OutDate = $gridList.jqGridRowValue().OutDate;
+        obj.QueueNo = $gridList.jqGridRowValue().QueueNo;
+        obj.ysgh = $gridList.jqGridRowValue().ysgh;
+        obj.ysxm = $gridList.jqGridRowValue().ysxm;
+        obj.Regtype = $gridList.jqGridRowValue().Regtype;
+        obj.Title = $gridList.jqGridRowValue().Title;
+        obj.ghly = $gridList.jqGridRowValue().AppId;
+        obj.BookId = $gridList.jqGridRowValue().BookId;
+        prevWindow.GetQueryghyy(obj,null);
+        //đóng cửa sổ
+        ReceiptCancle();
+    }
+    //xác nhận trang chínhgọi
+    function PatSearchConfirm() {
+        PatDbGrid();
+    }
+
+    //hủy
+    function ReceiptCancle() {
+        $.modalClose();
+    }
+</script>

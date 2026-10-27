@@ -1,0 +1,51 @@
+
+@{
+    ViewBag.Title = "PrescriptionDetailFrom";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div class="gridPanel" style="margin-top:10px;">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    var cfh = $.request("cfh");
+    var zxrq = $.request("zxrq");
+    var yzxz = $.request("yzxz");
+    $(function () {
+        gridInit();
+    });
+    function gridInit() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { yzh: cfh, zxrq: zxrq ,yzxz:yzxz},
+            url: '/HospitalizationPharmacy/GetZycfGridDetailJson',
+            height: $(window).height() - 100,
+            colModel: [
+                { label: 'Số nội trú', name: 'zyh', align: 'center', width: 60 },
+                { label: 'Họ tên', name: 'hzxm', align: 'center', width: 60 },
+                { label: 'Tính chất đơn thuốc', name: 'yzxzmc', align: 'left', width: 50 },
+                { label: 'Khu bệnh', name: 'bqmc', align: 'center', width: 90 },
+                { label: 'Mã khoản mục', name: 'xmdm', align: 'center', width: 70 },
+                { label: 'Tên hạng mục', name: 'xmmc', align: 'center', width: 120 },
+                { label: 'Đơn vị', name: 'dw', align: 'center', width: 60 },
+                 { label: 'Số lượng', name: 'sl', align: 'center', width: 50 },
+                {
+                    label: 'Đơn giá', name: 'dj', align: 'center', width: 50, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+                },
+                {
+                    label: 'Chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+                },
+                { label: 'Liều dùng', name: 'ypjl', align: 'center', width: 60 },
+                { label: 'Quy cách', name: 'ypgg', align: 'center', width: 60 },
+                
+            ],
+            pager: "#gridPager",
+            sortname: 'kssj',
+            viewrecords: true,
+        });
+    }
+</script>
+

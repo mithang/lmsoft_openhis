@@ -1,0 +1,248 @@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_xy()"><i class="fa fa-pencil-square-o"></i>Hạn chế dùng</a>
+        </div>
+    </div>
+    <div class="search">
+        <table >
+            <tr>
+                <td class="formTitle">Trạng thái hiệu lực:</td>
+                <td class="input-group" id="zttd" style="margin-top:13px;">
+                    <select id="zt" name="zt" class="form-control">
+                        <option value="" selected="selected">Tất cả</option>
+                        <option value="0">Vô hiệu</option>
+                        <option value="1">Hiệu lực</option>
+                    </select>
+                </td>
+                <td></td>
+                <td class="formTitle" style="padding-left:20px;">Phân loại thuốc:</td>
+                <td class="input-group">
+                    <input type="text" id="ypflMc" name="ypflMc" class="form-control" />
+                    <input type="text" style="display:none;" id="ypflCode" name="ypflCode" class="form-control" />
+                </td>
+                <td>
+                    <div class="input-group" style="padding-left:30px;margin-bottom:5px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã đầu chữ" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script>
+    var valkeyword = "";
+    $(function () {
+        initControl();
+        gridList();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SysMedicine/GetGridJson",
+            height: $(window).height() - 130,
+            postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val(), zt: $("#zt").val(), ypflCode: $("#ypflMc").val() == "" ? "" : $("#ypflCode").val()},
+            colModel: [
+                { label: "Khóa chính", name: "ypId", hidden: true, key: true },
+                {
+                    label: 'Đồng bộ', name: 'isSynch', width: 40, hidden: true, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue === '0') {
+                            var $row = JSON.stringify(rowObject).replace(/\"/g, "'");
+                            return '<a class="btn btn-default btn-xs" onclick="YibaoUpload(' + $row + ')"><span class="glyphicon glyphicon-refresh"></span></a>';
+                        }
+                        else if (cellvalue === '1') {
+                            return '<a class="btn btn-default btn-xs disabled"><span class="glyphicon glyphicon-refresh"></span></a>';
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+                },
+                { label: "Mã thuốc", name: "ypCode", width: 100, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+                { label: "Mã BHYT", name: "ybdm", width: 100, align: 'left' },
+                { label: "Tên BHYT quốc gia", name: "gjybmc", width: 100, align: 'left' },
+                { label: "Mã BHYT quốc gia", name: "gjybdm", width: 100, align: 'left' },
+                { label: "Mã BHYT nông thôn mới", name: "xnhybdm", width: 100, align: 'left', hidden: true },
+                { label: 'Quy cách thuốc', name: 'ypgg', width: 70, align: 'center' },
+                { label: 'Tên thương mại', name: 'spm', width: 100, align: 'left', hidden: true },
+                { label: 'Mã đầu chữ', name: 'py', width: 100, align: 'left', hidden: true },
+                {
+                    label: "Tính chất tự trả", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == 0 ? "Được thanh toán" : (cellVallue == 1 ? "Tự trả" : (cellVallue == 2 ? "Tự trả theo loại" : (cellVallue == 3 ? "Tự túc hoàn toàn" : (cellVallue == 4 ? "Loại A" : (cellVallue == 5 ? "Loại B" : (cellVallue == 6 ? "Loại C" : ""))))));
+                    }
+                },
+                {
+                    label: "Giá bán lẻ", name: "lsj", width: 60, align: 'left', formatter: "number"
+                    , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
+                },
+                { label: 'Đơn vị đóng gói', name: 'bzdw', width: 80, align: 'left' },
+                { label: 'Số lượng lẻ ngoại trú', name: 'mzcls', width: 70, align: 'left' },
+                { label: 'Đơn vị lẻ ngoại trú', name: 'mzcldw', width: 70, align: 'left' },
+                { label: 'Số lượng lẻ nội trú', name: 'zycls', width: 70, align: 'left' },
+                { label: 'Đơn vị lẻ nội trú', name: 'zycldw', width: 80, align: 'left' },
+                { label: 'Đơn vị định giá', name: 'djdw', width: 50, align: 'left' },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 50, align: 'left' },
+                { label: 'Nhóm lớn', name: 'sfdlMc', width: 50, align: 'left' },
+                { label: 'Tên nhà sản xuất', name: 'ycmc', width: 80, align: 'left' },
+                { label: 'Mã đóng gói thuốc', name: 'ypbzdm', width: 80, align: 'left' },
+                {
+                    label: 'Cờ ngoại trú/nội trú', name: 'mzzybz', width: 80, align: 'left',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == "0") {
+                            return "Chung";
+                        } else if (cellvalue == "1") {
+                            return "Ngoại trú";
+                        } else if (cellvalue == "2") {
+                            return "Nội trú";
+                        } else {
+                            return "Khác";
+                        }
+                    }
+                },
+                {
+                    label: 'Giá trần BHYT', name: 'cxjje', width: 80, align: 'left',
+                    formatter: function (cxjje) {
+                        if (cxjje == 0 || cxjje == null) {
+                            return "0.00";
+                        } else {
+                            return cxjje;
+                        }
+                    }
+                },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa cuối', name: 'LastModifierCode', width: 60, align: 'center' },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thứ tự', name: 'px', width: 40, align: 'left' }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val(), zt: $("#zt").val(), ypflCode: $("#ypflMc").val() == "" ? "" : $("#ypflCode").val() },
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    });
+
+    function initControl() {
+        //药品分类
+        $('#ypflMc').newtouchFloatingSelector({
+            width: 300,
+            height: 300,
+            caption: "Phân loại thuốc",
+            url: '/SysMedicineClassification/GetListSelectJson',
+            clickautotrigger: true,
+            ajaxparameters: function () {
+                return "keyword=" + $.trim($('#ypflMc').val());
+            },
+            itemdbclickhandler: function ($thistr) {
+                $('#ypflCode').val($thistr.attr('data-ypflCode'));
+                $('#ypflMc').val($thistr.attr('data-ypflmc'));
+            },
+            colModel: [{ label: 'Mã', name: 'ypflCode', hidden: true },
+            { label: 'Tên', name: 'ypflmc', widthratio: 50 },
+            { label: 'Mã đầu chữ', name: 'py', widthratio: 50 }
+            ]
+        });
+    }
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm thuốc hệ thống",
+            url: "/SysMedicine/SysMedicineAdd?orgId=" + $('#OrganizeId').val(),
+            width: "1100px",
+            height: "800px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().ypId;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "SysMedicineAdd",
+            title: "Sửa thuốc hệ thống",
+            url: "/SysMedicine/SysMedicineAdd?keyValue=" + keyValue+"&orgId=" + $('#OrganizeId').val(),
+            width: "1100px",
+            height: "800px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_xy() {
+        debugger;
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var xmdm = $("#gridList").jqGridRowValue().ypCode;
+        var xmmc = encodeURIComponent($("#gridList").jqGridRowValue().ypmc);
+        xmmc = xmmc.replace(/%/g, '%25');
+        var title = "[" + $("#gridList").jqGridRowValue().ypmc + "]" + " Giới hạn sử dụng";
+        $.modalOpen({
+            id: "Form",
+            title: title,
+            url: "/SysChargeItem/YbbxblForm?xmdm=" + xmdm + "&xmmc=" + xmmc,
+            width: "600px",
+            height: "550px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+
+            }
+        });
+    }
+
+    //药品同步医保
+    function YibaoUpload(row) {
+        $.najax({
+            url: "/SysMedicine/YibaoUploadApi",
+            type: "POST",
+            data: { ypId: row.ypId, flag: row.zt },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $.modalAlert(data.message, data.state);
+                $('#btn_search').trigger('click');
+            }
+        });
+    }
+</script>

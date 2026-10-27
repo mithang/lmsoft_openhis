@@ -1,0 +1,203 @@
+@using Newtouch.Infrastructure
+@{
+	ViewBag.Title = "Drug_Inquiry";//Nhập việnPhátThuốc查询
+	Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+<style>
+	#btn_search {
+		height: 45px;
+		width: 45px;
+		background-color: #fff;
+		color: #00a9ea;
+		font-weight: bolder;
+	}
+</style>
+<input hidden id="OrganizeId" value="@ViewBag.OrganizeId">
+<div class="rows">
+	<div class="panel panel-default">
+		<table class="form">
+			<tr>
+				<th class="formTitle"><span class="required">*</span>Thời gian bắt đầu:</th>
+				<td class="formValue">
+					<input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+				</td>
+				<th class="formTitle"><span class="required">*</span>Kết thúcThời gian:</th>
+				<td class="formValue">
+					<input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd 23:59")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd 23:59:59'})" />
+				</td>
+				<th class="formTitle">Khu bệnh:</th>
+				<td class="formValue formDdlSelectorTd">
+					<select id="bqcode" class="form-control">
+						<option value="">Tất cả</option>
+					</select>
+				</td>
+				<th class="formTitle">Tên bệnh nhân:</th>
+				<td class="formValue">
+					<input id="patientName" type="text" class="form-control" placeholder="Họ tên" style="width:50%" />
+				</td>
+			</tr>
+			<tr>
+				<th class="formTitle">Thuốc:</th>
+				<td class="formValue">
+					<input id="ypmc" type="text" class="form-control" placeholder="Thuốc" />
+				</td>
+				<th class="formTitle">Số giường bệnh:</th>
+				<td class="formValue">
+					<input id="cw" type="text" class="form-control" placeholder="Số giường bệnh" />
+				</td>
+				<th class="formTitle">Số nhập viện:</th>
+				<td class="formValue">
+					<input id="zyh" type="text" class="form-control" placeholder="Số nhập viện" />
+				</td>
+				<td class="formTitle">
+					<input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" style="width:55px;height:0%" />
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="rows">
+	<table id="resultGridList"></table>
+	<div id="gridPager"></div>
+</div>
+<script type="text/javascript">
+	var last = "";//上一个组号
+	var $gridBRXXDrugsList = $("#resultGridList");
+	$(function () {
+		$("#bqcode").bindSelect({ //病区信息集合
+			url: "/SystemManage/BaseData/GetAuthedWardSelectJson",
+		});
+		dispenseMedicinGridList();
+	});
+
+	//回车事件绑定
+	$(document).keyup(function (event) {
+		if (event.keyCode === 13) {
+			$("#btn_search").trigger("click");
+		}
+	});
+
+
+	var checkArray = [];
+	var pageNum = 1;
+
+	//用户发药详细信息
+	function dispenseMedicinGridList() {
+		$gridBRXXDrugsList.dataGrid({
+			multiselect: false,
+			url: '/OrderAudit/GetOrdersDrugsGridJson',
+			height: $(window).height() - 160,
+			postData: {
+				bqCode: $("#bqcode").val(),
+				xm: $("#patientName").val(),
+				ypmc: $("#ypmc").val(),
+				cw: $("#cw").val(),
+				kssj: $("#kssj").val(),
+				jssj: $("#jssj").val(),
+				zyh: $("#zyh").val(),
+			},
+			colModel: [
+				{ label: 'Id', name: 'Id', align: 'left', hidden: true },
+				{ label: 'Họ tên', name: 'patientName', width: 80, align: 'left' },
+				{ label: 'Thuốc', name: 'ypmc', width: 100, align: 'left' },
+				{ label: 'Số nhập viện', name: 'zyh', align: 'left', width: 50 },
+				{ label: 'Số giường bệnh', name: 'cw', width: 60, align: 'center' },
+				{ label: 'Số lượng phát/trả', name: 'slStr', width: 30, align: 'right' },
+				{ label: 'Dạng bào chế', name: 'jxmc', width: 60, align: 'center' },
+				{ label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
+				{ label: 'Tần suất', name: 'pcmc', width: 50, align: 'center' },
+				{ label: 'Số nhóm', name: 'zh', width: 50, align: 'center' },
+				{ label: 'Liều dùng', name: 'ylStr', width: 60, align: 'center' },
+				{ label: 'Nội dung y lệnh', name: 'yznr', width: 100, align: 'center' },
+				{ label: 'Tính chất y lệnh', name: 'yzxzmc', width: 60, align: 'center' },
+				{ label: 'Nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+				{ label: 'Cách dùng', name: 'zlff', width: 50, align: 'center' },
+				{ label: 'Nhân viên thao tác', name: 'CreatorCode', width: 70, align: 'center' },
+				{ label: 'Thao tácThời gian', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+				{ label: "Y lệnhID", name: 'zxId', hidden: true },
+				{ label: 'Đơn giá', name: 'djStr', hidden: true },
+				{ label: 'Số tiền', name: 'je', hidden: true },
+				{ label: 'Sử dụngSố lượng', name: 'yl', hidden: true },
+				{ label: 'Sử dụngĐơn vị', name: 'yldw', hidden: true },
+				{ label: "ThuốcMã", name: 'ypCode', hidden: true },
+				{ label: "yzId", name: 'yzId', hidden: true }
+			],
+			caption: "",
+			pager: '#gridPager',
+			sortname: 'CreateTime',
+			viewrecords: true,
+			gridComplete: function () {
+				var returnval = "";
+				var ids = $("#resultGridList").jqGrid('getDataIDs');
+				for (i = 0; i < ids.length; i++) {
+					debugger
+					var rowData = $("#resultGridList").jqGrid('getRowData', ids[i]);
+					//组号生成特殊符号
+					if (rowData.zh == "") {
+						continue;
+					}
+					if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
+						if (last == rowData.zh) {
+							returnval = "Ở giữa";
+							if (i == (ids.length - 1)) {//最后一个
+								returnval = "Kết thúc";
+								last = "";
+							}
+							var rowDatas = $("#resultGridList").jqGrid('getRowData', ids[i + 1]);
+							if (rowData.zh != rowDatas.zh || rowDatas.zh == "") {
+								returnval = "Kết thúc";
+								last = "";
+							}
+						}
+						else if (last !== rowData.zh) {
+							//if (last !== "") {
+							//	setlastrowzuhao(ids[i]);
+							//}
+							returnval = "Bắt đầu";
+						}
+						$("#resultGridList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单格样式 值 或属性
+
+					}
+					last = rowData.zh;
+				}
+			},
+		});
+
+		function setlastrowzuhao(rowid) {
+			var lastrow = parseInt(rowid) - 1;
+			$("#resultGridList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
+		}
+
+		$(".ui-pg-selbox").change(function () {
+			//要触发的事件
+			checkArray.splice(0);
+		});
+
+		//查询
+		$("#btn_search").click(function () {
+			if ($("#Kssj").val() === "") {
+				$.modalMsg("Thời gian bắt đầukhông được để trống", "warning", 2000);
+				return false;
+			}
+			if ($("#Jssj").val() === "") {
+				$.modalMsg("Kết thúcThời giankhông được để trống", "warning", 2000);
+				return false;
+			}
+			$gridBRXXDrugsList.jqGrid('setGridParam', {
+				postData: {
+					bqCode: $("#bqcode").val(),
+					xm: $("#patientName").val(),
+					ypmc: $("#ypmc").val(),
+					cw: $("#cw").val(),
+					kssj: $("#kssj").val(),
+					jssj: $("#jssj").val(),
+					zyh: $("#zyh").val(),
+				}
+			}).trigger('reloadGrid');
+
+			checkArray = [];
+		});
+	}
+
+</script>

@@ -1,0 +1,55 @@
+using System;
+using SqlSugar;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Newtouch.Domain.Entity
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    [SugarTable("V_S_xt_sfxmjsnr")]
+    public class SysChargeItemWarningContentVEntity
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int sfxjsnrId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string sfxmCode { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string OrganizeId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string mzjsnr { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string zyjsnr { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte mzjsjb { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte zyjsjb { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string zt { get; set; }
+
+    }
+}

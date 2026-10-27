@@ -1,0 +1,107 @@
+
+@{
+    ViewBag.Title = "PriceAdjustmentHistory";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Từ khóa</th>
+                    <td class="formValue">
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Mã thuốc Pinyin Tên" />
+                    </td>
+                    <th class="formTitle">Thời gian thực hiện</th>
+                    <td class="formValue">
+                        <input id="txtStartTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">đến</th>
+                    <td class="formValue">
+                        <input id="txtEndTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <td class="formValue">
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px;margin-left:30%;" />
+                    </td>
+                </tr>
+            </table>
+        </div>       
+    </div>
+    <div class="gridPanel" style="margin-top:10px;">
+        <table id="gridYPInfoList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        gridYPInfoList();
+    });
+
+    function gridYPInfoList() {
+        var $gridYPInfoList = $("#gridYPInfoList");
+        $gridYPInfoList.dataGrid({
+            url: "/DrugStorage/SelectMedicineAdjustPriceHistoryInfoList",
+            height: $(window).height() - document.getElementById('gridYPInfoList').offsetTop - 85,
+            colModel: [
+                { label: 'Mã thuốc', name: 'ypcode', width: 100, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'Quy cách thuốc', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'Đơn vị định giá', name: 'djdw', width: 100, align: 'left' },
+                { label: 'Giá bán buôn mới', name: 'pfj', width: 100, align: 'left' },
+                { label: 'Giá lẻ mới', name: 'lsj', width: 100, align: 'left' },
+                { label: 'Giá bán buôn gốc', name: 'ypfj', width: 100, align: 'left' },
+                { label: 'Giá lẻ gốc', name: 'ylsj', width: 100, align: 'left' },
+                { label: 'Thuộc tính thuốc', name: 'tssxmc', width: 100, align: 'left' },
+                { label: 'Liều dùng', name: 'jl', width: 100, align: 'left' },
+                { label: 'Đơn vị liều', name: 'jldw', width: 100, align: 'left' },
+                { label: 'Số lượng đóng gói kho thuốc', name: 'bzs', width: 100, align: 'left' },
+                { label: 'Đơn vị đóng gói kho thuốc', name: 'bzdw', width: 100, align: 'left' },
+                { label: 'Số lẻ ngoại trú', name: 'mzcls', width: 100, align: 'left' },
+                { label: 'Đơn vị lẻ ngoại trú', name: 'mzcldw', width: 100, align: 'left' },
+                { label: 'Số lẻ nội trú', name: 'zycls', width: 100, align: 'left' },
+                { label: 'Đơn vị lẻ nội trú', name: 'zycldw', width: 100, align: 'left' },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 100, align: 'left' },
+                { label: 'Tính chất tự trả', name: 'zfxz', width: 100, align: 'left' },
+                { label: 'Dạng bào chế', name: 'jxmc', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: 'Trạng thái', name: 'mzzybz', width: 100, align: 'left' },
+                { label: 'Loại ghi sổ', name: 'jzlx', width: 100, align: 'left' },
+                { label: 'Hạn bảo quản mặc định', name: 'mrbzq', width: 100, align: 'left' },
+                { label: 'Tệp thực hiện', name: 'tzwj', width: 100, align: 'left' },
+                { label: 'Người thao tác', name: 'zxry', width: 100, align: 'left' },
+                { label: 'Thời gian điều chỉnh', name: 'tzsj', width: 150, align: 'left', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'zxsj desc',
+            viewrecords: true,
+
+        });
+
+        $("#btn_search").click(function () {
+            if ($("#txtStartDate").val() > $("#txtEndDate").val()) {
+                $.modalAlert("Ngày bắt đầu muộn hơn ngày kết thúc", 'warning');
+                return;
+            }
+
+            $gridYPInfoList.jqGrid('setGridParam', {
+                postData: getSearchPostData(), url: '/DrugStorage/SelectMedicineAdjustPriceHistoryInfoList',
+            }).trigger('reloadGrid');
+        });
+    }
+    //查询条件
+    function getSearchPostData() {
+        var inputCode = $("#txtINPUTCODE").val();
+        var startTime = $("#txtStartTime").val();
+        var endTime = $("#txtEndTime").val();
+        return { inputCode: inputCode, startTime: startTime, endTime: endTime };
+    };
+</script>
+
+
+

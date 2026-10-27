@@ -1,0 +1,332 @@
+@using Newtouch.Herp.Infrastructure.Enum
+@using NewtouchHIS.Lib.Base.Extension
+
+@{
+    ViewBag.Title = "Duyệt điều chỉnh giá";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Từ khóa</th>
+                    <td class="formValue">
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Mã vật tư Phiên âm Tên" />
+                    </td>
+                    <th class="formTitle">Trạng thái duyệt</th>
+                    <td class="formValue">
+                        @Html.DropDownList("ddlSHZT", EnumTjShzt.Waiting.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <td class="formValue">
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px;margin-left:30%;" />
+                    </td>
+                    <th></th>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <div class="gridPanel">
+            <table id="gridXSHYPInfoList"></table>
+            <div id="gridPager" rel="form1"></div>
+        </div>
+    </div>
+</form>
+<div style="float:left;margin:10px 30px 12px;">
+    <span style="background-color:#EECBAD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Đã quá hạn
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 2, 3, 6, 7, },
+    F2Text = "Duyệt",
+    F3Text = "Từ chối",
+    F6Text = "Thu hồi",
+    F7Text = "Thực hiện"
+})
+
+<script>
+    $(function () {
+        gridXSHYPInfoList();
+    });
+
+    function gridXSHYPInfoList() {
+        var $gridXshypInfoList = $("#gridXSHYPInfoList");
+        $gridXshypInfoList.dataGrid({
+            url: '/ProductManage/PriceAdjustment/SelectAdjustPriceApprovalList',
+            postData: getSearchPostData(),
+            height: $(window).height() - document.getElementById('gridXSHYPInfoList').offsetTop - 115,
+            colModel: [
+                {
+                    label: "Trạng thái duyệt", name: "shzt", width: 60, align: 'left', formatter: function (val) {
+                        switch (val) {
+                        case '@((int)EnumTjShzt.Audited)':
+                            return "@EnumTjShzt.Audited.GetDescription()";
+                        case '@((int)EnumTjShzt.Refuse)':
+                            return "@EnumTjShzt.Refuse.GetDescription()";
+                        case '@((int)EnumTjShzt.Revoke)':
+                            return "@EnumTjShzt.Revoke.GetDescription()";
+                        case '@((int)EnumTjShzt.Waiting)':
+                            return "@EnumTjShzt.Waiting.GetDescription()";
+                        default:
+                            return "";
+                        }
+                    }
+                },
+                {
+                    label: 'Cờ thực hiện', name: 'zxbz', width: 70, align: 'left', hidden: true, formatter: function (val) {
+                    switch (val) {
+                    case '@((int)EnumTjZxbz.Already)':
+                        return "@EnumTjZxbz.Already.GetDescription()";
+                    case '@((int)EnumTjZxbz.Not)':
+                        return "@EnumTjZxbz.Not.GetDescription()";
+                    default:
+                        return "";
+                    }
+                } },
+                { label: 'Loại', name: 'lbmc', width: 80, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                {
+                    label: 'Giá bán lẻ cũ', name: 'ylsj', width: 70, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }},
+                {
+                    label: 'Giá bán lẻ mới', name: 'lsj', width: 70, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }},
+                { label: 'Đơn vị định giá', name: 'dwmc', width: 70, align: 'center' },
+                { label: 'Hệ số chuyển đổi', name: 'zhyz', width: 70, align: 'center' },
+                { label: 'Văn bản điều chỉnh', name: 'tzwj', width: 80, align: 'left' },
+                { label: 'Thời gian thực hiện dự kiến', name: 'zxsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                {
+                    label: 'Đã quá hạn?', name: 'Isgq', width: 80, align: 'left', hidden: true ,
+                    formatter: function (val) {
+                        return val === "true" ? "Đã quá hạn" : "";
+                    }
+                },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 120, align: 'left' },
+                { label: 'Thời gian gửi', name: 'tzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Hiệu lực', name: 'zt', width: 50, align: 'center', formatter: function (val) { return val === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";} },
+                { label: 'productId', name: 'productId', hidden: true },
+                { label: 'wztjId', name: 'wztjId', hidden: true }
+            ],
+            multiselect: true,
+            pager: "#gridPager",
+            sortname: 'shzt desc',
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                if (rowid) {
+                    $("#btn_bottombutton_f2").nfnRemoveReadonly();
+                    $("#btn_bottombutton_f3").nfnRemoveReadonly();
+                    $("#btn_bottombutton_f6").nfnRemoveReadonly();
+                    $("#btn_bottombutton_f7").nfnRemoveReadonly();
+
+                    var isHasWsh = false;
+                    var isHasYsh = false;
+                    var isHasYjj = false;
+                    //var isHasYcx = false;
+
+                    var rowsData = $("#gridXSHYPInfoList").jqGrid("getRowData_AllLine", true);
+                    var rowsDataArray = rowsData;
+                    for (var i = 0; i < rowsDataArray.length; i++) {
+                        if (rowsDataArray[i].shzt === "@EnumTjShzt.Waiting.GetDescription()") {
+                            isHasWsh = true;
+                        }
+                        if (rowsDataArray[i].shzt === "@EnumTjShzt.Audited.GetDescription()") {
+                            isHasYsh = true;
+                        }
+                        if (rowsDataArray[i].shzt === "@EnumTjShzt.Refuse.GetDescription()") {
+                            isHasYjj = true;
+                        }
+                        @*if (rowsDataArray[i].shzt === "@EnumTjShzt.Revoke.GetDescription()"
+                            || rowsDataArray[i].zxbz === "@EnumTjZxbz.Already.GetDescription()") {
+                            isHasYcx = true;
+                        }*@
+                    }
+
+                    if (isHasWsh) {
+                        $("#btn_bottombutton_f6").nfnAddReadonly();
+                        $("#btn_bottombutton_f7").nfnAddReadonly();
+                    }
+                    if (isHasYsh) {
+                        $("#btn_bottombutton_f2").nfnAddReadonly();
+                        $("#btn_bottombutton_f3").nfnAddReadonly();
+                    }
+                    if (isHasYjj) {
+                        $("#btn_bottombutton_f2").nfnAddReadonly();
+                        $("#btn_bottombutton_f3").nfnAddReadonly();
+                        $("#btn_bottombutton_f7").nfnAddReadonly();
+                    }
+                    //if (isHasYcx) {
+                    //    $("#btn_bottombutton_f2").nfnAddReadonly();
+                    //    $("#btn_bottombutton_f3").nfnAddReadonly();
+                    //    $("#btn_bottombutton_f6").nfnAddReadonly();
+                    //    $("#btn_bottombutton_f7").nfnAddReadonly();
+                    //}
+                }
+            },
+            gridComplete: function () {
+                //Đã quá hạn Nền màu đỏ
+                var ids = $("#gridXSHYPInfoList").getDataIDs();
+                for (var i = 0; i < ids.length; i++) {
+                    var rowData = $("#gridXSHYPInfoList").getRowData(ids[i]);
+                    if (rowData.Isgq === "Đã quá hạn") {
+                        $("#" + ids[i]).find("td").css("background-color", "#EECBAD");
+                    }
+                }
+                $("#btn_bottombutton_f2").nfnRemoveReadonly();
+                $("#btn_bottombutton_f3").nfnRemoveReadonly();
+                $("#btn_bottombutton_f6").nfnRemoveReadonly();
+                $("#btn_bottombutton_f7").nfnRemoveReadonly();
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridXshypInfoList.jqGrid('setGridParam', {
+                postData: getSearchPostData()
+            }).trigger('reloadGrid');
+        });
+        $("#btn_search").trigger('click');
+    }
+
+    //Điều kiện tra cứu
+    function getSearchPostData() {
+        var inputCode = $("#txtINPUTCODE").val();
+        var shzt = $("#ddlSHZT").val();
+        return { inputCode: inputCode, shzt: shzt };
+    };
+
+    //Đã quá hạn Nền màu đỏ
+    function afterCompleteFunction() {
+        var ids = $("#gridXSHYPInfoList").getDataIDs();
+        for (var i = 0; i < ids.length; i++) {
+            var rowData = $("#gridXSHYPInfoList").getRowData(ids[i]);
+            if (rowData.Isgq === "Đã quá hạn") {
+                $("#" + ids[i]).find("td").css("background-color","#EECBAD");
+            }
+        }
+    }
+
+    //Phê duyệt EnumPriceAdjustOperationType:1:Phê duyệt,2:Từ chối,3:Thu hồi,4:Thực hiện
+    function newtouch_event_f2() {
+        AdjustPriceApproval("@((int)EnumTjShzt.Audited)");
+    }
+    //Từ chối
+    function newtouch_event_f3() {
+        AdjustPriceApproval("@((int)EnumTjShzt.Refuse)");
+    }
+    //Thu hồi
+    function newtouch_event_f6() {
+        AdjustPriceApproval("@((int)EnumTjShzt.Revoke)");
+    }
+
+    //Duyệt Từ chối Thu hồi Thao tác thực hiện
+    function AdjustPriceApproval(operationType) {
+        if (!ValidateData()) {
+            return;
+        }
+        if (tjIds === "") {
+            $.modalAlert("Chưa lấy được dữ liệu cần thao tác", 'warning');
+            return;
+        }
+        var tipStr = "";
+        if (operationType === "@((int)EnumTjShzt.Audited)") {
+            tipStr = "Bạn có chắc muốn phê duyệt không?？";
+        } else if (operationType === "@((int)EnumTjShzt.Refuse)") {
+            tipStr = "Bạn có chắc muốn từ chối không?？";
+        } else if (operationType === "@((int)EnumTjShzt.Revoke)") {
+            tipStr = "Bạn có chắc muốn thu hồi không?？";
+        }
+        $.modalConfirm(tipStr, function (flag) {
+            if (!flag) {
+                return false;
+            } else{
+                $.najax({
+                    url: "/ProductManage/PriceAdjustment/AdjustPriceApproval",
+                    dataType: "json",
+                    data: { ids: tjIds, operationType: operationType },
+                    Type: "POST",
+                    success: function(data) {
+                        if (data.state === 'success') {
+                            $.modalMsg("Thao tác thành công", 'success',1500);
+                        } else {
+                            var msg = data.message != null ? data.message : "Thao tác thất bại";
+                            $.modalMsg(msg, 'error', 1500);
+                        }
+                        $("#btn_search").trigger('click');
+                    }
+                });
+            }
+        });
+
+    }
+
+    var tjIds = "";
+    //Thực hiện
+    function newtouch_event_f7() {
+        if (!ValidateData()) {
+            return;
+        }
+        if (tjIds === "") {
+            $.modalAlert("Chưa lấy được dữ liệu cần thao tác", 'warning');
+            return;
+        }
+        $.modalConfirm("Bạn có chắc muốn thực hiện không?？", function (flag) {
+            if (!flag) {
+                return false;
+            } else {
+                $.najax({
+                    url: "/ProductManage/PriceAdjustment/AdjustPriceExecute",
+                    dataType: "json",
+                    data: { ids: tjIds},
+                    Type: "POST",
+                    success: function (data) {
+                        if (data.state === 'success') {
+                            $.modalMsg("Thao tác thành công", 'success', 1500);
+                        } else {
+                            var msg = data.message != null ? data.message : "Thao tác thất bại";
+                            $.modalMsg(msg, 'error', 1500);
+                        }
+                        $("#btn_search").trigger('click');
+                    }
+                });
+            }
+        });
+    }
+
+    //Kiểm tra dữ liệu
+    function ValidateData() {
+        tjIds = "";
+        var rowsDataArray = $("#gridXSHYPInfoList").jqGrid("getRowData_AllLine", true);
+        if (rowsDataArray.length === 0) {
+            $.modalAlert("Vui lòng chọn dữ liệu cần thao tác trước", 'warning');
+            return false;
+        }
+        for (var i = 0; i < rowsDataArray.length; i++) {
+            if (rowsDataArray[i].Isgq === 'Đã quá hạn') {
+                $.modalAlert(rowsDataArray[i].wzmc + " Đã quá hạn，Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
+                return false;
+            }
+            tjIds += rowsDataArray[i].wztjId + ",";
+        }
+        return true;
+    }
+
+    ////禁用
+    //function DisableControls(flag) {
+    //    if (flag === "0" || flag === "2" || flag === "3") {
+    //        $("#btn_bottombutton_f7").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+    //    } else {
+    //        $("#btn_bottombutton_f7").removeAttr("disabled");
+    //    }
+    //}
+</script>
+
+

@@ -1,0 +1,157 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form>
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Đang ở việnTrạng thái：</th>
+                <td class="formValue">
+                    <select id="zybz" name="zybz" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="0,1,2,7">Đang ở viện</option>
+                        <option value="3">Đã xuất viện</option>
+                        <option value="9">Đã hủy bỏ</option>
+                    </select>
+                </td>
+                <th class="formTitle">Từ khóa：</th>
+                <td class="formValue">
+                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số bệnh án/Mã nhập viện">
+                </td>
+                <th class="formTitle">Ngày bắt đầuquyết toán：</th>
+                <td class="formValue" colspan="2">
+                    <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left:1%;float:left">—</span>
+                    <input id="jsjsrq" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <td class="formValue">
+                    <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Truy vấn" />
+                </td>
+                <th class="formTitle"></th>
+                <td class="formValue"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "@Url.Action("GridInPatientGridJson")",
+            height: $(window).height() - 180,
+            postData: getpostData(),
+            footerrow: true,
+            colModel: [
+                { label: 'Mã nhập viện', name: 'zyh', width: 50, align: 'left', key: true },
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Tuổi', name: 'nlshow', width: 40, align: 'left' },
+                { label: 'Khoa', name: 'ks', width: 60, align: 'left' },
+                { label: 'Bác sĩ điều trị chính', name: 'zzys', width: 60, align: 'left' },
+                { label: 'Thời gian nhập viện', name: 'ryrq', width: 60, align: 'left' },
+                { label: 'Chẩn đoán nhập viện', name: 'ryzd', width: 100, align: 'left' },
+                { label: 'Thời gian xuất viện', name: 'cyrq', width: 60, align: 'left' },
+                { label: 'Chẩn đoán xuất viện', name: 'cyzd', width: 200, align: 'left' },
+                { label: 'Thời gianthu phí', name: 'sfsj', width: 110, align: 'left' },
+                { label: 'Tổng phí', name: 'zje', width: 60, align: 'left'},
+                { label: 'Tiền mặt', name: 'xj', width: 60, align: 'left' },
+                { label: 'ghi sổ', name: 'jz', width: 60, align: 'left' },
+                { label: 'Loạiquyết toán', name: 'jslx', width: 60, align: 'left' },
+                { label: 'Nhân viên thao tác', name: 'czy', width: 60, align: 'left' },
+                //{
+                //    label: 'Đang ở việnTrạng thái', name: 'zybz', width: 60, align: 'left', formatter: function (cellvalue) {
+                //        if (cellvalue) {
+                //            switch (cellvalue) {
+                //                case "0":
+                //                case "1":
+                //                case "2":
+                //                case "7":
+                //                    return "Đang ở viện";
+                //                    break;
+                //                case "3":
+                //                    return "Đã xuất viện";
+                //                    break;
+                //                case "9":
+                //                    return "Đã hủy bỏ";
+                //                    break;
+
+                //            }
+                //        }
+                //    }
+                //},
+                //{ label: 'Ngày bắt đầuquyết toán', name: 'jsksrq', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: 'Ngày kết thúcquyết toán', name: 'jsjsrq', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: 'Tổng số tiền', name: 'zje', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
+                //{ label: 'Thời gianquyết toán', name: 'CreateTime', width: 150, align: 'left' },
+                //{ label: 'Nhân viênquyết toán', name: 'CreatorCode', width: 100, align: 'left' },
+                //{
+                //    label: 'Trạng tháiquyết toán', name: 'jszt', width: 80, align: 'left', formatter: function (cellvalue) {
+                //        if (cellvalue == "1") {
+                //            return "Đãquyết toán";
+                //        }
+                //        if (cellvalue == "2") {
+                //            return "Đã hoàn";
+                //        }
+                //        return "Khác"
+                //    }
+                //},
+                //{
+                //    label: 'Tính chấtquyết toán', name: 'jsxz', width: 80, align: 'left', formatter: function (cellvalue) {
+                //        if (cellvalue == "1") {
+                //            return "quyết toán xuất viện";
+                //        }
+                //        if (cellvalue == "2") {
+                //            return "quyết toán phí";
+                //        }
+                //        return "Khác"
+                //    } }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            gridComplete: completeMethod//表格Nạpsauthực hiện统计方法
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getpostData(),
+            }).trigger('reloadGrid');
+        });
+    }
+    function completeMethod() {
+        var zje = $(this).getCol('zje', false, 'sum');
+        var xj = $(this).getCol('xj', false, 'sum');
+        var jz = $(this).getCol('jz', false, 'sum');
+        $(this).footerData('set', { "sfsj": 'Tổng cộng:', zje: zje, xj: xj, jz: jz }, false);
+    }
+    jQuery("#grid").jqGrid('navGrid', '#pager', {
+        edit: false,
+        add: false,
+        del: false,
+        search: false
+    });
+    function getpostData() {
+        return {
+            keyword: $("#txt_keyword").val(), jsksrq: $("#jsksrq").val(), jsjsrq: $("#jsjsrq").val(),zybz:$('#zybz').val()
+        };
+    }
+
+    //Sự kiện Enter
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    $('#zybz').change(function () {
+        $('#btn_search').trigger('click');
+    });
+</script>

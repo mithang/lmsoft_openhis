@@ -1,0 +1,138 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Quản lý thuốc đơn điện tử";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+<form>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Thông tin lọc
+        </div>
+        <div>
+            <table class="form">
+                <tr>
+
+                    <th class="formTitle">Tên thuốc:</th>
+                    <td class="formValue" colspan="2">
+                        <input id="genname" type="text" class="form-control" />
+                    </td>
+                    <th class="formTitle">Mã BHYT quốc gia:</th>
+                    <td class="formValue" colspan="2">
+                        <input id="medListCodg" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle">Loại thuốc:</td>
+                    <td class="formValue">
+                        <select class="form-control" id="listType">
+                            <option value="">Tất cả</option>
+                            <option value="101">Thuốc Tây y và thuốc thành phẩm Đông y</option>
+                            <option value="102">Thuốc thang Đông y</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Cờ hiệu lực:</td>
+                    <td class="formValue">
+                        <select class="form-control" id="zt">
+                            <option value="">Tất cả</option>
+                            <option value="0">Vô hiệu</option>
+                            <option value="1">Hiệu lực</option>
+                        </select>
+                    </td>
+                    <td class="formValue title">
+                        <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 10%;" value="Tìm kiếm" />
+                        <input type="button" id="btn_sync" class="btn btn-primary" style="margin-left: 10%;" value="Đồng bộ" />
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+            
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        gridList();
+    })
+
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SysMedicineElectronicPrescription/GetGridJson",
+            height: $(window).height() - 160,
+            postData: { genname: $("#genname").val(), medListCodg: $("#medListCodg").val(), listType: $("#listType").val(), zt: $("#zt").val() },
+            colModel: [
+                { label: 'Mã danh mục y tế', name: 'medListCodg', width: 180, align: 'left' },
+                { label: 'Số hiệu thuốc quốc gia', name: 'natDrugNo', width: 120, align: 'left' },
+                { label: 'Tên chung', name: 'genname', width: 150, align: 'left' },
+                { label: 'Tên thương mại', name: 'prodname', width: 150, align: 'left' },
+                { label: 'Tên đăng ký', name: 'regName', width: 150, align: 'left' },
+                { label: 'Loại danh mục', name: 'listType', width: 80, align: 'left' },
+                {
+                    label: 'Tên loại danh mục', name: 'listTypeName', width: 120, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == "" ? "Thuốc thang Đông y" : cellVallue;
+                    }
+                },
+                { label: 'Tên quy cách', name: 'specName', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'prdrName', width: 150, align: 'left' },
+                { label: 'Số đăng ký', name: 'aprvno', width: 150, align: 'left' },
+                { label: 'Tên dạng bào chế', name: 'dosformName', width: 100, align: 'left' },
+                { label: 'Đơn vị đóng gói nhỏ nhất', name: 'minPacunt', width: 80, align: 'left' },
+                { label: 'Số lượng đóng gói nhỏ nhất', name: 'minPacCnt', width: 80, align: 'left' },
+                { label: 'Đơn vị bào chế nhỏ nhất', name: 'minPrepunt', width: 80, align: 'left' },
+                { label: 'Mã vùng quỹ chung', name: 'poolareaNo', width: 80, align: 'left' },
+                { label: 'Tên vùng quỹ chung', name: 'poolareaName', width: 80, align: 'left' },
+                { label: 'Cờ hai kênh', name: 'dualchnlFlag', width: 80, align: 'left' },
+                { label: 'Cờ quỹ chung ngoại trú', name: 'oppoolFlag', hidden: true, width: 80, align: 'left' },
+                { label: 'Thời gian bắt đầu', name: 'begntime', width: 80, align: 'left' },
+                { label: 'Thời gian kết thúc', name: 'endtime', width: 80, align: 'left' },
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'medListCodg',
+            viewrecords: true,
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: {
+                    genname: $("#genname").val(), medListCodg: $("#medListCodg").val(),
+                    listType: $("#listType").val(), zt: $("#zt").val()
+                },
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#genname').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+    $('#medListCodg').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+    $('#listType').change(function () {
+        $('#btn_search').trigger('click');
+    })
+    $('#zt').change(function () {
+        $('#btn_search').trigger('click');
+    })
+    //同步
+    $('#btn_sync').click(function () {
+        $.ajax({
+            url: "http://127.0.0.1:33333/api/YiBao/ElectronicPrescription_D008",
+            dataType: "json",
+            data: { "hisId": "", "operatorId": "@opr.rygh", "operatorName": "@opr.UserName", "insuplc_admdvs": "" },
+            type: "POST",
+            async: true,
+            success: function (ajaxdata) {
+                $('#btn_search').trigger('click');
+            }
+        })
+    });
+</script>

@@ -1,0 +1,293 @@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+<div class="topPanel">
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-Wards" class="btn btn-primary" onclick="btn_wards()"><i class="fa fa-pencil-square-o"></i>Thông tin khu bệnh</a>
+        </div>
+        <div class="btn-group">
+            <a id="YBKS-upload" class="btn btn-primary" onclick="btn_ybks_upload()"><i class="fa"></i>Tải lên khoa BHYT</a>
+        </div>
+        <div class="btn-group">
+            <a id="YBKS-update" class="btn btn-primary" onclick="btn_ybks_update()"><i class="fa fa-pencil-square-o"></i>Cập nhật khoa BHYT</a>
+        </div>
+        <div class="btn-group">
+            <a id="YBKS-revoke" class="btn btn-primary" onclick="btn_ybks_revoke()"><i class="fa fa-trash-o"></i>Thu hồi khoa BHYT</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList" style="width:100%;"></table>
+</div>
+
+<script>
+    $(function () {
+        initControl();
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            treeGrid: true,
+            treeGridModel: "adjacency",
+            ExpandColumn: "Code",
+            url: "/Department/GetTreeGridJson",
+            height: $(window).height() - 96,
+            postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
+            colModel: [
+				{ label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên', name: 'Name', width: 100, align: 'left' },
+                { label: 'Mã', name: 'Code', width: 60, align: 'left' },
+                { label: 'Tên cơ sở', name: 'OrganizeName', width: 200, align: 'left' },
+                {
+                    label: "Cờ ngoại trú/nội trú", name: "mzzybz", width: 80, align: "left",
+                    formatter: function (cellvalue) {
+                        if (cellvalue == "0") {
+                            return "Chung"
+                        } else if (cellvalue == "1") {
+                            return "Ngoại trú"
+                        } else {
+                            return "Nội trú"
+                        }
+                    }
+                },
+                { label: "Tên khoa quốc gia", width: 80, name: "gjksmc" },
+                { label: "Mã khoa quốc gia", width: 80, name: "ybksbm" },
+                {
+                    label: 'Tải lên BHYT', name: 'UploadYB', width: 60, align: 'left',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == "1") {
+                            return "Đã tải lên"
+                        } else if (cellvalue == "0") {
+                            return "Chưa tải lên"
+                        } else
+                            return "Chưa tải lên"
+                    }
+                },
+                {
+                    label: 'Thu hồi khỏi BHYT', name: 'RevokeYB', width: 60, align: 'left',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == "1") {
+                            return "Đã thu hồi"
+                        } else if (cellvalue == "0") {
+                            return "Chưa thu hồi"
+                        } else
+                            return "Chưa thu hồi"
+                    }
+                },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thứ tự', name: 'px', width: 40, align: 'left' }
+            ]
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    function initControl() {
+
+    }
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm khoa mới",
+            url: "/Department/Form?orgId=" + $('#OrganizeId').val(),
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_edit() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa khoa",
+            url: "/Department/Form?keyValue=" + keyValue,
+			width: "700px",
+			height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_wards() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        $.modalOpen({
+            id: "Form",
+            title: "Thông tin khu bệnh",
+            url: "/Department/WardInfo?keyValue=" + keyValue,
+            width: "750px",
+            height: "700px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_ybks_upload() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var codeValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'Code');
+        var uploadYBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'UploadYB');
+        if (uploadYBValue == "1") {
+            $.modalAlert("Khoa này đã tải lên BHYT", 'warning');
+            return;
+        }
+        var ybresp = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", ksCode: codeValue };
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/DepartmentInfoUpload_3401",
+            data: ybresp,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var upDataReturn = eval('(' + data + ')');
+                if (upDataReturn.infcode == "0") {
+                    $.modalAlert("Tải lên khoa BHYT thành công", 'success');
+                    gridList();
+                    $('#btn_search').trigger('click');
+                }
+                else {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert("Tải lên khoa BHYT thất bại:" + upDataReturn.err_msg, 'error');
+                    return;
+                }
+
+            }
+        });
+    }
+
+    function btn_ybks_update() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var codeValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'Code');
+        var uploadYBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'UploadYB');
+        if (uploadYBValue == "0") {
+            $.modalAlert("Khoa này chưa tải lên BHYT", 'warning');
+            return;
+        }
+        var ybresp = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", ksCode: codeValue };
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/DepartmentInfoUpdate_3402",
+            data: ybresp,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var upDataReturn = eval('(' + data + ')');
+                if (upDataReturn.infcode == "0") {
+                    $.modalAlert("Cập nhật khoa BHYT thành công", 'success');
+                    gridList();
+                    $('#btn_search').trigger('click');
+                }
+                else {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert("Cập nhật khoa BHYT thất bại:" + upDataReturn.err_msg, 'error');
+                    return;
+                }
+            }
+        });
+    }
+
+    function btn_ybks_revoke() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var codeValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'Code');
+        var uploadYBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'UploadYB');
+        if (uploadYBValue == "0") {
+            $.modalAlert("Khoa này chưa tải lên BHYT", 'warning');
+            return;
+        }
+        var revokeYBBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'RevokeYB');
+        if (revokeYBBValue == "1") {
+            $.modalAlert("Khoa này đã thu hồi khỏi BHYT", 'warning');
+            return;
+        }
+        var ybresp = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", ksCode: codeValue };
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/DepartmentInfoRevoke_3403",
+            data: ybresp,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var upDataReturn = eval('(' + data + ')');
+                if (upDataReturn.infcode == "0") {
+                    $.modalAlert("Thu hồi khoa BHYT thành công", 'success');
+                    gridList();
+                    $('#btn_search').trigger('click');
+                }
+                else {
+                    $.loading(false);
+                    isuccer = false;
+                    $.modalAlert("Thu hồi khoa BHYT thất bại:" + upDataReturn.err_msg, 'error');
+                    return;
+                }
+            }
+        });
+    }
+</script>

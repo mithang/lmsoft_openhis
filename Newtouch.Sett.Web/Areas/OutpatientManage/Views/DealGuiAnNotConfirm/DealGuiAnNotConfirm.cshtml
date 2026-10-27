@@ -1,0 +1,332 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@Html.Partial("_YibaoCommonView")
+<form name="form1">
+    <div class="panel panel-default" style="margin-bottom: 0%;background-color:lavender">
+        <div class="panel-heading navb-bg">
+            Hoàn tác quyết toán bệnh nhân BHYT nhập viện
+        </div>
+        <div style="padding-top:1%;padding-bottom:1%; padding-left:7%;" id="divInpatientBasicInfo">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">prm_yka103：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="yka103" style="float:left;" />
+                    </td>
+                    <th class="formTitle">Số nhập viện：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="zyh" style="float:left;" />
+                    </td>
+                    <td class="formValue">
+                        <input type="button" id="btn_jsht" class="btn btn-primary" style="width:40%;margin-left:10px;" value="Hoàn tác quyết toán" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default" style="margin-bottom: 0%;">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc giao dịch chưa xác định
+        </div>
+        <div style="padding-top:1%;padding-bottom:1%; padding-left:7%;" id="divInpatientBasicInfo">
+            <table class="form">
+                <tr>
+
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="jybh" style="float:left;" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:15%; margin-left:10px;" value="Tra cứu" />
+                        <input type="button" id="btn_confirm" class="btn btn-primary" style="width:15%;margin-left:10px;" value="Thực hiện" />
+                        <input type="button" id="btn_cancel" class="btn btn-primary" style="width:15%;margin-left:10px;" value="Hủy bỏ" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin-top:1%">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+    //tra cứu
+    $('#btn_search').click(function() {
+        loadDataResult();
+    });
+    //thực hiện
+    $('#btn_confirm').click(function() {
+        confirm_yb();
+    });
+    //hủy bỏ
+    $('#btn_cancel').click(function() {
+        cancel_yb();
+    });
+    $('#btn_jsht').click(function () {
+        ybjsht();
+    });
+
+    function ybjsht() {
+        var yka103 = $("#yka103").val();
+        var zyh = $("#zyh").val();
+        if (!yka103) {
+            $.modalAlert("Vui lòng nhập giá trị trả về quyết toán BHYTprm_yka103", 'warning');
+            return;
+        }
+        if (!zyh) {
+            $.modalAlert("Vui lòng nhập số nhập viện", 'warning');
+            return;
+        }
+        $.najax({
+            url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng chờ...",
+            type: 'POST',
+            success: function (ybPreSettleReq) {
+                var ybjshtReturn;
+                var jshtData = {
+                    prm_akc190: ybPreSettleReq.data.jzbh,
+                    prm_aac001: ybPreSettleReq.data.sbbh,
+                    prm_yab003: ybPreSettleReq.data.fzxbh,
+                    prm_aka130: ybPreSettleReq.data.zhifuleibie,
+                    prm_yka103: yka103,
+                    prm_aae011: "",
+                    prm_aae036: $.getTime(),
+                    prm_aae013: "Tính phí lại",
+                    prm_ykb065: ybPreSettleReq.data.sbbf,
+                    prm_ykc141: "GF001"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:12345/api/YiBao/ZyFeejsht",
+                    contentType: 'application/json',
+                    data: JSON.stringify(jshtData),
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        ybjshtReturn = eval('(' + data + ')');
+                    }
+                });
+                if (ybjshtReturn.Code == 0) {
+                    $.modalAlert("Hoàn tác quyết toán thành công！", 'success');
+                    var parameter1 = { "astr_jylsh": ybjshtReturn.jylsh, "astr_jyyzm": ybjshtReturn.jyyzm };
+                    $.ajax({
+                        url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
+                        data: parameter1,
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                        }
+                    });
+                } else {
+                    $.modalAlert(ybjshtReturn.ErrorMsg, 'error');
+                }
+
+                var ybReturn;
+                var mnjsData = {
+                    prm_akc190: ybPreSettleReq.data.jzbh,
+                    prm_aac001: ybPreSettleReq.data.sbbh,
+                    prm_yab003: ybPreSettleReq.data.fzxbh,
+                    prm_aka130: ybPreSettleReq.data.zhifuleibie,
+                    prm_aae036: "",
+                    prm_ykb065: ybPreSettleReq.data.sbbf,
+                    prm_ykc141: "GF001"
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:12345/api/YiBao/ZyCyblht",
+                    contentType: 'application/json',
+                    data: JSON.stringify(mnjsData),
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        ybReturn = eval('(' + data + ')');
+                    }
+                });
+
+                if (ybReturn.Code == 0) {
+                    $.modalAlert("Hủy thành công！", 'success');
+                    var parameter = { "astr_jylsh": ybReturn.jylsh, "astr_jyyzm": ybReturn.jyyzm };
+                    $.ajax({
+                        url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
+                        data: parameter,
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                        }
+                    });
+                } else {
+                    $.modalAlert(ybReturn.ErrorMsg, 'error');
+                }
+            }
+        });
+    }
+
+
+    //ajaxtảidữ liệu
+    function loadDataResult() {
+        //xóaGrid
+        $('#gridList').jqGrid("clearGridData");
+        /*
+        var str = '{"output": {"sqldata": {"row": [{"yke014": "2000000001","yke015": "48"},' +
+            '{"yke014": "2000000002","yke015": "48"},{"yke014": "2000000003","yke015": "48"},' +
+            '{"yke014": "2000000004","yke015": "21"},{"yke014": "2000000005","yke015": "48"}]}}} ';
+        var yb_getuncertaintytrade = eval('(' + str + ')');
+        yb_getuncertaintytrade.output.sqldata.row.push('{ "yke014": "", "yke015": "" }');
+        $('#gridList').jqGrid('setGridParam', {
+            datatype: 'local',
+            data: yb_getuncertaintytrade.output.sqldata.row
+        }).trigger("reloadGrid");
+        */
+
+        var jybh = $.trim($("#jybh").val());
+        var yb_getuncertaintytradeInfo;// = $.guianyibao.YibaoGetUncertaintyTrade(jybh);
+        var parameter = { "astr_jybh": jybh };
+        $.ajax({
+            url: "http://127.0.0.1:12345/api/YiBao/YibaoGetUncertaintyTrade", 
+            data: parameter,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                yb_getuncertaintytradeInfo = eval('(' + data + ')');
+            }
+        });
+        if (yb_getuncertaintytradeInfo && yb_getuncertaintytradeInfo.Code == 0) {
+            var yb_getuncertaintytrade = yb_getuncertaintytradeInfo.Data;
+            if (!yb_getuncertaintytrade) {
+                $.modalAlert("Chưa có giao dịch chưa xác định", 'succsee');
+                return;
+            }
+            var nullobj= {
+                yke014: "", yke015: ""
+            }
+            yb_getuncertaintytrade.push(nullobj);
+            $('#gridList').jqGrid('setGridParam',
+                {
+                    datatype: 'local',
+                    data: yb_getuncertaintytrade
+                }).trigger("reloadGrid");
+        } else
+            $.modalAlert("Lấy dữ liệu giao dịch BHYT chưa xác định thất bại", 'error');
+    }
+
+    window.newtouch_globalconfig.f4opions = {
+        container: "#divInpatientBasicInfo,#divPatInfo"
+    };
+
+    //giao dịch chưa xác định
+    $('#gridList').newtouchLocalDataGrid({
+        caption: 'Giao dịch chưa xác định',
+        height: $(window).height() - 180,
+        unwritten: false,
+        editurl: "clientArray",
+        colModel: [
+            { label: "Mã giao dịch", name: "yke015", width: 100, align: "left" },
+            { label: "Số giao dịch", name: "yke014", width: 180, align: "left" }
+        ],
+        multiselect: true
+    });
+
+    function confirm_yb() {
+        //lấydòng đã chọnId
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn trước thông tin cần xử lý", 'warning');
+            return;
+        }
+        if (!confirm("Có xác nhận xử lý thông tin đã chọn không?")) {
+            return;
+        }
+        var IsSuccess = true;
+        //xác định hoànsố lượng
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+            if (!rowData) {
+                $.modalAlert("Lấy thông tin thất bại，Vui lòng thao tác lại", 'error');
+                break;
+            }
+            $.najax({
+                url: "/OutpatientManage/DealGuiAnNotConfirm/GetJyyzmByJylsh",
+                data: { jylsh: rowData["yke014"] },
+                dataType: 'text',
+                async: false,
+                success: function (rep) {
+                    if (rep == "") {
+                        IsSuccess = false;
+                        $.modalAlert("Trong hệ thống không tồn tại số giao dịch【" + rowData["yke014"] + "】bản ghi giao dịch，Vui lòng xác nhận。", 'warning');
+                    } else {
+                        alert(rep);
+                        try {
+                            var ybjySettReturn;// = $.guianyibao.YibaoConfirm(rowData["yke014"], rep);
+                            var parameter = { "astr_jylsh": rowData["yke014"], "astr_jyyzm": rep };
+                            $.ajax({
+                                url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm", 
+                                data: parameter,
+                                dataType: "json",
+                                async: false,
+                                success: function (data) {
+                                    ybjySettReturn = eval('(' + data + ')');
+                                }
+                            });
+                            if (!ybjySettReturn || !(ybjySettReturn.Code == 0)) {
+                                $.modalAlert("Số giao dịch【" + jylsh + "】Gửi thất bại，Vui lòng thao tác lại", 'error');
+                                IsSuccess = false;
+                            }
+                        } catch (err) {
+                            IsSuccess = false;
+                            $.modalAlert("Gửi BHYT thất bại，Vui lòng thao tác lại" + err, 'error');
+                        }
+                    }
+                }
+            });
+            if (!IsSuccess) {
+                loadDataResult();
+                return;
+            }
+        }
+        $.modalAlert("Xử lý xong", 'success');
+        loadDataResult();
+    }
+
+    function cancel_yb() {
+        //lấydòng đã chọnId
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn trước thông tin cần xử lý", 'warning');
+            return;
+        }
+        if (!confirm("Có xác nhận hủy thông tin đã chọn không?")) {
+            return;
+        }
+
+        //xác định hoànsố lượng
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+            if (!rowData) {
+                $.modalAlert("Lấy thông tin thất bại，Vui lòng thao tác lại", 'error');
+                break;
+            }
+            var ybjySettReturn;// = $.guianyibao.YibaoCancle(rowData["yke014"]);
+            var parameter = { "astr_jylsh": rowData["yke014"] };
+            $.ajax({
+                url: "http://127.0.0.1:12345/api/YiBao/YibaoCancle", 
+                data: parameter,
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    ybjySettReturn = eval('(' + data + ')');
+                }
+            });
+            if (!(ybjySettReturn.Code == 0)) {
+                $.modalAlert("Số giao dịch【" + jylsh + "】Hủy thất bại，Vui lòng thao tác lại", 'error');
+                loadDataResult();
+                return;
+            }
+        }
+        $.modalAlert("Xử lý xong", 'success');
+        loadDataResult();
+    }
+
+</script>

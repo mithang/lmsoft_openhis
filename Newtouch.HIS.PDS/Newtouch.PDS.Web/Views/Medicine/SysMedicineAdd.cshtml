@@ -1,0 +1,471 @@
+
+@{
+    ViewBag.Title = "SysMedicineAdd";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .formTitle span {
+        color: red;
+    }
+</style>
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function() {
+        initControl();
+        $.ajax({
+            url: "/Medicine/GetMedicineInfoJson",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function(data) {
+                $("#form1").formSerialize(data);
+                $.currentWindow().$("#kh").val(data.kh);
+            }
+        });
+        $('#myTab a:first').tab('show');
+    });
+
+    function initControl() {
+        //报销政策
+        $("#").newtouchFloatingSelector({
+            height: 200,
+            width: 300,
+            filter: function (keyword) {
+                if (!keyword) {
+                    return null;
+                }
+                //遍历数据源，用keyword来筛选出结果
+                var resultObjArr = new Array();
+                $.each(top.window.newtouchclients.sysPatientNatureList, function (idx, val) {
+                    if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Tính chất bệnh nhân",
+            colModel: [
+                { label: 'Số hiệu', name: 'brxzbh', widthratio: 25 },
+                { label: 'Mã', name: 'brxz', widthratio: 25 },
+                { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+                { label: 'Pinyin', name: 'py', widthratio: 25 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#brxz").attr("data-label", $thistr.find("td:eq(0)").html() + "-" + $thistr.find("td:eq(1)").html());
+                $("#brxz").val($thistr.find('td:eq(2)').html());
+                return;
+            }
+        });
+        //地域
+        $("#").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.dataItems) {
+                    $.each(top.clients.dataItems, function (idx, val) {
+                        if (idx === "AreaCity") {
+                            $.each(val, function (key, value) {
+                                $('#dy').append('<option value="' + key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                }
+                return resultObjArr;
+            }
+        });
+    }
+
+    function submitForm() {
+        var result = checkNotNull();
+        if (result) {
+            var data = $("#form1").formSerialize();
+            data["brxz"] = $("#brxz").attr("data-label");
+            data["dy"] = $("#dy").attr("data-label");
+            $.submitForm({
+                url: "/PatientManage/HospiterRes/SubmitForm",
+                param: data,
+                success: function () {
+                    $.loading(false);
+                    if ($.currentWindow().$("#txtkh").length == 1) {
+                        //门诊挂号免卡登记
+                        $.currentWindow().LoadPatientInfo(data.kh);
+                    }
+                    else {
+                        //住院病人基本信息登记 免卡
+                        var kh = $.currentWindow().$("#kh").val();
+                        getSysBasicInfoByCardNo(kh);
+                    }
+                    $.currentWindow().DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
+                }
+            })
+        }
+    }
+
+    function getSysBasicInfoByCardNo() {
+        var kh = $.currentWindow().$("#kh").val();
+        $.ajax({
+            url: "/PatientManage/HospiterRes/GetBasicInfoByCardNo?keyValue=" + kh,
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data) {
+                $.currentWindow().$("#kh").val(data.kh);
+                $.currentWindow().$("#xm").val(data.xm);
+                $.currentWindow().$("#xb").val(data.xb);
+                $.currentWindow().$("#csny").val(data.csny);
+                $.currentWindow().$("#kh").val(data.kh);
+                $.currentWindow().$("#zjh").val(data.zjh);
+                if (data.xb == 0) {
+                    $.currentWindow().$("input[name=xb]:eq(1)").attr("checked", 'checked');//女
+                    $.currentWindow().$("input[name=xb]:eq(1)").parent().addClass('active');
+                } else {
+                    $.currentWindow().$("input[name=xb]:eq(0)").attr("checked", 'checked');//男
+                    $.currentWindow().$("input[name=xb]:eq(0)").parent().addClass('active');
+                }
+                $.currentWindow().$("#nl").val(data.nl);
+                $.currentWindow().$("#blh").val(data.blh);
+                $.currentWindow().$("#dh").val(data.dh);
+                $.currentWindow().$("#dy").val(data.dy);
+                $.currentWindow().$("#hf").val(data.hf);
+                $.currentWindow().$("#patid").val(data.patid);
+                if (data.zjlx) {
+                    var type = data.zjlx.trim();
+                    switch (type) {
+                        case "0": type = "CMND/CCCD"; break;
+                        case "1": type = "Hộ chiếu"; break;
+                        case "2": type = "Chứng minh sĩ quan"; break;
+                        default: break;
+
+                    }
+                    $.currentWindow().$("#zjlx").html(type);
+                }
+                if (data.cs_sheng) {
+                    $.currentWindow().$("#cs_sheng").val(data.cs_sheng);
+                }
+                if (data.cs_shi) {
+                    $.currentWindow().$("#cs_shi").val(data.cs_shi);
+                }
+                if (data.cs_xian) {
+                    $.currentWindow().$("#cs_xian").val(data.cs_xian);
+                }
+                if (data.xian_dz) {
+                    $.currentWindow().$("#xian_dz").val(data.xian_dz);
+                }
+                if (data.xian_sheng) {
+                    $.currentWindow().$("#xian_sheng").val(data.xian_sheng);
+                }
+                if (data.xian_shi) {
+                    $.currentWindow().$("#xian_shi").val(data.xian_shi);
+                }
+                if (data.xian_xian) {
+                    $.currentWindow().$("#xian_xian").val(data.xian_xian);
+                }
+                if (data.hu_dz) {
+                    $.currentWindow().$("#hu_dz").val(data.hu_dz);
+                }
+                if (data.hu_sheng) {
+                    $.currentWindow().$("#hu_sheng").val(data.hu_sheng);
+                }
+                if (data.hu_shi) {
+                    $.currentWindow().$("#hu_shi").val(data.hu_shi);
+                }
+                if (data.hu_xian) {
+                    $.currentWindow().$("#hu_xian").val(data.hu_xian);
+                }
+                $.loading(false);
+            }
+        });
+    }
+
+    function checkNotNull() {
+        var validator = $('#form1').validate();
+        validator.settings = {
+            rules: {
+                xm: { required: true },
+                brxz: { required: true },
+                nl: { required: true },
+                hf: { required: true },
+                zjh: { isIdentity: true },
+                email: { email: true },
+                phone: { isMobile: true }
+            },
+            messages: {
+                xm: { required: "Họ tên là bắt buộc" },
+                brxz: { required: "Tính chất bệnh nhân là bắt buộc" },
+                nl: { required: "Tuổi là bắt buộc" },
+                hf: { required: "Tình trạng hôn nhân phải chọn" },
+                blh: { required: "Tình trạng hôn nhân phải chọn" },
+                zjh: { isIdentity: "Định dạng CMND không đúng" },
+                email: { email: "Định dạng email không đúng" },
+                phone: { isMobile: "Định dạng điện thoại không đúng" }
+            },
+            showErrors: function (errorMap, errorList) {
+                if (!$.isEmptyObject(errorList)) {
+                    $.modalAlert(errorList[0].message, 'warning');
+                }
+            }
+        }
+        if (!validator.form()) {
+            return false;
+        }
+        //病历号
+        var blh = $("#").val();
+        if (!blh) {
+            $.modalAlert("Số hồ sơ bệnh án trống！", 'warning');
+            return false;
+        }
+        //拼音
+        var py = $("#").val();
+        if (!py) {
+            $.modalAlert("Phiên âm trống！", 'warning');
+            return false;
+        }
+        //性别
+        var xb = false;
+        $('input[name="xb"]').each(function () {
+            var $this = $(this);
+            if ($this.parent().hasClass("active")) {
+                xb = true;
+                $("#xb").val()
+            }
+        });
+        if (!xb) {
+            $.modalAlert("Vui lòng chọn giới tính！", 'warning');
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form>
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading">
+            Thông tin cơ bản
+        </div>
+        <table class="form" style="width:98%;border:0">
+            <tr>
+                <td class="formTitle">
+                    Tên thuốc<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">Nhóm lớn</td>
+                <td class="formValue"><input type="text" id="blh" class="form-control"></td>
+                <td class="formTitle">Pinyin<span>*</span></td>
+                <td class="formValue">
+                    <input type="text" id="brxz" name="brxz" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Tên hàng hóa</td>
+                <td class="formValue">
+                    <input type="text" id="brxz" name="brxz" class="form-control">
+                </td>
+                <td class="formTitle">Mã</td>
+                <td class="formValue">
+                    <input type="text" id="zjh" name="zjh" class="form-control">
+                </td>
+                <td class="formTitle">Mã BHYT</td>
+                <td class="formValue">
+                    <input type="text" id="zjh" name="zjh" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Tên nhà máy dược<span>*</span></td>
+                <td class="formValue"><input type="text" id="nl" name="nl" class="form-control"></td>
+                <td class="formTitle">Dạng bào chế</td>
+                <td class="formValue">
+                    <input type="text" id="nl" name="nl" class="form-control">
+                </td>
+                <td class="formTitle">Số đăng ký</td>
+                <td class="formValue">
+                    <input type="text" id="nl" name="nl" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Lượng sử dụng</td>
+                <td class="formValue">
+                    <input type="text" id="nl" name="nl" class="form-control">
+                </td>
+                <td class="formTitle">Phân loại thuốc<span>*</span></td>
+                <td class="formValue">
+                    <input type="text" id="nl" name="nl" class="form-control">
+                </td>
+                <td class="formTitle">Quy cách thuốc</td>
+                <td class="formValue"><input type="text" id="dh" class="form-control"></td>
+            </tr>
+            <tr>
+                <td class="formTitle">Tỷ lệ tự trả</td>
+                <td class="formValue">
+                    <input type="text" id="dh" class="form-control">
+                </td>
+                <td class="formTitle">Tính chất tự trả</td>
+                <td class="formValue">
+                    <select class="form-control">
+                        <option value="">Vui lòng chọn</option>
+                        <option value="">Được thanh toán</option>
+                        <option value="">Tự trả</option>
+                        <option value="">Tự trả theo loại</option>
+                    </select>
+                </td>
+                <td class="formTitle">Nhà cung cấp</td>
+                <td class="formValue">
+                    <input type="text" id="dh" class="form-control">
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="formTitle">Thời gian thực hiện</td>
+                <td class="formValue">
+                    <input id="txtPY" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                </td>
+                @*<td>有效</td>
+                    <td class="formValue">
+                        <input type="text" id="xian_shi" class="form-control" style="width:90px;float:left" />
+                    </td>*@
+                <td class="formTitle">Nhân viên lập hồ sơ</td>
+                <td class="formValue">
+                    <input type="text" id="xian_xian" class="form-control newtouch_Readonly" />
+                </td>
+                <td class="formTitle">Ngày lập hồ sơ</td>
+                <td class="formValue">
+                    <input type="text" id="xian_dz" class="form-control newtouch_Readonly" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading">
+            Chuyển đổi đơn vị
+        </div>
+        <table class="form" style="width:90%;border:0">
+            <tr>
+                <td class="formTitle">
+                    Đơn vị nội trú<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Hệ số chuyển đổi nội trú<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Giá bán lẻ<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">
+                    Đơn vị ngoại trú<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Hệ số chuyển đổi ngoại trú<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Giá bán buôn<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">
+                    Đơn vị kho thuốc<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Hệ số chuyển đổi kho thuốc<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Cờ cấp cứu ngoại trú<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">
+                    Đơn vị nhỏ nhất<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Hệ số chuyển đổi nhỏ nhất<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+                <td class="formTitle">
+                    Giá bán lẻ đơn vị nhỏ nhất<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">
+                    Cờ bán lẻ<span>*</span>
+                </td>
+                <td class="formValue">
+                    <input type="text" id="kh" class="form-control">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading">
+            Thuộc tính thuốc
+        </div>
+        <div class="panel panel-default" style="margin-bottom:0; margin-top:40px;width:95%">
+            <div class="panel-heading">
+                Thuộc tính thuốc
+            </div>
+            <table class="form" style="width:98%;border:0">
+                <tr>
+                    <td class="formTitle">Cờ trúng thầu</td>
+                    <td class="formValue">
+                        <select class="formValue">
+                            <option value="">Vui lòng chọn</option>
+                            <option value="1">Không cần đấu thầu</option>
+                            <option value="1">Đấu thầu thành phố</option>
+                            <option value="1">Đấu thầu khu vực</option>
+                            <option value="1">Đấu giá</option>
+                            <option value="1">Hỏi giá</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Thuộc tính thuốc</td>
+                    <td class="formValue"><input type="text" id="qxdm" class="form-control" /></td>
+                    <td class="formTitle">Loại ghi sổ khu bệnh</td>
+                    <td class="formValue">
+                        <select class="formValue">
+                            <option value="">Vui lòng chọn</option>
+                            <option value="1">Lấy tròn hàng ngày</option>
+                            <option value="1">Lấy tròn mỗi lần</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+

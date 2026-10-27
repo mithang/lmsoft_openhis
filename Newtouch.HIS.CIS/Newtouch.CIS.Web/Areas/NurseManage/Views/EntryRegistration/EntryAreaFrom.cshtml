@@ -1,0 +1,112 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Vào khuĐăng ký";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1" autocomplete="off">
+    <div class="panel panel-default" style="padding-right:10px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Mức độ nguy kịch:</th>
+                <td class="formValue">
+                    <select id="sel_wzjb" name="sel_wzjb" class="form-control required" data-EnumType="EnumWzjb">
+                        <option>==Vui lòng chọn==</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Vào khuNgày:</th>
+                <td class="formValue">
+                    <input id="txt_rqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Nhập việnBác sĩ:</th>
+                <td class="formValue">
+                    <input id="txt_doctor" name="txt_doctor" data-StaffGh="" type="text" class="form-control required" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script lang="javascript">
+    $(function () {
+        var type = '@ViewBag.type';
+        var url = window.location.href; 
+        debugger;
+        if (type==="update")
+        {
+            getPatInfo();
+            $("#txt_rqrq").prop('disabled', 'disabled');
+            $("#txt_doctor").prop('disabled', 'disabled');
+
+        }else{
+            $("#txt_doctor").attr("data-StaffGh", "@ViewBag.ysgh");
+            $("#txt_doctor").val("@ViewBag.ysmc");
+            $("#txt_rqrq").val("@ViewBag.ryrq");
+        }
+    })
+    $("#txt_doctor").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+
+    function getPatInfo() {
+        $.ajax({
+            type: "POST",
+            url: "/NurseManage/EntryRegistration/getZyPatInfo",
+            data: { zyh: '@ViewBag.zyh' },
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                if (resp) {
+                    $("#txt_rqrq").val(resp.rqrq.replace('T',' '));
+                    $("#txt_doctor").val(resp.ysName).attr("attr-StaffGh", resp.ysgh);
+                    //$("#txt_doctor").attr("data-StaffGh",resp.ysgh);
+                    //$("#txt_doctor").val(resp.ysmc);
+                    $("#sel_wzjb").val(resp.wzjb).trigger("change");
+
+                }
+            }
+        })
+    }
+
+    function submitForm()
+    {
+        if ($('#txt_ryrq').val()=="") {
+            $.modalAlert("Vui lòng chọnVào khuNgày!", 'warning');
+            return null;
+        }
+        if ($('#txt_doctor').val() == "" || $("#txt_doctor").attr("data-StaffGh")=="") {
+            $.modalAlert("Vui lòng chọnNhập việnBác sĩ!", 'warning');
+            return null;
+        }
+        var obj = new Object();
+        obj.wzjb = $('#sel_wzjb').val();
+        obj.rqrq = $('#txt_rqrq').val();
+        obj.ysgh=$("#txt_doctor").attr("data-StaffGh");
+        obj.ysmc=$("#txt_doctor").val();
+        $.modalClose("RqdjForm");
+        return obj;
+    }
+    function SavaBindWzjb()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/EntryRegistration/UpdateWzjb",
+            data: { zyh: '@ViewBag.zyh', wzjb: $('#sel_wzjb').val() },
+            dataType: "json",
+            async: false,
+            success: function (ajaxresp) {
+                if (ajaxresp.state == "success") {
+                    $.modalMsg('Sửathành công', 'success');
+                }
+                else {
+                    $.modalAlert(ajaxresp.message, 'warning');
+                }
+            }
+        });
+    }
+</script>

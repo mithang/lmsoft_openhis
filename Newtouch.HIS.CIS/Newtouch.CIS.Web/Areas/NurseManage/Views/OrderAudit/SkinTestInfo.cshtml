@@ -1,0 +1,44 @@
+
+@{
+    ViewBag.Title = "Test daThông tin";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div class="gridPanel">
+        <table id="gridList"></table>
+    </div>
+</form>
+
+<script lang="javascript">
+
+    var zyh = $.request("zyh");
+
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/NurseManage/OrderAudit/GetSkinTestInfoGridJson",
+            height: $(window).height() - 60,
+            postData: { zyh: zyh },
+            colModel: [
+                { label: 'MụcMã', name: 'xmCode', width: 100, align: 'left' },
+                { label: 'Tên mục', name: 'xmmc', width: 200, align: 'left' },
+                { label: 'Kết quả test da', name: 'remark', width: 60, align: 'left' }
+            ],
+
+            //multiselect: true,
+            pager: "#gridPager",
+            sortname: 'xmCode',
+            viewrecords: true,
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { ypmc: $("#ypmc").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+
+</script>

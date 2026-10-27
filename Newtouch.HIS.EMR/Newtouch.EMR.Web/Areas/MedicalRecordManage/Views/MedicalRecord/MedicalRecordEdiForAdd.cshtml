@@ -1,0 +1,70 @@
+﻿@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("EmrEdiForUrl");
+}
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui/easyui.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui/icon.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui-ribbon/ribbon.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui-ribbon/ribbon-icon.css" />
+<script type="text/javascript" src="~/Content/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="~/Content/jquery-easyui-ribbon/jquery.ribbon.js"></script>
+<link href="~/Content/jquery-easyui-ribbon/MedicalRecordEdit.css" rel="stylesheet" />
+<script src="@Html.Raw(EmrEdiForUrl)ServicePage.aspx?wasmres=dcwriter5.js"></script>
+<script src="@Html.Raw(EmrEdiForUrl)jquery/jquery-1.7.2.min.js"></script>
+
+<form method="post" id="addBlForm">
+    <span id="toolDiv">
+        <input  type="submit" name="saveDocument" id="saveXml" value="Lưu tài liệu" class="edtBtn" style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 30%;padding-left: 30px;height: 30px;" />
+        @Html.Partial("_DCSW.ToolList")
+        
+
+
+        <input type="hidden" value="医生签名" class="edtBtn" style="width: 50px;" onclick="Signature()" />
+        @Html.Partial("_DCSW.SaveAS")
+    </span>
+    <a id="toolShow" class="btn btn-primary" style="float:right;margin:5px 5px 5px 0px;"><i></i>Thanh công cụ</a>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.zyh))
+    {
+        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="上传医保" />
+    }
+    <div style="clear:both;"></div>
+    
+    <div class="blbj" style="width:99%;float:left;overflow-y: auto;border-radius: 4px;background: white;">
+        <div id="myWriterControl" dctype="WriterControlForWASM" RuleVisible="false" ContentRenderMode="NormalHtmlEditable" ClientContextMenuType="Custom" style="width:100%; background-color: #7cb9e8;">
+
+        </div>
+    </div>
+    <input type="hidden" name="mbbh" id="mbbh" value="@ViewBag.mbbh " />
+    <input type="hidden" name="zyh" id="zyh" value="@ViewBag.zyh " />
+    <input type="hidden" name="mzh" id="mzh" value="@ViewBag.mzh " />
+    <input type="hidden" name="c" id="mzh" value="@ViewBag.mzh " />
+    <input type="hidden" name="submitXml" id="submitXml" value="" />
+</form>
+@Html.Partial("_DCSW.JS")
+<div id="RecordistDiv">
+    @await Component.InvokeAsync("RecordList", new { zyh = ViewBag.zyh, mzh = ViewBag.mzh })
+</div>
+<div id="treeDiv">
+    
+    @await Component.InvokeAsync("CtglList")
+
+    @await Component.InvokeAsync("YxfhList")
+</div>
+<script>
+    $(function () {
+        if (!!'@ViewBag.message') {
+            $.modalAlert('@ViewBag.message','warning');
+        }
+    });
+    debugger
+    $("#saveXml").click(function () {
+        debugger
+        var ctl = document.getElementById("myWriterControl");
+        var xmldata = ctl.SaveDocumentToBase64String("xml");
+        $("#submitXml").val(xmldata);
+        $.loading(true, "Đang lưu bệnh án...");
+        $("#addBlForm").submit();
+    })
+
+</script>

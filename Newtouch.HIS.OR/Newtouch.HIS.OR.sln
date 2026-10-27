@@ -1,0 +1,30 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtouch.OR.Infrastructure", "Newtouch.OR.Infrastructure\Newtouch.OR.Infrastructure.csproj", "{A1B2C3D4-E5F6-4711-AAAA-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtouch.OR.Web", "Newtouch.OR.Web\Newtouch.OR.Web.csproj", "{A1B2C3D4-E5F6-4711-BBBB-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtouch.OR.API", "Newtouch.OR.API\Newtouch.OR.API.csproj", "{F8A1AA5D-5F77-44DE-ABFC-8959BA6A5D5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1B2C3D4-E5F6-4711-AAAA-111111111111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-4711-AAAA-111111111111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-4711-AAAA-111111111111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-4711-AAAA-111111111111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-4711-BBBB-222222222222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-4711-BBBB-222222222222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-4711-BBBB-222222222222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-4711-BBBB-222222222222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A1AA5D-5F77-44DE-ABFC-8959BA6A5D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A1AA5D-5F77-44DE-ABFC-8959BA6A5D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A1AA5D-5F77-44DE-ABFC-8959BA6A5D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A1AA5D-5F77-44DE-ABFC-8959BA6A5D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

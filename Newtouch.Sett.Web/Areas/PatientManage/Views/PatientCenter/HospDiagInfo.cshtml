@@ -1,0 +1,97 @@
+
+@{
+
+    Layout = null;
+}
+
+
+
+    <div id="ZDdiv">
+        <table id="gridZDList"></table>
+        @*<div id="gridZDPager"></div>*@
+    </div>
+
+
+
+
+
+<script>
+    //住院号span标签内容改变事件
+    //$("#zyh").on('DOMNodeInserted', function () {
+    //    ZdListGrid($("#zyh").text());
+    //    $("#gridZDList").jqGrid('setGridParam', {
+    //        postData: {
+    //            zyh: $("#zyh").text(),
+    //            //zyh: "01699",
+    //        },
+    //    }).trigger("reloadGrid");
+    //    //$("#gridZDList").closest(".ui-jqgrid-bdiv").css({ "with": $("#form_account").width() + 30 });
+    //})
+
+    //$(function () {
+
+    //    //ZdListGrid("01699");
+
+    //})
+    
+    function ZdListGrid(zyh) {
+
+        var $gridList = $("#gridZDList");
+        
+        $gridList.dataGrid({
+            postData: {
+                zyh: zyh,
+            },
+            url: "/PatientManage/PatientCenter/GetZdGridList",
+            height: $(window).height() - 130,
+            colModel: [
+                { label: "Số nhập viện", name: "zyh", width: 60, align: 'center', editor: "text" },
+                { label: "Mã chẩn đoán", name: "zdCode", width: 80, align: 'center', editor: "text" },
+                { label: "Tên chẩn đoán", name: "zdmc", width: 180, align: 'center', editor: "text" },
+                { label: "Loại chẩn đoán", name: "zdlb", width: 70, align: 'center', editor: "text" },
+                { label: "Thời gian chẩn đoán", name: "zdsj", width: 100, align: 'center', editor: "text" },
+                { label: "Tình trạng bệnh khi nhập viện", name: "rybq", width: 80, align: 'center', editor: "text" },
+                {
+                    label: "xuất viện trường hợp", name: "cyqk", width: 60, align: 'center', editor: "text", formatter: function (row, option, data) {
+                        if (data.cyqk == "1") {
+                            return "Khỏi bệnh";
+                        }
+                        else if (data.cyqk == "2") {
+                            return "Đỡ hơn";
+                        }
+                        else if (data.cyqk == "3") {
+                            return "Chưa khỏi";
+                        }
+                        else if (data.cyqk == "4") {
+                            return "Tử vong";
+                        }
+                        else if (data.cyqk == "5") {
+                            return "Khác";
+                        }
+                        else if (data.cyqk == "6") {
+                            return "Chuyển viện";
+                        }
+                        else
+                            return "Đang nằm viện";
+                    } },
+                { label: "Loại chẩn đoán", name: "zdlx", width: 80, align: 'center', editor: "text" },
+                { label: "Nguồn chẩn đoán", name: "zdly", width: 60, align: 'center', editor: "text" },
+                { label: "tải lên", name: "sfsc", width: 30, align: 'center', editor: "text" },
+                
+            ],
+            viewrecords: false,
+            //autowidth: true,
+        });
+        //jQuery("#gridZDList").jqGrid('reloadGrid');
+        $("#gridZDList").jqGrid('setGridParam', {
+            postData: {
+                zyh: $("#zyh").text(),
+                //zyh: "01699",
+            },
+        }).trigger("reloadGrid");
+    }
+
+
+    
+</script>
+

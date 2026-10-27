@@ -1,0 +1,394 @@
+@using Newtouch.MR.ManageSystem.Infrastructure
+@{
+    ViewBag.Title = "Danh sách trang đầu bệnh án";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    #btn_addnew {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+        width: 100px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+        #btn_addnew span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            #btn_addnew span:after {
+                content: '»';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+        #btn_addnew:hover span {
+            padding-right: 25px;
+        }
+
+            #btn_addnew:hover span:after {
+                opacity: 1;
+                right: 0;
+            }
+</style>
+<div class="panel">
+    <div style="padding-left:10px;">
+        <table class="form">
+			<tr>
+				<th class="formTitle">Thời gian xuất viện</th>
+				<td class="formValue" colspan="2">
+					<input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
+					<span style="float:left;">_</span>
+					<input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+				</td>
+				@*<td class="formTitle">Trạng thái bệnh án：</td>
+		<td class="formValue formDdlSelectorTd">
+			<select class="form-control" id="bazt" data-enumtype="Enumbazt">
+				<option value="">===Tất cả===</option>
+			</select>
+		</td>*@
+				@*<td class="formTitle">Khu bệnh：</td>
+		<td class="formValue formDdlSelectorTd">
+			<select id="bqlist" name="bqlist" class="form-control " style="float:left;">
+				<option value=""> ==Vui lòng chọn== </option>
+			</select>
+		</td>*@
+				@*<th class="formTitle">Số ngày xuất viện >=</th>
+				<td class="formValue">
+					<input id="txt_cyts" name="txt_keyword" class="form-control" style="width:50%;float:left;" />
+				</td>*@
+				<th class="formTitle">Số CMND/CCCD</th>
+				<td class="formValue">
+					<input id="txt_sfzh" name="txt_keyword" class="form-control" style="width:100%;float:left;" />
+				</td>
+
+				<th class="formTitle">Khoa xuất viện</th>
+				<td class="formValue">
+					<input id="txt_cykb" name="txt_keyword" class="form-control" style="width:50%;float:left;" />
+				</td>
+
+				@*<th class="formTitle"></th>
+				<td class="formValue"></td>*@
+				<td class="formTitle"></td>
+				<td class="formValue" rowspan="2">
+					<button id="btn_addnew" type="button" class="btn" onclick="btn_cycx()"><span>Tạo bệnh án</span></button>
+				</td>
+			</tr>
+            <tr>
+                <th class="formTitle">Họ tên/Số nội trú/Số bệnh án</th>
+                <td class="formValue" colspan="2">
+                    <input id="txt_keyword" name="txt_keyword" class="form-control" />
+                </td>
+
+                <th class="formTitle"></th>
+                <td class="formTitle">
+                    <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" id="btn_search" value="Truy vấn bệnh án" />
+                </td>
+                <td class="formTitle">
+                    <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" onclick="btn_excel()" id="btn_excel" value="Xuất" />
+                </td>
+            </tr>
+        </table>
+        <div>
+            <table id="gridList"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</div>
+<script>
+
+      var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgIds = '@(ViewBag.OrgId)';
+
+
+    $(function(){
+       GridInit();
+    });
+
+    function GridInit() {
+        var $gridList = $("#gridList");
+        var queryJson = {
+            keyword: $("#txt_keyword").val(),
+            ksrq: $("#txt_ksrq").val(),
+            jsrq: $("#txt_jsrq").val(),
+            bazt: $("#bazt option:selected").val(),
+			sfzh: $("#txt_sfzh").val(),
+			cykb: $("#txt_cykb").val()
+        }
+        $gridList.dataGrid({
+            postData: queryJson,
+            url: "/MRHomePage/MainRecord/GetGridList",
+            autowidth: true,
+            height: $(window).height() - 185,
+            colModel: [
+                { label: "Id", name: "Id", hidden: true },
+                { label: "Số bệnh án", name: "BAH", width: 60, align: 'left' },
+                { label: "Tên bệnh nhân", name: "XM", width: 50, align: 'left' },
+                {
+                    label: "Giới tính", name: "XB", width: 30, align: 'left', formatter: function (val) {
+                        if (val == '@((int)EnumSex.M)') {
+                            return "Nam";
+                        }
+                        else if (val == '@((int)EnumSex.F)') {
+                            return "Nữ";
+                        }
+                        else {
+							return "Chưa rõ";
+                        }
+                    }
+                },
+                { label: "Tuổi", name: "NL", width: 30, align: 'left' },
+                { label: "Số nội trú", name: "ZYH", width: 40, align: 'left' },
+                { label: "Khu bệnh", name: "RYKB", width: 80, align: 'left' },
+                { label: "Khoa xuất viện", name: "CYKB", width: 80, align: 'left' },
+                { label: "Số giường xuất viện", name: "CYCH", width: 50, align: 'left' },
+                { label: "Chẩn đoán", name: "MZZD", width: 100, align: 'left' },
+                { label: "Thời gian xuất viện", name: "CYSJ", width: 120, align: 'left' },
+                {
+                    label: "Thời gian ký nhận", name: "CommitTime", width: 100, align: 'left', formatter: function (val) {
+                        return val.replace("T", " ");
+                    } },
+                { label: "Thời gian lưu trữ", name: "GDRQ", width: 110 , align: 'left' },
+                //{ label: "Số ngày xuất viện", name: "cyts", width: 100, align: 'left' },
+                @*{ label: "Trạng thái ký nhận", name: "RecordStu", width: 60, align: 'left', formatter: function (val) {
+                        if (val == '@((int)EnumRecordStu.yqs)') {
+                            return "Đã ký nhận";
+                        }
+                        else if (val == '@((int)EnumRecordStu.wtj)') {
+                            return "Chưa gửi";
+                        }
+                        else if (val == '@((int)EnumRecordStu.ytj)') {
+                            return "Đã gửi";
+                        }
+                        else if (val == '@((int)EnumRecordStu.th)') {
+                            return "Trả lại";
+                        }
+                        else return ""
+
+                    } },*@
+                {
+                    label: "Trạng thái bệnh án", name: "bazt", width: 60, align: 'left', formatter: function (val) {
+                        if (val == '@((int)Enumbazt.dlr)') {
+                            return "Chờ nhập";
+                        }
+                        else if (val == '@((int)Enumbazt.lrz)') {
+                            return "Chờ lưu trữ";
+                        }
+                        else if (val == '@((int)Enumbazt.gd)') {
+                            return "Đã lưu trữ";
+                        }
+                        else return ""
+
+                    }
+                },
+                {
+                    label: "Chi tiết", name: "", width: 160, align: 'center', formatter(val, option, row) {
+                        var gd = "";
+                        if (row.bazt == '@((int)Enumbazt.gd)') {
+                            
+                            gd = "<a class='btn btn-default' id='" + option.rowId+"_gd' style='width:30px;font-weight:bold;textalign:center;margin-left:5px' onclick='guidang(" + option.rowId + ")'>Hủy</a>";
+                            
+                        }
+                        else {
+                            gd = "<a class='btn btn-default'  id='" + option.rowId +"_gd' style='width:30px;font-weight:bold;textalign:center;margin-left:5px' onclick='guidang(" + option.rowId + ")'>Lưu trữ</a>";
+                        }
+                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;textalign:center;' onclick='basyShow(" + option.rowId + ")'>Xem chi tiết</a>" + gd + "<a class='btn btn-default' style='width:70px;font-weight:bold;textalign:center;margin-left:5px' onclick='CXguidang(" + option.rowId + ")'>Hủy và trả lại</a>";
+
+                    }
+                }
+            ],
+            loadComplete: function () {
+            },
+            caption: "Danh sách bệnh án",
+            sortname: "Id desc",
+            rowNum: 10,
+            pager: "#gridPager",
+            viewrecords: false
+
+        });
+
+        $('#btn_search').click(function () {
+            var postData = {
+                keyword: $("#txt_keyword").val(),
+                ksrq: $("#txt_ksrq").val(),
+                jsrq: $("#txt_jsrq").val(),
+                bazt: $("#bazt option:selected").val(),
+                sfzh: $("#txt_sfzh").val(),
+                cykb: $("#txt_cykb").val()
+            }
+            $gridList.jqGrid('setGridParam', {
+                postData: postData,
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function btn_cycx() {
+        $.modalOpen({
+            id: "Form",
+            title: "Truy vấn bệnh nhân ký nhận bệnh án",
+            url: "/MRHomePage/MainRecord/OutHosPatQuery",
+            width: "750px",
+            height: "450px",
+            btn: null
+
+        });
+    }
+
+    function basyShow(rowid) {
+        var rowdata = $('#gridList').jqGrid('getRowData', rowid);
+        var menuname = "Trang đầu bệnh án" + "【" + rowdata.XM +"-"+ rowdata.ZYH + "】"
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuname, enName: "", url: "/MRHomePage/MainRecord/Main?keyValue=" + rowdata.Id + "&zyh=" + rowdata.ZYH });
+    }
+
+    function guidang(rowid) {
+        var gdzt = "#" + rowid + "_gd";
+        if ($(gdzt).text() == "Lưu trữ") {
+            var rowdata = $('#gridList').jqGrid('getRowData', rowid);
+            //console.info("rowdata:" + rowdata.Id, rowdata.ZYH,rowdata.XM);
+            $.modalConfirm("Xác nhận lưu trữ？",
+                function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            url: "/MRHomePage/MainRecord/guidang",
+                            dataType: "json",
+                            async: true,
+                            data: { "dataId": rowdata.Id, "ZYH": rowdata.ZYH, "XM": rowdata.XM },
+                            type: "POST",
+                            success: function (d) {
+                                if (d == 1) {
+                                    //GridInit();
+                                    
+                                    $.modalAlert("Lưu trữ thành công", 'success');
+                                    GridInit();
+                                    $("#gridList").resetSelection();
+                                    $("#gridList").trigger("reloadGrid");
+                                    $(gdzt).text("Hủy");
+                                }
+                            },
+                            error: function () {
+                                $.modalAlert("Lưu trữ thất bại", "error");
+                            }
+                        });
+                    }
+                    else {
+                        rowdata = "";
+                    }
+                });
+        }
+        else {
+            var rowdata = $('#gridList').jqGrid('getRowData', rowid);
+            //console.info("rowdata:" + rowdata.Id, rowdata.ZYH,rowdata.XM);
+            $.modalConfirm("Xác nhận hủy lưu trữ?？",
+                function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            url: "/MRHomePage/MainRecord/CXGDZT",
+                            dataType: "json",
+                            async: true,
+                            data: { "dataId": rowdata.Id, "ZYH": rowdata.ZYH, "XM": rowdata.XM },
+                            type: "POST",
+                            success: function (d) {
+                                if (d == 1) {
+                                    //GridInit();
+                                    
+                                    $.modalAlert("Hủy thành công", 'success');
+                                    GridInit();
+                                    $("#gridList").resetSelection();
+                                    $("#gridList").trigger("reloadGrid");
+                                    $(gdzt).text("Lưu trữ");
+                                }
+                            },
+                            error: function () {
+                                $.modalAlert("Hủy thất bại", "error");
+                            }
+                        });
+                    }
+                    else {
+                        rowdata = "";
+                    }
+                });
+        }
+        
+        
+       // $("#gridList").trigger("reloadGrid");
+
+    }
+
+
+    function CXguidang(rowid){
+        var rowdata = $('#gridList').jqGrid('getRowData', rowid);
+        if (rowdata.bazt != "Đã lưu trữ") {
+            $.modalAlert("Chưa được lưu trữ！", 'warning');
+            return false;
+        }
+        else {
+            var Id = "";
+            $.ajax({
+                url: "/MRHomePage/MainRecord/CXguidang",
+                dataType: "json",
+                data: { "dataId": rowdata.Id, "ZYH": rowdata.ZYH, "XM": rowdata.XM },
+                async: false,
+                success: function (data) {
+                    if (data == 1) {
+                        $.modalAlert("Hủy và trả lại thành công", 'success');
+                        $("#gridList").resetSelection();
+                        $("#gridList").trigger("reloadGrid");
+
+                    }
+
+                }
+            });
+
+        }
+        
+
+    }
+
+
+
+
+
+    function btn_excel() {
+        var ksrq = $("#txt_ksrq").val();
+        var jsrq = $("#txt_jsrq").val();
+        $.ajax({
+            url: "/MRHomePage/MainRecord/MedicalRecordExportQuery",
+            dataType: "json",
+            data:{ kssj: ksrq, jssj: jsrq },
+            async: false,
+            success: function (data) {
+                $.modalAlert(data.message, 'success');
+            }
+        });
+
+
+    }
+
+
+
+
+
+
+</script>
+
+
+
+   
+    
+
+
+

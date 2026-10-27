@@ -1,0 +1,168 @@
+@{
+    ViewBag.Title = "Xác nhận hoàn phí ngoại trú";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style type="text/css">
+    #divTmx .panel-heading {
+        background-color: #fcfbfb !important;
+    }
+
+        #divTmx .panel-heading span {
+            margin-right: 15px;
+            font-weight: bold;
+            line-height: 20px;
+        }
+
+    #divTmx #tje {
+        font-weight: bold;
+    }
+
+    #divTmx ul li {
+        margin-left: 0;
+        font-size: 14px;
+        line-height: 24px;
+    }
+</style>
+
+<div style="vertical-align:middle;">
+    <div id="divTmx">
+        <div class="panel panel-default" style="margin: 20px;">
+            <div class="panel-heading navb-bg">
+                <span>Thời gian quyết toán：<span id="settTime"></span></span>
+                <span>Số tiền quyết toán：<span id="zje"></span></span>
+                <span>Số tiền thanh toán：<span id="xjzf"></span></span>
+                <br />
+                <span>Phương thức thanh toán：<span id="xjzffsmc"></span></span>
+                <span>Ngày thu phí：<span id="sfrq"></span></span>
+            </div>
+            <div style="padding-right:20px;">
+                <table class="form">
+                    <thead>
+                        <tr>
+                            <td class="formValue" style="padding-left:10px;">
+                                Chi tiết hoàn phí
+                            </td>
+                            <td class="formValue" style="width:160px;">
+                                Tên
+                            </td>
+                            <td class="formValue">
+                                Đơn giá
+                            </td>
+                            <td class="formValue">
+                                Số lượng
+                            </td>
+                            <td class="formValue">
+                                Số lượng hoàn
+                            </td>
+                            <td class="formValue">
+                                Số tiền hoàn
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div style="margin: 20px;">
+            <ul class="nav nav-pills" style="position: fixed;right: 80px;bottom: 20px;">
+                <li>Nhân viên hoàn phí：<span>@(OperatorProvider.GetCurrent().UserName)</span></li>
+                <li>Ngày hoàn phí：<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
+                <li>Thời gian hoàn phí：<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
+                <li>Tổng hoàn phí：<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> Hoàn về tài khoản tạm ứng </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var thisJszb = sessionStorage.getItem("needRefundJszb");
+    var data = sessionStorage.getItem("needRefundData");
+    var mzh = $.request("mzh");
+    if (!!thisJszb || !!data) {
+        var thisJszb = JSON.parse(thisJszb);
+        var data = JSON.parse(data);
+    }
+    //if (thisJszb.xjzffsmc.indexOf("tài khoản tạm ứng")!==-1)
+    //    $("#mzyjj").show();
+    $(function () {
+        if (!!!thisJszb || !!!data) {
+            return;
+        }
+        $('#settTime').html($.getTime({ date: thisJszb.CreateTime }));
+        var zje = thisJszb.jszje;
+        $('#zje').html(thisJszb.jszje ? thisJszb.jszje.toFixed(2) : '');
+        $('#xjzf').html(thisJszb.jsxjzf ? thisJszb.jsxjzf.toFixed(2) : '');
+        $('#sfrq').html($.getDate({ date: thisJszb.sfrq }));
+        $('#xjzffsmc').html(thisJszb.xjzffsmc);
+
+        var tmxZje = 0;
+        $.each(data, function () {
+            var mxtje = this.dj * this.tsl;
+            tmxZje += mxtje;
+            $('#divTmx table tbody').append('<tr><td class="formValue"></td><td class="formValue">' + this.mc + '</td><td class="formValue">' + this.dj + '</td><td class="formValue">' + this.sl + '</td><td class="formValue">' + this.tsl + '</td><td class="formValue">' + roundingBy4she6ru5chengshuang(mxtje, 2) + '</td></tr>');
+        });
+        var strTje = roundingBy4she6ru5chengshuang(tmxZje, 2);
+        if (thisJszb.jszje == tmxZje && thisJszb.jsxjzf != thisJszb.jszje) {
+            //không hoàn toàn tự chi trảquyết toánbản ghi
+            strTje += '（Thực hoàn' + thisJszb.jsxjzf.toFixed(2) + '）';
+        }
+        if (thisJszb.xjzffsmc.split(":").length - 1 == 1 && (thisJszb.xjzffsmc.indexOf("Alipay") !== -1 || thisJszb.xjzffsmc.indexOf("WeChat") !== -1 || (thisJszb.xjzffsmc.indexOf("Tài khoản tạm ứng") !== -1))) {
+            strTje += '（Hoàn theo đường cũ）';
+        } else {
+            strTje += '（Hoàn tiền mặt）';
+        }
+        $('#tje').html(strTje);
+    });
+
+    function AcceptClick(callBack) {
+        var postData = {};
+        postData.mzh = mzh;
+        postData.jsnm = thisJszb.jsnm;
+        var tjsxmDictObj = {};
+        var tjsxmDictZtObj = {};//bộ thu phí
+        var expectedTmxZje = 0;
+        var expectedTmxZtZje = 0;//số tiền bộ thu phí
+        var cfnmlist = ""; //đơn thuốc của bộ
+        debugger
+        $.each(data, function () {
+            if (this.ztId) {
+                tjsxmDictZtObj[this.ztId] = this.tsl;
+                expectedTmxZtZje += this.dj * this.tsl;
+                cfnmlist += this.cfnm + ",";
+            }
+            else {
+                tjsxmDictObj[this.jsmxnm] = this.tsl;
+                expectedTmxZje += this.dj * this.tsl;
+            }
+            
+        });
+        if (expectedTmxZje > 0) {
+            postData.tjsxmDict = tjsxmDictObj;
+        }
+        else {
+            postData.tjsxmDictZt = tjsxmDictZtObj;
+        }
+        if (tjsxmDictZtObj != "" || tjsxmDictZtObj != null) {
+            postData.tjsxmDictZt = tjsxmDictZtObj;
+        }
+        postData.expectedTmxZje = ovpraseFloat(expectedTmxZje).toFixed(4);
+        postData.expectedTmxZjeZt = ovpraseFloat(expectedTmxZtZje).toFixed(4);
+        postData.cfnmArray = cfnmlist;
+        $.submitForm({
+            url: "/OutpatientManage/OutpatientRefund/RefundSettlement",
+            param: postData,
+            success: function(ajaxResp) {
+                callBack(ajaxResp);
+                
+                $.modalClose();
+            }
+        });
+    }
+    function ovpraseFloat(val) {
+        if (!val) {
+            val = 0.00;
+        }
+        return parseFloat(val);
+    }
+</script>

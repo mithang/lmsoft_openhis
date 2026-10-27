@@ -1,0 +1,53 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Kiểm kê tồn kho";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .dv-index {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -230px;
+        margin-top: -50px;
+    }
+
+        .dv-index div {
+            float: left;
+            width: 200px;
+            height: 50px;
+            background-color: #00a0ea;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-right: 30px;
+            cursor: pointer;
+            -webkit-box-shadow: #666 3px 4px 8px;
+            -moz-box-shadow: #666 3px 4px 8px;
+            box-shadow: #666 3px 4px 8px;
+        }
+</style>
+<div class="dv-panel">
+    <div class="dv-index">
+        <div id="dv_index_startPd">Bắt đầu kiểm kê</div>
+        <div id="dv_search">Tra cứu</div>
+    </div>
+</div>
+<script>
+    $(function() {
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng
+            window.initLayout("MyTabGrid");
+        });
+        $("#dv_index_startPd").click(function () {
+            window.location.href = "InventoryAction";
+        });
+        $("#dv_search").click(function () {
+            window.location.href = "InventoryQuery";
+        });
+    });
+</script>

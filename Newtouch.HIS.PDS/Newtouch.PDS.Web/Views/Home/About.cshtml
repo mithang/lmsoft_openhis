@@ -1,0 +1,73 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giới thiệu nền tảng</title>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery.choose.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-about.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Nhà thuốc đám mây - Kho thuốcGiới thiệu nền tảng
+            </div>
+            <div class="panel-body">
+                <p>Đám mây Hệ thống nhà thuốc - kho thuốclà một bộ khung dựa trên.NET MVC+EF6+BootstrapFramework được phát triển，Mã nguồn hoàn toàn mở！</p>
+                <p>Hệ thống hỗ trợ đa tenant，Rất thuận tiện cho việc quản lý bệnh viện tập đoàn。</p>
+                <p>Hỗ trợSQLServer、MySQL、Oracle、SQLite、Access và nhiều loại cơ sở dữ liệu khác。Thiết kế mô-đun，Cấu trúc phân tầng rõ ràng。</p>
+                <p>Kiểm soát quyền thao tác tinh vi, tỉ mỉ，Tất cả các liên kết quản lý đều được xác thực quyền，Có thể kiểm soát đến menu điều hướng、Nút chức năng。</p>
+                <p>Quyền dữ liệu（Kiểm soát quyền dữ liệu tinh vi，Kiểm soát đến cấp dòng，Cấp danh sách，Cấp trường biểu mẫu，Thực hiện người khác nhau xem dữ liệu khác nhau，Người khác nhau thao tác các trường khác nhau trên cùng một trang</p>
+                <p>Tương thích với các trình duyệt phổ biến nhất hiện nay（IE8+、Chrome、Firefox、360Trình duyệt）</p>
+                <p>Phạm vi áp dụng：Bệnh viện、Cơ sở y tế cộng đồng khu vực、Phòng khám và bệnh viện tập đoàn。</p>
+            </div>
+        </div>
+    </div>
+    <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                NewtouchGiới thiệu kỹ thuật
+            </div>
+            <div class="panel-body" style="overflow: hidden;">
+                <div style="float: left; width: 50%;">
+                    <p>1、Công nghệ frontend</p>
+                    <p>JS Framework：jquery-2.1.1、Bootstrap.js、JQuery UI</p>
+                    <p>CSS Framework：Bootstrap v3.3.4（Ổn định cho backend，UIVề giao diện, tự nâng cấp, cải tiến theo nhu cầu）。</p>
+                    <p>Xác thực phía máy khách：jQuery Validation Plugin 1.9.0。</p>
+                    <p>Trình soạn thảo trực tuyến：ckeditor、simditor</p>
+                    <p>Tải tệp lên：Uploadify v3.2.1</p>
+                    <p>Tab động：Jerichotab（Tự cải tiến）</p>
+                    <p>Bảng dữ liệu：jqGrid、Bootstrap Talbe</p>
+                    <p>Hộp thoại：layer-v2.3</p>
+                    <p>Hộp chọn thả xuống：jQuery Select2</p>
+                    <p>Điều khiển cấu trúc cây：jQuery zTree、jQuery wdtree</p>
+                    <p>Bố cục trang：jquery.layout.js 1.4.4</p>
+                    <p>Plugin biểu đồ：echarts、highcharts</p>
+                    <p>Điều khiển ngày： My97DatePicker</p>
+                </div>
+                <div style="float: left; width: 50%;">
+                    <p>2、Công nghệ backend</p>
+                    <p>Framework lõi：.NET MVC5、WEB API</p>
+                    <p>Framework tầng persistence：EntityFramework 6.0</p>
+                    <p>Nhiệm vụ theo lịch trình：Quartz.NetThành phần</p>
+                    <p>Hỗ trợ an toàn：Bộ lọc、Tiêm SQL、Giả mạo yêu cầu</p>
+                    <p>Xác thực phía máy chủ：Xác thực mô hình thực thể、Tự đóng góiValidator</p>
+                    <p>Framework bộ nhớ đệm：Microsoft tích hợp sẵnCache、Redis</p>
+                    <p>Quản lý nhật ký：Log4net、Nhật ký đăng nhập、Nhật ký thao tác</p>
+                    <p>Lớp công cụ：NPOI、Newtonsoft.Json、Mã xác nhận、Thư viện công cộng phong phú</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

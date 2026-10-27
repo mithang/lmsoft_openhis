@@ -1,0 +1,23 @@
+# Sett final accounting — progress (agent: Sett SMALL follow-up, 2026-10-26)
+
+## Stub fix: XNHToZFForm (missing upstream view)
+- Confirmed: action `XNHToZFForm()` exists in port `Newtouch.Sett.Web/Areas/PatientManage/Controllers/InpatientController.cs` (line ~281, `return View();`) and in the original run-copy controller; no `XNHToZFForm.cshtml` exists in either tree.
+- Sibling views `YBToZFForm.cshtml` + `ZFToYBForm.cshtml` exist in the same folder and are ported.
+- Created stub view `Newtouch.Sett.Web/Areas/PatientManage/Views/Inpatient/XNHToZFForm.cshtml` — Layout=null notice in the Sett `SysManageNotice.cshtml` precedent style, Vietnamese only, no invented fields, no fake data, no sibling-form cloning.
+- Build: first attempt failed ONLY on .pdb copy lock (running app PID 69374 held it); stopped app by exact PID, rebuilt Release → 0 errors. Restarted via run-sett.sh (new PID 71872), login 200.
+- Verification (logged-in session, demo 000000, md5 via md5sum): CheckLogin → success JSON; GET /PatientManage/Inpatient/XNHToZFForm → 200 serving the notice HTML (previously JSON view-not-found); sibling YBToZFForm → 200 control.
+
+## Final accounting: all 22 Sett areas ported
+- Port vs original (run copy) area counts IDENTICAL for controllers in all 22 areas (115 area controllers + 5 root); views 484 port vs 480 original (+2 HospitalizationManage, +1 PatientManage = this XNH stub, +1 other include).
+- Areas: OutpatientManage, HospitalizationManage, PayManage (phase 1) + BusinessManage, DRGManage, DaySettleManage, DeanInquiryManage, ExampleManage, FeeConfirmManage, HighchartsManage, InsuranceManage, IssueTreatRecord, JGManage, KPI, KnowledgeBaseManage, NonTreatmentItemManage, PatientManage, ReportManage, SiteManage, SystemManage, SystemSecurity, TherapeutistManage (remainder).
+- Served-HTML sample (session, 6 remainder areas): SiteManage/SiteStatistics/Index 200, PatientManage/PatientCenter/Index 200, DaySettleManage/DaySettle/Index 302 → ApplicationIndex 200, TherapeutistManage/TherapistAdvice/Index 200, FeeConfirmManage/FeeConfirm/Index 200 — all REAL HTML bodies (body-checked, not status-only).
+- CORRECTION (body check caught it): ReportManage/Report/Index returns HTTP 200 but the BODY is the view-not-found error JSON (middleware returns errors with 200 envelope) — status-only checks are unreliable for this app. Root cause: no Index action in ReportController in either tree, no Index.cshtml in either tree, no view links and ZERO Sys_Module menu rows pointing at ReportManage/Report* (verified by SELECT on NewtouchHIS_Base..Sys_Module). The route resolves only via the base-controller virtual Index() convention — a guessed URL, no user flow reaches it. NOT stubbed: out of this task's two-task scope, and parent directed not to chase guessed URLs. If parent wants even guessed URLs to render, the fix is the same one-line notice stub pattern as XNHToZFForm.
+- App-down incident during this task: the restarted Sett process (PID 71872, child of a backgrounded exec session) died when its session was reaped; setsid aborted in this sandbox; app is UP again (PID 3315, login 200, XNH notice re-verified on the new process). Lesson: start module apps in a way that survives exec-session reaping (watchdog recovery.sh restarts have proven durable) — do not rely on nohup from a backgrounded exec session.
+- Leftover JSONs (19 files, 260 strings total): sampled contexts all classify as keeps, NOT untranslated UI — JS/C# comments (合计 in comments), DB-value comparisons (shzt 待审/通过, szxz 充值/住院结算), SSRS ReportServer report-path names (住院费用分类清单 etc., translating breaks lookup), API-response message comparisons (作废成功/修改成功), HighCharts demo category proper nouns (上海百诺 etc.), demo placeholder names (张三/李四). Duplicate view "Index - 复制.cshtml" exists in the original too — faithful, not port clutter.
+- No DB writes, no pushes, run copy + translation checkout untouched.
+
+## VERDICT: Sett remainder DONE for all real routes (after this stub fix) — one documented non-menu gap below
+- All 22 areas ported, all real sampled pages serve real HTML with 0 CJK, XNH stub verified live on the current process.
+- Remaining known gap (NOT fixed, needs parent decision): ReportManage/Report/Index → view-not-found error JSON (HTTP 200 envelope), no action/view/links/menu rows in either tree — guessed URL only. Suggested fix if wanted: same notice-stub pattern as XNHToZFForm.
+- Remaining known stubs (pre-existing, explicit, not 404): Pay gateways, GuiAn insurance, Excel export, CIS/PDS sync, WCF, SSRS-iframe report shells, center-API 8015/8016 actions.
+- Open items NOT done by this task (need parent/user decisions, unchanged): demo xt_brzh row missing, DB-sourced Chinese names pass, write-path live tests (no-write policy).

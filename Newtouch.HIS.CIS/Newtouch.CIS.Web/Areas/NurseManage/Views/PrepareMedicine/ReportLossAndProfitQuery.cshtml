@@ -1,0 +1,195 @@
+@using Newtouch.Infrastructure;
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "ReportLossAndProfitQuery";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<input hidden id="yfbmcode" value="@Constants.CurrentYfbm.yfbmCode">
+<input hidden id="OrganizeId" value="@OperatorProvider.GetCurrent().OrganizeId">
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading">
+            LọcThông tin
+        </div>
+        <table class="form" style="width:98%;border:0">
+            <tr>
+                <th class="formTitle">Tình hình thừa thiếu:</th>
+                <td style="padding-left:12px;">
+                    <div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
+                        <button type="button" id="btnAll" data-keywordtype="All" class="btn active btn-restore">Tất cả</button>
+                        <button type="button" id="btnLoss" data-keywordtype="Loss" class="btn btn-default">Báo hỏng</button>
+                        <button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">Báo thừa</button>
+                    </div>
+                </td>
+                <th class="formTitle">Từ khóa:</th>
+                <td class="formValue">
+                    <input type="text" id="txtINPUTCODE" class="form-control" placeholder="ThuốcPinyin Mã Tên" />
+                </td>
+                <th class="formTitle">Ngày bắt đầu:</th>
+                <td class="formValue">
+                    <input type="text" id="txtStartDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })" />
+                </td>
+                <th class="formTitle">Ngày kết thúc: </th>
+                <td class="formValue">
+                    <input type="text" id="txtEndDate" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Nguyên nhân thừa thiếu:</th>
+                <td class="formValue">
+                    <select class="form-control" id="ddlSYYY">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <td class="formValue">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<div class="gridPanel" style="margin-top:10px">
+    <table id="gridSYXXMXList"></table>
+    <div id="gridPager" rel="form1"></div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 3 },
+    F3Text = "Báo hỏngBáo thừaIn"
+})
+
+<script>
+    
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
+
+    $(function () {
+        $('#btnLossAndProfitTypeGourp').on('click', '.btn',
+            function () {
+                if (!$(this).hasClass('active')) {
+                    $(this).siblings('.btn').removeClass('btn-restore').removeClass('active').addClass('btn-default');
+                    $(this).removeClass('btn-default').addClass('btn-restore active');
+                }
+            });
+        GridSyxxmx();
+    });
+
+    //损益信息明细
+    function GridSyxxmx() {
+        var $gridSyxxmxList = $("#gridSYXXMXList");
+        $gridSyxxmxList.dataGrid({
+            postData: getSearchPostData(),
+            url: "/PrepareMedicine/SelectLossAndProditInfoList?r=" + Math.random(),
+            height: $(window).height() - 265,
+            caption: "ThuốcTổng lượng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng tiền định giá:" + "0.00" + "&nbsp;&nbsp;&nbsp;&nbsp;Tổng tiền giá lẻ:" + "0.00" + "</span>",
+            colModel: [
+                { label: 'Tình hình thừa thiếu', name: 'syqk', width: 80, align: 'left' },
+                { label: 'Nguyên nhân thừa thiếu', name: 'syyy', width: 110, align: 'left' },
+                { label: 'Số chứng từ', name: 'djh', width: 130, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Thừa thiếuSố lượng', name: 'sysl', width: 80, align: 'left' },
+                //{ label: '单位', name: 'dw', width: 50, align: 'left' },
+                { label: 'Giá nhập', name: 'jj', width: 80, align: 'left' },
+                { label: 'Giá bán sỉ', name: 'pfj', width: 80, align: 'left' },
+                { label: 'Bán buônTổng số tiền', name: 'pjze', width: 80, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 80, align: 'left' },
+                { label: 'Tổng tiền bán lẻ', name: 'ljze', width: 80, align: 'left' },
+                { label: 'Báo cáoThời gian', name: 'bgsj', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'ThuốcLoại', name: 'yplb', width: 80, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 120, align: 'left' },
+                { label: 'Nơi sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 80, align: 'left' },
+                { label: 'Hạn hiệu lực', name: 'yxq', width: 100, align: 'left' },
+                { label: 'Người chịu trách nhiệm', name: 'zrr', width: 80, align: 'left' },
+                { label: 'ThuốcMã', name: 'ypCode', hidden: true },
+                { label: 'Pinyin', name: 'py', hidden: true },
+                { label: 'pjze', name: 'pjze', hidden: true },
+                { label: 'ljze', name: 'ljze', hidden: true }
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            loadComplete: function (data) {
+                ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridSyxxmxList.jqGrid('setGridParam',
+            {
+                url: "/PrepareMedicine/SelectLossAndProditInfoList?r=" + Math.random(),
+                postData: getSearchPostData()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //加载损益原因
+    $("#ddlSYYY").bindSelect({
+        url: "/PrepareMedicine/GetLossProfitReasonListByType?r=" + Math.random(),
+        id: "syyyId",
+        text: "syyy"
+    });
+
+    //查询条件
+    function getSearchPostData() {
+        var startTime = $("#txtStartDate").val();
+        var endTime = $("#txtEndDate").val();
+        var syyy = $("#ddlSYYY").val();
+        var inputCode = $("#txtINPUTCODE").val();
+        var syqk = -1; //全部
+        if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
+            syqk = 1;  //报溢
+        } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
+            syqk = 2;  //报损
+        }
+        return { startTime: startTime, endTime: endTime, syyy: syyy, inputCode: inputCode, syqk: syqk };
+    };
+
+    //计算标题栏中的批价总额和零价总额
+    function ComputePjzeAndLjze() {
+        var titlePjze = 0;
+        var titleLjze = 0;
+        var count = $("#gridSYXXMXList").getGridParam('records');
+        if (count > 0) {
+            var rowIds = $("#gridSYXXMXList").getDataIDs();
+            for (var i = 0; i < rowIds.length; i++) {
+                var getRowPjze = $("#gridSYXXMXList").getRowData(rowIds[i]).pjze;
+                var getRowLjze = $("#gridSYXXMXList").getRowData(rowIds[i]).ljze;
+                titlePjze = parseFloat(titlePjze) + parseFloat(getRowPjze);
+                titleLjze = parseFloat(titleLjze) + parseFloat(getRowLjze);
+            }
+            $("#yeCon").text("Tổng tiền định giá:" + titlePjze.toFixed(4) + "; Tổng tiền giá lẻ:" + titleLjze.toFixed(4) + "");
+        }
+    }
+
+    //计算批发价和零售价总额
+    function ComputePjzeAndLjze() {
+        $.najax({
+            url: "/PrepareMedicine/ComputePjzeAndLjze",
+            dataType: "json",
+            data: getSearchPostData(),
+            success: function (res) {
+                if (res != null) {
+                    $("#yeCon").text("Tổng tiền định giá:" + res.Pjze.toFixed(2) + "; Tổng tiền giá lẻ:" + res.Ljze.toFixed(2) + "");
+                }
+            }
+        });
+    }
+
+    //汇总打印
+    function newtouch_event_f3() {
+		var key = $("#txtINPUTCODE").val();
+		var syqk = -1; //全部
+		if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
+			syqk = 1;  //报溢
+		} else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
+			syqk = 2;  //报损
+        }
+        window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fBSBY_Query&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&startTime=" + $("#txtStartDate").val() + "&endTime=" + $("#txtEndDate").val() + "&key=" + key + "&yfbm=" + $("#yfbmcode").val() + "&OrganizeId=" + $("#OrganizeId").val() + "&syqk=" + syqk, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+
+		//window.open("/Report/PrintReport?type=BSBY_Query&param=startTime=" + $("#txtStartDate").val() + "|endTime=" + $("#txtEndDate").val() + "|key=" + key + "|yfbm=" + $("#yfbmcode").val() + "|OrganizeId=" + $("#OrganizeId").val() + "|syqk=" + syqk, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+    }
+</script>
+
+

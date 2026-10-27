@@ -1,0 +1,227 @@
+
+@{
+    ViewBag.Title = "PriceAdjustmentRequest";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Từ khóa</th>
+                    <td class="formValue">
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Mã thuốc Pinyin Tên" />
+                    </td>
+                    <td class="formValue" colspan="3">
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                        <span style="color: red; margin-left:10px;">Lưu ý：Không thể tra cứu thuốc đã đăng ký điều chỉnh giá nhưng chưa thực hiện</span>
+                    </td>
+                </tr>
+            </table>
+        </div>       
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <div class="gridPanel">
+            <table id="gridYPInfoList"></table>
+            <div id="gridPager" rel="form1"></div>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <div class="panel-heading">
+            Chi tiết điều chỉnh giá
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Giá bán buôn</th>
+                    <td class="formValue">
+                        <input type="text" id="txtPFJ" class="form-control" />
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Giá bán lẻ</th>
+                    <td class="formValue">
+                        <input type="text" id="txtLSJ" class="form-control" />
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Tệp thực hiện</th>
+                    <td class="formValue">
+                        <input type="text" id="txtZXWJ" class="form-control" />
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Thời gian thực hiện</th>
+                    <td class="formValue">
+                        <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Giá bán buôn gốc</th>
+                    <td class="formValue">
+                        <input type="text" id="txtYPFJ" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Giá lẻ gốc</th>
+                    <td class="formValue">
+                        <input type="text" id="txtYLSJ" class="form-control newtouch_Readonly" />
+                        <input type="text" id="hidden_ypCode" hidden />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 6 },
+    F6Text = "Đăng ký"
+})
+
+<script>
+    var $gridYpInfoList;
+    $(function () {
+        gridYPInfoList();
+        $("#btn_search").click(function () {
+            SearchYP();
+        });
+        $("#txtINPUTCODE").bind("keyup", function () {
+            if (event.keyCode === 13) {
+                SearchYP();
+            }
+        });
+    });
+
+    function gridYPInfoList() {
+        $gridYpInfoList = $("#gridYPInfoList");
+        $gridYpInfoList.dataGrid({
+            postData: getSearchPostData(),
+            url: "/DrugStorage/SelectAdjustPriceMedicineInfoList",
+            height: $(window).height() - 310,
+            colModel: [
+                { label: "Mã thuốc", name: "ypCode", width: 80, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Quy cách thuốc', name: 'ypgg', width: 120, align: 'left' },
+                { label: 'Đơn vị định giá', name: 'djdw', width: 80, align: 'left' },
+                {
+                    label: 'Giá bán buôn', name: 'pfj', width: 100, align: 'left',
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }
+                },
+                {
+                    label: 'Giá bán lẻ', name: 'lsj', width: 100, align: 'left',
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }
+                },
+                { label: 'Thuộc tính thuốc', name: 'yptssxmc', width: 80, align: 'left' },
+                { label: 'Loại thuốc', name: 'yplb', width: 80, align: 'left' },
+                { label: 'Liều dùng', name: 'jl', width: 80, align: 'left' },
+                { label: 'Đơn vị liều', name: 'jldw', width: 80, align: 'left' },
+                { label: 'Số lượng đóng gói kho thuốc', name: 'bzs', width: 80, align: 'left' },
+                { label: 'Đơn vị đóng gói kho thuốc', name: 'bzdw', width: 80, align: 'left' },
+                { label: 'Số lẻ ngoại trú', name: 'mzcls', width: 80, align: 'left' },
+                { label: 'Đơn vị lẻ ngoại trú', name: 'mzcldw', width: 80, align: 'left' },
+                { label: 'Số lẻ nội trú', name: 'zycls', width: 80, align: 'left' },
+                { label: 'Đơn vị lẻ nội trú', name: 'zycldw', width: 80, align: 'left' },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 80, align: 'left' },
+                { label: 'Tính chất tự trả', name: 'zfxz', width: 80, align: 'left' },
+                { label: 'Dạng bào chế', name: 'jxmc', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'Trạng thái', name: 'zt', width: 80, align: 'left' },
+                { label: 'Loại ghi sổ', name: 'jzlx', width: 100, align: 'left' },
+                { label: 'Hạn bảo quản mặc định', name: 'mrbzq', width: 80, align: 'left' }
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'ypCode desc',
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                if (rowid) {
+                    $("#txtPFJ").val('');
+                    $("#txtLSJ").val('');
+                    var getRowData = $("#gridYPInfoList").jqGrid('getRowData', rowid);
+                    if (getRowData) {
+                        $("#txtYPFJ").val(getRowData.pfj);
+                        $("#txtYLSJ").val(getRowData.lsj);
+                        $("#hidden_ypCode").val(getRowData.ypCode);
+                    }
+                }
+            }
+        });
+    }
+
+    function SearchYP() {
+        $gridYpInfoList.jqGrid('setGridParam', {
+            postData: getSearchPostData(), url: '/DrugStorage/SelectAdjustPriceMedicineInfoList',
+        }).trigger("reloadGrid");
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var inputCode = $("#txtINPUTCODE").val();
+        return { inputCode: inputCode };
+    };
+
+    //提交申请
+    function newtouch_event_f6() {
+        //校验数据
+        if (!CheckData()) {
+            return false;
+        }
+        $.najax({
+            url: "/DrugStorage/SubmitRequuest",
+            dataType: "json",
+            data: { ypCode: $("#hidden_ypCode").val(), pfj: $("#txtPFJ").val(), lsj: $("#txtLSJ").val(), ypfj: $("#txtYPFJ").val(), ylsj: $("#txtYLSJ").val(), tzwj: $("#txtZXWJ").val(), zxsj: $("#txtZXSJ").val() },
+            type: "POST",
+            async: "false",
+            success: function (data) {
+                $.modalAlert("Gửi đăng ký thành công", 'success');
+                $("#txtPFJ").val('');
+                $("#txtLSJ").val('');
+                $("#txtZXWJ").val('');
+                $("#txtZXSJ").val('');
+                $("#txtYPFJ").val('');
+                $("#txtYLSJ").val('');
+                $.loading(false);
+            },
+            errCallback: function (err) {
+                $.loading(false);
+            }
+        });
+    }
+
+
+    //校验数据
+    function CheckData() {
+        //校验格式
+        if ($("#txtYPFJ").val() === "") {
+            $.modalAlert("Vui lòng chọn thuốc để điều chỉnh giá！", 'warning');
+            return false;
+        }
+        if ($("#txtPFJ").val() === "") {
+            $.modalAlert("Giá bán buôn không được để trống！", 'warning');
+            return false;
+        }
+        if ($("#txtLSJ").val() === "") {
+            $.modalAlert("Giá bán lẻ không được để trống！", 'warning');
+            return false;
+        }
+        if (isNaN($("#txtPFJ").val()) || isNaN($("#txtLSJ").val())) {
+            $.modalAlert("Định dạng giá bán buôn hoặc giá bán lẻ sai,Vui lòng nhập số！", 'warning');
+            return false;
+        }        
+        if ($("#txtZXWJ").val() === "") {
+            $.modalAlert("Tệp thực hiện không được để trống！", 'warning');
+            return false;
+        }
+        if ($("#txtZXSJ").val() === "") {
+            $.modalAlert("Thời gian thực hiện không được để trống！", 'warning');
+            return false;
+        }
+        if ($("#txtPFJ").val() === $("#txtYPFJ").val() && $("#txtLSJ").val() === $("#txtYLSJ").val()) {
+            $.modalAlert("Giá bán buôn và giá bán lẻ không được giống giá gốc！", "warning");
+            return false;
+        }
+        return true;
+    }
+</script>

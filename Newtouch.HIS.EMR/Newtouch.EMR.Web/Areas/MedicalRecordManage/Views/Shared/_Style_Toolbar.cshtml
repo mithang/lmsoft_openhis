@@ -1,0 +1,250 @@
+﻿
+
+
+<style>
+    ul li {
+        height: 30px;
+    }
+
+        ul li a {
+            height: 30px;
+        }
+</style>
+
+<ul class="nav nav-tabs" id="myTab">
+
+    <li class="active"><a href="#Edit">Chỉnh sửa</a></li>
+    <li><a href="#Insert">Chèn</a></li>
+    <li><a href="#messages">Khác</a></li>
+    
+
+</ul>
+<div class="tab-content" style="height:60px;">
+    <div class="tab-pane active" id="Edit">
+        <table>
+            <tr>
+                <td><a href="#" class="easyui-linkbutton" title="Căn trái" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('justifyleft', false, null);">Căn trái</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Căn phải" data-options="iconCls:'icon-align-right',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('justifyright', false, null);">Căn phải</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Căn giữa" data-options="iconCls:'icon-align-center',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('justifycenter', false, null);">Căn giữa</a></td>
+                <td rowspan="2" style="border-right:2px dashed #808080;width:5px;"></td>
+                <td><a href="#" class="easyui-linkbutton" title="Chữ hoa" data-options="iconCls:'icon-uppercase-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ToupperCase', false, null);">Chữ hoa</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Chữ thường" data-options="iconCls:'icon-lowercase-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('TolowerCase', false, null);">Chữ thường</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Nghiêng" data-options="iconCls:'icon-italic',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic', true, null);">Nghiêng</a></td>
+                <td rowspan="2" style="border-right:2px dashed #808080;width:5px;"></td>
+                <td><a href="#" class="easyui-linkbutton" title="Khoảng cách trước đoạn" id="rowspacingup" data-options="iconCls:'icon-dqj',plain:true">Khoảng cách trước đoạn</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Khoảng cách sau đoạn" id="rowspacingdown" data-options="iconCls:'icon-dhj',plain:true">Khoảng cách sau đoạn</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Khoảng cách dòng" id="lineheight" data-options="iconCls:'icon-hjj',plain:true">Khoảng cách dòng</a></td>
+                <td rowspan="2" style="border-right:2px dashed #808080;width:5px;"></td>
+                <td><a href="#" class="easyui-linkbutton" title="Màu chữ" data-options="iconCls:'icon-fontf',plain:true" id="fontcolor">Màu chữ</a>
+                    <div class="panel combo-p" id="fcolor" style="display: none;">
+                        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 72px;">
+                            <div id="color1" class="combobox-item fontcolor" style="background-color: black;"></div>
+                            <div id="color2" class="combobox-item fontcolor" style="background-color: red;"></div>
+                            <div id="color3" class="combobox-item fontcolor" style="background-color: green;"></div>
+                            <div id="color4" class="combobox-item fontcolor" style="background-color: yellow;"></div>
+                            <div id="color5" class="combobox-item fontcolor" style="background-color: blue;"></div>
+                            <div id="color6" class="combobox-item fontcolor" style="background-color: #dedb78;"></div>
+                            <div id="color7" class="combobox-item fontcolor" style="background-color: #ddb3b3;"></div>
+                            <div id="color8" class="combobox-item fontcolor" style="background-color: #1588bb;"></div>
+                        </div>
+                    </div></td>
+                <td><a href="#" class="easyui-linkbutton" title="Viền ký tự" data-options="iconCls:'icon-zfbk',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Fontborder', true, null);">Viền ký tự</a></td>
+                <td><a href="#" title="Thu hồi" class="easyui-linkbutton l-btn l-btn-small l-btn-plain" onclick="document.getElementById('myWriterControl'); ctl.Undo();" data-options="iconCls:'icon-undo-font',plain:true" group="" id=""><span class="l-btn-left"><span>Thu hồi</span></span></a></td>
+            </tr>
+            <tr>
+                <td><a href="#" class="easyui-linkbutton" title="Chỉ số trên" data-options="iconCls:'icon-superscript',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Superscript', true, null);">Chỉ số trên</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Chỉ số dưới" data-options="iconCls:'icon-subscript',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Subscript', true, null);">Chỉ số dưới</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Đậm" data-options="iconCls:'icon-bold',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);">Đậm</a></td>
+
+                <td colspan="3">
+                    <a href="#" title="Gộp ô sang phải" class="easyui-linkbutton" data-options="iconCls:'icon-hebing',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('mergeright', true, null);">Gộp ô sang phải</a>
+                    <a href="#" title="Gộp ô xuống dưới" class="easyui-linkbutton" data-options="iconCls:'icon-hebing',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('mergedown', true, null);">Gộp ô xuống dưới</a>
+                </td>
+
+
+                <td><a href="#" class="easyui-linkbutton" title="Gạch chân" data-options="iconCls:'icon-underline',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', false, null);">Gạch chân</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Màu nền" data-options="iconCls:'icon-fontbg',plain:true" id="backcolor">Màu nền</a>
+                    <div class="panel combo-p" id="bcolor" style="display: none;">
+                        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 72px;">
+                            <div id="bcolor1" class="combobox-item fontcolor" style="background-color: black;"></div>
+                            <div id="bcolor9" class="combobox-item fontcolor" style="background-color: white;"></div>
+                            <div id="bcolor2" class="combobox-item fontcolor" style="background-color: red;"></div>
+                            <div id="bcolor3" class="combobox-item fontcolor" style="background-color: green;"></div>
+                            <div id="bcolor4" class="combobox-item fontcolor" style="background-color: yellow;"></div>
+                            <div id="bcolor5" class="combobox-item fontcolor" style="background-color: blue;"></div>
+                            <div id="bcolor6" class="combobox-item fontcolor" style="background-color: #dedb78;"></div>
+                            <div id="bcolor7" class="combobox-item fontcolor" style="background-color: #ddb3b3;"></div>
+                            <div id="bcolor8" class="combobox-item fontcolor" style="background-color: #1588bb;"></div>
+                        </div>
+                    </div></td>
+                <td>
+                    <a href="#" class="easyui-linkbutton" title="Phông chữ" data-options="iconCls:'icon-fontfa',plain:true" id="fontfa">Phông chữ</a>
+                    <div class="panel combo-p" id="fontf" style="display: none;">
+                        <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+                            <div id="fontfh" class="combobox-item" style="font-size: 10px; cursor: pointer; font-family: 黑体;">黑体</div>
+                            <div id="fontfs" class="combobox-item" style="font-size: 12px; cursor: pointer; font-family: 宋体;">宋体</div>
+                            <div id="fontfw" class="combobox-item" style="font-size: 14px; cursor: pointer; font-family: 微软雅黑;">微软雅黑</div>
+                            <div id="fontfk" class="combobox-item" style="font-size: 14px; cursor: pointer; font-family: 楷体;">楷体</div>
+                        </div>
+                    </div>
+                </td>
+                <td><a href="#" class="easyui-linkbutton" title="Cỡ chữ" id="fontsize" data-options="iconCls:'icon-fontsize',plain:true">Cỡ chữ</a>
+                    </td>
+                <td><a href="#" class="easyui-linkbutton" title="Xóa cỡ chữ" data-options="iconCls:'icon-eraser-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('removefontsize', true, 'inherit');">Xóa cỡ chữ</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Xóa phông chữ" data-options="iconCls:'icon-eraser-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('removeformat', true, 'inherit');">Xóa phông chữ</a></td>
+            </tr>
+        </table>
+
+
+
+    </div>
+    <div class="tab-pane" id="Insert">
+        <table>
+            <tr>
+                <td><a href="#" class="easyui-linkbutton" title="Chèn bảng" id="insert_table" data-options="iconCls:'icon-table-large'" style="border: 0; ">Chèn bảng</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Chèn ngày" data-options="iconCls:'icon-data-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Date', false, null);">Chèn ngày</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Chèn thời gian" data-options="iconCls:'icon-time-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Time', false, null);">Chèn thời gian</a></td>
+                <td rowspan="2" style="border-right:2px dashed #808080;width:5px;"></td>
+                <td><a href="#" title="Xóa dòng" class="easyui-linkbutton" style="margin-top: 5px;" data-options="iconCls:'icon-delh',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deleterow', true, null);">Xóa dòng</a></td>
+                <td><a href="#" title="Xóa cột" class="easyui-linkbutton" data-options="iconCls:'icon-dell',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletecolumn', true, null);">Xóa cột</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Gạch ngang" data-options="iconCls:'icon-strikethrough',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);">Gạch ngang</a></td>
+                <td rowspan="2" style="border-right:2px dashed #808080;width:5px;"></td>
+                <td><a href="#" class="easyui-linkbutton" title="Danh sách có thứ tự" data-options="iconCls:'icon-numbers',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertorderedlist', true, null);">Danh sách có thứ tự</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Danh sách không thứ tự" data-options="iconCls:'icon-bullets',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertunorderedlist', true, null);">Danh sách không thứ tự</a></td>
+                <td><a href="#" class="easyui-linkbutton" title="Thụt đầu dòng" data-options="iconCls:'icon-inde',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Indent', true, null);">Thụt đầu dòng</a></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <a href="#" class="easyui-linkbutton l-btn l-btn-large" title="Chèn hình ảnh" data-options="iconCls:'icon-picture-large' " style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('DCInsertImage', true, null);">Chèn hình ảnh</a>
+                    <a href="#" class="easyui-linkbutton" title="Xóa bảng" data-options="iconCls:'icon-tabledel-large'" style="border: 0;" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletetable', true, null);">Xóa bảng</a>
+                </td>
+                <td colspan="3">
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng" data-options="iconCls:'icon-inserth',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertrowup', true, null);">Chèn dòng</a>
+                    <a href="#" class="easyui-linkbutton" title="Chèn cột" data-options="iconCls:'icon-insertl',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnleft', true, null);">Chèn cột</a>
+                </td>
+
+                <td colspan="3">
+                    <a href="#" title="Tách thành dòng" class="easyui-linkbutton" data-options="iconCls:'icon-chaifen',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittorows', true, null);">Tách thành dòng</a>
+                    <a href="#" title="Tách thành cột" class="easyui-linkbutton" data-options="iconCls:'icon-chaifen',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittocols', true, null);">Tách thành cột</a>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+    </div>
+    <div class="tab-pane" id="messages" style="padding-top:5px;">
+        <table>
+            <tr>
+                <td><button type="button" id="BL_yznr" name="BL_yznr" class="btn btn-default">Nội dung y lệnh</button></td>
+                <td style="width:10px;"></td>
+                <td><button type="button" class="btn btn-default" id="TBHZXX" name="TBHZXX">Đồng bộ thông tin bệnh nhân</button></td>
+                <td style="width:10px;"></td>
+                <td><button type="button" id="BL_load" name="BL_load" class="btn btn-default" onclick="loadLocalStorage();">Tải bộ nhớ đệm cục bộ</button></td>
+            </tr>
+            <tr style="height:20px;"></tr>
+        </table>
+        
+        
+    </div>
+    
+</div>
+
+
+
+
+
+<script>
+    $(function () {
+        $('#myTab a:first').tab('show');
+    })
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+</script>
+
+<style>
+    .edtBtn {
+        border: none;
+        background-color: #f1f4f6;
+    }
+</style>
+<div class="panel combo-p" id="table" style="display: none;">
+    <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 78px; border: 0;">
+        <input type="text" id="row" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" placeholder="Dòng" autocomplete="off" style="float: left; width: 20px; margin-right: 10px;" />
+        *
+        <input type="text" id="column" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" placeholder="Cột" autocomplete="off" style="width: 20px; margin-left: 10px;" />
+        <input type="button" id="qd" style="width: 78px;" value="Xác nhận" />
+    </div>
+</div>
+
+
+
+<div class="panel combo-p" id="rowspacingup1" style="display: none;">
+    <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+        <div id="up5" class="combobox-item" style="cursor: pointer;">5px</div>
+        <div id="up10" class="combobox-item" style="cursor: pointer;">10px</div>
+        <div id="up15" class="combobox-item" style="cursor: pointer;">15px</div>
+        <div id="up20" class="combobox-item" style="cursor: pointer;">20px</div>
+        <div id="up25" class="combobox-item" style="cursor: pointer;">25px</div>
+    </div>
+</div>
+
+<div class="panel combo-p" id="rowspacingdown1" style="display: none;">
+    <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+        <div id="down5" class="combobox-item" style="cursor: pointer;">5px</div>
+        <div id="down10" class="combobox-item" style="cursor: pointer;">10px</div>
+        <div id="down15" class="combobox-item" style="cursor: pointer;">15px</div>
+        <div id="down20" class="combobox-item" style="cursor: pointer;">20px</div>
+        <div id="down25" class="combobox-item" style="cursor: pointer;">25px</div>
+    </div>
+</div>
+
+<div class="panel combo-p" id="lineheight1" style="display: none;">
+    <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+        <div id="li1" class="combobox-item" style="cursor: pointer;">1</div>
+        <div id="li15" class="combobox-item" style="cursor: pointer;">1.5</div>
+        <div id="li175" class="combobox-item" style="cursor: pointer;">1.75</div>
+        <div id="li2" class="combobox-item" style="cursor: pointer;">2</div>
+        <div id="li3" class="combobox-item" style="cursor: pointer;">3</div>
+        <div id="li4" class="combobox-item" style="cursor: pointer;">4</div>
+        <div id="li5" class="combobox-item" style="cursor: pointer;">5</div>
+    </div>
+</div>
+
+
+<div class="panel combo-p" id="fontsizeli" style="display: none;">
+    <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
+        <div id="font10" class="combobox-item" style="font-size: 10px; cursor: pointer;">10px</div>
+        <div id="font12" class="combobox-item" style="font-size: 12px; cursor: pointer;">12px</div>
+        <div id="font14" class="combobox-item" style="font-size: 14px; cursor: pointer;">14px</div>
+        <div id="font16" class="combobox-item" style="font-size: 16px; cursor: pointer;">16px</div>
+        <div id="font18" class="combobox-item" style="font-size: 18px; cursor: pointer;">18px</div>
+        <div id="font19" class="combobox-item" style="font-size: 19px; cursor: pointer;">19px</div>
+        <div id="font20" class="combobox-item" style="font-size: 20px; cursor: pointer;">20px</div>
+        <div id="font22" class="combobox-item" style="font-size: 22px; cursor: pointer;">22px</div>
+        <div id="font26" class="combobox-item" style="font-size: 26px; cursor: pointer;">26px</div>
+        <div id="font30" class="combobox-item" style="font-size: 30px; cursor: pointer;">30px</div>
+        <div id="font32" class="combobox-item" style="font-size: 32px; cursor: pointer;">32px</div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

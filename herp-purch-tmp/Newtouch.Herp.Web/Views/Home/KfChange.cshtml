@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" /><title>Chuyển kho — Herp</title></head>
+<body style="padding: 30px; font-family: sans-serif;">
+    <h2>Chuyển kho hiện tại</h2>
+    @if (ViewBag.KfList != null)
+    {
+        <ul>
+            @foreach (var kf in ViewBag.KfList)
+            {
+                <li><a href="/Home/SwithKf?kfId=@kf.kfId&kfName=@kf.kfName&kfLeve=@kf.kfLeve">@kf.kfName</a></li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Chưa có kho nào được cấu hình cho tài khoản này.</p>
+    }
+    <p><a href="/Home/Index">Về trang chủ</a></p>
+</body>
+</html>

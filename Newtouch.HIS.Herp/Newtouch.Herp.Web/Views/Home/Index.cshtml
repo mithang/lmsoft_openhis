@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Herp — Trang chủ hệ thống quản lý vật tư (ASP.NET Core 6.0)</title>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
+    <style>
+        .dashboard-stats { float: left; width: 20%; }
+        .dashboard-stats-item { position: relative; overflow: hidden; color: #fff; cursor: pointer; height: 105px; margin-right: 25px; margin-bottom: 10px; padding: 20px 20px; }
+        .dashboard-stats-item .m-top-none { margin-top: 2px; }
+        .dashboard-stats-item h2 { font-size: 35px; font-family: inherit; line-height: 1.1; font-weight: 500; }
+        .dashboard-stats-item h5 { font-size: 14px; font-family: inherit; margin-top: 3px; line-height: 1.1; }
+        .dashboard-stats-item .stat-icon { position: absolute; top: 10px; right: 10px; font-size: 30px; opacity: .3; }
+        .panel-default { border: none; border-radius: 0; margin-bottom: 0; box-shadow: none; -webkit-box-shadow: none; }
+        .panel-default > .panel-heading { color: #777; background-color: #fff; border-color: #e6e6e6; padding: 10px 10px; }
+        .panel-default > .panel-body { padding: 10px; padding-bottom: 0; }
+    </style>
+</head>
+<body style="padding: 20px 30px; font-family: sans-serif;">
+    <h2>Herp — Hệ thống quản lý vật tư (bản ASP.NET Core 6.0)</h2>
+    <p>
+        <a href="/WarehouseManage/Warehouse/Index">Quản lý kho</a> |
+        <a href="/BillManage/ApplyBill/Index">Quản lý phiếu</a> |
+        <a href="/DeliveryManage/Delivery/Index">Quản lý giao hàng</a> |
+        <a href="/DepartmentManage/Department/Index">Quản lý khoa phòng</a> |
+        <a href="/LicenceManage/Licence/Index">Quản lý giấy phép</a> |
+        <a href="/ProductManage/Product/Index">Quản lý vật tư</a> |
+        <a href="/PurchaseManage/Purchase/Index">Quản lý mua sắm</a> |
+        <a href="/StorageManage/Storage/Index">Quản lý tồn kho</a> |
+        <a href="/SupplierManage/Supplier/Index">Quản lý nhà cung cấp</a> |
+        <a href="/SystemManage/System/Index">Quản lý hệ thống</a> |
+        <a href="/Report/Index">Báo cáo (SSRS — cần máy chủ báo cáo riêng)</a> |
+        <a href="/Home/KfChange">Chuyển kho hiện tại</a> |
+        <a href="/Login/OutLogin">Đăng xuất</a>
+    </p>
+    <p id="p_msgalert" style="color:#a94442;">Đang tải cảnh báo…</p>
+    <div id="areascontent">
+        <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>Số lượng cần xử lý
+                </div>
+                <div class="panel-body" style="width:100%" id="dv_needDeal"></div>
+            </div>
+        </div>
+        <div class="rows" style="overflow: hidden;">
+            <div style="float: left; width: 64%;">
+                <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>Thống kê nhập–xuất–tồn
+                            <div style="float: right">
+                                <span style="font-weight: 500;"><i id="i_Item1" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle;"></i></span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item2" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item3" class="fa fa-square" style=" font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="padding-bottom: 0;width:100%;">
+                            <canvas id="PSIStatistics" style="height: 285px; width: 100%; padding-right: 10px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float: right; width: 35%;">
+                <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin-right:5px;" class="fa fa-pie-chart fa-lg"></i>Thống kê nhập kho năm nay</div>
+                        <div class="panel-body">
+                            <div id="container" style="min-width:350px;height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/charts/Chart.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/highcharts/highcharts.js", false)"></script>
+    <script type="text/javascript">
+        $(function () {
+            GetNeedDealDiv();
+            GetPSIByKf();
+            GetRKCountByLx();
+            GetMsgQuery();
+            $("#dv_needDeal").on("click", "div", function () {
+                // Trong portal thì mở tab, mở độc lập thì điều hướng trực tiếp.
+                var menuName = $(this).attr("menuName"), menuUrl = $(this).attr("menuUrl");
+                try {
+                    if (top.top.$ && top.top.$.Newtouchtab) {
+                        top.top.$.Newtouchtab.tryCloseTab({ name: menuName, url: menuUrl });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuName, enName: "", url: menuUrl });
+                        return;
+                    }
+                } catch (e) { /* khác origin với khung cha: rơi về điều hướng trực tiếp */ }
+                if (menuUrl) { window.location = menuUrl; }
+            });
+        });
+
+        // Lấy khối "cần xử lý"
+        function GetNeedDealDiv() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetNeedDealDiv?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null && ajaxresp.state === "success") {
+                        $("#dv_needDeal").html(ajaxresp.data);
+                        GetPendingCount();
+                    }
+                }
+            });
+        }
+
+        // Lấy thống kê theo tháng
+        function GetPSIByKf() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetPsiByKf?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null && ajaxresp.length > 2) {
+                        GetPSIStatisticsChart(ajaxresp);
+                        $("#i_Item1").html(ajaxresp[0].ItemName);
+                        $("#i_Item1").css("color", "#7cb5ec");
+                        $("#i_Item2").html(ajaxresp[1].ItemName);
+                        $("#i_Item2").css("color", "#434348");
+                        $("#i_Item3").html(ajaxresp[2].ItemName);
+                        $("#i_Item3").css("color", "#90ed7d");
+                    }
+                }
+            });
+        }
+
+        // Vẽ biểu đồ đường (Chart.js v1, đúng API bản gốc dùng)
+        function GetPSIStatisticsChart(monthlySummary) {
+            // Bản gốc ghi nhầm nhãn tháng 9 thành tháng 8 (2 lần tháng 8); bản này sửa thành Th.9.
+            var lineChartData = {
+                labels: ["Th.1", "Th.2", "Th.3", "Th.4", "Th.5", "Th.6", "Th.7", "Th.8", "Th.9", "Th.10", "Th.11", "Th.12"],
+                datasets: [
+                    {
+                        label: monthlySummary[0].ItemName,
+                        fillColor: "rgba(124, 181, 236,0.2)",
+                        strokeColor: "rgba(124, 181, 236,1)",
+                        pointColor: "rgba(124, 181, 236,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(124, 181, 236,1)",
+                        data: [monthlySummary[0].January,
+                        monthlySummary[0].February,
+                        monthlySummary[0].March,
+                        monthlySummary[0].April,
+                        monthlySummary[0].May,
+                        monthlySummary[0].June,
+                        monthlySummary[0].July,
+                        monthlySummary[0].August,
+                        monthlySummary[0].September,
+                        monthlySummary[0].October,
+                        monthlySummary[0].November,
+                        monthlySummary[0].December]
+                    },
+                    {
+                        label: monthlySummary[1].ItemName,
+                        fillColor: "rgba(60, 60, 60,0.2)",
+                        strokeColor: "rgba(60, 60, 60,1)",
+                        pointColor: "rgba(60, 60, 60,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(60, 60, 60,1)",
+                        data: [monthlySummary[1].January,
+                        monthlySummary[1].February,
+                        monthlySummary[1].March,
+                        monthlySummary[1].April,
+                        monthlySummary[1].May,
+                        monthlySummary[1].June,
+                        monthlySummary[1].July,
+                        monthlySummary[1].August,
+                        monthlySummary[1].September,
+                        monthlySummary[1].October,
+                        monthlySummary[1].November,
+                        monthlySummary[1].December]
+                    },
+                    {
+                        label: monthlySummary[2].ItemName,
+                        fillColor: "rgba(144, 237, 125,0.2)",
+                        strokeColor: "rgba(144, 237, 125,1)",
+                        pointColor: "rgba(144, 237, 125,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(144, 237, 125,1)",
+                        data: [monthlySummary[2].January,
+                        monthlySummary[2].February,
+                        monthlySummary[2].March,
+                        monthlySummary[2].April,
+                        monthlySummary[2].May,
+                        monthlySummary[2].June,
+                        monthlySummary[2].July,
+                        monthlySummary[2].August,
+                        monthlySummary[2].September,
+                        monthlySummary[2].October,
+                        monthlySummary[2].November,
+                        monthlySummary[2].December]
+                    }
+                ]
+            }
+            var ctx = document.getElementById("PSIStatistics").getContext("2d");
+            window.myLine = new Chart(ctx).Line(lineChartData, {
+                responsive: false,
+                bezierCurve: false
+            });
+        }
+
+        // Lấy thống kê nhập kho theo loại phiếu
+        function GetRKCountByLx() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetRkCountByLx",
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null) {
+                        GetLeaveChart(ajaxresp);
+                    }
+                }
+            });
+        }
+
+        // Vẽ biểu đồ tròn
+        function GetLeaveChart(pData) {
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>Tổng số: {point.y:,.0f}'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Tỷ trọng',
+                    colorByPoint: true,
+                    data: pData
+                }]
+            });
+            $(".highcharts-credits").hide();
+        }
+
+        // Lấy tổng số cần xử lý, đổ vào các thẻ dashboard
+        function GetPendingCount() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetPendingCount?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null) {
+                        $("#h_tjshCount").html(ajaxresp.tjshCount);
+                        $("#h_tjwzCount").html(ajaxresp.tjwzCount);
+                        $("#h_ckdshCount").html(ajaxresp.ckdshCount);
+                        $("#h_wbrkCount").html(ajaxresp.wbrkCount);
+                        $("#h_nbthCount").html(ajaxresp.nbthCount);
+                        $("#h_rkdshCount").html(ajaxresp.rkdshCount);
+                        $("#h_expriedWzCount").html(ajaxresp.expriedWzCount);
+                    }
+                }
+            });
+        }
+
+        // Lấy cảnh báo tồn kho / quá hạn
+        function GetMsgQuery() {
+            $.ajax({
+                type: "Post",
+                url: "/Home/getmesquery",
+                dataType: "json",
+                success: function (da) {
+                    if (da != null) {
+                        $("#p_msgalert").html("Cảnh báo tồn kho: <b>" + da.kcyj + "</b> mặt hàng &nbsp;|&nbsp; Cảnh báo quá hạn: <b>" + da.gqyj + "</b> mặt hàng");
+                    }
+                },
+                error: function () {
+                    $("#p_msgalert").html("Không tải được cảnh báo tồn kho / quá hạn.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

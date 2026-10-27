@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Phần tử trang biểu mẫu";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .tipSpan{
+        color:red;padding-right:8px;
+    }
+</style>
+<form id="form1">
+
+    <input id="Id" name="Id"  class="form-control" type="hidden" />
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding-top: 20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Phần tử cấp trên:</th>
+                    <td class="formValue">
+
+                        <select id="yssjid" name="yssjid" class="form-control">
+                            
+                        </select>
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle"><span class="tipSpan">*</span>Tên phần tử:</th>
+                    <td class="formValue">
+                        <input id="ysmc" name="ysmc" type="text" class="form-control required" />
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue">                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="formTitle"><span class="tipSpan">*</span>Nền Văn bản:</th>
+                    <td class="formValue">
+                        <input id="BackgroundText" name="BackgroundText" type="text" class="form-control required" />
+                    </td>
+                    <th class="formTitle">Ghi chú:</th>
+                    <td class="formValue">
+                        <input id="Description" name="Description" type="text" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="formTitle"><span class="tipSpan">*</span>Nguồn dữ liệu:</th>
+                    <td class="formValue">
+                        <input id="DataSource" name="DataSource" type="text" class="form-control required" />
+                    </td>
+                    <th class="formTitle"><span class="tipSpan">*</span>Mã định danh phần tử:</th>
+                    <td class="formValue">
+                        <input id="yscode" name="yscode" type="text" class="form-control required" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="formTitle"><span class="tipSpan">*</span>Có tự động cập nhật không:</th>
+                    <td class="formValue">
+                        <select id="AutoUpdate" name="AutoUpdate" class="form-control required">
+                            <option value="true" selected>Có</option>
+                            <option value="false">Không</option>
+                        </select>
+                        
+                    </td>
+                    <th class="formTitle"><span class="tipSpan">*</span>Có chỉ đọc không:</th>
+                    <td class="formValue">
+                        <select id="Readonly" name="Readonly" class="form-control required">
+                            <option value="true" selected>Có</option>
+                            <option value="false">Không</option>
+                        </select>
+                        
+                    </td>
+                </tr>
+
+
+
+                
+                    <th class="formTitle"><span class="tipSpan">*</span>Có không danh sách thả xuống:</th>
+                    <td class="formValue">
+                        <input id="ListSource" name="ListSource" type="text" class="form-control required" value="0" />
+                    </td>
+                    <th class="formTitle">Giá trị phần tử:</th>
+                    <td class="formValue">
+                        <input id="Value" name="Value" type="text" class="form-control" />
+                    </td>
+
+                <tr>
+                    <th class="formTitle">Cho phép sửa:</th>
+                    <td class="formValue">
+                        <select id="UserEditable" name="UserEditable" class="form-control">
+                            <option value="true" selected>Có</option>
+                            <option value="false">Không</option>
+                        </select>
+                        
+                    </td>
+                    <th class="formTitle">EditStyle:</th>
+                    <td class="formValue">
+                        <input id="EditStyle" name="EditStyle" type="text" class="form-control" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="formTitle">Style:</th>
+                    <td class="formValue">
+                        <input id="Style" name="Style" type="text" class="form-control" />
+                    </td>
+                    <th class="formTitle">Đường dẫn:</th>
+                    <td class="formValue">
+                        <input id="BindingPath" name="BindingPath" type="text" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle"><span class="tipSpan">*</span>Loại phần tử:</th>
+                    <td class="formValue">
+                        <select id="TypeName" name="TypeName" class="form-control required">
+                            <option value="System.String" selected>Chuỗi ký tự(String)</option>
+                            <option value="System.Text">Văn bản(text)</option>
+                            
+                            <option value="System.Numeric">Số</option>
+                            <option value="System.DateTime" >Thời gian</option>
+                            
+                        </select>
+                        
+                    </td>
+                    <th class="formTitle">Định dạng:</th>
+                    <td class="formValue">
+                        <input id="Format" name="Format" type="text" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+            <div class="btn-group" style="float:right;margin-top:50px">
+                <a class="btn btn-primary" onclick="btn_edit()" id="tijiao">Thêm mới</a>
+            </div>
+        </div>
+        </div>
+</form>
+<script>
+    $("#yssjid").bindSelect({
+        url: "/MedicalRecordManage/Blys/GetDataSourceList",
+        id: "Id",
+        text:"ysmc"
+    });
+    $("#TypeName").change(function () {
+        if ($("#TypeName").val() == "System.DateTime") {
+            $("#Format").val("yyyy-MM-dd HH:mi:ss");
+            $("#Style").val("DateTime");
+            $("#EditStyle").val("DateTime");
+        }
+        else if ($("#TypeName").val() == "System.Numeric") {
+            $("#Format").val("");
+            $("#Style").val("Numeric");
+            $("#EditStyle").val("Numeric");
+        }
+        else {
+            $("#Format").val("");
+            $("#Style").val("");
+            $("#EditStyle").val("");
+        }
+
+    });
+
+
+</script>
+

@@ -1,0 +1,234 @@
+@using Newtouch.Infrastructure
+@using Newtouch.Tools
+
+@{
+    ViewBag.Title = "DrugSearch";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    #btn_search {
+        height: 45px;
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div>
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Từ khóa:</th>
+                    <td class="formValue">
+                        <input id="keyWord" type="text" class="form-control" placeholder="Họ tên Số thẻ" />
+                    </td>
+                    <th class="formTitle">Số hóa đơn：</th>
+                    <td class="formValue">
+                        <input id="fph" type="text" class="form-control" />
+                    </td>
+                    <th class="formTitle">Số đơn thuốc：</th>
+                    <td class="formValue">
+                        <input id="cfh" type="text" class="form-control" />
+                    </td>
+                    <td class="formTitle" rowspan="2">
+                        <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Trạng thái：</th>
+                    <td class="formValue">
+                        <select class="form-control" id="seltype">
+                            <option value="0">Tất cả</option>
+                            <option value="@((int)EnumOperateType.Fy)">@EnumOperateType.Fy.GetDescription()</option>
+                            <option value="@((int)EnumOperateType.Ty)">@EnumOperateType.Ty.GetDescription()</option>
+                        </select>
+                    </td>
+                    <th class="formTitle ">Ngày bắt đầu:</th>
+                    <td class="formValue">
+                        <input id="begindate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    </td>
+                    <th class="formTitle">Ngày kết thúc：</th>
+                    <td class="formValue">
+                        <input id="enddate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="dv_left" style=" float: left; width:340px;">
+        <table id="gridList"></table>
+        <div id="gridListPager"></div>
+    </div>
+    <div id="dv_right" style="float: left; width: 72.5%; margin-left: 2px;">
+        <table id="gridcfmx"></table>
+    </div>
+</form>
+<script>
+    var $gridList = $("#gridList");
+    var $gridcfmx = $("#gridcfmx");
+    $("#dv_right").width($(document).width() - $("#dv_left").width() - 20);
+
+    $(function () {
+        GetFybz();
+        gridList();
+        gridcfmx([]);
+    });
+
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    //组装请求参数
+    function AssembleParem() {
+        return {
+            "keyWord": $("#keyWord").val(),
+            "cfh": $("#cfh").val(),
+            "begindate": $("#begindate").val(),
+            "enddate": $("#enddate").val(),
+            "fph": $("#fph").val(),
+            "type": $("#seltype").val()
+        };
+    }
+
+    //获取处方列表
+    function gridList() {
+        $gridList.dataGrid({
+            height: $(window).height() - 230,
+            url: "/OutPatientPharmacy/SearchCfs",
+            postData: AssembleParem(),
+            caption: "Danh sách đơn thuốc phát thuốc",
+            colModel: [
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Số đơn thuốc', name: 'cfh', width: 130, align: 'left' },
+                { label: 'Trạng thái', name: 'fybz', width: 40, align: 'left',
+                    formatter: function (cellvalue) {
+                        switch (cellvalue) {
+                        case "@((int)EnumFybz.Yf)":
+                                return "<span style='color:#0000cd;'>@EnumFybz.Yf.GetDescription()</span>";
+                        case "@((int)EnumFybz.Yt)":
+                                return "<span style='color:#ff0000;'>@EnumFybz.Yt.GetDescription()</span>";
+                        default:
+                            return "";
+                        }
+                    }
+                },
+                { label: 'Số hóa đơn', name: 'Fph', width: 90, align: 'left' },
+                { label: 'Số thẻ', name: 'CardNo', width: 60, align: 'left' },
+                { label: 'Tuổi', name: 'nl', width: 40, align: 'left' },
+                { label: 'Loại bệnh nhân', name: 'brxzmc', width: 75, align: 'left' },
+                { label: 'Người phát thuốc', name: 'fyry', width: 65, align: 'left' },
+                { label: 'Mã nội bộ đơn thuốc', name: 'cfnm', hidden: true }
+            ],
+            pager: "#gridListPager",
+            sortname: 'cfnm asc',
+            viewrecords: false,
+            onSelectRow_page: function (rowid, status) {
+                var opt = $("#seltype").val() === "" ? "0" :$("#seltype").val();
+                $gridcfmx.jqGrid("clearGridData");
+                $gridcfmx.jqGrid('setGridParam', {
+                    url: "/OutPatientPharmacy/SearchCfmx",
+                    postData: { cfh: $gridList.jqGrid('getRowData', rowid).cfh, operateType: opt}
+                }).trigger('reloadGrid');
+            },
+            beforeRequest: function () {
+                $("#gridListPager_left").hide();
+                $("#gridListPager_right").hide();
+            },
+            gridComplete: function () {
+                $gridcfmx.jqGrid("clearGridData");
+                var ids = new Array();
+                //getDataIDs()返回当前grid里所有数据的id
+                ids = $gridList.getDataIDs();
+                if (ids == null || ids.length <= 0) return;
+                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                $gridList.setSelection(ids[0], true);
+                var pdata = $gridList.jqGrid('getRowData', ids[0]);
+                if (pdata == null) return;
+                var opt = $("#seltype").val() === "" ? "0" : $("#seltype").val();
+                $gridcfmx.jqGrid('setGridParam', {
+                    url: "/OutPatientPharmacy/SearchCfmx",
+                    postData: { cfh: pdata.cfh, operateType: opt }
+                }).trigger('reloadGrid');
+            }
+        });
+        $("#btn_search").click(function () {
+            var w = $(document).width() - $("#dv_left").width() - 2;
+            $("#dv_right").width(w);
+            $gridcfmx.jqGrid("setGridWidth", w);
+            $("#gridList").resetSelection();
+            $("#gridList").jqGrid("clearGridData");
+            $('#gridcfmx').jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
+                postData: AssembleParem()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function gridcfmx() {
+        $gridcfmx.dataGrid({
+            height: $(window).height() - 200,
+            caption: "Chi tiết đơn thuốc phát thuốc",
+            url: "",
+            colModel: [
+                {
+                    label: 'Thao tác', name: 'operateType', width: 60, align: 'center',
+                    formatter: function (cellvalue) {
+                         switch (cellvalue) {
+                             case "@(((int)EnumOperateType.Fy).ToString())":
+                                 return "<span style='color:#0000cd;'>@(EnumOperateType.Fy.GetDescription())</span>";
+                             case "@(((int)EnumOperateType.Ty).ToString())":
+                                 return "<span style='color:#ff0000;'>@(EnumOperateType.Ty.GetDescription())</span>";
+                        };
+                    } },
+                { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'Số lượng', name: 'slstr', width: 80, align: 'center' },
+                { label: 'Số lượng', name: 'sl', width: 50, align: 'right', hidden: true },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left', hidden: true },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'center' },
+                { label: 'Số lô', name: 'ph', width: 90, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                {
+                    label: 'Đơn giá', name: 'dj', width: 60, align: 'right',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
+                    }},
+                {
+                    label: 'Số tiền', name: 'je', width: 60, align: 'right',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    } },
+                { label: 'Liều dùng', name: 'jl', width: 50, align: 'right' },
+                { label: 'Đơn vị liều', name: 'jldw', width: 50, align: 'left' },
+                { label: 'Cách dùng', name: 'yfmc', width: 60, align: 'center' },
+                { label: 'Lời dặn bác sĩ', name: 'yszt', width: 120, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Nhóm thuốc', name: 'czh', width: 70, align: 'center' },
+                { label: 'Thời gian thao tác', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Mã thuốc', name: 'ypCode', hidden: true }
+            ]
+        });
+    }
+
+    //获取发药标志
+    function GetFybz() {
+        $.najax({
+            type: "Get",
+            url: "/OutPatientPharmacy/GetFybz",
+            dataType: "json",
+            success: function (res) {
+                if (res != null && res.length > 0) {
+                    for (var i = 0; i < res.length; i++) {
+                        $("#type").append("<option value='" + res[i].value + "'>" + res[i].key + "</option>");
+                    }
+                }
+            }
+        });
+    }
+</script>

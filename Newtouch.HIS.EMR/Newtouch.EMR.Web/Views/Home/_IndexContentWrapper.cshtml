@@ -1,0 +1,50 @@
+﻿
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+
+    var opeator = OperatorProvider.GetCurrent();
+    var defaultPage = "";
+    var pageName = "";
+    if(opeator.IsRoot) {
+        defaultPage = "/Home/Default";
+        pageName = "Trang chủ";
+    }
+    else
+    {
+        defaultPage = "/MedicalRecordManage/PatInfo/Index";
+        pageName = "Tổng quan bệnh nhân";
+    }
+
+}
+<div id="content-wrapper">
+    <div class="content-tabs">
+        <button class="roll-nav roll-left tabLeft">
+            <i class="fa fa-angle-double-left"></i>
+        </button>
+        <nav class="page-tabs menuTabs">
+            <div class="page-tabs-content" style="margin-left: 0px;">
+                <a href="javascript:;" class="menuTab active" data-id="@defaultPage">@pageName</a>
+            </div>
+        </nav>
+        <button class="roll-nav roll-right tabRight">
+            <i class="fa fa-angle-double-right" style="margin-left: 3px;"></i>
+        </button>
+        <div class="btn-group roll-nav roll-right">
+            <button class="dropdown tabClose" data-toggle="dropdown">
+                TrangKýThao tác<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="tabReload" href="javascript:void();">Làm mới hiện tại</a></li>
+                <li><a class="tabCloseCurrent" href="javascript:void();">Đónghiện tại</a></li>
+                <li><a class="tabCloseAll" href="javascript:void();">Tất cả đóng</a></li>
+                <li><a class="tabCloseOther" href="javascript:void();">Đóng tất cả trừ cái này</a></li>
+            </ul>
+        </div>
+        <button class="roll-nav roll-right fullscreen"><i class="fa fa-arrows-alt"></i></button>
+    </div>
+    <div class="content-iframe" style="background-color:#f1f4f6; overflow: hidden;">
+        <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
+            <iframe class="Newtouch_iframe" width="100%" height="100%" src="" frameborder="0" data-id="@defaultPage"></iframe>
+        </div>
+    </div>
+</div>

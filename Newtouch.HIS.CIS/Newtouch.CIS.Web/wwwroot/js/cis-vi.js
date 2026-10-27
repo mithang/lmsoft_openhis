@@ -1,0 +1,92 @@
+// MRQC pilot: Vietnamese chrome for framework-ui dialogs.
+//
+// The shared static host's framework-ui.js ships $.modalAlert/$.modalConfirm with
+// hardcoded Chinese dialog titles ("系统提示") and buttons ("确认"/"取消"), and that
+// file lives outside this app (it must not be edited here). This override, loaded
+// AFTER framework-ui.js in _Index/_Form, replaces both functions with same-signature
+// Vietnamese versions. Standalone MRQC pages do not load layer.js (the SSO portal
+// frame normally provides it), so when layer is absent the functions fall back to
+// the browser's native alert()/confirm() instead of throwing.
+(function () {
+    function viAlert(content, type) {
+        var icon = "";
+        if (type == 'success') { icon = "fa-check-circle"; }
+        if (type == 'error') { icon = "fa-times-circle"; }
+        if (type == 'warning') { icon = "fa-exclamation-circle"; }
+        if (window.top && window.top.layer) {
+            window.top.layer.alert(content, { icon: icon, title: "Thông báo hệ thống", btn: ['Xác nhận'], btnclass: ['btn btn-primary'] });
+            if (window.top.$ && window.top.$('.layui-layer-dialog').length == 1) {
+                window.top.$('.layui-layer-dialog').trigger('focus');
+            }
+        } else {
+            alert(content);
+        }
+    }
+    function viConfirm(content, callBack, close, confirmOptions) {
+        var defaults = { icon: "fa-exclamation-circle", title: "Thông báo hệ thống", btn: ['Xác nhận', 'Hủy'], btnclass: ['btn btn-primary', 'btn btn-danger'] };
+        var opts = $.extend({}, defaults, confirmOptions);
+        if (window.top && window.top.layer) {
+            window.top.layer.confirm(content, opts,
+                function () { callBack(true); if (!(close === false)) { window.top.layer.closeAll('dialog'); } },
+                function () { callBack(false); });
+        } else {
+            callBack(confirm(content));
+        }
+    }
+    $.modalAlert = viAlert;
+    $.modalConfirm = viConfirm;
+})();
+
+// CIS sweep-2: the shared static host's framework-ui.js bindSelect appends a
+// literal "<option value=''>No results found</option>" when an enum-data AJAX
+// call returns empty (e.g. QueueInfo #ywbz). The host file must not be edited,
+// so this CIS-local pass rewrites that placeholder option's display text only
+// (its value stays ""). It also refreshes the select2 container text directly
+// (same DOM update the framework's own change handler performs) without firing
+// change events, so no page logic is triggered. Runs on ready (after the
+// framework's ready binding: this file loads after framework-ui.js), once more
+// after a delay for async enum AJAX, and via MutationObserver for late binds.
+(function () {
+    var BAD = "No results found";
+    var GOOD = "Không có dữ liệu";
+    function fixScope(root) {
+        var opts = (root || document).querySelectorAll
+            ? (root || document).querySelectorAll("option") : [];
+        for (var i = 0; i < opts.length; i++) {
+            if (opts[i].text === BAD) {
+                opts[i].text = GOOD;
+                var sel = opts[i].parentNode;
+                if (sel && sel.id) {
+                    var cont = document.getElementById("select2-" + sel.id + "-container");
+                    if (cont && cont.textContent === BAD) { cont.textContent = GOOD; }
+                }
+            }
+        }
+    }
+    function fixAll() { fixScope(document); }
+    if (window.jQuery) {
+        jQuery(fixAll);
+        setTimeout(fixAll, 1500);
+        if (window.MutationObserver && document.body) {
+            var obs = new MutationObserver(function (mutations) {
+                for (var m = 0; m < mutations.length; m++) {
+                    var nodes = mutations[m].addedNodes;
+                    for (var n = 0; n < nodes.length; n++) {
+                        var node = nodes[n];
+                        if (node.nodeType !== 1) { continue; }
+                        if (node.tagName === "OPTION" && node.text === BAD) { fixAll(); return; }
+                        if (node.querySelectorAll && node.querySelectorAll("option").length) {
+                            var found = false;
+                            var inner = node.querySelectorAll("option");
+                            for (var k = 0; k < inner.length; k++) {
+                                if (inner[k].text === BAD) { found = true; break; }
+                            }
+                            if (found) { fixAll(); return; }
+                        }
+                    }
+                }
+            });
+            obs.observe(document.body, { childList: true, subtree: true });
+        }
+    }
+})();

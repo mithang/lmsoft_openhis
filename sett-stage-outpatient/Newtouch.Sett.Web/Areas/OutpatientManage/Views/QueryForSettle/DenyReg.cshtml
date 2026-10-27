@@ -1,0 +1,258 @@
+@{
+    ViewBag.Title = "Hủy đăng ký khám";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@Html.Partial("_YibaoCommonView")
+<style>
+    table tr td {
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+</style>
+<div style="display: flex;flex-direction:row;">
+    <section class="panel" style="width:50%;">
+        <header class="panel-heading">
+            Tra cứuThông tin thẻ
+        </header>
+        <div class="panel-body" style="width:100%">
+            <div style="display: flex;flex-direction:column;align-items:center;">
+                <div style="margin-bottom:10px;width:100%;text-align:center;">
+                    <i class="fa fa-address-card-o" style="font-size:40px"></i>
+                </div>
+                <div style="text-align:center;margin-bottom:20px;">
+                    <span id="btn_getcard" class="btn btn-primary" style="height:50px;font-size:25px;">Tra cứuThông tin thẻ</span>
+                </div>
+                <div style="text-align:center;margin-bottom:10px;width:100%">
+                    <div id="cardinfo" style="border-bottom:1px solid rgb(221, 221, 221);overflow:auto">
+                        <table class="table">
+                            <tr>
+                                <th>giấy tờLoại</th>
+                                <th>Số giấy tờ</th>
+                                <th>Họ tên</th>
+                                <th>Số điện thoại di động</th>
+                                <th>Nơi cư trú</th>
+                                <th>Số BHXH</th>
+                                <th>Số dư tài khoản cơ bản</th>
+                            </tr>
+                            <tr>
+                                <td id="AAA029_C"></td>
+                                <td id="AAE135"></td>
+                                <td id="AAC003"></td>
+                                <td id="DAC304"></td>
+                                <td id="AAE006"></td>
+                                <td id="DAC001"></td>
+                                <td id="JBZHYE"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="panel" style="width:50%;">
+        <header class="panel-heading">
+            HủyBHYTĐăng ký khám
+        </header>
+        <div class="panel-body" style="width:100%">
+            <div style="display: flex;flex-direction:column;align-items:center;">
+                <div style="margin-bottom:10px;width:100%;text-align:center;">
+                    <i class="fa fa-user-times" style="font-size:40px"></i>
+                </div>
+                <div style="width:70%;margin-bottom:20px;">
+                    <input id="jsh" name="jsh" type="text" class="form-control" placeholder="Vui lòng nhập số quyết toán" />
+                </div>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span id="btn_denyreg" class="btn btn-primary" style="height:50px;font-size:25px;">HủyBHYTĐăng ký khám</span>
+                </div>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span id="message" class="btn" style="font-size:15px;color:coral;display:inline-block;width:80%;word-wrap:break-word;white-space:normal;"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div style="display: flex;flex-direction:row;">
+    <section class="panel" style="width:50%;">
+        <header class="panel-heading">
+            Tra cứuDanh mục BHYT
+        </header>
+        <div class="panel-body" style="width:100%">
+            <div style="display: flex;flex-direction:column;align-items:center;">
+                <div style="margin-bottom:10px;width:100%;text-align:center;">
+                    <i class="fa fa-folder-open-o" style="font-size:30px"></i>
+                </div>
+                <div style="width:100%;margin-bottom:10px;display: flex;flex-direction:row;align-items:center;">
+                    <input id="DKE085" type="text" class="form-control" placeholder="Vui lòng nhập loại khoản mục" />&nbsp;&nbsp;&nbsp;
+                    <input id="DKE166" type="text" class="form-control" placeholder="Vui lòng nhập mã phía BHXH" />
+                </div>
+                <div style="width:100%;margin-bottom:20px;display: flex;flex-direction:row;align-items:center;">
+                    <input id="DKE012" type="text" class="form-control" placeholder="Vui lòng nhập mã phía bệnh viện" />&nbsp;&nbsp;&nbsp;
+                    <input id="AKE002" type="text" class="form-control" placeholder="Vui lòng nhập tên khoản mục" />
+                </div>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span id="btn_qcatalog" class="btn btn-primary" style="height:50px;font-size:25px;">Tra cứuDanh mục BHYT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="panel" style="width:50%;">
+        <header class="panel-heading">
+            Danh mục BHYT
+            <i class="fa fa-copy" style="font-size:20px" onclick="Copy(document.getElementById('catalog'));"></i>
+        </header>
+        <div class="panel-body" style="width:100%">
+            <div style="display: flex;flex-direction:column;align-items:center;">
+                <div style="margin-bottom:10px;width:100%;text-align:center;height:200px;overflow-y:auto">
+                    <span style="word-wrap:break-word;white-space:normal;width:100%;" id="catalog"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div style="display: flex;flex-direction:row;">
+    <section class="panel" style="width:50%;">
+        <header class="panel-heading">
+            HủyHISĐăng ký khám
+        </header>
+        <div class="panel-body" style="width:100%">
+            <div style="display: flex;flex-direction:column;align-items:center;">
+                <div style="margin-bottom:10px;width:100%;text-align:center;">
+                    <i class="fa fa-user-times" style="font-size:40px"></i>
+                </div>
+                <div style="width:70%;margin-bottom:20px;">
+                    <input id="ghmzh" name="ghmzh" type="text" class="form-control" placeholder="Vui lòng nhậpHISSố khám ngoại trú" />
+                </div>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span id="btn_denyhisreg" class="btn btn-primary" style="height:50px;font-size:25px;">HủyHISĐăng ký khám</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="panel" style="width:50%;">
+        <header class="panel-heading">
+            BHYTKiểm tra kết nối
+        </header>
+        <div class="panel-body" style="width:100%">
+            <div style="display: flex;flex-direction:column;align-items:center;">
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span id="btn_YibaoConnectedTest" class="btn btn-primary" style="height:50px;font-size:25px;">BHYTKiểm tra kết nối</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    //tra cứuthông tin thẻ
+    $("#btn_getcard").click(function () {
+        $.loading(true);
+        setTimeout(function () {
+            var card = $.yibao.GetCardInfo(null);
+            $.loading(false);
+            if (card && card.Code == 0) {
+                $("#AAA029_C").html(card.Data.AAA029_C);
+                $("#AAE135").html(card.Data.AAE135);
+                $("#AAC003").html(card.Data.AAC003);
+                $("#DAC304").html(card.Data.DAC304);
+                $("#AAE006").html(card.Data.AAE006);
+                $("#DAC001").html(card.Data.DAC001);
+                $("#JBZHYE").html(card.Data.JBZHYE);
+            } else {
+                $("#AAA029_C").html("Không có");
+                $("#AAE135").html("Không có");
+                $("#AAC003").html("Không có");
+                $("#DAC304").html("Không có");
+                $("#AAE006").html("Không có");
+                $("#DAC001").html("Không có");
+                $("#JBZHYE").html("Không có");
+            }
+        }, 1000);
+    });
+    //đăng ký khámhủy
+    $("#btn_denyreg").click(function () {
+        $("#message").html("");
+        var jsh = $("#jsh").val();//số quyết toán
+        if (jsh == "") {
+            $.modalAlert("Số quyết toán không được trống", 'warning');
+            return false;
+        } else {
+            $.loading(true);
+            setTimeout(function () {
+                var denyreg = $.yibao.DenyReg(jsh);
+                $.loading(false);
+                if (denyreg && denyreg.Code == 0) {
+                    $("#message").html("Thao tác thành công");
+                } else {
+                    $("#message").html(denyreg.ErrorMsg);
+                }
+            }, 1000);
+        }
+    });
+    //tra cứuBHYTmục lục
+    $("#btn_qcatalog").click(function () {
+        var DKE085 = $("#DKE085").val();//loại khoản mục
+        var DKE166 = $("#DKE166").val();//mã phía BHXH
+        var DKE012 = $("#DKE012").val();//mã phía bệnh viện
+        var AKE002 = $("#AKE002").val();//tên khoản mục
+        if (DKE085 == "") {
+            $.modalAlert("Loại khoản mục không được trống", 'warning');
+            return false;
+        }
+        if (DKE166 == "" && DKE012 == "" && AKE002 == "") {
+            $.modalAlert("Mã phía BHXH/Mã phía bệnh viện/Tên khoản mục ít nhất có một mục", 'warning');
+            return false;
+        }
+        $.loading(true);
+        setTimeout(function () {
+            var obj = $.yibao.QCatalog(DKE085, DKE166, DKE012, AKE002);
+            $.loading(false);
+            if (obj) {
+                $("#catalog").html(obj);
+            }
+        }, 1000);
+    });
+    //sao chép vào bảng tạm
+    function Copy(obj) {
+        var rng = document.body.createTextRange();
+        rng.moveToElementText(obj);
+        rng.scrollIntoView();
+        rng.select();
+        rng.execCommand("Copy");
+        rng.collapse(false);
+    }
+    //hủyHISđăng ký khám
+    $('#btn_denyhisreg').click(function () {
+        var ghmzh = $("#ghmzh").val();//số khám ngoại trú đăng ký
+        if (!!!ghmzh) {
+            $.modalAlert("Số khám ngoại trú không được trống", 'warning');
+            return false;
+        } else {
+            $.najax({
+                type: "POST",
+                data: {
+                    mzh: ghmzh
+                },
+                url: "/OutpatientManage/OutpatientReg/UnSettedRegBackNum",
+                dataType: "json",
+                loadingtext: "Đang yêu cầuHISHủy đăng ký khám，Vui lòng chờ…",
+                success: function (ajaxresp) {
+                    $.modalAlert('Ngoại trúHISHủy số thành công', 'success');
+                    $("#ghmzh").val('');
+                    return;
+                }
+            });
+        }
+    });
+    //BHYTkiểm tra kết nối
+    $('#btn_YibaoConnectedTest').click(function () {
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatCharge/YibaoConnectedTest",
+            dataType: "json",
+            loadingtext: "Đang yêu cầu kiểm tra kết nối BHYT，Vui lòng chờ…",
+            success: function (ajaxresp) {
+                $.modalAlert('' + JSON.stringify(ajaxresp));
+                return;
+            }
+        });
+    });
+</script>

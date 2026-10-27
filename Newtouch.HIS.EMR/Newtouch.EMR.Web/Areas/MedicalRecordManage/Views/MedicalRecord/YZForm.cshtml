@@ -1,0 +1,189 @@
+﻿@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Y lệnh trang";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<style>
+    /*.btn {
+        float: left;
+        background-color: #ffffff;
+        height: 12px;
+        width: 130px;
+        padding: 10px;
+        color: #00a0ea;
+        border: solid 1px #00a0ea;
+    }*/
+</style>
+
+<form id="formPatSer" style="margin:2px;margin-top:10px;">
+    <div class="gridPanel">
+        <div>
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Ngày bắt đầu:</th>
+                    <td class="formValue">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() } })" value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                    </td>
+                    <th class="formTitle">Ngày kết thúc:</th>
+                    <td class="formValue">
+                        <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() }  })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </td>
+                    <td><input type="button" id="yzmc" name="jgdc" style="float:right;width:50px" value="Y lệnh" class="btn btn-primary" /></td>
+                    <td><input type="button" id="yfyl" name="jgdc" style="float:right;" value="Y lệnh+Liều dùng+Cách dùng+Tần suất" class="btn btn-primary" /></td>
+                    <td><input type="button" id="yzt" name="jgdc" style="float:right;width:150px" value="Y lệnh+Liều dùng+Cách dùng+Tần suất+Dặn dò" class="btn btn-primary" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="gridPanel">
+            <table id="gridPatientList"></table>
+            <div id="gridPatPager" style="padding-right:20%"></div>
+        </div>
+    </div>
+    
+</form>
+
+<script lang="javascript">
+
+    var zyh = $.request("zyh");
+    var doctype = $.request("doctype");
+    $("#kssj").change(function () {
+        $("#gridPatientList").jqGrid('setGridParam', {
+            postData: getSearchPostData(),
+        }).trigger('reloadGrid'); //重新加载当前表格
+    });
+
+    $("#jssj").change(function () {
+        $("#gridPatientList").jqGrid('setGridParam', {
+            postData: getSearchPostData(),
+        }).trigger('reloadGrid'); //重新加载当前表格
+    });
+
+    $(function () {
+        gridPatientList();
+    });
+
+    function gridPatientList() {
+        $('#gridPatientList').dataGrid({
+            url: "@Url.Action("AdviceGridView")",
+            height: 400,
+            postData: getSearchPostData(),
+            unwritten: false,
+            pager: '#gridPatPager',
+            //sortname: 'zh,yzlb,yzlx,kssj desc',
+            sortname: 'yzlx,kssj desc,zh',
+            rowNum: 100,
+            rownumbers: true,
+            colModel: [
+                { label: 'Y lệnh iD', name: 'Id', align: 'center', hidden: true },
+                { label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50 },
+                {
+                    label: 'Kiểu y lệnh', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
+                        return $.enum.getDescByValue("EnumYzlx", val);
+                    }
+                },
+                {
+                    label: 'Trạng thái', name: 'yzzt', align: 'center', width: 30, formatter: function (val, options, rowObject) {
+                        if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DC状态
+                            //有执行时间, 取已执行状态, 有审核时间, 取已审核状态
+                            if (rowObject["zxsj"] && rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
+                                return "Thực hiện";
+                            } else {
+                                return "Duyệt";
+                            }
+                        } else if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.TZ).ToString())) {
+                            if (rowObject["yzlb"] == "长") {
+                                return "Dừng";
+                            } else {
+                                return "Hủy hiệu lực";
+                            }
+                        }
+                        return $.enum.getDescByValue("EnumYzzt", val);
+                    }
+                },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 109, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Bác sĩ', name: 'ysmc', align: 'center', width: 40 },
+                { label: 'Y lệnh', name: 'yznr', align: 'center', width: 205 },
+                { label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30 },
+                {
+                    label: 'Dừng thời gian', name: 'tzsj', align: 'center', width: 110, formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: 'Liều dùng', name: 'yl', align: 'center', width: 50 },
+                { label: 'Đơn vị liều', name: 'yldw', align: 'center', width: 80 },
+                { label: 'Cách dùng', name: 'yf', align: 'center', width: 50 },
+                { label: 'Tần suất', name: 'pc', align: 'center', width: 50 },
+                { label: 'Lời dặn y lệnh', name: 'yzt', align: 'center', width: 30 },
+            ],
+            multiselect: true
+        });
+    }
+
+    function getSearchPostData() {
+        var wsh = true;
+        var dryz = true;
+        var yzlb = "长临";
+        var kssj = $('#kssj').val();
+        var jssj = $('#jssj').val();
+        var yzlx = "";
+        var yx = "qb"
+        return { dryz: dryz, yzlb: yzlb, wsh: wsh, yx: yx, kssj: kssj, jssj: jssj, yzlx: yzlx, zyh: zyh };
+    }
+
+    $("#yzmc").click(function () {
+        
+        rowIds = $('#gridPatientList').jqGrid('getGridParam', 'selarrrow');
+        if (rowIds.length < 1) {
+            alert("Vui lòng chọn ít nhất một y lệnh để xuất!");
+        }
+        else {
+            var jg = "";
+            for (var k = 0; k < rowIds.length; k++) {
+                var rowData = $("#gridPatientList").jqGrid('getRowData', rowIds[k]);
+                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + ", ";
+            };
+            if(doctype==".html")
+                $.currentWindow().insertDataAtCursor(jg);
+            else
+                $.currentWindow().document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, jg);
+        };
+    });
+
+    $("#yfyl").click(function () {
+        rowIds = $('#gridPatientList').jqGrid('getGridParam', 'selarrrow');
+        if (rowIds.length < 1) {
+            alert("Vui lòng chọn ít nhất một y lệnh để xuất!");
+        }
+        else {
+            var jg = "";
+            for (var k = 0; k < rowIds.length; k++) {
+                var rowData = $("#gridPatientList").jqGrid('getRowData', rowIds[k]);
+                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + " " + (rowData.yl == undefined ? " " : rowData.yl) + " " + (rowData.yf == undefined ? " " : rowData.yf) + " " + (rowData.pc == undefined ? " " : rowData.pc) + ", ";
+            };
+            if(doctype==".html")
+                $.currentWindow().insertDataAtCursor(jg);
+            else
+                $.currentWindow().document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, jg);
+            
+        };
+    });
+
+    $("#yzt").click(function () {
+        rowIds = $('#gridPatientList').jqGrid('getGridParam', 'selarrrow');
+        if (rowIds.length < 1) {
+            alert("Vui lòng chọn ít nhất một y lệnh để xuất!");
+        }
+        else {
+            var jg = "";
+            for (var k = 0; k < rowIds.length; k++) {
+                var rowData = $("#gridPatientList").jqGrid('getRowData', rowIds[k]);
+                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + " " + (rowData.yl == undefined ? " " : rowData.yl) + " " + (rowData.yf == undefined ? " " : rowData.yf) + " " + (rowData.pc == undefined ? " " : rowData.pc) + " " + (rowData.yzt == undefined ? " " : rowData.yzt) + ", ";
+            };
+            if(doctype==".html")
+                $.currentWindow().insertDataAtCursor(jg);
+            else
+                $.currentWindow().document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, jg);
+        };
+    });
+
+</script>

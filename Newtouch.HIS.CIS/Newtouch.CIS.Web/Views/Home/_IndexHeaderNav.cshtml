@@ -1,0 +1,267 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    var opr = OperatorProvider.GetCurrent();
+    var loginFromFlag = ViewBag.loginFromFlag;
+    var MsgUrl = Newtouch.CIS.Compat.AppConfig.Get("SiteNoticeCenterHost");
+}
+<style>
+    .headtoolIcon {
+        padding-top: 0.7rem;
+    }
+</style>
+<!-- noticeHub (old SignalR 2.x, site notice center) NOT ported: the notice-center host is absent; live push disabled, list stays empty. -->
+<!-- old auto-generated signalR hub proxy removed (noticeHub stubbed, see InitNotice). -->
+<script src="~/Content/js/index.js"></script>
+<div class="nav-no-collapse pull-right" id="header-nav">
+    <ul class="nav navbar-nav pull-right">
+        <li class="dropdown profile-dropdown">
+            <a href="#" class="dropdown" data-toggle="dropdown">
+                <i class="fa fa-user" style="float: left; margin-right: 5px; width: 25px; font-size: x-large; padding-top: 5px;"></i>
+                <span class="hidden-xs" style="width:120px">@OperatorProvider.GetCurrent().UserName【@OperatorProvider.GetCurrent().UserCode】</span>
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>Cá nhânThông tin</a></li>
+                <li><a href="javascript:void();" onclick="layer.msg('Xóa sạch bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>Xóa trắngBộ nhớ đệm</a></li>
+                <li>
+                    <a href="javascript:void();"><i class="fa fa-paint-brush"></i>DaCài đặt</a>
+                    <div class="tab-pane" id="control-sidebar-home-tab">
+                    </div>
+                </li>
+                @{
+                    if (loginFromFlag == "SSO")
+                    {
+                        <li class="divider" style="margin: 0px 0;"></li>
+                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>Quay lạiTrang chủ</a></li>
+                        <li class="divider" style="margin: 0px 0;"></li>
+                    }
+                    else
+                    {
+                        <li class="divider"></li>
+                    }
+                }
+                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>An toànThoát</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="nav-no-collapse pull-right" id="header-dic">
+    <ul class="nav nav-pills nav-stacked">
+        <!-- kr.ver -->
+        <li role="presentation" class="active" style="display:block">
+            <a href="#" class="hidden-xs" style="padding-top:15px" data-toggle="dropdown">Tin nhắnDanh sách<span class="badge" id="badge1"></span></a>
+            <ul class="dropdown-menu pull-right" style="width:100%;" id="uldiv">
+                <li style="height:25px;"><a style="width:100%;text-align:center;" id="yzsh">Y lệnhDuyệt<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
+                <li style="height:25px;"><a style="width:100%;text-align:center;" id="yzzx">Y lệnhThực hiện<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
+            </ul>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown" style="display:none">
+            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-envelope-o headtoolIcon" style="font-size: 1.5rem;"></i>
+                <span class="count" id="sp_msgCount"></span>
+            </a>
+            <ul class="dropdown-menu pull-right" id="noticelist">
+                <li>
+                    <a href="#" class="dropdown-item" id="notice_blzk">
+                        <i class="fa fa-wechat mr-2"></i> Tin nhắn kiểm soát chất lượng bệnh án
+                        <span class="float-right text-muted text-sm" id="notice_blzk_lasttime"></span>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                @*<li>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">查看全部消息</a>
+                    </li>*@
+            </ul>
+            @*<div class="dropdown-menu pull-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-wechat mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fa fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+
+                </div>*@
+        </li>
+
+    </ul>
+
+</div>
+<!-- kr.ver -->
+<div class="nav-no-collapse pull-right" id="header-dic" style="display:block">
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="active" id="countentli">
+            <a href="#" id="countents" class="hidden-xs" style="color:#ffffff;font-size:15px; padding-top:15px;float:left;"></a><span style="float:left; padding-top:15px;" id="txtb"><img src="~/Content/img/Tin nhắnNhắc nhở.png" width="20" height="20" /></span>
+        </li>
+    </ul>
+</div>
+<script>
+    var requexx = "";
+    var times;
+    var yzshzyh = "";
+    var yzzxzyh = "";
+    var msgtypecodes = "";
+    var hubUrl = '@Html.Raw(MsgUrl)signalr'; //服务端ip
+
+    $(function () {
+        $('#txtb').hide();
+        $('#sp_msgCount').hide();
+        if (requexx != 1) {
+            times = setInterval(MSGQuery, 60000);
+
+            //病历质控提醒<!-- Notifications Dropdown Menu -->
+            //times = setInterval(InitNotice, 60000);
+        }
+        else {
+            clearTimeout(times);
+        }
+       
+    })
+
+    //<!-- Notifications Dropdown Menu -->
+    var noticeArray = [];
+    function InitNotice() {
+        // STUB: noticeHub live push not ported (no notice-center host in this deployment).
+        // The notice list below is populated only by the initial page data, if any.
+        return;
+        var hub = null;
+        var _unused_sendToUser = function (msg, obj) {
+            var html = '<li><a onclick="readNotice()" data-id="'+obj.msgid+'" class="dropdown-items" id="notice_blzk' + obj.noticeid + '" style="color:#00a0ea;">' + msg + '</a></li>';
+            $("#noticelist").append(html);
+            var count = $("#sp_msgCount").text() == "" ? 0 : $("#sp_msgCount").text();
+            $("#sp_msgCount").html(parseInt(count) + 1);
+            blink('#sp_msgCount');
+            noticeArray.push(obj);
+        }
+        /* $.connection.hub.start() removed with the noticeHub stub above. */
+    }
+    function readNotice() {
+        $('#sp_msgCount').stop().fadeIn();
+        $('#sp_msgCount').stop().fadeOut();
+        $.najax({
+            url: "/Home/NoticeReadSync",
+            datatype: "json",
+            async: false,
+            data: { noticeSends: noticeArray },
+            type: "post",
+            success: function (data) {
+                if (data.state == "success") {
+                    noticeArray = [];
+                    $(".dropdown-items").remove();
+                    $("#sp_msgCount").html(0);
+                }
+            }
+        });
+    }
+
+    //<!-- kr.ver -->
+    //Biểu tượng闪烁
+    function blink(selector) {
+        $(selector).fadeOut('slow', function () {
+            $(this).fadeIn('slow', function () {
+                blink(this);
+            });
+        });
+    }
+    //$(document).ready(function () {
+    //        blink('#txtb');
+    //});
+
+    function MSGQuery() {
+        yzshzyh = ""; yzzxzyh = ""; requexx = ""; msgtypecodes = "";
+        $('#txtb').stop().fadeIn();
+        $('#txtb').stop().fadeOut();
+        $('#txtb').hide();
+        $.ajax({
+            url: "/Home/MSGQuery",
+            datatype: "json",
+            async: false,
+            data: {"gh":"@OperatorProvider.GetCurrent().rygh"},
+            type: "post",
+            success: function (rst) {
+                var da = eval(rst);
+                if (da != "" && da != "[]") {
+                    $("#badge1").text(da[0].shzs + da[0].zxzs);
+                    $("#badge2").text(da[0].shzs == 0 ? "" : da[0].shzs);
+                    $("#badge3").text(da[0].zxzs == 0 ? "" : da[0].zxzs);
+                    $("#countents").text(da[0].msgcontent);
+                    msgtypecodes = da[0].msgtypecode;
+                    if (da[0].msgcontent != "") {
+                        $('#txtb').show();
+                        blink('#txtb');
+                    }
+                    for (var i = 0; i < da.length; i++) {
+                        if (da[i].msgtypecode == 1) {
+                            yzshzyh += da[i].patno + ",";
+                        }
+                        else {
+                            yzzxzyh += da[i].patno + ",";
+                        }
+
+                    }
+                } else {
+                    requexx = 1;
+                }
+
+            },
+            error: function () {
+
+            }
+        })
+
+    }
+
+    $("#yzsh").click(function () {
+        YZSH();
+    });
+    $("#yzzx").click(function () {
+        YZZX();
+    });
+    $("#countentli").click(function () {
+        MSGQuery();
+        if (msgtypecodes == 1) {
+            YZSH();
+        }
+        else {
+            YZZX();
+        }
+
+    });
+
+    function YZSH() {
+        var a1 = $("#badge2").text("");
+        var badge2 = Number($("#badge2").text());
+        var badge3 = Number($("#badge3").text());
+        var badge1 = badge2 + badge3;
+        $("#badge1").text(badge1 == 0 ? "" : badge1);
+        if (badge1 == 0) {
+            $("#countents").text("");
+            $('#txtb').stop().fadeIn();
+            $('#txtb').stop().fadeOut();
+            $('#txtb').hide();
+        }
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Y lệnhDuyệt(Tin nhắnNhắc nhở)", enName: "", url: "/NurseManage/OrderAudit/Index?data=" + yzshzyh });
+    }
+
+    function YZZX() {
+        var a1 = $("#badge3").text("");
+        var badge2 = Number($("#badge2").text());
+        var badge3 = Number($("#badge3").text());
+        var badge1 = badge2 + badge3;
+        $("#badge1").text(badge1 == 0 ? "" : badge1);
+        if (badge1 == 0) {
+            $("#countents").text("");
+            $('#txtb').stop().fadeIn();
+            $('#txtb').stop().fadeOut();
+            $('#txtb').hide();
+        }
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Y lệnhThực hiện(Tin nhắnNhắc nhở)", enName: "", url: "/NurseManage/OrderExecution/Index?data=" + yzzxzyh });
+    }
+
+
+</script>

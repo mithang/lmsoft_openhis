@@ -1,0 +1,84 @@
+@{
+    ViewBag.Title = "PatBasic";
+}
+ 
+<form id="formPat1">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading navb-bg">
+            Thông tin cơ bản bệnh nhân
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Số nhập viện：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly" id="zyh" name="zyh" value="">
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Số thẻ：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly" id="kh" name="kh" value="">
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Số hồ sơ bệnh án：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly" id="blh" name="blh" value="">
+                    </td> 
+                    <th class="formTitle">Giới tính：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly"  disabled id="xb" name="xb" value=""> 
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly"  disabled id="xm" name="xm" value="">
+                    </td>
+                    <th class="formTitle">Tuổi：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly" disabled id="nl" name="nl" value="">
+                    </td>
+                    <th class="formTitle">Khoa bệnh：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly"  disabled id="bq" name="bq" value="">
+                    </td>
+                    <th class="formTitle">Ngày nhập viện</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly"  id="ryrq" name="ryrq" value="">
+                        <input type="text" hidden value="" id="patid" name="patid" />
+                        <input type="text" hidden value="" id="zhbh" name="zhbh" />
+                        <input type="text" hidden value="" id="zh" name="zh" />
+                        <input type="text" hidden value="" id="zhxz" name="zhxz" />
+                        <input type="text" hidden id="zhye" name="zhye" value="">
+                    </td> 
+                </tr>
+                @*<tr>
+                    <th class="formTitle">账户余额</th>
+    <td class="formValue">
+        <input type="text" class="form-control" readonly="readonly" disabled id="zhye" name="zhye" value="">
+    </td>
+    <th class="formTitle">账户性质</th>
+    <td class="formValue">
+        <input type="text" class="form-control" readonly="readonly" disabled id="zhxzMC" name="zhxzMC" value="">
+    </td>
+    <th class="formTitle">账户所有人</th>
+    <td class="formValue">
+        <input type="text" class="form-control" readonly="readonly" disabled id="zhsyr" name="zhsyr" value="">
+    </td>
+
+    <th class="formTitle">建档人员</th>
+    <td class="formValue">
+        <input type="text" class="form-control" readonly="readonly" disabled id="CreatorUserCode" name="CreatorUserCode" value="">
+    </td>
+    <th class="formTitle">建档日期</th>
+    <td class="formValue">
+        <input type="text" class="form-control" readonly="readonly" disabled id="CreateTime" name="CreateTime" value="">
+       
+                    </td>
+                </tr>*@
+                <!--隐藏数据-->
+
+            </table>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,605 @@
+@using Newtouch.Infrastructure
+@{
+    ViewBag.title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .form .formTitle {
+        width: 80px;
+        padding-right: 5px;
+    }
+
+    .radio input[type=radio], .radio-inline input[type=radio] {
+        margin-left: -16px;
+    }
+
+    .radio-inline {
+        line-height: 22px;
+        margin-left: 30px;
+        width: 35px;
+    }
+</style>
+
+<form id="form1">
+    <div style="padding-top: 10px; margin-right: 20px;margin-left: 10px;">
+        <table class="form">
+            <tr>
+                <td class="formTitle"><input id="ryrq" name="ryrq" type="text" hidden="hidden" /><input id="cyrq" name="cyrq" type="text" hidden="hidden" /></td>
+                <td class="formValue"></td>
+                <td class="formTitle"></td>
+                <td class="formValue"></td>
+                <td class="formTitle"></td>
+                <td class="formValue"></td>
+                <td class="formTitle"></td>
+                <td class="formValue"></td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span class="required">*</span>Ngày:</td>
+                <td class="formValue">
+                    <input id="rq" name="rq" type="text" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker()" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </td>
+                <td class="formTitle"><span class="required">*</span>Thời điểm:</td>
+                <td class="formValue" colspan="5">
+                    @if (@ViewBag.ScdCode == "1")
+                    {
+                        <div>
+                             <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="3">3
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="7">7
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="11">11
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="15">15
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="19">19
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="23">23
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="2">2
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="6">6
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="10">10
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="14">14
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="18">18
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsSj" value="22">22
+                            </label>
+                        </div>
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span class="required">*</span>Số nhập viện:</td>
+                <td class="formValue">
+                    <input id="zyh" name="zyh" type="text" class="form-control required" placeholder="" />
+                </td>
+                <td class="formTitle">Huyết áp tối đa:</td>
+                <td class="formValue">
+                    <input id="xysz" name="xysz" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Huyết áp tối thiểu:</td>
+                <td class="formValue">
+                    <input id="xyxz" name="xyxz" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Trạng thái:</td>
+                <td class="formValue">
+                    <select id="brzt" name="brzt" class="form-control" data-EnumType="EnumHlbrzt">
+                        <option>==Vui lòng chọn==</option>
+                    </select>
+                </td>
+                <td class="formTitle">Trạng tháiGhi chú:</td>
+                <td class="formValue">
+                    <input id="brzt_hh" name="brzt_hh" type="text" class="form-an form-control" style="width:50%;float:left;" placeholder="" /><span style="float:left;padding:5px 5px;">giờ</span>
+                </td>
+                <td class="formValue">
+                    <input id="brzt_mi" name="brzt_mi" type="text" class="form-an form-control" style="width:60%;float:left;" placeholder="" /><span style="float:left;padding:5px 5px;">phút</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Ý thức:</td>
+                <td class="formValue">
+                    <select id="hlys" name="hlys" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+                <td class="formTitle">Ăn uống:</td>
+                <td class="formValue">
+                    <select id="brfood" name="brfood" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+                <td class="formTitle">DaTình hình:</td>
+                <td class="formValue">
+                    <select id="pfqk" name="pfqk" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+                <td class="formTitle">ỐngĐiều dưỡng:</td>
+                <td class="formValue">
+                    <select id="gdhl" name="gdhl" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Nhiệt độ(℃):</td>
+                <td class="formValue">
+                    <input id="tw" name="tw" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formValue" colspan="2">
+                    <div>
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsTwclfs" value="1">Nhiệt độ miệng
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsTwclfs" value="2">Nhiệt độ nách
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optionsTwclfs" value="3">Nhiệt độ hậu môn
+                        </label>
+                    </div>
+                </td>
+                <td class="formTitle">Hạ nhiệt vật lý(℃):</td>
+                <td class="formValue">
+                    <input id="wljw" name="wljw" type="text" class="form-an form-control" placeholder="" />
+                </td>
+
+            </tr>
+            <tr>
+                <td class="formValue" colspan="2" style="padding-left:40px;">
+                    <div class="ckbox">
+                        <input id="qbq" name="qbq" type="checkbox"><label for="qbq">Máy tạo nhịp</label>
+                    </div>
+                    <div class="ckbox">
+                        <input id="hxj" name="hxj" type="checkbox"><label for="hxj">Máy hô hấp</label>
+                    </div>
+                </td>
+                <td class="formTitle">Nhịp tim(lần/phút):</td>
+                <td class="formValue">
+                    <input id="xl" name="xl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Mạch(lần/phút):</td>
+                <td class="formValue">
+                    <input id="mb" name="mb" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Hô hấp(lần/phút):</td>
+                <td class="formValue">
+                    <input id="hx" name="hx" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Chiều cao(cm):</td>
+                <td class="formValue">
+                    <input id="sg" name="sg" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Cân nặng(kg):</td>
+                <td class="formValue">
+                    <input id="tz" name="tz" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">ĐoMô tả:</td>
+                <td class="formValue">
+                    <input id="tzclbz" name="tzclbz" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Số lần đại tiện:</td>
+                <td class="formValue">
+                    <input id="dbcs" name="dbcs" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Số lần đại tiệnGhi chú:</td>
+                <td class="formValue">
+                    <input id="dbcsbz" name="dbcsbz" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Điểm đau:</td>
+                <td class="formValue">
+                    <input id="ttpf" name="ttpf" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">(I)Lượng truyền dịch:</td>
+                <td class="formValue">
+                    <input id="syl" name="syl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(I)Lượng ăn uống:</td>
+                <td class="formValue">
+                    <input id="ysl" name="ysl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Lượng ăn uốngĐường:</td>
+                <td class="formValue">
+                    <input id="ysltj" name="ysltj" type="text" class="form-an form-control" placeholder="" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="formTitle">(I)Lượng truyền máu:</td>
+                <td class="formValue">
+                    <input id="sxl" name="sxl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Lượng nôn:</td>
+                <td class="formValue">
+                    <input id="otl" name="otl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Lượng nônMàu sắc:</td>
+                <td class="formValue">
+                    <input id="otlys" name="otlys" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Lượng nước tiểu:</td>
+                <td class="formValue">
+                    <input id="xbl" name="xbl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Lượng nước tiểuMàu sắc:</td>
+                <td class="formValue">
+                    <input id="nlys" name="nlys" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Lượng dịch thừa:</td>
+                <td class="formValue">
+                    <input id="cys" name="cys" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Dẫn lưu vết thương:</td>
+                <td class="formValue">
+                    <input id="skyll" name="skyll" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Lượng dịch màng phổi:</td>
+                <td class="formValue">
+                    <input id="xyl" name="xyl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">(O)Lượng dịch dạ dày:</td>
+                <td class="formValue">
+                    <input id="wyl" name="wyl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Bóng hút áp lực âm:</td>
+                <td class="formValue">
+                    <input id="fxxq" name="fxxq" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">(O)Lượng vào ra khác:</td>
+                <td class="formValue">
+                    <input id="qtsc" name="qtsc" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Thở oxy/Lưu lượngL/min:</td>
+                <td class="formValue">
+                    <input id="xyll" name="xyll" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Thở oxyMô tả:</td>
+                <td class="formValue">
+                    <input id="xyfs" name="xyfs" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Độ bão hòa oxy máu:</td>
+                <td class="formValue">
+                    <input id="xybhd" name="xybhd" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Lượng dịch truyền vào:</td>
+                <td class="formValue">
+                    <input id="srytl" name="srytl" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Lượng dịch dẫn lưu:</td>
+                <td class="formValue">
+                    <input id="yll" name="yll" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Tổng lượng vào:</td>
+                <td class="formValue">
+                    <input id="zrl" name="zrl" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Tổng lượng ra:</td>
+                <td class="formValue">
+                    <input id="zcl" name="zcl" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+                <td class="formTitle">Dị ứngThuốc:</td>
+                <td class="formValue" colspan="3">
+                    <input id="gmyw" name="gmyw" value="" type="text" class="form-an form-control" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Theo dõi bệnh tìnhvà biện pháp:</td>
+                <td class="formValue" colspan="7" rowspan="3">
+                    <textarea id="bqgcjcs" class="form-an-end form-control"></textarea>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td class="formTitle">Điều dưỡngChữ ký:</td>
+                <td class="formValue">
+                    <input id="hsqm" name="hsqm" type="text" class="form-an form-control" value="@ViewBag.hsqm" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<div style="padding-left: 10px;margin-top: 10px;">
+    <span style="color:red;">Mô tả:</span>Huyết ápĐoĐơn vị:mmHg;Đo lượng vào raĐơn vị:ml
+</div>
+<script type="text/javascript">
+    var keyValue = $.request("smtzId");
+    var zyh = $.request("zyh");
+    
+    $(function () {
+        initControl();
+        if (!!keyValue) {
+            $.ajax({
+                url: "/NurseManage/InpatientVitalSigns/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+
+                    $('#zyh').attr('data-zyh', data.zyh);
+                    $('#rq').val($.getDate({ date: data.rq }));
+                    if (data.sj) {
+                        $("[name=optionsSj][value='" + data.sj + "']").trigger('click');
+                    }
+                    if (data.twclfs) {
+                        $("[name=optionsTwclfs][value='" + data.twclfs + "']").trigger('click');
+                    }
+                    if (data.tzclbz) {
+                        $('#tzclbz').attr('data-Code', data.tzclbz)
+                            .attr('data-Name', $.itemDetails.getNameByCode("WeightMemo", data.tzclbz))
+                            .val($.itemDetails.getNameByCode("WeightMemo", data.tzclbz));
+                    }
+                    //if (data.dbcsbz) {
+                    //    $('#dbcsbz').attr('data-Code', data.dbcsbz)
+                    //        .attr('data-Name', $.itemDetails.getNameByCode("DefecationFreqMemo", data.dbcsbz))
+                    //        .val($.itemDetails.getNameByCode("DefecationFreqMemo", data.dbcsbz));
+                    //}
+                    if (data.xyfs) {
+                        $('#xyfs').attr('data-Code', data.xyfs)
+                            .attr('data-Name', $.itemDetails.getNameByCode("OxygenUptakeMed", data.xyfs))
+                            .val($.itemDetails.getNameByCode("OxygenUptakeMed", data.xyfs));
+                    }
+                }
+            });
+        }
+        if (zyh != null && zyh != "" && zyh != undefined) {
+            $('#zyh').val(zyh);
+            $('#zyh').attr('data-zyh', zyh);
+            $.ajax({
+                url: "/NurseManage/InpatientVitalSigns/Getzyhrq",
+                data: { zyh: zyh },
+                async: false,
+                success: function (req) {
+                    if (req != null) {
+                        $("#ryrq").val(req);
+                    }
+                }
+            });
+            $.ajax({
+                url: "/NurseManage/InpatientVitalSigns/Getzyhcqrq",
+                data: { zyh: zyh },
+                async: false,
+                success: function (req) {
+                    if (req != null) {
+                        $("#cyrq").val(req);
+                    }
+                }
+            });
+        }
+    });
+
+    function initControl() {
+        //病人意识
+        $("#hlys").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.itemDetails) {
+                    $.each(top.clients.itemDetails, function (idx, val) {
+                        if (val.Type === "NursingCognition") {
+                            $.each(val.Items, function (key, value) {
+                                $('#hlys').append('<option value="' + value.Code + '">' + value.Name + '</option>');
+                            });
+                        }
+                    });
+                }
+                return resultObjArr;
+            }
+        });
+        //饮食
+        $("#brfood").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.itemDetails) {
+                    $.each(top.clients.itemDetails, function (idx, val) {
+                        if (val.Type === "NursingFood") {
+                            $.each(val.Items, function (key, value) {
+                                $('#brfood').append('<option value="' + value.Code + '">' + value.Name + '</option>');
+                            });
+                        }
+                    });
+                }
+                return resultObjArr;
+            }
+        });
+        //皮肤情况
+        $("#pfqk").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.itemDetails) {
+                    $.each(top.clients.itemDetails, function (idx, val) {
+                        if (val.Type === "NursingSkin") {
+                            $.each(val.Items, function (key, value) {
+                                $('#pfqk').append('<option value="' + value.Code + '">' + value.Name + '</option>');
+                            });
+                        }
+                    });
+                }
+                return resultObjArr;
+            }
+        });
+        //管道护理
+        $("#gdhl").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.itemDetails) {
+                    $.each(top.clients.itemDetails, function (idx, val) {
+                        if (val.Type === "PipelineNursing") {
+                            $.each(val.Items, function (key, value) {
+                                $('#gdhl').append('<option value="' + value.Code + '">' + value.Name + '</option>');
+                            });
+                        }
+                    });
+                }
+                return resultObjArr;
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    bindItemFloator("tzclbz", "WeightMemo");
+    //bindItemFloator("dbcsbz", "DefecationFreqMemo");
+    bindItemFloator("xyfs", "OxygenUptakeMed");
+    function bindItemFloator(inputId, itemType) {
+        //绑定字典
+        $("#" + inputId).newtouchFloatingSelector({
+            height: 200,
+            width: 330,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                return $.itemDetails.getItems(itemType);
+            },
+            colModel: [
+                { label: 'Mã', name: 'Code', widthratio: 20 },
+                { label: 'Tên', name: 'Name', widthratio: 60 },
+            ],
+            itemdbclickhandler: function ($thistr, $thisinput) {
+                //保存时验证val和data-Name一致
+                $thisinput.attr('data-Code', $thistr.attr('data-Code'));
+                $thisinput.attr('data-Name', $thistr.attr('data-Name'));
+                $thisinput.val($thistr.attr('data-Name'));
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    $('#zyh').click(function () {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Nhập việnBệnh nhânTra cứu",
+            url: "/PatientList/InPatSearchView?zybz=1,2,3,7&t=" + Math.random() + "&zyh=" + '',
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick(function (patData) {
+                    $('#zyh').val(patData.zyh);
+                    $('#zyh').attr('data-zyh', patData.zyh);
+                    $.ajax({
+                        url: "/NurseManage/InpatientVitalSigns/Getzyhrq",
+                        data: { zyh: patData.zyh },
+                        async: false,
+                        success: function (req) {
+                            if (req != null) {
+                                $("#ryrq").val(req);
+                            }
+                        }
+                    });
+                    $.ajax({
+                        url: "/NurseManage/InpatientVitalSigns/Getzyhcqrq",
+                        data: { zyh: patData.zyh },
+                        async: false,
+                        success: function (req) {
+                            if (req != null) {
+                                $("#cyrq").val(req);
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    function AcceptClick(callback) {
+        if ($.trim($('#zyh').val()) == '' || $('#zyh').val() != $('#zyh').attr('data-zyh')) {
+            $.modalAlert("Vui lòng chọnNhập việnBệnh nhân", "warning");
+            return;
+        }
+        if (!$("#form1").formValid()) {
+            return;
+        }
+       
+        var data = $("#form1").formSerialize();
+       
+        data.sj = $("[name=optionsSj]:checked").val() || null;
+        data.twclfs = $("[name=optionsTwclfs]:checked").val() || null;
+        //字典
+        data.tzclbz = $('#tzclbz').val() == $('#tzclbz').attr('data-Name') ? $('#tzclbz').attr('data-Code') : null;
+        //data.dbcsbz = $('#dbcsbz').val() == $('#dbcsbz').attr('data-Name') ? $('#dbcsbz').attr('data-Code') : null;
+        data.xyfs = $('#xyfs').val() == $('#xyfs').attr('data-Name') ? $('#xyfs').attr('data-Code') : null;
+        if (!data.sj) {
+            $.modalAlert("Vui lòng chọn thời điểm", "warning");
+            return;
+        }
+        var lrrq = new Date(data.rq + " "+data.sj + ":00:00");
+        var ryrq = new Date($("#ryrq").val());
+        if (ryrq > lrrq) {
+            $.modalAlert("NhậpNgàyKhông được nhỏ hơnNgày nhập viện!", "warning");
+            return;
+        }
+        if ($("#cyrq").val() != null && $("#cyrq").val() != "") {
+            var cyrq = new Date($("#cyrq").val());
+            if (lrrq > cyrq) {
+                $.modalAlert("NhậpNgàyKhông thểLớn hơnXuất việnNgày!", "warning");
+                return;
+            }
+        }
+        if (data.tw && !data.twclfs) {
+            $.modalAlert("Vui lòng chọnNhiệt độPhương thức đo", "warning");
+            return;
+        }
+        if (!data.tw && data.twclfs) {
+            data.twclfs = null;
+        }
+
+        // 注释 by haijiang.mo 根据需求，取消体温必填的要求
+        // if (!data.brzt && !data.twclfs) {
+        //    $.modalAlert("请输入体温", "warning");
+        //    return;
+        // }
+
+        $.submitForm({
+            url: "/NurseManage/InpatientVitalSigns/SubmitForm?keyValue=" + keyValue,
+            param: data,
+            close: false,
+            success: function () {
+                newtouch_globalevent_f4();
+                //保存成功回调
+                callback();
+                if (true) {
+                    //setTimeout("$('#zyh').trigger('click');", 2500);
+                }
+            }
+        })
+
+    }
+
+</script>

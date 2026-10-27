@@ -1,0 +1,232 @@
+﻿@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+}
+<style>
+    .patListTB {
+        width: 100%;
+        border: 1px #eee solid;
+        margin-bottom: 10px;
+    }
+
+        .patListTB tr td {
+            text-align: center;
+            border: 1px #eee solid;
+            line-height: 30px;
+            height: 30px;
+            padding-left: 40px;
+        }
+
+        .patListTB tr th {
+            text-align: center;
+            background-color: #eee;
+            border: 1px #eee solid;
+            line-height: 30px;
+        }
+</style>
+<form id="form1">
+    <div style="padding-top:18px; margin-right: 30px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle" colspan="4">Thông tin bệnh nhân:</th>
+                <td class="formValue" style="white-space: nowrap;text-overflow: ellipsis;text-align:center;font-style:italic;">
+                    <input id="brjs" name="brjs" type="text" class="form-control required" value="Tóm tắt bệnh nhân" readonly="readonly" style="border:none" />
+                    <input id="zyh" name="zyh" type="hidden" class="form-control required" value="住院号" readonly="readonly" style="border:none;" />
+                    <input id="mzh" name="mzh" type="hidden" class="form-control required" value="门诊号" readonly="readonly" style="border:none;" />
+                </td>
+            </tr>
+        </table>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Loại bệnh án:</th>
+                <td class="formValue">
+                    <select id="bllx" class="form-control required" data-EnumType="EnumBllx">
+                        <option value="">==Vui lòng chọn==</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Thời gian bệnh án:</th>
+                <td class="formValue">
+                    <input id="blsj" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Quyền mẫu:</th>
+                <td class="formValue">
+                    <select id="mbqx" name="mbqx" class="form-control required" data-EnumType="Enummbqx"></select>
+                </td>
+            </tr>
+
+        </table>
+        <div id="dv_mblb" style="margin-left: 25px;">
+            <table id="mbgridList"></table>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    var keyValue = $.request("keyValue");
+    var bllx = $.request("bllx");
+    var zyh = $.request("zyh");
+    var mzh = $.request("mzh");
+
+    $(function () {
+        if (!!zyh) {
+            $.najax({
+                url: "/MedicalRecordManage/PatInfo/MedRecordTreeEditJson",
+                data: { keyValue: keyValue, bllx: bllx,zyh:zyh },
+                dataType: "json",
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+        else if (!!mzh) {
+            $.najax({
+                url: "/MedicalRecordManage/Outpatient/MedRecordTreeEditJson",
+                data: { keyValue: keyValue, bllx: bllx, mzh: mzh },
+                dataType: "json",
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+        else {
+            $('#zt').click(function () {
+                return false;
+            });
+        }
+        initControl();
+    });
+
+    function initControl() {
+        var mzbz = '@((int)EnumMzbz.zy)';
+        if (!!mzh) {
+            mzbz = '@((int)EnumMzbz.mz)';
+        }
+        $("#bllx").bindSelect({
+            url: "/SystemManage/Common/GetBllxList?mzbz=" + mzbz,
+            id: "Code",
+            text: "Name"
+        });
+        $('#bllx').val(bllx);
+        mbgridList();
+    }
+
+    function AcceptClick(callBack) {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+
+        var mbRowId = $("#mbgridList").jqGrid('getGridParam', 'selrow');
+        var mbData=$("#mbgridList").jqGrid('getRowData', mbRowId);
+        if (mbRowId != null) {
+            if ('@ViewBag.IsEnableEditor'=="true" && $("#bllx").val() == '@((int)EnumBllx.basy)') {
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Trang đầu bệnh án", enName: "", url: "/MRHomePage/MRHomePage/Main?mbbh=" + mbRowId + "&keyValue=&zyh=" + $("#zyh").val(), AppId: "EMR" });
+            }
+            else {
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val(), AppId: "EMR" });
+            }
+            $.modalClose();
+        }
+        else {
+            $.modalAlert("Vui lòng chọn mẫu bệnh án", 'warning');
+        }
+    }
+
+
+
+    $('#bllx').change(function () {
+        mbListRefresh()
+    });
+
+    $('#mbqx').change(function () {
+        mbListRefresh()
+    });
+
+    function mbListRefresh()
+    {
+        if ($("#mbqx").val() != "" && $("#mbqx").val() != null && $("#mbqx").val() != "undefined")
+        {
+            $("#mbgridList").jqGrid('setGridParam', {
+                postData: { mbqx: $("#mbqx").val(), bllx: $("#bllx").val() },
+            }).trigger('reloadGrid');
+        }
+    }
+
+    function mbgridList() {
+        //debugger
+        var $gridList = $("#mbgridList");
+        $gridList.dataGrid({
+            treeGrid: true,
+            treeGridModel: "adjacency",
+            ExpandColumn: "CreateTime",
+            url: "/MedicalRecordManage/PatInfo/GetMedRecordTempList",
+            postData: { mbqx: $("#mbqx").val(), bllx: $("#bllx").val() },
+            height: $(window).height() - 180,
+            colModel: [
+                { label: "Mẫu iD", name: "Id", hidden: true, key: true },
+                { label: "Cách tải mẫu", name: "LoadWay", hidden: true },
+                { label: "Đường dẫn mẫu", name: "mblj", hidden: true },
+                {
+                    label: 'Loại mẫu', name: 'bllxmc', hidden: true, width: 60, align: 'center'
+                },
+                {
+                    label: 'Mẫu tên', name: 'mbmc', width: 230, align: 'left'
+                },
+                {
+                    label: "Nguồn", name: "Memo", width: 30, align: 'left', formatter: function (val) {
+                        if (val != "" && val != null) {
+                            return "[Chuyển]";
+                        }
+                        else {
+                            return "";
+                        }
+                    }
+                },
+                {
+                    label: "Tính chất mẫu", name: "Isempty", width: 100, align: "center", formatter: function (cellvalue) {
+                        if (cellvalue == "1")
+                            return "Mẫu trống";
+                        else
+                            return 'Mẫu tùy chỉnh';
+                    }
+                },
+                { label: 'Ngày tạo', name: 'CreateTime', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày sửa', name: 'LastModifierTime', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+
+            ], ondblClickRow: function (row) {
+                //debugger
+                var mbRowId = $("#mbgridList").jqGrid('getGridParam', 'selrow');
+                var mbData = $("#mbgridList").jqGrid('getRowData', mbRowId);
+                if (mbRowId != null) {
+                    if ('@ViewBag.IsEnableEditor' == "true" && $("#bllx").val() == '@((int)EnumBllx.basy)') {
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Trang đầu bệnh án", enName: "", url: "/MRHomePage/MRHomePage/Main?mbbh=" + mbRowId + "&keyValue=&zyh=" + $("#zyh").val(), AppId: "EMR" });
+                    }
+                    else if (mbData.LoadWay == '@((int)EnummbqxTempLoadWay.View)' && !!mbData.mblj)
+                    {
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: mbData.mbmc, enName: "", url: mbData.mblj+"?mbbh=" + mbRowId + "&keyValue=&zyh=" + $("#zyh").val(), AppId: "EMR" });
+                    }
+                    else {
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val(), AppId: "EMR" });
+                    }
+                    $.modalClose();
+                }
+                else {
+                    $.modalAlert("Vui lòng chọn mẫu bệnh án", 'warning');
+                }
+        }
+        });
+        //$("#btn_search").click(function () {
+        //    $gridList.jqGrid('setGridParam', {
+        //        postData: { keyword: $("#txt_keyword").val() },
+        //    }).trigger('reloadGrid');
+        //});
+    }
+
+
+</script>

@@ -1,0 +1,207 @@
+
+@{
+    ViewBag.Title = "OutpatientReg";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style type="text/css">
+    .ckmargin {
+        margin-right: 20px;
+    }
+
+    #btn_search {
+        margin-left: 6px;
+        width: 35px;
+    }
+</style>
+
+<form name="form1">
+    <div class="panel panel-default" style="margin-top:10px; margin-bottom: -3px;">
+        <div class="panel-heading navb-bg">
+            Đăng ký khám
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Số thẻ：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtpatid" hidden />
+                        <input type="text" class="form-control " id="txtkh" placeholder="Số thẻ" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <input type="button" id="btn_search" class="btn btn-default btn-md btn-default-color" value="Tìm kiếm" />
+                        <input type="button" class="btn btn-default btn-md" value="Đăng ký khám không cần thẻ " onclick="FreeCardReg()" />
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Số hóa đơn：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control formClearIgnore newtouch_Readonly" id="txtfph" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="Chọn số hóa đơn" onclick="ShowInvoicePanel()" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <label id="labxm"></label>
+                    </td>
+                    <th class="formTitle" style="left:-78px;">Giới tính：</th>
+                    <td class="formValue" style="left:-78px;">
+                        <label id="labxb"></label>
+                    </td>
+                    <th class="formTitle"><span class="required">*</span>Tính chất bệnh nhân：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control newtouch_Readonly" id="txtbrxzqc" />
+                        <input type="text" id="txtbrxz" hidden />
+                        <input type="text" id="txtbrxzbh" hidden />
+                    </td>
+                    <td class="formValue"></td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Loại khám ngoại trú：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="sel_mzlx" class="form-control" onchange="sel_mzlxChange()">
+                            <option value="1">Khám thường</option>
+                            <option value="2">Cấp cứu</option>
+                            <option value="3">Khám chuyên gia</option>
+                        </select>
+                        <input type="text" id="txtghlxbh" hidden />
+                        <input type="text" id="txtghlx" hidden />
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue" style="left:-122px;" colspan="3">
+                        <div class="ckbox ckmargin">
+                            <input id="chk_ckf" type="checkbox" onclick="GHFees()" /><label for="chk_ckf">Phí thẻ từ</label>
+                        </div>
+                        <div class="ckbox ckmargin">
+                            <input id="chk_gbf" type="checkbox" onclick="GHFees()" /><label for="chk_gbf">Phí làm thẻ</label>
+                        </div>
+                        <div class="ckbox ckmargin">
+                            <input id="chk_zzjm" type="checkbox" onclick="GHFees()" /><label for="chk_zzjm">Miễn giảm chuyển tuyến</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Khoa/Bác sĩ：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="txtksys" style="width:98%;" required />
+                        <input type="text" id="txtksbh" hidden />
+                        <input type="text" id="txtks" hidden />
+                        <input type="text" id="txtrygh" hidden />
+                        <input type="text" id="txtys" hidden />
+                    </td>
+                </tr>
+                <tbody class="dispTbody" style="display:none;">
+                    <tr>
+                        <th class="formTitle">Số hồ sơ bệnh án：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control newtouch_Readonly" id="txtblh" />
+                        </td>
+                        <th class="formTitle">Ngày sinh：</th>
+                        <td class="formValue">
+                            <input id="txtcsny" type="text" class="form-control input-wdatepicker newtouch_Readonly" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <th class="formTitle">Khám lần đầu/tái khám：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control newtouch_Readonly" id="txtcfz" />
+                            <input type="text" id="txtfzbz" hidden />
+                        </td>
+                        <th class="formTitle">Bệnh nặng：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control newtouch_Readonly" id="txtdb" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Chẩn đoán bệnh nặng：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control newtouch_Readonly" id="txtdbzd" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="fa_icontoggle"><i class="fa fa-angle-double-down icontoggle" style="color:rgb(0, 160, 233);cursor:pointer;"></i></div>
+        </div>
+    </div>
+
+    <div id="MyTabGrid" style="margin-top:10px;">
+        <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#registering" id="linkregistering" role="tab" data-toggle="tab">Đang đăng ký khám</a></li>
+            <li role="presentation"><a href="#closedReg" id="linkclosedReg" role="tab" data-toggle="tab">Đăng ký khám đã quyết toán</a></li>
+            <li role="presentation"><a href="#lastSettleInfo" id="linkLastSettledInfo" role="tab" data-toggle="tab">Quyết toán lần trước</a></li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="registering">
+                <div class="gridPanel" style="width:99%;">
+                    <table id="registeringList" rel="MyTabGrid"></table>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="closedReg">
+                <div class="gridPanel" style="width:99%;">
+                    <table id="closedRegList" rel="MyTabGrid"></table>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="lastSettleInfo">
+                <div class="gridPanel" style="width:99%;">
+                    <table id="lastSettleInfoList" rel="MyTabGrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading navb-bg">
+            Phải thu
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Số tiền phải thu：</th>
+                    <td class="formValue">
+                        <label style="color:red;">￥</label>
+                        <label id="labysk"></label>
+                    </td>
+                    <th class="formTitle">Số tiền thực thu：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtssk" class="form-control shortenWidth required" placeholder="Không được là số âm" />
+                    </td>
+                    <th class="formTitle">Tiền thừa：</th>
+                    <td class="formValue">
+                        <label>￥</label>
+                        <label id="labzl"></label>
+                    </td>
+                    <th class="formTitle">Phương thức thanh toán：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlzffs" class="form-control"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td class="formValue" colspan="3">
+                        <lable>Hóa đơn trước：</lable>
+                        <lable id="lblqfph"></lable>&nbsp;&nbsp;
+                        <lable>Tổng số tiền</lable>&nbsp;
+                        <lable id="lblzje"></lable>&nbsp;&nbsp;
+                        <lable>đồng,Phải thu</lable>&nbsp;
+                        <lable id="lblys"></lable>&nbsp;&nbsp;
+                        <lable>,Tiền thừa</lable>&nbsp;
+                        <lable id="lblzl"></lable>&nbsp;&nbsp;
+                        <lable>đồng</lable>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <input type="hidden" id="hidOrderId" value="0" />
+</form>
+<div class="gridPanel">
+    <table id="InvoiceNoPanel"></table>
+</div>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 8, 9, 10 },
+    F9Text = "Hủy số"
+})
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/OutpatientManage/OutPatient/OutpatientReg.js",false)"></script>
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/OutpatientManage/OutPatient/Registering.js",false)"></script>
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/OutpatientManage/OutPatient/ClosedReg.js",false)"></script>
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/OutpatientManage/OutPatient/LastSettleInfo.js",false)"></script>

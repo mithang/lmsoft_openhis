@@ -1,0 +1,434 @@
+
+@{
+    ViewBag.Title = "AccountingExecution";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .editable {
+        width: 70% !important;
+    }
+
+    .ul-hj {
+        float: right;
+        padding: 0;
+        margin: 10px 30px;
+    }
+
+        .ul-hj li {
+            list-style: none;
+            float: right;
+            line-height: 25px;
+            margin-left: 10px;
+        }
+
+    .sp-bottom-title {
+        font-weight: bolder;
+    }
+
+    .sp-bottom-value {
+        color: #ff0000;
+    }
+</style>
+<div class="rows" style="float:left;width:25%;">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form" style="width:95%">
+            <tr>
+                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số bệnh án：</th>
+                <td class="formValue">
+                    <input id="keyword" type="text" class="form-control" />
+                </td>
+            </tr>
+        </table>
+        <div class="gridPanel">
+            <table id="gridListsearch"></table>
+        </div>
+    </div>
+</div>
+<div class="rows" style="float:left;width:74.5%;margin-left:5px;">
+    <div class="gridPanel">
+        <table id="gridList"></table>
+    </div>
+    @Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
+    {
+        ShowKeyList = new[] { 8 },
+        F8Text = "Thực hiện",
+        WapperInlineStyle = "float:right;width:100px;margin:10px 30px 12px;text-align:right;"
+    })
+    <ul class="ul-hj">
+        <li><span class="sp-bottom-title">Tổng cộng mục điều trị：</span><span class="sp-bottom-value" id="sp_zlxmhj">___</span></li>
+        <li><span class="sp-bottom-title">Tổng số tiền điều trị：</span><span class="sp-bottom-value" id="sp_zljehj">___</span></li>
+        <li><span class="sp-bottom-title">Số bệnh nhân：</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var leftdata = [];//Thông tin bệnh nhân đã khởi tạo这不làcó thể吗小垃圾
+    var redata = [];//Thông tin bệnh nhân sau khi lọc
+    var selectpat = [];//Thông tin bệnh nhân đã chọn
+    var from = $.request("from");
+    var item_selected = [];
+    $(function () {
+        gridList();
+        gridListSearch();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/HospitalizationManage/BookkeepInHos/WaitingAccountingPlanQuery",
+            postData: getSearchPostData(),
+            rownumbers: false,
+            height: $(window).height() - 83,
+            colModel: [
+                { label: "khóa chính", name: "jzjhmxId", hidden: true, key: true },
+                { label: "jzjhId", name: "jzjhId", hidden: true },
+                {
+                    label: "Dài/tạm thời", name: "yzxz", width: 30, align: "left", formatter: function (cellvalue, a, b) {
+                        return cellvalue == "2" ? "Dài hạn" : (cellvalue == "1" ? "Tạm thời" : "");
+                    }, hidden: from == "mz" ? true : undefined
+                },
+                { label: "Loại phục hồi", name: "kflb", width: 100, align: "center", editable: true, edittype: 'select' },
+                { label: "Trị liệu sư", name: "zlsgh", width: 115, align: "center", editable: true, edittype: 'select'},
+                { label: "Tên bệnh nhân", name: "patientName", width: 65, align: "left" },
+                { label: "Mụcthu phí", name: "sfxmmc", width: 150, align: "left" },
+                { label: (from == "mz" ? "Tổng số lần" : "Số lần"), name: "zcs", width: 45, align: "left" },
+                { label: "Số lần đã thực hiện", name: "yzxcs", width: 40, align: "left" },
+                { label: "Số lần đã thực hiện hôm nay", name: "dtzxcs", width: 65, align: "left" },
+                {
+                    label: "còn lạiSố lần", name: "sycs", width: 55, align: "left", formatter: function (cellvalue, a, b) {
+                        if (!(from == "mz") && b.yzxz == "2") {
+                            return "";  //Dài hạn不Hiển thịcòn lạiSố lần
+                        }
+                        else {
+                            return parseFloat(b.zcs == undefined ? 0 : b.zcs) - parseFloat(b.yzxcs == undefined ? 0 : b.yzxcs);
+                        }
+                    }
+                },
+                {
+                    label: "Thời gian nhập", name: "entryTime", width: 80, align: "left"
+                    , formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                {
+                    label: "Đơn giá", name: "dj", width: 40, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+                { label: "Lượng điều trị mỗi lần", name: "zll", width: 65, align: "left" },
+                { label: "Số lượng tính phí mỗi lần", name: "sl", width: 80, align: "left" },
+                {
+                    label: "Số tiền mỗi lần", name: "zje", width: 70, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+                {
+                    label: "Thời gian thực hiện cuối cùng", name: "LastEexcutionTime", width: 120, align: "left"
+                , formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: "Ghi chú", name: "bz", width: 160, align: "left" }
+            ],
+            unwritten: false,
+            viewrecords: true,
+            multiselect: true,//复选框
+            onSelectRow: function (rowid, status) {
+                statisticalImplementFrequencyAndZje();
+                if (status) {
+                    $("#gridList").jqGrid('editRow', rowid, true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+                    });
+
+                } else {
+                    $("#gridList").saveRow(rowid, null, null, null, function (callbackRowId) { }, null, null);
+                }
+            },
+            gridComplete: function () {
+                $gridList.setColProp('zlsgh', {
+                    edittype: 'select', editoptions: {
+                        value: getzlsList()
+                    },
+                    formatter: "select"
+                });
+                $gridList.setColProp('kflb', {
+                    edittype: 'select', editoptions: {
+                        value: getkflbList(),
+                    }, formatter: "select", formatter: "select"
+                });
+            },
+            onSelectAll: function (aRowids, status) {
+                statisticalImplementFrequencyAndZje();
+                EnableInlineEditBox();
+            }
+        });
+    }
+
+    function getzlsList() {
+        var str = "";
+        orgId = '@(ViewBag.OrgId)';
+        $.najax({
+            type: "GET",
+            url: "/ReportManage/Report/GetStaffByDutyCode?orgId=" + orgId,
+            loading: true,
+            async: false,
+            success: function (data) {
+                if (data != null) {
+                    var jsonobj = eval(data);
+                    var length = jsonobj.length;
+                    for (var i = 0; i < length; i++) {
+                        if (i != length - 1) {
+                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName + ";";
+                        } else {
+                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName;// 这tronglàoptiontrong面của value:label
+                        }
+                    }
+
+                }
+            }
+        });
+        return str;
+    }
+
+    function getkflbList() {
+        var kflbs = top.$.itemDetails.getItems('RehabTreatmentMethod');
+        var obj = {};
+        $.each(kflbs, function () {
+            if (true) {
+                obj[this.Code] = this.Name;
+            }
+        });
+        return obj;
+    }
+
+    //Bật hộp chỉnh sửa trong dòng
+    function EnableInlineEditBox() {
+        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRow方法
+        var rowIds = $("#gridList").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+            $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            });
+        }
+    }
+
+    function getSearchPostData() {
+        var postData = {};
+        var zyhStr = '';
+        var allData = $("#gridListsearch").jqGrid('getRowData_AllLine', true, true);
+        $.each(allData, function () {
+            if (this.zyh) {
+                zyhStr += this.zyh + ',';
+            }
+        });
+
+        if (from == 'mz') {
+            postData.from = 'mz';
+        }
+        postData.zyhStr = zyhStr;
+        return postData;
+    }
+
+    function gridListSearch() {
+        var a = from == "mz" ? "Số ngoại trú" : "Mã nhập viện";
+        var $gridList = $("#gridListsearch");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 120,
+            colModel: [
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Số bệnh án', name: 'blh', width: 85, align: 'left' },
+                { label: a, name: 'zyh', width: 85, align: 'left', key: true },
+                { label: "py", name: 'py', align: 'left', hidden: true }
+            ],
+            rowNum: '10',
+            viewrecords: true,
+            multiselect: true,//复选框
+            unwritten: false,
+            rownumbers: false,
+            onSelectRow: function (rowid, status) {
+                research();
+            },
+            beforeSelectRow: function (rowid, e) {
+                var _this = this;
+                var index = item_selected.indexOf(item_selected, rowid);
+                if (index == -1) {
+                    item_selected.push(rowid);
+                }
+                else {
+                    item_selected = item_selected.pull(item_selected, rowid);
+                }
+            },
+            onSelectAll: function (aRowids, status) {
+                research();
+            }, afterInsertRow: function (rowid, rowdata, rowelem) {
+                $.each(selectpat, function (idx) {
+                    if (rowdata.zyh.indexOfIgnoreCase(this.zyh) > -1) {
+                        $("#gridListsearch").jqGrid('setSelection', rowid, false); //设置jqGridĐã chọn
+                    }
+                });
+            },
+        });
+        $.najax({
+            type: "GET",
+            url: "/PatientManage/Inpatient/GetAccountingpatientInfo?from=" + from,
+            loading: true,
+            success: function (ajaxresp) {
+                $("#gridListsearch").resetSelection();
+                $("#gridListsearch").clearGridData();
+                $("#gridListsearch").newtouchLocalDataGrid({
+                    posttofirst: false
+                }, ajaxresp);
+                leftdata = $("#gridListsearch").jqGrid('getRowData_AllLine', null, true);
+            }
+        });
+    }
+
+    $('#btn_search').click(function () {
+        research();
+    });
+
+    function research() {
+        statisticalNumber();
+        $("#gridList").jqGrid('setGridParam', {
+            postData: getSearchPostData()
+        }).trigger('reloadGrid');
+    }
+
+    //统计thực hiện人数
+    function statisticalNumber() {
+        var t = 0;
+        $("#gridListsearch input:checkbox[role=checkbox]:checked").each(function() {
+            ++t;
+        });
+        $("#sp_hzrs").html(t);
+    }
+
+    //统计Số lần thực hiệnvàTổng số tiền
+    function statisticalImplementFrequencyAndZje() {
+        var tt = 0;
+        var zje = 0.00;
+        $("#gridList input:checkbox[role=checkbox]:checked").each(function (index, item) {
+            ++tt;
+            var trObj = $(item).parent().parent().parent();
+            var zll = parseFloat(trObj.find("td[aria-describedby=gridList_zll]").html());
+            var dj = parseFloat(trObj.find("td[aria-describedby=gridList_dj]").html());
+            var c = zll * dj;
+            zje += c;
+        });
+        $("#sp_zlxmhj").html(tt);
+        $("#sp_zljehj").html(zje);
+    }
+
+    //F8Gửi至dịch vụ器
+    function newtouch_event_f8() {
+        var jzjhmxIdStr = "";
+        var zxItem = [];
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        var rowIds = $("#gridList").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+            $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
+
+            }, null, null);
+        }
+
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        //Phán đoán
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+            if (!rowData) {
+                break;
+            }
+            if (!rowData.kflb) {
+                $.modalAlert("Bắt buộc chọn loại phục hồi", 'warning');
+                break;
+            }
+            if (!rowData.zlsgh) {
+                $.modalAlert("Bắt buộc chọn trị liệu sư", 'warning');
+                break;
+            }
+            zxItem.push({ jzjhmxId: rowData.jzjhmxId, kflb: rowData.kflb, zlsgh: rowData.zlsgh });
+        }
+        if (zxItem == [] || zxItem.length < 1) {
+            $.modalAlert("Chưa chọnKế hoạchMụcghi sổ", 'warning');
+            return;
+        }
+        var paramData = {};
+        paramData.jzjhmxIdStr = jzjhmxIdStr;
+        paramData.from = from;
+        paramData.zxItem = zxItem;
+        $.modalOpen({
+            id: "ExecutionDateComfirm",
+            title: "Xác nhận thực hiện",
+            url: "@Url.Action("ExecutionDateComfirm")",
+            width: "370px",
+            height: "290px",
+            callBack: function (iframeId) {
+                //Ngàythu phí đã điền
+                var obj = top.frames[iframeId].checkEditingRowData();
+                if (obj) {
+                    paramData.zxrq = obj.zxrq + " " + new Date().toLocaleTimeString('chinese', { hour12: false });
+                    var sfxmmc = "";
+                    //Phán đoán
+                    for (var i = 0; i < selRowIds.length; i++) {
+                        var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
+                        if (!rowData) {
+                            break;
+                        }
+
+                        if (rowData.LastEexcutionTime.substring(0, 10) == obj.zxrq) {
+                            sfxmmc += rowData.sfxmmc + ",";
+                            break;
+                        }
+                    }
+                    if (sfxmmc == "") {
+                        submitform(paramData);
+                    } else {
+                        $.modalConfirm(sfxmmc + "  khiNgàyđãthực hiện,Có thao tác trùng lặp hay không", function (flag) {
+                            if (flag) {
+                                submitform(paramData);
+                                return;
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    };
+
+    function submitform(paramData) {
+        $.submitForm({
+            url: '/HospitalizationManage/BookkeepInHos/ExecuteAccountingPlan',
+            param: paramData,
+            success: function (data) {
+                $.modalClose("ExecutionDateComfirm");
+                gridListSearch();
+                $("#gridList").clearGridData();
+            }
+        });
+    }
+
+    //Tìm kiếm thông tin bệnh nhân chờ thực hiện
+    $('#keyword').keyup(function () {
+        if (leftdata != null && leftdata.length > 0) {
+            selectpat = $("#gridListsearch").jqGrid('getRowData_AllLine', true, true);
+            $("#gridListsearch").resetSelection();
+            $("#gridListsearch").clearGridData();
+            redata = [];
+            redatazyh = [];//Bệnh nhân sau khi tìm kiếmrowid
+            var $this = $(this).val();
+            for (var i = 0; i < leftdata.length; i++) {
+                if (leftdata[i].blh.indexOfIgnoreCase($this) > -1 ||
+                    leftdata[i].xm.indexOfIgnoreCase($this) > -1 ||
+                    leftdata[i].py.indexOfIgnoreCase($this) > -1 ||
+                    $this.trim() == '') {
+                    redata.push(leftdata[i]);
+                    redatazyh.push(leftdata[i].zyh);
+                }
+            }
+            if (selectpat != [] && selectpat.length > 0) {
+                    for (var j = 0; j < selectpat.length; j++) {//Bệnh nhân đã chọn
+                        if ($.inArray(selectpat[j].zyh, redatazyh) < 0) {
+                            redata.unshift(selectpat[j]);
+                        };
+                    }
+            }
+            $("#gridListsearch").newtouchLocalDataGrid({
+                posttofirst: false
+            }, redata);
+        }
+    });
+</script>

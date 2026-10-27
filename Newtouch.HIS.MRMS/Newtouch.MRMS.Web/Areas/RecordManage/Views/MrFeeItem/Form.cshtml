@@ -1,0 +1,256 @@
+
+@{
+	ViewBag.Title = "Thông tin chi tiết nhóm thu phí";
+	Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 30px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Nhóm thu phí：</th>
+                <td class="formValue formDdlSelectorTd">
+                    <input id="name" type="text" class="form-control" readonly="readonly" style="width: 180px;float:left;">
+
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">HISNhóm thu phí：</th>
+                <td class="formValue formDdlSelectorTd">
+                    <input id="hissfdl" name="hissfdl" attr-dlcode="" type="text" class="form-control" style="width: 180px;float:left;" autocomplete="off">
+                    <div class="ckbox" style="margin:2px 10px;">
+                        <input id="itemall" name="itemall" type="checkbox"><label for="itemall">Chọn tất cả</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">HISKhoản thu：</th>
+                <td class="formValue">
+                    <input id="txt_keyword" type="text" class="form-control" placeholder="Khoản thu/Nhóm thu phí" style="width: 180px;float:left;">
+                    <button id="btn_search" type="button" class="btn btn-primary" style="margin-left:10px;"><i class="fa fa-search"></i>Truy vấn</button>
+                    @*<button id="btn_saveall" type="button" class="btn btn-primary" style="float:right;">Lưu tất cả</button>*@
+                    <div id="btn_save" class="btn-group" style="float:right;">
+                        <a class="btn btn-default" data-value="1" title="Lưu hiện tạihisTất cả khoản thu của nhóm"><span class="glyphicon glyphicon-save"></span>Nhóm hiện tại</a>
+                        <a class="btn btn-default" data-value="2" title="Lưu các khoản thu của trang hiện tại"><span class="glyphicon glyphicon-save"></span>Trang hiện tại</a>
+                        <a class="btn btn-default" data-value="3" title="Lưu các khoản thu đã chọn bên dưới"><span class="glyphicon glyphicon-save"></span>Mục đã chọn</a>
+                    </div>
+                </td>
+            </tr>            
+        </table>
+
+    </div>
+    <div style="padding-left:5px;">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script>
+	var keyValue = $.request("keyValue");
+	var code = $.request("code");
+    var name = $.request("name");
+    var idList = [];
+    $(function () {
+        $("#name").val(name);
+        GridInit();
+        $("#itemall").change(function () {
+            var dl = $("#hissfdl").attr("attr-dlcode");
+            if ($('#itemall').is(':checked') && dl!=null && dl!="") {
+                $("#gridList").jqGrid('setGridParam', {
+                    postData: { keyword: $("#txt_keyword").val(), code: code, hissfdl: dl }, page: 1
+                }).trigger('reloadGrid');
+            }
+        });
+
+        $("#btn_save a.btn-default").click(function () {
+            $("#btn_save a.btn-default").removeClass("active");
+            $(this).addClass("active");
+            var type = $("#btn_save a.active").attr('data-value');
+            var tip = "";
+            var url = "";
+            var hisdlmc = $("#hissfdl").val();
+            var hisdl = $("#hissfdl").attr("attr-dlcode");
+            var postdata = { keyword: $("#txt_keyword").val(), code: "", hissfdl: hisdl};
+            var badl = $("#name").val();
+            var dataList = "";
+            if (type == 1) {
+                if (!!!$("#hissfdl").attr("attr-dlcode")) {
+                    $.modalAlert("Vui lòng chọnHISNhóm thu phí！", 'warning');
+                    return false;
+                }                
+                tip = "Vui lòng xác nhận lưu hiện tạihisNhóm" + hisdlmc + "Tất cả các khoản thu vào【" + badl + "】?";
+                url = "/RecordManage/MrFeeItem/SavebyHISsfdl";
+                postdata = { code: code, hissfdl: hisdl };                
+            }
+            else if (type == 2) {
+                debugger
+                tip = "Vui lòng xác nhận lưu các khoản thu của trang hiện tại vào【" + badl + "】?";
+                url = "/RecordManage/MrFeeItem/SavebySfxm";
+                var allIdList = window.$("#gridList").getDataIDs();               
+                for (var i = 0; i < allIdList.length; i++) {
+                    var dataObj = window.$("#gridList").getRowData(allIdList[i]);
+                    dataList = dataList + dataObj.sfxmCode + ",";
+                }
+                postdata = { code: code, ids: dataList};
+
+            } else if (type == 3) {
+                tip = "Vui lòng xác nhận lưu các khoản thu đã chọn vào【" + badl + "】?";
+                url = "/RecordManage/MrFeeItem/SavebySfxm";
+                for (var i = 0; i < idList.length; i++) {
+                    var dataObj = window.$("#gridList").getRowData(idList[i]);
+                    dataList = dataList + dataObj.sfxmCode + ",";
+                }
+                postdata = { code: code, ids: dataList };
+            } 
+            if (url != "" && postdata != null && postdata != undefined) {
+                $.modalConfirm(tip, function (flag) {
+                    if (flag) {
+                        $.najax({
+                            url: url,
+                            data: postdata,
+                            dataType: "json",
+                            success: function (data) {
+                                if (data != null && data != "" && data != undefined) {
+                                    if (data.state == "success") {
+                                        $.modalAlert(data.message, 'success');
+                                    }
+                                    else {
+                                        $.modalAlert(data, 'error');
+                                    }
+                                }
+                                else {
+                                    $.modalAlert("Kết quả chưa rõ，Vui lòng quay lại và truy vấn lại", 'warning');
+                                }
+                                $("#gridList").jqGrid('setGridParam', {
+                                    postData: { keyword: $("#txt_keyword").val(), code: code, hissfdl: hisdl }, page: 1
+                                }).trigger('reloadGrid')
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                $.modalAlert("Không có khoản thu nào để thêm", 'warning');
+            }
+        });
+    });
+
+
+
+	function GridInit() {
+		var $gridList = $("#gridList");
+		$gridList.dataGrid({
+            url: "/RecordManage/MrFeeItem/GetPagintionItem",
+            postData: { keyword: $("#txt_keyword").val(), code: code },
+			autowidth: true,
+			height: $(window).height() - 210,
+			colModel: [
+				//{ label: "Id", name: "Id", hidden: true },
+				{ label: "Khoản thu", name: "sfxmCode", width: 160, align: 'left' },
+				{ label: "Tên khoản thu", name: "sfxmmc", width: 160, align: 'left' },
+				//{ label: "Nhóm thu phí", name: "feetypecode", width: 80, align: 'left' },
+				//{ label: "Tên nhóm thu phí", name: "name", width: 100, align: 'left' }
+
+			],
+			sortname: "sfxmCode desc",
+			rowNum: 50,
+			pager: "#gridPager",
+			viewrecords: true,
+			multiselect: true,
+			ondblClickRow: function () {
+				btn_edit();
+			},
+			onSelectRow: function (row) {
+				//Lấy các mục đã chọnId
+				var rowIds = $('#gridList').jqGrid('getGridParam', 'selarrrow');
+				idList = rowIds;
+			},
+			onSelectAll: function (rowids, statue) {
+				if (statue == true) {
+					//Chọn tất cả
+					idList = rowids;
+				} else {
+					//Xóa
+					idList = [];
+				}
+			},
+			gridComplete: function () {
+				//Mặc định chọn tất cả
+				//var count = $("#gridList").getGridParam("reccount");
+				//for (var i = 1; i <= count; i++) {
+				//    $("#gridList").jqGrid('setSelection', i);
+				//}
+			},
+		});
+        $("#btn_search").click(function () {
+            var dl = $("#hissfdl").attr("attr-dlcode");
+			$("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), code: code, hissfdl: dl }, page: 1
+			}).trigger('reloadGrid');
+		});
+	}
+
+	//Lưu đã chọn Lấy dữ liệu đã chọn
+    function saveSelected() {
+		var dataList = [];
+		for (var i = 0; i < idList.length; i++) {
+			var dataObj = window.$("#gridList").getRowData(idList[i]);
+			//dataObj.feetypecode = code;
+			dataList.push(dataObj);
+		}
+		save(dataList);
+	}
+
+	//Lưu tất cả(Đã xóa)
+	function saveAll() {
+		var allIdList = window.$("#gridList").getDataIDs();
+		var dataList = [];
+		for (var i = 0; i < allIdList.length; i++) {
+			var dataObj = window.$("#gridList").getRowData(allIdList[i]);
+			//dataObj.feetypecode = code;
+			dataList.push(dataObj);
+		}
+		save(dataList);
+	}
+
+	//Lưu dữ liệu vào cơ sở dữ liệu (Đã xóa)
+	function save(postData) {
+		if (postData.length == 0) {
+			window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+			return false;
+        }
+		$.submitForm({
+			url: "/RecordManage/MrFeeItem/Save",
+            param: { list: postData, code: code},
+			success: function () {
+				$.modalClose();
+			}
+		});
+	}
+
+	//Sự kiện nhấn nút xác nhận
+	function AcceptClick(callBack) {
+		var postData = saveSelected();
+		if (postData.length == 0) {
+			window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+			return false;
+		}
+		$.submitForm({
+			url: "/RecordManage/MrFeeItem/Save",
+			param: { list: postData, code: code },
+			success: function () {
+				callBack();
+				$.modalClose();
+			}
+		});
+    }
+
+    //Chẩn đoán
+    $("#hissfdl").hissfdlFloatingSelector({
+        itemdbclickhandler: function ($this) {            
+            $("#hissfdl").val($this.attr('data-dlmc')).attr("attr-dlcode", $this.attr('data-dlcode'));
+        }
+    });
+</script>
+

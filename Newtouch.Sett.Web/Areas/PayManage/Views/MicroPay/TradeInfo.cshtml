@@ -1,0 +1,219 @@
+@using Newtouch.Sett.Infrastructure;
+@{
+    ViewBag.Title = "TradeInfo";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .ui-jqgrid tr.jqgrow td {
+        white-space: normal !important;
+        height:auto;
+        vertical-align:text-top;
+        padding-top:2px;
+    }
+</style>
+
+<from id="form1">
+    <div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Mã đơn hàng:</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" style="border: none;" readonly="readonly" id="OutTradeNo"/>
+                </td>
+                <th class="formTitle">Trạng thái giao dịch:</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" style="border: none;" readonly="readonly" id="TradeStatus"/>
+                </td>
+                <th class="formTitle" ></th>
+                <td class="formValue"  rowspan="2">
+                    <input type="button" class="btn btn-default btn-md" style="width:100px; " value="Làm mới" id="btn_refresh" onclick="traderefresh()"  />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Tổng số tiền:</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" style="border: none;" readonly="readonly" id="TotalAmount" />
+                </td>
+                <th class="formTitle">Thời gian giao dịch:</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" style="border: none;" readonly="readonly" id="SendPayDate"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số tiền đã hoàn:</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" style="border: none;" readonly="readonly" id="ytje" />
+                </td>
+                <th class="formTitle"></th>
+                <td class="formValue"></td>
+                <th class="formTitle"></th>
+                <td class="formValue">
+                    <input type="button" class="btn btn-default btn-md" style="width:100px; " value="Yêu cầu hoàn tiền" id="btn_refund" onclick="tradeRefund()"  />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số tiền còn có thể hoàn:</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" style="border: none;" readonly="readonly" id="maxrfd" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="padding-left:5px;padding-right:5px;">
+        <table id="gridListRefd"></table>
+        @*<div id="gridRefdPager"></div>*@
+    </div>
+
+</from>
+<script>
+    var keyValue = $.request('outtradeno');
+    var maxrfd = 0.00;
+    $(function() {
+        RefundGrid();
+        $.najax({
+            type: "GET",
+            url: "/PayManage/MicroPay/GetTradeInfo?outTradeNo=" + keyValue,
+            loading: true,
+            loadingtext: "Đang tra cứu thông tin giao dịch mới nhất, vui lòng chờ...",
+            success: function (ajaxresp) {
+                if (ajaxresp != null && ajaxresp != undefined) {
+                    maxrfd = (parseFloat(ajaxresp.PayAmount) - parseFloat(ajaxresp.RefundAmount)).toFixed(2);
+                    $("#OutTradeNo").val(ajaxresp.OutTradeNo);
+                    $("#TotalAmount").val(ajaxresp.PayAmount +" (CNY)");
+                    $("#SendPayDate").val(ajaxresp.OrderDate.replace("T"," "));
+                    $("#ytje").val(ajaxresp.RefundAmount.toFixed(2) + " (CNY)");
+                    $("#maxrfd").val(maxrfd + " (CNY)");
+
+                    $("#TradeStatus").val(ajaxresp.TradeStatus);
+                    var stu = "";
+                    if (ajaxresp.TradeStatus == "TRADE_SUCCESS") {
+                        stu = "Giao dịch thành công";
+                    }
+                    else if (ajaxresp.TradeStatus == "TRADE_FINISHED") {
+                        stu = "Giao dịch đã hoàn tất";
+                    }
+                    else if (ajaxresp.TradeStatus == "TRADE_CLOSED") {
+                        stu = "Giao dịch đã đóng";
+                    } else {
+                        stu = "Giao dịch đang xử lý";
+                    }
+                    $("#TradeStatus").val(stu);
+                    if (maxrfd > 0 && ajaxresp.TradeStatus != "TRADE_CLOSED") {
+
+                        $("#btn_refund").show();
+                    } else {
+                        $("#btn_refund").hide();
+                    }
+                };
+            }
+        });
+    });
+
+
+
+    function RefundGrid() {
+        var $gridJsList = $("#gridListRefd");
+        $gridJsList.dataGrid({
+            url: '/PayManage/MicroPay/TradeRefundList',
+            height: 200,
+            postData: { outTradeNo: keyValue, tradeNo: "" },
+            colModel: [
+                //{ label: 'Phương thức thanh toán', name: 'PayType', width: 60, align: 'left' },
+                {
+                    label: 'Mã đơn hàng',
+                    name: 'OutTradeNo',
+                    width: 100,
+                    align: "left"
+                },
+                {
+                    label: 'Trạng thái hoàn trả',
+                    name: 'RefundStatus',
+                    width: 60,
+                    align: 'left',
+                    formatter: function(cellvalue) {
+                        return $.enum.getDescByValue("EnumRefundStatus", cellvalue);
+                    }
+                },
+                { label: 'Lý do hoàn trả', name: 'RefundReason', width: 60, align: 'left' },
+                {
+                    label: 'Số tiền hoàn trả',
+                    name: 'Amount',
+                    width: 80,
+                    align: 'left',
+                    formatter: function(cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    }
+                },
+                { label: 'Ghi chú', name: 'Memo', width: 160, align: 'left' },
+                {
+                    label: 'Thời gian hoàn trả',
+                    name: 'RefundDate',
+                    width: 150,
+                    formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                {
+                    label: 'Mã yêu cầu hoàn trả',
+                    name: 'OutRequestNo',
+                    hidden: true,
+                    align: "left"
+                },
+                {
+                    label: 'Thao tác',
+                    name: 'Action',
+                    width: 60,
+                    align: "center",
+                    formatter: function (cellvalue, option, row) {
+
+                        if (row.RefundStatus == "@((int) Newtouch.Sett.Infrastructure.EnumRefundStatus.UnKnown)") {
+                            return "<a onclick='refundRetry(" + option.rowId + ")'>Thử lại</a>";
+                        } else {
+                            return "";
+                        }
+
+                    }
+                }
+            ],
+            //pager: "#gridRefdPager",
+            sortname: "OutRequestNo",
+            viewrecords: true,
+            caption: "Lịch sử hoàn phí"
+        });
+    }
+
+    function tradeRefund() {
+        var total = $("#TotalAmount").val();
+        $.modalOpen({
+            id: "FormRfd",
+            title: "Chi tiết giao dịch",
+            url: "/PayManage/MicroPay/TradeRefund?outtradeno=" + keyValue + "&maxrfd=" + maxrfd + "&total=" + total,
+            width: "300px",
+            height: "200px",
+            callBack: function(iframeId) {
+                top.frames[iframeId].submitForm(function() {
+                    setTimeout("window.location.reload()", 100);
+                    //window.location.reload();
+                }); //Hàm callback khi nhấn nút xác nhận trong cửa sổ
+
+            }
+        });
+
+
+    }
+
+    function refundRetry(rowId) {
+        var row = $('#gridListRefd').jqGrid("getRowData", rowId);
+        $.najax({
+            type: "GET",
+            url: "/PayManage/MicroPay/Opr_TradeRefund?outTradeNo=" + row.OutTradeNo + "&refundAmount=" + row.Amount + "&Reason=Thử lại khoản hoàn trả chưa xác định&OutRequestNo=" + row.OutRequestNo,
+            loading: true,
+            loadingtext: "Đang yêu cầu hoàn phí, vui lòng chờ...",
+            success: function (ajaxresp) {
+            }
+        });
+    }
+
+    function traderefresh() {
+        window.location.reload();
+    }
+</script>

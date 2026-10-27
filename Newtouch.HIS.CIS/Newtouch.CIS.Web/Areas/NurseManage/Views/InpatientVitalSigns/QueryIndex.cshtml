@@ -1,0 +1,486 @@
+@{
+    ViewBag.Title = "QueryIndex";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+}
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<style type="text/css">
+    .ui-th-ltr, .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+        border: solid 1px #ddd;
+    }
+
+        .ui-th-ltr div, .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr div {
+            text-align: center;
+        }
+
+    .ui-jqgrid .ui-jqgrid-btable tbody tr.jqgrow td {
+        border: solid 1px #ddd;
+    }
+
+    .ui-jqgrid .table-bordered th {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .dv-left {
+        width: 200px;
+        float: left;
+    }
+
+    .dv-left-tree {
+        overflow-y: auto;
+        border-radius: 4px;
+        background: white;
+    }
+
+    .dv-left-title {
+        padding: 6px 10px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-color: #ddd;
+        background-color: white;
+    }
+
+    .dv-right {
+        float: left;
+        margin-left: 5px;
+    }
+
+    .dv-right-order {
+        width: 100%;
+    }
+</style>
+<div class="dv-body">
+    <div class="dv-left">
+        <div class="panel panel-default">
+            <div class="panel-heading navb-bg">
+                Điều kiện lọc
+            </div>
+            <table class="form" style="width:95%">
+                <tbody>
+                    <tr>
+                        <th class="formTitle">Họ tên/Số nhập viện:</th>
+                        <td class="formValue">
+                            <input id="keyword" type="text" onblur="getPatTreeList()" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Đang nằm việnTrạng thái:</th>
+                        <td class="formValue formDdlSelectorTd">
+                            <select class="form-control" id="zyzt">
+                                <option value="">Tất cả</option>
+                                <option value="zy" selected>Đang nằm viện</option>
+                                <option value="cy">Xuất viện</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dv-left-title">
+            Danh sách bệnh nhân
+        </div>
+        <div class="dv-left-tree" id="PatTreeList"></div>
+    </div>
+    <div class="dv-right">
+        <form name="form1">
+            <div class="panel panel-default" style="margin-bottom:5px;">
+
+                <div style="padding: 2px 0;">
+                    <table class="form">
+                        <tr>
+                            <th class="formTitle">Họ tên:</th>
+                            <td class="formValue">
+                                <label id="xm"></label>
+                            </td>
+                            <th class="formTitle">Giới tính:</th>
+                            <td class="formValue">
+                                <label id="xb"></label>
+                            </td>
+                            <th class="formTitle">Khu bệnh:</th>
+                            <td class="formValue">
+                                <label id="bq"></label>
+                            </td>
+                            <th class="formTitle">Tuổi:</th>
+                            <td class="formValue">
+                                <label id="nl"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">Ngày:</th>
+                            <td class="formValue" colspan="4">
+                                <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                                <span style="margin-left:1%;float:left">—</span>
+                                <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            </td>
+                            <th class="formTitle"></th>
+                            <td class="formTitle"><input type="button" id="btn_search" style="width:100%;" class="btn btn-primary" value=" Tra cứu " /></td>
+                            @*<td class="formValue" hidden="hidden">
+            <input type="button" id="btn_zyh" class="btn btn-default" value="住院号" />
+        </td>*@
+                            @*<td class="formTitle"><span class="required">*</span>病区：</td>
+        <td class="formValue">
+            <select id="WardCode" class="form-control">
+                <option>
+                    全部
+                </option>
+            </select>
+        </td>*@
+                            @*<td class="formTitle" hidden="hidden">显示已作废</td>
+        <td class="formValue"></td>*@
+                        </tr>
+                        <tr>
+                            <td class="formValue" colspan="8">
+                                &nbsp;
+                                <input type="button" id="btn_add" class="btn btn-primary" value=" Nhập mới " />
+                                &nbsp;
+                                <input type="button" id="btn_edit" class="btn btn-primary" value=" Sửa " />
+                                &nbsp;
+                                <input type="button" id="btn_delete" class="btn btn-primary" value=" Hủy bỏ " />
+                                &nbsp;
+                                <input type="button" id="btn_export" class="btn btn-primary" value=" Xuất " />
+                                &nbsp;
+                                <input type="button" id="btn_twdquery" class="btn btn-primary" value=" Tra cứu phiếu nhiệt độ " />
+                                <input id="zyh" type="text" hidden="hidden" />
+                                <input onclick="showDelete()" hidden="hidden" value="0" name="isShowDelete" checked="checked" type="checkbox" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+        <div class="gridPanel">
+            <table id="gridList"></table>
+            @*<div id="gridPager"></div>*@
+        </div>
+    </div>
+</div>
+<script>
+        $(function () {
+            $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+                $(".dv-body").height($(window).height());
+                $(".dv-body").width($(window).width());
+            });
+            var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 90;
+            $(".dv-right").width(rightWidth);
+            $(".dv-left").width(260);
+            var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//护士患者一览
+            if (currentobj) {
+                $('#zyh').val(currentobj.zyh);
+                sessionStorage.removeItem("currentpatobj");
+            }
+            initControl();
+            gridList();
+            $("#gridList").jqGrid('setFrozenColumns');//设置冻结列
+            getPatTreeList();
+            $('#zyzt').change(function () {
+                getPatTreeList();
+            });
+    });
+    function showDelete() {
+        btn_search();
+    }
+    function initControl() {
+        $('#btn_zyh').click(function () {
+            $.modalOpen({
+                id: "patSearch",
+                title: "Nhập việnBệnh nhânTra cứu",
+                url: "/PatientList/InPatSearchView?allowunselected=true&zybz=1,2,3,7&t=" + Math.random() + "&zyh=" + '',
+                width: "700px",
+                height: "600px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].AcceptClick(function (patData) {
+                        if (patData && patData.zyh) {
+                            $('#zyh').val(patData.zyh);
+                        }
+                        else {
+                            $('#zyh').val('');
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#zyh').keyupEnterEvent(function () {
+            btn_search();
+		});
+
+		//$("#WardCode").bindSelect({
+		//	url: "/SystemManage/BaseData/GetAuthedWardSelectJson",
+		//});
+        $('#btn_search').click(function () {
+            btn_search();
+        });
+    }
+    function getPatTreeList() {
+        $("#PatTreeList").treeview({
+            height: $(window).height() - 150,
+            slimscroll: false,
+            showcheck: false,
+            url: "/NurseManage/InpatientVitalSigns/GetPatWardTree?zyzt=" + $('#zyzt').val() + "&keyword=" + $('#keyword').val(),
+            onnodeclick: function (item) {
+                if (item.value && item.Ex1 == "c") {
+                    $.ajax({
+                        url: "/NurseManage/InpatientVitalSigns/GetPatWard",
+                        data: { zyh: item.value },
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            $("#xm").text(data.hzxm);
+                            if (data.sex == "1") {
+                                $("#xb").text("Nam");
+                            }
+                            else { $("#xb").text("Nữ"); }
+                            $("#bq").text(data.bqmc);
+                            $("#nl").text(data.nl + " tuổi");
+                        }
+                    });
+                    getlistbyzyh(item.value, item.Ex2, item.Ex3);
+                   
+                }
+            }
+        });
+    }
+    function getlistbyzyh(zyh,rqrq,cqrq) {
+        $("#zyh").val(zyh);
+        $("#kssj").val(rqrq);
+        $("#jssj").val(cqrq);
+        btn_search();
+    }
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: {},
+            url: "/NurseManage/InpatientVitalSigns/GetGridJson",
+            postData: getSearchPostData(),
+            height: $(window).height() - 170,
+            colModel: [
+                { label: "Id", name: "Id", hidden: true, frozen: true },
+                {
+                    label: "Số nhập viện", name: "zyh", width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowobject) {
+                        if (rowobject.zt=="0") {
+                            cellvalue +='<span style="color:red;">【Hủy bỏ】</span>' ;
+                        }
+                        return cellvalue;
+                    }, frozen: true},
+                { label: "Họ tên", name: "xm", width: 80, align: 'left', frozen: true },
+                {
+                    label: "Ngày", name: "rq", width: 100, align: 'left',
+                    formatter: function (cellvalue, options, rowobject) {
+                        //日期 时间点 相关状态
+                        var val = $.getDate({ date: cellvalue });
+                        val += " " + rowobject.sj + ":00";
+                        if (rowobject.brzt) {
+                            val += " " + $.enum.getDescByValue("EnumHlbrzt", rowobject.brzt);
+                        }
+                        return val;
+                    }, frozen: true
+                },
+                { label: "Thời điểm", name: "sj", width: 50, align: 'left', hidden: true },
+                { label: "Ý thức", name: "hlysname", width: 70, align: 'left' },
+                { label: "Ăn uống", name: "brfoodname", width: 70, align: 'left' },
+                { label: "Cấp độ chăm sóc", name: "hljb", width: 70, align: 'left' },
+                { label: "liên quanTrạng thái", name: "brzt", width: 60, align: 'left', hidden: true },
+				{ label: "Nhiệt độ", name: "tw", width: 40, align: 'left' },
+				{ label: "Hạ nhiệt vật lý", name: "wljw", width: 60, align: 'left' },
+                { label: "twclfs", name: "twclfs", width: 50, align: 'left', hidden: true },
+                { label: "Nhịp tim", name: "xl", width: 40, align: 'left' },
+                { label: "Mạch", name: "mb", width: 40, align: 'left' },
+                { label: "qbq", name: "qbq", width: 50, align: 'left', hidden: true },
+                { label: "Hô hấp", name: "hx", width: 40, align: 'left' },
+                { label: "hxj", name: "hxj", width: 50, align: 'left', hidden: true },
+                {
+                    label: "Huyết áp", name: "xysz", width: 50, align: 'left',
+                    formatter: function (cellvalue, options, rowobject) {
+                        //上值 下值
+                        var val = cellvalue;
+                        if (rowobject.xyxz) {
+                            val += " - " + rowobject.xyxz;
+                        }
+                        return val || '';
+                    }
+                },
+                { label: "Huyết áp", name: "xyxz", width: 55, align: 'left', hidden: true },
+                { label: "Cân nặng", name: "tz", width: 40, align: 'left' },
+                { label: "Chiều cao", name: "sg", width: 40, align: 'left' },
+                { label: "Điểm đau", name: "ttpf", width: 50, align: 'left' },
+                { label: "tzclbz", name: "tzclbz", width: 50, align: 'left', hidden: true },
+
+                { label: "Số lần đại tiện", name: "dbcs", width: 50, align: 'left' },
+                { label: "Ghi chú", name: "dbcsbz", width: 50, align: 'left' },
+
+                { label: "Lượng truyền dịch", name: "syl", width: 40, align: 'left' },
+
+                { label: "Lượng truyền máu", name: "sxl", width: 40, align: 'left' },
+                { label: "Lượng ăn uống", name: "ysl", width: 40, align: 'left' },
+                { label: "Lượng ăn uốngĐường", name: "ysltj", width: 70, align: 'left' },
+                { label: "Lượng nôn", name: "otl", width: 40, align: 'left' },
+                { label: "Lượng nônMàu sắc", name: "otlys", width: 70, align: 'left' },
+                { label: "Lượng nước tiểu", name: "xbl", width: 40, align: 'left' },
+                { label: "Lượng nước tiểuMàu sắc", name: "nlys", width: 70, align: 'left' },
+                { label: "Lượng dịch thừa", name: "cys", width: 40, align: 'left' },
+                { label: "Dẫn lưu vết thương", name: "skyll", width: 50, align: 'left' },
+                { label: "Lượng dịch màng phổi", name: "xyl", width: 40, align: 'left' },
+                { label: "Lượng dịch dạ dày", name: "wyl", width: 40, align: 'left' },
+                { label: "Bóng hút áp lực âm", name: "fxxq", width: 50, align: 'left' },
+                { label: "Lượng vào ra khác", name: "qtsc", width: 50, align: 'left' },
+                { label: "Thở oxy/Lưu lượngL/min", name: "xyll", width: 90, align: 'left' },
+                { label: "Da<br/>Tình hình", name: "pfqkname", width: 70, align: 'left' },
+                { label: "Ống<br/>Điều dưỡng", name: "gdhlname", width: 70, align: 'left' },
+                { label: "xyfs", name: "xyfs", width: 50, align: 'left', hidden: true },
+                { label: "Độ bão hòa oxy máu", name: "xybhd", width: 70, align: 'left' },
+                { label: "Theo dõi bệnh tình<br/>và biện pháp", name: "bqgcjcs", width: 70, align: 'left' },
+                { label: "NhậpNgười dùng", name: "CreatorCode", width: 60, align: 'left' },
+                { label: 'NhậpThời gian', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            ],
+            rowNum: 10,
+            //pager: "#gridPager",
+            //sortname: 'rq , sj',
+            viewrecords: true,
+            rownumbers: false,
+            ondblClickRow: function (rowid) {
+                gridEditRow(rowid);
+            },
+            gridComplete: function () {
+
+            }
+        });
+
+        //二级菜单
+        $gridList.jqGrid('setGroupHeaders', {
+            useColSpanStyle: true,
+            groupHeaders: [
+            {
+                startColumnName: 'syl',
+                numberOfColumns: 4,
+                titleText: 'Lượng đưa vào'
+            },
+            {
+                startColumnName: 'otl',
+                numberOfColumns: 10,
+                titleText: 'Lượng vào ra'
+            }
+            ]
+        });
+        
+        btn_search();
+    }
+    function btn_search() {
+        //$("#gridList").trigger("reloadGrid");
+        $("#gridList").jqGrid('setGridParam', {
+            postData: getSearchPostData(),
+            page: 1,
+        }).trigger('reloadGrid');
+    }
+    //查询条件
+    function getSearchPostData() {
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var zyh = $("#zyh").val();
+        if (zyh!=null&&zyh!="") {
+            zyh = zyh;
+        }
+		var wardCode ="";
+		var isShowDelete = $("input[name='isShowDelete']")[0].checked;
+		return { zyh: zyh, kssj: kssj, jssj: jssj, wardCode: wardCode, isShowDelete: isShowDelete};
+    };
+
+    $("#btn_add").click(function () {
+        InpatientVitalSignsForm();
+    });
+
+    $("#btn_edit").click(function () {
+        var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
+        if (seleId) {
+            //请求修改该行
+            gridEditRow(seleId);
+        }
+        else {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+    });
+
+    $("#btn_delete").click(function () {
+        var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
+        if (seleId) {
+            //请求作废该行
+            gridDeleteRow(seleId);
+        }
+        else {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+    });
+
+    $("#btn_twdquery").click(function () {
+        var zyh = $('#zyh').val();
+        if (zyh == null || zyh=="") {
+            $.modalAlert("Vui lòng chọnBệnh nhânXem!", 'warning');
+            return;
+        }
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Phiếu nhiệt độ", enName: "", url: "/NurseManage/InpatientVitalSigns/TemperatureChartIndex?zyh=" + zyh + "&yshsbz=1" });
+        
+    });
+    $("#btn_export").click(function () {
+        var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+        var orgId = '@(ViewBag.OrgId)';
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var zyh = $('#zyh').val();
+        if (!zyh) {
+            $.modalAlert("ThiếuSố nhập viện", "warning");
+            return;
+        }
+        window.open('@reportUrl' + "?tempCode=1012" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&kssj=" + kssj + "&jssj=" + jssj + "&orgId=" + orgId + "&zyh=" + zyh);
+
+    });
+    function gridEditRow(rowid) {
+        var rowData = $("#gridList").jqGrid('getRowData', rowid);
+        InpatientVitalSignsForm(rowData.Id);
+    }
+
+    function gridDeleteRow(rowid) {
+        var rowData = $("#gridList").jqGrid('getRowData', rowid);
+        $.deleteForm({
+            prompt: "Chú ý: bạn xác nhận muốn hủy bỏ dữ liệu dòng này chứ?",
+            url: "/NurseManage/InpatientVitalSigns/DeleteForm",
+            param: { keyValue: rowData.Id },
+            success: function () {
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+
+    function InpatientVitalSignsForm(smtzId) {
+        if ($("#zyh").val() == "") {
+            $.modalAlert("Vui lòng chọnBệnh nhân!", "warning");
+            return;
+        }
+        $.modalOpen({
+            id: "InpatientVitalSignsForm",
+            title: "Nhập điều dưỡng",
+            url: "/NurseManage/InpatientVitalSigns/Form?smtzId=" + smtzId + "&zyh=" + $("#zyh").val(),
+            width: "830px",
+            height: "750px",
+            showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+            leftlalbelchecked: true,
+            leftlabeltext: "Nhập liên tục",
+            leftlalbelcheckedasClose: false,
+            callBack: function (iframeId, isClose) {
+                var ret = top.frames[iframeId].AcceptClick(function () {
+                    $("#gridList").trigger("reloadGrid");
+                    if (isClose === undefined || isClose === true) {
+                        top.frames[iframeId].$.modalClose();
+                    }
+                });
+            }
+        });
+	}
+
+
+</script>

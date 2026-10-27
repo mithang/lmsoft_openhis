@@ -1,0 +1,68 @@
+
+@{
+    ViewBag.Title = "ChargeBrxzDialog";  
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="gridPanel" > 
+    <table id="brxzGridList"></table> 
+</div>
+
+<style>
+    .ui-jqgrid {border:0px;}
+</style>
+ 
+<script>   
+    var brxzdata =localStorage.getItem("brxzData");
+    var brxzdataJson = JSON.parse(brxzdata); 
+    $(function () {
+        gridList(brxzdataJson);
+        localStorage.removeItem("brxzData");
+    });
+
+    function gridList(tempList) {
+        var $gridList = $("#brxzGridList");
+        $gridList.dataNewGrid({
+            height: 100, 
+            colModel: [
+                { label: 'brxz', name: 'brxz', width: 10, hidden: true },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 100},
+                { label: 'brxzbh', name: 'brxzbh', width: 10, hidden: true },
+                { label: 'ybjylx', name: 'ybjylx', width: 10, hidden: true }
+            ],
+        }, tempList);
+
+        if (tempList.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+        }
+    }
+
+    //jqGrid nhấn đúpđã chọndòng nào đó
+    function btn_edit() {
+        PatSearchConfirm();
+    }
+
+    function PatDbGrid() {
+        var $gridList = $("#brxzGridList");
+        var brxz = $gridList.jqGridRowValue().brxz;
+        var brxzmc = $gridList.jqGridRowValue().brxzmc;
+        var brxzbh = $gridList.jqGridRowValue().brxzbh;
+        var obj = new Object();
+        obj.brxz = brxz;
+        obj.brxzmc = brxzmc;
+        obj.brxzbh = brxzbh;
+        $.currentWindow().getChargeInfoAjax(obj);
+        //đóng cửa sổ
+        ReceiptCancle();
+    }
+
+    //xác nhận trang chínhgọi
+    function PatSearchConfirm() {
+        PatDbGrid();
+    }
+
+    //hủy
+    function ReceiptCancle() {
+        $.modalClose();
+    }
+</script>

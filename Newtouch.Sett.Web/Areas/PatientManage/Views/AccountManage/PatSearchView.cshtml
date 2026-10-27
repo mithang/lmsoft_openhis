@@ -1,0 +1,180 @@
+
+@{
+    ViewBag.Title = "PatSearchView";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<style>
+    .table-responsive {
+        border: 0px solid #ddd;
+    }
+</style>
+
+<form>
+    <div class="topPanel" style="border-bottom:1px solid rgb(221, 221, 221);margin-bottom: -1%;">
+        <table class="form">
+            <tr>
+                <td style="width:2%">
+                    <div class="toolbar" style="margin-top: 1%;">
+                        <div class="btn-group">
+                            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+                        </div>
+                    </div>
+                </td>
+                <th class="formTitle">Số nhập viện：</th>
+                <td class="formValue">
+                    <input id="txt_zyh" name="txt_zyh" type="text" class="form-control" placeholder="Vui lòng nhập số nhập viện" />
+                </td>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue">
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control" placeholder="Vui lòng nhập họ tên hoặc viết tắt đầu" />
+
+                </td>
+                <td style="padding-left:20px;" class="formValue">
+                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--患者信息 包括卡号 住院号  姓名 -->
+    <div id="formPatSer" class="gridPanel" style="margin-top:1%; margin-left:1%">
+        <table id="patGridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+<script>
+
+    var brzybzType = $.request("brzybzType");
+
+    //上一个window对象
+    var prevWindow;
+
+    var from = $.request("from");
+
+    if (!!from) {
+        prevWindow = top.top.frames[from];
+    }
+    else {
+        prevWindow = $.currentWindow();
+    }
+
+    $(function () {
+        var obj = new Object;
+        obj.zyh = $.request("zyh");
+        obj.xm = decodeURI(decodeURI($.request("xm")));
+        var searInfo = new PatSearchInfo();
+        //加载数据
+        searInfo.init(obj);
+
+        //查询
+        $("#btn_search").click(function () {
+            $("#patGridList").jqGrid('setGridParam', {
+                postData: { zyh: $("#txt_zyh").val(), xm: $("#txt_xm").val(), r: Math.random() },
+            }).trigger('reloadGrid');
+        });
+    });
+
+    //回车
+    $('#txt_zyh,#txt_xm').keydownEnterEvent(function() {
+        $("#btn_search").trigger('click');
+    });
+
+    var PatSearchInfo = (function () {
+        //加载列表
+        var loadGrid = function (data) {
+            var $gridList = $("#patGridList");
+            var reqUrl = "/PatientManage/AccountManage/PatSearchInfo?brzybzType=" + brzybzType + "&t=" + Math.random();
+            $gridList.dataGrid({
+                height: $(window).height() - 200,
+                autowidth: false,
+                width: $("#formPatSer").width() - 2,
+                url: reqUrl,
+                postData: { zyh: $("#txt_zyh").val(), xm: $("#txt_xm").val() },
+                caption: 'Danh sách thông tin bệnh nhân',
+                colModel: [
+                    { label: 'Khóa chính', name: 'patid', hidden: true },
+                    { label: 'Số bệnh án', name: 'blh', width: 100, align: 'left' },
+                    { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'left', key: true },
+                    { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                    {
+                        label: 'Giới tính', name: 'xb', width:70, align: 'left', formatter: function (cellvalue) {
+                            return $.getGender(cellvalue);
+                        }
+                    },
+                    {
+                        label: 'Tuổi', name: 'nlshow', width: 100, align: 'left', formatter: function (cellvalue, a, b) {
+                            return getAgeFromBirthTime({ begin: b.csny }).text;
+                        }
+                    },
+                    { label: 'Số giường', name: 'BedNo', width: 15, align: 'left' },
+                    { label: 'Tính chất bệnh nhân', name: 'brxz', hidden: true },
+                    { label: 'cyzd', name: 'cyzd', hidden: true }
+                ],
+                pager: "#gridPager",
+                sortname: 'CreateTime desc',
+                viewrecords: true
+            });
+        };
+
+        var myPatSearchInfo = function (data) {
+
+        }
+
+        //加载事件
+        myPatSearchInfo.prototype.init = function (data) {
+            if (data.zyh === "null") {
+                $("#txt_zyh").val("");
+            }
+            else {
+                $("#txt_zyh").val(data.zyh);
+            }
+            if (data.xm === "null") {
+                $("#txt_xm").val("");
+            }
+            else {
+                $("#txt_xm").val(data.xm);
+            }
+
+            loadGrid(data);
+        };
+
+        return myPatSearchInfo;
+    }());
+
+    //jqGrid 双击选中某行
+    function btn_edit() {
+        PatSearchConfirm();
+    }
+
+    //确定 主页面调用
+    function PatSearchConfirm() {
+        PatDbGrid();
+    }
+
+    function PatDbGrid() {
+        var $gridList = $("#patGridList");
+        var kh = $gridList.jqGridRowValue().kh;
+        var zyh = $gridList.jqGridRowValue().zyh;
+        var xm = $gridList.jqGridRowValue().xm;
+        var obj = new Object();
+        obj.kh = kh;
+        obj.zyh = zyh;
+        obj.xm = xm;
+        obj.patid = $gridList.jqGridRowValue().patid;
+        obj.brxz = $gridList.jqGridRowValue().brxz;
+        obj.cyzd = $gridList.jqGridRowValue().cyzd;
+        if (!!!obj.zyh) {
+            $.modalMsg("Vui lòng chọn một Nhập viện bệnh nhân", "error");
+            return;
+        }
+        prevWindow.getPatInfoAjax(obj);
+
+        //关闭窗口
+        ReceiptCancle();
+    }
+
+    //取消
+    function ReceiptCancle() {
+        $.modalClose();
+    }
+</script>

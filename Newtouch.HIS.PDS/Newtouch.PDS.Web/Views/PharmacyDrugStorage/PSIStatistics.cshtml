@@ -1,0 +1,261 @@
+@{
+    ViewBag.Title = "PSIStatistics";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default" style="margin:5px 0 0 0;">
+        <div class="panel-heading">
+            Điều kiện tra cứu
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Kỳ bắt đầu：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlKSZQ" class="form-control">
+                            <option>==Vui lòng chọn==</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Kỳ kết thúc：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlJSZQ" class="form-control">
+                            <option>==Vui lòng chọn==</option>
+                            @*<option>@DateTime.Now.ToString("yyyyMM")</option>*@
+                        </select>
+                    </td>
+                    <th class="formTitle">Trạng thái thuốc：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlYPZT" name="ddlYPZT" class="form-control">
+                            <option value="">Tất cả</option>
+                            <option value="1">Bật</option>
+                            <option value="0">Ngừng dùng</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Tỷ lệ chênh lệch bằng 0：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlLCL" class="form-control">
+                            <option value="">Tất cả</option>
+                            <option value="0">Tỷ lệ chênh lệch bằng 0</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Mã thuốc：</th>
+                    <td class="formValue">
+                        <input id="txtINPUTCODE" type="text" class="form-control" />
+                    </td>
+                    <th class="formTitle">Dạng bào chế：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlJX" class="form-control">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Loại thuốc：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="ddlYPLB" class="form-control">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formValue" style="width:200px;">
+                        <div class="ckbox ckmargin" style="margin-left:27px; width:145px;">
+                            <input id="chk_Show" type="checkbox" /><label for="chk_Show">Hiển thị thuốc chưa phát sinh nhập-xuất-tồn</label>
+                        </div>
+                    </td>
+                    <td class="formValue" style="float:right">
+                        <input type="button" id="btn_TJ" class="btn btn-md btn-primary" style="width:50px;" value="Thống kê" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin: 5px 0 0 0;">
+        <table id="gridDrugsInfo"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+
+    <div class="panel panel-default" style="margin: 5px 0 0 0;">
+        <div class="panel-heading">
+            Thống kê
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Tổng giá nhập nhập kho：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtRKJJZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Tổng giá nhập xuất kho：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtCKJJZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Số tiền bán lẻ đầu kỳ：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtQCLSZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Số tiền bán lẻ cuối kỳ：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtQMLSZE" class="form-control newtouch_Readonly" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Tổng lãi/lỗ điều giá：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtTJSYZE" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle">Tổng giá bán lẻ thừa thiếu：</th>
+                    <td class="formValue">
+                        <input type="text" id="txtSYLSZE" class="form-control newtouch_Readonly" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        initialddlJXList();//初始化药品剂型
+        initialddlYPLBList();//初始化药品类别
+        initialddlZQList();//加载账期
+        gridDrugsInfoData();//加载药品明细
+    });
+
+    function initialddlZQList() {
+        $("#ddlKSZQ").bindSelect({
+            url: "/PharmacyDrugStorage/GetAccountPeriodDropDownList",
+            id: "jssj",
+            text: "zq"
+        });
+        $("#ddlJSZQ").bindSelect({
+            url: "/PharmacyDrugStorage/GetAccountPeriodDropDownList",
+            id: "jssj",
+            text: "zq"
+        });
+    }
+
+    //药品剂型
+    function initialddlJXList() {
+        $("#ddlJX").bindSelect({
+            url: "/PharmacyDrugStorage/GetMedicineFormulationList",
+            id: "jxCode",
+            text: "jxmc"
+        });
+    }
+
+    //药品类别
+    function initialddlYPLBList() {
+        $("#ddlYPLB").bindSelect({
+            url: "/PharmacyDrugStorage/GetMedicineCategoryList2",
+            id: "dlCode",
+            text: "dlmc"
+        });
+    }
+
+    //单据主记录
+    function gridDrugsInfoData() {
+        var $gridDrugsInfoData = $("#gridDrugsInfo");
+        $gridDrugsInfoData.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 300,
+            url: "",
+            colModel: [
+                { label: 'Mã thuốc', name: 'ypdm', width: 70, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 70, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 70, align: 'left' },
+                { label: 'Số lượng đầu kỳ', name: 'qcsl', width: 80, align: 'left', formatter: function (val) { return val.toFixed(4); } },
+                { label: 'Số lượng nhập kho', name: 'rksl', width: 70, align: 'left', formatter: function (val) { return val.toFixed(4); } },
+                { label: 'Số lượng xuất kho', name: 'cksl', width: 70, align: 'left', formatter: function (val) { return val.toFixed(4); } },
+                { label: 'Số lượng lãi/lỗ', name: 'sysl', width: 70, align: 'left', formatter: function (val) { return val.toFixed(4); } },
+                { label: 'Số lượng cuối kỳ', name: 'qmsl', width: 70, align: 'left', formatter: function (val) { return val.toFixed(4); } },
+                { label: 'Tổng tiền lẻ đầu kỳ', name: 'qclsze', width: 80, align: 'left' },
+                { label: 'Tổng giá bán lẻ nhập kho', name: 'rklsze', width: 80, align: 'left' },
+                { label: 'Tổng giá bán lẻ xuất kho', name: 'cklsze', width: 80, align: 'left' },
+                { label: 'Tổng giá bán lẻ thừa thiếu', name: 'sylsze', width: 80, align: 'left' },
+                { label: 'Tổng tiền lẻ cuối kỳ', name: 'qmlsze', width: 80, align: 'left' },
+                { label: 'Tổng giá nhập đầu kỳ', name: 'qcjjze', width: 80, align: 'left' },
+                { label: 'Tổng giá nhập kho', name: 'rkjjze', width: 80, align: 'left' },
+                { label: 'Tổng giá xuất kho', name: 'ckjjze', width: 80, align: 'left' },
+                { label: 'Tổng giá nhập cuối kỳ', name: 'qmjjze', width: 80, align: 'left' },
+                { label: 'Tổng giá nhập thừa thiếu', name: 'syjjze', width: 80, align: 'left' },
+                { label: 'Tổng thừa thiếu do điều chỉnh giá', name: 'tjze', width: 80, align: 'left' }
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'ypdm desc',
+            viewrecords: true,
+            loadComplete: function (data) {
+                StatisticsZE();//统计总额
+            }
+        });
+
+        //统计
+        $("#btn_TJ").click(function () {
+            if ($("#ddlKSZQ").val() >= $("#ddlJSZQ").val()) {
+                $.modalAlert("Kỳ kết thúc phải lớn hơn kỳ bắt đầu", 'warning');
+                return;
+            }
+            //清空Grid
+            $('#gridDrugsInfo').jqGrid("clearGridData");
+            $gridDrugsInfoData.jqGrid('setGridParam', {
+                postData: getSearchPostData(), url: '/PharmacyDrugStorage/PSIStatisticsInfoList'
+            }).trigger('reloadGrid');
+        });
+    }
+    //查询条件
+    function getSearchPostData() {
+        var kszq = $("#ddlKSZQ").find("option:selected").text();
+        var jszq = $("#ddlJSZQ").find("option:selected").text();
+        var ksjzsj = $("#ddlKSZQ").val();
+        var jsjzsj = $("#ddlJSZQ").val();
+        var drugState = $("#ddlYPZT").val();
+        var inputCode = $("#txtINPUTCODE").val();
+        var drugType = $("#ddlYPLB").val();
+        var dosage = $("#ddlJX").val();
+        var rate = $("#ddlLCL").val();
+        return { kszq: kszq, jszq: jszq, ksjzsj: ksjzsj, jsjzsj: jsjzsj, inputCode: inputCode, drugType: drugType, dosage: dosage, drugState: drugState, rate: rate }
+    };
+
+    //统计总额
+    function StatisticsZE() {
+        var statisticsRkjjze = 0;  //Tổng giá nhập kho
+        var statisticsCkjjze = 0;  //Tổng giá xuất kho
+        var statisticsQclsze = 0;  //Tổng tiền lẻ đầu kỳ
+        var statisticsQmlsze = 0;  //Tổng tiền lẻ cuối kỳ
+        var statisticsTjsyze = 0;  //Tổng lãi/lỗ điều giá
+        var statisticsSylsze = 0;  //Tổng tiền lẻ lãi/lỗ
+        var count = $("#gridDrugsInfo").getGridParam('records');
+        if (count > 0) {
+            var rowIds = $("#gridDrugsInfo").getDataIDs();
+            for (var i = 0; i < rowIds.length; i++) {
+                var getRowRkjjze = $("#gridDrugsInfo").getRowData(rowIds[i]).rkjjze;
+                var getRowCkjjze = $("#gridDrugsInfo").getRowData(rowIds[i]).ckjjze;
+                var getRowQclsze = $("#gridDrugsInfo").getRowData(rowIds[i]).qclsze;
+                var getRowQmlsze = $("#gridDrugsInfo").getRowData(rowIds[i]).qmlsze;
+                var getRowTjsyze = $("#gridDrugsInfo").getRowData(rowIds[i]).tjze;
+                var getRowSylsze = $("#gridDrugsInfo").getRowData(rowIds[i]).sylsze;
+                statisticsRkjjze = window.roundingBy4she6ru5chengshuang((parseFloat(statisticsRkjjze) + parseFloat(getRowRkjjze)), 4);//Tổng giá nhập kho
+                statisticsCkjjze = window.roundingBy4she6ru5chengshuang((parseFloat(statisticsCkjjze) + parseFloat(getRowCkjjze)), 4);//Tổng giá xuất kho
+                statisticsQclsze = window.roundingBy4she6ru5chengshuang((parseFloat(statisticsQclsze) + parseFloat(getRowQclsze)), 4);//Tổng tiền lẻ đầu kỳ
+                statisticsQmlsze = window.roundingBy4she6ru5chengshuang((parseFloat(statisticsQmlsze) + parseFloat(getRowQmlsze)), 4);//Tổng tiền lẻ cuối kỳ
+                statisticsTjsyze = window.roundingBy4she6ru5chengshuang((parseFloat(statisticsTjsyze) + parseFloat(getRowTjsyze)), 4);//Tổng lãi/lỗ điều giá
+                statisticsSylsze = window.roundingBy4she6ru5chengshuang((parseFloat(statisticsSylsze) + parseFloat(getRowSylsze)), 4);//Tổng tiền lẻ lãi/lỗ
+            }
+
+            $("#txtRKJJZE").val(statisticsRkjjze);
+            $("#txtCKJJZE").val(statisticsCkjjze);
+            $("#txtQCLSZE").val(statisticsQclsze);
+            $("#txtQMLSZE").val(statisticsQmlsze);
+            $("#txtTJSYZE").val(statisticsTjsyze);
+            $("#txtSYLSZE").val(statisticsSylsze);
+            $.loading(false);
+        }
+    }
+
+</script>

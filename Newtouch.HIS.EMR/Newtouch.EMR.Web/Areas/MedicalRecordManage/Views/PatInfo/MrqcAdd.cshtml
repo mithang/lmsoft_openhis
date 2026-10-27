@@ -1,0 +1,88 @@
+﻿@using Newtouch.Infrastructure;
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var opeator = OperatorProvider.GetCurrent();
+}
+
+<div class="gridPanel">
+    <table id="gridList" style="width:100%;"></table>
+    <div id="gridPager"></div>
+</div>
+
+<div class="row">
+    <table class="form">
+        <tr>
+            <th class="formTitle">Điểm bệnh án:</th>
+            <td class="formValue" style="width:100px;float:left;">
+                <input id="basyTotalScore" class="form-control" disabled="disabled"/>
+            </td>
+            <td class="formValue" style="width:100px;float:left;">
+                <input id="basyLevel" class="form-control" disabled="disabled"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<script>
+
+    var zyh = $.request("zyh");
+    var bllxId = $.request("bllxId");
+
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { zyh: zyh, bllxId: bllxId },
+            url: "/MedicalRecordManage/PatInfo/GetMrqcScore",
+            height: $(window).height() - 128,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hạng mục chấm điểm code", name: "Code", hidden: true },
+                { label: "Hạng mục chấm điểm", name: "Name", width: 150, align: 'left' },
+                { label: 'Mô tả chấm điểm', name: 'Remark', width: 150, align: 'left' },
+                { label: "Số lỗi", name: "sl", width: 150, align: 'left' },
+                { label: "Đã thẩm tra", name: "TotalScore", width: 150, align: 'left' },
+                { label: "Loại bệnh án", name: "bllxmc", width: 150, align: 'left' },
+
+            ],
+            pager: "#gridPager",
+            sortname: 'Code desc',
+            gridComplete: completeMethod,
+            viewrecords: true
+        });
+        function completeMethod() {
+            debugger;
+            var sum_TotalSocre = $(this).getCol('TotalScore', false, 'sum');
+            //$(this).footerData('set', { "ScoreMc": "合计", "TotalSocre": sum_TotalSocre }, false);
+            var basyTotalScore = 100 - sum_TotalSocre;
+            $("#basyTotalScore").val(basyTotalScore);
+            switch (!!basyTotalScore) {
+                case (basyTotalScore > 90):
+                    $("#basyLevel").val("甲");
+                    break;
+                case (basyTotalScore > 80):
+                    $("#basyLevel").val("乙");
+                    break;
+                case (basyTotalScore < 80):
+                    $("#basyLevel").val("丙");
+                    break;
+            }
+
+        };
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+</script>

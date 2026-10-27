@@ -1,0 +1,239 @@
+@using Newtouch.Common.Operator;
+@{
+    ViewBag.Title = "RePrintMedicineDoc";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+    var opeator = OperatorProvider.GetCurrent();
+}
+<form id="form1">
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading">
+            Phương thức tra cứu
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Số thẻ:</th>
+                    <td class="formValue">
+                        <input id="keyword" type="text" class="form-control" placeholder="Số thẻ Họ tên" />
+                    </td>
+                    <th class="formTitle">Số hóa đơn:</th>
+                    <td class="formValue">
+                        <input id="fph" type="text" class="form-control" placeholder="Số hóa đơn" />
+                    </td>
+                    <th class="formTitle "><span class="required">*</span>Thời gian phát thuốc:</th>
+                    <td class="formValue" style="width: 220px;">
+                        <input id="txtstartDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <span style="float:left;margin:0 5px;">-</span>
+                        <input id="txtendDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="width:28%;float:left">
+        <table id="gridRpInfo"></table>
+    </div>
+    <div style="width:71.5%;float:left; margin-left:0.5%">
+        <table id="gridRpDetail"></table>
+    </div>
+    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new[] { 6, 8, 9, 10 },
+    F6Text = "In bổ sung đơn phát thuốc",
+    F8Text = "In bổ sung thẻ khí dung",
+    F9Text = "In bổ sung thẻ truyền dịch",
+    F10Text = "In bổ sung nhãn hướng dẫn sử dụng"
+})
+</form>
+<script>
+    $(".toolbar").width(435);
+    var $gridRpInfo = $("#gridRpInfo");
+    var $gridRpDetail = $("#gridRpDetail");
+    var tempMzh = "";
+    $(function () {
+        gridRpInfo();
+        gridRpDetail();
+    });
+
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    function gridRpInfo() {
+        $gridRpInfo.dataGrid({
+            height: $(window).height() - 170,
+            url: "/OutPatientPharmacy/fyInfoSearch?r=" + Math.random(),
+            postData: {
+                fph: $("#fph").val(), keyword: $("#keyword").val(), kssj: $("#txtstartDate").val(), jssj: $("#txtendDate").val()
+            },
+            caption: "Danh sách đơn thuốc",
+            colModel: [
+                { label: 'Mã nội bộ đơn thuốc', name: 'cfnm', hidden: true },
+                { label: 'Số ngoại trú', name: 'mzh', hidden: true },
+                { label: 'Số thẻ', name: 'CardNo', width: 80, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 70, align: 'left' },
+                { label: 'Số hóa đơn', name: 'Fph', width: 100, align: 'left' },
+                { label: 'Thời gian thu phí', name: 'sfsj', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Số đơn thuốc', name: 'cfh', width: 100, align: 'left' },
+                { label: 'Bác sĩ', name: 'ysmc', width: 70, align: 'left' },
+                { label: 'Khoa', name: 'ksmc', width: 80, align: 'left' },
+                { label: 'Thời gian phát thuốc', name: 'fysj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Số ngoại trú', name: 'mzh', width: 80, align: 'left' }
+            ],
+            onSelectRow_page: function (rowid, status) {
+                var data = $gridRpInfo.jqGrid('getRowData', rowid);
+                tempMzh =  data.mzh;
+                $gridRpDetail.jqGrid('setGridParam', {
+                    postData: { pCfh: data.cfh },
+                    url: "/OutPatientPharmacy/pyDeailInfoSearch?r=" + Math.random()
+                }).trigger('reloadGrid');
+            },
+            gridComplete: function () {
+                $gridRpDetail.jqGrid("clearGridData");
+                var ids = new Array();
+                //getDataIDs()返回当前grid里所有数据的id
+                ids = $gridRpInfo.getDataIDs();
+                if (ids == null || ids.length <= 0) return;
+                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                $gridRpInfo.setSelection(ids[0], true);
+                var pdata = $gridRpInfo.jqGrid('getRowData', ids[0]);
+                tempMzh = pdata.mzh;
+                if (pdata == null) return;
+                $gridRpDetail.jqGrid('setGridParam', {
+                    postData: { pCfh: pdata.cfh },
+                    url: "/OutPatientPharmacy/pyDeailInfoSearch?r=" + Math.random()
+                }).trigger('reloadGrid');
+            },
+            sortname: 'fysj asc'
+        });
+
+        $("#btn_search").click(function () {
+            $gridRpInfo.jqGrid('setGridParam', {
+                postData: {
+                    fph: $("#fph").val(), keyword: $("#keyword").val(), kssj: $("#txtstartDate").val(), jssj: $("#txtendDate").val()
+                }
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function gridRpDetail() {
+        $gridRpDetail.dataGrid({
+            height: $(window).height() - 210,
+            caption: "Chi tiết đơn thuốc",
+            colModel: [
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'Số lượng', name: 'slStr', width: 80, align: 'right' },
+                {
+                    label: 'Đơn giá', name: 'dj', width: 80, align: 'right',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
+                    }
+                },
+                {
+                    label: 'Số tiền', name: 'je', width: 90, align: 'right',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                { label: 'Liều dùng', name: 'jl', width: 70, align: 'right' },
+                { label: 'Đơn vị liều', name: 'jldw', width: 60, align: 'left' },
+                { label: 'Cách dùng', name: 'yfmc', width: 100, align: 'left' },
+                { label: 'Lời dặn bác sĩ', name: 'bz', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Nhóm thuốc', name: 'czh', width: 70, align: 'center' }
+            ]
+        });
+    }
+
+    //In bổ sung đơn phát thuốc
+    function newtouch_event_f6() {
+        var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
+        if (id) {
+            var cfh = $("#gridRpInfo").jqGrid('getRowData', id).cfh;
+            var uri = '@reportUrl' + "?tempCode=63&systemCode=PDS" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&cfh=" + cfh;
+            window.open(uri);
+            //window.open("/Report/PrintReport?type=MZFYBD_Bill&param=OrganizeId=@ViewBag.OrganizeId" + "|yfbmCode=@ViewBag.yfbmCode" + "|cfh=" + chf);
+        } else {
+            $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+        }
+    }
+
+     //补打打印雾化卡
+    function newtouch_event_f8() {
+    var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
+    if (id) {
+        var cfhs = '';
+        var cfmx = $("#gridRpDetail").getCol('yfmc',true);
+        //取全部处方号
+        for (var i = 0; i < cfmx.length; i++) {
+            if (cfmx[i].value == "雾化") {
+                cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
+            }
+        }
+        if (cfhs.length > 0) {
+            var newcfhs = $.unique(cfhs);//去重
+            var cfh = newcfhs.join(",");//数组串连
+            var uri = '@reportUrl' + "?tempCode=1311&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&mzh=" + tempMzh + "&UserCode=" + opeator.UserCode;
+            window.open(uri);
+        } else $.modalAlert("Không có đơn thuốc khí dung，không thể in thẻ khí dung！", 'warning');
+    } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+}
+     //补打打印输液卡
+    function newtouch_event_f9() {
+        var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
+        if (id) {
+            var cfhs = [];
+            var cfmx = $("#gridRpDetail").getCol('yfmc',true);
+            //取全部处方号
+            for (var i = 0; i < cfmx.length; i++) {
+                if (cfmx[i].value == "静脉滴注") {
+                    cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
+                }
+            }
+            if (cfhs.length > 0) {
+                var newcfhs = $.unique(cfhs);//去重
+                var cfh = newcfhs.join(",");//数组串连
+                //查询含输液的组号
+                $.najax({
+                    type: "POST",
+                    url: "/OutPatientPharmacy/GetRecipeGroupNum",
+                    data: { cfh: cfh, type: "Truyền tĩnh mạch" },
+                    dataType: "text",
+                    success: function (res) {
+                        var uri = '@reportUrl' + "?tempCode=1299&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&zh=" + res + "&mzh=" + tempMzh;
+                        window.open(uri);
+                    }
+                });
+            } else $.modalAlert("Không có đơn thuốc truyền tĩnh mạch，không thể in thẻ truyền dịch！", 'warning');
+        } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+    }
+    //In bổ sung nhãn hướng dẫn sử dụng
+     function newtouch_event_f10() {
+         var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
+         if (id) {
+             var cfh = $("#gridRpInfo").jqGrid('getRowData', id).cfh;
+             var cfmx = $("#gridRpDetail").getCol('yfmc', true);
+             var lscfmx = [];
+             //取全部处方号
+             for (var i = 0; i < cfmx.length; i++) {
+                 if (cfmx[i].value == "口服" || cfmx[i].value == "外用") {
+                     lscfmx.push(cfh);
+                 }
+             }
+             if (lscfmx.length > 0) {
+                 var newcfh = $.unique(lscfmx);//去重
+                 var cfhStr = newcfh.join();//数组串连
+                 var uri = '@reportUrl' + "?tempCode=1306&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfhStr;
+                 window.open(uri);
+             } else $.modalAlert("Không có đơn thuốc uống、đơn thuốc dùng ngoài，không thể in nhãn hướng dẫn sử dụng！", 'warning');
+         }
+    }
+</script>

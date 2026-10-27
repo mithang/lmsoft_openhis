@@ -1,0 +1,525 @@
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "FybdIndex";//In bổ sung phát thuốc nội trú
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+}
+
+<link href="@MvcHelper.GetStaticResourceScriptUrl("js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("js/wdtree/tree.js")"></script>
+
+<script src="~/Content/js/bootstrap-multiselect.js"></script>
+<link href="~/Content/js/bootstrap-multiselect.css" rel="stylesheet" />
+
+<input hidden id="OrganizeId" value="@ViewBag.OrganizeId">
+<style>
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+
+    #btn_search {
+        width: 45px;
+        font-weight: bolder;
+    }
+
+    .showbotton {
+        display: none;
+        position: fixed;
+        bottom: 5px;
+        right: 0;
+        z-index: 9999;
+        background-color: #ccc;
+        width: 50px;
+        height: 44px;
+        filter: alpha(Opacity=90);
+        -moz-opacity: 0.9;
+        opacity: 0.9;
+        cursor: pointer;
+        border-radius: 100px 0 0 100px;
+    }
+
+    #TabGrid {
+        width: 100%;
+        position: fixed;
+        bottom: 10px;
+        right: 0;
+        z-index: 8888;
+        background-color: #253443;
+        filter: alpha(Opacity=92);
+        -moz-opacity: 0.92;
+        opacity: 0.92;
+        box-shadow: 0px 2px 10px #909090;
+    }
+
+        #TabGrid > * {
+            filter: alpha(Opacity=92);
+            -moz-opacity: 0.92;
+            opacity: 0.92;
+        }
+</style>
+<div style="float:left;width:20%;">
+    <div class="dv-left-title">Danh sách bệnh nhân</div>
+    <div class="dv-left-tree" id="BqTreeList"></div>
+</div>
+
+<div style="float:left;width:79.5%;margin-left:0.5%;">
+    <form id="form1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Điều kiện tra cứu
+            </div>
+            <div style="padding: 2px;">
+                <input type="hidden" id="Fyzt" value="2" />
+                <table class="form">
+                    <tr>
+                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>Ngày：</th>
+                        <td class="formValue">
+                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({onpicked:function(){operateTimeList(ThisbrCode,Thisbqbian);;},dateFmt:'yyyy-MM-dd'})" />
+                        </td>
+                        <th class="formTitle"><span class="required">*</span>Thời gian thao tác：</th>
+                        <td class="formValue">
+                            <select id="seloperatetime"  class="form-control" multiple="multiple"></select>
+                        </td>
+                        <td class="formTitle" style="width: 45px;">
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+    <div class="gridPanel">
+        <table id="dispenseMedicinGridList"></table>
+        <div id="gridPager"></div>
+    </div>
+    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new[] { 6, 8 },
+    F6Text = "In bổ sung",
+    F8Text = "In bổ sung chi tiết",
+})
+</div>
+<script type="text/javascript">
+    var ThisbqCode = "";//Khởi tạo khu bệnhCode
+    var ThisbrCode = "";//初始化病人Code
+    var Thisbqbian = "";
+    var checkArray = [];
+    var pageNum = 1;
+
+    $(".toolbar").css("width", 250);
+    var $dispenseMedicinGridList = $("#dispenseMedicinGridList");
+    var zyh = [];
+
+    $(function () {
+        //绑定病区
+        bqGridList();
+        //绑定病人发药详细信息
+        dispenseMedicinGridList(null);
+
+    });
+
+    function operateTimeList(zyh,bqbm) {
+
+        if ($("#Kssj").val() == "" || $("#Kssj").val() == null) {
+            return;
+        }
+
+        $.najax({
+            type: "Get",
+            url: "/HospitalizationPharmacy/GetFybdComboboxList",
+            dataType: "json",
+            data: {
+                Zyh: zyh,
+                Bqbm: bqbm,
+                Kssj: $("#Kssj").val() + " 00:00:00",
+                Jssj: $("#Kssj").val() + " 23:59:59"
+            },
+            success: function (ajaxresp) {
+                if (ajaxresp !== null) {
+                    $("#seloperatetime").html("");
+                    
+                    for (var i = 0; i < ajaxresp.length; i++) {
+                        $("#seloperatetime").append("<option value='" + ajaxresp[i].operatetime + "'>" + ajaxresp[i].operatetime + "</option>");
+                    }
+
+                    $('#seloperatetime').multiselect({
+                        buttonWidth: '100%',
+                        includeSelectAllOption: true,
+                        enableClickableOptGroups: true,
+                        enableCollapsibleOptGroups: true,
+                        selectAllText: "Chọn tất cả",
+                        nonSelectedText: "Chưa chọn",
+                        allSelectedText: "Chọn tất cả"
+                    });
+
+                    $('#seloperatetime').multiselect("rebuild");
+                }
+            }
+        });
+
+        //$("#seloperatetime").bindSelect({
+        //    url: "/HospitalizationPharmacy/GetFybdComboboxList",
+        //    id: "operatetime",
+        //    param: {
+        //        Zyh: zyh,
+        //        Kssj: $("#Kssj").val() + " 00:00:00",
+        //        Jssj: $("#Kssj").val() + " 23:59:59"
+        //    },
+        //    text: "operatetime"
+        //});
+
+        $("#seloperatetime").change(function () {
+            $("#btn_search").click();
+        });
+    }
+
+    //用户发药详细信息
+    function dispenseMedicinGridList() {
+        $dispenseMedicinGridList.dataGrid({
+            multiselect: true,
+            url: '/HospitalizationPharmacy/GetFybdList',
+            height: $(window).height() - document.getElementById('dispenseMedicinGridList').offsetTop - 150,
+            postData: {
+                Zyh: ' ',
+                Bqbm:' ',
+                operatetime:'',
+                Kssj: $("#Kssj").val() + " 00:00:00",
+                Jssj: $("#Kssj").val() + " 23:59:59"
+            },
+            colModel: [
+                { label: 'Id', name: 'Id', align: 'left', hidden: true },
+                { label: 'zyh', name: 'zyh', align: 'left', hidden: true },
+                { label: 'Họ tên', name: 'patientName', width: 65, align: 'left' },
+                { label: 'Số thứ tự lĩnh thuốc', name: 'lyxh', width: 65, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'Số giường', name: 'cw', width: 60, align: 'center' },
+                { label: 'Số lượng phát thuốc', name: 'slStr', width: 60, align: 'right' },
+                { label: 'Dạng bào chế', name: 'jxmc', width: 60, align: 'center' },
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'Tần suất', name: 'pcmc', width: 50, align: 'center' },
+                { label: 'Số nhóm', name: 'zh', width: 40, align: 'center' },
+                { label: 'Liều lượng', name: 'ylStr', width: 60, align: 'center' },
+                { label: 'Tính chất y lệnh', name: 'yzxzmc', width: 60, align: 'center' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: 'Cách dùng', name: 'zlff', width: 50, align: 'center' },
+                { label: 'Người thao tác', name: 'CreatorCode', width: 70, align: 'center' },
+                { label: 'Thời gian thao tác', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: "Y lệnhID", name: 'zxId', hidden: true },
+                { label: 'Đơn giá', name: 'djStr', hidden: true },
+                { label: 'Số tiền', name: 'je', hidden: true },
+                { label: 'Số lượng sử dụng', name: 'yl', hidden: true },
+                { label: 'Đơn vị sử dụng', name: 'yldw', hidden: true },
+                { label: "Mã thuốc", name: 'ypCode', hidden: true },
+                { label: "yzId", name: 'yzId', hidden: true }
+            ],
+            caption: "Danh sách phát thuốc",
+            pager: "#gridPager",
+            sortname: 'CreateTime',
+            viewrecords: true,
+            //multiboxonly : false,
+            onSelectAll: function (rowIds, status) {
+                //选中全部时触发，rowIds为当页所有的rowId
+                //checkArray数组中把当页的全删除 jqGrid('getDataIDs');
+                for (var i = 0; i < rowIds.length; i++) {
+                    for (var j = 0; j < checkArray.length; j++) {
+                        if (checkArray[j].pageNum == pageNum && checkArray[j].rowId == rowIds[i]) {
+                            checkArray.splice(j, 1);
+                            break;
+                        }
+                    }
+                }
+                //如果是选择的选中，则把当页所有条目加上
+                if (status) {
+                    for (var i = 0; i < rowIds.length; i++) {
+                        var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowIds[i]);
+                        var checkedItem = { "pageNum": pageNum, "rowId": rowIds[i], "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh, "zytyapplyno": rowData.zytyapplyno };
+                        checkArray.push(checkedItem)
+                    }
+                }
+            },
+            onSelectRow: function (rowId, status) {  //Nhấncheckbox触发 rowId为当前触发的rowid
+                //选中行的行数据
+                var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowId);
+                var checkedItem = { "pageNum": pageNum, "rowId": rowId, "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh, "zytyapplyno": rowData.zytyapplyno };
+                if (status) {
+                    //如果选中，则判断数组中如果没有的话加入数组
+                    for (var i = 0; i < checkArray.length; i++) {
+                        if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
+                            return false;
+                        }
+                    }
+                    checkArray.push(checkedItem);
+                } else {
+                    //删除数组
+                    for (var i = 0; i < checkArray.length; i++) {
+                        if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
+                            checkArray.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                //console.log(checkArray)
+            },
+            //每个页面加载时触发
+            loadComplete: function (data) {
+                //改变全局变量pageNum页码
+                pageNum = data.page;
+                //循环数组，让当页中的rowId变为选中状态
+                for (var i = 0; i < checkArray.length; i++) {
+                    if (checkArray[i].pageNum == pageNum) {
+                        $dispenseMedicinGridList.jqGrid('setSelection', checkArray[i].rowId, true);
+                    }
+                }
+            }
+        });
+
+        $(".ui-pg-selbox").change(function () {
+            //要触发的事件
+            checkArray.splice(0);
+        });
+
+        //查询
+        $("#btn_search").click(function () {
+            if ($("#Kssj").val() === "") {
+                $.modalMsg("Thời gian bắt đầu không được để trống", "warning", 2000);
+                return false;
+            }
+            if ($("#Jssj").val() === "") {
+                $.modalMsg("Thời gian kết thúc không được để trống", "warning", 2000);
+                return false;
+            }
+            if ($("#seloperatetime").val() === "") {
+                return false;
+            }
+
+            var gyssStr = "";
+            var gyssArr = $("#seloperatetime").val();
+            if (gyssArr != null && gyssArr.length > 0) {
+                $.each(gyssArr, function (index, item) {
+                    gyssStr += item + ',';
+                });
+                gyssStr = gyssStr.substring(0, gyssStr.length - 1);
+            }
+
+            if (gyssArr == "") {
+                return;
+            }
+
+            $dispenseMedicinGridList.jqGrid("clearGridData");
+
+            $dispenseMedicinGridList.jqGrid('setGridParam', {
+                postData: {
+                    Zyh: ThisbrCode,
+                    Bqbm: Thisbqbian,
+                    operatetime: gyssStr,
+                    Kssj: $("#Kssj").val() + " 00:00:00",
+                    Jssj: $("#Kssj").val() + " 23:59:59"
+                }
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function bqGridList() {
+        $("#BqTreeList").treeview({
+            height: $(window).height() - 35,
+            slimscroll: false,
+            showcheck: true,
+            url: "/HospitalizationPharmacy/GetFybdBrxxTree",
+            param: {},
+            oncheckboxclick: function (item, s) {
+                getOrderExecutionList(item, s);
+            }
+        });
+    }
+
+
+    function getOrderExecutionList(item, s)
+    {
+        var patlist = $("#BqTreeList").getCheckedNodeObjArray();
+        var patlistFath = "";
+        var patzyh = "";
+        var patnots = "";
+
+        //当前选中父节点
+        var len = 0;
+        var single = 0; //是否单个子节点
+
+        if (item != null && item.Ex1 == "p") {
+            patlistFath = item.ChildNodes;
+            len = patlistFath.length;
+        }
+        else if (item != null && item.Ex1 == "c") {
+            patlistFath = item;
+            len = 1;
+            single = 1;
+        }
+        //选中节点
+        for (var i = 0; i < patlist.length; i++) {
+            if (patlist[i].Ex1 === "c") {
+                patzyh += patlist[i].value + ",";
+            }
+            else if (patlist[i].Ex1 === "p") {
+                patnots += patlist[i].value + ",";
+            }
+        }
+
+        if (s === 1) {
+            if (single === 0) {
+                for (var j = 0; j < len; j++) {
+                    if (patlistFath[j].Ex1 === "c") {
+                        patzyh += patlistFath[j].value + ",";
+                        patnots += patlistFath[j].parentnodes + ",";
+                    }
+                }
+            }
+            else if (patlistFath.Ex1 === "c") {
+                patzyh += patlistFath.value;
+                patnots += patlistFath.parentnodes;
+            }
+        }
+        else if (s === 0) {
+            if (single === 0) {
+                for (var j = 0; j < len; j++) {
+                    if (patlistFath[j].Ex1 === "c" && patlistFath[j].checkstate === 1) {
+                        patzyh = patzyh.replace(patlistFath[j].value + ",", "");
+                        patnots = patnots.replace(patlistFath[j].parentnodes + ",", "");
+                    }
+                }
+            }
+            else if (patlistFath.Ex1 === "c") {
+                patzyh = patzyh.replace(patlistFath.value + ",", "");
+                patnots = patnots.replace(patlistFath.parentnodes + ",", "");
+            }
+        }
+
+        ThisbrCode = patzyh;
+        Thisbqbian = patnots;
+
+        $dispenseMedicinGridList.jqGrid("clearGridData");
+
+        operateTimeList(ThisbrCode, Thisbqbian);
+    }
+
+    //级联选中所有子节点
+    function checkAllSon(node) {
+        $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
+        if (node.nodes != null && node.nodes.length > 0) {
+            for (var i in node.nodes) {
+                checkAllSon(node.nodes[i]);
+            }
+        }
+    }
+    //级联取消所有子节点
+    function uncheckAllSon(node) {
+        $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
+        if (node.nodes != null && node.nodes.length > 0) {
+            for (var i in node.nodes) {
+                uncheckAllSon(node.nodes[i]);
+            }
+        }
+    }
+
+    // 打印
+    function newtouch_event_f6() {
+        printRptSumary();
+    }
+
+    function openWindowWithPost(url, name, keys, values) {
+        var newWindow = window.open(url, name);
+
+        if (!newWindow) return false;
+
+        var html = "";
+        html += "<html><head></head><body><form id='formid' method='post' action='" + url + "'>";
+
+        if (keys && values && (keys.length == values.length))
+            for (var i = 0; i < keys.length; i++)
+                html += "<input type='hidden' name='" + keys[i] + "' value='" + values[i] + "'/>";
+
+        html += "</form><script type='text/javascript'>document.getElementById(\"formid\").submit()</sc" + "ript></body></html>";
+
+        newWindow.document.write(html);
+        return newWindow;
+    }
+    //In bổ sung chi tiết
+    function newtouch_event_f8() {
+        var operateType="1";
+        if (checkArray.length == 0) {
+            $.modalMsg("Vui lòng chọn bản ghi thao tác", "warning");
+            return false;
+        }
+        //var fy = checkArray.filter((item) => item.czlx.indexOf("发药") > 0);
+        //var ty = checkArray.filter((item) => item.czlx.indexOf("退药") > 0);
+        //if (fy.length > 0 && ty.length > 0) {
+        //    $.modalMsg("Loại thao tác, vui lòng chọn trả thuốc hoặc phát thuốc", "warning");
+        //    return false;
+        //}
+        //else if (fy.length > 0) {
+        //    operateType = 1;
+        //}
+        //else if (ty.length > 0) {
+        //    operateType = 2;
+        //}
+
+        var zyh = checkArray[0].zyh;
+        //if (!!zyh && checkArray.filter((item) => item.zyh != zyh).length>0) {
+        //    $.modalMsg("In nhiều người, vui lòng chọn in tổng hợp", "warning");
+        //    return false;
+        //}
+        //var zxIds = checkArray.map((item) => {
+        //    return item.zxId
+        //}).join(",");
+        //var yzIds = checkArray.map((item) => {
+        //    return item.yzId
+        //}).join(",");
+        var czIds = checkArray.map((item) => {
+            return item.Id
+        }).join(",");
+        var systemCode = "PDS";//报表所属系统编码
+        var uri = '@reportUrl' + "?tempCode=1302" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId'
+        +"&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyh=" + zyh + "&operateType=" + operateType + "&yzIds=" + "&zxIds=" + "&rdNo=" + "&czIds=" + czIds;
+        window.open(uri);
+
+        //var values = new Array("@ViewBag.OrganizeId", "@ViewBag.yfbmCode", "", "", operateType, zyh, czIds, "");
+        //var keys = new Array("OrganizeId", "yfbmCode", "yzIds", "zxIds", "operateType", "zyh", "czIds", "rdNo");
+        //openWindowWithPost("@(ViewBag.ReportServerHOST)/Pages/ReportViewer.aspx?%2fNewtouch.HIS.Bill%2fZYFYBDMX_CFD&rs:Command=Render", "", keys, values);
+
+    }
+    function printRptSumary() {
+        var kssj = $("#Kssj").val() + " 00:00:00";
+        var jssj = $("#Kssj").val() + " 23:59:59";
+
+        var operateType = 1;
+
+        if (ThisbrCode == null || ThisbrCode == "") {
+            $.modalMsg("Vui lòng chọn bệnh nhân", "warning", 2000);
+            return false;
+        }
+
+        if ($("#seloperatetime").val() == "") {
+            $.modalMsg("Vui lòng chọn thời gian thao tác", "warning", 2000);
+            return false;
+        }
+
+        var gyssStr = "";
+        var gyssArr = $("#seloperatetime").val();
+        if (gyssArr != null && gyssArr.length > 0) {
+            $.each(gyssArr, function (index, item) {
+                gyssStr += item + ',';
+            });
+            gyssStr = gyssStr.substring(0, gyssStr.length - 1);
+        }
+        var systemCode = "PDS";//报表所属系统编码
+        var uri = '@reportUrl' + "?tempCode=1301" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId'
+        +"&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyh=" + ThisbrCode + "&operateType=1&kssj=" + kssj + "&jssj=" + jssj + "&operatetime=" + gyssStr;
+        window.open(uri);
+
+        @*var values = new Array("@ViewBag.OrganizeId", "@ViewBag.yfbmCode", ThisbrCode, gyssStr, kssj, jssj,"1");
+        var keys = new Array("OrganizeId", "yfbmCode", "zyh", "operatetime", "kssj", "jssj", "operateType");
+        openWindowWithPost("@(ViewBag.ReportServerHOST)/Pages/ReportViewer.aspx?%2fNewtouch.HIS.Bill%2fZYFYCX_Summary_fybd&rs:Command=Render", "", keys, values);*@
+    }
+</script>

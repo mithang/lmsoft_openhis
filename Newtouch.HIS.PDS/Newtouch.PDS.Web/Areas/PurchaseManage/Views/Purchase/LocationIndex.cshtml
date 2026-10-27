@@ -1,0 +1,184 @@
+
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Điểm phân phối";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+
+
+<form id="form1">
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+
+    <div class="panel panel-default">
+        <input type="button" id="btn_delete" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Hủy bỏ" />
+        <input type="button" id="btn_submit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Gửi báo cáo" />
+        <input type="button" id="btn_edit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Sửa" />
+        <input type="button" id="btn_add" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tạo mới" />
+        <input type="button" id="btn_search" class="btn btn-info" style="width:7%;float:right;margin-left:20px;margin-top:30px;" value="Làm mới" />
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+        gridList();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PurchaseManage/Purchase/GetLocationGridJson",
+            height: $(window).height() - 150,
+            colModel: [
+                { label: 'Id', name: 'Id', width: 140, align: 'left',hidden:true },
+                { label: 'Mã điểm phân phối', name: 'psdbm', width: 140, align: 'left' },
+                { label: 'Tên điểm phân phối', name: 'psdmc', width: 140, align: 'left' },
+                { label: 'Địa chỉ phân phối', name: 'psdz', width: 140, align: 'left' },
+                { label: 'Tên người liên hệ', name: 'lxrxm', width: 80, align: 'left' },
+                { label: 'Số điện thoại liên hệ', name: 'lxdh', width: 80, align: 'left' },
+                { label: 'Mã bưu điện', name: 'yzbm', width: 80, align: 'left' },
+                { label: 'Thông tin ghi chú', name: 'bzxx', width: 80, align: 'left' },
+                {
+                    label: 'Trạng thái điểm phân phối', name: 'psdzt', width: 120, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'Đã lưu';
+                        else if (cellvalue == 2) return 'Đã gửi báo cáo';
+                        else if (cellvalue == 3) return 'Đã hủy';
+                        else return '';
+                    }
+                },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', hidden: true},
+                { label: 'Người tạo', name: 'CreateCode', width: 80, align: 'left',hidden:true },
+            ],
+            multiselect: true,
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                //btn_selectrow(rowid);
+            },
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { },
+            }).trigger('reloadGrid');
+        });
+    }
+
+
+
+    //新建
+    $('#btn_add').click(function () {
+        $.modalOpen({
+            id: "Form",
+            title: "Điểm phân phối",
+            url: "/PurchaseManage/Purchase/LocationForm",
+            width: "25%",
+            height: "55%",
+            callBack: function (iframeId) {
+                top.frames[iframeId].SubmitForm();
+                //$.modalClose("Form");
+                $('#btn_search').trigger('click');
+            }
+        });
+    });
+
+    //修改
+    $('#btn_edit').click(function () {
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+
+        if (selRowIds == null || selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn điểm phân phối cần sửa", 'warning');
+            return;
+        }
+        if (selRowIds.length >= 2) {
+            $.modalAlert("Chỉ được chọn một điểm phân phối để sửa", 'warning');
+            return;
+        }
+        var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
+        if (rowData.psdzt != "已保存") {
+            $.modalAlert("Điểm phân phối đã chọn không phải trạng thái đã lưu，Không thể sửa", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Điểm phân phối",
+            url: "/PurchaseManage/Purchase/LocationForm?keyValue=" + rowData.Id,
+            width: "25%",
+            height: "55%",
+            callBack: function (iframeId) {
+                top.frames[iframeId].SubmitForm();
+                //$.modalClose("Form");
+                $('#btn_search').trigger('click');
+            }
+        });
+    });
+
+    //提交
+    $('#btn_submit').click(function () {
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds == null || selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn điểm phân phối cần báo cáo", 'warning');
+            return;
+        }
+        if (selRowIds.length >= 2) {
+            $.modalAlert("Chỉ được chọn một điểm phân phối để báo cáo", 'warning');
+            return;
+        }
+        var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
+        $.najax({
+            type: "POST",
+            url: "/PurchaseManage/Purchase/LocationUpload",
+            data: { Id: rowData.Id, psdzt: 2, czlx: "1" }, //psdzt 1Đã lưu 2Đã gửi báo cáo 3Đã hủy //Loại thao tác: 1Thêm mới 3Hủy bỏ
+            dataType: "json",
+            success: function (res) {
+                if (res.state == "success") {
+                    $.modalMsg("Điểm phân phối báo cáo thành công！", 'success');
+                    $('#btn_search').trigger('click');
+                } else {
+                    $.modalMsg("Điểm phân phối báo cáo thất bại：" + res.message, 'warning');
+                }
+            }
+        });
+    });
+
+    //作废
+    $('#btn_delete').click(function () {
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds == null || selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn điểm phân phối cần hủy bỏ", 'warning');
+            return;
+        }
+        if (selRowIds.length >= 2) {
+            $.modalAlert("Chỉ được chọn một điểm phân phối để hủy bỏ", 'warning');
+            return;
+        }
+        var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
+        if (rowData.psdzt == "已作废" ) {
+            $.modalAlert("Điểm phân phối này đã bị hủy bỏ", 'warning');
+            return;
+        }
+        $.najax({
+            type: "POST",
+            url: "/PurchaseManage/Purchase/LocationDelete",
+            data: { Id: rowData.Id, psdzt: 3,czlx:"3" }, //psdzt 1Đã lưu 2Đã gửi báo cáo 3Đã hủy //Loại thao tác: 1Thêm mới 3Hủy bỏ
+            dataType: "json",
+            success: function (res) {
+                if (res.state == "success") {
+                    $.modalMsg("Điểm phân phối hủy bỏ thành công！", 'success');
+                    $('#btn_search').trigger('click');
+                } else {
+                    $.modalMsg("Điểm phân phối hủy bỏ thất bại：" + res.message, 'warning');
+                }
+            }
+        });
+    });
+
+
+</script>
+
+

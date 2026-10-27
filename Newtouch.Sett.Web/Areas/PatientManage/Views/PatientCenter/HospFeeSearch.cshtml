@@ -1,0 +1,197 @@
+@{
+    Layout = null;
+}
+<div style="padding-left:10px;">
+    <table id="gridFeeList"></table>
+    <table id="gridFeeIDetail"></table>
+</div>
+
+<script>
+    var _zyh = "";
+    var gridFeeList = $("#gridFeeList");
+    var gridFeeListHight = 0;
+    var gridFeeIDetailHight = 0;
+
+    function AdaptiveResolution() {
+        gridFeeListHight = $(window).height() - 450;
+        gridFeeIDetailHight = $(window).height() - gridFeeListHight - 230;
+    }
+
+    AdaptiveResolution();
+    // 在窗口大小改变时监听resize事件并更新div的高度
+    $(window).on('resize', function () {
+        AdaptiveResolution();
+        FeeGrid(_zyh)
+    });
+
+    function FeeGrid(zyh_) {
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='sp_billje' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+        _zyh = zyh_;
+        gridFeeList.dataGrid({
+            caption: captionCon,
+            height: gridFeeListHight,
+            colModel: [
+                {
+                    label: 'Ngày', name: 'Sfrq', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', ' + "" + ')"';
+                    }
+                },
+                {
+                    label: 'Giường bệnh phí', name: 'CWJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.CWDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Phí chăm sóc', name: 'HLJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.HLDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'trị liệu phí', name: 'ZLJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.ZLDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Khác phí', name: 'QTJe', width: 70, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.QTDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Phí thuốc Tây y', name: 'XYJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.XYDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Thuốc thành phẩm Đông y', name: 'ZCYJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.ZCYDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Phí xét nghiệm', name: 'HYJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.HYDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'kiểm tra phí', name: 'JCJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.JCDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Vật tư phí', name: 'CLJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
+                    cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.CLDlCode + '\')"';
+                    }
+                },
+                {
+                    label: 'Tổng cộng', name: 'HJ', width: 70, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+                { label: 'CWDlCode', name: 'CWDlCode', hidden: true },
+                { label: 'HLDlCode', name: 'HLDlCode', hidden: true },
+                { label: 'ZLDlCode', name: 'ZLDlCode', hidden: true },
+                { label: 'QTDlCode', name: 'QTDlCode', hidden: true },
+                { label: 'XYDlCode', name: 'XYDlCode', hidden: true },
+                { label: 'ZCYDlCode', name: 'ZCYDlCode', hidden: true },
+                { label: 'HYDlCode', name: 'HYDlCode', hidden: true },
+                { label: 'JCDlCode', name: 'JCDlCode', hidden: true },
+                { label: 'CLDlCode', name: 'CLDlCode', hidden: true },
+            ],
+            viewrecords: true,
+            ondblClickRow: function (rowIndex, s) {
+                //getItemsbySfdl(rowIndex);
+            },
+            onSelectRow_page: function (rowid) {
+                //btn_selectrow(rowid);
+            },
+            gridComplete: function () {
+                getFeeZje();
+            },
+        });
+        gridFeeList.jqGrid('setGridParam', {
+            postData: {
+                zyh: zyh_
+            },
+            url: "/PatientManage/PatientCenter/GetFeeMainGridList?t=" + Math.random(),
+        }).trigger('reloadGrid');
+        $('#gridFeeIDetail').jqGrid("clearGridData");//每次单击，先清空上一条明细 和合计
+    }
+
+    function cellClickHandler(sfrq, dlCode) {
+        $('#gridFeeIDetail').jqGrid("clearGridData");//每次单击，先清空上一条明细 和合计
+        $.najax({
+            type: "POST",
+            url: "/PatientManage/PatientCenter/GetFeeDetail",
+            data: { zyh: _zyh, dlCode: dlCode, sfrq: sfrq },
+            dataType: "json",
+            success: function (ajaxresp) {
+                $('#gridFeeIDetail').newtouchLocalDataGrid(null, ajaxresp);
+            }
+        });
+    }
+
+    //结算大类明细 jGrid声明
+    $('#gridFeeIDetail').newtouchLocalDataGrid({
+        height: gridFeeIDetailHight,
+        caption: "Chi phí tra cứu chi tiết",
+        unwritten: false,
+        colModel: [
+            {
+                label: 'Ngày chi phí', name: 'CreateTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            },
+            { label: 'nhóm lớn', name: 'dlmc', width: 80, align: 'left' },
+            { label: 'Tên', name: 'sfxmmc', width: 80, align: 'left' },
+            { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+            { label: 'Số lượng', name: 'sl', width: 60, align: 'left' },
+            { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
+            { label: 'Đơn giá', name: 'dj', width: 50, align: 'left' },
+            { label: 'mở đơn người', name: 'ysmc', width: 70, align: 'left' },
+            { label: 'mở đơn Khoa', name: 'ksmc', width: 60, align: 'left' },
+            { label: 'Khoa thực hiện', name: 'bqmc', width: 60, align: 'left' },
+            { label: 'Ghi/Trả', name: 'zxbz', width: 50, align: 'left' },
+            { label: 'Nhân viên thao tác', name: 'czry', width: 60, align: 'left' },
+            { label: 'Ghi chú', name: 'rmark', width: 80, align: 'left' },
+            { label: 'ID hóa đơn', name: 'fph', width: 80, align: 'left' },
+            {
+                label: 'Số tiền', name: 'je', width: 80, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                }
+            },
+        ],
+        viewrecords: true,
+        ondblClickRow: function (row) {
+            btn_clickrow();
+        }
+    });
+
+    //总金额
+    function getFeeZje() {
+        var zje = 0;
+        var ids = gridFeeList.getDataIDs();//返回数据表的ID数组["66","39"..]
+        for (var i = 0; i < ids.length; i++) {
+            var rowData = gridFeeList.getRowData(ids[i]);
+            if (!!rowData.HJ) {
+                zje += parseFloat(rowData.HJ);
+            }
+        }
+        $("#sp_billje").text(parseFloat(zje).toFixed(2));
+    }
+</script>
+

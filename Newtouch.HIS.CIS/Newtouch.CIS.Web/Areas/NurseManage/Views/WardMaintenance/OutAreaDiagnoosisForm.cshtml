@@ -1,0 +1,467 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Ra khuChẩn đoán";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var isOpendiag = SysConfigReader.String("Inpatient_OutAre");
+}
+<style>
+    .formTitle span {
+        color: red;
+    }
+
+    .tab-content #basicInfo table tr td {
+        border: 0;
+    }
+</style>
+<form id="form1">
+    <div class="container">
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation"><a href="#xyzdInfo" role="tab" data-toggle="tab">Chẩn đoán Tây y</a></li>
+            <li role="presentation"><a href="#zyzdInfo" role="tab" data-toggle="tab">Chẩn đoán YHCT</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="xyzdInfo">
+            <table id="tablezd" class="form">
+                <tr>
+                    <th class="formTitle">Chẩn đoánThời gian:</th>
+                    <td class="formValue">
+                        <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                </tr>
+                <tr>
+
+                    <th class="formTitle" style="margin-left:20px;">
+                        <i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
+                        Xuất việnChẩn đoán:
+                    </th>
+                    <td class="formValue" colspan="2">
+                        <input id="txt_cyzddm" type="hidden" />
+                        <input id="txt_cyzd" name="txt_cyzd" type="text" class="form-control required zdinput" />
+                    </td>
+                    <th class="formTitle">Xuất việnTình hình:</th>
+                    <td class="formValue">
+                        <select id="txt_cyqk" name="txt_cyqk" class="form-control " data-EnumType="EnumCYQK"></select>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div id="zyzdInfo" role="tabpanel" class="tab-pane fade in">
+            <table id="tablezyzd" class="form" style="width: 98%; border: 0">
+                <tr>
+                    <th class="formTitle">Chẩn đoánThời gian:</th>
+                    <td class="formValue">
+                        <input id="txt_zyzdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                </tr>
+                <tr>
+
+                    <th class="formTitle" style="margin-left:20px;">
+                        <i id="zyzdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
+                        Bệnh chính:
+                    </th>
+                    <td class="formValue" colspan="2">
+                        <input id="txt_zycyzddm" type="hidden" />
+                        <input id="txt_zycyzd" name="txt_zycyzd" type="text" class="form-control required zdinput" />
+                    </td>
+                    <th class="formTitle">Xuất việnTình hình:</th>
+                    <td class="formValue">
+                        <select id="txt_zycyqk" name="txt_zycyqk" class="form-control " data-EnumType="EnumCYQK"></select>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</form>
+<script lang="javascript">
+    var isopendiag = '@isOpendiag';
+    var ybnhlx = "";
+    var brxz = '@ViewBag.brxz';
+    $('#myTab a:first').tab('show');
+    if(isopendiag =="OFF")//关闭诊断填写  诊断自电子病历病案填写同步
+    {
+        $("#zdCircle").css("display", "none");
+        $("#txt_cyzd").attr("disabled", true);
+        $("#txt_cyqk").attr("disabled", true);
+        $("#txt_zdsj").attr("disabled", true);
+
+        $("#zyzdCircle").css("display", "none");
+        $("#txt_zycyzd").attr("disabled", true);
+        $("#txt_zycyqk").attr("disabled", true);
+        $("#txt_zyzdsj").attr("disabled", true);
+    }
+    if (brxz == "1") {
+        ybnhlx = "yb";
+    }
+    if (brxz == "8") {
+        ybnhlx = "nh";
+    }
+    $(function () {
+        GetPatDiagnosis();
+    });
+    //西医诊断
+    $("#txt_cyzd").newtouchBatchFloatingSelector({
+        height: 200,
+        width: 600,
+        clickautotrigger: true,
+        url: "/NurseManage/WardMaintenance/GetryzdSelect",
+        ajaxparameters: function () {
+            return "ryzd=" + $("#txt_cyzd").val() + "&zdlb=" + "WM";
+        },
+        caption: "Xuất việnChẩn đoán",
+        colModel: [
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Pinyin', name: 'py', widthratio: 20 },
+            { label: 'icd10', name: 'icd10', widthratio: 20 },
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
+        ],
+        itemdbclickhandler: function ($this) {
+            $("#txt_cyzd").val($this.attr('data-zdmc'));
+            $("#txt_cyzddm").val($this.attr('data-icd10'));
+        }
+    });
+    //中医诊断
+    $("#txt_zycyzd").newtouchBatchFloatingSelector({
+        height: 200,
+        width: 600,
+        clickautotrigger: true,
+        url: "/NurseManage/WardMaintenance/GetryzdSelect",
+        ajaxparameters: function () {
+            return "ryzd=" + $("#txt_zycyzd").val()  + "&zdlb=" + "TCM";
+        },
+        caption: "Xuất việnChẩn đoán",
+        colModel: [
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Pinyin', name: 'py', widthratio: 20 },
+            { label: 'icd10', name: 'icd10', widthratio: 20 },
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
+        ],
+        itemdbclickhandler: function ($this) {
+            $("#txt_zycyzd").val($this.attr('data-zdmc'));
+            $("#txt_zycyzddm").val($this.attr('data-icd10'));
+        }
+    });
+    function GetPatDiagnosis() {
+        $.najax({
+            type: "GET",
+            url: "/NurseManage/WardMaintenance/GetPatDiagnosis?r=" + Math.random(),
+            data: { zyh: '@ViewBag.zyh' },
+            loadingtext: "Đang tải dữ liệu, vui lòng đợi trong giây lát...",
+            dataType: "json",
+            success: function(zdlist) {
+                $.each(zdlist,
+                    function (n, item) {
+                        if (item.zddl == "TCM") {//中医诊断
+                            if (item.zdlx == "1") {
+                                $("#txt_zycyzd").val(item.zdmc);
+                                $("#txt_zycyzddm").val(item.zddm);
+                                $("#txt_zycyqk").val(item.cyqk).trigger("change");
+                            }
+                            //辅助诊断
+                            if (item.zdlx > "1") {
+                                $('#tablezyzd .plusToggleCircle').click();
+                                var number = item.px;
+                                $("#txt_zyfzzd" + number).val(item.zdmc);
+                                $("#txt_zyfzzd" + number + "dm").val(item.zddm);
+                                $("#txt_zycyqk" + number).val(item.cyqk).trigger("change");
+                            }
+                        } else {
+                            if (item.zdlx == "1") {
+                                $("#txt_cyzd").val(item.zdmc);
+                                $("#txt_cyzddm").val(item.zddm);
+                                $("#txt_cyqk").val(item.cyqk).trigger("change");
+                            }
+                            //辅助诊断
+                            if (item.zdlx > "1") {
+                                $('#tablezd .plusToggleCircle').click();
+                                var number = item.px;
+                                $("#txt_fzzd" + number).val(item.zdmc);
+                                $("#txt_fzzd" + number + "dm").val(item.zddm);
+                                $("#txt_cyqk" + number).val(item.cyqk).trigger("change");
+                            }
+                        }
+                      
+                    });
+            }
+        });
+    }
+    function SavaOutArea_bak()
+    {
+        var zyh = '@ViewBag.zyh';
+        //var cyfs = $("#sel_cqfs").val();
+        //var cqsj = $("#txt_cqrq").val();
+        var zdrq = $("#txt_zdsj").val();
+        var zyzd = $("#txt_cyzd").val();
+        var zyzddm = $("#txt_cyzddm").val();
+        var cyqk = $("#txt_cyqk").val();
+        var fzzd1 = $("#txt_fzzd1").val();
+        var fzzd1dm = $("#txt_fzzd1dm").val();
+        var cyqk1 = $("#txt_cyqk1").val();
+        var fzzd2 = $("#txt_fzzd2").val();
+        var fzzd2dm = $("#txt_fzzd2dm").val();
+        var cyqk2 = $("#txt_cyqk2").val();
+        var fzzd3 = $("#txt_fzzd3").val();
+        var fzzd3dm = $("#txt_fzzd3dm").val();
+        var cyqk3 = $("#txt_cyqk3").val();
+        var zdyzd = $("#txt_zdyzd").val();
+        var cyqkzdy = $("#txt_cyqkzdy").val();
+        var patOutAreaVO = {
+            zyh: zyh,
+            //cyfs: cyfs,
+            //cqsj: cqsj,
+            zdrq: zdrq,
+            zyzd: zyzd,
+            zyzddm: zyzddm,
+            cyqk: cyqk,
+            fzzd1: fzzd1,
+            fzzd1dm: fzzd1dm,
+            cyqk1: cyqk1,
+            fzzd2: fzzd2,
+            fzzd2dm: fzzd2dm,
+            cyqk2: cyqk2,
+            fzzd3: fzzd3,
+            fzzd3dm: fzzd3dm,
+            cyqk3: cyqk3,
+            zdyzd: zdyzd,
+            cyqkzdy: cyqkzdy
+        }
+        if (zyzd == "" || zyzddm=="") {
+            $.modalAlert('Bệnh nhân này không có chẩn đoán xuất viện, không được phép chuyển khu!', 'warning');
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/NurseManage/WardMaintenance/SavaOutPatDiagnosis",
+            data: { patOutAreaVO: patOutAreaVO },
+            dataType: "json",
+            async:false,
+            success: function (ajaxresp) {
+                if (ajaxresp.state==="success") {
+                    $.modalMsg('Lưu thành công', 'success');
+                }
+                else {
+                    $.modalAlert(ajaxresp.message, 'warning');
+                }
+                clearData();
+            }
+        });
+	}
+
+	function SavaOutArea() {
+	    debugger;
+		var PatDxList = [];
+
+		//出院诊断
+		var PatDxObj = {
+			zyh:'@ViewBag.zyh',
+			zdrq : $("#txt_zdsj").val(),
+			zddl: 'WM',
+			zdlb:2,
+			zdlx: 1,
+            px:1,
+			zddm: $("#txt_cyzddm").val(),
+			zdmc: $("#txt_cyzd").val(),
+			cyqk: $("#txt_cyqk").val()
+		}
+	    var PatDxZyObj = {
+	        zyh: '@ViewBag.zyh',
+	        zdrq: $("#txt_zyzdsj").val(),
+	        zddl: 'TCM',
+	        zdlb: 2,
+	        zdlx: 1,
+            px:1,
+	        zddm: $("#txt_zycyzddm").val(),
+	        zdmc: $("#txt_zycyzd").val(),
+	        cyqk: $("#txt_zycyqk").val()
+	    }
+	    if ((PatDxObj.zddm == "" || PatDxObj.zdmc == "") && (PatDxZyObj.zddm == "" || PatDxZyObj.zdmc == "")) {
+			$.modalAlert('Bệnh nhân này không có chẩn đoán xuất viện, không được phép chuyển khu!', 'warning');
+			return;
+	    }
+	    if (PatDxObj.zddm != "")
+	        PatDxList.push(PatDxObj);
+	    if (PatDxZyObj.zddm)
+	        PatDxList.push(PatDxZyObj);
+		//自定义诊断
+		 @*PatDxObj = {
+				zyh:'@ViewBag.zyh',
+				zdrq : $("#txt_zdsj").val(),
+				zdlb:2,
+				zdlx:1,//自定义诊断由9改为1
+				zddm: "999999999",//自定义诊断代码默认999999999
+				zdmc: $("#txt_zdyzd").val(),
+				cyqk: $("#txt_cyqkzdy").val()
+			}
+		PatDxList.push(PatDxObj);*@
+
+		//西医辅助诊断
+		var number = $('#tablezd .zdinput').length;
+        for (var i = 2; i <= number; i++) {
+			 PatDxObj = {
+				zyh:'@ViewBag.zyh',
+			    zdrq: $("#txt_zdsj").val(),
+                zddl:'WM',
+                zdlb: 2,
+                zdlx:2,
+				px: i,
+				zddm:$("#txt_fzzd"+i+"dm").val(),
+				zdmc:$("#txt_fzzd" + i).val(),
+				cyqk:$("#txt_cyqk" + i).val()
+			}
+			PatDxList.push(PatDxObj);
+        }
+	    //中医辅助诊断
+	    var number = $('#tablezyzd .zdinput').length;
+	    for (var i = 2; i <= number; i++) {
+	        PatDxObj = {
+	            zyh: '@ViewBag.zyh',
+	            zdrq: $("#txt_zyzdsj").val(),
+	            zddl: 'TCM',
+	            zdlb: 2,
+	            zdlx: 2,
+	            px: i,
+	            zddm: $("#txt_zyfzzd" + i + "dm").val(),
+	            zdmc: $("#txt_zyfzzd" + i).val(),
+	            cyqk: $("#txt_zycyqk" + i).val()
+	        }
+	        PatDxList.push(PatDxObj);
+	    }
+
+		$.ajax({
+			type: "POST",
+			url: "/NurseManage/WardMaintenance/SavaPatDxList",
+			data: { PatDxList: PatDxList },
+			dataType: "json",
+			async: false,
+			success: function (ajaxresp) {
+				if (ajaxresp.state === "success") {
+					$.modalMsg('Lưu thành công', 'success');
+				}
+				else {
+					$.modalAlert(ajaxresp.message, 'warning');
+				}
+				clearData();
+			}
+		});
+
+	}
+    //中医辅助诊断 新增icon
+    $('#tablezyzd .plusToggleCircle').click(function () {
+        var number = $('#tablezyzd .zdinput').length + 1;
+        if (isopendiag == "OFF") {
+            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+            $newTr.appendTo($(this).closest('table'));
+        }
+        else {
+            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+            $newTr.appendTo($(this).closest('table'));
+        }
+        //中医辅助诊断浮层
+        bindZyFzzdFloatingSelector(number);
+    });
+    //中医症候浮层
+    function bindZyFzzdFloatingSelector(number) {
+        $("#txt_zyfzzd" + number).newtouchBatchFloatingSelector({
+            height: 200,
+            width: 600,
+            clickautotrigger: true,
+            url: "/NurseManage/WardMaintenance/GetryzdSelect",
+            ajaxparameters: function () {
+                return "ryzd=" + $("#txt_zyfzzd" + number).val() + "&ybnhlx=" + ybnhlx + "&zdlb=" + "ZYZH";
+            },
+            caption: "Xuất việnChẩn đoán",
+            colModel: [
+                { label: 'Tên', name: 'zdmc', widthratio: 60 },
+                { label: 'Pinyin', name: 'py', widthratio: 20 },
+                { label: 'icd10', name: 'icd10', widthratio: 20 },
+                { label: 'Số hiệu', name: 'zdbh', hidden: true },
+                { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
+            ],
+            itemdbclickhandler: function ($this) {
+                $("#txt_zyfzzd" + number).val($this.attr('data-zdmc'));
+                $("#txt_zyfzzd" + number + "dm").val($this.attr('data-icd10'));
+            }
+        });
+    }
+
+
+	//西医辅助诊断 新增icon
+    $('#tablezd .plusToggleCircle').click(function () {
+		//var number = $('#tablexyzd .zdText').length + 1;
+		//var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+		//var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><th class="formTitle">常用诊断</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td></tr>');
+	    var number = $('#tablezd .zdinput').length+ 1;
+
+	    //var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>辅助诊断' + number + '：</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">出院情况' + number + '：</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control" data-EnumType="EnumCYQK"></select></td></tr>');
+		if (isopendiag == "OFF") {
+		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợChẩn đoán:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+		    $newTr.appendTo($(this).closest('table'));
+		}
+		else
+		{
+		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Hỗ trợChẩn đoán:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Xuất việnTình hình:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
+		    $newTr.appendTo($(this).closest('table'));
+		}
+
+		//辅助诊断浮层
+		bindFzzdFloatingSelector(number);
+	});
+
+	//删除icon
+	$('#form1').on('click', '.minusToggleCircle', function () {
+		$(this).closest('tr').remove();
+	})
+
+	//西医辅助诊断浮层
+	function bindFzzdFloatingSelector(number) {
+        $("#txt_fzzd" + number).newtouchBatchFloatingSelector({
+            height: 200,
+            width: 600,
+            clickautotrigger: true,
+            url: "/NurseManage/WardMaintenance/GetryzdSelect",
+            ajaxparameters: function () {
+                return "ryzd=" + $("#txt_fzzd" + number).val() + "&ybnhlx=" + ybnhlx + "&zdlb=" + "WM";
+            },
+            caption: "Xuất việnChẩn đoán",
+            colModel: [
+                { label: 'Tên', name: 'zdmc', widthratio: 60 },
+                { label: 'Pinyin', name: 'py', widthratio: 20 },
+                { label: 'icd10', name: 'icd10', widthratio: 20 },
+                { label: 'Số hiệu', name: 'zdbh', hidden: true },
+                { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
+            ],
+			itemdbclickhandler: function ($this) {
+				$("#txt_fzzd" + number).val($this.attr('data-zdmc'));
+				$("#txt_fzzd" + number + "dm").val($this.attr('data-icd10'));
+			}
+		});
+	}
+
+    function clearData()
+    {
+        //$("#sel_cqfs").val("");
+        //$("#txt_cqrq").val("");
+        $("txt_zdsj").val("");
+        $("#txt_cyzd").val("");
+        $("#txt_cyzddm").val("");
+        $("#txt_fzzd1").val("");
+        $("#txt_fzzd1dm").val("");
+        $("#txt_fzzd2").val("");
+        $("#txt_fzzd2dm").val("");
+        $("#txt_fzzd3").val("");
+        $("#txt_fzzd3dm").val("");
+        $("#txt_zdyzd").val("");
+    }
+</script>

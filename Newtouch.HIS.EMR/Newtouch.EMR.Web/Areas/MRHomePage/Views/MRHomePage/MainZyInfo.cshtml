@@ -1,0 +1,578 @@
+﻿
+@{
+    Layout = null;
+}
+<style>
+    #dv_zyinfo input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        text-wrap: normal;
+        border-bottom-color: #74e8b5;
+    }
+
+    .spanleft {
+        float: left;
+        padding-top: 5px;
+    }
+
+    .spanright {
+        float: right;
+        padding-top: 5px;
+    }
+
+    /*td span[role=combobox]
+    {
+        border:none;
+    }*/
+</style>
+<div id="dv_zyinfo">
+    <div>
+        <table class="form" style="table-layout:fixed;">
+            
+            <th class="formTitle">Phân loại tình trạng bệnh</th>
+            <td class="formValue" colspan="3">
+                <div style="width:100px; float:left;">
+                    <select id="BQFX" name="BQFX" class="form-control" data-enumtype="EnumRybq"></select>
+                    <input style="height:0px;border-width:1px;" class="form-control" />
+                </div>
+                <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">
+                    1.Có&nbsp;&nbsp;2.Lâm sàng chưa xác định&nbsp;&nbsp;3.Chưa rõ tình hình&nbsp;&nbsp;4.Không có
+                </span>
+            </td>
+
+            <tr>
+                <th class="formTitle" style="width:120px">Tổn thương, Nguyên nhân bên ngoài gây ngộ độc</th>
+                <td class="formValue" colspan="5"><input id="WBYY" name="WBYY" attr-zddm="" attr-ICD10="" class="form-control" /></td>
+                <th class="formTitle">Mã bệnh</th>
+                <td class="formValue"><input id="H23" name="H23" attr-zddm="" attr-ICD10="" class="form-control" /></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Chẩn đoán bệnh lý</th>
+                <td class="formValue" colspan="3"><input id="BLZD" name="BLZD" attr-zddm="" attr-ICD10="" class="form-control" /></td>
+                <th class="formTitle">Mã bệnh</th>
+                <td class="formValue"><input id="BLZDDM" name="BLZDDM" attr-zddm="" attr-ICD10="" class="form-control" /></td>
+                <th class="formTitle">Số bệnh lý</th>
+                <td class="formValue"><input id="BLH" name="BLH" class="form-control" /></td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Dị ứng thuốc</th>
+                <td class="formValue" colspan="2">
+                    <div style="white-space:normal;overflow:hidden; ">
+                        <div style="width:50px; margin:0 auto;float: left;">
+                            <select id="YWGM" name="YWGM" class="form-control" data-enumtype="EnumHorN"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <span class="formValue" style=" height:25px; line-height:25px; float:left;margin-left:0px; margin-left:5px;" align="left">1.Không có&nbsp;&nbsp;2.Có</span>
+                    </div>
+                </td>
+                <th class="formTitle">Thuốc dị ứng</th>
+                <td class="formValue" colspan="3"><input id="GMYW" name="GMYW" class="form-control" /></td>
+                <th class="formTitle">Khám nghiệm tử thi bệnh nhân tử vong</th>
+                <td class="formValue" colspan="2">
+                    <div style="width:60px; float:left;">
+                        <select id="SWHZSJ" name="SWHZSJ" class="form-control" data-enumtype="EnumSwhzsj">
+                            <option>-</option>
+                        </select>
+                        <input style="height:0px;border-width:1px;" class="form-control" />
+                    </div>
+                    <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">1.Có&nbsp;&nbsp;2.Không</span>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Nhóm máu</th>
+                <td class="formValue" colspan="10">
+                    <div style="width:60px; float:left;">
+                        <select id="XX" name="XX" class="form-control" data-enumtype="EnumBloodType"></select>
+                        <input style="height:0px;border-width:1px;" class="form-control" />
+                    </div>
+                    <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">
+                        1.A&nbsp;&nbsp;2.B&nbsp;&nbsp;3.O&nbsp;&nbsp;4.AB&nbsp;&nbsp;5.Không rõ&nbsp;&nbsp;6.Chưa kiểm tra
+                    </span>
+                    <span class="formTitle" style="float:left; height:35px; line-height:35px;"><span class="required">*</span>RH</span>
+                    <div style="width:60px; float:left;">
+                        <select id="RH" name="RH" class="form-control" data-enumtype="EnumBloodTypeRH"></select>
+                        <input style="height:0px;border-width:1px;" class="form-control" />
+                    </div>
+                    <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">
+                        1.Âm tính&nbsp;&nbsp;2.Dương tính&nbsp;&nbsp;3.Không rõ&nbsp;&nbsp;4.Chưa kiểm tra
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Loại máu truyền</th>
+                <td colspan="10">
+                    <div style="width:130px;margin-right:15px;float:left;padding-left:0px;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">1.Hồng cầu</span>
+                        <input id="HXB" name="HXB" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">U</span>
+                    </div>
+                    <div style="width:160px;margin-right:10px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">2.Tiểu cầu</span>
+                        <input id="XXB" name="XXB" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">Điều trị lượng</span>
+                    </div>
+                    <div style="width:125px;margin-right:10px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">3.Huyết tương</span>
+                        <input id="XJ" name="XJ" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">ml</span>
+                    </div>
+                    <div style="width:125px;margin-right:10px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">4.Máu toàn phần</span>
+                        <input id="QX" name="QX" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">ml</span>
+                    </div>
+                    <div style="width:160px;margin-right:10px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">5.Truyền máu tự thân</span>
+                        <input id="ZTXHS" name="ZTXHS" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">ml</span>
+                    </div>
+                    <div style="width:130px;margin-right:10px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">6.Albumin</span>
+                        <input id="BDB" name="BDB" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">g</span>
+                    </div>
+                    <div style="width:130px;margin-right:10px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">7.Tủa lạnh</span>
+                        <input id="LCD" name="LCD" class="form-control" style="width:50px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">U</span>
+                    </div>
+                    <div style="width:130px; margin-right:10px; float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">8.Khác</span>
+                        <input id="QT" name="QT" class="form-control" style="width:80px;float:left;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                    </div>
+                    <div style="width:255px;float:left;" class="formValue">
+                        <span style="float:left;padding-right:10px;padding-top: 5px;">Phản ứng truyền máu</span>
+                        <div style="width:60px; float:left; padding:0px;">
+                            <select id="SXFY" name="SXFY" data-enumtype="EnumSXFY" class="form-control"></select>
+                            <input style="height:0px;border-width:1px; width:60px;" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" />
+                        </div>
+                        <span class="formValue" style="height:25px; line-height:25px; width:100px; float:left;margin-left:20px;">1.Có&nbsp;&nbsp;2.Không&nbsp;&nbsp;3.Chưa truyền</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Tái khám</th>
+                <td colspan="9">
+                    <div style="width:60px; float:left; padding:0px; margin-left:5px;" class="formValue">
+                        <select id="SZ" name="SZ" data-enumtype="EnumNewYorN" class="form-control">
+                            <option>-</option>
+                        </select>
+                        <input style="height:0px;border-width:1px; width:60px;" class="form-control" />
+                    </div>
+                    <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">1.Có&nbsp;&nbsp;2.Không</span>
+                    <div style="width:410px; float:left; margin-left:40px;" class="formValue">
+                        <span style="float:left;padding-right:20px;padding-top: 5px;" class="formTitle">Thời hạn tái khám</span>
+                        <input id="SZQXZ" name="SZQXZ" class="form-control" style="width:20%;float:left;text-align:center;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Tuần</span>
+                        <input id="SZQXY" name="SZQXY" class="form-control" style="width:20%;float:left;text-align:center;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Tháng</span>
+                        <input id="SZQXN" name="SZQXN" class="form-control" style="width:20%;float:left;text-align:center;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Năm</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Chủ nhiệm khoa</th>
+                <td class="formValue"><input id="KZR" name="KZR" class="form-control" /></td>
+                <th class="formTitle"><span class="required">*</span>Chủ nhiệm(Phó chủ nhiệm)Bác sĩ</th>
+                <td class="formValue"><input id="ZRYS" name="ZRYS" class="form-control" /></td>
+                <th class="formTitle"><span class="required">*</span>Bác sĩ chẩn trị chính</th>
+                <td class="formValue"><input id="ZZYS" name="ZZYS" class="form-control" /></td>
+                <th class="formTitle"><span class="required">*</span>Bác sĩ điều trị chính</th>
+                <td class="formValue"><input id="ZZYS1" name="ZZYS1" class="form-control" /></td>
+                <th class="formTitle"><span class="required">*</span>Bác sĩ nội trú</th>
+                <td class="formValue"><input id="ZYYS" name="ZYYS" class="form-control" /></td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Điều dưỡng chịu trách nhiệm</th>
+                <td class="formValue"><input id="ZRHS" name="ZRHS" class="form-control" /></td>
+                <th class="formTitle">Bác sĩ đào tạo nâng cao</th>
+                <td class="formValue"><input id="JXYS" name="JXYS" class="form-control" /></td>
+                <th class="formTitle">Bác sĩ thực tập</th>
+                <td class="formValue"><input id="SXYS" name="SXYS" class="form-control" /></td>
+                <th class="formTitle"><span class="required">*</span>Nhân viên mã hóa</th>
+                <td class="formValue"><input id="BMY" name="BMY" class="form-control" /></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Chất lượng hồ sơ bệnh án</th>
+                <td class="formValue">
+                    <select id="BAZL" name="BAZL" class="form-control" style="border:none;" data-enumtype="EnumBazl"></select>
+                    <input style="height:0px;border-width:1px;" class="form-control" />
+                </td>
+                <th class="formTitle">Bác sĩ kiểm soát chất lượng</th>
+                <td class="formValue"><input id="ZKYS" name="ZKYS" class="form-control" /></td>
+                <th class="formTitle">Điều dưỡng kiểm soát chất lượng</th>
+                <td class="formValue"><input id="ZKHS" name="ZKHS" class="form-control" /></td>
+                <th class="formTitle">Ngày kiểm soát chất lượng</th>
+                <td class="formValue">
+                    <input id="ZKRQ" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <div style="width:100%">
+                        <div style="width:270px;float:left;height:30px;line-height:30px" class="formValue">ⅠThời gian sử dụng kháng sinh dự phòng vết mổ theo loại:</div>
+                        <div style="float:left;width:5%;" class="formValue">
+                            <input id="SYCXSJ" name="SYCXSJ" class="form-control" style="float:left;width:60px;" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+                        </div>
+                        <div style="float:left;" class="formValue">
+                            <span style="float:left;height:30px;line-height:30px;">Giờ</span>
+                        </div>
+                        <span style="float:left;height:30px;line-height:30px;" class="formValue">Dùng thuốc kết hợp</span>
+                        <div style="width:65px; float:left;" class="formValue">
+                            <select id="LHYY" name="LHYY" data-enumtype="EnumYorN" class="form-control">
+                                <option style="display :none"></option>
+                            </select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <span style="float:left;margin-left:20px;height:30px;line-height:30px;" class="formValue">1.Có&nbsp;&nbsp;2.Không</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                
+            <td class="formValue" colspan="3"></td>
+            <th class="formTitle">Có áp dụng quản lý đường đi lâm sàng</th>
+            <td class="formValue">
+                <select id="SSLCLJ" name="SSLCLJ" class="form-control" data-enumtype="EnumHorN"></select>
+                <input style="height:0px;border-width:1px;" class="form-control" />
+
+                <th class="formTitle">Có áp dụng đường đi lâm sàng<br />quản lý</th>
+                <td class="formValue" colspan="10">
+                    <div style="overflow:hidden;white-space:normal;width:50%;float:left;">
+                        <div style="width:60px; float:left;">
+                            <select id="SSLCLJ" name="SSLCLJ" class="form-control" data-enumtype="EnumNewYorN"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">1.Có&nbsp;&nbsp;2.Không</span>
+
+                        <span style="float:left;padding-right:5px;line-height:30px; margin-left:40px;" class="formTitle">Đã hoàn thành đường đi lâm sàng</span>
+                        <div style="width:60px; float:left;">
+                            <select id="WCLCLJ" name="WCLCLJ" class="form-control" data-enumtype="EnumNewYorN">
+                                <option>-</option>
+                            </select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">1.Có&nbsp;&nbsp;2.Không, Lý do thoát:</span>
+                        <input id="TCYY" name="TCYY" class="form-control" style="width:15.4%;height:30px;float:left;" />
+                    </div>
+
+                    <div style="overflow:hidden;white-space:normal;width:47%;float:left;">
+                        <div style="float:left;line-height:30px; margin-left:30px;">Có biến dị không</div>
+                        <div style="width:60px; float:left;">
+                            <select id="SFBY" name="SFBY" class="form-control" data-enumtype="EnumNewYorN">
+                                <option>-</option>
+                            </select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">
+                            1.Có&nbsp;&nbsp;2.Không, Nguyên nhân biến dị:
+                        </div>
+                        <div style="width:80px; float:left;">
+                            <select id="BYYY" name="BYYY" class="form-control" data-enumtype="EnumBYYY">
+                                <option>-</option>
+                            </select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div class="formValue" style="width:170px; height:25px; line-height:25px; float:left;margin-left:20px;">
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Cách rời viện</th>
+                <td class="formValue">
+                    <select id="LYFS" name="LYFS" class="form-control" data-enumtype="EnumLyfs"></select>
+                    <input style="height:0px;border-width:1px;" class="form-control" />
+                </td>
+                <th class="formTitle" colspan="2">Tên cơ sở y tế dự kiến tiếp nhận khi chuyển viện theo y lệnh</th>
+                <td class="formValue" colspan="2"><input id="YZZY_YLJG" name="YZZY_YLJG" class="form-control" /></td>
+                <th class="formTitle">Chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã,Tên cơ sở y tế dự kiến tiếp nhận</th>
+                <td class="formValue" style="width:170px; height:25px; line-height:25px; float:left;margin-left:200px;"><input id="WSY_YLJG" name="WSY_YLJG" class="form-control" /></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Tình hình kiểm tra</th>
+                <td class="formValue" colspan="10" style="width:200px">
+                    <div style="float:left" class="formValue">
+                        <div style="float:left;line-height:30px;">CT</div>
+                        <div style="width:55px; float:left;">
+                            <select id="CT" name="CT" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">PETCT</div>
+                        <div style="width:55px; float:left;">
+                            <select id="PETCT" name="PETCT" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">Nguồn képCT</div>
+                        <div style="width:55px; float:left;">
+                            <select id="SYCT" name="SYCT" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">BSiêu âm</div>
+                        <div style="width:55px; float:left;">
+                            <select id="BC" name="BC" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">XPhim</div>
+                        <div style="width:55px; float:left;">
+                            <select id="XP" name="XP" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">Siêu âm tim</div>
+                        <div style="width:55px; float:left;">
+                            <select id="CSXDT" name="CSXDT" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">MRI</div>
+                        <div style="width:55px; float:left;">
+                            <select id="MRI" name="MRI" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px;border-width:1px;" class="form-control" />
+                        </div>
+                        <div style="float:left;line-height:30px; margin-left:25px;">Kiểm tra đồng vị</div>
+                        <div style="width:55px; float:left;">
+                            <select id="TWSJC" name="TWSJC" class="form-control" data-enumtype="EnumJCQK"></select>
+                            <input style="height:0px; border-width:1px;" class="form-control" />
+                        </div>
+                        <span class="formValue" style=" float:left;margin-left:5px; ">1.Dương tính&nbsp;&nbsp;2.Âm tính&nbsp;&nbsp;3.Chưa thực hiện</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" colspan="1"><span class="required">*</span>Có kế hoạch tái nhập viện trong 31 ngày sau khi ra viện không</th>
+                <td class="formValue">
+                    <div style="width:60px; float:left;">
+                        <select id="SFZZYJH" name="SFZZYJH" class="form-control" data-enumtype="EnumHorN">
+                            <option style="display :none"></option>
+                        </select>
+                        <input style="height:0px;border-width:1px;" class="form-control" />
+                    </div>
+                    <span class="formValue" style="height:25px; line-height:25px; float:left;margin-left:20px;">1.Không có&nbsp;&nbsp;2.Có</span>
+                </td>
+                <th class="formTitle">Mục đích</th>
+                <td class="formValue" colspan="2"><input id="MD" name="MD" class="form-control" /></td>
+            </tr>
+            <tr>
+                <th class="formTitle" colspan="1"><span class="required"></span>Thời gian hôn mê của bệnh nhân chấn thương sọ não</th>
+                <td class="formValue" colspan="7">
+                    <span class="spanleft"><span class="required"></span>Trước khi nhập viện</span>
+                    <input id="RYQ_T" name="RYQ_T" class="form-control" style="width:10%;float:left;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Ngày</span>
+                    <input id="RYQ_XS" name="RYQ_XS" class="form-control" style="width:10%;float:left;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Giờ</span>
+                    <input id="RYQ_F" name="RYQ_F" class="form-control" style="width:10%;float:left;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Phút</span>
+                    <span class="spanleft" style="padding-left:20px;"><span class="required"></span>Sau khi nhập viện</span>
+                    <input id="RYH_T" name="RYH_T" class="form-control" style="width:10%;float:left;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Ngày</span>
+                    <input id="RYH_XS" name="RYH_XS" class="form-control" style="width:10%;float:left;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Giờ</span>
+                    <input id="RYH_F" name="RYH_F" class="form-control" style="width:10%;float:left;" onkeyup="this.value=this.value.replace(/\D/g,'')" /><span class="spanleft">Phút</span>
+                </td>
+            </tr>
+
+        </table>
+        <hr />
+    </div>
+
+</div>
+<script>
+    //诊断
+    $("#BLZD").zdFloatingSelector({
+        zdlx: "Chẩn đoán bệnh lý",
+        width: 600,
+        itemdbclickhandler: function ($this) {
+            $("#BLZD").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-code')).attr("attr-ICD10", $this.attr('data-icd10'));
+            $("#BLZDDM").val($this.attr('data-icd10'));
+        }
+    });
+
+    $("#BLZDDM").zdFloatingSelector({
+        zdlx: "Chẩn đoán bệnh lý",
+        width: 600,
+        itemdbclickhandler: function ($this) {
+            $("#BLZD").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-code')).attr("attr-ICD10", $this.attr('data-icd10'));
+            $("#BLZDDM").val($this.attr('data-icd10'));
+        }
+    });
+
+    $("#WBYY").zdFloatingSelector({
+        zdlx: "Nguyên nhân tổn thương/ngộ độc",
+        width: 600,
+        itemdbclickhandler: function ($this) {
+            $("#WBYY").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-code')).attr("attr-ICD10", $this.attr('data-icd10'));
+            $("#H23").val($this.attr('data-icd10'));
+        }
+    });
+
+    $("#H23").zdFloatingSelector({
+        zdlx: "Nguyên nhân tổn thương/ngộ độc",
+        width: 600,
+        itemdbclickhandler: function ($this) {
+            $("#WBYY").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-code')).attr("attr-ICD10", $this.attr('data-icd10'));
+            $("#H23").val($this.attr('data-icd10'));
+        }
+    });
+    
+    $("#KZR").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+    $("#ZRYS").dutyStaffFloatingSelector({
+		dutyCode: 'fzrys'
+    });
+    $("#ZZYS").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+	});
+	$("#ZZYS").dutyStaffFloatingSelector({
+		dutyCode: 'Doctor'
+	});
+	$("#ZZYS1").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+    $("#JXYS").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+    $("#SXYS").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+    $("#ZKYS").dutyStaffFloatingSelector({
+        dutyCode: 'Doctor'
+    });
+    $("#ZRHS").dutyStaffFloatingSelector({
+        dutyCode: 'Nurse'
+    });
+    $("#ZKHS").dutyStaffFloatingSelector({
+        dutyCode: 'Nurse'
+    });
+    $("#BMY").dutyStaffFloatingSelector({
+        dutyCode: ''
+    });
+
+    //$('#XX option').filter(function () { return $(this).text() == "未查"; }).attr("selected", true); 
+    //$("#select2-XX-container option:contains('未查')").attr('title', '未查');
+    //$('#select2-XX-results').attr('aria-selected', 'true');
+    /*Đặt giá trị mặc định */
+    function myOnload() {
+        $(document).ready(function () {
+            //离院方式
+            $('#select2-LYFS-container').each(function () {
+                var myvalue = 'Y lệnh ra viện';
+                $(this).html(myvalue);
+            });
+            $('#select2-LYFS-container').attr('title', 'Y lệnh ra viện');
+            $('#LYFS option').filter(function () { return $(this).text() == 'Y lệnh ra viện'; }).attr('selected', true);
+
+            //血型
+            $('#select2-XX-container').each(function () {
+                var myvalue = 'Chưa kiểm tra';
+                $(this).html(myvalue);
+            });
+            $('#select2-XX-container').attr('title', 'Chưa kiểm tra');
+            $('#XX option').filter(function () { return $(this).text() == 'Chưa kiểm tra'; }).attr('selected', true); 
+
+            //RH
+            $('#select2-RH-container').each(function () {
+                var myvalue = 'Chưa kiểm tra';
+                $(this).html(myvalue);
+            });
+            $('#select2-RH-container').attr('title', 'Chưa kiểm tra');
+            $('#RH option').filter(function () { return $(this).text() == 'Chưa kiểm tra'; }).attr('selected', true); 
+
+            //输血反应
+            $('#select2-SXFY-container').each(function () {
+                var myvalue = 'Chưa truyền';
+                $(this).html(myvalue);
+            });
+            $('#select2-SXFY-container').attr('title', 'Chưa truyền');
+            $('#SXFY option').filter(function () { return $(this).text() == 'Chưa truyền'; }).attr('selected', true);
+            
+
+            //病案质量
+            $('#select2-BAZL-container').each(function () {
+                var myvalue = '';
+                $(this).html(myvalue);
+            });
+            $('#select2-BAZL-container').attr('title', '');
+
+            //过敏药物
+            $('#GMYW').val('Không có');
+
+            //死亡患者尸检
+            $('#select2-SWHZSJ-container').each(function () {
+                var myvalue = '-';
+                $(this).html(myvalue);
+            });
+            $('#select2-SWHZSJ-container').attr('title', '');
+            $('#SWHZSJ option').filter(function () { return $(this).text() == '-'; }).attr('selected', true); 
+            $('#SWHZSJ option').filter(function () { return $(this).text() == '-'; }).attr('value', '');
+
+            //实施临床路径
+            $('#select2-SSLCLJ-container').each(function () {
+                var myvalue = 'Không';
+                $(this).html(myvalue);
+            });
+            $('#select2-SSLCLJ-container').attr('title', 'Không');
+            $('#SSLCLJ option').filter(function () { return $(this).text() == 'Không'; }).attr('selected', true);
+
+            //ct
+            $('#select2-CT-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-CT-container').attr('title', 'Chưa thực hiện');
+            $('#CT option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //PETCT
+            $('#select2-PETCT-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-PETCT-container').attr('title', 'Chưa thực hiện');
+            $('#PETCT option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //SYCT 
+            $('#select2-SYCT-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-SYCT-container').attr('title', 'Chưa thực hiện');
+            $('#SYCT option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //BC 
+            $('#select2-BC-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-BC-container').attr('title', 'Chưa thực hiện');
+            $('#BC option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //XP 
+            $('#select2-XP-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-XP-container').attr('title', 'Chưa thực hiện');
+            $('#XP option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //CSXDT
+            $('#select2-CSXDT-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-CSXDT-container').attr('title', 'Chưa thực hiện');
+            $('#CSXDT option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //MRI 
+            $('#select2-MRI-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-MRI-container').attr('title', 'Chưa thực hiện');
+            $('#MRI option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+
+            //TWSJC 
+            $('#select2-TWSJC-container').each(function () {
+                var myvalue = 'Chưa thực hiện';
+                $(this).html(myvalue);
+            });
+            $('#select2-TWSJC-container').attr('title', 'Chưa thực hiện');
+            $('#TWSJC option').filter(function () { return $(this).text() == 'Chưa thực hiện'; }).attr('selected', true);
+        });
+    }
+
+    myOnload();
+</script>
