@@ -1,6 +1,6 @@
-﻿@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -14,24 +14,24 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>证照所属：</th>
+                        <th class="formTitle"><span class="required">*</span>Chủ thể giấy phép：</th>
                         <td class="formValue">
                             <select class="form-control" id="belongedId">
-                                <option value="">全部</option>
+                                <option value="">Tất cả</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>类型：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại：</th>
                         <td class="formValue">
-                            <input id="typeName" name="typeName" type="text" class="form-control required" placeholder="类型" />
+                            <input id="typeName" name="typeName" type="text" class="form-control required" placeholder="Loại" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -57,15 +57,15 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
-        //加载所属
+        //Tải Chủ thể
         $("#belongedId").bindSelect({
             url: "/LicenceManage/Licence/Getbelonged"
         });
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -81,14 +81,14 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#belongedId").val() === "") {
-            $.modalAlert("证照所属必选", 'warning');
+            $.modalAlert("Phải chọn chủ thể giấy phép", 'warning');
             return false;
         }
         if ($("#typeName").val() === "") {
-            $.modalAlert("类型必填", 'warning');
+            $.modalAlert("Phải nhập loại", 'warning');
             return false;
         }
         return true;

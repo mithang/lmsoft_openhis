@@ -1,0 +1,122 @@
+@{
+    ViewBag.Title = "Tra cứu lãi/lỗ điều chỉnh giá";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <td class="formTitle">Ngày bắt đầu：</td>
+                <td class="formValue" style="width: 120px;"><input type="text" id="startTime" style="width: 120px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00' })" /></td>
+                <td class="formTitle" style="width:30px;padding-right: 5px;">Đến： </td>
+                <td class="formValue" style="width:120px;"><input type="text" id="endTime" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
+                <td class="formTitle" style="padding-right:5px;width:70px;">Từ khóa：</td>
+                <td class="formValue" style="padding-right:5px;width:100px;">
+                    <input type="text" id="Srm" class="form-control" placeholder="Phiên âm vật tư/Tên" />
+                </td>
+                <th class="formTitle" style="width:50px;padding-right:5px;">Kho：</th>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="ddlkfbm" class="form-control required">
+                        <option>Tất cả</option>
+                    </select>
+                </td>
+                <td style="width:120px;">
+                    <input type="checkbox" value="Hiển thị bản ghi tồn kho bằng 0" id="checkLkc" style="margin-left:10px;float: left;" />
+                    <span style="display: block;float: left; margin: 3px 0 0 2px;">Hiển thị bản ghi tồn kho bằng 0</span>
+                </td>
+                <td class="formValue" style="width:120px;" align="center">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px;" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<div class="gridPanel" style="margin-top:10px">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script>
+    $(function () {
+        initYfbmDdl(); //Đang tải khoa dượcddl
+        gridList(); //Đang tảiGrid
+    });
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/ProductManage/PriceAdjustment/GetPriceAdjustmentProfitLoss?r=" + Math.random(),
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
+            postData: getSearchPostData(),
+            colModel: [
+                { label: "Khóa chính", name: "TjsyId", hidden: true, key: true },
+                { label: 'Loại', name: 'lbmc', width: 80, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 120, align: 'left' },
+                { label: 'Số lượng lúc đó', name: 'dssl', width: 50, align: 'right' },
+                { label: 'Đơn vị định giá', name: 'dwmc', width: 60, align: 'center' },
+                { label: 'Văn bản điều chỉnh', name: 'tjwj', width: 80, align: 'left' },
+                {
+                    label: 'Giá bán lẻ cũ', name: 'ylsj', width: 70, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }
+                },
+                {
+                    label: 'Giá bán lẻ mới', name: 'xlsj', width: 70, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    }
+                },
+                {
+                    label: 'Lợi nhuận điều chỉnh giá bán lẻ', name: 'lsjtjlr', width: 70, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                {
+                    label: 'Hiệu lực', name: 'zt', width: 40, align: 'center',
+                    formatter: function (cellvalue) {
+                        return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
+                    }
+                },
+                { label: 'Người thao tác', name: 'CreatorCode', width: 50, align: 'left' },
+                {
+                    label: 'Thời gian điều chỉnh', name: 'tjsj', width: 50, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
+                },
+                { label: 'productId', name: 'productId', hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'tjsj desc'
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function getSearchPostData() {
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        var srm = $("#Srm").val();
+        var ddlkfbm = $("#ddlkfbm").val();
+        var lkc = $("#checkLkc").is(':checked') ? 1 : 0;
+        return { startTime: startTime, endTime: endTime, keyWord: srm, kfbm: ddlkfbm, lkc: lkc };
+    }
+
+    function initYfbmDdl() {
+        $("#ddlkfbm").bindSelect({
+            url: "/ProductManage/PriceAdjustment/GetCurrentUserKfList",
+            id: "kfId",
+            text: "kfName"
+        });
+    }
+
+</script>

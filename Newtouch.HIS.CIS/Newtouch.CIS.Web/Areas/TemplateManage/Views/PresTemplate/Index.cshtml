@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutIndex.cshtml";
@@ -8,14 +8,14 @@
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
     <div class="ui-layout-west">
         <ul id="beveltabs">
-            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>个人</a></li>
-            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>科室</a></li>
-            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>全院</a></li>
+            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>Cá nhân</a></li>
+            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>Khoa</a></li>
+            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>Toàn viện</a></li>
         </ul>
         <table class="form">
             <tr>
                 <td class="formValue">
-                    <input id="mbKeyword" type="text" class="form-control" placeholder="输入模板名称/简拼按回车键盘" />
+                    <input id="mbKeyword" type="text" class="form-control" placeholder="Nhập mẫuTên/Nhập mã rút gọn rồi nhấn Enter" />
                 </td>
             </tr>
         </table>
@@ -34,8 +34,8 @@
     <iframe class="ui-layout-center" id="iframerightiframerightiframeright" name="iframerightiframerightiframeright"></iframe>
 </div>
 
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/beveltabs.css", false)" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/beveltabs.js", false)"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/beveltabs.css", false)" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/beveltabs.js", false)"></script>
 
 <script type="text/javascript">
     $(function ($) {

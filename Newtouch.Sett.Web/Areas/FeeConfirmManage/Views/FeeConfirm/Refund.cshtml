@@ -1,0 +1,239 @@
+
+@{
+    ViewBag.Title = "Refund";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="panel panel-default" style="margin-bottom: 4px;">
+    <div class="panel-heading navb-bg">
+        Điều kiện lọc
+    </div>
+    <div style="padding-right:20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="blh" placeholder="" style="width: 48%; float: left;" />
+                    <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 15%;margin-left: 2%;" title="Chọn bệnh nhân" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());">
+                </td>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="xm" placeholder="" />
+                </td>
+                <th class="formTitle">tính phí Thời gian：</th>
+                <td class="formValue" colspan="2">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left:2%;float:left;">—</span>
+                    <input id="jssj" type="text" class="form-control input-wdatepicker" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <td></td>
+                <td>
+                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:40%;margin-left:10%;" value="Tra cứu" onclick="SerarchPresList()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default" style="margin-bottom: 4px;">
+    <div class="panel-heading navb-bg">
+        Thông tin bệnh nhân
+    </div>
+    <div style="padding-right:20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
+                <td class="formValue">
+                    <label id="type">R25639</label>
+                </td>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue">
+                    <label id="xm">大白</label>
+                </td>
+                <th class="formTitle">Giới tính：</th>
+                <td class="formValue">
+                    <label id="xb">Nữ</label>
+                </td>
+                <th class="formTitle">Tuổi：</th>
+                <td class="formValue">
+                    <label id="nl">26</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Số bảo hiểm：</td>
+                <td class="formValue">
+                    <label id="bxh">35010343123456743</label>
+                </td>
+                <td class="formTitle">Loại phí：</td>
+                <td class="formValue">
+                    <label id="fb">Tự chi trả</label>
+                </td>
+                <td class="formTitle">Chẩn đoán lâm sàng：</td>
+                <td class="formValue">
+                    <label id="lczd">Đau lưng</label>
+                </td>
+                <th class="formTitle">Vị trí thực hiện thủ thuật：</th>
+                <td class="formValue">
+                    <label id="ssbw">Vùng thắt lưng Cách du Tâm du Đốc du</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 6 },
+    F6Text = "Hoàn phí"
+})
+
+<script>
+    $(function () {
+        var mydata = [,
+       {
+           cfh: 'R20170503140000321', kflb: 'PT', xmmc: 'Điện châm', sl: '1', dj: 30.00, tsl: '1', dw: '2 vị trí', sc: '', je: 30.00, sfrq: '2017-10-01 11:23:55'
+       },
+       {
+           cfh: 'R20170417170000323', kflb: 'PT', xmmc: 'Điều trị bằng tia hồng ngoại', sl: '3', dj: 30.00, tsl: '3', dw: 'phút', sc: '30', je: 90.00, sfrq: '2017-10-01 11:23:55'
+       },
+       {
+           cfh: 'R20170417180000324', kflb: 'PT', xmmc: 'Tập luyện lại thần kinh cơ', sl: '4', dj: 30.00, tsl: '3', dw: 'phút', sc: '30', je: 120.00, sfrq: '2017-10-01 11:23:55'
+       },
+       {
+           cfh: 'R20170503140000325', kflb: 'PT', xmmc: 'Kỹ thuật nới lỏng khớp', sl: '3', dj: 30.00, tsl: '3', dw: 'phút', sc: '30', je: 90.00, sfrq: '2017-10-01 11:23:55'
+       }
+        ];
+        gridList(mydata);
+    })
+
+    //病人查询
+    function GetPatSerarchView(blh) {
+        if (!!!blh) {
+            blh = '';
+        };
+        $.modalOpen({
+            id: "patSearch",
+            title: "Tra cứu bệnh nhân",
+            url: "/PatientManage/AccountManage/PatOnlyBlhSearchView?t=" + Math.random() + "&blh=" + blh,
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid();
+            }//窗口点确定的回调函数
+        });
+    }
+
+    //选择的病人 callback
+    function getPatInfoAjax(selePatInfo) {
+        $('#blh').val(selePatInfo.blh)
+        $('#blh').attr('data-patId', selePatInfo.patId);
+        $('#xm').val(selePatInfo.xm);
+    }
+
+    //处方查询
+    function SerarchPresList() {
+        if ($("#blh").val() == "") {
+            $.modalAlert("Vui lòng trước điền Số hồ sơ bệnh án", 'warning');
+            return false;
+        }
+        $.modalOpen({
+            id: "patSearch",
+            title: "Danh sách đơn thuốc",
+            url: "/FeeConfirmManage/FeeConfirm/PrescriptionForm?t=" + Math.random() + "&blh=" + $("#blh").val() + "&kssj=" + $('#kssj').val() + "&jssj=" + $('#kssj').val(),
+            width: "600px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].DbClickGrid();
+            }//窗口点确定的回调函数
+        });
+    }
+
+    //处方明细
+    function gridList(mydata) {
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            //url: "///?t=" + Math.random(),
+            //postData: getSearchPostData(),
+            height: $(window).height() - 310,
+            unwritten: false,
+            caption: "chi tiết đơn thuốc Số tiền thực thu：￥2000 Tổng số lần：8",
+            colModel: [
+            { label: "Số đơn thuốc", name: "cfh", width: 150, align: "left" },
+            { label: "Loại phục hồi chức năng", name: "kflb", width: 80, align: "left" },
+            { label: "Tên khoản mục", name: "xmmc", width: 100, align: "left" },
+            { label: "Số lượng", name: "sl", width: 80, align: "left" },
+            {
+                label: "Đơn giá", name: "dj", width: 80, align: "left",
+                formatter: function (val) {
+                    if (val) {
+                        return val.toFixed(4);
+                    } else {
+                        return '';
+                    }
+                }
+            },
+            { label: "Số lượng hoàn", name: "tsl", width: 100, editable: true, editrules: { integer: true, minValue: 1 }, align: "left" },
+            { label: "Thời lượng", name: "sc", width: 60, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 80, align: "left" },
+            {
+                label: "Số tiền", name: "je", width: 80, align: "left",
+                formatter: function (val) {
+                    if (val) {
+                        return val.toFixed(2);
+                    } else {
+                        return '';
+                    }
+                }
+            },
+            {
+                label: "Ngày thu phí", name: "sfrq", width: 100, align: "left",
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+            }
+            ],
+            multiselect: true,
+            pager: "#gridPager",
+            sortname: 'sfrq desc',
+            viewrecords: true,
+            onSelectRow: function (rowid) {
+                $("#" + $.jgrid.jqID(rowid) + "_tsl").focus();
+            },
+            gridComplete: function () {
+                //启用行内编辑框
+                EnableInlineEditBox();
+            }
+        },mydata);
+        $("#btn_search").click(function () {
+            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
+                $.modalAlert("Bắt đầu ghi sổ Ngày Không thể lớn hơn Kết thúc ghi sổ Thời gian", 'warning');
+                return;
+            }
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData()
+            }).trigger('reloadGrid');
+        })
+    }
+
+    //启用行内编辑框
+    function EnableInlineEditBox() {
+        var rowIds = $("#gridList").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+
+            $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {
+            });
+        }
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var keyword = $("#keyword").val();
+        var blh = $("#blh").val();
+        var xm = $("#xm").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        return { blh: blh, xm: xm, keyword: keyword, kssj: kssj, jssj: jssj };
+    };
+
+</script>
+

@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "医嘱页";
+    ViewBag.Title = "Y lệnh trang";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -21,17 +21,17 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">开始日期：</th>
+                    <th class="formTitle">Ngày bắt đầu:</th>
                     <td class="formValue">
                         <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() } })" value="@DateTime.Now.ToString("yyyy-MM-01")" />
                     </td>
-                    <th class="formTitle">结束日期：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
                         <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() }  })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                     </td>
-                    <td><input type="button" id="yzmc" name="jgdc" style="float:right;width:50px" value="医嘱" class="btn btn-primary" /></td>
-                    <td><input type="button" id="yfyl" name="jgdc" style="float:right;" value="医嘱+用量+用法+频次" class="btn btn-primary" /></td>
-                    <td><input type="button" id="yzt" name="jgdc" style="float:right;width:150px" value="医嘱+用量+用法+频次+嘱托" class="btn btn-primary" /></td>
+                    <td><input type="button" id="yzmc" name="jgdc" style="float:right;width:50px" value="Y lệnh" class="btn btn-primary" /></td>
+                    <td><input type="button" id="yfyl" name="jgdc" style="float:right;" value="Y lệnh+Liều dùng+Cách dùng+Tần suất" class="btn btn-primary" /></td>
+                    <td><input type="button" id="yzt" name="jgdc" style="float:right;width:150px" value="Y lệnh+Liều dùng+Cách dùng+Tần suất+Dặn dò" class="btn btn-primary" /></td>
                 </tr>
             </table>
         </div>
@@ -40,7 +40,7 @@
             <div id="gridPatPager" style="padding-right:20%"></div>
         </div>
     </div>
-    @*onclick="document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, 'test');"*@
+    
 </form>
 
 <script lang="javascript">
@@ -75,45 +75,45 @@
             rowNum: 100,
             rownumbers: true,
             colModel: [
-                { label: '医嘱ID', name: 'Id', align: 'center', hidden: true },
-                { label: '医嘱类别', name: 'yzlb', align: 'center', width: 50 },
+                { label: 'Y lệnh iD', name: 'Id', align: 'center', hidden: true },
+                { label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50 },
                 {
-                    label: '医嘱类型', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Kiểu y lệnh', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzlx", val);
                     }
                 },
                 {
-                    label: '状态', name: 'yzzt', align: 'center', width: 30, formatter: function (val, options, rowObject) {
+                    label: 'Trạng thái', name: 'yzzt', align: 'center', width: 30, formatter: function (val, options, rowObject) {
                         if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DC状态
-                            //有执行时间，取已执行状态，有审核时间，取已审核状态
+                            //有执行时间, 取已执行状态, 有审核时间, 取已审核状态
                             if (rowObject["zxsj"] && rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
-                                return "执行";
+                                return "Thực hiện";
                             } else {
-                                return "审核";
+                                return "Duyệt";
                             }
                         } else if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.TZ).ToString())) {
                             if (rowObject["yzlb"] == "长") {
-                                return "停止";
+                                return "Dừng";
                             } else {
-                                return "作废";
+                                return "Hủy hiệu lực";
                             }
                         }
                         return $.enum.getDescByValue("EnumYzzt", val);
                     }
                 },
-                { label: '开始时间', name: 'kssj', align: 'center', width: 109, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '医生', name: 'ysmc', align: 'center', width: 40 },
-                { label: '医嘱', name: 'yznr', align: 'center', width: 205 },
-                { label: '同组', name: 'zh', align: 'center', width: 30 },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 109, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Bác sĩ', name: 'ysmc', align: 'center', width: 40 },
+                { label: 'Y lệnh', name: 'yznr', align: 'center', width: 205 },
+                { label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30 },
                 {
-                    label: '停止时间', name: 'tzsj', align: 'center', width: 110, formatter: "date",
+                    label: 'Dừng thời gian', name: 'tzsj', align: 'center', width: 110, formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '用量', name: 'yl', align: 'center', width: 50 },
-                { label: '用量单位', name: 'yldw', align: 'center', width: 80 },
-                { label: '用法', name: 'yf', align: 'center', width: 50 },
-                { label: '频次', name: 'pc', align: 'center', width: 50 },
-                { label: '医嘱托', name: 'yzt', align: 'center', width: 30 },
+                { label: 'Liều dùng', name: 'yl', align: 'center', width: 50 },
+                { label: 'Đơn vị liều', name: 'yldw', align: 'center', width: 80 },
+                { label: 'Cách dùng', name: 'yf', align: 'center', width: 50 },
+                { label: 'Tần suất', name: 'pc', align: 'center', width: 50 },
+                { label: 'Lời dặn y lệnh', name: 'yzt', align: 'center', width: 30 },
             ],
             multiselect: true
         });
@@ -134,13 +134,13 @@
         
         rowIds = $('#gridPatientList').jqGrid('getGridParam', 'selarrrow');
         if (rowIds.length < 1) {
-            alert("请至少选择一条医嘱导出！");
+            alert("Vui lòng chọn ít nhất một y lệnh để xuất!");
         }
         else {
             var jg = "";
             for (var k = 0; k < rowIds.length; k++) {
                 var rowData = $("#gridPatientList").jqGrid('getRowData', rowIds[k]);
-                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + "，";
+                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + ", ";
             };
             if(doctype==".html")
                 $.currentWindow().insertDataAtCursor(jg);
@@ -152,13 +152,13 @@
     $("#yfyl").click(function () {
         rowIds = $('#gridPatientList').jqGrid('getGridParam', 'selarrrow');
         if (rowIds.length < 1) {
-            alert("请至少选择一条医嘱导出！");
+            alert("Vui lòng chọn ít nhất một y lệnh để xuất!");
         }
         else {
             var jg = "";
             for (var k = 0; k < rowIds.length; k++) {
                 var rowData = $("#gridPatientList").jqGrid('getRowData', rowIds[k]);
-                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + " " + (rowData.yl == undefined ? " " : rowData.yl) + " " + (rowData.yf == undefined ? " " : rowData.yf) + " " + (rowData.pc == undefined ? " " : rowData.pc) + "，";
+                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + " " + (rowData.yl == undefined ? " " : rowData.yl) + " " + (rowData.yf == undefined ? " " : rowData.yf) + " " + (rowData.pc == undefined ? " " : rowData.pc) + ", ";
             };
             if(doctype==".html")
                 $.currentWindow().insertDataAtCursor(jg);
@@ -171,13 +171,13 @@
     $("#yzt").click(function () {
         rowIds = $('#gridPatientList').jqGrid('getGridParam', 'selarrrow');
         if (rowIds.length < 1) {
-            alert("请至少选择一条医嘱导出！");
+            alert("Vui lòng chọn ít nhất một y lệnh để xuất!");
         }
         else {
             var jg = "";
             for (var k = 0; k < rowIds.length; k++) {
                 var rowData = $("#gridPatientList").jqGrid('getRowData', rowIds[k]);
-                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + " " + (rowData.yl == undefined ? " " : rowData.yl) + " " + (rowData.yf == undefined ? " " : rowData.yf) + " " + (rowData.pc == undefined ? " " : rowData.pc) + " " + (rowData.yzt == undefined ? " " : rowData.yzt) + "，";
+                jg += (rowData.yznr == undefined ? " " : rowData.yznr) + " " + (rowData.yl == undefined ? " " : rowData.yl) + " " + (rowData.yf == undefined ? " " : rowData.yf) + " " + (rowData.pc == undefined ? " " : rowData.pc) + " " + (rowData.yzt == undefined ? " " : rowData.yzt) + ", ";
             };
             if(doctype==".html")
                 $.currentWindow().insertDataAtCursor(jg);

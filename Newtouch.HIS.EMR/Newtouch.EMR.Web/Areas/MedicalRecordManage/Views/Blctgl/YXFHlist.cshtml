@@ -1,9 +1,9 @@
 ﻿@{
 	Layout = null;
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.min.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.css")" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.min.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
 <style>
 	#tsfhDiv {
 		position: fixed;
@@ -49,7 +49,7 @@
 
 <div class="dv-body" id="tsfhDiv">
 	<span id="toolbar2">
-		<a class="btn  " id="biaoqian2" >医<br />学<br />符<br />号</a>
+		<a class="btn  " id="biaoqian2" >Y<br />học<br />ký<br />hiệu</a>
 
 	</span>
 
@@ -80,7 +80,7 @@
 			rownumbers: false,
 			//caption: "医学符号",
 			colModel: [
-				{ label: '类别', name: 'ctmc', width: 30, align: 'left', hidden: true },
+				{ label: 'Loại', name: 'ctmc', width: 30, align: 'left', hidden: true },
 				{ label: 'zf0', name: 'zf0', width: 40, align: 'left' },
 				{ label: 'zf1', name: 'zf1', width: 40, align: 'left' },
 				{ label: 'zf2', name: 'zf2', width: 40, align: 'left' },

@@ -1,24 +1,40 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
+
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class TreatmentPrintController : OrgControllerBase
     {
         private readonly ITreatmentPrintDmnService _iTreatmentPrintDmnService;
+
+        public TreatmentPrintController(ITreatmentPrintDmnService iTreatmentPrintDmnService)
+        {
+            this._iTreatmentPrintDmnService = iTreatmentPrintDmnService;
+        }
         /// <summary>
-        /// 获取病区人员执行树
+        /// 获取病区人员Thực hiện树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatWardTree()
+        public IActionResult GetPatWardTree()
         {
 
             var wardTree = _iTreatmentPrintDmnService.GetPatTree(OrganizeId);
@@ -63,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(treeList.TreeViewJson(null));
         }
 
-        public ActionResult GetGridJson(Pagination pagination,string zyh,DateTime? kssj, DateTime? jssj,int?zyxz)
+        public IActionResult GetGridJson(Pagination pagination,string zyh,DateTime? kssj, DateTime? jssj,int?zyxz)
         {
             var data = new
             {

@@ -1,30 +1,14 @@
-﻿using Autofac;
-using Newtouch.HIS.Domain.IDomainServices;
-using Newtouch.HIS.Domain.IRepository;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Newtouch.HIS.Base.HOSP.API.Configs
+namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 字典
+    /// 字典 — bản gốc KHÔNG có action nào (chỉ ctor). Port giữ nguyên: controller
+    /// tồn tại nhưng không expose endpoint (không phải stub do port bịa ra).
     /// </summary>
-    [RoutePrefix("api/Items")]
-    public class ItemsController : ApiControllerBase<ItemsController>
+    [Route("api/Items")]
+    [ApiController]
+    public class ItemsController : ControllerBase
     {
-        private readonly ISysItemsRepository _sysItemsRepo;
-        private readonly ISysItemsDetailRepository _sysItemsDetailRepo;
-        private readonly IItemDmnService _itemDmnService;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ItemsController(IComponentContext com)
-            : base(com)
-        {
-
-        }
-
-
-
     }
 }

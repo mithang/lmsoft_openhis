@@ -1,18 +1,21 @@
-﻿using Newtouch.Core.Common;
-using System.Web.Mvc;
+using System.ComponentModel;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.DTO.InputDto;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
 using Newtouch.Herp.Infrastructure;
 using Newtouch.Herp.Infrastructure.Enum;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Extension;
 
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 出入库单操作
+    /// 出入库单操作 (Core port)
     /// </summary>
+    [Area("BillManage")]
     public class OutOrInStorageBillController : ControllerBase
     {
         private readonly IKfCrkdjDmnService _kfCrkdjDmnService;
@@ -20,13 +23,34 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         private readonly IKfCrkmxRepo _crkmxRepo;
         private readonly IOutOrInStorageBillApprovalApp _outOrInStorageBillApprovalApp;
 
+        public OutOrInStorageBillController(IKfCrkdjDmnService kfCrkdjDmnService,
+            IKfCrkdjRepo crkdjRepo, IKfCrkmxRepo crkmxRepo,
+            IOutOrInStorageBillApprovalApp outOrInStorageBillApprovalApp)
+        {
+            _kfCrkdjDmnService = kfCrkdjDmnService;
+            _crkdjRepo = crkdjRepo;
+            _crkmxRepo = crkmxRepo;
+            _outOrInStorageBillApprovalApp = outOrInStorageBillApprovalApp;
+        }
+
+        // The copy has no GetDescription() extension (the original came from
+        // the Framework-era Newtouch.Core). Read the Description attribute
+        // directly; values come from the already-translated EnumDB, except the
+        // PROTECTED EnumOutOrInStorageBillType descriptions, which are never
+        // translated (they are receipt-number keys, not display text).
+        private static string Desc(System.Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            return field?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? value.ToString();
+        }
+
         #region 单据审核
 
         /// <summary>
         /// 单据审核
         /// </summary>
         /// <returns></returns>
-        public ActionResult Approval()
+        public IActionResult Approval()
         {
             return View();
         }
@@ -34,31 +58,24 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 出入库单据 审核
         /// </summary>
-        /// <param name="billApprovalDTO"></param>
-        /// <returns></returns>
-        public ActionResult SubmitReceiptApproval(BillApprovalDTO billApprovalDTO)
+        public IActionResult SubmitReceiptApproval(BillApprovalDTO billApprovalDTO)
         {
             var result = _outOrInStorageBillApprovalApp.Approval(billApprovalDTO);
-            return string.IsNullOrWhiteSpace(result) ? Success("操作成功") : Error(result);
+            return string.IsNullOrWhiteSpace(result) ? Success("Thao tác thành công") : Error(result);
         }
 
         /// <summary>
         /// 修改发票号
         /// </summary>
-        /// <param name="crkmxId"></param>
-        /// <param name="fph"></param>
-        /// <returns></returns>
-        public ActionResult UpdateFph(long crkmxId, string fph)
+        public IActionResult UpdateFph(long crkmxId, string fph)
         {
-            return _crkmxRepo.UpdateFph(crkmxId, fph) > 0 ? Success() : Error("修改发票号失败");
+            return _crkmxRepo.UpdateFph(crkmxId, fph) > 0 ? Success() : Error("Sửa số hóa đơn thất bại");
         }
-        
+
         /// <summary>
         /// 打回申请 从待处理变成暂存，只针对外部入库
         /// </summary>
-        /// <param name="crkId"></param>
-        /// <returns></returns>
-        public ActionResult BackToTemporary(long crkId)
+        public IActionResult BackToTemporary(long crkId)
         {
             var result = _crkdjRepo.BackToTemporary(crkId);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -72,7 +89,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// 单据查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult Query()
+        public IActionResult Query()
         {
             ViewBag.OrganizeId = OrganizeId;
             return View();
@@ -81,11 +98,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 单据查询 主信息
         /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="param"></param>
-        /// <param name="from"></param>
-        /// <returns></returns>
-        public ActionResult SelectReceiptMainInfo(Pagination pagination, CrkdjSearchParamDTO param, string from = "query")
+        public IActionResult SelectReceiptMainInfo(Pagination pagination, CrkdjSearchParamDTO param, string from = "query")
         {
             var allUseableDjlx = new[] {
                 ((int)EnumOutOrInStorageBillType.Wbrk).ToString(),
@@ -136,9 +149,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 单据查询明细
         /// </summary>
-        /// <param name="crkId"></param>
-        /// <returns></returns>
-        public ActionResult SelectReceipDetailInfo(string crkId)
+        public IActionResult SelectReceipDetailInfo(string crkId)
         {
             return Content(_kfCrkdjDmnService.GetCrkdjmxList(crkId, OrganizeId).ToJson());
         }
@@ -147,15 +158,14 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// 获取常用的审核状态
         /// </summary>
         /// <returns></returns>
-        public ActionResult QueryCommonAuditState()
+        public IActionResult QueryCommonAuditState()
         {
             var result = new object[] {
-               new { id = "", text = "==全部==" },
-               new { id = (int)EnumAuditState.Waiting, text = EnumAuditState.Waiting.GetDescription() },
-               new { id = (int)EnumAuditState.Adopt, text = EnumAuditState.Adopt.GetDescription() },
-               new { id = (int)EnumAuditState.Refuse, text = EnumAuditState.Refuse.GetDescription() },
-               new { id = (int)EnumAuditState.Cancelled, text = EnumAuditState.Cancelled.GetDescription() },
-               
+               new { id = "", text = "==Tất cả==" },
+               new { id = (int)EnumAuditState.Waiting, text = Desc(EnumAuditState.Waiting) },
+               new { id = (int)EnumAuditState.Adopt, text = Desc(EnumAuditState.Adopt) },
+               new { id = (int)EnumAuditState.Refuse, text = Desc(EnumAuditState.Refuse) },
+               new { id = (int)EnumAuditState.Cancelled, text = Desc(EnumAuditState.Cancelled) },
             };
             return Content(result.ToJson());
         }
@@ -163,10 +173,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 根据配送单号和供应商ID获取出入库单据明细
         /// </summary>
-        /// <param name="deliveryNo"></param>
-        /// <param name="gysId"></param>
-        /// <returns></returns>
-        public ActionResult QueryCrkmxByDeliveryNo(string deliveryNo, string gysId, string djh)
+        public IActionResult QueryCrkmxByDeliveryNo(string deliveryNo, string gysId, string djh)
         {
             var result = _kfCrkdjDmnService.SelectCrkmxByDeliveryNo(deliveryNo, djh, Constants.CurrentKf.currentKfId, OrganizeId, gysId);
             return Content(result.ToJson());
@@ -180,7 +187,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// 我的暂存 视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult MyTemporaryCrkdj()
+        public IActionResult MyTemporaryCrkdj()
         {
             return View();
         }
@@ -188,9 +195,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 删除暂存单
         /// </summary>
-        /// <param name="billApprovalDTO"></param>
-        /// <returns></returns>
-        public ActionResult DeleteTemporaryCrkdj(BillApprovalDTO billApprovalDTO)
+        public IActionResult DeleteTemporaryCrkdj(BillApprovalDTO billApprovalDTO)
         {
             var result = _kfCrkdjDmnService.DeleteCrkdj(billApprovalDTO.djId);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -199,10 +204,8 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 根据配送单号获取暂存的单据明细
         /// </summary>
-        /// <param name="deliveryNo"></param>
-        /// <returns></returns>
         [HttpGet]
-        public ActionResult QueryTemporaryCrkmx(string deliveryNo, string djh)
+        public IActionResult QueryTemporaryCrkmx(string deliveryNo, string djh)
         {
             var result = _kfCrkdjDmnService.SelectCrkmxByDeliveryNo(deliveryNo, djh, Constants.CurrentKf.currentKfId, OrganizeId);
             return Content(result.ToJson());

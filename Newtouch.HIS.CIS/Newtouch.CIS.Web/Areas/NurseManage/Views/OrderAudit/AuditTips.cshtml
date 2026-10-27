@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.title = "AuditTips";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -42,24 +42,24 @@
             url: "/NurseManage/OrderAudit/Displayinformation",
             height: $(window).height() - 130,
             colModel: [
-                { label: '医嘱ID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
+                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
                 {
-                    label: '医嘱性质', name: 'yzxz', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Tính chất y lệnh', name: 'yzxz', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzxz", val);
                     } },
-                { label: '住院号', name: 'zyh', align: 'center',width:80 },
-                { label: '姓名', name: 'xm', align: 'center',width:80 },
-                { label: '药品名称', name: 'xmmc', align: 'center', width: 150 },
-                { label: '组号', name: 'zh', align: 'center', width: 50 },
-                { label: '是否需要皮试', name: 'ispscs', align: 'center', width: 80 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center',width:80 },
+                { label: 'Họ tên', name: 'xm', align: 'center',width:80 },
+                { label: 'Tên thuốc', name: 'xmmc', align: 'center', width: 150 },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
+                { label: 'Có hay khôngCầnTest da', name: 'ispscs', align: 'center', width: 80 },
                 { label: 'Result', name: 'Result', align: 'center', width: 80, hidden: true },
-                { label: '皮试结果', name: 'Remark', align: 'center', width: 80, hidden: true }
+                { label: 'Kết quả test da', name: 'Remark', align: 'center', width: 80, hidden: true }
                 ,
                 {
-                    label: "操作", name: "", width: 80, align: 'left',
+                    label: "Thao tác", name: "", width: 80, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
                         if (rowobject.ispscs == "未录入") {
-                            return '<a class="btn btn-primary" title="补录"  onclick="printMxData(\'' + rowobject.yzid + '\',\'' + rowobject.zyh + '\',\'' + rowobject.yzxz + '\')">补录</a>';
+                            return '<a class="btn btn-primary" title="Bổ sung"  onclick="printMxData(\'' + rowobject.yzid + '\',\'' + rowobject.zyh + '\',\'' + rowobject.yzxz + '\')">Bổ sung</a>';
                             
                         }
                         else {
@@ -84,7 +84,7 @@
 
             $.modalOpen({
                 id: "InpatientVitalSignsForm",
-                title: "皮试录入",
+                title: "Test daNhập",
                 url: "/NurseManage/OrderAudit/Inputresults",
                 width: "400px",
                 height: "200px",
@@ -102,15 +102,15 @@
                             type: "post",
                             success: function (data) {
                                 
-                                if (s = "皮试录入成功") {
-                                    $.modalMsg('皮试录入成功', 'success');
+                                if (s = "Test daNhậpthành công") {
+                                    $.modalMsg('Test daNhậpthành công', 'success');
                                     window.location.replace("/NurseManage/OrderAudit/AuditTips?ajaxresp=" + patzyh);
                                     
                                     $('#gridList').jqGrid("reloadGrid");
                                     
                                 }
                                 else {
-                                    $.modalMsg('录入失败或者已录入', 'error');
+                                    $.modalMsg('Nhập thất bại hoặc đã nhập', 'error');
                                     window.location.replace("/NurseManage/OrderAudit/AuditTips?ajaxresp=" + patzyh);
                                     $('#gridList').jqGrid("reloadGrid");
                                 }

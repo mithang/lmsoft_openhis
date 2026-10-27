@@ -37,7 +37,7 @@ function openLocalFile() {
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     // console.log("失败");
-                    alert("文件打开失败");
+                    alert("Mở tệp thất bại");
                 }
             });
         };
@@ -53,11 +53,11 @@ function MySaveFile() {
     if ($("#ljwb").text() != "") {
         var ctl = document.getElementById('myWriterControl');
         if (ctl.DCExecuteCommand('FileSave', true, null) == true) {
-            //alert("保存成功。服务器端返回:" + ctl.ServerMessage);
-            savePrompt("保存成功", "green");
+            //alert("Lưu thành công。服务器端返回:" + ctl.ServerMessage);
+            savePrompt("Lưu thành công", "green");
         } else {
-            //alert("保存失败。服务器端返回:" + ctl.ServerMessage);
-            savePrompt("保存失败", "red");
+            //alert("Lưu thất bại。服务器端返回:" + ctl.ServerMessage);
+            savePrompt("Lưu thất bại", "red");
         }
     } else {
         var ctl = document.getElementById('myWriterControl');
@@ -74,11 +74,11 @@ function MySaveFile() {
             success: function (data) {
                 // console.log("成功");
                 // console.log(data);
-                savePrompt("保存成功", "green");
+                savePrompt("Lưu thành công", "green");
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 // console.log("失败");
-                savePrompt("保存失败", "red");
+                savePrompt("Lưu thất bại", "red");
             }
         });
     }
@@ -118,7 +118,7 @@ function ClosePrintPreview() {
     var ctl = document.getElementById("myWriterControl");
     ctl.ClosePrintPreview();
 }
-//表单模式
+//Chế độ biểu mẫu
 function changeview(obj) {
     // 获得控件容器元素
     var ctl = document.getElementById("myWriterControl");
@@ -136,11 +136,11 @@ function changeview(obj) {
     ctl.DocumentOptions.ViewOptions.EnableEncryptView = true;
     ctl.DocumentOptions.ViewOptions.PrintBackgroundText = true;
     ctl.DocumentOptions.ViewOptions.PreserveBackgroundTextWhenPrint = true;
-    if (obj.text == "表单模式") {
+    if (obj.text == "Chế độ biểu mẫu") {
         ctl.Options.FormView = "Normal";
-        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>编辑模式</span></span>";
+        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>Chế độ sửa</span></span>";
     } else {
-        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>表单模式</span></span>";
+        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>Chế độ biểu mẫu</span></span>";
     }
     ctl.ToolbarForPrintPreview = document.getElementById("btrPrintPreview");
     // 创建编辑器框架
@@ -159,11 +159,11 @@ function changeview(obj) {
     ctl.DocumentLoad = function () {
         // 文档加载后设置控件的鼠标拖拽滚动模式
         if (this.serverPerformances) {
-            document.getElementById("lblServerTime").innerHTML = "|生成" +
-                this.serverPerformances.characters + "个字符，编辑器内核耗时" +
-                this.serverPerformances.serverTicks + "毫秒,服务器端耗时" +
-                this.serverPerformances.totalServerTicks + "毫秒 ，客户端耗时" +
-                this.serverPerformances.clientTicks + "毫秒。";
+            document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
+                this.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
+                this.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
+                this.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
+                this.serverPerformances.clientTicks + "ms。";
         }
         var htm = $("#ljwb").text();
         if (htm != "") {
@@ -180,7 +180,7 @@ function changeview(obj) {
         }
     };
 }
-//自动缩放模式
+//Chế độ tự động co giãn
 function changeAutoZoom(obj) {
     // 获得控件容器元素
     var ctl = document.getElementById("myWriterControl");
@@ -197,12 +197,12 @@ function changeAutoZoom(obj) {
     ctl.DocumentOptions.ViewOptions.EnableEncryptView = true;
     ctl.DocumentOptions.ViewOptions.PrintBackgroundText = true;
     ctl.DocumentOptions.ViewOptions.PreserveBackgroundTextWhenPrint = true;
-    if (obj.text == "自动缩放模式") {
+    if (obj.text == "Chế độ tự động co giãn") {
         ctl.Options.AutoZoom = true;
-        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>编辑模式</span></span>";
+        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>Chế độ sửa</span></span>";
     } else {
         ctl.Options.AutoZoom = false;
-        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>自动缩放模式</span></span>";
+        obj.innerHTML = "<span class='l-btn-left'><span class='l-btn-text'>Chế độ tự động co giãn</span></span>";
     }
     ctl.ToolbarForPrintPreview = document.getElementById("btrPrintPreview");
     // 创建编辑器框架
@@ -222,11 +222,11 @@ function changeAutoZoom(obj) {
     ctl.DocumentLoad = function () {
         // 文档加载后设置控件的鼠标拖拽滚动模式
         if (this.serverPerformances) {
-            document.getElementById("lblServerTime").innerHTML = "|生成" +
-                this.serverPerformances.characters + "个字符，编辑器内核耗时" +
-                this.serverPerformances.serverTicks + "毫秒,服务器端耗时" +
-                this.serverPerformances.totalServerTicks + "毫秒 ，客户端耗时" +
-                this.serverPerformances.clientTicks + "毫秒。";
+            document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
+                this.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
+                this.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
+                this.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
+                this.serverPerformances.clientTicks + "ms。";
         }
         var htm = $("#ljwb").text();
         if (htm != "") {
@@ -295,11 +295,11 @@ function BuildDCWriterControlFrame() {
     ctl.DocumentLoad = function () {
         // 文档加载后设置控件的鼠标拖拽滚动模式
         if (this.serverPerformances) {
-            document.getElementById("lblServerTime").innerHTML = "|生成" +
-                this.serverPerformances.characters + "个字符，编辑器内核耗时" +
-                this.serverPerformances.serverTicks + "毫秒,服务器端耗时" +
-                this.serverPerformances.totalServerTicks + "毫秒 ，客户端耗时" +
-                this.serverPerformances.clientTicks + "毫秒。";
+            document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
+                this.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
+                this.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
+                this.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
+                this.serverPerformances.clientTicks + "ms。";
         }
         //firstFile 第一次加载文档
         AjaxLoad("入院记录.xml");
@@ -315,7 +315,7 @@ function AjaxLoad(fileName) {
     $("#uploadljwb").text("");
     $("#ljwb").html(fileName);
     var ctl = document.getElementById("myWriterControl");
-    document.getElementById("lblServerTime").innerHTML = "|正在加载...";
+    document.getElementById("lblServerTime").innerHTML = "|Đang tải...";
     ctl.preserveScrollPosition = true; // 加载文档时尽量保留页面滚动位置。
     // 文档加载后事件处理，由于采用AJAX模式，并不确定LoadDocumentFormFile()返回后是否会触发这个事件
     // 因此需要在并不确定LoadDocumentFormFile()函数前设置好这个事件处理代码。
@@ -323,11 +323,11 @@ function AjaxLoad(fileName) {
         ctl.setMouseDragScrollMode(false); // 文档加载后设置控件的鼠标拖拽滚动模式
         var performances = ctl.getServerPerformances();
         if (ctl.serverPerformances) {
-            document.getElementById("lblServerTime").innerHTML = "|生成" +
-                ctl.serverPerformances.characters + "个字符，编辑器内核耗时" +
-                ctl.serverPerformances.serverTicks + "毫秒,服务器端耗时" +
-                ctl.serverPerformances.totalServerTicks + "毫秒 ，客户端耗时" +
-                ctl.serverPerformances.clientTicks + "毫秒。";
+            document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
+                ctl.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
+                ctl.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
+                ctl.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
+                ctl.serverPerformances.clientTicks + "ms。";
         }
     }
     // 在服务器端响应控件的EventReadFileContent事件，即可使用AJAX模式加载文档。
@@ -340,7 +340,7 @@ function loadFile(name) {
         type: 'GET',
         timeout: 2000,
         error: function () {
-            alert("加载XML 文件出错！");
+            alert("Tải tệp XML bị lỗi！");
         },
         success: function (xml) {
             var ctl = document.getElementById("myWriterControl");
@@ -388,17 +388,17 @@ function MySetElementText() {
         }
         node = node.parentNode;
     }
-    var id = window.prompt("请输入元素ID", initID);
+    var id = window.prompt("Vui lòng nhập ID phần tử", initID);
     if (id == null || id == "") {
-        alert("请输入元素ID");
+        alert("Vui lòng nhập ID phần tử");
         return false;
     } else {
-        var text = window.prompt("请输入文本");
+        var text = window.prompt("Vui lòng nhập văn bản");
         if (id != null && id.length > 0) {
             var oldText = ctl.GetElementTextByID(id);
             var newText = text;
             var result = ctl.SetElementTextByID(id, newText);
-            alert("旧文本值为:" + oldText + "  新文本值:" + newText + "  操作结果:" + result);
+            alert("Giá trị văn bản cũ là:" + oldText + "  Giá trị văn bản mới là:" + newText + "  Kết quả thao tác:" + result);
         }
     }
 }
@@ -410,11 +410,11 @@ function DeleteField() {
 // 自定义右键菜单
 function MySetContextMenu() {
     var jsonMenu = [{
-        label: '这里是用户添加一个菜单',
+        label: 'Đây là menu do người dùng thêm',
         cmdName: 'cleardoc',
         icon: 'aligntd',
         exec: function () {
-            alert("添加一个菜单");
+            alert("Thêm một menu");
         }
     },
     {
@@ -458,14 +458,14 @@ function MySetContextMenu() {
         cmdName: 'copy'
     },
     {
-        label: '剪切(Ctrl + x)',
+        label: 'Cắt (Ctrl + x)',
         cmdName: 'cut',
         exec: function () {
             ctl.DCExecuteCommand('Cut', true, null);
         }
     },
     {
-        label: '内部粘贴',
+        label: 'Dán nội bộ',
         cmdName: 'paste',
         exec: function () {
             ctl.DCExecuteCommand('Paste', true, null);//粘贴内部复制或者剪切的
@@ -541,17 +541,17 @@ function MyInsertNameInputField() {
     var ctl = document.getElementById("myWriterControl");
     var options = {
         "ContentReadonly": false,
-        "ToolTip": "请输入年龄",
-        "BackgroundText": "年龄",
+        "ToolTip": "Vui lòng nhập tuổi",
+        "BackgroundText": "Tuổi",
         "Text": "30",
         "InnerValue": "30",
         "ValidateStyle": "Required:True;ValueType:Numeric;CheckMaxValue:True;MaxValue:150;CheckMinValue:True;MinValue:0",
         "EnableValueValidate": true,
-        "Name": "年龄",
+        "Name": "Tuổi",
         "ID": "txtAge",
         "StartBorderText": "【",
         "EndBorderText": "】",
-        "UnitText": "岁"
+        "UnitText": "tuổi"
     };
     var field = ctl.DCExecuteCommand("InsertInputField", true, options);
     if (field != null) {
@@ -563,23 +563,23 @@ function MyInsertSexInputField() {
     var ctl = document.getElementById("myWriterControl");
     var options = {
         "ContentReadonly": false,
-        "ToolTip": "请选择性别",
-        "BackgroundText": "性别",
+        "ToolTip": "Vui lòng chọn giới tính",
+        "BackgroundText": "Giới tính",
         "EnableValueValidate": true,
-        "Name": "性别",
+        "Name": "Giới tính",
         "ID": "txtSex",
         "StartBorderText": "<",
         "EndBorderText": ">",
         "ListItems": [{
-            "Text": "男",
+            "Text": "Nam",
             "Value": "1"
         },
         {
-            "Text": "女",
+            "Text": "Nữ",
             "Value": "0"
         },
         {
-            "Text": "其他",
+            "Text": "Khác",
             "Value": "2"
         }
         ],
@@ -596,13 +596,13 @@ function MyInsertDateInputField() {
     var ctl = document.getElementById("myWriterControl");
     var options = {
         "ContentReadonly": false,
-        "ToolTip": "请输入日期",
-        "BackgroundText": "日期",
+        "ToolTip": "Vui lòng nhập ngày",
+        "BackgroundText": "Ngày",
         "Text": "2015-01-09 09:39",
         "InnerEditStyle": "DateTime",
         "EditorActiveMode": "MouseClick",
         "EnableValueValidate": true,
-        "Name": "日期",
+        "Name": "Ngày",
         "ID": "txtDate"
     };
     var field = ctl.DCExecuteCommand("InsertInputField", true, options);
@@ -620,21 +620,21 @@ function MyInsertRadioOrCheckBoxInputField(type) {
         "ListItems": [
             {
                 "ID": "name001-1",
-                "ToolTip": "提示信息",
-                "Text": "内容1",
-                "Value": "值1"
+                "ToolTip": "Thông tin gợi ý",
+                "Text": "Nội dung 1",
+                "Value": "Giá trị 1"
             },
             {
                 "ID": "name001-2",
-                "ToolTip": "提示信息",
-                "Text": "内容2",
-                "Value": "值2"
+                "ToolTip": "Thông tin gợi ý",
+                "Text": "Nội dung 2",
+                "Value": "Giá trị 2"
             },
             {
                 "ID": "name001-3",
-                "ToolTip": "提示信息",
-                "Text": "内容3",
-                "Value": "值3"
+                "ToolTip": "Thông tin gợi ý",
+                "Text": "Nội dung 3",
+                "Value": "Giá trị 3"
             }
         ]
     };

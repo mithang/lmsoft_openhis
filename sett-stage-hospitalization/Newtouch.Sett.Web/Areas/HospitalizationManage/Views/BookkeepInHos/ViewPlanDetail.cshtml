@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "ViewPlanDetail";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script type="text/javascript">
+    var keyValue = $.request("keyValue");
+    var f = $.request("from");
+    var zt = $.request("zxzt");
+    $(function () {
+        if (!!keyValue) {
+            gridList();
+        }
+    });
+    //Chi tiết
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/HospitalizationManage/BookkeepInHos/AccountingPlanDetailQuery",
+            height: $(window).height() - 120,
+            postData: { jzjhmxId: keyValue, from: f },
+            colModel: [
+            { label: "zxId", name: "zxId", align: "left", hidden: true, key: true },
+            { label: "jzjhmxId", name: "jzjhmxId", width: 100, align: "left", hidden: true },
+            { label: "Tên bệnh nhân", name: "xm", width: 70, align: "left" },
+            { label: "Số bệnh án", name: "blh", hidden: true, align: "left" },
+            { label: (f == "mz" ? "Số ngoại trú" : "Mã nhập viện"), name: "mzzyh", width: (f == "mz" ? 100 : 70), align: "left", hidden: true },
+
+            { label: "Loại phục hồi", name: "kflb", width: 80, align: "left" },
+            { label: "Trị liệu sư", name: "zls", width: 80, align: "left" },
+            { label: "Mụcthu phí", name: "sfxmmc", width: 120, align: "left" },
+            { label: "Lượng điều trị", name: "zll", width: 80, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 40, align: "left" },
+            { label: "Số lượng", name: "sl", width: 40, align: "left" },
+            {
+                label: "Chính sách bồi hoàn", name: "zfxz", width: 60, align: "left",
+                formatter: function (cellvalue) {
+                    return $.enum.getDescByValue("EnumZiFuXingZhi", cellvalue);
+                }
+            },
+            { label: "Số tiền", name: "je", width: 55, align: "left", formatter: "number", formatoptions: { decimalPlaces: 2, defaultValue: '0.00' } },
+            {
+                label: "Ngày điều trị", name: "zlrq", width: 80, align: "left",
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            },
+            {
+                label: "Thời gian thao tác", name: "CreateTime", width: 140, align: "left",
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+            },
+			{
+			    label: "Trạng thái", name: "zt", width: 50, align: "left",
+			    formatter: function (cellvalue, a, b) {
+			        if (cellvalue == '1') {
+			            return "Bình thường"
+			        }
+			        else {
+			            return "Đã hủy";
+			        }
+			    }
+			}],
+            pager: "#gridPager",
+            rowNum: '15',
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            gridComplete: function () {
+                var ids = $("#gridList").getDataIDs();
+                for (i = 0; i < ids.length; i++) {
+                    var rowData = $("#gridList").getRowData(ids[i]);
+                    if (rowData && rowData.zt) {
+                        if (rowData.zt == "Đã hủy") {
+                            $("#" + ids[i]).find("td").addClass('danger');
+                        }
+                    }
+                }
+            },
+            ondblClickRow: function (rowid) {
+                updateExc();
+            }
+        });
+    }
+
+    function cancelExc() {
+        //181015Đã hoàn thành có thể hủy
+        //if (zt == "Đã hoàn thành") {
+        //    $.modalAlert("Kế hoạch đã hoàn thành không thể hủy", 'warning');
+        //    return;
+        //}
+
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        var data = $("#gridList").jqGridRowValue();
+        if (data.zt == "Không hợp lệ") {
+            $.modalAlert("Vui lòng chọn một thông tin hợp lệ", 'warning');
+            return;
+        }
+        if (data) {
+            $.najax({
+                type: "GET",
+                url: "/HospitalizationManage/BookkeepInHos/cancelExce?zxbh=" + data.zxId + "&jzjhmxId=" + data.jzjhmxId + "&from=" + f,
+                loading: true,
+                success: function (ajaxresp) {
+                    $("#gridList").resetSelection();
+                    $("#gridList").clearGridData();
+                    $("#gridList").trigger("reloadGrid");
+                }
+            });
+        }
+    }
+
+    function updateExc() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        var data = $("#gridList").jqGridRowValue();
+        if (data.zt == "Không hợp lệ") {
+            $.modalAlert("Vui lòng chọn một thông tin hợp lệ", 'warning');
+            return;
+        }
+
+        $.modalOpen({
+            id: "UpdateExecForm",
+            title: "Sửa đổi chi tiết số lần thực hiện",
+            url: "/HospitalizationManage/BookkeepInHos/UpdateExecForm?keyValue=" + data.zxId + "&from=" + f,
+            width: "500px",
+            height: "300px",
+            callBack: function (iframeId) {
+                top.UpdateExecForm.submitForm(function () {
+                    $("#gridList").resetSelection();
+                    $("#gridList").clearGridData();
+                    $("#gridList").jqGrid('setGridParam',
+                    {
+                        postData: { jzjhmxId: keyValue, from: f },
+                        url: "/HospitalizationManage/BookkeepInHos/AccountingPlanDetailQuery"
+                    }).trigger('reloadGrid');
+                });
+
+            }
+        });
+    }
+</script>
+<form name="form1">
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+    <input type="button" onclick="updateExc()" class="btn btn-primary btn-md" value="Sửa đổi" style="float: right;margin-top: 10px;margin-right: 20px;" />
+    <input type="button" id="cancelExce" onclick="cancelExc()" class="btn btn-primary btn-md" value="Hủy thực hiện" style="float: right;margin-top: 10px;margin-right: 20px;" />
+</form>

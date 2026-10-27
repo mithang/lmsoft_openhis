@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "病历结构维护";
+    ViewBag.Title = "Bảo trì cấu trúc bệnh án";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <style>
     .dv-left {
         width: 15%;
@@ -28,13 +28,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_Blmladd()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_Blmladd()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_Blmladd(1)"><i class="fa fa-plus"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_Blmladd(1)"><i class="fa fa-plus"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_Blmldelete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_Blmldelete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
 
         </div>
     </div>
@@ -44,7 +44,7 @@
         <div class="dv-left-tree" id="YsTree"></div>
     </div>
     <div id="Blys" class="gridPanel dv-right">
-        @Html.Action("Form", "Bljgh")
+        @await Component.InvokeAsync("BljghForm")
         <table id="gridList" style="width:100%;"></table>
         <div id="gridPager"></div>
     </div>
@@ -91,20 +91,20 @@
             url: "/MedicalRecordManage/Bljgh/GetGridJson",
             height: $(window).height() - 300,
             colModel: [
-                 { label: "主键", name: "Id", hidden: true, key: true },
-                 { label: '字段代码', name: 'Table_Column_Code', width: 80, align: 'center' },
-                 { label: '字段名称', name: 'Table_Colunn_Name', width: 80, align: 'center' },
-                 { label: "字段类型", name: "Table_Column_Type", width: 80, align: 'center' },
-                 { label: "字段序号", name: "Table_Column_No", width: 50, align: 'center'},
-                 { label: '元素编码', name: 'Element_ID', width: 80, align: 'center' },
-                 { label: '元素名称', name: 'Element_Name', width: 120, align: 'center' },
-                 { label: '元素类型', name: 'Element_Type', width: 50, align: 'center' },
-                 { label: '元素类型名称', name: 'Element_Type_Name', width: 150, align: 'center' },
-                 { label: '默认值', name: 'AreValue', width: 80, align: 'center', hidden: true },
-                 { label: '默认值', name: 'AreValuemc', width: 80, align: 'center' },
+                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                 { label: 'Mã trường', name: 'Table_Column_Code', width: 80, align: 'center' },
+                 { label: 'Tên trường', name: 'Table_Colunn_Name', width: 80, align: 'center' },
+                 { label: "Kiểu trường", name: "Table_Column_Type", width: 80, align: 'center' },
+                 { label: "Số thứ tự trường", name: "Table_Column_No", width: 50, align: 'center'},
+                 { label: 'Phần tử mã', name: 'Element_ID', width: 80, align: 'center' },
+                 { label: 'Tên phần tử', name: 'Element_Name', width: 120, align: 'center' },
+                 { label: 'Loại phần tử', name: 'Element_Type', width: 50, align: 'center' },
+                 { label: 'Loại phần tử tên', name: 'Element_Type_Name', width: 150, align: 'center' },
+                 { label: 'Giá trị mặc định', name: 'AreValue', width: 80, align: 'center', hidden: true },
+                 { label: 'Giá trị mặc định', name: 'AreValuemc', width: 80, align: 'center' },
                  { label: 'ysmxId', name: 'ysmxId', width: 80, align: 'center', hidden: true },
-                 { label: '使用标志', name: 'Sybz', width: 50, align: 'center', formatter: function (cellvalue) { return cellvalue == "1" ? "是" : "否"; } },
-                 { label: '元素排序', name: 'Px', width: 50, align: 'center', hidden: true }
+                 { label: 'Cờ sử dụng', name: 'Sybz', width: 50, align: 'center', formatter: function (cellvalue) { return cellvalue == "1" ? "Có" : "Không"; } },
+                 { label: 'Phần tử sắp xếp', name: 'Px', width: 50, align: 'center', hidden: true }
                 
             ],
             pager: "#gridPager",
@@ -112,10 +112,10 @@
             viewrecords: true,
             onSelectRow: function (row) {
                 var rowData = $('#gridList').jqGrid('getRowData', row);
-                rowData.Sybz = rowData.Sybz = "是" ? "1" : "0";
+                rowData.Sybz = rowData.Sybz = "Có" ? "1" : "0";
                 row.Table_Name = Table_Name;
                 $("#form1").formSerialize(rowData);
-                $("#saveoredit").html("修改");
+                $("#saveoredit").html("Sửa");
                 ysmxFloat();
 
             }
@@ -180,7 +180,7 @@
     {
         if (!ElementId)
         {
-            $.modalAlert("请选中病历文书", 'warning');
+            $.modalAlert("Vui lòng chọn văn bản bệnh án", 'warning');
             return;
         }
         if (!$('#form1').formValid()) {
@@ -188,15 +188,15 @@
         }
         if ($("#Element_Type").val() == "1") {
             if (!$("#AreValue").val()) {
-                $.modalAlert("请选择元素默认值", 'warning');
+                $.modalAlert("Vui lòng chọn phần tử giá trị mặc định", 'warning');
                 return;
             }
         }
         var flag = $("#saveoredit").html();
-        if (flag == "修改") {
+        if (flag == "Sửa") {
             var keyValue = $("#Id").val();
             if (!!!keyValue) {
-                $.modalAlert("请选中需要修改的数据列", 'warning');
+                $.modalAlert("Vui lòng chọn cột dữ liệu cần sửa", 'warning');
                 return;
             }
             var postData = $("#form1").formSerialize();
@@ -205,7 +205,7 @@
                 param: postData,
                 success: function () {
                     reloadGrid();
-                    $.modalMsg("修改成功", 'success');
+                    $.modalMsg("Sửa thành công", 'success');
                 }
             });
         }
@@ -219,7 +219,7 @@
                 param: postData,
                 success: function () {
                     reloadGrid();
-                    $.modalMsg("保存成功", 'success');
+                    $.modalMsg("Lưu thành công", 'success');
                 }
             });
         }
@@ -230,10 +230,10 @@
     {
         var delYSID = $("#Id").val();
         if (!delYSID) {
-            $.modalMsg("请选择要删除的数据行", 'warning');
+            $.modalMsg("Vui lòng chọn dòng dữ liệu cần xóa", 'warning');
             return;
         }
-        $.modalConfirm("确定要删除吗？",
+        $.modalConfirm("Bạn có chắc chắn muốn xóa không??",
            function (flag) {
                if (flag) {
                    $.najax({
@@ -243,7 +243,7 @@
                        type: "POST",
                        success: function () {
                            $.loading(false);
-                           $.modalMsg("删除成功", 'success');
+                           $.modalMsg("Xóa thành công", 'success');
                            reloadGrid();
                            btn_clear();
                        }
@@ -261,7 +261,7 @@
     }
 
     function btn_clear() {
-        $("#saveoredit").html("新增");
+        $("#saveoredit").html("Thêm mới");
         $("#Blys form input").each(function () {
             $(this).val('');
         });
@@ -276,7 +276,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "新建病历表",
+            title: "Tạo bảng bệnh án mới",
             url: "/MedicalRecordManage/Bljgh/BlmlAdd?keyValue=" + keyValue,
             width: "350px",
             height: "400px",
@@ -290,7 +290,7 @@
     function btn_Blmldelete()
     {
         if (!ElementId) {
-            $.modalAlert("请选中一条病历文书", 'warning');
+            $.modalAlert("Vui lòng chọn một văn bản bệnh án", 'warning');
             return;
         }
         var keyValue = ElementId;
@@ -299,7 +299,7 @@
             param: { keyValue: keyValue },
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalAlert('删除成功', 'success');
+                    $.modalAlert('Xóa thành công', 'success');
                     getYsTree();
                 }
                 else {

@@ -1,20 +1,30 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.Domain.Entity.Outpatient;
 using Newtouch.Domain.IDomainServices.Outpatient;
 using Newtouch.Domain.IRepository.Outpatient;
 using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Domain.ValueObjects.Outpatient;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class OutpatientConsultController : OrgControllerBase
     {
         private readonly IOutpatientConsultDmnService _outpatientConsultDmnService;
@@ -23,23 +33,32 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysStaffRepo _sysStaffRepo;
         private readonly ISysConfigRepo _sysConfigRepo;
 
+        public OutpatientConsultController(IOutpatientConsultDmnService outpatientConsultDmnService, IOutpatientRegConsultRepo outpatientRegConsultRepo, IOutpatientConsultDoctorRepo outpatientConsultDoctorRepo, ISysStaffRepo sysStaffRepo, ISysConfigRepo sysConfigRepo)
+        {
+            this._outpatientConsultDmnService = outpatientConsultDmnService;
+            this._outpatientRegConsultRepo = outpatientRegConsultRepo;
+            this._outpatientConsultDoctorRepo = outpatientConsultDoctorRepo;
+            this._sysStaffRepo = sysStaffRepo;
+            this._sysConfigRepo = sysConfigRepo;
+        }
+
         // GET: NurseManage/OutpatientConsult
 
         /// <summary>
         /// 门诊分诊页面
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public override IActionResult Index()
         {
 			ViewBag.rykscode = UserIdentity.DepartmentCode;
 			return View();
         }
 
         /// <summary>
-        /// 分诊叫号页面（大屏）
+        /// 分诊Gọi số页面（大屏）
         /// </summary>
         /// <returns></returns>
-        public ActionResult ConsultCall() {
+        public IActionResult ConsultCall() {
             ViewBag.orgName = _outpatientConsultDmnService.GetOrgName(this.OrganizeId);
             ViewBag.ConsultCallRefreshTime = _sysConfigRepo.GetValueByCode("ConsultCallRefreshTime", OrganizeId);
             return View();
@@ -49,30 +68,30 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 分诊医生
         /// </summary>
         /// <returns></returns>
-        public ActionResult ConsultDoctor() {
+        public IActionResult ConsultDoctor() {
             return View();
         }
 
         /// <summary>
-        /// 诊室信息（小屏）
+        /// Phòng khám信息（小屏）
         /// </summary>
         /// <returns></returns>
-        public ActionResult ConsultInfo()
+        public IActionResult ConsultInfo()
         {
             ViewBag.ConsultInfoRefreshTime = _sysConfigRepo.GetValueByCode("ConsultInfoRefreshTime", OrganizeId);
             return View();
         }
 
-        #region 门诊分诊
+        #region Ngoại trúPhân loại khám
         /// <summary>
-        /// 分页获取专家诊室
+        /// 分页获取专家Phòng khám
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksCode"></param>
         /// <param name="keyword"></param>
         /// <param name="ghrq"></param>
         /// <returns></returns>
-        public ActionResult GetExpertInfo(Pagination pagination, string ksCode, string keyword, string ghrq)
+        public IActionResult GetExpertInfo(Pagination pagination, string ksCode, string keyword, string ghrq)
         {
 
             var list = _outpatientConsultDmnService.GetExpertInfo(pagination, ksCode, keyword, ghrq, this.OrganizeId);
@@ -81,14 +100,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 分页获取普通诊室
+        /// 分页获取普通Phòng khám
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksCode"></param>
         /// <param name="keyword"></param>
         /// <param name="ghrq"></param>
         /// <returns></returns>
-        public ActionResult GetNormalInfo(Pagination pagination, string ksCode, string keyword, string ghrq)
+        public IActionResult GetNormalInfo(Pagination pagination, string ksCode, string keyword, string ghrq)
         {
 			//ksCode = this.UserIdentity.DepartmentCode;
 			var list = new
@@ -102,12 +121,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 保存挂号诊室
+        /// 保存挂号Phòng khám
         /// </summary>
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
         /// <returns></returns>
-        public ActionResult SaveData( List<OutpatientConsultVO> ghzslist)
+        public IActionResult SaveData( List<OutpatientConsultVO> ghzslist)
         {
             //模板表
             foreach (var obj in ghzslist) {
@@ -116,7 +135,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     var entity = new OutpatientRegConsultEntity();
                     entity.ghnm = obj.ghnm;
                     entity.zsCode = obj.zsCode;
-                    entity.calledstu = 1;//待叫号
+                    entity.calledstu = 1;//待Gọi số
                     entity.OrganizeId = this.OrganizeId;
                     _outpatientRegConsultRepo.SubmitForm(entity);
                 }
@@ -125,11 +144,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取科室下各诊室待就诊数量
+        /// 获取科室下各Phòng khám待就诊数量
         /// </summary>
         /// <param name="ksCode"></param>
         /// <returns></returns>
-        public ActionResult getConsultCount( string ksCode,string ghrq )
+        public IActionResult getConsultCount( string ksCode,string ghrq )
         {
 			//ksCode = this.UserIdentity.DepartmentCode;
             var list = _outpatientConsultDmnService.getConsultCount( ksCode, this.OrganizeId, ghrq);
@@ -138,29 +157,29 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #endregion
 
-        #region 分诊叫号（大屏）
-        public ActionResult GetConsultCall(string ksCode, string keyword, string ghrq)
+        #region Phân loại khámGọi số(Màn hình lớn)
+        public IActionResult GetConsultCall(string ksCode, string keyword, string ghrq)
         {
 			//ksCode = this.UserIdentity.DepartmentCode;
 			var list = _outpatientConsultDmnService.GetConsultCall(ksCode, keyword, ghrq, this.OrganizeId);
             return Content(list.ToJson());
         }
 
-		public ActionResult UpdateCalledstu(int ghnm, int calledstu, string mzh)
+		public IActionResult UpdateCalledstu(int ghnm, int calledstu, string mzh)
 		{
 			
-			_outpatientRegConsultRepo.UpdateCalledstu(ghnm, calledstu);//叫号状态更新为 已叫号
+			_outpatientRegConsultRepo.UpdateCalledstu(ghnm, calledstu);//Gọi số状态更新为 已Gọi số
 			var list = _outpatientConsultDmnService.GetConsultnext(this.OrganizeId, ghnm.ToString(), "");
 			return Content(list.ToJson());
 		}
 		/// <summary>
-		/// 待就诊页面叫号
+		/// 待就诊页面Gọi số
 		/// </summary>
 		/// <param name="ghnm"></param>
 		/// <param name="calledstu"></param>
 		/// <param name="mzh"></param>
 		/// <returns></returns>
-		public ActionResult UpdatePatient(int calledstu, string mzh)
+		public IActionResult UpdatePatient(int calledstu, string mzh)
 		{
 			var ysgh = this.UserIdentity.rygh;
 			var falg= _outpatientConsultDmnService.ISfalgPatient(mzh, this.OrganizeId);
@@ -172,7 +191,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 				};
 				return Content(newdata.ToJson());
 			}
-			_outpatientConsultDmnService.UpdatePatient(mzh, calledstu, this.OrganizeId);//叫号状态更新为 已叫号
+			_outpatientConsultDmnService.UpdatePatient(mzh, calledstu, this.OrganizeId);//Gọi số状态更新为 已Gọi số
 			_outpatientConsultDmnService.UpdataZSinsert(mzh, ysgh, this.OrganizeId);
 			var list = _outpatientConsultDmnService.GetConsultnext(this.OrganizeId, null, mzh);
 			return Content(list.ToJson());
@@ -180,7 +199,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		#endregion
 
 
-		#region 分诊医生
+		#region Phân loại khámBác sĩ
 
 		/// <summary>
 		/// 获取科室列表
@@ -188,7 +207,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// <returns></returns>
 		[HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetDeptList(Pagination pagination ,string keyValue)
+        public IActionResult GetDeptList(Pagination pagination ,string keyValue)
         {
             var list = new
             {
@@ -201,13 +220,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取部门的诊室列表
+        /// 获取部门的Phòng khám列表
         /// </summary>
         /// <param name="ksCode">科室编号</param>
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetConsultDoctorByDept(string ksCode)
+        public IActionResult GetConsultDoctorByDept(string ksCode)
         {
 			//ksCode = this.UserIdentity.DepartmentCode;
 			var list = _outpatientConsultDmnService.GetConsultDoctorByDept(this.OrganizeId, ksCode);
@@ -215,7 +234,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(list.ToJson());
         }
 
-        public ActionResult SaveConsultDoctor(List<OutpatientConsultDoctorVO> zsyslist)
+        public IActionResult SaveConsultDoctor(List<OutpatientConsultDoctorVO> zsyslist)
         {
             //var staff = _sysStaffRepo.GetValidStaffListByOrganizeId(this.OrganizeId);
             //模板表
@@ -231,14 +250,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     _outpatientConsultDoctorRepo.SubmitForm(entity);
 
 				}
-				//修改诊室楼层数 诊室房号
+				//修改Phòng khám楼层数 Phòng khám房号
 				_outpatientConsultDoctorRepo.UpdateZS(obj);
 			}
             return Success();
         }
 
 
-        public ActionResult isDoctorRepeat(List<OutpatientConsultDoctorVO> zsyslist)
+        public IActionResult isDoctorRepeat(List<OutpatientConsultDoctorVO> zsyslist)
         {
             var zsStr = "";
             var ghStr = "";
@@ -255,8 +274,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #endregion
 
-        #region 诊室信息（小屏）
-        public ActionResult GetConsultInfo(string zsCode,string ghrq)
+        #region Phòng khámThông tin(小屏)
+        public IActionResult GetConsultInfo(string zsCode,string ghrq)
         {
             var entity = _outpatientConsultDmnService.GetConsultInfo(this.OrganizeId, zsCode,ghrq);
 

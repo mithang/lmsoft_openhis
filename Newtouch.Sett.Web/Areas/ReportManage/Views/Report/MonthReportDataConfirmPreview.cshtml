@@ -1,0 +1,110 @@
+
+@{
+    ViewBag.Title = "MonthReportDataConfirmPreview";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 55px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Tháng：</th>
+                <td class="formValue">
+                    <label id="lblYearMonth"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Chi phí：</th>
+                <td class="formValue">
+                    <label id="lblCalcZje"></label>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Điều chỉnh bù chênh lệch：</th>
+                <td class="formValue">
+                    <input id="balance" type="text" class="form-control" placeholder="Điều chỉnh Số tiền" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" valign="top" style="padding-top: 5px;">
+                    Điều chỉnh lý do：
+                </th>
+                <td class="formValue">
+                    <textarea id="balanceReason" class="form-control" style="height: 60px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Chi phí Tổng cộng：</th>
+                <td class="formValue">
+                    <label id="lblResultZje"></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var year = $.request("year");
+    var month = $.request("month");
+    var calcZje = $.request("calcZje");
+    var isregenerate = $.request("isregenerate"); //重新生成 标志
+
+    $('#lblYearMonth').html(year + '-' + $.zeroPrefixInteger(month, 2));
+    $('#lblCalcZje').html(parseFloat(calcZje).toFixed(2));
+    $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
+
+    $('#balance').keyup(function () {
+        //重新计算合计
+        var tzje = $('#balance').val();
+        if (tzje) {
+            if (isNaN(parseFloat(tzje))) {
+                $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
+            }
+            else {
+                $('#lblResultZje').html((parseFloat(calcZje) + parseFloat(tzje)).toFixed(2));
+            }
+        }
+        else {
+            $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
+        }
+    });
+
+    //
+    function submitMonthReport() {
+        var balance = $('#balance').val();
+        var balanceReason = $('#balanceReason').val();
+        var resultZje = $('#lblResultZje').html();
+        var details = $.currentWindow().details;
+        if (!year || !month) {
+            $.modalAlert("Ngày Lỗi，Vui lòng thử lại", 'error');
+            return;
+        }
+        if (!calcZje || !resultZje) {
+            $.modalAlert("Chi phí Lỗi，Vui lòng thử lại", 'error');
+            return;
+        }
+        if (!isNaN(parseFloat(resultZje)) && parseFloat(resultZje) <= 0) {
+            $.modalAlert("Tổng chi phí kết quả phải là số dương, vui lòng xác nhận", 'error');
+            return;
+        }
+        if (!balanceReason && balance) {
+            $.modalAlert("Bù chênh lệch, vui lòng điền lý do", 'error');
+            return;
+        }
+        if (!details || !details.length || details.length == 0) {
+            $.modalAlert("Chưa Lấy đến Chi phí", 'error');
+            return;
+        }
+        $.submitForm({
+            url: '/ReportManage/Report/SubmitMonthReportData',
+            param: {
+                year: year, month: month, calcZje: calcZje, balance: balance, balanceReason: balanceReason
+                , resultZje: resultZje, details: details, isregenerate: isregenerate
+            },
+            success: function (ajaxresp) {
+                $.currentWindow().$('#btn_search').trigger('click');
+            }
+        });
+    }
+
+</script>

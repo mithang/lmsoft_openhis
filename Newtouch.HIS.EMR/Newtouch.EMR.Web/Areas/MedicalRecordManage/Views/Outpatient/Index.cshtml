@@ -1,5 +1,4 @@
-﻿@using Newtouch.Common.Operator;
-@using Newtouch.Infrastructure;
+﻿@using NewtouchHIS.Lib.Framework.Operator;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -68,7 +67,7 @@
                     <td>
                         <div id="dv_tool">
                             <div class="input-group">
-                                <input id="txt_keyword" type="text" class="form-control" placeholder="患者姓名/门诊号" style="width:180px;">
+                                <input id="txt_keyword" type="text" class="form-control" placeholder="Tên bệnh nhân/Số khám ngoại trú" style="width:180px;">
                                 <span class="input-group-btn" style="float:left;">
                                     <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -77,12 +76,12 @@
                         <div id="dv_bl_tool" style="display:none;">
                             <div style="float:left;width:30%;">
                                 <select id="sel_RecordStu" name="sel_RecordStu" data-enumtype="EnumRecordStu">
-                                    <option value="">病历状态(全部) </option>
+                                    <option value="">Trạng thái bệnh án(Tất cả) </option>
                                 </select>
                             </div>
                             <div class="input-group" style="width:70%;float:left;padding-top:10px;">
-                                <input id="txt_cyts" type="text" class="form-control" style="width:30%;float:left;" placeholder="出院天数" />
-                                <input id="txt_keyword1" type="text" class="form-control" placeholder="患者姓名/住院号" style="width:50%;float:left;">
+                                <input id="txt_cyts" type="text" class="form-control" style="width:30%;float:left;" placeholder="Số ngày ra viện" />
+                                <input id="txt_keyword1" type="text" class="form-control" placeholder="Tên bệnh nhân/Số nhập viện" style="width:50%;float:left;">
                                 <span class="input-group-btn" style="float:left;">
                                     <button id="btn_search1" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -95,14 +94,14 @@
     </div>
     <div class="gridPanel">
         <ul id="allKindPat" role="tablist">
-            @*<li role="presentation">
-                <a role="tab" data-toggle="tab" onclick="init(0)">我的病人</a>
-            </li>*@
+            
+                <a role="tab" data-toggle="tab" onclick="init(0)">Bệnh nhân của tôi</a>
+
             <li role="presentation" class="selectedli">
-                <a href="#div_mz" role="tab" data-toggle="tab" onclick="init(1)">门诊</a>
+                <a href="#div_mz" role="tab" data-toggle="tab" onclick="init(1)">Ngoại trú</a>
             </li>
             <li role="presentation">
-                <a href="#div_jz" role="tab" data-toggle="tab" onclick="init(2)">急诊</a>
+                <a href="#div_jz" role="tab" data-toggle="tab" onclick="init(2)">Cấp cứu</a>
             </li>
         </ul>
         <div id="div_Patlist" style="margin-left: 25px;margin-right:10px;">
@@ -122,17 +121,17 @@
             <div class="btn-group">
                 <a class="btn btn-primary" onclick="Refresh()"><span class="fa fa-refresh"></span></a>
             </div>
-            @*<div class="btn-group">
-                    <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>病历新建</a>
-                </div>*@
+            
+                    <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới bệnh án</a>
+
             <div class="btn-group">
-                <a class="btn btn-primary" onclick="btn_addnew()"><i class="fa fa-plus"></i>病历新建New</a>
+                <a class="btn btn-primary" onclick="btn_addnew()"><i class="fa fa-plus"></i>Tạo mới bệnh án new</a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>病历修改</a>
+                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa bệnh án</a>
             </div>
             <div class="btn-group" id="dv_btn_commit" style="display:none;">
-                <a class="btn btn-primary" onclick="btn_commit()"><i class="glyphicon glyphicon-saved"></i>病历提交</a>
+                <a class="btn btn-primary" onclick="btn_commit()"><i class="glyphicon glyphicon-saved"></i>Nộp bệnh án</a>
             </div>
         </div>
     </div>
@@ -173,14 +172,14 @@
             //postData: { mzh: zyh },
             height: $(window).height() - 96,
             colModel: [
-                { label: "病历关系ID", name: "Id", hidden: true, key: true },
-                { label: "病历大类ID", name: "BllxId", hidden: true },
-                { label: "门诊号", name: "mzh", hidden: true },
-                { label: "病历ID", name: "BlId", hidden: true },
-                { label: "病历类型标识", name: "bllx", hidden: true },
-                { label: "文件读取编辑权限控制标志", name: "ctrlLevel", hidden: true },
+                { label: "Quan hệ bệnh án iD", name: "Id", hidden: true, key: true },
+                { label: "Nhóm lớn bệnh án iD", name: "BllxId", hidden: true },
+                { label: "Số khám ngoại trú", name: "mzh", hidden: true },
+                { label: "Bệnh án iD", name: "BlId", hidden: true },
+                { label: "Mã định danh loại bệnh án", name: "bllx", hidden: true },
+                { label: "Cờ kiểm soát quyền đọc/sửa tệp", name: "ctrlLevel", hidden: true },
                 {
-                    label: '病历名称', name: 'Name', width: 200, align: 'left',
+                    label: 'Tên bệnh án', name: 'Name', width: 200, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
                         if (rowobject.parentId == null) {
                             return cellvalue + '<i id="addCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color:#6ff3ad; font-size: small;"></i>';
@@ -190,19 +189,19 @@
                     }
                 },
                 {
-                    label: "病历状态", name: "Blzt", width: 80, align: "center",hidden:true, formatter: function (cellvalue) {
+                    label: "Trạng thái bệnh án", name: "Blzt", width: 80, align: "center",hidden:true, formatter: function (cellvalue) {
                         if (cellvalue == "1")
-                            return "已签名";
+                            return "Đã ký";
                         else if (cellvalue == "0")
-                            return "未签名";
+                            return "Chưa ký";
                         else
                             return "";
                     }
                 },
-                { label: '医生名称', name: 'Docname', width: 80, align: 'center' },
-                { label: "医生工号", name: "Doccode", hidden: true },
-                { label: '病历日期', name: 'Blrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '更新日期', name: 'LastModifierCode', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Tên bác sĩ', name: 'Docname', width: 80, align: 'center' },
+                { label: "Mã nhân viên bác sĩ", name: "Doccode", hidden: true },
+                { label: 'Ngày bệnh án', name: 'Blrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày cập nhật', name: 'LastModifierCode', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
 
             ],
             onSelectRow: function (rowid, status) {
@@ -215,7 +214,7 @@
                         }
                     }
                     else {
-                        $.modalAlert("请选择患者1", 'warning');
+                        $.modalAlert("Vui lòng chọn bệnh nhân1", 'warning');
                     }
                 }
             },
@@ -298,19 +297,19 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 浏览病历',
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
-                    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&mzh=" + obj.mzh, AppId:"EMR"});
+                    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&mzh=" + obj.mzh, AppId:"EMR"});
                 }
             },
             {
-                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 删除病历',
+                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xóa bệnh án',
                 width: 300,
                 onClick: function (obj) {
 
                     if (obj.Doccode == '@opeator.rygh') {
-                        $.modalConfirm("确定删除该病历？", function (flag) {
+                        $.modalConfirm("Xác nhận xóa bệnh án này?", function (flag) {
                             if (flag) {
                                 $.ajax({
                                     type: "POST",
@@ -326,7 +325,7 @@
                                         }
                                         else {
                                             setTimeout(function () {
-                                                $.modalMsg('删除成功', 'success');
+                                                $.modalMsg('Xóa thành công', 'success');
                                             }, 1000);
                                         }
                                         $("#gridList").jqGrid('setGridParam', {
@@ -339,12 +338,12 @@
 
                     }
                     else {
-                        $.modalMsg("抱歉，权限不足", 'error');
+                        $.modalMsg("Rất tiếc, Không đủ quyền", 'error');
                     }
 
                 }
             }, {
-                name: '<span class="glyphicon glyphicon-ok-sign" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 解锁病历',
+                name: '<span class="glyphicon glyphicon-ok-sign" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Mở khóa bệnh án',
                 width: 300,
                 onClick: function (obj) {
 
@@ -362,12 +361,12 @@
 
                 }
             }, {
-                name: '<span class="glyphicon glyphicon-send" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 保存为个人模板',
+                name: '<span class="glyphicon glyphicon-send" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Lưu thành mẫu cá nhân',
                 width: 300,
                 onClick: function (obj) {
                     $.modalOpen({
                         id: "Form",
-                        title: "新建病历模板",
+                        title: "Tạo mới mẫu bệnh án",
                         url: "/MedicalRecordManage/MedRecordTemplate/Form?blId=" + obj.BlId + "&bllx=" + obj.bllx + "&mbly=0",
                         width: "700px",
                         height: "600px",
@@ -392,10 +391,10 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 浏览病历',
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
-                    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&mzh=" + obj.mzh, AppId:"EMR"});
+                    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&mzh=" + obj.mzh, AppId:"EMR"});
                 }
             }
            ]
@@ -435,22 +434,22 @@
             height: $(window).height() - 150,
             colModel: [
                 { label: 'jzId', name: 'jzId', hidden: true, key: true },
-                { label: '患者类型', name: 'brxzmc', width: 60, align: 'left' },                
-                { label: '姓名', name: 'xm', width: 80, align: 'left' },
+                { label: 'Loại bệnh nhân', name: 'brxzmc', width: 60, align: 'left' },                
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
                 {
-                    label: '性别', name: 'xb', width: 30, align: 'center'
+                    label: 'Giới tính', name: 'xb', width: 30, align: 'center'
                 },
-                { label: '年龄', name: 'nlshow', width: 50, align: 'center' },
+                { label: 'Tuổi', name: 'nlshow', width: 50, align: 'center' },
                 //{ label: '出生年月', name: 'csny', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '挂号日期', name: 'ghsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
-                { label: '科室', name: 'ghksmc', width: 100, align: 'left' },
-                { label: '医生', name: 'ghys', width: 60, align: 'left' },
+                { label: 'Ngày đăng ký khám', name: 'ghsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
+                { label: 'Khoa', name: 'ghksmc', width: 100, align: 'left' },
+                { label: 'Bác sĩ', name: 'ghys', width: 60, align: 'left' },
                 {
-                    label: '就诊状态', name: 'jzzt', width: 50, align: 'left', formatter: function (val, option, row) {
+                    label: 'Trạng thái khám bệnh', name: 'jzzt', width: 50, align: 'left', formatter: function (val, option, row) {
                         return $.enum.getDescByValue("EnumJzzt", val);
                     }
                 },
-                { label: '门诊号', name: 'mzh', width: 50, align: 'left' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 50, align: 'left' },
                 { label: 'RecordStu', name: 'RecordStu', hidden: true },
             ],
             pager: "#gridPagerPat",
@@ -464,7 +463,7 @@
                 }).trigger('reloadGrid');
 
 
-                @*//出院患者添加可提交按钮 2019-11-15 chl
+                
                 if (rowData.zybz == '@((int)EnumZYBZ.Djz)' || rowData.zybz == '@((int)EnumZYBZ.Ycy)') {
                     if (rowData.RecordStu != '@((int)EnumRecordStu.ytj)' && $("#dv_btn_commit").is(":hidden")) {
                         $("#dv_btn_commit").show();
@@ -474,9 +473,9 @@
                     if (!$("#dv_btn_commit").is(":hidden")) {
                         $("#dv_btn_commit").hide();
                     }
-                }*@
 
-                $('#divPatientBasicInfo').html("患者信息："
+
+                $('#divPatientBasicInfo').html("Thông tin bệnh nhân:"
                     + rowData.xm
                     + '&nbsp;/&nbsp;' + $.getGender(rowData.xb)
                     //+ '&nbsp;/&nbsp;' + window.currentobj.age + "岁"
@@ -492,7 +491,7 @@
     }
 
     /****************************************************************************************
-     病历操作
+     Thao tác bệnh án
      ****************************************************************************************/
     
     //2021-1-8
@@ -507,7 +506,7 @@
             if (patData.RecordStu == '@((int)EnumRecordStu.wtj)'||patData.RecordStu == '@((int)EnumRecordStu.th)') {
                 $.modalOpen({
                     id: "Form",
-                    title: "添加门诊病历",
+                    title: "Thêm ngoại trú bệnh án",
                     url: "/MedicalRecordManage/PatInfo/MedRecordTreeEditV2?keyValue=" + blRowIds + "&bllx=" + bllx + "&mzh=" + patData.mzh,
                     width: "900px",
                     height: "750px",
@@ -520,11 +519,11 @@
                 });
             }
             else {
-                $.modalAlert("患者病历已提交病案，不可编辑。", 'warning');
+                $.modalAlert("Bệnh án bệnh nhân đã nộp cho phòng hồ sơ, Không thể chỉnh sửa.", 'warning');
             }
         }
         else {
-            $.modalAlert("请选择患者", 'warning');
+            $.modalAlert("Vui lòng chọn bệnh nhân", 'warning');
         }
 
     }
@@ -537,7 +536,7 @@
                 var keyValue = $("#gridList").jqGridRowValue().Id;
                 var blData = $("#gridList").jqGrid('getRowData', keyValue);
                 if (!!!keyValue) {
-                    $.modalAlert("请选择病历文书", 'warning');
+                    $.modalAlert("Vui lòng chọn văn bản bệnh án", 'warning');
                     return;
                 }
                 if (!!!blData.BlId) {
@@ -545,14 +544,14 @@
                     return;
                 }
 
-                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&mzh=" + blData.mzh, AppId: "EMR" });
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&mzh=" + blData.mzh, AppId: "EMR" });
             }
             else {
-                $.modalAlert("患者病历已提交病案，不可编辑。", 'warning');
+                $.modalAlert("Bệnh án bệnh nhân đã nộp cho phòng hồ sơ, Không thể chỉnh sửa.", 'warning');
             }
         }
         else {
-            $.modalAlert("请确认患者信息", 'warning');
+            $.modalAlert("Vui lòng xác nhận thông tin bệnh nhân", 'warning');
         }
     }   
 

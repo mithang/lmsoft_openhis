@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "病历模板编辑";
+    ViewBag.Title = "Mẫu bệnh án chỉnh sửa";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src="~/Scripts/dc_main.js"></script>
@@ -36,7 +36,7 @@
                 <Element xsi:type="XParagraphFlag" StyleIndex="3" />
                 <Element xsi:type="XInputField" StyleIndex="5">
                    <Attributes />
-                   <ID>机构名称</ID>
+                   <ID>Tên cơ quan</ID>
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <EnableValueValidate>true</EnableValueValidate>
                    <XElements />
@@ -46,53 +46,53 @@
                    <SpecifyWidth>1181.102</SpecifyWidth>
                    <Alignment>Center</Alignment>
                    <EventExpressions />
-                   <Name>机构名称</Name>
-                   <BackgroundText>机构名称</BackgroundText>
+                   <Name>Tên cơ quan</Name>
+                   <BackgroundText>Tên cơ quan</BackgroundText>
                    <LastSelectedListItems />
                 </Element>
                 <Element xsi:type="XParagraphFlag" StyleIndex="3" />
                 <Element xsi:type="XString">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>科别：</Text>
+                   <Text>Chuyên khoa:</Text>
                 </Element>
                 <Element xsi:type="XInputField">
                    <Attributes />
-                   <ID>科别</ID>
+                   <ID>Chuyên khoa</ID>
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <EnableValueValidate>true</EnableValueValidate>
                    <XElements />
                    <BorderElementColor />
                    <EventExpressions />
-                   <Name>科别</Name>
-                   <BackgroundText>科别</BackgroundText>
+                   <Name>Chuyên khoa</Name>
+                   <BackgroundText>Chuyên khoa</BackgroundText>
                    <LastSelectedListItems />
                 </Element>
                 <Element xsi:type="XString">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>     床号：</Text>
+                   <Text>     Số giường:</Text>
                 </Element>
                 <Element xsi:type="XInputField">
                    <Attributes />
-                   <ID>床号</ID>
+                   <ID>Số giường</ID>
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <EnableValueValidate>true</EnableValueValidate>
                    <XElements />
                    <BorderElementColor />
                    <EventExpressions />
-                   <Name>床号</Name>
-                   <BackgroundText>床号</BackgroundText>
+                   <Name>Số giường</Name>
+                   <BackgroundText>Số giường</BackgroundText>
                    <LastSelectedListItems />
                 </Element>
                 <Element xsi:type="XString">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>床    姓名：</Text>
+                   <Text>床    Họ tên:</Text>
                 </Element>
                 <Element xsi:type="XInputField">
                    <Attributes />
-                   <ID>姓名YM</ID>
+                   <ID>Họ tên yM</ID>
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <EnableValueValidate>true</EnableValueValidate>
                    <ValueBinding>
@@ -104,26 +104,26 @@
                    <XElements />
                    <BorderElementColor />
                    <EventExpressions />
-                   <Name>姓名</Name>
+                   <Name>Họ tên</Name>
                    <InnerValue />
-                   <BackgroundText>姓名</BackgroundText>
+                   <BackgroundText>Họ tên</BackgroundText>
                    <LastSelectedListItems />
                 </Element>
                 <Element xsi:type="XString" StyleIndex="6">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>    住院号：</Text>
+                   <Text>    Số nhập viện:</Text>
                 </Element>
                 <Element xsi:type="XInputField" StyleIndex="6">
                    <Attributes />
-                   <ID>住院号</ID>
+                   <ID>Số nhập viện</ID>
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <EnableValueValidate>true</EnableValueValidate>
                    <XElements />
                    <BorderElementColor />
                    <EventExpressions />
-                   <Name>住院号</Name>
-                   <BackgroundText>住院号</BackgroundText>
+                   <Name>Số nhập viện</Name>
+                   <BackgroundText>Số nhập viện</BackgroundText>
                    <LastSelectedListItems />
                 </Element>
                 <Element xsi:type="XString" StyleIndex="4">
@@ -143,7 +143,7 @@
                 <Element xsi:type="XString" StyleIndex="9">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>入院记录</Text>
+                   <Text>Hồ sơ nhập viện</Text>
                 </Element>
                 <Element xsi:type="XParagraphFlag" StyleIndex="7" />
                 <Element xsi:type="XTextTable" NumOfRows="6" NumOfColumns="2">
@@ -164,7 +164,7 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text> 姓名：</Text>
+                                     <Text> Họ tên:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes>
@@ -173,7 +173,7 @@
                                            <Value>张三</Value>
                                         </Attribute>
                                      </Attributes>
-                                     <ID>姓名</ID>
+                                     <ID>Họ tên</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -193,9 +193,9 @@
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <SpecifyWidth>472.440948</SpecifyWidth>
                                      <EventExpressions />
-                                     <Name>姓名</Name>
+                                     <Name>Họ tên</Name>
                                      <InnerValue>222</InnerValue>
-                                     <BackgroundText>姓名</BackgroundText>
+                                     <BackgroundText>Họ tên</BackgroundText>
                                   </Element>
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
@@ -212,11 +212,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text>出生地：</Text>
+                                     <Text>Nơi sinh:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>出生地</ID>
+                                     <ID>Nơi sinh</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -229,8 +229,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>出生地</Name>
-                                     <BackgroundText>出生地</BackgroundText>
+                                     <Name>Nơi sinh</Name>
+                                     <BackgroundText>Nơi sinh</BackgroundText>
                                      <LastSelectedListItems />
                                   </Element>
                                   <Element xsi:type="XParagraphFlag" />
@@ -250,11 +250,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text> 性别：</Text>
+                                     <Text> Giới tính:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>性别</ID>
+                                     <ID>Giới tính</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -267,8 +267,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>性别</Name>
-                                     <BackgroundText>性别</BackgroundText>
+                                     <Name>Giới tính</Name>
+                                     <BackgroundText>Giới tính</BackgroundText>
                                      <EditorActiveMode>Program F2 MouseClick</EditorActiveMode>
                                      <LastSelectedListItems />
                                      <FieldSettings>
@@ -276,12 +276,12 @@
                                         <ListSource>
                                            <Items>
                                               <Item>
-                                                 <Text>男</Text>
+                                                 <Text>Nam</Text>
                                                  <Text2 />
                                                  <Value>1</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>女</Text>
+                                                 <Text>Nữ</Text>
                                                  <Text2 />
                                                  <Value>2</Value>
                                               </Item>
@@ -304,11 +304,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text>职业：</Text>
+                                     <Text>Nghề nghiệp:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>职业</ID>
+                                     <ID>Nghề nghiệp</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -321,8 +321,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>职业</Name>
-                                     <BackgroundText>职业</BackgroundText>
+                                     <Name>Nghề nghiệp</Name>
+                                     <BackgroundText>Nghề nghiệp</BackgroundText>
                                      <LastSelectedListItems />
                                   </Element>
                                   <Element xsi:type="XParagraphFlag" />
@@ -342,11 +342,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text> 年龄：</Text>
+                                     <Text> Tuổi:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>年龄</ID>
+                                     <ID>Tuổi</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -359,8 +359,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>年龄</Name>
-                                     <BackgroundText>年龄</BackgroundText>
+                                     <Name>Tuổi</Name>
+                                     <BackgroundText>Tuổi</BackgroundText>
                                      <LastSelectedListItems />
                                      <FieldSettings>
                                         <EditStyle>Numeric</EditStyle>
@@ -369,7 +369,7 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text>岁</Text>
+                                     <Text> tuổi</Text>
                                   </Element>
                                   <Element xsi:type="XParagraphFlag" />
                                </XElements>
@@ -381,11 +381,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text>入院时间：</Text>
+                                     <Text>Thời gian nhập viện:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>入院时间</ID>
+                                     <ID>Thời gian nhập viện</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -398,12 +398,12 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>入院时间</Name>
+                                     <Name>Thời gian nhập viện</Name>
                                      <DisplayFormat>
                                         <Style>DateTime</Style>
                                         <Format>yyyy-MM-dd HH:mm:ss</Format>
                                      </DisplayFormat>
-                                     <BackgroundText>入院时间</BackgroundText>
+                                     <BackgroundText>Thời gian nhập viện</BackgroundText>
                                      <EditorActiveMode>Program F2 MouseClick</EditorActiveMode>
                                      <LastSelectedListItems />
                                      <FieldSettings>
@@ -427,11 +427,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text> 民族：</Text>
+                                     <Text> Dân tộc:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField" StyleIndex="8">
                                      <Attributes />
-                                     <ID>民族</ID>
+                                     <ID>Dân tộc</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -444,8 +444,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>民族</Name>
-                                     <BackgroundText>民族</BackgroundText>
+                                     <Name>Dân tộc</Name>
+                                     <BackgroundText>Dân tộc</BackgroundText>
                                      <EditorActiveMode>Program F2 MouseClick</EditorActiveMode>
                                      <LastSelectedListItems />
                                      <FieldSettings>
@@ -453,12 +453,12 @@
                                         <ListSource>
                                            <Items>
                                               <Item>
-                                                 <Text>汉族</Text>
+                                                 <Text>Dân tộc Hán</Text>
                                                  <Text2 />
                                                  <Value>01</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>蒙古族</Text>
+                                                 <Text>Dân tộc Mông Cổ</Text>
                                                  <Text2 />
                                                  <Value>02</Value>
                                               </Item>
@@ -468,7 +468,7 @@
                                                  <Value>03</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>藏族</Text>
+                                                 <Text>Dân tộc Tạng</Text>
                                                  <Text2 />
                                                  <Value>04</Value>
                                               </Item>
@@ -478,7 +478,7 @@
                                                  <Value>05</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>苗族</Text>
+                                                 <Text>Dân tộc Miêu</Text>
                                                  <Text2 />
                                                  <Value>06</Value>
                                               </Item>
@@ -543,7 +543,7 @@
                                                  <Value>18</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>黎族</Text>
+                                                 <Text>Dân tộc Lê</Text>
                                                  <Text2 />
                                                  <Value>19</Value>
                                               </Item>
@@ -581,11 +581,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text>记录时间：</Text>
+                                     <Text>Thời gian ghi:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>记录时间</ID>
+                                     <ID>Thời gian ghi</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -598,8 +598,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>记录时间</Name>
-                                     <BackgroundText>记录时间</BackgroundText>
+                                     <Name>Thời gian ghi</Name>
+                                     <BackgroundText>Thời gian ghi</BackgroundText>
                                      <EditorActiveMode>Program F2 MouseClick</EditorActiveMode>
                                      <LastSelectedListItems />
                                      <FieldSettings>
@@ -623,11 +623,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text> 婚姻：</Text>
+                                     <Text> Hôn nhân:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>婚姻</ID>
+                                     <ID>Hôn nhân</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -640,8 +640,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>婚姻</Name>
-                                     <BackgroundText>婚姻</BackgroundText>
+                                     <Name>Hôn nhân</Name>
+                                     <BackgroundText>Hôn nhân</BackgroundText>
                                      <EditorActiveMode>Program F2 MouseClick</EditorActiveMode>
                                      <LastSelectedListItems />
                                      <FieldSettings>
@@ -649,12 +649,12 @@
                                         <ListSource>
                                            <Items>
                                               <Item>
-                                                 <Text>未婚</Text>
+                                                 <Text>Chưa kết hôn</Text>
                                                  <Text2 />
                                                  <Value>0</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>已婚</Text>
+                                                 <Text>Đã kết hôn</Text>
                                                  <Text2 />
                                                  <Value>1</Value>
                                               </Item>
@@ -664,12 +664,12 @@
                                                  <Value>2</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>丧偶</Text>
+                                                 <Text>Góa</Text>
                                                  <Text2 />
                                                  <Value>3</Value>
                                               </Item>
                                               <Item>
-                                                 <Text>其他</Text>
+                                                 <Text>Khác</Text>
                                                  <Text2 />
                                                  <Value>4</Value>
                                               </Item>
@@ -692,11 +692,11 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text>病史陈述者：</Text>
+                                     <Text>Người trình bày bệnh sử:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
-                                     <ID>病史陈述者</ID>
+                                     <ID>Người trình bày bệnh sử</ID>
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <EnableValueValidate>true</EnableValueValidate>
                                      <ValueBinding>
@@ -709,8 +709,8 @@
                                      <BorderElementColor />
                                      <MoveFocusHotKey>Tab</MoveFocusHotKey>
                                      <EventExpressions />
-                                     <Name>病史陈述者</Name>
-                                     <BackgroundText>病史陈述者</BackgroundText>
+                                     <Name>Người trình bày bệnh sử</Name>
+                                     <BackgroundText>Người trình bày bệnh sử</BackgroundText>
                                      <LastSelectedListItems />
                                   </Element>
                                   <Element xsi:type="XParagraphFlag" />
@@ -730,7 +730,7 @@
                                   <Element xsi:type="XString">
                                      <AutoFixTextMode>None</AutoFixTextMode>
                                      <XElements xsi:nil="true" />
-                                     <Text> 发病节气：</Text>
+                                     <Text> Tiết khí phát bệnh:</Text>
                                   </Element>
                                   <Element xsi:type="XInputField">
                                      <Attributes />
@@ -740,8 +740,8 @@
                                      <XElements />
                                      <BorderElementColor />
                                      <EventExpressions />
-                                     <Name>发病节气</Name>
-                                     <BackgroundText>发病节气</BackgroundText>
+                                     <Name>Tiết khí phát bệnh</Name>
+                                     <BackgroundText>Tiết khí phát bệnh</BackgroundText>
                                      <LastSelectedListItems />
                                   </Element>
                                   <Element xsi:type="XParagraphFlag" />
@@ -788,11 +788,11 @@
                 <Element xsi:type="XString">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>                                                     医师签名：</Text>
+                   <Text>                                                     Chữ ký bác sĩ:</Text>
                 </Element>
                 <Element xsi:type="XInputField">
                    <Attributes />
-                   <ID>医师签名</ID>
+                   <ID>Chữ ký bác sĩ</ID>
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <EnableValueValidate>true</EnableValueValidate>
                    <XElements />
@@ -800,8 +800,8 @@
                    <MoveFocusHotKey>Tab</MoveFocusHotKey>
                    <SpecifyWidth>236.2205</SpecifyWidth>
                    <EventExpressions />
-                   <Name>医师签名</Name>
-                   <BackgroundText>医师签名</BackgroundText>
+                   <Name>Chữ ký bác sĩ</Name>
+                   <BackgroundText>Chữ ký bác sĩ</BackgroundText>
                    <LastSelectedListItems />
                 </Element>
                 <Element xsi:type="XParagraphFlag" StyleIndex="1" />
@@ -817,7 +817,7 @@
                 <Element xsi:type="XString">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>                                   第</Text>
+                   <Text>                                   Thứ</Text>
                 </Element>
                 <Element xsi:type="XPageInfo">
                    <PropertyExpressions />
@@ -829,7 +829,7 @@
                 <Element xsi:type="XString">
                    <AutoFixTextMode>None</AutoFixTextMode>
                    <XElements xsi:nil="true" />
-                   <Text>页</Text>
+                   <Text>Trang</Text>
                 </Element>
                 <Element xsi:type="XParagraphFlag" />
              </XElements>
@@ -838,7 +838,7 @@
        <Parameters>
           <Parameter Name="Table-LongTermDoctorOrderModel" />
        </Parameters>
-       <FileName>D:\本地桌面文件\demo\BS修改元素属性\WebApplication1\WebApplication1\DemoFile\入院记录（中医科）.xml</FileName>
+       <FileName>D:\本地桌面文件\demo\BSSửa thuộc tính phần tử\Web application1\Web application1\Demo file\Hồ sơ nhập viện(中医科).xml</FileName>
        <FileFormat>XML</FileFormat>
        <UserHistories />
        <ContentStyles>
@@ -951,7 +951,7 @@
                 <InsertDocumentWithCheckMRID>PromptForbitWhenFail</InsertDocumentWithCheckMRID>
              </BehaviorOptions>
              <EditOptions>
-                <GridLinePreviewText>DCWriter是南京都昌信息科技有限公司自主研发的专业的电子病历文档编辑器。</GridLinePreviewText>
+                <GridLinePreviewText>DCWriter是南京都昌信息科技有限公司自主研发的专业的电子病历文档编辑器.</GridLinePreviewText>
              </EditOptions>
           </DocumentOptions>
           <Font>
@@ -971,14 +971,14 @@
           <Operator>DCSoft.Writer Version:1.2019.1.4</Operator>
           <NumOfPage>1</NumOfPage>
        </Info>
-       <BodyText>入院记录
-     姓名：[222] 11 出生地：
-     性别：   职业：
-     年龄：岁 入院时间：
-     民族：  记录时间：
-     婚姻：   病史陈述者：
-     发病节气：
-                                                         医师签名：
+       <BodyText>Hồ sơ nhập viện
+     Họ tên:[222] 11 Nơi sinh:
+     Giới tính:   Nghề nghiệp:
+     Tuổi: tuổi Thời gian nhập viện:
+     Dân tộc:  Thời gian ghi:
+     Hôn nhân:   Người trình bày bệnh sử:
+     Tiết khí phát bệnh:
+                                                         Chữ ký bác sĩ:
 </BodyText>
        <Comments />
        <LocalConfig />
@@ -1001,7 +1001,7 @@
             $.ajax({
                 type: "POST",
                 url: "/MedRecordTemplate/GetTemplateXml",
-                data: { templateType: "0", templateName: "长期医嘱" },
+                data: { templateType: "0", templateName: "Y lệnh dài hạn" },
                 dataType: "json",
                 async: false,
                 success: function (respdata) {

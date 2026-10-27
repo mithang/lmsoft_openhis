@@ -1,44 +1,58 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
-using Newtouch.Core.Common.Exceptions;
+
+using Newtouch.CIS.Compat;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Infrastructure;
 using Newtouch.PDS.Requset.Zyypyz;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class DepartmentSuppliesController : OrgControllerBase
     {
 
         private readonly IWZsldDmnService _wZsldDmnService;
+
+        public DepartmentSuppliesController(IWZsldDmnService wZsldDmnService)
+        {
+            this._wZsldDmnService = wZsldDmnService;
+        }
         // GET: NurseManage/sldAPPlication
-        public ActionResult WzSldIndex()
+        public IActionResult WzSldIndex()
         {
             return View();
         }
 
-        #region  废弃代码  
+        #region  废弃Mã  
         /// <summary>
         /// 申领单号
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetNewCkzksdh()
+        public IActionResult GetNewCkzksdh()
         {
             var result = "SLD" + string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
             return Content(result);
@@ -52,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        public ActionResult DepartmentStockListQuery(string key, string slksbm)
+        public IActionResult DepartmentStockListQuery(string key, string slksbm)
         {
             var param = new DepartmentStockListQueryParamDTO
             {
@@ -75,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="keyword"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult ProductBatchQuery(string proId, string slksbm, string keyword = "")
+        public IActionResult ProductBatchQuery(string proId, string slksbm, string keyword = "")
         {
             return Content(_wZsldDmnService.ProductBatchQuery(proId, UserIdentity.DepartmentCode, OrganizeId, keyword: keyword).ToJson());
         }
@@ -84,7 +98,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取库房
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDeptByKf(string keyword)
+        public IActionResult GetDeptByKf(string keyword)
         {
             var list = _wZsldDmnService.GetList(OrganizeId, keyword ?? "");
             return Content(list.ToJson());
@@ -94,25 +108,25 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取病区
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDeptBy(string keyword)
+        public IActionResult GetDeptBy(string keyword)
         {
             var list = _wZsldDmnService.GetDeptList(OrganizeId, keyword ?? "");
             return Content(list.ToJson());
         }
         #endregion
 
-        #region 科室物资
-        public ActionResult StorageQuery()
+        #region KhoaVật tư
+        public IActionResult StorageQuery()
         {
             return View();
         }
-        public ActionResult ExpiredStorageQuery()
+        public IActionResult ExpiredStorageQuery()
         {
             ViewBag.OrgId = this.OrganizeId;
             return View();
         }
         
-        public ActionResult ProfitAndLoss()
+        public IActionResult ProfitAndLoss()
         {
             return View();
         }
@@ -125,7 +139,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取物资类型
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatientTreeSelectJson()
+        public IActionResult GetPatientTreeSelectJson()
         {
             var warehouse = _wZsldDmnService.GetWzTreeSelectJson();
             var treeList = new List<TreeSelectModel>();
@@ -142,7 +156,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(treeList.TreeSelectJson(null));
         }
 
-        public ActionResult GetWarehouseStorage(Pagination pagination, string ksCode, string keyWord, string lb, string xslkc)
+        public IActionResult GetWarehouseStorage(Pagination pagination, string ksCode, string keyWord, string lb, string xslkc)
         {
             var list = new
             {
@@ -159,7 +173,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="proId"></param>
         /// <param name="zt">暂时有效的明细  true：是  false：否</param>
         /// <returns></returns>
-        public ActionResult GetWarehouseStorageDetail(string ks,string proId, string zt)
+        public IActionResult GetWarehouseStorageDetail(string ks,string proId, string zt)
         {
             return Content(_wZsldDmnService.GetProductStorageDetail(ks, this.OrganizeId, proId, zt).ToJson());
         }
@@ -171,9 +185,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pc"></param>
         /// <param name="zt"></param>
         /// <returns></returns>
-        public ActionResult UpdateKcxxZt(string mxId, string zt)
+        public IActionResult UpdateKcxxZt(string mxId, string zt)
         {
-            return _wZsldDmnService.UpdateZt(mxId, this.OrganizeId, zt) > 0 ? Success() : Error("修改查库存状态失败");
+            return _wZsldDmnService.UpdateZt(mxId, this.OrganizeId, zt) > 0 ? Success() : Error("Sửa trạng thái tra cứu tồn kho thất bại");
         }
         /// <summary>
         /// 同步物资系统耗材
@@ -181,7 +195,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="OrganizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
-        public ActionResult UpdateSyncWz()
+        public IActionResult UpdateSyncWz()
         {
             _wZsldDmnService.UpdateSyncWz(this.OrganizeId,this.UserIdentity.UserCode);
             return Success();
@@ -192,7 +206,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetExpiredWarehouseStorage(Pagination pagination, string ksCode, string keyWord, string lb, string xslkc)
+        public IActionResult GetExpiredWarehouseStorage(Pagination pagination, string ksCode, string keyWord, string lb, string xslkc)
         {
             var list = new
             {

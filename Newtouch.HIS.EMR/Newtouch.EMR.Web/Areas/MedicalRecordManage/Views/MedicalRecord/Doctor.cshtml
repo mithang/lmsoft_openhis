@@ -8,7 +8,7 @@
             <tr>
                 <td>
                     <div class="input-group" style="float:left;">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="姓名/工号" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên/Mã nhân viên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -42,9 +42,9 @@
             postData: { dutyCode: "", keyword: $("#txt_keyword").val() },
             height: 235, 
             colModel: [
-                { label: "工号", name: "StaffGh", width: 80 },
-                { label: "姓名", name: "StaffName", width: 100 },
-                { label: "岗位", name: "DutyCode", width: 80 }
+                { label: "Mã nhân viên", name: "StaffGh", width: 80 },
+                { label: "Họ tên", name: "StaffName", width: 100 },
+                { label: "Vị trí", name: "DutyCode", width: 80 }
             ],
             pager: "#gridPager",
             sortname: 'StaffName',
@@ -59,7 +59,7 @@
 
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         if (seleRowid != null && seleRowid != undefined) {

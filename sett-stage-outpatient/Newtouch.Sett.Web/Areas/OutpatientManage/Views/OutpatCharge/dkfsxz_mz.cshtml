@@ -1,0 +1,201 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Cách đọc thẻ";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+}
+@Html.Partial("_YibaoCommonView")
+<div style="float:left;">
+    @*<input type="text" id="txtInput" style="width:180px;height:20px;margin-left:100px;margin-top:8px;" placeholder="Chứng từ điện tử/Mã thẻ từ" autocomplete="off" /><br />
+        <input type="button" id="sk" name="sk" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:8px;" value="Quẹt thẻ BHYT" onclick="skOnClick('2')" />
+        <br />
+        <input type="button" id="sck" name="sm" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:8px;" value="Quẹt thẻ từ" onclick="skOnClick('0')" />
+        <br />
+        <input type="button" id="sm" name="sm" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:8px;" value="Quét mã BHYT điện tử" onclick="skOnClick('3')" />*@
+
+    <input type="button" id="sk" name="sk" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:20px;" value="Quẹt thẻ BHYT" onclick="skOnClick()" />
+    <br />
+    <input type="button" id="sfz" name="sfz" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:20px;" value="Quẹt CMND/CCCD" onclick="sfzOnClick()" /><br />
+    <input type="button" id="sl" name="sl" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:20px;" value="Quét khuôn mặt" onclick="slOnClick()" /><br />
+    <input type="button" id="sm" name="sm" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:20px;" value="Quét mã BHYT điện tử" onclick="smOnClick()" /> 
+    <input id="ckzddzsm" type="checkbox" /><label for="zddzsm">(Quét khuôn mặt/Máy tích hợp chứng từ điện tử)Quét mã</label><br />
+    <input type="button" id="ck" name="ck" class="btn btn-primary" style="width:180px;height:40px;font-size:25px;margin-left:100px;margin-top:20px;" value="Quẹt thẻ từ BHYT" onclick="ckOnClick()" />
+</div>
+
+<script type="text/javascript">
+    
+    var mzh = $.request('mzh');
+    var ryfs = $.request('ryfs');
+    var ydsfz = $.request('ydsfz');
+    var newzyh = $.request('newzyh');
+    var medicalInsurance = '@medicalInsurance';
+    var zffs;
+
+    $(function () {
+       // $("#txtInput").focus();
+    });
+    //function skOnClick(dkfs) {
+    //    if(dkfs!="2")
+    //    {
+    //        if (!$('#txtInput').val()) {
+    //            $.modalMsg('vui lòng quẹt mã chứng từ', 'warning');
+    //            $("#txtInput").focus();
+    //            return;
+    //        }
+    //    }
+    //    $.modalOpen({
+    //        id: "ZFToYBForms",
+    //        title: "chuyển tự chi trảBHYT",
+    //        url: "/OutpatientManage/OutpatCharge/ZFToYBForm?mzh=" + mzh + "&dkfs=" + dkfs + "&pzm=" + $("#txtInput").val(),
+    //        width: "550px",
+    //        height: "380px",
+    //        btn: ['', 'đóng'],
+    //        btnclass: ['', 'btn btn-danger'],
+    //        success: function (iframeId) {
+    //            $.modalClose();
+    //        }
+    //    });
+    //};
+
+    //BHYTthẻ
+    function skOnClick(patid) {
+        debugger;
+        zffs = "sk"
+        $.modalOpen({
+            id: "ZFToYBForm",
+            title: "Chuyển tự chi trả sang BHYT",
+            url: "/OutpatientManage/OutpatCharge/ZFToYBForm?mzh=" + mzh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh + "&zffs=" + zffs,
+            width: "550px",
+            height: "380px",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+            success: function (iframeId) {
+                $.modalClose();
+            }
+
+        });
+    };
+    //quét khuôn mặt
+    function slOnClick(patid) {
+        debugger;
+        zffs = "sl"
+        $.modalOpen({
+            id: "ZFToYBForm",
+            title: "Chuyển tự chi trả sang BHYT",
+            url: "/OutpatientManage/OutpatCharge/ZFToYBForm?mzh=" + mzh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh + "&zffs=" + zffs,
+            width: "550px",
+            height: "380px",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+            success: function (iframeId) {
+                $.modalClose();
+            }
+
+        });
+    };
+    //chứng từ điện tử
+    function smOnClick(patid) {
+        debugger;
+        zffs = "sm";
+        newzyh = "N";
+        if ($('#ckzddzsm').is(':checked')) {
+            newzyh = "Y";
+        }
+        $.modalOpen({
+            id: "ZFToYBForm",
+            title: "Chuyển tự chi trả sang BHYT",
+            url: "/OutpatientManage/OutpatCharge/ZFToYBForm?mzh=" + mzh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh + "&zffs=" + zffs,
+            width: "550px",
+            height: "380px",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+            success: function (iframeId) {
+                $.modalClose();
+            }
+
+        });
+        //$.modalOpen({
+        //    id: "sbkhInput",
+        //    title: "số thẻnhập",
+        //    url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random() + "&medicalInsurance=" + medicalInsurance,
+        //    width: "300px",
+        //    height: "150px",
+        //    callBack: function (iframeId) {
+        //        top.frames[iframeId].PatSbkhData();
+        //    }
+        //});
+
+        //openform();
+    };
+
+    //thẻ từ BHYT
+    function ckOnClick(patid) {
+        debugger;
+        zffs = "ck";
+        $.modalOpen({
+            id: "sbkhInput",
+            title: "Nhập số thẻ",
+            url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random() + "&medicalInsurance=" + medicalInsurance + "&topform=" + "1",
+            width: "300px",
+            height: "150px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatSbkhData();
+            }
+        });
+        //openform();
+    };
+
+    //CMND/CCCDđọc thẻ
+    function sfzOnClick(patid) {
+        debugger;
+        zffs = "sfz";
+        $.modalOpen({
+            id: "sfzhInput",
+            title: "Nhập số CMND/CCCD",
+            url: "/OutpatientManage/OutpatientReg/OutPatientSfzhInput?t=" + Math.random() + "&medicalInsurance=" + medicalInsurance + "&topform=" + "1",
+            width: "300px",
+            height: "150px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatSfzhData();
+            }
+        });
+        //openform();
+    };
+
+    function openform(khxx) {
+        debugger;
+        $.modalOpen({
+            id: "ZFToYBForm",
+            title: "Chuyển tự chi trả sang BHYT",
+            url: "/OutpatientManage/OutpatCharge/ZFToYBForm?mzh=" + mzh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh + "&zffs=" + zffs + "&patsfz=" + khxx.sfzh + "&patName=" + khxx.name,
+            width: "550px",
+            height: "380px",
+            btn: ['', 'Đóng'],
+            btnclass: ['', 'btn btn-danger'],
+            success: function (iframeId) {
+                $.modalClose();
+            }
+        });
+    }
+    function GetReadCardInfo(khxx) {
+        debugger;
+        openform(khxx);
+    }
+    function readCard(khxx) {
+        debugger;
+        switch (medicalInsurance) {
+            case "shanghai":
+                openform(khxx.sbkh);
+                break;
+            case "tongyong"://dùng chung BHYT quốc gia
+                var khxx = { "sbkh": "", "sfzh": "", "ecToken": "" };
+                GetReadCardInfo(khxx);
+                break;
+            default:
+                $.modalAlert("Địa phương BHYT chưa được thiết lập，Vui lòng thiết lập xong rồi quẹt thẻ", 'warning');
+                return;
+        }
+    }
+
+  
+</script>

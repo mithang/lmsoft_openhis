@@ -1,0 +1,67 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    span {
+        color: red;
+    }
+</style>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysCIRemindContent/Form.js",false)" type="text/javascript"></script>
+<form id="form1">
+    <table class="form">
+        <tr>
+            <td class="formTitle">Hiệu lực<span>*</span></td>
+            <td class="formValue">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="1" class="form-control"> Có
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="zt" id="zt" value="0" class="form-control"> Không
+                    </label>
+                </div>
+            </td>
+            <td class="formTitle">Khoản thu phí</td>
+            <td class="formValue">
+                <input class="form-control" id="sfxmmc" name="sfxmmc" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Cấp độ cảnh báo ngoại trú<span>*</span></td>
+            <td class="formValue">
+                <select class="form-control" name="mzjsjb" id="mzjsjb">
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">không Nhắc nhở</option>
+                    <option value="1">Thường Nhắc nhở</option>
+                    <option value="2">Cảnh báo</option>
+                    <option value="3">Cấm sử dụng</option>
+                </select>
+            </td>
+            <td class="formTitle">Cấp độ cảnh báo nhập viện<span>*</span></td>
+            <td class="formValue">
+                <select class="form-control" name="zyjsjb" id="zyjsjb">
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">không Nhắc nhở</option>
+                    <option value="1">Thường Nhắc nhở</option>
+                    <option value="2">Cảnh báo</option>
+                    <option value="3">Cấm sử dụng</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Nội dung cảnh báo ngoại trú<span>*</span></td>
+            <td class="formValue"><input class="form-control" id="mzjsnr" name="mzjsnr" type="text" /></td>
+            <td class="formTitle">Nội dung cảnh báo nhập viện<span>*</span></td>
+            <td class="formValue"><input class="form-control" id="zyjsnr" name="zyjsnr" type="text" /></td>
+        <tr>
+            <td class="formTitle">Nhân viên lập hồ sơ</td>
+            <td class="formValue">
+                <input class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
+            </td>
+            <td class="formTitle">Ngày lập hồ sơ</td>
+            <td class="formValue"><input class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" readonly="readonly" /></td>
+        </tr>
+    </table>
+</form>

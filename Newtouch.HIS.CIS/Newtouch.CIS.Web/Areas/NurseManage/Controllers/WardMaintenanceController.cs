@@ -1,20 +1,29 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.Entity;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using System.Collections.Generic;
+using Newtouch.HIS.Domain.Entity;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.CIS.Repository;
+using Microsoft.AspNetCore.Mvc;
+
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Core.Common;
+
 using Newtouch.Domain.DTO.InputDto.Inpatient;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.Entity.Inpatient;
 using Newtouch.Domain.IDomainServices.Inpatient;
 using Newtouch.Domain.IRepository.Inpatient;
 using Newtouch.Domain.ValueObjects.Inpatient;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class WardMaintenanceController : OrgControllerBase
     {
         // GET: NurseManage/WardMaintenance
@@ -24,7 +33,17 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		private readonly IInpatientBedCardRepo _InpatientBedCardRepo;
         private readonly ISysDiagnosisRepo _sysDiagnosisRepo;
         private readonly ISysTCMSyndromeRepo _sysTcmsyndromeRepo;
-        public ActionResult WardWardRoomBedMaintenance()
+
+        public WardMaintenanceController(ISysConfigRepo sysConfigRepo, IWardMaintenanceDmnService wardMaintenanceDmnService, IPatientRyDiagnosisApp patientRyDiagnosisApp, IInpatientBedCardRepo inpatientBedCardRepo, ISysDiagnosisRepo sysDiagnosisRepo, ISysTCMSyndromeRepo sysTcmsyndromeRepo)
+        {
+            this._sysConfigRepo = sysConfigRepo;
+            this._WardMaintenanceDmnService = wardMaintenanceDmnService;
+            this._patientRyDiagnosisApp = patientRyDiagnosisApp;
+            this._InpatientBedCardRepo = inpatientBedCardRepo;
+            this._sysDiagnosisRepo = sysDiagnosisRepo;
+            this._sysTcmsyndromeRepo = sysTcmsyndromeRepo;
+        }
+        public IActionResult WardWardRoomBedMaintenance()
         {
             return View();
         }
@@ -33,7 +52,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 房间维护
         /// </summary>
         /// <returns></returns>
-        public ActionResult RoomForm()
+        public IActionResult RoomForm()
         {
             return View();
         }
@@ -42,16 +61,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 附加属性
         /// </summary>
         /// <returns></returns>
-        public ActionResult AttributesPlusBedForm()
+        public IActionResult AttributesPlusBedForm()
         {
             return View();
         }
-        public ActionResult DispensingQuery()
+        public IActionResult DispensingQuery()
         {
             ViewBag.OrganizeId = OrganizeId;
             return View();
         }
-        public ActionResult GetDispensingItems(Pagination pagination, string kssj, string jssj)
+        public IActionResult GetDispensingItems(Pagination pagination, string kssj, string jssj)
         {
             var reqdata = new DispensingMXRequestDto
             {
@@ -69,7 +88,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
             return Content(data.ToJson());
         }
-        public ActionResult GetDispensingItemsMX(Pagination pagination, string bysj)
+        public IActionResult GetDispensingItemsMX(Pagination pagination, string bysj)
         {
             var data = new
             {
@@ -86,7 +105,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="keyValue"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SubmitRoomForm(string keyValue)
+        public IActionResult SubmitRoomForm(string keyValue)
         {
             return null;
         }
@@ -95,7 +114,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SavaBindItems(List<BedItemsVO> mxList, string bedCode,string zyh)
+        public IActionResult SavaBindItems(List<BedItemsVO> mxList, string bedCode,string zyh)
         {
             var saveItemsDto = new WardMaintenanceRequestDto
             {
@@ -103,7 +122,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 OrganizeId = OrganizeId
             };
             _WardMaintenanceDmnService.SaveBedItems(mxList, saveItemsDto, zyh);
-            return Success("保存成功。");
+            return Success("Lưu thành công.");
         }
 
         /// <summary>
@@ -111,12 +130,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteRoomForm(string keyValue)
+        public IActionResult DeleteRoomForm(string keyValue)
         {
             return null;
         }
 
-        public ActionResult BedForm(string bedNo)
+        public IActionResult BedForm(string bedNo)
         {
             return View();
         }
@@ -126,7 +145,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteBedForm(string keyValue)
+        public IActionResult DeleteBedForm(string keyValue)
         {
             return null;
         }
@@ -135,7 +154,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 床位费绑定
         /// </summary>
         /// <returns></returns>
-        public ActionResult BedBindingCostForm(string bedCode,string zyh)
+        public IActionResult BedBindingCostForm(string bedCode,string zyh)
         {
             ViewBag.bedCode = bedCode;
             ViewBag.zyh = zyh;
@@ -147,7 +166,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="bedCode"></param>
         /// <returns></returns>
-        public ActionResult GetBedItems(string bedCode)
+        public IActionResult GetBedItems(string bedCode)
         {
             var reqdata = new WardMaintenanceRequestDto
             {
@@ -159,7 +178,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(xmList.ToJson());
         }
 
-        public ActionResult OutAreaForm(string zyh)
+        public IActionResult OutAreaForm(string zyh)
         {
             ViewBag.zyh = zyh;
             ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//是否开启事前审核接口
@@ -170,7 +189,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 医生绑定
         /// </summary>
         /// <returns></returns>
-        public ActionResult DoctorBindingForm(string zyh)
+        public IActionResult DoctorBindingForm(string zyh)
         {
             ViewBag.zyh = zyh;
             return View();
@@ -181,7 +200,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
-		public ActionResult InHospitalBedCard(string zyh)
+		public IActionResult InHospitalBedCard(string zyh)
 		{
 			ViewBag.zyh = zyh;
 			return View();
@@ -192,7 +211,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
-		public ActionResult InHospitalBedCardPrint(string zyh)
+		public IActionResult InHospitalBedCardPrint(string zyh)
 		{
 			ViewBag.zyh = zyh;
 			return View();
@@ -203,7 +222,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
-		public ActionResult GetBedDocs(string zyh)
+		public IActionResult GetBedDocs(string zyh)
         {
             var reqdata = new patRequestDto
             {
@@ -220,7 +239,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetPatDiagnosis(string zyh)
+        public IActionResult GetPatDiagnosis(string zyh)
         {
             var reqdata = new patRequestDto
             {
@@ -237,7 +256,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetPatRyDiagnosis(string zyh)
+        public IActionResult GetPatRyDiagnosis(string zyh)
         {
             var result = _patientRyDiagnosisApp.PatientRyDiagnosisQuery(zyh, OrganizeId);
             return Content(result.ToJson());
@@ -246,7 +265,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 中西医诊断
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetryzdSelect(string ryzd, string ybnhlx,string zdlb=null)
+        public IActionResult GetryzdSelect(string ryzd, string ybnhlx,string zdlb=null)
         {
             if (string.IsNullOrEmpty(ybnhlx))
             {
@@ -269,7 +288,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 a.icd10 = item.zhCode == null ? "" : item.zhCode;
                 a.zdmc = item.zhmc;
                 a.py = item.py;
-                a.zdnm = item.zhId;
+                a.zdnm = int.TryParse(item.zhId, out var _zhId) ? _zhId : 0;
                 zdlist.Add(a);
             }
             foreach (SysDiagnosisVEntity item in data)
@@ -289,7 +308,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SavaBindDocs(List<BedDocsVO> mxList, string zyh)
+        public IActionResult SavaBindDocs(List<BedDocsVO> mxList, string zyh)
         {
             var saveDocsDto = new patRequestDto
             {
@@ -297,7 +316,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 OrganizeId = OrganizeId
             };
             _WardMaintenanceDmnService.SaveBedDocs(mxList, saveDocsDto);
-            return Success("保存成功。");
+            return Success("Lưu thành công.");
         }
 
         /// <summary>
@@ -305,7 +324,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
-        public ActionResult SavaPatDiagnosis(PatOutAreaInfoVO patOutAreaVO)
+        public IActionResult SavaPatDiagnosis(PatOutAreaInfoVO patOutAreaVO)
         {
             var saveDiagnosisDto = new patBedFeeRequestDto
             {
@@ -320,10 +339,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 return Error(isOutAreaMsg.Split('|')[1]);
             }
             var patOutMsg = _WardMaintenanceDmnService.SavaPatDiagnosis(patOutAreaVO, saveDiagnosisDto);
-            return patOutMsg.Split('|')[0] == "T" ? Success("保存成功。") : Error(patOutMsg.Split('|')[1]);
+            return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công。") : Error(patOutMsg.Split('|')[1]);
         }
 
-        public ActionResult AttributesPlusRoomForm(string keyWord)
+        public IActionResult AttributesPlusRoomForm(string keyWord)
         {
             return View();
         }
@@ -332,7 +351,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 出区诊断
         /// </summary>
         /// <returns></returns>
-        public ActionResult OutAreaDiagnoosis()
+        public IActionResult OutAreaDiagnoosis()
         {
             return View();
         }
@@ -342,7 +361,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult InAreaDiagnoosisForm(string zyh,string brxz)
+        public IActionResult InAreaDiagnoosisForm(string zyh,string brxz)
         {
             ViewBag.brxz = brxz;
             ViewBag.zyh = zyh;
@@ -354,7 +373,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult OutAreaDiagnoosisForm(string zyh, string brxz)
+        public IActionResult OutAreaDiagnoosisForm(string zyh, string brxz)
         {
             ViewBag.brxz = brxz;
             ViewBag.zyh = zyh;
@@ -366,7 +385,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
-        public ActionResult SavaOutPatDiagnosis(PatOutAreaVO patOutAreaVO)
+        public IActionResult SavaOutPatDiagnosis(PatOutAreaVO patOutAreaVO)
         {
             var saveDiagnosisDto = new patBedFeeRequestDto
             {
@@ -376,7 +395,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 rq = patOutAreaVO.zdrq
             };
             var patOutMsg = _WardMaintenanceDmnService.SavaOutPatDiagnosis(patOutAreaVO, saveDiagnosisDto);
-            return patOutMsg.Split('|')[0] == "T" ? Success("保存成功。") : Error(patOutMsg.Split('|')[1]);
+            return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công。") : Error(patOutMsg.Split('|')[1]);
         }
 
         /// <summary>
@@ -384,7 +403,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <returns></returns>
-        public ActionResult SavaInPatDiagnosis(PatInAreaVO patInAreaVo)
+        public IActionResult SavaInPatDiagnosis(PatInAreaVO patInAreaVo)
         {
             var result = _patientRyDiagnosisApp.SavaInPatDiagnosis(patInAreaVo, OrganizeId, UserIdentity.UserCode);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -395,7 +414,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// </summary>
 		/// <param name="patOutAreaVO"></param>
 		/// <returns></returns>
-		public ActionResult SavaPatDxList(List<InpatientPatientDiagnosisEntity> PatDxList)
+		public IActionResult SavaPatDxList(List<InpatientPatientDiagnosisEntity> PatDxList)
 		{
 			//var patOutMsg="";
 			//foreach (var PatDxEntity in PatDxList) {
@@ -404,7 +423,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 			//}
 			var OrganizeId = this.OrganizeId;
 			var patOutMsg = _WardMaintenanceDmnService.SavaPatDxList(PatDxList, this.OrganizeId);
-			return patOutMsg.Split('|')[0] == "T" ? Success("保存成功。") : Error(patOutMsg.Split('|')[1]);
+			return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công。") : Error(patOutMsg.Split('|')[1]);
 		}
 
 
@@ -413,12 +432,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// </summary>
 		//[HttpPost]
 		//[HandlerAjaxOnly]
-		public ActionResult SavaBedCard(InpatientBedCardEntity entity, string zyh)
+		public IActionResult SavaBedCard(InpatientBedCardEntity entity, string zyh)
 		{
 			entity.OrganizeId = OrganizeId;
 			entity.zyh = zyh;
 			_InpatientBedCardRepo.SubmitForm(entity, zyh);
-			return Success("保存成功。");
+			return Success("Lưu thành công.");
 		}
 
 	}

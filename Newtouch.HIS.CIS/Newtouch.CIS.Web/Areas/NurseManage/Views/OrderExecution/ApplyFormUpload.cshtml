@@ -1,6 +1,6 @@
-﻿@model Newtouch.Domain.ViewModels.FileUploadModel
+@model Newtouch.Domain.ViewModels.FileUploadModel
 @{
-    ViewBag.Title = "医技管理-检验检查报告上传";
+    ViewBag.Title = "Kỹ thuật y tếQuản lý-Xét nghiệmKiểm traBáo cáoTải lên";
     Layout = "/Views/Shared/_FileUpload.cshtml";//_FileUpload
 }
 <div class="container mt-2">
@@ -13,13 +13,13 @@
                         <div class="form-group mb-3">
                             <input type="hidden" id="sqdh" name="sqdh" />
                             <input type="file" name="Files" multiple class="form-control" accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf" />
-                            <div class="form-text">支持 JPG, PNG, GIF, BMP 图片和 PDF 文件，单个文件最大10MB</div>
+                            <div class="form-text">Hỗ trợ tập tin hình ảnh JPG, PNG, GIF, BMP và PDF, tập tin đơn lẻ tối đa 10MB</div>
                             @Html.ValidationMessageFor(m => m.Files, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-upload"></i> 上传文件
+                                <i class="fas fa-upload"></i> Tải lênTập tin
                             </button>
                         </div>
                     }
@@ -29,7 +29,7 @@
             {
                 <div class="card mt-4 shadow">
                     <div class="card-header bg-danger text-white">
-                        <h5 class="mb-0">上传错误</h5>
+                        <h5 class="mb-0">Tải lênLỗi</h5>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
@@ -45,10 +45,10 @@
             {
                 <div class="card mt-2 shadow">
                     <div class="card-header bg-success text-white" id="uploadmsg">
-                        <h5 class="mb-0">上传成功</h5>
+                        <h5 class="mb-0">Tải lênthành công</h5>
                     </div>
                     <div class="card-body">
-                        <p5>以下文件已成功上传：</p5>
+                        <p5>Các tập tin dưới đây đã tải lên thành công:</p5>
                         <div class="row">
                             @foreach (var file in ViewBag.UploadedFiles)
                             {
@@ -71,18 +71,18 @@
                                             </p>
                                             <a href="@Url.Action("Download", "OrderExecution", new { fileName = file.FileName })"
                                                 class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-download"> 下载</i>
+                                                <i class="fas fa-download"> Tải xuống</i>
                                             </a>
                                             @if (file.IsImage())
                                             {
                                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                                         onclick="previewImage('@Url.Content(file.FileName)', '@file.OriginalName')">
-                                                    <i class="fas fa-eye"></i> 预览
+                                                    <i class="fas fa-eye"></i> Xem trước
                                                 </button>
                                             }
                                             <button type="button" data-type="delId" class="btn btn-sm btn-outline-secondary"
                                                     onclick="DeleteImage('@file.Id')">
-                                                <i class="fas fa-trash-alt"></i> 删除
+                                                <i class="fas fa-trash-alt"></i> Xóa
                                             </button>
                                         </div>
                                     </div>
@@ -101,11 +101,11 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imagePreviewTitle">图片预览</h5>
+                <h5 class="modal-title" id="imagePreviewTitle">Hình ảnhXem trước</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                <img id="previewImage" src="" class="img-fluid" alt="预览图片">
+                <img id="previewImage" src="" class="img-fluid" alt="Xem trướcHình ảnh">
             </div>
         </div>
     </div>

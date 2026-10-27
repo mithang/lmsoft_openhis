@@ -1,26 +1,33 @@
-﻿using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Infrastructure;
-using FrameworkBase.MultiOrg.Web;
+using Newtouch.Domain.IDomainServices;
+
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using NewtouchHIS.Lib.Framework.Operator;
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.Entity.Inpatient;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class PrepareMedicineController : OrgControllerBase
     {
 
@@ -28,14 +35,20 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysUserDmnService sysuserDmnService;
         private readonly IPrepareMedicineDmnService _prepareMedicineDmnService;
 
+        public PrepareMedicineController(IPrepareMedicineApp prepareMedicineApp, IPrepareMedicineDmnService prepareMedicineDmnService)
+        {
+            this._prepareMedicineApp = prepareMedicineApp;
+            this._prepareMedicineDmnService = prepareMedicineDmnService;
+        }
+
         // GET: NurseManage/PrepareMedicine
-        public ActionResult Index()
+        public override IActionResult Index()
         {
             return View();
         }
 
-        #region 科室备药损益
-        public ActionResult ReportLossAndProfit()
+        #region KhoaChuẩn bị thuốcThừa thiếu
+        public IActionResult ReportLossAndProfit()
         {
             return View();
         }
@@ -44,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取新的损益单号
         /// </summary>
         /// <returns></returns>
-        public ActionResult initialSYDH(string djmc)
+        public IActionResult initialSYDH(string djmc)
         {
             var sydh = EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo(djmc, Constants.CurrentYfbm.yfbmCode, this.OrganizeId);
             return Content(sydh);
@@ -55,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
-        public ActionResult GetLossProfitReasonListByType(string sylx)
+        public IActionResult GetLossProfitReasonListByType(string sylx)
         {
             var list = _prepareMedicineApp.GetLossProfitReasonListByType(sylx);
             var obj = list.Select(a => new { syyyId = a.syyyId, syyy = a.syyy }).ToJson();
@@ -67,7 +80,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
-        public ActionResult GetZRRList(string inputCode)
+        public IActionResult GetZRRList(string inputCode)
         {
             var list = sysuserDmnService.GetStaffListByOrg(OrganizeId);
             return Content(list.ToJson());
@@ -78,7 +91,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
-        public ActionResult SelectLossAndProfitMedicineList(string inputCode)
+        public IActionResult SelectLossAndProfitMedicineList(string inputCode)
         {
             var list = _prepareMedicineApp.SelectLossAndProfitMedicineList(inputCode);
             return Content(list.ToJson());
@@ -89,9 +102,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
-        public ActionResult SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
+        public IActionResult SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
         {
-            if (syxx == null || syxx.Length <= 0) return Error("请传入损益明细");
+            if (syxx == null || syxx.Length <= 0) return Error("Vui lòng truyền vào chi tiết thừa thiếu");
             var organizeId = OrganizeId;
             var yfbmCode = Constants.CurrentYfbm.yfbmCode;
             var userCode = OperatorProvider.GetCurrent().UserCode;
@@ -116,7 +129,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// </summary>
         ///// <param name="syxx"></param>
         ///// <returns></returns>
-        //public ActionResult SaveReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
+        //public IActionResult SaveReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
         //{
         //    var syxxList = syxx != null && syxx.Length > 0 ? syxx.ToList() : new List<SysMedicineProfitLossEntity>();
         //    var profitLossEntityList = new List<YpSyxxVo>();
@@ -158,16 +171,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #endregion
 
-        #region 科室备药损益查询
+        #region KhoaChuẩn bị thuốcThừa thiếuTra cứu
 
         /// <summary>
         /// 科室备药退回
         /// </summary>
         /// <returns></returns>
-        public ActionResult ReportLossAndProfitQuery()
+        public IActionResult ReportLossAndProfitQuery()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
 
@@ -176,7 +189,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 报损报溢查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string syyy, string inputCode, int syqk)
+        public IActionResult SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
             var list = new
             {
@@ -198,22 +211,22 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="inputCode">关键字</param>
         /// <param name="syqk">损益情况</param>
         /// <returns></returns>
-        public ActionResult ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
+        public IActionResult ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
             return Content(_prepareMedicineApp.ComputePjzeAndLjze(startTime, endTime, syyy, inputCode, syqk).ToJson());
         }
         #endregion
 
-        #region 科室备药退回
+        #region KhoaChuẩn bị thuốcTrả lại
 
         /// <summary>
         /// 科室备药退回
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrepareMedicineReturn()
+        public IActionResult PrepareMedicineReturn()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
 
@@ -221,7 +234,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 新建退回申请单
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrepareMedicineReturnAdd() {
+        public IActionResult PrepareMedicineReturnAdd() {
             return View();
         }
 
@@ -230,7 +243,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult SubmitKsbyth(BythDjInfoDTO Djnr)
+        public IActionResult SubmitKsbyth(BythDjInfoDTO Djnr)
         {
             OperatorModel user = this.UserIdentity;
             var data = _prepareMedicineDmnService.PrepareMedicineReturnSubmit(user, this.OrganizeId, Djnr);
@@ -243,7 +256,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="keyword"></param>
         /// <param name="yfbm"></param>
         /// <returns></returns>
-        public ActionResult DrugAndStockSearch(string keyword, string yfbm)
+        public IActionResult DrugAndStockSearch(string keyword, string yfbm)
         {
             var result = _prepareMedicineDmnService.GetDrugAndStock(yfbm, keyword, OrganizeId);
             return Content(result.ToJson());
@@ -254,7 +267,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="ypcodestr"></param>
         /// <param name="yfbmstr"></param>
         /// <returns></returns>
-        public ActionResult ApplyDrugsSearch(string ypcodestr, string yfbmstr)
+        public IActionResult ApplyDrugsSearch(string ypcodestr, string yfbmstr)
         {
             var result = _prepareMedicineDmnService.GetApplyDrugAndStock(ypcodestr, yfbmstr, OrganizeId);
             return Content(result.ToJson());
@@ -271,7 +284,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <returns></returns>
-        public ActionResult GetPrepareMedicineReturnGridJson(Pagination pagination, string thzt,  DateTime kssj, DateTime jssj)
+        public IActionResult GetPrepareMedicineReturnGridJson(Pagination pagination, string thzt,  DateTime kssj, DateTime jssj)
         {
             var tt = _prepareMedicineDmnService.GetPrepareMedicineReturnGridJson(pagination, thzt, kssj, jssj, OrganizeId);
             var data = new
@@ -289,7 +302,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
-        public ActionResult QueryPrepareMedicine(string djId)
+        public IActionResult QueryPrepareMedicine(string djId)
         {
             var result = _prepareMedicineDmnService.QueryPrepareMedicine(djId, this.OrganizeId);
             return Content(result.ToJson());
@@ -300,7 +313,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
-        public ActionResult UpdatePrepareMedicineReturn(PrapareMedicineReturnEntity entity)
+        public IActionResult UpdatePrepareMedicineReturn(PrapareMedicineReturnEntity entity)
         {
             OperatorModel user = this.UserIdentity;
             entity.OrganizeId = this.OrganizeId;
@@ -316,7 +329,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="djId"></param>
         /// <returns></returns>
 
-        public ActionResult QueryPrepareMedicineReturnbyId(string djId)
+        public IActionResult QueryPrepareMedicineReturnbyId(string djId)
         {
             var result = _prepareMedicineDmnService.QueryPrepareMedicineReturnbyId(djId, this.OrganizeId);
             return Content(result.ToJson());
@@ -326,7 +339,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
-        public ActionResult QueryPrepareMedicineReturnMXbyId(string djId)
+        public IActionResult QueryPrepareMedicineReturnMXbyId(string djId)
         {
             var result = _prepareMedicineDmnService.QueryPrepareMedicineReturnMXbyId(djId, this.OrganizeId);
             return Content(result.ToJson());
@@ -339,7 +352,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="ph"></param>
         /// <param name="yfbm"></param>
         /// <returns></returns>
-        public ActionResult BydjQueryKykc(string ypbm, string pc, string ph, string yfbm)
+        public IActionResult BydjQueryKykc(string ypbm, string pc, string ph, string yfbm)
         {
             var result = new
             {
@@ -353,7 +366,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="Djh"></param>
         /// <returns></returns>
-        public ActionResult Bydjback(string Djh)
+        public IActionResult Bydjback(string Djh)
         {
             OperatorModel user = this.UserIdentity;
             var data = _prepareMedicineDmnService.PrepareMedicineReturnback(Djh, OrganizeId, user);
@@ -364,7 +377,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="ById"></param>
         /// <returns></returns>
-        public ActionResult Bydjdelete(string ById)
+        public IActionResult Bydjdelete(string ById)
         {
             OperatorModel user = this.UserIdentity;
             var data = _prepareMedicineDmnService.PrepareMedicineReturndelete(ById, OrganizeId, user);
@@ -372,16 +385,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region 药品使用查询
-        public ActionResult MedicineUseQuery()
+        #region ThuốcSử dụngTra cứu
+        public IActionResult MedicineUseQuery()
         {
             //ViewBag.OrgId = this.OrganizeId;
-            //ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            //ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
 
         //药品信息
-        public ActionResult GetypGridJson(Pagination pagination, MedicineInfoParam model, string keyword, string organizeId)
+        public IActionResult GetypGridJson(Pagination pagination, MedicineInfoParam model, string keyword, string organizeId)
         {
             ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
             model.ypzt = model.ypzt ?? "";

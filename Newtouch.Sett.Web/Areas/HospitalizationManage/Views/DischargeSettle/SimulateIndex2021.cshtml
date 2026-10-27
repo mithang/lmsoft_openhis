@@ -1,0 +1,305 @@
+@using Newtouch.Sett.Domain;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    //Có thểquyết toán hay không Bệnh nhân đang ở khoa bệnh
+    var isSettContainsBQZ = SysConfigReader.Bool("HOSP_Sett_Contains_BQZ", false).Value;
+    var brzybzType = ((int)EnumZYBZ.Djz).ToString();
+    //if (isSettContainsBQZ)
+    //{
+    brzybzType += "," + ((int)EnumZYBZ.Bqz).ToString();
+    //}
+    //Có vớiCPOEliên thôngGiao diện
+    //var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
+
+    //Có giao dịch với BHYT hay không
+    var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
+    //Có giao dịch với nông thôn mới hay không
+    var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
+    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
+
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+<div class="rows" style="margin-bottom: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading navb-bg">
+            Thông tin bệnh nhân nhập viện
+        </div>
+        <table class="form" style="width:96%;">
+            <tbody>
+                <tr>
+                    <th class="formTitle">Mã nhập viện：</th>
+                    <td class="formValue">
+                        <input class="form-control" type="text" id="zyh" value="" />
+                    </td>
+                    <td class="formValue">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView();">
+                    </td>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <label id="xm"></label>
+                    </td>
+                    <th class="formTitle">Giới tính：</th>
+                    <td class="formValue">
+                        <label id="xb"></label>
+                    </td>
+                    <th class="formTitle">Tuổi：</th>
+                    <td class="formValue">
+                        <label id="nlshow"></label>
+                    </td>
+                    <th class="formTitle">Chẩn đoán xuất viện：</th>
+                    <td class="formValue">
+                        <label id="cyzd"></label>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+
+                    <th class="formTitle">Tính chất phí：</th>
+                    <td class="formValue" colspan="2">
+                        <label id="zyxz"></label>
+                    </td>
+                    <th class="formTitle">Số ngày nằm viện：</th>
+                    <td class="formValue">
+                        <label id="zyts"></label>
+                    </td>
+                    <th class="formTitle">Ngày sinh：</th>
+                    <td class="formValue">
+                        <label id="csny"></label>
+                    </td>
+                    <th class="formTitle">Ngày nhập viện：</th>
+                    <td class="formValue">
+                        <label id="ryrq"></label>
+                    </td>
+                    <th class="formTitle">Ngày xuất viện：</th>
+                    <td class="formValue">
+                        <label id="cyrq"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="gridPanel" style="margin-top:1%">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 8 },
+    F8Text = "quyết toán"
+})
+
+<script>
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
+    var isXnhjyjz;
+    var medicalInsurance = '@medicalInsurance';
+
+    $(function () {
+        gridListData();
+    });
+
+    //Truy vấn bệnh nhân(nhập viện)
+    function GetPatSerarchView() {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Truy vấn bệnh nhân",
+            url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@(brzybzType)' + "&t=" + Math.random() + "&zyh=" + $("#zyh").val(),
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                //Gọi truy vấn số thẻ và mã nhập viện
+            }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
+        });
+    }
+
+    //Bệnh nhân đã chọn callback
+    function getPatInfoAjax(selePatInfo) {
+        //Xóa một chút
+        newtouch_globalevent_f4();
+        //
+        patModel = null;
+        jszje = 0.00;
+        if (selePatInfo && selePatInfo.zyh) {
+            $('#zyh').val(selePatInfo.zyh);
+            ajaxLoadDataResult(selePatInfo.zyh);
+        }
+        else {
+            $('#zyh').val('');
+        }
+    }
+
+    //
+    var patModel = null;
+    //
+    var jszje = 0.00;
+
+    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    function ajaxLoadDataResult(zyh) {
+        $.najax({
+            type: "POST",
+            url: "/HospitalizationManage/DischargeSettle/GetInpatientSettleStatusDetail",
+            data: { zyh: zyh, jslx: 'mnjs' },
+            dataType: "json",
+            success: function (ajaxresp) {
+                //Thông tin bệnh nhân nhập viện
+                patModel = ajaxresp.data.InpatientSettPatInfo;
+
+                isYbjyjz = openYbSett && patModel.brxz == '1' && patModel.CardType == "@((int)Newtouch.Sett.Domain.EnumCardType.YBJYK)";
+                isXnhjyjz = openXnhSett && patModel.brxz == '8' && patModel.CardType == "@((int)Newtouch.Sett.Domain.EnumCardType.XNHJYK)";
+
+                $('#xm').html(patModel.xm);
+                $('#xb').html($.getGender(patModel.xb));
+                $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+                //$('#ryzd').html(patModel.ryzdmc);
+                $('#cyzd').html(patModel.cyzd);
+                $('#zyxz').html(patModel.brxzmc);
+                $('#zyts').html(patModel.zyts);
+                $('#csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+                $('#ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+                $('#cyrq').html(patModel.cyrq ? patModel.cyrq.substring(0, 10) : '');
+
+                if (ajaxresp.data.GroupFeeVOList && ajaxresp.data.GroupFeeVOList.length) {
+                    loadJfmxByZyh(ajaxresp.data.GroupFeeVOList);
+                }
+                else {
+                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    return false;
+                }
+            },
+            errorCallback: function (data) {
+                newtouch_globalevent_f4();
+                $('#zyh').trigger('focus');
+            }
+        });
+    }
+
+    //Tổng số tiềnTổng cộng
+    function loadJfmxByZyh(data) {
+        //$('#gridList').jqGrid("clearGridData");   //sớmF4过
+        $("#gridList").newtouchLocalDataGrid(null, data);
+        //Tổng số tiền
+        var zje = 0;
+        $.each(data, function () {
+            if (this.je) {
+                zje += this.je;
+            }
+        });
+        if (zje) {
+            jszje = zje.toFixed(2);;
+            $("#yeCon").text(zje.toFixed(2));
+        }
+    }
+
+    function newtouch_event_f4() {
+        $('#xm').html('');
+        $('#xb').html('');
+        $('#nlshow').html('');
+        //$('#ryzd').html('');
+        $('#cyzd').html('');
+        $('#zyxz').html('');
+        $('#zyts').html('');
+        $('#csny').html('');
+        $('#ryrq').html('');
+        $('#cyrq').html('');
+        patModel = null;
+        jszje = 0.00;
+        $('#yeCon').text('0.00');
+        $('#gridList').jqGrid("clearGridData");
+    }
+
+    //Liên kếtgrid
+    function gridListData() {
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 225,
+            unwritten: false,
+            caption: captionCon,
+            colModel: [
+                { label: 'dlCode', name: 'dlCode', hidden: true },
+                { label: 'Loại phí', name: 'dlmc', width: 100, align: 'left' },
+                {
+                    label: 'Số tiền', name: 'je', width: 500, align: 'left', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+            ],
+            onSelectRow: function (rowIndex, s) {
+                getItemsbySfdl(rowIndex);
+            }
+        });
+    }
+
+    //Lưuquyết toán
+    function newtouch_event_f8() {
+        //if (isXnhjyjz) {
+        //    $.modalAlert("Bệnh nhân nông thôn mớiKhông thểquyết toán mô phỏng！", 'warning');
+        //    return;
+        //}
+        if (!patModel || !patModel.zyh) {
+            $.modalAlert("Mã nhập việnlàtrống", 'warning');
+            return;
+        }
+        var data = $("#gridList").jqGrid('getRowData_AllLine');
+        if (!(data && data.length)) {
+            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            return;
+        }
+        if (!patModel.ryrq) {
+            $.modalAlert("Ngày nhập việnlàtrống", 'warning');
+            return;
+        }
+
+        hisSubmit();
+    }
+
+    //
+    function hisSubmit() {
+        //
+        var zyh = patModel.zyh;
+        var ryrq = $.getDate({ date: patModel.ryrq });
+        var zje = jszje;
+        //
+        var openUrl = "/HospitalizationManage/DischargeSettle/SimulateForm?zyh=" + zyh;
+        openUrl += "&ryrq=" + (!!ryrq ? ryrq : '');
+        openUrl += "&hisfyze=" + zje;
+        openUrl += "&isYbjyjz=" + isYbjyjz;
+        openUrl += "&isXnhjyjz=" + isXnhjyjz; 
+        openUrl += "&medicalInsurance=" + medicalInsurance;
+        $.modalOpen({
+            id: "FormSimulateSettConfirm",
+            title: "quyết toán mô phỏng-Xem kết quả",
+            url: openUrl,
+            width: "600px",
+            height: "400px",
+            btn: ['Xác nhận'],
+            callBack: function (iframeId) {
+                $.modalClose(iframeId);
+                return;
+            }
+        });
+    }
+    function getItemsbySfdl(id) {
+        var rowData = $("#gridList").jqGrid('getRowData', id);
+        if (!!rowData) {
+            var sfdl = rowData.dlCode;
+            $.modalOpen({
+                id: "Sfdlfeedetail",
+                title: "Chi tiếtMụcTruy vấn",
+                url: "/HospitalizationManage/DischargeSettle/SimulateFeeItems?dlCode=" + sfdl + "&zyh=" + $("#zyh").val(),
+                width: "800px",
+                height: "600px",
+                btn: null,
+                callBack: function (iframeId) {
+                }
+            });
+        }
+    }
+</script>

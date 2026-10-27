@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "TelxdReport";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -29,9 +29,9 @@
             rownumbers: true,
             colModel: [
                 { label: 'cfId', name: 'cfId', hidden: true },
-                { label: '处方号', name: 'cfh', width: 100, align: 'center' },
-                { label: '总金额', name: 'zje', width: 120, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 120, align: 'center',formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                { label: 'Số đơn thuốc', name: 'cfh', width: 100, align: 'center' },
+                { label: 'Tổng số tiền', name: 'zje', width: 120, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'center',formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
 
             ],
             viewrecords: true,

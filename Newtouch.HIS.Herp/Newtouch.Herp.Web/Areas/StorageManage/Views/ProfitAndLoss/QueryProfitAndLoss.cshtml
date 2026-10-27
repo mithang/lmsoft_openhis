@@ -1,10 +1,10 @@
-﻿@model dynamic
+@model dynamic
 @using Newtouch.Herp.Infrastructure;
 @{
-    ViewBag.Title = "损益查询";
+    ViewBag.Title = "Tra cứu lãi lỗ";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
 
 }
 <style>
@@ -27,41 +27,41 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading">
-            筛选信息
+            Lọc thông tin
         </div>
         <table class="form" style="width:98%;border:0">
             <tr>
-                <th class="formTitle">损溢情况：</th>
+                <th class="formTitle">Tình hình lãi lỗ：</th>
                 <td style="padding-left:12px;">
                     <div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
-                        <button type="button" id="btnAll" data-keywordtype="All" class="btn active btn-restore">全部</button>
-                        <button type="button" id="btnLoss" data-keywordtype="Loss" class="btn btn-default">报损</button>
-                        <button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">报溢</button>
+                        <button type="button" id="btnAll" data-keywordtype="All" class="btn active btn-restore">Tất cả</button>
+                        <button type="button" id="btnLoss" data-keywordtype="Loss" class="btn btn-default">Báo hỏng</button>
+                        <button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">Báo thừa</button>
                     </div>
                 </td>
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue">
-                    <input type="text" id="txtINPUTCODE" class="form-control" placeholder="拼音/名称" />
+                    <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Phiên âm/Tên" />
                 </td>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Bắt đầuNgày：</th>
                 <td class="formValue">
                     <input type="text" id="txtStartDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                 </td>
-                <th class="formTitle">结束日期： </th>
+                <th class="formTitle">Kết thúcNgày： </th>
                 <td class="formValue">
                     <input type="text" id="txtEndDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">损溢原因：</th>
+                <th class="formTitle">Nguyên nhân lãi lỗ：</th>
                 <td class="formValue">
                     <select class="form-control" id="ddlSYYY">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
                 <td class="formValue" colspan="6">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
-                    <input type="button" id="btn_print" class="btn btn-primary" value="打印" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                    <input type="button" id="btn_print" class="btn btn-primary" value="In báo cáo" />
                 </td>
             </tr>
         </table>
@@ -78,9 +78,9 @@
         GridSyxxmx();
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
-        //加载损益原因
+        //Tải nguyên nhân lãi lỗ
         $("#ddlSYYY").bindSelect({
             url: "/StorageManage/ProfitAndLoss/GetLossProfitReasonListByType",
             id: "Id",
@@ -95,11 +95,12 @@
             }
         );
          $("#btn_print").click(function () {
-            var syqk = ""; //全部
+            if (!'@reportUrl') { $.modalAlert('Báo cáo SSRS chưa được chuyển đổi sang .NET Core, vui lòng sử dụng lưới dữ liệu trên trang.', 'warning'); return; }
+            var syqk = ""; //Tất cả
             if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-                syqk = 1;  //报溢
+                syqk = 1;  //Báo thừa
             } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-                syqk = 0;  //报损
+                syqk = 0;  //Báo hỏng
             }
             var url = '@reportUrl' + "?tempCode=1265" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId";
             url += "&sybz=" + syqk;
@@ -110,39 +111,39 @@
         });
     }
 
-    //损益信息明细
+    //Thông tin lãi lỗChi tiết
     function GridSyxxmx() {
         var $gridSyxxmxList = $("#gridSYXXMXList");
         $gridSyxxmxList.dataGrid({
             postData: getSearchPostData(),
             url: "/StorageManage/ProfitAndLoss/SelectLossAndProditInfoList",
             height: $(window).height() - 220,
-            caption: "损益明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>当页零价总额：" + "0.00" + "元</span>",
+            caption: "Lãi lỗChi tiết&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng giá 0 của trang hiện tại：" + "0.00" + "đ</span>",
             colModel: [
                 {
-                    label: "损益标志", name: "sybz", width: 55, align: "center",
-                    formatter: function (cellvalue) { return cellvalue === "1" ? "报溢" : "报损"; }
+                    label: "Dấu hiệu lãi lỗ", name: "sybz", width: 55, align: "center",
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Báo thừa" : "Báo hỏng"; }
                 },
-                { label: '损益原因', name: 'syyy', width: 120, align: 'left' },
-                { label: '单据号', name: 'djh', width: 160, align: 'left' },
-                { label: '物资名称', name: 'wzmc', width: 120, align: 'left' },
-                { label: '损溢数量', name: 'syslStr', width: 55, align: 'right' },//带单位
+                { label: 'Nguyên nhân lãi lỗ', name: 'syyy', width: 120, align: 'left' },
+                { label: 'Số phiếu', name: 'djh', width: 160, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Số lượng lãi lỗ', name: 'syslStr', width: 55, align: 'right' },//kèm Đơn vị
                 {
-                    label: '进价', name: 'jj', width: 70, align: 'right',
+                    label: 'Giá nhập', name: 'jj', width: 70, align: 'right',
                     formatter: function (val) { return val.toFixed(4); }},
                 {
-                    label: '零售价', name: 'lsj', width: 70, align: 'right',
+                    label: 'Giá bán lẻ', name: 'lsj', width: 70, align: 'right',
                     formatter: function (val) { return val.toFixed(4); } },
                 {
-                    label: '零售总额', name: 'ljze', width: 70, align: 'right',
+                    label: 'Tổng bán lẻ', name: 'ljze', width: 70, align: 'right',
                     formatter: function (val) { return val.toFixed(2); } },
-                { label: '报告时间', name: 'Bgsj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }},
-                { label: '物资类别', name: 'lb', width: 80, align: 'left' },
-                { label: '规格', name: 'gg', width: 120, align: 'left' },
-                { label: '产地', name: 'cd', width: 120, align: 'left' },
-                { label: '批号', name: 'Ph', width: 80, align: 'left' },
-                { label: '有效期', name: 'Yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '责任人', name: 'Zrr', width: 66, align: 'left' },
+                { label: 'Thời gian báo cáo', name: 'Bgsj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }},
+                { label: 'Loại vật tư', name: 'lb', width: 80, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 120, align: 'left' },
+                { label: 'Xuất xứ', name: 'cd', width: 120, align: 'left' },
+                { label: 'Số lô', name: 'Ph', width: 80, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'Yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Người chịu trách nhiệm', name: 'Zrr', width: 66, align: 'left' },
                 { label: 'productId', name: 'productId', hidden: true }
             ],
             multiselect: false,
@@ -150,7 +151,7 @@
             sortname: 'bgsj desc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+                ComputePjzeAndLjze();//Tính tổng giá sỉ và tổng giá 0 trong thanh tiêu đề
             }
         });
         $("#btn_search").click(function () {
@@ -162,22 +163,22 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var startTime = $("#txtStartDate").val();
         var endTime = $("#txtEndDate").val();
         var syyy = $("#ddlSYYY").val();
         var inputCode = $("#txtINPUTCODE").val();
-        var syqk = -1; //全部
+        var syqk = -1; //Tất cả
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-            syqk = 1;  //报溢
+            syqk = 1;  //Báo thừa
         } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            syqk = 0;  //报损
+            syqk = 0;  //Báo hỏng
         }
         return { startTime: startTime, endTime: endTime, syyy: syyy, inputCode: inputCode, sybz: syqk };
     };
 
-    //计算标题栏中的批价总额和零价总额
+    //Tính tổng giá sỉ và tổng giá 0 trong thanh tiêu đề
     function ComputePjzeAndLjze() {
         var titleLjze = 0;
         var count = $("#gridSYXXMXList").getGridParam('records');
@@ -187,7 +188,7 @@
                 var getRowLjze = $("#gridSYXXMXList").getRowData(rowIds[i]).ljze;
                 titleLjze = parseFloat(titleLjze) + parseFloat(getRowLjze);
             }
-            $("#yeCon").text("当页零价总额：" + titleLjze.toFixed(2) + "元");
+            $("#yeCon").text("Tổng giá 0 của trang hiện tại：" + titleLjze.toFixed(2) + "đ");
         }
     }
 

@@ -84,7 +84,7 @@ namespace NewtouchHIS.Lib.Base.Filter
                         context.Result = new JsonResult(result);
                         return;
                     }
-                    context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功", BusData = objectResult.Value, TimeOut = watch.ElapsedMilliseconds });
+                    context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", BusData = objectResult.Value, TimeOut = watch.ElapsedMilliseconds });
                     //判读是否返回的是元组
                     //返回数据并且返回总行数 public async Task<（List<object>,int）> Paging(PagingBaseRequest parameter) { retuen ( new List<object>{ },1000) }
                     if (objectResult.DeclaredType != null && objectResult.DeclaredType.Name == "ValueTuple`2")
@@ -95,11 +95,11 @@ namespace NewtouchHIS.Lib.Base.Filter
                             if (value.Item1 is int)
                             {
                                 //返回元组格式（int,List<object>）
-                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item1, Data = value.Item2 } });
+                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item1, Data = value.Item2 } });
                             }
                             else
                                 //返回元组格式（List<object>,int）
-                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item2, Data = value.Item1 } });
+                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item2, Data = value.Item1 } });
                         }
                     }
 
@@ -107,7 +107,7 @@ namespace NewtouchHIS.Lib.Base.Filter
             }
             else if (context.Result is EmptyResult)
             {
-                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功" });
+                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công" });
             }
             else if (context.Result is ContentResult)
             {
@@ -163,11 +163,11 @@ namespace NewtouchHIS.Lib.Base.Filter
                             if (value.Item1 is int)
                             {
                                 //返回元组格式（int,List<object>）
-                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item1, Data = value.Item2 } });
+                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item1, Data = value.Item2 } });
                             }
                             else
                                 //返回元组格式（List<object>,int）
-                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item2, Data = value.Item1 } });
+                                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item2, Data = value.Item1 } });
                         }
                     }
 
@@ -175,7 +175,7 @@ namespace NewtouchHIS.Lib.Base.Filter
             }
             else if (context.Result is EmptyResult)
             {
-                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "请求成功" });
+                context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công" });
             }
             else if (context.Result is ContentResult)
             {

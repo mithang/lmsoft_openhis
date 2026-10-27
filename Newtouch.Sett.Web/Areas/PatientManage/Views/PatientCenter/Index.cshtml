@@ -1,0 +1,341 @@
+@{
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .dv-left {
+        width:18%;
+        float:left;
+    
+    }
+
+    .dv-right {
+        width:80%;
+        float:right;
+    }
+    .sp-lable {
+        height:10px;
+        padding:5px 5px;
+        font-weight:bold; 
+        border-radius:3px;
+    }
+    .trbackground {
+        background-color: #ebfcd4;
+    }
+
+    .divtab {
+        padding-top: 30px;
+        /*height: 435px;*/
+        /*border-bottom: 2px double #f3a517;*/
+        /*border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;*/
+        overflow-y: auto;
+        overflow-x: hidden;
+    } 
+</style>
+<form id="formbasic">
+    <div class="panel panel-default" >
+        <div id="dv_panel" class="panel panel-body" style="width:98%;height:100%;">
+            <div id="dv_patleft" class="dv-left" style="height:95%; position:fixed;top:15px;border-radius: 4px;box-shadow: 0 0 3px #808080 inset;">
+                <div>
+                    <table class="form">
+                        <tr>
+                            <td class="formValue">
+                                <div style="float:left;width:40%;padding-top:3px;">
+                                    <span class="glyphicon glyphicon-credit-card" style="color:green;"> </span>
+                                    <span id="zyh" title="Số nhập viện" style="font-size:16px;font-weight:bold;color:green;">00001</span>
+                                    <span id="patid" name="patid" hidden></span>
+                                </div>
+                                <div style="float:right;padding-top:3px;">
+                                    <span class="glyphicon glyphicon-bell" style="color: #0bfe09;padding-right:5px;" title="hiện tại Đang nằm viện" id="iconzybz"></span>
+                                    @*<a onclick="getHistory()" style="padding-right:5px;"><span class="glyphicon glyphicon-th-list" style="color: rgb(255, 140, 60);" title="历次入院"></span></a>*@
+                                    @*<a onclick="GetPatSerarchView()"><span class="glyphicon glyphicon-transfer" title="切换患者"></span>切换患者</a>*@
+                                    <a onclick="GetPatSerarchView()" class="btn btn-default">Bệnh nhân chuyển đổi</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">
+                                <span id="xm" style="float:left;font-size:18px;font-weight:bold;padding-left:10px; ">臧三</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="formValue" style="border-bottom:solid;border-bottom-left-radius:5px;border-bottom-color:#90cbb7;">
+                                
+                                <span id="nlshow" class="sp-lable" style="background-color:#acf3db;" title="Tuổi">3tháng</span>
+                                <span id="xb" class="sp-lable" style="background-color:#ffea75;" title="Giới tính">Nam</span>
+                                <span id="brxzmc" class="sp-lable" style="background-color:#fadba4;" title="Tính chất bệnh nhân">người lao động BHYT</span>
+                                <span id="zybz" class="sp-lable" style="background-color:#acf3db;" title="Trạng thái đang nằm viện">Đang nằm viện</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                @*<div style="height:75%;position:relative;overflow-y:auto;">*@
+                <div >
+                    <table class="form">
+
+                        <tr>
+                            <td class="formValue">thẻ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;số：<span id="kh">AF00000008</span></td>
+                        </tr>
+                        @*<tr>
+                    <td class="formValue">总 费 用： <span id="zfy">1999.98</span></td>
+                </tr>*@
+                        <tr>
+                            <td class="formValue">Số dư tài khoản：<span id="zhye">1000</span></td>
+                        </tr>
+                        @*<tr>
+                    <td class="formValue">已结费用：<span id="yjfy">0</span></td>
+                </tr>
+                <tr>
+                    <td class="formValue">待缴费用：<span id="djfy" style="color:red;">-999.98</span></td>
+                </tr>*@
+                        <tr>
+                            <td class="formValue">Khoa：<span id="ksmc">Trẻ em Phục hồi chức năng</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Khoa bệnh：<span id="wardname">Trẻ em Phục hồi chức năng Khoa bệnh</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Giường  vị trí：<span id="cwmc">01Giường</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Thời gian nhập viện：<span id="rysj">2022-1-1 12:34:50</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Thời gian xuất viện：<span id="cqsj"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Số ngày nằm viện：<span id="zyts">60Ngày</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Nhập viện thứ tự：thứ<span id="zycx"> 2 </span>lần Nhập viện</td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Chẩn đoán nhập viện：<span id="ryzdmc">Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Chẩn đoán chính xuất viện：<span id="cyzdmc">Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra Cảm lạnh Kiểm tra</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Tiền sử dị ứng：<span id="gms">Penicillin</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Bác sĩ nội trú:<span id="zyysmc">路静</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Bác sĩ điều trị：<span id="zzysmc">路静</span></td>
+                        </tr>
+                        <tr>
+                            <td class="formValue">Bác sĩ chủ nhiệm：<span id="zrysmc">路静</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="dv-right" style="height:95%;">                
+                <div id="dv_patinfo" style="background-color:#ffffff;">
+                    <div class="container">
+                        <ul class="nav nav-tabs  navb-bg" id="myTab" style="position:fixed;top:0px;z-index:100009;width:100%;">
+                            <li role="presentation"><a href="#linkfee" role="tab" data-toggle="tab">Hóa đơn chi phí</a></li>
+                            <li role="presentation"><a href="#linkzd" role="tab" data-toggle="tab">Thông tin chẩn đoán</a></li>
+                            <li role="presentation"><a href="#linkaccount" role="tab" data-toggle="tab">tạm ứng Tra cứu</a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Giao dịch BHYT Tra cứu<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li role="presentation"><a href="#linksett" role="tab" data-toggle="tab">Thông tin quyết toán</a></li>
+                                    <li role="presentation"><a href="#linkybinfo" role="tab" data-toggle="tab">BHYT quyết toán trước</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Thêm</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="dv_fee" class="divtab" style="display: none;">
+                            @Html.Partial("HospFeeInfo")
+                        </div>
+                        <div id="dv_yb" class="divtab" style="display: none;padding-left:10px;">
+                            @Html.Partial("HospMediInsureInfo")
+                        </div>
+                        <div id="dv_account" class="divtab" style="display: none;">
+                            @Html.Partial("HospAccountInfo")
+                        </div>
+                        <div id="dv_zd" class="divtab" style="display: none;padding-left:10px;">
+                            @Html.Partial("HospDiagInfo")
+                        </div>
+                        <div id="dv_sett" class="divtab" style="display: none;padding-left:10px;">
+                            @Html.Partial("HospSettInfo")
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    var zyh = $.request("zyh");
+    debugger;
+    $(function () {
+        $(".divtab").height(window.innerHeight-90);
+        tabInit();
+        $.najax({
+            url: "/PatientManage/PatientCenter/GetDefaultZyh",
+            data: { zyh: zyh },
+            dataType: "json",
+            success: function (data) {
+                if (data != null && !!data.zyh) {
+                    debugger
+                    GetPatQueryAjax({ patid: data.patid, zyh: data.zyh });  
+                }
+                else {
+                    $.modalAlert("Thông tin bệnh nhân bất thường, vui lòng chọn lại", 'warning');
+                }
+                if (data.zybz == "2" || data.zybz == "3") {
+                    $("#iconzybz").hide();
+                }
+            }
+        });
+    });
+    function getHistory() {
+        alert("Các lần nhập viện trước")
+    }
+    //tab初始化
+    function tabInit() {
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+            switch ($(this).attr('href')) {
+                case "#linkfee": 
+                    $("#dv_fee").show();
+                    $("#dv_account").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").hide();
+                    FeeListGrid("","1");
+                    break;
+                case "#linkzd":
+                    $("#dv_fee").hide();
+                    $("#dv_zd").show();
+                    $("#dv_account").hide();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").hide();
+                    ZdListGrid($("#zyh").text());
+                   break;
+                case "#linkaccount":
+                    $("#dv_fee").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_account").show();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").hide();
+                    gridListAccount($("#zyh").text());
+                    break;
+                case "#linkybinfo":
+                    $("#dv_fee").hide();
+                    $("#dv_account").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_yb").show();
+                    $("#dv_sett").hide();
+                    gridListPresett($("#zyh").text());
+                    break;
+                case "#linksett":
+                    $("#dv_fee").hide();
+                    $("#dv_account").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").show();
+                    gridListSett($("#zyh").text());
+                    break;
+            }
+
+        });
+
+        $('#myTab a:first').trigger('click');
+    }
+
+
+    //人员查询
+    function GetPatSerarchView(blh) {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Nhập viện Tra cứu bệnh nhân",
+            url: "/PatientManage/PatientCenter/PatientChange?t=" + Math.random() + "&ywlx=zy&blh=" + blh,
+            width: "800px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+            }
+        });
+    }
+
+    function GetPatQueryAjax(obj) {
+        PatinfoClear();
+        if (obj != null && !!obj.zyh) {
+            $.najax({
+                url: "/PatientManage/PatientCenter/PatZyInfo",
+                data: { patid: obj.patid, zyh: obj.zyh },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data != null) {
+                        for (var e in data) {
+                            if (!!$("#" + e) && data[e] != null) {
+                                if (e == "xb") {                        
+                                    $("#" + e).html($.enum.getDescByValue("EnumSex", data[e]));
+                                }
+                                else if (e == "zybz") {
+                                    $("#" + e).html($.enum.getDescByValue("EnumZYBZ", data[e]));
+                                    if (data[e] == '@((int)EnumZYBZ.Wry)' || data[e] == '@((int)EnumZYBZ.Ycy)') {
+                                        $("#iconzybz").hide();
+                                    }
+                                    else {
+                                        $("#iconzybz").show();
+                                    }
+                                }
+                                else if (e == "cyjdrq2") {
+                                    var cyjdrq = data.cyjdrq2 != null ? data.cyjdrq2 : data.cqsj;
+                                    $("#cqsj").html(cyjdrq);
+                                }
+                                else if (data[e] === 0)
+                                {
+                                    $("#" + e).html("0.00");
+                                }
+                                else {
+                                    $("#" + e).html(data[e]);
+                                }
+                            }
+                        }                          
+                    }
+                    
+                }
+            });
+
+            //刷新医保交易查询
+            $("#gridListpresett").jqGrid('setGridParam', {
+                postData: { zyh: obj.zyh }
+            }).trigger('reloadGrid');
+            //刷新结算信息
+            $("#gridListsett").jqGrid('setGridParam', {
+                postData: { zyh: obj.zyh }
+            }).trigger('reloadGrid');
+            $("#gridFeeInfoList").jqGrid('setGridParam', {
+                postData: { zyh: obj.zyh,group:"1" }
+            }).trigger('reloadGrid');
+
+            $('#myTab a:first').trigger('click');
+        }
+         
+    }
+
+    function PatinfoClear() {
+        $("#dv_patleft span").each(function () {
+            $(this).html("");
+        });
+        $("#dv_settpre label").each(function () {
+            $(this).html("");
+        });
+        $("#dv_sett label").each(function () {
+            $(this).html("");
+        });
+        $("#sp_billje").html("0.00");
+    }
+</script>
+

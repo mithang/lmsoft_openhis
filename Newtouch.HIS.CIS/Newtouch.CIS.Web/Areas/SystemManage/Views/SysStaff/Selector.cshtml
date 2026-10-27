@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Selector";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
@@ -33,14 +33,14 @@
         if (callbackType == 'json') {
             treeSeleData = $("#staffTree").getCheckedNodeObjArray();
             if (single == 'true' && treeSeleData.length > 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('Đã chọn tối đa một dòng', 'warning');
                 return;
             }
         }
         else {
             treeSeleData = $("#staffTree").getCheckedNodes();
             if (single == 'true' && treeSeleData.length > 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('Đã chọn tối đa một dòng', 'warning');
                 return;
             }
             treeSeleData = String(treeSeleData);

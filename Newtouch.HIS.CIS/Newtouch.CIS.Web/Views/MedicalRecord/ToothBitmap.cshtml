@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "牙位图";
+    ViewBag.Title = "Sơ đồ vị trí răng";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -711,13 +711,13 @@
             <table class="form">
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_ywtqx" type="button" class="btn btn-primary" value="全选" onclick="ywtqx()">
+                        <input id="rpt_ywtqx" type="button" class="btn btn-primary" value="Chọn tất cả" onclick="ywtqx()">
                         @*<input id="ywtqx_qx" type="button" style="width:50px" class="btn btn-primary" value="全选" onclick="ywtqx()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_ywtqc" type="button" class="btn btn-primary" value="清除" onclick="ywtqc()">
+                        <input id="rpt_ywtqc" type="button" class="btn btn-primary" value="Xóa sạch" onclick="ywtqc()">
                         @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
                     </td>
                 </tr>
@@ -727,25 +727,25 @@
             <table class="form">
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_hy" name="ywlx" onclick="ywlxxz('hy')" checked="checked" value="yw" type="radio"> 恒牙
+                        <input id="rpt_hy" name="ywlx" onclick="ywlxxz('hy')" checked="checked" value="yw" type="radio"> Răng vĩnh viễn
                         @*<input id="ywtqx_qx" type="button" style="width:50px" class="btn btn-primary" value="全选" onclick="ywtqx()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_ry" name="ywlx" onclick="ywlxxz('ry')"  value="ry" type="radio"> 乳牙
+                        <input id="rpt_ry" name="ywlx" onclick="ywlxxz('ry')"  value="ry" type="radio"> Răng sữa
                         @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_hhy" name="ywlx" onclick="ywlxxz('hhy')"  value="hhy" type="radio"> 混合牙
+                        <input id="rpt_hhy" name="ywlx" onclick="ywlxxz('hhy')"  value="hhy" type="radio"> Răng hỗn hợp
                         @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_dsy" name="ywlx" onclick="ywlxxz('dsy')"  value="dsy" type="radio"> 多生牙
+                        <input id="rpt_dsy" name="ywlx" onclick="ywlxxz('dsy')"  value="dsy" type="radio"> Răng thừa
                         @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
                     </td>
                 </tr>
@@ -760,7 +760,7 @@
         var ywlx = $.request("ywlx");
         if (ywlx == "yw") {
             $("#rpt_hy").attr("checked",true);
-            $(".teeth-container").css("background-image", "url('../../Content/img/牙位图.png')");
+            $(".teeth-container").css("background-image", "url('../../Content/img/Sơ đồ vị trí răng.png')");
             $(".rydivclick").css("opacity", "0");
             if (ywstr != "") {
                 for (var i = 0; i < ywstr.split(',').length; i++) {
@@ -810,7 +810,7 @@
             }
         }
         else {
-            $(".teeth-container").css("background-image", "url('../../Content/img/牙位图.png')");
+            $(".teeth-container").css("background-image", "url('../../Content/img/Sơ đồ vị trí răng.png')");
             $(".rydivclick").css("opacity", "0");
         }
         //$(".bg-ryt").css("background-image", "url('../../Content/img/乳牙图.png')");
@@ -1021,7 +1021,7 @@
     }
     function ywlxxz(ywlx) {
         if (ywlx == "ry") {
-            $(".bg-ryt").css("background-image", "url('../../Content/img/乳牙图.png')");
+            $(".bg-ryt").css("background-image", "url('../../Content/img/Răng sữa图.png')");
             $(".teeth-container").css("background-image", "");
             qcsy("yw");
             qcsy("ry");
@@ -1037,7 +1037,7 @@
             $(".rydivclick").css("opacity", "0");
             $(".divclick").css("opacity", "0.6");
             $(".dsdivclick").css("opacity", "0");
-            $(".teeth-container").css("background-image", "url('../../Content/img/牙位图.png')");
+            $(".teeth-container").css("background-image", "url('../../Content/img/Sơ đồ vị trí răng.png')");
             $(".bg-ryt").css("background-image", "");
 
         }
@@ -1048,8 +1048,8 @@
             $(".rydivclick").css("opacity", "0.6");
             $(".divclick").css("opacity", "0.6");
             $(".dsdivclick").css("opacity", "0");
-            $(".bg-ryt").css("background-image", "url('../../Content/img/乳牙图.png')");
-            $(".teeth-container").css("background-image", "url('../../Content/img/牙位图.png')");
+            $(".bg-ryt").css("background-image", "url('../../Content/img/Răng sữa图.png')");
+            $(".teeth-container").css("background-image", "url('../../Content/img/Sơ đồ vị trí răng.png')");
         }
         else if (ywlx == "dsy") {
             qcsy("yw");

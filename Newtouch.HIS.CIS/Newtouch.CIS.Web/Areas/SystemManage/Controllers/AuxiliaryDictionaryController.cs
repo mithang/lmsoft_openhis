@@ -1,24 +1,38 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.Entity;
 using Newtouch.HIS.Domain.IRepository;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
+    [Area("SystemManage")]
     public class AuxiliaryDictionaryController : OrgControllerBase
     {
         private readonly IAuxiliaryDictionaryRepo _auxiliaryDictionaryRepo;
+
+        public AuxiliaryDictionaryController(IAuxiliaryDictionaryRepo auxiliaryDictionaryRepo)
+        {
+            this._auxiliaryDictionaryRepo = auxiliaryDictionaryRepo;
+        }
         // GET: AuxiliaryDictionary
 
         //组织机构（医院） 词典 下拉 数据源
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetTreeSelectJson(string treeidFieldName = "Code")
+        public IActionResult GetTreeSelectJson(string treeidFieldName = "Code")
         {
             var data = _auxiliaryDictionaryRepo.GetValidListByOrg(this.OrganizeId);
             var treeList = new List<TreeSelectModel>();
@@ -51,7 +65,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetTreeGridJson(string keyword)
+        public IActionResult GetTreeGridJson(string keyword)
         {
             var data = _auxiliaryDictionaryRepo.GetListByOrg(this.OrganizeId).ToList();
             if (!string.IsNullOrEmpty(keyword))
@@ -81,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var entity = _auxiliaryDictionaryRepo.FindEntity(keyValue);
             return Content(entity.ToJson());
@@ -92,16 +106,16 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(SysAuxiliaryDictionaryEntity entity, string keyValue)
+        public IActionResult SubmitForm(SysAuxiliaryDictionaryEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
             if (!string.IsNullOrWhiteSpace(keyValue) && keyValue == entity.ParentId)
             {
-                throw new FailedException("上级词典选择错误");
+                throw new FailedException("Cấp trênTừ điểnChọnLỗi");
             }
             entity.OrganizeId = this.OrganizeId;
             _auxiliaryDictionaryRepo.SubmitForm(entity, keyValue);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -109,10 +123,10 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             _auxiliaryDictionaryRepo.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Success("Xóa thành công.");
         }
     }
 }

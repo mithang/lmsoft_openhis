@@ -1,17 +1,24 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Common;
+
 using Newtouch.Domain.DTO;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.HIS.Domain.IRepository;
-using Newtouch.HIS.Web.Core.Attributes;
+using NewtouchHIS.Lib.Framework.Attributes;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Controllers
 {
@@ -35,7 +42,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 西医处方
         /// </summary>
         /// <returns></returns>
-        public ActionResult WMPrescription()
+        public IActionResult WMPrescription()
         {
             return View();
         }
@@ -44,7 +51,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 中医处方
         /// </summary>
         /// <returns></returns>
-        public ActionResult TCMPrescription()
+        public IActionResult TCMPrescription()
         {
             return View();
         }
@@ -52,7 +59,7 @@ namespace Newtouch.CIS.Web.Controllers
          /// 中医处方NEW
          /// </summary>
          /// <returns></returns>
-        public ActionResult TCMPrescription2022()
+        public IActionResult TCMPrescription2022()
         {
             return View();
         }
@@ -61,7 +68,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 康复处方
         /// </summary>
         /// <returns></returns>
-        public ActionResult RehabPrescription()
+        public IActionResult RehabPrescription()
         {
             return View();
         }
@@ -70,32 +77,32 @@ namespace Newtouch.CIS.Web.Controllers
         /// 常规项目处方
         /// </summary>
         /// <returns></returns>
-        public ActionResult RegularItemPrescription()
+        public IActionResult RegularItemPrescription()
         {
             return View();
         }
 
-        public ActionResult ConsumablesPrescription()
+        public IActionResult ConsumablesPrescription()
         {
             return View();
         }
 
         /// <summary>
-        /// 历史处方列表
+        /// Đơn thuốc lịch sử列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult HistoryPresForm()
+        public IActionResult HistoryPresForm()
         {
             return View();
         }
         #endregion
 
         /// <summary>
-        /// 历史处方树
+        /// Đơn thuốc lịch sử树
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
-        public ActionResult GetHistoryPresTree(string blh, string jzId, int cflx)
+        public IActionResult GetHistoryPresTree(string blh, string jzId, int cflx)
         {
             var treeList = new List<TreeViewModel>();
             var blList = _medicalRecordRepo.IQueryable().Where(a => a.blh == blh && a.zt == "1"&&a.OrganizeId==OrganizeId).Select(a => new { a.CreateTime, a.jzId }).ToList();
@@ -107,7 +114,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = Guid.NewGuid().ToString(),
                     value = DateTime.Now.ToString("yyyy-MM-dd"),
-                    text = DateTime.Now.ToString("yyyy-MM-dd") + "（本次就诊）",
+                    text = DateTime.Now.ToString("yyyy-MM-dd") + "(Lần khám này)",
                     parentId = null,
                     hasChildren = true, //有下级 样式
                     isexpand = true,
@@ -122,7 +129,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = Guid.NewGuid().ToString(),
                     value = thisPart.CreateTime.ToString("yyyy-MM-dd"),
-                    text = thisPart.CreateTime.ToString("yyyy-MM-dd") + "（本次就诊）",
+                    text = thisPart.CreateTime.ToString("yyyy-MM-dd") + "(Lần khám này)",
                     parentId = null,
                     hasChildren = true, //有下级 样式
                     isexpand = true,
@@ -142,7 +149,7 @@ namespace Newtouch.CIS.Web.Controllers
                         complete = true,
                         Ex1 = cf.sfbz.ToString(),
                         Ex2 = "current",
-                        title = cf.sfbz ? "已收费" : "未收费",
+                        title = cf.sfbz ? "Đã thu phí" : "Chưa thu phí",
                         img = cf.sfbz ? "fa fa-jpy" : null,
                     });
                 }
@@ -171,7 +178,7 @@ namespace Newtouch.CIS.Web.Controllers
                             isexpand = false,
                             complete = true,
                             Ex1 = cf.sfbz.ToString(),
-                            title = cf.sfbz ? "已收费" : "未收费",
+                            title = cf.sfbz ? "Đã thu phí" : "Chưa thu phí",
                             img = cf.sfbz ? "fa fa-jpy" : null,
                         });
                     }
@@ -197,11 +204,11 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 历史处方树明细
+        /// Đơn thuốc lịch sử树明细
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
-        public ActionResult GetHistoryPresDetailByCfId(string cfId)
+        public IActionResult GetHistoryPresDetailByCfId(string cfId)
         {
             var list = _prescriptionDmnService.GetHistoryPresDetailByCfId(cfId);
             return Content(list.ToJson());
@@ -211,7 +218,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 查询处方号
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetNewPresNo()
+        public IActionResult GetNewPresNo()
         {
             var presNo = EFDBBaseFuncHelper.Instance.GetRequisitionNo(this.OrganizeId);
             return Content(presNo);
@@ -224,17 +231,17 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="cfId"></param>
         /// <param name="cfmxIdStr"></param>
         /// <returns></returns>
-        public ActionResult GetPresDetailList(int cflx, string cfId, string cfmxIdStr)
+        public IActionResult GetPresDetailList(int cflx, string cfId, string cfmxIdStr)
         { 
             var data = _prescriptionDmnService.GetPresDetailList(cflx, cfId, cfmxIdStr);
             return Content(data.ToJson());
         }
 
         /// <summary>
-        /// 引用治疗建议
+        /// Trích dẫn治疗建议
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddKfjyForm()
+        public IActionResult AddKfjyForm()
         {
             return View();
         }
@@ -245,7 +252,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="brlx"></param>
         /// <param name="mzzyh"></param>
         /// <returns></returns>
-        public ActionResult kfjyGridJson(string brlx, string mzzyh)
+        public IActionResult kfjyGridJson(string brlx, string mzzyh)
         {
             int dayNum = 3;
             if (!string.IsNullOrWhiteSpace(_sysConfigRepo.GetValueByCode("GetRehabiDayNum", this.OrganizeId)))
@@ -261,7 +268,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="cvList"></param>
         /// <returns></returns>
-        public ActionResult UpdateSuggestionCvStatus(IList<SuggestionCvStatuDTO> cvList)
+        public IActionResult UpdateSuggestionCvStatus(IList<SuggestionCvStatuDTO> cvList)
         {
             _therapistApp.UpdateSuggestionCvStatus(cvList);
             return Success();
@@ -273,12 +280,12 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="Opt">接口类型：取值：zd(账单)</param>
         /// <param name="Brwym">病人唯一码(病人在HIS中的唯一码，不做SP的参数用，仅作核对用)</param>
         /// <param name="Zdlx">账单类型:00:条形码01:药品02:检查03:检验04:治疗不传递此字段则返回全部账单(处方，LIS，PACS，治疗)</param>
-        /// <param name="Brxz">病人性质</param>
+        /// <param name="Brxz">Tính chất bệnh nhân</param>
         /// <param name="startDate">开始时间</param>
         /// <param name="endDate">结束时间</param>
         /// <returns></returns>
-        [HandlerLoginIgnore]
-        public ActionResult QhdSvscis(string Opt, string Brwym, string Zdlx, string Brxz, DateTime? startDate, DateTime? endDate)
+        [HandlerAuthorizeIgnore] // ported: external billing API, must skip login (was Web.Core HandlerLoginIgnore)
+        public IActionResult QhdSvscis(string Opt, string Brwym, string Zdlx, string Brxz, DateTime? startDate, DateTime? endDate)
         {
                 var str = _idbDmnService.GetCisPrescription(Opt, Brwym, Zdlx, Brxz, startDate, endDate);
                 RtnToQhd rtnToQhd = new RtnToQhd();
@@ -291,25 +298,38 @@ namespace Newtouch.CIS.Web.Controllers
                 return Content(rtnToQhd.ToJson());
         }
         private readonly IDoctorserviceDmnService _iDoctorserviceDmnService;
-        public ActionResult GetSfxmZxksSelectJson(string sfxmCode, string keyword)
+
+        public PrescriptionController(IPrescriptionDetailRepo prescriptionDetailRepo, IPrescriptionRepo prescriptionRepo, IMedicalRecordDmnService medicalRecordDmnService, IMedicalRecordRepo medicalRecordRepo, IPrescriptionDmnService prescriptionDmnService, ITherapistApp therapistApp, IIDBDmnService idbDmnService, ISysConfigRepo sysConfigRepo, IDoctorserviceDmnService iDoctorserviceDmnService)
+        {
+            this._prescriptionDetailRepo = prescriptionDetailRepo;
+            this._prescriptionRepo = prescriptionRepo;
+            this._medicalRecordDmnService = medicalRecordDmnService;
+            this._medicalRecordRepo = medicalRecordRepo;
+            this._prescriptionDmnService = prescriptionDmnService;
+            this._therapistApp = therapistApp;
+            this._idbDmnService = idbDmnService;
+            this._sysConfigRepo = sysConfigRepo;
+            this._iDoctorserviceDmnService = iDoctorserviceDmnService;
+        }
+        public IActionResult GetSfxmZxksSelectJson(string sfxmCode, string keyword)
         {
             var Zxks = _iDoctorserviceDmnService.GetSfxmZxksSelectJson(OrganizeId, keyword);
             return Content(Zxks.ToJson());
         }
 
-        public ActionResult GetSfxmItem(string yfCode, string keyword)
+        public IActionResult GetSfxmItem(string yfCode, string keyword)
         {
             var Zxks = _iDoctorserviceDmnService.GetSfxmYfList(OrganizeId, yfCode, keyword);
             return Content(Zxks.ToJson());
         }
 
 
-		#region 物资
+		#region Vật tư
 		/// <summary>
 		/// 开立物资项目冻结库存数量
 		/// </summary>
 		/// <returns></returns>
-		public ActionResult Sumwzdj(string[] cfh)
+		public IActionResult Sumwzdj(string[] cfh)
 		{
 			var list = _prescriptionDmnService.Sumwzdj(cfh,OrganizeId, UserIdentity.rygh);
 			var data = new
@@ -323,7 +343,7 @@ namespace Newtouch.CIS.Web.Controllers
 		/// 开立物资项目冻结库存数量
 		/// </summary>
 		/// <returns></returns>
-		public ActionResult ZUOFwzdj(string cfh)
+		public IActionResult ZUOFwzdj(string cfh)
 		{
 			var list = _prescriptionDmnService.ZUOFwzdj(cfh, OrganizeId, UserIdentity.rygh);
 			var data = new
@@ -334,7 +354,7 @@ namespace Newtouch.CIS.Web.Controllers
 		}
 
         #endregion
-        public ActionResult Getmxbzd(string zdcode)
+        public IActionResult Getmxbzd(string zdcode)
         {
             var mxbstr = _iDoctorserviceDmnService.GetmxbzdList(OrganizeId, zdcode);
             var data = new
@@ -343,7 +363,7 @@ namespace Newtouch.CIS.Web.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult Getxzkls(YpxzkldataDTO xzkldata)
+        public IActionResult Getxzkls(YpxzkldataDTO xzkldata)
         {
             var mxbstr = _iDoctorserviceDmnService.GetxzklsList(OrganizeId, xzkldata);
             var data = new
@@ -352,7 +372,7 @@ namespace Newtouch.CIS.Web.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult GetYfData()
+        public IActionResult GetYfData()
         {
             var mxbstr = _iDoctorserviceDmnService.GetYfData(OrganizeId);
             return Content(mxbstr.ToJson());
@@ -363,7 +383,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
-        public ActionResult getdzcfnrxs(string cfh)
+        public IActionResult getdzcfnrxs(string cfh)
         {
             var data = _prescriptionDmnService.getdzcfnrxs(cfh, this.OrganizeId);
             if (data.Count > 0)

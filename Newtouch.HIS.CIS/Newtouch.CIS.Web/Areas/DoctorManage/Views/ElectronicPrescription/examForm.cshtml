@@ -1,8 +1,8 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "examForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
 
@@ -12,31 +12,31 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">医保处方编号：</th>
+                        <th class="formTitle">Bảo hiểm y tếĐơn thuốcSố hiệu:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="hiRxno" name="hiRxno" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
-                        <th class="formTitle">医保药师姓名：</th>
+                        <th class="formTitle">Bảo hiểm y tếDược sĩHọ tên:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="pharName" name="pharName" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">医保药师代码：</th>
+                        <th class="formTitle">Bảo hiểm y tếDược sĩMã:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="pharCode" name="pharCode" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
-                        <th class="formTitle">处方审核状态名称：</th>
+                        <th class="formTitle">Đơn thuốcDuyệtTrạng tháiTên:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="rxChkStasCodg" name="rxChkStasCodg" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">处方审核意见：</th>
+                        <th class="formTitle">Đơn thuốcDuyệtÝ kiến:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="rxChkOpnn" name="rxChkOpnn" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
-                        <th class="formTitle">处方审核时间：</th>
+                        <th class="formTitle">Đơn thuốcDuyệtThời gian:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="rxChkTime" name="rxChkTime" disabled="disabled" type="text" class="form-control" placeholder="" />
                         </td>
@@ -74,23 +74,23 @@
                             $("#hiRxno").val(obj.hiRxno);
                             $("#pharName").val(obj.pharName);
                             $("#pharCode").val(obj.pharCode);
-                            $("#rxChkStasCodg").val(obj.rxChkStasCodg == "1" ? "审核通过" : (obj.rxChkStasCodg == "2" ? "审核不通过" : "待审核"));
+                            $("#rxChkStasCodg").val(obj.rxChkStasCodg == "1" ? "DuyệtThông qua" : (obj.rxChkStasCodg == "2" ? "DuyệtKhông thông qua" : "Chờ duyệt"));
                             $("#rxChkOpnn").val(obj.rxChkOpnn);
                             $("#rxChkTime").val(obj.rxChkTime);
                         }
                         else {
-                            $.modalAlert("电子处方取药结果査询失败：" + data1.message, 'error');
+                            $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + data1.message, 'error');
                             return;
                         }
                     }
                     else {
-                        $.modalAlert("电子处方审核结果査询失败：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Điện tửĐơn thuốcDuyệtKết quảTra cứuthất bại:" + tfReturn.err_msg, 'error');
                         return;
                     }
                 },
                 error: function (request, error, ex) {
                     $.loading(false);
-                    $.modalAlert('医保服务【电子处方审核结果查询】不可访问：' + ex, 'error');
+                    $.modalAlert('Bảo hiểm y tếDịch vụ【Điện tửĐơn thuốcDuyệtKết quảTra cứu】Không thể truy cập:' + ex, 'error');
                 }
             })
         }

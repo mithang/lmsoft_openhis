@@ -1,0 +1,145 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Chứng từ、Đơn thuốc、Thống kê xuất kho cấp thuốc";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    #btn_print {
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tìm kiếm</div>
+        <div>
+            <table class="form">
+                <tr>
+                    <th class="formTitle ">Ngày thống kê:</th>
+                    <td class="formValue">
+                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">Đến：</th>
+                    <td class="formValue">
+                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">Nhóm lớn：</th>
+                    <td class="formValue">
+                        <select id="ypdl" class="form-control">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Khoa：</th>
+                    <td class="formValue">
+                        <select id="depa" class="form-control">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Khu bệnh：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="bqmc" class="form-control">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Định vị thuốc：</th>
+                    <td class="formValue">
+                        <input id="keyword" type="text" class="form-control" />
+                        <input id="ypcode" type="hidden" />
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-layout" id="dv_layout" style="width: 100%; height: 100%;">
+        <iframe class="ui-layout-center" style="width:100%; height: 100%;" id="if_data" name="if_data" scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
+    </div>
+</form>
+<script>
+    $(function () {
+        //药品代码
+        $("#keyword").newtouchBatchFloatingSelector({
+            clickautotrigger: true,
+            height: 200,
+            width: 1130,
+            url: '/Medicine/SelectLossAndProfitMedicineList',
+            ajaxmethod: 'Get',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.inputCode = $("#keyword").val();
+                return reqData;
+            },
+            caption: "Thông tin thuốc",
+            colModel: [
+                { label: 'Loại', name: 'yplb', width: 50 },
+                { label: 'Tên', name: 'ypmc', width: 200, align: 'left' },
+                { label: 'Tồn kho', name: 'xykcstr', width: 70, align: 'right' },
+                { label: 'Quy cách', name: 'ypgg', width: 150, align: 'center' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80 },
+                { label: 'Số lô', name: 'ph', width: 110, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 140, align: 'center' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 220, align: 'center' },
+                { label: 'Trạng thái', name: 'ypzt', width: 50 },
+                { label: 'Giá nhập', name: 'jj', hidden: true },
+                { label: 'Giá bán lẻ', name: 'lsj', hidden: true },
+                { label: 'Giá bán buôn', name: 'pfj', hidden: true },
+                { label: 'Giá lẻ kho thuốc', name: 'Yklsj', hidden: true },
+                { label: 'Giá bán buôn kho thuốc', name: 'Ykpfj', hidden: true },
+                { label: 'Mã', name: 'ypCode', hidden: true },
+                { label: 'Hệ số chuyển đổi', name: 'zhyz', hidden: true },
+                { label: 'kcsl', name: 'kcsl', hidden: true },
+                { label: 'zxdw', name: 'zxdw', hidden: true },
+                { label: 'Đơn vị', name: 'djdw', hidden: true }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#ypcode").val($thistr.attr('data-ypCode'));
+                $("#keyword").val($thistr.attr('data-ypmc'));
+                return;
+            }
+        });
+        $("#bqmc").bindSelect({ //病区信息集合
+            url: "/HospitalizationPharmacy/GetBQSelectJson",
+            id: "bqCode",
+            text: "bqmc"
+        });
+
+        $("#depa").bindSelect({
+            id: "Code",
+            text: "Name",
+            url: "/ReportManage/YpckQuery/GetSysDepartmentList",
+            dropdownAutoWidth: true
+        });
+        $("#ypdl").bindSelect({ //病区信息集合
+            url: "/ReportManage/JsYpcx/GetDlList",
+            id: "dlcode",
+            text: "dlmc"
+        });
+
+        $('#if_data').css('height', $(window).height() - 85);
+        //查询
+        $("#btn_search").click(function () {
+            var url =
+                "../../Report/PrintReport?type=CKTJReport&param=orgId=@ViewBag.OrganizeId|yfbmCode=@Constants.CurrentYfbm.yfbmCode" +
+                    "|bmCode=" +
+                    $("#depa").val() +
+                    "|bmName=" +
+                    $("#depa").find("option:selected").text() +
+                    "|kssj=" +
+                    $('#startTime').val() +
+                    "|jssj=" +
+                    $('#endTime').val() +
+                    "|bqCode=" +
+                    $("#bqmc").val() +
+                    "|searchCondition=" +
+                $("#ypcode").val() +
+                "|dlcode=" +
+                $("#ypdl").val();
+            $("#if_data").attr('src', url);
+        });
+        $("#btn_search").trigger("click");
+    });
+
+</script>

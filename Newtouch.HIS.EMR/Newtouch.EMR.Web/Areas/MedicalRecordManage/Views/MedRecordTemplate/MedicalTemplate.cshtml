@@ -1,12 +1,12 @@
 ﻿@using Newtouch.Infrastructure;
-@using Newtouch.Common.Operator;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
-    var EmrEdiForUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("EmrEdiForUrl");
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("EmrEdiForUrl");
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <link href="~/Content/css/fui.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui/easyui.css" />
 <link rel="stylesheet" type="text/css" href="~/Content/jquery-easyui/icon.css" />
@@ -17,110 +17,110 @@
 <link href="~/Content/jquery-easyui-ribbon/MedicalRecordEdit.css" rel="stylesheet" />
 <link href="~/Content/css/WebDemo.css" rel="stylesheet" />
 <link href="~/Content/css/style.css" rel="stylesheet" />
-@*<script src="~/Scripts/dc_main.js"></script>
-    <script src="~/Scripts/jquery.min.js"></script>*@
+
+
 <script src="@Html.Raw(EmrEdiForUrl)ServicePage.aspx?wasmres=dcwriter5.js"></script>
 <script src="@Html.Raw(EmrEdiForUrl)jquery/jquery-1.7.2.min.js"></script>
 <script src="~/Scripts/jquery.min.js"></script>
 <script src="~/Content/js/domtool.js"></script>
-@*<div class="toolbar" style="float:left">
+
         <div class="btn-group">
-            <a id="mb-add" authorize="yes" class="btn btn-primary" onclick="TemplateSave()"><i class="fa fa-plus"></i>保存</a>
+            <a id="mb-add" authorize="yes" class="btn btn-primary" onclick="TemplateSave()"><i class="fa fa-plus"></i>Lưu</a>
         </div>
-    </div>*@
+
 
 
 <div class="easyui-ribbon" id="sqcd"
      style="width: 100%; height: 140px; border: 1px solid #afafaf;position:relative;">
-    <div title="文件">
+    <div title="Tệp">
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="新建" class="easyui-linkbutton" data-options="plain:true"
-                   onclick="btn_add()">新建</a><br />
-                <a href="#" title="打开窗口编辑" class="easyui-linkbutton" data-options="plain:true"
-                   onclick="openwindow()">打开窗口编辑</a><br />
-                <a href="#" title="保存" class="easyui-linkbutton" onclick="TemplateSave();"
-                   data-options="plain:true">保存</a><br />
+                <a href="#" title="Tạo mới" class="easyui-linkbutton" data-options="plain:true"
+                   onclick="btn_add()">Tạo mới</a><br />
+                <a href="#" title="Mở cửa sổ chỉnh sửa" class="easyui-linkbutton" data-options="plain:true"
+                   onclick="openwindow()">Mở cửa sổ chỉnh sửa</a><br />
+                <a href="#" title="Lưu" class="easyui-linkbutton" onclick="TemplateSave();"
+                   data-options="plain:true">Lưu</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" title="导出为xml文件" class="easyui-linkbutton"
+                <a href="#" title="Xuất ra xml tệp" class="easyui-linkbutton"
                    onclick="document.getElementById('myWriterControl').DownLoadFile('xml');"
-                   data-options="plain:true">导出为xml文件</a><br />
-                <a href="#" title="导出为PDF文件" class="easyui-linkbutton"
+                   data-options="plain:true">Xuất ra xml tệp</a><br />
+                <a href="#" title="Xuất ra tệp PDF" class="easyui-linkbutton"
                    onclick="document.getElementById('myWriterControl').DownLoadFile('PDF');"
-                   data-options="plain:true">导出为PDF文件</a><br />
-                <a href="#" title="导出为rtf文件" class="easyui-linkbutton"
+                   data-options="plain:true">Xuất ra tệp PDF</a><br />
+                <a href="#" title="Xuất ra rtf tệp" class="easyui-linkbutton"
                    onclick="document.getElementById('myWriterControl').DownLoadFile('rtf');"
-                   data-options="plain:true">导出为rtf文件</a><br />
+                   data-options="plain:true">Xuất ra rtf tệp</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" title="导出为txt文件" class="easyui-linkbutton"
+                <a href="#" title="Xuất ra txt tệp" class="easyui-linkbutton"
                    onclick="document.getElementById('myWriterControl').DownLoadFile('txt');"
-                   data-options="plain:true">导出为txt文件</a><br />
-                <a href="#" title="导出为图片" class="easyui-linkbutton"
+                   data-options="plain:true">Xuất ra txt tệp</a><br />
+                <a href="#" title="Xuất ra hình ảnh" class="easyui-linkbutton"
                    onclick="document.getElementById('myWriterControl').DownLoadFile('longimg');"
-                   data-options="plain:true">导出为图片</a><br />
+                   data-options="plain:true">Xuất ra hình ảnh</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="直接打印" class="easyui-linkbutton" onclick="PrintDocument();"
-                   data-options="plain:true">直接打印</a><br />
-                <a href="#" title="打印预览" class="easyui-linkbutton" onclick="OpenPreview();"
-                   data-options="plain:true">打印预览</a><br />
-                <a href="#" title="取消预览" class="easyui-linkbutton" onclick="ClosePrintPreview();"
-                   data-options="plain:true">取消预览</a><br />
+                <a href="#" title="In trực tiếp" class="easyui-linkbutton" onclick="PrintDocument();"
+                   data-options="plain:true">In trực tiếp</a><br />
+                <a href="#" title="Xem trước khi in" class="easyui-linkbutton" onclick="OpenPreview();"
+                   data-options="plain:true">Xem trước khi in</a><br />
+                <a href="#" title="Hủy xem trước" class="easyui-linkbutton" onclick="ClosePrintPreview();"
+                   data-options="plain:true">Hủy xem trước</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="表单模式" class="easyui-linkbutton" onclick="changeview(this);"
-                   data-options="plain:true">表单模式</a><br />
-                <a href="MergeDocument.html" target="_blank" title="留痕模式" class="easyui-linkbutton"
-                   data-options="plain:true">留痕模式</a><br />
-                <a href="#" title="自动缩放模式" class="easyui-linkbutton" onclick="changeAutoZoom(this);"
-                   data-options="plain:true">自动缩放模式</a><br />
+                <a href="#" title="Chế độ biểu mẫu" class="easyui-linkbutton" onclick="changeview(this);"
+                   data-options="plain:true">Chế độ biểu mẫu</a><br />
+                <a href="MergeDocument.html" target="_blank" title="Chế độ lưu dấu vết" class="easyui-linkbutton"
+                   data-options="plain:true">Chế độ lưu dấu vết</a><br />
+                <a href="#" title="Chế độ tự động thu phóng" class="easyui-linkbutton" onclick="changeAutoZoom(this);"
+                   data-options="plain:true">Chế độ tự động thu phóng</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="获得被选中的文本" class="easyui-linkbutton"
+                <a href="#" title="Lấy văn bản đang chọn" class="easyui-linkbutton"
                    onclick="alert(document.getElementById('myWriterControl').SelectionText());"
-                   data-options="plain:true">获得被选中的文本</a><br />
-                <a href="#" title="获得被选中的HTML" class="easyui-linkbutton" onclick="setHtml();"
-                   data-options="plain:true">获得被选中的HTML</a><br />
-                <a href="#" title="获得被选中的XML" class="easyui-linkbutton" onclick="setXml();"
-                   data-options="plain:true">获得被选中的XML</a><br />
+                   data-options="plain:true">Lấy văn bản đang chọn</a><br />
+                <a href="#" title="Lấy phần đang chọn HTML" class="easyui-linkbutton" onclick="setHtml();"
+                   data-options="plain:true">Lấy phần đang chọn HTML</a><br />
+                <a href="#" title="Lấy phần đang chọn XML" class="easyui-linkbutton" onclick="setXml();"
+                   data-options="plain:true">Lấy phần đang chọn XML</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="设置当前输入域文本" class="easyui-linkbutton" onclick="MySetElementText();"
-                   data-options="plain:true">设置当前输入域文本</a><br />
-                <a href="#" class="easyui-linkbutton" title="删除当前输入域" data-options="plain:true"
-                   onclick="DeleteField()">删除当前输入域</a><br />
-                <a href="#" class="easyui-linkbutton" title="设置自定义下拉列表" data-options="plain:true"
-                   onclick="CustomDropdownList();">设置自定义下拉列表</a><br />
+                <a href="#" title="Đặt văn bản trường nhập hiện tại" class="easyui-linkbutton" onclick="MySetElementText();"
+                   data-options="plain:true">Đặt văn bản trường nhập hiện tại</a><br />
+                <a href="#" class="easyui-linkbutton" title="Xóa trường nhập hiện tại" data-options="plain:true"
+                   onclick="DeleteField()">Xóa trường nhập hiện tại</a><br />
+                <a href="#" class="easyui-linkbutton" title="Đặt danh sách thả xuống tùy chỉnh" data-options="plain:true"
+                   onclick="CustomDropdownList();">Đặt danh sách thả xuống tùy chỉnh</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="设置快捷菜单" class="easyui-linkbutton"
-                   onclick="MySetContextMenu();" data-options="plain:true">设置快捷菜单</a><br />
-                <a href="#" title="页面设置" class="easyui-linkbutton" onclick="ChangeDocumentSettings();"
-                   style="margin-top: 26px;" data-options="plain:true">页面设置</a>
+                <a href="#" title="Đặt menu phím tắt" class="easyui-linkbutton"
+                   onclick="MySetContextMenu();" data-options="plain:true">Đặt menu phím tắt</a><br />
+                <a href="#" title="Cài đặt trang" class="easyui-linkbutton" onclick="ChangeDocumentSettings();"
+                   style="margin-top: 26px;" data-options="plain:true">Cài đặt trang</a>
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="文档校验" style="margin-top: 13px;"
-                   data-options=" plain:true" onclick="MyValueValidate();">文档校验</a><br />
+                <a href="#" class="easyui-linkbutton" title="Kiểm tra tài liệu" style="margin-top: 13px;"
+                   data-options=" plain:true" onclick="MyValueValidate();">Kiểm tra tài liệu</a><br />
                 <a href="#" class="easyui-linkbutton" data-options=" plain:true">
                     <select id="validateResult" style="width: 120px;"
                             onchange="validateResult_Click();"></select>
@@ -129,228 +129,228 @@
             <div class="ribbon-group-sep"></div>
         </div>
     </div>
-    <div title="编辑">
+    <div title="Chỉnh sửa">
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="居左对齐"
+                <a href="#" class="easyui-linkbutton" title="Căn trái"
                    data-options=" iconCls:'icon-align-left',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleLeft', false, null);">居左</a><br />
-                <a href="#" class="easyui-linkbutton" title="居右对齐"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleLeft', false, null);">Căn trái</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn phải"
                    data-options=" iconCls:'icon-align-right',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleRight', false, null);">居右</a><br />
-                <a href="#" class="easyui-linkbutton" title="居中对齐"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleRight', false, null);">Căn phải</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn giữa"
                    data-options=" iconCls:'icon-align-center',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleCenter', false, null);">居中</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleCenter', false, null);">Căn giữa</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="图片居左对齐"
+                <a href="#" class="easyui-linkbutton" title="Căn trái hình ảnh"
                    data-options=" iconCls:'icon-imle',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'left');">图片居左</a><br />
-                <a href="#" class="easyui-linkbutton" title="图片居右对齐"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'left');">Hình ảnh căn trái</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn phải hình ảnh"
                    data-options=" iconCls:'icon-imri',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'right');">图片居右</a><br />
-                <a href="#" class="easyui-linkbutton" title="图片居中对齐"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'right');">Hình ảnh căn phải</a><br />
+                <a href="#" class="easyui-linkbutton" title="Căn giữa hình ảnh"
                    data-options=" iconCls:'icon-imce',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'center');">图片居中</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('imagefloat', false, 'center');">Hình ảnh căn giữa</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="段前距" id="rowspacingup"
-                   data-options=" iconCls:'icon-dqj',plain:true">段前距</a><br />
-                <a href="#" class="easyui-linkbutton" title="段后距" id="rowspacingdown"
-                   data-options=" iconCls:'icon-dhj',plain:true">段后距</a><br />
-                <a href="#" class="easyui-linkbutton" title="行间距" id="lineheight"
-                   data-options=" iconCls:'icon-hjj',plain:true">行间距</a><br />
+                <a href="#" class="easyui-linkbutton" title="Khoảng cách trước đoạn" id="rowspacingup"
+                   data-options=" iconCls:'icon-dqj',plain:true">Khoảng cách trước đoạn</a><br />
+                <a href="#" class="easyui-linkbutton" title="Khoảng cách sau đoạn" id="rowspacingdown"
+                   data-options=" iconCls:'icon-dhj',plain:true">Khoảng cách sau đoạn</a><br />
+                <a href="#" class="easyui-linkbutton" title="Khoảng cách dòng" id="lineheight"
+                   data-options=" iconCls:'icon-hjj',plain:true">Khoảng cách dòng</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="有序列表"
+                <a href="#" class="easyui-linkbutton" title="Danh sách có thứ tự"
                    data-options=" iconCls:'icon-numbers',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertorderedlist', true, null);">有序列表</a><br />
-                <a href="#" class="easyui-linkbutton" title="无序列表"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertorderedlist', true, null);">Danh sách có thứ tự</a><br />
+                <a href="#" class="easyui-linkbutton" title="Danh sách không thứ tự"
                    data-options=" iconCls:'icon-bullets',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertunorderedlist', true, null);">无序列表</a><br />
-                <a href="#" class="easyui-linkbutton" title="首行缩进"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertunorderedlist', true, null);">Danh sách không thứ tự</a><br />
+                <a href="#" class="easyui-linkbutton" title="Thụt đầu dòng"
                    data-options=" iconCls:'icon-inde',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Indent', true, null);">首行缩进</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Indent', true, null);">Thụt đầu dòng</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="上标"
+                <a href="#" class="easyui-linkbutton" title="Chỉ số trên"
                    data-options=" iconCls:'icon-superscript',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Superscript', true, null);">上标</a><br />
-                <a href="#" class="easyui-linkbutton" title="下标"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Superscript', true, null);">Chỉ số trên</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chỉ số dưới"
                    data-options=" iconCls:'icon-subscript',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Subscript', true, null);">下标</a><br />
-                <a href="#" class="easyui-linkbutton" title="加粗"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Subscript', true, null);">Chỉ số dưới</a><br />
+                <a href="#" class="easyui-linkbutton" title="Đậm"
                    data-options=" iconCls:'icon-bold',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);">加粗</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);">Đậm</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="大写"
+                <a href="#" class="easyui-linkbutton" title="Chữ hoa"
                    data-options=" iconCls:'icon-uppercase-font',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('ToupperCase', false, null);">大写</a><br />
-                <a href="#" class="easyui-linkbutton" title="小写"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('ToupperCase', false, null);">Chữ hoa</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chữ thường"
                    data-options=" iconCls:'icon-lowercase-font',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('TolowerCase', false, null);">小写</a><br />
-                <a href="#" class="easyui-linkbutton" title="斜体"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('TolowerCase', false, null);">Chữ thường</a><br />
+                <a href="#" class="easyui-linkbutton" title="Nghiêng"
                    data-options=" iconCls:'icon-italic',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic', true, null);">斜体</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic', true, null);">Nghiêng</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="删除线"
+                <a href="#" class="easyui-linkbutton" title="Gạch ngang"
                    data-options=" iconCls:'icon-strikethrough',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);">删除线</a><br />
-                <a href="#" class="easyui-linkbutton" title="下划线"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);">Gạch ngang</a><br />
+                <a href="#" class="easyui-linkbutton" title="Gạch chân"
                    data-options=" iconCls:'icon-underline',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', false, null);">下划线</a><br />
-                <a href="#" class="easyui-linkbutton" title="字符边框"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', false, null);">Gạch chân</a><br />
+                <a href="#" class="easyui-linkbutton" title="Viền ký tự"
                    data-options=" iconCls:'icon-zfbk',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Fontborder', true, null);">字符边框</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Fontborder', true, null);">Viền ký tự</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton clickMenu" title="背景色"
-                   data-options=" iconCls:'icon-fontbg',plain:true" id="backcolor">背景色</a>
+                <a href="#" class="easyui-linkbutton clickMenu" title="Màu nền"
+                   data-options=" iconCls:'icon-fontbg',plain:true" id="backcolor">Màu nền</a>
                 <br />
-                <a href="#" class="easyui-linkbutton clickMenu" title="字体颜色"
-                   data-options=" iconCls:'icon-fontf',plain:true" id="fontcolor">字体颜色</a>
+                <a href="#" class="easyui-linkbutton clickMenu" title="Màu chữ"
+                   data-options=" iconCls:'icon-fontf',plain:true" id="fontcolor">Màu chữ</a>
                 <br />
-                <a href="#" class="easyui-linkbutton clickMenu" title="字体大小" id="fontsize"
-                   data-options=" iconCls:'icon-fontsize',plain:true">字体大小</a>
+                <a href="#" class="easyui-linkbutton clickMenu" title="Cỡ chữ" id="fontsize"
+                   data-options=" iconCls:'icon-fontsize',plain:true">Cỡ chữ</a>
                 <br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton clickMenu" title="字体"
-                   data-options=" iconCls:'icon-fontfa',plain:true" id="fontfa">字体</a>
+                <a href="#" class="easyui-linkbutton clickMenu" title="Phông chữ"
+                   data-options=" iconCls:'icon-fontfa',plain:true" id="fontfa">Phông chữ</a>
                 <br />
-                <a href="#" class="easyui-linkbutton" title="清除字号"
+                <a href="#" class="easyui-linkbutton" title="Xóa cỡ chữ"
                    data-options=" iconCls:'icon-eraser-font',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('removefontsize', true, 'inherit');">清除字号</a><br />
-                <a href="#" class="easyui-linkbutton" title="清除字体"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('removefontsize', true, 'inherit');">Xóa cỡ chữ</a><br />
+                <a href="#" class="easyui-linkbutton" title="Xóa phông chữ"
                    data-options=" iconCls:'icon-eraser-font',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('removeformat', true, 'inherit');">清除字体</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('removeformat', true, 'inherit');">Xóa phông chữ</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
     </div>
-    <div title="插入">
+    <div title="Chèn">
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入图片"
+                <a href="#" class="easyui-linkbutton" title="Chèn hình ảnh"
                    data-options=" iconCls:'icon-picture-large',iconAlign:'top',size:'large'"
                    style="border: 0; padding-top: 15px;"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('DCInsertImage', false, null);">插入图片</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('DCInsertImage', false, null);">Chèn hình ảnh</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入时间"
+                <a href="#" class="easyui-linkbutton" title="Chèn thời gian"
                    data-options=" iconCls:'icon-time-large',iconAlign:'top',size:'large'"
                    style="border: 0; padding-top: 15px;"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Time', false, null);">插入时间</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Time', false, null);">Chèn thời gian</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入日期"
+                <a href="#" class="easyui-linkbutton" title="Chèn ngày"
                    data-options=" iconCls:'icon-data-large',iconAlign:'top',size:'large'"
                    style="border: 0; padding-top: 15px;"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Date', false, null);">插入日期</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Date', false, null);">Chèn ngày</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入分隔符"
+                <a href="#" class="easyui-linkbutton" title="Chèn dấu phân cách"
                    data-options=" iconCls:'icon-fyf-large',iconAlign:'top',size:'large'"
                    style="border: 0; padding-top: 15px;"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('pagebreak', false, null);">插入分隔符</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('pagebreak', false, null);">Chèn dấu phân cách</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入超链接"
+                <a href="#" class="easyui-linkbutton" title="Chèn siêu liên kết"
                    data-options=" iconCls:'icon-link',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('link', true, '超链接,http://dcwriter.cn');"
-                   id="inserlinka">超链接</a><br />
-                <a href="#" class="easyui-linkbutton" title="取消超链接"
+                   onclick="document.get element by id('my writer control').DCExecute command('link', true, 'Siêu liên kết,http://dcwriter.cn');"
+                   id="inserlinka">Siêu liên kết</a><br />
+                <a href="#" class="easyui-linkbutton" title="Hủy siêu liên kết"
                    data-options=" iconCls:'icon-unlink',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('unlink', true, null);">取消超链接</a><br />
-                <a href="#" class="easyui-linkbutton" title="插入特殊字符"
-                   data-options=" iconCls:'icon-tszf',plain:true" id="insertszf">插入特殊字符</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('unlink', true, null);">Hủy siêu liên kết</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn ký tự đặc biệt"
+                   data-options=" iconCls:'icon-tszf',plain:true" id="insertszf">Chèn ký tự đặc biệt</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入年龄输入域"
+                <a href="#" class="easyui-linkbutton" title="Chèn trường nhập tuổi"
                    data-options=" iconCls:'icon-age',plain:true" val="InsertAgeField"
-                   onclick="MyExecuteCommand(this);">插入年龄输入域</a><br />
-                <a href="#" class="easyui-linkbutton" title="插入性别输入域"
+                   onclick="MyExecuteCommand(this);">Chèn trường nhập tuổi</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn trường nhập giới tính"
                    data-options=" iconCls:'icon-sex',plain:true" val="InsertSexField"
-                   onclick="MyExecuteCommand(this);">插入性别输入域</a><br />
-                <a href="#" class="easyui-linkbutton" title="插入日期输入域"
+                   onclick="MyExecuteCommand(this);">Chèn trường nhập giới tính</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn trường nhập ngày"
                    data-options=" iconCls:'icon-date',plain:true" val="InsertDateTime"
-                   onclick="MyExecuteCommand(this);">插入日期输入域</a><br />
+                   onclick="MyExecuteCommand(this);">Chèn trường nhập ngày</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入按钮"
+                <a href="#" class="easyui-linkbutton" title="Chèn nút"
                    data-options=" iconCls:'icon-button',plain:true" val="InsertInputButton"
-                   onclick="MyExecuteCommand(this);">插入按钮</a><br />
-                <a href="#" class="easyui-linkbutton" title="插入复选框"
+                   onclick="MyExecuteCommand(this);">Chèn nút</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn hộp kiểm"
                    data-options=" iconCls:'icon-fxk',plain:true" val="InsertInputCheckbox"
-                   onclick="MyExecuteCommand(this);">插入复选框</a><br />
-                <a href="#" class="easyui-linkbutton" title="插入单选框"
+                   onclick="MyExecuteCommand(this);">Chèn hộp kiểm</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn nút radio"
                    data-options=" iconCls:'icon-dxk',plain:true" val="InsertInputRadio"
-                   onclick="MyExecuteCommand(this);">插入单选框</a><br />
+                   onclick="MyExecuteCommand(this);">Chèn nút radio</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入批注" data-options="plain:true"
-                   onclick="insertNewComment();">插入批注</a><br />
-                <a href="#" class="easyui-linkbutton" title="插入页码" data-options="plain:true"
-                   onclick="dcInsertPageInfo();">插入页码</a><br />
-                <!--<a href="#" class="easyui-linkbutton" title="插入自定义下拉菜单"
+                <a href="#" class="easyui-linkbutton" title="Chèn chú thích" data-options="plain:true"
+                   onclick="insertNewComment();">Chèn chú thích</a><br />
+                <a href="#" class="easyui-linkbutton" title="Chèn số trang" data-options="plain:true"
+                   onclick="dcInsertPageInfo();">Chèn số trang</a><br />
+                
                 data-options="plain:true"
-                onclick="insertCustomDropdownList();">插入自定义下拉菜单</a><br />-->
+
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
-            <a href="#" title="插入的医学表达式" class="easyui-linkbutton" data-options="plain:true"
-               onclick="MedicalExpressionMenuV5()">插入的医学表达式</a>
-            @*<div class="ribbon-toolbar">
+            <a href="#" title="Biểu thức y học đã chèn" class="easyui-linkbutton" data-options="plain:true"
+               onclick="MedicalExpressionMenuV5()">Biểu thức y học đã chèn</a>
+            
                 <select id="MedicalExpressionMenu">
-                    <option>选择插入的医学表达式</option>
+                    <option>Chọn biểu thức y học để chèn</option>
                 </select>
-            </div>*@
+
         </div>
         <div class="ribbon-group-sep"></div>
     </div>
-    <div title="表格">
+    <div title="Bảng">
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="插入表格" id="insert_table"
+                <a href="#" class="easyui-linkbutton" title="Chèn bảng" id="insert_table"
                    data-options=" iconCls:'icon-table-large',iconAlign:'top',size:'large'"
-                   style="border: 0; padding-top: 15px;">插入表格</a><br />
+                   style="border: 0; padding-top: 15px;">Chèn bảng</a><br />
             </div>
             <div class="ribbon-toolbar">
-                <a href="#" class="easyui-linkbutton" title="删除表格"
+                <a href="#" class="easyui-linkbutton" title="Xóa bảng"
                    data-options=" iconCls:'icon-tabledel-large',iconAlign:'top',size:'large'"
                    style="border: 0; padding-top: 15px;"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletetable', true, null);">删除表格</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletetable', true, null);">Xóa bảng</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
                 <div class="ribbon-toolbar">
-                    <a href="#" class="easyui-linkbutton" title="表格前插入行"
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng trước bảng"
                        data-options=" iconCls:'icon-inserttext',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertparagraphbeforetable', true, null);">表格前插入行</a><br />
-                    <a href="#" class="easyui-linkbutton" title="插入行"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertparagraphbeforetable', true, null);">Chèn dòng trước bảng</a><br />
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng"
                        data-options=" iconCls:'icon-inserth',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertrowup', true, null);">在上面插入行</a><br />
-                    <a href="#" class="easyui-linkbutton" title="插入行"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertrowup', true, null);">Chèn dòng phía trên</a><br />
+                    <a href="#" class="easyui-linkbutton" title="Chèn dòng"
                        data-options=" iconCls:'icon-inserth',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_InsertRowDown', true, null);">在下面插入行</a><br />
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_InsertRowDown', true, null);">Chèn dòng phía dưới</a><br />
                 </div>
                 <div class="ribbon-toolbar">
-                    <a href="#" class="easyui-linkbutton" title="插入列"
+                    <a href="#" class="easyui-linkbutton" title="Chèn cột"
                        data-options=" iconCls:'icon-insertl',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnleft', true, null);">在左面插入列</a><br />
-                    <a href="#" class="easyui-linkbutton" title="插入列"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnleft', true, null);">Chèn cột bên trái</a><br />
+                    <a href="#" class="easyui-linkbutton" title="Chèn cột"
                        data-options=" iconCls:'icon-insertl',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnRight', true, null);">在右面插入列</a><br />
-                    <!-- <a href="#" class="easyui-linkbutton" data-options="plain:true"
-                        onclick="document.getElementById('myWriterControl').LoadDocumentFromFile('DataSource', null);">数据源绑定</a> -->
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnRight', true, null);">Chèn cột bên phải</a><br />
+                    
+
                 </div>
             </div>
         </div>
@@ -358,64 +358,64 @@
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
                 <div class="ribbon-toolbar">
-                    <a href="#" title="删除行" class="easyui-linkbutton"
+                    <a href="#" title="Xóa dòng" class="easyui-linkbutton"
                        data-options=" iconCls:'icon-delh',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deleterow', true, null);">删除行</a><br />
-                    <a href="#" title="删除列" class="easyui-linkbutton"
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deleterow', true, null);">Xóa dòng</a><br />
+                    <a href="#" title="Xóa cột" class="easyui-linkbutton"
                        data-options=" iconCls:'icon-dell',plain:true"
-                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletecolumn', true, null);">删除列</a><br />
+                       onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletecolumn', true, null);">Xóa cột</a><br />
                 </div>
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="拆分成行" class="easyui-linkbutton"
+                <a href="#" title="Tách thành dòng" class="easyui-linkbutton"
                    data-options=" iconCls:'icon-chaifen',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittorows', true, null);">拆分成行</a><br />
-                <a href="#" title="拆分成列" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittorows', true, null);">Tách thành dòng</a><br />
+                <a href="#" title="Tách thành cột" class="easyui-linkbutton"
                    data-options=" iconCls:'icon-chaifen',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittocols', true, null);">拆分成列</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittocols', true, null);">Tách thành cột</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
         <div class="ribbon-group">
             <div class="ribbon-toolbar">
-                <a href="#" title="右合并单元格" class="easyui-linkbutton"
+                <a href="#" title="Gộp ô sang phải" class="easyui-linkbutton"
                    data-options=" iconCls:'icon-hebing',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_MergeCell', false, null);">合并单元格</a><br />
-                <a href="#" title="下合并单元格" class="easyui-linkbutton"
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_MergeCell', false, null);">Gộp ô</a><br />
+                <a href="#" title="Gộp ô xuống dưới" class="easyui-linkbutton"
                    data-options=" iconCls:'icon-hebing',plain:true"
-                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_SplitCellExt', true, null);">拆分单元格</a><br />
+                   onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_SplitCellExt', true, null);">Tách ô</a><br />
             </div>
         </div>
         <div class="ribbon-group-sep"></div>
     </div>
     <span class="shouqi" style="display: none;">
-        <span class="shouqiUl">折叠列表</span>
-        <span class="shouqiMenu">折叠菜单</span>
+        <span class="shouqiUl">Thu gọn danh sách</span>
+        <span class="shouqiMenu">Thu gọn menu</span>
     </span>
 </div>
 <div class="xmlIfr">
     <div class="mask" id="mask" style="display: none;"></div>
-    <!--插入表格-->
+    
     <div class="panel combo-p" id="table" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title=""
              style="width: 78px; border: 0;">
             <input type="text" id="row"
                    onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
-                   placeholder="行" autocomplete="off"
+                   placeholder="Dòng" autocomplete="off"
                    style="float: left; width: 20px; margin-right: 10px;" />
             *
             <input type="text" id="column"
                    onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                    onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
-                   placeholder="列" autocomplete="off" style="width: 20px; margin-left: 10px;" />
-            <input type="button" id="qd" style="width: 78px;" value="确定" />
+                   placeholder="Cột" autocomplete="off" style="width: 20px; margin-left: 10px;" />
+            <input type="button" id="qd" style="width: 78px;" value="Xác nhận" />
         </div>
     </div>
-    <!--字体大小-->
+    
     <div class="panel combo-p" id="fontsizeli" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="font10" class="combobox-item" style="font-size: 10px; cursor: pointer;">
@@ -438,7 +438,7 @@
             </div>
         </div>
     </div>
-    <!--字体-->
+    
     <div class="panel combo-p" id="fontf" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="fontfh" class="combobox-item"
@@ -453,7 +453,7 @@
                  style="font-size: 14px; cursor: pointer; font-family: 楷体;">楷体</div>
         </div>
     </div>
-    <!--段前距-->
+    
     <div class="panel combo-p" id="rowspacingup1" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="up5" class="combobox-item" style="cursor: pointer;">5px</div>
@@ -463,7 +463,7 @@
             <div id="up25" class="combobox-item" style="cursor: pointer;">25px</div>
         </div>
     </div>
-    <!--段后距-->
+    
     <div class="panel combo-p" id="rowspacingdown1" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="down5" class="combobox-item" style="cursor: pointer;">5px</div>
@@ -481,7 +481,7 @@
             </div>
         </div>
     </div>
-    <!--行间距-->
+    
     <div class="panel combo-p" id="lineheight1" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="li1" class="combobox-item" style="cursor: pointer;">1</div>
@@ -495,7 +495,7 @@
             <div id="li5" class="combobox-item" style="cursor: pointer;">5</div>
         </div>
     </div>
-    <!--字体颜色-->
+    
     <div class="fui-panel fui-widget fui-container fui-ppanel fui-colorpicker fui-ppanel-position"
          id="fcolor" rule="ColorPicker" style="display: none;">
         <div class="fui-panel-content">
@@ -505,7 +505,7 @@
                          style="background-color: rgb(247, 150, 70); border-color: rgb(247, 150, 70);">
                     </div>
                 </div>
-                <div class="fui-colorpicker-title">通用颜色</div>
+                <div class="fui-colorpicker-title">Màu chung</div>
                 <div class="fui-colorpicker-commoncolor fgclor">
                     <div class="fui-colorpicker-colors fui-colorpicker-colors-line0">
                         <span class="fui-colorpicker-item"
@@ -700,7 +700,7 @@
                               data-color="#974706"></span>
                     </div>
                 </div>
-                <div class="fui-colorpicker-title">标准颜色</div>
+                <div class="fui-colorpicker-title">Màu chuẩn</div>
                 <div class="fui-colorpicker-standardcolor fui-colorpicker-colors  fgclor">
                     <span class="fui-colorpicker-item"
                           style="background-color: #c00000; border-color: #c00000;"
@@ -736,7 +736,7 @@
             </div>
         </div>
     </div>
-    <!--字体背景颜色-->
+    
     <div class="fui-panel fui-widget fui-container fui-ppanel fui-colorpicker fui-ppanel-position"
          id="bcolor" rule="ColorPicker" style="display: none;">
         <div class="fui-panel-content">
@@ -746,7 +746,7 @@
                          style="background-color: rgb(247, 150, 70); border-color: rgb(247, 150, 70);">
                     </div>
                 </div>
-                <div class="fui-colorpicker-title">通用颜色</div>
+                <div class="fui-colorpicker-title">Màu chung</div>
                 <div class="fui-colorpicker-commoncolor bgclor">
                     <div class="fui-colorpicker-colors fui-colorpicker-colors-line0">
                         <span class="fui-colorpicker-item"
@@ -941,7 +941,7 @@
                               data-color="#974706"></span>
                     </div>
                 </div>
-                <div class="fui-colorpicker-title">标准颜色</div>
+                <div class="fui-colorpicker-title">Màu chuẩn</div>
                 <div class="fui-colorpicker-standardcolor fui-colorpicker-colors  bgclor">
                     <span class="fui-colorpicker-item"
                           style="background-color: #c00000; border-color: #c00000;"
@@ -977,22 +977,22 @@
             </div>
         </div>
     </div>
-    <!--插入特殊字符-->
+    
     <div id="tszfa" style="display: none;">
         <div id="aaa" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
-            <span style="font-size: 16px;">插入字符</span>
+            <span style="font-size: 16px;">Chèn ký tự</span>
             <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimg"
                  src="~/Content/img/close2.png" />
         </div>
         <div id="tabHeads" class="tabhead">
-            <span tabsrc="tsfh" class="focus">特殊字符</span>
-            <span tabsrc="lmsz" class="">罗马字符</span>
-            <span tabsrc="szfh" class="">数学字符</span>
-            <span tabsrc="rwfh" class="">医学字符</span>
+            <span tabsrc="tsfh" class="focus">Ký tự đặc biệt</span>
+            <span tabsrc="lmsz" class="">Ký tự La Mã</span>
+            <span tabsrc="szfh" class="">Ký tự toán học</span>
+            <span tabsrc="rwfh" class="">Ký tự y học</span>
         </div>
         <div id="tabBodys" class="tabbody" style="overflow:auto">
             <div id="tsfh">
-                <span>、</span><span>。</span><span>·</span><span>ˉ</span><span>ˇ</span><span>¨</span><span>〃</span><span>々</span><span>—</span><span>～</span><span>‖</span><span>…</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>〔</span><span>〕</span><span>〈</span><span>〉</span><span>《</span><span>》</span><span>「</span><span>」</span><span>『</span><span>』</span><span>〖</span><span>〗</span><span>【</span><span>】</span><span>±</span><span>×</span><span>÷</span><span>∶</span><span>∧</span><span>∨</span><span>∑</span><span>∏</span><span>∪</span><span>∩</span><span>∈</span><span>∷</span><span>√</span><span>⊥</span><span>∥</span><span>∠</span><span>⌒</span><span>⊙</span><span>∫</span><span>∮</span><span>≡</span><span>≌</span><span>≈</span><span>∽</span><span>∝</span><span>≠</span><span>≮</span><span>≯</span><span>≤</span><span>≥</span><span>∞</span><span>∵</span><span>∴</span><span>♂</span><span>♀</span><span>°</span><span>′</span><span>″</span><span>℃</span><span>＄</span><span>¤</span><span>￠</span><span>￡</span><span>‰</span><span>§</span><span>№</span><span>☆</span><span>★</span><span>○</span><span>●</span><span>◎</span><span>◇</span><span>◆</span><span>□</span><span>■</span><span>△</span><span>▲</span><span>※</span><span>→</span><span>←</span><span>↑</span><span>↓</span><span>〓</span><span>〡</span><span>〢</span><span>〣</span><span>〤</span><span>〥</span><span>〦</span><span>〧</span><span>〨</span><span>〩</span><span>㊣</span><span>㎎</span><span>㎏</span><span>㎜</span><span>㎝</span><span>㎞</span><span>㎡</span><span>㏄</span><span>㏎</span><span>㏑</span><span>㏒</span><span>㏕</span><span>︰</span>
+                <span>, </span><span>.</span><span>·</span><span>ˉ</span><span>ˇ</span><span>¨</span><span>〃</span><span>々</span><span>—</span><span>～</span><span>‖</span><span>…</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>〔</span><span>〕</span><span>〈</span><span>〉</span><span>《</span><span>》</span><span>「</span><span>」</span><span>『</span><span>』</span><span>〖</span><span>〗</span><span>【</span><span>】</span><span>±</span><span>×</span><span>÷</span><span>∶</span><span>∧</span><span>∨</span><span>∑</span><span>∏</span><span>∪</span><span>∩</span><span>∈</span><span>∷</span><span>√</span><span>⊥</span><span>∥</span><span>∠</span><span>⌒</span><span>⊙</span><span>∫</span><span>∮</span><span>≡</span><span>≌</span><span>≈</span><span>∽</span><span>∝</span><span>≠</span><span>≮</span><span>≯</span><span>≤</span><span>≥</span><span>∞</span><span>∵</span><span>∴</span><span>♂</span><span>♀</span><span>°</span><span>′</span><span>″</span><span>℃</span><span>＄</span><span>¤</span><span>￠</span><span>￡</span><span>‰</span><span>§</span><span>№</span><span>☆</span><span>★</span><span>○</span><span>●</span><span>◎</span><span>◇</span><span>◆</span><span>□</span><span>■</span><span>△</span><span>▲</span><span>※</span><span>→</span><span>←</span><span>↑</span><span>↓</span><span>〓</span><span>〡</span><span>〢</span><span>〣</span><span>〤</span><span>〥</span><span>〦</span><span>〧</span><span>〨</span><span>〩</span><span>㊣</span><span>㎎</span><span>㎏</span><span>㎜</span><span>㎝</span><span>㎞</span><span>㎡</span><span>㏄</span><span>㏎</span><span>㏑</span><span>㏒</span><span>㏕</span><span>︰</span>
             </div>
             <div id="lmsz" style="display: none;">
                 <span>ⅰ</span><span>ⅱ</span><span>ⅲ</span><span>ⅳ</span><span>ⅴ</span><span>ⅵ</span><span>ⅶ</span><span>ⅷ</span><span>ⅸ</span><span>ⅹ</span><span>Ⅰ</span><span>Ⅱ</span><span>Ⅲ</span><span>Ⅳ</span><span>Ⅴ</span><span>Ⅵ</span><span>Ⅶ</span><span>Ⅷ</span><span>Ⅸ</span><span>Ⅹ</span><span>Ⅺ</span><span>Ⅻ</span>
@@ -1014,10 +1014,10 @@
             </div>
         </div>
     </div>
-    <!--展示Html-->
+    
     <div id="zshtml" style="display: none;">
         <div id="htmltop" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
-            <span style="font-size: 16px;">Html文本</span>
+            <span style="font-size: 16px;">Html văn bản</span>
             <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimga"
                  src="~/Content/img/close2.png" />
         </div>
@@ -1025,10 +1025,10 @@
             <textarea id="htmlcon"></textarea>
         </div>
     </div>
-    <!--展示Xml-->
+    
     <div id="zsxml" style="display: none;">
         <div id="xmltop" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
-            <span style="font-size: 16px;">Xml文本</span>
+            <span style="font-size: 16px;">Xml văn bản</span>
             <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimgb"
                  src="~/Content/img/close2.png" />
         </div>
@@ -1036,56 +1036,56 @@
             <textarea id="xmlcon"></textarea>
         </div>
     </div>
-    <!--插入超链接-->
+    
     <div class="maska" id="inserlink" style="display: none;">
-        <div>输入文本：<input type="text" id="inslinktext" style="width: 120px;" /></div>
-        <div>输入链接：<input type="text" id="inslink" style="width: 120px;" /></div>
+        <div>nhập văn bản:<input type="text" id="inslinktext" style="width: 120px;" /></div>
+        <div>Nhập liên kết:<input type="text" id="inslink" style="width: 120px;" /></div>
         <div class="linkqd">
-            <input type="button" style="margin-right: 20px;" id="inslinkb" value="确定" /><input id="inslinkc" type="button" value="取消" />
+            <input type="button" style="margin-right: 20px;" id="inslinkb" value="Xác nhận" /><input id="inslinkc" type="button" value="Hủy" />
         </div>
     </div>
-    <!-- 插入批注 -->
+    
     <div id='NewComment_box'>
         <div class="tit">
             <img style="position: absolute; right: 20px; top: 20px; cursor: pointer;"
                  src="~/Content/img/close2.png" />
         </div>
         <div class="cont">
-            <p>请输入批注内容：</p>
+            <p>Vui lòng nhập nội dung chú thích:</p>
             <input type="text" class="text" />
-            <p style="text-align: right;">批注人：李四主任医师<br />用户ID：lisi</p>
-            <input type="button" value="提交" class="sub" />
-            <input type="button" value="取消" class="quit" />
+            <p style="text-align: right;">Người chú thích:李四主任医师<br />Người dùng ID:lisi</p>
+            <input type="button" value="Nộp" class="sub" />
+            <input type="button" value="Hủy" class="quit" />
         </div>
     </div>
-    <!-- 页面设置 -->
+    
     <div class="newBox">
         <div class="boxClose"></div>
         <div class="boxNav">
             <div class="boxHeader" style="padding-bottom: 24px;">
-                <span class="headerTitle">页面设置</span>
+                <span class="headerTitle">Cài đặt trang</span>
             </div>
             <div class="boxContent">
                 <div class="boxSetting">
                     <div class="setting-section">
                         <div class="setting-left">
-                            <span class="setting-name">页面方向</span>
+                            <span class="setting-name">Hướng trang</span>
                         </div>
                         <div class="setting-right">
                             <div class="radioBtn broadwise">
                                 <div class="btnSelect"></div>
-                                <span>横向</span>
+                                <span>Ngang</span>
                                 <div class="selected select-left" style="display: none"></div>
                             </div>
                             <div class="radioBtn endwise" style="margin-left:23px;">
-                                <div class="btnSelect"></div><span>纵向</span>
+                                <div class="btnSelect"></div><span>Dọc</span>
                                 <div class="selected select-right" style="display: block"></div>
                             </div>
                         </div>
                     </div>
                     <div class="setting-section" style="margin-top: 29px;">
                         <div class="setting-left">
-                            <span class="setting-name">页面大小</span>
+                            <span class="setting-name">Kích thước trang</span>
                         </div>
                         <div class="setting-right">
                             <select class="select-button"></select>
@@ -1093,10 +1093,10 @@
                     </div>
                     <div class="setting-section" style="margin-top: 28px;">
                         <div class="setting-left">
-                            <span class="setting-name">页面尺寸</span>
+                            <span class="setting-name">Kích thước trang</span>
                         </div>
                         <div class="setting-right">
-                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">高</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">Cao</span>
                             <div class="number-input height-size" style="width: 66px;">
                                 <input type="number" class="pad-input broadwiseNumber" value=""
                                        style="width: 100%;">
@@ -1108,10 +1108,10 @@
                                      onclick="jianNumber('.broadwiseNumber','.error-text')">
                                     <div class="carrow-bottom"></div>
                                 </div>
-                                <span class="error-text">有效数值为100至500</span>
+                                <span class="error-text">Giá trị hợp lệ là100đến500</span>
                             </div>
                             <span>mm</span>
-                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">宽</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">Rộng</span>
                             <div class="number-input width-size" style="width: 66px;">
                                 <input type="number" class="pad-input directionNumber" value=""
                                        style="width: 100%;">
@@ -1122,17 +1122,17 @@
                                      onclick="jianNumber('.directionNumber','.text2')">
                                     <div class="carrow-bottom"></div>
                                 </div>
-                                <span class="text2">有效数值为100至500</span>
+                                <span class="text2">Giá trị hợp lệ là100đến500</span>
                             </div>
                             <span>mm</span>
                         </div>
                     </div>
                     <div class="setting-section" style="margin-top: 28px;">
                         <div class="setting-left">
-                            <span class="setting-name">页面边距</span>
+                            <span class="setting-name">Lề trang</span>
                         </div>
                         <div class="setting-right">
-                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">上边距</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">Lề trên</span>
                             <div class="number-input height-size" style="width: 66px;">
                                 <input type="number" class="pad-input TopbroadwiseNumber" value="11.9"
                                        style="width: 100%;">
@@ -1144,10 +1144,10 @@
                                      onclick="jianNumber('.TopbroadwiseNumber','.error-text')">
                                     <div class="carrow-bottom"></div>
                                 </div>
-                                <span class="error-text">有效数值为0至500</span>
+                                <span class="error-text">Giá trị hợp lệ là0đến500</span>
                             </div>
                             <span>mm</span>
-                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">下边距</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">Lề dưới</span>
                             <div class="number-input width-size" style="width: 66px;">
                                 <input type="number" class="pad-input BottomdirectionNumber" value="9.9"
                                        style="width: 100%;">
@@ -1158,17 +1158,17 @@
                                      onclick="jianNumber('.BottomdirectionNumber','.text2')">
                                     <div class="carrow-bottom"></div>
                                 </div>
-                                <span class="text2">有效数值为0至500</span>
+                                <span class="text2">Giá trị hợp lệ là0đến500</span>
                             </div>
                             <span>mm</span>
                         </div>
                     </div>
                     <div class="setting-section" style="margin-top: 28px;">
                         <div class="setting-left">
-                            <span class="setting-name">页面边距</span>
+                            <span class="setting-name">Lề trang</span>
                         </div>
                         <div class="setting-right">
-                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">左边距</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;">Lề trái</span>
                             <div class="number-input height-size" style="width: 66px;">
                                 <input type="number" class="pad-input LeftbroadwiseNumber" value="24.9"
                                        style="width: 100%;">
@@ -1180,10 +1180,10 @@
                                      onclick="jianNumber('.LeftbroadwiseNumber','.error-text')">
                                     <div class="carrow-bottom"></div>
                                 </div>
-                                <span class="error-text">有效数值为0至500</span>
+                                <span class="error-text">Giá trị hợp lệ là0đến500</span>
                             </div>
                             <span>mm</span>
-                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">右边距</span>
+                            <span style="display: inline-block;width: auto;height: 36px;line-height: 36px;margin-right: 8px;margin-left: 38px;">Lề phải</span>
                             <div class="number-input width-size" style="width: 66px;">
                                 <input type="number" class="pad-input RightdirectionNumber" value="24.9"
                                        style="width: 100%;">
@@ -1194,15 +1194,15 @@
                                      onclick="jianNumber('.RightdirectionNumber','.text2')">
                                     <div class="carrow-bottom"></div>
                                 </div>
-                                <span class="text2">有效数值为0至500</span>
+                                <span class="text2">Giá trị hợp lệ là0đến500</span>
                             </div>
                             <span>mm</span>
                         </div>
                     </div>
                 </div>
                 <div class="boxBottom">
-                    <div class="bottomBtn quxiao">取消</div>
-                    <div class="bottomBtn queding">确定</div>
+                    <div class="bottomBtn quxiao">Hủy</div>
+                    <div class="bottomBtn queding">Xác nhận</div>
                 </div>
             </div>
 
@@ -1211,12 +1211,12 @@
 </div>
 <iframe id="mainIframeleft" style="width:15%;height:900px;float:left;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/LeftMedicalTemplate" frameborder="0" scrolling="auto"></iframe>
 <div class="blbj" style="width:70%; height:900px;float:left;overflow-y: auto;border-radius: 4px;background: white;">
-    @*<div id="myWriterControl" style="width:99%; border:2px solid black; height:99%; border-radius:5px" ContentRenderMode="NormalHtmlEditable" ServicePageURL="http://localhost:7027/EMR/MoreHandleDCWriterServicePage"></div>*@
-    @*@Html.Raw(ViewBag.WriterControlHtml)*@
+    
+    
     <form method="post" action="#">
-        @*<div style="width:100%;height:900px">
+        
                 @Html.Raw(ViewBag.WriterControlHtml)
-        </div>*@
+
         <div id="myWriterControl" dctype="WriterControlForWASM" RuleVisible="false" ContentRenderMode="NormalHtmlEditable"  ClientContextMenuType="Custom"  style="width:100%; background-color: #7cb9e8;">
            
         </div>
@@ -1269,7 +1269,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "UserEditable": true,
-            "ToolTip": "请输入数值",
+            "ToolTip": "Vui lòng nhập giá trị số",
             "BackgroundText": data.ysmc,
             "Name": data.BindingPath,
             "ID": data.Id,
@@ -1291,7 +1291,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "UserEditable": true,
-            "ToolTip": "请输入时间",
+            "ToolTip": "Vui lòng nhập thời gian",
             "BackgroundText": data.ysmc,
             "Name": data.BindingPath,
             "ID": data.Id,
@@ -1313,7 +1313,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "UserEditable": true,
-            "ToolTip": "请输入时间",
+            "ToolTip": "Vui lòng nhập thời gian",
             "BackgroundText": data.ysmc,
             "Name": data.BindingPath,
             "ID": data.Id,
@@ -1335,7 +1335,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "UserEditable": true,
-            "ToolTip": "请输入时间",
+            "ToolTip": "Vui lòng nhập thời gian",
             "BackgroundText": data.ysmc,
             "Name": data.BindingPath,
             "ID": data.Id,
@@ -1358,7 +1358,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "ContentReadonly": false,
-            "ToolTip": "请选择",
+            "ToolTip": "Vui lòng chọn",
             "BackgroundText": data.ysmc,
             "EnableValueValidate": true,
             "Name": data.BindingPath,
@@ -1393,7 +1393,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "ContentReadonly": false,
-            "ToolTip": "请选择",
+            "ToolTip": "Vui lòng chọn",
             "BackgroundText": data.ysmc,
             "EnableValueValidate": true,
             "Name": data.BindingPath,
@@ -1426,7 +1426,7 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "UserEditable": true,
-            "ToolTip": "请输入" + data.ysmc,
+            "ToolTip": "Vui lòng nhập" + data.ysmc,
             "BackgroundText": data.ysmc,
             "Name": data.BindingPath,
             "ID": data.Id,
@@ -1449,7 +1449,7 @@
         var options = {
             bindingpath: data.BindingPath, //数据源路径
         }
-        ctl.SetTableCellAttribute(null, options) //第一个参数为指定的元素，若为null则表示光标所在位置的单元格
+        ctl.SetTableCellAttribute(null, options) //第一个参数为指定的元素, 若为null则表示光标所在位置的单元格
     }
     function SetTableRowField(data)
     {
@@ -1457,7 +1457,7 @@
         var options = {
             datasource: "peopledatasource",//data.DataSource, //数据源
         }
-        ctl.SetTableRowAttribute(null, options) //第一个参数为指定的元素，若为null则表示光标所在位置的表格行
+        ctl.SetTableRowAttribute(null, options) //第一个参数为指定的元素, 若为null则表示光标所在位置的表格行
     }
     function dcInsertPageInfo() {
         //var ctl = document.getElementById("myWriterControl");
@@ -1485,7 +1485,7 @@
                         Height: "65",
                         Width: "400",
                         ValueType: "PageIndex",
-                        FormatString: "第[%PageIndex%]页 共[%NumOfPages%]页",
+                        FormatString: "Thứ[%Page index%]Trang Tổng cộng[%Num of pages%]Trang",
                     },
                 }
               ];
@@ -1535,7 +1535,7 @@
         "heightmm": 250,
         "Landscape": "false"
     }, {
-        "name": "自定义",
+        "name": "Tùy chỉnh",
         "widthmm": 200,
         "heightmm": 500,
         "Landscape": "false"
@@ -1559,14 +1559,14 @@
                 cmdName: 'copy',
             },
             {
-                label: '剪切(Ctrl + x)',
+                label: 'Cắt(Ctrl + x)',
                 cmdName: 'cut',
                 exec: function () {
                     ctl.DCExecuteCommand('Cut', true, null)
                 },
             },
             {
-                label: '粘贴',
+                label: 'Dán',
                 cmdName: 'paste',
                 exec: function () {
                     ctl.DCExecuteCommand('Paste', true, null) //粘贴内部复制或者剪切的
@@ -1574,7 +1574,7 @@
             },
             '-',
             {
-                label: '元素属性',
+                label: 'Thuộc tính phần tử',
                 // icon: 'aligntd',
                 cmdName: 'aligntd',
                 exec: function () {
@@ -1583,7 +1583,7 @@
             },
             '-',
             {
-                label: '单元格属性',
+                label: 'Thuộc tính ô',
                 // icon: 'aligntd',
                 cmdName: 'aligntd',
                 exec: function () {
@@ -1595,7 +1595,7 @@
             },
             '-',
             {
-                label: '表格属性',
+                label: 'Thuộc tính bảng',
                 cmdName: 'edittable',
                 exec: function () {
                     var CurrentTable = ctl.CurrentTable()
@@ -1605,7 +1605,7 @@
                 },
             },
             {
-                label: '表格行属性',
+                label: 'Thuộc tính dòng bảng',
                 cmdName: 'edittd',
                 exec: function () {
                     var CurrentTableRow = ctl.CurrentTableRow()
@@ -1615,7 +1615,7 @@
                 },
             },
             {
-                label: '删除表格',
+                label: 'Xóa bảng',
                 cmdName: 'deletetable',
                 exec: function () {
                     var currenttable = ctl.CurrentTable()
@@ -1625,7 +1625,7 @@
                 },
             },
             {
-                label: '删除表格行',
+                label: 'Xóa dòng bảng',
                 cmdName: 'deleterow',
                 exec: function () {
                     var currentRow = ctl.CurrentTableRow()
@@ -1635,7 +1635,7 @@
                 },
             },
             {
-                label: '在上方插入表格行',
+                label: 'Chèn dòng bảng phía trên',
                 cmdName: 'insertrow',
                 exec: function () {
                     var currentRow = ctl.CurrentTableRow()
@@ -1645,7 +1645,7 @@
                 },
             },
             {
-                label: '在下方插入表格行',
+                label: 'Chèn dòng bảng phía dưới',
                 cmdName: 'insertrownext', //edui-for-insertrownext
                 exec: function () {
                     var currentRow = ctl.CurrentTableRow()
@@ -1655,7 +1655,7 @@
                 },
             },
             {
-                label: '在左方插入表格列',
+                label: 'Chèn cột bảng bên trái',
                 cmdName: 'insertcol',
                 exec: function () {
                     var currentRow = ctl.CurrentTableRow()
@@ -1669,7 +1669,7 @@
                 },
             },
             {
-                label: '在右方插入表格列',
+                label: 'Chèn cột bảng bên phải',
                 cmdName: 'insertcolnext',
                 exec: function () {
                     var currentRow = ctl.CurrentTableRow()
@@ -1683,7 +1683,7 @@
                 },
             },
             {
-                label: '右合并单元格',
+                label: 'Gộp ô sang phải',
                 cmdName: 'mergeright',
                 exec: function () {
                     var currentCell = ctl.CurrentTableCell()
@@ -1693,7 +1693,7 @@
                 },
             },
             {
-                label: '下合并单元格',
+                label: 'Gộp ô xuống dưới',
                 cmdName: 'mergedown',
                 exec: function () {
                     var currentCell = ctl.CurrentTableCell()
@@ -1710,12 +1710,12 @@
         ctl.ClearDocumentBody();
         ctl.preserveScrollPosition = true;
         var fileName = mburl;
-        //在服务器端响应控件的EventReadFileContenClearDocumentBodyt事件，即可使用AJAX模式加载文档。
+        //在服务器端响应控件的EventReadFileContenClearDocumentBodyt事件, 即可使用AJAX模式加载文档.
         ctl.LoadDocumentFromFile(fileName, null);
     }
     function TemplateSave() {
         if (mburl == "") {
-            alert("请选择病历模板！");
+            alert("Vui lòng chọn mẫu bệnh án!");
             return;
         }
         var ctl = document.getElementById("myWriterControl");
@@ -1807,7 +1807,7 @@
             this.status = this.box.find(".itb_picker_status");
             this.setBg(this.minSize[0], 0);
             this.setBg(this.minSize[1], 1);
-            this.status.text(0 + '列 x ' + 0 + '行');
+            this.status.text(0 + 'Cột x ' + 0 + 'Dòng');
         },
         bind: function () {
             var T = this,
@@ -1867,7 +1867,7 @@
                         "width": T.nowSize[0] + 'em',
                         "height": T.nowSize[1] + 'em'
                     })
-                    T.status.text(T.nowSize[0] + '列 x ' + T.nowSize[1] + '行');
+                    T.status.text(T.nowSize[0] + 'Cột x ' + T.nowSize[1] + 'Dòng');
                 })
                 //单击确认插入表格
                 T.box.click(function () {
@@ -1963,11 +1963,11 @@
         var ctl = document.getElementById("myWriterControl");
         var options = {
             "ID": "123",
-            "ToolTip": "这是一个按钮",
+            "ToolTip": "Đây là một nút",
             "ContentReadonly": false,
             "SpecifyWidth": 10,
             "inputtype": "button",
-            "value": "按钮",
+            "value": "Nút",
             "EnableValueValidate": true,
             "InnerEditStyle": "input",
             "EditorActiveMode": "MouseClick"
@@ -1996,13 +1996,13 @@
     function CustomDropdownList() {
         var ctl = document.getElementById('myWriterControl');
         if (ctl.EventDropdownEditor == null) {
-            // 绑定控件的EventDropdownEditor事件。
-            // 提供自定义的下拉列表内容。
+            // 绑定控件的EventDropdownEditor事件.
+            // 提供自定义的下拉列表内容.
             ctl.EventDropdownEditor = function (args) {
                 args.container.style.overflowY = 'auto';
                 var sel = document.createElement("input");
                 sel.type = "text";
-                sel.placeholder = "请输入过滤的关键字";
+                sel.placeholder = "Vui lòng nhập từ khóa lọc";
                 sel.style.width = "200px";
                 args.container.appendChild(sel);
                 sel.oninput = function () {
@@ -2028,7 +2028,7 @@
                     var btn = document.createElement("input");
                     btn.type = "button";
                     btn.style.display = "block";
-                    btn.value = "数值" + iCount;
+                    btn.value = "Giá trị số" + iCount;
                     btn.style.width = "200px";
                     btn.onclick = function () {
                         args.setValue(
@@ -2036,7 +2036,7 @@
                             this.value + "_value");// 输入域数值
                         args.close();// 关闭下拉列表
                     };
-                    // args.container是承载内容的一个DIV元素。
+                    // args.container是承载内容的一个DIV元素.
                     args.container.appendChild(btn);
                     //args.container.appendChild(document.createElement("br"));
                 }//for
@@ -2070,7 +2070,7 @@
             "BottomMargin": Bottomdirection,//下边距
             "LeftMargin": Leftdirection,//左边距
             "RightMargin": Rightdirection,//右边距
-            "Landscape": "false"//横向，纵向
+            "Landscape": "false"//横向, 纵向
         };
         var ctl = document.getElementById("myWriterControl");
         ctl.ChangeDocumentSettings(opts);
@@ -2138,7 +2138,7 @@
             $(name).css("border", "1px solid #ef4e2f")
         }
         compare();
-        $(".select-button").val("自定义");
+        $(".select-button").val("Tùy chỉnh");
     }
     function jianNumber(name, name2) {
         var nameVal = $(name).val()
@@ -2152,7 +2152,7 @@
             $(name).css("border", "1px solid #ef4e2f")
         }
         compare();
-        $(".select-button").val("自定义");
+        $(".select-button").val("Tùy chỉnh");
     }
 
   
@@ -2169,7 +2169,7 @@
             if (eleement.TypeName == "XTextParagraphFlagElement") {
                 var previouselement = rootElement.GetElementProperties(eleement.PreviousElement);
                 if (previouselement.TypeName != "XTextParagraphFlagElement") {
-                    console.log(previouselement.TypeName, "元素类型")
+                    console.log(previouselement.TypeName, "Loại phần tử")
                 }
             }
             // console.log(typename,"元素属性11")
@@ -2177,55 +2177,55 @@
                 typename = typename.toLowerCase();
                 var options = [
                    {
-                       label: '撤销',
+                       label: 'Hoàn tác',
                        exec: () => {
-                           console.log('撤销')
+                           console.log('Hoàn tác')
                            eventSender.DCExecuteCommand('Undo', false, null);
                        },
                    },
                    {
-                       label: '重做',
+                       label: 'Làm lại',
                        exec: () => {
-                           console.log('重做')
+                           console.log('Làm lại')
                            eventSender.DCExecuteCommand('Redo', false, null);
                        },
                    },
                    '-',
                    {
-                       label: '复制(Ctrl+C)',
+                       label: 'Sao chép(Ctrl+C)',
                        exec: () => {
-                           console.log('复制(Ctrl+C)')
+                           console.log('Sao chép(Ctrl+C)')
                            eventSender.DCExecuteCommand('Copy', false, null);
                        },
                    },
                    {
-                       label: '粘贴(Ctrl+V)',
+                       label: 'Dán(Ctrl+V)',
                        exec: () => {
                            eventSender.DCExecuteCommand('Paste', false, null);
                        },
                    },
                    {
-                       label: '剪切(Ctrl+X)',
+                       label: 'Cắt(Ctrl+X)',
                        exec: () => {
                            eventSender.DCExecuteCommand('Cut', false, null);
                        },
                    },
                    {
-                       label: '纯文本复制',
+                       label: 'Sao chép văn bản thuần',
                        exec: () => {
                            eventSender.DCExecuteCommand('CopyAsText', false, null);
                        },
                    },
                    {
-                       label: '纯文本粘贴',
+                       label: 'Dán văn bản thuần',
                        exec: () => {
-                           console.log('纯文本粘贴')
+                           console.log('Dán văn bản thuần')
                            eventSender.DCExecuteCommand('PasteAsText', false, null);
                        },
                    },
                    '-',
                    {
-                       label: '元素属性',
+                       label: 'Thuộc tính phần tử',
                        exec: () => {
                            // console.log(previouselement,"前一个元素")
                            if (eleement.TypeName == "XTextParagraphFlagElement") {
@@ -2238,7 +2238,7 @@
                    },
                    '-',
                    {
-                       label: '单元格属性',
+                       label: 'Thuộc tính ô',
                        exec: () => {
                            var CurrentTable = eventSender.CurrentTable()
                            if (CurrentTable != null) {
@@ -2247,7 +2247,7 @@
                        }
                    },
                     {
-                        label: '表格属性',
+                        label: 'Thuộc tính bảng',
                         exec: () => {
                             var CurrentTable = eventSender.CurrentTable()
                             if (CurrentTable != null) {
@@ -2256,7 +2256,7 @@
                         }
                     },
                     {
-                        label: '表格行属性',
+                        label: 'Thuộc tính dòng bảng',
                         exec: () => {
                             var CurrentTable = eventSender.CurrentTable()
                             if (CurrentTable != null) {
@@ -2266,49 +2266,49 @@
                     },
                    '-',
                    {
-                       label: '表格行列',
+                       label: 'Bảng dòng cột',
                        exec: () => {
 
                        },
                        subMenu: [
                           {
-                              label: '删除表格',
+                              label: 'Xóa bảng',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_DeleteTable", false, null);
                               },
                           },
                           {
-                              label: '删除表格行',
+                              label: 'Xóa dòng bảng',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_DeleteRow", false, null);
                               },
                           },
                           {
-                              label: '删除表格列',
+                              label: 'Xóa bảng cột',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_DeleteColumn", false, null);
                               },
                           },
                           {
-                              label: '在上面插入行',
+                              label: 'Chèn dòng phía trên',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_InsertRowUp", false, null);
                               },
                           },
                           {
-                              label: '在下面插入行',
+                              label: 'Chèn dòng phía dưới',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_InsertRowDown", false, null);
                               },
                           },
                           {
-                              label: '在左侧插入列',
+                              label: 'Chèn cột bên trái',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_InsertColumnLeft", false, null);
                               },
                           },
                           {
-                              label: '在右侧插入列',
+                              label: 'Chèn cột bên phải',
                               exec: () => {
                                   eventSender.DCExecuteCommand("Table_InsertColumnRight", false, null);
                               },
@@ -2748,7 +2748,7 @@
                     }
 
                 } else {
-                    //存在时，清空所有item和sep的元素
+                    //存在时, 清空所有item和sep的元素
                     var allItem = hasContextMenu.querySelectorAll('.dcMenu-item, .dcMenu-sep');
                     for (var i = 0; i < allItem.length; i++) {
                         allItem[i].remove();
@@ -2760,7 +2760,7 @@
                     for (var option = 0; option < options.length; option++) {
                         if (typeof options[option] == 'object') {
                             var thisItem = insertItem(options[option], hasContextMenu, true);
-                            //判断是否存在subMenu，如果需要更多可以使用递归调用
+                            //判断是否存在subMenu, 如果需要更多可以使用递归调用
                             if (options[option].subMenu && Array.isArray(options[option].subMenu)) {
                                 var secondaryMenu = document.createElement('div');
                                 secondaryMenu.setAttribute('class', 'secondaryMenu');
@@ -2954,7 +2954,7 @@
                 //ctl.DCExecuteCommand('NormalViewMode', false, null);
             },
             error: function (request, error, ex) {
-                $.modalAlert('病历加载失败:' + ex, 'error');
+                $.modalAlert('Tải bệnh án thất bại:' + ex, 'error');
             }
         });
 
@@ -2975,26 +2975,26 @@
             success: function (respdata) {
                 debugger
                 if (respdata.state == "error")
-                    alert("病历模板保存失败:" + respdata.message);
+                    alert("Lưu mẫu bệnh án thất bại:" + respdata.message);
                 else
-                    alert("病历模板保存成功");
+                    alert("Lưu mẫu bệnh án thành công");
             },
             error: function (request, error, ex) {
-                $.modalAlert('保存失败:' + ex, 'error');
+                $.modalAlert('Lưu thất bại:' + ex, 'error');
             }
         });
     }
 
 </script>
 
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
 <script>
 
     function btn_add() {
         debugger;
         $.modalOpen({
             id: "Form",
-            title: "新建病历模板",
+            title: "Tạo mới mẫu bệnh án",
             url: "/MedicalRecordManage/MedRecordTemplate/Form?ly="+"template",
             width: "700px",
             height: "650px",

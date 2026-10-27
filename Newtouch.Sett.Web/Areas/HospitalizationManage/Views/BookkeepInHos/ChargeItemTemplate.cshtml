@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "ChargeItemTemplate";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        gridList();
+    });
+    function gridList() {
+        var $gridList = $("#parentgridList");
+        $gridList.dataGrid({
+            treeGrid: true,
+            url: "/HospitalizationManage/BookkeepInHos/GetChargeItemData?ks=" + keyValue,
+            height: 150,
+            colModel: [
+                { label: "khóa chính", name: "sfmbbh", hidden: true, key: true },
+                { label: "Mã mẫu", name: "sfmb", width: 80, align: 'left' },
+                { label: 'Tên mẫu', name: 'sfmbmc', width: 100, align: 'left' },
+                { label: 'Khoa', name: 'ksmc', width: 50, align: 'left' },
+            ]
+        });
+    }
+
+    function btn_loaddata(rowid) {
+        //yxzje = '0.00';
+        //$('#yxzje').html(yxzje);
+        $('#ChildgridList').jqGrid("clearGridData");
+        var sfmbbh = $("#parentgridList").jqGridRowValue().sfmbbh;
+        var SelectRowIndx;
+        $("#ChildgridList").dataGrid({
+            autoScroll: true,
+            url: "/HospitalizationManage/BookkeepInHos/loadSfxmDataBySfmbbh?sfmbbh=" + sfmbbh,
+            height: 200,
+            colModel: [
+                { label: "khóa chính", name: "sfmbxmId", hidden: true, key: true },
+                { label: 'Mã mục', name: 'sfxm', width: 70, align: 'left' },
+                { label: 'Tên', name: 'sfxmmc', width: 130, align: 'left' },
+                { label: 'Số lần thực hiện', name: 'zxcs', width: 50, align: 'left' },
+                { label: 'Lượng điều trị mỗi lần', name: 'zll', width: 80, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
+                { label: 'Thời lượng đơn vị', name: 'duration', width: 50, align: 'left' },
+                { label: 'Loại phục hồi', name: 'kflbmc', width: 50, align: 'left' },
+                { label: 'kflb', name: 'kflb', hidden: true, width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left', hidden: true },
+                { label: 'Đơn giá', name: 'dj', width: 50, align: 'left', hidden: true },
+                { label: 'Mã BHYT', name: 'ybdm', width: 100, align: 'left', hidden: true },
+                { label: 'Loại phí', name: 'dlmc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'left', hidden: true },
+                { label: 'Liều lượng', name: 'jl', width: 50, align: 'left', hidden: true },
+                { label: 'Cách dùng', name: 'yf', hidden: true, align: 'left' },
+                { label: 'Tần suất', name: 'pl', hidden: true, align: 'left' },
+                { label: 'Dạng bào chế', name: 'jx', hidden: true, align: 'left' },
+                { label: 'dlmc', name: 'dlmc', hidden: true },
+                { label: 'dl', name: 'dl', hidden: true },
+                { label: 'zfxz', name: 'zfxz', hidden: true },
+                { label: 'zfbl', name: 'zfbl', hidden: true },
+                { label: 'dwjls', name: 'dwjls', hidden: true },
+                { label: 'jjcl', name: 'jjcl', hidden: true },
+                { label: 'zxks', name: 'zxks', hidden: true },
+                { label: 'zxksmc', name: 'zxksmc', hidden: true },
+                { label: 'yzpc', name: 'yzpc', hidden: true },
+                { label: 'yzpcmc', name: 'yzpcmc', hidden: true },
+                { label: 'bw', name: 'bw', hidden: true },
+            ],
+            multiselect: true,
+            onSelectRow: function (rowid, status) {
+                //var data = $("#ChildgridList").jqGrid('getRowData', rowid);
+                //var xzzje = parseFloat(data.dj) * parseFloat(data.sl);
+                //if (status) {
+                //    yxzje = (parseFloat(yxzje) + xzzje).toFixed(2);
+                //} else {
+                //    yxzje = (parseFloat(yxzje) - xzzje).toFixed(2);
+                //}
+                //$('#yxzje').html(yxzje);
+            }
+        });
+        var grid = $('#ChildgridList').jqGrid()[0].grid;
+        $('#ChildgridList').jqGrid().setGridParam({ url: '/HospitalizationManage/BookkeepInHos/loadSfxmDataBySfmbbh?sfmbbh=' + sfmbbh });
+        grid.populate();
+    }
+
+
+    function submitForm() {
+        var rowid = $("#ChildgridList").jqGrid("getGridParam", "selarrrow");
+        var obj = [];
+        if (rowid != "" && rowid != undefined) {
+            for (var i = 0; i < rowid.length; i++) {
+                obj[i] = new Object();
+                obj[i] = $('#ChildgridList').jqGrid('getRowData', rowid[i]);
+            }
+        }
+        return obj;
+    }
+</script>
+<div class="gridPanel">
+    <table id="parentgridList"></table>
+    @*<strong style="text-decoration:none;padding-left:10px;">
+        Đã chọnTổng số tiền：<span style='color:red;' id="yxzje">0.00</span>đồng
+    </strong>*@
+    <table id="ChildgridList"></table>
+</div>
+

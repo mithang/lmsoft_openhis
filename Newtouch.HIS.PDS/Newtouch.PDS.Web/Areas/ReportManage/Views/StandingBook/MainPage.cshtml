@@ -1,0 +1,146 @@
+@using Newtouch.Infrastructure;
+@using Newtouch.HIS.Web.Core.Extensions;
+@using Newtouch.Infrastructure.Model
+@{
+    ViewBag.Title = "Sổ cái";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var lt = (ViewBag.yfbmList as List<LoginUserCurrentYfbmModel>) ?? new List<LoginUserCurrentYfbmModel>();
+}
+<style>
+    .trSelected {
+        background-color: #87CEEB !important;
+    }
+
+    #btn_search {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Thông tin lọc thuốc
+        </div>
+        <div>
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Tên nhà thuốc：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="yfbmCode" name="yfbmCode">
+                            @foreach (LoginUserCurrentYfbmModel t in lt)
+                            {
+                                <option value="@t.yfbmCode" data-leve=@t.yfbmjb data-mzzy=@t.mzzybz>@t.yfbmmc</option>
+                            }
+                        </select>
+                    </td>
+                    <td class="formTitle">Ngày bắt đầu：</td>
+                    <td class="formValue">
+                        <input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00:00' })" />
+                    </td>
+                    <td class="formTitle">Ngày kết thúc： </td>
+                    <td class="formValue">
+                        <input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" />
+                    </td>
+                    <td class="formTitle">Thuốc：</td>
+                    <td class="formValue">
+                        <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="dv_right" style="float: left; margin-left: 505px;">
+        <table id="kcGridList"></table>
+    </div>
+    <div id="dv_left" class="panel panel-default" style="float: left; width:500px; margin-left:-100%;">
+        <table id="ypGridList"></table>
+    </div>
+</form>
+<script>
+    var fymx = $(window).width() - $("#dv_left").width() - 5;
+    var $gridList = $("#ypGridList");
+    var $gridmx = $("#kcGridList");
+    $(function () {
+        initLayout();
+        $(window).resize(function () {
+            initLayout();
+        });
+        ypGridList();
+        gridmx();
+    });
+
+    //自适应
+    function initLayout() {
+        $("#dv_right").width(fymx);
+    }
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    function ypGridList() {
+        $gridList.dataGrid({
+            url: "/StandingBook/GetypGridJson",
+            postData: {
+                "keyword": $("#ypdm").val(), "yfbmCode": $("#yfbmCode").val()
+            },
+            height: $(window).height() - 125,
+            colModel: [
+                { label: "Mã thuốc", name: "ypCode", width: 60, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'Đơn vị', name: 'deptdw', width: 45, align: 'center' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 50, align: 'left' },
+                { label: 'Pinyin', name: 'py', width: 65, align: 'left' }
+            ],
+            sortname: 'ypmc asc',
+            viewrecords: true,
+            onSelectRow_page: function (rowid, status) {
+                var ypCode = $gridList.jqGrid('getRowData', rowid).ypCode
+                $gridmx.jqGrid("clearGridData");
+                $gridmx.jqGrid('setGridParam', {
+                    url: "/StandingBook/StandingBookInventoryDetailQuery?t=" + Math.random(),
+                    postData: {
+                        "ypCode": ypCode,
+                        "kssj": $("#startTime").val(),
+                        "jssj": $("#endTime").val(),
+                        "yfbmCode": $("#yfbmCode").val()
+                    }
+                }).trigger('reloadGrid');
+            },
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                url: "/StandingBook/GetypGridJson?r=" + Math.random(),
+                postData: {
+                    "keyword": $("#ypdm").val(), "yfbmCode": $("#yfbmCode").val()
+                }
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function gridmx() {
+        $gridmx.dataGrid({
+            height: $(window).height() - 160,
+            caption: "Sổ cáiChi tiết",
+            url: "",
+            colModel: [
+                { label: 'Ghi chú xuất kho', name: 'crksm', width: 80, align: 'left' },
+                { label: 'Số lượng nhập kho', name: 'rkslanddw', width: 70, align: 'right' },
+                { label: 'Số lượng xuất kho', name: 'ckslanddw', width: 70, align: 'left' },
+                { label: 'Số lượng kết chuyển', name: 'jzslanddw', width: 70, align: 'center' },
+                { label: 'Số phiếu', name: 'pdh', width: 80, align: 'center' },
+                { label: 'Tên khoa', name: 'ks', width: 80, align: 'center' },
+                { label: 'Ngày phát sinh', name: 'fsrq', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            ]
+        });
+    }
+</script>

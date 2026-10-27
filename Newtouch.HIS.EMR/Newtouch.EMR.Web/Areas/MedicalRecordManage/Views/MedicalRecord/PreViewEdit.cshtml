@@ -9,7 +9,7 @@
         <div class="topPanel">
             <div class="toolbar">
                 <div class="btn btn-default">
-                    <a authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>打印</a>
+                    <a authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>In</a>
                     <script language=javascript>
                                 function PrintDoc() {
                                     //debugger;
@@ -22,7 +22,7 @@
                 </div>
                 <div class="btn">
                     <input type="checkbox" id="idJumpPrint" name="idJumpPrint" onclick="JumpPrint();" />
-                    <label for="idJumpPrint">续打</label>
+                    <label for="idJumpPrint">In tiếp</label>
                     <script language=javascript>
                         function JumpPrint() {                            
                             var ctl = document.getElementById("myWriterControl");
@@ -31,7 +31,7 @@
                         }
                     </script>
                 </div>
-                @*@Html.Partial("_DCSW.SaveAS")*@
+                
  
             </div>
         </div>
@@ -64,10 +64,10 @@
          window.setInterval(SetCtlHeight, 1000);
 
     </script>
-    @*<script>
+    
         window.onload = function () {
             document.getElementById("myWriterControl").LoadPrintPreview();
         }
        
-    </script>*@
+
 </form>

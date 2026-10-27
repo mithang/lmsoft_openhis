@@ -1,60 +1,77 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common.Exceptions;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 {
+    [Area("TemplateManage")]
     public class DoctorServiceTemplateController : OrgControllerBase
     {
         private readonly IInpatientOrderPackageRepo _inpatientOrderPackageRepo;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IInpatientOrderPackageDmnService _inpatientOrderPackageDmnService;
-        private readonly FrameworkBase.MultiOrg.Domain.IDomainServices.IBaseDataDmnService _iBaseDataDmnService;
-        public override ActionResult Index() {
+        private readonly IBaseDataDmnService _iBaseDataDmnService;
+
+        public DoctorServiceTemplateController(IInpatientOrderPackageRepo inpatientOrderPackageRepo, ISysConfigRepo sysConfigRepo, IInpatientOrderPackageDmnService inpatientOrderPackageDmnService, IBaseDataDmnService iBaseDataDmnService)
+        {
+            this._inpatientOrderPackageRepo = inpatientOrderPackageRepo;
+            this._sysConfigRepo = sysConfigRepo;
+            this._inpatientOrderPackageDmnService = inpatientOrderPackageDmnService;
+            this._iBaseDataDmnService = iBaseDataDmnService;
+        }
+        public override IActionResult Index() {
             ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//住院医嘱套餐是否包含病区
             return View();
         }
-        public ActionResult ItemForm()
+        public IActionResult ItemForm()
         {
             ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//住院项目录入部位显示隐藏配置    
             return View();
         }
-        public ActionResult MedicineForm()
+        public IActionResult MedicineForm()
         {
             ViewBag.qzfs = _sysConfigRepo.GetValueByCode("QZFS", OrganizeId) ?? "day";
             return View();
         }
-        public ActionResult TakeMedicineForm()
+        public IActionResult TakeMedicineForm()
         {
             ViewBag.qzfs = _sysConfigRepo.GetValueByCode("QZFS", OrganizeId) ?? "day";
             return View();
         }
-        public ActionResult WordForm()
+        public IActionResult WordForm()
         {
             return View();
         }
-        public ActionResult RehabForm()
+        public IActionResult RehabForm()
         {
            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//住院项目录入部位显示隐藏配置    
             return View();
         }
 
-        public ActionResult FoodForm()
+        public IActionResult FoodForm()
         {
             return View();
         }
 
-        public ActionResult TCMmedicineForm() {
+        public IActionResult TCMmedicineForm() {
             return View();
         }
 
@@ -64,7 +81,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
         /// <returns></returns>
-        public ActionResult GetTreeList(int tclx, int tcfw, int? expandyzlx)
+        public IActionResult GetTreeList(int tclx, int tcfw, int? expandyzlx)
         {
             var treeList = new List<TreeViewModel>();
 
@@ -128,15 +145,15 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             return treeList;
         }
 
-        public ActionResult Submit(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mbDetailList) {
+        public IActionResult Submit(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mbDetailList) {
             if (mbObj == null|| string.IsNullOrWhiteSpace(mbObj.tcfw.ToString()))
             {
-                throw new FailedException("缺少套餐数据");
+                throw new FailedException("Thiếu dữ liệu gói");
             }
             switch (mbObj.tcfw) {
                 case (int)EnumCfMbLx.personal:
                     mbObj.ysgh = UserIdentity.rygh;
-                    break; //个人时，医生赋值
+                    break; //Cá nhân时，医生赋值
                 case (int)EnumCfMbLx.department:
                     mbObj.DeptCode = UserIdentity.DepartmentCode;
                     break; //科室时
@@ -149,13 +166,13 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                     mbObj.DeptCode = "*";
                     mbObj.ysgh = "*";
                     break;
-                    //全院时
+                    //Toàn viện时
             }
           var mbId=  _inpatientOrderPackageDmnService.saveAsTemplate(mbObj, mbDetailList, OrganizeId);
             return Success(null, mbId);
         }
 
-        public ActionResult Delete(string mbId) {
+        public IActionResult Delete(string mbId) {
             try
             {
                 _inpatientOrderPackageDmnService.DeleteTemplate(mbId, OrganizeId);
@@ -165,7 +182,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             catch (System.Exception e)
             {
 
-                return Error("删除失败");
+                return Error("Xóathất bại");
             }
         }
     }

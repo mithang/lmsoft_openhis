@@ -1,0 +1,206 @@
+@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure;
+@{
+    ViewBag.Title = "Vật tư quá hạn trong khoTra cứu";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
+
+}
+<style>
+    #btn_search {
+        width: 45px;
+        font-weight: bolder;
+    }
+
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+
+    #TabGrid {
+        width: 100%;
+        position: fixed;
+        bottom: 10px;
+        right: 0;
+        z-index: 8888;
+        background-color: #253443;
+        filter: alpha(Opacity=95);
+        -moz-opacity: 0.95;
+        opacity: 0.95;
+        box-shadow: 0px 2px 10px #909090;
+    }
+
+        #TabGrid > * {
+            filter: alpha(Opacity=95);
+            -moz-opacity: 0.95;
+            opacity: 0.95;
+        }
+
+    .showbotton {
+        display: none;
+        position: fixed;
+        bottom: 5px;
+        right: 0;
+        z-index: 9999;
+        background-color: #ccc;
+        width: 50px;
+        height: 44px;
+        filter: alpha(Opacity=90);
+        -moz-opacity: 0.9;
+        opacity: 0.9;
+        cursor: pointer;
+        border-radius: 100px 0 0 100px;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">Điều kiện lọc</div>
+        <div style="padding-right:10px;">
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Tên vật tư：</td>
+                    <td class="formValue" s>
+                        <input type="text" id="keyWord" class="form-control" placeholder="Phiên âm/Tên" />
+                        <input type="hidden" id="productId" value="" />
+                    </td>
+                    <td class="formTitle">Loại：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="lb">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Trạng thái sử dụng：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="kzbz" name="kzbz">
+                            <option value="">Tất cả</option>
+                            <option value="1" selected>Bình thường</option>
+                            <option value="0">Kiểm soát</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Trạng thái vật tư：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="wzzt" name="wzzt">
+                            <option value="">Tất cả</option>
+                            <option value="1" selected>Hiệu lực</option>
+                            <option value="0">Vô hiệu</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Hiển thị tồn kho bằng 0：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="xslkc" name="xslkc">
+                            <option value="1">Có</option>
+                            <option value="0" selected>Không</option>
+                        </select>
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <label style="line-height: 20px; margin-left:10px; float:left;">Chỉ hiển thị tồn kho hiệu lực：</label>
+                        <div class="ckbox">
+                            <input id="mxyx" name="mxyx" type="checkbox" class="ckbox" checked />
+                            <label for="mxyx">Có</label>
+                        </div>
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In báo cáo" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        Initial();
+    });
+
+    //Gắn sự kiện phím Enter
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    //Khởi tạo
+    function Initial() {
+        $("#lb").bindSelect({ url: "/ProductManage/ProductType/GetPatientTreeSelectJson" });
+        gridList();
+        $("#btn_print").click(function () {
+            if (!'@reportUrl') { $.modalAlert('Báo cáo SSRS chưa được chuyển đổi sang .NET Core, vui lòng sử dụng lưới dữ liệu trên trang.', 'warning'); return; }
+            window.open('@reportUrl' + "?tempCode=1264" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId" +
+                "&keyWord=" + $('#keyWord').val() +
+                "&lbId=" + ($('#lb').val() === "" ? "" : $('#lb').val()) +
+                "&kzbz=" + ($('#kzbz').val() === "" ? "" : $('#kzbz').val()) +
+                "&wzzt=" + ($('#wzzt').val() === "" ? "" : $('#wzzt').val()) +
+                "&xslkc=" + ($('#xslkc').val() ==="1"?"":"0") +
+                "&mxyx=" + ($('#mxyx').is(":checked") ? "1" : "") +
+                "&ygq=" + ($('#ygq').is(":checked") ? "" : "0") +
+                "&isExpired=1");
+        });
+    }
+
+    //Thông tin bảng chính
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/StorageManage/Storage/GetExpiredStorageDetail",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
+            colModel: [
+                { label: 'Tên', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'bmkcslStr', width: 70, align: 'right' },
+                { label: 'Đơn vị đơn giá', name: 'bmjjdjdw', width: 60, align: 'center' },
+                {
+                    label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Loại', name: 'lb', width: 90, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 90, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+                { label: "productId", name: "productId", hidden: true, key: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'wzmc asc',
+            viewrecords: true,
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+            {
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //LấyurlTrongcủaTham số
+    function getQueryString(name) {
+        // Khớp tham số đích
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var result = window.location.search.substr(1).match(reg); // ĐốiquerystringKhớp tham số đích
+        if (result != null) {
+            return decodeURIComponent(result[2]);
+        } else {
+            return null;
+        }
+    }
+
+</script>

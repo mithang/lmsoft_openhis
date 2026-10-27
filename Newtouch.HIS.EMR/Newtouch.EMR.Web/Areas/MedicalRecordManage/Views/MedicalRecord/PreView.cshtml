@@ -1,11 +1,11 @@
 ﻿@using Newtouch.Infrastructure;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
-    var EmrEdiForUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("EmrEdiForUrl");
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("EmrEdiForUrl");
 }
-@*<script src="~/Content/framework-ui.js"></script>
+
     <script src="~/Content/framework-clientdata.js"></script>
-    <script src="~/Content/framework-clientdata.framepage.js"></script>*@
+
 <script src="@Html.Raw(EmrEdiForUrl)ServicePage.aspx?wasmres=dcwriter5.js"></script>
 <script src="@Html.Raw(EmrEdiForUrl)jquery/jquery-1.7.2.min.js"></script>
 
@@ -14,7 +14,7 @@
         <div class="topPanel">
             <div class="toolbar " style="float:right;">
                 <div class="btn btn-default">
-                    <a authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>打印g</a>
+                    <a authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>Ing</a>
                     <script language=javascript>
                         function PrintDoc() {
                             var ctl = document.getElementById("myWriterControl");
@@ -28,7 +28,7 @@
                 </div>
                 <div class="btn">
                     <input type="checkbox" id="idJumpPrint" name="idJumpPrint" onclick="JumpPrint();" />
-                    <label for="idJumpPrint">续打</label>
+                    <label for="idJumpPrint">In tiếp</label>
                     <script language=javascript>
 						function JumpPrint() {
 							var flag = document.getElementById("idJumpPrint").checked;
@@ -49,7 +49,7 @@
                     {
                         if (string.IsNullOrWhiteSpace(ViewBag.isLocker))
                         {
-                            @Html.ActionLink("编辑病历", "MedicalRecordEdit", new { jzbl = "", blid = ViewBag.blid, bllx = ViewBag.bllx, zyh = ViewBag.zyh, mzh = ViewBag.mzh, blxtmc_yj = ViewBag.blxtmc_yj }, new { @class = "btn btn-primary " })
+                            @Html.ActionLink("Chỉnh sửa bệnh án", "MedicalRecordEdit", new { jzbl = "", blid = ViewBag.blid, bllx = ViewBag.bllx, zyh = ViewBag.zyh, mzh = ViewBag.mzh, blxtmc_yj = ViewBag.blxtmc_yj }, new { @class = "btn btn-primary " })
                         }
                         else
                         {
@@ -64,7 +64,7 @@
 
     </div>
 
-    @*@Html.Raw(ViewBag.WriterControlHtml)*@
+    
     <div class="blbj" style="width:99%;float:left;overflow-y: auto;border-radius: 4px;background: white;">
         <div id="myWriterControl" dctype="WriterControlForWASM" RuleVisible="false" ContentRenderMode="NormalHtmlEditable" ClientContextMenuType="Custom" style="width:100%; background-color: #7cb9e8;">
 
@@ -97,8 +97,8 @@
 	}
 
 	function GetQueryValue(queryName) {
-		var query = decodeURI(window.location.search.substring(1));//将url转码，如果不是当前地址链接，可以在这里填写需要的链接
-		var vars = query.split("&");//分割字符串，将url切割成数组形式的对象
+		var query = decodeURI(window.location.search.substring(1));//将url转码, 如果不是当前地址链接, 可以在这里填写需要的链接
+		var vars = query.split("&");//分割字符串, 将url切割成数组形式的对象
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split("=");//再次分割成数组
 			if (pair[0] == queryName) { return pair[1]; }//如果匹配输出结果
@@ -148,7 +148,7 @@
 			//ctl.Options.isTransformLandscape = false;
 			ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
 				debugger;
-				console.log("打印字体处理");
+				console.log("Xử lý phông chữ khi in");
 				var styleDom = document.createElement("style");
 				// 解决宋体打印问题
 				var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
@@ -171,12 +171,12 @@
 					page.appendChild(styleDom);
 				}
 				ctl.EventBeforePrint = function (doc) {
-					console.log("打印预览后");
+					console.log("Sau khi xem trước khi in");
 				}
 			};
-			console.log("打印字体处理-1");
+			console.log("Xử lý phông chữ khi in-1");
 		} else {
-			console.log("打印字体处理-2");
+			console.log("Xử lý phông chữ khi in-2");
 		}
 	}
 	//Build();

@@ -1,5 +1,5 @@
-﻿@{
-    ViewBag.Title = "膳食医嘱维护";
+@{
+    ViewBag.Title = "Dinh dưỡngY lệnhBảo trì";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -89,30 +89,30 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="inputedit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="inputedit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="inputdel" class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a id="inputdel" class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
     </div>
     <div style="height:45px !important;">
         <table class="form" style="width:750px;height:45px !important;">
             <tr>
-                <td class="formTitle">大类：</td>
+                <td class="formTitle">Loại lớn:</td>
                 <td class="formValue formDdlSelectorTd" style="width:120px">
                     <select class="form-control" id="lb">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">关键字：</td>
+                <td class="formTitle">Từ khóa:</td>
                 <td class="formValue" style="width:90px">
                     <input type="text" class="form-control" id="keyword" />
                 </td>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                 </td>
                 <td class="formTitle"></td>
                 <td class="formTitle"></td>
@@ -127,7 +127,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">收费项目列表</a>
+            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">Mục thu phíDanh sách</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -214,10 +214,10 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
             colModel: [
                 { label: 'Id', name: 'Id', key: true, hidden: true },
-                { label: '膳食名称', name: 'Name', width: 180, align: 'center' },
-                { label: '拼音', name: 'py', width: 150, align: 'center' },
+                { label: 'Suất ănTên', name: 'Name', width: 180, align: 'center' },
+                { label: 'Pinyin', name: 'py', width: 150, align: 'center' },
                 {
-                    label: '大类', name: 'DietBigType', width: 90, align: 'center', formatter: function (cellvalue) {
+                    label: 'Loại lớn', name: 'DietBigType', width: 90, align: 'center', formatter: function (cellvalue) {
                         var rtnval = cellvalue;
                         if (top.clients.itemDetails) {
                             $.each(top.clients.itemDetails, function (idx, val) {
@@ -234,21 +234,21 @@
                     }
                 },
                 {
-                    label: '类别', name: 'DietType', width: 90, align: 'center', formatter: function (cellvalue) {
+                    label: 'Loại', name: 'DietType', width: 90, align: 'center', formatter: function (cellvalue) {
                         return $.enum.getDescByValue("EnumSSLB", cellvalue);
                     }
                 },
                 {
-                    label: '有无收费项目', name: 'bdsfxm', width: 100, align: 'center', formatter: function (cellvalue) {
+                    label: 'Có mục thu phí hay không', name: 'bdsfxm', width: 100, align: 'center', formatter: function (cellvalue) {
                         if (cellvalue == true) {
-                            return "是";
+                            return "Có";
                         } else if (cellvalue == false) {
-                            return "否"
+                            return "Không"
                         }
                         return "";
                     }
                 },
-                { label: '创建日期', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                { label: 'TạoNgày', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
             ],
             pager: "#gridPager",
             rowNum: '15',
@@ -297,26 +297,26 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 180,
             shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             editurl: "clientArray",  //行编辑不向服务器提交数据
             unwritten: false,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', hidden: true },
-                { label: '药品名称', name: 'sfxmmc', width: 180, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
-                { label: '药品名称', name: 'sfxmCode',editwidth: '100%', align: 'center', editable: true, hidden: true},
+                { label: 'Tên thuốc', name: 'sfxmmc', width: 180, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
+                { label: 'Tên thuốc', name: 'sfxmCode',editwidth: '100%', align: 'center', editable: true, hidden: true},
                 {
-                    label: '<span class="required">*</span>绑定数量', name: 'sl', width: 120, editwidth: '100%', align: 'center', editable: true, editrules: { required: true },editoptions: {
+                    label: '<span class="required">*</span>Gắn kếtSố lượng', name: 'sl', width: 120, editwidth: '100%', align: 'center', editable: true, editrules: { required: true },editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("数量为空，请确认。", 'warning');
+                                        $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert("数量：请填写数字", 'warning');
+                                        $.modalAlert("Số lượng:Vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -342,10 +342,10 @@
                 //    }, editrules: { required: true }
                 //},
                 //{ label: 'sfhsval', name: 'sfhsval', width: 75, editwidth: '100%', align: 'center', editable: true, hidden: true },
-                { label: '价格', name: 'price', width: 80, align: 'center', editable: true, editwidth: '100%', align: 'center' },
-                { label: '规格', name: 'gg', width: 80, align: 'center', editable: true, editwidth: '100%', align: 'center'  },
-                { label: '单位', name: 'dw', width: 70, editable: true, editwidth: '100%', align: 'center' },
-                { label: '操作', name: 'action', width: 90, align: 'center' },
+                { label: 'Giá', name: 'price', width: 80, align: 'center', editable: true, editwidth: '100%', align: 'center' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'center', editable: true, editwidth: '100%', align: 'center'  },
+                { label: 'Đơn vị', name: 'dw', width: 70, editable: true, editwidth: '100%', align: 'center' },
+                { label: 'Thao tác', name: 'action', width: 90, align: 'center' },
                 { label: 'baseId', name: 'baseId', hidden: true },
             ],
             editinputwidthborder: false,    //是否需要边框 默认为true
@@ -363,8 +363,8 @@
             .navButtonAdd('#gridMxPager',
             {
                 buttonicon: "glyphicon glyphicon-new-window",
-                title: "保存",
-                caption: "保存",
+                title: "Lưu",
+                caption: "Lưu",
                 position: "last",
                 onClickButton: function () {
                     saveData();
@@ -373,8 +373,8 @@
             .navButtonAdd('#gridMxPager',
             {
                 buttonicon: "glyphicon glyphicon-new-window",
-                title: "新收费项目",
-                caption: "新收费项目",
+                title: "Mục thu phí mới",
+                caption: "Mục thu phí mới",
                 position: "last",
                 onClickButton: function () {
                     newsfxmData();
@@ -400,7 +400,7 @@
         $("#" + rowid + "_price").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_dw").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_sl").parent().next().children('select').html('');
-        $("#" + rowid + "_sl").parent().next().children('select').append('<option value="1">是</option><option value="0">否</option>');
+        $("#" + rowid + "_sl").parent().next().children('select').append('<option value="1">Có</option><option value="0">Không</option>');
 
         //药品浮层  //中药西药 会重复么 ‘"#" + rowid + "_xmmc"’
         $("#" + rowid + "_sfxmmc").sfxmFloatingSelector({
@@ -425,7 +425,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增膳食",
+            title: "Thêm mớiSuất ăn",
             url: "/NurseManage/DietaryAdvice/Form",
             width: "700px",
             height: "300px",
@@ -441,12 +441,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改膳食",
+            title: "SửaSuất ăn",
             url: "/NurseManage/DietaryAdvice/Form?keyValue=" + keyValue,
             width: "700px",
             height: "300px",
@@ -464,14 +464,14 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.deleteForm({
             url: "@Url.Action("DeleteForm")",
             param: { keyValue: keyValue },
             success: function () {
-                $.modalMsg("删除成功","warning");
+                $.modalMsg("Xóa thành công","warning");
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }
@@ -487,7 +487,7 @@
     function newsfxmData() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条膳食信息", 'warning');
+            $.modalAlert("Vui lòng chọn một dòng thông tin suất ăn", 'warning');
             return;
         }
          var dataRow = {
@@ -507,7 +507,7 @@
         //获取所有行Id，遍历使编辑框处于保存状态
         var rowIds = $gridMxList.jqGrid('getDataIDs');
         if (rowIds < 1) {
-            $.modalAlert("当前没有保存的膳食内容", 'warning');
+            $.modalAlert("Hiện tại không có nội dung suất ăn đã lưu", 'warning');
             return;
         }
         for (var i = 0; i < rowIds.length; i++) {
@@ -521,7 +521,7 @@
 
         var gridMxData = $gridMxList.jqGrid('getRowData_AllLine', null, true);
         if (gridMxData.length < 1) {
-            $.modalAlert("当前没有保存的医嘱内容", 'warning');
+            $.modalAlert("Hiện tại không có nội dung y lệnh đã lưu", 'warning');
         }
 
         $.each(gridMxData, function () {
@@ -536,7 +536,7 @@
             type: "POST",
             async: false,
             success: function (data) {
-                $.modalMsg("保存成功", "success");
+                $.modalMsg("Lưu thành công", "success");
                 $(".hiding").click();
             }
         });

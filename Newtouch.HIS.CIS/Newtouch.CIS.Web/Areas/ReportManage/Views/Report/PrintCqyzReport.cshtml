@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "长期医嘱单";
+    ViewBag.Title = "Y lệnh dài hạnĐơn";
     Layout = "~/Views/Shared/_Form.cshtml";
     //报表地址
     var reportUrl = SysConfigReader.OrgReportLink("cqyzPrint");
@@ -31,7 +31,7 @@
         location.href = url;
         return;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 

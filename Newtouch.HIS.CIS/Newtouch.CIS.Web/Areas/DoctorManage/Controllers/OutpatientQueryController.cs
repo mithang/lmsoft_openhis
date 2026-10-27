@@ -1,29 +1,45 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.IDomainServices.Outpatient;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 {
+    [Area("DoctorManage")]
     public class OutpatientQueryController : OrgControllerBase
     {
         // GET: DoctorManage/OutpatientQuery
 
         private readonly IOutpatientQueryDmnService _outpatientQueryDmnService;
-        #region 页面
+
+        public OutpatientQueryController(IOutpatientQueryDmnService outpatientQueryDmnService)
+        {
+            this._outpatientQueryDmnService = outpatientQueryDmnService;
+        }
+        #region Trang
         /// <summary>
         /// 门诊就诊记录
         /// </summary>
         /// <returns></returns>
-        public ActionResult ConsultRecord()
+        public IActionResult ConsultRecord()
         {
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.OrganizeId = this.OrganizeId;
             return View();
         }
@@ -32,9 +48,9 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 门诊就诊详情
         /// </summary>
         /// <returns></returns>
-        public ActionResult ConsultDetail()
+        public IActionResult ConsultDetail()
         {
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.OrganizeId = this.OrganizeId;
             return View();
         }
@@ -42,9 +58,9 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 查询门诊详细资料
         /// </summary>
         /// <returns></returns>
-        public ActionResult QueryOutpatientDetail()
+        public IActionResult QueryOutpatientDetail()
         {
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.OrganizeId = this.OrganizeId;
             return View();
         }
@@ -52,16 +68,16 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 查询门诊预约记录
         /// </summary>
         /// <returns></returns>
-        public ActionResult QueryOutpatientReservation()
+        public IActionResult QueryOutpatientReservation()
         {
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.OrganizeId = this.OrganizeId;
             return View();
         }
         #endregion
 
-        #region 门诊就诊记录
-        public ActionResult GetConsultRecordGridJson(Pagination pagination, string kssj, string jssj)
+        #region Ngoại trúKhám bệnhGhi chép
+        public IActionResult GetConsultRecordGridJson(Pagination pagination, string kssj, string jssj)
         {
             var data = new
             {
@@ -74,8 +90,8 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
         #endregion
 
-        #region 门诊就诊详情
-        public ActionResult GetConsultDetailGridJson(Pagination pagination, string kssj, string jssj,string keyword)
+        #region Ngoại trúKhám bệnhChi tiết
+        public IActionResult GetConsultDetailGridJson(Pagination pagination, string kssj, string jssj,string keyword)
         {
             var data = new
             {
@@ -87,8 +103,8 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return Content(data.ToJson());
         }
         #endregion
-        #region 查询门诊详细资料
-        public ActionResult GetOutpatientDetailGridJson(Pagination pagination, string kssj, string jssj)
+        #region Tra cứuNgoại trú详细Tài liệu
+        public IActionResult GetOutpatientDetailGridJson(Pagination pagination, string kssj, string jssj)
         {
             var data = new
             {
@@ -99,14 +115,14 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult GetOutpatientDetailMX(string mzh)
+        public IActionResult GetOutpatientDetailMX(string mzh)
         {
             var rows = _outpatientQueryDmnService.GetOutpatientDetailMXGridJson(mzh, OrganizeId);
             return Content(rows.ToJson());
         }
         #endregion
-        #region 查询门诊预约记录
-        public ActionResult GetReservationGridJson(Pagination pagination, string kssj, string jssj,string xm)
+        #region Tra cứuNgoại trúĐặt hẹnGhi chép
+        public IActionResult GetReservationGridJson(Pagination pagination, string kssj, string jssj,string xm)
         {
             var data = new
             {
@@ -120,14 +136,14 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         #endregion
 
 
-		public ActionResult MZcasehistory()
+		public IActionResult MZcasehistory()
 		{
-			ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+			ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
 			ViewBag.OrganizeId = this.OrganizeId;
 			return View();
 		}
-        #region 门诊病历记录
-        public ActionResult GetMedicalRecordGridJson(Pagination pagination, string kssj, string jssj)
+        #region Ngoại trúBệnh ánGhi chép
+        public IActionResult GetMedicalRecordGridJson(Pagination pagination, string kssj, string jssj)
         {
             var data = new
             {
@@ -139,7 +155,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return Content(data.ToJson());
         }
         #endregion
-        public ActionResult MZBLlsinfo(Pagination pagination, string blh)
+        public IActionResult MZBLlsinfo(Pagination pagination, string blh)
 		{
 			var data = new
 			{
@@ -150,7 +166,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 			};
 			return Content(data.ToJson());
 		}
-		public ActionResult MZlsjzCfInfo(Pagination pagination, string jzid)
+		public IActionResult MZlsjzCfInfo(Pagination pagination, string jzid)
 		{
 			var data = new
 			{

@@ -1,29 +1,40 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.EMR.Domain.IDomainServices;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.EMR.Domain.ValueObjects;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
 {
+    [Area("MedicalRecordManage")]
     public class MedicalRulesController : OrgControllerBase
     {
         private readonly IMrWritingRulesRepo _mrwritingrulesRepo;
         private readonly Ibl_bllxRepo _bllxRepo;
         private readonly IMedicalRulesDmnService _medicalRulesDmnService;
+
+        public MedicalRulesController(IMrWritingRulesRepo mrwritingrulesRepo, Ibl_bllxRepo bllxRepo, IMedicalRulesDmnService medicalRulesDmnService)
+        {
+            this._mrwritingrulesRepo = mrwritingrulesRepo;
+            this._bllxRepo = bllxRepo;
+            this._medicalRulesDmnService = medicalRulesDmnService;
+        }
         // GET: MedicalRecordManage/MedicalRules
-        public override ActionResult Index()
+        public override IActionResult Index()
         {
             return View();
         }
 
-        public override ActionResult Form()
+        public override IActionResult Form()
         {
             return View();
         }
@@ -31,7 +42,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// 病历类型树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetBllxTree()
+        public IActionResult GetBllxTree()
         {
             var treedata = _bllxRepo.IQueryable(p=>p.zt=="1" && p.OrganizeId==this.OrganizeId).OrderBy(p=>p.bllx).ToList();
 
@@ -54,7 +65,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetRulesList(string keyword)
+        public IActionResult GetRulesList(string keyword)
         {
             var data = _mrwritingrulesRepo.IQueryable().Where(p => p.Bllx == keyword && p.OrganizeId == this.OrganizeId && p.zt == "1").OrderBy(p => p.Px).ToList();
 
@@ -65,7 +76,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public ActionResult GetItemMXData(string Id)
+        public IActionResult GetItemMXData(string Id)
         {
             var data = _mrwritingrulesRepo.IQueryable(p => p.Id == Id && p.OrganizeId == this.OrganizeId && p.zt == "1").ToList();
 
@@ -76,7 +87,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// </summary>
         /// <param name="ZkxmMXListVO"></param>
         /// <returns></returns>
-        public ActionResult SubmitForm(RulesEntityVo rulesvo)
+        public IActionResult SubmitForm(RulesEntityVo rulesvo)
         {
             _medicalRulesDmnService.SubmitForm(rulesvo);
             return Success();
@@ -86,7 +97,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public ActionResult RulesDel(string Id)
+        public IActionResult RulesDel(string Id)
         {
             _mrwritingrulesRepo.DeleteForm(Id, this.OrganizeId);
             return Success();

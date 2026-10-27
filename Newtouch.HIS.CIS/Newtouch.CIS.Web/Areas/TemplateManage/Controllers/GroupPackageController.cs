@@ -1,18 +1,32 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.HIS.Domain.IRepository;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 {
+    [Area("TemplateManage")]
     public class GroupPackageController : OrgControllerBase
     {
         private readonly IGroupPackageRepo _groupPackageRepo;
         private readonly IGroupPackageDmnService _groupPackageDmnService;
+
+        public GroupPackageController(IGroupPackageRepo groupPackageRepo, IGroupPackageDmnService groupPackageDmnService)
+        {
+            this._groupPackageRepo = groupPackageRepo;
+            this._groupPackageDmnService = groupPackageDmnService;
+        }
 
         // GET: TemplateManage/GroupPackage
 
@@ -22,7 +36,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// <param name="type"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult SelectGroupPackageList(int type, string keyword)
+        public IActionResult SelectGroupPackageList(int type, string keyword)
         {
             var data = _groupPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.zt == "1" && a.Type == type).ToList();
             if (!string.IsNullOrWhiteSpace(keyword))
@@ -37,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// </summary>
         /// <param name="zutaoType"></param>
         /// <returns></returns>
-        public ActionResult SelectGridList(int type,string keyword)
+        public IActionResult SelectGridList(int type,string keyword)
         {
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -57,7 +71,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// </summary>
         /// <param name="ztId"></param>
         /// <returns></returns>
-        public ActionResult GetGroupPackageDetail(string ztId)
+        public IActionResult GetGroupPackageDetail(string ztId)
         {
             var data = _groupPackageDmnService.GetGroupPackageDetail(ztId, this.OrganizeId);
             return Content(data.ToJson());
@@ -69,7 +83,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
         /// <returns></returns>
-        public ActionResult SaveData(GroupPackageEntity ztobj, List<GroupPackageItemEntity> ztxmlist)
+        public IActionResult SaveData(GroupPackageEntity ztobj, List<GroupPackageItemEntity> ztxmlist)
         {
             //模板表
             ztobj.OrganizeId = this.OrganizeId;
@@ -83,7 +97,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// </summary>
         /// <param name="ztId"></param>
         /// <returns></returns>
-        public ActionResult DeleteData(string ztId)
+        public IActionResult DeleteData(string ztId)
         {
             _groupPackageDmnService.DeleteData(ztId);
             return Success();

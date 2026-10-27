@@ -1,0 +1,227 @@
+
+@{
+    ViewBag.Title = "Tra cứu kiểm kê";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style>
+    #btn_search {
+        float: left;
+        margin-left: 25px;
+        margin-right: 10px;
+        width: 45px;
+        font-weight: bolder;
+    }
+
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+        float: left;
+    }
+
+    #btn_backIndex {
+        float: left;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading">Điều kiện tra cứu</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle" style="width: 50px;">Ngày：</th>
+                <td class="formValue" colspan="2">
+                    <select id="ddlRQ" class="form-control"></select>
+                </td>
+                <th class="formTitle" style="width: 65px;">Từ khóa：</th>
+                <td class="formValue" style="width: 115px;">
+                    <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin Tên thuốc" />
+                </td>
+                <th class="formTitle">Trạng thái thuốc：</th>
+                <td class="formValue" style="width: 55px;">
+                    <select id="ddlYPZT" name="ddlYPZT" class="form-control">
+                        <option value="-1">Tất cả</option>
+                        <option value="1">Bật</option>
+                        <option value="0">Ngừng dùng</option>
+                    </select>
+                </td>
+                <th class="formTitle" style="display:none">Loại thuốc：</th>
+                <td class="formValue" style="display:none">
+                    <select id="ddlYPLB" class="form-control">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <th class="formTitle">Hiển thị tồn kho：</th>
+                <td class="formValue">
+                    <select id="ddlKCXS" name="ddlKCXS" class="form-control">
+                        <option value="-1">Tất cả</option>
+                        <option value="0">Hiển thị tồn kho bằng 0</option>
+                        <option value="1">Không hiển thị số lượng lý thuyết bằng 0</option>
+                        <option value="2">Không hiển thị số lượng thực tế bằng 0</option>
+                        <option value="4">Không hiển thị khi cả hai đều bằng 0</option>
+                    </select>
+                </td>
+                <td class="formValue" style="width: 160px;">
+                    <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" />
+                    <input type="button" id="btn_backIndex" class="btn btn-primary" value="Về trang chủ" style="float:right;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table id="gridKCInfoHistory"></table>
+        <div id="gridPagerHistory" rel="form1"></div>
+    </div>
+    <input hidden id="yfbmcode" value="@ViewBag.bmCode">
+    <input hidden id="OrganizeId" value="@ViewBag.OrganizeId">
+    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+    {
+        ShowKeyList = new[] { 10, 6, 9, },
+        F10Text = "Chi tiết nhóm lớn",
+        F6Text = "Chi tiết dạng bào chế",
+        F9Text = "Chi tiết kiểm kê"
+    })
+</form>
+<script language="javascript">
+    var $gridKCInfoHistory = $("#gridKCInfoHistory");
+    $(function () {
+        $("#btn_backIndex").click(function () {//Quay lại
+            $.loading("Đang chuyển trang");
+            window.location.href = "StockInventoryV2";
+        });
+        InitialPd();
+    });
+
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+    
+    //初始化盘点
+    function InitialPd() {
+        gridKCInfoHistory();
+        GetPDSJ();//获取盘点日期
+    }
+
+    //库存信息查询
+    function gridKCInfoHistory() {
+        $gridKCInfoHistory.dataGrid({
+            caption: "Thông tin kiểm kê lịch sử",
+            postData: getSearchPostData(),
+            height: $(window).height() - 220,
+            url: "",
+            editurl: "clientArray",  //行编辑不向服务器提交数据
+            colModel: [
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 70, align: 'left' },
+                { label: 'Số lý thuyết', name: 'llsl', width: 70, align: 'left' },
+                { label: 'Số thực tế', name: 'sjslstr', width: 70, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 60, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 60, align: 'left' },
+                { label: 'Tiền bán buôn(Lý thuyết)', name: 'llpfje', width: 70, align: 'left' },
+                { label: 'Tiền bán lẻ(Lý thuyết)', name: 'lllsje', width: 70, align: 'left' },
+                { label: 'Tiền bán buôn(Thực tế)', name: 'sjpfje', width: 70, align: 'left' },
+                { label: 'Tiền bán lẻ(Thực tế)', name: 'sjlsje', width: 70, align: 'left' },
+                { label: 'Đơn vị', name: 'deptdw', width: 50, align: 'left' },
+                { label: 'Xuất xứ', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Pinyin', name: 'py', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'deptSjsl', hidden: true },
+                { label: 'Số lý thuyết', name: 'llsl_zxbz', hidden: true },
+                { label: 'pdmxId', name: 'pdmxId', hidden: true },
+                { label: 'zhyz', name: 'zhyz', hidden: true },
+                { label: 'Mã thuốc', name: 'ypCode', hidden: true },
+                { label: 'Số lượng thực tế(Đóng gói khoa)', name: 'sjslstr', hidden: true },
+                { label: 'Số lượng thực tế(Đơn vị nhỏ nhất)', name: 'minSjsl', hidden: true },
+                { label: 'Đơn vị nhỏ nhất', name: 'zxdw', hidden: true },
+                { label: 'CreateTime', name: 'CreateTime', hidden: true }
+            ],
+            gridComplete: function () {
+                window.initLayout("MyTabGrid");
+            },
+            multiselect: false,
+            pager: "#gridPagerHistory",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {//绑定查询查询
+            $gridKCInfoHistory.jqGrid('setGridParam',
+                {
+                    postData: getSearchPostData(),
+                    url: "/PharmacyDrugStorage/SelectInventoryInfoList"
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var pdsj = $("#ddlRQ").val();
+        var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+        var srm = $("#txtSRM").val();
+        var ypzt = $("#ddlYPZT").val();
+        var kcxs = $("#ddlKCXS").val();
+        if (!pdsj && !pdId) {
+            return false;
+        }
+        if (kcxs === "" || kcxs == null) {
+            kcxs = -1;
+        }
+        return { pdsj: pdsj, pdId: pdId, srm: srm, ypzt: ypzt, yplb: "", kcxs: kcxs };
+    };
+
+    //获取盘点时间
+    function GetPDSJ() {
+        $.najax({
+            type: "GET",
+            url: "/PharmacyDrugStorage/GetPDDateDropdownList",
+            dataType: "json",
+            success: function (ajaxresp) {
+                //先清空，再填充
+                $("#ddlRQ").empty();
+                for (var i = 0; i < ajaxresp.data.length; i++) {
+                    $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
+                }
+                $("#btn_search").trigger("click");
+            }
+        });
+    }
+    
+    //大类明细打印
+    function newtouch_event_f10() {
+        var srm = $("#txtSRM").val();
+        var ypzt = $("#ddlYPZT").val();
+        var kcxs = $("#ddlKCXS").val();
+        var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+        var yfbm = $("#yfbmcode").val();
+        var OrganizeId = $("#OrganizeId").val();
+        window.open("/Report/PrintReport?type=StockInventoryDl&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=" + yfbm + "|OrganizeId=" + OrganizeId, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+    }
+
+    //剂型明细打印
+    function newtouch_event_f6() {
+        var srm = $("#txtSRM").val();
+        var ypzt = $("#ddlYPZT").val();
+        var kcxs = $("#ddlKCXS").val();
+        var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+        var yfbm = $("#yfbmcode").val();
+        var OrganizeId = $("#OrganizeId").val();
+        window.open("/Report/PrintReport?type=StockInventoryJx&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=" + yfbm + "|OrganizeId=" + OrganizeId, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+    }
+
+    //盘点明细打印
+    function newtouch_event_f9() {
+        var srm = $("#txtSRM").val();
+        var ypzt = $("#ddlYPZT").val();
+        var kcxs = $("#ddlKCXS").val();
+        var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+        var yfbm = $("#yfbmcode").val();
+        var OrganizeId = $("#OrganizeId").val();
+        window.open("/Report/PrintReport?type=StockInventory&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=" + yfbm + "|OrganizeId=" + OrganizeId, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+    }
+
+</script>

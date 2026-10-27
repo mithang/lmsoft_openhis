@@ -1,28 +1,43 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.IDomainServices;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 {
+    [Area("DoctorManage")]
     public class OrginalController : OrgControllerBase
     {
         private readonly IDoctorserviceDmnService _doctorserviceDmnService;
 
-        public ActionResult CurrentdayView()
+        public OrginalController(IDoctorserviceDmnService doctorserviceDmnService)
+        {
+            this._doctorserviceDmnService = doctorserviceDmnService;
+        }
+
+        public IActionResult CurrentdayView()
         {
             return View();
         }
-        public ActionResult ConsumablesIndex()
+        public IActionResult ConsumablesIndex()
         {
             return View();
         }
-        public ActionResult gridPatientList(Pagination pagination, string zyh)
+        public IActionResult gridPatientList(Pagination pagination, string zyh)
         {
             var data = new
             {

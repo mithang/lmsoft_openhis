@@ -159,7 +159,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                             var data = new Result
                             {
                                 HttpStatus = HttpStatusCode.Unauthorized,
-                                Message = $"token校验失败:{context.Error}",   //{context.AuthenticateFailure?.Message}
+                                Message = $"Xác thực token thất bại:{context.Error}",   //{context.AuthenticateFailure?.Message}
 
                             };
                             context.Response.WriteAsync(data.ToJson());

@@ -1,0 +1,300 @@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ/Mã nhập viện" style="width: 200px;">
+                    </div>
+                </td>
+                <td style="padding-left:12px;">
+                    <div class="btn-group" id="btnKeywordTypeGourp" style="margin-top:0;">
+                        <button type="button" data-keywordtype="kh" class="btn active btn-restore">&nbsp;Số thẻ&nbsp;</button>
+                        <button type="button" data-keywordtype="zyh" class="btn btn-default">Mã nhập viện</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div style="float:left;width:75%;">
+
+    <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationSettBasicInfo">
+        <div class="panel panel-default" style="margin-top:10px; margin-bottom:0;">
+            <div class="panel-heading navb-bg">
+                Thông tin bệnh nhân nhập viện
+            </div>
+            <table class="form" style="width:96%;">
+                <tr>
+                    <td class="formTitle">Số thẻ：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="kh" value="" />
+                    </td>
+                    <td class="formTitle">Mã nhập viện：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="zyh" value="" />
+                    </td>
+                    <td class="formTitle">Số bệnh án：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="blh" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Họ tên：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="xm" value="" />
+                    </td>
+                    <td class="formTitle">Giới tính：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="xb" value="" />
+                    </td>
+                    <td class="formTitle">Khoa nhập viện：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="ksmc" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Loại bệnh nhân：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" id="brxzmc" value="" />
+                    </td>
+                    <td class="formTitle">tạm ứng：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" value="" id="zhyjj" />
+                    </td>
+                    <td class="formTitle">BHYTsố chứng nhận：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" value="" id="pzh" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Ngày nhập viện：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" value="" id="ryrq" />
+                    </td>
+                    <td class="formTitle">Ngày xuất viện：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" value="" id="cyrq" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationSettFeeInfo">
+        <div class="panel panel-default" style="margin-bottom:0;">
+            <div class="panel-heading navb-bg">
+                Thông tinquyết toán
+            </div>
+            <table class="form" style="width:96%;">
+                <tr>
+                    <td class="formTitle">Loạiquyết toán：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettType" />
+                    </td>
+                    <td class="formTitle">Số tiềnquyết toán：</td>
+                    <td class="formValue">
+                        <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettJSJE" />
+                    </td>
+                    <td class="formTitle"></td>
+                    <td class="formValue"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationChargeListInfo">
+        <table id="chargeGridList"></table>
+    </div>
+
+</div>
+
+
+<div class="rows" style="margin-top:0.5%;float:left;width:24%;margin-left:1%;">
+    <table id="dlFeeGridList"></table>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 8 }
+})
+
+<script type="text/javascript">
+    $('#btnKeywordTypeGourp').on('click', '.btn', function () {
+        if (!$(this).hasClass('active')) {
+            $(this).siblings('.btn').removeClass('btn-restore').removeClass('active').addClass('btn-default');
+            $(this).removeClass('btn-default').addClass('btn-restore active');
+        }
+    });
+
+    var txt_keyword = document.getElementById('txt_keyword');
+    txt_keyword.addEventListener('keydown', function (event) {
+        event = event || window.event;
+        if (isLoadingIIII) {
+            stopDefault(event); //Trong quá trình nạp dữ liệu，Ngăn hành vi mặc định
+            return false;
+        }
+        if (event.keyCode == 13) {
+            ajaxLoadDataResult();
+        }
+    });
+
+    //ajaxLoadResult
+    var isLoadingIIII = false;  //Có đang nạp dữ liệu từ máy chủ hay không
+    function ajaxLoadDataResult() {
+        if (!isLoadingIIII) {
+            isLoadingIIII = true;
+            var keyword = $.trim($("#txt_keyword").val());
+            if (keyword == '') {
+                isLoadingIIII = false;
+                return false;
+            }
+            $.loading(true, "Đang yêu cầu dữ liệu...");
+            var zyh = null;
+            var kh = null;
+            if ($('#btnKeywordTypeGourp .btn.active').attr('data-keywordtype') == 'kh') {
+                kh = keyword;
+            }
+            else {
+                zyh = keyword;
+            }
+            $.najax({
+                type: "POST",
+                url: "/HospitalizationManage/Settlement/GetStatusDetail",
+                data: { zyh: zyh, kh: kh },
+                dataType: "json",
+                success: function (ajaxresp) {
+                    //Thông tin cơ bản bệnh nhân nhập viện
+                    $('#divPatHospitalizationSettBasicInfo').formSerialize(ajaxresp.data.HospSettPatInfo);
+                    $("#xb").val($.getGender(ajaxresp.data.HospSettPatInfo.xb));
+                    $("#ryrq").val((ajaxresp.data.HospSettPatInfo.ryrq && ajaxresp.data.HospSettPatInfo.ryrq.length >= 10 ? ajaxresp.data.HospSettPatInfo.ryrq.substring(0, 10) : ""));
+                    $("#cyrq").val((ajaxresp.data.HospSettPatInfo.cyrq && ajaxresp.data.HospSettPatInfo.cyrq.length >= 10 ? ajaxresp.data.HospSettPatInfo.cyrq.substring(0, 10) : ""));
+                    $('#zhyjj').val(ajaxresp.data.zhyjj.toFixed(2));
+                    //Lịch sử nộp tiền của bệnh nhân
+                    for (i = 0; i < ajaxresp.data.ChargeList.length; i++) {
+                        ajaxresp.data.ChargeList[i].zyh = ajaxresp.data.HospSettPatInfo.zyh;
+                        ajaxresp.data.ChargeList[i].xm = ajaxresp.data.HospSettPatInfo.xm;
+                    }
+                    $('#chargeGridList').newtouchLocalDataGrid(null, ajaxresp.data.ChargeList);
+                    //Thông tin chứng từ
+                    $('#dlFeeGridList').newtouchLocalDataGrid(null, ajaxresp.data.DLFeeList);
+                    //Thông tinquyết toán
+                    $('#txtSettType').val('quyết toán xuất viện');
+                    $('#txtSettJSJE').val(ajaxresp.data.jsje.toFixed(2));
+                },
+                errorCallback: function (data) {
+                    funcDoPageClear();
+                },
+                complete: function () {
+                    isLoadingIIII = false;
+                    $.loading(false);
+                }
+            });
+        }
+    }
+
+    window.newtouch_globalconfig.f4opions = {
+        container: "#divPatHospitalizationSettBasicInfo, #divPatHospitalizationSettFeeInfo"
+    };
+
+    //Bản ghi nộp tiền của bệnh nhân jGridkhai báo
+    $('#chargeGridList').newtouchLocalDataGrid({
+        height: 100,
+        unwritten: false,
+        sortable: false,
+        caption: "Lịch sử nộp tiền của bệnh nhân",
+        colModel: [
+            { label: 'Mã nhập viện', name: 'zyh', width: 100, align: 'left' },
+            { label: 'Tên bệnh nhân', name: 'xm', width: 100, align: 'left' },
+            {
+                label: 'Số tiền nộp tiền', name: 'szje', width: 100, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                }
+            },
+            { label: 'Số chứng từ', name: 'pzh', width: 100, align: 'left' },
+            {
+                label: 'Ngày nộp tiền', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : ""
+                }
+            },
+            { label: 'Phương thức nộp tiền', name: 'xjzffsmc', width: 100 }
+        ]
+    });
+
+    //Bản ghi nộp tiền của bệnh nhân jGridkhai báo
+    $('#dlFeeGridList').newtouchLocalDataGrid({
+        height: 240,
+        unwritten: false,
+        sortable: false,
+        caption: "Thông tin chứng từ",
+        colModel: [
+            { label: 'Tên mục', name: 'dlmc', width: 60, align: 'left' },
+            {
+                label: 'Tổng số tiền', name: 'jsje', width: 50, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "";
+                }
+            }
+        ]
+    });
+
+    //Xóa thao tác
+    var funcDoPageClear = function () {
+        newtouch_globalevent_f4();
+    };
+
+    function newtouch_event_f4() {
+        $('#chargeGridList').jqGrid("clearGridData");   //Xóa tất cả các dòng
+        $('#dlFeeGridList').jqGrid("clearGridData");
+    }
+
+    //quyết toán
+    function newtouch_event_f8() {
+        var zyh = $.trim($('#zyh').val());
+        var jsje = $.trim($('#txtSettJSJE').val());
+        var cyrq = $.trim($('#cyrq').val());
+        var url = "/HospitalizationManage/Settlement/SettPreview?zyh=" + zyh + "&expectedjsje=" + jsje + "&expectedcyrq=" + cyrq + "&r=" + Math.random();
+        if (zyh && jsje) {
+            $.modalOpen({
+                id: "FormShowSett",
+                title: "quyết toán",
+                url: url,
+                width: "670px",
+                height: "490px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].submitSett();
+                }
+            });
+        }
+    }
+
+    function showSettSuccessDialog(yingshoukuan, ssk, srce, zhaoling) {
+        var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + yingshoukuan
+            + "&ssk=" + ssk
+            + "&srce=" + srce
+            + "&zhaoling=" + zhaoling;
+        $.modalOpen({
+            id: "FormShowSettSuccessDialog",
+            title: "quyết toán thành công",
+            url: url,
+            width: "320px",
+            height: "240px",
+            //btn: ['Đóng'],
+            //btnclass: ['btn btn-danger'],
+            btn: null,
+            callBack: function (iframeId) {
+                //top.top.window.frames['FormShowSettSuccessDialog'].$.modalClose();
+            }
+        });
+    }
+
+</script>

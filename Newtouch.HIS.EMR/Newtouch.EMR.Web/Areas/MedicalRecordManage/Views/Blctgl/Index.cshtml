@@ -6,6 +6,6 @@
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 
-@Html.Action("CTGLList", "Blctgl")
+@await Component.InvokeAsync("CtglList")
 
 

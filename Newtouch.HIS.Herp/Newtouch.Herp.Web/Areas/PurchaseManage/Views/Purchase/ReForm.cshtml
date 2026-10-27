@@ -1,7 +1,7 @@
-﻿
+
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "耗材退货";
+    ViewBag.Title = "Trả hàng vật tư tiêu hao";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -46,55 +46,55 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">发药信息</div>
+        <div class="panel-heading">Thông tin phát thuốc</div>
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>退货点：</th>
+                <th class="formTitle"><span class="required">*</span>Điểm trả hàng:</th>
                 <td class="formValue">
-                    <input type="text" id="psd" name="psd" class="form-control" placeholder="请选择配送点" autocomplete="off" />
+                    <input type="text" id="psd" name="psd" class="form-control" placeholder="Vui lòng chọn điểm giao hàng" autocomplete="off" />
                     <input type="hidden" id="psdbm" />
                 </td>
-                <th class="formTitle "><span class="required">*</span>实际退货日期：</th>
+                <th class="formTitle "><span class="required">*</span>Ngày trả hàng thực tế:</th>
                 <td class="formValue">
                     <input id="SJTHRQ" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                @*<th class="formTitle "><span class="required">*</span>供应商：</th>
+                @*<th class="formTitle "><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
-                    <input type="text" id="yq" name="yq" class="form-control" placeholder="请选择供应商" autocomplete="off" />
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" />
                     <input type="hidden" id="yqbm" />
                 </td>*@
-                <th class="formTitle ">退货单编号</th>
+                <th class="formTitle ">Số phiếu trả hàng</th>
                 <td class="formValue">
-                    <input type="text" id="THDBH" name="THDBH" class="form-control" placeholder="退货单编号" autocomplete="off" />
+                    <input type="text" id="THDBH" name="THDBH" class="form-control" placeholder="Số phiếu trả hàng" autocomplete="off" />
                 </td>
 
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>采购方式：</th>
+                <th class="formTitle"><span class="required">*</span>Phương thức mua sắm:</th>
                 <td class="formValue" id="cgfstd">
                     <select id="CGFS" name="CGFS" class="form-control required">
-                        <option value="1">非系统采购</option>
-                        <option value="2">按系统采购</option>
+                        <option value="1">Mua sắm ngoài hệ thống</option>
+                        <option value="2">Mua sắm theo hệ thống</option>
                     </select>
                 </td>
 
-                <th class="formTitle"><span class="required">*</span>系统编码：</th>
+                <th class="formTitle"><span class="required">*</span>Mã hệ thống:</th>
                 <td>
                     <input id="XTBM" type="text" class="form-control" style="width:42%; float:left;height:50%;" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>是否含伴随服务：</th>
+                <th class="formTitle"><span class="required">*</span>Có kèm dịch vụ đi kèm không:</th>
                 <td class="formValue" id="sfhbsfwtd">
                     <select id="SFHBSFW" name="SFHBSFW" class="form-control required">
-                        <option value="0">否</option>
-                        <option value="1">是</option>
+                        <option value="0">Không</option>
+                        <option value="1">Có</option>
                     </select>
                 </td>
-                <th class="formTitle ">采购单号</th>
+                <th class="formTitle ">Số đơn mua sắm</th>
                 <td class="formValue">
-                    <input type="text" id="DDBH" name="DDBH" class="form-control" placeholder="采购单号" autocomplete="off" />
+                    <input type="text" id="DDBH" name="DDBH" class="form-control" placeholder="Số đơn mua sắm" autocomplete="off" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="添加" />
+                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="Thêm" />
                 </th>
                 <td></td>
             </tr>
@@ -105,12 +105,12 @@
         <div id="gridPager"></div>
     </div>
 </form>
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 7, 8, 9 },
-    F7Text = "重置",
-    F8Text = "保存",
-    F9Text = "保存并传报"
+    F7Text = "Đặt lại",
+    F8Text = "Lưu",
+    F9Text = "Lưu và truyền báo"
 })
 <script type="text/javascript">
 
@@ -138,7 +138,7 @@
         if (thId != null && thId != "") {
             $.najax({
                 type: "Get",
-                url: "/ReturnedMaterials/QueryPurchaseReturnbyId",
+                url: "/PurchaseManage/ReturnedMaterials/QueryPurchaseReturnbyId",
                 data: { thId: thId },
                 dataType: "json",
                 success: function (ajaxresp) {
@@ -157,7 +157,7 @@
             });
             $.najax({
                 type: "Get",
-                url: "/ReturnedMaterials/QueryPurchaseReturnDetailbyId",
+                url: "/PurchaseManage/ReturnedMaterials/QueryPurchaseReturnDetailbyId",
                 data: { thId: thId },
                 dataType: "json",
                 success: function (ajaxresp) {
@@ -232,7 +232,7 @@
         //$("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
     }
 
-    //添加发药明细
+    //Thêm chi tiết phát thuốc
     function addItem(obj) {
         var ids = $("#gridList").getDataIDs();
         var lastRowoid = ids[ids.length - 1];
@@ -242,7 +242,7 @@
         $("#gridList").jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
     }
 
-    //删除发药明细
+    //Xóa chi tiết phát thuốc
     function deleteItem(obj) {
         var selRowId = $(obj).parent().parent().attr("id");
         if (!!selRowId) {
@@ -250,7 +250,7 @@
         }
     }
 
-    //获取操作按钮html
+    //获取Thao tác按钮html
     function GetOperatehtml() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
     }
@@ -260,57 +260,57 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //CóKhông显示序号
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //行编辑不向服务器Nộp数据
             unwritten: false,
             colModel: [
-                { label: '操作', name: 'operate', width: 50, align: 'center' },
+                { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
                 {
-                    label: '序号', name: 'SXH', width: 51, align: 'center', formatter: function (cellvalue, options, cell) {
+                    label: 'Số thứ tự', name: 'SXH', width: 51, align: 'center', formatter: function (cellvalue, options, cell) {
                         var rowId = options.rowId;
                         var sxh = rowId.replace("jqg", "");
                         return sxh;
                     }
                 },
-                { label: '<span class="required">*</span>物资名称', name: 'WZMC', width: 105, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>企业', name: 'qy', width: 200, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Tên vật tư', name: 'WZMC', width: 105, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Doanh nghiệp', name: 'qy', width: 200, align: 'center', editable: true, editwidth: "100%" },
                 {
-                    label: '<span class="required">*</span>采购类型', name: 'CGLX', width: 70, align: 'center',
+                    label: '<span class="required">*</span>Loại mua sắm', name: 'CGLX', width: 70, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<select name=\"CGLX\" id=\"CGLX_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value = '1'> 招标采购</option ><option value = '2' > 带量采购</option ><option value = '3' > 挂网采购</option ><option value = '9' > 其他</option ></select>";
+                        return "<select name=\"CGLX\" id=\"CGLX_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value = '1'> Mua sắm đấu thầu</option ><option value = '2' > Mua sắm theo số lượng</option ><option value = '3' > Mua sắm qua mạng</option ><option value = '9' > Khác</option ></select>";
                     }
                 },
                 {
-                    label: '<span class="required">*</span>退货类型', name: 'THLX', width: 70, align: 'center',
+                    label: '<span class="required">*</span>Loại trả hàng', name: 'THLX', width: 70, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<select name=\"THLX\" id=\"THLX_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value = '1' > 正常退货</option ><option value = '2' > 补差价退货</option ></select>";
+                        return "<select name=\"THLX\" id=\"THLX_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value = '1' > Trả hàng bình thường</option ><option value = '2' > Trả hàng bù chênh lệch</option ></select>";
                     }
                 },
-                //{ label: '<span class="required">*</span>企业编码', name: 'QYMC', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                //{ label: '<span class="required">*</span>企业编码', name: 'QYBM', width: 100, hidden: true, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>耗材统编代码', name: 'HCTBDM', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '耗材细分代码', name: 'HCXFDM', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '医院本地代码', name: 'YYBDDM', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '采购规格型号', name: 'CGGGXH', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>生产批号', name: 'SCPH', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>生产日期', name: 'SCRQ', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>有效日期', name: 'YXRQ', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                //{ label: '配送明细条码类型', name: 'PSMXTMLX', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                //{ label: '<span class="required">*</span>Mã doanh nghiệp', name: 'QYMC', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                //{ label: '<span class="required">*</span>Mã doanh nghiệp', name: 'QYBM', width: 100, hidden: true, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Mã thống nhất vật tư tiêu hao', name: 'HCTBDM', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Mã phân loại vật tư tiêu hao', name: 'HCXFDM', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Mã nội bộ bệnh viện', name: 'YYBDDM', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Quy cách mẫu mã mua sắm', name: 'CGGGXH', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Số lô sản xuất', name: 'SCPH', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Ngày sản xuất', name: 'SCRQ', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Ngày hiệu lực', name: 'YXRQ', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                //{ label: 'Loại mã vạch chi tiết phiếu giao hàng', name: 'PSMXTMLX', width: 100, align: 'center', editable: true, editwidth: "100%" },
                 {
-                    label: '<span class="required">*</span>配送明细条码类型', name: 'PSMXTMLX', width: 80, align: 'center',
+                    label: '<span class="required">*</span>Loại mã vạch chi tiết phiếu giao hàng', name: 'PSMXTMLX', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<select name=\"CGLX\" id=\"PSMXTMLX_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value = '01'> GS1 条码</option ><option value = '02' > HIBC 条码</option ><option value = '99' > 其他</option ><option value = '9' > 其他</option ></select>";
+                        return "<select name=\"CGLX\" id=\"PSMXTMLX_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value = '01'> GS1 Mã vạch</option ><option value = '02' > HIBC Mã vạch</option ><option value = '99' > Khác</option ><option value = '9' > Khác</option ></select>";
                     }
                 },
-                { label: '配送明细条码', name: 'PSMXTM', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>退货数量', name: 'THSL', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>退货单价', name: 'THDJ', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '企业编码', name: 'qybm', width: 75, align: 'center', editable: true, editwidth: '100%', hidden: true, },
-                { label: '<span class="required">*</span>退货原因', name: 'THYY', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Mã vạch chi tiết phiếu giao hàng', name: 'PSMXTM', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Số lượng trả hàng', name: 'THSL', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Đơn giá trả hàng', name: 'THDJ', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Mã doanh nghiệp', name: 'qybm', width: 75, align: 'center', editable: true, editwidth: '100%', hidden: true, },
+                { label: '<span class="required">*</span>Lý do trả hàng', name: 'THYY', width: 100, align: 'center', editable: true, editwidth: "100%" },
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhông需要边框 默认为true
+            editinputborderradius: false,   //CóKhông需要边框圆角 默认true（有圆角）
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -319,7 +319,7 @@
         });
     }
 
-    //组装提交数据
+    //组装Nộp数据
     function AssembleDataPurchase(rowData, rowid) {
         return {
             SXH: rowData.SXH,
@@ -342,9 +342,9 @@
         }
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
-        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//打开编辑模式
+        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ chỉnh sửa
         $("#jqg_gridList_" + rowid).trigger("click");
     }
 
@@ -353,7 +353,7 @@
         //部分列只读
         InitProduct(rowid + "_WZMC", rowid);
         Inityqmc(rowid + "_QYMC", rowid);
-        InitGys(rowid + "_qy", rowid)//供应商浮层
+        InitGys(rowid + "_qy", rowid)//Nhà cung cấp浮层
     }
     function Inityqmc(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
@@ -361,7 +361,7 @@
             width: 300,
             clickautotrigger: true,
             ajaxmethod: 'Get',
-            caption: "药企",
+            caption: "Doanh nghiệp dược",
             url: "/StorageManage/Storage/GetSupplierList",
             ajaxreqdata: function () {
                 var reqData = {};
@@ -370,7 +370,7 @@
             },
             colModel: [
                 { label: 'deptId', name: 'Id', hidden: true },
-                { label: '药企名称', name: 'name', widthratio: 100 }
+                { label: 'Tên doanh nghiệp dược', name: 'name', widthratio: 100 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#" + rowid + "_QYMC").val($thistr.attr('data-name'));
@@ -402,10 +402,10 @@
                 reqData.keyword = $.trim($("#lybm").val());
                 return reqData;
             },
-            caption: "领药部门",
+            caption: "Khoa lĩnh thuốc",
             colModel: [
-                { label: '药房编码', name: 'yfbmCode', widthratio: 50 },
-                { label: '药房名称', name: 'yfbmmc', widthratio: 50 }
+                { label: 'Mã nhà thuốc', name: 'yfbmCode', widthratio: 50 },
+                { label: 'Tên nhà thuốc', name: 'yfbmmc', widthratio: 50 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#lybm").val($thistr.attr('data-yfbmmc'));
@@ -426,11 +426,11 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 //if ($("#DDBH").val().replace(" ", "") === "" || $("#DDBH").val() === "") {   //去掉左右两端空格
-                //    $.modalMsg('请填写采购单号', 'warning', 1500);
+                //    $.modalMsg('Vui lòng nhập số đơn mua sắm', 'warning', 1500);
                 //    return false;
                 //}
                 //if ($("#THDBH").val().replace(" ", "") === "" || $("#THDBH").val() === "") {   //去掉左右两端空格
-                //    $.modalMsg('请填写退货单号', 'warning', 1500);
+                //    $.modalMsg('Vui lòng nhập số phiếu trả hàng', 'warning', 1500);
                 //    return false;
                 //}
                 return true;
@@ -440,22 +440,22 @@
                 reqData.key = $("#" + id).val();
                 return reqData;
             },
-            caption: "物资信息",
+            caption: "Thông tin vật tư",
             colModel: [
-                { label: '类别', name: 'lbmc', width: 120 },
-                { label: '名称', name: 'name', width: 200, align: "left" },
-                { label: '库存', name: 'slstr', width: 100 },
-                { label: '规格', name: 'gg', width: 120 },
+                { label: 'Loại', name: 'lbmc', width: 120 },
+                { label: 'Tên', name: 'name', width: 200, align: "left" },
+                { label: 'Tồn kho', name: 'slstr', width: 100 },
+                { label: 'Quy cách', name: 'gg', width: 120 },
                 {
-                    label: '零售单价', name: 'bmlsj', width: 90, align: "right",
+                    label: 'Đơn giá bán lẻ', name: 'bmlsj', width: 90, align: "right",
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.00";
                     }
                 },
-                { label: '单位', name: 'bmdwmc', width: 50 },
-                { label: '耗材统编代码', name: 'gjybdm', width: 50, hidden: true },
-                { label: '耗材细分代码', name: 'hcgjybdm', width: 50, hidden: true },
-                { label: '医院本地代码', name: 'productCode', width: 50, hidden: true },
+                { label: 'Đơn vị', name: 'bmdwmc', width: 50 },
+                { label: 'Mã thống nhất vật tư tiêu hao', name: 'gjybdm', width: 50, hidden: true },
+                { label: 'Mã phân loại vật tư tiêu hao', name: 'hcgjybdm', width: 50, hidden: true },
+                { label: 'Mã nội bộ bệnh viện', name: 'productCode', width: 50, hidden: true },
                 { label: 'Id', name: 'Id', hidden: true },
                 { label: 'kykcsl', name: 'kykcsl', hidden: true },
                 { label: 'zhyz', name: 'zhyz', hidden: true },
@@ -477,8 +477,8 @@
     }
 
 
-    //初始化供应商
-    function InitGys(id, rowid) { //物资供应商
+    //初始化Nhà cung cấp
+    function InitGys(id, rowid) { //Nhà cung cấp vật tư
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -494,11 +494,11 @@
                 reqData.key = $("#" + id).val();
                 return reqData;
             },
-            caption: "供应商信息",
+            caption: "Thông tin nhà cung cấp",
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'py', widthratio: 45 },
-                { label: '供应商', name: 'name', widthratio: 55 }
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#" + rowid + "_qybm").val($thistr.attr('data-py'));
@@ -510,20 +510,20 @@
     //初始化浮层
     function InitFloat() {
 
-        ////物资供应商
+        ////Nhà cung cấp vật tư
         //$("#yq").newtouchBatchFloatingSelector({
         //    clickautotrigger: true,
         //    url: '/Storage/GetSupplierList',
         //    height: 300,
         //    width: 400,
-        //    caption: "物资供应商",
+        //    caption: "Nhà cung cấp vật tư",
         //    ajaxparameters: function () {
         //        return "key=" + $("#yq").val();
         //    },
         //    colModel: [
         //        { label: 'Id', name: 'Id', hidden: true },
-        //        { label: '编码', name: 'py', widthratio: 45 },
-        //        { label: '供应商', name: 'name', widthratio: 55 }
+        //        { label: 'Mã', name: 'py', widthratio: 45 },
+        //        { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
         //    ],
         //    itemdbclickhandler: function ($thistr) {
         //        $("#yqbm").val($thistr.attr('data-py'));
@@ -531,21 +531,21 @@
         //    }
         //});
 
-        //配送点
+        //Điểm giao hàng
         $("#psd").newtouchBatchFloatingSelector({
             clickautotrigger: true,
-            url: '/Purchase/QueryLocation',
+            url: '/PurchaseManage/Purchase/QueryLocation',
             height: 300,
             width: 400,
-            caption: "配送点",
+            caption: "Điểm giao hàng",
             ajaxmethod: "Get",
             //ajaxparameters: function () {
             //    return "key=" + $("#psd").val();
             //},
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'psdbm', widthratio: 45 },
-                { label: '配送点', name: 'psdmc', widthratio: 55 }
+                { label: 'Mã', name: 'psdbm', widthratio: 45 },
+                { label: 'Điểm giao hàng', name: 'psdmc', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#psdbm").val($thistr.attr('data-psdbm'));
@@ -555,7 +555,7 @@
 
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var list = [];
         var validationFailedArr = [];
@@ -571,44 +571,44 @@
         });
         if (validationFailedArr.length > 0) {
             for (var i = 0; i < validationFailedArr.length; i++) {
-                $("#gridList").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//打开编辑模式
+                $("#gridList").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
             }
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần chỉnh sửa!", 'warning', 1000);
             return;
         }
         debugger;
         var par = new Object();
-        par["THMX"] = list; //退货明细
-        par["CZLX"] = "1";//1 新增 将该条新建立的信息报送市药事系统。 3 作废 将已报送市药事系统的相同编码的信息予以作废
-        par["PSDBM"] = $("#psdbm").val();//配送点
-        par["yybm"] = "77370296000";//医院编码
-        par["SJTHRQ"] = $("#SJTHRQ").val();//实际退货日期
-        par["THDBH"] = $("#THDBH").val() ? '' : $("#THDBH").val();//退货单编号
-        par["CGFS"] = "1";//采购方式
-        par["XTBM"] = $("#XTBM").val();// 系统编码
-        par["SFHBSFW"] = "0"; //是否含伴随服务
-        par["DDBH"] = $("#DDBH").val();//采购单号
-        par["JLS"] = list.length//记录数
-        //par["yqbm"] = $("#yqbm").val();//药企编码
+        par["THMX"] = list; //Chi tiết trả hàng
+        par["CZLX"] = "1";//1 Thêm mới: báo cáo thông tin mới tạo lên hệ thống dược thành phố. 3 Hủy: hủy thông tin cùng mã đã báo cáo lên hệ thống dược thành phố
+        par["PSDBM"] = $("#psdbm").val();//Điểm giao hàng
+        par["yybm"] = "77370296000";//Mã bệnh viện
+        par["SJTHRQ"] = $("#SJTHRQ").val();//Ngày trả hàng thực tế
+        par["THDBH"] = $("#THDBH").val() ? '' : $("#THDBH").val();//Số phiếu trả hàng
+        par["CGFS"] = "1";//Phương thức mua sắm
+        par["XTBM"] = $("#XTBM").val();// Mã hệ thống
+        par["SFHBSFW"] = "0"; //Có kèm dịch vụ đi kèm không
+        par["DDBH"] = $("#DDBH").val();//Số đơn mua sắm
+        par["JLS"] = list.length//Số dòng
+        //par["yqbm"] = $("#yqbm").val();//Mã doanh nghiệp dược
 
 
         $.najax({
             type: "POST",
-            url: "/ReturnedMaterials/SubmitPurchase",
+            url: "/PurchaseManage/ReturnedMaterials/SubmitPurchase",
             data: { thEntity: par, thmxList: list, keyValue: keyValue },
             dataType: "json",
             success: function (res) {
                 debugger;
                 if (res) {
                     if (res.message != null) {
-                        $.modalAlert("保存失败！" + res.message, 'warning');
+                        $.modalAlert("Lưu thất bại!" + res.message, 'warning');
                         return;
                     }
                     else {
-                        $.modalAlert("保存成功！", 'warning');
+                        $.modalAlert("Lưu thành công!", 'warning');
                     }
                     $("#gridList").clearGridData();
                     $.modalClose("ReForm");
@@ -616,7 +616,7 @@
             }
         });
     }
-    //提交
+    //Nộp
     function newtouch_event_f9() {
         var list = [];
         var validationFailedArr = [];
@@ -632,44 +632,44 @@
         });
         if (validationFailedArr.length > 0) {
             for (var i = 0; i < validationFailedArr.length; i++) {
-                $("#gridList").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//打开编辑模式
+                $("#gridList").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
             }
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần chỉnh sửa!", 'warning', 1000);
             return;
         }
         debugger;
         var par = new Object();
-        par["THMX"] = list; //退货明细
-        par["CZLX"] = "1";//1 新增 将该条新建立的信息报送市药事系统。 3 作废 将已报送市药事系统的相同编码的信息予以作废
-        par["PSDBM"] = $("#psdbm").val();//配送点
-        par["yybm"] = "77370296000";//医院编码
-        par["SJTHRQ"] = $("#SJTHRQ").val();//实际退货日期
-        par["THDBH"] = $("#THDBH").val() ? '' : $("#THDBH").val();//退货单编号
-        par["CGFS"] = "1";//采购方式
-        par["XTBM"] = $("#XTBM").val();// 系统编码
-        par["SFHBSFW"] = "0"; //是否含伴随服务
-        par["DDBH"] = $("#DDBH").val();//采购单号
-        par["JLS"] = list.length//记录数
-        //par["yqbm"] = $("#yqbm").val();//药企编码
+        par["THMX"] = list; //Chi tiết trả hàng
+        par["CZLX"] = "1";//1 Thêm mới: báo cáo thông tin mới tạo lên hệ thống dược thành phố. 3 Hủy: hủy thông tin cùng mã đã báo cáo lên hệ thống dược thành phố
+        par["PSDBM"] = $("#psdbm").val();//Điểm giao hàng
+        par["yybm"] = "77370296000";//Mã bệnh viện
+        par["SJTHRQ"] = $("#SJTHRQ").val();//Ngày trả hàng thực tế
+        par["THDBH"] = $("#THDBH").val() ? '' : $("#THDBH").val();//Số phiếu trả hàng
+        par["CGFS"] = "1";//Phương thức mua sắm
+        par["XTBM"] = $("#XTBM").val();// Mã hệ thống
+        par["SFHBSFW"] = "0"; //Có kèm dịch vụ đi kèm không
+        par["DDBH"] = $("#DDBH").val();//Số đơn mua sắm
+        par["JLS"] = list.length//Số dòng
+        //par["yqbm"] = $("#yqbm").val();//Mã doanh nghiệp dược
 
 
         $.najax({
             type: "POST",
-            url: "/ReturnedMaterials/SubmitAndUploadPurchase",
+            url: "/PurchaseManage/ReturnedMaterials/SubmitAndUploadPurchase",
             data: { thEntity: par, thmxList: list, keyValue: keyValue },
             dataType: "json",
             success: function (res) {
                 debugger;
                 if (res) {
                     if (res.message != null) {
-                        $.modalAlert("保存失败！" + res.message, 'warning');
+                        $.modalAlert("Lưu thất bại!" + res.message, 'warning');
                         return;
                     }
                     else {
-                        $.modalAlert("保存成功！", 'warning');
+                        $.modalAlert("Lưu thành công!", 'warning');
                     }
                     $("#gridList").clearGridData();
                     $.modalClose("ReForm");
@@ -680,52 +680,52 @@
     //数值验证
     function Validately(rowData, rowid) {
         //if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") {   //去掉左右两端空格
-        //    $.modalMsg("请选择发药部门", "error", 1000);
+        //    $.modalMsg("Vui lòng chọn khoa phát thuốc", "error", 1000);
         //    return false;
         //}
         if (rowData.WZMC === "") {
-            $.modalMsg('请选择物资', 'error', 1000);
+            $.modalMsg('Vui lòng chọn vật tư', 'error', 1000);
             return false;
         }
         if (rowData.HCTBDM === "") {
-            $.modalMsg('请填写耗材统编代码', 'error', 1000);
+            $.modalMsg('Vui lòng nhập mã thống nhất vật tư tiêu hao', 'error', 1000);
             return false;
         }
         if (rowData.SCPH === "") {
-            $.modalMsg('请填写生产批号', 'error', 1000);
+            $.modalMsg('Vui lòng nhập số lô sản xuất', 'error', 1000);
             return false;
         }
         if (rowData.SCRQ === "") {
-            $.modalMsg('请填写生产日期', 'error', 1000);
+            $.modalMsg('Vui lòng nhập ngày sản xuất', 'error', 1000);
             return false;
         }
         if (rowData.YXRQ === "") {
-            $.modalMsg('请填写有效日期', 'error', 1000);
+            $.modalMsg('Vui lòng nhập ngày hiệu lực', 'error', 1000);
             return false;
         }
         if (rowData.THSL === "") {
-            $.modalMsg('请填写退货数量', 'error', 1000);
+            $.modalMsg('Vui lòng nhập số lượng trả hàng', 'error', 1000);
             return false;
         }
         if (rowData.THDJ === "") {
-            $.modalMsg('请填写退货单价', 'error', 1000);
+            $.modalMsg('Vui lòng nhập đơn giá trả hàng', 'error', 1000);
             return false;
         }
         if (rowData.QYBM === "") {
-            $.modalMsg('请填写企业编码', 'error', 1000);
+            $.modalMsg('Vui lòng nhập mã doanh nghiệp', 'error', 1000);
             return false;
         }
         //if (rowData.pc === "") {
-        //    $.modalMsg('批次必选', 'error', 1000);
+        //    $.modalMsg('Lô hàng là bắt buộc', 'error', 1000);
         //    return false;
         //}
-        var reg = /^[1-9]\d*$/;//大于0的整数
+        var reg = /^[1-9]\d*$/;//大于0 số nguyên
         if (!reg.test(rowData.THSL)) {
-            $.modalMsg("数量必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0 số nguyên!", "warning", 1500);
             return false;
         }
         //if ($("#sel_dw_" + rowid).val() === "") {
-        //    $.modalMsg('请选择单位', 'error', 1000);
+        //    $.modalMsg('Vui lòng chọn đơn vị', 'error', 1000);
         //    return false;
         //}
         return true;

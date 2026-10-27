@@ -1,5 +1,13 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.BusinessObjects;
 using Newtouch.Domain.DTO.OutputDto;
 using Newtouch.Domain.Entity;
@@ -7,18 +15,25 @@ using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.Domain.Entity.Outpatient;
 
 namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 {
+    [Area("TemplateManage")]
     public class MRecordTemplateController : OrgControllerBase
     {
         private readonly IMRecordTemplateDmnService _mRecordTemplateDmnService;
         private readonly IMRTemplateRepo _mRTemplateRepo;
+
+        public MRecordTemplateController(IMRecordTemplateDmnService mRecordTemplateDmnService, IMRTemplateRepo mRTemplateRepo)
+        {
+            this._mRecordTemplateDmnService = mRecordTemplateDmnService;
+            this._mRTemplateRepo = mRTemplateRepo;
+        }
 
         // GET: TemplateManage/MRecordTemplate
 
@@ -26,7 +41,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// 病历模板树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetTreeList(int mblx)
+        public IActionResult GetTreeList(int mblx)
         {
             var treeList = new List<TreeViewModel>();
             List<MRTemplateListBO> data = _mRecordTemplateDmnService.SelectTemplateList(mblx,this.OrganizeId,this.UserIdentity.DepartmentCode,this.UserIdentity.UserCode);
@@ -53,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
-        public ActionResult SelectTemplateDetailByMbId(string mbId)
+        public IActionResult SelectTemplateDetailByMbId(string mbId)
         {
             var data = _mRecordTemplateDmnService.SelectTemplateDetailByMbId(mbId, this.OrganizeId);
             data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //主诊断排在前面
@@ -67,7 +82,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// 保存
         /// </summary>
         /// <returns></returns>
-        public ActionResult SaveData(MRTemplateEntity blmbObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList,List<CfTemplateGroupPackageEntity> mbztList)
+        public IActionResult SaveData(MRTemplateEntity blmbObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList,List<CfTemplateGroupPackageEntity> mbztList)
         {
             blmbObject.OrganizeId = this.OrganizeId;
             if (blmbObject.mblx == (int)EnumCfMbLx.department)
@@ -83,7 +98,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
-        public ActionResult DeleteTemplate(string mbId)
+        public IActionResult DeleteTemplate(string mbId)
         {
             _mRecordTemplateDmnService.DeleteTemplate(mbId);
             return Success();

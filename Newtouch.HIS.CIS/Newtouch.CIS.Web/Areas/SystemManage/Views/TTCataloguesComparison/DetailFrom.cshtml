@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
@@ -7,53 +7,53 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <td class="formTitle">对照分类：</td>
+                <td class="formTitle">Đối chiếuPhân loại:</td>
                 <td class="formValue">
                     <label id="MainTypeText"></label>
                     <input id="MainId" name="MainId" style="display:none;" type="text" class="form-control required" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>名称：</td>
+                <td class="formTitle"><span class="required">*</span>Tên:</td>
                 <td class="formValue">
-                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入名称" />
+                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhậpTên" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>编码：</td>
+                <td class="formTitle"><span class="required">*</span>Mã:</td>
                 <td class="formValue">
-                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="请输入编码" />
+                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="Vui lòng nhậpMã" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>第三方名称：</td>
+                <td class="formTitle"><span class="required">*</span>Bên thứ baTên:</td>
                 <td class="formValue">
-                    <input id="TTName" name="TTName" type="text" class="form-control required" placeholder="请输入第三方名称" />
+                    <input id="TTName" name="TTName" type="text" class="form-control required" placeholder="Vui lòng nhậpBên thứ baTên" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>第三方编码：</td>
+                <td class="formTitle"><span class="required">*</span>Bên thứ baMã:</td>
                 <td class="formValue">
-                    <input id="TTCode" name="TTCode" type="text" class="form-control required" placeholder="请输入第三方编码" />
+                    <input id="TTCode" name="TTCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã bên thứ ba" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">说明：</th>
+                <th class="formTitle">Mô tả:</th>
                 <td class="formValue">
                     <input id="TTExplain" name="TTExplain" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序：</th>
+                <th class="formTitle">Sắp xếp:</th>
                 <td class="formValue">
                     <input id="px" name="px" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">状态：</th>
+                <th class="formTitle" style="height: 35px;">Trạng thái:</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
@@ -67,7 +67,7 @@
     var keyValue = $.request("keyValue");
     $(function () {
         if (!!!MainTypeId || !!!MainTypeText) {
-            $.modalAlert("缺少分类", "error");
+            $.modalAlert("ThiếuPhân loại", "error");
             $.modalClose();
             return;
         }

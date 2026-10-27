@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @{
 	var ISWithRehabSuggestion = ViewBag.ISWithRehabSuggestion as bool?;
 }
@@ -14,11 +14,11 @@
 	<div class="toolbar" style="float: right; width: 80%; margin: 10px 30px 12px; text-align: right;">
 		@if (ISWithRehabSuggestion == true)
 		{
-			<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f6" onclick="AddRefeKfjy()">康复建议</a>
+			<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f6" onclick="AddRefeKfjy()">Đề xuất phục hồi chức năng</a>
 		}
-		<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f7" onclick="ReviewToday()">当日查看</a>
-		<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f8" onclick="SaveRehabTemplate()">另存为套餐</a>
-		<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f9" onclick="SaveRehabMedicine('1')">保存</a>
+		<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f7" onclick="ReviewToday()">Xem trong ngày</a>
+		<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f8" onclick="SaveRehabTemplate()">Lưu thành bộ mẫu</a>
+		<a class="btn btn-primary" style="margin-left: 4px;" id="btn_bottombutton_f9" onclick="SaveRehabMedicine('1')">Lưu</a>
 	</div>
 </div>
 
@@ -26,7 +26,7 @@
 <script>
 	//var localdata = [];//带药对象
 	var deldata = [];//删除对象
-	var zlltext = ('@ViewBag.zzlconfig' == "" ? "每次治疗量" : '@ViewBag.zzlconfig');
+	var zlltext = ('@ViewBag.zzlconfig' == "" ? "Liều mỗi lần điều trị" : '@ViewBag.zzlconfig');
 	var kfyzflag = 0;
 
 	var itemlocaldata = new Array();
@@ -40,7 +40,7 @@
 			});
 			$.each(itemlocaldata, function () {
 				if (!this.Id) {
-					$.modalAlert('医嘱异常', "warning");
+					$.modalAlert('Y lệnhBất thường', "warning");
 					location.href = location.href;
 				}
 				this.action = getRActionStr()
@@ -74,23 +74,23 @@
 			height: $(window).height() - 180,
 			shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
 			autowidth: true,
-			rownumbers: true,  //是否显示序号
+			rownumbers: true,  //是否显示Số thứ tự
 			editurl: "clientArray",  //行编辑不向服务器提交数据
 			unwritten: false,
 			colModel: [
 				{ label: 'Id', name: 'Id', align: 'center', hidden: true },
-				{ label: '长<br>临', name: 'yzlb', width: 35, editwidth: '100%', align: 'center', editable: true },
+				{ label: 'Dài hạn<br>Tạm thời', name: 'yzlb', width: 35, editwidth: '100%', align: 'center', editable: true },
 				{
-					label: '<span class="required">*</span>收费项目', name: 'xmmc', width: 220, editwidth: '100%', align: 'center', editable: true
+					label: '<span class="required">*</span>Mục thu phí', name: 'xmmc', width: 220, editwidth: '100%', align: 'center', editable: true
 				},
 				{
 					label: 'zxksdm', name: 'zxksdm', editwidth: '100%', align: 'center', editable: true, hidden: true
 				},
 				{
-				    label: '<span class="required">*</span>执行科室', name: 'zxksmc', width: 180, editwidth: '100%', align: 'center', editable: true
+				    label: '<span class="required">*</span>Khoa thực hiện', name: 'zxksmc', width: 180, editwidth: '100%', align: 'center', editable: true
 				},
 				{
-					label: '<span class="required">*</span>开始时间', name: 'kssj', width: 135, editwidth: '100%',
+					label: '<span class="required">*</span>Thời gian bắt đầu', name: 'kssj', width: 135, editwidth: '100%',
 					align: 'center',
 					editable: true, unformat: pickDate, formatter: "date",
 					formatoptions: { srcformat: 'Y-m-d h:m:s', newformat: 'Y-m-d h:m:s' },
@@ -98,7 +98,7 @@
 						return (typeof (cellvalue) == "undefined") ? "" : cellvalue;
 					}
 				},
-				{ label: '<span class="required">*</span>单位', name: 'dw', width: 55, editwidth: '100%', align: "center", editable: true },
+				{ label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 55, editwidth: '100%', align: "center", editable: true },
                 { label: 'dwwwwwww', name: 'dwwwwwww', width: 40, editwidth: '', align: 'center', editable: true, hidden: true },  //不可去掉
 				{ label: 'xmdm', name: 'xmdm', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
 				{ label: 'dwjls', name: 'dwjls', editwidth: '100%', align: 'center', editable: true, hidden: true },
@@ -111,16 +111,16 @@
 								fn: function (e) {
 									var cellval = $(this).val();
 									if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-										$.modalAlert(zlltext+"为空，请确认。", 'warning');
+										$.modalAlert(zlltext+"để trống,Vui lòng xác nhận.", 'warning');
 										return;
 									}
 									if (isNaN(cellval)) {
-										$.modalAlert(zlltext +"：请填写数字", 'warning');
+										$.modalAlert(zlltext +":Vui lòng nhập số", 'warning');
 										$(this).val('');
 										return;
 									}
 									if (parseInt(cellval)<0) {
-										$.modalAlert(zlltext + "：大于0", 'warning');
+										$.modalAlert(zlltext + ":Lớn hơn0", 'warning');
 										$(this).val('');
 										return;
 									}
@@ -132,17 +132,17 @@
 						]
 					}
 				},
-				{ label: '<span class="required">*</span>频次', name: 'pcmc', width: 50, editwidth: '100%', align: 'center', editable: true },
+				{ label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 50, editwidth: '100%', align: 'center', editable: true },
 				{ label: 'pcCode', name: 'pcCode', editwidth: '100%', align: 'center', editable: true, hidden: true },
 				{ label: 'zxcs', name: 'zxcs',editable: true,hidden: true },
 				{ label: 'zxzq', name: 'zxzq',editable: true,hidden: true },
 				{ label: 'zxzqdw', name: 'zxzqdw', editable: true, hidden: true },
-				{ label: '天数', name: 'ts', width: 50, editwidth: '100%', align: 'center', editable: true },
-				{ label: '部位', name: 'bw', width: 150, editwidth: '100%', align: "center", editable: true, hidden: '@ViewBag.bwhide' =="False" ? undefined : true },
-				{ label: '总量', name: 'sl', editwidth: '100%', hidden: true, align: 'center', editable: true},
-				{ label: '嘱托', name: 'ztnr', width: '@ViewBag.bwhide'=="False" ? 150 : 300, editwidth: '100%', align: 'center', editable: true },
+				{ label: 'Số ngày', name: 'ts', width: 50, editwidth: '100%', align: 'center', editable: true },
+				{ label: 'Vị trí', name: 'bw', width: 150, editwidth: '100%', align: "center", editable: true, hidden: '@ViewBag.bwhide' =="False" ? undefined : true },
+				{ label: 'Tổng lượng', name: 'sl', editwidth: '100%', hidden: true, align: 'center', editable: true},
+				{ label: 'Dặn dò', name: 'ztnr', width: '@ViewBag.bwhide'=="False" ? 150 : 300, editwidth: '100%', align: 'center', editable: true },
                 {
-                    label: '转自费', name: 'iszzf', width: 50, editwidth: '100%', align: 'center', edittype: "select", editable: true, editoptions: {
+                    label: 'Chuyển sang tự chi trả', name: 'iszzf', width: 50, editwidth: '100%', align: 'center', edittype: "select", editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -158,7 +158,7 @@
                 },
                 { label: 'iszzffffff', name: 'iszzffffff', editwidth: '', align: 'center', editable: true, hidden: true },
                 {
-                    label: '计费', name: 'isjf', width: 40, editwidth: '100%', align: 'center', edittype: "select", editable: true, editoptions: {
+                    label: 'Tính phí', name: 'isjf', width: 40, editwidth: '100%', align: 'center', edittype: "select", editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -174,7 +174,7 @@
                 },
                 { label: 'isjffffff', name: 'isjffffff', editwidth: '', align: 'center', editable: true, hidden: true },
 
-				{ label: '操作', name: 'action', width: 80, align: 'center' },
+				{ label: 'Thao tác', name: 'action', width: 80, align: 'center' },
 				{ name: 'yzlx', hidden: true },
 				{ name: 'dwlb', hidden: true },
 				{ name: 'zyh', hidden: true },
@@ -197,11 +197,11 @@
 				{
 					startColumnName: 'xmmc',
 					numberOfColumns: 4,
-					titleText: '基本信息'
+					titleText: 'Thông tin cơ bản'
 				}, {
 					startColumnName: 'dwjls',
 					numberOfColumns: 7,
-					titleText: '项目用法'
+					titleText: 'MụcCách dùng'
 				}]
 		});
 		$.each($(".jqg-first-row-header").find("th"),
@@ -224,15 +224,15 @@
 			.navButtonAdd('#gridkfxmPager',
 				{
 					buttonicon: "glyphicon glyphicon-new-window",
-					title: "新医嘱",
-					caption: "新医嘱",
+					title: "Y lệnh mới",
+					caption: "Y lệnh mới",
 					position: "last",
 					onClickButton: function() {
 						newRehabData(null);
 					}
 				});
 
-		$("#gridkfxmPager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chkItemlsyz\" name=\"chkItemlsyz\" type=\"checkbox\" ><label for=\"chkItemlsyz\">临时医嘱</label></div>");
+		$("#gridkfxmPager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chkItemlsyz\" name=\"chkItemlsyz\" type=\"checkbox\" ><label for=\"chkItemlsyz\">Y lệnh tạm thời</label></div>");
 	}
 
 	//启用行内编辑
@@ -265,9 +265,9 @@
 		$("#" + rowid + "_zxksmc").attr('autocomplete', 'off');
 
 		$("#" + rowid + "_ztnr").parent().next().children('select').html('');
-		$("#" + rowid + "_ztnr").parent().next().children('select').append('<option value="1">是</option><option value="0">否</option>');
+		$("#" + rowid + "_ztnr").parent().next().children('select').append('<option value="1">Có</option><option value="0">Không</option>');
 		$("#" + rowid + "_iszzffffff").parent().next().children('select').html('');
-		$("#" + rowid + "_iszzffffff").parent().next().children('select').append('<option value="1">是</option><option value="0">否</option>');
+		$("#" + rowid + "_iszzffffff").parent().next().children('select').append('<option value="1">Có</option><option value="0">Không</option>');
 		
 		var iszzfval = $("#" + rowid + "_iszzffffff").val();
 		if (!!iszzfval) {
@@ -388,16 +388,16 @@
 		$("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
 			height: 170,
 			width: 300,
-			caption: "选择科室",
+			caption: "ChọnKhoa",
             url: '/Rehab/GetSfxmZxksSelectJson2',
 			clickautotrigger: true,
 			ajaxparameters: function ($thisinput) {
                 return 'sfxmCode=' + $("#" + rowid + "_xmCode").val() + "&keyword=" + $thisinput.val();
 			},
 			colModel: [
-				{ label: '编号', name: 'Code', widthratio: 40 },
-				{ label: '名称', name: 'Name', widthratio: 60 },
-				{ label: '拼音', name: 'py', hidden: true }
+				{ label: 'Số hiệu', name: 'Code', widthratio: 40 },
+				{ label: 'Tên', name: 'Name', widthratio: 60 },
+				{ label: 'Pinyin', name: 'py', hidden: true }
 			],
 			itemdbclickhandler: function ($thistr) {
 				$("#" + rowid + "_zxksdm").val($thistr.find("td:eq(0)").html());
@@ -465,7 +465,7 @@
 			return;
 		} else if (mczll !== "" && dwjls !== "" && (parseInt(dwjls) > parseInt(mczll))) {
 			//rowid = rowid.substring(3);
-			$.modalAlert($("#" + rowid + "_xmmc").val()+"的" + zlltext + "不能小于单位计量数", "warning");
+			$.modalAlert($("#" + rowid + "_xmmc").val()+ " của " + zlltext + " không được nhỏ hơn số lượng tính theo đơn vị", "warning");
 			$("#" + rowid + "_sl").val("");
 			return false;
 		} else {
@@ -488,7 +488,7 @@
 			return false;
 		} else if (obj.ypjl !== "" && obj.dwjls !== "" && (parseInt(obj.dwjls) > parseInt(obj.ypjl))) {
 			//rowid = rowid.substring(3);
-			$.modalAlert(obj.xmmc+"的" + zlltext + "不能小于单位计量数", "warning");
+			$.modalAlert(obj.xmmc+ " của " + zlltext + " không được nhỏ hơn số lượng tính theo đơn vị", "warning");
 			return false;
 		} else {
 			var sl = getItemsl(obj.dwjls, obj.ypjl, obj.zxcs, obj.zxzq, obj.zxzqdw);
@@ -570,7 +570,7 @@
 		}
 		var gridkfxmData = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
 		if (gridkfxmData.length<1) {
-			$.modalAlert("当前没有保存的医嘱内容", 'warning');
+			$.modalAlert("Hiện tại không có nội dung y lệnh đã lưu", 'warning');
 		}
 		var gridSimpleData = [];
 		var flag = false;
@@ -580,7 +580,7 @@
 				$(this)[i].ysgh = '@ViewBag.ysgh';
 				var sl = calitemslByobj(this);
 				if (!sl && savetodb == '1') {
-					$.modalAlert("计算数量失败", "warning");
+					$.modalAlert("Tính toánSố lượngthất bại", "warning");
 					flag = true;
 					return false;
 				} else if (sl) {
@@ -588,31 +588,31 @@
 				}
 				if (savetodb == '1') {
 					if (this.xmmc == undefined || this.xmmc == "") {
-						$.modalAlert("缺少项目", "warning");
+						$.modalAlert("ThiếuMục", "warning");
 						flag = true;
 						return false;
 					}else if(this.zxksmc==undefined ||this.zxksmc==""){
-					    $.modalAlert("缺少执行科室", "warning");
+					    $.modalAlert("ThiếuKhoa thực hiện", "warning");
 					    flag = true;
 					    return false;
 					} else if (this.kssj == undefined || this.kssj == "") {
-						$.modalAlert("缺少开始时间", "warning");
+						$.modalAlert("ThiếuThời gian bắt đầu", "warning");
 						flag = true;
 						return false;
                     } else if (this.kssj < window.currentobj.ryrq) {
-                        $.modalAlert("[" + this.xmmc + "]开始时间不能早于入院时间 入院日期：" + window.currentobj.ryrq, "warning");
+                        $.modalAlert("[" + this.xmmc + "]Thời gian bắt đầuKhông được sớm hơnNhập việnThời gian Ngày nhập viện:" + window.currentobj.ryrq, "warning");
                         flag = true;
                         return false;
                     } else if (this.dw == undefined || this.dw == "") {
-						$.modalAlert("缺少开始时间", "warning");
+						$.modalAlert("ThiếuThời gian bắt đầu", "warning");
 						flag = true;
 						return false;
 					} else if (this.ypjl == undefined || this.ypjl == "") {
-						$.modalAlert("缺少开始时间", "warning");
+						$.modalAlert("ThiếuThời gian bắt đầu", "warning");
 						flag = true;
 						return false;
 					}else if (this.pcmc == undefined || this.pcmc == "") {
-						$.modalAlert("缺少频次", "warning");
+						$.modalAlert("ThiếuTần suất", "warning");
 						flag = true;
 						return false;
 					}
@@ -656,7 +656,7 @@
 		//是否有数据
 		var data = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
 		if (data.length===0) {
-			$.modalAlert("缺少医嘱数据", 'warning');
+			$.modalAlert("Thiếu dữ liệu y lệnh", 'warning');
 			return false;
 		}
 		return true;
@@ -689,7 +689,7 @@
 	function AddRefeKfjy() {
 		$.modalOpen({
 			id: "AddKfjyForm",
-			title: "康复建议",
+			title: "Đề xuất phục hồi chức năng",
 			//brlx 1 门诊 2住院
 			url: "/Prescription/AddKfjyForm?brlx=" + "2" + "&mzzyh=" + currentobj.zyh,
 			width: "900px",
@@ -727,14 +727,14 @@
 			}
 		});
 	}
-	//康复处方明细，添加引用
+	//康复处方明细，添加Trích dẫn
 	function AddRehabCfmx(cfItem, zhuijiaornew){
 
 		if(!(cfItem.xmdm && cfItem.xmmc && cfItem.dj && cfItem.dw
 			&& cfItem.dwjls && cfItem.jjcl && cfItem.mczll
 			&& cfItem.mczll >= cfItem.dwjls
 			&& cfItem.pcmc && cfItem.pcCode && cfItem.zxcs)){
-			$.modalAlert("引用记录数据不完整（自动跳过）", 'warning');
+			$.modalAlert("Trích dẫnGhi chépDữ liệuKhông đầy đủ(Tự độngBỏ qua)", 'warning');
 			return false;
 		}
 		cfItem.Id = Math.random().toString() + new Date().getMilliseconds();
@@ -750,7 +750,7 @@
 			}
 		});
 		if (isRepeatedAdd) {
-			$.modalAlert("单张处方下明细不能重复（自动跳过）", 'warning');
+			$.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp(Tự độngBỏ qua)", 'warning');
 			return false;
 		}
 		else {
@@ -769,7 +769,7 @@
 	function SaveRehabTemplate() {
 		$.modalOpen({
 			id: "Form",
-			title: "套餐",
+			title: "Gói",
 			url: "/DoctorManage/DoctorsAdvice/Form",
 			width: "400px",
 			height: "300px",
@@ -778,7 +778,7 @@
 				if (obj && obj.mbmc != "" && obj.mblx) {
 					$.modalClose("Form");
 				} else {
-					$.modalAlert("套餐名称和套餐范围必填", "warning");
+					$.modalAlert("GóiTênvà phạm vi gói bắt buộc", "warning");
 					return;
 				}
 				var mbObj = {};
@@ -801,7 +801,7 @@
 				}
 				var gridkfxmData = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
 				if (gridkfxmData.length < 1) {
-					$.modalAlert("缺少医嘱数据", 'warning');
+					$.modalAlert("Thiếu dữ liệu y lệnh", 'warning');
 					return false;
 				}
 				$.each(gridkfxmData, function () {    //去掉action
@@ -815,7 +815,7 @@
 					data: { mbObj: mbObj, mxList: gridkfxmData },
 					type: "POST",
 					success: function (data) {
-						$.modalMsg("保存成功", 'success');
+						$.modalMsg("Lưu thành công", 'success');
 						window.$('#current').trigger('click');
 					}
 				});

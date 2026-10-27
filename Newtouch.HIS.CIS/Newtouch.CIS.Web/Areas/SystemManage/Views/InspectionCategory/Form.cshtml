@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
@@ -6,33 +6,33 @@
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" style="margin-top: 10px; margin-left: 48px; margin-right: 105px;" id="basicInfo">
 
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>名称：</th>
-                        <td class="formValue"><input type="text" class="form-control required" id="dlmc" name="dlmc" placeholder="请输入名称" /></td>
+                        <th class="formTitle"><span class="required">*</span>Tên:</th>
+                        <td class="formValue"><input type="text" class="form-control required" id="dlmc" name="dlmc" placeholder="Vui lòng nhậpTên" /></td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>编码：</th>
-                        <td class="formValue"><input type="text" class="form-control required" id="dlCode" name="dlCode" placeholder="请输入编码" /></td>
+                        <th class="formTitle"><span class="required">*</span>Mã:</th>
+                        <td class="formValue"><input type="text" class="form-control required" id="dlCode" name="dlCode" placeholder="Vui lòng nhậpMã" /></td>
                     </tr>
                     <tr>
-                        <th class="formTitle">颜色：</th>
-                        <td class="formValue"><input type="text" class="form-control" id="Color" name="Color" placeholder="请选择颜色" /></td>
+                        <th class="formTitle">Màu sắc:</th>
+                        <td class="formValue"><input type="text" class="form-control" id="Color" name="Color" placeholder="Vui lòng chọnMàu sắc" /></td>
                     </tr>
                     <tr>
-                        <th class="formTitle">描述：</th>
-                        <td class="formValue"><input type="text" class="form-control" id="Description" name="Description" placeholder="请输入描述" /></td>
+                        <th class="formTitle">Mô tả:</th>
+                        <td class="formValue"><input type="text" class="form-control" id="Description" name="Description" placeholder="Vui lòng nhậpMô tả" /></td>
                     </tr>
                     <tr>
-                        <th class="formTitle">选项：</th>
+                        <th class="formTitle">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>

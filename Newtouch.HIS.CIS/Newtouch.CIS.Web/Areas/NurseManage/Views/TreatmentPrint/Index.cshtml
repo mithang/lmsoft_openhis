@@ -1,10 +1,10 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <style>
     .dv-left {
         width: 200px;
@@ -41,35 +41,35 @@
 </style>
 <div class="dv-body">
     <div class="dv-left">
-        <div class="dv-left-title">患者列表</div>
+        <div class="dv-left-title">Danh sách bệnh nhân</div>
         <div class="dv-left-tree" id="BqTreeList"></div>
     </div>
     <div class="dv-right">
         <div class="dv-right-order">
             <div class="panel panel-default">
                 <div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
                 </div>
                 <table class="form">
                     <tr>
-                        <td class="formTitle"> 开始日期：</td>
+                        <td class="formTitle"> Ngày bắt đầu:</td>
                         <td class="formValue">
                             <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" 
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                                    onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-01 ")" />
                         </td>
-                        <td class="formTitle"> 结束日期：</td>
+                        <td class="formTitle"> Ngày kết thúc:</td>
                         <td class="formValue">
                             <input id="txt_jsrq" type="text" class="form-control input-wdatepicker"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                                    onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
                         </td>
-                        <td class="formTitle"> 长临医嘱：</td>
+                        <td class="formTitle"> Dài hạn/Tạm thờiY lệnh:</td>
                         <td class="formValue">
-                            @Html.DropDownList("clyz", EnumYzxz.Cq.ToDescSelectList(), "全部", new { @class = "form-control required" })
+                            @Html.DropDownList("clyz", EnumYzxz.Cq.ToDescSelectList(), "Tất cả", new { @class = "form-control required" })
                         </td>
                         <td class="formValue">
-                            <input type="button" id="btn_print" class="btn btn-primary" value="打印" />
+                            <input type="button" id="btn_print" class="btn btn-primary" value="In" />
                         </td>
                     </tr>
                 </table>
@@ -212,21 +212,21 @@
             url: "@Url.Action("GetGridJson")",
             height: $(window).height() - 155,
             colModel: [
-                { label: '住院号', name: 'zyh', align: 'center', width: 50},
-                { label: '床号', name: 'bedcode', align: 'center', width: 50 },
-                { label: '患者姓名', name: 'hzxm', align: 'center', width: 70 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 50},
+                { label: 'Số giường', name: 'bedcode', align: 'center', width: 50 },
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 70 },
                 { label: ' ', name: 'clbz', align: 'center', width: 40, formatter: function (val) { if (val != null) return val; else return ""; } },
-                { label: '执行日期', name: 'zxrq', align: 'center', width: 70, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '创建时间', name: 'createtime', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '医嘱', name: 'yznr', align: 'center', width: 200 },
-                { label: '成组', name: 'fzxh', align: 'center', width: 50 },
+                { label: 'Thực hiệnNgày', name: 'zxrq', align: 'center', width: 70, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian tạo', name: 'createtime', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Y lệnh', name: 'yznr', align: 'center', width: 200 },
+                { label: 'Thành nhóm', name: 'fzxh', align: 'center', width: 50 },
                 {
-                    label: '数量', name: 'mcsl', align: 'center', width: 60, formatter: function (val, o, b) {
+                    label: 'Số lượng', name: 'mcsl', align: 'center', width: 60, formatter: function (val, o, b) {
                         if (val != null) return val+b.dw; else return "";
                     }
                 },
-                { label: '状态', name: 'zt', align: 'center', width: 100, hidden: true },
-                { label: '录入者', name: 'lrz', align: 'center', width: 70 }
+                { label: 'Trạng thái', name: 'zt', align: 'center', width: 100, hidden: true },
+                { label: 'Người nhập', name: 'lrz', align: 'center', width: 70 }
             ],
             pager: "#gridPager",
             sortname: 'fzxh,zyh asc,createtime asc',
@@ -239,18 +239,18 @@
                     var returnval = "";
                     if (rowData.fzxh != typeof (undefined) && rowData.fzxh !== "" && rowData.fzxh !== null) {
                         if (last == rowData.fzxh) {
-                            returnval = "中间";
+                            returnval = "Ở giữa";
                             if (i == (ids.length - 1)) {//最后一个
-                                returnval = "结束";
+                                returnval = "Kết thúc";
                                 last = "";
                             }
                         } else if (last !== rowData.fzxh) {
                             if (last !== "" && last!= typeof (undefined)) {
                                 setlastrowzuhao(ids[i]);
                             }
-                            returnval = "开始";
+                            returnval = "Bắt đầu";
                         }
-                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单元格样式 值 或属性
+                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单格样式 值 或属性
                     } else if (last !== rowData.fzxh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }
@@ -263,7 +263,7 @@
     //设置上一行组号
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/结束.png" />');//setCell 设置单元格样式 值 或属性
+        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
     }
     //刷新医嘱
     function RefreshOrder() {

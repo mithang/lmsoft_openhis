@@ -1,7 +1,7 @@
-﻿
+
 @using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "配送点";
+    ViewBag.Title = "Điểm giao hàng";
     Layout = "~/Views/Shared/_Form.cshtml";
 
 }
@@ -12,43 +12,43 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">配送点编码：</th>
+                        <th class="formTitle">Mã điểm giao hàng:</th>
                         <td class="formValue">
                             <input id="psdbm" name="psdbm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">配送点名称：</th>
+                        <th class="formTitle">Tên điểm giao hàng:</th>
                         <td class="formValue">
                             <input id="psdmc" name="psdmc" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">配送地址：</th>
+                        <th class="formTitle">Địa chỉ giao hàng:</th>
                         <td class="formValue">
                             <input id="psdz" name="psdz" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">联系人姓名：</th>
+                        <th class="formTitle">Họ tên người liên hệ:</th>
                         <td class="formValue">
                             <input id="lxrxm" name="lxrxm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">联系电话：</th>
+                        <th class="formTitle">Số điện thoại liên hệ:</th>
                         <td class="formValue">
                             <input id="lxdh" name="lxdh" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">邮政编码：</th>
+                        <th class="formTitle">Mã bưu chính:</th>
                         <td class="formValue">
                             <input id="yzbm" name="yzbm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">备注信息：</th>
+                        <th class="formTitle">Thông tin ghi chú:</th>
                         <td class="formValue">
                             <input id="bzxx" name="bzxx" type="text" class="form-control" placeholder="" />
                         </td>
@@ -69,7 +69,7 @@
         if (keyValue != null && keyValue != "") {
             $.najax({
                 type: "Get",
-                url: "/Purchase/QueryLocationbyId",
+                url: "/PurchaseManage/Purchase/QueryLocationbyId",
                 data: { Id: keyValue },
                 dataType: "json",
                 success: function (ajaxresp) {
@@ -88,7 +88,7 @@
         }
     }
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -96,10 +96,10 @@
         var postData = $("#form1").formSerialize();
         postData.Id = keyValue;
         $.submitForm({
-            url: "/Purchase/SubmitLocation",
+            url: "/PurchaseManage/Purchase/SubmitLocation",
             param: postData,
             success: function () {
-                $.modalMsg('保存成功', 'success');
+                $.modalMsg('Lưu thành công', 'success');
                 $.modalClose();
                 callback();
             }
@@ -109,27 +109,27 @@
     //数据效验
     function DataValidate() {
         if ($("#psdbm").val() === "") {
-            $.modalAlert("配送点编码必填", 'warning');
+            $.modalAlert("Mã điểm giao hàng là bắt buộc", 'warning');
             return false;
         }
         if ($("#psdmc").val() === "") {
-            $.modalAlert("配送点名称必填", 'warning');
+            $.modalAlert("Tên điểm giao hàng là bắt buộc", 'warning');
             return false;
         }
         if ($("#psdz").val() === "") {
-            $.modalAlert("配送地址必填", 'warning');
+            $.modalAlert("Địa chỉ giao hàng là bắt buộc", 'warning');
             return false;
         }
         if ($("#lxrxm").val() === "") {
-            $.modalAlert("联系人姓名必填", 'warning');
+            $.modalAlert("Họ tên người liên hệ là bắt buộc", 'warning');
             return false;
         }
         if ($("#lxdh").val() === "") {
-            $.modalAlert("联系电话必填", 'warning');
+            $.modalAlert("Số điện thoại liên hệ là bắt buộc", 'warning');
             return false;
         }
         if ($("#yzbm").val() === "") {
-            $.modalAlert("邮政编码必填", 'warning');
+            $.modalAlert("Mã bưu chính là bắt buộc", 'warning');
             return false;
         }
         return true;

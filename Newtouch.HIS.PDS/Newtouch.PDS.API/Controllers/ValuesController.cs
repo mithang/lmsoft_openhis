@@ -1,35 +1,76 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 
 namespace Newtouch.PDS.API.Controllers
 {
-    public class ValuesController : ApiController
+    /// <summary>
+    /// Scaffold mẫu của template Web API gốc (api/values) — các action chỉ trả chuỗi mẫu
+    /// "value1"/"value2"/"value", không có nghiệp vụ. Theo quy ước đã dùng ở MRMS.API:
+    /// bản Core trả lỗi tường minh NOT_IMPLEMENTED thay vì trả giá trị giả.
+    /// </summary>
+    [ApiController]
+    [Route("api/values")]
+    public class ValuesController : ApiControllerBase
     {
-        // GET api/values
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
+        public ValuesController(TokenStore tokenStore)
+            : base(tokenStore)
         {
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        [HttpGet]
+        public IActionResult Get()
         {
+            return CreateResponse(new DefaultResponse
+            {
+                code = ResponseResultCode.FAIL,
+                sub_code = "NOT_IMPLEMENTED",
+                sub_msg = "Action mẫu của template chưa được triển khai (GET api/values gốc chỉ trả chuỗi mẫu, không có nghiệp vụ).",
+            });
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int id)
         {
+            return CreateResponse(new DefaultResponse
+            {
+                code = ResponseResultCode.FAIL,
+                sub_code = "NOT_IMPLEMENTED",
+                sub_msg = "Action mẫu của template chưa được triển khai (GET api/values/{id} gốc chỉ trả chuỗi mẫu, không có nghiệp vụ).",
+            });
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] string value)
+        {
+            return CreateResponse(new DefaultResponse
+            {
+                code = ResponseResultCode.FAIL,
+                sub_code = "NOT_IMPLEMENTED",
+                sub_msg = "Action mẫu của template chưa được triển khai (POST api/values gốc không có nghiệp vụ).",
+            });
+        }
+
+        [HttpPut("{id:int}")]
+        public IActionResult Put(int id, [FromBody] string value)
+        {
+            return CreateResponse(new DefaultResponse
+            {
+                code = ResponseResultCode.FAIL,
+                sub_code = "NOT_IMPLEMENTED",
+                sub_msg = "Action mẫu của template chưa được triển khai (PUT api/values/{id} gốc không có nghiệp vụ).",
+            });
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            return CreateResponse(new DefaultResponse
+            {
+                code = ResponseResultCode.FAIL,
+                sub_code = "NOT_IMPLEMENTED",
+                sub_msg = "Action mẫu của template chưa được triển khai (DELETE api/values/{id} gốc không có nghiệp vụ).",
+            });
         }
     }
 }

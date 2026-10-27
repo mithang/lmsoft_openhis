@@ -1,8 +1,7 @@
-﻿@using Newtouch.Core.Common.Utils;
 @{
     Layout = null;
     //是否页面加载时就必须选择Org
-    var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
+    var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.EMR.Web.Models.SysOrganizeV>;
     //是否页面加载时就必须选择Org
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 }
@@ -12,28 +11,28 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>EMR管理系统</title>
-    <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <title>EMRHệ thống quản lý</title>
+    <link rel="shortcut icon" href="@MvcHelper.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/AdminLTE.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/AdminLTE.min.css")" rel="stylesheet" />
     @Html.Partial("_BrowseAdaptiveSupport")
     @Html.Partial("_IndexHeadBehind")
 </head>
 <body style="overflow: hidden;" class="hold-transition skin-black sidebar-mini"
       onload="Onload()"
-      data-appid="@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppId)"
-      data-loadnavtree="@(ConfigurationHelper.GetAppConfigValue("Is_LoadNavTree"))"
-      data-NavPageLoadMoniter="@(ConfigurationHelper.GetAppConfigValue("Is_NavPageLoadMoniter"))">
+      data-appid="@("EMR")"
+      data-loadnavtree="@(EmrConfig.GetAppConfigValue("Is_LoadNavTree"))"
+      data-NavPageLoadMoniter="@(EmrConfig.GetAppConfigValue("Is_NavPageLoadMoniter"))">
     <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
         <img src="~/Content/img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
     </div>
@@ -52,7 +51,7 @@
                                     <b>@Html.Raw(ViewBag.OrgName)</b>
                                     @if (mediOrgList != null && mediOrgList.Count > 1)
                                     {
-                                        <i id="iSwitchOrg" title="切换机构" class="fa fa-hospital-o"></i>
+                                        <i id="iSwitchOrg" title="Chuyển tổ chức" class="fa fa-hospital-o"></i>
                                     }
                                 </a>
                             </li>
@@ -71,12 +70,12 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu, Vui lòng đợi chút…</div>
     </div>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/indextab.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/loading/pace.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/indextab.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/loading/pace.min.js")"></script>
     <script type="text/javascript">
         var my_skins;
         $(document).ready(function () {
@@ -248,20 +247,20 @@
             $("body").addClass(cls);
             store('skin', cls);
             var pifu = "#1ABC9C";
-            var cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")";  //~/Content/css/framework-theme.css
+            var cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")";  //~/Content/css/framework-theme.css
             switch (cls) {
-                case "skin-black": pifu = "#383d41"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
+                case "skin-black": pifu = "#383d41"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
 
-                case "skin-red": pifu = "#e98a7e"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red.css")"; break;
-                    @*case "skin-white": pifu = "#f39c12"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow_tab.css")"; break*@
-                case "skin-purple": pifu = "#9895c6"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple.css")"; break;
-                case "skin-green": pifu = "#1ABC9C"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
-                case "skin-black-light": pifu = "#383d41"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue-left.css")"; break;
+                case "skin-red": pifu = "#e98a7e"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red.css")"; break;
+                    
+                case "skin-purple": pifu = "#9895c6"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple.css")"; break;
+                case "skin-green": pifu = "#1ABC9C"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
+                case "skin-black-light": pifu = "#383d41"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue-left.css")"; break;
                 case "skin-black-light": pifu = "#fff"; break;
-                case "skin-red-light": pifu = "#e98a7e"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red-left.css")"; break;
-                case "skin-white-light": pifu = "#fff"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow.css")"; break;
-                case "skin-purple-light": pifu = "#9895c6"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple-left.css")"; break;
-                case "skin-green-light": pifu = "#1ABC9C"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-green-left.css")"; break;
+                case "skin-red-light": pifu = "#e98a7e"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red-left.css")"; break;
+                case "skin-white-light": pifu = "#fff"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow.css")"; break;
+                case "skin-purple-light": pifu = "#9895c6"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple-left.css")"; break;
+                case "skin-green-light": pifu = "#1ABC9C"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-green-left.css")"; break;
                 default: break;
             }
             $("#header-navbar").css("background", pifu);
@@ -301,7 +300,7 @@
         function showSwitchOrgPrompt(force) {
             $.modalOpen({
                 id: "FormSwitchOrg",
-                title: "切换医疗机构",
+                title: "Chuyển cơ sở y tế",
                 url: "/Home/UserOrgChoose",
                 width: "400px",
                 height: "260px",

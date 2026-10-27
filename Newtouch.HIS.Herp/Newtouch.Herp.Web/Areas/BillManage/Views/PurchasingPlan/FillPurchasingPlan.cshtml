@@ -1,8 +1,8 @@
-﻿@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure.Enum
 @model dynamic
 
 @{
-    ViewBag.Title = "填写采购计划";
+    ViewBag.Title = "Lập kế hoạch mua sắm";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -56,23 +56,23 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">出库信息</div>
+        <div class="panel-heading">Thông tin xuất kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle">采购计划单：</th>
+                <th class="formTitle">Kế hoạch mua sắm：</th>
                 <td class="formValue">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>采购科室：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa mua sắm：</th>
                 <td class="formValue">
                     <select id="department" name="department" class="form-control"></select>
                 </td>
-                <th class="formTitle">备注：</th>
+                <th class="formTitle">Ghi chú：</th>
                 <td class="formValue">
                     <input id="remark" name="remark" type="text" class="form-control " />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="添加" />
+                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="Thêm" />
                 </th>
             </tr>
         </table>
@@ -82,12 +82,12 @@
         <div id="gridPager"></div>
     </div>
 </form>
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 6, 7, 8 },
-    F6Text = "暂存",
-    F7Text = "重置",
-    F8Text = "提交"
+    F6Text = "Lưu tạm",
+    F7Text = "Đặt lại",
+    F8Text = "Gửi"
 })
 <script type="text/javascript">
 
@@ -229,21 +229,21 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
             rownumbers: true,  //是否显示序号
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //行编辑不向服务器Gửi数据
             unwritten: false,
             colModel: [
-                { label: '操作', name: 'operate', width: 50, align: 'center' },
-                { label: '<span class="required">*</span>物资名称', name: 'wzmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
-                { label: "物资类型", name: "lbmc", width: 150, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>数量', name: 'sl', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
+                { label: '<span class="required">*</span>Tên vật tư', name: 'wzmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
+                { label: "Loại vật tư", name: "lbmc", width: 150, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Số lượng', name: 'sl', width: 70, align: 'center', editable: true, editwidth: "100%" },
                 {
-                    label: '单位', name: 'unitName', width: 70, align: 'center',
+                    label: 'Đơn vị', name: 'unitName', width: 70, align: 'center',
                     formatter: function (cellvalue, options) {
                         return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>";
                     }
                 },
-                { label: '规格', name: 'gg', width: 100, align: 'center', editable: true, editwidth: "100%" },
-                { label: '生产厂家', name: 'sccj', width: 180, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 180, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'productId', name: 'productId', hidden: true, editable: true }
             ],
             editinputwidthborder: false,    //是否需要边框 默认为true
@@ -270,7 +270,7 @@
         $("#" + rowid + "_gg").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_sccj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_dwmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
-        InitProduct(rowid + "_wzmc", rowid); //物资浮层
+        InitProduct(rowid + "_wzmc", rowid); //Vật tư浮层
         InitTabKey("sel_dw_" + rowid, rowid);
     }
 
@@ -285,7 +285,7 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 if ($("#ckbm").val() === "" ) {
-                    $.modalMsg("请先选择出库部门", 'warning', 1500);
+                    $.modalMsg("Vui lòng chọn bộ phận xuất kho trước", 'warning', 1500);
                     return false;
                 }
                 return true;
@@ -296,13 +296,13 @@
                 reqData.warehouseId = $("#ckbm").val();
                 return reqData;
             },
-            caption: "物资信息",
+            caption: "Thông tin vật tư",
             colModel: [
-                { label: '类别', name: 'lbmc', width: 120 },
-                { label: '名称', name: 'wzmc', width: 200},
-                { label: '品牌', name: 'brand', width: 90},
-                { label: '规格', name: 'gg', width: 120 },
-                { label: '生产厂家', name: 'sccj', width: 180 },
+                { label: 'Loại', name: 'lbmc', width: 120 },
+                { label: 'Tên', name: 'wzmc', width: 200},
+                { label: 'Nhãn hiệu', name: 'brand', width: 90},
+                { label: 'Quy cách', name: 'gg', width: 120 },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 180 },
                 { label: 'productId', name: 'productId', hidden: true },
                 { label: 'unitId', name: 'unitId', hidden: true },
                 { label: 'zxdwmc', name: 'zxdwmc', hidden: true }
@@ -394,7 +394,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("Vui lòng tích chọn dữ liệu cần sửa！", 'warning', 1000);
             return;
         }
         $("#department").trigger("change");
@@ -411,7 +411,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg("操作成功", 'success', 1500);
+                    $.modalMsg("Thao tác thành công", 'success', 1500);
                     $gridList.jqGrid("clearGridData");//清空Grid
                     init();
                 } else {
@@ -428,11 +428,11 @@
     //验证主信息
     function ValidateMain() {
         if ($("#Pdh").val() === "") {
-            $.modalMsg("采购计划单不能为空", 'warning', 1500);
+            $.modalMsg("Kế hoạch mua sắm không được để trống", 'warning', 1500);
             return false;
         }
         if ($("#department").val() === "" ) {
-            $.modalMsg("请选择采购科室", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn khoa mua sắm", 'warning', 1500);
             return false;
         }
         return true;
@@ -441,12 +441,12 @@
     //数值验证
     function Validately(rowData, rowid) {
         if (rowData.wzmc === "" || rowData.productId === "") {
-            $.modalMsg('物资必选', 'error', 1000);
+            $.modalMsg('Vật tư bắt buộc chọn', 'error', 1000);
             return false;
         }
         var reg = /^[1-9]\d*$/;//大于0的整数
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("数量必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Số lượng phải là số nguyên lớn hơn 0！", "warning", 1500);
             return false;
         }
         return true;

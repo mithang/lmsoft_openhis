@@ -1,0 +1,259 @@
+
+@{
+
+	ViewBag.Title = "Truy vấn lịch sử nội trú bệnh nhân";
+	Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form name="form1"  style="background-color: #fff;">
+	<div class="panel panel-default">
+		<table class="form" style="width: 65%;">
+			<tr>
+                <th class="formTitle">【Điều kiện truy vấn】Số thẻ：</th>
+				<td class="formValue">
+					<input type="text" class="form-control" id="jkkh" name="jkkh" />
+				</td>
+				<th class="formTitle">Số nội trú/Họ tên：</th>
+				<td class="formValue">
+					<input type="text" class="form-control" id="txt_keyword" name="txt_keyword" />
+				</td>	
+				<td class="formValue">
+					<input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Truy vấn" />
+				</td>
+			</tr>
+		</table>
+        <hr />
+        <table class="form" style="border:solid 1px #65c2a0;">
+            <tr>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="xm" name="xm" style="border: none;" readonly="readonly" />
+                </td>
+                <th class="formTitle">Giới tính：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="xb" name="xb" style="border: none;" readonly="readonly" />
+                </td>
+                <th class="formTitle">Ngày sinh：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="csrq" name="csrq" style="border: none;" readonly="readonly" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+	</div>
+	<div>
+		<table id="gridList1"></table>
+		<div id="gridPager1"></div>
+	</div>
+	<div style="background-color: #fff; margin-top:5px;">
+		<table id="gridJSMXList"></table>
+		@*<div id="gridJSMXListPager"></div>*@
+	</div>
+	<div class="gridPanel" style="width: 50%; float: left;background-color: #fff;">
+		<p style="font-weight:bold; font-size: 18px;padding-left:30px;display: table-cell;vertical-align: middle;height: 35px;">Thông tin chẩn đoán</p>
+		<table id="gridList2"></table>
+		<div id="gridPager2"></div>
+	</div>
+
+	<div class="gridPanel" style="width: 50%; float: left;background-color: #fff;border-left:5px solid grey;margin-right:-5px;">
+		<p style="font-weight:bold; font-size: 18px;padding-left:30px;display: table-cell;vertical-align: middle;height: 35px;">Thông tin phẫu thuật</p>
+		<table id="gridList3"></table>
+		<div id="gridPager3"></div>
+	</div>
+</form>
+
+<script>
+	$(function() {
+		//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGrid的宽
+		$(window).resize(function() {
+			initLayout("MyTabGrid");
+		});
+		GridInit();
+		showZd("");
+		showSS("");
+	});
+
+	//Danh sách thông tin nội trú
+	function GridInit() {
+
+		var $gridList1 = $("#gridList1");
+		$gridList1.dataGrid({
+			postData: { id: "" },
+			url: "/ReportManage/PatientHistory/GetPagintionHospitalList",
+			autowidth: true,
+			height: 120,
+			colModel: [
+                { label: "Id", name: "Id", hidden: true },
+                { label: "Số bệnh án", name: "BAH", width: 60, align: 'left' },
+                { label: "Số nội trú", name: "ZYH", width: 50, align: 'left' },
+				{
+					label: "Ngày nhập viện",
+					name: "RYSJ",
+					width: 180,
+					align: 'left',
+					formatter: "date",
+					formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+				},
+				{ label: "Khoa nhập viện", name: "RYKB", width: 180, align: 'left' },
+				{
+					label: "Ngày xuất viện",
+					name: "CYSJ",
+					width: 180,
+					align: 'left',
+					formatter: "date",
+					formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+				},
+				{ label: "Khoa xuất viện", name: "CYKB", width: 180, align: 'left' },
+			],
+			sortname: "ID desc",
+			rowNum: 4,
+			pager: "#gridPager1",
+			viewrecords: true,
+			onSelectRow: function(id) {
+				id = $("#gridList1").jqGridRowValue().Id;
+				//Thông tin bệnh nhân
+				showPatient(id);
+				//Danh sách chẩn đoán
+				//showZd(id);
+				$("#gridList2").jqGrid('setGridParam',
+					{
+						postData: { id: id },
+						page: 1
+					}).trigger('reloadGrid');
+				//Danh sách phẫu thuật
+				$("#gridList3").jqGrid('setGridParam',
+					{
+						postData: { id: id },
+						page: 1
+					}).trigger('reloadGrid');
+			},
+		});
+		$("#btn_search").click(function() {
+			btn_submitSearch();
+		});
+	}
+
+	//Thông tin bệnh nhân
+	function showPatient(id) {
+		if (!!id) {
+			$.ajax({
+				url: "/ReportManage/PatientHistory/GetFormJson",
+				data: { id: id },
+				dataType: "json",
+				success: function(data) {
+					$("#xm").val(data.XM);
+					var xb = data.XB == 1 ? "Nam" : "Nữ";
+					$("#xb").val(xb);
+					$("#csrq").val(data.CSRQ.replace("T", " "));
+				}
+			});
+		}
+	}
+
+	//Thông tin chẩn đoán
+	function showZd(id) {
+		var $gridList2 = $("#gridList2");
+		$gridList2.dataGrid({
+			postData: { id: id },
+			url: "/ReportManage/PatientHistory/GetPagintionZdList",
+			autowidth: true,
+			height: 140,
+			colModel: [
+				{ label: "Id", name: "Id", hidden: true },
+				{
+					label: "Loại chẩn đoán",
+					name: "zdType",
+					width: 80,
+					align: 'left',
+					formatter: function(val) {
+						if (val == 0) {
+							return "Chẩn đoán ngoại trú";
+						} else if (val == 1) {
+							return "Chẩn đoán xuất viện";
+						} else {
+							return "Chẩn đoán khác";
+						}
+					}
+				},
+				{ label: "Mô tả chẩn đoán", name: "zdms", width: 100, align: 'left' },
+				{ label: "Kết quả điều trị", name: "zljg", width: 80, align: 'left' },
+				{ label: "Số ngày điều trị", name: "zlts", width: 70, align: 'left' },
+				{
+					label: "Ngày chẩn đoán",
+					name: "zdrq",
+					width: 120,
+					align: 'left',
+					formatter: "date",
+					formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+				},
+			],
+			sortname: "ID desc",
+			//rowNum: 4,
+			//pager: "#gridPager2",
+			//viewrecords: true,
+			viewrecords: false,
+			shrinkToFit: false,
+			autoScroll: true
+		});
+	}
+
+	//Thông tin phẫu thuật
+	function showSS(id) {
+		var $gridList3 = $("#gridList3");
+		$gridList3.dataGrid({
+			postData: { id: id },
+			url: "/ReportManage/PatientHistory/GetPagintionSSList",
+			autowidth: true,
+			height: 140,
+			colModel: [
+				{ label: "Id", name: "Id", hidden: true },
+				{ label: "Tên phẫu thuật", name: "ssmc", width: 120, align: 'left' },
+				{ label: "Phương pháp gây mê", name: "mzfs", width: 80, align: 'left' },
+				{ label: "Bác sĩ phẫu thuật", name: "ssys", width: 80, align: 'left' },
+				{
+					label: "Ngày phẫu thuật",
+					name: "ssrq",
+					width: 120,
+					align: 'left',
+					formatter: "date",
+					formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+				},
+			],
+			sortname: "ID desc",
+			//rowNum: 4,
+			//pager: "#gridPager3",
+			//viewrecords: true
+			viewrecords: false,
+			shrinkToFit: false,
+			autoScroll: true
+		});
+	}
+
+	//Nhấn Enter để tìm kiếm
+	$('#jkkh').keyupEnterEvent(function() {
+		btn_submitSearch();
+	});
+
+	$('#txt_keyword').keyupEnterEvent(function () {
+		btn_submitSearch();
+	});
+	function btn_submitSearch()
+	{
+		$("#gridList1").jqGrid('setGridParam',
+			{
+				postData: { jkkh: $("#jkkh").val(), keyword: $("#txt_keyword").val() },
+				page: 1
+			}).trigger('reloadGrid');
+		$("#gridList2").jqGrid('setGridParam',
+			{
+				postData: { id: "" },
+				page: 1
+			}).trigger('reloadGrid');
+		$("#gridList3").jqGrid('setGridParam',
+			{
+				postData: { id: "" },
+				page: 1
+			}).trigger('reloadGrid');
+	}
+
+</script>

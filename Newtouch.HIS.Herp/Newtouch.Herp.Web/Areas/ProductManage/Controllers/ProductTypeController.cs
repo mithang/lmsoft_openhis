@@ -1,29 +1,31 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Common;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.IRepository;
-using Newtouch.Herp.Infrastructure.Enum;
-using Newtouch.Tools;
+using Newtouch.Herp.Infrastructure;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Framework.Filter;
 
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
     /// 物资类别维护
     /// </summary>
+    [Area("ProductManage")]
     public class ProductTypeController : ControllerBase
     {
         private readonly IWzTypeRepo _wzTypeRepo;
         private readonly IProductTypeApp _productTypeApp;
 
-        /// <summary>
-        /// 获取物资类别列表
-        /// </summary>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetTypeGridJson(string keyWord = "")
+        public ProductTypeController(IWzTypeRepo wzTypeRepo, IProductTypeApp productTypeApp)
+        {
+            _wzTypeRepo = wzTypeRepo;
+            _productTypeApp = productTypeApp;
+        }
+
+        public IActionResult GetTypeGridJson(string keyWord = "")
         {
             var data = _wzTypeRepo.IQueryable().ToList();
             if (!string.IsNullOrWhiteSpace(keyWord))
@@ -43,47 +45,27 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             return Content(treeList.TreeGridJson(null));
         }
 
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="keyValue"></param>
-        /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
-            return _wzTypeRepo.DeleteUnitById(keyValue) > 0 ? Success("删除成功") : Error("删除失败");
+            return _wzTypeRepo.DeleteUnitById(keyValue) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
-        /// <summary>
-        /// get product type information
-        /// </summary>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetFormJson(string keyWord)
+        public IActionResult GetFormJson(string keyWord)
         {
             var supplier = _wzTypeRepo.FindEntity(p => p.Id == keyWord);
             return Content(supplier.ToJson());
         }
 
-        /// <summary>
-        /// 物资类别维护 表单提交
-        /// </summary>
-        /// <param name="wzTypeEntity"></param>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(WzTypeEntity wzTypeEntity, string keyWord)
+        public IActionResult SubmitForm(WzTypeEntity wzTypeEntity, string keyWord)
         {
             wzTypeEntity.zt = wzTypeEntity.zt == "true" ? "1" : "0";
-            return _productTypeApp.SubmitForm(wzTypeEntity, keyWord) > 0 ? Success("操作成功") : Error("操作失败");
+            return _productTypeApp.SubmitForm(wzTypeEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
-        /// <summary>
-        /// 获取上级
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetPatientTreeSelectJson()
+        public IActionResult GetPatientTreeSelectJson()
         {
-            var warehouse = _wzTypeRepo.IQueryable(p => p.zt == "1");
+            var warehouse = _wzTypeRepo.IQueryable(p => p.zt == "1").ToList();
             var treeList = new List<TreeSelectModel>();
             foreach (var item in warehouse)
             {

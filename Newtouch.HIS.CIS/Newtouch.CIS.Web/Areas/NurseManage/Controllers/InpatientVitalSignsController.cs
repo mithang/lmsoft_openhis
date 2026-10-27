@@ -1,23 +1,31 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtonsoft.Json;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Exceptions;
-using Newtouch.Core.Common.Utils;
+
+using Newtouch.CIS.Compat;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects.InpatientVitalSigns;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using Newtouch.Tools.Excel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.Common.Web;
 using Newtouch.Domain.ValueObjects;
-using Newtouch.Common;
+
 using Newtouch.Domain.ValueObjects.Inpatient;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
@@ -25,13 +33,21 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
     /// <summary>
     /// 住院患者生命体征
     /// </summary>
+    [Area("NurseManage")]
     public class InpatientVitalSignsController : OrgControllerBase
     {
         private readonly IInpatientVitalSignsRepo _inpatientVitalSignsRepo;
         private readonly IInpatientPatientDmnService _inpatientPatientDmnService;
         private readonly ISysConfigRepo _sysConfigRepo;
 
-        public ActionResult NursingInput() {
+        public InpatientVitalSignsController(IInpatientVitalSignsRepo inpatientVitalSignsRepo, IInpatientPatientDmnService inpatientPatientDmnService, ISysConfigRepo sysConfigRepo)
+        {
+            this._inpatientVitalSignsRepo = inpatientVitalSignsRepo;
+            this._inpatientPatientDmnService = inpatientPatientDmnService;
+            this._sysConfigRepo = sysConfigRepo;
+        }
+
+        public IActionResult NursingInput() {
             ViewBag.MutipatientNursingInputFlag = _sysConfigRepo.GetIntValueByCode("MutipatientNursingInputFlag", OrganizeId, 0);
             ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//三测单时间点奇偶数设置 1 奇数 0 偶数
             return View();
@@ -40,14 +56,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 护理查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult QueryIndex()
+        public IActionResult QueryIndex()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
 
-        public override ActionResult  Form() {
+        public override IActionResult  Form() {
             ViewBag.hsqm = UserIdentity.UserName;
             ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//三测单时间点奇偶数设置 1 奇数 0 偶数
             return View();
@@ -61,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="jssj"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetGridJson(Pagination pagination, DateTime? kssj, DateTime? jssj, string zyh,string wardCode,string isShowDelete)
+        public IActionResult GetGridJson(Pagination pagination, DateTime? kssj, DateTime? jssj, string zyh,string wardCode,string isShowDelete)
         {
             var data = new
             {
@@ -80,23 +96,23 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="jssj"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetTemperatureChartJson(DateTime? kssj, DateTime? jssj, string zyh)
+        public IActionResult GetTemperatureChartJson(DateTime? kssj, DateTime? jssj, string zyh)
         {
             if (!kssj.HasValue || !jssj.HasValue)
             {
-                throw new FailedException("HLCX_DATE_REQUIRED", "请选择日期");
+                throw new FailedException("HLCX_DATE_REQUIRED", "Vui lòng chọnNgày");
             }
             if ((jssj.Value.Date - kssj.Value.Date).TotalDays < 0)
             {
-                throw new FailedException("结束时间不能大于开始时间");
+                throw new FailedException("Kết thúcThời gianKhông thểLớn hơnThời gian bắt đầu");
             }
             if ((jssj.Value.Date - kssj.Value.Date).TotalDays > 30)
             {
-                throw new FailedException("HLCX_DATE_OUTOFRANGE", "日期范围不能超过30天");
+                throw new FailedException("HLCX_DATE_OUTOFRANGE", "Phạm vi ngày không thể vượt quá 30 ngày");
             }
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("HLCX_ZYH_REQUIRED", "请选择住院号");
+                throw new FailedException("HLCX_ZYH_REQUIRED", "Vui lòng chọnSố nhập viện");
             }
             var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
             //2020-4-28 取消体温单查询时间强制到入院出院时间
@@ -152,7 +168,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             List<PatOpInfoVO> oplist =new List<PatOpInfoVO>();
             if (patoplist != null && patoplist.code == APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                oplist = Tools.Json.ToObject<List<PatOpInfoVO>>(patoplist.data.ToString());
+                oplist = Newtouch.CIS.Compat.Tools.Json.ToObject<List<PatOpInfoVO>>(patoplist.data.ToString());
             }
 
             var data = new
@@ -170,7 +186,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var data = _inpatientVitalSignsRepo.FindEntity(keyValue);
             return Content(data.ToJson());
@@ -185,47 +201,47 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         //[ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(InpatientVitalSignsEntity entity, string keyValue)
+        public IActionResult SubmitForm(InpatientVitalSignsEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _inpatientVitalSignsRepo.SubmitForm(entity, keyValue);
-            return Success("保存成功。");
+            return Success("Lưu thành công.");
         }
 
-        public ActionResult Export(DateTime? kssj, DateTime? jssj, string zyh)
+        public IActionResult Export(DateTime? kssj, DateTime? jssj, string zyh)
         {
             var data = _inpatientVitalSignsRepo.GetList(OrganizeId,kssj,jssj,zyh).ToList();
-            var path = DateTime.Now.ToString("\\\\护理录入查询yyyyMMdd\\\\HHmmssfff") + ".xls";
-            var filePath = CommmHelper.GetLocalFilePath("\\Excel导出\\护理录入查询" + path);
+            var path = DateTime.Now.ToString("\\\\Nhập điều dưỡngTra cứuyyyyMMdd\\\\HHmmssfff") + ".xls";
+            var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Nhập điều dưỡngTra cứu" + path);
             var cols = new List<ExcelColumn>()
             {
-                    new ExcelColumn("rq","日期"),
-                    new ExcelColumn("sj","时间"),
-                    new ExcelColumn("hljb","护理级别"),
-                    new ExcelColumn("hlys","意<br/>识"),
-                    new ExcelColumn("brfood","饮食"),
-                    new ExcelColumn("tw","体温"),
-                    new ExcelColumn("mb","脉搏"),
-                    new ExcelColumn("hx","呼吸"),
-                     new ExcelColumn("tiwen","体温"),
-                      new ExcelColumn("xueya","血压"),
-                       new ExcelColumn("cfz","初复诊"),
-                        new ExcelColumn("zs","主要症状"),
-                        new ExcelColumn("xyzdmc","诊断名称"),
-                        new ExcelColumn("clfa","处理"),
-                        new ExcelColumn("fzjc","辅助检查"),
-                         new ExcelColumn("ysqz","医生签字"),
-                          new ExcelColumn("sfzh","有效证件号"),
-                          new ExcelColumn("ContactNum","电话"),
-                    new ExcelColumn("ghksmc","科别"),
-                    new ExcelColumn("xuetang","血糖"),
-                    new ExcelColumn("xbs","现病史"),
-                    new ExcelColumn("bz","备注"),
+                    new ExcelColumn("rq","Ngày"),
+                    new ExcelColumn("sj","Thời gian"),
+                    new ExcelColumn("hljb","Cấp độ chăm sóc"),
+                    new ExcelColumn("hlys","Ý<br/>thức"),
+                    new ExcelColumn("brfood","Ăn uống"),
+                    new ExcelColumn("tw","Nhiệt độ"),
+                    new ExcelColumn("mb","Mạch"),
+                    new ExcelColumn("hx","Hô hấp"),
+                     new ExcelColumn("tiwen","Nhiệt độ"),
+                      new ExcelColumn("xueya","Huyết áp"),
+                       new ExcelColumn("cfz","Khám lần đầu/tái khám"),
+                        new ExcelColumn("zs","Triệu chứng chính"),
+                        new ExcelColumn("xyzdmc","Chẩn đoánTên"),
+                        new ExcelColumn("clfa","Xử lý"),
+                        new ExcelColumn("fzjc","Kiểm tra hỗ trợ"),
+                         new ExcelColumn("ysqz","Chữ ký bác sĩ"),
+                          new ExcelColumn("sfzh","Hiệu lựcSố giấy tờ"),
+                          new ExcelColumn("ContactNum","Điện thoại"),
+                    new ExcelColumn("ghksmc","Chuyên khoa"),
+                    new ExcelColumn("xuetang","Đường huyết"),
+                    new ExcelColumn("xbs","Bệnh sử hiện tại"),
+                    new ExcelColumn("bz","Ghi chú"),
             };
             var sheet = new ExcelSheet()
             {
-                Title = "门诊日志列表",
+                Title = "Danh sách nhật ký ngoại trú",
                 columns = cols
             };
 
@@ -236,7 +252,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             else
             {
-                return Content("文件导出失败，请返回列表页重试");
+                return Content("Xuất tập tin thất bại, vui lòng quay lại trang danh sách thử lại");
             }
         }
 
@@ -245,20 +261,20 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             _inpatientVitalSignsRepo.DeleteForm(keyValue);
-            return Success("作废成功。");
+            return Success("Hủy bỏthành công.");
         }
 
         /// <summary>
         /// 体温单
         /// </summary>
         /// <returns></returns>
-        public ActionResult TemperatureChartIndex()
+        public IActionResult TemperatureChartIndex()
         {
             ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//三测单时间点奇偶数设置 1 奇数 0 偶数
-            ViewBag.HospitalName = ConfigurationHelper.GetAppConfigValue("HospitalName");
+            ViewBag.HospitalName = Newtouch.CIS.Compat.AppConfig.Get("HospitalName");
             return View();
         }
 
@@ -266,22 +282,22 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 体温单 全屏
         /// </summary>
         /// <returns></returns>
-        public ActionResult FullScreenTemperatureChartIndex()
+        public IActionResult FullScreenTemperatureChartIndex()
         {
-            ViewBag.HospitalName = ConfigurationHelper.GetAppConfigValue("HospitalName");
+            ViewBag.HospitalName = Newtouch.CIS.Compat.AppConfig.Get("HospitalName");
             return View();
         }
 
-        #region 秦皇岛护理录入版本
-        public ActionResult GetNursingInputGridJson(string bq,string sj,DateTime rq,string zyh) {
+        #region 秦皇岛Nhập điều dưỡng版本
+        public IActionResult GetNursingInputGridJson(string bq,string sj,DateTime rq,string zyh) {
            var data= _inpatientPatientDmnService.GetInPatSearchList(OrganizeId,bq,rq,sj, zyh, ((int)EnumZYBZ.Bqz).ToString());
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取病区人员执行树
+        /// 获取病区人员Thực hiện树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatWardTree(string zyzt, string keyword)
+        public IActionResult GetPatWardTree(string zyzt, string keyword)
         {
 
             var wardTree = _inpatientPatientDmnService.GetPatTree(OrganizeId, zyzt, keyword);
@@ -295,11 +311,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.OrderBy(p => p.BedNo);
                 foreach (InpWardPatTreeVO itempat in NewPatInfo)
                 { 
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
                     //床号 + 姓名(住院天数)+住院号 + 年龄 +性别
-                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh + "-" + itempat.nl + "岁-" + gender;
+                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
                     treepat.isexpand = false;
@@ -330,12 +346,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             return Content(treeList.TreeViewJson(null));
         } 
-        public ActionResult GetPatWard(string zyh)
+        public IActionResult GetPatWard(string zyh)
         {
             var wardTree = _inpatientPatientDmnService.GetPatList(OrganizeId, zyh);
             return Content(wardTree.ToJson());
         }
-        public ActionResult submitmutiple(List<InpatientVitalSignsEntity> entityList, int? sjd,DateTime rq,string flag,List<string> xysxzList)
+        public IActionResult submitmutiple(List<InpatientVitalSignsEntity> entityList, int? sjd,DateTime rq,string flag,List<string> xysxzList)
         {
             for (var i = 0; i < entityList.Count; i++) {
                 var xysz = 0;
@@ -356,7 +372,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         #region DrawData 
-        public ActionResult DrawData(DateTime? kssj, DateTime? jssj, string zyh,int? pagesize)
+        public IActionResult DrawData(DateTime? kssj, DateTime? jssj, string zyh,int? pagesize)
 		{
 			var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
             //2021-9-7修改：三测单去掉时间查询条件
@@ -378,7 +394,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             //}
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("HLCX_ZYH_REQUIRED", "请选择住院号");
+                throw new FailedException("HLCX_ZYH_REQUIRED", "Vui lòng chọnSố nhập viện");
             }
             //2020-4-28 取消体温单查询时间强制到入院出院时间
             if (patInfo != null && patInfo.ryrq > kssj)
@@ -401,14 +417,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 zyh = zyh,
                 djzt = 2
             };
-            string enableor = SysConfigReader.String("EnableLinkToOR");
+            string enableor = _sysConfigRepo.GetValueByCode("EnableLinkToOR", OrganizeId);
             List<PatOpInfoVO> oplist = new List<PatOpInfoVO>(); //是否启用手术系统
             if (enableor == "ON")
             {
                 var patoplist = SiteORAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/ORPatient/ORPatList", req);
                 if (patoplist != null && patoplist.code == APIRequestHelper.ResponseResultCode.SUCCESS)
                 {
-                    oplist = Tools.Json.ToObject<List<PatOpInfoVO>>(patoplist.data.ToString());
+                    oplist = Newtouch.CIS.Compat.Tools.Json.ToObject<List<PatOpInfoVO>>(patoplist.data.ToString());
                 }
             }
 
@@ -422,7 +438,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
 
         }
-        public ActionResult Getzyhrq(string zyh)
+        public IActionResult Getzyhrq(string zyh)
         {
             var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
             string ryrq = "";
@@ -432,7 +448,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             return Content(ryrq);
         }
-        public ActionResult Getzyhcqrq(string zyh)
+        public IActionResult Getzyhcqrq(string zyh)
         {
             var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
             string cqrq = "";

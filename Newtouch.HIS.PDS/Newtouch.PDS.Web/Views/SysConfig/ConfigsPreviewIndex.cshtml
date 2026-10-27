@@ -1,0 +1,27 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<table class="table table-hover table-condensed" style="margin:10px;">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Mã</th>
+            <th>Ví dụ giá trị</th>
+            <th style="width:300px;">Giải thích</th>
+            <th>Có bắt buộc cấu hình hay không</th>
+            <th>Giá trị mặc định khi chưa cấu hình</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Thời gian bắt đầu năm của bệnh viện</td>
+            <td>Hosp_Year_Start</td>
+            <td>2003、2016、2017</td>
+            <td>系统内</td>
+            <td>否</td>
+            <td>Năm hiện tại-5</td>
+        </tr>
+    </tbody>
+</table>

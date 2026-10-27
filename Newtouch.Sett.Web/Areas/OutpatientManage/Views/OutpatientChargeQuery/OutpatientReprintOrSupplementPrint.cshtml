@@ -1,0 +1,495 @@
+
+@{
+    ViewBag.Title = "OutpatientReprintOrSupplementPrint";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<style type="text/css">
+    .toolbarmargin {
+        margin-top:10px;
+        float: right;
+    }
+</style>
+
+<form id="form1">
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Ngày bắt đầu：</th>
+                    <td class="formValue">
+                        <input id="txtstartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">Ngày kết thúc：</th>
+                    <td class="formValue">
+                        <input id="txtendDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">Mã nội bộ quyết toán：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="txtjsnm" name="txtjsnm" />
+                    </td>
+                    <td class="formValue" rowspan="2">
+                        <input type="button" id="btn_search" class="btn btn-default btn-md" style="width:50px; height:45px; margin-left: 40px" value="Tra cứu" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Số thẻ：</th>
+                    <td class="formValue">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="txtkh" name="txtkh" />
+                            </div>
+                            <div class="col-md-3" style="text-align:right;">
+                                <input type="button" class="btn btn-default btn-md" style="width:100%" value="Quẹt thẻ" onclick="SK()" />
+                            </div>
+                        </div>
+                    </td>
+                    <th class="formTitle">Số hóa đơn gốc：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="txtyfph" name="txtyfph" />
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="background-color: #fff;width:99%;">
+        <table id="gridMzjsRecords"></table>
+    </div>
+    <div style="background-color: #fff;width:99%;"> 
+        <table id="gridMzjsMXInfo"></table>
+    </div>
+  <div class="gridPanel">
+        <table id="gridMzjsRecords"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+    <input type="text" id="txtfph" name="txtfph" hidden="hidden">
+</form>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 6, 7, 8, 9, 10 },
+    F6Text= "In chi tiết",
+    F7Text= "In hóa đơn",
+    F8Text= "In bổ sung",
+    F9Text= "In lại"
+})
+
+<script>
+    $(function () {
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        //quyết toánbản ghi chính
+        gridMzjsRecordsData();
+        //chọn tất cả/không chọn gì cả：tìm thấyGridtrong titlecủacheckbox，đăng ký mộtonclicksự kiện，khiclicklúc，tảichi tiết
+        $("table input[type=checkbox]:eq(0)").bind("click", function () {
+           
+            btn_selectrow();
+        });
+
+    })
+
+    //quẹt thẻ
+    function SK() {
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
+        return false;
+    }
+
+    //ngoại trúthông tin hóa đơn khámList
+    function gridMzjsRecordsData() {
+        var $gridMzjsRecords = $("#gridMzjsRecords");
+        $gridMzjsRecords.dataGrid({
+            postData: getSearchPostData(),
+            height: 150,
+            url: "",
+            colModel: [
+                { label: 'Chọn tất cả', name: '', width: 80, align: 'left' },
+                { label: 'Mã nội bộ quyết toán', name: 'jsnm', width: 120, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 120, align: 'left' },
+                { label: 'Số hóa đơn', name: 'xfph', width: 120, align: 'left' },
+                { label: 'Thu phínhân viên', name: 'rymc', width: 120, align: 'left' },
+                { label: 'Ngày quyết toán', name: 'CreateTime', width: 130, align: 'left' },
+                {
+                    label: 'Tổng số tiền', name: 'zje', width: 120, align: 'left', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    }
+                }
+
+            ],
+            multiselect: true,
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                btn_selectrow();
+            }
+
+        });
+
+        $("#btn_search").click(function () {
+            $gridMzjsRecords.jqGrid('setGridParam', {
+                postData: getSearchPostData(), url: '/OutpatientManage/OutpatientChargeQuery/LoadMzjsRecords'
+            }).trigger('reloadGrid');
+        });
+        //$("#btn_search").trigger('click');
+    }
+    function getSearchPostData() {
+        var startDate = $("#txtstartDate").val();
+        var endDate = $("#txtendDate").val();
+        var jsnm = $("#txtjsnm").val();
+        var kh = $("#txtkh").val();
+        var yfph = $("#txtyfph").val();
+        return { startDate: startDate, endDate: endDate, jsnm: jsnm, kh: kh, yfph: yfph };
+    };
+
+    //sự kiện nhấn
+    function btn_selectrow()
+    {
+        //mỗi lần nhấn，xóa chi tiết trước làm lạitảinơicódòng đã chọnchi tiết
+        $('#gridMzjsMXInfo').jqGrid("clearGridData");
+        var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+        var rowsDataArray = JSON.parse(rowsData)
+        var jsnmStr = "";
+        for (var i = 0; i < rowsDataArray.length; i++) {
+            jsnmStr += rowsDataArray[i].jsnm+",";
+        }
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/LoadMzjsMXRecords",
+            data: { jsnmStr: jsnmStr },
+            dataType: "json",
+            success: function (ajaxresp) {
+                ConvertObjectMethod(ajaxresp.data);
+            }
+        });
+    }
+    function ConvertObjectMethod(settleDetailDto)
+    {
+        var MXInfoList = [];
+        //mz_ghxm
+        for (var i = 0; i < settleDetailDto.mz_ghxmList.length; i++) {
+            var obj = new Object();
+            obj.cfh = "";
+            obj.lx = settleDetailDto.mz_ghxmList[i].dlmc;
+            obj.xmmc = settleDetailDto.mz_ghxmList[i].sfxmmc;
+            obj.dw = settleDetailDto.mz_ghxmList[i].djdw;
+            
+            if (settleDetailDto.pzmzEntity.pz == settleDetailDto.mz_ghxmList[i].sfxm) {
+                obj.dj = settleDetailDto.mz_ghxmList[i].dj;
+                obj.zfbl = settleDetailDto.mz_ghxmList[i].zfbl;
+                obj.sl = "1.00";
+                obj.je = settleDetailDto.mz_ghxmList[i].je;
+            }
+            else
+            {
+                obj.dj = parseFloat(settleDetailDto.mz_ghxmList[i].dj) + parseFloat(settleDetailDto.mz_ghxmList[i].fwfdj);
+                obj.zfbl = settleDetailDto.mz_ghxmList[i].zfbl;
+                obj.sl = settleDetailDto.mz_ghxmList[i].sl;
+                obj.je = settleDetailDto.mz_ghxmList[i].je;
+            }
+            obj.isGh = settleDetailDto.IsGh;
+            MXInfoList.push(obj);
+        }
+        //mz_xm
+        for (var i = 0; i < settleDetailDto.mz_xmList.length; i++) {
+            var obj = new Object();
+            obj.cfh = "";
+            obj.lx = settleDetailDto.mz_xmList[i].dlmc;
+            obj.xmmc = settleDetailDto.mz_xmList[i].sfxmmc;
+            obj.dw = settleDetailDto.mz_xmList[i].djdw;
+
+            if (settleDetailDto.pzmzEntity.pz == settleDetailDto.mz_xmList[i].sfxm) {
+                obj.dj = settleDetailDto.mz_xmList[i].dj;
+                obj.zfbl = settleDetailDto.mz_xmList[i].zfbl;
+                obj.sl = "1.00";
+                obj.je = settleDetailDto.mz_xmList[i].je;
+            }
+            else {
+                obj.dj = parseFloat(settleDetailDto.mz_xmList[i].dj) + parseFloat(settleDetailDto.mz_xmList[i].fwfdj);
+                obj.zfbl = settleDetailDto.mz_xmList[i].zfbl;
+                obj.sl = settleDetailDto.mz_xmList[i].sl;
+                obj.je = settleDetailDto.mz_xmList[i].je;
+            }
+            obj.isGh = settleDetailDto.IsGh;
+            MXInfoList.push(obj);
+        }
+        //mz_cfmx
+        for (var i = 0; i < settleDetailDto.mz_cfmxList.length; i++) {
+            var obj = new Object();
+            obj.cfh = settleDetailDto.mz_cfmxList[i].cfh;
+            obj.lx = settleDetailDto.mz_cfmxList[i].dlmc;
+            obj.xmmc = settleDetailDto.mz_cfmxList[i].ypmc;
+            obj.dw = settleDetailDto.mz_cfmxList[i].djdw;
+
+            if (settleDetailDto.pzmzEntity.pz == settleDetailDto.mz_cfmxList[i].sfxm) {
+                obj.dj = settleDetailDto.mz_cfmxList[i].dj;
+                obj.zfbl = settleDetailDto.mz_cfmxList[i].zfbl;
+                obj.sl = "1.00";
+                obj.je = settleDetailDto.mz_cfmxList[i].je;
+            }
+            else {
+                obj.dj = parseFloat(settleDetailDto.mz_cfmxList[i].dj) + parseFloat(settleDetailDto.mz_cfmxList[i].fwfdj);
+                obj.zfbl = settleDetailDto.mz_cfmxList[i].zfbl;
+                obj.sl = settleDetailDto.mz_cfmxList[i].sl;
+                obj.je = settleDetailDto.mz_cfmxList[i].je;
+            }
+            obj.isGh = settleDetailDto.IsGh;
+            MXInfoList.push(obj);
+        }
+        $('#gridMzjsMXInfo').newtouchLocalDataGrid(null, MXInfoList);
+    }
+
+    //ngoại trúchi tiết hóa đơn khám jGridkhai báo
+    $('#gridMzjsMXInfo').newtouchLocalDataGrid({
+        height: 110,
+        caption: "Chi tiết quyết toán",
+        unwritten: false,
+        sortable: false,
+        colModel: [
+            { label: 'Số đơn thuốc', name: 'cfh', width: 140, key: true },
+            { label: 'Loại', name: 'lx', width: 140, align: 'left' },
+            { label: 'Tên khoản mục', name: 'xmmc', width: 160, align: 'left' },
+            { label: 'Đơn vị', name: 'dw', width: 120, align: 'left' },
+            { label: 'Đơn giá', name: 'dj', width: 110, align: 'left' },
+            { label: 'Tỷ lệ tự chi trả', name: 'zfbl', width: 110, align: 'left' },
+            { label: 'Số lượng', name: 'sl', width: 100, align: 'left' },
+            {
+                label: 'Số tiền', name: 'je', width: 100, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                }
+            },
+            { label: 'isGh', name: 'isGh', hidden: true, align: 'left' }
+
+        ]
+    });
+
+    //in chi tiết
+    function PrintMxData()
+    {
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
+        return false;
+
+        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        if (reccount > 0) {
+            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsDataArray = JSON.parse(rowsData)
+            var jsnmStr = "";
+            for (var i = 0; i < rowsDataArray.length; i++) {
+                jsnmStr += rowsDataArray[i].jsnm + ",";
+            }
+            $.najax({
+                type: "POST",
+                url: "/OutpatientManage/OutpatientChargeQuery/PrintMxData",
+                data: { jsnmStr: jsnmStr },
+                dataType: "json",
+                success: function (ajaxresp) {
+
+                }
+            });
+
+
+        } else {
+            $.modalAlert("Vui lòng chọn bản ghi quyết toán cần in chi tiết", 'warning');
+            return;
+        }
+        
+    }
+
+    //in hóa đơn
+    function InvoicePrint()
+    {
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
+        return false;
+
+        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        if (reccount == 0)
+        {
+            $.modalAlert("Vui lòng chọn thông tin quyết toán", 'warning');
+            return;
+        } else if (reccount > 1) {
+            $.modalAlert("Chỉ được in hóa đơn của một thông tin quyết toán", 'warning');
+            return;
+
+        } else
+        {
+            //tích chọncủadòng
+            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsDataArray = JSON.parse(rowsData);
+            var jsnm = rowsDataArray[0].jsnm;
+            var isGh = $("#gridMzjsMXInfo").jqGrid('getGridParam', 'data')[0].isGh;
+        }
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/CheckPintInfo",
+            data: { jsnm: jsnm },
+            dataType: "json",
+            success: function (ajaxresp) {
+                //in hóa đơn
+                PrintInvoice(jsnm, isGh);
+            }
+        });
+    }
+
+    //bật lênsố hóa đơncủacửa sổ
+    function ShowInvoicePanel() {
+        $.modalOpen({
+            id: "InvoiceNoChoosePanel",
+            title: "Chọn số hóa đơn",
+            url: "/OutpatientManage/OutpatientReg/ChooseInvoice",
+            width: "300px",
+            height: "200px",
+            callBack: function (iframeId) {
+                top.InvoiceNoChoosePanel.checkFPH();    //hàm gọi lại khi nhấn xác nhận trên cửa sổ
+            }
+        });
+    }
+
+    //in hóa đơn
+    function PrintInvoice(jsnm, isGh)
+    {
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/PrintInvoice",
+            data: { jsnm: jsnm, isGh: isGh },
+            dataType: "json",
+            success: function (ajaxresp) {
+
+            }
+        });
+    }
+
+    //in bổ sung
+    function SupplementPrint() {
+
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
+        return false;
+
+        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        if (reccount == 0) {
+            $.modalAlert("Vui lòng chọn thông tin quyết toán", 'warning');
+            return;
+        } else if (reccount > 1) {
+            $.modalAlert("Chỉ đượcIn lạimộtThông tin quyết toán", 'warning');
+            return;
+        } else {
+            //tích chọncủadòng
+            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsDataArray = JSON.parse(rowsData);
+            var jsnm = rowsDataArray[0].jsnm;
+            var isGh = $("#gridMzjsMXInfo").jqGrid('getGridParam', 'data')[0].isGh;
+        }
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/CheckPintInfo",
+            data: { jsnm: jsnm },
+            dataType: "json",
+            success: function (ajaxresp) {
+                //in bổ sung
+                ExecSupplementPrint(jsnm, isGh);
+            }
+        });
+    }
+    //in bổ sung
+    function ExecSupplementPrint(jsnm,isGh)
+    {
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/SupplementPrint",
+            data: { jsnm: jsnm, isGh: isGh },
+            dataType: "json",
+            success: function (ajaxresp) {
+
+            }
+        });
+
+    }
+
+    //in lại
+    function RePrint() {
+
+        $.modalAlert("Chức năng đang được phát triển", 'warning');
+        return false;
+
+        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        if (reccount == 0) {
+            $.modalAlert("Vui lòng chọn thông tin quyết toán", 'warning');
+            return;
+        }
+        if (reccount > 1) {
+            $.modalAlert("Chỉ đượcIn lạimộtThông tin quyết toán", 'warning');
+            return;
+        } else
+        {
+            //tích chọncủadòng
+            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsDataArray = JSON.parse(rowsData);
+            var jsnm = rowsDataArray[0].jsnm;
+        }
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/CheckPintInfo",
+            data: { jsnm: jsnm },
+            dataType: "json",
+            success: function (ajaxresp) {
+                //bật lênsố hóa đơncửa sổ
+                ShowInvoicePanel();
+            }
+        });
+    }
+
+    //số hóa đơnnhấn xác nhận trên cửa sổ
+    function chooseFPHSuccessCallback() {
+        //tích chọncủadòng
+        var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+        var rowsDataArray = JSON.parse(rowsData);
+        var jsnm = rowsDataArray[0].jsnm;
+        var isGh = $("#gridMzjsMXInfo").jqGrid('getGridParam', 'data')[0].isGh;
+        //in lại
+        ExecRePrint(jsnm, isGh);
+    }
+
+    //in lại
+    function ExecRePrint(jsnm,isGh)
+    {
+        $.najax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientChargeQuery/RePrint",
+            data: { jsnm: jsnm, pageFph: $("#txtfph").val(), isGh: isGh },
+            dataType: "json",
+            success: function (ajaxresp) {
+                $("#btn_search").trigger('click');
+            }
+        });
+
+    }
+    //phím tắt：xóa
+    function newtouch_event_f4() {
+        //xóaGrid 
+        $('#gridMzjsRecords').jqGrid("clearGridData");
+        $('#gridMzjsMXInfo').jqGrid("clearGridData");
+    }
+    //phím tắt：in chi tiết
+    function newtouch_event_f6() {
+        PrintMxData();
+    }
+    //phím tắt：in hóa đơn
+    function newtouch_event_f7() {
+        InvoicePrint();
+    }
+    //phím tắt：in bổ sung
+    function newtouch_event_f8() {
+        SupplementPrint();
+    }
+    //phím tắt：in lại
+    function newtouch_event_f9() {
+        RePrint();
+    }
+</script>
+

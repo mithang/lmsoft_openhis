@@ -1,7 +1,7 @@
-﻿@using Newtouch.Common.Operator;
+﻿@using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
-    var EmrEdiForUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("KyEmrEdiForUrl");
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("KyEmrEdiForUrl");
 }
 <style>
     .design-template-wrapper {
@@ -22,12 +22,12 @@
     <input type="hidden" name="blId" id="blId" value="" />
 </div>
 <div id="RecordistDiv">
-    @Html.Action("RecordList", "MedicalRecord", new { zyh = ViewBag.zyh, mzh = ViewBag.mzh })
+    @await Component.InvokeAsync("RecordList", new { zyh = ViewBag.zyh, mzh = ViewBag.mzh })
 </div>
 <div id="treeDiv">
-    @Html.Action("CTGLList", "Blctgl")
+    @await Component.InvokeAsync("CtglList")
 
-    @*@Html.Action("YXFHlist", "Blctgl")*@
+    
 </div>
 <script>
     var editorInstance;
@@ -49,7 +49,7 @@
             }
         });
         top.$("a.menuTab span").click(function () {
-            $.modalConfirm("病历正在编辑...是否关闭页面？", function (flag) {
+            $.modalConfirm("Bệnh án đang được chỉnh sửa...Có đóng trang không??", function (flag) {
                 if (flag) {
                     setTimeout(function () {
                         debugger;
@@ -155,7 +155,7 @@
                      //console.log(top.clients.ysdataList);
                  },
                  error: function (request, error, ex) {
-                     $.modalAlert('病历加载失败:' + ex, 'error');
+                     $.modalAlert('Tải bệnh án thất bại:' + ex, 'error');
                  }
              });
              //mockDemoContent().then(function (demoContent) {
@@ -192,7 +192,7 @@
              //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>开始制作模板内容</p>`);
          })
          .catch(function (error) {
-             console.error("编辑器初始化失败:", error);
+             console.error("Khởi tạo trình soạn thảo thất bại:", error);
          });
     });
 
@@ -209,14 +209,14 @@
                 bllx=respdata.BLLX;
                 bllj=respdata.BLLJ;
                 blxtmc_yj=respdata.blxtmc_yj;
-                $.modalAlert("病历保存成功", 'success');
+                $.modalAlert("Lưu bệnh án thành công", 'success');
                 //if (respdata.state == "error")
                 //    $.modalAlert("病历模板保存失败:" + respdata.message,'error');
                 //else{
                 //}
             },
             error: function (request, error, ex) {
-                $.modalAlert('病历保存失败:' + ex, 'error');
+                $.modalAlert('Lưu bệnh án thất bại:' + ex, 'error');
             }
         });
     }
@@ -230,10 +230,10 @@
             dataType: "json",
             async: false,
             success: function (respdata) {
-                $.modalAlert("病历保存成功", 'success');
+                $.modalAlert("Lưu bệnh án thành công", 'success');
             },
             error: function (request, error, ex) {
-                $.modalAlert('病历保存失败:' + ex, 'error');
+                $.modalAlert('Lưu bệnh án thất bại:' + ex, 'error');
             }
         });
     }

@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Web;
+using System.Collections.Generic;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.CIS.Repository;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using NewtouchHIS.Lib.Framework.Operator;
+
 using Newtouch.Domain.DTO.InputDto;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.Entity.DeptStorageManage;
@@ -12,7 +17,7 @@ using Newtouch.Domain.IDomainServices.DeptStorageManage;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.IRepository.DeptStorageManage;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
@@ -20,6 +25,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
     /// <summary>
     /// 报损报溢
     /// </summary>
+    [Area("NurseManage")]
     public class ProfitAndLossController : OrgControllerBase
     {
         private readonly IDeptKcSyyyRepo _iDeptKcSyyyRepo;
@@ -27,13 +33,20 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysUserDmnService sysuserDmnService;
         private readonly IStockInventoryApp _stockInventoryApp;
 
-        #region 损益原因维护
+        public ProfitAndLossController(IDeptKcSyyyRepo iDeptKcSyyyRepo, IKcSyxxDmnService kcSyxxDmnService, IStockInventoryApp stockInventoryApp)
+        {
+            this._iDeptKcSyyyRepo = iDeptKcSyyyRepo;
+            this._kcSyxxDmnService = kcSyxxDmnService;
+            this._stockInventoryApp = stockInventoryApp;
+        }
+
+        #region Nguyên nhân thừa thiếuBảo trì
 
         /// <summary>
         /// 损益原因
         /// </summary>
         /// <returns></returns>
-        public ActionResult Syyy()
+        public IActionResult Syyy()
         {
             return View();
         }
@@ -44,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetSyyyGridJson(Pagination pagination, string keyWord = "")
+        public IActionResult GetSyyyGridJson(Pagination pagination, string keyWord = "")
         {
             var data = new
             {
@@ -60,7 +73,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 损益原因 视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult SyyyForm()
+        public IActionResult SyyyForm()
         {
             return View();
         }
@@ -70,9 +83,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteSyyyForm(string keyValue)
+        public IActionResult DeleteSyyyForm(string keyValue)
         {
-            return _iDeptKcSyyyRepo.DeleteSyyyById(keyValue) > 0 ? Success("删除成功") : Error("删除失败");
+            return _iDeptKcSyyyRepo.DeleteSyyyById(keyValue) > 0 ? Success("Xóa thành công") : Error("Xóathất bại");
         }
 
         /// <summary>
@@ -80,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetSyyyFormJson(string keyWord)
+        public IActionResult GetSyyyFormJson(string keyWord)
         {
             var syyy = _iDeptKcSyyyRepo.FindEntity(p => p.Id == keyWord);
             return Content(syyy.ToJson());
@@ -92,30 +105,30 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="deptKcSyyyEntity"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult SubmitSyyyForm(DeptKcSyyyEntity deptKcSyyyEntity, string keyWord)
+        public IActionResult SubmitSyyyForm(DeptKcSyyyEntity deptKcSyyyEntity, string keyWord)
         {
             deptKcSyyyEntity.zt = deptKcSyyyEntity.zt == "true" ? "1" : "0";
-            return _iDeptKcSyyyRepo.SubmitForm(deptKcSyyyEntity, keyWord) > 0 ? Success("操作成功") : Error("操作失败");
+            return _iDeptKcSyyyRepo.SubmitForm(deptKcSyyyEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tácthất bại");
         }
 
         /// <summary>
         /// 获取损益原因下拉
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetLossProfitReasonListByType(string sybz = "")
+        public IActionResult GetLossProfitReasonListByType(string sybz = "")
         {
             return Content(_iDeptKcSyyyRepo.IQueryable(p => p.zt == ((int)Enumzt.Enable).ToString() && (p.sybz == sybz || "" == sybz)).ToJson());
         }
 
         #endregion
 
-        #region 损益查询
+        #region Thừa thiếuTra cứu
 
         /// <summary>
         /// 损益查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult QueryProfitAndLoss()
+        public IActionResult QueryProfitAndLoss()
         {
             ViewBag.OrganizeId = OrganizeId;
             return View();
@@ -127,7 +140,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public ActionResult SelectLossAndProditInfoList(Pagination pagination, LossAndProditSearchDTO param)
+        public IActionResult SelectLossAndProditInfoList(Pagination pagination, LossAndProditSearchDTO param)
         {
             var list = new
             {
@@ -148,7 +161,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取报损报溢单据号
         /// </summary>
         /// <returns></returns>
-        public ActionResult GenerateDjh()
+        public IActionResult GenerateDjh()
         {
             return Content(ReceiptNoManage.GetNewReceiptNo(EnumOutOrInStorageBillType.Bsby.GetDescription()));
         }
@@ -159,7 +172,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
-        public ActionResult GetZRRList(string inputCode)
+        public IActionResult GetZRRList(string inputCode)
         {
             var list = sysuserDmnService.GetStaffListByOrg(OrganizeId);
             return Content(list.ToJson());
@@ -170,7 +183,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="plist"></param>
         /// <returns></returns>
-        public ActionResult LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist)
+        public IActionResult LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist)
         {
             //todo 获取当前科室
             var result = _stockInventoryApp.LossAndProfitSubmit(plist, "");

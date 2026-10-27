@@ -1,13 +1,13 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
 }
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
 
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-ui-compact.css")" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui-compact.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <style>
     #gridtyyzPager_center, #gridmedicinePager_center, #gridwordPager_center, #gridTakePager_center, #gridsfxmPager_center, #gridssyzPager_center {
         display: none;
@@ -19,7 +19,7 @@
 </style>
 @*导航栏*@
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
-    <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">医嘱查询</a></li>
+    <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Y lệnhTra cứu</a></li>
 </ul>
 <div id="divPatientBasicInfo" style="position: fixed;top: 0px;z-index: 100009;width: 29%;line-height: 40px;font-size: 18px;white-space: nowrap;text-overflow: ellipsis;background: #e9f6fe;right: 1.2%;text-align:right;padding-right: 18px;display:none;color:#07bbf1;">
 </div>
@@ -64,7 +64,7 @@
     function patobjValidate() {
         //当前是否选中病人
         if (currentobj == undefined || currentobj.zyh == "" || isNaN(currentobj.zyh)) {
-            $.modalAlert("缺少病人", 'warning');
+            $.modalAlert("Thiếu bệnh nhân", 'warning');
             return false;
         }
         return true;
@@ -267,7 +267,7 @@
     function getpcsl(zxcs, zxzq, zxzqdw)
     {
         if (isNaN(zxzqdw) || zxzqdw=="") {
-            $.modalAlert("执行周期单位不能为空", 'error');
+            $.modalAlert("Thực hiệnChu kỳĐơn vịkhông được để trống", 'error');
             return;
         }
         var rtnsl;
@@ -293,7 +293,7 @@
     {
         var zysl = 0;
         if (isNaN(dwlb) || dwlb == "") {
-            $.modalAlert("单位类别不能为空", 'error');
+            $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
             return;
         }
         var qzint = ypjl * ts;//默认住院单位 ，不需转换
@@ -312,7 +312,7 @@
         patobjValidate();
         $.modalOpen({
             id: "CurrentdayView",
-            title: "当日医嘱列表",
+            title: "Trong ngàyY lệnhDanh sách",
             url: "/DoctorManage/Orginal/CurrentdayView?zyh=" + currentobj.zyh,
             width: "800px",
             height: "370px",
@@ -326,7 +326,7 @@
     function saveAsTemplate(mbObj,mxList){
         $.modalOpen({
             id: "Form",
-            title: "套餐",
+            title: "Gói",
             url: "/DoctorManage/DoctorsAdvice/Form",
             width: "400px",
             height: "300px",
@@ -345,7 +345,7 @@
                     data: { mbObj: mbObj, mxList: mxList },
                     type: "POST",
                     success: function (data) {
-                        $.modalMsg("保存成功", 'success');
+                        $.modalMsg("Lưu thành công", 'success');
                         $("#beveltabs a:first").trigger('click');
                     }
                 });
@@ -353,7 +353,7 @@
         });
     }
 
-    //清空 所有文本、处方、历史处方、grid列表
+    //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
     function newtouch_event_f4() {
         window.alldataArray = [];
     }

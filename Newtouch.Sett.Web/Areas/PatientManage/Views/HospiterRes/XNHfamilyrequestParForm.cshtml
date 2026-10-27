@@ -1,0 +1,57 @@
+
+@{
+    ViewBag.Title = "Danh sách tham gia hợp tác của gia đình hợp tác nông thôn mới";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 55px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Năm tham gia hợp tác：</th>
+                <td class="formValue formDdlSelectorTd">
+                    <input type="text" id="year" class="form-control required" placeholder="" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Số chứng nhận y tế：</th>
+                <td class="formValue">
+                    <input type="text" id="medicalNo" class="form-control required" placeholder="" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script>
+    function submitForm(callback) {
+        var year = $('#year').val();
+        if (!year) {
+            $.modalAlert("Năm tham gia hợp tác bắt buộc nhập", "warning");
+            return false;
+        }
+
+        var medicalNo = $('#medicalNo').val();
+        if (!medicalNo) {
+            $.modalAlert("Số chứng nhận y tế bắt buộc nhập", "warning");
+            return false;
+        }
+        $.submitForm({
+            url: "@Url.Action("S03submit")",
+            param: { year: year, medicalNo: medicalNo },
+            success: function (resp) {
+                var jresp = JSON.parse(resp.data);
+                if (jresp.state) {
+                    if (!!jresp.data && jresp.data.length > 0) {
+                        callback(jresp.data);
+                        $.modalClose();
+                    } else {
+                        $.modalAlert("Gia đình này trong năm đó không có danh sách tham gia hợp tác, vui lòng xác nhận!", "warning");
+                    }
+                } else {
+                    $.modalAlert(jresp.message, "error");
+                }
+            }
+        });
+    }
+    </script>
+

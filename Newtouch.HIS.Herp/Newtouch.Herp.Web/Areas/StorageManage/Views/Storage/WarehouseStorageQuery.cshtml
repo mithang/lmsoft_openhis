@@ -1,11 +1,11 @@
-﻿@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure.Enum
 @using Newtouch.Herp.Infrastructure;
-@using Newtouch.Tools
+@using NewtouchHIS.Lib.Base.Extension
 @{
-    ViewBag.Title = "本部门物资查询";
+    ViewBag.Title = "Tra cứu vật tư của khoa hiện tại";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
 
 }
 <style>
@@ -58,58 +58,58 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">筛选条件</div>
+        <div class="panel-heading">Điều kiện lọc</div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">物资名称：</td>
+                    <td class="formTitle">Tên vật tư：</td>
                     <td class="formValue" s>
-                        <input type="text" id="keyWord" class="form-control" placeholder="拼音/名称" />
+                        <input type="text" id="keyWord" class="form-control" placeholder="Phiên âm/Tên" />
                         <input type="hidden" id="productId" value="" />
                     </td>
-                    <td class="formTitle">类别：</td>
+                    <td class="formTitle">Loại：</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="lb">
-                            <option value="">全部</option>
+                            <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">使用状态：</td>
+                    <td class="formTitle">Trạng thái sử dụng：</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="kzbz" name="kzbz">
-                            <option value="">全部</option>
-                            <option value="1">正常</option>
-                            <option value="0">控制</option>
+                            <option value="">Tất cả</option>
+                            <option value="1">Bình thường</option>
+                            <option value="0">Kiểm soát</option>
                         </select>
                     </td>
                     <td class="formTitle">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">物资状态：</td>
+                    <td class="formTitle">Trạng thái vật tư：</td>
                     <td class="formValue formDdlSelectorTd">
-                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <td class="formTitle">显示零库存：</td>
+                    <td class="formTitle">Hiển thị tồn kho bằng 0：</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="xslkc" name="xslkc">
-                            <option value="1">是</option>
-                            <option value="0">否</option>
+                            <option value="1">Có</option>
+                            <option value="0">Không</option>
                         </select>
                     </td>
-                    <th class="formTitle">已过期：</th>
+                    <th class="formTitle">Đã hết hạn：</th>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="ygq" name="ygq" type="checkbox"><label for="ygq">是</label>
+                            <input id="ygq" name="ygq" type="checkbox"><label for="ygq">Có</label>
                         </div>
                         <div class="ckbox" style="float:right;">
                             <input id="mxyx" name="mxyx" type="checkbox" class="ckbox" checked />
-                            <label for="mxyx">是</label>
+                            <label for="mxyx">Có</label>
                         </div>
-                        <label style="float:right;line-height: 20px; margin-right:10px;">只显示库存有效：</label>
+                        <label style="float:right;line-height: 20px; margin-right:10px;">Chỉ hiển thị tồn kho hiệu lực：</label>
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In báo cáo" />
                     </td>
                 </tr>
             </table>
@@ -123,7 +123,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết phiếu</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -139,7 +139,7 @@
 <script>
     var $gridMxList = $("#gridMxInfo");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -156,14 +156,14 @@
         Initial();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         getLbSelectTree();
         gridList();
@@ -174,6 +174,7 @@
             $("#ygq").attr("checked", "checked");
         }
        $("#btn_print").click(function () {
+            if (!'@reportUrl') { $.modalAlert('Báo cáo SSRS chưa được chuyển đổi sang .NET Core, vui lòng sử dụng lưới dữ liệu trên trang.', 'warning'); return; }
             var z = $('input[name=mxyx]:checked').length > 0 ? "1" : "";
             window.open('@reportUrl' + "?tempCode=1269" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId" +
                "&keyWord=" + ($('#keyWord').val() === "" ? "n" : $('#keyWord').val()) +
@@ -186,7 +187,7 @@
         });
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -198,14 +199,14 @@
         }
     }
 
-    //类别
+    //Loại
     function getLbSelectTree() {
         $("#lb").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
         });
     }
 
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -213,33 +214,33 @@
             postData: $("#form1").formSerialize(),
             height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
             colModel: [
-                { label: '名称', name: 'wzmc', width: 180, align: 'left' },
-                { label: '拼音', name: 'py', width: 110, align: 'left' },
-                { label: '类别', name: 'lb', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 100, align: 'left' },
-                { label: '数量', name: 'slStr', width: 80, align: 'right' },
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Phiên âm', name: 'py', width: 110, align: 'left' },
+                { label: 'Loại', name: 'lb', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'slStr', width: 80, align: 'right' },
                 {
-                    label: '零售单价', name: 'lsj', width: 80, align: 'right', hidden: true,
+                    label: 'Đơn giá bán lẻ', name: 'lsj', width: 80, align: 'right', hidden: true,
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
-                { label: '单价单位', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
+                { label: 'Đơn vị đơn giá', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
                 {
-                    label: '零售总额', name: 'lsze', width: 80, align: 'right', hidden: true,
+                    label: 'Tổng bán lẻ', name: 'lsze', width: 80, align: 'right', hidden: true,
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
                 {
-                    label: '进价总额', name: 'jjze', width: 80, align: 'right',
+                    label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '品牌', name: 'brand', width: 100, align: 'center' },
-                { label: '有效期', name: 'yxqStr', width: 70, align: 'left', hidden: true },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 100, align: 'center' },
+                { label: 'Hạn sử dụng', name: 'yxqStr', width: 70, align: 'left', hidden: true },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 { label: "productId", name: "productId", hidden: true, key: true }
             ],
             pager: "#gridPager",
@@ -263,34 +264,34 @@
         });
     }
 
-    //明细信息
+    //Thông tin chi tiết
     function gridMxInfo() {
         $gridMxList.dataGrid({
             url: "",
             postData: "",
             height: $(window).height() - document.getElementById('gridList').offsetTop - 200,
             colModel: [
-                { label: '名称', name: 'wzmc', width: 180, align: 'left' },
-                { label: '批号', name: 'ph', width: 120, align: 'left' },
-                { label: '批次', name: 'pc', width: 120, align: 'left' },
-                { label: '库存数', name: 'bmkcslStr', width: 80, align: 'right' },
-                { label: '冻结数', name: 'bmdjslStr', width: 80, align: 'right' },
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 120, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 120, align: 'left' },
+                { label: 'Số lượng tồn kho', name: 'bmkcslStr', width: 80, align: 'right' },
+                { label: 'Số lượng đóng băng', name: 'bmdjslStr', width: 80, align: 'right' },
                 {
-                    label: '进价单价', name: 'jj', width: 80, align: 'right',
+                    label: 'Đơn giá nhập', name: 'jj', width: 80, align: 'right',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
                     }
                 },
-                { label: '单价单位', name: 'bmdwmc', width: 70, align: 'center' },
+                { label: 'Đơn vị đơn giá', name: 'bmdwmc', width: 70, align: 'center' },
                 {
-                    label: '进价总额', name: 'jjze', width: 80, align: 'right',
+                    label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'right',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
                 },
-                { label: '有效期', name: 'yxq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 {
-                    label: '状态', name: 'zt', width: 50, align: 'center', formatter: function (val, options) {
+                    label: 'Trạng thái', name: 'zt', width: 50, align: 'center', formatter: function (val, options) {
                         return val === "1" ? "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-on\"></i>" : "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-off\"></i>";
                     }
                 },
@@ -299,7 +300,7 @@
         });
     }
 
-    //设置库存有效与否
+    //Thiết lập tồn khoHiệu lựcvàKhông
     function operateZt(obj) {
         var zt = "1";
         var ph = $gridMxList.getRowData($(obj).attr("rowId")).ph;
@@ -320,7 +321,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    //$.modalMsg("修改库存状态成功", "success", 1000);
+                    //$.modalMsg("SửaTrạng thái tồn khoThành công", "success", 1000);
                 }
                 else {
                     $.modalMsg(data, "error", 1000);
@@ -329,11 +330,11 @@
         });
     }
 
-    //获取url中的参数
+    //LấyurlTrongcủaTham số
     function getQueryString(name) {
-        // 匹配目标参数
+        // Khớp tham số đích
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // ĐốiquerystringKhớp tham số đích
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

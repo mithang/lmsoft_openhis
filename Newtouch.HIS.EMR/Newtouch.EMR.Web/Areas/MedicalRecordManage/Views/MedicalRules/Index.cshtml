@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "病历文书规则";
+    ViewBag.Title = "Quy tắc văn bản bệnh án";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -23,12 +23,12 @@
 <div id="blgz" class="gridPanel dv-right" style="background-color:#ffffff;">
     <table id="gridRightList"></table>
 
-    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+    @Html.Partial("_BottomButtonsView", new Newtouch.EMR.Web.Models.BottomButtonViewModel()
     {
     ShowKeyList = new[] { 2,3,4},
-    F2Text = "新增",
-    F3Text = "修改",
-    F4Text = "删除",
+    F2Text = "Thêm mới",
+    F3Text = "Sửa",
+    F4Text = "Xóa",
     })
 </div>
 <script>
@@ -52,7 +52,7 @@
                 { label: "ID", name: "Id", hidden: true, key: true },
                 { label: 'bllx', name: 'bllx', width: 80, align: 'center', hidden: true },
                 {
-                    label: '病历名称', name: 'bllxmc', width: 100, align: 'left', formatter: function (cellvalue, options, rowobject) {
+                    label: 'Tên bệnh án', name: 'bllxmc', width: 100, align: 'left', formatter: function (cellvalue, options, rowobject) {
                         if (rowobject.IsRoot != 1) {
                             return '<span class="glyphicon glyphicon-file" style="color:#6ff3ad; font-size: 13px;"></span> ' + rowobject.bllxmc;
                         }
@@ -62,7 +62,7 @@
                     }
                 },
                 {
-                    label: '病历名称', name: 'bllxmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
+                    label: 'Tên bệnh án', name: 'bllxmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
                         return rowobject.bllxmc;
                     }
                 }
@@ -79,7 +79,7 @@
     function gridRightList() {
         var $gridrightList = $("#gridRightList");
         $gridrightList.dataGrid({
-            caption: "规则列表项",
+            caption: "Hạng mục danh sách quy tắc",
             url: "/MedicalRecordManage/MedicalRules/GetRulesList",
             postData: { keyword: "" },
             rownumbers: false,
@@ -87,10 +87,10 @@
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
                 { label: "Bllx", name: "Bllx", hidden: true, },
-                { label: "病历类型", name: "RulesType", width: 100, align: "center", },
-                { label: "天数限制", name: "RulesDay", width: 100, align: "center", },
-                { label: "说明", name: "Remark", width: 200, align: "center", },
-                { label: "显示顺序", name: "Px", width: 80, align: "left" },
+                { label: "Loại bệnh án", name: "RulesType", width: 100, align: "center", },
+                { label: "Giới hạn số ngày", name: "RulesDay", width: 100, align: "center", },
+                { label: "Mô tả", name: "Remark", width: 200, align: "center", },
+                { label: "Thứ tự hiển thị", name: "Px", width: 80, align: "left" },
             ],
             unwritten: false,
             viewrecords: true,
@@ -101,12 +101,12 @@
     function newtouch_event_f2() {
         var seleRow = $("#gridList").jqGridRowValue();
         if (!!!seleRow.bllx) {
-            $.modalAlert("请选中一项病历类型", "error");
+            $.modalAlert("Vui lòng chọn một loại bệnh án", "error");
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "新增病历规则项",
+            title: "Thêm mục quy tắc bệnh án",
             url: "/MedicalRecordManage/MedicalRules/Form?" + "bllx=" + seleRow.bllx + "&bllxmc=" + seleRow.bllxmc1 + "&czlx=" + "insert",
             width: "640px",
             height: "350px",
@@ -121,12 +121,12 @@
     function btn_edit() {
         var seleRow = $("#gridRightList").jqGridRowValue();
         if (!!!seleRow.Id) {
-            $.modalAlert("请选中一条规则项", "error");
+            $.modalAlert("Vui lòng chọn một hạng mục quy tắc", "error");
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改病历规则项",
+            title: "Sửa mục quy tắc bệnh án",
             url: "/MedicalRecordManage/MedicalRules/Form?" + "Id=" + seleRow.Id + "&czlx=" + "update",
             width: "640px",
             height: "350px",
@@ -139,17 +139,17 @@
     function newtouch_event_f4() {
         var seleRow = $("#gridRightList").jqGridRowValue();
         if (!!!seleRow.Id) {
-            $.modalAlert("请选中一条要删除的病历规则", "error");
+            $.modalAlert("Vui lòng chọn một quy tắc bệnh án cần xóa", "error");
             return;
         }
-        $.modalConfirm("是否删除该条规则", function (flag) {
+        $.modalConfirm("Có xóa quy tắc này không", function (flag) {
             if (flag) {
                 $.najax({
                     url: "/MedicalRecordManage/MedicalRules/RulesDel",
                     data: { Id: seleRow.Id },
                     dataType: "json",
                     success: function (res) {
-                        $.modalAlert("删除成功", 'warning');
+                        $.modalAlert("Xóa thành công", 'warning');
                         $("#gridRightList").jqGrid('setGridParam', {
                             postData: { keyword: seleRow.Bllx },
                         }).trigger('reloadGrid');

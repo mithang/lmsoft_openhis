@@ -1,39 +1,44 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using NewtouchHIS.Framework.Web.Controllers;
+using NewtouchHIS.Lib.Framework.Operator;
+
 using Newtouch.EMR.Domain.BusinessObjects;
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IDomainServices;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.EMR.Domain.ValueObjects.MedicalRecord;
-using Newtouch.Infrastructure;
-using Newtouch.Tools;
+
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
 {
+    [Area("MedicalRecordManage")]
     public class TemplateDesignController : OrgControllerBase
     {
         
         private readonly IHljlDataRepo _HljlDataRepo;
         private readonly IBlmblbRepo _bl_mblbRepo;
         private readonly Ibl_hljlRepo _HljlRepo;
-        public static string BlFilePath = ConfigurationHelper.GetAppConfigValue("BlFilePath");
+        public static string BlFilePath = EmrConfig.GetAppConfigValue("BlFilePath");
         private readonly IMedicalRecordDmnService _medicalRecordDmnService;
 
-        public TemplateDesignController(IHljlDataRepo HljlDataRepo)
+        public TemplateDesignController(IHljlDataRepo HljlDataRepo, IBlmblbRepo bl_mblbRepo, Ibl_hljlRepo hljlRepo, IMedicalRecordDmnService medicalRecordDmnService)
         {
             this._HljlDataRepo = HljlDataRepo;
+            this._bl_mblbRepo = bl_mblbRepo;
+            this._HljlRepo = hljlRepo;
+            this._medicalRecordDmnService = medicalRecordDmnService;
         }
 
-
         // GET: MedicalRecordManage/TemplateDesign
-        //public ActionResult Index()
+        //public IActionResult Index()
         //{
         //    return View();
         //}
@@ -41,14 +46,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         /// 临床护理记录
         /// </summary>
         /// <returns></returns>
-        public ActionResult HljlGraph()
+        public IActionResult HljlGraph()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = EmrConfig.GetAppConfigValue("ReportServer.HOST");
             return View();
         }
 
-        public ActionResult BtnSubmit(IList<HljldataVO> data,string mbbh,string zyh,string totals) {
+        public IActionResult BtnSubmit(IList<HljldataVO> data,string mbbh,string zyh,string totals) {
             OperatorModel user = this.UserIdentity;
             
             string DataSource = "";
@@ -104,7 +109,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         }
 
         //页面加载数据
-        public ActionResult HljlLoadData(Pagination pagination,string zyh,string blId,string kssj,string jssj,string mbbh) {
+        public IActionResult HljlLoadData(Pagination pagination,string zyh,string blId,string kssj,string jssj,string mbbh) {
 
             IList<HljldataVO> list = new List<HljldataVO>();
             if (!string.IsNullOrWhiteSpace(mbbh))
@@ -134,9 +139,6 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             
         }
 
-
-
-
         public string BL_Save(string bllx, string mbbh, string zyh, string path, string BLMC, string DataSource = null)
         {
             var medicalRecord = new medicalRecordVO();
@@ -150,7 +152,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             medicalRecord.ksmc = this.UserIdentity.DepartmentName;
             medicalRecord.OrganizeId = OrganizeId;
             medicalRecord.bllx = bllx;
-            medicalRecord.dzbl_id = "R" + EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("YB_Inp_PatRegInfo.dzbl_id", OrganizeId, "{0:D10}", false);
+            medicalRecord.dzbl_id = "R" + FieldValueHelper.GetNewFieldUniqueValue("YB_Inp_PatRegInfo.dzbl_id", OrganizeId, "{0:D10}", false);
             //插入病人病历关系表
             var Entity = new ZymeddocsrelationEntity();
             Entity.Id = Guid.NewGuid().ToString();
@@ -174,19 +176,18 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         }
 
         
-        public ActionResult HljlCtrlQx(string blId,string mbbh, string zyh) {
+        public IActionResult HljlCtrlQx(string blId,string mbbh, string zyh) {
 
             var data= _HljlDataRepo.HljlCtrlQx(blId,mbbh,OrganizeId,UserIdentity.rygh);
             return Content(data.ToJson());
         }
 
-        public ActionResult Infodiv(string zyh) {
+        public IActionResult Infodiv(string zyh) {
             var data = _HljlDataRepo.Infodiv(zyh, this.OrganizeId);
             return Content(data.ToJson());
         }
 
-
-        public ActionResult DelRecords(string Id)
+        public IActionResult DelRecords(string Id)
         {
             if (!string.IsNullOrWhiteSpace(Id))
             {
@@ -194,12 +195,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
                 if (ety != null)
                 {
                     ety.zt = "0";
-                    ety.Modify(Id);
                     _HljlDataRepo.Update(ety);
-                    return Success("删除成功");
+                    return Success("Xóa thành công");
                 }
             }
-            return Error("请刷新重试");
+            return Error("Vui lòng làm mới và thử lại");
         }
     }
 }

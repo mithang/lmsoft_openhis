@@ -1,0 +1,70 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+
+<form id="form1">
+    <div role="tabpanel" class="tab-pane fade in" style="padding-top: 20px; margin-right: 30px;">
+        <div id="orgList"></div>
+    </div>
+</form>
+
+<div style="position: fixed; bottom: 10px; right: 10px;">
+    <a class="btn btn-primary" onclick="btn_authall()">Ủy quyền tất cả</a>
+    &nbsp;&nbsp;
+    <a class="btn btn-danger" onclick="btn_authcancelall()">Hủy tất cả</a>
+</div>
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        $('#myTab a:first').tab('show');
+        $("#orgList").treeview({
+            height: 400,
+            slimscroll: false,
+            showcheck: true,
+            url: "/Organize/GetAuthOrganizeList?authType=modulebutton",
+            param: { keyValue: keyValue }
+        });
+    });
+    function submitForm() {
+        var postData = {};
+        postData["orgList"] = String($("#orgList").getCheckedNodes());
+        $.submitForm({
+            url: "/ModuleButton/UpdateAuthOrganizeList?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                //$.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_authall() {
+        $.modalConfirm("Ủy quyền cho tất cả cơ sở", function (flag) {
+            if (flag) {
+                var postData = {};
+                $.submitForm({
+                    url: "/ModuleButton/AuthAllOrganize?keyValue=" + keyValue,
+                    param: postData,
+                    success: function () {
+                        //$.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                });
+            }
+        });
+    }
+    function btn_authcancelall() {
+        $.modalConfirm("Hủy tất cả ủy quyền", function (flag) {
+            if (flag) {
+                var postData = {};
+                $.submitForm({
+                    url: "/ModuleButton/AuthCancelAllOrganize?keyValue=" + keyValue,
+                    param: postData,
+                    success: function () {
+                        //$.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                });
+            }
+        });
+    }
+</script>

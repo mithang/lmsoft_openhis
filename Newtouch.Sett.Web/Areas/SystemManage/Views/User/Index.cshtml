@@ -1,0 +1,119 @@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_roles()"><i class="fa fa-pencil-square-o"></i>Vai trò người dùng</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên/Tài khoản/Mã nhân viên" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script>
+    $(function () {
+        initControl();
+        gridList();
+    })
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/SystemManage/User/GetPagintionGridJson",
+            height: $(window).height() - 128,
+            postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
+            colModel: [
+               { label: 'Khóa chính', name: 'Id', hidden: true },
+               { label: "Hiệu lực", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Tài khoản', name: 'Account', width: 100, align: 'left' },
+                { label: 'Mã nhân viên', name: 'gh', width: 80, align: 'left' },
+                { label: 'Họ tên', name: 'Name', width: 100, align: 'left' },
+                { label: 'OrganizeId', name: 'OrganizeId', hidden: true },
+                {
+                    label: 'Cơ sở Tên', name: 'OrganizeName', width: 120, align: 'left',
+                },
+                {
+                    label: 'Tên khoa', name: 'DepartmentName', width: 80, align: 'left',
+                },
+                {
+                    label: "cho phép Đăng nhập", name: "Locked", width: 100, align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue === true) {
+                            return '<span class=\"label label-default\">Ngừng dùng</span>';
+                        }
+                        else {
+                            return '<span class=\"label label-success\">Bình thường</span>';
+                        }
+                    }
+                },
+            ],
+            pager: "#gridPager",
+            sortname: 'zt desc, Account',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    function initControl() {
+
+    }
+
+    function btn_roles() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId) {
+            $.modalAlert("Vui lòng liên kết nhân viên cho người dùng trước", 'warning');
+            return;
+        }
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        $.modalOpen({
+            id: "Form",
+            title: "Vai trò người dùng",
+            url: "/SystemManage/User/Roles?keyValue=" + keyValue + '&orgId=' + thisOrgId,
+            width: "750px",
+            height: "700px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+
+                });
+            }
+        });
+    }
+
+
+
+</script>

@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Newtouch.OR.ManageSystem.Web.MvcApplication" Language="C#" %>

@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -10,18 +10,18 @@
             <div role="tabpanel" style="margin-top: 10px; margin-left: 48px; margin-right: 105px;" id="basicInfo">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">初复诊：</th>
+                        <th class="formTitle">Khám lần đầu/tái khám:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <label><input type="radio" name="fzbz" class="optionsRadios formClearIgnore" value="0" data-label="初诊" />初诊</label>
-                                    <label><input type="radio" name="fzbz" class="optionsRadios formClearIgnore" value="1" data-label="复诊" />复诊</label>
+                                    <label><input type="radio" name="fzbz" class="optionsRadios formClearIgnore" value="0" data-label="Khám lần đầu" />Khám lần đầu</label>
+                                    <label><input type="radio" name="fzbz" class="optionsRadios formClearIgnore" value="1" data-label="Tái khám" />Tái khám</label>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">身高：</th>
+                        <th class="formTitle">Chiều cao:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-7">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </td>
-                        <th class="formTitle">体重：</th>
+                        <th class="formTitle">Cân nặng:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-7">
@@ -47,7 +47,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">体温：</th>
+                        <th class="formTitle">Nhiệt độ:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-7">
@@ -58,31 +58,31 @@
                                 </div>
                             </div>
                         </td>
-                        <th class="formTitle">脉搏：</th>
+                        <th class="formTitle">Mạch:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-7">
                                     <input id="maibo" name="maibo" type="text" class="form-control form-an" />
                                 </div>
                                 <div class="col-md-5">
-                                    <label>次/min</label>
+                                    <label>lần/phút</label>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">呼吸：</th>
+                        <th class="formTitle">Hô hấp:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-7">
                                     <input id="huxi" name="huxi" type="text" class="form-control form-an" />
                                 </div>
                                 <div class="col-md-5">
-                                    <label>次/min</label>
+                                    <label>lần/phút</label>
                                 </div>
                             </div>
                         </td>
-                        <th class="formTitle">收缩压：</th>
+                        <th class="formTitle">Huyết áp tâm thu:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-8">
@@ -95,7 +95,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">舒张压：</th>
+                        <th class="formTitle">Huyết áp tâm trương:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-8">
@@ -106,12 +106,12 @@
                                 </div>
                             </div>
                         </td>
-                        <th class="formTitle">血糖(方式)：</th>
+                        <th class="formTitle">Đường huyết(Phương thức):</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-8">
                                     <select id="xuetangclfs" name="xuetangclfs" class="vitalsignschange">
-                                        <option value="">=请选择=</option>
+                                        <option value="">=Vui lòng chọn=</option>
                                     </select>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
             </td>
         </tr>*@
                     <tr>
-                        <th class="formTitle">血糖(值)：</th>
+                        <th class="formTitle">Đường huyết (giá trị):</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-8">
@@ -142,15 +142,15 @@
                                 </div>
                             </div>
                         </td>
-                        <th class="formTitle">婚姻：</th>
+                        <th class="formTitle">Hôn nhân:</th>
                         <td class="formValue">
                             <div class="row">
                                 <div class="col-md-8">
                                     <select id="hy" name="hy" class="form-control">
-                                        <option value="">=请选择=</option>
-                                        <option value="1">未婚</option>
-                                        <option value="2">已婚</option>
-                                        <option value="3">不详</option>
+                                        <option value="">=Vui lòng chọn=</option>
+                                        <option value="1">Chưa kết hôn</option>
+                                        <option value="2">Đã kết hôn</option>
+                                        <option value="3">Không rõ</option>
                                     </select>
                                 </div>
                             </div>

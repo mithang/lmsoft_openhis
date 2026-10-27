@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "中药处方-新版";
+    ViewBag.Title = "Thuốc Đông yĐơn thuốc-Phiên bản mới";
     Layout = null;
     //药品检索，药品是否关联药房库存
     var isMedicineSearchRelatedKC = (ViewBag.ISMedicineSearchRelatedKC as bool?) ?? false;
@@ -34,35 +34,35 @@
 
             <table class="form" id="tableTCMPresAmount">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>付数：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lần trả:</th>
                     <td class="formValue">
                         <input type="text" id="tieshu" name="tieshu" value="1" class="form-control required" />
                     </td>
-                    <th class="formTitle">代煎付数：</th>
+                    <th class="formTitle">Sắc thuốc hộSố lần trả:</th>
                     <td class="formValue">
                         <input type="text" id="daijiantieshu" name="daijiantieshu" class="form-control required" />
                     </td>
-                    <th class="formTitle">代煎方式：</th>
+                    <th class="formTitle">Sắc thuốc hộPhương thức:</th>
                     <td class="formValue">
                         <select id="djfs" name="djfs" class="form-control"></select>
                     </td>
-                    <th class="formTitle">代煎费：</th>
+                    <th class="formTitle">Phí sắc thuốc hộ:</th>
                     <td class="formValue">
                         <input type="text" id="djf" name="djf" value="0" disabled="disabled" class="form-control required" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">用法：</th>
+                    <th class="formTitle">Cách dùng:</th>
                     <td class="formValue">
                         <select id="cfyf" name="cfyf" class="form-control"></select>
                     </td>
-                    <th class="formTitle">嘱托：</th>
+                    <th class="formTitle">Dặn dò:</th>
                     <td class="formValue">
                         <input type="text" id="cfzt" name="cfzt" class="form-control required" />
                     </td>
                     <td colspan="2">
                         <div class="ckbox" style="margin-left:38px;">
-                            <input id="djbz" name="djbz" type="checkbox"><label for="djbz">是否代煎</label>
+                            <input id="djbz" name="djbz" type="checkbox"><label for="djbz">Có hay khôngSắc thuốc hộ</label>
                         </div>
                     </td>
                 </tr>
@@ -71,7 +71,7 @@
         <div class="lowerrightcorner" style="margin-left: 50%; width: 50%; border-left: solid 1px #ddd; height: 100%;">
             <table class="form" style="position: relative; top: 20%;">
                 <tr>
-                    <th class="formTitle">总金额：</th>
+                    <th class="formTitle">Tổng số tiền:</th>
                     <td class="formValue" id="tdTCMTotalAmount"></td>
                     <td style="width: 90px;"></td>
                     <td></td>
@@ -79,13 +79,13 @@
                 <tr>
                     <td></td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-primary" value="返回病历" style="margin-left:48%;display:table-cell;" onclick="SaveTCMPres()" />
+                        <input type="button" class="btn btn-primary" value="Quay lạiBệnh án" style="margin-left:48%;display:table-cell;" onclick="SaveTCMPres()" />
                     </td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-primary" value="另存为模板" style="display:table-cell;" onclick="saveAsTCMTemplate()" />
+                        <input type="button" class="btn btn-primary" value="Lưu thành mẫu" style="display:table-cell;" onclick="saveAsTCMTemplate()" />
                     </td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-primary" value="F3：保存处方" style="display:table-cell;" onclick="SaveTCMPres('1')" />
+                        <input type="button" class="btn btn-primary" value="F3:LưuĐơn thuốc" style="display:table-cell;" onclick="SaveTCMPres('1')" />
                     </td>
                 </tr>
             </table>
@@ -114,7 +114,7 @@
             });
             $.each(zylocaldata, function () {
                 if(!this.cfh){
-                    alert('处方异常');
+                    alert('Đơn thuốcBất thường');
                     location.href = location.href;
                 }
                 this.action = getTCMActionStr();
@@ -142,7 +142,7 @@
             if(!!jianfuCode){
                 $("#cfyf").val(jianfuCode).trigger('change');
             }
-            $("#djfs").append("<option value=''>无</option>");
+            $("#djfs").append("<option value=''>Không</option>");
             $("#djfs").bindSelect({
                 url: "/SystemManage/SysBaseData/GetTCMDjfsUsageList",
                 id: "Name",
@@ -150,7 +150,7 @@
             });
             var djfsCode = null;
             $.each($("#djfs option"), function () {
-                if ($(this).text() == '无') {
+                if ($(this).text() == 'Không') {
                     djfsCode = $(this).attr('value');
                 }
             });
@@ -206,7 +206,7 @@
             height: $(window).height() - 230,
             //altRows: true,//隔行换色
             shrinkToFit:true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             editurl: "clientArray",  //行编辑不向服务器提交数据
             unwritten: false,
             multiselect: true, // 启用多选框
@@ -219,7 +219,7 @@
                 { label: 'cfh', name: 'cfh', width: 120, align: 'center', hidden: true },
                 { label: 'ypCode', name: 'ypCode', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>名称', name: 'ypmc', width: 80, editwidth: '100%', align: 'center', editable: true, editoptions: {
+                    label: '<span class="required">*</span>Tên', name: 'ypmc', width: 80, editwidth: '100%', align: 'center', editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'keydown',
@@ -232,21 +232,21 @@
                             }
                         ]
                     }},
-                { label: '<span class="required">*</span>规格', name: 'ypgg', width: 50, editwidth: '100%', align: 'center', editable: true },
-                { label: '<span class="required">*</span>单价', name: 'dj', width: 50, editwidth: '100%', align: 'center', editable: true},
+                { label: '<span class="required">*</span>Quy cách', name: 'ypgg', width: 50, editwidth: '100%', align: 'center', editable: true },
+                { label: '<span class="required">*</span>Đơn giá', name: 'dj', width: 50, editwidth: '100%', align: 'center', editable: true},
                  {
-                     label: '<span class="required">*</span>剂量', name: 'mcjl', width: 50, editwidth: '100%', align: 'center', editable: true,  editoptions: {
+                     label: '<span class="required">*</span>Liều lượng', name: 'mcjl', width: 50, editwidth: '100%', align: 'center', editable: true,  editoptions: {
                          dataEvents: [
                                  {
                                      type: 'change',
                                      fn: function (e) {
                                          var cellval = $(this).val();
                                          if(cellval.replace(/(^\s*)|(\s*$)/g, "") == ""){
-                                             $.modalAlert("剂量为空，请确认。", 'warning');
+                                             $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
                                              return;
                                          }
                                          if(isNaN(cellval)){
-                                             $.modalAlert("剂量：请填写数字", 'warning');
+                                             $.modalAlert("Liều lượng:Vui lòng nhập số", 'warning');
                                              $(this).val('')
                                              return;
                                          }
@@ -268,10 +268,10 @@
                      }
                  },
                 {
-                     label: '<span class="required">*</span>单位', name: 'mcjldw', width: 40, editwidth: '100%', align: 'center', editable: true
+                     label: '<span class="required">*</span>Đơn vị', name: 'mcjldw', width: 40, editwidth: '100%', align: 'center', editable: true
                 },
                 {
-                    label: '<span class="required">*</span>数量', name: 'sl', width: 40, editwidth: '100%', align: 'center', editable: true, editoptions: {
+                    label: '<span class="required">*</span>Số lượng', name: 'sl', width: 40, editwidth: '100%', align: 'center', editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -280,11 +280,11 @@
                                     var rowid = row.attr('id');
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("数量为空，请确认。", 'warning');
+                                        $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert("数量：请填写数字", 'warning');
+                                        $.modalAlert("Số lượng:Vui lòng nhập số", 'warning');
                                         $(this).val('');
                                         return;
                                     }
@@ -306,7 +306,7 @@
                     }
                 },
                 {
-                    label: '嘱托', name: 'Remark', width: 50, editwidth: '100%', frozen: true,align: 'center', editoptions: {
+                    label: 'Dặn dò', name: 'Remark', width: 50, editwidth: '100%', frozen: true,align: 'center', editoptions: {
                         dataEvents: [
                             {
                                 type: 'keydown',
@@ -325,7 +325,7 @@
                     }, editable: true
                 },
                 {
-                    label: '说明', name: 'zysm', width: 70, editwidth: '100%', align: 'center', editable: true, cellattr: addCellAttr,editoptions:{
+                    label: 'Mô tả', name: 'zysm', width: 70, editwidth: '100%', align: 'center', editable: true, cellattr: addCellAttr,editoptions:{
                         dataEvents: [{
                             type: 'keydown',
                             fn: function (e) {
@@ -339,14 +339,14 @@
                 },
 
 
-                { label: '天数', name: 'ts', width: 60, editwidth: '100%', align: 'center', editable: true, hidden: true,editoptions: {
+                { label: 'Số ngày', name: 'ts', width: 60, editwidth: '100%', align: 'center', editable: true, hidden: true,editoptions: {
                     dataEvents: [
                             {
                                 type: 'change',
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if(isNaN(cellval)){
-                                        $.modalAlert("剂量：请填写数字", 'warning');
+                                        $.modalAlert("Liều lượng:Vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -355,11 +355,11 @@
                     ]
                 }},
 
-                { label: '<span class="required">*</span>单位', name: 'dw', width: 50, editwidth: '100%', align: 'center', editable: true, hidden:true },
-                { label: '<span class="required">*</span>金额', name: 'je', width: 60, editwidth: '100%', align: 'center', editable: true},
+                { label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 50, editwidth: '100%', align: 'center', editable: true, hidden:true },
+                { label: '<span class="required">*</span>Số tiền', name: 'je', width: 60, editwidth: '100%', align: 'center', editable: true},
 
                 {
-                    label: '转自费', name: 'iszzf', width: 80, editwidth: '100%', align: 'center', edittype: "select", editable: true,hidden: true, editoptions: {
+                    label: 'Chuyển sang tự chi trả', name: 'iszzf', width: 80, editwidth: '100%', align: 'center', edittype: "select", editable: true,hidden: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -383,7 +383,7 @@
                 { label: 'cfh2', name: 'cfh2',  width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'ypCode2', name: 'ypCode2', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>名称', name: 'ypmc2', width: 80, editwidth: '100%', align: 'center', editable: true, editoptions: {
+                    label: '<span class="required">*</span>Tên', name: 'ypmc2', width: 80, editwidth: '100%', align: 'center', editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'keydown',
@@ -398,21 +398,21 @@
                     }
                 },
 
-                { label: '<span class="required">*</span>规格', name: 'ypgg2', width: 50, editwidth: '100%', align: 'center', editable: true },
-                  { label: '<span class="required">*</span>单价', name: 'dj2', width: 50, editwidth: '100%', align: 'center', editable: true},
+                { label: '<span class="required">*</span>Quy cách', name: 'ypgg2', width: 50, editwidth: '100%', align: 'center', editable: true },
+                  { label: '<span class="required">*</span>Đơn giá', name: 'dj2', width: 50, editwidth: '100%', align: 'center', editable: true},
                   {
-                      label: '<span class="required">*</span>剂量', name: 'mcjl2', width: 50, editwidth: '100%', align: 'center', editable: true,  editoptions: {
+                      label: '<span class="required">*</span>Liều lượng', name: 'mcjl2', width: 50, editwidth: '100%', align: 'center', editable: true,  editoptions: {
                           dataEvents: [
                               {
                                   type: 'change',
                                   fn: function (e) {
                                       var cellval = $(this).val();
                                       if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                          $.modalAlert("剂量为空，请确认。", 'warning');
+                                          $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
                                           return;
                                       }
                                       if (isNaN(cellval)) {
-                                          $.modalAlert("剂量：请填写数字", 'warning');
+                                          $.modalAlert("Liều lượng:Vui lòng nhập số", 'warning');
                                           $(this).val('')
                                           return;
                                       }
@@ -435,22 +435,22 @@
                   },
 
                   {
-                      label: '<span class="required">*</span>单位', name: 'mcjldw2', width: 40, editwidth: '100%', align: 'center', editable: true
+                      label: '<span class="required">*</span>Đơn vị', name: 'mcjldw2', width: 40, editwidth: '100%', align: 'center', editable: true
                   },
 
                 {
-                    label: '<span class="required">*</span>数量', name: 'sl2', width: 40, editwidth: '100%', align: 'center', editable: true, editoptions: {
+                    label: '<span class="required">*</span>Số lượng', name: 'sl2', width: 40, editwidth: '100%', align: 'center', editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("数量为空，请确认。", 'warning');
+                                        $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert("数量：请填写数字", 'warning');
+                                        $.modalAlert("Số lượng:Vui lòng nhập số", 'warning');
                                         $(this).val('');
                                         return;
                                     }
@@ -473,7 +473,7 @@
                 },
 
                 {
-                    label: '嘱托', name: 'Remark2', width: 50, editwidth: '100%', align: 'center', editoptions: {
+                    label: 'Dặn dò', name: 'Remark2', width: 50, editwidth: '100%', align: 'center', editoptions: {
                         dataEvents: [
                             {
                                 type: 'keydown',
@@ -488,7 +488,7 @@
                     }, editable: true
                 },
                 {
-                    label: '说明', name: 'zysm2', width: 70, editwidth: '100%', align: 'center', editable: true,editoptions: {
+                    label: 'Mô tả', name: 'zysm2', width: 70, editwidth: '100%', align: 'center', editable: true,editoptions: {
                         dataEvents: [
                             {
                                 type: 'keydown',
@@ -509,14 +509,14 @@
                 },
 
                 {
-                    label: '天数', name: 'ts2', width: 60, editwidth: '100%', align: 'center', editable: true, hidden: true, editoptions: {
+                    label: 'Số ngày', name: 'ts2', width: 60, editwidth: '100%', align: 'center', editable: true, hidden: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (isNaN(cellval)) {
-                                        $.modalAlert("剂量：请填写数字", 'warning');
+                                        $.modalAlert("Liều lượng:Vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -526,11 +526,11 @@
                     }
                 },
 
-                { label: '<span class="required">*</span>单位', name: 'dw2', width: 50, editwidth: '100%', align: 'center', editable: true, hidden: true },
-                { label: '<span class="required">*</span>金额', name: 'je2', width: 60, editwidth: '100%', align: 'center', editable: true },
+                { label: '<span class="required">*</span>Đơn vị', name: 'dw2', width: 50, editwidth: '100%', align: 'center', editable: true, hidden: true },
+                { label: '<span class="required">*</span>Số tiền', name: 'je2', width: 60, editwidth: '100%', align: 'center', editable: true },
 
                 {
-                    label: '转自费', name: 'iszzf2', width: 80, editwidth: '100%', align: 'center', edittype: "select", editable: true, hidden: true, editoptions: {
+                    label: 'Chuyển sang tự chi trả', name: 'iszzf2', width: 80, editwidth: '100%', align: 'center', edittype: "select", editable: true, hidden: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -545,7 +545,7 @@
                     }
                 },
                 { label: 'zzfbz2', name: 'zzfbz2', editwidth: '', align: 'center', editable: true, hidden: true },
-                { label: '操作', name: 'action', width: 50, align: 'left' }
+                { label: 'Thao tác', name: 'action', width: 50, align: 'left' }
             ],
             editinputwidthborder: false,    //是否需要边框 默认为true
             editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
@@ -576,8 +576,8 @@
             .navButtonAdd('#gridzycfnewPager',
                 {
                     buttonicon: "glyphicon glyphicon-remove",
-                    title: "删除明细",
-                    caption: "删除明细",
+                    title: "Xóa chi tiết",
+                    caption: "Xóa chi tiết",
                     position: "last",
                     onClickButton: function() {
                         $.each($("#gridzycfnew").jqGrid('getRowData_AllLine', true, true),
@@ -591,12 +591,12 @@
             .navButtonAdd('#gridzycfnewPager',
                 {
                     buttonicon: "glyphicon glyphicon-new-window",
-                    title: "新处方",
-                    caption: "新处方",
+                    title: "Đơn thuốc mới",
+                    caption: "Đơn thuốc mới",
                     position: "last",
                     onClickButton: function() {
                         if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length > 0) {
-                            $.modalAlert("不能同时编辑多张中药处方", 'warning');
+                            $.modalAlert("Không thể đồng thời sửa nhiều tờ đơn thuốc YHCT", 'warning');
                             return;
                         }
                         newTCMPresData();
@@ -605,9 +605,9 @@
 
         $("#gridzycfnewPager_center").html('');
         $("#tip_zyyfly").empty();
-        $("#gridzycfnewPager_right").append('<span style="color:red;">药房：</span><select id="tip_zyyfly"></select>');
-        $("#gridzycfnewPager_right").append('<span style="color:red;">特殊处方：</span><select id="tip_jmcf"><option value="">==请选择==</option><option value="LXGB">离休干部</option><option value="TBCF">特病处方</option></select>');
-        $("#gridzycfnewPager_right").append('<span>电子处方：</span><select id="isdzcfzy"><option value="0">否</option><option value="1">是</option></select>');
+        $("#gridzycfnewPager_right").append('<span style="color:red;">Nhà thuốc:</span><select id="tip_zyyfly"></select>');
+        $("#gridzycfnewPager_right").append('<span style="color:red;">Đặc biệtĐơn thuốc:</span><select id="tip_jmcf"><option value="">==Vui lòng chọn==</option><option value="LXGB">Cán bộ nghỉ hưu</option><option value="TBCF">Bệnh đặc biệtĐơn thuốc</option></select>');
+        $("#gridzycfnewPager_right").append('<span>Điện tửĐơn thuốc:</span><select id="isdzcfzy"><option value="0">Không</option><option value="1">Có</option></select>');
 
         $('#gview_gridzycfnew').css("width",  $(".Newtouch_iframe", parent.document).width());
 
@@ -667,7 +667,7 @@
         $("#" + rowid + "_mcjldw2").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_je2").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_Remark").parent().next().children('select').html('');
-        $("#" + rowid + "_Remark").parent().next().children('select').append('<option value="1">是</option><option value="0">否</option>');
+        $("#" + rowid + "_Remark").parent().next().children('select').append('<option value="1">Có</option><option value="0">Không</option>');
 
         var iszzfval = $("#" + rowid + "_zzfbz").val();
         if (!!iszzfval) {
@@ -712,7 +712,7 @@
 					success: function (req) {
 						if (req < '1') {
 							if (req == '-1') {
-								$.modalAlert("暂无开立" + $this.attr('data-tsypbzmc') + "类药品权限", 'warning');
+								$.modalAlert("Chưa kê đơn" + $this.attr('data-tsypbzmc') + "Quyền thuốc theo loại", 'warning');
 								$("#" + rowid + "_ypmc").val("");
 								$("#" + rowid + "_xmmc").val("");
 								$("#" + rowid + "_xmdm").val("");
@@ -723,7 +723,7 @@
 								return;
 							}
 							if (req == '-2') {
-								$.modalAlert("暂无开立" + $this.attr('data-kssmc') + "类药品权限", 'warning');
+								$.modalAlert("Chưa kê đơn" + $this.attr('data-kssmc') + "Quyền thuốc theo loại", 'warning');
 								$("#" + rowid + "_ypmc").val("");
 								$("#" + rowid + "_xmmc").val("");
 								$("#" + rowid + "_xmdm").val("");
@@ -734,7 +734,7 @@
 								return;
 							}
 							if (req == '-3') {
-								$.modalAlert("暂无开立" + $this.attr('data-sfdlmc') + "类药品权限", 'warning');
+								$.modalAlert("Chưa kê đơn" + $this.attr('data-sfdlmc') + "Quyền thuốc theo loại", 'warning');
 								$("#" + rowid + "_ypmc").val("");
 								$("#" + rowid + "_xmmc").val("");
 								$("#" + rowid + "_xmdm").val("");
@@ -754,7 +754,7 @@
                 if (xzyy) {
                     $.modalOpen({
                         id: "XzyyForm",
-                        title: "限制用药说明",
+                        title: "Thuốc hạn chếMô tả",
                         url: "/TemplateManage/PresTemplate/XzyyForm?keyValue=" + xzyysm,
                         width: "400px",
                         height: "200px",
@@ -782,7 +782,7 @@
                     }
                 });
                 if (isRepeatedAdd) {
-                    $.modalAlert("单张处方下明细不能重复", 'warning');
+                    $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
                     return;
                 }
                 //
@@ -840,7 +840,7 @@
 					success: function (req) {
 						if (req < '1') {
 							if (req == '-1') {
-								$.modalAlert("暂无开立" + $this.attr('data-tsypbzmc') + "类药品权限", 'warning');
+								$.modalAlert("Chưa kê đơn" + $this.attr('data-tsypbzmc') + "Quyền thuốc theo loại", 'warning');
 								$("#" + rowid + "_ypmc2").val("");
 								$("#" + rowid + "_xmmc2").val("");
 								$("#" + rowid + "_xmdm2").val("");
@@ -851,7 +851,7 @@
 								return;
 							}
 							if (req == '-2') {
-								$.modalAlert("暂无开立" + $this.attr('data-kssmc') + "类药品权限", 'warning');
+								$.modalAlert("Chưa kê đơn" + $this.attr('data-kssmc') + "Quyền thuốc theo loại", 'warning');
                                 $("#" + rowid + "_ypmc2").val("");
                                 $("#" + rowid + "_xmmc2").val("");
                                 $("#" + rowid + "_xmdm2").val("");
@@ -862,7 +862,7 @@
 								return;
 							}
 							if (req == '-3') {
-								$.modalAlert("暂无开立" + $this.attr('data-sfdlmc') + "类药品权限", 'warning');
+								$.modalAlert("Chưa kê đơn" + $this.attr('data-sfdlmc') + "Quyền thuốc theo loại", 'warning');
                                 $("#" + rowid + "_ypmc2").val("");
                                 $("#" + rowid + "_xmmc2").val("");
                                 $("#" + rowid + "_xmdm2").val("");
@@ -882,7 +882,7 @@
                 if (xzyy) {
                     $.modalOpen({
                         id: "XzyyForm",
-                        title: "限制用药说明",
+                        title: "Thuốc hạn chếMô tả",
                         url: "/TemplateManage/PresTemplate/XzyyForm?keyValue=" + xzyysm,
                         width: "400px",
                         height: "200px",
@@ -914,7 +914,7 @@
                     }
                 });
                 if (isRepeatedAdd) {
-                    $.modalAlert("单张处方下明细不能重复", 'warning');
+                    $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
                     return;
                 }
                 //
@@ -1051,7 +1051,7 @@
             }
         }
         if(!justOneCf){
-            alert('处方异常');
+            alert('Đơn thuốcBất thường');
             location.href = location.href;
         }
         var totalAmount = 0.00;
@@ -1089,7 +1089,7 @@
         var fushu = $('#tieshu').val();
         var daijianfushu = $('#daijiantieshu').val();
         if (daijianfushu > fushu) {
-            $.modalAlert("代煎付数不能超过付数！", 'warning');
+            $.modalAlert("Sắc thuốc hộSố lần trảKhông thểVượt quáSố lần trả!", 'warning');
             $('#daijiantieshu').val($('#tieshu').val());
             CalculateTCMPresAmount();
             return;
@@ -1100,11 +1100,11 @@
     $('#tieshu').change(function(){
         var val = $(this).val();
         if(val.replace(/(^\s*)|(\s*$)/g, "") == ""){
-            $.modalAlert("付数为空，请确认。", 'warning');
+            $.modalAlert("Số lần trảđể trống,Vui lòng xác nhận.", 'warning');
             return;
         }
         if(isNaN(val)){
-            $.modalAlert("付数：请填写数字", 'warning');
+            $.modalAlert("Số lần trả:Vui lòng nhập số", 'warning');
             $(this).val('')
             return;
         }
@@ -1182,7 +1182,7 @@
                 var thissl = rowData.sl;
                 if(thissl){
                     if(!ypkccheck(rowData.zxks,rowData.ypCode,parseInt(thissl))){
-                        $.modalAlert(rowData.ypmc + "药品库存不足", "error");
+                        $.modalAlert(rowData.ypmc + "ThuốcTồn khoKhông đủ", "error");
                         saveResult = false;
                     }
                 }
@@ -1202,11 +1202,11 @@
         var djts = $('#daijiantieshu').val();//代煎付数
         var cfzt = $('#cfzt').val();//嘱托
         if (tieshu == null || tieshu=="") {
-            $.modalAlert("请填写付数", "error");
+            $.modalAlert("Vui lòng điềnSố lần trả", "error");
             return;
         }
         if (djts > "0" && djfs=="") {
-            $.modalAlert("请选择代煎方式！", "error");
+            $.modalAlert("Vui lòng chọnSắc thuốc hộPhương thức!", "error");
             return;
         }
         var gridzycfnewData = $("#gridzycfnew").jqGrid('getRowData_AllLine', null, true);
@@ -1217,70 +1217,70 @@
 
             if (savetodb == '1') {
                 if (this.ypmc == undefined || this.ypmc == "") {
-                    $.modalAlert("缺少名称", "warning");
+                    $.modalAlert("ThiếuTên", "warning");
                     saveResult = false;
                     return false;
                 } else if (this.ypgg == undefined || this.ypgg == "") {
-                    $.modalAlert("缺少规格", "warning");
+                    $.modalAlert("ThiếuQuy cách", "warning");
                     saveResult = false;
                     return false;
                 } else if (isNaN(this.dj) || this.dj == "") {
-                    $.modalAlert("缺少单价", "warning");
+                    $.modalAlert("ThiếuĐơn giá", "warning");
                     saveResult = false;
                     return false;
                 } else if (isNaN(this.mcjl) || this.mcjl == "") {
-                    $.modalAlert("缺少剂量", "warning");
+                    $.modalAlert("Thiếu liều lượng", "warning");
                     saveResult = false;
                     return false;
                 } else if (this.mcjldw === undefined || this.mcjldw == "") {
-                    $.modalAlert("缺少单位", "warning");
+                    $.modalAlert("Thiếu đơn vị", "warning");
                     saveResult = false;
                     return false;
                 } else if (isNaN(this.sl) || this.sl == "") {
-                    $.modalAlert("缺少数量", "warning");
+                    $.modalAlert("ThiếuSố lượng", "warning");
                     saveResult = false;
                     return false;
                 } else if (this.dw === undefined || this.dw == "") {
-                    $.modalAlert("缺少单位", "warning");
+                    $.modalAlert("Thiếu đơn vị", "warning");
                     saveResult = false;
                     return false;
                 } else if (isNaN(this.je) || this.je == "") {
-                    $.modalAlert("缺少金额", "warning");
+                    $.modalAlert("ThiếuSố tiền", "warning");
                     saveResult = false;
                     return false;
                 }
                 if (this.ypmc2 != undefined && this.ypmc2 != "") {
                     if (this.ypmc2 == undefined || this.ypmc2 == "") {
-                        $.modalAlert("缺少名称", "warning");
+                        $.modalAlert("ThiếuTên", "warning");
                         saveResult = false;
                         return false;
                     }
                     else if (this.ypgg2 == undefined || this.ypgg2 == "") {
-                        $.modalAlert("缺少规格", "warning");
+                        $.modalAlert("ThiếuQuy cách", "warning");
                         saveResult = false;
                         return false;
                     } else if (isNaN(this.dj2) || this.dj2 == "") {
-                        $.modalAlert("缺少单价", "warning");
+                        $.modalAlert("ThiếuĐơn giá", "warning");
                         saveResult = false;
                         return false;
                     } else if (isNaN(this.mcjl2) || this.mcjl2 == "") {
-                        $.modalAlert("缺少剂量", "warning");
+                        $.modalAlert("Thiếu liều lượng", "warning");
                         saveResult = false;
                         return false;
                     } else if (this.mcjldw2 === undefined || this.mcjldw2 == "") {
-                        $.modalAlert("缺少单位", "warning");
+                        $.modalAlert("Thiếu đơn vị", "warning");
                         saveResult = false;
                         return false;
                     } else if (isNaN(this.sl2) || this.sl2 == "") {
-                        $.modalAlert("缺少数量", "warning");
+                        $.modalAlert("ThiếuSố lượng", "warning");
                         saveResult = false;
                         return false;
                     } else if (this.dw2 === undefined || this.dw2 == "") {
-                        $.modalAlert("缺少单位", "warning");
+                        $.modalAlert("Thiếu đơn vị", "warning");
                         saveResult = false;
                         return false;
                     } else if (isNaN(this.je2) || this.je2 == "") {
-                        $.modalAlert("缺少金额", "warning");
+                        $.modalAlert("ThiếuSố tiền", "warning");
                         saveResult = false;
                         return false;
                     }
@@ -1366,7 +1366,7 @@
             if(savetodb == '1'){
                 if (SaveData(false, function(){
                     window.initHistoryPresTree('@Html.Raw(((int)EnumCflx.TCMPres).ToString())');
-                    $.modalAlert("保存成功", 'success');
+                    $.modalAlert("Lưu thành công", 'success');
                     var griddata = $("#gridzycfnew").jqGrid('getRowData_AllLine', null, true);
                     $.each($("#gridzycfnew").jqGrid('getRowData_AllLine', null, true),
                         function () { //1.删除行
@@ -1399,7 +1399,7 @@
     function saveAsTCMTemplate(){
         $.modalOpen({
             id: "Form",
-            title: "存为模板",
+            title: "Lưu thành mẫu",
             url: "/MedicalRecord/Form",
             width: "400px",
             height: "250px",
@@ -1427,7 +1427,7 @@
                 }
                 var gridzycfnewData = $("#gridzycfnew").jqGrid('getRowData_AllLine');
                 if(!gridzycfnewData || gridzycfnewData.length==0){
-                    $.modalAlert("模板明细不能为空", 'warning');
+                    $.modalAlert("Chi tiết mẫu không được để trống", 'warning');
                     return;
                 }
 
@@ -1446,7 +1446,7 @@
                     data: { mbObj: mbObj, mxList: gridzycfnewData },
                     type: "POST",
                     success: function (data) {
-                        $.modalAlert("保存成功", 'warning');
+                        $.modalAlert("Lưu thành công", 'warning');
                         window.$('#current').trigger('click');
                     },
                     complete:function(){

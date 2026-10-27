@@ -1,54 +1,55 @@
-﻿using System;
-using System.Web.Http;
-using Autofac;
-using Newtouch.Common.Web;
-using Newtouch.HIS.API.Common;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Implementation;
-using Newtouch.PDS.API.App_Start;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset.ResourcesOperate;
-using Newtouch.Tools.Security;
 
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 资源操作
+    /// Port của api/test (endpoint kiểm thử của bản gốc).
+    /// TestMultithreadTrans / TestEFDbTransaction được nối dây qua ITestMultithreadTransApp
+    /// như gốc (lớp đã port sẵn trong Infrastructure) nhưng KHÔNG được gọi thử live:
+    /// chúng chạy transaction với dữ liệu thử nghiệm — thuộc nhóm write-path, theo chính
+    /// sách no-write thì chỉ biên dịch và nối dây, không thực thi trên DB demo.
+    /// TestToken trả SUCCESS vô điều kiện như gốc — gọi thử live được.
     /// </summary>
-    [RoutePrefix("api/test")]
-    public class TestController : ApiControllerBase<TestController>
+    [ApiController]
+    [Route("api/test")]
+    public class TestController : ApiControllerBase
     {
-
-        public TestController(IComponentContext com) : base(com)
+        public TestController(TokenStore tokenStore)
+            : base(tokenStore)
         {
         }
 
-        [HttpGet]
-        [Route("TestMultithreadTrans")]
-        public string TestMultithreadTrans()
+        // Gốc dùng `new TestMultithreadTransApp()` trực tiếp (không qua interface —
+        // interface port sẵn chỉ khai báo testEFDbTransaction, còn test1 chỉ có trên
+        // lớp cụ thể). AppBase ctor resolve field qua ServiceLocator nên `new` vẫn
+        // hoạt động khi Program.cs đã gán Provider, giống PDS Web.
+        [HttpGet("TestMultithreadTrans")]
+        public IActionResult TestMultithreadTrans()
         {
-            return new TestMultithreadTransApp().test1();
+            return Content(new TestMultithreadTransApp().test1(), "text/plain");
         }
 
-
-        [HttpGet]
-        [Route("TestEFDbTransaction")]
-        public string TestEFDbTransaction()
+        [HttpGet("TestEFDbTransaction")]
+        public IActionResult TestEFDbTransaction()
         {
-            return new TestMultithreadTransApp().testEFDbTransaction();
+            return Content(new TestMultithreadTransApp().testEFDbTransaction(), "text/plain");
         }
 
-        /// <summary>
-        /// 测试token
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("TestToken")]
-        public DefaultResponse TestToken(OutpatientCommitRequestDTO request)
+        // Gốc KHÔNG gọi CommonExecute ở action này: nó tạo DefaultResponse, gán SUCCESS
+        // và trả luôn, bất kể request có Timestamp hay field bắt buộc hay không.
+        // Bản port giữ nguyên hành vi đó (không kiểm tra token/Timestamp/Validate).
+        [HttpPost("TestToken")]
+        public IActionResult TestToken([FromBody] OutpatientCommitRequestDTO request)
         {
-            var response = new DefaultResponse();
-           
-            response.code = ResponseResultCode.SUCCESS;
-            return response;
+            var response = new DefaultResponse
+            {
+                code = ResponseResultCode.SUCCESS,
+            };
+            return CreateResponse(response);
         }
     }
 }

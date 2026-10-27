@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 
 namespace Newtouch.Herp.Infrastructure.Common
@@ -9,6 +9,14 @@ namespace Newtouch.Herp.Infrastructure.Common
     public static class ReceiptNoManage
     {
         public static Random random = new Random();
+
+        private static readonly System.Text.Encoding GbEncoding;
+
+        static ReceiptNoManage()
+        {
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            GbEncoding = System.Text.Encoding.GetEncoding("GBK");
+        }
 
         /// <summary>
         /// 生成随机数 时间点（年月日时分秒）+三位随机数
@@ -53,7 +61,7 @@ namespace Newtouch.Herp.Infrastructure.Common
         /// <returns>单个大写字母</returns>
         private static string GetCharSpellCode(string cnChar)
         {
-            var zw = Encoding.Default.GetBytes(cnChar);
+            var zw = GbEncoding.GetBytes(cnChar);
             //如果是字母，则直接返回首字母
             if (zw.Length == 1)
             {

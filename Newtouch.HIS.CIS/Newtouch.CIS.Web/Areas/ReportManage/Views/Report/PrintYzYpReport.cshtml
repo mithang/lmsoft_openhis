@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "长临医嘱药品申请单";
+    ViewBag.Title = "Dài hạn lâm sàngY lệnhThuốcPhiếu";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -18,7 +18,7 @@
     var zxrq = $.request('zxrq');
     //报表url地址
     //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%e9%95%bf%e4%b8%b4%e5%8c%bb%e5%98%b1%e8%8d%af%e5%93%81%e7%94%b3%e8%af%b7%e5%8d%95&rs:Command=Render'
-    var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f长临医嘱药品申请单&rs:Command=Render'
+    var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fDài hạn/Tạm thờiY lệnhThuốcPhiếu&rs:Command=Render'
     $(function () {
         submit();
     });
@@ -29,7 +29,7 @@
         location.href = url;
         return;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 

@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "编辑出诊科室";
+    ViewBag.Title = "Chỉnh sửaKhám bệnhKhoa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
@@ -9,44 +9,44 @@
             <div class="panel-body" style="width: 98%; margin-left: -34px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">医生名称：</th>
+                        <th class="formTitle">Bác sĩTên:</th>
                         <td class="formValue">
                             <input id="staffName" name="staffName" type="text" class="form-control" disabled="disabled" style="background-color: rgb(241, 244, 246);" />
                             <input id="Id" name="Id" type="hidden" value="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">工号：</th>
+                        <th class="formTitle">Mã nhân viên:</th>
                         <td class="formValue">
                             <input id="ysgh" name="ysgh" type="text" class="form-control" disabled="disabled" style="background-color: rgb(241, 244, 246);"/>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">所属科室：</th>
+                        <th class="formTitle">ThuộcKhoa:</th>
                         <td class="formValue">
                             <input id="subordinateDeptName" name="subordinateDeptName" type="text" class="form-control" disabled="disabled" style="background-color: rgb(241, 244, 246);"/>
                             <input id="SubordinateDepartments" name="SubordinateDepartments" type="hidden" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">出诊科室：</th>
+                        <th class="formTitle">Khoa khám:</th>
                         <td class="formValue">
                             <select id="visitksCode" name="visitksCode" class="form-control required">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">门诊类型：</th>
+                        <th class="formTitle">Ngoại trúLoại:</th>
                         <td class="formValue">
                             @Html.DropDownList("czlx", EnumOutPatientType.generalOutpat.ToDescSelectList(), new { @class = "form-control" })
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>

@@ -1,37 +1,28 @@
-﻿using Autofac;
-using Newtouch.HIS.API.Common;
-using Newtouch.HIS.Base.HOSP.Request;
-using Newtouch.HIS.Domain.IRepository;
-using Newtouch.Infrastructure;
 using System;
 using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.HIS.Base.HOSP.API.Envelope;
+using Newtouch.HIS.Base.HOSP.Request;
+using Newtouch.HIS.Base.HOSP.API.Services;
+using Newtouch.HIS.Domain.IRepository;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>
-    /// 药品提供商
-    /// </summary>
-    [RoutePrefix("api/MedicineSupplier")]
-    public class MedicineSupplierController : ApiControllerBase<MedicineSupplierController>
+    /// <summary>药品提供商</summary>
+    [Route("api/MedicineSupplier")]
+    [ApiController]
+    public class MedicineSupplierController : ApiControllerBase
     {
         private readonly ISysMedicineSupplierRepo _sysMedicineSupplierRepo;
 
-        public MedicineSupplierController(IComponentContext com)
-            : base(com)
+        public MedicineSupplierController(TokenStore tokenStore, ISysMedicineSupplierRepo sysMedicineSupplierRepo)
+            : base(tokenStore)
         {
-
+            _sysMedicineSupplierRepo = sysMedicineSupplierRepo;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Query")]
-        public HttpResponseMessage Query(MedicineSupplierQueryRequest request)
+        [HttpPost("Query")]
+        public ContentResult Query([FromBody] MedicineSupplierQueryRequest request)
         {
             Action<MedicineSupplierQueryRequest, DefaultResponse> ac = (req, resp) =>
             {
@@ -40,16 +31,14 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                     && (codeUp == "" || p.gysmc.Contains(req.keyword) || p.gysCode.Contains(codeUp) || p.py.Contains(codeUp))
                     && p.OrganizeId == req.OrganizeId).ToList();
 
-                resp.data = base.FilterObjectProperty(list, req.ResponseColumns
-                    , includeProps: new string[] { "gysId", "gysCode", "gysmc", "py" });
+                resp.data = FilterObjectProperty(list, req.ResponseColumns,
+                    includeProps: new string[] { "gysId", "gysCode", "gysmc", "py" });
 
                 resp.code = ResponseResultCode.SUCCESS;
             };
 
-            var response = base.CommonExecute(ac, request);
-
-            return base.CreateResponse(response);
+            var response = CommonExecute(ac, request);
+            return CreateResponse(response);
         }
-
     }
 }

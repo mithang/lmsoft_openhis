@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "TemplatePresForm";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -31,15 +31,15 @@
         {
             return;
         }
-        var sltext = "数量";
+        var sltext = "Số lượng";
         if (tclx == cydy) {
-            sltext = "总量";
+            sltext = "Tổng lượng";
         }
 
         var $gridList = $("#gridList");
         $gridList.dataGrid({
             url: "@Url.Action("GetMBDetailByMainId")",
-            caption: "合计：",
+            caption: "Tổng cộng:",
             postData: { Id: tcId },
             height: $(window).height() - 70,
             unwritten: false,
@@ -47,43 +47,43 @@
             multiselect: true,
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '长临', name: 'yzlb', width: 30, align: 'center' },
-                { label: '组号', name: 'zh', width: 30, align: 'center', hidden: (tclx == yp || tclx == zyyz) ? null : true },
+                { label: 'Dài hạn/Tạm thời', name: 'yzlb', width: 30, align: 'center' },
+                { label: 'Số nhóm', name: 'zh', width: 30, align: 'center', hidden: (tclx == yp || tclx == zyyz) ? null : true },
                  {
                      label: 'zxksdm', name: 'zxksdm', editwidth: '100%', align: 'center', editable: true, hidden: true
                  },
 				{
-				    label: '执行科室', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editable: true,hidden:tclx==kfyz?null:true
+				    label: 'Khoa thực hiện', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editable: true,hidden:tclx==kfyz?null:true
 				},
-                { label: '项目名称', name: 'xmmc', width: 120, align: 'left' },
-                { label: '单价', name: 'dj', width: 60, align: 'left' },
-                { label: '剂量', name: 'ypjl', width: 40, align: 'center', hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true },
-                { label: '单位', name: 'dw', width: 40, align: 'center', hidden: tclx == wz ? true : null },
-                { label: '用法', name: 'yfmcval', width: 40, align: 'center', hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true },
-                { label: '每次治疗量', name: 'ypjl', width: 80, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
+                { label: 'Tên mục', name: 'xmmc', width: 120, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 60, align: 'left' },
+                { label: 'Liều lượng', name: 'ypjl', width: 40, align: 'center', hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true },
+                { label: 'Đơn vị', name: 'dw', width: 40, align: 'center', hidden: tclx == wz ? true : null },
+                { label: 'Cách dùng', name: 'yfmcval', width: 40, align: 'center', hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true },
+                { label: 'Liều mỗi lần điều trị', name: 'ypjl', width: 80, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
                 { label: 'pcCode', name: 'pcCode', hidden: true },
-                { label: '频次', name: 'pcmc', width: 60, align: 'left' },
+                { label: 'Tần suất', name: 'pcmc', width: 60, align: 'left' },
                 { label: sltext, name: 'sl', width: 70, align: 'center', hidden: tclx == wz ? true : tclx == ssyz ? true : null },
-                { label: '部位', name: 'bw', width: 60, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
+                { label: 'Vị trí', name: 'bw', width: 60, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
                 {
-                    label: '自备标志', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
-                        return val == 1 ? "是" : "否";
+                    label: 'Tự chuẩn bịDấu hiệu', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
+                        return val == 1 ? "Có" : "Không";
                     }
                 },
-                { label: '嘱托', name: 'ztnr', width: 90, align: 'left' },
-                { label: '医疗类别', name: 'zfxz', hidden: true },
+                { label: 'Dặn dò', name: 'ztnr', width: 90, align: 'left' },
+                { label: 'Loại y tế', name: 'zfxz', hidden: true },
                 {
-                    label: '医疗类别', name: 'zfxzmc',width: 50,hidden:(tclx==kfyz)? null:true, formatter: function (cellvalue, a, b) {
+                    label: 'Loại y tế', name: 'zfxzmc',width: 50,hidden:(tclx==kfyz)? null:true, formatter: function (cellvalue, a, b) {
                         return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
                     }
                 },
-                { label: '库存', name: 'kcsl', width: 50, hidden: true },
+                { label: 'Tồn kho', name: 'kcsl', width: 50, hidden: true },
                 {
-                    label: '控制标志', name: 'kzbz', width: 50, hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true, formatter: function (val) {
+                    label: 'Kiểm soátDấu hiệu', name: 'kzbz', width: 50, hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true, formatter: function (val) {
                         if (val == "0") {
-                            return "正常";
+                            return "Bình thường";
                         } else if (val == "1") {
-                            return "禁用"
+                            return "Vô hiệu hóa"
                         } else if (val == null) {
                             return "";
                         }
@@ -105,7 +105,7 @@
                     var rowid = String(this);
                     var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
-                    if ((kcsl != "" && kzbz != "禁用" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
+                    if ((kcsl != "" && kzbz != "Vô hiệu hóa" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
                         $gridList.jqGrid('setSelection', rowid); //设置jqGrid选中
                     }
                 });
@@ -116,12 +116,12 @@
                     var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if (kcsl == "") {
-                        $.modalAlert("该药品无库存，不可选", "warning");
+                        $.modalAlert("Thuốc này không có tồn kho, không thể chọn", "warning");
                         $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
                         return;
                     }
-                    if (kzbz == "禁用") {
-                        $.modalAlert("该药品禁用状态，不可选", "warning");
+                    if (kzbz == "Vô hiệu hóa") {
+                        $.modalAlert("Thuốc này ở trạng thái vô hiệu hóa, không thể chọn", "warning");
                         $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
                         return;
                     }
@@ -145,14 +145,14 @@
         $.each(allData, function () {
             totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
         });
-        $("#gridList").jqGrid("setCaption", "合计：" + "<label style='color:red;'>￥"
+        $("#gridList").jqGrid("setCaption", "Tổng cộng:" + "<label style='color:red;'>￥"
             + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
     }
 
     function submitForm() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', true, true);
         if(!data || data.length==0){
-            $.modalAlert("请选择明细进行复制", 'warning');
+            $.modalAlert("Vui lòng chọnChi tiếtTiến hànhSao chép", 'warning');
             return;
         }
         var cfmxIdStr = "";

@@ -1,0 +1,98 @@
+
+@{
+    ViewBag.Title = "ConfirmationOfReturn";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<form id="formTY">
+    <div class="topPanel" style="border-bottom:1px solid rgb(221, 221, 221);margin-bottom: 1%;">
+        <div class="search">
+            <table>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ、Họ tên、Số hóa đơn" style="width: 200px;">
+                        </div>
+                    </td>
+                    <td style="padding-left:12px;">
+                        <div class="btn-group" id="btnKeywordTypeGourp" style="margin-top:0;">
+                            <button type="button" data-keywordtype="kh" class="btn active btn-default">&nbsp;thẻ&nbsp;số&nbsp;</button>
+                            <button type="button" data-keywordtype="xm" class="btn btn-default">&nbsp;Họ&nbsp;Tên&nbsp;</button>
+                            <button type="button" data-keywordtype="fph" class="btn btn-default">Số hóa đơn</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel divBottom">
+        <table id="gridTYCF"></table>
+    </div>
+    <div class="gridPanel divBottom">
+        <table id="gridTYCFInfo"></table>
+    </div>
+
+    <div class="toolbar toolbarfloat">
+        <a class="btn btn-primary" onclick="">Đã duyệt</a>
+        <a class="btn btn-primary" onclick="newtouch_globalevent_f10()"> Thoát</a>
+    </div>
+</form>
+<script>
+    $(function () {
+        gridTYCF([]);
+        gridTYCFInfo([]);
+    });
+    function gridTYCF(mydata) {
+        var $gridCF = $("#gridTYCF");
+        $gridCF.dataNewGrid({
+            height: 150,
+            autowidth: false,
+            width: $("#formTY").width() - 20,
+            caption: "Danh sách đăng ký trả thuốc",
+            colModel: [
+                { label: 'Số hóa đơn', name: '', width: 100, align: 'left' },
+                { label: 'Họ tên', name: '', width: 100, align: 'left' },
+                { label: 'Tuổi', name: '', width: 100, align: 'left' },
+                { label: 'Giới tính', name: '', width: 100, align: 'left' },
+                { label: 'Số thẻ', name: '', width: 100, align: 'left' },
+                { label: 'Số đơn thuốc', name: '', width: 100, align: 'left' },
+                { label: 'Loại bệnh nhân', name: '', width: 100, align: 'left' },
+                { label: 'Thời gian thu phí', name: '', width: 100, align: 'left' },
+                { label: 'Số tiền', name: '', width: 100, align: 'left' }
+            ]
+        }, mydata);
+    }
+
+
+    function gridTYCFInfo(mydata) {
+        var $gridCFInfo = $("#gridTYCFInfo");
+        $gridCFInfo.dataNewGrid({
+            height: 150,
+            caption: "Chi tiết đăng ký trả thuốc",
+            multiselect: true,
+            colModel: [
+                { label: 'Mã thuốc', name: '', width: 100, align: 'left' },
+                { label: 'Tên thuốc', name: '', width: 100, align: 'left' },
+                { label: 'Quy cách', name: '', width: 100, align: 'left' },
+                { label: 'Số lô', name: '', width: 100, align: 'left' },
+                { label: 'Lô', name: '', width: 100, align: 'left' },
+                { label: 'Số lượng', name: '', width: 100, align: 'left' },
+                { label: 'Đơn vị', name: '', width: 100, align: 'left' },
+                { label: 'Đơn giá', name: '', width: 100, align: 'left' },
+                { label: 'Số tiền', name: '', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: '', width: 100, align: 'left' },
+                { label: 'Liều dùng', name: '', width: 100, align: 'left' },
+                { label: 'Đơn vị liều', name: '', width: 100, align: 'left' },
+                { label: 'Cách dùng', name: '', width: 100, align: 'left' },
+                { label: 'Tần suất', name: '', width: 100, align: 'left' },
+                { label: 'Liều lượng', name: '', width: 100, align: 'left' },
+                { label: 'Đơn vị liều dùng', name: '', width: 100, align: 'left' },
+                { label: 'Lời dặn bác sĩ', name: '', width: 100, align: 'left' },
+                { label: 'Nhóm thuốc', name: '', width: 100, align: 'left' }
+            ]
+        }, mydata);
+    }
+</script>
+
+

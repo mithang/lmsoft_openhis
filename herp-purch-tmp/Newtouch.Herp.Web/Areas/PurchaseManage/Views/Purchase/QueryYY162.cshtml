@@ -1,0 +1,87 @@
+
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "Lấy trạng thái chi tiết trả hàng theo phiếu trả hàng vật tư tiêu hao";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+}
+<script src="~/Content/js/index.js"></script>
+
+<form id="form1">
+    <div class="panel panel-default" style="margin-bottom:10px;">
+        <div class="panel-heading">Lấy trạng thái chi tiết trả hàng theo phiếu trả hàng vật tư tiêu hao</div>
+        <table class="form">
+            <tr style="float:left">
+                <th class="formTitle">Số phiếu trả hàng:</th>
+                <td class="formValue">
+                    <input id="thdbh" class="form-control" placeholder="Số phiếu trả hàng" />
+                </td>
+                <th class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-detail">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $(function () {
+        //gridList();
+    });
+
+
+
+    function getPostData() {
+        return {
+            THDBH: $("#thdbh").val(),
+            THMXBHCXTJ :'',
+        };
+    }
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PurchaseManage/Purchase/GetGridJsonYY162",
+            height: $(window).height() - 200,
+            postData: getPostData(),
+            colModel: [
+                { label: 'Số chi tiết trả hàng', name: 'THMXBH', width: 180, align: 'left' },
+                {
+                    label: 'Trạng thái chi tiết trả hàng', name: 'THMXZT', width: 180, align: 'left', formatter: function (val) {
+                        return $.enum.getDescByValue("EnumTHMXZT", val);
+                    }
+                },
+                { label: 'Giải thích xử lý của doanh nghiệp cho phiếu trả hàng', name: 'THDQYCLSM', width: 180, align: 'left' },
+            ],
+            multiselect: false,
+            //pager: "#gridPager",
+            //sortname: '',
+            viewrecords: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                //btn_selectrow(rowid);
+            }
+        });
+        $("#btn_search").click(function () {
+            $('#gridList').jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
+                postData: getPostData(),
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //Tra cứu
+    $('#btn_search').click(function () {
+        if ($("#thdbh").val() == "" || $("#thdbh").val() == null) {
+            $.modalAlert("Vui lòng nhập số phiếu trả hàng", 'warning');
+            return ;
+        }
+        gridList();
+    });
+</script>
+
+

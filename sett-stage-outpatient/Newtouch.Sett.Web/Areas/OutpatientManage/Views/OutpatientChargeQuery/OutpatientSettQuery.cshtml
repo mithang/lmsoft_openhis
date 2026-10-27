@@ -1,0 +1,181 @@
+@{
+    ViewBag.Title = "OutpatienSettQuery";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var curOpr = OperatorProvider.GetCurrent();
+}
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Họ tên/Số khám ngoại trú/Phiên âm：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control" id="txtxm" name="txtxm" />
+                </td>
+                <th class="formTitle">Thao tácnhân viên：</th>
+                <td class="formValue">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="txtsyy" value="" />
+                        </div>
+                        <div class="col-md-3" style="text-align:right;">
+                            <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="Tra cứu" />
+                        </div>
+                    </div>
+                </td>
+                <td style="width:20px"></td>
+                <th class="formTitle" id="thCZRQ">Ngày thao tác：</th>
+                <td class="formValue" colspan="2">
+                    <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left:2%;float:left;">—</span>
+                    <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <td class="formValue">
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
+                </td>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr></tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridJSList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        //quyết toánbản ghi chính
+        gridJSListData();
+    });
+    //đăng ký khám ngoại trúquyết toántra cứu
+    function gridJSListData() {
+        var gridSort = 'CreateTime asc';
+
+        var $gridJsList = $("#gridJSList");
+        $gridJsList.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 178,
+            url: "/OutpatientManage/OutpatientChargeQuery/SelectRegChargeQuery",
+            colModel: [
+                { label: 'jsnm', name: 'jsnm', hidden: true, align: 'left' },
+                {
+                    label: 'Thời gian thu phí', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                {
+                    label: 'Thời gian khám', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
+                { label: 'Loại chi phí', name: 'brxzmc', width: 80, align: 'center' },
+                
+                { label: 'Họ tên', name: 'xm', width: 70, align: 'center' },
+                {
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
+                        return cellvalue=="1"?"Nam":"Nữ";
+                    }
+                },
+                { label: 'CMND/CCCD', name: 'zjh', width: 120, align: 'center' },
+                { label: 'Điện thoại', name: 'phone', width: 80, align: 'center' },
+                { label: 'Chẩn đoán', name: 'zdmc', width: 80, align: 'center' },
+                { label: 'Bác sĩ', name: 'jzys', width: 80, align: 'center' },
+                { label: 'Số bệnh án', name: 'blh', width: 100, align: 'center', hidden: true, },
+                { label: 'Số hóa đơn', name: 'fph', width: 80, align: 'center', hidden: true },
+                {
+                    label: 'Tổng chi phí', name: 'jszje', width: 70, align: 'center', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    }
+                },
+                {
+                    label: 'Tiền mặt', name: 'jsxjzf', width: 70, align: 'center', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    }
+                },
+                {
+                    label: 'ghi sổ', name: 'jsjz', width: 70, align: 'center', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    }
+                },
+                {
+                    label: 'Ngày chi phí', name: 'sfrq', width: 100, align: 'center', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                {
+                    label: 'Loại thao tác', name: 'jslx', width: 60, align: "center",
+                    formatter: function (val) {
+                        return $.enum.getDescByValue("EnumJslx", val);
+                    }
+                },
+                { label: 'Thao tácnhân viên', name: 'CreatorName', width: 80, align: 'center' },
+               
+                { label: 'Hoàn phínhân viên', name: 'tCreatorCode', align: 'center', hidden: true },
+            ],
+            pager: "#gridPager",
+            sortname: gridSort,
+            viewrecords: true,
+            footerrow: true,
+            gridComplete: function (gridJszbList) {
+                var rowNum = parseInt($(this).getGridParam('records'), 10);
+                if (rowNum > 0) {
+                    var jszje = jQuery(this).getCol('jszje', false, 'sum');
+                    var jsxjzf = jQuery(this).getCol('jsxjzf', false, 'sum');
+                    var jsjz = jQuery(this).getCol('jsjz', false, 'sum');
+                    $(".ui-jqgrid-sdiv").show();
+                    $(this).footerData("set", { "jzys": "<font color='red'>Tổng cộng<font>", "jszje": jszje, "jsxjzf": jsxjzf, "jsjz": jsjz });
+                } else {
+                    $(".ui-jqgrid-sdiv").hide();
+                }
+            },
+        });
+        $("#btn_search").click(function () {
+            $gridJsList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+            }).trigger('reloadGrid');
+        });
+    }
+    function getSearchPostData() {
+        var xm = $("#txtxm").val();
+        var syy = $("#txtsyy").val();
+        var createTimestart =  $("#txtCreateTimestart").val();
+        var createTimeEnd =  $("#txtCreateTimeEnd").val();
+        var sfrqTimestart = $("#txtCreateTimestart").val();
+        var sfrqTimeEnd = $("#txtCreateTimeEnd").val();
+        return {
+            kh: "", fph: "", xm: xm, syy: syy, CreateTimestart: createTimestart, CreateTimeEnd: createTimeEnd
+            , sfrqTimestart: sfrqTimestart, sfrqTimeEnd: sfrqTimeEnd
+        };
+    };
+
+
+    //người thao tác
+    $("#btnsyy").click(function () {
+        $.modalOpen({
+            id: "FormOutpatSFCZYUsers",
+            title: "ChọnThao tácnhân viên",
+            url: "/SystemManage/User/Selector?from=mzshoufeicaozuoyuan&organizeId=" + '@curOpr.OrganizeId' + "&isExpand=true&callbackType=json&single=true",
+            width: "300px",
+            height: "400px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].AcceptClick(function (data) {
+                    userStaffTreeCallback(data);
+                });
+            }
+        });
+    });
+
+
+    $(function () {
+        var h = $(window).height() - 55
+        $('#layout iframe').css('height', h);
+        setTimeout(function () { }, 100);
+    });
+
+
+</script>

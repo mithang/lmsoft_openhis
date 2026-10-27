@@ -1,47 +1,47 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
 
 <div style="float:left;width:17.4%; border:solid 1px #ddd;">
     <table id="gridList"></table>
 </div>
 <div class="panel panel-default" style="width:80.5%; float:right; margin-right: 10px; border:solid 1px #ddd;">
     <div class="panel-heading">
-        模板信息
+        MẫuThông tin
     </div>
     <div style="padding:2px;padding-right:20px;">
         <form id="form1">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>名称：</th>
+                    <th class="formTitle"><span class="required">*</span>Tên:</th>
                     <td class="formValue">
                         <input id="mbId" type="text" hidden />
-                        <input id="mbmc" name="mbmc" type="text" class="form-control required" value="" placeholder="请输入模板名称" />
+                        <input id="mbmc" name="mbmc" type="text" class="form-control required" value="" placeholder="Vui lòng nhập tên mẫu" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>大类：</th>
+                    <th class="formTitle"><span class="required">*</span>Loại lớn:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="dlCode" name="dlCode" class="form-control required">
-                            <option>==请选择==</option>
+                            <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>执行科室：</th>
+                    <th class="formTitle"><span class="required">*</span>Khoa thực hiện:</th>
                     <td class="formValue">
-                        <input id="zxks" name="zxks" type="text" class="form-control required" value="" placeholder="请输入执行科室" />
+                        <input id="zxks" name="zxks" type="text" class="form-control required" value="" placeholder="Vui lòng nhậpKhoa thực hiện" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">选项：</th>
+                    <th class="formTitle">Tùy chọn:</th>
                     <td class="formValue" style="padding-top: 1px;">
                         <div class="ckbox">
-                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                         </div>
                     </td>
-                    <th class="formTitle"><b>添加组套：</b></th>
+                    <th class="formTitle"><b>ThêmBộ mẫu:</b></th>
                     <td class="formValue">
-                        <input id="txtZutaoSel" type="text" class="form-control" placeholder="请输入组套名称或编码" />
+                        <input id="txtZutaoSel" type="text" class="form-control" placeholder="Vui lòng nhập tên bộ mẫu hoặc mã" />
                     </td>
                     <td>
                         &nbsp;&nbsp;&nbsp;
@@ -59,8 +59,8 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
     {
         ShowKeyList = new int[] { 3, 4, 6, 8 },
-        F3Text = "新增模板",
-        F6Text = "删除"
+        F3Text = "Thêm mớiMẫu",
+        F6Text = "Xóa"
     })
 </div>
 
@@ -75,7 +75,7 @@
                 height: $(window).height() - 50,
                 colModel: [
                     { label: 'mbId', name: 'mbId', width: 100, align: 'left',hidden:true },
-                    { label: '名称', name: 'mbmc', width: 100, align: 'left' },
+                    { label: 'Tên', name: 'mbmc', width: 100, align: 'left' },
                 ],
                 sortname: 'mbmc asc',
                 viewrecords: true,
@@ -118,7 +118,7 @@
         initGroupPackageGrid([]);
     })
 
-    //执行科室浮层
+    //Thực hiện科室浮层
     $('#zxks').ksFloatingSelector({
         itemdbclickhandler: function ($this) {
             $('#zxks').attr('data-code', $this.attr('data-Code'))
@@ -142,7 +142,7 @@
                 }
             });
             if (returnFlag) {
-                $.modalAlert("不可重复添加", 'warning');
+                $.modalAlert("Không được thêm trùng lặp", 'warning');
                 return;
             }
             btn_addItem($thistr);
@@ -154,13 +154,13 @@
         $('#groupPackageListGridList').newtouchLocalDataGrid({
             height: 280,
             unwritten: false,
-            caption: "组套信息",
+            caption: "Bộ mẫuThông tin",
             colModel: [
                 { label: 'ztId', name: 'ztId', width: 120, hidden: true, align: 'left' },
-                { label: '类型', name: 'Type', width: 100, align: 'left',hidden:true },
-                { label: '组套名称', name: 'ztmc', width: 200, align: 'left' },
-                { label: '描述', name: 'Description', width: 120, align: 'left' },
-                { label: '注意事项', name: 'Remark', width: 120, align: 'left' }
+                { label: 'Loại', name: 'Type', width: 100, align: 'left',hidden:true },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 200, align: 'left' },
+                { label: 'Mô tả', name: 'Description', width: 120, align: 'left' },
+                { label: 'Lưu ý', name: 'Remark', width: 120, align: 'left' }
             ]
         }, data);
     }
@@ -195,7 +195,7 @@
     function newtouch_event_f8() {
         //必填信息验证  （主诉、发病时间）
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息尚未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
 
@@ -218,7 +218,7 @@
             data: { mbobj: mbobj, mbztlist: mbztlist },
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'warning');
+                $.modalAlert("Lưu thành công", 'warning');
                 //清空
                 newtouch_globalevent_f4();
                 $("#groupPackageListGridList").clearGridData();
@@ -249,7 +249,7 @@
                 type: "POST",
                 success: function (data) {
                     $("#gridList").trigger('reloadGrid');
-                    $.modalAlert("删除成功", 'warning');
+                    $.modalAlert("Xóa thành công", 'warning');
                 }
             });
         }

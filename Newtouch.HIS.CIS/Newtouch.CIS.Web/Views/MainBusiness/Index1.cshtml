@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -16,39 +16,39 @@
 }
 
 @*导航栏*@
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
 
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-ui-compact.css")" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui-compact.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
 
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
-    <li role="presentation" id="librlb"><a href="#linkbrlb" role="tab" data-toggle="tab">患者列表</a></li>
-    <li role="presentation"><a href="#linkbl" role="tab" data-toggle="tab">病历</a></li>
+    <li role="presentation" id="librlb"><a href="#linkbrlb" role="tab" data-toggle="tab">Danh sách bệnh nhân</a></li>
+    <li role="presentation"><a href="#linkbl" role="tab" data-toggle="tab">Bệnh án</a></li>
     @if (isOpenKfcf == true)
     {
-        <li role="presentation"><a href="#linkkfcf" role="tab" data-toggle="tab">康复处方</a></li>
+        <li role="presentation"><a href="#linkkfcf" role="tab" data-toggle="tab">Phục hồi chức năngĐơn thuốc</a></li>
     }
     @if (isOpenCgxmcf == true)
     {
-        <li role="presentation"><a href="#linkcgxmcf" role="tab" data-toggle="tab">常规项目</a></li>
+        <li role="presentation"><a href="#linkcgxmcf" role="tab" data-toggle="tab">Thường quyMục</a></li>
     }
-    <li role="presentation"><a href="#linkxycf" role="tab" data-toggle="tab">西药处方</a></li>
+    <li role="presentation"><a href="#linkxycf" role="tab" data-toggle="tab">Thuốc TâyĐơn thuốc</a></li>
     @if (iSOpenZycf == true)
     {
-        <li role="presentation"><a href="#linkzycf" role="tab" data-toggle="tab">中药处方</a></li>
+        <li role="presentation"><a href="#linkzycf" role="tab" data-toggle="tab">Thuốc YHCTĐơn thuốc</a></li>
     }
 
     @if (IsOpenJyJcSwitch == true)
     {
-        <li role="presentation" id="lijy"><a href="#linkjy" role="tab" data-toggle="tab">检验</a></li>
-        <li role="presentation" id="lijc"><a href="#linkjc" role="tab" data-toggle="tab">检查</a></li>
+        <li role="presentation" id="lijy"><a href="#linkjy" role="tab" data-toggle="tab">Xét nghiệm</a></li>
+        <li role="presentation" id="lijc"><a href="#linkjc" role="tab" data-toggle="tab">Kiểm tra</a></li>
     }
     @if (isOpenBespeakRegister == true)
     {
-        <li role="presentation" id="libespeakRegister"><a href="#linkbespeakRegister" role="tab" data-toggle="tab">预约</a></li>
+        <li role="presentation" id="libespeakRegister"><a href="#linkbespeakRegister" role="tab" data-toggle="tab">Đặt hẹn</a></li>
     }
 </ul>
 
@@ -107,12 +107,12 @@
             if (targetHref && targetHref.indexOf('linkbrlb') == -1) {
                 //非患者列表页
                 if (!!!window.currPatientInfo || JSON.stringify(window.currPatientInfo) == '{}') {
-                    $.modalAlert("请先选择一个患者", 'warning');
+                    $.modalAlert("Vui lòng chọn trước mộtBệnh nhân", 'warning');
                     return false;
                 }
                 if (window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)'
                     && targetHref.indexOf('linkbl') == -1) {
-                    $.modalAlert("已结束就诊仅可查看", 'warning');
+                    $.modalAlert("Đã kết thúc khám bệnh, chỉ có thể xem", 'warning');
                     return false;
                 }
             }
@@ -179,7 +179,7 @@
                 $('#floatLeftMostPartDiv').hide();
             }
             else {
-                $('#floatLeftMostPartDiv').show();   //显示处方历史模板树
+                $('#floatLeftMostPartDiv').show();   //显示处方Lịch sử模板树
             }
             if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //检验检查页
                 $('#floatInspectTemplateTree').hide();
@@ -354,8 +354,8 @@
          + '&nbsp;/&nbsp;' + window.currPatientInfo.xb
          + '&nbsp;/&nbsp;' + GetAgeByCsny(window.currPatientInfo.csny)
             + '&nbsp;/&nbsp;' + window.currPatientInfo.brxzmc
-            + '&nbsp;/&nbsp;<span title=' + window.currPatientInfo.province + "省" + window.currPatientInfo.city + "市" + window.currPatientInfo.county + "县"+window.currPatientInfo.address+'>' + window.currPatientInfo.city + "市"
-            + window.currPatientInfo.county + "县</span>");
+            + '&nbsp;/&nbsp;<span title=' + window.currPatientInfo.province + " " + window.currPatientInfo.city + " " + window.currPatientInfo.county + ""+window.currPatientInfo.address+'>' + window.currPatientInfo.city + " "
+            + window.currPatientInfo.county + "</span>");
     }
 
     function removePatientBasicInfo() {
@@ -432,7 +432,7 @@
                     url = url + "&returnUrl=" + encodeURIComponent(returnUrl);
                     $.modalOpen({
                         id: "PatientBasicInfoModify",
-                        title: "基本信息修改",
+                        title: "Thông tin cơ bảnSửa",
                         url: url,
                         width: "1000px",
                         height: "400px",

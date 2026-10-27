@@ -1,29 +1,46 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using NewtouchHIS.Lib.Framework.Attributes;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
+
 using Newtouch.Domain.IDomainServices.Queue;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Domain.ValueObjects.Queue;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
 {
+    [Area("QueueManage")]
     public class QueueInfoController : OrgControllerBase
     {
         private readonly IQueueDmnService _queueDmnService;
+
+        public QueueInfoController(IQueueDmnService queueDmnService)
+        {
+            this._queueDmnService = queueDmnService;
+        }
         // GET: QueueManage/QueueInfo
-        //public ActionResult Index()
+        //public IActionResult Index()
         //{
         //    return View();
         //}
 
-        public ActionResult GetQueueInfo(Pagination pagination, string qdsj, string ks, string ys, string ywbz, string ywlx, int? calledstu, string keyword)
+        public IActionResult GetQueueInfo(Pagination pagination, string qdsj, string ks, string ys, string ywbz, string ywlx, int? calledstu, string keyword)
         {
             DateTime kssj = Convert.ToDateTime(qdsj);
             DateTime jssj = Convert.ToDateTime(qdsj).AddDays(1).AddMilliseconds(-1);
@@ -42,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
         /// <param name="mzh"></param>
         /// <param name="calledstu"></param>
         /// <returns></returns>
-        public ActionResult CallNumber(string mzh, string calledstu)
+        public IActionResult CallNumber(string mzh, string calledstu)
         {
             var reqObj = new
             {
@@ -53,11 +70,11 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
             };
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<SignInStateRequest>>(
                  "api/SignInAppointment/SignInState", reqObj);
-            if (apiResp.msg != null) return Success("接口调用失败【" + apiResp.msg + apiResp.sub_msg + "】");
+            if (apiResp.msg != null) return Success("Gọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
             return Success();
         }
 
-        public ActionResult getNextCall(string qdsj, string ks, string ys, string ywbz, string ywlx, int? calledstu, string keyword, string mzh) {
+        public IActionResult getNextCall(string qdsj, string ks, string ys, string ywbz, string ywlx, int? calledstu, string keyword, string mzh) {
             //var callData = _queueDmnService.GetQueueByMzh(mzh, OrganizeId);
             DateTime kssj = Convert.ToDateTime(qdsj);
             DateTime jssj = Convert.ToDateTime(qdsj).AddDays(1).AddMilliseconds(-1);

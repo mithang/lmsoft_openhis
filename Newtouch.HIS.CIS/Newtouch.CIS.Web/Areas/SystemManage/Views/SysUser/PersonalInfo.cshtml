@@ -1,4 +1,4 @@
-﻿@using Newtouch.Common.Operator;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
     ViewBag.Title = "Info";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -10,7 +10,7 @@
 </script>
 <div class="wrapper">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#a1111" data-toggle="tab">修改密码</a></li>
+        <li class="active"><a href="#a1111" data-toggle="tab">SửaMật khẩu</a></li>
         @*<li class="active"><a href="#a" data-toggle="tab">基本信息</a></li>
             <li><a href="#b" data-toggle="tab">注册信息</a></li>
             <li><a href="#c" data-toggle="tab">安全验证</a></li>
@@ -21,25 +21,25 @@
         <div id="a1111" class="tab-pane active" style="padding: 15px;">
             <ul class="pop-list">
                 <li>
-                    <label>账户</label>
+                    <label>Tài khoản</label>
                     <input type="text" class="form-control newtouch_Readonly" value="@(OperatorProvider.GetCurrent().UserCode)" />
                 </li>
                 <li>
-                    <label>新密码</label>
+                    <label>Mật khẩu mới</label>
                     <input type="password" id="newpwd" class="form-control" />
                 </li>
                 <li>
-                    <label>确认新密码</label>
+                    <label>Xác nhận mật khẩu mới</label>
                     <input type="password" id="renewpwd" class="form-control" />
                 </li>
                 <li>
                     <div style="padding-left: 115px;">
-                        <a class="btn btn-primary" onclick="btn_submitPwd()"><i class="fa" style="margin-right:5px;"></i>确认修改</a>
+                        <a class="btn btn-primary" onclick="btn_submitPwd()"><i class="fa" style="margin-right:5px;"></i>Xác nhậnSửa</a>
                     </div>
                 </li>
                 <li>
                     &nbsp;&nbsp;
-                    <span style="color:#999;">6-16位，必须包含字母数字</span>
+                    <span style="color:#999;">6-16 ký tự, bắt buộc chứa chữ cái và số</span>
                 </li>
             </ul>
         </div>
@@ -68,16 +68,16 @@
         var newpwd = $.trim($('#newpwd').val());
         var renewpwd = $.trim($('#renewpwd').val());
         if (!!!newpwd || !!!renewpwd) {
-            $.modalAlert("请填写密码", "error");
+            $.modalAlert("Vui lòng điềnMật khẩu", "error");
             return false;
         }
         if (newpwd != renewpwd) {
-            $.modalAlert("两次输入的密码不一致", "error");//密码复杂度不够
+            $.modalAlert("Mật khẩu nhập hai lần không nhất quán", "error");//密码复杂度不够
             return false;
         }
         var ret = /^(?![0-9]+$)(?![a-zA-Z]+$)\S{6,16}$/;
         if (newpwd && !ret.test(newpwd)) {
-            $.modalAlert("密码复杂度不够<br/>6-16位，必须包含字母数据", "error");//密码复杂度不够
+            $.modalAlert("Độ phức tạp mật khẩu chưa đủ<br/>6-16 ký tự, bắt buộc chứa chữ cái và số", "error");//密码复杂度不够
             return false;
         }
         $.ajax({
@@ -87,10 +87,10 @@
             dataType: "json",
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalAlert("重置密码成功。", "success");
+                    $.modalAlert("Đặt lạiMật khẩuthành công.", "success");
                     location.href = location.href;
                 } else {
-                    $.modalAlert("重置密码失败。", "error");
+                    $.modalAlert("Đặt lạiMật khẩuthất bại.", "error");
                     location.href = location.href;s
                 }
             }

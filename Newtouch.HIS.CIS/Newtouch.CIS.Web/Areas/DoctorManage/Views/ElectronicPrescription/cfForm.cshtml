@@ -1,8 +1,8 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "cfFrom";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 <form>
 
@@ -61,43 +61,43 @@
                             $gridList.newtouchLocalDataGrid({
                                 autowidth: false,
                                 unwritten: false,
-                                caption: "处方信息",
+                                caption: "Đơn thuốcThông tin",
 
                             }, eval('(' + data1.encData + ')'));
                             $gridListcfmx.newtouchLocalDataGrid({
                                 autowidth: false,
                                 unwritten: false,
-                                caption: "处方明细信息",
+                                caption: "Đơn thuốcChi tiếtThông tin",
 
                             }, eval('(' + data1.encData + ')').rxDetlList);
                             $gridListjz.newtouchLocalDataGrid({
                                 autowidth: false,
                                 unwritten: false,
-                                caption: "就诊信息",
+                                caption: "Khám bệnhThông tin",
 
                             }, eval('(' + data1.encData + ')').rxOtpinfo);
                             $gridListzd.newtouchLocalDataGrid({
                                 autowidth: false,
                                 unwritten: false,
-                                caption: "诊断信息",
+                                caption: "Chẩn đoánThông tin",
 
                             }, eval('(' + data1.encData + ')').rxDiseList);
                         }
                         else {
-                            $.modalAlert("电子处方信息查询失败：" + data1.message, 'error');
+                            $.modalAlert("Điện tửĐơn thuốcThông tinTra cứuthất bại:" + data1.message, 'error');
                             return;
                         }
                         
                     }
                     else {
-                        $.modalAlert("电子处方信息查询失败：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Điện tửĐơn thuốcThông tinTra cứuthất bại:" + tfReturn.err_msg, 'error');
                         return;
                     }
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert('医保服务【电子处方查询】不可访问：' + ex, 'error');
+                $.modalAlert('Bảo hiểm y tếDịch vụ【Điện tửĐơn thuốcTra cứu】Không thể truy cập:' + ex, 'error');
             }
         });
 
@@ -106,42 +106,42 @@
     
     function gridListData() {
         var $gridList = $("#gridList");
-        var captionCon = "处方信息";
+        var captionCon = "Đơn thuốcThông tin";
         $gridList.dataGrid({
             height: $(window).height()/4 - 100,
             caption: captionCon,
             multiselect: false,
             unwritten: false,
             colModel: [
-                { label: '医保处方编号', name: 'hiRxno', width: 80, align: 'left' },
-                { label: '定点医疗机构编号', name: 'fixmedinsCode', width: 80, align: 'left' },
-                { label: '定点医疗机构名称', name: 'fixmedinsName', width: 80, align: 'left' },
-                {label: '医保处方状态编码', name: 'rxStasCodg', width: 80, align: 'left'},
-                { label: '医保处方状态名称', name: 'rxStasName', width: 80, align: 'left' },
-                { label: '医保处方使用状态编码', name: 'rxUsedStasCodg', width: 80, align: 'left' },
-                { label: '医保处方使用状态名称', name: 'rxUsedStasName', width: 80, align: 'left' },
-                { label: '开方时间', name: 'prscTime', width: 80, align: 'left' },
-                { label: '药品数量（剂数）', name: 'rxDrugCnt', width: 80, align: 'left' },
-                { label: '处方整剂用法 编号', name: 'rxUsedWayCodg', width: 80, align: 'left' },
-                { label: '处方整剂用法 名称', name: 'rxUsedWayName', width: 80, align: 'left' },
-                { label: '处方整剂频次 编号', name: 'rxFrquCodg', width: 80, align: 'left' },
-                { label: '处方整剂频次名称', name: 'rxFrquName', width: 80, align: 'left' },
-                { label: '处方整剂剂量单位', name: 'rxDosunt', width: 80, align: 'left' },
-                { label: '处方整剂单次剂量数', name: 'rxDoscnt', width: 80, align: 'left' },
-                { label: '处方整剂医嘱说明', name: 'rxDrordDscr', width: 80, align: 'left' },
-                { label: '处方有效天数', name: 'valiDays', width: 80, align: 'left' },
-                { label: '有效截止时间', name: 'valiEndTime', width: 80, align: 'left' },
-                { label: '复用（多次）使用标志', name: 'reptFlag', width: 80, align: 'left' },
-                { label: '最大复用次数', name: 'maxReptCnt', width: 80, align: 'left' },
-                { label: '已复用次数', name: 'reptdCnt', width: 80, align: 'left' },
-                { label: '使用最小间隔（天数）', name: 'minInrvDays', width: 80, align: 'left' },
-                { label: '处方类别编号', name: 'rxTypeCode', width: 80, align: 'left' },
-                { label: '处方类别名称', name: 'rxTypeName', width: 80, align: 'left' },
-                { label: '长期处方标志', name: 'longRxFlag', width: 80, align: 'left' },
-                { label: '业务类型代码', name: 'bizTypeCode', width: 80, align: 'left' },
-                { label: '业务类型名称', name: 'bizTypeName', width: 80, align: 'left' },
-                { label: '处方附加属性代码', name: 'rxExraAttrCode', width: 80, align: 'left' },
-                { label: '处方附加属性名称', name: 'rxExraAttrName', width: 80, align: 'left' },
+                { label: 'Bảo hiểm y tếĐơn thuốcSố hiệu', name: 'hiRxno', width: 80, align: 'left' },
+                { label: 'Chỉ địnhY tếCơ sởSố hiệu', name: 'fixmedinsCode', width: 80, align: 'left' },
+                { label: 'Chỉ địnhY tếCơ sởTên', name: 'fixmedinsName', width: 80, align: 'left' },
+                {label: 'Bảo hiểm y tếĐơn thuốcTrạng tháiMã', name: 'rxStasCodg', width: 80, align: 'left'},
+                { label: 'Bảo hiểm y tếĐơn thuốcTrạng tháiTên', name: 'rxStasName', width: 80, align: 'left' },
+                { label: 'Bảo hiểm y tếĐơn thuốcSử dụngTrạng tháiMã', name: 'rxUsedStasCodg', width: 80, align: 'left' },
+                { label: 'Bảo hiểm y tếĐơn thuốcSử dụngTrạng tháiTên', name: 'rxUsedStasName', width: 80, align: 'left' },
+                { label: 'Kê đơnThời gian', name: 'prscTime', width: 80, align: 'left' },
+                { label: 'ThuốcSố lượng(Số thang)', name: 'rxDrugCnt', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLiều nguyênCách dùng Số hiệu', name: 'rxUsedWayCodg', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLiều nguyênCách dùng Tên', name: 'rxUsedWayName', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLiều nguyênTần suất Số hiệu', name: 'rxFrquCodg', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLiều nguyênTần suấtTên', name: 'rxFrquName', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLiều nguyênĐơn vị liều', name: 'rxDosunt', width: 80, align: 'left' },
+                { label: 'Liều dùng một lần của đơn thuốc', name: 'rxDoscnt', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLiều nguyênY lệnhMô tả', name: 'rxDrordDscr', width: 80, align: 'left' },
+                { label: 'Đơn thuốcHiệu lựcSố ngày', name: 'valiDays', width: 80, align: 'left' },
+                { label: 'Thời gian hết hiệu lực', name: 'valiEndTime', width: 80, align: 'left' },
+                { label: 'Tái sử dụng(Nhiều lần)Sử dụngDấu hiệu', name: 'reptFlag', width: 80, align: 'left' },
+                { label: 'Lớn nhấtTái sử dụngSố lần', name: 'maxReptCnt', width: 80, align: 'left' },
+                { label: 'Số lần đã tái sử dụng', name: 'reptdCnt', width: 80, align: 'left' },
+                { label: 'Sử dụngNhỏ nhấtKhoảng cách(Số ngày)', name: 'minInrvDays', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLoạiSố hiệu', name: 'rxTypeCode', width: 80, align: 'left' },
+                { label: 'Đơn thuốcLoạiTên', name: 'rxTypeName', width: 80, align: 'left' },
+                { label: 'Dài hạnĐơn thuốcDấu hiệu', name: 'longRxFlag', width: 80, align: 'left' },
+                { label: 'Nghiệp vụLoạiMã', name: 'bizTypeCode', width: 80, align: 'left' },
+                { label: 'Nghiệp vụLoạiTên', name: 'bizTypeName', width: 80, align: 'left' },
+                { label: 'Đơn thuốcBổ sungThuộc tínhMã', name: 'rxExraAttrCode', width: 80, align: 'left' },
+                { label: 'Đơn thuốcBổ sungThuộc tínhTên', name: 'rxExraAttrName', width: 80, align: 'left' },
             ],
             //pager: "#gridPager",
             viewrecords: true
@@ -150,50 +150,50 @@
 
     function gridListDatacfmx() {
         var $gridListcfmx = $("#gridListcfmx");
-        var captionCon = "处方明细信息";
+        var captionCon = "Đơn thuốcChi tiếtThông tin";
         $gridListcfmx.dataGrid({
             height: $(window).height() / 4 - 60,
             caption: captionCon,
             multiselect: false,
             unwritten: false,
             colModel: [
-                { label: '医疗目录编码', name: 'medListCodg', align: 'center', width: 100, key: true },
-                { label: '定点医药机构目录编号', name: 'fixmedinsHilistId', align: 'center', width: 100 },
-                { label: '院内制剂标志', name: 'hospPrepFlag', align: 'center', width: 100 },
-                { label: '处方项目分类代码', name: 'rxItemTypeCode', align: 'center', width: 100 },
-                { label: '处方项目分类名称', name: 'rxItemTypeName', align: 'center', width: 100 },
-                { label: '中药类别名称', name: 'tcmdrugTypeName', align: 'left', width: 100 },
-                { label: '中药类别代码', name: 'tcmdrugTypeCode', align: 'left', width: 100 },
-                { label: '草药脚注', name: 'tcmherbFoote', align: 'left', width: 100 },
-                { label: '药物类型代码', name: 'mednTypeCode', align: 'left', width: 100 },
-                { label: '药物类型', name: 'mednTypeName', align: 'left', width: 100 },
-                { label: '主要用药标志', name: 'mainMedcFlag', align: 'left', width: 100 },
-                { label: '加急标志', name: 'urgtFlag', align: 'left', width: 100 },
-                { label: '基本药物标志', name: 'basMednFlag', align: 'left', width: 100 },
-                { label: '是否进口药品', name: 'impDrugFlag', align: 'left', width: 100 },
-                { label: '药品商品名', name: 'drugProdname', align: 'left', width: 100 },
-                { label: '药品通用名', name: 'drugGenname', align: 'left', width: 100 },
-                { label: '药品剂型', name: 'drugDosform', align: 'left', width: 100 },
-                { label: '药品规格', name: 'drugSpec', align: 'left', width: 100 },
-                { label: '生厂厂家', name: 'prdrName', align: 'left', width: 100 },
-                { label: '用药途径代码', name: 'medcWayCodg', align: 'left', width: 100 },
-                { label: '用药途径描述', name: 'medcWayDscr', width: 80, align: 'left' },
-                { label: '用药开始时间', name: 'medcBegntime', width: 80, align: 'left' },
-                { label: '用药结束时间', name: 'medcEndtime', width: 80, align: 'left' },
-                { label: '用药天数', name: 'medcDays', width: 80, align: 'left' },
-                { label: '药品总用药量', name: 'drugCnt', width: 80, align: 'left' },
-                { label: '药品总用药量单位', name: 'drugDosunt', width: 80, align: 'left' },
-                { label: '单次用量', name: 'sinDoscnt', width: 80, align: 'left' },
-                { label: '单次剂量单位', name: 'sinDosunt', width: 80, align: 'left' },
-                { label: '使用频次编码', name: 'usedFrquCodg', width: 80, align: 'left' },
-                { label: '使用频次名称', name: 'usedFrquName', width: 80, align: 'left' },
-                { label: '医院审批标志', name: 'hospApprFlag', width: 80, align: 'left' },
-                { label: '取药标志位', name: 'takeDrugFlag', width: 80, align: 'left' },
-                { label: '是否 OTC 药品', name: 'otcFlag', width: 80, align: 'left' },
-                { label: '自费原因类型', name: 'selfPayRea', width: 80, align: 'left' },
-                { label: '自费原因描述', name: 'realDscr', width: 80, align: 'left' },
-                { label: '所需药品库存数量', name: 'drugTotlcnt', width: 80, align: 'left' },
-                { label: '所需药品库存单位', name: 'drugTotlcntEmp', width: 80, align: 'left' },
+                { label: 'Y tếDanh mụcMã', name: 'medListCodg', align: 'center', width: 100, key: true },
+                { label: 'Số hiệu danh mục cơ sở y tế chỉ định', name: 'fixmedinsHilistId', align: 'center', width: 100 },
+                { label: 'Dấu hiệu chế phẩm trong viện', name: 'hospPrepFlag', align: 'center', width: 100 },
+                { label: 'Đơn thuốcMụcPhân loạiMã', name: 'rxItemTypeCode', align: 'center', width: 100 },
+                { label: 'Đơn thuốcMụcPhân loạiTên', name: 'rxItemTypeName', align: 'center', width: 100 },
+                { label: 'Thuốc YHCTLoạiTên', name: 'tcmdrugTypeName', align: 'left', width: 100 },
+                { label: 'Thuốc YHCTLoạiMã', name: 'tcmdrugTypeCode', align: 'left', width: 100 },
+                { label: 'Chú thích thảo dược', name: 'tcmherbFoote', align: 'left', width: 100 },
+                { label: 'ThuốcLoạiMã', name: 'mednTypeCode', align: 'left', width: 100 },
+                { label: 'ThuốcLoại', name: 'mednTypeName', align: 'left', width: 100 },
+                { label: 'ChínhDùng thuốcDấu hiệu', name: 'mainMedcFlag', align: 'left', width: 100 },
+                { label: 'KhẩnDấu hiệu', name: 'urgtFlag', align: 'left', width: 100 },
+                { label: 'Dấu hiệu thuốc cơ bản', name: 'basMednFlag', align: 'left', width: 100 },
+                { label: 'Có phải thuốc nhập khẩu không', name: 'impDrugFlag', align: 'left', width: 100 },
+                { label: 'Tên thương mại thuốc', name: 'drugProdname', align: 'left', width: 100 },
+                { label: 'ThuốcTên chung', name: 'drugGenname', align: 'left', width: 100 },
+                { label: 'Dạng bào chế thuốc', name: 'drugDosform', align: 'left', width: 100 },
+                { label: 'ThuốcQuy cách', name: 'drugSpec', align: 'left', width: 100 },
+                { label: 'Nhà sản xuất', name: 'prdrName', align: 'left', width: 100 },
+                { label: 'Dùng thuốcĐườngMã', name: 'medcWayCodg', align: 'left', width: 100 },
+                { label: 'Dùng thuốcĐườngMô tả', name: 'medcWayDscr', width: 80, align: 'left' },
+                { label: 'Dùng thuốcThời gian bắt đầu', name: 'medcBegntime', width: 80, align: 'left' },
+                { label: 'Dùng thuốcKết thúcThời gian', name: 'medcEndtime', width: 80, align: 'left' },
+                { label: 'Dùng thuốcSố ngày', name: 'medcDays', width: 80, align: 'left' },
+                { label: 'Tổng lượng dùng thuốc', name: 'drugCnt', width: 80, align: 'left' },
+                { label: 'Đơn vị tổng lượng dùng thuốc', name: 'drugDosunt', width: 80, align: 'left' },
+                { label: 'Một lầnLiều dùng', name: 'sinDoscnt', width: 80, align: 'left' },
+                { label: 'Một lầnĐơn vị liều', name: 'sinDosunt', width: 80, align: 'left' },
+                { label: 'Sử dụngTần suấtMã', name: 'usedFrquCodg', width: 80, align: 'left' },
+                { label: 'Sử dụngTần suấtTên', name: 'usedFrquName', width: 80, align: 'left' },
+                { label: 'Bệnh việnPhê duyệtDấu hiệu', name: 'hospApprFlag', width: 80, align: 'left' },
+                { label: 'Cờ lấy thuốc', name: 'takeDrugFlag', width: 80, align: 'left' },
+                { label: 'Có hay không OTC Thuốc', name: 'otcFlag', width: 80, align: 'left' },
+                { label: 'tự chi trảNguyên nhânLoại', name: 'selfPayRea', width: 80, align: 'left' },
+                { label: 'tự chi trảNguyên nhânMô tả', name: 'realDscr', width: 80, align: 'left' },
+                { label: 'Cần thiếtThuốcTồn khoSố lượng', name: 'drugTotlcnt', width: 80, align: 'left' },
+                { label: 'Cần thiếtThuốcTồn khoĐơn vị', name: 'drugTotlcntEmp', width: 80, align: 'left' },
 
 
             ],
@@ -204,7 +204,7 @@
     
     function gridListDatajz() {
         var $gridListjz = $("#gridListjz");
-        var captionCon = "就诊信息";
+        var captionCon = "Khám bệnhThông tin";
         $gridListjz.dataGrid({
             height: $(window).height() / 4 - 80,
             caption: captionCon,
@@ -212,35 +212,35 @@
             unwritten: false,
             colModel: [
                 {
-                    label: '医疗类别', name: 'medType', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Loại y tế', name: 'medType', width: 80, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("Enummed_type", val);
                     }
                 },
-                { label: '门诊/住院号', name: 'iptOtpNo', width: 80, align: 'left' },
-                { label: '门诊住院标志', name: 'otpIptFlag', width: 80, align: 'left' },
-                { label: '患者姓名', name: 'patnName', width: 80, align: 'left' },
-                { label: '年龄', name: 'patnAge', width: 80, align: 'left' },
-                { label: '患者身高', name: 'patnHgt', width: 80, align: 'left' },
-                { label: '患者体重', name: 'patnWt', width: 80, align: 'left' },
-                { label: '性别', name: 'gend', width: 80, align: 'left' },
-                { label: '妊娠(孕周)', name: 'gesoVal', width: 80, align: 'left' },
-                { label: '新生儿标志', name: 'nwbFlag', width: 80, align: 'left' },
-                { label: '新生儿日、月龄', name: 'nwbAge', width: 80, align: 'left' },
-                { label: '哺乳期标志', name: 'suckPrdFlag', width: 80, align: 'left' },
-                { label: '过敏史', name: 'algsHis', width: 80, align: 'left' },
-                { label: '险种类型', name: 'insutype', width: 80, align: 'left' },
-                { label: '开方科室名称', name: 'prscDeptName', width: 80, align: 'left' },
-                { label: '开方医师姓名', name: 'prscDrName', width: 80, align: 'left' },
-                { label: '药师姓名', name: 'pharName', width: 80, align: 'left' },
-                { label: '医疗机构药师审方时间', name: 'pharChkTime', width: 80, align: 'left' },
-                { label: '就诊时间', name: 'mdtrtTime', width: 80, align: 'left' },
-                { label: '病种编码', name: 'diseCodg', width: 80, align: 'left' },
-                { label: '病种名称', name: 'diseName', width: 80, align: 'left' },
-                { label: '是否特殊病种', name: 'spDiseFlag', width: 80, align: 'left' },
-                { label: '主诊断代码', name: 'maindiagCode', width: 80, align: 'left' },
-                { label: '主诊断名称', name: 'maindiagName', width: 80, align: 'left' },
-                { label: '疾病病情描述', name: 'diseCondDscr', width: 80, align: 'left' },
-                { label: '是否初诊', name: 'fstdiagFlag', width: 80, align: 'left' },
+                { label: 'Ngoại trú/Số nhập viện', name: 'iptOtpNo', width: 80, align: 'left' },
+                { label: 'Ngoại trúNhập việnDấu hiệu', name: 'otpIptFlag', width: 80, align: 'left' },
+                { label: 'Tên bệnh nhân', name: 'patnName', width: 80, align: 'left' },
+                { label: 'Tuổi', name: 'patnAge', width: 80, align: 'left' },
+                { label: 'Bệnh nhânChiều cao', name: 'patnHgt', width: 80, align: 'left' },
+                { label: 'Bệnh nhânCân nặng', name: 'patnWt', width: 80, align: 'left' },
+                { label: 'Giới tính', name: 'gend', width: 80, align: 'left' },
+                { label: 'Mang thai (tuần thai)', name: 'gesoVal', width: 80, align: 'left' },
+                { label: 'Dấu hiệu trẻ sơ sinh', name: 'nwbFlag', width: 80, align: 'left' },
+                { label: 'Tuổi ngày, tháng của trẻ sơ sinh', name: 'nwbAge', width: 80, align: 'left' },
+                { label: 'Dấu hiệu thời kỳ cho con bú', name: 'suckPrdFlag', width: 80, align: 'left' },
+                { label: 'Tiền sử dị ứng', name: 'algsHis', width: 80, align: 'left' },
+                { label: 'Loại hình bảo hiểm', name: 'insutype', width: 80, align: 'left' },
+                { label: 'Kê đơnKhoaTên', name: 'prscDeptName', width: 80, align: 'left' },
+                { label: 'Kê đơnBác sĩHọ tên', name: 'prscDrName', width: 80, align: 'left' },
+                { label: 'Dược sĩHọ tên', name: 'pharName', width: 80, align: 'left' },
+                { label: 'Thời gian dược sĩ cơ sở y tế thẩm định đơn thuốc', name: 'pharChkTime', width: 80, align: 'left' },
+                { label: 'Khám bệnhThời gian', name: 'mdtrtTime', width: 80, align: 'left' },
+                { label: 'Loại bệnhMã', name: 'diseCodg', width: 80, align: 'left' },
+                { label: 'Loại bệnhTên', name: 'diseName', width: 80, align: 'left' },
+                { label: 'Có hay khôngĐặc biệtLoại bệnh', name: 'spDiseFlag', width: 80, align: 'left' },
+                { label: 'Mã chẩn đoán chính', name: 'maindiagCode', width: 80, align: 'left' },
+                { label: 'Tên chẩn đoán chính', name: 'maindiagName', width: 80, align: 'left' },
+                { label: 'Mô tả tình trạng bệnh', name: 'diseCondDscr', width: 80, align: 'left' },
+                { label: 'Có hay khôngKhám lần đầu', name: 'fstdiagFlag', width: 80, align: 'left' },
 
             ],
             //pager: "#gridPagerjz",
@@ -250,27 +250,27 @@
     
     function gridListDatazd() {
         var $gridListzd = $("#gridListzd");
-        var captionCon = "诊断信息";
+        var captionCon = "Chẩn đoánThông tin";
         $gridListzd.dataGrid({
             height: $(window).height() / 4 - 80,
             caption: captionCon,
             multiselect: false,
             unwritten: false,
             colModel: [
-                { label: '诊断类别', name: 'diagType', width: 80, align: 'left' },
-                { label: '主诊断标志', name: 'maindiagFlag', width: 80, align: 'left' },
-                { label: '诊断排序号', name: 'diagSrtNo', width: 80, align: 'left' },
-                { label: '诊断代码', name: 'diagCode', width: 80, align: 'left' },
-                { label: '诊断名称', name: 'diagName', width: 80, align: 'left' },
-                { label: '诊断科室', name: 'diagDept', width: 80, align: 'left' },
-                { label: '诊断科室代码', name: 'diagDeptCode', width: 80, align: 'left' },
-                { label: '诊断医生编码', name: 'diagDrNo', width: 80, align: 'left' },
-                { label: '诊断医生姓名', name: 'diagDrName', width: 80, align: 'left' },
-                { label: '诊断时间', name: 'diagTime', width: 80, align: 'left' },
-                { label: '中医病名代码', name: 'tcmDiseCode', width: 80, align: 'left' },
-                { label: '中医病名名称', name: 'tcmDiseName', width: 80, align: 'left' },
-                { label: '中医症候代码', name: 'tcmsympCode', width: 80, align: 'left' },
-                { label: '中医症候', name: 'tcmsymp', width: 80, align: 'left' },
+                { label: 'Chẩn đoánLoại', name: 'diagType', width: 80, align: 'left' },
+                { label: 'Dấu hiệu chẩn đoán chính', name: 'maindiagFlag', width: 80, align: 'left' },
+                { label: 'Số thứ tự xếp hạng chẩn đoán', name: 'diagSrtNo', width: 80, align: 'left' },
+                { label: 'Chẩn đoánMã', name: 'diagCode', width: 80, align: 'left' },
+                { label: 'Chẩn đoánTên', name: 'diagName', width: 80, align: 'left' },
+                { label: 'Chẩn đoánKhoa', name: 'diagDept', width: 80, align: 'left' },
+                { label: 'Chẩn đoánKhoaMã', name: 'diagDeptCode', width: 80, align: 'left' },
+                { label: 'Chẩn đoánBác sĩMã', name: 'diagDrNo', width: 80, align: 'left' },
+                { label: 'Chẩn đoánBác sĩHọ tên', name: 'diagDrName', width: 80, align: 'left' },
+                { label: 'Chẩn đoánThời gian', name: 'diagTime', width: 80, align: 'left' },
+                { label: 'Tên bệnh YHCTMã', name: 'tcmDiseCode', width: 80, align: 'left' },
+                { label: 'Tên bệnh YHCTTên', name: 'tcmDiseName', width: 80, align: 'left' },
+                { label: 'YHCTTriệu chứngMã', name: 'tcmsympCode', width: 80, align: 'left' },
+                { label: 'YHCTTriệu chứng', name: 'tcmsymp', width: 80, align: 'left' },
             ],
             //pager: "#gridPagerzd",
             viewrecords: true

@@ -1,34 +1,49 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Core.Common;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Framework.Filter;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
 using Newtouch.Herp.Domain.ValueObjects;
 using Newtouch.Herp.Infrastructure.Enum;
-using Newtouch.Tools;
+using Newtouch.Herp.Web;
 
 namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
 {
     /// <summary>
-    /// 供应商
+    /// Supplier maintenance. Port of the Framework SupplierController.
+    /// View actions Index/Form are inherited from the vendor OrgControllerBase
+    /// (virtual Index/Form returning View()), as in the Warehouse port.
+    /// The original relied on binary field injection; this port takes every
+    /// dependency through an explicit constructor (MS DI).
     /// </summary>
+    [Area("SupplierManage")]
     public class SupplierController : ControllerBase
     {
-
         private readonly IGysSupplierRepo _gysSupplierRepo;
         private readonly IGysContactsRepo _gysContactsRepo;
         private readonly IGysSupplierDmnService _gysSupplierDmnService;
         private readonly ISupplierApp _supplierApp;
 
+        public SupplierController(IGysSupplierRepo gysSupplierRepo, IGysContactsRepo gysContactsRepo,
+            IGysSupplierDmnService gysSupplierDmnService, ISupplierApp supplierApp)
+        {
+            _gysSupplierRepo = gysSupplierRepo;
+            _gysContactsRepo = gysContactsRepo;
+            _gysSupplierDmnService = gysSupplierDmnService;
+            _supplierApp = supplierApp;
+        }
+
         /// <summary>
-        /// 获取供应商列表
+        /// Get supplier list (paged grid)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetSupplierGridJson(Pagination pagination, string keyWord)
+        public IActionResult GetSupplierGridJson(Pagination pagination, string keyWord)
         {
             var data = new
             {
@@ -41,25 +56,28 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         }
 
         /// <summary>
-        /// get enable product unit 
+        /// get enabled suppliers (select list)
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetSupplierSelectJson()
+        public IActionResult GetSupplierSelectJson()
         {
             var list = _gysSupplierRepo.IQueryable(p => p.zt == ((int)Enumzt.Enable).ToString()).ToList();
             return Content(list.ToJson());
         }
 
         /// <summary>
-        /// 删除
+        /// Delete supplier (plus its contacts)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
-            _gysSupplierDmnService.DeleteSupplier(keyValue);
-            return Success("删除成功");
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                _gysSupplierDmnService.DeleteSupplier(keyValue);
+            }
+            return Success("Xóa thành công");
         }
 
         /// <summary>
@@ -67,7 +85,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string keyWord)
+        public IActionResult GetFormJson(string keyWord)
         {
             var supplier = _gysSupplierRepo.FindEntity(p => p.Id == keyWord && p.OrganizeId == OrganizeId);
             return Content(supplier.ToJson());
@@ -78,69 +96,69 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetSupplierContactsGridJson(string keyWord)
+        public IActionResult GetSupplierContactsGridJson(string keyWord)
         {
             var contacts = _gysContactsRepo.IQueryable(p => p.supplierId == keyWord && p.OrganizeId == OrganizeId).ToList();
             return Content(contacts.ToJson());
         }
 
         /// <summary>
-        /// 供应商维护 表单提交
+        /// Supplier maintenance form submit
         /// </summary>
         /// <param name="supplierEntity"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(GysSupplierEntity supplierEntity, string keyWord)
+        public IActionResult SubmitForm(GysSupplierEntity supplierEntity, string keyWord)
         {
             supplierEntity.zt = supplierEntity.zt == "true" ? "1" : "0";
             supplierEntity.OrganizeId = OrganizeId;
             _supplierApp.SubmitForm(supplierEntity, keyWord);
-            return Success("操作成功", null);
+            return Success("Thao tác thành công", null);
         }
 
         /// <summary>
-        /// 添加联系人
+        /// Add / update a contact
         /// </summary>
         /// <param name="contactInfo"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SubmitContacts(SupplierContactVO contactInfo)
+        public IActionResult SubmitContacts(SupplierContactVO contactInfo)
         {
             if (contactInfo != null && !string.IsNullOrWhiteSpace(contactInfo.id))
             {
-                return _gysContactsRepo.UpdateContact(contactInfo) > 0 ? Success("修改联系人成功") : Error("修改联系人失败"); ;
+                return _gysContactsRepo.UpdateContact(contactInfo) > 0 ? Success("Sửa người liên hệ thành công") : Error("Sửa người liên hệ thất bại");
             }
-            return _gysContactsRepo.InserContact(contactInfo, OrganizeId) > 0 ? Success("添加联系人成功") : Error("添加联系人失败");
+            return _gysContactsRepo.InserContact(contactInfo, OrganizeId) > 0 ? Success("Thêm người liên hệ thành công") : Error("Thêm người liên hệ thất bại");
         }
 
         /// <summary>
-        /// delete contacts
+        /// delete a contact
         /// </summary>
         /// <param name="contactsId"></param>
         /// <returns></returns>
-        public ActionResult DeleteContacts(string contactsId)
+        public IActionResult DeleteContacts(string contactsId)
         {
             var entity = _gysContactsRepo.FindEntity(p => p.Id == contactsId && p.OrganizeId == OrganizeId);
             if (entity != null && !string.IsNullOrWhiteSpace(entity.Id)) _gysContactsRepo.Delete(entity);
-            return Success("删除联系人成功");
+            return Success("Xóa người liên hệ thành công");
         }
 
         /// <summary>
-        /// 获取生产商
+        /// Get producers (enabled)
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetProducers(string keyword)
+        public IActionResult GetProducers(string keyword)
         {
             var result = _gysSupplierRepo.GetList(OrganizeId, keyword, (int)EnumSupplierType.Producer, ((int)Enumzt.Enable).ToString());
             return Content(result.ToJson());
         }
 
         /// <summary>
-        /// 获取供应商
+        /// Get distributors (enabled)
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetSuppliers(string keyword)
+        public IActionResult GetSuppliers(string keyword)
         {
             var result = _gysSupplierRepo.GetList(OrganizeId, keyword, (int)EnumSupplierType.Distributor, ((int)Enumzt.Enable).ToString());
             return Content(result.ToJson());

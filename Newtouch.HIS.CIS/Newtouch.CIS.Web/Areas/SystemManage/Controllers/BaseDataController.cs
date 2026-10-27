@@ -1,15 +1,24 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IDomainServices.Outpatient;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
+	[Area("SystemManage")]
 	public class SysBaseDataController : OrgControllerBase
 	{
 		private readonly IBaseDataDmnService _baseDataDmnService;
@@ -17,6 +26,15 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		private readonly ISysTCMSyndromeRepo _sysTCMSyndromeRepo;
 		private readonly ISysDiagnosisRepo _sysDiagnosisRepo;
         private readonly IOutpatientConsultDmnService _outpatientConsultDmnService;
+
+        public SysBaseDataController(IBaseDataDmnService baseDataDmnService, ISysDepartmentRepo sysDepartmentRepo, ISysTCMSyndromeRepo sysTCMSyndromeRepo, ISysDiagnosisRepo sysDiagnosisRepo, IOutpatientConsultDmnService outpatientConsultDmnService)
+        {
+            this._baseDataDmnService = baseDataDmnService;
+            this._sysDepartmentRepo = sysDepartmentRepo;
+            this._sysTCMSyndromeRepo = sysTCMSyndromeRepo;
+            this._sysDiagnosisRepo = sysDiagnosisRepo;
+            this._outpatientConsultDmnService = outpatientConsultDmnService;
+        }
 
         /// <summary>
         /// 药品用法 检索
@@ -32,7 +50,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 			}
 
 			list = list.Where(a => a.yplx == ((int)EnumYpyf.WM).ToString()).ToList();
-			return Json(list, JsonRequestBehavior.AllowGet);
+			return Json(list);
 		}
 
 		public JsonResult GetZYMedicineUsageList(string keyword)
@@ -44,7 +62,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 			}
 
 			list = list.Where(a => a.yplx == ((int)EnumYpyf.TCM).ToString()).ToList();
-			return Json(list, JsonRequestBehavior.AllowGet);
+			return Json(list);
 		}
         public JsonResult GetTCMDjfsUsageList(string keyword)
         {
@@ -53,13 +71,13 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             {
                 list = list.Where(a => a.Code.ToLower().Contains(keyword.ToLower()) || a.Name.ToLower().Contains(keyword.ToLower())).ToList();
             }
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list);
         }
         /// <summary>
         /// 科室 下拉 
         /// </summary>
         /// <returns></returns>
-        public ActionResult SelectDepartmentList(string keyword, string zlks)
+        public IActionResult SelectDepartmentList(string keyword, string zlks)
 		{
 			var data = _sysDepartmentRepo.GetList(this.OrganizeId, "1", keyword);
             if (zlks != null && zlks != "")
@@ -81,7 +99,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 				ybnhlx = null;
 			}
 			var list = _sysDiagnosisRepo.GetList(this.OrganizeId, keyword, zdlx, ybnhlx);
-			return Json(list, JsonRequestBehavior.AllowGet);
+			return Json(list);
 		}
 
 		/// <summary>
@@ -89,10 +107,10 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
-		public ActionResult GetTCMSymptomsList(string keyword)
+		public IActionResult GetTCMSymptomsList(string keyword)
 		{
 			var list = _sysTCMSyndromeRepo.GetList(this.OrganizeId, keyword);
-			return Json(list, JsonRequestBehavior.AllowGet);
+			return Json(list);
 		}
 
 		/// <summary>
@@ -102,18 +120,18 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		public JsonResult GetDjFee()
 		{
 			var fee = _baseDataDmnService.GetDjFee(this.OrganizeId);
-			return Json(fee, JsonRequestBehavior.AllowGet);
+			return Json(fee);
 		}
 
 		/// <summary>
 		/// 长临标志
 		/// </summary>
 		/// <returns></returns>
-		public ActionResult GetYzlb()
+		public IActionResult GetYzlb()
 		{
 			var result = new object[] {
-					new { yzlb = "长",Name="长" },
-					new { yzlb = "临",Name="临" }
+					new { yzlb = "长",Name="Dài hạn" },
+					new { yzlb = "临",Name="Tạm thời" }
 				};
 			return Content(result.ToJson());
 		}
@@ -130,11 +148,11 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
         /// <summary>
-        /// 系统诊室
+        /// 系统Phòng khám
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult SelectConsultList(string ksCode,string keyword)
+        public IActionResult SelectConsultList(string ksCode,string keyword)
         {
             var data = _outpatientConsultDmnService.SelectConsultList(ksCode, keyword,this.OrganizeId );
             return Content(data.ToJson());

@@ -1,0 +1,97 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        $("#F_ParentId").bindSelect({
+            url: "/SystemManage/ItemsType/GetTreeSelectJson?r=" + Math.random(),
+        });
+        if (!!keyValue) {
+            $.ajax({
+                url: "/SystemManage/ItemsType/GetFormJson?r=" + Math.random(),
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                    $("#form1").find('.form-control,select,input').attr('readonly', 'readonly');
+                    $("#form1").find('div.ckbox label').attr('for', '');
+                }
+            });
+        }
+    });
+</script>
+
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Cấp trên</th>
+                <td class="formValue">
+                    <select id="F_ParentId" name="F_ParentId" class="form-control">
+                        <option value="0">Nút cha</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Tên</th>
+                <td class="formValue">
+                    <input id="F_FullName" name="F_FullName" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Mã số</th>
+                <td class="formValue">
+                    <input id="F_EnCode" name="F_EnCode" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Sắp xếp</th>
+                <td class="formValue">
+                    <input id="px" name="px" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;">Tùy chọn</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <div class="ckbox">
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" valign="top" style="padding-top: 5px;">Ghi chú
+                </th>
+                <td class="formValue">
+                    <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Người tạo</th>
+                <td class="formValue">
+                    <input id="CreatorCode" name="CreatorCode" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Thời gian tạo mới</th>
+                <td class="formValue">
+                    <input id="CreateTime" name="CreateTime" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Sửa Nhân viên</th>
+                <td class="formValue">
+                    <input id="LastModifierCode" name="LastModifierCode" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Sửa Thời gian</th>
+                <td class="formValue">
+                    <input id="LastModifyTime" name="LastModifyTime" type="text" class="form-control" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

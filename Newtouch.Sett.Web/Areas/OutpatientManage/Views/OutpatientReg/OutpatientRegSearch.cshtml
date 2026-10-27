@@ -1,0 +1,354 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "OutpatientRegSearch";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var reportUrl = "";
+    var ReportSystemCode = "";
+    var opr = OperatorProvider.GetCurrent();
+}
+<form name="form1" autocomplete="off">
+    <div class="panel panel-default" style="">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#ghmx" data-toggle="tab">Chi tiết đăng ký khám của bệnh nhân</a></li>
+            <li><a href="#ghtj" data-toggle="tab">Thống kê bác sĩ theo khoa</a></li>
+        </ul>
+        <div class="tab-content" style="margin-top:0%">
+            <div style="padding: 2px;padding-right:20px;" class="tab-pane fade in active" id="ghmx">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Ngày đăng ký khám：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <span style="margin-left:1%;float:left">—</span>
+                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <th class="formTitle">Khoa đăng ký khám：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="txtksmc" />
+                        </td>
+
+                        <th class="formTitle"></th>
+                        <td class="formValue" colspan="2">
+                            <input type="button" class="btn btn-primary btn-md" id="btnsyy" value="Tra cứu" />
+                            <input type="button" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;margin-left:10px;" onclick="Excelbuttion()" value="Xuất" />
+                        </td>
+
+                    </tr>
+
+                </table>
+                <div style="margin-top:2px;">
+                    <div class="gridPanel">
+                        <table id="registedList"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" ;style="background-color: #fff; height:100%;width:100%" id="ghtj">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Ngày đăng ký khám：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="tjkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <span style="margin-left:1%;float:left">—</span>
+                            <input id="tjjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <th class="formTitle">Khoa đăng ký khám：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="txttjksmc" />
+                        </td>
+                        <th class="formTitle">
+                            <input type="button" class="btn btn-primary btn-md" id="btncx" onclick="bntcxClick();" value="Tra cứu" />
+                        </th>
+                        <td class="formValue"></td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="ui-layout" id="layout" style="width:100%;">
+                    <iframe class="ui-layout-center" style="width:100%;height:430px" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
+                            scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    $(function () {
+        var h = $(window).height() - 100
+        $('#layout iframe').css('height', h);
+	    gridlist();
+	    bntcxClick();
+		$("#btnsyy").click(function() {
+			var $gridList = $("#registedList");
+			$gridList.jqGrid('setGridParam', {
+				postData: postdata(),
+			}).trigger('reloadGrid');
+
+		});
+
+		var kszdlist;
+		$.ajax({
+			type: "POST",
+			url: "/PatientManage/HospiterRes/Getzdinfo",
+			dataType: "json",
+			async: false,
+			success: function (data) {
+				kszdlist = data;
+
+			}
+		});
+
+
+		//khoa
+		$("#txtksmc").newtouchBatchFloatingSelector({
+			height: 200,
+			width: 300,
+			clickautotrigger: true,
+			//url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
+			filter: function (keyword) {
+				//duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+				var resultObjArr = new Array();
+				$.each(kszdlist, function (idx, val) {
+					if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
+						|| (val.Name && val.Name.indexOf(keyword) >= 0)
+						|| keyword.trim() == "") {
+						resultObjArr.push(val);
+					}
+				});
+				return resultObjArr;
+
+			},
+			caption: "Khoa",
+			colModel: [
+				{ label: 'Mã số', name: 'code', widthratio: 30 },
+				{ label: 'Tên', name: 'name', widthratio: 50 },
+				{ label: 'Phiên âm', name: 'py', hidden: true }
+			],
+			itemdbclickhandler: function ($thistr) {
+				$("#txtksmc").attr("data-label", $thistr.find("td:eq(0)").html());
+				$("#txtksmc").val($thistr.find('td:eq(1)').html());
+				return;
+			},
+		});
+	    //khoa
+		$("#txttjksmc").newtouchBatchFloatingSelector({
+		    height: 200,
+		    width: 300,
+		    clickautotrigger: true,
+		    //url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
+		    filter: function (keyword) {
+		        //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+		        var resultObjArr = new Array();
+		        $.each(kszdlist, function (idx, val) {
+		            if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
+						|| (val.Name && val.Name.indexOf(keyword) >= 0)
+						|| keyword.trim() == "") {
+		                resultObjArr.push(val);
+		            }
+		        });
+		        return resultObjArr;
+
+		    },
+		    caption: "Khoa",
+		    colModel: [
+				{ label: 'Mã số', name: 'code', widthratio: 30 },
+				{ label: 'Tên', name: 'name', widthratio: 50 },
+				{ label: 'Phiên âm', name: 'py', hidden: true }
+		    ],
+		    itemdbclickhandler: function ($thistr) {
+		        $("#txttjksmc").attr("data-label", $thistr.find("td:eq(0)").html());
+		        $("#txttjksmc").val($thistr.find('td:eq(1)').html());
+		        return;
+		    },
+		});
+	});
+
+	function postdata() {
+		return {
+			ksrq: $("#kssj").val(),
+			jsrq: $("#jssj").val(),
+			keywordo: $("#txtksmc").val() != "" ? $("#txtksmc").attr("data-label"):"",
+		};
+
+	}
+	var colModel;
+	function gridlist() {
+
+		 colModel = [
+			{ label: 'ghnm', name: 'ghnm', key: true, hidden: true },
+
+			{ label: 'Số hồ sơ bệnh án', name: 'blh', width: 80, align: 'left' },
+			{ label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+			{ label: 'Họ tên', name: 'xm', width: 70, align: 'left' },
+			{ label: 'Số giấy tờ', name: 'zjh', width: 130, align: 'left' },
+			{
+				label: 'Giới tính', name: 'xb', width: 40, align: 'left',
+				formatter: function (val) {
+					return $.getGender(val);
+				}
+			},
+			{
+				label: 'Tính chất chi phí', name: 'brxz', width: 50, align: 'left',
+				formatter: function (val) {
+					if (val == '0') {
+						return 'Tự chi trả';
+					}
+					else if (val == '1') {
+						return 'BHYT';
+					}
+					else {
+						return '';
+					}
+				}
+			},
+			{ label: 'Khoa đăng ký khám', name: 'ghksmc', width: 100, align: 'left' },
+			{ label: 'ghks', name: 'ghks', hidden: true },
+			{ label: 'ghys', name: 'ghys', hidden: true },
+			{ label: 'Bác sĩ đăng ký khám', name: 'ghysmc', width: 50, align: 'left' },
+			{
+				label: 'Đăng ký khámTrạng thái', name: 'ghzt', width: 50, align: 'left',
+				formatter: function (val) {
+					if (val == '0') {
+						return 'Chờ quyết toán';
+					}
+					else if (val == '1') {
+						return 'Đã quyết toán';
+					}
+					else if (val == '2') {
+						return 'Đã hoàn';
+					}
+					else {
+						return '';
+					}
+				}
+			},
+			{
+				label: 'Ngày đăng ký khám', name: 'ghrq', width: 100, align: 'left',
+				formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+			},
+			{
+				label: 'khámTrạng thái', name: 'jzzt', width: 60, align: 'left',
+				formatter: function (cellvalue) {
+					return $.enum.getDescByValue("EnumOutpatientJzbz", cellvalue);
+				}
+			},
+			{ label: 'Khoa khám', name: 'jzksmc', width: 100, align: 'left' },
+			{ label: 'ghks', name: 'jzks', hidden: true },
+			{ label: 'ghys', name: 'jzys', hidden: true },
+			{ label: 'Bác sĩ khám', name: 'jzysmc', width: 50, align: 'left' },
+			{
+				label: 'Ngày khám', name: 'jzrq', width: 120, align: 'left',
+				formatter: "date", formatoptions: { srcformat: 'Y-m-d h:i:s', newformat: 'Y-m-d H:i:s' }
+			 },
+			 { label: 'Số phiếu', name: 'fph', width: 80, align: 'left' },
+			 { label: 'Có hủy số không', name: 'syth', width: 60, align: 'left' },
+			 { label: 'Bác sĩ hủy số', name: 'thys', width: 70, align: 'left' },
+			 { label: 'Thời gian hủy số', name: 'thrq', width: 120, align: 'left',},
+		];
+
+		var $gridList = $("#registedList");
+		$gridList.dataGrid({
+			url: "/OutpatientManage/OutpatientReg/GetRegListJson",
+			height: $(window).height() - 165,
+			caption: "Dữ liệu đăng ký khám &nbsp; &nbsp;&nbsp;&nbsp;<span id='ghrc'></span> &nbsp;&nbsp;&nbsp;(<span id='thrc'></span>)",
+			postData: postdata(),
+			colModel: colModel,
+			gridComplete: function () {
+				var ids = $gridList.getDataIDs();
+
+				var thrc = 0;
+				for (i = 0; i < ids.length; i++) {
+					var rowData = $gridList.getRowData(ids[i]);
+					if (rowData && rowData.syth == "Có") {
+						thrc += 1;
+					}
+				}
+				$("#ghrc").html("Lượt đăng ký khám：" + ids.length + "lần");
+				$("#thrc").html("Trong đó lượt hủy số：" + thrc + "lần");
+				//console.log(ids);
+			},
+		});
+
+	}
+
+	var exportCols = null;
+	function Excelbuttion() {
+		
+		exportCols = new Array();
+		var colsChooseSourceArr = new Array();
+		$.each(colModel, function () {
+			if (!(this.hidden === true)) {
+				if (this.label != "Thao tác") {
+					exportCols.push({ Heading: this.label, Name: this.name, Width: this.width });
+					colsChooseSourceArr.push({ Heading: this.label, Name: this.name });
+				}
+			}
+		});
+		var url = "/HospitalizationManage/BookkeepInHos/ExcelExportChooseColumns";
+		var cols = JSON.stringify(colsChooseSourceArr);
+		cols = encodeURIComponent(cols);
+		url += "?cols=" + cols;
+		$.modalOpen({
+			id: "ExcelExportChooseColumns",
+			title: "XuấtExcel",
+			url: url,
+			width: "600px",
+			height: "350px",
+			callBack: function (iframeId) {
+				//kết quả
+				var restArr = top.frames[iframeId].GetChoosedCols();
+				if (!!!restArr || !!!restArr.length || restArr.length == 0) {
+					$.modalAlert("Vui lòng chọn cột xuất", 'error');
+					return false;
+				}
+				var isContainFilter = top.frames[iframeId].GetIsContainFilter();
+				//đóng cửa sổ chọn
+				$.modalClose("ExcelExportChooseColumns");
+				//
+				exportCols = $.jsonWhere(exportCols, function (v) {
+					var matched = false;
+					for (var iIndex = 0; iIndex < restArr.length; iIndex++) {
+						if (restArr[iIndex] == v.Name) {
+							matched = true;
+						}
+					}
+					return matched;
+				});
+				//xuất
+				Export(isContainFilter);
+			}
+		});
+	}
+
+	function Export(isContainFilter) {
+
+		var url = "/OutpatientManage/OutpatientReg/SelectRegChargeQueryExcel?r=" + Math.random();
+		url += "&ksrq=" + $("#kssj").val();
+		url += "&jsrq=" + $("#jssj").val();
+		url += "&keywordo=" + $("#txtksmc").attr("data-label");
+		url += "&keywordt=" + $("#txtksmc").val();
+		url += "&isContainFilter=" + isContainFilter;
+		url += "&colStanWidth=" + "70";  //cột chuẩn độ rộng cột
+		var cols = JSON.stringify(exportCols);
+		top.$.cookie('ExportExcelCols', cols, { path: "/" });
+		//url += "&cols=" + encodeURIComponent(cols);
+
+		window.open(url);
+	}
+	function bntcxClick() {
+	    if ($('#tjkssj').val().length == 0 || $('#tjjssj').val().length == 0) {
+	        $.modalAlert("Vui lòng chọn khoảng thời gian", "error");
+	        return;
+	    }
+	    var url = getUrl();
+	    $("#iframerightiframerightiframerightttt").attr('src', url);
+	}
+	function getUrl() {
+	    var ksrq = $("#tjkssj").val()+" 00:00:00";
+	    var jsrq = $("#tjjssj").val()+" 23:59:59";
+	    var ks = $("#txttjksmc").val() != "" ? $("#txttjksmc").attr("data-label") : "";
+	    var srcUrl2 = '@Html.Raw(reportUrl)' + "?tempCode=1249" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + '@(opr.OrganizeId)' + "&ksrq=" + ksrq + "&jsrq=" + jsrq + "&ks=" + ks;
+	    return srcUrl2;
+	}
+</script>

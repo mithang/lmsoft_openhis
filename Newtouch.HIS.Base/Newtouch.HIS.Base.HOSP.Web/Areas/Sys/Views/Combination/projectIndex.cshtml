@@ -1,0 +1,306 @@
+@using Newtouch.Infrastructure;
+@using Newtouch.Tools;
+@{
+	Layout = null;
+	Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<form>
+	<div class="panel panel-default">
+		<div class="panel-heading navb-bg">
+			Điều kiện lọc
+		</div>
+		<table class="form">
+			<tr>
+				<th class="formTitle"></th>
+				<td class="formValue" colspan="2">
+					<input type="radio" name="radios" class="radios" value="qb" checked="checked">Tất cả
+					<input type="radio" name="radios" class="radios" value="yd">Đã đối mã
+					<input type="radio" name="radios" class="radios" value="wd">Chưa đối mã
+				</td>
+				<th class="formTitle">Tên hạng mục:</th>
+				<td class="formValue" colspan="2">
+					<input id="txt_keyword" type="text" style="width:200px;" class="form-control form-an" placeholder="Tên hạng mục">
+				</td>
+				<td class="formValue">
+					<input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tìm kiếm" />
+				</td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="gridPanel">
+		<table id="gridList"></table>
+		<div id="gridPager"></div>
+	</div>
+	<div class="panel panel-default">
+		<div class="toolbar" style="margin-left:10%">
+			<div class="btn-group">
+				<label>Nguồn dữ liệu:</label>
+			</div>
+			<div class="btn-group">
+				<select id="DataSource" name="DataSource"  style="width:200px; height:15px;"  class="form-control form-an">
+					<option value="1">Chế độ xem hệ thống</option>
+					<option value="2">Thư mục tải BHYT</option>
+				</select>
+			</div>
+			<div class="btn-group">
+				<label>Tên hạng mục BHYT:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_gjybdm" type="text" style="width:200px; height:15px;" class="form-control form-an" placeholder="Tên hạng mục BHYT">
+			</div>
+			@*<div class="btn-group">
+				<label>注册备案号：</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保注册备案号">
+			</div>
+			<div class="btn-group">
+				<label>耗材企业：</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保耗材企业">
+			</div>*@
+			<div class="btn-group">
+				<input type="button" id="btn_searchyb" class="btn btn-primary" value="Tìm kiếm"/>
+			</div>
+			<div class="btn-group">
+				<input type="button" id="btn_save" class="btn btn-primary" value="Đối mã"/>
+			</div>
+
+
+		</div>
+		@*<table class="form">
+			<tr>
+				<th class="formTitle">项目代码：</th>
+				<td class="formValue" colspan="3">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="项目代码">
+				</td>
+
+				<td class="formValue" colspan="2">
+					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+				</td>
+				<td class="formValue" colspan="2">
+					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" />
+				</td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+			</tr>
+		</table>*@
+	</div>
+	<div style="background-color: #fff; margin-top:5px;">
+		<table id="gridJSMXList"></table>
+	</div>
+</form>
+
+
+<script>
+	$(function () {
+		gridList();
+		$("#btn_searchyb").click(function () {
+			$('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
+			btn_selectmx();
+		});
+
+		$("#btn_save").click(function () {
+
+			btn_save();
+		});
+	});
+	function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "@Url.Action("Getxmxxlist")",
+			height: 240,
+            postData: getpostData(),
+              colModel: [
+				  { label: "Khóa chính", name: "sfxmId", hidden: true, key: true },
+				{ label: 'Tên hạng mục', name: 'sfxmmc', width: 200, align: 'center',  sortable: false, frozen: true},
+				{ label: "Mã BHYT quốc gia", name: "gjybdm", width: 180, align: 'center', sortable: false, frozen: true},
+				{ label: "Tên BHYT quốc gia", name: "gjybmc", width: 200, align: 'center', sortable: false },
+				{ label: 'Quy cách', name: 'gg', width: 110, align: 'center', sortable: false},
+				//{ label: '批准文号', name: 'pzwh', width: 140, align: 'center', sortable: false },
+				//{ label: '剂型', name: 'jxmc', width: 60, align: 'center', sortable: false },
+				//{ label: '生产厂商', name: 'sccj', width: 180, align: 'center', sortable: false },
+				{
+					label: 'Tính chất tự trả', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
+						switch (parseInt(b.zfxz)) {
+						case @((int)EnumZiFuXingZhi.ZF):
+                            return "@EnumZiFuXingZhi.ZF.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Jia):
+							return "@EnumZiFuXingZhi.Jia.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Yi):
+							return "@EnumZiFuXingZhi.Yi.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Bing):
+                            return "@EnumZiFuXingZhi.Bing.GetDescription()";
+						default:
+                            return "";
+                        }
+					}
+				},
+				{ label: "Mã BHYT", name: "ybdm", width: 110, align: 'center', sortable: false },
+				{ label: 'Mã Pinyin', name: 'py', width: 100, align: 'center', sortable: false },
+				  { label: "Mã hạng mục", name: "sfxmCode", width: 100, align: 'center', sortable: false },
+			],
+            pager: "#gridPager",
+            sortname: ' CreateTime desc',
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                btn_selectrow();
+            },
+            gridComplete: function (gridJszbList) {
+                jszbList = null;
+                if (gridJszbList && gridJszbList.rows) {
+                    jszbList = gridJszbList.rows;
+                }
+            }
+        });
+
+        $("#btn_search").click(function () {
+            $('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
+            $gridList.jqGrid('setGridParam', {
+                postData: getpostData(),
+                page: 1,
+			}).trigger('reloadGrid');
+			$("#txt_gjybdm").val("");
+        });
+	}
+
+
+	//结算明细 jGrid声明
+	$('#gridJSMXList').newtouchLocalDataGrid({
+		height: $(window).height() - 520,
+		caption: "Thông tin hạng mục BHYT",
+		unwritten: false,
+		colModel: [
+			{ label: 'Mã truyền quyết toán', name: 'jscsbm', width: 180, align: 'center' },
+			{ label: 'Mã hạng mục quốc gia', name: 'gjxmdm', width: 160, align: 'center' },
+			{ label: 'Tên hạng mục quốc gia', name: 'gjxmmc', width: 180, align: 'center' },
+			{ label: 'Mã', name: 'bm', width: 100, align: 'center' },
+			{ label: 'Tên hạng mục', name: 'xmmc', width: 180, align: 'center' },
+			{ label: 'Tính chất BHYT', name: 'ybxz', width: 80, align: 'center' },
+			{ label: 'Nội hàm hạng mục', name: 'xmnh', width: 130, align: 'center' },
+			{ label: 'Nội dung loại trừ', name: 'cwnr', width: 180, align: 'center' },
+			{ label: 'Đơn vị tính giá', name: 'jjdw', width: 120, align: 'center' },
+			{ label: 'Mô tả', name: 'sm', width: 100, align: 'center' },
+			
+			{ label: 'Mã Pinyin', name: 'pym', width: 80, align: 'center' },
+
+
+		],
+		viewrecords: true,
+		//ondblClickRow: function (row) {
+		//	btn_clickrow();
+		//}
+	});
+
+	function btn_selectmx() {
+
+		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');
+		if (!ypid) {
+			$.modalMsg("Vui lòng chọn thông tin hạng mục cần đối mã", "warning", 1000);
+			return false;
+		}
+		//if ($("#txt_gjybdm").val()=="") {
+		//	$.modalMsg("请输入需要查询的项目信息", "warning", 1000);
+		//	return false;
+		//}
+		console.log($("#txt_gjybdm").val());
+		$('#gridJSMXList').jqGrid("clearGridData");
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("GetYbxmxxlist")",
+			data: { gjybdm: $("#txt_gjybdm").val(), ypmc: '', py: '', pzwh: '',dataSource: $("#DataSource").val() },
+			dataType: "json",
+			success: function (ajaxresp) {
+
+				$('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
+			}
+		});
+	}
+	function btn_selectrow() {
+		var gjybdm = $("#gridList").jqGridRowValue().gjybdm;
+		var ypmc = $("#gridList").jqGridRowValue().sfxmmc;
+		var yppy = $("#gridList").jqGridRowValue().py;
+		var pzwh = "";//$("#gridList").jqGridRowValue().pzwh;
+		if (gjybdm != null && gjybdm != "") {
+			$("#txt_gjybdm").val(gjybdm)
+		} else {
+			$("#txt_gjybdm").val(ypmc);
+		}
+
+		console.log(gjybdm);
+		//每次单击，先清空上一条明细 和合计
+		$('#gridJSMXList').jqGrid("clearGridData");
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("GetYbxmxxlist")",
+			data: { gjybdm: $("#txt_gjybdm").val(), ypmc: ypmc, py: yppy, pzwh: pzwh ,dataSource: $("#DataSource").val() },
+			dataType: "json",
+			success: function (ajaxresp) {
+				$('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
+			}
+		});
+	}
+
+
+	//保存对码
+	function btn_save() {
+
+		var ypids = $("#gridList").jqGrid('getGridParam', 'selrow');
+		if (!ypids) {
+			$.modalMsg("Vui lòng chọn thông tin hạng mục cần đối mã", "warning", 1000);
+			return false;
+		}
+		var ybid = $("#gridJSMXList").jqGrid('getGridParam', 'selrow');
+		if (!ybid ){
+			$.modalMsg("Vui lòng chọn thông tin hạng mục BHYT", "warning", 1000);
+			return false;
+		}
+		var ybxx = {
+			jscsbm: $("#gridJSMXList").jqGridRowValue().jscsbm,
+			gjxmmc: $("#gridJSMXList").jqGridRowValue().gjxmmc,
+			ybxz: $("#gridJSMXList").jqGridRowValue().ybxz,
+		};
+		var ypId = $("#gridList").jqGridRowValue().sfxmId;
+
+		var zfxz = ybxx.ybxz == "甲" ? "4" : ybxx.ybxz == "乙" ? "5" : ybxx.ybxz == "丙" ? "6" : "1";
+		console.log(ypId);
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("SaveYpxm")",
+			data: { ybxx: ybxx, ypId: ypId},
+			dataType: "json",
+			success: function (data) {
+
+				if (data != null && data !== "") {
+					//gridList();
+					$.modalAlert("Đối mã hạng mục này thành công", 'success');
+					//$("#txt_gjybdm").val("");
+					//$('#btn_search').trigger('click');
+					var datarow = {
+						gjybdm: $("#gridJSMXList").jqGridRowValue().jscsbm,
+						gjybmc: $("#gridJSMXList").jqGridRowValue().gjxmmc,
+						zfxz: zfxz,
+					};
+					$("#gridList").jqGrid('setRowData', ypids, datarow);
+				}
+			}
+		});
+	}
+
+
+	function getpostData() {
+		return {
+			keyword: $("#txt_keyword").val(), type: $('input:radio:checked').val() ,dataSource: $("#DataSource").val()
+		};
+	}
+
+</script>

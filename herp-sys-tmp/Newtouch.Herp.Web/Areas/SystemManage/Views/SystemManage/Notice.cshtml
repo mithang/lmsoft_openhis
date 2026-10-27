@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" /><title>@ViewBag.Title — Quản lý hệ thống — Herp</title></head>
+<body>
+    <div style="max-width:900px;margin:40px auto;font-family:'Segoe UI',Arial,sans-serif;">
+        <h2>@ViewBag.Title</h2>
+        <p>@ViewBag.Description</p>
+        <p>Trang gốc: <strong>@ViewBag.OriginalUrl</strong></p>
+        <p>Trang này không do Herp cung cấp. Trong hệ thống gốc, các trang quản lý hệ thống được phục vụ bởi các bộ điều khiển của FrameworkBase, không phải mã nguồn Herp. Trong bản chuyển đổi ASP.NET Core 6.0, chức năng quản lý hệ thống được thực hiện tại cổng SSO, vì vậy Herp hiển thị thông báo này thay cho lỗi 404 hoặc dữ liệu giả.</p>
+        <p>Vui lòng đăng nhập cổng SSO bằng cùng tài khoản demo rồi sử dụng chức năng quản lý hệ thống tại đó:</p>
+        <p><a href="http://127.0.0.1:5208">Mở cổng SSO (http://127.0.0.1:5208)</a></p>
+        <p>Lưu ý: bạn cần đăng nhập tại cổng SSO bằng cùng tài khoản đang dùng ở Herp.</p>
+        <p><a href="/SystemManage/SystemManage/Index">Quản lý hệ thống</a> · <a href="/Home/Index">Về trang chủ</a></p>
+    </div>
+</body>
+</html>

@@ -1,11 +1,9 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtonsoft.Json;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
-using Newtouch.Common.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+
+using NewtouchHIS.Lib.Framework.Operator;
+
 using Newtouch.EMR.APIRequest.Bljgh.Request;
 using Newtouch.EMR.Domain.DTO;
 using Newtouch.EMR.Domain.Entity;
@@ -15,21 +13,24 @@ using Newtouch.EMR.Domain.ValueObjects;
 using Newtouch.EMR.Domain.ValueObjects.API;
 using Newtouch.EMR.Domain.ValueObjects.MedicalRecord;
 using Newtouch.EMR.Infrastructure;
-using Newtouch.Infrastructure;
-using Newtouch.Tools;
+
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.WebPages;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
     /// 住院患者病历
     /// </summary>
+    [Area("MedicalRecordManage")]
     public class PatInfoController : OrgControllerBase
     {
         private readonly IZybrjbxxRepo _ZybrjbxxRepo;
@@ -43,36 +44,42 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private readonly IMrWritingRulesRepo mrwritingrulesRepo;
         private readonly IMrBlApplyRecordRepo _mrblapplyrecordRepo;
         private readonly IMRHomePageDmnService _MainRecordDmnService;
-        private readonly string IsEnableWebEditor= ConfigurationHelper.GetAppConfigValue("EnableWebHomePage");
-        public static string BlBackupFilePath = ConfigurationHelper.GetAppConfigValue("BlBackupFilePath");
+        private readonly string IsEnableWebEditor= EmrConfig.GetAppConfigValue("EnableWebHomePage");
+        public static string BlBackupFilePath = EmrConfig.GetAppConfigValue("BlBackupFilePath");
 
-        public PatInfoController(IZybrjbxxRepo ZybrjbxxRepo, IZybrjbxxDmnService ZybrjbxxDmnService, IBlmblbRepo BlmblbRepo, IBlmblbDmnService BlmblbDmnService,IZymeddocsrelationRepo zymeddocsrelationRepo)
+        public PatInfoController(IZybrjbxxRepo ZybrjbxxRepo, IZybrjbxxDmnService ZybrjbxxDmnService, IBlmblbRepo BlmblbRepo, IBlmblbDmnService BlmblbDmnService, IZymeddocsrelationRepo zymeddocsrelationRepo, IMedicalRecordDmnService medicalRecordDmnService, Ibl_ElementDomainRepo bljsRepo, IMrBlApplyRecordRepo mrblapplyrecordRepo, IMRHomePageDmnService mainRecordDmnService, IMrWritingRulesRepo mrwritingrulesRepo)
         {
             this._ZybrjbxxRepo = ZybrjbxxRepo;
             this._ZybrjbxxDmnService = ZybrjbxxDmnService;
             this._BlmblbRepo = BlmblbRepo;
             this._BlmblbDmnService = BlmblbDmnService;
+            this._medicalRecordDmnService = medicalRecordDmnService;
+            this._bljsRepo = bljsRepo;
             this._zymeddocsrelationRepo = zymeddocsrelationRepo;
+            this._zybrjbxxRepo = ZybrjbxxRepo;
+            this._mrblapplyrecordRepo = mrblapplyrecordRepo;
+            this._MainRecordDmnService = mainRecordDmnService;
+            this.mrwritingrulesRepo = mrwritingrulesRepo;
         }
        
-        public override ActionResult Index()
+        public override IActionResult Index()
         {
             //OperatorModel user = this.UserIdentity; 
             //_ZybrjbxxDmnService.Sync_HisPatinfo(DateTime.Now,user);
             return View();
         }
 
-        public ActionResult CommitShow()
+        public IActionResult CommitShow()
         {
             return View();
         }
-        public ActionResult MedicalApplySend()
+        public IActionResult MedicalApplySend()
         {
             return View();
         }
 
         #region CPOE
-        public ActionResult patientFloatingSelectorSource(string keyword)
+        public IActionResult patientFloatingSelectorSource(string keyword)
         {
             var data = _ZybrjbxxDmnService.GetPatInfoBykeyword(keyword, OrganizeId);
             return Content(data.ToJson());
@@ -84,7 +91,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="ys"></param>
         /// <param name="bedCode"></param>
         /// <returns></returns>
-        public ActionResult GetzbqPatientList(string page, string bqCode, string ys, string bedCode)
+        public IActionResult GetzbqPatientList(string page, string bqCode, string ys, string bedCode)
         {
             Pagination pagination = new Pagination();
             pagination.sidx = " cwmc";
@@ -116,9 +123,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="jsrq"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetycqPatientList(Pagination pagination, string bqCode, string ys, string bedCode, string ksrq, string jsrq, string zyh)
+        public IActionResult GetycqPatientList(Pagination pagination, string bqCode, string ys, string bedCode, string ksrq, string jsrq, string zyh)
         {
-
 
             if (string.IsNullOrWhiteSpace(ys))
             {
@@ -145,7 +151,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="jsrq"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetmyPatientList(Pagination pagination, string bqCode, string ys, string bedCode, string ksrq, string jsrq, string zyh)
+        public IActionResult GetmyPatientList(Pagination pagination, string bqCode, string ys, string bedCode, string ksrq, string jsrq, string zyh)
         {
             if (string.IsNullOrWhiteSpace(ys))
             {
@@ -163,7 +169,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         #endregion
 
-        public ActionResult PatList(Pagination pagination,string keyword,string zyh,string type,string cyts,string blzt, string bq = null)
+        public IActionResult PatList(Pagination pagination,string keyword,string zyh,string type,string cyts,string blzt, string bq = null)
         {
             var chargeQueryList = new
             {
@@ -176,16 +182,16 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
 
-        public ActionResult GetPatinfo()
+        public IActionResult GetPatinfo()
         {
             DateTime bt = DateTime.Now.AddMonths(-1);
             DateTime et = DateTime.Now;
             _ZybrjbxxDmnService.Sync_HisPatinfo(this.OrganizeId, bt, et);
-            return Success("同步成功");
+            return Success("Đồng bộ thành công");
         }
 
         #region 病历管理
-        public ActionResult PatMedRecordList()
+        public IActionResult PatMedRecordList()
         {
             var OpenEditorSwitch = _MainRecordDmnService.DiagnosticSave("OpenEditorSwitch", this.OrganizeId);
             ViewBag.openEditorSwitch = OpenEditorSwitch.Count > 0 ? OpenEditorSwitch.FirstOrDefault().Value : "";
@@ -199,7 +205,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetMedRecordTree(string zyh)
+        public IActionResult GetMedRecordTree(string zyh)
         {
             OperatorModel user = this.UserIdentity;
             var data = _ZybrjbxxDmnService.GetPatMedRecordTree(this.OrganizeId, zyh,user.rygh);
@@ -219,18 +225,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(treeList.TreeGridJson(null));
         }
 
-
-        //public ActionResult MedRecordTreeEdit()
+        //public IActionResult MedRecordTreeEdit()
         //{
         //    return View();
         //}
-        public ActionResult MedRecordTreeEdit()
+        public IActionResult MedRecordTreeEdit()
         {
             ViewBag.IsEnableEditor= IsEnableWebEditor;
             return View();
         }
 
-        public ActionResult MedRecordTreeEditV2()
+        public IActionResult MedRecordTreeEditV2()
         {
             var OpenEditorSwitch = _MainRecordDmnService.DiagnosticSave("OpenEditorSwitch", this.OrganizeId);
             ViewBag.openEditorSwitch = OpenEditorSwitch.Count>0 ? OpenEditorSwitch.FirstOrDefault().Value:"";
@@ -238,7 +243,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
 
-        public ActionResult MedRecordTreeEditJson(string keyValue, string bllx,string zyh)
+        public IActionResult MedRecordTreeEditJson(string keyValue, string bllx,string zyh)
         {
             var pat = _ZybrjbxxRepo.FindEntity(p => p.zyh == zyh && p.OrganizeId == OrganizeId);
 
@@ -252,9 +257,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             data.bllx = bllx;
             data.mbqx = (int)Enummbqx.pub;
 
-
             data.brjs = pat.sex == EnumSex.M.GetHashCode().ToString() ? pat.xm + " / " + EnumSex.M.GetDescription() : pat.xm + " / " + EnumSex.F.GetDescription();
-            data.brjs += " / " + "年龄" + " / " + pat.brxzmc + " / " + pat.zyh;
+            data.brjs += " / " + "Tuổi" + " / " + pat.brxzmc + " / " + pat.zyh;
 
             return Content(data.ToJson());
         }
@@ -262,7 +266,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// 获取病历大类
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetMedRecordType()
+        public IActionResult GetMedRecordType()
         {
             var data = new List<object>();
             //if(string.IsNullOrWhiteSpace(selectId))
@@ -294,7 +298,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="mbqx"></param>
         /// <param name="bllx"></param>
         /// <returns></returns>
-        public ActionResult GetMedRecordTempList(int? mbqx,string bllx,string keyword)
+        public IActionResult GetMedRecordTempList(int? mbqx,string bllx,string keyword)
         {
             OperatorModel user = this.UserIdentity;
             IList<BlmbListVO> data = new List<BlmbListVO>();
@@ -308,7 +312,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #endregion
 
         #region 病历操作
-        public ActionResult UpdatePatMedRecordRel(string blId,string blgxId,string blName)
+        public IActionResult UpdatePatMedRecordRel(string blId,string blgxId,string blName)
         {
             OperatorModel user = this.UserIdentity;
             _ZybrjbxxDmnService.UpdtPatMedRecord(blId, blgxId, this.OrganizeId, user);
@@ -321,11 +325,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             entity.blmc = blName;
             entity.delzt = "0";
             _bljsRepo.BljghDataDealwith(entity);
-            return Success("删除成功");
+            return Success("Xóa thành công");
                
         }
 
-        public ActionResult UpdatePlanStu(string blId,string stu)
+        public IActionResult UpdatePlanStu(string blId,string stu)
         {
             var ety = _zymeddocsrelationRepo.FindEntity(p => p.blId == blId && p.OrganizeId == OrganizeId && p.zt == "1");
             if (ety != null)
@@ -343,7 +347,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 ety.LastModifierCode = this.UserIdentity.rygh;
                 _zymeddocsrelationRepo.Update(ety);
             }
-            return Success("操作成功");
+            return Success("Thao tác thành công");
         }
         #endregion
 
@@ -352,16 +356,16 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult CommitPatMedRecord(string zyh)
+        public IActionResult CommitPatMedRecord(string zyh)
         {
             _ZybrjbxxRepo.CommitRecord(zyh, OrganizeId, this.UserIdentity.rygh);
             //if (!string.IsNullOrWhiteSpace(BlBackupFilePath))
             //{
-            //    string Getaddress = Server.MapPath(BlBackupFilePath);
+            //    string Getaddress = WebPath.Map(BlBackupFilePath);
             //    Getaddress = Getaddress + zyh;
             //    Directory.Delete(Getaddress, true);
             //}
-            return Success("病历已提交");
+            return Success("Bệnh án đã nộp");
 
         }
 
@@ -370,21 +374,18 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult BackPatMedRecord(string zyh)
+        public IActionResult BackPatMedRecord(string zyh)
         {
             _ZybrjbxxRepo.BackRecord(zyh, OrganizeId, this.UserIdentity.rygh);
             //if (!string.IsNullOrWhiteSpace(BlBackupFilePath))
             //{
-            //    string Getaddress = Server.MapPath(BlBackupFilePath);
+            //    string Getaddress = WebPath.Map(BlBackupFilePath);
             //    Getaddress = Getaddress + zyh;
             //    Directory.Delete(Getaddress, true);
             //}
-            return Success("病历已提交");
+            return Success("Bệnh án đã nộp");
 
         }
-
-
-
 
         #region private methods
 
@@ -394,8 +395,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private void ReportingServiceCom()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.topOrgId = Constants.TopOrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.topOrgId = EmrConfig.TopOrganizeId;
+            ViewBag.ReportServerHOST = EmrConfig.GetAppConfigValue("ReportServer.HOST");
             ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
@@ -411,15 +412,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return bjqx;
         }
 
-        public ActionResult PatHistoricalMedRecord()
+        public IActionResult PatHistoricalMedRecord()
         {
             //OperatorModel user = this.UserIdentity; 
             //_ZybrjbxxDmnService.Sync_HisPatinfo(DateTime.Now,user);
             return View();
         }
 
-
-        public ActionResult getRepeatBl(string zyh,string bllx)
+        public IActionResult getRepeatBl(string zyh,string bllx)
         { 
             var data = _BlmblbDmnService.getRepeatBl(this.OrganizeId, zyh, bllx);
             
@@ -431,7 +431,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="zyh"></param>
         /// <param name="bllx"></param>
         /// <returns></returns>
-        public ActionResult checkBlRules(string zyh, string bllx)
+        public IActionResult checkBlRules(string zyh, string bllx)
         {
             //var newblbznewblbz = _BlmblbDmnService.CheckBlRules(this.OrganizeId, zyh, bllx);
             var newblbz = "T";
@@ -483,11 +483,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="applyVo"></param>
         /// <returns></returns>
-        public ActionResult SubmitForm(MrApplyWritingVo applyVo)
+        public IActionResult SubmitForm(MrApplyWritingVo applyVo)
         {
             applyVo.CreatorCode = this.UserIdentity.UserCode;
             applyVo.ApplyDate = DateTime.Now;
-            string msg = "病历申请发送成功";
+            string msg = "Gửi yêu cầu bệnh án thành công";
             var reqObj = new
             {
                 Data = applyVo,
@@ -499,20 +499,20 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             if (outstr.code == 10000)
             {
                 _mrblapplyrecordRepo.SubmitForm(applyVo, outstr.data,this.UserIdentity.UserCode,this.OrganizeId);
-                msg = outstr.data.ApplyStatus==(int)ApplyStatusEnum.ysp? "病历申请成功,审批已通过，可继续编写病历": "病历申请成功,请联系质控办审批";
+                msg = outstr.data.ApplyStatus==(int)ApplyStatusEnum.ysp? "Yêu cầu bệnh án thành công, đã được phê duyệt, có thể tiếp tục viết bệnh án": "Yêu cầu bệnh án thành công, vui lòng liên hệ phòng kiểm soát chất lượng để phê duyệt";
             }
             return Success(outstr.code == 10000 ? msg : outstr.msg);
         }
 
         #region 病历质控
 
-        public ActionResult MrqcAdd()
+        public IActionResult MrqcAdd()
         {
             return View();
         }
 
         //获取病历质控达标情况
-        public ActionResult GetMrqcScore(string zyh, string bllxId)
+        public IActionResult GetMrqcScore(string zyh, string bllxId)
         {
             string token = AuthenManageHelper.GetToken();
             //string token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJZCI6IkFQSS5NYW5hZ2UiLCJPcmdhbml6ZUlkIjoiNmQ1NzUyYTctMjM0YS00MDNlLWFhMWMtZGY4YjQ1ZDM0NjlmIiwiVG9wT3JnYW5pemVJZCI6ImQ4ZWU4NWY4LWQ4ZDEtNGI1Yy1iZDllLTE3NjFmNDQyNDJkOCIsIkFjY291bnQiOiIwMDAwMDAiLCJVc2VyQ29kZSI6IjAwMDAwMCIsIlVzZXJOYW1lIjoiMDAwMDAwIiwiVXNlcklkIjoiYjI0NWE2MzMtMTk3Ni00ZGFlLTkxNTMtNThhZmVkOWQyYjcwIiwiVG9rZW5UeXBlIjoiIiwiVG9rZW4iOiIiLCJleHAiOjE3MDE2NzQyMDIsImlzcyI6Ik5ld3RvdWNoLk9wZW5ISVMiLCJhdWQiOiJUZXJtaW5hbCJ9.1nAXqKmJZE7NZ5UdTcl2R6TpCT9MrQwRrFBQN20jnBE";

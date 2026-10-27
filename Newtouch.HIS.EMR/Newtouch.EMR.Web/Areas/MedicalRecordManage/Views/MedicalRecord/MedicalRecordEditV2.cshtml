@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Index.cshtml";
-    var EmrEdiForUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("KyEmrEdiForUrl");
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("KyEmrEdiForUrl");
 }
 <style>
     .design-template-wrapper {
@@ -19,10 +19,10 @@
 <div class="design-template-wrapper" id="editorContainer">
 </div>
 <div id="RecordistDiv">
-    @Html.Action("RecordList", "MedicalRecord")
+    @await Component.InvokeAsync("RecordList")
 </div>
 <div id="treeDiv">
-    @Html.Action("CTGLList", "Blctgl")
+    @await Component.InvokeAsync("CtglList")
 </div>
 
 <script>
@@ -47,7 +47,7 @@
         });
         //top.$("a.menuTab span").show();
         top.$("a.menuTab span").click(function () {
-            $.modalConfirm("病历正在编辑...是否关闭页面？", function (flag) {
+            $.modalConfirm("Bệnh án đang được chỉnh sửa...Có đóng trang không??", function (flag) {
                 if (flag) {
                     setTimeout(function () {
                         HMEditorLoader.destroyEditor(id);
@@ -134,7 +134,7 @@
             };
         })
          .catch(function (error) {
-             console.error("编辑器初始化失败:", error);
+             console.error("Khởi tạo trình soạn thảo thất bại:", error);
          });
     });
     function htmlToBase64(htmlString) {
@@ -142,7 +142,7 @@
     }
     //保存病历
     function saveBaseTemplateHtml(params) {
-        $.loading(true, "病历保存中...");
+        $.loading(true, "Đang lưu bệnh án...");
         $.ajax({
             type: "POST",
             data: { docData: params.docData[0].data, blid: blid, bllx: bllx, bllj: bllj, blxtmc_yj: blxtmc_yj, zyh: zyh, mzh: mzh, submitData: params.html },
@@ -150,11 +150,11 @@
             dataType: "json",
             async: false,
             success: function (respdata) {
-                $.modalAlert("病历保存成功", 'success');
+                $.modalAlert("Lưu bệnh án thành công", 'success');
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert('病历保存失败:' + ex, 'error');
+                $.modalAlert('Lưu bệnh án thất bại:' + ex, 'error');
             }
         });
         $.loading(false);
@@ -178,7 +178,7 @@
                         docTplName: templateName,
                         docContent: respdata.htmldata
                     });
-                    $.modalAlert('加载完成', 'success');
+                    $.modalAlert('tải hoàn thành', 'success');
                 }
                
             }

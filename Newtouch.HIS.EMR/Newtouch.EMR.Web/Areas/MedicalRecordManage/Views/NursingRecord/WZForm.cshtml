@@ -36,128 +36,128 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>住院号：</td>
+                <td class="formTitle"><span class="required">*</span>Số nhập viện:</td>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" readonly="readonly" class="form-control required" placeholder="" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>姓名：</td>
+                <td class="formTitle"><span class="required">*</span>Họ tên:</td>
                 <td class="formValue">
                     <input id="xm" name="xm" type="text" readonly="readonly" class="form-control required" placeholder="" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>日期：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày:</td>
                 <td class="formValue">
                     <input id="rq" name="rq" type="text" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker()" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                 </td>
-                <td class="formTitle"><span class="required">*</span>时间点：</td>
+                <td class="formTitle"><span class="required">*</span>Thời điểm:</td>
                 <td class="formValue">
                     <input id="sj" name="sj" type="text" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'HH:mm' })" value="@DateTime.Now.ToString("HH:mm")">
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">体温：</td>
+                <td class="formTitle">Nhiệt độ:</td>
                 <td class="formValue">
                     <input id="tw" name="tw" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">血氧饱和度：</td>
+                <td class="formTitle">Độ bão hòa oxy máu:</td>
                 <td class="formValue">
                     <input id="xybhd" name="xybhd" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">呼吸频率：</td>
+                <td class="formTitle">Tần số thở:</td>
                 <td class="formValue">
                     <input id="hxpl" name="hxpl" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">脉率：</td>
+                <td class="formTitle">Mạch:</td>
                 <td class="formValue">
                     <input id="ml" name="ml" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">收缩压：</td>
+                <td class="formTitle">Huyết áp tâm thu:</td>
                 <td class="formValue">
                     <input id="ssy" name="ssy" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">舒张压：</td>
+                <td class="formTitle">Huyết áp tâm trương:</td>
                 <td class="formValue">
                     <input id="szy" name="szy" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">吸氧(L/min)：</td>
+                <td class="formTitle">Thở oxy(L/min):</td>
                 <td class="formValue">
                     <input id="xy" name="xy" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">体重：</td>
+                <td class="formTitle">Cân nặng:</td>
                 <td class="formValue">
                     <input id="tz" name="tz" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                @*<td class="formValue" colspan="2" style="padding-left:40px;">
+                
             <div class="ckbox">
-                <input id="zbdmbz" name="zbdmbz" type="checkbox"><label for="zbdmbz">足背动脉搏动</label>
+                <input id="zbdmbz" name="zbdmbz" type="checkbox"><label for="zbdmbz">Mạch động mạch mu chân</label>
             </div>
-        </td>*@
+
             </tr>
             <tr>
-                <td class="formTitle">瞳孔-左：</td>
+                <td class="formTitle">Đồng tử-Trái:</td>
                 <td class="formValue">
                     <input id="tk_z" name="tk_z" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">瞳孔-右：</td>
+                <td class="formTitle">Đồng tử-Phải:</td>
                 <td class="formValue">
                     <input id="tk_y" name="tk_y" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">对光反应-左：</td>
+                <td class="formTitle">Phản xạ với ánh sáng-Trái:</td>
                 <td class="formValue">
                     <input id="dgfs_z" name="dgfs_z" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">对光反应-右：</td>
+                <td class="formTitle">Phản xạ với ánh sáng-Phải:</td>
                 <td class="formValue">
                     <input id="dgfs_y" name="dgfs_y" type="text" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">意识：</td>
+                <td class="formTitle">Ý thức:</td>
                 <td class="formValue">
                     <input id="ys" name="ys" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">体位护理：</td>
+                <td class="formTitle">Chăm sóc tư thế:</td>
                 <td class="formValue">
                     <input id="twhl" name="twhl" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">皮肤护理：</td>
+                <td class="formTitle">Chăm sóc da:</td>
                 <td class="formValue">
                     <input id="pfhl" name="pfhl" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">营养护理：</td>
+                <td class="formTitle">Chăm sóc dinh dưỡng:</td>
                 <td class="formValue">
                     <input id="yyhl" name="yyhl" type="text" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">吸痰：</td>
+                <td class="formTitle">Hút đờm:</td>
                 <td class="formValue">
                     <input id="xt" name="xt" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">气管插管：</td>
+                <td class="formTitle">Đặt ống nội khí quản:</td>
                 <td class="formValue">
                     <input id="qgcg" name="qgcg" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">建立静脉通道：</td>
+                <td class="formTitle">Thiết lập đường truyền tĩnh mạch:</td>
                 <td class="formValue">
                     <input id="jljmtd" name="jljmtd" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">心电监护：</td>
+                <td class="formTitle">Theo dõi điện tim:</td>
                 <td class="formValue">
                     <input id="xdjh" name="xdjh" type="text" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">心肺复苏：</td>
+                <td class="formTitle">Hồi sức tim phổi:</td>
                 <td class="formValue">
                     <input id="xffs" name="xffs" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">除颤：</td>
+                <td class="formTitle">Khử rung tim:</td>
                 <td class="formValue">
                     <input id="cc" name="cc" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">洗胃：</td>
+                <td class="formTitle">Rửa dạ dày:</td>
                 <td class="formValue">
                     <input id="xw" name="xw" type="text" class="form-an form-control" placeholder="" />
                 </td>
@@ -165,190 +165,190 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle">护理等级：</td>
+                <td class="formTitle">Cấp độ điều dưỡng:</td>
                 <td class="formValue">
                     <select id="hldj" name="hldj" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="1">特级护理</option>
-                        <option value="2">一级护理</option>
-                        <option value="3">二级护理</option>
-                        <option value="4">三级护理</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Điều dưỡng đặc biệt</option>
+                        <option value="2">Điều dưỡng cấp I</option>
+                        <option value="3">Điều dưỡng cấp II</option>
+                        <option value="4">Điều dưỡng cấp III</option>
                     </select>
                 </td>
-                <td class="formTitle">护理类型：</td>
+                <td class="formTitle">Loại điều dưỡng:</td>
                 <td class="formValue">
                     <select id="hllx" name="hllx" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="1">基础护理</option>
-                        <option value="2">特殊护理</option>
-                        <option value="3">辩证施护</option>
-                        <option value="4">其他</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Điều dưỡng cơ bản</option>
+                        <option value="2">Điều dưỡng đặc biệt</option>
+                        <option value="3">Biện chứng thi hộ</option>
+                        <option value="4">Khác</option>
                     </select>
                 </td>
-                <td class="formTitle">饮食情况：</td>
+                <td class="formTitle">Tình hình ăn uống:</td>
                 <td class="formValue">
                     <select id="ysqk" name="ysqk" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="1">良好</option>
-                        <option value="2">一般</option>
-                        <option value="3">较差</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Tốt</option>
+                        <option value="2">Thông thường</option>
+                        <option value="3">Kém</option>
                     </select>
                 </td>
-                <td class="formTitle">气管护理：</td>
+                <td class="formTitle">Chăm sóc khí quản:</td>
                 <td class="formValue">
                     <select id="qghl" name="qghl" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="1">翻身拍背</option>
-                        <option value="2">雾化吸入</option>
-                        <option value="3">吸痰</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Trở mình vỗ lưng</option>
+                        <option value="2">Khí dung</option>
+                        <option value="3">Hút đờm</option>
                     </select>
                 </td>
             </tr>
-            @*<tr>
-                <td class="formTitle">饮食指导：</td>
+            
+                <td class="formTitle">Hướng dẫn ăn uống:</td>
                 <td class="formValue">
                     <select id="yszd" name="yszd" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="01">普通饮食</option>
-                        <option value="02">软食</option>
-                        <option value="03">半流食</option>
-                        <option value="04">流食</option>
-                        <option value="05">禁食</option>
-                        <option value="06">禁食水</option>
-                        <option value="07">鼻饲饮食</option>
-                        <option value="08">低盐低脂饮食</option>
-                        <option value="09">糖尿病饮食</option>
-                        <option value="99">其他</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="01">Ăn thường</option>
+                        <option value="02">Ăn mềm</option>
+                        <option value="03">Ăn nửa lỏng</option>
+                        <option value="04">Ăn lỏng</option>
+                        <option value="05">Nhịn ăn</option>
+                        <option value="06">Nhịn ăn uống</option>
+                        <option value="07">Ăn qua sonde dạ dày</option>
+                        <option value="08">Ăn ít muối ít mỡ</option>
+                        <option value="09">Ăn cho bệnh tiểu đường</option>
+                        <option value="99">Khác</option>
                     </select>
                 </td>
-                <td class="formTitle">心理护理：</td>
+                <td class="formTitle">Chăm sóc tâm lý:</td>
                 <td class="formValue">
                     <select id="xlhl" name="xlhl" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="1">根据病人心理状况实施心理护理</option>
-                        <option value="2">家属心理支持</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Chăm sóc tâm lý theo tình trạng tâm lý bệnh nhân</option>
+                        <option value="2">Hỗ trợ tâm lý người nhà</option>
                     </select>
                 </td>
-                <td class="formTitle">安全护理：</td>
+                <td class="formTitle">Chăm sóc an toàn:</td>
                 <td class="formValue">
                     <select id="aqhl" name="aqhl" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="1">勤巡视病房</option>
-                        <option value="2">加床档</option>
-                        <option value="3">约束四肢</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Thường xuyên thăm buồng bệnh</option>
+                        <option value="2">Chặn giường thêm</option>
+                        <option value="3">Cố định tứ chi</option>
                     </select>
                 </td>
-            </tr>*@
-            @*<tr>
-            <td class="formTitle">护理操作名称：</td>
+
+            
+            <td class="formTitle">Tên thao tác điều dưỡng:</td>
             <td class="formValue">
                 <input id="hlczmc" name="hlczmc" type="text" class="form-an form-control" placeholder="" />
             </td>
-            <td class="formTitle" colspan="2">护理观察项目名称：</td>
+            <td class="formTitle" colspan="2">Tên hạng mục quan sát điều dưỡng:</td>
             <td class="formValue">
                 <input id="hlgcxm" name="hlgcxm" type="text" class="form-an form-control" placeholder="" />
             </td>
-            <td class="formTitle" colspan="2">护理操作项目类目名称：</td>
+            <td class="formTitle" colspan="2">Tên nhóm hạng mục thao tác điều dưỡng:</td>
             <td class="formValue">
                 <input id="hlczxmmc" name="hlczxmmc" type="text" class="form-an form-control" placeholder="" />
             </td>
-        </tr>*@
+
             <tr style="display:none;">
                 <td class="formValue" colspan="2" style="padding-left:40px;">
                     <div class="ckbox">
-                        <input id="fcssaqb" name="fcssaqb" type="checkbox"><label for="fcssaqb">发出手术安全核对表</label>
+                        <input id="fcssaqb" name="fcssaqb" type="checkbox"><label for="fcssaqb">Phát bảng kiểm tra an toàn phẫu thuật</label>
                     </div>
                 </td>
                 <td class="formValue" colspan="2" style="padding-left:40px;">
                     <div class="ckbox">
-                        <input id="shssaqb" name="shssaqb" type="checkbox"><label for="shssaqb">收回手术安全核对表</label>
+                        <input id="shssaqb" name="shssaqb" type="checkbox"><label for="shssaqb">Thu hồi bảng kiểm tra an toàn phẫu thuật</label>
                     </div>
                 </td>
                 <td class="formValue" colspan="2" style="padding-left:40px;">
                     <div class="ckbox">
-                        <input id="fcssfxpgb" name="fcssfxpgb" type="checkbox"><label for="fcssfxpgb">发出手术风险评估表</label>
+                        <input id="fcssfxpgb" name="fcssfxpgb" type="checkbox"><label for="fcssfxpgb">Phát bảng đánh giá rủi ro phẫu thuật</label>
                     </div>
                 </td>
                 <td class="formValue" colspan="2" style="padding-left:40px;">
                     <div class="ckbox">
-                        <input id="shssfxpgb" name="shssfxpgb" type="checkbox"><label for="shssfxpgb">收回手术风险评估表</label>
+                        <input id="shssfxpgb" name="shssfxpgb" type="checkbox"><label for="shssfxpgb">Thu hồi bảng đánh giá rủi ro phẫu thuật</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">摄入量：</td>
+                <td class="formTitle">Lượng đưa vào:</td>
                 <td class="formValue">
-                    <input type="button" id="btn_srlbj" onclick="srlbj()" class="btn btn-primary" value="编辑" />
+                    <input type="button" id="btn_srlbj" onclick="srlbj()" class="btn btn-primary" value="Chỉnh sửa" />
                 </td>
-                <td class="formTitle">摄出量：</td>
+                <td class="formTitle">Lượng thải ra:</td>
                 <td class="formValue">
-                    <input type="button" id="btn_sclbj" onclick="sclbj()" class="btn btn-primary" value="编辑" />
+                    <input type="button" id="btn_sclbj" onclick="sclbj()" class="btn btn-primary" value="Chỉnh sửa" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">摄入量：</td>
+                <td class="formTitle">Lượng đưa vào:</td>
                 <td class="formValue" colspan="7">
                     <input id="srltext" name="srltext" readonly="readonly" type="text" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">摄出量：</td>
+                <td class="formTitle">Lượng thải ra:</td>
                 <td class="formValue" colspan="7">
                     <input id="scltext" name="scltext" readonly="readonly" type="text" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
-            @*<tr>
+            
             <td class="formValue" colspan="2" style="padding-left:40px;">
                 <div class="ckbox">
-                    <input id="glbz" name="glbz" type="checkbox"><label for="glbz">隔离标志</label>
+                    <input id="glbz" name="glbz" type="checkbox"><label for="glbz">Dấu hiệu cách ly</label>
                 </div>
             </td>
-            <td class="formTitle">隔离种类：</td>
+            <td class="formTitle">Loại cách ly:</td>
             <td class="formValue">
                 <select id="glzl" name="glzl" class="form-control">
-                    <option value="">==请选择==</option>
-                    <option value="1">消化道隔离</option>
-                    <option value="2">呼吸道隔离</option>
-                    <option value="3">接触隔离</option>
-                    <option value="4">血液-体液隔离</option>
-                    <option value="5">严密隔离</option>
-                    <option value="6">昆虫隔离</option>
-                    <option value="7">保护性隔离</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="1">Cách ly đường tiêu hóa</option>
+                    <option value="2">Cách ly đường hô hấp</option>
+                    <option value="3">Cách ly tiếp xúc</option>
+                    <option value="4">Máu-Cách ly dịch cơ thể</option>
+                    <option value="5">Cách ly nghiêm ngặt</option>
+                    <option value="6">Cách ly côn trùng</option>
+                    <option value="7">Cách ly bảo vệ</option>
                 </select>
             </td>
-        </tr>*@
+
             <tr>
-                <td class="formTitle">病情观察及措施：</td>
+                <td class="formTitle">Theo dõi tình trạng bệnh và biện pháp:</td>
                 <td class="formValue" colspan="7">
                     <textarea id="hlgcjg" class="form-an-end form-control"></textarea>
                 </td>
             </tr>
             <tr style="display:none;">
-                <td class="formTitle">护理操作结果：</td>
+                <td class="formTitle">Kết quả thao tác điều dưỡng:</td>
                 <td class="formValue" colspan="7">
                     <textarea id="hlczjg" class="form-an-end form-control"></textarea>
                 </td>
             </tr>
             <tr style="display:none;">
-                <td class="formTitle">过敏史：</td>
+                <td class="formTitle">Tiền sử dị ứng:</td>
                 <td class="formValue" colspan="7">
                     <textarea id="gms" class="form-an-end form-control"></textarea>
                 </td>
             </tr>
             <tr style="display:none;">
-                <td class="formTitle">导管护理描述：</td>
+                <td class="formTitle">Mô tả chăm sóc ống thông:</td>
                 <td class="formValue" colspan="7">
                     <textarea id="dghl" class="form-an-end form-control"></textarea>
                 </td>
             </tr>
-            @*<tr>
-            <td class="formTitle">简要病情：</td>
+            
+            <td class="formTitle">Tóm tắt tình trạng bệnh:</td>
             <td class="formValue" colspan="7">
                 <textarea id="jybq" class="form-an-end form-control"></textarea>
             </td>
-        </tr>*@
+
             <tr>
-                <td class="formTitle">护士签名：</td>
+                <td class="formTitle">Chữ ký điều dưỡng:</td>
                 <td class="formValue">
                     <input id="hsqm" name="hsqm" type="text" class="form-an form-control" value="@ViewBag.hsqm" />
                 </td>
@@ -357,7 +357,7 @@
     </div>
 </form>
 <div style="padding-left: 10px;margin-top: 10px;">
-    <span style="color:red;">说明：</span>血压测量单位：mmHg；摄入摄出测量单位：ml；体温：℃；体重：kg；体重：kg；呼吸频率：次/分；脉率：次/分；血氧饱和度：%；
+    <span style="color:red;">Mô tả:</span>Đơn vị đo huyết áp:mmHg;Đơn vị đo lượng vào/ra:ml;Nhiệt độ:℃;Cân nặng:kg;Cân nặng:kg;Tần số thở:Lần/phút;Mạch:Lần/phút;Độ bão hòa oxy máu:%;
 </div>
 <script type="text/javascript">
     var keyValue = $.request("smtzId");
@@ -389,7 +389,7 @@
                         var srlstrxs = "";
                         for (var i = 0; i < data.length; i++) {
                             srlstr += data[i].mc + "|" + data[i].ml + "|" + data[i].dw + "|" + data[i].tj + ",";
-                            srlstrxs += "名称:【" + data[i].mc + "】量:【" + data[i].ml + "】单位:【" + data[i].dw + "】途径 :【" + data[i].tj + "】,";
+                            srlstrxs += "Tên:【" + data[i].mc + "】Lượng:【" + data[i].ml + "】Đơn vị:【" + data[i].dw + "】Đường dùng :【" + data[i].tj + "】,";
                         }
                         srlstr = srlstr.substring(0, srlstr.length - 1);
                         $("#srltext").val(srlstrxs);
@@ -408,7 +408,7 @@
                         var srlstrxs = "";
                         for (var i = 0; i < data.length; i++) {
                             srlstr += data[i].mc + "|" + data[i].ml + "|" + data[i].dw + "|" + data[i].ysxz + ",";
-                            srlstrxs += "名称:【" + data[i].mc + "】量:【" + data[i].ml + "】单位:【" + data[i].dw + "】颜色形状 :【" + data[i].ysxz + "】,";
+                            srlstrxs += "Tên:【" + data[i].mc + "】Lượng:【" + data[i].ml + "】Đơn vị:【" + data[i].dw + "】Màu sắc hình dạng :【" + data[i].ysxz + "】,";
                         }
                         srlstr = srlstr.substring(0, srlstr.length - 1);
                         $("#scltext").val(srlstrxs);
@@ -451,7 +451,7 @@
     function srlbj() {
         $.modalOpen({
             id: "OpenOutForm",
-            title: "摄入量录入",
+            title: "Nhập lượng đưa vào",
             url: "/MedicalRecordManage/NursingRecord/OpenOutForm?zyh=" + $('#zyh').val() + "&rq=" + $('#rq').val() + "&sj=" + $('#sj').val() + "&xm=" + $('#xm').val() + "&bllx=1" + "&srscl=" + $("#srltexthidden").val(),
             width: "700px",
             height: "600px",
@@ -460,7 +460,7 @@
                     if (srlstr != "") {
                         var srlstrxs = "";
                         for (var i = 0; i < srlstr.split(",").length; i++) {
-                            srlstrxs += "名称:【" + srlstr.split(",")[i].split("|")[0] + "】量:【" + srlstr.split(",")[i].split("|")[1] + "】单位:【" + srlstr.split(",")[i].split("|")[2] + "】途径 :【" + srlstr.split(",")[i].split("|")[3] + "】,";
+                            srlstrxs += "Tên:【" + srlstr.split(",")[i].split("|")[0] + "】Lượng:【" + srlstr.split(",")[i].split("|")[1] + "】Đơn vị:【" + srlstr.split(",")[i].split("|")[2] + "】Đường dùng :【" + srlstr.split(",")[i].split("|")[3] + "】,";
                         }
                         $("#srltext").val(srlstrxs);
                         $("#srltexthidden").val(srlstr);
@@ -472,7 +472,7 @@
     function sclbj() {
         $.modalOpen({
             id: "OpenPutForm",
-            title: "摄出量录入",
+            title: "Nhập lượng thải ra",
             url: "/MedicalRecordManage/NursingRecord/OpenPutForm?zyh=" + $('#zyh').val() + "&rq=" + $('#rq').val() + "&sj=" + $('#sj').val() + "&xm=" + $('#xm').val() + "&bllx=1" + "&srscl=" + $("#scltexthidden").val(),
             width: "700px",
             height: "600px",
@@ -481,7 +481,7 @@
                     if (sclstr != "") {
                         var srlstrxs = "";
                         for (var i = 0; i < sclstr.split(",").length; i++) {
-                            srlstrxs += "名称:【" + sclstr.split(",")[i].split("|")[0] + "】量:【" + sclstr.split(",")[i].split("|")[1] + "】单位:【" + sclstr.split(",")[i].split("|")[2] + "】颜色形状 :【" + sclstr.split(",")[i].split("|")[3] + "】,";
+                            srlstrxs += "Tên:【" + sclstr.split(",")[i].split("|")[0] + "】Lượng:【" + sclstr.split(",")[i].split("|")[1] + "】Đơn vị:【" + sclstr.split(",")[i].split("|")[2] + "】Màu sắc hình dạng :【" + sclstr.split(",")[i].split("|")[3] + "】,";
                         }
                         $("#scltext").val(srlstrxs);
                         $("#scltexthidden").val(sclstr);
@@ -503,8 +503,8 @@
                 return $.itemDetails.getItems(itemType);
             },
             colModel: [
-                { label: '编码', name: 'Code', widthratio: 20 },
-                { label: '名称', name: 'Name', widthratio: 60 },
+                { label: 'Mã', name: 'Code', widthratio: 20 },
+                { label: 'Tên', name: 'Name', widthratio: 60 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
                 //保存时验证val和data-Name一致
@@ -518,7 +518,7 @@
 <script type="text/javascript">
     function AcceptClick(callback) {
         if ($.trim($('#zyh').val()) == '' || $('#zyh').val() != $('#zyh').attr('data-zyh')) {
-            $.modalAlert("请选择住院患者", "warning");
+            $.modalAlert("Vui lòng chọn bệnh nhân nội trú", "warning");
             return;
         }
         if (!$("#form1").formValid()) {
@@ -527,12 +527,12 @@
 
         var data = $("#form1").formSerialize();
         if (data.rq < $("#ryrq").val()) {
-            $.modalAlert("录入日期不能小于入院日期!", "warning");
+            $.modalAlert("Ngày nhập không được nhỏ hơn ngày nhập viện!", "warning");
             return;
         }
         if ($("#cyrq").val() != null && $("#cyrq").val() != "") {
             if (data.rq > $("#cyrq").val()) {
-                $.modalAlert("录入日期不能大于出院日期!", "warning");
+                $.modalAlert("Ngày nhập không được lớn hơn ngày ra viện!", "warning");
                 return;
             }
         }

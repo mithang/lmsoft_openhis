@@ -1,27 +1,17 @@
-﻿/*******************************************************************************
- * Copyright © 2022 开源医疗授权 版权所有
- * Author: Newtouch
- * Description: 
-*********************************************************************************/
-
-using Newtouch.HIS.API.Common.Models;
+using Newtouch.Herp.API.Common;
 
 namespace Newtouch.Herp.API.Models
 {
     /// <summary>
-    /// 用户身份（根据项目需要 扩展用户身份的字段）
+    /// Port of Newtouch.Herp.API.Models.UserIdentity: the shared Identity plus
+    /// the Herp extension fields (medical-organisation ids).
     /// </summary>
     public class UserIdentity : Identity
     {
-        /// <summary>
-        /// 医疗机构Id
-        /// </summary>
+        /// <summary>Organisation id (original field name kept as an id).</summary>
         public string OrganizeId { get; set; }
 
-        /// <summary>
-        /// 顶级医疗机构Id
-        /// </summary>
+        /// <summary>Top-level organisation id (original field name kept as an id).</summary>
         public string TopOrganizeId { get; set; }
-
     }
 }

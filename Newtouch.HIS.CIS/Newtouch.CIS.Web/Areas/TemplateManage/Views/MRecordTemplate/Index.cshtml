@@ -1,11 +1,11 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <style>
     #form1 > .form .formValue input.form-control {
         border-top: 0px;
@@ -32,9 +32,9 @@
 <div style="float:left; width:17.4%; height:98%; border:solid 1px #ddd;">
     <div class="ui-layout-west">
         <ul id="beveltabs">
-            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>个人</a></li>
-            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>科室</a></li>
-            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>全院</a></li>
+            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>Cá nhân</a></li>
+            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>Khoa</a></li>
+            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>Toàn viện</a></li>
         </ul>
         <div id="treeContent">
             <div id="personal">
@@ -53,54 +53,54 @@
 <div style="width:80.5%; float:right; margin-right: 10px; border:solid 1px #ddd; height:100%;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            病历详情
+            Bệnh ánChi tiết
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <form id="form1">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">主诉：</th>
+                        <th class="formTitle">Triệu chứng chính:</th>
                         <td class="formValue" colspan="4">
                             <input type="text" id="zs" name="zs" class="form-control activeValue focusInput required" />
                             <i class="fa fa-times" aria-hidden="true" hidden></i>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">现病史：</th>
+                        <th class="formTitle">Bệnh sử hiện tại:</th>
                         <td class="formValue" colspan="4">
                             <textarea id="xbs" name="xbs" class="form-control activeValue focusInput" style="height:35px;"></textarea>
                             <i class="fa fa-times" aria-hidden="true" hidden></i>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">既往史：</th>
+                        <th class="formTitle">Tiền sử:</th>
                         <td class="formValue" colspan="4">
                             <textarea id="jws" name="jws" class="form-control activeValue focusInput" style="height:35px;"></textarea>
                             <i class="fa fa-times" aria-hidden="true" hidden></i>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">查体：</th>
+                        <th class="formTitle">Khám thực thể:</th>
                         <td class="formValue" colspan="4">
                             <textarea id="ct" name="ct" class="form-control activeValue focusInput" style="height:35px;"></textarea>
                             <i class="fa fa-times" aria-hidden="true" hidden></i>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">处理：</th>
+                        <th class="formTitle">Xử lý:</th>
                         <td class="formValue" colspan="4">
                             <textarea id="clfa" name="clfa" class="form-control activeValue focusInput" style="height:35px;"></textarea>
                             <i class="fa fa-times" aria-hidden="true" hidden></i>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">西医诊断：</th>
+                        <th class="formTitle">Chẩn đoán Tây y:</th>
                         <td class="formValue" colspan="4">
                             <table id="tablexyzd">
                                 <tr>
-                                    <th class="formTitle">主</th>
+                                    <th class="formTitle">Chính</th>
                                     <td class="formValue">
-                                        <input type="checkbox" id="chk1" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label>
+                                        <input type="checkbox" id="chk1" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label>
                                         <input type="text" id="zd1" name="zd1" class="form-control activeValue focusInput zdText" style="width:70%;" placeholder="" />
                                         <i class="fa fa-times" aria-hidden="true" hidden></i>
                                     </td>
@@ -112,17 +112,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">中医诊断：</th>
+                        <th class="formTitle">Chẩn đoán YHCT:</th>
                         <td class="formValue" colspan="4">
                             <table id="tablezyzd">
                                 <tr>
-                                    <th class="formTitle">主</th>
+                                    <th class="formTitle">Chính</th>
                                     <td class="formValue">
-                                        <input type="checkbox" id="chk2" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label>
+                                        <input type="checkbox" id="chk2" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label>
                                         <input type="text" id="zd2" name="zd2" class="form-control activeValue focusInput zdText" style="width:70%;" />
                                         <i class="fa fa-times" aria-hidden="true" hidden></i>
                                     </td>
-                                    <th class="formTitle">症候</th>
+                                    <th class="formTitle">Triệu chứng</th>
                                     <td class="formValue">
                                         <input type="text" id="zh1" name="zh1" class="form-control activeValue focusInput zhText" />
                                         <i class="fa fa-times" aria-hidden="true" hidden></i>
@@ -135,22 +135,22 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">处方模板组套：</th>
+                        <th class="formTitle">Đơn thuốcMẫuBộ mẫu:</th>
                         <td class="formValue">
-                            <input id="txtZutaoSel" type="text" class="form-control" placeholder="请输入组套名称或编码" />
+                            <input id="txtZutaoSel" type="text" class="form-control" placeholder="Vui lòng nhập tên bộ mẫu hoặc mã" />
                         </td>
                         <td>
                             &nbsp;&nbsp;&nbsp;
                             <i class="fa fa-minus-circle fa-lg" id="btn_Remove" style="cursor:pointer;" onclick="btn_removeItem()"></i>
-                            处方类型: 
+                            Đơn thuốcLoại: 
                             <select id="cflx" class="vitalsignschange">
-                                <option value="0">=请选择=</option>
-                                <option value="1"> 西药处方</option>
-                                <option value="2"> 中药处方</option>
-                                <option value="3"> 康复处方</option>
-                                <option value="6"> 常规项目处方</option>
-                                <option value="4"> 检验处方</option>
-                                <option value="5"> 检查处方</option>
+                                <option value="0">=Vui lòng chọn=</option>
+                                <option value="1"> Thuốc TâyĐơn thuốc</option>
+                                <option value="2"> Thuốc YHCTĐơn thuốc</option>
+                                <option value="3"> Phục hồi chức năngĐơn thuốc</option>
+                                <option value="6"> Thường quyMụcĐơn thuốc</option>
+                                <option value="4"> Xét nghiệmĐơn thuốc</option>
+                                <option value="5"> Kiểm traĐơn thuốc</option>
                             </select>
                         </td>
                         <td ></td>
@@ -167,7 +167,7 @@
     <form id="form2">
         <table class="form" style="margin-top:2px;">
             <tr>
-                <th class="formTitle"><span class="required">*</span>模板名称: </th>
+                <th class="formTitle"><span class="required">*</span>MẫuTên: </th>
                 <td class="formValue">
                     <input id="mbmc" name="mbmc" type="text" class="form-control required" />
                 </td>
@@ -180,14 +180,14 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 3, 4, 6, 8 },
-    F3Text = "新增模板",
-    F6Text = "删除"
+    F3Text = "Thêm mớiMẫu",
+    F6Text = "Xóa"
 })
 </div>
 
 <link href="" rel="stylesheet" />
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/beveltabs.css", false)" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/beveltabs.js", false)"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/beveltabs.css", false)" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/beveltabs.js", false)"></script>
 
 <script type="text/javascript">
     var ybnhlx = null;
@@ -227,7 +227,7 @@
                                 {
                                     //先append
                                     var number = $('#tablexyzd .zdText').length + 1;
-                                    var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+                                    var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
                                     $newTr.appendTo($('#tablexyzd'));
                                 }
 
@@ -254,7 +254,7 @@
                                 {
                                     //先append
                                     var number = $('#tablezyzd .zdText').length + 1;
-                                    var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">症候</th><td class="formValue"><input type="text" id="zh'+ number +'" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+                                    var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" id="zh'+ number +'" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
                                     $newTr.appendTo($('#tablezyzd'));
                                 }
                                 //再赋值
@@ -354,7 +354,7 @@
     //西医诊断 新增
     $('#tablexyzd .plusToggleCircle').click(function () {
         var number = $('#tablexyzd .zdText').length + 1;
-        var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+        var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         $newTr.appendTo($(this).closest('table'));
         //西医诊断浮层
         bindXyzdFloatingSelector($newTr.find(".zdText"));
@@ -363,7 +363,7 @@
     //中医诊断 新增
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdText').length + 1;
-        var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">症候</th><td class="formValue"><input type="text" id="zh'+ number +'" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+        var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" id="zh'+ number +'" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         $newTr.appendTo($(this).closest('table'));
         //中医诊断浮层
         bindZyzdFloatingSelector($newTr.find(".zdText"));
@@ -402,7 +402,7 @@
             width: 350,
             height: 280,
             focusautotrigger: true,
-            caption: "选择组套",
+            caption: "ChọnBộ mẫu",
             url: '/PresTemplate/GetCfmbList',
             ajaxparameters: function ($thisinput) {
                 return "mblx="+ $('#current').attr('data-type') + "&cflx="+$("#cflx").val()+"&expandCflx=null&mbKeyword=" + $.trim($thisinput.val());
@@ -420,7 +420,7 @@
                     }
                 });
                 if (returnFlag) {
-                    $.modalAlert("不可重复添加", 'warning');
+                    $.modalAlert("Không được thêm trùng lặp", 'warning');
                     return;
                 }
                 btn_addItem($thistr);
@@ -428,26 +428,26 @@
             },
             colModel: [
                 { label: 'cfmbId', name: 'mbId', hidden: true },
-                { label: '模板名称', name: 'mbmc', widthratio: 30 },
+                { label: 'MẫuTên', name: 'mbmc', widthratio: 30 },
                 {
-                    label: '处方类型',
+                    label: 'Đơn thuốcLoại',
                     name: 'cflx',
                     widthratio: 20,
                     formatter: function(value, options, row) {
                         // 将数字值转换为汉字
                         const prescriptionTypes = {
-                            1: "西药处方",
-                            2: "中药处方",
-                            4: "检验处方",
-                            5: "检查处方",
-                            3: "康复处方",
-                            6: "常规项目处方",
+                            1: "Thuốc TâyĐơn thuốc",
+                            2: "Thuốc YHCTĐơn thuốc",
+                            4: "Xét nghiệmĐơn thuốc",
+                            5: "Kiểm traĐơn thuốc",
+                            3: "Phục hồi chức năngĐơn thuốc",
+                            6: "Thường quyMụcĐơn thuốc",
                         };
-                        return prescriptionTypes[value] || "未知类型"; // 默认值为 "未知类型"
+                        return prescriptionTypes[value] || "Loại không rõ"; // 默认值为 "未知类型"
                     }
                 },
-                { label: '描述', name: 'Description', widthratio: 30, hidden: true},
-                { label: '注意事项', name: 'Remark', widthratio: 30 ,hidden: true}
+                { label: 'Mô tả', name: 'Description', widthratio: 30, hidden: true},
+                { label: 'Lưu ý', name: 'Remark', widthratio: 30 ,hidden: true}
             ]
         };
         var options = $.extend(defaults, options);
@@ -483,24 +483,24 @@
         $('#groupPackageListGridList').newtouchLocalDataGrid({
             height: 200, // 增加高度，确保内容不会被挤压
             unwritten: false,
-            caption: "组套信息",
+            caption: "Bộ mẫuThông tin",
             colModel: [
                 { label: 'mbId', name: 'mbId', width: 120, hidden: true, align: 'left' },
-                { label: '模板名称', name: 'mbmc', width: 200, align: 'left'  },  // 调整宽度
-                { label: '处方类型', name: 'cflx', width: 120, align: 'left',
+                { label: 'MẫuTên', name: 'mbmc', width: 200, align: 'left'  },  // 调整宽度
+                { label: 'Đơn thuốcLoại', name: 'cflx', width: 120, align: 'left',
                     formatter: function(value, options, row) {
                         debugger;
                             // 如果值是数字，则转换为汉字
                             if (typeof value === 'number' || Number.isInteger(value)) {
                                 const prescriptionTypes = {
-                                    1: "西药处方",
-                                    2: "中药处方",
-                                    4: "检验处方",
-                                    5: "检查处方",
-                                    3: "康复处方",
-                                    6: "常规项目处方",
+                                    1: "Thuốc TâyĐơn thuốc",
+                                    2: "Thuốc YHCTĐơn thuốc",
+                                    4: "Xét nghiệmĐơn thuốc",
+                                    5: "Kiểm traĐơn thuốc",
+                                    3: "Phục hồi chức năngĐơn thuốc",
+                                    6: "Thường quyMụcĐơn thuốc",
                                 };
-                                return prescriptionTypes[value] || "未知类型";
+                                return prescriptionTypes[value] || "Loại không rõ";
                             }
                             // 如果不是数字，直接返回原值
                             return value;
@@ -525,7 +525,7 @@
     function newtouch_event_f8(){
         //必填信息验证
         if (!$('#form2').formValid(valOptions)) {
-            $.modalAlert("必填信息尚未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         //病历信息
@@ -583,19 +583,19 @@
         var mbztlist = $("#groupPackageListGridList").jqGrid('getRowData_AllLine', null, true);
         debugger;
         const prescriptionTypes = {
-            "西药处方": 1,
-            "中药处方": 2,
-            "检验处方": 4,
-            "检查处方": 5,
-            "康复处方": 3,
-            "常规项目处方": 6,
+            "Thuốc TâyĐơn thuốc": 1,
+            "Thuốc YHCTĐơn thuốc": 2,
+            "Xét nghiệmĐơn thuốc": 4,
+            "Kiểm traĐơn thuốc": 5,
+            "Phục hồi chức năngĐơn thuốc": 3,
+            "Thường quyMụcĐơn thuốc": 6,
         };
 
         for (var i = 0; i < mbztlist.length; i++) {
             if (prescriptionTypes[mbztlist[i].cflx] !== undefined) {
                 mbztlist[i].cflx = prescriptionTypes[mbztlist[i].cflx]; // 转换为数字
             } else {
-                mbztlist[i].cflx = "未知类型"; // 未找到对应汉字时设置为“未知类型”
+                mbztlist[i].cflx = "Loại không rõ"; // 未找到对应汉字时设置为“未知类型”
             }
         }
         $.najax({
@@ -604,7 +604,7 @@
             data: { blmbObject: blmbObject, xyzdList: xyzdArray, zyzdList:zyzdArray, mbztlist: mbztlist},
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'success');
+                $.modalAlert("Lưu thành công", 'success');
                 //刷新左边树
                 $.currentWindow().$('#current').trigger('click');
                 //清空
@@ -627,10 +627,10 @@
     //删除模板
     function newtouch_event_f6(){
         if(!!!$('#mbId').val()){
-            $.modalAlert("请选择模板", 'warning');
+            $.modalAlert("Vui lòng chọnMẫu", 'warning');
             return;
         }
-        $.modalConfirm("确定删除模板？", function (flag) {
+        $.modalConfirm("Xác nhậnXóaMẫu?", function (flag) {
             if (flag) {
                 $.najax({
                     url: "/TemplateManage/MRecordTemplate/DeleteTemplate",
@@ -638,7 +638,7 @@
                     data: { mbId: $('#mbId').val() },
                     type: "POST",
                     success: function (ajaxresp) {
-                        $.modalAlert("操作成功", 'success');
+                        $.modalAlert("Thao tác thành công", 'success');
                         $.currentWindow().$('#current').trigger('click');
                         newtouch_globalevent_f4();
                     }

@@ -1,5 +1,5 @@
 ﻿@using Newtouch.Infrastructure;
-@using Newtouch.Common.Operator;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
@@ -13,7 +13,7 @@
 <div class="row">
     <table class="form">
         <tr>
-            <th class="formTitle">病案得分：</th>
+            <th class="formTitle">Điểm bệnh án:</th>
             <td class="formValue" style="width:100px;float:left;">
                 <input id="basyTotalScore" class="form-control" disabled="disabled"/>
             </td>
@@ -40,13 +40,13 @@
             url: "/MedicalRecordManage/PatInfo/GetMrqcScore",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "评分项目Code", name: "Code", hidden: true },
-                { label: "评分项目", name: "Name", width: 150, align: 'left' },
-                { label: '评分说明', name: 'Remark', width: 150, align: 'left' },
-                { label: "缺陷数", name: "sl", width: 150, align: 'left' },
-                { label: "已査审", name: "TotalScore", width: 150, align: 'left' },
-                { label: "病历类型", name: "bllxmc", width: 150, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hạng mục chấm điểm code", name: "Code", hidden: true },
+                { label: "Hạng mục chấm điểm", name: "Name", width: 150, align: 'left' },
+                { label: 'Mô tả chấm điểm', name: 'Remark', width: 150, align: 'left' },
+                { label: "Số lỗi", name: "sl", width: 150, align: 'left' },
+                { label: "Đã thẩm tra", name: "TotalScore", width: 150, align: 'left' },
+                { label: "Loại bệnh án", name: "bllxmc", width: 150, align: 'left' },
 
             ],
             pager: "#gridPager",

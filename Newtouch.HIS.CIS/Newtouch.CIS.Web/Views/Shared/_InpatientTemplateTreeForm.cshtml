@@ -1,12 +1,12 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 <div id="floatLeftMostPartDiv" style="display:none;">
-    <div data-href="personal" data-type=@Html.Raw(((int)EnumTcfw.Person).ToString()) class=""><span>个人</span></div>
-    <div data-href="department" data-type=@Html.Raw(((int)EnumTcfw.Dept).ToString()) class=""><span>科室</span></div>
+    <div data-href="personal" data-type=@Html.Raw(((int)EnumTcfw.Person).ToString()) class=""><span>Cá nhân</span></div>
+    <div data-href="department" data-type=@Html.Raw(((int)EnumTcfw.Dept).ToString()) class=""><span>Khoa</span></div>
     @if (ViewBag.bhbq)
     {
-    <div data-href="ward" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString()) class=""><span>病区</span></div>
+    <div data-href="ward" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString()) class=""><span>Khu bệnh</span></div>
     }
-    <div data-href="hospital" data-type=@Html.Raw(((int)EnumTcfw.Hosp).ToString()) class=""><span>全院</span></div>
+    <div data-href="hospital" data-type=@Html.Raw(((int)EnumTcfw.Hosp).ToString()) class=""><span>Toàn viện</span></div>
 </div>
 <div id="floatPreTemplateTree" style="display:none;">
     <div class="ui-layout-west">
@@ -48,11 +48,11 @@
             onnodeclick: function (item) {
                 $.modalOpen({
                     id: "TemplatePresForm",
-                    title: "套餐明细",
+                    title: "GóiChi tiết",
                     url: "/DoctorManage/DoctorsAdvice/TemplatePresForm?tcId=" + item.id + "&tclx=" + pageFlag,
                     width: "800px",
                     height: "650px",
-                    btn: ['复制', '关闭'],
+                    btn: ['Sao chép', 'Đóng'],
                     callBack: function (iframeId) {
                         var idlist = top.frames[iframeId].submitForm();
                         if (idlist != "") {
@@ -61,7 +61,7 @@
                                 dataType: "json",
                                 data: { idList: idlist },
                                 type: "POST",
-                                loadingtext: "模板引用中，请稍后...",
+                                loadingtext: "Đang trích dẫn mẫu, vui lòng đợi trong giây lát...",
                                 success: function (resp) {
                                     debugger
                                     $.modalClose("TemplatePresForm");

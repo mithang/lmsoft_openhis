@@ -1,18 +1,22 @@
-﻿using Newtouch.EMR.Domain.Entity;
+using Newtouch.EMR.Domain.Entity;
 
-using System.Web.Mvc;
-using Newtouch.Tools;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Base.Domain;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Framework.Web.Controllers;
 using System.Collections.Generic;
-using Newtouch.Common;
+
 using Newtouch.EMR.Domain.IRepository;
 using System.Linq;
 using System;
 using System.Xml;
-using Newtouch.Core.Common.Utils;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
+    [Area("MedicalRecordManage")]
 
     public class BlysController : OrgControllerBase
     {
@@ -26,7 +30,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         {
             this._blysRepo = blysRepo;
         }
-        public ActionResult YSList()
+        public IActionResult YSList()
         {
 
             return View();
@@ -35,7 +39,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult GetGridJson(string keyValue)
+        public IActionResult GetGridJson(string keyValue)
         {
 
             if (!string.IsNullOrEmpty(keyValue))
@@ -48,13 +52,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(entity.ToJson());
         }
 
-        public ActionResult GetDataSourceList()
+        public IActionResult GetDataSourceList()
         {
             var dataList = _blysRepo.GetYsTree(OrganizeId, "-1");
             return Content(dataList.ToJson());
         }
 
-        public ActionResult GetYsTree()
+        public IActionResult GetYsTree()
         {
 
             var treeList = new List<TreeViewModel>();
@@ -93,13 +97,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
 
-
         /// <summary>
         /// 获取实体
         /// </summary>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var entity = _blysRepo.FindEntity(keyValue);
             return Content(entity.ToJson());
@@ -111,7 +114,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="entity">实体对象</param>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult SubmitForm(BlysEntity entity, string keyValue)
+        public IActionResult SubmitForm(BlysEntity entity, string keyValue)
         {
             if(entity!=null)
             {
@@ -136,11 +139,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     }
 
                     _blysRepo.SubmitForm(entity, keyValue);
-                    return Success("操作成功。");
+                    return Success("Thao tác thành công。");
                 }
 
             }
-            return Error("操作失败，关键信息不可为空。");
+            return Error("Thao tác thất bại，Thông tin quan trọng không được để trống。");
         }
 
         /// <summary>
@@ -148,18 +151,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string delYSID)
+        public IActionResult DeleteForm(string delYSID)
         {
             _blysRepo.DeleteForm(delYSID);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
-
-        public ActionResult toCS()
+        public IActionResult toCS()
         {
-            string dir = this.Server.MapPath("~\\File\\");
+            string dir = WebPath.Map("~\\File\\");
             XMLCreate(dir + "DataSourceDescriptor.xml", OrganizeId);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
         public bool XMLCreate(string filePath, string OrganizeId)
         {
@@ -283,9 +285,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     bigChildDescriptors.AppendChild(parDescriptor);
                 }
 
-
                 xmlDoc.Save(filePath);
-
 
             }
             catch(Exception ex)

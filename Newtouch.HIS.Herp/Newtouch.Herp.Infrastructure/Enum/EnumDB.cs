@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 
 namespace Newtouch.Herp.Infrastructure.Enum
 {
@@ -10,37 +10,37 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 一级
         /// </summary>
-        [Description("一级")]
+        [Description("Cấp 1")]
         OneLevel = 1,
 
         /// <summary>
         /// 二级
         /// </summary>
-        [Description("二级")]
+        [Description("Cấp 2")]
         TwoLevel = 2,
 
         /// <summary>
         /// 三级
         /// </summary>
-        [Description("三级")]
+        [Description("Cấp 3")]
         ThreeLevel = 3,
 
         /// <summary>
         /// 四级
         /// </summary>
-        [Description("四级")]
+        [Description("Cấp 4")]
         FourLevel = 4,
 
         /// <summary>
         /// 五级
         /// </summary>
-        [Description("五级")]
+        [Description("Cấp 5")]
         FiveLevel = 5,
 
         /// <summary>
         /// 六级
         /// </summary>
-        [Description("六级")]
+        [Description("Cấp 6")]
         SixLevel = 6,
 
     }
@@ -53,13 +53,13 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 无效
         /// </summary>
-        [Description("无效")]
+        [Description("Không hiệu lực")]
         Disable = 0,
 
         /// <summary>
         /// 有效
         /// </summary>
-        [Description("有效")]
+        [Description("Hiệu lực")]
         Enable = 1
 
     }
@@ -73,31 +73,31 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 待处理
         /// </summary>
-        [Description("待处理")]
+        [Description("Chờ xử lý")]
         Waiting = 0,
 
         /// <summary>
         /// 审核通过
         /// </summary>
-        [Description("审核通过")]
+        [Description("Đã duyệt")]
         Adopt = 1,
 
         /// <summary>
         /// 审核不通过
         /// </summary>
-        [Description("审核不通过")]
+        [Description("Không duyệt")]
         Refuse = 2,
 
         /// <summary>
         /// 已作废
         /// </summary>
-        [Description("已作废")]
+        [Description("Đã hủy")]
         Cancelled = 3,
 
         /// <summary>
         /// 暂存
         /// </summary>
-        [Description("暂存")]
+        [Description("Lưu tạm")]
         Temporary = 4,
     }
 
@@ -181,27 +181,27 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// None
         /// </summary>
-        [Description("全部")]
+        [Description("Tất cả")]
         None = -1,
         /// <summary>
         /// 显示零库存
         /// </summary>
-        [Description("显示零库存")]
+        [Description("Hiện tồn kho bằng 0")]
         Xslkc = 0,
         /// <summary>
         /// 不显示理论数量为零
         /// </summary>
-        [Description("不显示理论数量为零")]
+        [Description("Không hiện số lượng lý thuyết bằng 0")]
         Bxsllslwl = 1,
         /// <summary>
         /// 不显示实际数量为零
         /// </summary>
-        [Description("不显示实际数量为零")]
+        [Description("Không hiện số lượng thực tế bằng 0")]
         Bxssjslwl = 2,
         /// <summary>
         /// 不显示实际数量为零
         /// </summary>
-        [Description("不显示两者都为零")]
+        [Description("Không hiện khi cả hai bằng 0")]
         Bxslzdwl = 4
     }
 
@@ -213,31 +213,31 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 无锁
         /// </summary>
-        [Description("无锁")]
+        [Description("Không khóa")]
         none = 0,
 
         /// <summary>
         /// 开始盘点
         /// </summary>
-        [Description("开始盘点")]
+        [Description("Bắt đầu kiểm kê")]
         InventoryStart = 1,
 
         /// <summary>
         /// 结束盘点
         /// </summary>
-        [Description("结束盘点")]
+        [Description("Kết thúc kiểm kê")]
         InventoryEnd = 2,
 
         /// <summary>
         /// 损益
         /// </summary>
-        [Description("损益")]
+        [Description("Lãi lỗ")]
         ProfitAndLoss = 3,
 
         /// <summary>
         /// 出入库单据审核
         /// </summary>
-        [Description("出入库单据审核")]
+        [Description("Duyệt phiếu nhập/xuất kho")]
         OutgoingOrWarehousing = 4
     }
 
@@ -249,13 +249,13 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 报损
         /// </summary>
-        [Description("报损")]
+        [Description("Báo hỏng")]
         Loss = 0,
 
         /// <summary>
         /// 报溢
         /// </summary>
-        [Description("报溢")]
+        [Description("Báo thừa")]
         Profit = 1,
     }
 
@@ -269,25 +269,25 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 未审核
         /// </summary>
-        [Description("未审核")]
+        [Description("Chưa duyệt")]
         Waiting = 0,
 
         /// <summary>
         /// 已审核
         /// </summary>
-        [Description("已审核")]
+        [Description("Đã duyệt")]
         Audited = 1,
 
         /// <summary>
         /// 已拒绝
         /// </summary>
-        [Description("已拒绝")]
+        [Description("Đã từ chối")]
         Refuse = 2,
 
         /// <summary>
         /// 已撤销
         /// </summary>
-        [Description("已撤销")]
+        [Description("Đã thu hồi")]
         Revoke = 3
     }
 
@@ -299,13 +299,13 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 未执行
         /// </summary>
-        [Description("未执行")]
+        [Description("Chưa thực hiện")]
         Not = 0,
 
         /// <summary>
         /// 已执行
         /// </summary>
-        [Description("已执行")]
+        [Description("Đã thực hiện")]
         Already = 1
     }
     #endregion
@@ -318,19 +318,19 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 其他
         /// </summary>
-        [Description("其他")]
+        [Description("Khác")]
         Other = 0,
 
         /// <summary>
         /// 生产商
         /// </summary>
-        [Description("生产商")]
+        [Description("Nhà sản xuất")]
         Producer = 1,
 
         /// <summary>
         /// 经销商
         /// </summary>
-        [Description("经销商")]
+        [Description("Nhà phân phối")]
         Distributor = 2,
     }
 
@@ -342,43 +342,43 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 等待处理
         /// </summary>
-        [Description("等待处理")]
+        [Description("Chờ xử lý")]
         Waiting = 1,
 
         /// <summary>
         /// 审核通过
         /// </summary>
-        [Description("审核通过")]
+        [Description("Đã duyệt")]
         AuditApproved = 2,
 
         /// <summary>
         /// 审核不通过
         /// </summary>
-        [Description("审核不通过")]
+        [Description("Không duyệt")]
         AuditFailed = 3,
 
         /// <summary>
         /// 配送中
         /// </summary>
-        [Description("配送中")]
+        [Description("Đang giao")]
         Distributing = 4,
 
         /// <summary>
         /// 部分完成
         /// </summary>
-        [Description("部分完成")]
+        [Description("Hoàn thành một phần")]
         PartialCompletion = 5,
 
         /// <summary>
         /// 全部完成
         /// </summary>
-        [Description("全部完成")]
+        [Description("Hoàn thành tất cả")]
         Completion = 6,
 
         /// <summary>
         /// 配送拒收
         /// </summary>
-        [Description("配送拒收")]
+        [Description("Từ chối nhận hàng")]
         Rejection = 7,
     }
 
@@ -390,13 +390,13 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 待处理
         /// </summary>
-        [Description("科室申领")]
+        [Description("Khoa phòng lĩnh")]
         DepartmentApply = 1,
 
         /// <summary>
         /// 审核通过
         /// </summary>
-        [Description("库房申领")]
+        [Description("Kho lĩnh")]
         WarehouseApply = 2,
     }
 
@@ -408,43 +408,43 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 拒处理
         /// </summary>
-        [Description("拒处理")]
+        [Description("Từ chối xử lý")]
         Refusal =-1,
 
         /// <summary>
         /// 待处理
         /// </summary>
-        [Description("待处理")]
+        [Description("Chờ xử lý")]
         Waiting = 0,
 
         /// <summary>
         /// 备货
         /// </summary>
-        [Description("备货")]
+        [Description("Chuẩn bị hàng")]
         PreparingGoods = 1,
 
         /// <summary>
         /// 配送
         /// </summary>
-        [Description("配送")]
+        [Description("Giao hàng")]
         Delivering = 2,
 
         /// <summary>
         /// 签收
         /// </summary>
-        [Description("签收")]
+        [Description("Đã ký nhận")]
         SignFor = 3,
 
         /// <summary>
         /// 完成
         /// </summary>
-        [Description("完成")]
+        [Description("Hoàn thành")]
         Complete = 4,
 
         /// <summary>
         /// 拒签
         /// </summary>
-        [Description("拒签")]
+        [Description("Từ chối ký")]
         RefusalSign = 5
     }
 
@@ -457,19 +457,19 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// 暂存单
         /// </summary>
-        [Description("暂存单")]
+        [Description("Phiếu lưu tạm")]
         TempOrder = 0,
 
         /// <summary>
         /// 正式单
         /// </summary>
-        [Description("正式单")]
+        [Description("Phiếu chính thức")]
         OfficialOrder = 1,
 
         /// <summary>
         /// 作废单
         /// </summary>
-        [Description("作废单")]
+        [Description("Phiếu hủy")]
         BadOrder = 2,
     }
 
@@ -482,22 +482,22 @@ namespace Newtouch.Herp.Infrastructure.Enum
 		/// <summary>
 		/// 自费
 		/// </summary>
-		[Description("自费")]
+		[Description("Tự trả")]
 		ZF = 1,
 		/// <summary>
 		/// 甲类
 		/// </summary>
-		[Description("甲类")]
+		[Description("Loại A")]
 		J = 4,
 		/// <summary>
 		/// 乙类
 		/// </summary>
-		[Description("乙类")]
+		[Description("Loại B")]
 		Y = 5,
 		/// <summary>
 		/// 丙类
 		/// </summary>
-		[Description("丙类")]
+		[Description("Loại C")]
 		B = 6,
 	}
 
@@ -507,163 +507,163 @@ namespace Newtouch.Herp.Infrastructure.Enum
     //4.1.1 操作类型
     public enum EnumCZLX
     {
-        [Description("新增")] XZ=1,
-        [Description("作废")] ZF=3,
+        [Description("Thêm mới")] XZ=1,
+        [Description("Hủy")] ZF=3,
     }
 
     //4.1.2 采购单类型
     public enum EnumCGDLX
     {
-        [Description("医院自行采购单")] YYZXCGD= 1,
-        [Description("托管药库采购单")] TGYKCGD= 2,
+        [Description("Phiếu mua sắm tự túc của bệnh viện")] YYZXCGD= 1,
+        [Description("Phiếu mua sắm kho thuốc ủy thác")] TGYKCGD= 2,
     }
 
     //4.1.3 采购类型
     public enum EnumCGLX
     {
-        [Description("招标采购")]
+        [Description("Mua sắm đấu thầu")]
         ZBCG = 1,
-        [Description("带量采购")]
+        [Description("Mua sắm theo số lượng")]
         DLCG = 2,
-        [Description("挂网采购")]
+        [Description("Mua sắm qua mạng")]
         GWCG = 3,
-        [Description("其他")]
+        [Description("Khác")]
         QT = 9,
     }
 
     //4.1.4 配送要求
     public enum EnumPSYQ
     {
-        [Description("按单配送")] ADPS= 1,
-        [Description("按需配送")] AXPS= 2,
+        [Description("Giao theo phiếu")] ADPS= 1,
+        [Description("Giao theo nhu cầu")] AXPS= 2,
     }
 
     //4.1.5 退货类型
 
     public enum EnumTHLX
     {
-        [Description("正常退货")] ZCTH= 1,
-        [Description("补差价退货")] BCJTH= 2,
+        [Description("Trả hàng bình thường")] ZCTH= 1,
+        [Description("Trả hàng bù chênh lệch")] BCJTH= 2,
 
     }
 
     //4.1.6 配送验收类型
     public enum EnumPSYSLX
     {
-        [Description("预验收")] YYS= 1,
-        [Description("实验收")] SYS= 2,
+        [Description("Nghiệm thu trước")] YYS= 1,
+        [Description("Nghiệm thu thực tế")] SYS= 2,
 
     }
 
     //4.1.7 单据填写方
     public enum EnumDJTXF
     {
-        [Description("采购方填写")]
+        [Description("Bên mua điền")]
         CGFTX = 1,
-        [Description("销售方代填")]
+        [Description("Bên bán điền hộ")]
         XSFDT = 2,
     }
 
     //4.1.8 配送单状态
     public enum EnumPSDZT
     {
-        [Description("待确认")] DQR= 0,
-        [Description("作废")] ZF= 1,
-        [Description("已确认，未验收")] YQR= 10,
+        [Description("Chờ xác nhận")] DQR= 0,
+        [Description("Hủy")] ZF= 1,
+        [Description("Đã xác nhận, chưa nghiệm thu")] YQR= 10,
 
     }
     //4.1.9 采购明细状态
     public enum EnumCGMXZT
     {
-        [Description("待提交")] DTJ= 0,
-        [Description("已作废")] YZF= 1,
-        [Description("待审核")] DSH= 10,
-        [Description("审核不通过")] SHBTG= 11,
-        [Description("待企业接受确认")] DQYJSQR= 20,
-        [Description("企业已接收确认配送")] QYYJSQRPS= 21,
-        [Description("企业已接收确认不予配送")] QYYJSQRBYPS= 22,
-        [Description("企业已配送完成")] QYYPSWC= 23,
+        [Description("Chờ gửi")] DTJ= 0,
+        [Description("Đã hủy")] YZF= 1,
+        [Description("Chờ duyệt")] DSH= 10,
+        [Description("Không duyệt")] SHBTG= 11,
+        [Description("Chờ doanh nghiệp xác nhận tiếp nhận")] DQYJSQR= 20,
+        [Description("Doanh nghiệp đã xác nhận giao hàng")] QYYJSQRPS= 21,
+        [Description("Doanh nghiệp đã xác nhận không giao hàng")] QYYJSQRBYPS= 22,
+        [Description("Doanh nghiệp đã giao xong")] QYYPSWC= 23,
     }
 
     //4.1.10 企业库存
     public enum EnumQYKC
     {
-        [Description("充足")] CZ= 1,
-        [Description("有货， 限量")] YHXL= 2,
-        [Description("有货， 少量")] YHSL= 3,
-        [Description("暂无货")] ZWH= 4,
-        [Description("不予披露")] BYPL= 5,
+        [Description("Đầy đủ")] CZ= 1,
+        [Description("Có hàng, giới hạn")] YHXL= 2,
+        [Description("Có hàng, số lượng ít")] YHSL= 3,
+        [Description("Tạm hết hàng")] ZWH= 4,
+        [Description("Không công bố")] BYPL= 5,
     }
 
     //4.1.11 发票状态
     public enum EnumFPZT
     {
-        [Description("待确认")] DQR= 0,
-        [Description("已作废")] YZF= 1,
-        [Description("未验收")] WYS= 10,
-        [Description("已验收")] YYS= 20,
-        [Description("已拒收")] YJS= 21,
-        [Description("已支付")] FPYZF= 30,
+        [Description("Chờ xác nhận")] DQR= 0,
+        [Description("Đã hủy")] YZF= 1,
+        [Description("Chưa nghiệm thu")] WYS= 10,
+        [Description("Đã nghiệm thu")] YYS= 20,
+        [Description("Đã từ chối nhận")] YJS= 21,
+        [Description("Đã thanh toán")] FPYZF= 30,
     }
 
     //4.1.12 配送明细状态
     public enum EnumPSMXZT
     {
-        [Description("待确认")] DQR= 0,
-        [Description("已作废")] YZF= 1,
-        [Description("已提交未验收")] YTJWYS= 10,
-        [Description("验收中")] YSZ= 20,
-        [Description("验收入库完成")] YSRKWC= 30,
+        [Description("Chờ xác nhận")] DQR= 0,
+        [Description("Đã hủy")] YZF= 1,
+        [Description("Đã gửi, chưa nghiệm thu")] YTJWYS= 10,
+        [Description("Đang nghiệm thu")] YSZ= 20,
+        [Description("Nghiệm thu nhập kho xong")] YSRKWC= 30,
     }
 
     //4.1.13 退货明细状态
     public enum EnumTHMXZT
     {
-        [Description("待确认")] DQR= 0,
-        [Description("已作废")] YZF= 1,
-        [Description("已确认待企业接受")] YQRDQYJS= 10,
-        [Description("企业已确认退货处理")] QYYQRTHCL= 20,
-        [Description("企业已确认不予处理")] QYYQRBYCL= 21,
+        [Description("Chờ xác nhận")] DQR= 0,
+        [Description("Đã hủy")] YZF= 1,
+        [Description("Đã xác nhận, chờ doanh nghiệp tiếp nhận")] YQRDQYJS= 10,
+        [Description("Doanh nghiệp đã xác nhận xử lý trả hàng")] QYYQRTHCL= 20,
+        [Description("Doanh nghiệp đã xác nhận không xử lý")] QYYQRBYCL= 21,
     }
 
     //4.1.14 证件类型
     public enum EnumZJLX
     {
-        [Description("组织机构代码证")] ZZJGDMZ= 1,
-        [Description("营业执照")] YYZZ= 2,
-        [Description("经营许可证")] JYXKZ= 3,
-        [Description("生产许可证")] SCXKZ= 4,
+        [Description("Giấy chứng nhận mã tổ chức")] ZZJGDMZ= 1,
+        [Description("Giấy phép kinh doanh")] YYZZ= 2,
+        [Description("Giấy phép hoạt động")] JYXKZ= 3,
+        [Description("Giấy phép sản xuất")] SCXKZ= 4,
     }
 
     //4.1.15 配送明细条码类型
     public enum EnumPSMXTMLX
     {
-        [Description("GS1 条码")] GSI= 1,
-        [Description("HIBC 条码")] HIBC= 2,
-        [Description("其他")] QT= 99,
+        [Description("Mã vạch GS1")] GSI= 1,
+        [Description("Mã vạch HIBC")] HIBC= 2,
+        [Description("Khác")] QT= 99,
     }
 
     //4.1.16 发票验收结果
     public enum EnumFPYSJG
     {
-        [Description("验收通过")] YSTG= 1,
-        [Description("验收不通过")] YSBTG= 0,
+        [Description("Nghiệm thu đạt")] YSTG= 1,
+        [Description("Nghiệm thu không đạt")] YSBTG= 0,
     }
 
     //4.1.17 采购单状态
     public enum EnumCGDZT
     {
-        [Description("待提交")] DTJ= 0,
-        [Description("已作废")] YZF= 1,
-        [Description("已提交")] YTJ= 20,
+        [Description("Chờ gửi")] DTJ= 0,
+        [Description("Đã hủy")] YZF= 1,
+        [Description("Đã gửi")] YTJ= 20,
     }
 
     //4.1.18 退货单状态
     public enum EnumTHDZT
     {
-        [Description("待确认")] DQR= 0,
-        [Description("已作废")] YZF= 1,
-        [Description("已确认")] YQR= 10,
+        [Description("Chờ xác nhận")] DQR= 0,
+        [Description("Đã hủy")] YZF= 1,
+        [Description("Đã xác nhận")] YQR= 10,
 
     }
 
@@ -671,17 +671,17 @@ namespace Newtouch.Herp.Infrastructure.Enum
 
     public enum EnumCGFS
     {
-        [Description("非系统采购")]
+        [Description("Mua sắm ngoài hệ thống")]
         FXTCG = 1,
-        [Description("按系统采购")]
+        [Description("Mua sắm theo hệ thống")]
         AXTCG = 2,
     }
 
     //4.1.20 是否含伴随服务
     public enum EnumSFHBSFW
     {
-        [Description("否")] F= 0,
-        [Description("是")] S= 1,
+        [Description("Không")] F= 0,
+        [Description("Có")] S= 1,
     }
 
     

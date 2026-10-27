@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "HistoricalOrders";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -8,22 +8,22 @@
         <table class="form">
             <tr>
                 <td class="formValue" style="text-align: center;">
-                    姓名：<label id="xm"></label>
+                    Họ tên:<label id="xm"></label>
                 </td>
                 <td class="formValue" style="text-align: center;">
-                    性别：<label id="xb"></label>
+                    Giới tính:<label id="xb"></label>
                 </td>
                 <td class="formValue" style="text-align: center;">
-                    入院日期：<label id="ryrq"></label>
+                    Ngày nhập viện:<label id="ryrq"></label>
                 </td>
                 <td class="formValue" style="text-align: center;">
-                    出院日期：<label id="cyrq"></label>
+                    Xuất việnNgày:<label id="cyrq"></label>
                 </td>
                 <td class="formValue" style="text-align: center;">
-                    入院诊断：<label id="ryzd"></label>
+                    Chẩn đoán nhập viện:<label id="ryzd"></label>
                 </td>
                 <td class="formValue" style="text-align: center;">
-                    出院诊断：<label id="cyzd"></label>
+                    Xuất việnChẩn đoán:<label id="cyzd"></label>
                 </td>
             </tr>
         </table>
@@ -31,34 +31,34 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">开始日期：</th>
+                    <th class="formTitle">Ngày bắt đầu:</th>
                     <td class="formValue">
                         <input id="kssj" name="kssj" type="text" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd HH:mm:ss")">
                     </td>
-                    <th class="formTitle">结束日期：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
                         <input id="jssj" name="jssj" type="text" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
                     </td>
-                    <th class="formTitle">长/临医嘱：</th>
+                    <th class="formTitle">Y lệnh dài hạn/tạm thời:</th>
                     <td class="formValue">
                         <select id="CLSelect" name="CLSelect"  class="form-control required">
-                            <option value="">全部医嘱</option>
-                            <option value="临">临时医嘱</option>
-                            <option value="长">长期医嘱</option>
+                            <option value="">Tất cảY lệnh</option>
+                            <option value="临">Y lệnh tạm thời</option>
+                            <option value="长">Y lệnh dài hạn</option>
                         </select>
                     </td>
-                    <th class="formTitle" id="yzlxth" style="display:none">医嘱类型：</th>
+                    <th class="formTitle" id="yzlxth" style="display:none">Y lệnhLoại:</th>
                     <td class="formValue" id="yzlxtd" style="display:none">
                         <select id="yzlxSel" name="yzlxSel"  class="form-control required">
-                            <option value="2">药品</option>
-                            <option value="10">中草药</option>
-                            <option value="4">出院带药</option>
-                            <option value="3">文字录入</option>
-                            <option value="5">项目录入</option>
+                            <option value="2">Thuốc</option>
+                            <option value="10">Thuốc thảo dược</option>
+                            <option value="4">Xuất việnThuốc mang theo</option>
+                            <option value="3">Văn bảnNhập</option>
+                            <option value="5">MụcNhập</option>
                         </select>
                     </td>
                     <td class="formValue" style="width:90px;">
-                        <input type="button" id="btn_search" onclick="search()" class="btn btn-md btn-primary" style="width:80px;" value="查询" />
+                        <input type="button" id="btn_search" onclick="search()" class="btn btn-md btn-primary" style="width:80px;" value="Tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -126,25 +126,25 @@
             multiselect: true,
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '长临', name: 'yzlb', width: 30, align: 'center' },
-                { label: '录入时间', name: 'CreateTime', width: 120, align: 'center' },
-                { label: '项目代码', name: 'xmdm', width: 10, align: 'left', hidden: true },
-                { label: '项目名称', name: 'xmmc', width: 10, align: 'left', hidden: true },
-                { label: '医嘱内容', name: 'yznr', width: 240, align: 'left'},
+                { label: 'Dài hạn/Tạm thời', name: 'yzlb', width: 30, align: 'center' },
+                { label: 'NhậpThời gian', name: 'CreateTime', width: 120, align: 'center' },
+                { label: 'MụcMã', name: 'xmdm', width: 10, align: 'left', hidden: true },
+                { label: 'Tên mục', name: 'xmmc', width: 10, align: 'left', hidden: true },
+                { label: 'Nội dung y lệnh', name: 'yznr', width: 240, align: 'left'},
                 //{ label: '单价', name: 'dj', width: 60, align: 'left' },
-                { label: '剂量', name: 'ypjl', width: 40, align: 'center', hidden: true },
-                { label: '用法', name: 'yfmcval', width: 60, align: 'center', hidden: true},
-                { label: '用法代码', name: 'ypyfdm', width: 10, align: 'left', hidden: true },
-                { label: '每次治疗量', name: 'ypjl', width: 80, align: 'center', hidden: (tclx == sfxm || tclx == kfyz) ? null : true },
+                { label: 'Liều lượng', name: 'ypjl', width: 40, align: 'center', hidden: true },
+                { label: 'Cách dùng', name: 'yfmcval', width: 60, align: 'center', hidden: true},
+                { label: 'Cách dùngMã', name: 'ypyfdm', width: 10, align: 'left', hidden: true },
+                { label: 'Liều mỗi lần điều trị', name: 'ypjl', width: 80, align: 'center', hidden: (tclx == sfxm || tclx == kfyz) ? null : true },
                 { label: 'pcCode', name: 'pcCode', hidden: true },
-                { label: '频次', name: 'pcmc', width: 60, align: 'center', hidden: true},
-                { label: '规格', name: 'ypgg', width: 100, align: 'center', hidden: (tclx == yp || tclx == cydy || tclx == zyyz) ? null : true },
-                { label: '总量', name: 'sl', width: 40, align: 'center' },
-                { label: '单位', name: 'dwwwwwww', width: 40, align: 'center' },
-                { label: '部位', name: 'bw', width: 60, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
+                { label: 'Tần suất', name: 'pcmc', width: 60, align: 'center', hidden: true},
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'center', hidden: (tclx == yp || tclx == cydy || tclx == zyyz) ? null : true },
+                { label: 'Tổng lượng', name: 'sl', width: 40, align: 'center' },
+                { label: 'Đơn vị', name: 'dwwwwwww', width: 40, align: 'center' },
+                { label: 'Vị trí', name: 'bw', width: 60, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
     //            {
     //                label: '自备标志', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
-    //                    return val == 1 ? "是" : "否";
+    //                    return val == 1 ? "Có" : "Không";
     //                }
     //            },
     //            { label: '嘱托', name: 'ztnr', width: 90, align: 'left' },
@@ -154,13 +154,13 @@
     //                    return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
     //                }
     //            },
-                  { label: '库存', name: 'kcsl', width: 50, hidden: true },
+                  { label: 'Tồn kho', name: 'kcsl', width: 50, hidden: true },
                 {
-                    label: '控制标志', name: 'kzbz', width: 50, hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true, formatter: function (val) {
+                    label: 'Kiểm soátDấu hiệu', name: 'kzbz', width: 50, hidden: (tclx == yp || tclx == zyyz) ? null : tclx == cydy ? null : true, formatter: function (val) {
                         if (val == "0") {
-                            return "正常";
+                            return "Bình thường";
                         } else if (val == "1") {
-                            return "禁用"
+                            return "Vô hiệu hóa"
                         } else if (val == null) {
                             return "";
                         }
@@ -192,12 +192,12 @@
                     var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if (kcsl == "") {
-                        $.modalAlert("该药品无库存，不可选", "warning");
+                        $.modalAlert("Thuốc này không có tồn kho, không thể chọn", "warning");
                         $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
                         return;
                     }
-                    if (kzbz == "禁用") {
-                        $.modalAlert("该药品禁用状态，不可选", "warning");
+                    if (kzbz == "Vô hiệu hóa") {
+                        $.modalAlert("Thuốc này ở trạng thái vô hiệu hóa, không thể chọn", "warning");
                         $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
                         return;
                     }
@@ -228,7 +228,7 @@
     function submitForm() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', true, true);
         if(!data || data.length==0){
-            $.modalAlert("请选择明细进行复制", 'warning');
+            $.modalAlert("Vui lòng chọnChi tiếtTiến hànhSao chép", 'warning');
             return;
         }
         var yzlistId = "";

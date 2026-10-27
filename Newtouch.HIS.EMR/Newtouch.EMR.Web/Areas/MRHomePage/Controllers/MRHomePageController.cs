@@ -1,25 +1,29 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using Newtouch.EMR.Web.Helpers;
 using Newtonsoft.Json;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+
 using Newtouch.EMR.Domain.DTO.InputDto;
 using Newtouch.EMR.Domain.DTO.OutputDto.MRUpload;
 using Newtouch.EMR.Domain.IDomainServices;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.EMR.Domain.ValueObjects.MRHomePage;
 using Newtouch.EMR.Infrastructure.EnumMR;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
 {
+    [Area("MRHomePage")]
     public class MRHomePageController : OrgControllerBase
     {
         private readonly IMRHomePageDmnService _MainRecordDmnService;
@@ -30,67 +34,82 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         private readonly Ibl_bllxRepo _BllxRepo;
         private readonly IYBInterfaceDmnService _yBInterfaceDmnService;
         private readonly ICommonDmnService _CommonDmnService;
-        private readonly string YBOrgCode = ConfigurationHelper.GetAppConfigValue("YBOrgCode");
 
+        public MRHomePageController(IMRHomePageDmnService mainRecordDmnService, IMrbasyzdRepo mrbasyzdRepo, IMrbasyRepo mrbasyRepo, IZybrjbxxDmnService zybrjbxxDmnService, IZymeddocsrelationRepo zymeddocsrelationRep, Ibl_bllxRepo bllxRepo, IYBInterfaceDmnService yBInterfaceDmnService, ICommonDmnService commonDmnService)
+        {
+            this._MainRecordDmnService = mainRecordDmnService;
+            this._MrbasyzdRepo = mrbasyzdRepo;
+            this._MrbasyRepo = mrbasyRepo;
+            this._zybrjbxxDmnService = zybrjbxxDmnService;
+            this._zymeddocsrelationRep = zymeddocsrelationRep;
+            this._BllxRepo = bllxRepo;
+            this._yBInterfaceDmnService = yBInterfaceDmnService;
+            this._CommonDmnService = commonDmnService;
+        }
+        private readonly string YBOrgCode = EmrConfig.GetAppConfigValue("YBOrgCode");
 
-        private static string UploadURL = ConfigurationHelper.GetAppConfigValue("MRUploadURL");
+        private static string UploadURL = EmrConfig.GetAppConfigValue("MRUploadURL");
 
         //// GET: MRHomePage/MainRecord
-        //public ActionResult Index()
+        //public IActionResult Index()
         //{
         //    return View();
         //}
 
-        public ActionResult Main()
+        public IActionResult Main()
         {
-            var url = Request.Url.ToString();
-            var cs = HttpUtility.ParseQueryString(url);
-            ViewBag.justshow = cs["justshow"];
+            // FIX 2026-10-26: Request.Query returns StringValues in ASP.NET
+            // Core (plain string in Framework). Main.cshtml renders MainEdit
+            // as a partial, whose line 57 evaluates (justshow == null ? ...).
+            // With a dynamic StringValues value the runtime binder finds the
+            // StringValues == overloads ambiguous and throws. Store a plain
+            // string so the comparison behaves exactly as in Framework.
+            ViewBag.justshow = Request.Query["justshow"].ToString();
             ReportingServiceCom();
             return View();
         }
 
-        //public ActionResult MainPreView()
+        //public IActionResult MainPreView()
         //{
         //    return View();
         //}
-        public ActionResult MainEdit()
+        public IActionResult MainEdit()
         {
             return View();
         }
-        public ActionResult MainPatInfo()
+        public IActionResult MainPatInfo()
         {
             return View();
         }
-        public ActionResult MainDiag()
+        public IActionResult MainDiag()
         {
             return View();
         }
-        public ActionResult MainOplist()
+        public IActionResult MainOplist()
         {
             return View();
         }
-        public ActionResult MainOpEdit()
+        public IActionResult MainOpEdit()
         {
             return View();
         }
-        public ActionResult OutHosPatQuery()
+        public IActionResult OutHosPatQuery()
         {
             return View();
         }
-        public ActionResult MainZyInfo()
+        public IActionResult MainZyInfo()
         {
             return View();
         }
-        public ActionResult MainFeeInfo()
+        public IActionResult MainFeeInfo()
         {
             return View();
         }
-		public ActionResult MainFYInfo()
+		public IActionResult MainFYInfo()
 		{
 			return View();
 		}
-		public ActionResult GetGridList(Pagination pagination, string ksrq, string jsrq, string bazt, string keyword, string cyts)
+		public IActionResult GetGridList(Pagination pagination, string ksrq, string jsrq, string bazt, string keyword, string cyts)
         {
             var list = _MainRecordDmnService.PatMainList(pagination, this.OrganizeId, ksrq, jsrq, bazt, null, keyword, cyts);
             var data = new
@@ -102,9 +121,9 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult GetEMRPatGridList(Pagination pagination, string keyword, string ksrq, string jsrq, string cyts, string blzt)
+        public IActionResult GetEMRPatGridList(Pagination pagination, string keyword, string ksrq, string jsrq, string cyts, string blzt)
         {
-            var cybz = Convert.ToInt32(EnumZYBZ.Ycy);
+            var cybz = Convert.ToInt32(Newtouch.Infrastructure.EnumZYBZ.Ycy);
             var list = _zybrjbxxDmnService.GetPatList(pagination, keyword, null, cyts, blzt, this.UserIdentity.rygh, this.OrganizeId, cybz,"MRMS");
             var data = new
             {
@@ -115,7 +134,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult GetFormJson(string keyValue, string zyh)
+        public IActionResult GetFormJson(string keyValue, string zyh)
         {
             BasyVO entity = new BasyVO();    
              if (!string.IsNullOrWhiteSpace(keyValue))
@@ -130,14 +149,14 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             return Content(entity.ToJson());
         }
 
-        public ActionResult GetFormJsonFee(string keyValue, string zyh)
+        public IActionResult GetFormJsonFee(string keyValue, string zyh)
         {
             BasyVO vo = new BasyVO();
             var entity = _MainRecordDmnService.GetMainRecordZyFeeDetail(vo, OrganizeId, zyh);
             return Content(entity.ToJson());
         }
 
-        public ActionResult GetZdGridList(string bah, string zyh)
+        public IActionResult GetZdGridList(string bah, string zyh)
         {
             var list = _MainRecordDmnService.GetDiagLsit(OrganizeId, bah, zyh);
             if (list.Count == 0 && !string.IsNullOrWhiteSpace(bah))
@@ -158,7 +177,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult GetOpGridList(string bah, string zyh)
+        public IActionResult GetOpGridList(string bah, string zyh)
         {
             var list = _MainRecordDmnService.GetOPLsit(OrganizeId, bah, zyh);
             if (list.Count == 0 && !string.IsNullOrWhiteSpace(bah))
@@ -179,8 +198,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             return Content(data.ToJson());
         }
 
-
-        public ActionResult SubmitZdList(List<BasyZdDto> dto,string zyh,string Code)
+        public IActionResult SubmitZdList(List<BasyZdDto> dto,string zyh,string Code)
         {
             var data = "";
             if (dto != null && dto.Count > 0)
@@ -198,13 +216,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     {
                         if (outpatDiagModify[0].Value == "OFF" || outpatDiagModify[0].Value == "off")
                         {
-                            data = "已结算病人不能添加/修改诊断信息";
+                            data = "Bệnh nhân đã quyết toán không được thêm/sửa thông tin chẩn đoán";
                         }
                         else
                         {
                             //保存诊断
                             _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
-                            data = "诊断信息保存成功";
+                            data = "Lưu thông tin chẩn đoán thành công";
                             if (dtcsxx.Count > 0)
                             {
                                 if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
@@ -218,7 +236,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     else {
                         //保存诊断
                         _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
-                        data = "诊断信息保存成功";
+                        data = "Lưu thông tin chẩn đoán thành công";
                         if (dtcsxx.Count > 0)
                         {
                             if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
@@ -233,7 +251,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                 else {
                     //没有结算并且参数开启时同步和保存诊断
                     _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
-                    data = "诊断信息保存成功";
+                    data = "Lưu thông tin chẩn đoán thành công";
 
                     if (dtcsxx.Count > 0) {
                         if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
@@ -248,13 +266,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             return Content(data.ToJson().ToString());
         }
 
-        public ActionResult SubmitOpList(List<BasyOpDto> dto)
+        public IActionResult SubmitOpList(List<BasyOpDto> dto)
         {
             if (dto != null && dto.Count > 0)
             {
                 _MainRecordDmnService.OpListSubmit(dto, OrganizeId);
             }
-            return Success("手术保存成功");
+            return Success("Lưu phẫu thuật thành công");
         }
         /// <summary>
         /// 病案首页-保存基本信息
@@ -264,13 +282,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         /// <param name="keyValue"></param>
         /// <param name="mbbh"></param>
         /// <returns></returns>
-        public ActionResult SubmitPatBasic(BasyVO dto, BasyRelVO reldto, string keyValue,string mbbh)
+        public IActionResult SubmitPatBasic(BasyVO dto, BasyRelVO reldto, string keyValue,string mbbh)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
                 if (!string.IsNullOrWhiteSpace(dto.Id) && dto.Id != keyValue)
                 {
-                    return Error("病案信息异常，请刷新重试");
+                    return Error("Thông tin bệnh án bất thường，Vui lòng làm mới và thử lại");
                 }
                 else
                 {
@@ -281,7 +299,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             return Success();
         }
 
-        public ActionResult SubmitMR(string keyValue, List<BasyOpDto> opdto, List<BasyZdDto> zddto,string zyh,string Code)
+        public IActionResult SubmitMR(string keyValue, List<BasyOpDto> opdto, List<BasyZdDto> zddto,string zyh,string Code)
         {
             try
             {
@@ -346,13 +364,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             }
 
         }
-        public ActionResult HomePageUploadJS(string zyh, string keyValue,string jydm)
+        public IActionResult HomePageUploadJS(string zyh, string keyValue,string jydm)
         {
             QHDSmartCheckInput data = new QHDSmartCheckInput();
             var ety = _MainRecordDmnService.GetHomePageforYB(OrganizeId, zyh).FirstOrDefault();
             if (ety == null)
             {
-                return Error("请填写完整病历保存后上传");
+                return Error("Vui lòng điền đầy đủ bệnh án, lưu rồi mới tải lên");
 
             }
             string msg = DocumentAuditYB<YB_7600>(ety);
@@ -404,12 +422,12 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             }
             return Content(data.ToJson());
         }
-        public ActionResult HomePageUpload(string zyh,string keyValue)
+        public IActionResult HomePageUpload(string zyh,string keyValue)
         {
             var ety = _MainRecordDmnService.GetHomePageforYB(OrganizeId, zyh).FirstOrDefault();
             if (ety == null)
             {
-                return Error("请填写完整病历保存后上传");
+                return Error("Vui lòng điền đầy đủ bệnh án, lưu rồi mới tải lên");
 
             }
             string msg = DocumentAuditYB<YB_7600>(ety);
@@ -436,8 +454,8 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     };
                     rootinput.jsondata = JsonConvert.SerializeObject(YBJKDATA);
                     rootinput.jydm = "7600";
-                    var respstr = Tools.Net.HttpClientHelper.HttpPostStringAndRead<string>(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput), contentType: HttpClientHelper.EnumContentType.json);
-                    var resp = JsonConvert.DeserializeObject<ResponseBase>(respstr);
+                    var respstr = EmrHttpHelper.PostJsonString(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput));
+                    var resp = JsonConvert.DeserializeObject<Newtouch.EMR.Domain.DTO.OutputDto.MRUpload.ResponseBase>(respstr);
                     if (resp.code == "1")
                     {
                         string bllx = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && p.zt == "1" && p.bllxcode == "basy").bllx;
@@ -464,18 +482,18 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                             };
                             rootinput.jsondata = JsonConvert.SerializeObject(YBJKDATA_ZD);
                             rootinput.jydm = "7610";
-                            var respstrzd = Tools.Net.HttpClientHelper.HttpPostStringAndRead<string>(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput), contentType: HttpClientHelper.EnumContentType.json);
-                            var respzd = JsonConvert.DeserializeObject<ResponseBase>(respstr);
+                            var respstrzd = EmrHttpHelper.PostJsonString(UploadURL + "api/QHDSmartCheck/MedicalRecordUpload", JsonConvert.SerializeObject(rootinput));
+                            var respzd = JsonConvert.DeserializeObject<Newtouch.EMR.Domain.DTO.OutputDto.MRUpload.ResponseBase>(respstr);
                             if (respzd.code == "1")
                             {
-                                return Success("上传成功");
+                                return Success("Tải lên thành công");
                             }
                             else
                             {
                                 return Error(resp.message);
                             }
                         }
-                        return Success("上传成功"); 
+                        return Success("Tải lên thành công"); 
                     }
                     else
                     {
@@ -486,11 +504,11 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                 }
                 else
                 {
-                    return Error("无法获取接口地址") ;
+                    return Error("Không lấy được địa chỉ giao diện") ;
                 }
             }
         }
-        public ActionResult UpdateUploadStu(string zyh)
+        public IActionResult UpdateUploadStu(string zyh)
         {
             var bllxety = _CommonDmnService.GetBllxList(OrganizeId, "basy").FirstOrDefault();
             var rel = _zymeddocsrelationRep.FindEntity(p => p.zyh == zyh && p.zt == "1" && p.OrganizeId == OrganizeId && p.bllx == bllxety.Code);
@@ -517,9 +535,9 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     {
                         if (string.IsNullOrWhiteSpace(errmsg))
                         {
-                            errmsg = "上传医保关键数据！";
+                            errmsg = "Dữ liệu quan trọng tải lên bảo hiểm y tế!";
                         }
-                        errmsg += "[" + desc[0].Description + "] 不可为空;";
+                        errmsg += "[" + desc[0].Description + "] không được để trống;";
                     }
                 }
             }
@@ -536,7 +554,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         private void ReportingServiceCom()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = EmrConfig.GetAppConfigValue("ReportServer.HOST");
             ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
@@ -544,13 +562,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
 
         #endregion
 
-        public ActionResult SettlementQuery(string zyh)
+        public IActionResult SettlementQuery(string zyh)
         {
             var data = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
             return Content(data.ToJson());
         }
 
-        public ActionResult DiagnosticSave(string Code)
+        public IActionResult DiagnosticSave(string Code)
         {
             var data = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
             return Content(data.ToJson());

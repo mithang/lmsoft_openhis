@@ -1,10 +1,10 @@
-﻿
+
 @using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "诊室信息";
+    ViewBag.Title = "Phòng khámThông tin";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //诊室信息自动刷新时间
+    //Phòng khám信息自动刷新时间
     var ConsultInfoRefreshTime = SysConfigReader.Bool("ConsultInfoRefreshTime", false).Value;
 }
 
@@ -48,39 +48,39 @@
     <table id="pretb" style="width:100%;height:100%;">
         <tr style="background-color:blue;height:15%;">
             <td id="ksmc" colspan="2" class="fontClass" style="color:white;">
-                科室
+                Khoa
             </td>
         </tr>
         <tr>
             <td rowspan="4" style="width:40%;"><img id="photo"/></td>
         </tr>
         <tr>
-            <td id="ysxm" style="text-align:left;font-size:16px;">医生（主任医师）</td>
+            <td id="ysxm" style="text-align:left;font-size:16px;">Bác sĩ(Chủ nhiệmBác sĩ)</td>
         </tr>
         <tr>
-            <td id="zsmc" style="text-align:left;font-size:16px;">诊室1</td>
+            <td id="zsmc" style="text-align:left;font-size:16px;">Phòng khám1</td>
         </tr>
         <tr>
-            <td id="ysjs" style="text-align:left;font-size:16px;">医生介绍</td>
+            <td id="ysjs" style="text-align:left;font-size:16px;">Bác sĩGiới thiệu</td>
         </tr>
         <tr>
             <td colspan="2" class="fontClass tbBorder" style="color:dodgerblue;font-size:18px;">
-                就诊中
+                Đang khám bệnh
             </td>
         </tr>
         <tr>
             <td id="jzz" colspan="2" class="fontClass  tbBorder">
-                无
+                Không có
             </td>
         </tr>
         <tr>
             <td colspan="2" class="fontClass  tbBorder" style="color:dodgerblue;font-size:18px;">
-                待就诊
+                Chờ khám bệnh
             </td>
         </tr>
         <tr>
             <td id="djz" colspan="2" class="fontClass  tbBorder">
-                无
+                Không có
             </td>
         </tr>
     </table>
@@ -89,7 +89,7 @@
 
 
 <script>
-    var zsCode = $.request("zsCode");//接收诊室编号
+    var zsCode = $.request("zsCode");//接收Phòng khám编号
     GetConsultInfo();
 
 
@@ -106,8 +106,8 @@
                 $("#ysxm").html(data.ysxm);
                 $("#zsmc").html(data.zsmc);
                 $("#ysjs").html(data.ysjs);
-                $("#jzz").html(data.jzz==null?"无":data.jzz+"（"+data.jzzxh+"）");
-                $("#djz").html(data.djz == null ? "无 " : data.djz + "（" + data.djzxh + "）");
+                $("#jzz").html(data.jzz==null?"Không có":data.jzz+"（"+data.jzzxh+"）");
+                $("#djz").html(data.djz == null ? "Không có " : data.djz + "（" + data.djzxh + "）");
                 document.getElementById("photo").src  ="../../Content/img/photo/"+ data.ysxm+".jpg";
             }
         });

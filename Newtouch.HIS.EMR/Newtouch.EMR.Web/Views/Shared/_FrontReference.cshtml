@@ -1,5 +1,5 @@
 ﻿@{
-    var domain = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("Document_Domain");
+    var domain = EmrConfig.GetAppConfigValue("Document_Domain");
 }
 @if (!string.IsNullOrWhiteSpace(domain))
 {
@@ -7,4 +7,4 @@
         document.domain = '@(domain)';
     </script>
 }
-<script type="text/javascript" src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jquery/jquery.choose.js")"></script>
+<script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery.choose.js")"></script>

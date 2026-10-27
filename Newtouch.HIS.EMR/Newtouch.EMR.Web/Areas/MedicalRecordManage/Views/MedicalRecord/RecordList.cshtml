@@ -4,8 +4,8 @@
 
 	Layout = null;
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 
 <style>
 	#blwsDiv {
@@ -68,13 +68,13 @@
 
 <div class="dv-body" id="blwsDiv">
 	<div style="float:left">
-		<a class="btn  " id="BLWS">历<br />史<br />文<br />书</a>
+		<a class="btn  " id="BLWS">Văn bản lịch sử</a>
 
 		<div id="jcjy" class="hide">
-			<a class="btn  " id="JCJY" onclick="btn_jcjy()">检<br />验<br />、<br />检<br />查<br />报<br />告</a>
+			<a class="btn  " id="JCJY" onclick="btn_jcjy()">Báo cáo xét nghiệm, kiểm tra</a>
 		</div>
 		<div id="yz" class="hide">
-			<a class="btn  " id="YZ" onclick="btn_yz()">医<br />嘱</a>
+			<a class="btn  " id="YZ" onclick="btn_yz()">Y lệnh</a>
 		</div>
 	</div>
 	<div class="dv-left">
@@ -83,8 +83,8 @@
 	</div>
 </div>
 
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
 <script type="text/javascript">
 
     $(function () {
@@ -122,12 +122,12 @@
     {
         $.modalOpen({
             id: "Form",
-            title: "检验、检查报告",
+            title: "Xét nghiệm, Báo cáo kiểm tra",
             url: "/MedicalRecordManage/MedicalRecord/Form?mzzyh=" + $.request('zyh') + "&type=zy&ryrq=" + "@ViewBag.ryrq",
             width: "900px",
             height: "600px",
             shade: 0,
-            btn: ['', '关闭'],
+            btn: ['', 'Đóng'],
             btnclass: ['', 'btn btn-danger']
         });
     }
@@ -136,12 +136,12 @@
         alert($.request('zyh'));
         $.modalOpen({
             id: "Form",
-            title: "医嘱",
+            title: "Y lệnh",
             url: "/MedicalRecordManage/MedicalRecord/YZForm?zyh=" + $.request('zyh') + "&type=zy" + "&doctype=" + $.request("doctype"),
             width: "1100px",
             height: "600px",
             shade: 0,
-            btn: ['', '关闭'],
+            btn: ['', 'Đóng'],
             btnclass: ['', 'btn btn-danger']
         })
     }
@@ -156,8 +156,8 @@
     });
 
 	function GetQueryValue(queryName) {
-		var query = decodeURI(window.location.search.substring(1));//将url转码，如果不是当前地址链接，可以在这里填写需要的链接
-		var vars = query.split("&");//分割字符串，将url切割成数组形式的对象
+		var query = decodeURI(window.location.search.substring(1));//将url转码, 如果不是当前地址链接, 可以在这里填写需要的链接
+		var vars = query.split("&");//分割字符串, 将url切割成数组形式的对象
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split("=");//再次分割成数组
 			if (pair[0] == queryName) { return pair[1]; }//如果匹配输出结果

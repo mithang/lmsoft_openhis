@@ -1,39 +1,27 @@
-﻿using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// 
+    /// 系统错误 友好体验
     /// </summary>
     public class ErrorController : Controller
     {
-        /// <summary>
-        /// 异常发送 错误页面
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult HttpError()
+        public IActionResult HttpError()
         {
             return View("Error");
         }
 
-        /// <summary>
-        /// 404提醒页面
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult NotFound()
+        public new IActionResult NotFound()
         {
             return Content("Not Found");
-            //return View();
         }
 
-        /// <summary>
-        /// 403提醒页面
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Forbidden()
+        public IActionResult Forbidden()
         {
             return Content("Forbidden");
-            //return View();
         }
     }
 }

@@ -1,0 +1,270 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
+    var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
+
+    //是否和医保交易
+    var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
+    //医保所属地，区分系统将执行何处医保逻辑
+    var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
+    //HIS厂商编号
+    var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
+
+    var opr = OperatorProvider.GetCurrent();
+}
+
+@Html.Partial("_YibaoCommonView")
+<style type="text/css">
+    * {
+        font-size: 20px;
+    }
+
+    ol {
+        margin-top: 20px;
+    }
+
+    li i {
+        margin-left: 10px;
+    }
+
+        li i.passing {
+            color: #0FA74F;
+        }
+
+        li i.failed {
+            color: red;
+        }
+</style>
+
+<ol>
+    <li><span>Đánh giá sơ bộ thông tin bệnh nhân nội trú</span></li>
+    <li><span>Kiểm tra môi trường BHYT</span></li>
+    <li><span>HIS Xác thực danh tính duy nhất</span></li>
+    <li><span>Tương tác BHYT.Làm thủ tục nhập viện hoàn tác</span></li>
+    <li><span>Cập nhậtHIS.Chuyển BHYT sang tự chi trả</span></li>
+    <li><span>Tương tác BHYT.Làm thủ tục nhập viện hoàn tác xác nhận</span></li>
+    <li><span>Đồng bộ dữ liệu tới trạm bác sĩ</span></li>
+    <li><span>Thành công</span></li>
+</ol>
+
+<script type="text/javascript">
+    $(function () {
+        go();
+
+    });
+
+    //递归调用each step
+    function go(stepFuncName) {
+        if (!!!stepFuncName) {
+            stepFuncName = "funcStep" + 1;
+            //stepFuncName = "funcStep" + 7;
+        }
+        setTimeout(function () {
+            var func = window[stepFuncName];
+            if (!!!func) {
+                console.log('step function not found');
+                return;
+            }
+            var indx = parseInt(stepFuncName.substring("funcStep".length));
+            var $iTemp = $('<i>...executing...</i>');
+            $iTemp.appendTo($('ol li:eq(' + (indx - 1) + ')'));
+            var callback = function (isStepSuccess) {
+                $iTemp.remove();
+                if (isStepSuccess === true) {
+                    $('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-check passing"></i>');
+                    //继续调用下一step function
+                    if ($('ol li').length > indx) {
+                        go("funcStep" + (indx + 1));
+                    }
+                }
+                else {
+                    $('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-times failed"></i>');
+                }
+            };
+            var flag = func(callback);
+            if (flag === true || flag === false) {
+                //同步返回模式
+                callback(flag);
+            }
+            else {
+                //回调模式
+            }
+        }, 50);
+    }
+
+</script>
+<script type="text/javascript">
+
+    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
+    var medicalInsurance = '@medicalInsurance';
+
+    var zyh = $.request('zyh');
+    //医保卡信息
+    var cardInfo;
+    //系统病人主键
+    var patid;
+    var zybrxx;
+    var xtbrxx;
+    var cardxx;
+    var garybl21;
+    var medicalreg;
+    //入院办理回退信息（医保接口返回）
+    var ryblht;
+
+    function funcStep1(nextStepCallback) {
+        if (!!!zyh) {
+            $.modalAlert('Thiếu tham số：zyh', 'error');
+            return false;
+        }
+        $.najax({
+            url: "/PatientManage/Inpatient/YBToZF_Step_1",
+            data: { zyh: zyh },
+            success: function (data) {
+                nextStepCallback(true);
+            },
+            errorCallback: function () {
+                nextStepCallback(false);
+            },
+            error: function () {
+                nextStepCallback(false);
+            }
+        });
+        return;
+    }
+
+    function funcStep2(nextStepCallback) {
+        $.loading(true, 'Đang đọc thẻ...');
+        setTimeout(function () {
+            nextStepCallback(true);
+        })
+                }
+    function funcStep3(nextStepCallback) {
+		    $.najax({
+			    url: "/PatientManage/Inpatient/CqYBToZF_Step_3",
+			    data: { zyh: zyh},
+			    success: function (data) {
+			        zybrxx = data.data.zybrxx;
+			        patid = data.data.zybrxx.patid;
+			        medicalreg = data.data.MedicalReg;
+                    xtbrxx = data.data.xtbrxx;
+                    cardxx = data.data.cardxx;
+				    if (!medicalreg) {
+					    $.modalAlert("Làm thủ tục nhập viện đối với phải của Dữ liệu BHYT ghi nhận bản ghi Chưa tìm thấy", "error");
+					    nextStepCallback(false);
+					    return;
+				    }
+				    nextStepCallback(true);
+			    },
+			    errorCallback: function () {
+				    nextStepCallback(false);
+			    },
+			    error: function () {
+				    nextStepCallback(false);
+			    }
+		    });
+        return;
+    }
+
+    function funcStep4(nextStepCallback) {
+        
+	    $.loading(true, 'Đang BHYT Làm thủ tục nhập viện hoàn tác...');
+	    var bkbz =cardxx.accountattr ? cardxx.accountattr.substr(11, 1):"";
+	    var gbbz =cardxx.accountattr ? cardxx.accountattr.substr(1, 1):"";//干保 1
+       
+        if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
+            var jzlx = "1";
+            var payoptype = {
+                cardtype: jzlx,
+                carddata: cardxx.cardno,
+                hisId: zyh,//住院号
+                operatorId: '@(opr.rygh)',
+                operatorName:  '@(opr.UserName)',
+                insuplc_admdvs: xtbrxx.cbdbm
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SJ21",
+                dataType: "json",
+                data: payoptype,
+                async: false,
+                success: function (data) {
+                    var medicalReg = eval('(' + data + ')');
+                    if (medicalReg) {
+                        if (medicalReg.xxfhm === "P001") {
+                            nextStepCallback(true);
+                        }
+                        else {
+                            $.modalAlert("BHYT Hủy Nhập viện đăng ký Thất bại：" + medicalReg.err_msg, 'error');
+                            $.loading(false);
+                            nextStepCallback(false);
+                        }
+                    }
+                }
+            });
+        }else {
+            var cqybjyDenySettleReturn;
+            var payoptype = { 'hisId': zyh, 'mdtrt_id': medicalreg.jylsh, 'operatorId': '@(opr.rygh)', "operatorName": '@(opr.UserName)', 'insuplc_admdvs': cardxx.cbdbm, 'psn_no': cardxx.grbh };
+		    $.ajax({
+			    type: "POST",
+			    url: "http://127.0.0.1:33333/api/YiBao/HospitaUpMdtrtinfo_2404",
+			    dataType: "json",
+			    data: payoptype,
+			    async: false,
+			    success: function (data) {
+				    cqybjyDenySettleReturn = eval('(' + data + ')');
+			    }
+		    });
+		    $.loading(false);
+		    if (cqybjyDenySettleReturn.infcode == "0") {
+			    nextStepCallback(true);
+		    } else {
+		        $.modalAlert("BHYT Hủy Nhập viện đăng ký Thất bại：" + cqybjyDenySettleReturn.err_msg, 'error');
+			    nextStepCallback(false);
+		    }
+        }
+    }
+
+    function funcStep5(nextStepCallback) {
+        $.najax({
+            url: "/PatientManage/Inpatient/YBToZF_Step_5",
+            data: { zyh: zyh, patid: patid },
+            success: function (data) {
+                nextStepCallback(true);
+            },
+            errorCallback: function () {
+                nextStepCallback(false);
+            },
+            error: function () {
+                nextStepCallback(false);
+            }
+        });
+        return;
+    }
+
+    function funcStep6(nextStepCallback) {
+		    nextStepCallback(true);
+    }
+
+    function funcStep7(nextStepCallback) {
+        $.najax({
+            url: "/PatientManage/Inpatient/YBToZF_Step_7",
+            data: { zyh: zyh },
+            success: function (data) {
+                nextStepCallback(true);
+            },
+            errorCallback: function () {
+                nextStepCallback(false);
+            },
+            error: function () {
+                nextStepCallback(false);
+            }
+        });
+        return;
+    }
+
+    function funcStep8(nextStepCallback) {
+        return true;
+    }
+</script>

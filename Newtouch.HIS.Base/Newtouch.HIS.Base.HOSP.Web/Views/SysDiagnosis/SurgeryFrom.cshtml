@@ -1,0 +1,124 @@
+
+@{
+	ViewBag.Title = "SurgeryFrom";
+	Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+	<div class="container" style="margin-top: 3px; margin-left: 10px; margin-right: 10px;">
+		<ul class="nav nav-tabs" role="tablist" id="myTab">
+			<li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
+		</ul>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane fade in active" style="padding-top: 5px; margin-right: 104px;margin-left:20px;" id="basicInfo">
+				<table class="form">
+					<tr>
+						<td class="formTitle"><span class="required">*</span>Mã bản quốc gia lâm sàng:</td>
+						<td class="formValue">
+							<input id="ssm" name="ssm" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
+						</td>
+					</tr>
+					<tr>
+						<td class="formTitle"><span class="required">*</span>Tên phẫu thuật bản quốc gia lâm sàng:</td>
+						<td class="formValue">
+							<input id="ssmc" name="ssmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle">Mã phẫu thuật BHYT:</th>
+						<td class="formValue">
+							<input id="ssm_yb" name="ssm_yb" type="text" class="form-control" placeholder="" />
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle">Tên phẫu thuật BHYT:</th>
+						<td class="formValue">
+							<input id="ssmc_yb" name="ssmc_yb" type="text" class="form-control" placeholder="" />
+						</td>
+					</tr>
+					<tr>
+						<td class="formTitle"><span class="required">*</span>Cấp phẫu thuật:</td>
+						<td class="formValue">
+							<select id="ssjb" name="ssjb" class="form-control required">
+								<option value="">==Vui lòng chọn==</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle"><span class="required">*</span>Loại phẫu thuật:</th>
+						<td class="formValue formDdlSelectorTd">
+							@Html.DropDownList("sslx", Newtouch.Infrastructure.EnumSSLX.ss.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle"><span class="required">*</span>Mã Pinyin:</th>
+						<td class="formValue">
+							<input id="pym" name="pym" type="text" class="form-control required" placeholder="" />
+						</td>
+					</tr>
+					<tr>
+						<th class="formTitle" style="height: 30px;">Trạng thái:</th>
+						<td class="formValue" style="padding-top: 1px;">
+							<div class="ckbox">
+								<input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script>
+	var keyValue = $.request("keyValue");
+	$(function () {
+		initControl()
+		if (!!keyValue) {
+			$.najax({
+				url: "/SysDiagnosis/SurgeryUpGetGridJson",
+				data: { keyValue: keyValue },
+				dataType: "json",
+				async: false,
+				success: function (data) {
+					$("#form1").formSerialize(data);
+				}
+			});
+		}
+	});
+
+	function initControl() {
+		//首拼
+		$('#ssmc').keyup(function () {
+			$('#pym').val($(this).toShouPin());
+		})
+	}
+
+	function submitForm() {
+		var postData = $("#form1").formSerialize();
+		if (!postData.ssm) {
+			$.modalAlert("Mã phẫu thuật là bắt buộc", 'warning');
+			return;
+		}
+		if (!postData.ssjb) {
+			$.modalAlert("Cấp phẫu thuật là bắt buộc", 'warning');
+			return;
+		}
+		if (!postData.sslx) {
+			$.modalAlert("Loại phẫu thuật là bắt buộc", 'warning');
+			return;
+		}
+		
+		$.submitForm({
+			url: "/SysDiagnosis/SurSubmitForm?keyValue=" + keyValue,
+			param: postData,
+			success: function () {
+				$.currentWindow().$("#gridList").resetSelection();
+				$.currentWindow().$("#gridList").trigger("reloadGrid");
+			}
+		})
+	}
+</script>

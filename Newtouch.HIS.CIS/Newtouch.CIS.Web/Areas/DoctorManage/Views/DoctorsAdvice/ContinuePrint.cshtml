@@ -1,4 +1,4 @@
-﻿
+
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
     var zylsyzContinuePrint = SysConfigReader.OrgReportLink("zylsyzContinuePrint");  //临时医嘱续打
@@ -12,7 +12,7 @@
     </h2>
 </div>*@
 <div id="panelposition" style="margin-left:5px">
-    <span>最后打印医嘱记录</span>
+    <span>Cuối cùngInY lệnhGhi chép</span>
     @*<label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="长期医嘱" />长期医嘱</label>
         <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="有效医嘱" />有效医嘱</label>*@
     <table class="form" style="width:100%;height:65px;">
@@ -23,25 +23,25 @@
         </tr>*@
         <tr>
             <td style="text-align:left ;width:30px">
-                页码
+                Số trang
             </td>
             <td style="text-align:left ;width:30px">
-                序号
+                Số thứ tự
             </td>
             <td class="formValue" style="text-align:left;">
-                <label>下达时间</label>
+                <label>Thời gian ban hành</label>
             </td>
             <td class="formTitle" style="text-align:left">
-                <label>医生</label>
+                <label>Bác sĩ</label>
             </td>
             <td class="formTitle" style="text-align:left">
-                <label>医嘱内容</label>
+                <label>Nội dung y lệnh</label>
             </td>
             <td class="formValue" style="text-align:left">
-                最后执行时间
+                Cuối cùngThực hiệnThời gian
             </td>
             <td class="formTitle" style="text-align:left">
-                护士
+                Điều dưỡng
             </td>
         </tr>
         <tr>
@@ -72,18 +72,18 @@
 <div class="rows" style="width:95%;margin-left:1%; margin-top:10px">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            打印方式
+            InPhương thức
         </div>
         <div>
             <table class="form" style="width:265px;height:65px;">
                 <tr >
                     <td style="width:61px;padding-left:10px">
-                        <label><input type="radio" name="optionsRadios1" class="optionsRadios formClearIgnore" checked value="0" />直接续打</label>
+                        <label><input type="radio" name="optionsRadios1" class="optionsRadios formClearIgnore" checked value="0" />Trực tiếpIn tiếp</label>
                     </td>
                 </tr>
                 <tr >
                     <td style="padding-left:10px">
-                        <label><input type="radio" name="optionsRadios1" class="optionsRadios formClearIgnore" value="1" />续打</label>
+                        <label><input type="radio" name="optionsRadios1" class="optionsRadios formClearIgnore" value="1" />In tiếp</label>
                     </td>
                     @*<td class="formTitle">
                         开始页号
@@ -92,7 +92,7 @@
                         <input class="form-control" id="txt_kspage" style="width:28px;" value="">
                     </td>*@
                     <td class="formTitle">
-                        开始行号
+                        Bắt đầuSố dòng
                     </td>
                     <td class="formValue">
                         <input class="form-control" id="txt_ksxh" style="width:28px;" value="">
@@ -170,7 +170,7 @@
             var kspage = ""; //$("#txt_kspage").val();
             if (!ksxh)
             {
-                $.modalAlert('请输入需要开始续打的序号', 'warning');
+                $.modalAlert('Vui lòng nhập số thứ tự cần bắt đầu in tiếp', 'warning');
                 return;
             }
             xh = ksxh;

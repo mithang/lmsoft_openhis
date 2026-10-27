@@ -1,7 +1,7 @@
-﻿@model dynamic
+@model dynamic
 
 @{
-	ViewBag.Title = "住院床卡";
+	ViewBag.Title = "Nhập việnThẻ giường";
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style type="text/css">
@@ -27,7 +27,7 @@
 				<td class="formValue border center" colspan="6" rowspan="5" style="font-size:40px;font-weight:bold;">
 					<input id="xm" name="xm" type="text" class="text_border center" readonly="readonly" />
 				</td>
-				<td class="formValue border center" colspan="3" style="border-bottom:none;">性别</td>
+				<td class="formValue border center" colspan="3" style="border-bottom:none;">Giới tính</td>
 
 			</tr>
 			<tr>
@@ -42,7 +42,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="formValue border center" colspan="3" style="border-bottom:none;">年龄</td>
+				<td class="formValue border center" colspan="3" style="border-bottom:none;">Tuổi</td>
 			</tr>
 			<tr>
 				<td class="formValue border center" colspan="3" style="border-top:none;">
@@ -52,62 +52,62 @@
 			</tr>
 			<tr>
 				<td class="formValue border " colspan="6">
-					入院日期:
+					Ngày nhập viện:
 					<input id="ryrq" name="ryrq" type="text" class="text_border " readonly="readonly" />
 				</td>
 				<td class="formValue border" colspan="6">
-					ID号:
+					Số ID:
 					<input id="patid" name="patid" type="text" class="text_border" readonly="readonly" />
 				</td>
 			</tr>
 			<tr>
 				<td class="formValue border" colspan="6">
-					主管医生:
+					Quản lýBác sĩ:
 					<input id="ysgh" name="ysgh" type="text" class="text_border " readonly="readonly" />
 				</td>
 				<td class="formValue border" colspan="6">
-					住院号:
+					Số nhập viện:
 					<input id="zyh" name="zyh" type="text" class="text_border " readonly="readonly" />
 				</td>
 			</tr>
 			<tr>
 				<td class="formValue border" colspan="6">
-					责任护士:
+					Trách nhiệmĐiều dưỡng:
 					<input id="zrhs" name="zrhs" type="text" class="text_border" />
 				</td>
 				<td class="formValue border" colspan="6">
-					责任组长:
+					Trách nhiệmTổ trưởng:
 					<input id="zrzz" name="zrzz" type="text" class="text_border" />
 				</td>
 			</tr>
 			<tr>
 				<td class="formValue border" colspan="12">
-					过敏史:
+					Tiền sử dị ứng:
 					<input id="gms" name="gms" type="text" class="text_border" />
 				</td>
 
 			</tr>
 			<tr>
 				<td class="formValue border" colspan="12">
-					费别属性:
+					Loại phíThuộc tính:
 					<select id="fbsx" name="fbsx">
-						<option value="1">自费</option>
-						<option value="2">医保</option>
+						<option value="1">tự chi trả</option>
+						<option value="2">Bảo hiểm y tế</option>
 					</select>
 				</td>
 			</tr>
 
 			<tr>
 				<td class="formValue border" colspan="4">
-					上级医生:
+					Cấp trênBác sĩ:
 					<input id="sjys" name="sjys" type="text" class="text_border" style="width:60%;" />
 				</td>
 				<td class="formValue border" colspan="4">
-					护士长:
+					Điều dưỡng trưởng:
 					<input id="hsz" name="hsz" type="text" class="text_border" style="width:60%;" />
 				</td>
 				<td class="formValue border" colspan="4">
-					科主任:
+					Chủ nhiệm khoa:
 					<input id="kzr" name="kzr" type="text" class="text_border" style="width:60%;" />
 				</td>
 			</tr>
@@ -152,7 +152,7 @@
 					//$("#ysgh").val(resp[0].ysgh);
 
 					$("#xm").val(resp[0].xm);
-					var sex = resp[0].sex == 1 ? "男" : "女";
+					var sex = resp[0].sex == 1 ? "Nam" : "Nữ";
 					$("#sex").val(sex);
 					$("#nl").val(resp[0].nl);
 					//$("#ryrq").val(resp[0].rqrq);
@@ -205,7 +205,7 @@
             dataType: "json",
             async:false,
             success: function () {
-                $.modalAlert("保存成功", 'warning');
+                $.modalAlert("Lưu thành công", 'warning');
             }
 		})
 	}

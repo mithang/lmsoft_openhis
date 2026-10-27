@@ -1,0 +1,299 @@
+
+@{
+    ViewBag.Title = "AccountingExecutionQuery";
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+    var reqFrom = Context.Request.Query["from"];
+}
+
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Trạng thái hủy：</th>
+                    <td class="formValue">
+                        <select id="cxzt" name="cxzt" class="form-control">
+                            <option value="">==Tất cả==</option>
+                            <option value="0">Đã hủy</option>
+                            <option value="1">Bình thường</option>
+                        </select>
+                    </td>
+                    @if (!(reqFrom == "mz"))
+                    {
+                        <th class="formTitle">Trạng tháithu phí：</th>
+                        <td class="formValue">
+                            <select id="sfzt" name="sfzt" class="form-control">
+                                <option value="">==Tất cả==</option>
+                                <option value="0">Chưathu phí</option>
+                                <option value="1">Đãthu phí</option>
+                            </select>
+                        </td>
+                    }
+                    <th class="formTitle">Trị liệu sư：</th>
+                    <td class="formValue">
+                        <select id="zls" name="zls" class="form-control">
+                            <option value="">==Tất cả==</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Từ khóa：</th>
+                    <td class="formValue" style="width:145px;">
+                        <input type="text" style="width:145px;" class="form-control" id="keyword" placeholder="" />
+                    </td>
+                    @if (reqFrom == "mz")
+                    {
+                        <th class="formTitle">Thời gian thao tác：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <span style="margin-left:1%;float:left">—</span>
+                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <td class="formValue">
+                            <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Truy vấn" />
+                        </td>
+                    }
+                </tr>
+                @if (!(reqFrom == "mz"))
+                {
+                    <tr>
+                        <th class="formTitle">Thời gian thao tác：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <span style="margin-left:1%;float:left">—</span>
+                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <td class="formValue">
+                            <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Truy vấn" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 9 },
+    F9Text = "XuấtExcel",
+})
+<script>
+    var from = $.request("from");
+    if (!!!from) {
+        from = "zy";
+    }
+    if (from === 'mz') {
+        $('#keyword').attr('placeholder', 'Tên bệnh nhân/Số bệnh án/Số ngoại trú');
+    }
+    else {
+        $('#keyword').attr('placeholder', 'Tên bệnh nhân/Số bệnh án/Mã nhập viện');
+    }
+
+    $(function () {
+        $("#zls").bindSelect({
+            url: "/SystemManage/Staff/GetStaffByDutyCode?dutyCode=" + "RehabDoctor",
+            id: "StaffGh",
+            text: "StaffName"
+        });
+
+        //Trạng thái hủy tự độngKích hoạtTruy vấn
+        $('#cxzt').change(function () {
+            $('#btn_search').trigger('click');
+        });
+
+        //Trạng tháithu phí tự độngKích hoạtTruy vấn
+        $('#sfzt').change(function () {
+            $('#btn_search').trigger('click');
+        });
+
+        //Chuyển trị liệu sư tự độngKích hoạtTruy vấn
+        $('#zls').change(function () {
+            $('#btn_search').trigger('click');
+        });
+
+        gridList();
+    });
+
+    //Chi tiết
+    var gridOptins = {
+        url: "/HospitalizationManage/BookkeepInHos/GetAccountingExecutionQuery",
+        postData: getSearchPostData(),
+        height: $(window).height() - (from == "mz" ? 200 : 225),
+        colModel: [
+        { label: "zxjlId", name: "zxjlId", width: 100, align: "left", hidden: true },
+        { label: "Trị liệu sư", name: "zlsmc", width: 80, align: "left" },
+        {
+            label: "Trạng thái", name: "zt", width: 40, align: "left",
+            formatter: function (cellvalue, a, b) {
+                if (cellvalue == '1') {
+                    return "Bình thường"
+                }
+                else {
+                    return "Đã hủy";
+                }
+            }
+        },
+        {
+            label: "Trạng tháithu phí", name: "sfzt", width: 60, align: "left",
+            hidden: (from == "mz" ? true : undefined),
+            formatter: function (cellvalue) {
+                if (cellvalue == '1') {
+                    return "Đãthu phí"
+                }
+                else if (cellvalue == '0') {
+                    return "Chưathu phí";
+                }
+                return "";
+            }
+        },
+        { label: "Tên bệnh nhân", name: "xm", width: 70, align: "left" },
+        { label: "Số bệnh án", name: "blh", width: 70, align: "left" },
+        { label: (from == "mz" ? "Số ngoại trú" : "Mã nhập viện"), name: "mzzyh", width: (from == "mz" ? 100 : 70), align: "left" },
+        {
+            label: "Loại phục hồi", name: "kflb", width: 60, align: "left",
+            formatter: function (cellvalue) {
+                return $.itemDetails.getNameByCode("RehabTreatmentMethod", cellvalue);
+            }
+        },
+        { label: "Mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
+        { label: "Lượng điều trị", name: "zll", width: 40, align: "left" },
+        { label: "Đơn vị", name: "dw", width: 40, align: "left" },
+        { label: "Số lượng", name: "sl", width: 50, align: "left" },
+        {
+            label: "Đơn giá", name: "dj", width: 55, align: "left", formatter: "number"
+                , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+        },
+        {
+            label: "Chính sách bồi hoàn", name: "zfxz", width: 60, align: "left",
+            formatter: function (cellvalue) {
+                return $.enum.getDescByValue("EnumZiFuXingZhi", cellvalue);
+            }
+        },
+        {
+            label: "Số tiền", name: "je", width: 55, align: "left", formatter: "number"
+                , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+        },
+        {
+            label: "Ngày điều trị", name: "zlrq", width: 80, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            }, {label: "Người thao tác", name: "Creater", width: 120, align: "left"},
+        {
+            label: "Thời gian thao tác", name: "CreateTime", width: 120, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+        },
+        ],
+        //multiselect: true,
+        pager: "#gridPager",
+        sortname: 'CreateTime desc',
+        viewrecords: true,
+        gridComplete: function () {
+            var ids = $("#gridList").getDataIDs();
+            for (i = 0; i < ids.length; i++) {
+                var rowData = $("#gridList").getRowData(ids[i]);
+                if (rowData && rowData.zt) {
+                    if (rowData.zt == "Đã hủy") {
+                        $("#" + ids[i]).find("td").addClass('danger');
+                    }
+                }
+            }
+        },
+    };
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid(gridOptins);
+        $("#btn_search").click(function () {
+            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
+                $.modalAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc", 'warning');
+                return;
+            }
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: getSearchPostData(),
+                    page: 1,
+                    url: "/HospitalizationManage/BookkeepInHos/GetAccountingExecutionQuery"
+                }).trigger('reloadGrid');
+        });
+    }
+    //Truy vấnđiều kiện
+    function getSearchPostData() {
+        var keyword = $("#keyword").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var zls = $("#zls").val();
+        var cxzt = $("#cxzt").val();
+        var sfzt = $("#sfzt").val();
+        return { keyword: keyword, kssj: kssj, jssj: jssj, zls: zls, cxzt: cxzt, sfzt: sfzt, from: from };
+    };
+
+    //XuấtExcel Cột
+    var exportCols = null;
+    function newtouch_event_f9() {
+        exportCols = new Array();
+        var colsChooseSourceArr = new Array();
+        $.each(gridOptins.colModel, function () {
+            if (!(this.hidden === true)) {
+                exportCols.push({ Heading: this.label, Name: this.name, Width: this.width });
+                colsChooseSourceArr.push({ Heading: this.label, Name: this.name });
+            }
+        });
+        var url = "/HospitalizationManage/BookkeepInHos/ExcelExportChooseColumns";
+        var cols = JSON.stringify(colsChooseSourceArr);
+        cols = encodeURIComponent(cols);
+        url += "?cols=" + cols;
+        $.modalOpen({
+            id: "ExcelExportChooseColumns",
+            title: "XuấtExcel",
+            url: url,
+            width: "600px",
+            height: "350px",
+            callBack: function (iframeId) {
+                //Kết quả
+                var restArr = top.frames[iframeId].GetChoosedCols();
+                if (!!!restArr || !!!restArr.length || restArr.length == 0) {
+                    $.modalAlert("Vui lòng chọn cột xuất", 'error');
+                    return false;
+                }
+                var isContainFilter = top.frames[iframeId].GetIsContainFilter();
+                //Đóng cửa sổ chọn
+                $.modalClose("ExcelExportChooseColumns");
+                //
+                exportCols = $.jsonWhere(exportCols, function (v) {
+                    var matched = false;
+                    for (var iIndex = 0; iIndex < restArr.length; iIndex++) {
+                        if (restArr[iIndex] == v.Name) {
+                            matched = true;
+                        }
+                    }
+                    return matched;
+                });
+                //Xuất
+                Export(isContainFilter);
+            }
+        });
+    }
+
+    function Export(isContainFilter) {
+        var url = "/HospitalizationManage/BookkeepInHos/AccountingExecutionExportExcel?r=" + Math.random();
+        url += "&keyword=" + $('#keyword').val();
+        url += "&kssj=" + $('#kssj').val();
+        url += "&jssj=" + $('#jssj').val();
+        url += "&zls=" + $('#zls').val();
+        url += "&cxzt=" + $('#cxzt').val();
+        url += "&sfzt=" + $('#sfzt').val();
+        url += "&from=" + from;
+        url += "&isContainFilter=" + isContainFilter;
+        url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn chiều rộng cột
+        var cols = JSON.stringify(exportCols);
+        top.$.cookie('ExportExcelCols', cols, { path: "/" });
+        //url += "&cols=" + encodeURIComponent(cols);
+
+        window.open(url);
+    }
+
+</script>

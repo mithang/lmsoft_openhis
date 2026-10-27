@@ -1,16 +1,16 @@
-﻿
+
 @{
-    ViewBag.Title = "退药查询";
+    ViewBag.Title = "Trả thuốcTra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
 
 @using Newtouch.Infrastructure;
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 
 <style>
     .dv-left {
@@ -52,12 +52,12 @@
     <div class="dv-left">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle">姓名/住院号：</th>
+                        <th class="formTitle">Họ tên/Số nhập viện:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control">
                         </td>
@@ -66,7 +66,7 @@
             </table>
         </div>
         <div class="dv-left-title">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="dv-left-tree" id="PatTreeList"></div>
     </div>
@@ -74,26 +74,26 @@
         <div class="dv-right-order">
             <div class="panel panel-default">
                 <div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
 
                 </div>
                 <div>
                     <table class="form">
                         <tr>
-                            <th class="formTitle">药品名称：</th>
+                            <th class="formTitle">Tên thuốc:</th>
                             <td class="formValue">
-                                <input id="txt_name" type="text" class="form-control" placeholder="药品名称" />
+                                <input id="txt_name" type="text" class="form-control" placeholder="Tên thuốc" />
                             </td>
-                            <th class="formTitle">开始日期：</th>
+                            <th class="formTitle">Ngày bắt đầu:</th>
                             <td class="formValue">
                                 <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
                             </td>
-                            <th class="formTitle">结束日期：</th>
+                            <th class="formTitle">Ngày kết thúc:</th>
                             <td class="formValue">
                                 <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
                             </td>
                             <td class="formTitle">
-                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                             </td>
                             @*<td class="formTitle">
                             <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="退药确认" />
@@ -109,7 +109,7 @@
             @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
             {
                 ShowKeyList = new int[] {8},
-                F8Text="打印退药单"
+                F8Text="In phiếu trả thuốc"
             })
         </div>
     </div>
@@ -207,19 +207,19 @@
             editurl: "clientArray",
             height: $(window).height() - 170,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '姓名', name: 'hzxm', width: 100, align: 'left' },
-                { label: '退药申请单号', name: 'tydh', width: 80, align: 'left' },
-                { label: '床位名称', name: 'cwmc', width: 80, align: 'left' },
-                { label: '医嘱性质', name: 'yzxz', width: 60, align: 'center', formatter: function (cellvalue) { if (cellvalue == 2) return "长期"; if (cellvalue == 1) return "临时"; } },
-                { label: '药品名称', name: 'ypmc', width: 250, align: 'center' },
-                { label: '退药数量', name: 'tysl', width: 60, align: 'center' },
-                { label: '退药单位', name: 'ypdw', width: 60, align: 'center' },
-                { label: '退药申请时间', name: 'CreateTime', width: 120, align: 'left' }, 
-                { label: '退药记账时间', name: 'zxrq', width: 120, align: 'left' }, 
-                { label: '操作人', name: 'ysxm', width: 120, align: 'left' },
-                { label: '执行日期', name: 'zxrq', hidden: true },
-                { label: '药房是否审核', name: 'zt', hidden: true },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Họ tên', name: 'hzxm', width: 100, align: 'left' },
+                { label: 'Trả thuốcSố phiếu', name: 'tydh', width: 80, align: 'left' },
+                { label: 'Giường bệnhTên', name: 'cwmc', width: 80, align: 'left' },
+                { label: 'Tính chất y lệnh', name: 'yzxz', width: 60, align: 'center', formatter: function (cellvalue) { if (cellvalue == 2) return "Dài hạn"; if (cellvalue == 1) return "Tạm thời"; } },
+                { label: 'Tên thuốc', name: 'ypmc', width: 250, align: 'center' },
+                { label: 'Trả thuốcSố lượng', name: 'tysl', width: 60, align: 'center' },
+                { label: 'Trả thuốcĐơn vị', name: 'ypdw', width: 60, align: 'center' },
+                { label: 'Trả thuốcĐề nghịThời gian', name: 'CreateTime', width: 120, align: 'left' }, 
+                { label: 'Trả thuốcGhi nhận chi phíThời gian', name: 'zxrq', width: 120, align: 'left' }, 
+                { label: 'Người thao tác', name: 'ysxm', width: 120, align: 'left' },
+                { label: 'Thực hiệnNgày', name: 'zxrq', hidden: true },
+                { label: 'Nhà thuốcCó hay khôngDuyệt', name: 'zt', hidden: true },
                 { label: 'zyh', name: 'zyh', hidden: true },
             ],
             viewrecords: true,

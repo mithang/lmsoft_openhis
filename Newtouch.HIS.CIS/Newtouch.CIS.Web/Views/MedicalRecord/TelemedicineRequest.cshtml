@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "TelemedicineRequest";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -36,35 +36,35 @@
 </style>
 <table class="form" style="width: 99%;height: 120px;">
     <tr>
-        <td class="formTitle">姓名：</td>
+        <td class="formTitle">Họ tên:</td>
         <td class="formValue">
             <input class="form-control" id="xm"  readonly/>
         </td>
-        <td class="formTitle">卡号：</td>
+        <td class="formTitle">Số thẻ:</td>
         <td class="formValue">
             <input class="form-control" id="kh" readonly/>
         </td>
     </tr>
     <tr>
-        <td class="formTitle">门诊号：</td>
+        <td class="formTitle">Số khám ngoại trú:</td>
         <td class="formValue" colspan="2">
             <input class="form-control" id="mzh" readonly/>
         </td>
     </tr>
     <tr>
-        <td class="formTitle">上传报告类型：</td>
+        <td class="formTitle">Tải lênBáo cáoLoại:</td>
         <td colspan="2">
             <div class="ckbox">
-                <input id="jy" name="checkbox0" type="checkbox" value="检验" autocomplete="off"><label for="jy">检验</label>
+                <input id="jy" name="checkbox0" type="checkbox" value="Xét nghiệm" autocomplete="off"><label for="jy">Xét nghiệm</label>
             </div>
             <div class="ckbox">
-                <input id="xd" name="checkbox0" type="checkbox" value="心电" autocomplete="off"><label for="xd">心电</label>
+                <input id="xd" name="checkbox0" type="checkbox" value="Điện tim" autocomplete="off"><label for="xd">Điện tim</label>
             </div>
             <div class="ckbox">
-                <input id="dtxd" name="checkbox0" type="checkbox" value="动态心电" class="btn" autocomplete="off"><label for="dtxd">动态心电</label>
+                <input id="dtxd" name="checkbox0" type="checkbox" value="ĐộngĐiện tim" class="btn" autocomplete="off"><label for="dtxd">ĐộngĐiện tim</label>
             </div>
             <div class="ckbox" style="display: none;">
-                <input id="yx" name="checkbox0" type="checkbox" value="影像" autocomplete="off"><label for="yx">影像</label>
+                <input id="yx" name="checkbox0" type="checkbox" value="Hình ảnh" autocomplete="off"><label for="yx">Hình ảnh</label>
             </div>
         </td>
     </tr>
@@ -72,12 +72,12 @@
         <td class="formTitle">
         </td>
         <td class="formValue" colspan="3" style="color: red;">
-            若要上传动态心电数据，请使用7Z压缩，并使用下方文件名称命名！
+            Nếu muốn tải lên dữ liệu điện tim động, vui lòng dùng nén 7Z và đặt tên tập tin theo tên bên dưới!
         </td>
     </tr>
     <tr id="dtxdDiv">
         <td class="formTitle">
-            压缩文件命名：
+            NénTập tinĐặt tên:
         </td>
         <td class="formValue" colspan="3">
             <input id="7zName"  class="form-control" value="03-020-qingzhen-XD&500FDF7A-6682-4BC7-AF6B-DA724973A6E2.7z" readonly/>
@@ -85,7 +85,7 @@
     </tr>
     <tr id="dtxdup">
         <td><a href="javascript:;" id="btn_choose" style="background:#D0EEFF" class="file">
-                选择文件
+                ChọnTập tin
                 <input id="fileUpload" type="file" multiple="multiple"/>
             </a>
         </td>
@@ -118,7 +118,7 @@
             $(this).prop('checked', true);
             if ($(this).val() == "动态心电") {
                 if (!$("#7zName").val()) {
-                    $.modalAlert("找不到该患者已收费的动态心电申请!", 'warning');
+                    $.modalAlert("Không tìm thấy đề nghị điện tâm đồ động đã thu phí của bệnh nhân này!", 'warning');
                     $(this).prop('checked', false);
                     return;
                 }
@@ -144,17 +144,17 @@
                 fjmc = t_files[i].name;
                
                 if (fileExt !== "7Z" && fileExt !== "7z") {
-                    $.modalAlert("远程动态心电数据上传仅支持7Z压缩格式后缀文件上传!", 'warning');
+                    $.modalAlert("Tải lên dữ liệu điện tim động từ xa chỉ hỗ trợ tập tin có hậu tố nén 7Z!", 'warning');
                     $("#fileUrl").val("");
                     return false;
                 }
                 if (fjmc != $("#7zName").val()) {
-                    $.modalAlert("所上传的远程动态心电数据名称必须为：" + $("#7zName").val(), 'warning');
+                    $.modalAlert("Tên dữ liệu điện tâm đồ động từ xa tải lên bắt buộc là:" + $("#7zName").val(), 'warning');
                     $("#fileUrl").val("");
                     return false;
                 }
                 if (t_files[i].size / 1024 / 2014 > 10) {
-                    $.modalAlert("文件大小不能超过10M!", 'warning');
+                    $.modalAlert("Kích thước tập tin không thể vượt quá 10M!", 'warning');
                     $("#fileUrl").val("");
                     return false;
                 }
@@ -184,7 +184,7 @@
         var htmlstring = '';
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            htmlstring += '<li style="list-style-type: none;height:20px;margin-left:-30px;">名称：';
+            htmlstring += '<li style="list-style-type: none;height:20px;margin-left:-30px;">Tên:';
             if (file.Id != null && file.Id != undefined) {
                 htmlstring += "<a id='file" +
                     i +
@@ -228,7 +228,7 @@
             async:false,
             processData: false,
             contentType: false,
-            loadingtext: "正在进行远程医疗上传，请稍后…",
+            loadingtext: "ĐangTiến hànhTừ xaY tếTải lên,Vui lòng đợi trong giây lát…",
             success: function (data) {
                 $.modalClose();
             }}

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>Newtouch.Herp.Infrastructure</AssemblyName>
+    <RootNamespace>Newtouch.Herp</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.100" />
+    <!-- ReceiptNoManage needs GBK bytes for the pinyin-initial receipt prefix;
+         Linux .NET has no GBK codec without this package (already in NuGet cache). -->
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- net6.0 vendor base layer (read-only references; run copy is never modified) -->
+    <Reference Include="NewtouchHIS.Lib.Base">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Framework">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

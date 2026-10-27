@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.27" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.100" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Newtouch.PDS.Infrastructure\Newtouch.PDS.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- net6.0 vendor base layer (read-only references; run copy is never modified) -->
+    <Reference Include="NewtouchHIS.Framework.Web">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Framework.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Framework">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Base">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Redis">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.Services">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Base.Domain">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Base.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.DrgGroup.chs_drg_11">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.DrgGroup.chs_drg_11.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.DrgGroup.wuhan_2022">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.DrgGroup.wuhan_2022.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Base.DomainService">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Base.DomainService.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Base.Repository">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Base.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
+      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers/AntibioticTypeController.cs" />
+    <Compile Remove="Controllers/PharmacyWindowController.cs" />
+    <Compile Remove="Controllers/SysMedicineController.cs" />
+    <Compile Remove="Controllers/SystemManagerController.cs" />
+    <Compile Remove="Controllers/Base/ModuleController.cs" />
+    <Compile Remove="Controllers/Base/OrganizeController.cs" />
+    <Compile Remove="Controllers/Base/RoleAuthorizeController.cs" />
+    <Compile Remove="Controllers/Base/RoleController.cs" />
+    <Compile Remove="Controllers/Base/UserController.cs" />
+    <Compile Remove="Areas/OutOrInStoredManage/Controllers/TransferController.cs" />
+  </ItemGroup>
+
+  
+</Project>

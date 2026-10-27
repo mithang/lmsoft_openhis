@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Index.cshtml";
-    var EmrEdiForUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("KyEmrEdiForUrl");
+    var EmrEdiForUrl = EmrConfig.GetAppConfigValue("KyEmrEdiForUrl");
 }
 <script src="~/Content/js/BootstrapMenu.min.js"></script>
 <script src="@EmrEdiForUrl/iframe/HmEditorIfame.js"></script>
@@ -28,17 +28,17 @@
             <table>
                 <tr>
                     <td>
-                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
                     </td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" style="width:45px;height:17px;" id="mbqx" onchange="mbqxquery()">
-                            <option value="0" selected="selected">通用</option>
-                            <option value="1">个人</option>
-                            <option value="2">科室</option>
+                            <option value="0" selected="selected">Chung</option>
+                            <option value="1">Cá nhân</option>
+                            <option value="2">Khoa</option>
                         </select>
                     </td>
                     <td class="formValue">
-                        <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="leftkeypress()" placeholder="模板名称" style="width:80px;height:17px;">
+                        <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="leftkeypress()" placeholder="Mẫu tên" style="width:80px;height:17px;">
                     </td>
                 </tr>
             </table>
@@ -47,20 +47,20 @@
     <div id="dv_Medlist" class="gridPanel" style="height:100%;overflow-y: hidden;" frameborder="0" scrolling="auto">
         <table id="gridList"></table>
     </div>
-    @*<iframe id="mainIframeleft" style="height:100%;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/LeftMedicalTemplate" frameborder="0" scrolling="auto"></iframe>*@
+    
 
 </div>
 <div class="design-template-wrapper" id="editorContainer">
 
 </div>
 <div style="width:13%;height:800px;float:right; overflow: hidden;border-radius: 4px;background: white;">
-    @*<iframe id="mainIframeright" style="height:100%;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/RightMedicalTemplate" frameborder="0" scrolling="auto" overflow: hidden;"></iframe>*@
+    
     <div class="topPanel">
         <div class="search">
             <table>
                 <tr>
                     <td class="formValue">
-                        <input id="txt_yskeyword" type="text" class="form-control" onblur="yssx()" onkeypress="rightkeypress()" placeholder="元素名称" style="width:100%;height:17px;">
+                        <input id="txt_yskeyword" type="text" class="form-control" onblur="yssx()" onkeypress="rightkeypress()" placeholder="Tên phần tử" style="width:100%;height:17px;">
                     </td>
                 </tr>
             </table>
@@ -106,9 +106,9 @@
             height: $(window).height() - 100,
             width: $(window).width() - 20,
             colModel: [
-                { label: "病历模板Id", name: "Id", key: true, hidden: true },
+                { label: "Mẫu bệnh án id", name: "Id", key: true, hidden: true },
                 { label: "Turl", name: "Turl", hidden: true },
-                { label: "病历模板", name: "mbmc", width: 30 },
+                { label: "Mẫu bệnh án", name: "mbmc", width: 30 },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
@@ -140,7 +140,7 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 删除模板',
+                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xóa mẫu',
                 width: 300,
                 onClick: function (obj) {
                     $.deleteForm({
@@ -148,7 +148,7 @@
                         param: { keyValue: rowData.Id },
                         success: function (data) {
                             if (data.state == "success") {
-                                $.modalAlert('删除成功', 'success');
+                                $.modalAlert('Xóa thành công', 'success');
                             }
                             else {
                                 $.modalAlert(data.message, 'error');
@@ -165,7 +165,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新建病历模板",
+            title: "Tạo mới mẫu bệnh án",
             url: "/MedicalRecordManage/MedRecordTemplate/Form?ly=" + "Newtemplate",
             width: "700px",
             height: "650px",
@@ -185,12 +185,12 @@
             async: false,
             success: function (respdata) {
                 if (respdata.state == "error")
-                    $.modalAlert("病历模板保存失败:" + respdata.message,'error');
+                    $.modalAlert("Lưu mẫu bệnh án thất bại:" + respdata.message,'error');
                 else
-                    $.modalAlert("病历模板保存成功", 'success');
+                    $.modalAlert("Lưu mẫu bệnh án thành công", 'success');
             },
             error: function (request, error, ex) {
-                $.modalAlert('保存失败:' + ex, 'error');
+                $.modalAlert('Lưu thất bại:' + ex, 'error');
             }
         });
     }
@@ -224,8 +224,8 @@
                 { label: "BindingPath", name: "BindingPath", hidden: true },
                 { label: "TypeName", name: "TypeName", hidden: true },
                 { label: "yslx", name: "yslx", hidden: true },
-                { label: "元素控件", name: "ysmc" },
-                { label: "元素code", name: "yscode", hidden: true },
+                { label: "Điều khiển phần tử", name: "ysmc" },
+                { label: "Phần tửcode", name: "yscode", hidden: true },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
@@ -294,7 +294,7 @@
          //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>开始制作模板内容</p>`);
      })
      .catch(function (error) {
-         console.error("编辑器初始化失败:", error);
+         console.error("Khởi tạo trình soạn thảo thất bại:", error);
      });
 
     function htmlToBase64(htmlString) {
@@ -335,7 +335,7 @@
                 //editorInstance.setTemplateDatasource(doc);
             },
             error: function (request, error, ex) {
-                $.modalAlert('病历加载失败:' + ex, 'error');
+                $.modalAlert('Tải bệnh án thất bại:' + ex, 'error');
             }
         });
     }
@@ -354,33 +354,33 @@
             var datasource = {
                 name: param.ysdata.ysmc,
                 code: param.ysdata.yscode,
-                nodeName: '纯文本',         // 节点类型
+                nodeName: 'Văn bản thuần',         // 节点类型
                 autoLable: false            // 是否自动添加数据元标题
             };
             switch (param.ysdata.yslx) {
-                case '1'://下拉
-                    datasource.nodeName = '下拉';
+                case '1'://Danh sách thả xuống
+                    datasource.nodeName = 'Danh sách thả xuống';
                     datasource.dictList = param.mxlist;
                     break;
-                case '2'://下拉多选
-                    datasource.nodeName = '下拉多选';
+                case '2'://Chọn nhiều từ danh sách
+                    datasource.nodeName = 'Chọn nhiều từ danh sách';
                     datasource.dictList = param.mxlist;
                     break;
                 case '3':
                 case '4':
-                case '5'://日期
-                    datasource.nodeName = '时间';
+                case '5'://Ngày
+                    datasource.nodeName = 'Thời gian';
                     break;
-                case '6'://数值
+                case '6'://Giá trị số
                     datasource.nodeName = '数字文本';
                     break;
-                case '7'://数值
+                case '7'://Giá trị số
                     datasource.dictList = param.mxlist;
-                    datasource.nodeName = '单选';
+                    datasource.nodeName = 'Chọn một';
                     break;
-                case '8'://数值
+                case '8'://Giá trị số
                     datasource.dictList = param.mxlist;
-                    datasource.nodeName = '多选';
+                    datasource.nodeName = 'Chọn nhiều';
                     break;
             }
             editorInstance.insertDataSource(datasource);

@@ -1,7 +1,7 @@
-﻿@{
-    ViewBag.Title = "检查申请单";
+@{
+    ViewBag.Title = "Kiểm traPhiếu";
     Layout = "~/Views/Shared/_Form.cshtml";
-    var pacsopenURL = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("pacsOpenUrl");
+    var pacsopenURL = Newtouch.CIS.Compat.AppConfig.Get("pacsOpenUrl");
     var YjzxRportSwith = SysConfigReader.String("openYjzxSwitch");//医技管理功能开关 --报告上传方式
 }
 
@@ -10,18 +10,18 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">申请单时间范围：</th>
+                    <th class="formTitle">PhiếuThời gianPhạm vi:</th>
                     <td class="formValue" colspan="2">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:30%;  float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:30%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
-                    <th class="formTitle">组套名称：</th>
+                    <th class="formTitle">Tên bộ mẫu:</th>
                     <td class="formValue">
-                        <input id="txt_ztmc" type="text" class="form-control" placeholder="组套名称" />
+                        <input id="txt_ztmc" type="text" class="form-control" placeholder="Tên bộ mẫu" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                     </td>
 
                 </tr>
@@ -63,17 +63,17 @@
             width: $(window).width()-10,
             height: $(window).height() - 125,
             colModel: [
-                { label: '姓名', name: 'xm', align: 'left', hidden: true },
+                { label: 'Họ tên', name: 'xm', align: 'left', hidden: true },
                //{ label: '性别', name: 'xb', align: 'left', hidden: true },
-               { label: '申请单号', name: 'lissqdh', align: 'left' },
-                { label: '组套名称', name: 'ztmc', align: 'left' },
-               { label: '申请时间', name: 'sqsj', align: 'left' },
-               { label: '申请单状态', name: 'syncStatus', align: 'left' },
+               { label: 'Số phiếu', name: 'lissqdh', align: 'left' },
+                { label: 'Tên bộ mẫu', name: 'ztmc', align: 'left' },
+               { label: 'Đề nghịThời gian', name: 'sqsj', align: 'left' },
+               { label: 'PhiếuTrạng thái', name: 'syncStatus', align: 'left' },
                 //{ label: 'ztId', name: 'ztId', hidden: true },
                {
-                    label: "操作", name: "", align: "center", width: 100,
+                    label: "Thao tác", name: "", align: "center", width: 100,
                     formatter: function (cellvalue, options, rowobject) {
-                        return "<a href=\#\" onclick='recall(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='查看报告' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>查看报告</a>";
+                        return "<a href=\#\" onclick='recall(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='XemBáo cáo' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>XemBáo cáo</a>";
                     }
                 }
                //{ label: '总金额', name: 'zje' ,align: 'left'}
@@ -88,7 +88,7 @@
         if ("@YjzxRportSwith" == "ON") {
             $.modalOpen({
                 id: "ApplyFormUpload",
-                title: "报告预览",
+                title: "Xem trước báo cáo",
                 url: "/NurseManage/OrderExecution/ApplyFormUpload?sqdh=" + sqdh + "&query=true",
                 width: "900px",
                 height: "700px",
@@ -96,7 +96,7 @@
             });
         } else {
             if (syncStatus != "己出报告" && syncStatus != "等待报告") {
-                $.modalAlert("当前状态不是已完成状态不能查看报告", 'warning');
+                $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
                 return;
             }
             else {
@@ -118,7 +118,7 @@
     function btn_editbak() {
         var $gridList = $("#gridList");
         if ($gridList.jqGridRowValue().syncStatus != "己出报告") {
-            $.modalAlert("当前状态不是已完成状态不能查看报告", 'warning');
+            $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
             return;
         }
         else {
@@ -136,7 +136,7 @@
             });*@
             $.modalOpen({
                 id: "medicaljgForm",
-                title: "检查报告",
+                title: "Kiểm traBáo cáo",
                 url: "http://192.168.3.17:8088/WebSearch.aspx?ReqNO='" + sqdh + "'",
                 width: "1000px",
                 height: "800px",

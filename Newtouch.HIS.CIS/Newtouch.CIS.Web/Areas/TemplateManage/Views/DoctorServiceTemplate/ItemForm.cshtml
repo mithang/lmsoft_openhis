@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "ItemForm";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -15,9 +15,9 @@
         border: solid 1px #ddd;
     }
 </style>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/wmgridmenu.css", false)" rel="stylesheet" />
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/wmgridmenu.css", false)" rel="stylesheet" />
 <div id="linksfxm" style="width:100%;">
     <table id="gridsfxm"></table>
     <table id="gridsfxmPager"></table>
@@ -28,7 +28,7 @@
     var mbId = $.request("mbId");
     var localdata = [];
     var zje = [];
-     var zlltext = ('@ViewBag.zzlconfig' == "" ? "每次治疗量" : '@ViewBag.zzlconfig');
+     var zlltext = ('@ViewBag.zzlconfig' == "" ? "Liều mỗi lần điều trị" : '@ViewBag.zzlconfig');
     $(function () {
         gridsfxm();
 
@@ -77,7 +77,7 @@
             //altRows: true,//隔行换色
             shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             editurl: "clientArray",  //行编辑不向服务器提交数据
             unwritten: false,
             colModel: [
@@ -85,10 +85,10 @@
                     label: 'Id', name: 'Id', width: 120, editwidth: '81%', align: 'center', hidden: true
                 },
                 {
-                    label: '<span class="required">*</span>收费项目', name: 'xmmc', width: 230, editwidth: '100%', align: 'center', editable: true, editrules: { required: true }
+                    label: '<span class="required">*</span>Mục thu phí', name: 'xmmc', width: 230, editwidth: '100%', align: 'center', editable: true, editrules: { required: true }
                 },
-                { label: '<span class="required">*</span>单位', name: 'dw', width: 50, editwidth: '100%', align: "center", editable: true },
-                { label: '<span class="required">*</span>单价', name: 'dj', width: 60, editwidth: '100%', align: "center", editable: true },
+                { label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 50, editwidth: '100%', align: "center", editable: true },
+                { label: '<span class="required">*</span>Đơn giá', name: 'dj', width: 60, editwidth: '100%', align: "center", editable: true },
                 { label: 'xmdm', name: 'xmdm', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'dwjls', name: 'dwjls', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
@@ -100,16 +100,16 @@
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert(zlltext +"为空，请确认。", 'warning');
+                                        $.modalAlert(zlltext +"để trống,Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert(zlltext +"：请填写数字", 'warning');
+                                        $.modalAlert(zlltext +":Vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
                                     if (parseInt(cellval) < 0) {
-                                        $.modalAlert(zlltext + "：大于0", 'warning');
+                                        $.modalAlert(zlltext + ":Lớn hơn0", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -121,15 +121,15 @@
                         ]
                     }, editrules: { required: true }
                 },
-                { label: '<span class="required">*</span>频次', name: 'pcmc', width: 80, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 80, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
                 { label: 'pcCode', name: 'pcCode', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'zxcs', name: 'zxcs', editable: true, hidden: true },
                 { label: 'zxzq', name: 'zxzq', editable: true, hidden: true },
                 { label: 'zxzqdw', name: 'zxzqdw', editable: true, hidden: true },
-                { label: '部位', name: 'bw', width: 80, editwidth: '100%', align: "center", editable: true, hidden: '@ViewBag.bwhide'=="false" ? undefined : true },
-                { label: '总量', name: 'sl', editwidth: '100%', hidden: true, align: 'center', editable: true, editrules: { required: true } },
-                { label: '嘱托', name: 'ztnr',width: '@ViewBag.bwhide'=="false" ? 80 : 160, editwidth: '100%', align: 'center', editable: true },
-                { label: '操作', name: 'action', width: 30, align: 'center' },
+                { label: 'Vị trí', name: 'bw', width: 80, editwidth: '100%', align: "center", editable: true, hidden: '@ViewBag.bwhide'=="false" ? undefined : true },
+                { label: 'Tổng lượng', name: 'sl', editwidth: '100%', hidden: true, align: 'center', editable: true, editrules: { required: true } },
+                { label: 'Dặn dò', name: 'ztnr',width: '@ViewBag.bwhide'=="false" ? 80 : 160, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Thao tác', name: 'action', width: 30, align: 'center' },
                 { name: 'yzlx', hidden: true }],
             editinputwidthborder: false,    //是否需要边框 默认为true
             editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
@@ -148,7 +148,7 @@
                     var jldw = $("#" + this + "_redundant_jldw").val();    //剂量单位
                     var dw = $("#" + this + "_dw").val();     //门诊单位
                     if (!!dw) {
-                        //这种找元素的方法不可取，但由于select没有id属性
+                        //这种找素的方法不可取，但由于select没有id属性
                         $("#" + this + "_mcjl").parent().next().children('select').html('');
                         if (jldw == dw) {
                             $("#" + this + "_mcjl").parent().next().children('select').append('<option>' + jldw + '</option>');
@@ -180,11 +180,11 @@
                 {
                     startColumnName: 'xmmc',
                     numberOfColumns: 4,
-                    titleText: '基本信息'
+                    titleText: 'Thông tin cơ bản'
                 }, {
                     startColumnName: 'dwjls',
                     numberOfColumns: 7,
-                    titleText: '项目用法'
+                    titleText: 'MụcCách dùng'
                 }]
         });
 
@@ -194,8 +194,8 @@
             .navButtonAdd('#gridsfxmPager',
             {
                 buttonicon: "glyphicon glyphicon-new-window",
-                title: "新明细",
-                caption: "新明细",
+                title: "Chi tiết mới",
+                caption: "Chi tiết mới",
                 position: "first",
                 onClickButton: function () {
                     newWMPresData();
@@ -310,7 +310,7 @@
             return;
         } else if (mczll !== "" && dwjls !== "" && (parseInt(dwjls) > parseInt(mczll))) {
             rowid = rowid.substring(3);
-            $.modalAlert("第" + rowid + "行" + zlltext + "不能小于单位计量数", "warning");
+            $.modalAlert("Dòng thứ " + rowid + " " + zlltext + " không được nhỏ hơn số lượng tính theo đơn vị", "warning");
             $("#" + rowid + "_sl").val("");
             return false;
         } else {
@@ -334,7 +334,7 @@
     //计算频次数量
     function getpcsl(zxcs, zxzq, zxzqdw) {
         if (isNaN(zxzqdw) || zxzqdw == "") {
-            $.modalAlert("执行周期单位不能为空", 'error');
+            $.modalAlert("Thực hiệnChu kỳĐơn vịkhông được để trống", 'error');
             return;
         }
         var rtnsl;
@@ -397,7 +397,7 @@
             }
             var gridsfxmData = $("#gridsfxm").jqGrid('getRowData_AllLine', null, true);
             if (gridsfxmData.length < 1) {
-                $.modalAlert("当前没有保存的套餐内容", 'warning');
+                $.modalAlert("Hiện tạiKhông cóLưunội dung gói", 'warning');
             }
             $.each(gridsfxmData, function () {    //去掉action
                 for (var i = 0; i < $(this).length; i++) {
@@ -410,7 +410,7 @@
 
     function Delete() {
         if (mbId == null || mbId == "") {
-            $.modalAlert("缺少套餐", "warning");
+            $.modalAlert("Thiếu gói", "warning");
             return;
         }
             $.najax({
@@ -418,9 +418,9 @@
             dataType: "json",
             data: { mbId: mbId},
             type: "POST",
-            loadingtext: "套餐数据删除中，请稍后...",
+            loadingtext: "Đang xóa dữ liệu gói, vui lòng đợi trong giây lát...",
             success: function (data) {
-                $.modalMsg("删除成功", 'success');
+                $.modalMsg("Xóa thành công", 'success');
                 $.currentWindow().$("#beveltabs a[id='current']").trigger('click');
                 location.href = "/TemplateManage/DoctorServiceTemplate/ItemForm?mbId=";
             }
@@ -441,9 +441,9 @@
             dataType: "json",
             data: { mbObj: mbObj, mbDetailList: gridmedicineData },
             type: "POST",
-            loadingtext: "套餐数据保存中，请稍后...",
+            loadingtext: "Đang lưu dữ liệu gói, vui lòng đợi trong giây lát...",
             success: function (data) {
-                $.modalMsg("保存成功", 'success');
+                $.modalMsg("Lưu thành công", 'success');
                    if(!mbId && data.data){
                     mbId = data.data;
                     $.currentWindow().expandyzlx = @Html.Raw(((int)EnumYzlx.sfxm).ToString());
@@ -460,7 +460,7 @@
         //是否有数据
         var data = $("#gridsfxm").jqGrid('getRowData_AllLine', null, true);
         if (data.length == 0) {
-            $.modalAlert("缺少套餐数据", 'warning');
+            $.modalAlert("Thiếu dữ liệu gói", 'warning');
             return false;
         }
         return true;

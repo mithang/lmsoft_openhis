@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "护士站患者中心-住院退费";
+    ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Nhập việnHoàn phí";
 }
 
 <div id="linkzytf" role="tabpanel" class="tab-pane" style="width:100%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
@@ -16,7 +16,7 @@
      iframezytfinit.onload = function () {
          //$('#iframezytf').contents().find('#pane1').hide();
          $('#iframezytf').contents().find('#btnsyy').hide();
-         // 获取iframe元素
+         // 获取iframe素
          var iframe = document.getElementById('iframezytf');
          // 访问iframe中的window对象
          var iframeWindow = iframe.contentWindow;
@@ -48,7 +48,7 @@
          //    $('#iframezytf').attr("src", tfdataUrl);
          //    fisttfload = false;
          //} else {
-         //    // 获取iframe元素
+         //    // 获取iframe素
          //    var iframe = document.getElementById('iframezytf');
          //    // 访问iframe中的window对象
          //    var iframeWindow = iframe.contentWindow;
@@ -66,7 +66,7 @@
                  if (item.value && item.Ex1 == "c") {
                      debugger;
                      zytfzyh = item.value;
-                     // 获取iframe元素
+                     // 获取iframe素
                      var iframe = document.getElementById('iframezytf');
                      // 访问iframe中的window对象
                      var iframeWindow = iframe.contentWindow;

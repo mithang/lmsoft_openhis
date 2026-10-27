@@ -1,0 +1,44 @@
+sys-sysnation-index	/Sys/SysNation/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Sys/SysNation/Index'>>	http://127.0.0.1:5233/Sys/SysNation/Index
+sys-sysnation-form	/Sys/SysNation/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Sys/SysNation/Form'>>	http://127.0.0.1:5233/Sys/SysNation/Form
+sys-sysnationality-index	/Sys/SysNationality/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Sys/SysNationality/Index'>>	http://127.0.0.1:5233/Sys/SysNationality/Index
+sys-sysnationality-form	/Sys/SysNationality/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Sys/SysNationality/Form'>>	http://127.0.0.1:5233/Sys/SysNationality/Form
+settlement-sysdiagnosis-index	/Settlement/SysDiagnosis/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Settlement/SysDiagnosis/Index'>>	http://127.0.0.1:5233/Settlement/SysDiagnosis/Index
+settlement-systcmsyndrome-index	/Settlement/SysTCMSyndrome/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Settlement/SysTCMSyndrome/Index'>>	http://127.0.0.1:5233/Settlement/SysTCMSyndrome/Index
+settlement-systcmsyndrome-form	/Settlement/SysTCMSyndrome/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Settlement/SysTCMSyndrome/Form'>>	http://127.0.0.1:5233/Settlement/SysTCMSyndrome/Form
+productmanage-producttype-index	/ProductManage/ProductType/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/ProductManage/ProductType/Index'>>	http://127.0.0.1:5233/ProductManage/ProductType/Index
+productmanage-producttype-form	/ProductManage/ProductType/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/ProductManage/ProductType/Form'>>	http://127.0.0.1:5233/ProductManage/ProductType/Form
+productmanage-productunit-index	/ProductManage/ProductUnit/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/ProductManage/ProductUnit/Index'>>	http://127.0.0.1:5233/ProductManage/ProductUnit/Index
+productmanage-productunit-form	/ProductManage/ProductUnit/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/ProductManage/ProductUnit/Form'>>	http://127.0.0.1:5233/ProductManage/ProductUnit/Form
+productmanage-productcrkfs-index	/ProductManage/ProductCrkfs/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/ProductManage/ProductCrkfs/Index'>>	http://127.0.0.1:5233/ProductManage/ProductCrkfs/Index
+productmanage-productcrkfs-form	/ProductManage/ProductCrkfs/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/ProductManage/ProductCrkfs/Form'>>	http://127.0.0.1:5233/ProductManage/ProductCrkfs/Form
+accessmanage-registor-index	/AccessManage/Registor/Index	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/AccessManage/Registor/Index'>>	http://127.0.0.1:5233/AccessManage/Registor/Index
+accessmanage-registor-form	/AccessManage/Registor/Form	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/AccessManage/Registor/Form'>>	http://127.0.0.1:5233/AccessManage/Registor/Form
+staff-selector	/Staff/Selector	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Staff/Selector'>>	http://127.0.0.1:5233/Staff/Selector
+staff-duties	/Staff/Duties	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Staff/Duties'>>	http://127.0.0.1:5233/Staff/Duties
+staff-consultinfo	/Staff/ConsultInfo	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Staff/ConsultInfo'>>	http://127.0.0.1:5233/Staff/ConsultInfo
+user-selector	/User/Selector	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/User/Selector'>>	http://127.0.0.1:5233/User/Selector
+user-personalinfo	/User/PersonalInfo	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/User/PersonalInfo'>>	http://127.0.0.1:5233/User/PersonalInfo
+user-roles	/User/Roles	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/User/Roles'>>	http://127.0.0.1:5233/User/Roles
+user-correlationpharmacy	/User/CorrelationPharmacy	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/User/CorrelationPharmacy'>>	http://127.0.0.1:5233/User/CorrelationPharmacy
+module-details	/Module/Details	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Module/Details'>>	http://127.0.0.1:5233/Module/Details
+role-users	/Role/Users	-1	ERR attempt1: Page.goto: NS_ERROR_NET_EMPTY_RESPONSE
+Call log:
+  - navigating to "http://127.0.0.1:5233/Role/Users", waiting until "domcontentloaded"
+	
+department-details	/Department/Details	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Department/Details'>>	http://127.0.0.1:5233/Department/Details
+department-wardinfo	/Department/WardInfo	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Department/WardInfo'>>	http://127.0.0.1:5233/Department/WardInfo
+project-projecttype	/Project/ProjectType	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Project/ProjectType'>>	http://127.0.0.1:5233/Project/ProjectType
+project-projecttypeform	/Project/ProjectTypeForm	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Project/ProjectTypeForm'>>	http://127.0.0.1:5233/Project/ProjectTypeForm
+project-projecttypechildform	/Project/ProjectTypeChildForm	200	<bound method Page.title of <Page url='http://127.0.0.1:5233/Project/ProjectTypeChildForm'>>	http://127.0.0.1:5233/Project/ProjectTypeChildForm
+bloodtype-nonsense	/1	-1	ERR attempt1: Page.goto: NS_ERROR_NET_EMPTY_RESPONSE
+Call log:
+  - navigating to "http://127.0.0.1:5233/1", waiting until "domcontentloaded"
+	
+role-users	/Role/Users	-1	ERR attempt1: Page.goto: NS_ERROR_NET_EMPTY_RESPONSE
+Call log:
+  - navigating to "http://127.0.0.1:5233/Role/Users", waiting until "domcontentloaded"
+	
+bloodtype-nonsense	/1	-1	ERR attempt1: Page.goto: NS_ERROR_NET_EMPTY_RESPONSE
+Call log:
+  - navigating to "http://127.0.0.1:5233/1", waiting until "domcontentloaded"
+	

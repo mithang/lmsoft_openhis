@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @{
 
-    ViewBag.Title = "编辑摄入量";
+    ViewBag.Title = "Chỉnh sửa lượng đưa vào";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -11,15 +11,15 @@
     <div style="padding: 20px 20px 0 2px;">
         <table class="form" id="tabletime">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện:</th>
                 <td><label id="zyh"></label></td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên:</th>
                 <td><label id="xm"></label></td>
-                <th class="formTitle">时间：</th>
+                <th class="formTitle">Thời gian:</th>
                 <td colspan="2"><label id="rqsj"></label></td>
             </tr>
             <tr>
-                <th class="formTitle">摄入量录入：</th>
+                <th class="formTitle">Nhập lượng đưa vào:</th>
                 <td>
                     <i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;" onclick="btn_addtime()"></i>
                 </td>
@@ -31,19 +31,19 @@
                 <td></td>
             </tr>
             <tr id="rcl1">
-                <th class="formTitle">名称 ：</th>
+                <th class="formTitle">Tên :</th>
                 <td class="formValue">
                     <input id="mc1" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">量 ：</th>
+                <th class="formTitle">Lượng :</th>
                 <td class="formValue">
                     <input id="ml1" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">单位 ：</th>
+                <th class="formTitle">Đơn vị :</th>
                 <td class="formValue">
                     <input id="dw1" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">途径 ：</th>
+                <th class="formTitle">Đường dùng :</th>
                 <td class="formValue">
                     <input id="tj1" type="text" class="form-control" />
                 </td>
@@ -72,7 +72,7 @@
                     $('#dw1').val(srlstr.split(",")[i].split("|")[2]);
                     $('#tj1').val(srlstr.split(",")[i].split("|")[3]);
                 } else {
-                    var thisHtml = '<tr id="rcl' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>名称 ：</th><td class="formValue"><input id="mc' + inttime + '" type="text" value="' + srlstr.split(",")[i].split("|")[0] + '" class="form-control" /></td><th class="formTitle">量 ：</th><td class="formValue"><input id="ml' + inttime + '" type="text"  value="' + srlstr.split(",")[i].split("|")[1] + '" class="form-control" /></td><th class="formTitle">单位 ：</th><td class="formValue"><input id="dw' + inttime + '" type="text"  value="' + srlstr.split(",")[i].split("|")[2] + '" class="form-control" /></td><th class="formTitle">途径 ：</th><td class="formValue"><input id="tj' + inttime + '" type="text" class="form-control" value="' + srlstr.split(",")[i].split("|")[3] + '" /></td></tr>'
+                    var thisHtml = '<tr id="rcl' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Tên :</th><td class="form value"><input id="mc' + inttime + '" type="text" value="' + srlstr.split(",")[i].split("|")[0] + '" class="form-control" /></td><th class="form title">Lượng :</th><td class="form value"><input id="ml' + inttime + '" type="text"  value="' + srlstr.split(",")[i].split("|")[1] + '" class="form-control" /></td><th class="form title">Đơn vị :</th><td class="form value"><input id="dw' + inttime + '" type="text"  value="' + srlstr.split(",")[i].split("|")[2] + '" class="form-control" /></td><th class="form title">Đường dùng :</th><td class="form value"><input id="tj' + inttime + '" type="text" class="form-control" value="' + srlstr.split(",")[i].split("|")[3] + '" /></td></tr>'
                     $('#tabletime').append(thisHtml);
                     inttime += 1;
                 }
@@ -80,8 +80,8 @@
         }
     });
     function btn_addtime() {
-        var thisHtml = '<tr id="rcl' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>名称 ：</th><td class="formValue"><input id="mc' + inttime + '" type="text" class="form-control" /></td><th class="formTitle">量 ：</th><td class="formValue"><input id="ml' + inttime + '" type="text" class="form-control" /></td><th class="formTitle">单位 ：</th><td class="formValue"><input id="dw' + inttime + '" type="text" class="form-control" /></td><th class="formTitle">途径 ：</th><td class="formValue"><input id="tj' + inttime + '" type="text" class="form-control" /></td></tr>'
-        //var thisHtml = '<tr id="rcl' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>开始时间 ：</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">结束时间 ：</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
+        var thisHtml = '<tr id="rcl' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Tên :</th><td class="form value"><input id="mc' + inttime + '" type="text" class="form-control" /></td><th class="form title">Lượng :</th><td class="form value"><input id="ml' + inttime + '" type="text" class="form-control" /></td><th class="form title">Đơn vị :</th><td class="form value"><input id="dw' + inttime + '" type="text" class="form-control" /></td><th class="form title">Đường dùng :</th><td class="form value"><input id="tj' + inttime + '" type="text" class="form-control" /></td></tr>'
+        //var thisHtml = '<tr id="rcl' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>开始时间 :</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">结束时间 :</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
         $('#tabletime').append(thisHtml);
         inttime += 1;
     }

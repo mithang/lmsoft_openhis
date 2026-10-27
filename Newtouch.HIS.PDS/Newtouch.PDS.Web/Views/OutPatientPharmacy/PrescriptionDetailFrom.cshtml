@@ -1,0 +1,49 @@
+
+@{
+    ViewBag.Title = "PrescriptionDetailFrom";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div class="gridPanel" style="margin-top:10px;">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    var cfh = $.request("cfh");
+    $(function () {
+        gridInit();
+    });
+    function gridInit() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: { cfh: cfh},
+            url: '/OutPatientPharmacy/GetMzcfGridDetailJson',
+            height: $(window).height() - 100,
+            colModel: [
+                { label: 'Số ngoại trú', name: 'mzh', align: 'center', width: 100 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 60 },
+                { label: 'Thời gian lập đơn', name: 'kssj', align: 'left', width: 50,hidden:true },
+                { label: 'Mã thuốc', name: 'ypcode', align: 'center', width: 90 },
+                { label: 'Tên thuốc', name: 'ypmc', align: 'center', width: 120 },
+                { label: 'Đơn vị', name: 'dw', align: 'center', width: 60 },
+                 { label: 'Số lượng', name: 'sl', align: 'center', width: 50 },
+                {
+                    label: 'Đơn giá', name: 'dj', align: 'center', width: 50, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+                },
+                {
+                    label: 'Chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+                },
+                { label: 'Liều dùng', name: 'mcjl', align: 'center', width: 60 },
+                { label: 'Quy cách', name: 'gg', align: 'center', width: 100 },
+                { label: 'Tần suất', name: 'pcmc', align: 'center', width: 60 },
+
+            ],
+            pager: "#gridPager",
+            sortname: 'kssj',
+            viewrecords: true,
+        });
+    }
+</script>
+

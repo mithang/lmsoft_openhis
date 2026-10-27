@@ -1,0 +1,124 @@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    <div class="toolbar">
+        <div class="btn-group">
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã đầu chữ" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    $(function () {
+        gridList();
+        initControl();
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/RehabChargeItemComparison/GetRehabChargeItemComparisonList",
+            postData: getSearchPostData(),
+            height: 400,
+            colModel: [
+            { label: "sfxmdzId", name: "sfxmdzId", hidden:true },
+            { label: "Mã hạng mục phục hồi chức năng", name: "kfsfxmCode", width: 100, align: "left" },
+            { label: "Tên hạng mục phục hồi chức năng", name: "kfsfxmName", width: 150, align: "left" },
+            { label: "HISMã hạng mục", name: "xtsfxmCode", width: 100, align: "left" },
+            { label: "HISTên hạng mục", name: "xtsfxmName", width: 150, align: "left" },
+            { label: "HISĐơn giá hạng mục", name: "dj", width: 100, align: "left" },
+            { label: "HISThời lượng hạng mục", name: "xtsfxm_duration", width: 150, align: "left" },
+            {
+                label: 'Hiệu lực', name: 'zt', width: 100, algin: 'center',
+                formatter: function (cellvalue) {
+                    if (cellvalue == 0) {
+                        return "Không";
+                    } else {
+                        return "Có";
+                    }
+                }
+            }
+            ]
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData(), url: "/RehabChargeItemComparison/GetRehabChargeItemComparisonList"
+            }).trigger('reloadGrid');
+        })
+    }
+    //查询条件
+    function getSearchPostData() {
+        var keyword = $("#txt_keyword").val();
+        var OrganizeId = $("#OrganizeId").val();
+        return { keyword: keyword, OrganizeId: OrganizeId };
+    };
+
+    //回车事件
+    $('#txt_keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
+    })
+
+    function initControl() {
+
+    }
+
+    function btn_add() {
+        $.modalOpen({
+            id: "FormFIEdit",
+            title: "Bảo trì đối chiếu hạng mục phục hồi chức năng",
+            url: "/RehabChargeItemComparison/Form",
+            width: "600px",
+            height: "500px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    //修改
+    function btn_edit() {
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        if (!(seleRowid)) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        var sfxmdzId = $("#gridList").jqGridRowValue().sfxmdzId;
+        var OrganizeId = $("#OrganizeId").val();
+        $.modalOpen({
+            id: "FormFIEdit",
+            title: "Sửa thông tin",
+            url: "/RehabChargeItemComparison/Form?sfxmdzId=" + sfxmdzId + "&OrganizeId=" + OrganizeId,
+            width: "600px",
+            height: "500px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+</script>
+

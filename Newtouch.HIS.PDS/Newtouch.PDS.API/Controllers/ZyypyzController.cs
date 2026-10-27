@@ -1,41 +1,38 @@
-﻿using System;
-using System.Net.Http;
-using System.Web.Http;
-using Autofac;
-using Newtouch.HIS.API.Common;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset.Zyypyz;
 
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 住院药品医嘱
+    /// Port của api/Zyypyz (y lệnh thuốc nội trú).
+    /// SỬA BUG GỐC: _resourcesOperateApp ở bản Framework được khai báo nhưng không bao giờ
+    /// được gán (ctor chỉ nhận IComponentContext) — gọi action gốc sẽ NullReference.
+    /// Bản Core inject IResourcesOperateApp qua DI nên action chạy thật.
     /// </summary>
-    [RoutePrefix("api/Zyypyz")]
-    public class ZyypyzController : ApiControllerBase<ZyypyzController>
+    [ApiController]
+    [Route("api/Zyypyz")]
+    public class ZyypyzController : ApiControllerBase
     {
         private readonly IResourcesOperateApp _resourcesOperateApp;
 
-        public ZyypyzController(IComponentContext com) : base(com)
+        public ZyypyzController(TokenStore tokenStore, IResourcesOperateApp resourcesOperateApp)
+            : base(tokenStore)
         {
+            _resourcesOperateApp = resourcesOperateApp;
         }
 
-        /// <summary>
-        /// 医嘱执行
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [Route("yzzx")]
-        [HttpPost]
-        public HttpResponseMessage Yzzx(ZyypyzzxRequest par)
+        [HttpPost("yzzx")]
+        public IActionResult Yzzx([FromBody] ZyypyzzxRequest par)
         {
-            Action<ZyypyzzxRequest, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<ZyypyzzxRequest, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.HospitalizatiionBook(par);
+                resp.data = _resourcesOperateApp.HospitalizatiionBook(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
-
     }
 }

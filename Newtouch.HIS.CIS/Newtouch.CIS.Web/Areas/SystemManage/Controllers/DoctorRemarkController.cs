@@ -1,25 +1,39 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
+    [Area("SystemManage")]
     public class DoctorRemarkController : OrgControllerBase
     {
         // GET: SystemManage/DoctorRemark
         private readonly ISysDoctorRemarkRepo _sysDoctorRemarkRepo;
         private readonly IBaseDataDmnService _baseDataDmnService;
 
+        public DoctorRemarkController(ISysDoctorRemarkRepo sysDoctorRemarkRepo, IBaseDataDmnService baseDataDmnService)
+        {
+            this._sysDoctorRemarkRepo = sysDoctorRemarkRepo;
+            this._baseDataDmnService = baseDataDmnService;
+        }
+
         /// <summary>
         /// 获取列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetTreeGridJson(string keyword)
+        public IActionResult GetTreeGridJson(string keyword)
         {
             var data = _sysDoctorRemarkRepo.GetListByOrg(this.OrganizeId).ToList();
             if (!string.IsNullOrEmpty(keyword))
@@ -36,7 +50,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var entity = _sysDoctorRemarkRepo.FindEntity(keyValue);
             return Content(entity.ToJson());
@@ -47,12 +61,12 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(SysDoctorRemarkEntity entity, string keyValue)
+        public IActionResult SubmitForm(SysDoctorRemarkEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
             entity.OrganizeId = this.OrganizeId;
             _sysDoctorRemarkRepo.SubmitForm(entity, keyValue);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -60,10 +74,10 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             _sysDoctorRemarkRepo.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Success("Xóa thành công.");
         }
 
         /// <summary>
@@ -71,7 +85,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult GetSysDoctorRemark(string keyword)
+        public IActionResult GetSysDoctorRemark(string keyword)
         {
             var data = _baseDataDmnService.GetSysDoctorRemark(this.OrganizeId,this.UserIdentity.DepartmentCode);
             if (!string.IsNullOrWhiteSpace(keyword))
@@ -83,8 +97,8 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 
 
 
-        #region 医生站--》文字录入--》指示文本框按钮
-        //public ActionResult surgery_record()
+        #region Bác sĩ站--》Văn bảnNhập--》Chỉ định文本框Nút
+        //public IActionResult surgery_record()
         //{
             
         //    var data=_sysDoctorRemarkRepo.surgery_record(this.OrganizeId);

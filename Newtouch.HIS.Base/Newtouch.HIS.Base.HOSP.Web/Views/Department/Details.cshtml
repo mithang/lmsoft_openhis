@@ -1,0 +1,136 @@
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        initControl();
+        if (!!keyValue) {
+            $.najax({
+                url: "/Department/GetFormJson",
+                data: { keyValue: keyValue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+        }
+    });
+
+    function initControl() {
+        //组织机构下拉框
+        $("#OrganizeId").bindSelect({
+            url: "/Organize/GetChildTreeSelectJson",
+        });
+        //组织对应的科室下拉框加载
+        $("#OrganizeId").bind("change", function () {
+            var organizeId = $(this).val();
+            $("#ParentId").bindSelect({
+                url: "/Department/GetTreeSelectJson?treeidFieldName=Id&organizeId=" + organizeId,
+            });
+        });
+    }
+
+    //验证
+    function validate() {
+        var validator = $("#form1").validate();
+        validator.settings = {
+            rules: {
+                OrganizeId: { required: true },
+                Name: { required: true },
+                Code: { required: true },
+                mzzybz: { required: true }
+            },
+            messages: {
+                OrganizeId: { required: "Cơ sở là bắt buộc" },
+                Name: { required: "Họ tên là bắt buộc" },
+                Code: { required: "Mã là bắt buộc" },
+                mzzybz: { required: "Cờ ngoại trú/nội trú phải chọn" }
+
+            },
+            showErrors: function (errorMap, errorList) {
+                if (!$.isEmptyObject(errorList)) {
+                    $.modalAlert(errorList[0].message, 'warning');
+                }
+            }
+        }
+        if (!validator.form()) {
+            return false;
+        }
+        return true;
+    }
+
+    function submitForm() {
+        if (!validate()) {
+            return false;
+        }
+        $.submitForm({
+            url: "/Department/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<form id="form1" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+    <table class="form">
+        <tr>
+            <td class="formTitle">Tổ chức:</td>
+            <td class="formValue">
+                <select id="OrganizeId" name="OrganizeId" class="form-control">
+                    <option value="">==Vui lòng chọn==</option>
+                </select>
+            </td>
+            <td class="formTitle">Khoa cấp trên:</td>
+            <td class="formValue">
+                <select class="form-control" id="ParentId" name="ParentId">
+                    <option value="">==Vui lòng chọn==</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Tên:</td>
+            <td class="formValue"><input type="text" class="form-control" name="Name" id="Name"  placeholder="Vui lòng nhập tên"  /></td>
+            <td class="formTitle">Mã:</td>
+            <td class="formValue"><input type="text" class="form-control" id="Code" name="Code"  placeholder="Vui lòng nhập mã"  /></td>
+        </tr>
+        <tr>
+            <td class="formTitle">Cờ ngoại trú/nội trú:</td>
+            <td class="formValue">
+                <select id="mzzybz" class="form-control" name="mzzybz">
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Ngoại trú</option>
+                    <option value="2">Nội trú</option>
+                </select>
+            </td>
+            <th class="formTitle">Tùy chọn:</th>
+            <td class="formValue" style="padding-top: 1px;">
+                <div class="ckbox">
+                    <input id="yjbz" name="yjbz" type="checkbox"><label for="yjbz">Cờ kỹ thuật y tế</label>
+                </div>
+                <div class="ckbox">
+                    <input id="zt" name="zt" type="checkbox"><label for="zt">Hiệu lực</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">Người tạo:</td>
+            <td class="formValue">
+                <input id="CreatorCode" name="CreatorCode" type="text" class="form-control" />
+            </td>
+            <td class="formTitle">Thời gian tạo:</td>
+            <td class="formValue">
+                <input id="CreateTime" name="CreateTime" type="text" class="form-control" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+

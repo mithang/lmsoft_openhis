@@ -1,0 +1,395 @@
+@using Newtouch.Sett.Domain;
+@{
+    ViewBag.Title = "UnSettedFeeSettIndex";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div class="rows" style="margin-bottom: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading navb-bg">
+            Thông tin bệnh nhân nhập viện
+        </div>
+        <table class="form" style="width:96%;">
+            <tbody>
+                <tr>
+                    <th class="formTitle">Mã nhập viện：</th>
+                    <td class="formValue">
+                        <input class="form-control" type="text" id="zyh" value="" />
+                    </td>
+                    <td class="formValue">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" style="" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#zyh').val());">
+                    </td>
+                    <th class="formTitle">Thời gian bắt đầu：</th>
+                    <td class="formValue" style="width:113px;">
+                        <label id="startTime"></label>
+                    </td>
+                    <th class="formTitle">Thời gian kết thúc：</th>
+                    <td class="formValue" style="width:143px;">
+                        <input id="endTime" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
+                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { thenreload(); } })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))" />
+                    </td>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <label id="zy_xm"></label>
+                    </td>
+                    <th class="formTitle">Giới tính：</th>
+                    <td class="formValue">
+                        <label id="zy_xb"></label>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody class="dispTbody" style="display:none;">
+                <tr>
+                    <th class="formTitle">Tuổi：</th>
+                    <td class="formValue" colspan="2">
+                        <label id="zy_nl"></label>
+                    </td>
+                    <th class="formTitle">Số giấy tờ：</th>
+                    <td class="formValue">
+                        <label id="zy_zjh"></label>
+                    </td>
+                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <td class="formValue">
+                        <label id="zy_ryzd"></label>
+                    </td>
+                    <th class="formTitle">Ngày sinh：</th>
+                    <td class="formValue">
+                        <label id="zy_csny"></label>
+                    </td>
+                    <th class="formTitle">Ngày nhập viện：</th>
+                    <td class="formValue">
+                        <label id="zy_ryrq"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="fa_icontoggle"><i class="fa fa-angle-double-down icontoggle" style="color:rgb(0, 160, 233);cursor:pointer;"></i></div>
+    </div>
+</div>
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#wj" data-toggle="tab">Phí chưaquyết toán</a></li>
+    <li><a href="#yj" data-toggle="tab">Lịch sử đãquyết toán</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="wj">
+        <div class="gridPanel">
+            <table id="gridList"></table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="yj">
+        <div class="gridPanel">
+            <table id="gridList2"></table>
+        </div>
+        <div style="margin:3px 0;">
+            <span style="color:red;font-weight:bold;">*.Giới hạn chức năng hủylàHủy bỏDanh sáchtrongquyết toán gần nhất</span>
+        </div>
+    </div>
+</div>
+
+<div class="rows" style="margin-bottom: 1%;margin-top: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;padding:10px;">
+        <table class="form" style="width:96%;">
+            <tbody>
+                <tr>
+                    <th class="formTitle">Phí chưaquyết toán：</th>
+                    <td class="formValue" style="width:100px;">
+                        <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
+                    </td>
+                    <th class="formTitle" style="width:105px;">Thời gian kết thúcquyết toán lần trước：</th>
+                    <td class="formValue">
+                        <label id="lastValidMidwaySettTime"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 6, 8 },
+    F8Text = "Xác nhậnthu phí",
+    F6Text = "Hủyquyết toán",
+    F6Hidden = true,
+    F8Hidden = true,
+})
+<script type="text/javascript">
+
+    //Thông qualsMã nhập việnchuyển qua
+    var fromzyh = sessionStorage.getItem('zyh');
+    var defaultShow = sessionStorage.getItem('defaultShow');
+    if (fromzyh) {
+        $('#zyh').val(fromzyh);
+        sessionStorage.removeItem('zyh');
+    }
+    if (defaultShow) {
+        sessionStorage.removeItem('defaultShow');
+    }
+
+    $(function () {
+        initgridList1();
+
+        $('#myTab li:eq(1) a').tab('show'); //会Kích hoạtgrid2Nạp kiểu hiển thị
+
+        if (!(defaultShow === 'yj')) {
+            setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị phí chưaquyết toán
+        }
+
+        if (!!$('#zyh').val()) {
+            ajaxLoadDataResult();
+        }
+    });
+
+    function initgridList1() {
+        $('#gridList').dataGrid({
+            unwritten: false,
+            url: "/HospitalizationManage/BookkeepInHos/GetUnSettedFeeItemListJson",
+            postData: { zyh: $("#zyh").val(), endTime: $("#endTime").val() },
+            height: $(window).height() - 300,
+            sortable: false,
+            colModel: [
+                { label: "Tên mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
+                {
+                    label: "Số lượng", name: "sl", width: 80, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+                {
+                    label: "Tổng số tiền", name: "zje", width: 80, align: "left", formatter: "number"
+                        , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+            ],
+            gridComplete: function (data) {
+                var sumje = 0.00;
+                $.each(data, function () {
+                    sumje += this.zje;
+                });
+                if (sumje != 0) {
+                    $('#lblSumje').html(sumje.toFixed(2));
+                }
+                else {
+                    $('#lblSumje').html('');
+                }
+            }
+        });
+    }
+
+    var flagIsFirstInitGrid2 = true;
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var targetHref = $(e.target).attr('href');
+        $('#btn_bottombutton_f6,#btn_bottombutton_f8').hide();
+        if (targetHref && targetHref.indexOf('yj') != -1) {
+            $('#btn_bottombutton_f6').show();
+            if (flagIsFirstInitGrid2) {
+                flagIsFirstInitGrid2 = false;
+                initgridList2();
+            }
+            else {
+                reloadGrid2();
+            }
+        }
+        else {
+            $('#btn_bottombutton_f8').show();
+        }
+    })
+
+    function initgridList2() {
+        $('#gridList2').dataGrid({
+            unwritten: false,
+            url: "/HospitalizationManage/BookkeepInHos/GetMidwaySettedListJson",
+            postData: { zyh: $("#zyh").val() },
+            height: $(window).height() - 300,
+            sortable: false,
+            colModel: [
+                { label: "jsnm", name: "jsnm", width: 140, align: "left", hidden: true },
+                { label: "Mã nhập viện", name: "zyh", width: 140, align: "left", hidden: true },
+                {
+                    label: "Số tiềnquyết toán", name: "zje", width: 80, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                },
+                {
+                    label: "Thời gian bắt đầuquyết toán", name: "jsksrq", width: 140, align: "left",
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                {
+                    label: "Thời gian kết thúcquyết toán", name: "jsjsrq", width: 140, align: "left",
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: "Nhân viênquyết toán", name: "CreatorCode", width: 100, align: "left" },
+                {
+                    label: "Thời gianquyết toán", name: "CreateTime", width: 140, align: "left",
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                }
+            ],
+        });
+    }
+
+    function thenreload() {
+        //Nạp phí chưaquyết toán
+        reloadGrid();
+        reloadLastValidMidwaySettTime();
+
+        var targetHref = $('#myTab li.active a').attr('href');
+        if (targetHref && targetHref.indexOf('yj') != -1) {
+            reloadGrid2();  //Hiện tại đãquyết toán
+        }
+    }
+
+    function reloadGrid() {
+        $("#gridList").jqGrid('setGridParam', {
+            postData: { zyh: $("#zyh").val(), endTime: $("#endTime").val() },
+        }).trigger('reloadGrid');
+
+    }
+
+    function reloadGrid2() {
+        $("#gridList2").jqGrid('setGridParam', {
+            postData: { zyh: $("#zyh").val() },
+        }).trigger('reloadGrid');
+
+    }
+
+    function reloadLastValidMidwaySettTime() {
+        //cập nhật‘Thời gian kết thúcquyết toán cuối cùng’
+        $('#lastValidMidwaySettTime').html('');
+        if (!!$('#zyh').val()) {
+            $.najax({
+                url: "/HospitalizationManage/BookkeepInHos/GetLastValidMidwaySettTimeJson?zyh=" + $("#zyh").val(),
+                success: function (ajaxresp) {
+                    if (ajaxresp.data) {
+                        $('#lastValidMidwaySettTime').html($.getTime({ date: ajaxresp.data }));
+                        $('#startTime').html($.getTime({ date: ajaxresp.data }));
+                    }
+                },
+            });
+        }
+    }
+
+    //Truy vấn bệnh nhân
+    function GetPatSerarchView(keyword) {
+        var zyh = keyword;
+        if (!!!keyword) {
+            zyh = '';
+        }
+        $.modalOpen({
+            id: "patSearch",
+            title: "Truy vấn bệnh nhân",
+            url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@((int)EnumZYBZ.Bqz + "," + (int)EnumZYBZ.Djz)' + "&t=" + Math.random() + "&zyh=" + zyh,
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                //Gọi truy vấn số thẻ và mã nhập viện
+            }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
+        });
+
+    }
+
+    //Bệnh nhân đã chọn callback
+    function getPatInfoAjax(selePatInfo) {
+        $('#endTime').val($.getTime()); //update endTime
+        $('#zyh').val(selePatInfo.zyh);
+        ajaxLoadDataResult();
+    }
+
+    //Nạp thông tin cơ bản nhập viện
+    function ajaxLoadDataResult() {
+        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúc候，mớichuyển đổiNgày bắt đầu
+
+        var zyh = $('#zyh').val();
+        if (!!zyh) {
+            $.najax({
+                type: "GET",
+                url: "/HospitalizationManage/BookkeepInHos/GetInpatientAccountingStatusDetail?zyh=" + zyh,
+                loading: true,
+                success: function (ajaxresp) {
+                    setPatInfoModel(ajaxresp.data.patInfo);
+
+                    thenreload();
+                },
+                errorCallback: function (err) {
+                    newtouch_globalevent_f4();
+                    $('#zyh').trigger('focus');
+                }
+            });
+        }
+        else {
+            GetPatSerarchView();
+        }
+    }
+
+    //Khởi tạo thông tin bệnh nhân
+    function setPatInfoModel(patModel) {
+        $('#zy_xm').html(patModel.xm);
+        $('#zy_xb').html($.getGender(patModel.xb));
+        $('#zy_nl').html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+        $('#zy_ryzd').html(patModel.ryzdmc);
+        $('#zy_zjh').html(patModel.zjh);
+        $('#zy_phone').html(patModel.phone);
+        $('#zy_csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+        $('#zy_ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+
+        $('#startTime').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+
+    }
+
+    function newtouch_event_f8() {
+        var zyh = $('#zyh').val();
+        var startTime = $('#startTime').html();
+        if (!!!startTime) {
+            $.modalAlert("chưachỉ địnhThời gian bắt đầuquyết toán", 'error');
+            return;
+        }
+        if (!!!zyh) {
+            $.modalAlert("Vui lòng chọn bệnh nhân nhập viện", 'error');
+            return;
+        }
+        var thisSettEndTime = $('#endTime').val();
+        if (!!!thisSettEndTime) {
+            $.modalAlert("chưachỉ địnhThời gian kết thúcquyết toán", 'error');
+            return;
+        }
+        var allLine = $("#gridList").jqGrid('getRowData_AllLine', null, true);
+        if (!!!allLine || allLine.length == 0) {
+            $.modalAlert("Không có phí chưaquyết toán", 'error');
+            return;
+        }
+        //Gửi
+        var postData = { zyh: zyh, startTime: startTime, endTime: thisSettEndTime };
+        $.submitForm({
+            type: "POST",
+            url: "/HospitalizationManage/BookkeepInHos/UnSettedItemFeeConfirm",
+            param: postData,
+            success: function (ajaxresp) {
+                sessionStorage.setItem('zyh', $('#zyh').val());
+                location.href = location.href;
+            },
+        });
+
+    }
+
+    function newtouch_event_f6() {
+        var zyh = $('#zyh').val();
+        if (!!!zyh) {
+            $.modalAlert("Vui lòng chọn bệnh nhân nhập viện", 'error');
+            return;
+        }
+        var allLine = $("#gridList2").jqGrid('getRowData_AllLine', null, true);
+        if (!!!allLine || allLine.length == 0) {
+            $.modalAlert("Không có lịch sử đãquyết toán", 'error');
+            return;
+        }
+        //Gửi
+        var postData = { zyh: zyh };
+        $.submitForm({
+            type: "POST",
+            url: "/HospitalizationManage/BookkeepInHos/CancelTheLastMidwaySett",
+            param: postData,
+            success: function (ajaxresp) {
+                sessionStorage.setItem('zyh', $('#zyh').val());
+                sessionStorage.setItem('defaultShow', 'yj');
+                location.href = location.href;
+            },
+        });
+
+    }
+
+</script>

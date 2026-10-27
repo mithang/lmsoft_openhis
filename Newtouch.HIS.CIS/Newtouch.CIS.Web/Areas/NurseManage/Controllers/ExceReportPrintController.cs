@@ -1,29 +1,45 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Repository.SystemManage;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class ExceReportPrintController : OrgControllerBase
     {
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IExceReportPrintDmnService _IExceReportPrintDmnService;
+
+        public ExceReportPrintController(ISysConfigRepo sysConfigRepo, IExceReportPrintDmnService iExceReportPrintDmnService)
+        {
+            this._sysConfigRepo = sysConfigRepo;
+            this._IExceReportPrintDmnService = iExceReportPrintDmnService;
+        }
         /// <summary>
-        /// 获取病区人员执行树
+        /// 获取病区人员Thực hiện树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatWardTree(string zyzt, string keyword)
+        public IActionResult GetPatWardTree(string zyzt, string keyword)
         {
             
             var wardTree = _IExceReportPrintDmnService.GetPatTree(OrganizeId,zyzt,keyword);
@@ -37,11 +53,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.OrderBy(p => p.BedNo);
                 foreach (InpWardPatTreeVO itempat in NewPatInfo)
                 { 
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别+病人性质
-                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh + "-" + itempat.nl + "岁-" + gender + "-" + itempat.brxzmc;
+                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别+Tính chất bệnh nhân
+                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender + "-" + itempat.brxzmc;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
                     treepat.isexpand = false;
@@ -73,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             return Content(treeList.TreeViewJson(null));
         } 
-        public ActionResult GetExecDetailGridJson(string zyh, DateTime zxsj,string zxdlb,string yzxz)
+        public IActionResult GetExecDetailGridJson(string zyh, DateTime zxsj,string zxdlb,string yzxz)
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
@@ -83,7 +99,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult QueryExecDetailGridJson(Pagination pagination, string zyh, DateTime zxsj, DateTime zxsjend, string zxdlb, string yzxz)
+        public IActionResult QueryExecDetailGridJson(Pagination pagination, string zyh, DateTime zxsj, DateTime zxsjend, string zxdlb, string yzxz)
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
@@ -100,30 +116,30 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
 
-        public override ActionResult Index()
+        public override IActionResult Index()
         {
             //注射用法控制
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
             //雾化用法控制
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
 
-        public  ActionResult QueryPrintIndex() {
+        public  IActionResult QueryPrintIndex() {
             //注射用法控制
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
             //雾化用法控制
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
 
-        public ActionResult PrintedContinue()
+        public IActionResult PrintedContinue()
         {
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.OrgId = OrganizeId;
             return View();
         }

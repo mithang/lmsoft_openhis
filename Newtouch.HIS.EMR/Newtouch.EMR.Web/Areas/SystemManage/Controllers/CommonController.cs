@@ -1,56 +1,68 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IDomainServices;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.EMR.Infrastructure.EnumMR;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Base.Domain;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
 {
+    [Area("SystemManage")]
     public class CommonController : OrgControllerBase
     {
         private readonly ICommonDmnService _CommonDmnService;
         private readonly ISysDiagnosisRepo _sysDiagnosisRepo;
-        private readonly ISysTCMSyndromeRepo _sysTcmsyndromeRepo;
         private readonly ISysDepartmentRepo _SysDepartmentRepo;
         private readonly Ibl_bllxRepo _BllxRepo;
         private readonly IBlmblbDmnService _BlmblbDmnService;
         private readonly IBlysRepo _blysRepo;
-        private static string LinkToOR= ConfigurationHelper.GetAppConfigValue("EnableLinkToOR");
-        private static string LinkToMRMS = ConfigurationHelper.GetAppConfigValue("EnableLinkToMRMS");
+
+        public CommonController(ICommonDmnService commonDmnService, ISysDiagnosisRepo sysDiagnosisRepo, ISysDepartmentRepo sysDepartmentRepo, Ibl_bllxRepo bllxRepo, IBlmblbDmnService blmblbDmnService, IBlysRepo blysRepo)
+        {
+            this._CommonDmnService = commonDmnService;
+            this._sysDiagnosisRepo = sysDiagnosisRepo;
+            this._SysDepartmentRepo = sysDepartmentRepo;
+            this._BllxRepo = bllxRepo;
+            this._BlmblbDmnService = blmblbDmnService;
+            this._blysRepo = blysRepo;
+        }
+        private static string LinkToOR= EmrConfig.GetAppConfigValue("EnableLinkToOR");
+        private static string LinkToMRMS = EmrConfig.GetAppConfigValue("EnableLinkToMRMS");
         // GET: SystemManage/Common
         /// <summary>
         /// 病案大类维护页面
         /// </summary>
         /// <returns></returns>
-        public ActionResult RecordType()
+        public IActionResult RecordType()
         {
             return View();
         }
-        public ActionResult RecordTypeForm()
+        public IActionResult RecordTypeForm()
         {
             return View();
         }
-        public ActionResult RecordTypeChildForm()
+        public IActionResult RecordTypeChildForm()
         {
             return View();
         }
-        public ActionResult GetBllxListGrid(string bllx,string keyword)
+        public IActionResult GetBllxListGrid(string bllx,string keyword)
         {
             var data = _CommonDmnService.GetBllxListDetail(OrganizeId,bllx,keyword);
             return Content(data.ToJson());
         }
 
-        public ActionResult GetBllxListTreeGrid(Pagination pagination,string keyword)
+        public IActionResult GetBllxListTreeGrid(Pagination pagination,string keyword)
         {
             var data = _CommonDmnService.GetBllxListDetail(OrganizeId);
             var treeList = new List<TreeGridModel>();
@@ -70,26 +82,25 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeGridJson(null));
         }
 
-        public ActionResult GetBllxbyId(string keyValue)
+        public IActionResult GetBllxbyId(string keyValue)
         {
             var data = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && (p.Id == keyValue || p.bllx==keyValue) && p.zt=="1");
             return Content(data.ToJson());
         }
 
-        public ActionResult SubmitForm(bl_bllxEntity ety,string keyValue)
+        public IActionResult SubmitForm(bl_bllxEntity ety,string keyValue)
         {
             ety.OrganizeId = OrganizeId;
             _BllxRepo.SubmitForm(ety, keyValue);
-            return Success("保存成功");
+            return Success("Lưu thành công");
         }
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             _BllxRepo.DeleteForm( keyValue,OrganizeId,this.UserIdentity.rygh);
-            return Success("删除成功");
+            return Success("Xóa thành công");
         }
 
-
-        public ActionResult GetBllxTreeList(string Id,string selector,string mzbz=null)
+        public IActionResult GetBllxTreeList(string Id,string selector,string mzbz=null)
         {
             var treeList = new List<TreeViewModel>();
             if (!string.IsNullOrWhiteSpace(Id))
@@ -143,7 +154,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
 
             return Content(treeList.TreeViewJson(null)); 
         }
-        public ActionResult GetBlmbTreeList(string keyValue,string mbqx)
+        public IActionResult GetBlmbTreeList(string keyValue,string mbqx)
         {
             var treeList = new List<TreeGridModel>();
             var mobanlist = _BlmblbDmnService.MedRecordTmpListTree(OrganizeId, keyValue, mbqx);
@@ -163,7 +174,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             }
             return Content(treeList.TreeGridJson(null));
         }
-        public ActionResult GetYsTreeList(string keyword)
+        public IActionResult GetYsTreeList(string keyword)
         {
             var treeList = new List<TreeGridModel>();
             var dataList = _blysRepo.GetYsTreeV2(OrganizeId, keyword); ;
@@ -208,13 +219,13 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             }
             return Content(treeList.TreeGridJson(null));
         }
-        public ActionResult GetYsMXList(string YsId)
+        public IActionResult GetYsMXList(string YsId)
         {
             var dataList = _blysRepo.GetYsMX(OrganizeId, YsId); 
             return Content(dataList.ToJson());
         }
         #region tools
-        public ActionResult GetStaffSign()
+        public IActionResult GetStaffSign()
         {
             var ety = _CommonDmnService.StaffInfo(this.UserIdentity.rygh, OrganizeId);
             if (ety != null && ety.Count > 0)
@@ -224,7 +235,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             return Content(ety.ToJson());
         }
 
-        public ActionResult GetBllxList(string code,string mzbz=null)
+        public IActionResult GetBllxList(string code,string mzbz=null)
         {
             var ety = _CommonDmnService.GetBllxList(OrganizeId,code,mzbz) ;
             return Content(ety.ToJson());
@@ -234,7 +245,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         /// 获取系统诊断列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDiagList()
+        public IActionResult GetDiagList()
         {
             var ety = _CommonDmnService.ZdList(OrganizeId, "");
             return Content(ety.ToJson());
@@ -255,15 +266,15 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             {
                 //var zzlist = _sysTcmsyndromeRepo.GetList(this.OrganizeId, keyword);
                 var zzlist = _CommonDmnService.GetZyzhList(this.OrganizeId,keyword);
-                return Json(zzlist, JsonRequestBehavior.AllowGet);
+                return Json(zzlist);
             }
             else {
                 var list = _sysDiagnosisRepo.GetList(this.OrganizeId, keyword, zdlx, ybnhlx);
-                return Json(list, JsonRequestBehavior.AllowGet);
+                return Json(list);
             }
         }
 
-        public ActionResult GetDiagnosisGrid(Pagination pagination, string keyword, int? zdlx)
+        public IActionResult GetDiagnosisGrid(Pagination pagination, string keyword, int? zdlx)
         {
             var data = new
             {
@@ -283,7 +294,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         public JsonResult GetOperationList(string keyword,bool type)
         {
             var list = _CommonDmnService.OpList(this.OrganizeId, keyword,type);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list);
         }
 
         public JsonResult GetOperationListPage(Pagination pagination, string keyword)
@@ -296,13 +307,13 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
                 records = pagination.records
             };
             //var list = _CommonDmnService.OpListPage(pagination,this.OrganizeId, keyword);
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data);
         }
         /// <summary>
         /// 麻醉方式
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetAnesList(string keyword)
+        public IActionResult GetAnesList(string keyword)
         {
             if (LinkToOR == "true")
             {
@@ -314,7 +325,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             }            
         }
 
-        public ActionResult GetNotchGradeList(string keyword)
+        public IActionResult GetNotchGradeList(string keyword)
         {
             if (LinkToOR == "true")
             {
@@ -327,28 +338,27 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             }            
         }
 
-        public ActionResult GetCommonList(string keyword, string type)
+        public IActionResult GetCommonList(string keyword, string type)
         {
             var ety = _CommonDmnService.DicCommonList(OrganizeId, keyword, type);
             return Content(ety.ToJson());
         }
 
-        public ActionResult GetDepartment(string keyword)
+        public IActionResult GetDepartment(string keyword)
         {
             var ety = _SysDepartmentRepo.GetList(this.OrganizeId, "1", keyword);
             return Content(ety.ToJson());
         }
 
-
         //查询病区
-        public ActionResult GetInpatientArea(string keyword)
+        public IActionResult GetInpatientArea(string keyword)
         {
             var ety = _CommonDmnService.GetInpatientArea(OrganizeId, keyword);
 
             return Content(ety.ToJson());
         }
 
-        //public ActionResult GetXtbrxz(string keyword)
+        //public IActionResult GetXtbrxz(string keyword)
         //{
         //    var ety = _CommonDmnService.BrxzList(this.OrganizeId, keyword);
         //    return Content(ety.ToJson());
@@ -358,7 +368,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetNationality(string keyword)
+        public IActionResult GetNationality(string keyword)
         {
             var ety = _CommonDmnService.DicNationalityList(this.OrganizeId, keyword);
             return Content(ety.ToJson());
@@ -368,7 +378,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetNationas(string keyword)
+        public IActionResult GetNationas(string keyword)
         {
             var ety = _CommonDmnService.DicNationsList(this.OrganizeId, keyword);
             return Content(ety.ToJson());
@@ -380,7 +390,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetStaffListByDutyCode(string dutyCode, string keyword)
+        public IActionResult GetStaffListByDutyCode(string dutyCode, string keyword)
         {
             var list = _CommonDmnService.GetStaffByDutyCode(this.OrganizeId, dutyCode, keyword);
             return Content(list.ToJson());
@@ -392,7 +402,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetDutyList(string dutyCode,string bllxId)
+        public IActionResult GetDutyList(string dutyCode,string bllxId)
         {
             var list = _CommonDmnService.GetDutyListRelbllx(this.OrganizeId, bllxId, dutyCode);
             return Content(list.ToJson());

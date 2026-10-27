@@ -1,29 +1,38 @@
-﻿using FrameworkBase.MultiOrg.Domain.Entity;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Exceptions;
+
+using Newtouch.Domain.IDomainServices;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects.Inpatient;
-using Newtouch.HIS.Web.Core.Attributes;
+using NewtouchHIS.Lib.Framework.Attributes;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 {
+    [Area("DoctorManage")]
     public class DoctorsAdviceController : OrgControllerBase
     {
         private readonly ISysConfigRepo _sysConfigRepo;
-        private readonly FrameworkBase.MultiOrg.Domain.IDomainServices.IBaseDataDmnService _iBaseDataDmnService;
+        private readonly IBaseDataDmnService _iBaseDataDmnService;
         private readonly IInpatientOrderPackageDmnService _inpatientOrderPackageDmnService;
         private readonly IInpatientOrderPackageRepo _inpatientOrderPackageRepo;
         private readonly IDoctorserviceDmnService _iDoctorserviceDmnService;
@@ -31,8 +40,20 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         private readonly ISysStaffRepo _sysStaffRepo;
         private readonly ISysUserDmnService _sysUserDmnService;
 
+        public DoctorsAdviceController(ISysConfigRepo sysConfigRepo, IBaseDataDmnService iBaseDataDmnService, IInpatientOrderPackageDmnService inpatientOrderPackageDmnService, IInpatientOrderPackageRepo inpatientOrderPackageRepo, IDoctorserviceDmnService iDoctorserviceDmnService, IInpatientLongTermOrderRepo inpatientLongTermOrderRepo, ISysStaffRepo sysStaffRepo, ISysUserDmnService sysUserDmnService)
+        {
+            this._sysConfigRepo = sysConfigRepo;
+            this._iBaseDataDmnService = iBaseDataDmnService;
+            this._inpatientOrderPackageDmnService = inpatientOrderPackageDmnService;
+            this._inpatientOrderPackageRepo = inpatientOrderPackageRepo;
+            this._iDoctorserviceDmnService = iDoctorserviceDmnService;
+            this._inpatientLongTermOrderRepo = inpatientLongTermOrderRepo;
+            this._sysStaffRepo = sysStaffRepo;
+            this._sysUserDmnService = sysUserDmnService;
+        }
+
         [HandlerAuthorizeIgnore]
-        public override ActionResult Index()
+        public override IActionResult Index()
         {
             //判断登陆者身份是否是护士
             var isDoctor = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Doctor");
@@ -45,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             ViewBag.ysgh = UserIdentity.rygh;//医生工号
             ViewBag.pcStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) == "" ? "" : _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId);//临时频次
             ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//住院医嘱套餐是否包含病区
-            ViewBag.zzlconfig = _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId) == "" ? "每次治疗量" : _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId);//住院项目录入治疗量文本配置
+            ViewBag.zzlconfig = _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId) == "" ? "Liều mỗi lần điều trị" : _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId);//住院项目录入治疗量文本配置
             ViewBag.bwhide = _sysConfigRepo.GetBoolValueByCode("bwhide", OrganizeId, false);//住院项目录入部位显示隐藏配置                                           
             ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", this.OrganizeId, false);//是否开放检验检查
             ViewBag.IsOpenRehabSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYRehabSwitch", this.OrganizeId, false);//是否开放康复医嘱
@@ -53,10 +74,10 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);//开关：是否开放医用耗材
             ViewBag.sfxmService = _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId) == "" ? "cg" : _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId);//是否开常规项目
             ViewBag.ISOpenSsyz = _sysConfigRepo.GetBoolValueByCode("ISOpenSsyzSwitch", this.OrganizeId, false);//是否开放膳食医嘱																					  
-            ViewBag.ISWithRehabSuggestion = _sysConfigRepo.GetBoolValueByCode("IS_WithRehabSuggestion", this.OrganizeId, false);//康复处方是否引用治疗建议
+            ViewBag.ISWithRehabSuggestion = _sysConfigRepo.GetBoolValueByCode("IS_WithRehabSuggestion", this.OrganizeId, false);//康复处方是否Trích dẫn治疗建议
                                                                                                                                 
             var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";//临时频次串 分割的频次编码字符串例如：00,01
-            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//欠费医嘱开立、执行开关
+            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//欠费医嘱开立、Thực hiện开关
             ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//是否开启事前审核接口
             ViewBag.openYjzxSwitch = _sysConfigRepo.GetValueByCode("openYjzxSwitch", OrganizeId); //开关：医技管理是否启用 
             if (!string.IsNullOrWhiteSpace(frequencyStr))
@@ -72,11 +93,11 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
                     ViewBag.pcmc = pcInfo.yzpcmc;
                 }
                 else {
-                    throw new Exception($"未找到有效的医嘱频次信息 (医嘱频次编号: {FequencyList[0]})，请稍后重试或联系管理员。");
+                    throw new Exception($"Không tìm thấy thông tin tần suất y lệnh hiệu lực (số hiệu tần suất y lệnh: {FequencyList[0]}), vui lòng đợi giây lát thử lại hoặc liên hệ quản trị viên.");
                 }
                 
             }
-            #region 抗生素相关
+            #region Kháng sinhliên quan
             ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//是否启用抗生素
             ViewBag.qxjb = "0";//抗生素权限级别(默认 0 非限制用药)
             SysStaffVEntity staff = _sysStaffRepo.GetValidStaffByGh(UserIdentity.rygh, OrganizeId);
@@ -98,12 +119,12 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
                         break;
                 }
             }
-            #endregion 抗生素相关
+            #endregion Kháng sinhliên quan
             //影像配置
             ViewBag.PACSCode = _sysConfigRepo.GetValueByCode("PACSCode", OrganizeId);
             ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//是否开启合理用药
 
-            #region 滴速
+            #region Tốc độ truyền
             var frds = _sysConfigRepo.GetValueByCode("frequencyRelDroppingSpeed", OrganizeId);
             frds = string.IsNullOrWhiteSpace(frds) ? "静滴" : frds;
             ViewBag.frequencyRelDroppingSpeed = frds;
@@ -114,59 +135,59 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return View();
         }
 
-        #region 视图return
-        public ActionResult AdviceList()
+        #region Chế độ xemreturn
+        public IActionResult AdviceList()
         {
             ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//是否开启事前审核接口
             ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//是否开启合理用药
             return View();
         }
 
-        public ActionResult AdviceListLook()
+        public IActionResult AdviceListLook()
         {
             return View();
         }
-        public ActionResult ZyyzQueryAdviceList()
-        {
-            return View();
-        }
-
-        public ActionResult AdviceStop()
+        public IActionResult ZyyzQueryAdviceList()
         {
             return View();
         }
 
-        public ActionResult AdviceLeaveHospitalStop()
+        public IActionResult AdviceStop()
         {
             return View();
         }
 
-        public ActionResult ContinuePrint()
+        public IActionResult AdviceLeaveHospitalStop()
         {
             return View();
         }
 
-        public ActionResult TemplatePresForm()
+        public IActionResult ContinuePrint()
         {
             return View();
         }
-        public ActionResult HistoricalOrders()
+
+        public IActionResult TemplatePresForm()
         {
             return View();
         }
-        public ActionResult PatientHistoricalOrders()
+        public IActionResult HistoricalOrders()
         {
             return View();
         }
-        public ActionResult TransferWardStop()
+        public IActionResult PatientHistoricalOrders()
+        {
+            return View();
+        }
+        public IActionResult TransferWardStop()
         {
             return View();
         }
         #endregion
 
-        #region 医嘱模板
+        #region Y lệnhMẫu
 
-        public ActionResult saveAsTemplate(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mxList)
+        public IActionResult saveAsTemplate(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mxList)
         {
             if (mbObj.tcfw == (int)EnumTcfw.Dept)//科室
             {
@@ -186,7 +207,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 模板树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetTreeList(int tcfw, string yzlx)
+        public IActionResult GetTreeList(int tcfw, string yzlx)
         {
             var treeList = new List<TreeViewModel>();
             int linqyzlx = int.Parse(yzlx);
@@ -223,22 +244,22 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return Content(treeList.TreeViewJson(null));
         }
 
-        public ActionResult GetMBDetailByMainId(string Id)
+        public IActionResult GetMBDetailByMainId(string Id)
         {
             var data = _inpatientOrderPackageDmnService.GetMBDetailByMainId(Id, OrganizeId);
             return Content(data.ToJson());
         }
-        public ActionResult GetHistoricalOrders(string zyh, string type, string kssj, string jssj, string cqorls)
+        public IActionResult GetHistoricalOrders(string zyh, string type, string kssj, string jssj, string cqorls)
         {
             var data = _inpatientOrderPackageDmnService.GetHistoricalOrders(zyh, type, kssj, jssj, cqorls, OrganizeId);
             return Content(data.ToJson());
         }
-        public ActionResult GetPatientQuery(string zyh, string type, string kssj, string jssj, string cqorls)
+        public IActionResult GetPatientQuery(string zyh, string type, string kssj, string jssj, string cqorls)
         {
             var data = _inpatientOrderPackageDmnService.GetPatientQuery(zyh, OrganizeId);
             return Content(data.ToJson());
         }
-        public ActionResult GetMBDetailByDetailId(string idList)
+        public IActionResult GetMBDetailByDetailId(string idList)
         {
             var data = _inpatientOrderPackageDmnService.GetMBDetailByDetailId(idList, OrganizeId);
             return Content(data.ToJson());
@@ -246,14 +267,14 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #endregion
 
-        #region 医嘱引用
+        #region Y lệnhTrích dẫn
 
-        public ActionResult GetHistoricalOrdersById(string yzlistId)
+        public IActionResult GetHistoricalOrdersById(string yzlistId)
         {
             var data = _inpatientOrderPackageDmnService.GetHistoricalOrdersById(yzlistId, OrganizeId);
             return Content(data.ToJson());
         }
-        public ActionResult GetHistoricalRegist(string zyh, string curzyh, string yzlistId)
+        public IActionResult GetHistoricalRegist(string zyh, string curzyh, string yzlistId)
         {
             var data = _inpatientOrderPackageDmnService.GetHistoricalRegist(zyh, curzyh, yzlistId, OrganizeId, this.UserIdentity.UserCode);
             return Success("", data);
@@ -263,14 +284,14 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #endregion
 
-        #region  医嘱管理
+        #region  Y lệnhQuản lý
         /// <summary>
         /// 医嘱查询
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
         /// <returns></returns>
-        public ActionResult AdviceGridView(Pagination pagination, AdviceListRequestVO req)
+        public IActionResult AdviceGridView(Pagination pagination, AdviceListRequestVO req)
         {
             req.orgId = OrganizeId;
             var data = new
@@ -289,7 +310,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// <param name="yzId"></param>
         /// <param name="tzsj"></param>
         /// <returns></returns>
-        public ActionResult StopSubmitForm(string yzId, DateTime? tzsj, string yzlx, string zyh, string iszt)
+        public IActionResult StopSubmitForm(string yzId, DateTime? tzsj, string yzlx, string zyh, string iszt)
         {
             _iDoctorserviceDmnService.AdviceStop(yzId, tzsj, UserIdentity.rygh, OrganizeId, yzlx, zyh, iszt);
             return Success();
@@ -301,19 +322,19 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// </summary>
         /// <param name="yzId"></param>
         /// <returns></returns>
-        public ActionResult DelForm(string yzId, string yzlx, string zyh, string iszt, string conflinktoOR)
+        public IActionResult DelForm(string yzId, string yzlx, string zyh, string iszt, string conflinktoOR)
         {
-            conflinktoOR = ConfigurationManager.AppSettings["EnableLinkToOR"];
+            conflinktoOR = Newtouch.CIS.Compat.AppConfig.Get("EnableLinkToOR");
             _iDoctorserviceDmnService.AdviceDel(yzId, OrganizeId, yzlx, zyh, iszt, conflinktoOR);
             return Success();
         }
 
         /// <summary>
-        /// 撤DC
+        /// Hủy DC
         /// </summary>
         /// <param name="yzId"></param>
         /// <returns></returns>
-        public ActionResult advicedc(string yzId, string yzlx, string zyh, string isFeeGroup)
+        public IActionResult advicedc(string yzId, string yzlx, string zyh, string isFeeGroup)
         {
             _iDoctorserviceDmnService.Advicedc(yzId, OrganizeId, yzlx, zyh, isFeeGroup);
             return Success();
@@ -323,7 +344,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 出院全停
         /// </summary>
         /// <returns></returns>
-        public ActionResult AdviceLeaveHospitalStopSubmit(string zyh, DateTime tzsj)
+        public IActionResult AdviceLeaveHospitalStopSubmit(string zyh, DateTime tzsj)
         {
             _iDoctorserviceDmnService.AdviceLeaveHospitalStopSubmit(zyh, tzsj, OrganizeId, UserIdentity.rygh);
             return Success();
@@ -334,19 +355,19 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult AdviceTransferWardStopSubmit(string zyh, string bq, DateTime? kssj)
+        public IActionResult AdviceTransferWardStopSubmit(string zyh, string bq, DateTime? kssj)
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("缺少住院号");
+                throw new FailedException("ThiếuSố nhập viện");
             }
-            if (string.IsNullOrWhiteSpace(bq) || bq == "==请选择==")
+            if (string.IsNullOrWhiteSpace(bq) || bq == "==Vui lòng chọn==")
             {
-                throw new FailedException("缺少病区");
+                throw new FailedException("ThiếuKhu bệnh");
             }
             if (kssj == DateTime.MaxValue || kssj == DateTime.MinValue || kssj == null)
             {
-                throw new FailedException("缺少开始时间");
+                throw new FailedException("ThiếuThời gian bắt đầu");
             }
             var req = new TransferWardRequestVO
             {
@@ -366,7 +387,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// <param name="yzId"></param>
         /// <param name="yzlb"></param>
         /// <returns></returns>
-        public ActionResult RegistTzyz(string zyh, string yzId, string yzlb)
+        public IActionResult RegistTzyz(string zyh, string yzId, string yzlb)
         {
             _iDoctorserviceDmnService.RegistTzyz(yzId, OrganizeId, yzlb, zyh);
             return Success();
@@ -374,20 +395,20 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #endregion
 
-        #region 医嘱套餐
+        #region Y lệnhGói
 
         /// <summary>
         /// 判断当前病人是否存在未审核的长期医嘱
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult boolwsh(string zyh)
+        public IActionResult boolwsh(string zyh)
         {
             int wshzt = (int)EnumYzzt.Ds;
             var wsh = _inpatientLongTermOrderRepo.IQueryable().Where(p => p.zyh == zyh && p.OrganizeId == OrganizeId && p.zt == "1" && p.yzzt == wshzt);
             if (wsh != null && wsh.Count() > 0)
             {
-                return Error("存在未审核的医嘱");
+                return Error("Tồn tại y lệnh chưa duyệt");
             }
             return Success();
         }
@@ -396,7 +417,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 返回套餐范围
         /// </summary>
         /// <returns></returns>
-        public ActionResult GettcfwContainWard()
+        public IActionResult GettcfwContainWard()
         {
             SysStaffVEntity sysStaffEntity = _sysStaffRepo.GetValidStaffByGh(this.UserIdentity.rygh, this.OrganizeId);
             int mbqx = Convert.ToInt32((sysStaffEntity.mbqx == null || sysStaffEntity.mbqx == "") ? "1" : sysStaffEntity.mbqx);
@@ -404,7 +425,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             var qxz = new
             {
                 id = "",
-                text = "==请选择=="
+                text = "==Vui lòng chọn=="
             };
             data.Add(qxz);
             bool containbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId).ToBool();
@@ -428,7 +449,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 选套餐明细
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetTemplatePresDetailByMbId(string mbId)
+        public IActionResult GetTemplatePresDetailByMbId(string mbId)
         {
             return View();
         }
@@ -437,13 +458,13 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         /// 医嘱查询生成医嘱类型下拉框时，配置的检验检查显示
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetyzlxContain()
+        public IActionResult GetyzlxContain()
         {
             var data = new List<object>();
             var qxz = new
             {
                 id = "",
-                text = "全部"
+                text = "Tất cả"
             };
             data.Add(qxz);
             bool containbq = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", OrganizeId, false).ToBool();
@@ -469,8 +490,8 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #endregion
 
-        #region 结算信息
-        public ActionResult SettInfoShow()
+        #region Quyết toánThông tin
+        public IActionResult SettInfoShow()
         {
             return View();
         }
@@ -478,13 +499,13 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         #endregion
 
 
-        #region  lis pacs 报告
+        #region  lis pacs Báo cáo
         /// <summary>
         /// //根据住院号获取LIS/PACS报告完成数量
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult CountLISztzy(string zyh)
+        public IActionResult CountLISztzy(string zyh)
         {
             var num = _iDoctorserviceDmnService.CountLISztzy(OrganizeId, zyh);
             var data = new

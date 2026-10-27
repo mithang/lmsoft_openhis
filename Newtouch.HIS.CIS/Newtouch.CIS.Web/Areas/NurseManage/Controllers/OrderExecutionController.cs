@@ -1,17 +1,26 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Helpers;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
-using Newtouch.Core.Common.Exceptions;
+
+using Newtouch.CIS.Compat;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO.InputDto;
 using Newtouch.Domain.DTO.OutputDto.Outpatient;
 using Newtouch.Domain.IDomainServices;
@@ -19,7 +28,7 @@ using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Infrastructure;
 using Newtouch.PDS.Requset.Zyypyz;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.ValueObjects.Apply;
 using Newtouch.Domain.Entity.Inpatient;
 using Newtouch.Domain.Entity;
@@ -30,8 +39,9 @@ using System.IO;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 医嘱执行
+    /// 医嘱Thực hiện
     /// </summary>
+    [Area("NurseManage")]
     public class OrderExecutionController : OrgControllerBase
     {
 
@@ -54,14 +64,22 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly int MaxFileSize = 10 * 1024 * 1024; // 10MB
 
         /// <summary>
-        /// 文字医嘱需要执行
+        /// 文字医嘱需要Thực hiện
         /// </summary>
-        private bool wnes;//true-文字医嘱需要执行  false-文字医嘱无需执行
+        private bool wnes;//true-文字医嘱需要Thực hiện  false-文字医嘱无需Thực hiện
         private string medicalInsurance;
         private string iskfyzjf;//康复医嘱是否计费
 
-        public OrderExecutionController(IOrderExecutionDmnService OrderExecutionDmnService)
+        public OrderExecutionController(IOrderExecutionDmnService OrderExecutionDmnService, ISysConfigRepo sysConfigRepo, IInpatientPatientInfoRepo inpatientPatientInfoRepo, ISysUserDmnService sysUserDmnService, IDoctorserviceDmnService doctorserviceDmnService, IMedicalAdviceBindingFeeRepo medicalAdviceBindingFeeRepo, IInpatientLongTermOrderRepo inpatientLongTermOrderRepo, IInpatientSTATOrderRepo inpatientSTATOrderRepo, IXtjyjcFileUploadRepo xyjyjcfileuploadRepo)
         {
+            this._sysConfigRepo = sysConfigRepo;
+            this._inpatientPatientInfoRepo = inpatientPatientInfoRepo;
+            this._sysUserDmnService = sysUserDmnService;
+            this._doctorserviceDmnService = doctorserviceDmnService;
+            this._medicalAdviceBindingFeeRepo = medicalAdviceBindingFeeRepo;
+            this._InpatientLongTermOrderRepo = inpatientLongTermOrderRepo;
+            this._inpatientSTATOrderRepo = inpatientSTATOrderRepo;
+            this._xyjyjcfileuploadRepo = xyjyjcfileuploadRepo;
             this._OrderExecutionDmnService = OrderExecutionDmnService;
             var wnesV = _sysConfigRepo.GetValueByCode("wordsNeedExecuteSwitch", OrganizeId);
             if (string.IsNullOrWhiteSpace(wnesV)) wnes = false;
@@ -71,18 +89,18 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             isRehabDoctor = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "RehabDoctor");
             medicalInsurance = _sysConfigRepo.GetValueByCode("medicalInsurance", OrganizeId);
             iskfyzjf = _sysConfigRepo.GetValueByCode("iskfyzjf", OrganizeId);
-            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//欠费医嘱开立、执行开关
+            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//欠费医嘱开立、Thực hiện开关
         }
-        #region 医嘱执行页面
+        #region Y lệnhThực hiệnTrang
         /// <summary>
-        /// 获取待执行医嘱列表
+        /// 获取待Thực hiện医嘱列表
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
         /// <param name="organizeId"></param>
         /// <param name="zxsj"></param>
         /// <returns></returns>
-        public ActionResult GetGridJson(Pagination pagination, string patList, string organizeId, string zxsj)
+        public IActionResult GetGridJson(Pagination pagination, string patList, string organizeId, string zxsj)
         {
             IList<OrderExecutionVO> rowData = new List<OrderExecutionVO>();
             if (!string.IsNullOrWhiteSpace(patList))
@@ -118,22 +136,22 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         // GET: NurseManage/OrderExecution
-        public ActionResult Index()
+        public override IActionResult Index()
         {
             return View();
         }
-        public ActionResult BindingFeeForm()
+        public IActionResult BindingFeeForm()
         {
             ViewBag.openWzhckc = _sysConfigRepo.GetValueByCode("openWzhckc", OrganizeId);//耗材是否启用库存逻辑
             return View();
         }
         /// <summary>
-        /// 获取病区患者待执行医嘱树
+        /// 获取病区患者待Thực hiện医嘱树
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult GetPatWardTree(string aa, DateTime zxsj, string keyword)
+        public IActionResult GetPatWardTree(string aa, DateTime zxsj, string keyword)
         {
             var staffId = UserIdentity.StaffId;
             var wardTree = _OrderExecutionDmnService.GetWardTree(staffId);
@@ -154,12 +172,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.OrderBy(p => p.BedNo);
                 foreach (var itempat in NewPatInfo)
                 { 
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     var treepat = new TreeViewModel
                     {
                         id = itempat.zyh,
                         //床号 + 姓名(住院天数)+住院号 + 年龄 +性别
-                        text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh + "-" + itempat.nl + "岁-" + gender,
+                        text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender,
                         value = itempat.zyh,
                         parentId = item.bqCode,
                         isexpand = false,
@@ -196,14 +214,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region 执行当前
+        #region Thực hiệnHiện tại
         /// <summary>
-        /// 执行当前医嘱
+        /// Thực hiện当前医嘱
         /// </summary>
         /// <param name="orderList">yzid,yzxh,zyh,yzlx</param>
-        /// <param name="Vzxsj">执行时间</param>
+        /// <param name="Vzxsj">Thực hiện时间</param>
         /// <returns></returns>
-        public ActionResult submitOrderExecutionList(string patlist, IList<ApiResponseVO> orderList, DateTime Vzxsj)
+        public IActionResult submitOrderExecutionList(string patlist, IList<ApiResponseVO> orderList, DateTime Vzxsj)
         {
             Validatepatryrq(patlist, Vzxsj);
             //调用接口返回
@@ -218,14 +236,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 构造并调用接口
         /// </summary>
         /// <param name="orderListAll">Apilist</param>
-        /// <param name="Vzxsj">执行时间</param>
+        /// <param name="Vzxsj">Thực hiện时间</param>
         /// <returns></returns>
         public string doOrderExecution(IList<ApiResponseVO> orderListAll, DateTime Vzxsj, int? yzxz = null)
         {
             try
             {
                 var user = UserIdentity;
-                //可以执行的医嘱
+                //可以Thực hiện的医嘱
                 var isOkOrderExecutionresult = _OrderExecutionDmnService.IsOKOrderExecution(orderListAll, Vzxsj,this.OrganizeId, UserIdentity.rygh);
                 if (isOkOrderExecutionresult.Split('|')[0] != "T") return isOkOrderExecutionresult;
                 //药品医嘱(推送药房)
@@ -236,7 +254,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 //不计费医嘱、科室备药医嘱 
                 IList<ApiResponseVO> nofeeorderYpList = orderListAll.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.Yp) || a.yzlx == Convert.ToInt32(EnumYzlx.Cydy) || a.yzlx == Convert.ToInt32(EnumYzlx.zcy))
                 && (a.isjf == EnumSF.f.GetDescription() || a.yply == EnumYply.ksby.GetDescription())).ToList();
-                //领药序号
+                //领药Số thứ tự
                 lyxh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("fyqqk_lyxh", OrganizeId);
 
                 if (orderYpList.Count > 0)
@@ -257,10 +275,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                         if (successDoOrder.Data != null && successDoOrder.IsSucceed && successDoOrder.Data.Count > 0)
                         {
                             string resultMsg = "";
-                            List<YzDetail> successDoOrderYp = Tools.Json.ToList<YzDetail>(successDoOrder.Data.ToString());
+                            List<YzDetail> successDoOrderYp = Newtouch.CIS.Compat.Tools.Json.ToList<YzDetail>(successDoOrder.Data.ToString());
                             if (successDoOrderYp.Count >= 30)
                             {
-                                AppLogger.Info("药房执行成功：" + successDoOrderYp.ToArray().ToJson());
+                                AppLogger.Info("Nhà thuốcThực hiệnthành công:" + successDoOrderYp.ToArray().ToJson());
                                 //防止截断 
                                 var zyhlist = successDoOrderYp.Select(p => p.zyh).Distinct();
                                 foreach (string zyh in zyhlist)
@@ -302,11 +320,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                         return resultMsg;
                     }
                 }
-                if (orderXmList.Count <= 0) return "T|执行成功";
-                //项目执行
+                if (orderXmList.Count <= 0) return "T|Thực hiệnthành công";
+                //项目Thực hiện
                 var xmMsg = wnes ? _OrderExecutionDmnService.OrderExecutionXmWithWzyz(user.rygh, orderXmList, lyxh, Vzxsj, this.OrganizeId, yzxz)
                     : _OrderExecutionDmnService.OrderExecutionXM(user, orderXmList, lyxh, Vzxsj, this.OrganizeId, medicalInsurance, yzxz);
-                return xmMsg.Split('|')[0] != "T" ? xmMsg : "T|执行成功";
+                return xmMsg.Split('|')[0] != "T" ? xmMsg : "T|Thực hiệnthành công";
 
             }
             catch (Exception ex)
@@ -316,15 +334,15 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region 执行临时、 长期、全部
+        #region Thực hiệnTạm thời, Dài hạn,Tất cả
         /// <summary>
-        /// 执行临时，长期，全部医嘱
+        /// Thực hiện临时，长期，全部医嘱
         /// </summary>
         /// <param name="patlist">住院号</param>
         /// <param name="yzxz">临时，长期，全部</param>
         /// <param name="Vzxsj"></param>
         /// <returns></returns>
-        public ActionResult submitOrderExecutionListbyPat(string patlist, int yzxz, DateTime Vzxsj)
+        public IActionResult submitOrderExecutionListbyPat(string patlist, int yzxz, DateTime Vzxsj)
         {
             List<ApiResponseVO> apiList = new List<ApiResponseVO>();
             Validatepatryrq(patlist, Vzxsj);
@@ -333,7 +351,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 if (isNurse && isRehabDoctor)
                 {
                     apiList = wnes ? _OrderExecutionDmnService.GetAllYZWithWzYz(OrganizeId, patlist, yzxz, Vzxsj) :
-                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//获取执行全部医嘱
+                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//获取Thực hiện全部医嘱
                 }
                 else if (isRehabDoctor)
                 {
@@ -342,13 +360,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 else if (isNurse)
                 {
                     apiList = wnes ? _OrderExecutionDmnService.GetAllYZWithWzYz(OrganizeId, patlist, yzxz, Vzxsj, IsRehabAuthtoNurse) :
-                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//获取执行全部医嘱
+                             _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj, IsRehabAuthtoNurse);//获取Thực hiện全部医嘱
                 }
             }
             else
             {
                 apiList = wnes ? _OrderExecutionDmnService.GetAllYZWithWzYz(OrganizeId, patlist, yzxz, Vzxsj) :
-                        _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj);//获取执行全部医嘱
+                        _OrderExecutionDmnService.GetAllYZ(patlist, yzxz, Vzxsj);//获取Thực hiện全部医嘱
             }
 
             //接口返回 list 
@@ -361,14 +379,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 执行医嘱时，验证入院日期+物资耗材库存判断
+        /// Thực hiện医嘱时，验证入院日期+物资耗材库存判断
         /// </summary>
         /// <param name="patlist"></param>
         public void Validatepatryrq(string patlist, DateTime Vzxsj)
         {
             if (string.IsNullOrWhiteSpace(patlist))
             {
-                throw new FailedException("缺少病人住院号");
+                throw new FailedException("Thiếu bệnh nhânSố nhập viện");
             }
             string[] patarr = patlist.Split(',');
             if (patarr != null && patarr.Count() > 0)
@@ -384,27 +402,27 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
                     if (parentity.Count() < 0)
                     {
-                        throw new FailedException("住院号为" + patarr[i] + "的病人缺少住院信息");
+                        throw new FailedException("Bệnh nhân có số nhập viện là" + patarr[i] + " thiếu thông tin nhập viện");
                     }
                     if (parentity.Count() > 1)
                     {
-                        throw new FailedException("住院号为" + patarr[i] + "的病人存在多条住院信息");
+                        throw new FailedException("Bệnh nhân có số nhập viện là" + patarr[i] + " tồn tại nhiều dòng thông tin nhập viện");
                     }
 
                     if (DateTimeManger.DateDiff(DateInterval.Day, DateTime.Parse(parentity[0].ryrq.ToShortDateString()), DateTime.Parse(Vzxsj.ToShortDateString())) < 0)
                     {
-                        throw new FailedException("住院号" + patarr[i] + "的病人入院日期为" + parentity[0].ryrq.ToShortDateString() + "。无法在此之前执行医嘱，请核实");
+                        throw new FailedException("Bệnh nhân có số nhập viện " + patarr[i] + " có ngày nhập viện là " + parentity[0].ryrq.ToShortDateString() + ". Không thể thực hiện y lệnh trước thời điểm này, vui lòng kiểm tra");
                     }
                 }
             }
         }
         #endregion
 
-        #region pacs 接口
-        public ActionResult pushApplicationform(IList<ApiResponseVO> orderList)
+        #region pacs Giao diện
+        public IActionResult pushApplicationform(IList<ApiResponseVO> orderList)
         {
 
-            var uri = ConfigurationHelper.GetAppConfigValue("pacsUrl");
+            var uri = Newtouch.CIS.Compat.AppConfig.Get("pacsUrl");
             List<CheckApplicationfromDTO> datalist = new List<CheckApplicationfromDTO>();
             foreach (var item in orderList)
             {
@@ -421,12 +439,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             var url = uri + "URISService/services/interface/requestorder";
             if (datalist == null)
             {
-                return Success("无数据");
+                return Success("Không có dữ liệu");
             }
             var msagss = "";
             foreach (var data in datalist)
             {
-                string datajson = Tools.Json.ToJson(data);
+                string datajson = Newtouch.CIS.Compat.Tools.Json.ToJson(data);
                 try
                 {
                     System.Net.HttpWebRequest request = null;
@@ -439,7 +457,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     request.ContentType = "application/json";
                     request.CookieContainer = null;//获取验证码时候获取到的cookie会附加在这个容器里面
                     request.AllowAutoRedirect = true;
-                    request.KeepAlive = true;//建立持久性连接
+                    request.KeepAlive = true;//建立持久性Liên kết
                     //request.ContentLength = cs.Length;
                     request.Host = "192.168.0.101";
                     request.UserAgent = "PostmanRuntime/7.29.2";
@@ -458,21 +476,21 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                         outputText = redStm.ReadToEnd();
                     }
 
-                    var apiresp = JavaScriptJsonSerializerHelper.Deserialize<RefJson>(outputText);
+                    var apiresp = Newtouch.CIS.Compat.Tools.Json.ToObject<RefJson>(outputText);
 
-                    AppLogger.Info(string.Format("Pacs检查申请单入参：{0}，出参结果：{1}", datajson, outputText));
+                    AppLogger.Info(string.Format("Tham số vào phiếu kiểm tra Pacs: {0}, Kết quả ra: {1}", datajson, outputText));
 
                     if (apiresp == null || apiresp.status == "Failure")
                     {
                         msagss = apiresp.errorCode;
-                        AppLogger.Info(string.Format("Pacs检查申请单入参：{0}，出参结果：{1}", datajson, outputText));
+                        AppLogger.Info(string.Format("Tham số vào phiếu kiểm tra Pacs: {0}, Kết quả ra: {1}", datajson, outputText));
                     }
 
                 }
                 catch (Exception e)
                 {
 
-                    return Success("失败", e.Message);
+                    return Success("thất bại", e.Message);
                 }
             }
 
@@ -482,21 +500,21 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region 医技执行
-        public ActionResult MedicalSkillExecution()
+        #region 医技Thực hiện
+        public IActionResult MedicalSkillExecution()
         {
             return View();
         }
-        public ActionResult MedicalSkillQuery()
+        public IActionResult MedicalSkillQuery()
         {
             return View();
         }
-        public ActionResult ApplyFormUploadForm()
+        public IActionResult ApplyFormUploadForm()
         {
             return View();
         }
         /// <summary>
-        /// 医技科室待执行申请单
+        /// 医技科室待Thực hiện申请单
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -507,7 +525,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="zxzt"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetJyjcExecGridJson(Pagination pagination, DateTime kssj, DateTime jssj, string fylx, string hzlx,
+        public IActionResult GetJyjcExecGridJson(Pagination pagination, DateTime kssj, DateTime jssj, string fylx, string hzlx,
             string sqdlx, string zxzt, string keyword = null)
         {
             var data = new
@@ -520,29 +538,29 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 批量执行
+        /// Thực hiện hàng loạt
         /// </summary>
         /// <param name="jyjclist"></param>
         /// <returns></returns>
-        public ActionResult jyjcExec(List<jyjcExecReq> jyjclist)
+        public IActionResult jyjcExec(List<jyjcExecReq> jyjclist)
         {
             _doctorserviceDmnService.jyjcExec(jyjclist, OrganizeId, UserIdentity.rygh);
             _doctorserviceDmnService.UpdatejyjcExecIsjf(jyjclist.Select(m => m.sqdh).ToList(), OrganizeId, UserIdentity.rygh,"1");
             return Success();
         }
         /// <summary>
-        /// 取消执行
+        /// 取消Thực hiện
         /// </summary>
         /// <param name="jyjclist"></param>
         /// <returns></returns>
-        public ActionResult CancaljyjcExec(List<string> jyjclist)
+        public IActionResult CancaljyjcExec(List<string> jyjclist)
         {
             _doctorserviceDmnService.CancaljyjcExec(jyjclist, OrganizeId, UserIdentity.rygh);
             _doctorserviceDmnService.UpdatejyjcExecIsjf(jyjclist, OrganizeId, UserIdentity.rygh, "0");
             return Success();
         }
         /// <summary>
-        /// 执行记录查询
+        /// Thực hiện记录查询
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -552,7 +570,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="sqdlx"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetJyjcExecRecordJson(Pagination pagination, DateTime kssj, DateTime jssj, string fylx, string hzlx,
+        public IActionResult GetJyjcExecRecordJson(Pagination pagination, DateTime kssj, DateTime jssj, string fylx, string hzlx,
            string sqdlx, string keyword = null)
         {
             var data = new
@@ -569,7 +587,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public ActionResult ApplyFormUpload(FileUploadModel model)
+        public IActionResult ApplyFormUpload(FileUploadModel model)
         {
             var uploadedFiles = new List<UploadedFile>();
             var errorMessages = new List<string>();
@@ -580,12 +598,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 {
                     foreach (var file in model.Files)
                     {
-                        if (file != null && file.ContentLength > 0)
+                        if (file != null && file.Length > 0)
                         {
                             // 验证文件大小
-                            if (file.ContentLength > MaxFileSize)
+                            if (file.Length > MaxFileSize)
                             {
-                                errorMessages.Add($"{file.FileName} 文件过大，最大允许10MB");
+                                errorMessages.Add($"{file.FileName} Tập tin quá lớn, cho phép tối đa 10MB");
                                 continue;
                             }
 
@@ -594,7 +612,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                             if (!AllowedImageExtensions.Contains(fileExtension) &&
                                 !AllowedPdfExtensions.Contains(fileExtension))
                             {
-                                errorMessages.Add($"{file.FileName} 文件类型不支持，仅支持图片和PDF格式");
+                                errorMessages.Add($"{file.FileName} Loại tập tin không hỗ trợ, chỉ hỗ trợ hình ảnh và định dạng PDF");
                                 continue;
                             }
 
@@ -603,19 +621,19 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                                 // 生成唯一文件名
                                 var fileName = file.FileName;
                                 var fileUrl = "~/ReportUploads/" + DateTime.Now.ToString("yyyyMMdd") + "/" + model.sqdh+"/";
-                                var path = Path.Combine(Server.MapPath("~/ReportUploads/"+ DateTime.Now.ToString("yyyyMMdd") + "/"+model.sqdh), fileName);
+                                var path = Path.Combine(WebPath.MapPath("~/ReportUploads/"+ DateTime.Now.ToString("yyyyMMdd") + "/"+model.sqdh), fileName);
                                 // 确保上传目录存在
                                 Directory.CreateDirectory(Path.GetDirectoryName(path));
 
                                 // 保存文件
-                                file.SaveAs(path);
+                                using (var fs = System.IO.File.Create(path)) { file.CopyTo(fs); }
 
                                 entityLists.Add(new XtjyjcFileUploadEntity
                                 {
                                     OrganizeId = this.OrganizeId,
                                     Sqdh = model.sqdh,
                                     FileName= fileName.Split('.')[0],
-                                    FileSize= file.ContentLength,
+                                    FileSize= (int)file.Length,
                                     FileType = fileExtension,
                                     ContentType = file.ContentType,
                                     FileUrl = fileUrl
@@ -623,7 +641,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                             }
                             catch (Exception ex)
                             {
-                                errorMessages.Add($"{file.FileName} 上传失败: {ex.Message}");
+                                errorMessages.Add($"{file.FileName} Tải lênthất bại: {ex.Message}");
                             }
                         }
                     }
@@ -654,7 +672,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="reportId"></param>
         /// <returns></returns>
-        public ActionResult DeleteReprot(string reportId)
+        public IActionResult DeleteReprot(string reportId)
         {
             _xyjyjcfileuploadRepo.DeleteForm(reportId);
             return Success();
@@ -664,17 +682,17 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public ActionResult Download(string fileName)
+        public IActionResult Download(string fileName)
         {
-            //var path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
-            var path = Server.MapPath(fileName);
+            //var path = Path.Combine(Server.WebPath.MapPath("~/Uploads"), fileName);
+            var path = WebPath.MapPath(fileName);
             if (System.IO.File.Exists(path))
             {
                 var fileBytes = System.IO.File.ReadAllBytes(path);
                 var contentType = GetContentType(fileName);
                 return File(fileBytes, contentType, fileName);
             }
-            return HttpNotFound();
+            return NotFound();
         }
 
         private string GetContentType(string fileName)
@@ -717,12 +735,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region 附属医嘱
+        #region Y lệnh phụ
         /// <summary>
         /// 保存操作
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddData(string zyh, string yzh, string zh, List<YzbindingfeeVo> ItemFeeVO, string yzId)
+        public IActionResult AddData(string zyh, string yzh, string zh, List<YzbindingfeeVo> ItemFeeVO, string yzId)
         {
             try
             {
@@ -772,19 +790,19 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             {
                 return Success(ex.Message.ToString());
             }
-            return Success("保存成功！");
+            return Success("Lưu thành công!");
         }
-        public ActionResult GetbindingfeeData(string zyh, string yzh, string zh)
+        public IActionResult GetbindingfeeData(string zyh, string yzh, string zh)
         {
             var bindinglist = _medicalAdviceBindingFeeRepo.IQueryable().Where(p => p.zyh == zyh && p.OrganizeId == OrganizeId && p.yzh == yzh && p.zt == "1").ToList();
             return Content(bindinglist.ToJson());
         }
-        public ActionResult GetlsorcqyzData(string zyh, string yzid)
+        public IActionResult GetlsorcqyzData(string zyh, string yzid)
         {
             var data = _doctorserviceDmnService.GetlsorcqyzData(zyh, yzid, this.OrganizeId);
             return Content(data.ToJson());
         }
-        public ActionResult DeleteBind(string zyh, string yzid, string yzxz)
+        public IActionResult DeleteBind(string zyh, string yzid, string yzxz)
         {
             var data = _doctorserviceDmnService.DeleteBind(zyh, yzid, yzxz, this.OrganizeId);
             return Success(data);

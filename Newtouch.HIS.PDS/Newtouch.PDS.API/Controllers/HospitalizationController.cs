@@ -1,34 +1,82 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtouch.HIS.Domain.Entity.V;
 using Newtouch.PDS.Requset;
 using Newtouch.PDS.Requset.Hospitalizatiion;
-using System.Data.SqlClient;
-using System.Web.Http;
-using Newtouch.HIS.Domain.Entity.V;
+using Newtonsoft.Json;
+using SqlSugar;
 
 namespace Newtouch.PDS.API.Controllers
 {
-    [RoutePrefix("api/Hospitalization")]
-    public class HospitalizationController : ApiController
+    /// <summary>
+    /// Port của api/Hospitalization/ZYTYInterface (giao diện trả thuốc nội trú).
+    ///
+    /// KHÁC BIỆT CÓ CHỦ ĐÍCH SO VỚI CÁC CONTROLLER ENVELOPE KHÁC:
+    /// - Controller gốc KHÔNG kế thừa ApiControllerBase mà là ApiController thuần: không
+    ///   kiểm tra token, không envelope code/sub_code — trả thẳng ActResult. Bản port giữ
+    ///   nguyên: không [ApiController] (để body null vẫn vào action và trả ActResult
+    ///   ValidationFailure như gốc, thay vì HTTP 400 của [ApiController]), serialize
+    ///   ActResult bằng Newtonsoft (indent + yyyy-MM-dd HH:mm:ss) như formatter gốc.
+    /// - SQL gốc dùng Tools.DB.DbHelper (EF6-era helper, không có trong bản port) nên bản
+    ///   này chạy cùng câu SQL qua SqlSugar Ado với đúng tên bảng 3 phần
+    ///   (NewtouchHIS_PDS.dbo.zy_ypyzxx, NewtouchHIS_Base.dbo.V_C_xt_yp) và cùng tham số.
+    /// - Thông điệp lỗi gốc là tiếng Trung trong response trả về cho client — đã dịch sang
+    ///   tiếng Việt (logic, mã lỗi, điều kiện so sánh giữ nguyên).
+    /// - QUIRK GỐC ĐƯỢC GIỮ NGUYÊN (đừng "sửa" nếu không hiểu hệ quả): sau vòng lặp,
+    ///   ResultCode luôn bị gán AllFailure kể cả khi mọi dòng đều thành công (chỉ có
+    ///   IsSucceed phân biệt thành công/thất bại). Client cũ có thể đang dựa vào hành vi
+    ///   này nên bản port tái tạo đúng như code gốc.
+    /// - Theo chính sách no-write, endpoint này CHỈ biên dịch và nối dây — KHÔNG gọi thử
+    ///   live trên DB demo vì nhánh thành công chạy UPDATE thật (sqtybz = 1).
+    /// </summary>
+    [Route("api/Hospitalization")]
+    public class HospitalizationController : ControllerBase
     {
-        /// <summary>
-        /// 住院退药接口
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("ZYTYInterface")]
-        public ActResult ZYTYInterface(List<DrugRerurnRequest> request)
+        private readonly IConfiguration _config;
+
+        public HospitalizationController(IConfiguration config)
         {
-            ActResult Res = new ActResult();
+            _config = config;
+        }
+
+        private SqlSugarClient NewDb()
+        {
+            var template = _config["BusinessDB:DefaultConn"];
+            string conn;
+            try { conn = string.Format(template, "NewtouchHIS_PDS"); }
+            catch { conn = template; }
+            return new SqlSugarClient(new ConnectionConfig
+            {
+                ConnectionString = conn,
+                DbType = DbType.SqlServer,
+                IsAutoCloseConnection = true,
+            });
+        }
+
+        private ContentResult JsonContent(object obj)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                DateFormatString = "yyyy-MM-dd HH:mm:ss",
+            };
+            return Content(JsonConvert.SerializeObject(obj, settings), "application/json");
+        }
+
+        [HttpPost("ZYTYInterface")]
+        public IActionResult ZYTYInterface([FromBody] List<DrugRerurnRequest> request)
+        {
+            var res = new ActResult();
             if (request == null || request.Count <= 0)
             {
-                Res.IsSucceed = false;
-                Res.ResultMsg = "请求数据为空";
-                Res.ResultCode = (int)ResultCode.ValidationFailure;
-                return Res;
+                res.IsSucceed = false;
+                res.ResultMsg = "Dữ liệu yêu cầu trống";
+                res.ResultCode = (int)ResultCode.ValidationFailure;
+                return JsonContent(res);
             }
-            List<DrugReturnResult> resultList = new List<DrugReturnResult>();
+            var resultList = new List<DrugReturnResult>();
             foreach (var par in request)
             {
                 var result = new DrugReturnResult();
@@ -40,7 +88,7 @@ namespace Newtouch.PDS.API.Controllers
                 {
                     result.IsSucceed = false;
                     result.ErrorCode = (int)ErrorCode.Error1;
-                    result.ErrorMsg = "医嘱号不能为空";
+                    result.ErrorMsg = "Số y lệnh không được để trống";
                     resultList.Add(result);
                     continue;
                 }
@@ -48,7 +96,7 @@ namespace Newtouch.PDS.API.Controllers
                 {
                     result.IsSucceed = false;
                     result.ErrorCode = (int)ErrorCode.Error2;
-                    result.ErrorMsg = "药品编码不能为空";
+                    result.ErrorMsg = "Mã thuốc không được để trống";
                     resultList.Add(result);
                     continue;
                 }
@@ -56,7 +104,7 @@ namespace Newtouch.PDS.API.Controllers
                 {
                     result.IsSucceed = false;
                     result.ErrorCode = (int)ErrorCode.Error7;
-                    result.ErrorMsg = "退药申请人不能为空";
+                    result.ErrorMsg = "Người yêu cầu trả thuốc không được để trống";
                     resultList.Add(result);
                     continue;
                 }
@@ -64,7 +112,7 @@ namespace Newtouch.PDS.API.Controllers
                 {
                     result.IsSucceed = false;
                     result.ErrorCode = (int)ErrorCode.Error8;
-                    result.ErrorMsg = "执行日期不能为空";
+                    result.ErrorMsg = "Ngày thực hiện không được để trống";
                     resultList.Add(result);
                     continue;
                 }
@@ -79,35 +127,37 @@ namespace Newtouch.PDS.API.Controllers
                 }
                 else
                 {
-                    string strSql = string.Format("update NewtouchHIS_PDS.dbo.zy_ypyzxx set sqtybz = @sqtybz where zxId = @zxId and ypCode = @ypCode and zxrq = @zxrq");
-                    var parms = new List<SqlParameter>();
-                    parms.Add(new SqlParameter("@sqtybz", "1"));
-                    parms.Add(new SqlParameter("@zxId", par.yzId));
-                    parms.Add(new SqlParameter("@ypCode", par.ypCode));
-                    parms.Add(new SqlParameter("@zxrq", par.zxrq));
-                    int count = Tools.DB.DbHelper.ExcuteSQL(strSql, parms.ToArray());
+                    const string strSql = "update NewtouchHIS_PDS.dbo.zy_ypyzxx set sqtybz = @sqtybz where zxId = @zxId and ypCode = @ypCode and zxrq = @zxrq";
+                    int count;
+                    using (var db = NewDb())
+                    {
+                        count = db.Ado.ExecuteCommand(strSql,
+                            new SugarParameter("@sqtybz", "1"),
+                            new SugarParameter("@zxId", par.yzId),
+                            new SugarParameter("@ypCode", par.ypCode),
+                            new SugarParameter("@zxrq", par.zxrq));
+                    }
                     if (count <= 0)
                     {
                         result.IsSucceed = false;
-                        result.ErrorMsg = "退药失败";
+                        result.ErrorMsg = "Trả thuốc thất bại";
                         resultList.Add(result);
                     }
                 }
             }
             if (resultList.Count > 0)
             {
-                Res.IsSucceed = false;
+                res.IsSucceed = false;
             }
-            Res.ResultCode = (int)ResultCode.AllFailure;
-            Res.Data = resultList;
-            return Res;
+            // QUIRK GỐC: luôn gán AllFailure kể cả khi mọi dòng thành công (xem ghi chú class).
+            res.ResultCode = (int)ResultCode.AllFailure;
+            res.Data = resultList;
+            return JsonContent(res);
         }
 
         /// <summary>
-        /// 退药前判断发药记录是否符合退药条件
+        /// Trước khi trả thuốc, phán đoán xem bản ghi phát thuốc có phù hợp điều kiện trả thuốc hay không.
         /// </summary>
-        /// <param name="zxId"></param>
-        /// <returns></returns>
         public int IsCouldReturn(string zxId, string ypCode, DateTime? zxrq, out string error)
         {
             const string strSql = @"
@@ -118,21 +168,20 @@ where a.zxId = @zxId
 and a.ypCode = @ypCode 
 and a.zxrq =@zxrq ";
 
-            var param = new Dictionary<string, object>
-            {
-                {"zxId", zxId},
-                { "ypCode", ypCode},
-                { "zxrq", zxrq}
-            };
             IList<YzxxVEntity> obj;
-
             try
             {
-                obj = Tools.DB.DbHelper.ExecuteSqlQueryList<YzxxVEntity>(strSql, param);
+                using (var db = NewDb())
+                {
+                    obj = db.Ado.SqlQuery<YzxxVEntity>(strSql,
+                        new SugarParameter("@zxId", zxId),
+                        new SugarParameter("@ypCode", ypCode),
+                        new SugarParameter("@zxrq", zxrq));
+                }
             }
             catch
             {
-                error = "无法查询该医嘱信息";
+                error = "Không thể tra cứu thông tin y lệnh";
                 return (int)ErrorCode.Error3;
             }
 
@@ -144,16 +193,16 @@ and a.zxrq =@zxrq ";
                     switch (item.fybz)
                     {
                         case "1":
-                            error = ypmc + "未发药,禁止退药";
+                            error = ypmc + " chưa phát thuốc, không được trả thuốc";
                             return (int)ErrorCode.Error4;
                         case "3":
-                            error = ypmc + "药品已经被退过了";
+                            error = ypmc + " đã được trả thuốc rồi";
                             return (int)ErrorCode.Error5;
                         default:
                             {
                                 if (!"0".Equals(item.sqtybz.ToString()))
                                 {
-                                    error = ypmc + "已经申请退药,禁止重复操作";
+                                    error = ypmc + " đã yêu cầu trả thuốc, không được thao tác trùng lặp";
                                     return (int)ErrorCode.Error6;
                                 }
 
@@ -165,7 +214,7 @@ and a.zxrq =@zxrq ";
                 return (int)ErrorCode.Success;
             }
 
-            error = "无法查询该医嘱信息";
+            error = "Không thể tra cứu thông tin y lệnh";
             return (int)ErrorCode.Error3;
         }
     }

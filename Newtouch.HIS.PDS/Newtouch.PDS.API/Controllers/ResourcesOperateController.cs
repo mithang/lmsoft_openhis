@@ -1,187 +1,129 @@
-﻿using System;
-using System.Net.Http;
-using System.Web.Http;
-using Autofac;
-using Newtouch.HIS.API.Common;
-using Newtouch.HIS.API.Common.Filter;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset.ResourcesOperate;
 
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 资源操作
+    /// Port của api/ResourcesOperate (thao tác tài nguyên: đặt trước / hủy / commit...).
+    /// SỬA BUG GỐC: _resourcesOperateApp ở bản Framework được khai báo nhưng không bao giờ
+    /// được gán (ctor chỉ nhận IComponentContext) — mọi action gốc đều sẽ NullReference.
+    /// Bản Core inject IResourcesOperateApp qua DI nên các action chạy thật.
+    /// OutpatientPartReturnBeforeDispensingMedicine mang [IgnoreTokenDecrypt] như gốc;
+    /// ở bản port toàn bộ token đều dùng thô nên attribute chỉ còn ý nghĩa ghi chú.
     /// </summary>
-    [RoutePrefix("api/ResourcesOperate")]
-    public class ResourcesOperateController : ApiControllerBase<ResourcesOperateController>
+    [ApiController]
+    [Route("api/ResourcesOperate")]
+    public class ResourcesOperateController : ApiControllerBase
     {
         private readonly IResourcesOperateApp _resourcesOperateApp;
 
-        public ResourcesOperateController(IComponentContext com) : base(com)
+        public ResourcesOperateController(TokenStore tokenStore, IResourcesOperateApp resourcesOperateApp)
+            : base(tokenStore)
         {
+            _resourcesOperateApp = resourcesOperateApp;
         }
 
-        /// <summary>
-        /// 资源预定（冻结库存）
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientBook")]
-        public HttpResponseMessage OutpatientBook(OutpatientBookRequestDTO par)
+        [HttpPost("OutpatientBook")]
+        public IActionResult OutpatientBook([FromBody] OutpatientBookRequestDTO par)
         {
-            Action<OutpatientBookRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientBookRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientBook(par);
+                resp.data = _resourcesOperateApp.OutpatientBook(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, par);
-            return CreateResponse(result);
+            }, par);
+            return CreateResponse(par, response);
         }
 
-        /// <summary>
-        /// 资源预定修改
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientBookModify")]
-        public HttpResponseMessage OutpatientBookModify(OutpatientBookModifyRequestDTO par)
+        [HttpPost("OutpatientBookModify")]
+        public IActionResult OutpatientBookModify([FromBody] OutpatientBookModifyRequestDTO par)
         {
-            Action<OutpatientBookModifyRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientBookModifyRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientBookModify(par);
+                resp.data = _resourcesOperateApp.OutpatientBookModify(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, par);
-            return CreateResponse(result);
+            }, par);
+            return CreateResponse(par, response);
         }
 
-        /// <summary>
-        /// 取消部分预定
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientCancelPartBook")]
-        public HttpResponseMessage OutpatientCancelPartBook(OutpatientCancelPartBookRequestDTO request)
+        [HttpPost("OutpatientCancelPartBook")]
+        public IActionResult OutpatientCancelPartBook([FromBody] OutpatientCancelPartBookRequestDTO request)
         {
-            Action<OutpatientCancelPartBookRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientCancelPartBookRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientCancelBook(request);
+                resp.data = _resourcesOperateApp.OutpatientCancelBook(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
 
-        /// <summary>
-        /// 取消指定处方全部预定
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientCancelAllBook")]
-        public HttpResponseMessage OutpatientCancelAllBook(OutpatientCancelAllBookRequestDTO request)
+        [HttpPost("OutpatientCancelAllBook")]
+        public IActionResult OutpatientCancelAllBook([FromBody] OutpatientCancelAllBookRequestDTO request)
         {
-            Action<OutpatientCancelAllBookRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientCancelAllBookRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientCancelBook(request);
+                resp.data = _resourcesOperateApp.OutpatientCancelBook(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
 
-        /// <summary>
-        /// HIS门诊退费后 冻结库存返还
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientCancelDjYpReturn")]
-        public HttpResponseMessage OutpatientCancelDjYpReturn(OutpatientCancelAllBookRequestDTO request)
+        [HttpPost("OutpatientCancelDjYpReturn")]
+        public IActionResult OutpatientCancelDjYpReturn([FromBody] OutpatientCancelAllBookRequestDTO request)
         {
-            Action<OutpatientCancelAllBookRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientCancelAllBookRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientCancelDjYpReturn(request);
+                resp.data = _resourcesOperateApp.OutpatientCancelDjYpReturn(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
 
-        /// <summary>
-        /// 门诊确认资源（Commit）
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientCommit")]
-        public HttpResponseMessage OutpatientCommit(OutpatientCommitRequestDTO request)
+        [HttpPost("OutpatientCommit")]
+        public IActionResult OutpatientCommit([FromBody] OutpatientCommitRequestDTO request)
         {
-            Action<OutpatientCommitRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientCommitRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientCommit(request);
+                resp.data = _resourcesOperateApp.OutpatientCommit(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
 
-        /// <summary>
-        /// (未发药前)部分退药
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientPartReturnBeforeDispensingMedicine")]
+        [HttpPost("OutpatientPartReturnBeforeDispensingMedicine")]
         [IgnoreTokenDecrypt]
-        public HttpResponseMessage OutpatientPartReturnBeforeDispensingMedicine(OutpatientPartReturnBeforeDispensingMedicineRequestDTO request)
+        public IActionResult OutpatientPartReturnBeforeDispensingMedicine([FromBody] OutpatientPartReturnBeforeDispensingMedicineRequestDTO request)
         {
-            Action<OutpatientPartReturnBeforeDispensingMedicineRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientPartReturnBeforeDispensingMedicineRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientPartReturnBeforeDispensingMedicine(request);
+                resp.data = _resourcesOperateApp.OutpatientPartReturnBeforeDispensingMedicine(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
 
-        /// <summary>
-        /// 门诊取消排药
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("OutpatientCancelArrangement")]
-        public HttpResponseMessage OutpatientCancelArrangement(OutpatientCancelArrangementRequestDTO request)
+        [HttpPost("OutpatientCancelArrangement")]
+        public IActionResult OutpatientCancelArrangement([FromBody] OutpatientCancelArrangementRequestDTO request)
         {
-            Action<OutpatientCancelArrangementRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<OutpatientCancelArrangementRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.OutpatientCancelArrangement(request);
+                resp.data = _resourcesOperateApp.OutpatientCancelArrangement(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
 
-        /// <summary>
-        /// 住院退药
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("HospitalizatiionReturnDispensingMedicine")]
-        public HttpResponseMessage HospitalizatiionReturnDispensingMedicine(HospitalizatiionReturnDispensingMedicineRequestDTO request)
+        [HttpPost("HospitalizatiionReturnDispensingMedicine")]
+        public IActionResult HospitalizatiionReturnDispensingMedicine([FromBody] HospitalizatiionReturnDispensingMedicineRequestDTO request)
         {
-            Action<HospitalizatiionReturnDispensingMedicineRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<HospitalizatiionReturnDispensingMedicineRequestDTO, DefaultResponse>((req, resp) =>
             {
-                resp.data = _resourcesOperateApp.HospitalizatiionReturnDispensingMedicine(request);
+                resp.data = _resourcesOperateApp.HospitalizatiionReturnDispensingMedicine(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, request);
-            return CreateResponse(result);
+            }, request);
+            return CreateResponse(request, response);
         }
     }
 }

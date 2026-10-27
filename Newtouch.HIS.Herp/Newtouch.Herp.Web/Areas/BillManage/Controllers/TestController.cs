@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
+    // Mirrors the original, which inherited plain Controller (not the login
+    // base). Kept as-is; the view is a one-line stub in the source.
+    [Area("BillManage")]
     public class TestController : Controller
     {
         // GET: BillManage/Test
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }

@@ -1,44 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Autofac;
-using Newtouch.HIS.API.Common;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset;
 
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 门诊管理
+    /// Port của api/Outpatient (quản lý ngoại trú).
+    /// SỬA BUG GỐC: _patientBaseInfoApp ở bản Framework được khai báo nhưng không bao giờ
+    /// được gán (ctor chỉ nhận IComponentContext, không resolve field — cùng mẫu lỗi như
+    /// DefaultController của MRMS.API và BespeakRegisterApp của CIS) — gọi action gốc sẽ
+    /// NullReference. Bản Core inject IPatientBaseInfoApp qua DI nên action chạy thật.
     /// </summary>
-    [RoutePrefix("api/Outpatient")]
-    public class OutpatientController : ApiControllerBase<OutpatientController>
+    [ApiController]
+    [Route("api/Outpatient")]
+    public class OutpatientController : ApiControllerBase
     {
         private readonly IPatientBaseInfoApp _patientBaseInfoApp;
 
-        public OutpatientController(IComponentContext com) : base(com)
+        public OutpatientController(TokenStore tokenStore, IPatientBaseInfoApp patientBaseInfoApp)
+            : base(tokenStore)
         {
+            _patientBaseInfoApp = patientBaseInfoApp;
         }
 
-        /// <summary>
-        /// 更新门诊处方患者信息
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("SupplementPatientBaseInfo")]
-        public HttpResponseMessage SupplementPatientBaseInfo(SupplementPatientBaseInfoRequest par)
+        [HttpPost("SupplementPatientBaseInfo")]
+        public IActionResult SupplementPatientBaseInfo([FromBody] SupplementPatientBaseInfoRequest par)
         {
-            Action<SupplementPatientBaseInfoRequest, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<SupplementPatientBaseInfoRequest, DefaultResponse>((req, resp) =>
             {
-                resp.data = _patientBaseInfoApp.SupplementMzPatientBaseInfo(par);
+                resp.data = _patientBaseInfoApp.SupplementMzPatientBaseInfo(req);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            var result = CommonExecute(ac, par);
-            return CreateResponse(result);
+            }, par);
+            return CreateResponse(par, response);
         }
     }
 }

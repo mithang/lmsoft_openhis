@@ -1,0 +1,158 @@
+﻿
+@{
+	ViewBag.Title = "SimulateFormShyb2023";
+	Layout = "~/Views/Shared/_Form.cshtml";
+}
+@Html.Partial("_YibaoCommonView")
+
+<!-- Hiển thị BHYT Thượng Hải -->
+<div id="divCQYbFee" class="panel panel-default" style="margin-top:10px;margin-left:10px;margin-right: 10px;">
+	<div class="panel-heading navb-bg" style="height:13px;">
+		Thông tin phí
+	</div>
+	<div style="height:auto;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Tổng phí：</th><!--sử dụng-->
+                <td class="formValue">￥<label id="ZFY">0.00</label></td>
+                <th class="formTitle">Tổng thanh toán tiền mặt：</th>
+                <td class="formValue">￥<label id="XJZF">0.00</label></td>
+                <th class="formTitle">Tính phí tiền mặt BHYT：</th><!--sử dụng-->
+                <td class="formValue">￥<label id="YBJF">0.00</label></td>
+
+            </tr>
+            <tr>
+                <th class="formTitle">khôngTính phí tiền mặt BHYT：</th><!--Số tiền không có mã BHYT-->
+                <td class="formValue">￥<label id="ZFJF">0.00</label></td>
+                <th class="formTitle">Số thanh toán tài khoản năm nay：</th>
+                <td class="formValue">￥<label id="curaccountpay">0.00</label></td>
+                <th class="formTitle">Số thanh toán tài khoảncác năm trước：</th>
+                <td class="formValue">￥<label id="hisaccountpay">0.00</label></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số thanh toán tiền mặt đoạn tự trả：</th>
+                <td class="formValue">￥<label id="zfdxjzfs">0.00</label></td>
+                <th class="formTitle">Số thanh toáncác năm trước đoạn tự trả：</th>
+                <td class="formValue">￥<label id="zfdlnzhzfs">0.00</label></td>
+
+                <th class="formTitle">Số thanh toán tài khoản đoạnquỹ chung：</th>
+                <td class="formValue">￥<label id="tcdzhzfs">0.00</label></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số thanh toán tiền mặt đoạnquỹ chung：</th>
+                <td class="formValue">￥<label id="tcdxjzfs">0.00</label></td>
+                <th class="formTitle">Số thanh toánquỹ chung：</th>
+                <td class="formValue">￥<label id="tczfs">0.00</label></td>
+                <th class="formTitle">Số thanh toán tài khoản đoạnbổ sung：</th>
+                <td class="formValue">￥<label id="fjdzhzfs">0.00</label></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số thanh toán tiền mặt đoạnbổ sung：</th>
+                <td class="formValue">￥<label id="fjdxjzfs">0.00</label></td>
+                <th class="formTitle">Số thanh toánbổ sung：</th>
+                <td class="formValue">￥<label id="fjzfs">0.00</label></td>
+                <th class="formTitle">Số dư tài khoản năm nay：</th>
+                <td class="formValue">￥<label id="curaccountamt">0.00</label></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số dư tài khoảncác năm trước：</th>
+                <td class="formValue">￥<label id="hisaccountamt">0.00</label></td>
+                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnbổ sung：</th>
+                <td class="formValue">￥<label id="fjdgjzhzfs">0.00</label></td>
+                <th class="formTitle">đoạn khởi trảđồng chi trảThanh toán tài khoản：</th>
+                <td class="formValue">￥<label id="qfdgjzhzfs">0.00</label></td>
+                @*
+                <th class="formTitle">quyết toán BHYTtổng số phạm vi：</th>
+                <td class="formValue">￥<label id="ybjsfwfyze">0.00</label></td>
+                <th class="formTitle">khôngquyết toán BHYTtổng số phạm vi：</th>
+                <td class="formValue">￥<label id="fybjsfwfyze">0.00</label></td>*@
+
+            </tr>
+            <tr>
+                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnquỹ chung：</th>
+                <td class="formValue">￥<label id="tcdgjzhzfs">0.00</label></td>
+                <th class="formTitle">Số dư tài khoảnquyết toán trước：</th>
+                <td class="formValue">￥<label id="yjs">0.00</label></td>
+                @*
+                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạn tự phí：</th>
+                <td class="formValue">￥<label id="zfdgjzhzfs">0.00</label></td>*@
+
+            </tr>
+        </table>
+	</div>
+</div>
+@Html.Partial("_YibaoCommonView")
+
+
+
+<script type="text/javascript">
+    var ybjyFeeReturn;
+    var hisfyze = $.request("hisfyze");
+    var zhye = $.request("zhye");
+	$(function () {
+		init();
+	});
+
+    function init() {
+        debugger; 
+        ybjyFeeReturn = JSON.parse(sessionStorage.getItem('ybjyPreFeeReturn'));
+        ybjyFeeReturn = ybjyFeeReturn.xxnr;
+		if (!!ybjyFeeReturn) {
+		    var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
+		    var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYTSố tiền
+		    var yjs = 0.000;//Số dư tài khoản sautạm ứng
+		    //Số tiền thanh toán tiền mặt BHYT
+		    xjzfje = ovpraseFloat(ybjyFeeReturn.qfdxjzfs) + ovpraseFloat(ybjyFeeReturn.tcdxjzfs)
+                + ovpraseFloat(ybjyFeeReturn.fjdxjzfs);
+		    //khôngBHYTTiền mặtSố tiền
+		    zfxjzf = ovpraseFloat(hisfyze) -
+				ovpraseFloat(ybjyFeeReturn.ybjsfwfyze);
+		    //Tính thanh toán tiền mặt
+		    var calc_xjzf = ovpraseFloat(zfxjzf) +
+				ovpraseFloat(xjzfje) ;
+		    ybjyFeeReturn.calc_xjzf = calc_xjzf;
+
+		    orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
+		    xjzfys = orglxjzfys;    //Khi có chiết khấu thì sẽ không bằng
+
+		    yjs = calc_xjzf - zhye;//Tính số dư tài khoản sautạm ứng
+
+		    !!hisfyze && $('#ZFY').html(ovpraseFloat(hisfyze).toFixed(2));
+		    !!ybjyFeeReturn.calc_xjzf && $('#XJZF').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
+		    !!zfxjzf && $('#ZFJF').html(zfxjzf.toFixed(2));//khôngThanh toán tiền mặt BHYT
+		    !!xjzfje && $('#YBJF').html(xjzfje.toFixed(2));//Thanh toán tiền mặt BHYT
+
+		    !!ybjyFeeReturn.curaccountpay && $('#curaccountpay').html(ovpraseFloat(ybjyFeeReturn.curaccountpay).toFixed(2));
+		    !!ybjyFeeReturn.hisaccountpay && $('#hisaccountpay').html(ovpraseFloat(ybjyFeeReturn.hisaccountpay).toFixed(2));
+		    !!ybjyFeeReturn.zfdxjzfs && $('#zfdxjzfs').html(ovpraseFloat(ybjyFeeReturn.zfdxjzfs).toFixed(2));
+		    !!ybjyFeeReturn.zfdlnzhzfs && $('#zfdlnzhzfs').html(ovpraseFloat(ybjyFeeReturn.zfdlnzhzfs).toFixed(2));
+
+		    !!ybjyFeeReturn.tcdzhzfs && $('#tcdzhzfs').html(ovpraseFloat(ybjyFeeReturn.tcdzhzfs).toFixed(2));
+		    !!ybjyFeeReturn.tcdxjzfs && $('#tcdxjzfs').html((ovpraseFloat(ybjyFeeReturn.tcdxjzfs)));
+		    !!ybjyFeeReturn.tczfs && $('#tczfs').html(ovpraseFloat(ybjyFeeReturn.tczfs).toFixed(2));
+		    !!ybjyFeeReturn.fjdzhzfs && $('#fjdzhzfs').html(ovpraseFloat(ybjyFeeReturn.fjdzhzfs).toFixed(2));
+		    !!ybjyFeeReturn.fjdxjzfs && $('#fjdxjzfs').html(ovpraseFloat(ybjyFeeReturn.fjdxjzfs).toFixed(2));
+
+		    !!ybjyFeeReturn.fjzfs && $('#fjzfs').html(ovpraseFloat(ybjyFeeReturn.fjzfs).toFixed(2));
+
+		    !!ybjyFeeReturn.curaccountamt && $('#curaccountamt').html(ovpraseFloat(ybjyFeeReturn.curaccountamt).toFixed(2));
+		    !!ybjyFeeReturn.hisaccountamt && $('#hisaccountamt').html(ovpraseFloat(ybjyFeeReturn.hisaccountamt).toFixed(2));
+		    !!ybjyFeeReturn.ybjsfwfyze && $('#ybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.ybjsfwfyze).toFixed(2));
+		    !!ybjyFeeReturn.fybjsfwfyze && $('#fybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.fybjsfwfyze).toFixed(2));
+		    //Tài khoảnđồng chi trả
+		    !!ybjyFeeReturn.fjdgjzhzfs && $('#fjdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.fjdgjzhzfs).toFixed(2));
+		    //!!ybjyFeeReturn.zfdgjzhzfs && $('#zfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.zfdgjzhzfs).toFixed(2));
+		    !!ybjyFeeReturn.qfdgjzhzfs && $('#qfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.qfdgjzhzfs).toFixed(2));
+		    !!ybjyFeeReturn.tcdgjzhzfs && $('#tcdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.tcdgjzhzfs).toFixed(2));
+		}
+		else {
+			$.modalAlert("Hiển thị kết quảquyết toán trước bất thường，Vui lòng thử lại", "error");
+		}
+	}
+	function ovpraseFloat(val) {
+		if (!val) {
+			val = 0;
+		}
+		return parseFloat(val);
+	}
+</script>

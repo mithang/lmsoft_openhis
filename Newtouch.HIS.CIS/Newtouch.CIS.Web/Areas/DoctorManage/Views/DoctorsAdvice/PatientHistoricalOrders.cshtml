@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "PatientHistoricalOrders";
     Layout = "~/Views/Shared/_Form.cshtml";
@@ -27,20 +27,20 @@
             unwritten: false,
             rownumbers: true,
             colModel: [
-                { label: '住院号', name: 'zyh', width: 40, align: 'left' },
-                { label: '姓名', name: 'xm', width: 50, align: 'left' },
-                { label: '性别', name: 'xb', width: 30, align: 'left' },
-                { label: '入院日期', name: 'ryrq', width: 70, align: 'left' },
-                { label: '出院日期', name: 'cyrq', width: 70, align: 'left' },
-                { label: '入院诊断', name: 'ryzd', width: 120, align: 'left' },
-                { label: '出院诊断', name: 'cyzd', width: 120, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 40, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+                { label: 'Giới tính', name: 'xb', width: 30, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', width: 70, align: 'left' },
+                { label: 'Xuất việnNgày', name: 'cyrq', width: 70, align: 'left' },
+                { label: 'Chẩn đoán nhập viện', name: 'ryzd', width: 120, align: 'left' },
+                { label: 'Xuất việnChẩn đoán', name: 'cyzd', width: 120, align: 'left' },
             ],
             viewrecords: true,
             sortname: 'zh desc',
             ondblClickRow: function (rowid) {
                 var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
                 if (!(seleRowid)) {
-                    $.modalAlert("请选中一条信息", 'warning');
+                    $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                     return;
                 }
                 var keyValue = $("#gridList").jqGridRowValue().zyh;
@@ -57,7 +57,7 @@
             onSelectRow: function (rowid, status) {
                 var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
                 if (!(seleRowid)) {
-                    $.modalAlert("请选中一条信息", 'warning');
+                    $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                     return;
                 }
                 var keyValue = $("#gridList").jqGridRowValue().zyh;
@@ -93,7 +93,7 @@
 
     function submitForm() {
         if (returnzyh==""){
-            $.modalAlert("请选择历史病人信息进行复制", 'warning');
+            $.modalAlert("Vui lòng chọnLịch sửBệnh nhânThông tinTiến hànhSao chép", 'warning');
             return;
         }
        

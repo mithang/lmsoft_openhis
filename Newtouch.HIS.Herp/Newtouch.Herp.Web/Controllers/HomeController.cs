@@ -1,94 +1,93 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IRepository;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Extension;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.DTO.OutputDto;
 using Newtouch.Herp.Domain.Entity.VEntity;
 using Newtouch.Herp.Domain.IDomainServices;
+using Newtouch.Herp.Domain.IRepository;
 using Newtouch.Herp.Infrastructure;
-using Newtouch.Tools;
 
 namespace Newtouch.Herp.Web.Controllers
 {
     /// <summary>
-    /// 首页
+    /// Trang chủ Herp (bản Core). Index là dashboard (nội dung Default.cshtml
+    /// gốc, đã dịch): khối "cần xử lý" + biểu đồ thống kê nhập–xuất–tồn +
+    /// biểu đồ tròn nhập kho theo loại phiếu + dòng cảnh báo tồn kho/quá hạn.
+    /// Khung portal (nav/header/tab) của Index gốc KHÔNG port vì cổng SSO đã
+    /// đảm nhiệm portal; các liên kết khu vực của trang đích tối giản cũ được
+    /// giữ lại thành hàng điều hướng phía trên dashboard.
+    /// Kế thừa ControllerBase của Herp (có [HandlerLogin]) vì mọi tác vụ ở đây
+    /// đều cần session (kho hiện tại, tổ chức): bản gốc cũng chạy sau đăng nhập
+    /// trong portal.
     /// </summary>
-    public class HomeController : FrameworkBase.MultiOrg.Web.Controllers.HomeController
+    public class HomeController : Newtouch.Herp.Web.ControllerBase
     {
         private readonly IHomeApp _homeApp;
         private readonly IStorageManageDmnService _storageManageDmnService;
         private readonly ISysConfigRepo _sysConfigRepo;
 
-        /// <summary>
-        /// about
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult About()
+        public HomeController(IHomeApp homeApp, IStorageManageDmnService storageManageDmnService,
+            ISysConfigRepo sysConfigRepo)
+        {
+            _homeApp = homeApp;
+            _storageManageDmnService = storageManageDmnService;
+            _sysConfigRepo = sysConfigRepo;
+        }
+
+        public IActionResult Index()
         {
             return View();
         }
 
-        /// <summary>
-        /// 库房切换
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult KfChange()
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        /// <summary>Chuyển kho (trang chọn kho)</summary>
+        public IActionResult KfChange()
         {
             ViewBag.KfList = Constants.CurrentKf.kfList;
             return View();
         }
 
-        /// <summary>
-        /// 切换库房
-        /// </summary>
-        /// <param name="kfId">库房ID</param>
-        /// <param name="kfName">库房名称</param>
-        /// <param name="kfLeve">库房等级</param>
-        /// <returns></returns>
-        public ActionResult SwithKf(string kfId, string kfName, int kfLeve)
+        /// <summary>Chuyển kho hiện tại</summary>
+        public IActionResult SwithKf(string kfId, string kfName, int kfLeve)
         {
             var opr = Constants.CurrentKf;
             opr.currentKfId = kfId;
             opr.currentKfName = kfName;
             opr.currentKfLevel = kfLeve;
             Constants.SetCurrentKf(opr.userId, opr);
-            return Success("切换成功");
+            return Success("Chuyển kho thành công");
         }
 
-        #region 首页待办
+        #region Trang chủ: khối cần xử lý
 
-        /// <summary>
-        /// 获取待处理html
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>Lấy HTML khối "cần xử lý" của dashboard</summary>
         [HttpGet]
-        public ActionResult GetNeedDealDiv()
+        public IActionResult GetNeedDealDiv()
         {
             var result = _homeApp.AssembleNeedDealHtml();
             return Success("", result);
         }
 
-        /// <summary>
-        /// 获取带处理总数
-        /// </summary>
-        /// <returns></returns>
+        /// <summary>Lấy tổng số cần xử lý (đổ vào các thẻ dashboard)</summary>
         [HttpGet]
-        public ActionResult GetPendingCount()
+        public IActionResult GetPendingCount()
         {
             return Content(_homeApp.GetPendingCount().ToJson());
         }
 
         #endregion
 
-        #region 统计
+        #region Trang chủ: thống kê
 
-        /// <summary>
-        /// 进销存统计
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetPsiByKf()
+        /// <summary>Thống kê nhập–xuất–tồn theo tháng của kho hiện tại</summary>
+        public IActionResult GetPsiByKf()
         {
             var result = new MonthlySummaryDTO[3];
             result[0] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetCkCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
@@ -97,11 +96,8 @@ namespace Newtouch.Herp.Web.Controllers
             return Content(result.ToJson());
         }
 
-        /// <summary>
-        /// 按单据类型获取入库总数
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetRkCountByLx()
+        /// <summary>Nhập kho trong năm theo loại phiếu (dữ liệu biểu đồ tròn)</summary>
+        public IActionResult GetRkCountByLx()
         {
             var result = _storageManageDmnService.GetRkCountByLx(Constants.CurrentKf.currentKfId, OrganizeId) ?? new List<ClassificationStatisticsEntity>();
             _homeApp.TransformRkCount(result);
@@ -109,12 +105,20 @@ namespace Newtouch.Herp.Web.Controllers
         }
         #endregion
 
-        #region 消息提醒
-        public ActionResult getmesquery()
+        #region Trang chủ: nhắc cảnh báo
+        /// <summary>
+        /// Nhắc cảnh báo tồn kho/quá hạn của kho hiện tại. Ngưỡng quá hạn
+        /// (ngày) đọc từ cấu hình GET_YFGQYG trong Sys_Config của CSDL Herp
+        /// (không có dòng này trong dữ liệu demo → mặc định 0, đúng hành vi
+        /// SysConfigReader.Int gốc); giá trị truyền vào truy vấn là số âm
+        /// của ngưỡng, như bản gốc.
+        /// typeas: "1" = cảnh báo tồn kho, "2" = cảnh báo quá hạn.
+        /// </summary>
+        public IActionResult getmesquery()
         {
             string yfbm = Constants.CurrentKf.currentKfId;
-            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//过期预警值
-            var retdata = _storageManageDmnService.MSGQuery(yfbm, this.OrganizeId, gqyjz);
+            int gqyjz = -_sysConfigRepo.GetIntValue("GET_YFGQYG", OrganizeId);
+            var retdata = _storageManageDmnService.MSGQuery(yfbm, OrganizeId, gqyjz);
             int gqyjcount = 0, kcyjcount = 0;
             if (retdata != null)
             {
@@ -131,14 +135,21 @@ namespace Newtouch.Herp.Web.Controllers
         }
         #endregion
 
-        #region 同步系统参数配置
-        public ActionResult SyncSysConfigParams(string orgId)
+        #region Đồng bộ tham số cấu hình hệ thống
+        /// <summary>
+        /// Đồng bộ cấu hình gốc ("*") chưa có ở tổ chức orgId sang tổ chức đó
+        /// (mỗi mã chỉ lấy một lần, dòng mới nhận Id GUID mới). Đây là tác vụ
+        /// GHI dữ liệu nên KHÔNG được kiểm thử trực tiếp trong đợt port này
+        /// (chính sách không ghi DB); code port trung thực từ bản gốc, chỉ
+        /// kiểm chứng ở mức biên dịch và khởi động app.
+        /// </summary>
+        public IActionResult SyncSysConfigParams(string orgId)
         {
-            //基础数据
+            // Dữ liệu gốc
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
-            //组织机构自带数据
+            // Dữ liệu riêng của tổ chức
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
-            //根据code 去重
+            // Theo code, loại trùng
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));
             var filteredEntities = sysConfigBaseEntities
                 .Where(baseEntity => !sysConfigCodes.Contains(baseEntity.Code))
@@ -148,8 +159,9 @@ namespace Newtouch.Herp.Web.Controllers
                 item.Id = Guid.NewGuid().ToString();
                 item.OrganizeId = orgId;
             }
-            var insert = _sysConfigRepo.Insert(filteredEntities);
-            return Success("",insert);
+            // Không có dòng mới thì không gọi Insert (tránh lệnh insert rỗng).
+            var insert = filteredEntities.Count > 0 ? _sysConfigRepo.Insert(filteredEntities) : 0;
+            return Success("", insert);
         }
         #endregion
     }

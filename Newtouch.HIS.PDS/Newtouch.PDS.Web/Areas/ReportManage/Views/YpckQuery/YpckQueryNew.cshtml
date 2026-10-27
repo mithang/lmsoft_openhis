@@ -1,0 +1,91 @@
+@using Newtouch.Infrastructure;
+@{
+    ViewBag.Title = "Bảng thống kê xuất kho thuốc";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    //报表链接
+    var reportUrl = SysConfigReader.OrgReportLink();
+    var reportUrlNew = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+}
+
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tìm kiếm</div>
+        <div>
+            <table class="form">
+                <tr>
+                    <th class="formTitle ">Ngày thống kê:</th>
+                    <td class="formValue">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    </td>
+                    <th class="formTitle">Đến：</th>
+                    <td class="formValue">
+                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00' })" />
+                    </td>
+                    <td class="formTitle">
+                        <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ui-layout" id="layout" style="height:100%;width:100%;">
+        <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
+                scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
+    </div>
+</form>
+
+
+<script>
+
+
+    $("#btn_search").click(function () {
+        debugger
+        if ($('#kssj').val() > $('#jssj').val()) {
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
+            return;
+        }
+        var orgId = '@ViewBag.OrganizeId';
+        var yfbmCode = '@ViewBag.yfbmCode';
+        var url = '@reportUrlNew' + "?tempCode=1313&systemCode=PDS" + "&hospitalCode=" + orgId + "&yfbmCode=" + yfbmCode;
+        url += "&kssj=" + getDateByStr($('#kssj').val()).toISOString() + "&jssj=" + getDateByStr($('#jssj').val()).toISOString();
+
+        console.log(url)
+        setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
+    });
+
+    $("#iframerightiframerightiframerightttt").load(function () {
+        $.loading(false);
+    });
+    $(function () {
+        var h = $(window).height() - 55
+        $('#layout iframe').css('height', h);
+    });
+
+    //刷新列表
+    function refReport() {
+        $("#btn_search").trigger('click');
+    }
+
+    function getDateByStr(dateString) {
+        // 将字符串分割为日期和时间部分
+        var parts = dateString.split(' ');
+        var datePart = parts[0].split('-');
+        var timePart = parts[1].split(':');
+
+        // 创建Date对象
+        var date = new Date(
+            parseInt(datePart[0]), // 年份
+            parseInt(datePart[1]) - 1, // 月份是从0开始的，所以需要减1
+            parseInt(datePart[2]), // 日
+            parseInt(timePart[0]), // 小时
+            parseInt(timePart[1]), // 分钟
+            0, // giây
+            0 // 毫秒
+        );
+        return date;
+    }
+
+</script>
+
+

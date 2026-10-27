@@ -1,0 +1,199 @@
+@{
+    ViewBag.Title = "Thống kê phát thuốc ngoại trú";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+}
+<style>
+    #btn_print {
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tìm kiếm</div>
+        <div>
+            <table class="form">
+                <tr>
+                    <th class="formTitle ">Số chứng từ：</th>
+                    <td class="formValue">
+                        <input type="text" id="fydh" name="fydh" class="form-control newtouch_Readonly" />
+                    </td>
+                    <th class="formTitle ">Nhà thuốc đích：</th>
+                    <td class="formValue">
+                        <input type="text" id="lybm" name="lybm" data-yfbmCode="" placeholder="Vui lòng chọn nhà thuốc đích" class="form-control" autocomplete="off" />
+                    </td>
+                    <td class="formTitle"><span class="required">*</span>Cách phát thuốc：</td>
+                    <td class="formValue">
+                        <select id="fyfs" class="form-control">
+                            <option value="">==Vui lòng chọn==</option>
+                        </select>
+                    </td>
+                    <td class="formValue">
+                        <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 8 },
+    F8Text = "Xuất kho"
+})
+<span style="color: red;line-height: 30px;">Lưu ý：Số lượng xuất kho hiển thị chỉ để tham khảo，Số lượng xuất kho thực tế căn cứ vào số lượng tồn kho khi nhấn nút xuất kho。</span>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        $(".toolbar").css("width", 90);
+        init();
+        gridList(); //Thông tin thuốc
+    });
+
+    //初始化
+    function init() {
+        NewDjh();
+        GetTargetDept();
+        $("#fyfs").bindSelect({
+            url: "/DrugStorage/GetCrkfs?crkbz=1",
+            id: "crkfsCode",
+            text: "crkfsmc"
+        });
+    }
+
+    //生成单据号
+    function NewDjh() {
+        $.ajax({
+            type: "Get",
+            url: "/DrugStorage/InitDjh",
+            data: { djmc: 'Đơn phát thuốc nội bộ', r: Math.random() },
+            dataType: "json",
+            success: function (res) {
+                if (res.state === "success") {
+                    $("#fydh").val(res.data);
+                }
+                else {
+                    $.modalAlert(res.message, 'error');
+                }
+            }
+        });
+    }
+
+    //获取目标药房
+    function GetTargetDept() {
+        $("#lybm").newtouchBatchFloatingSelector({
+            height: 200,
+            width: 250,
+            clickautotrigger: true,
+            url: "/DrugStorage/GetTheLowerYfbmCodeList",
+            ajaxmethod: 'POST',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $.trim($("#lybm").val());
+                return reqData;
+            },
+            caption: "Khoa lĩnh thuốc",
+            colModel: [
+                { label: 'Mã nhà thuốc', name: 'yfbmCode', widthratio: 50 },
+                { label: 'Tên nhà thuốc', name: 'yfbmmc', widthratio: 50 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#lybm").val($thistr.attr('data-yfbmmc'));
+                $("#lybm").attr("data-yfbmCode", $thistr.attr('data-yfbmCode'));
+                $("#btn_search").trigger("click");
+                return;
+            }
+        });
+    }
+
+    //药品信息
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 115,
+            colModel: [
+                { label: 'Tên thuốc', name: 'ypmc', width: 250, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 120, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 230, align: 'left' },
+                { label: 'Số lượng', name: 'slStr', width: 100, align: 'right' },
+                { label: 'Đơn giá lẻ', name: 'lsjdjdw', width: 120, align: 'right' },
+                {
+                    label: 'Tổng tiền bán lẻ',
+                    name: 'lsze',
+                    width: 100,
+                    align: 'right',
+                    formatter: function (val) {
+                        return val.toFixed(2);
+                    }
+                },
+                { label: 'Đơn vị', name: 'dw', hidden: true },
+                { label: 'ypdm', name: 'ypdm', hidden: true }
+            ],
+            multiselect: true,
+            pager: "#gridPager",
+            sortname: 'ypmc',
+            viewrecords: true
+        });
+
+        //查询
+        $("#btn_search").click(function () {
+            if ($("#lybm").val() === "") {
+                $.modalMsg("Vui lòng chọn nhà thuốc đích", "error", 1500);
+                return false;
+            }
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: { rkbm: $("#lybm").attr("data-yfbmCode") },
+                    url: "/DrugStorage/GetDirectDeliveryDrugsList"
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //出库
+    function newtouch_event_f8() {
+        var ypCodes = "";
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        for (var i = 0; i < selRowIds.length; i++) {
+            ypCodes += $("#gridList").jqGrid('getRowData', selRowIds[i]).ypdm + ',';
+        }
+        if (ypCodes === "") {
+            $.modalMsg("Vui lòng chọn thuốc cần xuất kho", "error", 2000);
+            return;
+        }
+        if ($("#fyfs").val() === "") {
+            $.modalMsg("Vui lòng chọn phương thức phát thuốc", "error", 2000);
+            return;
+        }
+        $.najax({
+            url: "/DrugStorage/DirectDeliveryBatchSubmit",
+            type: "POST",
+            dataType: "json",
+            data: { rkbm: $("#lybm").attr("data-yfbmCode"), ypCodes: ypCodes, djh: $("#fydh").val(), fyfs: $("#fyfs").val() },
+            success: function (ajaxresp) {
+                if (ajaxresp.state === "success") {
+                    $.modalMsg("Xuất kho hàng loạt thành công" + ajaxresp, 'success', 1500);
+                    var uri = '@reportUrl' + "?tempCode=1252&systemCode=PDS&Organizeid=" + '@ViewBag.OrganizeId' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&crkId=" + ajaxresp.message;
+                    window.open(uri);
+                    $("#btn_search").trigger("click");
+                }
+                else {
+                    var msg = ajaxresp.message != null ? ajaxresp.message : "Xuất kho hàng loạt thất bại";
+                    $.modalMsg(msg, "error", 1500);
+                }
+            },
+            complete: function () {
+                NewDjh();
+            }
+        });
+    }
+
+</script>

@@ -1,5 +1,4 @@
-﻿@using Newtouch.Infrastructure;
-@using Newtouch.HIS.Web.Core.Extensions;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "MedicineInfo";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -20,17 +19,17 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            药品筛选信息
+            ThuốcLọcThông tin
         </div>
         <div>
             <table class="form" style="width:40%;">
                 <tr>
-                    <td class="formTitle">药品：</td>
+                    <td class="formTitle">Thuốc:</td>
                     <td class="formValue">
-                        <input type="text" id="ypdm" class="form-control" placeholder="请输入药品代码 拼音 名称" />
+                        <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhậpThuốcMã Pinyin Tên" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" style="height:70%"/>
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" style="height:70%"/>
                     </td>
                 </tr>
             </table>
@@ -63,23 +62,23 @@
             postData: $("#form1").formSerialize(),
             height: $(window).height() - 235,
             colModel: [
-                { label: "主键", name: "kcId", hidden: true, key: true },
+                { label: "Khóa chính", name: "kcId", hidden: true, key: true },
                 { label: "ksbm", name: "ypdm", hidden: true },
                 { label: "bqbm", name: "ypdm", hidden: true  },
                 { label: "yfbmCode", name: "ypdm", hidden: true  },
-                { label: "药品代码", name: "ypdm", width: 70, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left' },
-                { label: '科室名称', name: 'ksmc', width: 80, align: 'left' },
-                { label: '病区名称', name: 'bqmc', width: 70, align: 'left' },
-                { label: '药房名称', name: 'yfbmmc', width: 50, align: 'left' },
-                { label: "批号", name: "ph", width: 80, align: 'left' },
-                { label: "批次", name: "pc", width: 70, align: 'left' },
-                { label: "库存数量", name: "kcsl", width: 50, align: 'left' },
-                { label: "冻结数量", name: "djsl", width: 50, align: 'left' },
-                { label: "退药标志", name: "tybz", width: 50, align: 'left' },
-                { label: "进价", name: "jj", width: 50, align: 'left' },
-                { label: "拆零数", name: "zhyz", width: 50, align: 'left' },
-                { label: '产地目录', name: 'cd', width: 50, align: 'left' }
+                { label: "ThuốcMã", name: "ypdm", width: 70, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'KhoaTên', name: 'ksmc', width: 80, align: 'left' },
+                { label: 'Khu bệnhTên', name: 'bqmc', width: 70, align: 'left' },
+                { label: 'Nhà thuốcTên', name: 'yfbmmc', width: 50, align: 'left' },
+                { label: "Số lô", name: "ph", width: 80, align: 'left' },
+                { label: "Lô", name: "pc", width: 70, align: 'left' },
+                { label: "Tồn khoSố lượng", name: "kcsl", width: 50, align: 'left' },
+                { label: "Số lượng đóng băng", name: "djsl", width: 50, align: 'left' },
+                { label: "Trả thuốcDấu hiệu", name: "tybz", width: 50, align: 'left' },
+                { label: "Giá nhập", name: "jj", width: 50, align: 'left' },
+                { label: "Số lượng lẻ", name: "zhyz", width: 50, align: 'left' },
+                { label: 'Nơi sản xuấtDanh mục', name: 'cd', width: 50, align: 'left' }
                 //{ label: 'syzt', name: 'syzt', hidden: true }
             ],
             pager: "#gridPager",

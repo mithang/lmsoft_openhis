@@ -1,0 +1,132 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel" style="border: 0px;">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+         @if (OperatorProvider.GetCurrent().IsRoot)
+         {
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_authorg()"><i class="fa fa-plus"></i>Ủy quyền cơ sở</a>
+            </div>
+        }
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+</div>
+
+<script>
+    var moduleId = $.request("moduleId");
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        $("#gridList").dataGrid({
+            url: "/ModuleButton/GetGridJson?moduleId=" + moduleId,
+            height: $(window).height() - 90,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên', name: 'Name', width: 100, align: 'left' },
+                    { label: 'Kết nối', name: 'UrlAddress', width: 200, align: 'left' },
+                { label: 'Mã', name: 'Code', width: 50, align: 'left' },
+                {
+                    label: "Có mở không", name: "IsOpenToOrg", width: 60, align: "center",
+                    formatter: function (cellvalue) {
+                        return cellvalue == 1 ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
+                    }
+                },
+                { label: 'Giới thiệu', name: 'Description', width: 180, align: 'left' },
+                   { label: 'Thứ tự', name: 'px', width: 40, align: 'left' },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa cuối', name: 'LastModifierCode', width: 60, align: 'left' },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+
+            ]
+        });
+    }
+</script>
+
+<script type="text/javascript">
+
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm nút mới",
+            url: "/ModuleButton/Form?moduleId=" + moduleId,
+            width: "700px",
+            height: "340px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa nút",
+            url: "/ModuleButton/Form?moduleId=" + moduleId + "&keyValue=" + keyValue,
+            width: "700px",
+            height: "440px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/ModuleButton/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().Id },
+            success: function () {
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+
+    function btn_authorg() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Ủy quyền cơ sở",
+            url: "/ModuleButton/Organizes?keyValue=" + keyValue,
+            width: "350px",
+            height: "550px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+</script>

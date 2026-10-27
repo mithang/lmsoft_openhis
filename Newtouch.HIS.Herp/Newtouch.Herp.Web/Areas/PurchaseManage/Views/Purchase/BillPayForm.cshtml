@@ -1,7 +1,7 @@
-﻿
+
 @using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "支付确认";
+    ViewBag.Title = "Xác nhận thanh toán";
     Layout = "~/Views/Shared/_Form.cshtml";
 
 }
@@ -12,7 +12,7 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">发票含税总金额：</th>
+                        <th class="formTitle">Tổng số tiền hóa đơn đã gồm thuế:</th>
                         <td class="formValue" style="width:70px;padding-right:50px;">
                             <input id="FPHSZJE" name="FPHSZJE" type="text" class="form-control" placeholder="" />
                         </td>
@@ -35,7 +35,7 @@
 
 
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -48,10 +48,10 @@
         postData.FPHSZJE = $("#FPHSZJE").val();
 
         $.submitForm({
-            url: "/Purchase/BillPayAccept",
+            url: "/PurchaseManage/Purchase/BillPayAccept",
             param: postData,
             success: function () {
-                $.modalMsg('验收成功', 'success');
+                $.modalMsg('Nghiệm thu thành công', 'success');
                 $.modalClose();
                 callback();
             }
@@ -61,7 +61,7 @@
     //数据效验
     function DataValidate() {
         if ($("#FPHSZJE").val() === "") {
-            $.modalAlert("发票含税总金额必填", 'warning');
+            $.modalAlert("Tổng số tiền hóa đơn đã gồm thuế là bắt buộc", 'warning');
             return false;
         }
         return true;

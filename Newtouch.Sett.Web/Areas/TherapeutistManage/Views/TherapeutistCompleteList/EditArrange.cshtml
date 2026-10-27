@@ -1,0 +1,152 @@
+
+@{
+    ViewBag.Title = "AddArrange";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var keyvalue = $.request("keyvalue");
+    $(function () {
+        init();
+        if (!!keyvalue) {
+            $.ajax({
+                url: "/TherapeutistManage/TherapeutistCompleteList/GetFormJson?r=" + Math.random(),
+                data: { keyvalue: keyvalue },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                }
+            });
+            $("#ysgh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+            $("#Name").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+        }
+    })
+
+    function init() {
+        var date = new Date;
+        //年份
+        $("#year").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.yearArr && top.clients.yearArr.length) {
+                    $.each(top.clients.yearArr, function () {
+                        resultObjArr.push({ id: this, text: this });
+                    });
+                }
+                return resultObjArr;
+            },
+            selectedValue: 1900 + date.getYear(),
+        });
+        //月份
+        $("#month").newtouchBindSelect({
+            datasource: function () {
+                var resultObjArr = new Array();
+                if (top.clients.monthArr && top.clients.monthArr.length) {
+                    $.each(top.clients.monthArr, function () {
+                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "0" + this : this });
+                    });
+                }
+                return resultObjArr;
+            },
+            selectedValue: date.getMonth() + 1,
+        });
+    }
+
+    function submitForm() {
+        if (checkNotNull()) {
+            $.submitForm({
+                url: "/TherapeutistManage/TherapeutistCompleteList/EditRehabDoctorRange?keyvalue=" + keyvalue,
+                param: $("#form1").formSerialize(),
+                success: function () {
+                    $.currentWindow().$("#HisgridList").resetSelection();
+                    $.currentWindow().$("#HisgridList").trigger("reloadGrid");
+                    $.loading(false);
+                }
+            })
+        }
+    }
+
+    function checkNotNull() {
+        var validator = $('#form1').validate();
+        validator.settings = {
+            rules: {
+                ysgh: { required: true },
+                //Name: { required: true },
+                year: { required: true },
+                month: { required: true },
+                ts: { required: true }
+            },
+            messages: {
+                ysgh: { required: "Mã nhân viên không được là trống" },
+                //Name: { required: "名字不能为空" },
+                year: { required: "Năm không được là trống" },
+                month: { required: "Tháng không được là trống" },
+                ts: { required: "số ngày không được là trống" }
+            },
+            showErrors: function (errorMap, errorList) {
+                if (!$.isEmptyObject(errorList)) {
+                    if (Array.isArray(errorList) && errorList.length == 0) {
+                        return;
+                    }
+                    $.modalAlert(errorList[0].message, 'warning');
+                }
+            }
+        }
+        if (!validator.form()) {
+            return false;
+        }
+        if (!((/^(\+|-)?\d+$/).test($("#ts").val())) || ($("#ts").val() < 1)) {
+            $.modalAlert("số ngày không Có lớn hơn0số nguyên，Vui lòng xác nhận。", 'warning');
+            return;
+        }
+        if (($("#ts").val() > 31)) {
+            $.modalAlert("Không thể lớn hơn31Ngày，Vui lòng xác nhận。", 'warning');
+            return;
+        }
+        return true;
+    }
+</script>
+<form id="form1">
+    <div style="padding-right:30px">
+        <table class="form">
+            <tr>
+                <td class="formTitle"><span style="color:red">*</span>Mã nhân viên：</td>
+                <td class="formValue">
+                    <input type="text" id="ysgh" name="ysgh" class="form-control" />
+                    <input type="hidden" id="Id" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Họ tên：</td>
+                <td class="formValue">
+                    <input type="text" id="Name" name="Name" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span style="color:red">*</span>Năm：</td>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="year" name="year" class="form-control">
+                        <option value="">===Vui lòng chọn===</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span style="color:red">*</span>Tháng：</td>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="month" name="month" class="form-control">
+                        <option value="">===Vui lòng chọn===</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle"><span style="color:red">*</span>số ngày：</td>
+                <td class="formValue">
+                    <input type="text" id="ts" name="ts" class="form-control" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</form>
+

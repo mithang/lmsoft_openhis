@@ -1,30 +1,47 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Core.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
+
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Infrastructure;
 using Newtouch.Repository;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+
+    [Area("NurseManage")]
 
     public class DietaryAdviceController : OrgControllerBase
     {
         private readonly IInpatientDietBaseRepo _inpatientDietBaseRepo;
         private readonly IInpatientDietSfxmdyRepo _inpatientDietSfxmdyRepo;
         private readonly IDietaryAdviceDmnService _iDietaryAdviceDmnService;
-        public ActionResult DietBase() {
+
+        public DietaryAdviceController(IInpatientDietBaseRepo inpatientDietBaseRepo, IInpatientDietSfxmdyRepo inpatientDietSfxmdyRepo, IDietaryAdviceDmnService iDietaryAdviceDmnService)
+        {
+            this._inpatientDietBaseRepo = inpatientDietBaseRepo;
+            this._inpatientDietSfxmdyRepo = inpatientDietSfxmdyRepo;
+            this._iDietaryAdviceDmnService = iDietaryAdviceDmnService;
+        }
+        public IActionResult DietBase() {
             return View();
         }
 
-        public ActionResult GetGridList(Pagination pagination, string lb, string keyword) {
+        public IActionResult GetGridList(Pagination pagination, string lb, string keyword) {
             var data = new
             {
                 rows = _inpatientDietBaseRepo.GetGridList(pagination, lb, keyword, OrganizeId),
@@ -35,12 +52,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult GetFormJson(string keyvalue) {
+        public IActionResult GetFormJson(string keyvalue) {
             var data = _inpatientDietBaseRepo.FindEntity(p => p.Id == keyvalue && p.zt == "1");
             return Content(data.ToJson());
         }
 
-        public ActionResult submitForm(DAFormVO vo, string keyvalue)
+        public IActionResult submitForm(DAFormVO vo, string keyvalue)
         {
             InpatientDietBaseEntity entity = new InpatientDietBaseEntity();
             entity = vo.MapperTo(entity);
@@ -55,7 +72,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success();
         }
 
-        public ActionResult GetSearchType() {
+        public IActionResult GetSearchType() {
             var treeList = new List<TreeViewModel>();
             var dflList = _inpatientDietBaseRepo.IQueryable().Where(p => p.DietType == "00" && p.zt == "1");
             foreach (var item in dflList)
@@ -74,7 +91,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(treeList.TreeViewJson(null));
         }
 
-        public ActionResult GetSSXH(string from=null) {
+        public IActionResult GetSSXH(string from=null) {
             var data = _inpatientDietBaseRepo.IQueryable().Where(p => p.DietType == ((int)EnumSSLB.ssxh).ToString() && p.zt == "1");
             if (from=="kyz")
             {
@@ -83,28 +100,28 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult GetGridMXList(string Id)
+        public IActionResult GetGridMXList(string Id)
         {
             var data = _iDietaryAdviceDmnService.GetmxList(Id,OrganizeId);
             return Content(data.ToJson());
         }
 
-        public ActionResult DeleteForm(string keyvalue ) {
+        public IActionResult DeleteForm(string keyvalue ) {
             _inpatientDietBaseRepo.DeleteForm(keyvalue);
             return Success();
         }
 
-        public ActionResult SaveData(List<DAMXFormVO>  gridMxData, List<string> deldata) {
+        public IActionResult SaveData(List<DAMXFormVO>  gridMxData, List<string> deldata) {
             _iDietaryAdviceDmnService.SubmitService(OrganizeId, gridMxData, deldata);
             return Success();
         }
 
-        public ActionResult GetYSLB(string Id) {
+        public IActionResult GetYSLB(string Id) {
             var data = _inpatientDietBaseRepo.IQueryable().Where(p => p.ParentId.Contains(Id) && p.zt == "1" && p.OrganizeId == OrganizeId);
             return Content(data.ToJson());
         }
 
-        public ActionResult GetyszsList(string keyword)
+        public IActionResult GetyszsList(string keyword)
         {
             var data=  _inpatientDietBaseRepo.IQueryable().Where(p=>p.zt=="1"&&p.OrganizeId==this.OrganizeId&&p.DietType== ((int)EnumSSLB.tsyq).ToString());
             if (!string.IsNullOrWhiteSpace(keyword))

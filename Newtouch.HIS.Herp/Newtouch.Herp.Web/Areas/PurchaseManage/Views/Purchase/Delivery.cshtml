@@ -1,7 +1,7 @@
-﻿
+
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "配货单获取验收";
+    ViewBag.Title = "Lấy và nghiệm thu phiếu giao hàng";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -46,18 +46,18 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">配送信息</div>
+        <div class="panel-heading">Thông tin giao hàng</div>
         <table class="form">
             <tr>
-                <th class="formTitle "><span class="required">*</span>供应商：</th>
+                <th class="formTitle "><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
-                    <input type="text" id="yq" name="yq" class="form-control" placeholder="请选择供应商" autocomplete="off" style="width:60%" />
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" style="width:60%" />
                     <input type="hidden" id="yqbm" />
                 </td>
 
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="获取明细" />
-                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="明细验收" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Lấy chi tiết" />
+                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="Nghiệm thu chi tiết" />
                 </th>
                 <td></td>
             </tr>
@@ -80,20 +80,20 @@
 
     //初始化浮层
     function InitFloat() {
-        //物资供应商
+        //Nhà cung cấp vật tư
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             url: '/Storage/GetSupplierList',
             height: 300,
             width: 400,
-            caption: "物资供应商",
+            caption: "Nhà cung cấp vật tư",
             ajaxparameters: function () {
                 return "key=" + $("#yq").val();
             },
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'py', widthratio: 45 },
-                { label: '供应商', name: 'name', widthratio: 55 }
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#yqbm").val($thistr.attr('data-py'));
@@ -111,7 +111,7 @@
             colModel: [
                 //{ label: 'PSYSLXXXXXXX', name: 'PSYSLXXXXXXX', editwidth: '', align: 'center', editable: true, hidden: true },
                 //{
-                //    label: '<span class="required">*</span>验收类型', name: 'PSYSLX', width: 120, align: 'center', editable: true, editwidth: "100%", edittype: "select", editoptions: {
+                //    label: '<span class="required">*</span>Loại nghiệm thu', name: 'PSYSLX', width: 120, align: 'center', editable: true, editwidth: "100%", edittype: "select", editoptions: {
                 //        dataEvents: [
                 //            {
                 //                type: 'change',
@@ -126,33 +126,33 @@
                 //        ]
                 //    }
                 //},
-                //{ label: "验收通过数", name: "YSTGS", width: 75, align: 'center', editable: true, editwidth: "100%" },
-                //{ label: "验收不过数", name: "YSBGS", width: 75, align: 'center', editable: true, editwidth: "100%" },
-                { label: '配送单编号', name: 'PSDBH', width: 80, align: 'left', key: true, },
-                { label: '配送点编码', name: 'PSDBM', width: 80, align: 'left'},
-                { label: '配送明细编号', name: 'PSMXBH', width: 80, align: 'left' },
-                { label: '配送单号', name: 'PSDH', width: 60, align: 'left' },
-                { label: '企业编码', name: 'QYBM', width: 60, align: 'left' },
-                { label: '配送明细条码类型', name: 'PSMXTMLX', width: 100, align: 'left' },
-                { label: '配送明细条码', name: 'PSMXTM', width: 80, align: 'left' },
-                { label: '采购单明细编号', name: 'DDMXBH', width: 80, align: 'left' },
-                { label: '医院计划单号', name: 'YYJHDH', width: 80, align: 'left' },
-                { label: '顺序号', name: 'SXH', width: 60, align: 'left' },
-                { label: '仓位信息', name: 'CWXX', width: 60, align: 'left' },
-                { label: '销售订单号', name: 'XSDDH', width: 60, align: 'left' },
-                { label: '耗材统编代码', name: 'HCTBDM', width: 80, align: 'left' },
-                { label: '耗材细分代码', name: 'HCXFDM', width: 60, align: 'left' },
-                { label: '医院本地代码', name: 'YYBDDM', width: 60, align: 'left' },
-                { label: '品名', name: 'PM', width: 60, align: 'left' },
-                { label: '规格', name: 'GG', width: 60, align: 'left' },
-                { label: '型号', name: 'XH', width: 60, align: 'left' },
-                { label: '规格型号说明', name: 'GGXHSM', width: 80, align: 'left' },
-                { label: '单位', name: 'DW', width: 60, align: 'left' },
-                { label: '生产企业名称', name: 'SCQY', width: 80, align: 'left' },
-                { label: '生产批号', name: 'SCPH', width: 60, align: 'left' },
-                { label: '生产日期', name: 'SCRQ', width: 60, align: 'left' },
-                { label: '有效日期', name: 'YXRQ', width: 60, align: 'left' },
-                { label: '配送数量', name: 'PSL', width: 60, align: 'left' },
+                //{ label: "Số lượng nghiệm thu đạt", name: "YSTGS", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                //{ label: "Số lượng nghiệm thu không đạt", name: "YSBGS", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Số phiếu giao hàng', name: 'PSDBH', width: 80, align: 'left', key: true, },
+                { label: 'Mã điểm giao hàng', name: 'PSDBM', width: 80, align: 'left'},
+                { label: 'Số chi tiết phiếu giao hàng', name: 'PSMXBH', width: 80, align: 'left' },
+                { label: 'Số phiếu giao hàng', name: 'PSDH', width: 60, align: 'left' },
+                { label: 'Mã doanh nghiệp', name: 'QYBM', width: 60, align: 'left' },
+                { label: 'Loại mã vạch chi tiết phiếu giao hàng', name: 'PSMXTMLX', width: 100, align: 'left' },
+                { label: 'Mã vạch chi tiết phiếu giao hàng', name: 'PSMXTM', width: 80, align: 'left' },
+                { label: 'Số chi tiết đơn mua sắm', name: 'DDMXBH', width: 80, align: 'left' },
+                { label: 'Số kế hoạch của bệnh viện', name: 'YYJHDH', width: 80, align: 'left' },
+                { label: 'Số thứ tự', name: 'SXH', width: 60, align: 'left' },
+                { label: 'Thông tin vị trí kho', name: 'CWXX', width: 60, align: 'left' },
+                { label: 'Số đơn bán hàng', name: 'XSDDH', width: 60, align: 'left' },
+                { label: 'Mã thống nhất vật tư tiêu hao', name: 'HCTBDM', width: 80, align: 'left' },
+                { label: 'Mã phân loại vật tư tiêu hao', name: 'HCXFDM', width: 60, align: 'left' },
+                { label: 'Mã nội bộ bệnh viện', name: 'YYBDDM', width: 60, align: 'left' },
+                { label: 'Tên mặt hàng', name: 'PM', width: 60, align: 'left' },
+                { label: 'Quy cách', name: 'GG', width: 60, align: 'left' },
+                { label: 'Mẫu mã', name: 'XH', width: 60, align: 'left' },
+                { label: 'Giải thích quy cách mẫu mã', name: 'GGXHSM', width: 80, align: 'left' },
+                { label: 'Đơn vị', name: 'DW', width: 60, align: 'left' },
+                { label: 'Tên doanh nghiệp sản xuất', name: 'SCQY', width: 80, align: 'left' },
+                { label: 'Số lô sản xuất', name: 'SCPH', width: 60, align: 'left' },
+                { label: 'Ngày sản xuất', name: 'SCRQ', width: 60, align: 'left' },
+                { label: 'Ngày hiệu lực', name: 'YXRQ', width: 60, align: 'left' },
+                { label: 'Số lượng giao hàng', name: 'PSL', width: 60, align: 'left' },
                 
             ],
 
@@ -183,31 +183,31 @@
     }
 
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
-        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//打开编辑模式
+        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ chỉnh sửa
         $("#jqg_gridList_" + rowid).trigger("click");
     }
 
     //初始化 浮层
     function initInlineFunc(rowid) {
-        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">预验收</option><option value="2">实验收</option>');//验收类型
+        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">Kiểm nghiệm trước</option><option value="2">Nghiệm thu thử nghiệm</option>');//Loại nghiệm thu
     }
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#yq").val() == "" || $("#yq").val() == null) {
-            $.modalAlert("请选择供应商", 'warning');
+            $.modalAlert("Vui lòng chọn nhà cung cấp", 'warning');
             return ;
         }
         gridList();
     });
 
-    //明细验收
+    //Nghiệm thu chi tiết
     $('#btn_accept').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null ) {
-            $.modalAlert("请选择需要验收的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
             return;
         }
         //var psmxbh = rowData.PSMXBH;
@@ -216,7 +216,7 @@
         //var pssl = rowData.PSSL
         $.modalOpen({
             id: "Form",
-            title: "配货单验收",
+            title: "Nghiệm thu phiếu giao hàng",
             url: "/PurchaseManage/Purchase/DeliveryForm?psmxbh=" + rowData.PSMXBH + "&hctbdm=" + rowData.HCTBDM + "&scph=" + rowData.SCPH + "&psl=" + rowData.PSL,
             width: "25%",
             height: "50%",
@@ -228,12 +228,12 @@
         });
     });
 
-    ////明细验收
+    ////Nghiệm thu chi tiết
     //$('#btn_accept').click(function () {
     //    //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
     //    var rowData = $("#gridList").jqGridRowValue();
     //    if (rowData == null ) {
-    //        $.modalAlert("请选择需要验收的单据", 'warning');
+    //        $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
     //        return;
     //    }
     //    var main = {
@@ -253,15 +253,15 @@
     //    st.push(obj);
     //    $.najax({
     //        type: "POST",
-    //        url: "/Purchase/DeliveryAccept",
+    //        url: "/PurchaseManage/Purchase/DeliveryAccept",
     //        data: { main: main,st:st },
     //        dataType: "json",
     //        success: function (res) {
     //            if (res.state == "success") {
     //                $('#btn_search').trigger('click');
-    //                $.modalAlert("单据验收成功！", 'success');
+    //                $.modalAlert("Nghiệm thu chứng từ thành công!", 'success');
     //            } else {
-    //                $.modalAlert("单据验收失败：" + res.message, 'warning');
+    //                $.modalAlert("Nghiệm thu chứng từ thất bại: " + res.message, 'warning');
     //            }
     //        }
     //    });

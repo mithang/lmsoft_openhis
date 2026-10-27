@@ -1,14 +1,22 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.Entity.Outpatient;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
+    [Area("SystemManage")]
     public class BodyPartsController : OrgControllerBase
     {
         // GET: SystemManage/BodyParts
@@ -16,12 +24,19 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly IPacs_ExamBodyPartsRepo _pacs_ExamBodyPartsRepo;
         private readonly IBaseDataDmnService _baseDataDmnService;
 
+        public BodyPartsController(ISysBodyPartsRepo sysBodyPartsRepo, IPacs_ExamBodyPartsRepo pacs_ExamBodyPartsRepo, IBaseDataDmnService baseDataDmnService)
+        {
+            this._sysBodyPartsRepo = sysBodyPartsRepo;
+            this._pacs_ExamBodyPartsRepo = pacs_ExamBodyPartsRepo;
+            this._baseDataDmnService = baseDataDmnService;
+        }
+
         /// <summary>
         /// 获取列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetTreeGridJson(string keyword,string bwlx)
+        public IActionResult GetTreeGridJson(string keyword,string bwlx)
         {
             if (bwlx=="jc")
             {
@@ -44,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var entity = _sysBodyPartsRepo.FindEntity(keyValue);
             return Content(entity.ToJson());
@@ -56,7 +71,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetJcFormJson(string keyValue)
+        public IActionResult GetJcFormJson(string keyValue)
         {
             var entity = _pacs_ExamBodyPartsRepo.FindEntity(keyValue);
             return Content(entity.ToJson());
@@ -67,51 +82,51 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(SysBodyPartsEntity entity, string keyValue)
+        public IActionResult SubmitForm(SysBodyPartsEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
             entity.OrganizeId = this.OrganizeId;
             _sysBodyPartsRepo.SubmitForm(entity, keyValue);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// 保存
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult jcbwSubmitForm(Pacs_ExamBodyPartsEntity entity, string keyValue)
+        public IActionResult jcbwSubmitForm(Pacs_ExamBodyPartsEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
             entity.OrganizeId = this.OrganizeId;
             _pacs_ExamBodyPartsRepo.SubmitForm(entity, keyValue);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             _sysBodyPartsRepo.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Success("Xóa thành công.");
         }
         /// <summary>
         /// 删除检查部位
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteJcForm(string keyValue)
+        public IActionResult DeleteJcForm(string keyValue)
         {
             _pacs_ExamBodyPartsRepo.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Success("Xóa thành công.");
         }
         /// <summary>
         /// 部位类别
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetSysBodyBwFl(string keyword)
+        public IActionResult GetSysBodyBwFl(string keyword)
         {
             var data = _baseDataDmnService.GetSysBodyBwFl(this.OrganizeId);
             if (!string.IsNullOrWhiteSpace(keyword))
@@ -125,7 +140,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetSysBodyJcBwFl(string keyword)
+        public IActionResult GetSysBodyJcBwFl(string keyword)
         {
             var data = _baseDataDmnService.GetSysBodyJcBwFl(this.OrganizeId);
             if (!string.IsNullOrWhiteSpace(keyword))
@@ -140,7 +155,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult GetSysBodyParts(string keyword,string bwfl=null,string bwmc=null)
+        public IActionResult GetSysBodyParts(string keyword,string bwfl=null,string bwmc=null)
         {
             var data = _baseDataDmnService.GetSysBodyParts(this.OrganizeId);
             bwfl = bwfl ?? "";
@@ -164,7 +179,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult GetYxBodyParts(string keyword, string bwfl = null, string bwmc = null)
+        public IActionResult GetYxBodyParts(string keyword, string bwfl = null, string bwmc = null)
         {
             var data = _baseDataDmnService.GetYxBodyParts(this.OrganizeId);
             bwfl = bwfl ?? "";
@@ -182,11 +197,11 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Content(data.Take(15).ToJson());
         }
 
-        public ActionResult GetYxBodyMethod(string keyword) {
+        public IActionResult GetYxBodyMethod(string keyword) {
             var data = _baseDataDmnService.GetYxBodyMethod(this.OrganizeId,keyword);
             return Content(data.ToJson());
         }
-        public ActionResult JcForm()
+        public IActionResult JcForm()
         {
             return View();
         }

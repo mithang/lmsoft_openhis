@@ -1,32 +1,45 @@
-﻿using System;
+using System;
+using System.Collections.Concurrent;
 using Newtouch.Herp.Infrastructure.Model;
-using Newtouch.Core.Redis;
-using Newtouch.Common.Operator;
+using NewtouchHIS.Lib.Framework.Operator;
 
 namespace Newtouch.Herp.Infrastructure
 {
     /// <summary>
-    /// 系统常量
+    /// 系统常量 (Core port: Redis-backed KF context replaced by an in-memory
+    /// per-user store — this app runs as a single instance in this deployment,
+    /// and nothing outside this process reads the KF key. AppId/TopOrganizeId
+    /// are set once from appsettings by Program.cs via Init, replacing
+    /// ConfigurationManager.AppSettings.)
     /// </summary>
     public class Constants
     {
-        /// <summary>
-        /// 顶级组织机构Id
-        /// </summary>
         private static string _topOrganizeId;
+        private static string _appId;
+
+        /// <summary>Set once at startup from appsettings (BusinessConfig).</summary>
+        public static void Init(string topOrganizeId, string appId)
+        {
+            _topOrganizeId = topOrganizeId;
+            _appId = appId;
+        }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// App-settings reader, set once at startup by Program.cs (replaces
+        /// ConfigurationManager.AppSettings / ConfigurationHelper.GetAppConfigValue).
         /// </summary>
+        public static Func<string, string> AppConfigReader { get; set; }
+
+        /// <summary>Reads a Web.config-style appSettings value (null when unset).</summary>
+        public static string GetAppConfigValue(string key)
+        {
+            return AppConfigReader?.Invoke(key);
+        }
+
         public static string TopOrganizeId
         {
             get
             {
-                if (_topOrganizeId != null)
-                {
-                    return _topOrganizeId;
-                }
-                _topOrganizeId = System.Configuration.ConfigurationManager.AppSettings["Top_OrganizeId"];
                 if (string.IsNullOrWhiteSpace(_topOrganizeId))
                 {
                     throw new Exception("Top_OrganizeId未配置");
@@ -35,83 +48,44 @@ namespace Newtouch.Herp.Infrastructure
             }
         }
 
-        /// <summary>
-        /// 返回最小时间 1970-01-01 00:00:000
-        /// </summary>
         public static DateTime MinDateTime
         {
             get { return Convert.ToDateTime("1970-01-01"); }
         }
 
-        /// <summary>
-        /// 时间格式化
-        /// </summary>
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
-        #region tag
-
-        /// <summary>
-        /// 组织机构代码
-        /// </summary>
         public const string OrganizeId = "OrganizeId";
-        /// <summary>
-        /// 库房ID
-        /// </summary>
         public const string KfId = "KfId";
-        /// <summary>
-        /// 当前操作员
-        /// </summary>
         public const string CreatorCode = "CreatorCode";
 
-        #endregion
-
-        #region context info
-        /// <summary>
-        /// 应用Id
-        /// </summary>
-        private static string _appId;
-        /// <summary>
-        /// 组织机构Id（顶级，系统配置）
-        /// </summary>
         public static string AppId
         {
-            get
-            {
-                if (_appId != null) return _appId;
-                _appId = System.Configuration.ConfigurationManager.AppSettings["AppId"];
-                return _appId;
-            }
+            get { return _appId; }
         }
 
-        /// <summary>
-        /// 设置当前的库房
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="value"></param>
+        private static readonly ConcurrentDictionary<string, LoginUserCurrentKfModel> _kfStore
+            = new ConcurrentDictionary<string, LoginUserCurrentKfModel>();
+
         public static void SetCurrentKf(string userId, LoginUserCurrentKfModel value)
         {
             if (value == null)
             {
-                RedisHelper.Remove(string.Format(CacheKey.CurrentKfInfoEntityKey, userId));
+                _kfStore.TryRemove(userId, out _);
             }
             else
             {
-                RedisHelper.Set(string.Format(CacheKey.CurrentKfInfoEntityKey, userId), value);
+                _kfStore[userId] = value;
             }
         }
 
-        /// <summary>
-        /// 获取当前的库房信息
-        /// </summary>
-        /// <param name="userId"></param>
         private static LoginUserCurrentKfModel GetCurrentKf(string userId)
         {
-            return RedisHelper.Get<LoginUserCurrentKfModel>(string.Format(CacheKey.CurrentKfInfoEntityKey, userId)) ?? new LoginUserCurrentKfModel();
+            return _kfStore.TryGetValue(userId, out var value)
+                ? value
+                : new LoginUserCurrentKfModel();
         }
 
-        /// <summary>
-        /// 获取当前的库房信息
-        /// </summary>
         public static LoginUserCurrentKfModel CurrentKf
         {
             get
@@ -120,7 +94,5 @@ namespace Newtouch.Herp.Infrastructure
                 return GetCurrentKf(operate.UserId);
             }
         }
-
-        #endregion
     }
 }

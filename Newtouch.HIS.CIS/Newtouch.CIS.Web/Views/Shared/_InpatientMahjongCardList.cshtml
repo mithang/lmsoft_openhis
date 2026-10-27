@@ -1,4 +1,4 @@
-﻿
+
 @{
     Layout = "~/Views/Shared/_Form.cshtml";
 }
@@ -131,7 +131,7 @@
 </div>
 
 <div style="height: 22px;" class="footer">
-    <div class="left" style="float: left; width: 230px"> 检索到 <span class="records"></span> 条记录</div>
+    <div class="left" style="float: left; width: 230px"> Tìm thấy <span class="records"></span> bản ghi</div>
     <div class="right" style="width: 292px; height: 22px; float: right">
         <div class="footerright">
             <span class="glyphicon glyphicon-step-backward"></span>
@@ -144,7 +144,7 @@
         </div>
         <div style="float: left; margin: auto 10px">
             <input class="ui-pg-input" type="text" size="2" maxlength="7" value="1" role="textbox">
-            共<span id="sp_1_gridPager"></span>页
+            Tổng <span id="sp_1_gridPager"></span> trang
         </div>
         <div class="footerright">
             <span class="ui-separator"></span>
@@ -213,12 +213,12 @@
                 if (!window.parent.$('#page-wrapper').hasClass('nav-small'))
                     window.parent.$("#make-small-nav").trigger("click");//菜单隐藏
                 window.parent.$('.open .submenu').css('display', 'none');
-                top.top.$.Newtouchtab.tryCloseTab({ name: "护士站-患者中心", url: "/NurseManage/InpatientList/IndexCenter" });
-                top.$.Newtouchtab.addTabWithOutMenu({ name: "护士站-患者中心", enName: "", url: "/NurseManage/InpatientList/IndexCenter" });
+                top.top.$.Newtouchtab.tryCloseTab({ name: "Trạm điều dưỡng - Trung tâm bệnh nhân", url: "/NurseManage/InpatientList/IndexCenter" });
+                top.$.Newtouchtab.addTabWithOutMenu({ name: "Trạm điều dưỡng - Trung tâm bệnh nhân", enName: "", url: "/NurseManage/InpatientList/IndexCenter" });
                 
             } else {
-                top.top.$.Newtouchtab.tryCloseTab({ name: "医嘱管理", url: "/DoctorManage/DoctorsAdvice/Index" });
-                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "医嘱管理", enName: "", url: "/DoctorManage/DoctorsAdvice/Index" });
+                top.top.$.Newtouchtab.tryCloseTab({ name: "Y lệnhQuản lý", url: "/DoctorManage/DoctorsAdvice/Index" });
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Y lệnhQuản lý", enName: "", url: "/DoctorManage/DoctorsAdvice/Index" });
             }
            
         });
@@ -261,27 +261,27 @@
     function createli(respdata) {
         $.jsonWhere(respdata, function (v) {
             var li = '  <li>'
-                + ' <div class="dv-cwmc" title="住院号:' + v.zyh + '">'
+                + ' <div class="dv-cwmc" title="Số nhập viện:' + v.zyh + '">'
                 //+ ' <i class="glyphicon glyphicon-chevron-up" aria-hidden="true" title="预出院时间:"></i>'
                 //+ ' <i class="glyphicon glyphicon-chevron-up" aria-hidden="true" style="display:' + v.display + '" title="预出院时间:' + $.getTime({ date: v.kssj }) + ' &#10医嘱内容:' + v.ztnr + '"></i>'
                 + ' <i class="fa fa-bed" aria-hidden="true"></i><span style="user-select:none;">' + v.cwmc + '&nbsp;&nbsp;' + v.nlshow + '&nbsp;&nbsp;' + $.getGender(v.sex) + '</span>' /*+ $.getGender(v.sex) +*/
-                + '<span title="住院天数">&nbsp;' + v.zyts + '天</span>'
-                + '<span  style="width:9px;height:9px;background-color:yellow;float:right;border-top-right-radius:3px;margin-top:-1px;margin-right:-1px;display:' + v.display + '" title="预出院时间:' + $.getTime({ date: v.kssj }) + ' &#10医嘱内容:' + v.ztnr + '"> </span>'
+                + '<span title="Nhập việnSố ngày">&nbsp;' + v.zyts + ' ngày</span>'
+                + '<span  style="width:9px;height:9px;background-color:yellow;float:right;border-top-right-radius:3px;margin-top:-1px;margin-right:-1px;display:' + v.display + '" title="Dự kiến xuất việnThời gian:' + $.getTime({ date: v.kssj }) + ' &#10Nội dung y lệnh:' + v.ztnr + '"> </span>'
                 + ' </div >'
                 + ' <div class="dv-patxm" data-blh=' + v.blh + ' data-zyh=' + v.zyh + ' data-age=' + v.nlshow + ' data-xm=' + v.xm + ' data-sex=' + v.sex + ' data-brxzdm=' + v.brxzdm + ' data-brxzmc=' + v.brxzmc + ' data-deptCode=' + v.deptCode + ' data-ryrq=' + v.ryrq.substring(0, 10) + '>'
-                + ' <img src="../../../../Content/img/' + ($.getGender(v.sex) == '男' ? "male.gif" : "female.png") + '" title="住院号:'+v.zyh+'" style="padding-right: 10px;"/><span title="病人姓名">' + v.xm + '</span>'
-                + '<span title="入院诊断：' + v.zdmc + '" style="color: #00868B">&nbsp;&nbsp;&nbsp;' + v.zdmc + '</span>'
+                + ' <img src="../../../../Content/img/' + ($.getGender(v.sex) == '男' ? "male.gif" : "female.png") + '" title="Số nhập viện:'+v.zyh+'" style="padding-right: 10px;"/><span title="Họ tên bệnh nhân">' + v.xm + '</span>'
+                + '<span title="Chẩn đoán nhập viện:' + v.zdmc + '" style="color: #00868B">&nbsp;&nbsp;&nbsp;' + v.zdmc + '</span>'
                 + ' </div>'
-                + ' <div class="dv-doctorxm" title="医生名称">'
+                + ' <div class="dv-doctorxm" title="Bác sĩTên">'
                 + ' <i class="fa fa-user-md"></i><span>' + v.ysmc + '</span>'
-                + ' <label class="sp-leave sp-leave-' + v.hljb + '" data-hllb=' + v.hljb + ' title="护理级别:' + $.enum.getDescByValue("EnumHljb", v.hljb) + '"><span>' + $.enum.getDescByValue("EnumHljb", v.hljb)+'</span></label>'
+                + ' <label class="sp-leave sp-leave-' + v.hljb + '" data-hllb=' + v.hljb + ' title="Cấp độ chăm sóc:' + $.enum.getDescByValue("EnumHljb", v.hljb) + '"><span>' + $.enum.getDescByValue("EnumHljb", v.hljb)+'</span></label>'
                 + ' </div>'
                 + ' <div class="dv-patType">'
-                + ' <span title="病人性质">' + v.brxzmc + '</span>'
-                + ' <span title="危重级别" style="float: right;padding-right:10px;">' + $.enum.getDescByValue("EnumWzjb", v.wzjb) + '</span>'
-                + ' <span title="护理级别" style="float: right;padding-right:10px;">' + $.enum.getDescByValue("EnumHljb", v.hljb) + '</span>'
-                + ' <span title="皮试信息" style="float: right;padding-right:10px;" onclick=querySkinTest("' + v.zyh + '","' + v.ps + '")>' + $.enum.getDescByValue("EnumPs", v.ps) + '</span>'
-               + ' <span title="新医嘱待审" style="color:red;float: right;padding-right:10px;">' +  v.cnt+'条' + '</span>'
+                + ' <span title="Tính chất bệnh nhân">' + v.brxzmc + '</span>'
+                + ' <span title="Mức độ nguy kịch" style="float: right;padding-right:10px;">' + $.enum.getDescByValue("EnumWzjb", v.wzjb) + '</span>'
+                + ' <span title="Cấp độ chăm sóc" style="float: right;padding-right:10px;">' + $.enum.getDescByValue("EnumHljb", v.hljb) + '</span>'
+                + ' <span title="Test daThông tin" style="float: right;padding-right:10px;" onclick=querySkinTest("' + v.zyh + '","' + v.ps + '")>' + $.enum.getDescByValue("EnumPs", v.ps) + '</span>'
+               + ' <span title="Y lệnh mớiChờ duyệt" style="color:red;float: right;padding-right:10px;">' +  v.cnt+' bản' + '</span>'
                 //+ ' <label class="sp-leave sp-leave-' + v.hljb + '" data-hllb=' + v.hljb + ' title="护理级别:' + $.enum.getDescByValue("EnumHljb", v.hljb) + '"></label>'
                 + ' <span>' + v.brzt + '</span>'
                 + ' </div>'
@@ -300,24 +300,24 @@
             rownumbers: true,
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '床号', name: 'cwmc', align: 'center', width: 100 },
-                { label: '姓名', name: 'xm', align: 'center', width: 120 },
+                { label: 'Số giường', name: 'cwmc', align: 'center', width: 100 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 120 },
                 {
-                    label: '性别', name: 'sex', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Giới tính', name: 'sex', align: 'center', width: 50, formatter: function (val) {
                         return $.getGender(val);
                     }
                 },
-                { label: '年龄', name: 'age', align: 'center', width: 50 },
-                { label: '住院号', name: 'zyh', align: 'center', width: 50 },
-                { label: '入院日期', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Tuổi', name: 'age', align: 'center', width: 50 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 50 },
+                { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
                 {
-                    label: '护理级别', name: 'hljb', align: 'center', width: 80, formatter: function (val) {
+                    label: 'Cấp độ chăm sóc', name: 'hljb', align: 'center', width: 80, formatter: function (val) {
                         return $.enum.getDescByValue("EnumHljb", val);
                     }
                 },
-                { label: '入院诊断', name: 'zdmc', width: 140, align: 'left' },
-                { label: '病人性质', name: 'brxzmc', align: 'center', width: 50 },
-                { label: '病人代码', name: 'brxzdm', align: 'center', width: 50, hidden: true }
+                { label: 'Chẩn đoán nhập viện', name: 'zdmc', width: 140, align: 'left' },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', align: 'center', width: 50 },
+                { label: 'Bệnh nhânMã', name: 'brxzdm', align: 'center', width: 50, hidden: true }
             ],
             onSelectRow: function (rowid) {
                 var obj = $("#div_zbqList").jqGrid('getRowData', rowid);
@@ -331,8 +331,8 @@
                 var obj = $("#div_zbqList").jqGrid('getRowData', rowid);
                 onSelectpatient(obj);
                 sessionStorage.setItem('currentobj', JSON.stringify(currentPatient));
-                top.top.$.Newtouchtab.tryCloseTab({ name: "医嘱管理", url: "/DoctorManage/DoctorsAdvice/Index" });
-                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "医嘱管理", enName: "", url: "/DoctorManage/DoctorsAdvice/Index" });
+                top.top.$.Newtouchtab.tryCloseTab({ name: "Y lệnhQuản lý", url: "/DoctorManage/DoctorsAdvice/Index" });
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Y lệnhQuản lý", enName: "", url: "/DoctorManage/DoctorsAdvice/Index" });
             }
         });
     }
@@ -399,12 +399,12 @@
         currentPatient.sex = obj.sex;//性别
         currentPatient.age = obj.nlShow == null ? obj.age : obj.nlShow; //年龄
         currentPatient.zyh = obj.zyh;//住院号
-        currentPatient.brxzmc = obj.brxzmc;//病人性质
-        currentPatient.brxzdm = obj.brxzdm;//病人性质代码
+        currentPatient.brxzmc = obj.brxzmc;//Tính chất bệnh nhân
+        currentPatient.brxzdm = obj.brxzdm;//Tính chất bệnh nhân代码
         currentPatient.ryrq = obj.ryrq;//病人入院日期
     }
 
-    //查询阳性皮试记录
+    //查询阳性Test da记录
     function querySkinTest(zyh,ps) {
         if (ps != 1) {//阴
             return;
@@ -412,7 +412,7 @@
         else {
             $.modalOpen({
                 id: "InpatientVitalSignsForm",
-                title: "皮试信息",
+                title: "Test daThông tin",
                 url: "/NurseManage/OrderAudit/SkinTestInfo?zyh=" + zyh,
                 width: "480px",
                 height: "360px",

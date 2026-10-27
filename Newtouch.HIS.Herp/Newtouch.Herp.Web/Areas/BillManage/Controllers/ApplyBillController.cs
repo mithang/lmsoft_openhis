@@ -1,28 +1,33 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Infrastructure;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Extension;
 
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 申领单管理
+    /// 申领单管理 (Core port)
     /// </summary>
+    [Area("BillManage")]
     public class ApplyBillController : ControllerBase
     {
         private readonly IKfApplyOrderDmnService _applyOrderDmnService;
+
+        public ApplyBillController(IKfApplyOrderDmnService applyOrderDmnService)
+        {
+            _applyOrderDmnService = applyOrderDmnService;
+        }
 
         /// <summary>
         /// 申领单查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult Query()
+        public IActionResult Query()
         {
             ViewBag.OrganizeId = OrganizeId;
             return View();
@@ -31,14 +36,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 申领单主信息查询
         /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="kssj"></param>
-        /// <param name="jssj"></param>
-        /// <param name="pdh"></param>
-        /// <param name="applyType"></param>
-        /// <param name="applyProcess"></param>
-        /// <returns></returns>
-        public ActionResult ApplyBillInfoQuery(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess)
+        public IActionResult ApplyBillInfoQuery(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess)
         {
             var result = _applyOrderDmnService.SelectApplyBillInfo(pagination, pdh, applyType, applyProcess, kssj, jssj, OrganizeId);
             var data = new
@@ -54,17 +52,11 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 申领单主信息查询
         /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="kssj"></param>
-        /// <param name="jssj"></param>
-        /// <param name="pdh"></param>
-        /// <param name="applyType"></param>
-        /// <param name="applyProcess"></param>
-        /// <param name="applyProcesses">可选申领状态</param>
-        /// <returns></returns>
-        public ActionResult ApplyBillInfoQueryV2(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess, string slbm, string applyProcesses)
+        public IActionResult ApplyBillInfoQueryV2(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess, string slbm, string applyProcesses)
         {
-            if (string.IsNullOrWhiteSpace(applyProcesses)) throw new FailedException("可选申领状态不能为空");
+            // No FailedException in the Core Lib; a plain exception surfaces
+            // through the same error middleware.
+            if (string.IsNullOrWhiteSpace(applyProcesses)) throw new Exception("Trạng thái lĩnh khả chọn không được để trống");
             var applyProcessList = new List<int>();
             foreach (var ap in applyProcesses.Split(','))
             {
@@ -87,10 +79,8 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 申领单明细信息查询
         /// </summary>
-        /// <param name="sldId"></param>
-        /// <returns></returns>
         [HttpGet]
-        public ActionResult ApplyBillDetailBySldhQuery(string sldId)
+        public IActionResult ApplyBillDetailBySldhQuery(string sldId)
         {
             var result = _applyOrderDmnService.SelectApplyBillDetail(sldId, OrganizeId);
             return Content(result.ToJson());
@@ -99,10 +89,8 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         /// <summary>
         /// 申领单明细信息查询
         /// </summary>
-        /// <param name="sldIds"></param>
-        /// <returns></returns>
         [HttpGet]
-        public ActionResult ApplyBillDetailQuery(string sldIds)
+        public IActionResult ApplyBillDetailQuery(string sldIds)
         {
             if (string.IsNullOrWhiteSpace(sldIds)) return Content(new List<VApplyBillDetailEntity>().ToJson());
             var result = _applyOrderDmnService.SelectApplyBillDetailBySldhs(sldIds, OrganizeId);

@@ -1,0 +1,114 @@
+﻿@using NewtouchHIS.Lib.Framework.Operator;
+@using Newtouch.MRQC.Infrastructure;
+@{
+    ViewBag.Title = "Tra cứu tin nhắn kiểm soát chất lượng";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var opeator = OperatorProvider.GetCurrent();
+}
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Ngày:</th>
+                <td class="formValue" colspan="3">
+                    <input id="ksrq" type="text" class="form-control input-wdatepicker" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 ")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left: 2%; float: left;">—</span>
+                    <input id="jsrq" type="text" class="form-control input-wdatepicker" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <th class="formTitle">Trạng thái:</th>
+
+                <td class="formValue" colspan="2">
+                    <select id="sel_RecordStu" name="sel_RecordStu" data-enumtype="NoticeStuEnum">
+                        <option value="">Tất cả</option>
+                    </select>
+
+                </td>
+                <td class="formValue" colspan="2">
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr></tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        @*<div id="gridPager"></div>*@
+    </div>
+</form>
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+        gridListData();
+    });
+    function gridListData() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 160,
+            url: "/QualityControlManage/MedicalCenter/MessageSendQuery",
+            colModel:[
+                { label: "Id", name: "Id", hidden: true, key: true },
+                { label: "Chủ đề", name: "Title", width: 150, align: "left", },
+                { label: "Người gửi", name: "SendFrom", width: 80, align: "left", },
+                { label: "Thời gian gửi", name: "CreateTime", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Người nhận", name: "Recipient", width: 80, align: "left", },
+                { label: "Loại người nhận", name: "RecipientType", width: 80, align: "left", formatter: function (val) {
+                    return $.enum.getDescByValue("RecipientTypeEnum", val);
+                } },
+                { label: "Nội dung chi tiết", name: "Content", width: 200, align: "left", },
+                { label: "Dữ liệu liên quan nội dung", name: "ContentData", width: 200, align: "left", },
+                {
+                    label: "Trạng thái tin nhắn", name: "NoticeStu", width: 80, align: "left", formatter: function (val) {
+                        return $.enum.getDescByValue("NoticeStuEnum",val);
+                    }
+                },
+                {
+                    label: "Loại nghiệp vụ nhóm tin nhắn", name: "GroupYwlx", width: 80, align: "left", formatter: function (val) {
+                        return $.enum.getDescByValue("GroupYwlxEnum", val);
+                    }
+                },
+                {
+                    label: "Phạm vi thông báo tin nhắn", name: "NoticeRange", width: 80, align: "left", formatter: function (val) {
+                        return $.enum.getDescByValue("MsgNoticeRangeEnum", val);
+                    }
+                },
+                {
+                    label: "Loại thực thi hàng đợi", name: "QueueExecType", width: 80, align: "left", formatter: function (val) {
+                        return $.enum.getDescByValue("MsgQueueExecTypeEnum", val);
+                    }
+                },
+                { label: "Biểu thức thực thi", name: "ExecCron", width: 100, align: "left", },
+            ],
+            pager: "#gridPager",
+            sortname: " CreateTime desc",
+            viewrecords: true
+    });
+
+    $("#btn_search").click(function () {
+        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $gridList.jqGrid('setGridParam', {
+            postData: getSearchPostData(),
+            url: "/QualityControlManage/MedicalCenter/MessageSendQuery",
+        }).trigger('reloadGrid');
+    });
+
+    }
+    function getSearchPostData() {
+        var status = $("#sel_RecordStu").val();
+        var ksrq = $("#ksrq").val();
+        var jsrq = $("#jsrq").val();
+        return {
+            status: status, ksrq: ksrq, jsrq: jsrq
+        };
+    };
+</script>

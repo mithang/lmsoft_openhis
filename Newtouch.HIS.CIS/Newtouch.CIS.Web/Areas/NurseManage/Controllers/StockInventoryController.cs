@@ -1,30 +1,46 @@
-﻿using System;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Web;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using NewtouchHIS.Lib.Framework.Operator;
+
 using Newtouch.Domain.DTO.InputDto;
 using Newtouch.Domain.IDomainServices.DeptStorageManage;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
     /// 库存盘点
     /// </summary>
+    [Area("NurseManage")]
     public class StockInventoryController : OrgControllerBase
     {
         private readonly IStockInventoryDmnService _stockInventoryDmnService;
         private readonly IStockInventoryApp _stockInventoryApp;
         private readonly IKcKcjzDmnService _kcKcjzDmnService;
 
+        public StockInventoryController(IStockInventoryDmnService stockInventoryDmnService, IStockInventoryApp stockInventoryApp, IKcKcjzDmnService kcKcjzDmnService)
+        {
+            this._stockInventoryDmnService = stockInventoryDmnService;
+            this._stockInventoryApp = stockInventoryApp;
+            this._kcKcjzDmnService = kcKcjzDmnService;
+        }
+
         /// <summary>
         /// 开始盘点
         /// </summary>
         /// <returns></returns>
-        public ActionResult InventoryAction()
+        public IActionResult InventoryAction()
         {
             return View();
         }
@@ -33,7 +49,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 开始盘点
         /// </summary>
         /// <returns></returns>
-        public ActionResult InventoryQuery()
+        public IActionResult InventoryQuery()
         {
             ViewBag.OrganizeId = OrganizeId;
             return View();
@@ -43,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取盘点时间
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPdsj()
+        public IActionResult GetPdsj()
         {
             var result = _stockInventoryDmnService.GetPdSj(Constants.DeptCode, OrganizeId);
             return Content(result.ToJson());
@@ -53,7 +69,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 开始盘点
         /// </summary>
         /// <returns></returns>
-        public ActionResult StartInventory()
+        public IActionResult StartInventory()
         {
             return Success(null, _stockInventoryApp.StartInventory(Constants.DeptCode, OrganizeId));
         }
@@ -64,7 +80,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
         /// <returns></returns>
-        public ActionResult QueryInventoryInfoList(Pagination pagination, InventorySearchDTO inventorySearchDTO)
+        public IActionResult QueryInventoryInfoList(Pagination pagination, InventorySearchDTO inventorySearchDTO)
         {
             var list = new
             {
@@ -82,7 +98,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
         /// <returns></returns>
-        public ActionResult QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO inventorySearchDTO)
+        public IActionResult QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO inventorySearchDTO)
         {
             var list = new
             {
@@ -101,7 +117,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pdId"></param>
         /// <param name="noPc">0：按批次盘点  1：不按批次盘点</param>
         /// <returns></returns>
-        public ActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
+        public IActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
         {
             _stockInventoryApp.SaveInventoryInfo(resultObjArr.ToList<SaveInventoryDTO>(), pdId, noPc);
             return Success();
@@ -111,7 +127,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 取消盘点
         /// </summary>
         /// <returns></returns>
-        public ActionResult CancelInventory(long pdId)
+        public IActionResult CancelInventory(long pdId)
         {
             _stockInventoryApp.CancelInventory(pdId);
             return Success();
@@ -123,7 +139,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pdId">盘点单ID</param>
         /// <param name="autoCarryDown">null/0：不自动结转  1：自动结转</param>
         /// <returns></returns>
-        public ActionResult EndInventory(long pdId, string autoCarryDown)
+        public IActionResult EndInventory(long pdId, string autoCarryDown)
         {
             _stockInventoryApp.EndInventory(pdId);
             if (!"1".Equals(autoCarryDown)) return Success();

@@ -1,0 +1,319 @@
+
+@using Newtouch.Infrastructure;
+@using Newtouch.Tools;
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<form>
+	<div class="panel panel-default">
+		<div class="panel-heading navb-bg">
+			Điều kiện lọc
+		</div>
+		<table class="form">
+			<tr>
+				<th class="formTitle"></th>
+				<td class="formValue" colspan="2">
+					<input type="radio" name="radios" class="radios" value="qb" checked="checked">Tất cả
+					<input type="radio" name="radios" class="radios" value="yd">Đã đối mã
+					<input type="radio" name="radios" class="radios" value="wd">Chưa đối mã
+				</td>
+				<th class="formTitle">Tên thuốc:</th>
+				<td class="formValue" colspan="2">
+					<input id="txt_keyword" type="text" style="width:200px;" class="form-control form-an" placeholder="Tên thuốc">
+				</td>
+				<td class="formValue">
+					<input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tìm kiếm" />
+				</td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="gridPanel">
+		<table id="gridList"></table>
+		<div id="gridPager"></div>
+	</div>
+	<div class="panel panel-default">
+		<div class="toolbar" style="margin-left:2%">
+			<div class="btn-group">
+				<label>Nguồn dữ liệu:</label>
+			</div>
+			<div class="btn-group">
+				<select id="DataSource" name="DataSource"  style="width:200px; height:15px;"  class="form-control form-an">
+					<option value="1">Chế độ xem hệ thống</option>
+					<option value="2">Thư mục tải BHYT</option>
+				</select>
+			</div>
+			<div class="btn-group">
+				<label>Tên thuốc BHYT:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Tên thuốc BHYT">
+			</div>
+			<div class="btn-group">
+				<label>Số đăng ký:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Số phê duyệt BHYT">
+			</div>
+			<div class="btn-group">
+				<label>Doanh nghiệp sản xuất:</label>
+			</div>
+			<div class="btn-group">
+				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Doanh nghiệp sản xuất BHYT">
+			</div>
+			<div class="btn-group">
+				<input type="button" id="btn_searchyb" class="btn btn-primary" value="Tìm kiếm"/>
+			</div>
+			<div class="btn-group">
+				<input type="button" id="btn_save" class="btn btn-primary" value="Đối mã"/>
+			</div>
+		</div>
+		@*<table class="form">
+			<tr>
+				<th class="formTitle">药品代码：</th>
+				<td class="formValue" colspan="3">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="药品代码">
+				</td>
+
+				<td class="formValue" colspan="2">
+					<span><input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" /></span>
+					<span><input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" /></span>
+
+				</td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+				<th class="formTitle"></th>
+				<td class="formValue"></td>
+			</tr>
+		</table>*@
+	</div>
+	<div style="background-color: #fff; margin-top:5px;">
+		<table id="gridJSMXList"></table>
+	</div>
+	@*<div style="background-color: #fff; margin-top:5px;">
+			<input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="汇总清单" />
+				<input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="医保结算单" />
+		</div>*@
+</form>
+
+<script>
+	$(function () {
+		gridList();
+		$("#btn_searchyb").click(function () {
+			$('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
+			btn_selectmx();
+		});
+
+		$("#btn_save").click(function () {
+
+			btn_save();
+		});
+	});
+	function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "@Url.Action("Getypxxlist")",
+            height: 240,
+			postData: getpostData(),
+			rowNum: 10,
+			rownumbers: true,
+			unwritten: false,
+			pager: "#gridPager",
+			sortname: ' CreateTime desc',
+			viewrecords: true,
+            colModel: [
+				{ label: "Khóa chính", name: "ypId", hidden: true, frozen: true, key: true },
+				{ label: 'Tên thuốc', name: 'ypmc', width: 200, align: 'center',  sortable: false, frozen: true},
+				{ label: "Mã BHYT quốc gia", name: "gjybdm", width: 180, align: 'center', sortable: false, frozen: true},
+				{ label: "Tên BHYT quốc gia", name: "gjybmc", width: 200, align: 'center', sortable: false },
+				{ label: 'Quy cách thuốc', name: 'ypgg', width: 110, align: 'center', sortable: false},
+				{ label: 'Số đăng ký', name: 'pzwh', width: 140, align: 'center', sortable: false },
+				{ label: 'Dạng bào chế', name: 'jxmc', width: 60, align: 'center', sortable: false },
+				{ label: 'Nhà sản xuất', name: 'ycmc', width: 180, align: 'center', sortable: false },
+				{
+					label: 'Tính chất tự trả', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
+						switch (parseInt(b.zfxz)) {
+						case @((int)EnumZiFuXingZhi.ZF):
+                            return "@EnumZiFuXingZhi.ZF.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Jia):
+							return "@EnumZiFuXingZhi.Jia.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Yi):
+							return "@EnumZiFuXingZhi.Yi.GetDescription()";
+						case @((int)EnumZiFuXingZhi.Bing):
+                            return "@EnumZiFuXingZhi.Bing.GetDescription()";
+						default:
+                            return "";
+                        }
+					}
+				},
+				{ label: "Mã BHYT", name: "ybdm", width: 110, align: 'center', sortable: false },
+				{ label: 'Pinyin thuốc', name: 'py', width: 100, align: 'center', sortable: false },
+				{ label: "Mã thuốc", name: "ypCode", width: 100, align: 'center', sortable: false }
+				
+
+			],
+            
+            onSelectRow_page: function (rowid) {
+                btn_selectrow();
+            },
+            gridComplete: function (gridJszbList) {
+                jszbList = null;
+                if (gridJszbList && gridJszbList.rows) {
+                    jszbList = gridJszbList.rows;
+                }
+            }
+        });
+	$gridList.jqGrid('setFrozenColumns');
+        $("#btn_search").click(function () {
+            $('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
+            $gridList.jqGrid('setGridParam', {
+                postData: getpostData(),
+                page: 1,
+			}).trigger('reloadGrid');
+			$("#txt_gjybdm").val("");
+			$("#txt_pzwh").val("");
+			$("#txt_scqy").val("");
+        });
+	}
+
+
+	//结算明细 jGrid声明
+	$('#gridJSMXList').newtouchLocalDataGrid({
+		height: $(window).height() - 520,
+		caption: "Thông tin thuốc BHYT",
+		unwritten: false,
+		colModel: [
+			{ label: 'Mã BHYT quốc gia', name: 'ypdm', width: 180, align: 'center' },
+			{ label: 'Tên BHYT', name: 'zcmc', width: 200, align: 'center'},
+			{ label: 'Tên thuốc BHYT', name: 'ybypmc', width: 80, align: 'center' },
+			{ label: 'Quy cách', name: 'sjgg', width: 110, align: 'center' },
+			{ label: 'Số đăng ký', name: 'pzwh', width: 130, align: 'center' },
+			{ label: 'Dạng bào chế', name: 'sjjx', width: 60, align: 'center' },
+			{ label: 'Doanh nghiệp sản xuất', name: 'scqy', width: 180, align: 'center' },
+			{ label: 'Loại A/B', name: 'jyl', width: 80, align: 'center' },
+			{ label: 'Tên thương mại', name: 'spmc', width: 100, align: 'center' },
+			{ label: 'Doanh nghiệp dược', name: 'ypqy', width: 180, align: 'center' },
+			{ label: 'Dạng bào chế BHYT', name: 'ybjx', width: 80, align: 'center' },
+			{ label: 'Ghi chú', name: 'bz', width: 80, align: 'center' },
+			{ label: 'Nguồn dữ liệu', name: 'sjly', width: 60, align: 'center' },
+			{ label: 'Chất liệu bao bì', name: 'bzcz', width: 80, align: 'center' },
+			{ label: 'Số lượng đóng gói nhỏ nhất', name: 'zxbzsl', width: 40, align: 'center' },
+			{ label: 'Đơn vị bào chế nhỏ nhất', name: 'zxzjdw', width: 40, align: 'center' },
+			{ label: 'Đơn vị đóng gói nhỏ nhất', name: 'zxbzdw', width: 80, align: 'center' },
+			{ label: 'Số hiệu', name: 'bh', width: 80, align: 'center' },
+
+
+		],
+		viewrecords: true,
+		//ondblClickRow: function (row) {
+		//	btn_clickrow();
+		//}
+	});
+
+	function btn_selectmx() {
+
+		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');
+		if (!ypid) {
+			$.modalMsg("Vui lòng chọn thông tin thuốc cần đối mã", "warning", 1000);
+			return false;
+		}
+
+		var pzwh = $("#txt_pzwh").val();
+		var scqy = $("#txt_scqy").val();
+		$('#gridJSMXList').jqGrid("clearGridData");
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("GetYpypxxlist")",
+			data: { gjybdm: $("#txt_gjybdm").val(), ypmc: scqy, py:'' , pzwh: pzwh ,dataSource: $("#DataSource").val()},
+			dataType: "json",
+			success: function (ajaxresp) {
+
+				$('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
+			}
+		});
+	}
+	function btn_selectrow() {
+		var gjybdm = $("#gridList").jqGridRowValue().gjybdm;
+		var ypmc = $("#gridList").jqGridRowValue().ypmc;
+		var yppy = $("#gridList").jqGridRowValue().py;
+		var pzwh = $("#gridList").jqGridRowValue().pzwh;
+		if (gjybdm != null && gjybdm!="0") {
+			$("#txt_gjybdm").val(gjybdm)
+		} else {
+			$("#txt_gjybdm").val(ypmc);
+		}
+
+		$("#txt_pzwh").val("");
+		$("#txt_scqy").val("");
+		//每次单击，先清空上一条明细 和合计
+		$('#gridJSMXList').jqGrid("clearGridData");
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("GetYpypxxlist")",
+			data: { gjybdm: $("#txt_gjybdm").val(), ypmc: '', py: '', pzwh: '' ,dataSource: $("#DataSource").val()},
+			dataType: "json",
+			success: function (ajaxresp) {
+				$('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
+			}
+		});
+	}
+
+
+	//保存对码
+	function btn_save() {
+
+		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');
+		if (!ypid) {
+			$.modalMsg("Vui lòng chọn thông tin thuốc cần đối mã", "warning", 1000);
+			return false;
+		}
+		var ybid = $("#gridJSMXList").jqGrid('getGridParam', 'selrow');
+		if (!ybid ){
+			$.modalMsg("Vui lòng chọn thông tin thuốc BHYT", "warning", 1000);
+			return false;
+		}
+		var ybxx = {
+			ypdm: $("#gridJSMXList").jqGridRowValue().ypdm,
+			zcmc: $("#gridJSMXList").jqGridRowValue().zcmc,
+			jyl: $("#gridJSMXList").jqGridRowValue().jyl,
+		};
+		var ypId = $("#gridList").jqGridRowValue().ypId;
+		var zfxz = ybxx.jyl == "甲" ? "4" : ybxx.jyl == "乙" ? "5" : ybxx.jyl == "丙" ? "6" : "1";
+		$.najax({
+			type: "POST",
+			url: "@Url.Action("SaveYpYb")",
+			data: { ybxx: ybxx, ypId: ypId},
+			dataType: "json",
+			success: function (data) {
+
+				if (data != null && data !== "") {
+					//gridList();
+					$.modalAlert("Đối mã thuốc này thành công", 'success');
+					//$("#txt_gjybdm").val("");
+					//$('#btn_search').trigger('click');
+					$("#txt_pzwh").val("");
+					$("#txt_scqy").val("");
+					var datarow = {
+						gjybdm: $("#gridJSMXList").jqGridRowValue().ypdm,
+						gjybmc: $("#gridJSMXList").jqGridRowValue().zcmc,
+						zfxz: zfxz,
+					};
+					$("#gridList").jqGrid('setRowData', ypid, datarow);
+				}
+			}
+		});
+	}
+
+
+	function getpostData() {
+		return {
+			keyword: $("#txt_keyword").val(), type: $('input:radio:checked').val(),dataSource: $("#DataSource").val()
+		};
+	}
+
+</script>

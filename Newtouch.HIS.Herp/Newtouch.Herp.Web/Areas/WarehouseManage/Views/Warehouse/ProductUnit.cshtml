@@ -1,6 +1,6 @@
-﻿@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "修改库房物资单位";
+    ViewBag.Title = "Sửa đơn vị vật tư kho";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -19,7 +19,7 @@
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active" style="padding-right:10px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>单位：</th>
+                        <th class="formTitle"><span class="required">*</span>Đơn vị:</th>
                         <td class="formValue">
                             <select id="unitId" name="unitId" class="form-control"></select>
                         </td>
@@ -75,7 +75,7 @@
     //数据效验
     function DataValidate() {
         if ($("#unitId").val() === "") {
-            $.modalAlert("单位必选", 'warning');
+            $.modalAlert("Đơn vị là bắt buộc", 'warning');
             return false;
         }
         return true;

@@ -1,8 +1,8 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "出诊设置";
+    ViewBag.Title = "Khám bệnhCài đặt";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div style="width: 26%; float: left;">
@@ -12,7 +12,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="名称/工号" style="width: 180px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã nhân viên" style="width: 180px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>
@@ -33,9 +33,9 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 7, 8, 9 },
-    F7Text = "新增",
-    F8Text = "修改",
-    F9Text = "删除"
+    F7Text = "Thêm mới",
+    F8Text = "Sửa",
+    F9Text = "Xóa"
 })
 <script>
     var $gridList = $("#gridList");
@@ -54,9 +54,9 @@
             height: $(window).height() - 120,
             postData: { keyword: $("#txt_keyword").val() },
             colModel: [
-                { label: '姓名', name: 'StaffName', width: 70, align: 'left' },
-                { label: "工号", name: "StaffGh", width: 70, align: "left" },
-                { label: '科室', name: 'ksmc', width: 120, align: 'left'}
+                { label: 'Họ tên', name: 'StaffName', width: 70, align: 'left' },
+                { label: "Mã nhân viên", name: "StaffGh", width: 70, align: "left" },
+                { label: 'Khoa', name: 'ksmc', width: 120, align: 'left'}
             ],
             rownumbers:false,
             pager: "#gridPager",
@@ -80,13 +80,13 @@
 
     function gridmxList() {
         $gridmxList.dataGrid({
-            caption: "医生出诊科室",
+            caption: "Khoa khám bác sĩ",
             height: $(window).height() - 120,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '出诊科室名称', name: 'visitDeptName', width: 120, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Khoa khámTên', name: 'visitDeptName', width: 120, align: 'left' },
                 {
-                    label: '出诊类型', name: 'czlx', width: 100, align: "left", formatter: function(cellvalue) {
+                    label: 'KhámLoại', name: 'czlx', width: 100, align: "left", formatter: function(cellvalue) {
                     switch (cellvalue) {
                         case @((int)EnumOutPatientType.emerDiagnosis):
                             return "@EnumOutPatientType.emerDiagnosis.GetDescription()";
@@ -98,13 +98,13 @@
                             return "";
                     }
                 } },
-                { label: "所属科室", name: "subordinateDeptName", width: 120, align: "left" },
-                { label: '创建时间', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' }},
-                { label: '创建人', name: 'CreatorCode', width: 80, align: 'left' },
-                { label: "有效", name: "zt", width: 70, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: "ThuộcKhoa", name: "subordinateDeptName", width: 120, align: "left" },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' }},
+                { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
+                { label: "Hiệu lực", name: "zt", width: 70, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 {
-                    label: '操作', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
-                        return '<span style="color:#ff0000" onclick=\'deleteItem("' + cell.Id + '")\'>删除</span>';
+                    label: 'Thao tác', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
+                        return '<span style="color:#ff0000" onclick=\'deleteItem("' + cell.Id + '")\'>Xóa</span>';
                     }
                 },
                 { label: "ysgh", name: "ysgh", hidden: true }
@@ -125,13 +125,13 @@
         var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
         var mRowData = $gridList.jqGrid("getRowData", mainRowId);
         if (!mRowData) {
-            $.modalAlert("请选择医生", 'warning');
+            $.modalAlert("Vui lòng chọnBác sĩ", 'warning');
             return false;
         }
         var ysgh = mRowData.StaffGh;
         $.modalOpen({
             id: "Form",
-            title: "新增出诊科室",
+            title: "Thêm mớiKhoa khám",
             url: "/SystemManage/VisitDeptSet/Form?keyValue=&ysgh=" + ysgh,
             width: "550px",
             height: "350px",
@@ -146,7 +146,7 @@
     function newtouch_event_f8() {
         var detailRowid = $gridmxList.jqGrid("getGridParam", "selrow");
         if (!(detailRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return false;
         }
         var dRowData = $gridmxList.jqGrid("getRowData", detailRowid);
@@ -154,13 +154,13 @@
         var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
         var mRowData = $gridList.jqGrid("getRowData", mainRowId);
         if (!mRowData) {
-            $.modalAlert("请选择医生", 'warning');
+            $.modalAlert("Vui lòng chọnBác sĩ", 'warning');
             return false;
         }
         var ysgh = mRowData.StaffGh;
         $.modalOpen({
             id: "Form",
-            title: "修改出诊科室",
+            title: "Sửa khoa khám",
             url: "/SystemManage/VisitDeptSet/Form?keyValue=" + keyValue + "&ysgh=" + ysgh,
             width: "550px",
             height: "350px",
@@ -182,15 +182,15 @@
             rowid = $gridmxList.jqGrid("getGridParam", "selrow");
         }
         if (!rowid) {
-            $.modalAlert("请选择要删除的出诊科室记录", 'warning');
+            $.modalAlert("Vui lòng chọn ghi chép khoa khám cần xóa", 'warning');
             return false;
         }
         var rowData = $gridmxList.jqGrid("getRowData", rowid);
         if (!rowData) {
-            $.modalAlert("选中的记录无效，请重新选择", 'warning');
+            $.modalAlert("Ghi chép đã chọn không hiệu lực, vui lòng chọn lại", 'warning');
             return false;
         }
-        $.modalConfirm("确定要删除该条出诊科室记录", function (flag) {
+        $.modalConfirm("Xác nhận xóa ghi chép khoa khám dòng này", function (flag) {
             if (flag) {
                 $.najax({
                     url: "/SystemManage/VisitDeptSet/DeleteItem",

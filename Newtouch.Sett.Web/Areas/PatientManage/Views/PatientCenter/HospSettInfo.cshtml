@@ -1,0 +1,191 @@
+
+@{
+    Layout = null;
+}
+<div>
+    <table class="form">
+        <tr>
+            <td class="formValue"><span style="float:left;width:40%;padding-top:5px;">Loại quyết toán：</span>
+                                  <div style="width:55%;float:right;">
+                                      <select class="form-control" id="sel_jsxz">
+                                          <option value="">Không giới hạn</option>
+                                          <option value="1">xuất viện quyết toán</option>
+                                          <option value="2">Quyết toán giữa chừng</option>
+                                      </select>
+                                  </div>
+            </td>
+            <td class="formValue"><input type="button" id="btn_settsubmit" class="btn btn-primary" value=" tra vấn " />
+            </td>
+            <th class="formTitle"></th>
+            <td class="formValue"></td>
+            <th class="formTitle"></th>
+            <td class="formValue"></td>
+        </tr>
+    </table>
+    <table id="gridListsett"></table>
+</div>
+<div style="border:1px solid #ff6a00;border-radius:5px;">
+    <table class="form" style="margin:5px 5px;">
+        <tr style="border-bottom:1px solid #ddd0d0;border-bottom-left-radius:5px;border-bottom-right-radius:5px;color:#ff0000;font-weight:bold;">
+            <th class="formTitle">Thời gian quyết toán：</th>
+            <td class="formValue" colspan="2"><label id="lb_setl_time"></label></td>
+            <th class="formTitle"></th>
+            <td class="formValue"></td>
+            <th class="formTitle"></th>
+            <td class="formValue"></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Tổng số phí：</th>
+            <td class="formValue">￥<label id="lb_medfee_sumamt">0.00</label></td>
+            <th class="formTitle">Tổng thanh toán tiền mặt：</th>
+            <td class="formValue">￥<label id="lb_xjzf">0.00</label></td>
+            <th class="formTitle">Phương thức thanh toán tiền mặt：</th>
+            <td class="formValue"><label id="lb_xjzffsmc"></label></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Thanh toán từ tài khoản：</th>
+            <td class="formValue">￥<label id="lb_acct_pay">0.00</label></td>
+            <th class="formTitle">Tính phí tiền mặt ngoài BHYT：</th>
+            <td class="formValue">￥<label id="lb_fybxjzf">0.00</label></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Tính phí tiền mặt BHYT：</th>
+            <td class="formValue">￥<label id="lb_psn_cash_pay">0.00</label></td>
+            <th class="formTitle">Thanh toán từ quỹ chung：</th>
+            <td class="formValue">￥<label id="lb_hifp_pay">0.00</label></td>
+            <th class="formTitle">Trợ cấp công chức：</th>
+            <td class="formValue">￥<label id="lb_cvlserv_pay">0.00</label></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Tạm ứng y tế đơn bệnh：</th>
+            <td class="formValue">￥<label id="lb_hosp_part_amt">0.00</label></td>
+
+            <th class="formTitle">Thanh toán bồi thường số tiền lớn：</th>
+            <td class="formValue">￥<label id="lb_hifob_pay">0.00</label></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp：</th>
+            <td class="formValue">￥<label id="lb_hifes_pay">0.00</label></td>
+            <th class="formTitle">Chi bệnh nặng dân cư：</th>
+            <td class="formValue">￥<label id="lb_hifmi_pay">0.00</label></td>
+            <th class="formTitle">Chi quỹ cứu trợ y tế：</th>
+            <td class="formValue">￥<label id="lb_maf_pay">0.00</label></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Thanh toán chung tài khoản：</th>
+            <td class="formValue">￥<label id="lb_acct_mulaid_pay">0.00</label></td>
+            <th class="formTitle">Khác：</th>
+            <td class="formValue">￥<label id="lb_oth_pay">0.00</label></td>
+            <th class="formTitle">Số tiền phù hợp phạm vi chính sách：</th>
+            <td class="formValue">￥<label id="lb_inscp_scp_amt">0.00</label></td>
+        </tr>
+        <tr>
+            <th class="formTitle">Mức khởi trả thanh toán thực tế：</th>
+            <td class="formValue">￥<label id="lb_act_pay_dedc">0.00</label></td>
+        </tr>
+    </table>
+</div>
+<script>
+    $(function () {
+        $("#btn_settsubmit").click(function () {
+            //刷新结算信息
+            $("#gridListsett").jqGrid('setGridParam', {
+                postData: { zyh: $("#zyh").text(), jsxz: $("#sel_jsxz option:selected").val() }
+            }).trigger('reloadGrid');
+            $("#dv_sett label").each(function () {
+                $(this).html("");
+            });
+        });
+    });
+    function gridListSett(zyh) {
+        var $gridList = $("#gridListsett");
+        $gridList.dataGrid({
+            url: "/PatientManage/PatientCenter/PatZySettInfo",
+            postData: { zyh: zyh },
+            height: 200,
+            colModel: [
+                { label: 'Khóa chính', name: 'jsnm', hidden: true },
+                { label: 'setl_id', name: 'setl_id', hidden: true },
+                {
+                    label: 'Ngày quyết toán', name: 'setl_time', width: 120, align: 'center',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: 'Số nhập viện', name: 'zyh', width: 80, align: 'center' },
+                //{ label: '病人性质', name: 'brxz', width: 80, align: 'center' },
+                { label: 'Tổng chi phí', name: 'zje', width: 100, align: 'center' },
+                { label: 'Thanh toán tiền mặt', name: 'xjzf', width: 100, align: 'center' },
+                {
+                    label: 'Trạng thái quyết toán', name: 'jszt', width: 80, align: 'center', formatter: function (val) {
+                        return $.enum.getDescByValue("EnumJieSuanZT", val);
+                    }
+                },
+                {
+                    label: 'quyết toán Tính chất', name: 'jsxz', width: 80, align: 'center', formatter: function (val) {
+                        if (val == "2") {
+                            return "Quyết toán giữa chừng";
+                        }
+                        else 
+                            return "xuất viện quyết toán";
+                    }
+                },
+                { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'center' },
+                //{ label: '账户支付', name: 'acct_pay', width: 80, align: 'center' },
+                //{ label: '账户余额', name: 'balc', width: 80, align: 'center' }
+            ],
+            ondblClickRow: function (rowIndex, s) {
+                getSettInfo();
+            },
+            //gridComplete: function () {
+            //    var ids = $('#gridListsett').getDataIDs();//返回数据表的ID数组["66","39"..] 
+            //    var rowData = $("#gridListsett").getRowData(ids[0]);
+            //    getSettInfo(rowData.jsnm, rowData.setl_id);
+            //},
+            //caption: "结算信息"
+        });
+    }
+    function getSettInfo(jsnm, settid) {
+        var setttime = "";
+        if (!jsnm) {
+            jsnm = $("#gridListsett").jqGridRowValue().jsnm;
+            settid = $("#gridListsett").jqGridRowValue().setl_id;
+            setttime = $("#gridListsett").jqGridRowValue().setl_time;
+        }
+
+        if (!jsnm) {
+            $.modalAlert("Vui lòng chọn một quyết toán bản ghi", 'warning');
+        }
+        $.najax({
+            url: "/PatientManage/PatientCenter/PatZySettInfobyJsnm",
+            data: { jsnm: jsnm, settid: settid },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data != null) {
+                    for (var e in data) {
+                        if (!!$("#lb_" + e) && data[e] != null) {
+                            if (data[e] === 0) {
+                                $("#lb_" + e).html("0.00");
+                            }
+                            else if (e == "setl_time" && !setttime) {
+                                var text = $.getTime({ date: data[e] });
+                                $("#lb_" + e).html(text);
+                            }
+                            else if (!!parseFloat(data[e])) {
+                                $("#lb_" + e).html(parseFloat(data[e]).toFixed(2));
+                            }
+                            else {
+                                $("#lb_" + e).html(data[e]);
+                            }
+                        }
+                    }
+                }
+                if (!!settid) {
+                    $("#lb_xjzf").html((parseFloat(data.psn_cash_pay) + parseFloat(data.medfee_sumamt) - parseFloat(data.medfee_sumamt)).toFixed(2));
+                    $("#lb_fybxjzf").html((parseFloat(data.medfee_sumamt) - parseFloat(data.medfee_sumamt)).toFixed(2));
+                }
+                $("#lb_setl_time").html(setttime);
+            }
+        });
+    }
+
+</script>

@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "护士站患者中心-电子病历患者一览";
+    ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Điện tửBệnh ánBệnh nhânDanh sách";
 }
 
 <div id="linkzybl" role="tabpanel" class="tab-pane" style="width:100%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
@@ -17,7 +17,7 @@
          if (blbqdm) {
              var addstyleid = 'PatTreeList_' + blbqdm;
              $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
-             // 获取iframe元素
+             // 获取iframe素
              var iframe = document.getElementById('iframeblyl');
              // 访问iframe中的window对象
              var iframeWindow = iframe.contentWindow;
@@ -63,7 +63,7 @@
              url: "/NurseManage/EntryRegistration/TreeViewdata",
              onnodeclick: function (item) {
                  if (item.value && item.Ex1 == "c") {
-                     // 获取iframe元素
+                     // 获取iframe素
                      var iframe = document.getElementById('iframeblyl');
                      // 访问iframe中的window对象
                      var iframeWindow = iframe.contentWindow;

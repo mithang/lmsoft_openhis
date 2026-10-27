@@ -1,0 +1,496 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    //医保所属地，区分系统将执行何处医保逻辑
+    var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
+    var opr = OperatorProvider.GetCurrent();
+}
+
+<style>
+    .title {
+        width: 60px;
+    }
+</style>
+<form>
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">thuộc tính：</th>
+                <td class="formValue" colspan="1">
+                    <select id="isjs" name="isjs" class="form-control">
+                        <option value="yj" selected="selected">Đã quyết toán</option>
+                        <option value="wj">chưa quyết toán</option>
+                        <option value="cz">Đảo ngược</option>
+                    </select>
+                </td>
+                <th class="formTitle">Loại：</th>
+                <td class="formValue" style="width:70px">
+                    <select id="lx" name="lx" class="form-control">
+                        <option value="mz">Ngoại trú</option>
+                        <option value="zy" selected="selected">Nhập viện</option>
+                    </select>
+                </td>
+                <th class="formTitle">Từ khóa：</th>
+                <td class="formValue" style="width:100px">
+                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số khám ngoại trú/Số nhập viện">
+                </td>
+                <td class="formTitle">
+                    <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" />
+                </td>
+                <td class="formTitle">
+                    <input type="button" id="btn_settRefund" class="btn btn-primary" value="quyết toán Đảo ngược" />
+                </td>
+                <td class="formValue">
+                    <input type="button" style="display:none" id="btn_cyblRefund" class="btn btn-primary" value="Làm thủ tục xuất viện Đảo ngược" />
+                </td>
+                <td class="formValue">
+                    <input type="button" style="display:none" id="btn_ImpactIs" class="btn btn-primary" value="【2061】Đảo ngược" />
+                    @*<input type="button"  id="btn_mzcz" class="btn btn-primary" value="【2061】入院登记冲正" />*@
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+</form>
+
+<script>
+    var medicalInsurance = '@medicalInsurance';
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PatientManage/HospiterRes/GetCqybGridJson",
+            height: $(window).height() - 145,
+            postData: { keyword: $("#txt_keyword").val(), lx: $("#lx").val(), isjs: $("#isjs").val()},
+            colModel: [
+                { label: 'Ngoại trú/Số nhập viện', name: 'zymzh', width: 70, align: 'left' },
+                { label: 'Họ tên', name: 'psn_name', width: 50, align: 'left' },
+                { label: 'Số hiệu nhân viên', name: 'psn_no', width: 90, align: 'left' },
+                { label: 'Mã nơi tham gia bảo hiểm', name: 'cbdbm', width: 70, align: 'left' },
+                { label: 'khám ID', name: 'mdtrt_id', width: 110, align: 'left' },
+                { label: 'quyết toán ID', name: 'setl_id', width: 100, align: 'left'},
+                {
+                    label: 'Thời gian quyết toán', name: 'setl_time', width: 120, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                },
+                { label: 'Số tiền', name: 'medfee_sumamt', width: 50, align: 'left' },
+                { label: 'Tính chất', name: 'dbz', width: 70, align: 'left' },
+                { label: 'ID bản tin gửi', name: 'medins_setl_id', width: 200, align: 'left' },
+                { label: 'giao dịch Mã', name: 'infno', width: 60, align: 'center' },
+                { label: 'Lỗi thông tin', name: 'errormsg', width: 50, align: 'left' },
+                { label: 'jsnm', name: 'jsnm', width: 50, align: 'left', hidden: true },
+                { label: 'xjzf', name: 'xjzf', width: 50, align: 'left', hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'medins_setl_id desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), lx: $("#lx").val(), isjs: $("#isjs").val() },
+            }).trigger('reloadGrid');
+        });
+
+        $('#isjs').change(function () {
+            if ($("#isjs").val() == "wj") {
+                $('#btn_cyblRefund').css('display', 'block');
+                $('#btn_settRefund').css('display', 'none');
+                $('#btn_ImpactIs').css('display', 'none');
+            }
+            else if ($("#isjs").val() == "yj") {
+                $('#btn_cyblRefund').css('display', 'none');
+                $('#btn_settRefund').css('display', 'block');
+                $('#btn_ImpactIs').css('display', 'none');
+            } else {
+                $('#btn_cyblRefund').css('display', 'none');
+                $('#btn_settRefund').css('display', 'none');
+                $('#btn_ImpactIs').css('display', 'block');
+            }
+            $('#btn_search').trigger('click');
+        });
+        $('#lx').change(function () {
+            $('#btn_search').trigger('click');
+        })
+
+        //撤销单边结算，前提:HIS医保记录表已存取医保结算返回数据
+        $("#btn_settRefund").click(function () {
+            var seleRow = $("#gridList").jqGridRowValue();
+            var zymzh = seleRow.zymzh;
+            if (!!!zymzh) {
+                $.modalAlert("Chưa chọn bản ghi nào", "error");
+                return;
+            }
+            if ($("#lx").val()=="zy")
+            {
+                switch (seleRow.dbz)
+                {
+                    case "医保单边":
+                        var cqybjyDenySettleReturn;
+                        var payoptype = { hisId: seleRow.zymzh, 'setl_id': seleRow.setl_id, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': seleRow.mdtrt_id, 'psn_no': seleRow.psn_no, "insuplc_admdvs": seleRow.cbdbm };
+                        $.ajax({
+                            type: "POST",
+                            url: "http://127.0.0.1:33333/api/YiBao/HospitaUpSettlement_2305",
+                            dataType: "json",
+                            data: payoptype,
+                            async: false,
+                            success: function (data) {
+                                cqybjyDenySettleReturn = eval('(' + data + ')');
+                            },
+                            error: function (request, error, ex) {
+                                $.modalAlert("Dịch vụ BHYT【2305】(Nhập viện quyết toán Hủy bỏ)Không thể truy cập：[" + ex + "]", 'error');
+                                return;
+                            }
+                        });
+                        if (cqybjyDenySettleReturn.infcode == "0") {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://127.0.0.1:33333/api/YiBao/HospitaUpOutMdtrtinfo_2405",
+                                dataType: "json",
+                                data: payoptype,
+                                async: true,
+                                success: function (data) {
+                                    var cxcyReturn = eval('(' + data + ')');
+                                    if (cxcyReturn.infcode == '0') {
+                                        $.modalAlert('Hủy thành công', 'success');
+                                    }
+                                    else {
+                                        $.modalAlert('BHYT xuất viện Hủy thất bại：' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                                        return;
+                                    }
+                                },
+                                error: function (request, error, ex) {
+                                    $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập：[" + ex + "]", 'error');
+                                    return;
+                                }
+                            });
+                        } else {
+                            $.modalAlert('đảo quyết toán BHYT Thất bại：' + cqybjyDenySettleReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                        }
+                        break;
+
+                    case "离休医保单边":
+                        if (medicalInsurance == "chongqing") {
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+                            lxybcz(payoptype);
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+            else if ($("#lx").val() == "mz")
+            {
+                switch (seleRow.dbz)
+                {
+                    case "医保单边":
+                        var mzSettleReturn;
+                        var mzpayoptype = { "setl_id": seleRow.setl_id, "mdtrt_id": seleRow.mdtrt_id, "psn_no": seleRow.psn_no, operatorId: '@(opr.rygh)', "operatorName": '@(opr.UserName)', insuplc_admdvs: seleRow.cbdbm, hisId: seleRow.zymzh };
+                        $.ajax({
+                            type: "POST",
+                            url: "http://127.0.0.1:33333/api/YiBao/UpSettlement_2208",
+                            dataType: "json",
+                            data: mzpayoptype,
+                            async: false,
+                            success: function (data) {
+                                mzSettleReturn = eval('(' + data + ')');
+                            },
+                            error: function (request, error, ex) {
+                                $.modalAlert("Dịch vụ BHYT【2208】(Hủy quyết toán ngoại trú)Không thể truy cập：[" + ex + "]", 'error');
+                                return;
+                            }
+                        });
+                        if (mzSettleReturn.infcode == "0" ) {
+                            $.modalAlert('Hủy thành công', 'success');
+                        }
+                        else {
+                            $.modalAlert('BHYT quyết toán Hủy thất bại：' + mzSettleReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                        }
+                        break;
+                    case "离休医保单边":
+                        if (medicalInsurance == "chongqing") {
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+                            lxybcz(payoptype);
+                        }
+                        break;
+                    case "HIS单边":
+                        
+                        var tmx;
+                        var tjscfh = [];
+                        $.najax({
+                            type: "POST",
+                            url: "/OutpatientManage/OutpatientRefund/RefundableDetailQuery?jsnm=" + seleRow.jsnm,
+                            dataType: "json",
+                            loading: false,
+                            async:false,
+                            success: function (detailList) {
+                                if (detailList && detailList.length) {
+                                    tmx = detailList;
+                                }
+                            }
+                        });
+                        if (tmx && tmx.length == 0) {
+                            $.modalAlert('Chưa tìm thấy Có thể hoàn chi tiết', 'success');
+                            return;
+                        }
+                        var tjsxmDictObj = {};
+                        var iskt = true;
+                        $.each(tmx, function () {
+                            if (this.ktsl <= 0)
+                                iskt = false;
+                            tjsxmDictObj[this.jsmxnm] = this.tsl;
+                            if ($.inArray(this.cfh, tjscfh) < 0) {
+                                tjscfh.push(this.cfh);
+                            }
+                        });
+                        if (!iskt) {
+                            $.modalAlert('Số lượng có thể hoàn là0，Vui lòng xác nhận Có hay không Có thể hoàn！', 'success');
+                            return;
+                        }
+                        var ybjyCqFeeReturn = {
+                            jylsh: "111111111",//值不可修改，后台会判断，如果为111111111，则不再写入医保结算落地表--重庆
+                            cqtczf: 0,
+                            zhzf: 0,
+                            gwybz: 0,
+                            cqxjzf: 0,
+                            delpje: 0,
+                            zhye: 0,
+                            mzjzje: 0,
+                            zxjssj: $.getDate()
+                        };
+                        var cqybjyDenySettleReturn = ybjyCqFeeReturn;
+                        cqybjyDenySettleReturn.yjlsh = "222222222";
+                        var mztfProDto = { ZFY: seleRow.medfee_sumamt, XJZF: seleRow.xjzf };
+                        YbHISRefundSettlement(zymzh,seleRow.jsnm,tjsxmDictObj,
+                            ovpraseFloat(seleRow.medfee_sumamt).toFixed(4),
+                            cqybjyDenySettleReturn.jylsh,//退费后结算ID
+                            ybjyCqFeeReturn.jylsh,
+                            ybjyCqFeeReturn,
+                            cqybjyDenySettleReturn,//退费后交易返回对象
+                            mztfProDto,
+                            function (hisSuccessAjaxResp) {
+                                if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== '退费成功') {
+                                    $.modalAlert(hisSuccessAjaxResp.message, 'error');
+                                } else {
+                                    $.modalAlert("HIS đảo ngược quyết toán thành công", 'success');
+                                    //更新退标志
+                                    if (tjscfh.length > 0) {
+                                        UpdateChargeTbz(tjscfh);
+                                    }
+                                }
+                            });
+                        break;
+                    default:
+                        break;
+                }
+            }
+            $('#btn_search').trigger('click');
+        });
+
+        //离休冲正
+        function lxybcz(payoptype)
+        {
+            var cqybjyDenySettleReturn;
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:22222/api/CQYiBao/CancelTransaction",
+                dataType: "json",
+                data: payoptype,
+                async: false,
+                success: function (data) {
+                    cqybjyDenySettleReturn = eval('(' + data + ')');
+                },
+                error: function (request, error, ex) {
+                    $.modalAlert("nghỉ hưu Dịch vụ BHYT【99】giao dịch đảo Không thể truy cập：[" + ex + "]", 'error');
+                    return;
+                }
+            });
+            $.loading(false);
+            if (cqybjyDenySettleReturn && cqybjyDenySettleReturn.Code == "1") {
+                $.modalAlert('Đảo ngược thành công', 'success');
+            } else {
+                $.modalAlert('Hủy quyết toán thất bại,' + cqybjyDenySettleReturn.ErrorMsg, 'error');
+            }
+        }
+
+        //医保交易 HIS退费确认
+        function YbHISRefundSettlement(zymzh, jsnm,tjsxmDict, tmxZje, hcybjsh, newwjybjsh, newybfeeRelated, hcybfeeRelated, guianMztfProDto, funcSuccCallback) {
+            $.najax({
+                type: "POST",
+                data: {
+                    mzh: zymzh, jsnm:jsnm, tjsxmDict: tjsxmDict, expectedTmxZje: tmxZje
+                    , hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
+                    , hcybfeeRelated: hcybfeeRelated
+                    , newybfeeRelated: newybfeeRelated
+                    , guianMztfProDto: guianMztfProDto
+                    , outpId: null
+                },
+                url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
+                dataType: "json",
+                loadingtext: "Đang yêu cầu Đảo ngược HIS quyết toán，Vui lòng chờ…",
+                success: function (ajaxresp) {
+                    if (funcSuccCallback) {
+                        if (ajaxresp && ajaxresp.data) {
+                        }
+                        funcSuccCallback(ajaxresp);
+                    }
+                }
+            }); $.loading(false);
+        }
+        function ovpraseFloat(val) {
+            if (!val) {
+                val = 0;
+            }
+            return parseFloat(val);
+        }
+
+        //更新CIS退标志
+        function UpdateChargeTbz(tcfh) {
+            $.ajax({
+                type: "POST",
+                data: { tcfh: tcfh },
+                url: "/OutpatientManage/OutpatientRefund/UpdateChargeTbz",
+                dataType: "json"
+          });
+         }
+
+        //2405出院撤销
+        $("#btn_cyblRefund").click(function () {
+            var seleRow = $("#gridList").jqGridRowValue();
+            var zymzh = seleRow.zymzh;
+            if (!!!zymzh) {
+                $.modalAlert("Chưa chọn bản ghi nào", "error");
+                return;
+            }
+            var cycxpayoptype = { hisId: seleRow.zymzh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': seleRow.mdtrt_id, 'psn_no': seleRow.psn_no, "insuplc_admdvs": seleRow.cbdbm };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/HospitaUpOutMdtrtinfo_2405",
+                dataType: "json",
+                data: cycxpayoptype,
+                async: true,
+                success: function (data) {
+                    var cxcyReturn = eval('(' + data + ')');
+                    if (cxcyReturn.infcode == '0') {
+                        $.modalAlert('Hủy thành công', 'success');
+                    }
+                    else {
+                        $.modalAlert('BHYT xuất viện Hủy thất bại：' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                    }
+                },
+                error: function (request, error, ex) {
+                    $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập：[" + ex + "]", 'error');
+                }
+            });
+        });
+
+        $("#btn_mzcz").click(function () {
+            //2601入参
+            var ImpactIs = { hisId: "00930", 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'omsgid': "H50010302473202110201538280082", 'oinfno': "2401", 'psn_no': "14216130", "insuplc_admdvs": "511600" };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/ImpactIs_2601",
+                dataType: "json",
+                data: ImpactIs,
+                async: false,
+                success: function (data) {
+                    var mzImpactIs = eval('(' + data + ')');
+                    if (mzImpactIs.infcode == '0') {
+                        $.modalAlert('【2601】Đảo ngược thành công', 'success');
+                    }
+                    else {
+                        $.modalAlert('【2601】Đảo ngược【2401】Thất bại：', 'error');
+                    }
+                },
+                error: function (request, error, ex) {
+                    $.modalAlert("Dịch vụ BHYT【2601】(giao dịch đảo)Không thể truy cập：[" + ex + "]", 'error');
+                    return;
+                }
+            });
+        });
+
+
+        /*2601冲正可冲正 2207门诊结算 2208门诊结算撤销
+          2304住院结算 2305住院结算撤销 2401入院办理*/
+        $("#btn_ImpactIs").click(function () {
+            var seleRow = $("#gridList").jqGridRowValue();
+            var omsgid = seleRow.medins_setl_id;
+            var oinfon = seleRow.infno;
+            if (!!!omsgid && !!!oinfon) {
+                $.modalAlert("Chưa chọn bản ghi nào", "error");
+                return;
+            }
+            var mzImpactIs;
+            //2405入参
+            var cycxpayoptype = { hisId: seleRow.zymzh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': seleRow.mdtrt_id, 'psn_no': seleRow.psn_no, "insuplc_admdvs": seleRow.cbdbm };
+            //2601入参
+            var ImpactIs = { hisId: seleRow.zymzh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'omsgid': seleRow.medins_setl_id, 'oinfno': seleRow.infno, 'psn_no': seleRow.psn_no, "insuplc_admdvs": seleRow.cbdbm };
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/YiBao/ImpactIs_2601",
+                dataType: "json",
+                data: ImpactIs,
+                async: false,
+                success: function (data) {
+                    mzImpactIs = eval('(' + data + ')');
+                    if (mzImpactIs.infcode == '0') {
+                        $.modalAlert('【2601】Đảo ngược thành công', 'success');
+                    }
+                    else {
+                        $.modalAlert('【2601】Đảo ngược【' +seleRow.infno+ '】Thất bại：' + mzImpactIs.err_msg + '【Vui lòng thử lại】', 'error');
+                    }
+                },
+                error: function (request, error, ex) {
+                    $.modalAlert("Dịch vụ BHYT【2601】(giao dịch đảo)Không thể truy cập：[" + ex + "]", 'error');
+                    return;
+                }
+            });
+            if (mzImpactIs.infcode == '0') {
+                if(seleRow.infno =='2304')
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://127.0.0.1:33333/api/YiBao/HospitaUpOutMdtrtinfo_2405",
+                        dataType: "json",
+                        data: cycxpayoptype,
+                        async: true,
+                        success: function (data) {
+                            var cxcyReturn = eval('(' + data + ')');
+                            if (cxcyReturn.infcode == '0') {
+                                $.modalAlert('Hủy thành công', 'success');
+                            }
+                            else {
+                                $.modalAlert('BHYT xuất viện Hủy thất bại：' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                            }
+                        },
+                        error: function (request, error, ex) {
+                            $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập：[" + ex + "]", 'error');
+                        }
+                    });
+                }
+                if (seleRow.infno == '2401')
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PatientManage/HospiterRes/UpdateCqybOut02?zyh=" + seleRow.zymzh,
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+</script>

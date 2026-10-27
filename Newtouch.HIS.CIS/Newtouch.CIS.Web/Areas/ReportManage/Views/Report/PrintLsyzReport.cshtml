@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "临时医嘱单";
+    ViewBag.Title = "Y lệnh tạm thờiĐơn";
     Layout = "~/Views/Shared/_Form.cshtml";
 
     //报表地址
@@ -32,7 +32,7 @@
         location.href = url;
         return;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 

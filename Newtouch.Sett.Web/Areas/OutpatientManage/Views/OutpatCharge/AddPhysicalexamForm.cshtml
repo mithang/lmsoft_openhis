@@ -1,0 +1,251 @@
+
+@{
+    ViewBag.Title = "Thông tin cơ bản bệnh nhân";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    span {
+    color:red
+    }
+</style>
+<form id="form1">
+    <table class="form" style="width: 98%; border: 0">
+        <tr>
+            <td class="formTitle">
+                <span>*</span>Số thẻ：
+            </td>
+            <td class="formValue">
+                <input type="text" id="kh" class="form-control form-an">
+            </td>
+            <td class="formTitle"><span>*</span>Số hồ sơ bệnh án：</td>
+            <td class="formValue">
+                <input type="text" id="blh" class="form-control form-an">
+                <input hidden id="py" />
+                <input hidden id="txtghks" />
+                <input hidden id="txtghys" />
+                <input hidden id="txtghksmc">
+                <input hidden id="txtghpbId" />
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle"><span>*</span>Tên bệnh nhân：</td>
+            <td class="formValue">
+                <input type="text" id="xm" name="xm" class="form-control form-an">
+            </td>
+            <th class="formTitle">
+                <span class="required">*</span>Lịch trực đăng ký khám：
+            </th>
+            <td class="formValue">
+                <input type="text" class="form-control" id="txtghpbchoose" />
+            </td>
+            
+        </tr>
+        <tr>
+            <td class="formTitle"><span>*</span>Tính chất bệnh nhân：</td>
+            <td class="formValue">
+                <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
+            </td>
+            <td class="formTitle"><span>*</span>Giới tính：</td>
+            <td class="formValue">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" id="xb" value="1" name="xb" class="form-control form-an">
+                        Nam
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" id="xb" value="2" name="xb" class="form-control form-an">
+                        Nữ
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    $(function () {
+        initControl();
+        //theohọ tênlấy phiên âm
+        $('#xm').keyup(function () {
+            $('#py').val($(this).toShouPin());
+        });
+
+        $("#brxzmc").attr("data-label", "0");
+        $("#brxzmc").val("Tự chi trả");
+    });
+
+    function initControl() {
+        ///chính sách hoàn trả
+        $("#brxzmc").newtouchBatchFloatingSelector({
+            height: 200,
+            width: 400,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                var resultObjArr = new Array();
+                $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
+                    if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
+                        keyword.trim() == "" ||
+                        (val.brxzmc && val.brxzmc.toLowerCase().indexOf(keyword) >= 0)) {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Tính chất bệnh nhân",
+            colModel: [
+                { label: 'Mã', name: 'brxz', widthratio: 25 },
+                { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+                { label: 'Phiên âm', name: 'py', widthratio: 25 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#brxzmc").attr("data-label", $thistr.attr('data-brxz'));
+                $("#brxzmc").val($thistr.attr('data-brxzmc'));
+                return;
+            }
+        });
+
+
+        //đăng ký khámlớp nổi lịch trực
+        $("#txtghpbchoose").newtouchBatchFloatingSelector({
+            height: 150,
+            width: 400,
+            clickautotrigger: true,
+            id: 'regSchedule',
+            url: '/OutpatientManage/OutpatientReg/GetRegScheduleList',
+            ajaxmethod: 'POST',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $("#txtghpbchoose").val();
+                reqData.mzlx = "1";//mặc định khám thường
+                return reqData;
+            },
+            caption: "Lịch trực đăng ký khám",
+            colModel: [
+                { label: 'Khoa đăng ký khám', name: 'ksmc', widthratio: 25 },
+                { label: 'Bác sĩ', name: 'rymc', widthratio: 20 },
+                { label: 'Khoản mục đăng ký khám', name: 'sfxmmc', widthratio: 25 },
+                { label: 'Khoản mục chẩn trị', name: 'zlxmmc', widthratio: 25 },
+                { label: 'ks', name: 'ks', hidden: true },
+                { label: 'gh', name: 'gh', hidden: true },
+                { label: 'ghlx', name: 'ghlx', hidden: true },
+                { label: 'zlxm', name: 'zlxm', hidden: true },
+                { label: 'ghpbId', name: 'ghpbId', hidden: true },
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#txtghpbchoose").val($thistr.attr('data-ksmc'));
+                $("#txtghpbId").val('');
+                $("#txtghks").val($thistr.attr('data-ks'));
+                $("#txtghys").val($thistr.attr('data-gh'));
+                $("#txtghksmc").html($thistr.attr('data-ksmc'));
+                $("#txtghpbId").val($thistr.attr('data-ghpbId'));
+                return;
+            }
+        });
+
+        $("#kh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+        $("#blh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+        $.ajax({
+            url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
+            data: { khsc: true, blhsc: true },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data) {
+                $('#kh').val(data.kh);
+                $('#blh').val(data.blh);
+            }
+        });
+    }
+
+    function submitForm(callBack) {
+        var result = checkNotNull();
+        if (result) {
+            var data = $("#form1").formSerialize();
+            data.brxz = $("#brxzmc").attr("data-label");
+            data.ks = $('#txtghks').val();
+            data.ghpbId = $('#txtghpbId').val();
+            data.ys = $('#txtghys').val();
+            $.submitForm({
+                url: "@Url.Action("SubmitPhysicalexamForm")",
+                param: { dto: data },
+                success: function (resp) {
+                    if (resp.state == "success") {
+                        var respjson = JSON.parse(resp.data);
+                        data.mzh = respjson.Item1;
+                        data.patid = respjson.Item2;
+                        data.cardType = "1";
+                    }
+                    callBack(data);
+                    $.modalClose();
+                }
+            });
+        }
+    }
+
+
+    function checkNotNull() {
+        //số thẻ
+        var kh = $("#kh").val();
+        if (!kh) {
+            $.modalAlert("Vui lòng điền số thẻ！", 'warning');
+            return false;
+        }
+        //số hồ sơ bệnh án
+        var blh = $("#blh").val();
+        if (!blh) {
+            $.modalAlert("Vui lòng điền số hồ sơ bệnh án！", 'warning');
+            return false;
+        }
+        //họ tên
+        var xm = $("#xm").val();
+        if (!xm) {
+            $.modalAlert("Vui lòng điền họ tên！", 'warning');
+            return false;
+        }
+
+        //tính chất bệnh nhân
+        var brxzmc = $("#brxzmc").val();
+        if (!brxzmc) {
+            $.modalAlert("Vui lòng chọn tính chất bệnh nhân！", 'warning');
+            return false;
+        }
+
+        //phiên âm
+        var py = $("#py").val();
+        if (!py) {
+            if (!!$("#xm").val()) {
+                py = $("#xm").toShouPin();
+            }
+            if (!py) {
+                $.modalAlert("Phiên âm trống！", 'warning');
+                return false;
+            }
+            else {
+                $("#py").val(py);
+            }
+        }
+
+        //giới tính
+        var xb = false;
+        $('input[name="xb"]').each(function () {
+            var $this = $(this);
+            if ($this.parent().hasClass("active")) {
+                xb = true;
+                $("#xb").val();
+            }
+        });
+        if (!xb) {
+            $.modalAlert("Vui lòng chọn giới tính！", 'warning');
+            return false;
+        }
+
+        if (!!!$('#txtghpbId').val()) {
+            $.modalAlert("Vui lòng chọn lịch trực!", 'warning');
+            return false;
+        }
+
+        return true;
+    }
+</script>

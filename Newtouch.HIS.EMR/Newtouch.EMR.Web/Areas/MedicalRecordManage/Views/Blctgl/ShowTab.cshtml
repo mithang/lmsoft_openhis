@@ -92,58 +92,58 @@
 </style>
 <div id="TabMain">
     <div class="tabItemContainer">
-        <li><a class="tabItemCurrent">词<br />条</a></li>
-        <li><a>诊<br />断</a></li>
+        <li><a class="tabItemCurrent">Từ<br />Dòng</a></li>
+        <li><a>Chẩn<br />đoán</a></li>
     </div>
     <div class="tabBodyContainer">
         <div class="tabBodyItem tabBodyCurrent">
             <div id="ctglDiv" style="background-color:#eee;">
                 <div id="toolbar-ct" style="padding-left:20px;">
-                    <a class="btn  " onclick="btn_add()" style="width:25px;height:30px;" title="添加">
+                    <a class="btn  " onclick="btn_add()" style="width:25px;height:30px;" title="Thêm">
                         <i class="fa fa-plus"></i>
                     </a>
                     <a class="btn  " onclick="btn_delete()" style="width:25px;height:30px;">
-                        <img src="~/Content/img/icon/eraser.png" title="删除" />
+                        <img src="~/Content/img/icon/eraser.png" title="Xóa" />
                     </a>
                     <a class="btn  " onclick="btn_edit()" style="width:25px;height:30px;">
-                        <img src="~/Content/img/icon/copy.png" title="编辑" />
+                        <img src="~/Content/img/icon/copy.png" title="Chỉnh sửa" />
                     </a>
                 </div>
                 <div>
                     <div style="padding-left:20px;" class="btn-group">
-                        <a id="1" class="btn btn-default active"><i class="fa "></i>个人</a>
-                        <a id="2" class="btn btn-default"><i class="fa "></i>科室</a>
-                        <a id="0" class="btn btn-default"><i class="fa "></i>全院</a>
+                        <a id="1" class="btn btn-default active"><i class="fa "></i>Cá nhân</a>
+                        <a id="2" class="btn btn-default"><i class="fa "></i>Khoa</a>
+                        <a id="0" class="btn btn-default"><i class="fa "></i>Toàn viện</a>
                     </div>
                     <div id="BqTreeList" style="width:158px;padding-top:10px;" ></div>
                 </div>
             </div>
         </div>
         <div class="tabBodyItem">
-            @*<input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
+            
             <table>
                 <tr>
                     <td class="formValue formDdlSelectorTd">
                         <select id="bllx" name="bllx" class="form-control">
-                            <option value="">==请选择诊断==</option>
+                            <option value="">==Vui lòng chọn chẩn đoán==</option>
                         </select>
                     </td>
                 </tr>
-            </table>*@
+
             @Html.Partial("DiagList")
         </div>
-        @*<div class="tabBodyItem">
-            <p>我是Tab选项卡3的内容</p>
+        
+            <p>Đây là nội dung của tab 3</p>
             <p></p>
         </div>
         <div class="tabBodyItem">
-            <p>我是Tab选项卡4的内容</p>
+            <p>Đây là nội dung của tab 4</p>
             <p></p>
         </div>
         <div class="tabBodyItem">
-            <p>我是Tab选项卡5的内容</p>
+            <p>Đây là nội dung của tab 5</p>
             <p></p>
-        </div>*@
+
     </div>
 </div>
 <script>
@@ -173,7 +173,7 @@
         minimumResultsForSearch: 0,
     });
 
-    /*************词条*********************/
+    /*************Từ*********************/
     function getBqTreeList(lx) {
         $("#BqTreeList").treeview({
             height: 400,
@@ -199,12 +199,12 @@
         var PartCTID = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-id");
         var Isparent = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-value");
         if (PartCTID == null ||Isparent!= "parent") {
-            $.modalConfirm("当前未选择目录，是否创建目录？",
+            $.modalConfirm("Hiện chưa chọn thư mục, Có tạo thư mục không??",
                     function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "Form",
-                                title: "创建目录",
+                                title: "Tạo thư mục",
                                 data: { SelectionText: Text },
                                 url: "/MedicalRecordManage/Blctgl/Form?type=mulu",
                                 width: "500px",
@@ -228,7 +228,7 @@
             }
             $.modalOpen({
                 id: "Form",
-                title: "导入词条",
+                title: "Nhập từ",
                 url: "/MedicalRecordManage/Blctgl/Form?type=citiao&&Text=" + SelectionText + "&&PartCTID=" + PartCTID+"&&qx="+qx,
                 width: "500px",
                 height: "300px",
@@ -253,7 +253,7 @@
             var qx = $(".btn-group").find(".active").attr("id");
             $.modalOpen({
                 id: "Form",
-                title: "编辑词条",
+                title: "Chỉnh sửa từ",
                 url: "/MedicalRecordManage/Blctgl/Form?type=citiao&&Text=" + escape(ctnr) + "&&wybsf=" + wybsf + "&&qx=" + qx + "&&ctmc=" + escape(ctmc) ,
                 width: "500px",
                 height: "300px",
@@ -273,10 +273,10 @@
         var delCTID = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-id");
         if (delCTID === undefined)
         {
-            $.modalMsg("请选择要删除的词条", 'warning');
+            $.modalMsg("Vui lòng chọn từ cần xóa", 'warning');
             return;
         }
-        $.modalConfirm("确定要删除吗？",
+        $.modalConfirm("Bạn có chắc chắn muốn xóa không??",
             function (flag) {
                 if (flag) {
                     $.najax({
@@ -286,7 +286,7 @@
                         type: "POST",
                         success: function () {
                             $.loading(false);
-                            $.modalMsg("删除成功", 'success');
+                            $.modalMsg("Xóa thành công", 'success');
                         }
                     });
                     debugger

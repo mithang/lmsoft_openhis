@@ -1,20 +1,22 @@
-﻿using System;
+using System;
 using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Framework.Filter;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
+using Newtouch.Herp.Infrastructure;
 using Newtouch.Herp.Infrastructure.Enum;
-using Newtouch.Tools;
 
 namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
 {
     /// <summary>
-    /// 证照管理
+    /// 证照管理 (ported from Framework MVC5 to ASP.NET Core 6.0)
     /// </summary>
+    [Area("LicenceManage")]
     public class LicenceController : ControllerBase
     {
         private readonly ILicLicenceBelongedRepo _licLicenceBelongedRepo;
@@ -23,15 +25,28 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         private readonly ILicLicenceRepo _licLicenceRepo;
         private readonly ILicLicenceApp _licLicence;
 
+        public LicenceController(ILicLicenceBelongedRepo licLicenceBelongedRepo,
+            ILicLicenceDmnService licLicenceDmnService,
+            ILicLicenceTypeRepo licLicenceTypeRepo,
+            ILicLicenceRepo licLicenceRepo,
+            ILicLicenceApp licLicence)
+        {
+            _licLicenceBelongedRepo = licLicenceBelongedRepo;
+            _licLicenceDmnService = licLicenceDmnService;
+            _licLicenceTypeRepo = licLicenceTypeRepo;
+            _licLicenceRepo = licLicenceRepo;
+            _licLicence = licLicence;
+        }
+
         #region 主功能
 
         /// <summary>
         /// 证照维护
         /// </summary>
         /// <returns></returns>
-        public override ActionResult Form()
+        public override IActionResult Form()
         {
-            var maxSize = ConfigurationHelper.GetAppConfigValue("imageMaxSize");
+            var maxSize = Constants.GetAppConfigValue("imageMaxSize");
             maxSize = string.IsNullOrWhiteSpace(maxSize) ? 5.ToString() : maxSize;
             ViewData["maxSize"] = Convert.ToInt32(maxSize);
             return View();
@@ -45,7 +60,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="belongedId"></param>
         /// <param name="licenceTypeId"></param>
         /// <returns></returns>
-        public ActionResult GetLicenceGridJson(Pagination pagination, string keyWord, string belongedId, string licenceTypeId)
+        public IActionResult GetLicenceGridJson(Pagination pagination, string keyWord, string belongedId, string licenceTypeId)
         {
             var data = new
             {
@@ -62,11 +77,11 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteLicForm(string keyValue)
+        public IActionResult DeleteLicForm(string keyValue)
         {
             var entity = _licLicenceRepo.FindEntity(p => p.Id == keyValue);
-            if (entity == null) return Error("删除失败");
-            return _licLicenceRepo.Delete(entity) > 0 ? Success("删除成功") : Error("删除失败");
+            if (entity == null) return Error("Xóa thất bại");
+            return _licLicenceRepo.Delete(entity) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
         /// <summary>
@@ -74,7 +89,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetLicenceFormJson(string keyWord)
+        public IActionResult GetLicenceFormJson(string keyWord)
         {
             var entity = _licLicenceRepo.FindEntity(p => p.Id == keyWord);
             return Content(entity.ToJson());
@@ -87,13 +102,13 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="keyValue"></param>
         /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult SubmitLicenceForm(LicLicenceEntity licLicenceEntity, string keyValue)
+        public IActionResult SubmitLicenceForm(LicLicenceEntity licLicenceEntity, string keyValue)
         {
-            var file = Request.Files["fileUpload"];
+            var file = Request.HasFormContentType ? Request.Form.Files["fileUpload"] : null;
             licLicenceEntity.zt = licLicenceEntity.zt == "on" ? "1" : "0";
             licLicenceEntity.OrganizeId = OrganizeId;
             licLicenceEntity.fileUrl = _licLicence.UploadFile(file);
-            return _licLicenceRepo.SubmitForm(licLicenceEntity, keyValue) > 0 ? Success("操作成功", null) : Error("操作失败");
+            return _licLicenceRepo.SubmitForm(licLicenceEntity, keyValue) > 0 ? Success("Thao tác thành công", null) : Error("Thao tác thất bại");
         }
 
         /// <summary>
@@ -102,14 +117,14 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="t"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetFileUrl(string t)
+        public IActionResult GetFileUrl(string t)
         {
             var entity = _licLicenceRepo.FindEntity(p => p.Id == t);
             if (entity != null && !string.IsNullOrWhiteSpace(entity.fileUrl))
             {
                 var result = new
                 {
-                    Authority = Request.Url == null ? "" : Request.Url.Authority,
+                    Authority = Request.Host.Value,
                     uri = entity.fileUrl
                 }.ToJson();
                 return Content(result);
@@ -125,7 +140,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// 证照类型
         /// </summary>
         /// <returns></returns>
-        public ActionResult LicenceType()
+        public IActionResult LicenceType()
         {
             return View();
         }
@@ -134,7 +149,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// 证照类型
         /// </summary>
         /// <returns></returns>
-        public ActionResult LicenceTypeForm()
+        public IActionResult LicenceTypeForm()
         {
             return View();
         }
@@ -145,7 +160,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetLicenceTypeGridJson(Pagination pagination, string keyWord = "")
+        public IActionResult GetLicenceTypeGridJson(Pagination pagination, string keyWord = "")
         {
             var data = new
             {
@@ -162,11 +177,11 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteLicenceType(string keyValue)
+        public IActionResult DeleteLicenceType(string keyValue)
         {
             var entity = _licLicenceTypeRepo.FindEntity(p => p.Id == keyValue);
-            if (entity == null) return Error("删除失败");
-            return _licLicenceTypeRepo.Delete(entity) > 0 ? Success("删除成功") : Error("删除失败");
+            if (entity == null) return Error("Xóa thất bại");
+            return _licLicenceTypeRepo.Delete(entity) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
         /// <summary>
@@ -174,7 +189,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetLicenceTypeFormJson(string keyWord)
+        public IActionResult GetLicenceTypeFormJson(string keyWord)
         {
             var entity = _licLicenceTypeRepo.FindEntity(p => p.Id == keyWord);
             return Content(entity.ToJson());
@@ -186,10 +201,10 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="source"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult SubmitLicenceTypeForm(LicLicenceTypeEntity source, string keyWord)
+        public IActionResult SubmitLicenceTypeForm(LicLicenceTypeEntity source, string keyWord)
         {
             source.zt = source.zt == "true" ? "1" : "0";
-            return _licLicenceTypeRepo.SubmitForm(source, keyWord) > 0 ? Success("操作成功") : Error("操作失败");
+            return _licLicenceTypeRepo.SubmitForm(source, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
         /// <summary>
@@ -198,9 +213,9 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="belonged"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetlicenceType(string belonged = "")
+        public IActionResult GetlicenceType(string belonged = "")
         {
-            return Content(_licLicenceTypeRepo.IQueryable(p => p.belongedId.Contains(belonged) && p.zt == ((int)Enumzt.Enable).ToString()).Select(s => new { id = s.Id, text = s.typeName }).ToJson());
+            return Content(_licLicenceTypeRepo.IQueryable(p => p.belongedId.Contains(belonged) && p.zt == ((int)Enumzt.Enable).ToString()).Select(s => new { id = s.Id, text = s.typeName }).ToList().ToJson());
         }
 
         #endregion
@@ -211,7 +226,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// 证照类型
         /// </summary>
         /// <returns></returns>
-        public ActionResult LicenceBelonged()
+        public IActionResult LicenceBelonged()
         {
             return View();
         }
@@ -220,7 +235,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// 证照类型
         /// </summary>
         /// <returns></returns>
-        public ActionResult LicenceBelongedForm()
+        public IActionResult LicenceBelongedForm()
         {
             return View();
         }
@@ -231,11 +246,21 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetLicenceBelongedGridJson(Pagination pagination, string keyWord = "")
+        public IActionResult GetLicenceBelongedGridJson(Pagination pagination, string keyWord = "")
         {
+            // The ported IRepositoryBase has no paged FindList overload, so page
+            // here (same JSON shape: rows/total/page/records) instead of in the repo.
+            keyWord = keyWord ?? "";
+            var all = _licLicenceBelongedRepo.FindList(p => "" == keyWord || p.belonged.Contains(keyWord.Trim()));
+            int rows = pagination.rows ?? 0;
+            if (rows <= 0) rows = 15;
+            int page = pagination.page ?? 0;
+            if (page <= 0) page = 1;
+            pagination.records = all.Count;
+            var pageRows = all.Skip((page - 1) * rows).Take(rows).ToList();
             var data = new
             {
-                rows = _licLicenceBelongedRepo.FindList(p => "" == keyWord || p.belonged.Contains(keyWord.Trim()), pagination),
+                rows = pageRows,
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -248,11 +273,11 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteLicenceBelonged(string keyValue)
+        public IActionResult DeleteLicenceBelonged(string keyValue)
         {
             var entity = _licLicenceBelongedRepo.FindEntity(p => p.Id == keyValue);
-            if (entity == null) return Error("删除失败");
-            return _licLicenceBelongedRepo.Delete(entity) > 0 ? Success("删除成功") : Error("删除失败");
+            if (entity == null) return Error("Xóa thất bại");
+            return _licLicenceBelongedRepo.Delete(entity) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
         /// <summary>
@@ -260,7 +285,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult GetLicenceBelongedFormJson(string keyWord)
+        public IActionResult GetLicenceBelongedFormJson(string keyWord)
         {
             var entity = _licLicenceBelongedRepo.FindEntity(p => p.Id == keyWord);
             return Content(entity.ToJson());
@@ -270,9 +295,9 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// 获取证照所属信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetLicenceBelongedForSelect()
+        public IActionResult GetLicenceBelongedForSelect()
         {
-            var entity = _licLicenceBelongedRepo.IQueryable(p => p.zt == ((int)Enumzt.Enable).ToString()).Select(p => new { id = p.Id, text = p.belonged }).Distinct();
+            var entity = _licLicenceBelongedRepo.IQueryable(p => p.zt == ((int)Enumzt.Enable).ToString()).Select(p => new { id = p.Id, text = p.belonged }).ToList().Distinct();
             return Content(entity.ToJson());
         }
 
@@ -282,20 +307,21 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         /// <param name="source"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        public ActionResult SubmitLicenceBelongedForm(LicLicenceBelongedEntity source, string keyWord)
+        public IActionResult SubmitLicenceBelongedForm(LicLicenceBelongedEntity source, string keyWord)
         {
             source.zt = source.zt == "true" ? "1" : "0";
-            return _licLicenceBelongedRepo.SubmitForm(source, keyWord) > 0 ? Success("操作成功") : Error("操作失败");
+            return _licLicenceBelongedRepo.SubmitForm(source, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
         /// <summary>
         /// 获取所属
         /// </summary>
         /// <returns></returns>
-        public ActionResult Getbelonged()
+        public IActionResult Getbelonged()
         {
             return Content(_licLicenceBelongedRepo.IQueryable(p => p.zt == ((int)Enumzt.Enable).ToString())
                 .Select(s => new { id = s.Id, text = s.belonged })
+                .ToList()
                 .ToJson());
         }
         #endregion

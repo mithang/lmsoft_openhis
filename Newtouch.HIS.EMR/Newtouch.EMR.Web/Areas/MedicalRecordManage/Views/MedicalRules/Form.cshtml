@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "规则维护";
+    ViewBag.Title = "Bảo trì quy tắc";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
@@ -10,22 +10,22 @@
                     <div class="panel-body" style="width: 98%; margin-left: -34px;">
                         <table class="form">
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>病历类型名称：</th>
+                                <th class="formTitle"><span class="required">*</span>Loại bệnh án tên:</th>
                                 <td class="formValue">
                                     <input type="hidden" id="Bllx" name="Bllx" />
                                     <input id="RulesType" name="RulesType" type="text" class="form-control required" readonly="readonly" />
                                 </td>
-                                <th class="formTitle"><span class="required">*</span>规则天：</th>
+                                <th class="formTitle"><span class="required">*</span>Ngày quy tắc:</th>
                                 <td class="formValue">
                                     <input id="RulesDay" name="RulesDay" type="text" class="form-control required" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>说明：</th>
+                                <th class="formTitle"><span class="required">*</span>Mô tả:</th>
                                 <td class="formValue">
                                     <input id="Remark" name="Remark" type="text" class="form-control required" oninput="inputnum(this)" />
                                 </td>
-                                <th class="formTitle">排序：</th>
+                                <th class="formTitle">Sắp xếp:</th>
                                 <td class="formValue">
                                     <input id="Px" name="Px" type="text" class="form-control" />
                                 </td>
@@ -75,7 +75,7 @@
             param: postData,
             success: function (res) {
 
-                $.modalAlert("保存成功", 'warning');
+                $.modalAlert("Lưu thành công", 'warning');
                 $.currentWindow().$("#gridRightList").resetSelection();
                 $.currentWindow().$("#gridRightList").trigger("reloadGrid");
             }

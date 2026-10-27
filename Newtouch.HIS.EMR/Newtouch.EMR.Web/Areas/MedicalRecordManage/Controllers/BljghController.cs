@@ -1,19 +1,24 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using NewtouchHIS.Lib.Framework.Operator;
+
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
-using Newtouch.Infrastructure;
-using Newtouch.Tools;
+
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Base.Domain;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
+    [Area("MedicalRecordManage")]
     public class BljghController : OrgControllerBase
     {
         private readonly Ibl_ElementDomainRepo _bljsRepo;
@@ -31,20 +36,20 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             this._bllxRepo = bllxRepo;
         }
         // GET: MedicalRecordManage/Bljgh
-        public override ActionResult Index()
+        public override IActionResult Index()
         {
             return View();
         }
 
-        public ActionResult BlmlAdd()
+        public IActionResult BlmlAdd()
         {
             return View();
         }
-        public override ActionResult Form()
+        public override IActionResult Form()
         {
             return View();
         }
-        public ActionResult GetElementTree()
+        public IActionResult GetElementTree()
         {
 
             var treeList = new List<TreeViewModel>();
@@ -71,7 +76,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
 
-        public ActionResult GetGridJson(Pagination pagination, string ElementId)
+        public IActionResult GetGridJson(Pagination pagination, string ElementId)
         {
             OperatorModel user = this.UserIdentity;
             var data = new
@@ -84,7 +89,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
 
-        public ActionResult GetYsList(string keyword)
+        public IActionResult GetYsList(string keyword)
         {
             var list = _bljsRepo.GetBlys(keyword,this.OrganizeId);
             foreach (var item in list)
@@ -94,7 +99,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(list.ToJson());
         }
 
-        public ActionResult SubmitForm(bl_ElementDomain_DetailEntity entity, string keyValue)
+        public IActionResult SubmitForm(bl_ElementDomain_DetailEntity entity, string keyValue)
         {
             if (entity != null)
             {
@@ -102,9 +107,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 entity.Element_Type_Name = ((EnumBlys)(entity.Element_Type)).GetDescription();
                 _bljsmxRepo.SubmitForm(entity, keyValue);
 
-                return Success("操作成功。");
+                return Success("Thao tác thành công。");
             }
-            return Error("操作失败，关键信息不可为空。");
+            return Error("Thao tác thất bại，Thông tin quan trọng không được để trống。");
            
         }
         /// <summary>
@@ -112,46 +117,45 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string delBljgmxId)
+        public IActionResult DeleteForm(string delBljgmxId)
         {
             _bljsmxRepo.DeleteForm(delBljgmxId);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
-        public ActionResult GetTableColumnList(string TableName, string keyword)
+        public IActionResult GetTableColumnList(string TableName, string keyword)
         {
             var list = _bljsRepo.GetTabColumnList(TableName,keyword);
             return Content(list.ToJson());
         }
-        public ActionResult GetElementMx(string keyword)
+        public IActionResult GetElementMx(string keyword)
         {
             var list = _bljsRepo.GetBlysmx(keyword,this.OrganizeId);
             return Content(list.ToJson());
         }
 
-        public ActionResult GetBlTable(string keyword)
+        public IActionResult GetBlTable(string keyword)
         {
             var list = _bllxRepo.IQueryable(p=> p.zt=="1" && p.OrganizeId==this.OrganizeId && p.IsRoot=="0" && p.bllxmc.Contains(keyword)).ToList();
             return Content(list.ToJson());
         }
 
-        public ActionResult GetBljgMain(int keyValue)
+        public IActionResult GetBljgMain(int keyValue)
         {
             var data = _bljsRepo.FindEntity(p => p.OrganizeId == OrganizeId && (p.Id == keyValue) && p.Zt == 1);
             return Content(data.ToJson());
         }
 
-
-        public ActionResult BljgMainSubmitForm(bl_ElementDomainEntity ety, string keyValue)
+        public IActionResult BljgMainSubmitForm(bl_ElementDomainEntity ety, string keyValue)
         {
             ety.OrganizeId = OrganizeId;
             _bljsRepo.SubmitForm(ety, keyValue);
-            return Success("保存成功");
+            return Success("Lưu thành công");
         }
-        public ActionResult DeleteBljgMainForm(string keyValue)
+        public IActionResult DeleteBljgMainForm(string keyValue)
         {
             _bljsRepo.DeleteForm(keyValue, OrganizeId, this.UserIdentity.rygh);
-            return Success("删除成功");
+            return Success("Xóa thành công");
         }
     }
 }

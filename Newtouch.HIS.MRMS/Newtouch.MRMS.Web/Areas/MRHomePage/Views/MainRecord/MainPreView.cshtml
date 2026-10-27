@@ -1,0 +1,241 @@
+
+@{
+    Layout = null;
+}
+<style>
+    #dv_prvew input {
+        border: none;   
+        background:none;
+    }
+
+    #tb_patbasic input {
+        border-bottom: solid 1px #808080;
+        width: 100%;
+        float: left;
+    }
+
+    span + input {
+        padding-left: 5px;
+        float: left;
+    }
+
+    #dv_prvew label{
+        width:15px;
+        height:18px;
+        border:solid 1px #ccc7c7;
+        text-align:center;
+    }
+
+    .form .formTitleX {
+        position: relative;
+        left: 0px;
+        white-space: nowrap;
+        font-weight: normal;
+        padding-left: 15px;
+    }
+
+    .formTitleA {
+        width: 30px;
+        text-align: left;
+    }
+    .formTitleB {
+        width: 50px;
+        text-align: right;
+    }
+    .formTitleC {
+        width: 150px;
+        text-align: left;
+    }
+
+</style>
+<form id="frm_prvew">
+    <div id="dv_prvew" class="panel">
+        <div style="text-align:center;font-weight:bold;font-size:20px;padding-top:10px;">TRANG ĐẦU BỆNH ÁN NỘI TRÚ</div>
+        <div class="panel_body" style="padding:20px 5px 5px 5px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Phương thức thanh toán y tế：</th>
+                    <td class="formValue"><input id="p_YLFKFS" name="p_YLFKFS" value="Bảo hiểm y tế" /></td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Số khám bệnh：</th>
+                    <td class="formValue">
+                        <input id="p_JZKH" name="p_JZKH" value="A1234555" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <span style="float:left;padding-left:20px;">Lần thứ</span>
+                        <input id="p_ZYCS" name="p_ZYCS" value="2" style="width:20px;float:left;text-align:center;" />
+                        <span style="float:left;">lần nội trú</span>
+                    </td>
+                    <th class="formTitle">Số bệnh án：</th>
+                    <td class="formValue">
+                        <input id="p_BAH" name="p_BAH" value="0000017362" />
+                    </td>
+                </tr>
+            </table>
+            <table id="tb_patbasic" class="form" style="border:solid;border-color:#9af1cb;border-width:1px;">
+                <tr>
+                    <th class="formTitleX formTitleA">Họ tên</th>
+                    <td class="formValue"><input id="p_XM" name="p_XM" value="Nguyễn Văn A" /></td>
+                    <th class="formTitleX formTitleA">Giới tính</th>
+                    <td class="formValue">
+                        <label id="p_XB" name="p_XB">1</label>
+                        @*<span id="p_XB" name="p_XB" />*@
+                        <span>1.Nam 2.Nữ</span>
+                    </td>
+                    <th class="formTitleX formTitleB">Ngày sinh</th>
+                    <td class="formValue" colspan="2">
+                        <input id="p_CSRQ_Y" name="p_CSRQ_Y" value="1951" style="width:35px;" /><span style="float:left;"> năm </span>
+                        <input id="p_CSRQ_M" name="p_CSRQ_M" value="2" style="width:30px;" /><span style="float:left;"> tháng </span>
+                        <input id="p_CSRQ_D" name="p_CSRQ_D" value="11" style="width:30px;" /><span style="float:left;"> ngày</span>
+                    </td>
+                    <th class="formTitleX formTitleA">Tuổi</th>
+                    <td class="formValue"><input id="p_NL" name="p_NL" value="68" /></td>
+                </tr>
+                <tr>
+
+                    <th class="formTitleX formTitleA">Quốc tịch</th>
+                    <td class="formValue"><input id="p_GJ" name="p_GJ" value="Việt Nam" /></td>
+                    <th class="formTitleX formTitleA">Quê quán</th>
+                    <td class="formValue"><input id="p_GG" name="p_GG" value="-" /></td>
+                    <th class="formTitleX formTitleC" colspan="2" style="text-align:right;">(Tuổi chưa đủ1 tuổi)Tuổi</th>
+                    <td class="formValue"><input id="p_BZYZSNL" name="p_BZYZSNL" value="-" /></td>
+                    <th class="formTitleX formTitleA">Dân tộc</th>
+                    <td class="formValue"><input id="p_MZ" name="p_MZ" value="Kinh" /></td>
+                </tr>
+                <tr>
+                    <th class="formTitleX formTitleA">Nghề nghiệp</th>
+                    <td class="formValue" colspan="2"><input id="p_ZY" name="p_ZY" value="Người về hưu" /></td>
+                    <th class="formTitleX formTitleB" colspan="2">Cân nặng khi sinh của trẻ sơ sinh</th>
+                    <td class="formValue">
+                        <input id="p_XSECSTZ" name="p_XSECSTZ" value="-" />
+                    </td>
+                    <th class="formTitleX formTitleB" colspan="2">Cân nặng khi nhập viện của trẻ sơ sinh</th>
+                    <td class="formValue"><input id="p_XSERYTZ" name="p_XSERYTZ" value="-" /></td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="5">
+                        <span style="float:left;">Nơi sinh</span><input id="p_CSD" name="p_CSD" style="float:left;width:80%;" value="Quận 1, TP. Hồ Chí Minh" />
+                    </td>
+                    @*<th class="formTitleX formTitleA">Nơi sinh</th>
+                        <td class="formValue" colspan="4">
+                            <input id="p_CSD_Sheng" name="p_CSD_Sheng" value="" style="width:50px;" /><span style="float:left;"> tỉnh </span>
+                            <input id="p_CSD_Sheng" name="p_CSD_Shi" value="" style="width:50px;" /><span style="float:left;"> thành phố </span>
+                            <input id="p_CSD_Sheng" name="p_CSD_Qu" value="" style="width:50px;" /><span style="float:left;"> quận </span>
+                            <input id="p_CSD" name="p_CSD" value="" />
+                        </td>*@
+                    <th class="formTitleX formTitleB">Số CMND/CCCD</th>
+                    <td class="formValue" colspan="3"><input id="p_SFZH" name="p_SFZH" value="-" /></td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="5">
+                        <span style="float:left;">Địa chỉ hiện tại</span><input id="p_XZZ" name="p_XZZ" style="float:left;width:80%;" value="Quận 1, TP. Hồ Chí Minh" />
+                    </td>
+                    <th class="formTitleX formTitleB">Điện thoại</th>
+                    <td class="formValue"><input id="p_DH" name="p_DH" value="-" /></td>
+                    <th class="formTitleX formTitleA">Mã bưu điện</th>
+                    <td class="formValue">
+                        <input id="p_YB1" name="p_YB1" value="-" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="5"><span style="float:left;">Địa chỉ hộ khẩu</span><input id="p_HKDZ" name="p_HKDZ" style="float:left;width:80%;" value="Quận 1, TP. Hồ Chí Minh" /></td>
+                    <th class="formTitleX formTitleB">Mã bưu điện</th>
+                    <td class="formValue" colspan="2">
+                        <input id="p_YB2" name="p_YB2" value="-" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="5">
+                        <span style="float:left;">Đơn vị công tác và địa chỉ</span>
+                        <input id="p_GZDWDZ" name="p_GZDWDZ" style="float:left;width:68%;" value="Quận 1, TP. Hồ Chí Minh" />
+                    </td>
+                    <th class="formTitleX formTitleB">Điện thoại đơn vị</th>
+                    <td class="formValue"><input id="p_DWDH" name="p_DWDH" value="-" /></td>
+                    <th class="formTitleX formTitleA">Mã bưu điện</th>
+                    <td class="formValue">
+                        <input id="p_YB3" name="p_YB3" value="-" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="3"><span style="float:left;">Tên người liên hệ</span><input id="p_LXRXM" name="p_LXRXM" value="Nguyễn Thị Hoa" style="float:left;width:50%;" /></td>
+                    <td class="formValue formTitleA"><span style="float:left;">Quan hệ</span><input id="p_GX" name="p_GX" value="Con cái" style="float:left;width:50%;" /></td>
+                    <td class="formValue" colspan="3"><span style="float:left;">Địa chỉ</span><input id="p_DZ" name="p_DZ" value="-" style="float:left;width:70%;" /></td>
+                    <td class="formValue" colspan="2"><span style="float:left;">Điện thoại</span><input id="p_DH2" name="p_DH2" value="-" style="float:left;width:70%;" /></td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="9">
+                        <span style="float:left;">Đường nhập viện</span><span style="padding-left:10px;"> </span>
+                        <label id="p_RYTJ" name="p_RYTJ">2</label>
+                        <span>1.Cấp cứu<span style="padding-left:10px;"> </span>2.Ngoại trú<span style="padding-left:10px;"> </span>3.Chuyển đến từ cơ sở y tế khác<span style="padding-left:10px;"> </span>9.Khác</span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="4">
+                        <span style="float:left;">Thời gian nhập viện</span><span style="padding-left:10px;"> </span>
+                        <input id="p_RYSJ_Y" name="p_RYSJ_Y" value="2019" style="width:35px;" /><span style="float:left;"> năm </span>
+                        <input id="p_RYSJ_M" name="p_RYSJ_M" value="6" style="width:20px;" /><span style="float:left;"> tháng </span>
+                        <input id="p_RYSJ_D" name="p_RYSJ_D" value="11" style="width:20px;" /><span style="float:left;"> ngày</span>
+                        <input id="p_RYSJ_H" name="p_RYSJ_H" value="14" style="width:20px;" /><span style="float:left;"> giờ</span>
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <span style="float:left;">Khoa nhập viện</span>
+                        <input id="p_RYKB" name="p_RYKB" value="Khu Nội 1" style="float:left;width:50%;" />
+                    </td>
+                    <td class="formValue">
+                        <span style="float:left;">Số giường</span>
+                        <input id="p_CH" name="p_CH" value="27" style="float:left;width:50%;" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <span style="float:left;">Khoa chuyển</span>
+                        <input id="p_ZKKB" name="p_ZKKB" value="-" style="float:left;width:50%;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="4">
+                        <span style="float:left;">Thời gian xuất viện</span><span style="padding-left:10px;"> </span>
+                        <input id="p_CYSJ_Y" name="p_CYSJ_Y" value="2019" style="width:35px;" /><span style="float:left;"> năm </span>
+                        <input id="p_CYSJ_M" name="p_CYSJ_M" value="8" style="width:20px;" /><span style="float:left;"> tháng </span>
+                        <input id="p_CYSJ_D" name="p_CYSJ_D" value="21" style="width:20px;" /><span style="float:left;"> ngày</span>
+                        <input id="p_CYSJ_H" name="p_CYSJ_H" value="12" style="width:20px;" /><span style="float:left;"> giờ</span>
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <span style="float:left;">Khoa xuất viện</span>
+                        <input id="p_CYKB" name="p_CYKB" value="Khu Nội 1" style="float:left;width:50%;" />
+                    </td>
+                    <td class="formValue">
+                        <span style="float:left;">Số giường</span>
+                        <input id="p_CH" name="p_CYCH" value="27" style="float:left;width:50%;" />
+                    </td>
+                    <td class="formValue" colspan="2">
+                        <span style="float:left;">Nội trú thực tế</span>
+                        <input id="p_SJZYTS" name="p_SJZYTS" value="42 ngày" style="float:left;width:50%;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="6">
+                        <span style="float:left;">Chẩn đoán ngoại trú (cấp cứu)</span>
+                        <input id="p_MZZD" name="p_MZZD" value="Liệt nửa người" style="float:left;width:70%;" />
+                    </td>
+                    <td class="formValue" colspan="3">
+                        <span style="float:left;">Mã bệnh</span>
+                        <input id="p_JBBM" name="p_JBBM" value="-" style="float:left;width:50%;" />
+                    </td>
+                </tr>
+            </table>
+            <table id="dv_diag"></table>
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        //$("#p_XB").text(2);
+        $("#dv_prvew input[id*='p_']").attr('disabled', true);
+    });
+</script>

@@ -1,7 +1,7 @@
-﻿@model dynamic
+@model dynamic
 
 @{
-    ViewBag.Title = "病区房间床位维护";
+    ViewBag.Title = "Khu bệnhPhòngGiườngBảo trì";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -56,7 +56,7 @@
 </style>
 <div class="dv-body">
     <div class="dv-left">
-        <div class="dv-left-title">病区列表</div>
+        <div class="dv-left-title">Khu bệnhDanh sách</div>
         <table id="gridBqList"></table>
     </div>
     <div class="dv-right">
@@ -68,22 +68,22 @@
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AddRoom()">
-                            <i class="fa fa-plus"></i>房间新建
+                            <i class="fa fa-plus"></i>PhòngTạo mới
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="UpdateRoom()">
-                            <i class="fa fa-pencil-square-o"></i>房间修改
+                            <i class="fa fa-pencil-square-o"></i>PhòngSửa
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusRoom()">
-                            <i class="fa fa-pencil-square-o"></i>附加属性
+                            <i class="fa fa-pencil-square-o"></i>Bổ sungThuộc tính
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="DeleteRoom()">
-                            <i class="fa fa-trash-o"></i>房间删除
+                            <i class="fa fa-trash-o"></i>PhòngXóa
                         </a>
                     </div>
                 </div>
@@ -104,27 +104,27 @@
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AddBed()">
-                            <i class="fa fa-plus"></i>床位新建
+                            <i class="fa fa-plus"></i>Giường bệnhTạo mới
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="UpdateBed()">
-                            <i class="fa fa-pencil-square-o"></i>床位修改
+                            <i class="fa fa-pencil-square-o"></i>Giường bệnhSửa
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusBed()">
-                            <i class="fa fa-pencil-square-o"></i>附加属性
+                            <i class="fa fa-pencil-square-o"></i>Bổ sungThuộc tính
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AddCosts()">
-                            <i class="fa fa-pencil-square-o"></i>关联收费项目
+                            <i class="fa fa-pencil-square-o"></i>Mục thu phí liên quan
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="DeleteBed()">
-                            <i class="fa fa-trash-o"></i>床位删除
+                            <i class="fa fa-trash-o"></i>Giường bệnhXóa
                         </a>
                     </div>
                 </div>
@@ -141,67 +141,67 @@
 </div>
 <script lang="javascript">
     var bqList = [
-        { bqCode: "10001", bqName: "三楼南区" },
-        { bqCode: "10002", bqName: "三楼北区" },
-        { bqCode: "10003", bqName: "四楼南区" },
-        { bqCode: "10004", bqName: "四楼北区" },
-        { bqCode: "10005", bqName: "五楼南区" },
-        { bqCode: "10006", bqName: "五楼北区" },
-        { bqCode: "10007", bqName: "六楼南区" },
-        { bqCode: "10001", bqName: "三楼南区" },
-        { bqCode: "10002", bqName: "三楼北区" },
-        { bqCode: "10003", bqName: "四楼南区" },
-        { bqCode: "10004", bqName: "四楼北区" },
-        { bqCode: "10005", bqName: "五楼南区" },
-        { bqCode: "10006", bqName: "五楼北区" },
-        { bqCode: "10007", bqName: "六楼南区" },
-        { bqCode: "10001", bqName: "三楼南区" },
-        { bqCode: "10002", bqName: "三楼北区" },
-        { bqCode: "10003", bqName: "四楼南区" },
-        { bqCode: "10004", bqName: "四楼北区" },
-        { bqCode: "10005", bqName: "五楼南区" },
-        { bqCode: "10006", bqName: "五楼北区" },
-        { bqCode: "10007", bqName: "六楼南区" },
-        { bqCode: "10001", bqName: "三楼南区" },
-        { bqCode: "10002", bqName: "三楼北区" },
-        { bqCode: "10003", bqName: "四楼南区" },
-        { bqCode: "10004", bqName: "四楼北区" },
-        { bqCode: "10005", bqName: "五楼南区" },
-        { bqCode: "10006", bqName: "五楼北区" },
-        { bqCode: "10007", bqName: "六楼南区" },
-        { bqCode: "10008", bqName: "六楼北区" }
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10001", bqName: "Khu Nam tầng 3" },
+        { bqCode: "10002", bqName: "Khu Bắc tầng 3" },
+        { bqCode: "10003", bqName: "Khu Nam tầng 4" },
+        { bqCode: "10004", bqName: "Khu Bắc tầng 4" },
+        { bqCode: "10005", bqName: "Khu Nam tầng 5" },
+        { bqCode: "10006", bqName: "Khu Bắc tầng 5" },
+        { bqCode: "10007", bqName: "Khu Nam tầng 6" },
+        { bqCode: "10008", bqName: "Khu Bắc tầng 6" }
     ];
     var roomList = [
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" },
-        { roomNo: "N0001", roomName: "N0001房间", bqName: "四楼北区", roomlevel: "普通病房", roomDept: "康复医学科", roomZt: "在用" }
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" },
+        { roomNo: "N0001", roomName: "Phòng N0001", bqName: "Khu Bắc tầng 4", roomlevel: "Phòng bệnh thường", roomDept: "Khoa Phục hồi chức năng", roomZt: "Đang dùng" }
     ];
     var bedList = [
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" },
-        { bedNo: "B0002", bedType: "女", tsbz: "普通", zt: "启用", sfzc: "空床", zysy: "王医生", zzys: "王医生", zrys: "张医生" }
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" },
+        { bedNo: "B0002", bedType: "女", tsbz: "Thường", zt: "Kích hoạt", sfzc: "Giường trống", zysy: "王Bác sĩ", zzys: "王Bác sĩ", zrys: "张Bác sĩ" }
     ];
     $(".dv-body").height($(window).height());
     $(".dv-body").width($(window).width());
@@ -222,8 +222,8 @@
         height: $(window).height() - 70,
         unwritten: false,
         colModel: [
-            { label: '编码', name: 'bqCode', width: 80, align: 'center' },
-            { label: '病区', name: 'bqName', width: 80, align: 'center' }
+            { label: 'Mã', name: 'bqCode', width: 80, align: 'center' },
+            { label: 'Khu bệnh', name: 'bqName', width: 80, align: 'center' }
         ],
         rownumbers: false,
         ondblClickRow: function(rowid) {
@@ -237,12 +237,12 @@
         height: $(window).height() - 145,
         unwritten: false,
         colModel: [
-            { label: '房间号', name: 'roomNo', align: 'center', width: 120 },
-            { label: '名称', name: 'roomName', align: 'center', width: 120 },
-            { label: '病区', name: 'bqName', align: 'center', width: 120 },
-            { label: '等级', name: 'roomlevel', align: 'center', width: 120 },
-            { label: '科室', name: 'roomDept', align: 'center', width: 120 },
-            { label: '状态', name: 'roomZt', align: 'center', width: 120 }
+            { label: 'Số phòng', name: 'roomNo', align: 'center', width: 120 },
+            { label: 'Tên', name: 'roomName', align: 'center', width: 120 },
+            { label: 'Khu bệnh', name: 'bqName', align: 'center', width: 120 },
+            { label: 'Cấp độ', name: 'roomlevel', align: 'center', width: 120 },
+            { label: 'Khoa', name: 'roomDept', align: 'center', width: 120 },
+            { label: 'Trạng thái', name: 'roomZt', align: 'center', width: 120 }
         ],
         rownumbers: false,
         ondblClickRow: function(rowid) {
@@ -266,14 +266,14 @@
         shrinkToFit: true,
         unwritten: false,
         colModel: [
-            { label: '床号', name: 'bedNo', align: 'center', width: 100 },
-            { label: '床位类型', name: 'bedType', align: 'center', width: 80 },
-            { label: '特殊标志', name: 'tsbz', align: 'center', width: 100 },
-            { label: '是否启用', name: 'zt', align: 'center', width: 80 },
-            { label: '是否占床', name: 'sfzc', align: 'center', width: 100 },
-            { label: '住院医生', name: 'zysy', align: 'left', width: 100 },
-            { label: '主治医生', name: 'zzys', align: 'left', width: 100 },
-            { label: '主任医生', name: 'zrys', align: 'left', width: 100 }
+            { label: 'Số giường', name: 'bedNo', align: 'center', width: 100 },
+            { label: 'Giường bệnhLoại', name: 'bedType', align: 'center', width: 80 },
+            { label: 'Đặc biệtDấu hiệu', name: 'tsbz', align: 'center', width: 100 },
+            { label: 'Có hay khôngKích hoạt', name: 'zt', align: 'center', width: 80 },
+            { label: 'Có chiếm giường không', name: 'sfzc', align: 'center', width: 100 },
+            { label: 'Nhập việnBác sĩ', name: 'zysy', align: 'left', width: 100 },
+            { label: 'Điều trị chínhBác sĩ', name: 'zzys', align: 'left', width: 100 },
+            { label: 'Chủ nhiệmBác sĩ', name: 'zrys', align: 'left', width: 100 }
         ],
         rownumbers: false
     });
@@ -323,7 +323,7 @@
     function AddRoom() {
         var keyValue = $("#gridBqList").jqGridRowValue().bqCode;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病区", 'warning');
+            $.modalAlert("Vui lòng chọn một khu bệnh", 'warning');
             return;
         }
         OpenRoomForm("");
@@ -333,7 +333,7 @@
     function UpdateRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         OpenRoomForm(keyValue);
@@ -343,7 +343,7 @@
     function DeleteRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         $.deleteForm({
@@ -359,12 +359,12 @@
     function AttributesPlusRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         $.modalOpen({
             id: "AttributesPlusRoomForm",
-            title: "病床附加属性",
+            title: "Giường bệnhBổ sungThuộc tính",
             url: "/NurseManage/WardMaintenance/AttributesPlusRoomForm?keyWord=" + keyValue,
             width: "500px",
             height: "550px",
@@ -377,7 +377,7 @@
     }
 
     function OpenRoomForm(roomNo) {
-        var title = roomNo === "" ? "新增房间" : "修改房间";
+        var title = roomNo === "" ? "Thêm mớiPhòng" : "SửaPhòng";
         $.modalOpen({
             id: "RoomForm",
             title: title,
@@ -402,7 +402,7 @@
     function AddBed() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         OpenBedForm("");
@@ -412,7 +412,7 @@
     function UpdateBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         OpenBedForm(keyValue);
@@ -422,12 +422,12 @@
     function AttributesPlusBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         $.modalOpen({
             id: "AttributesPlusBedForm",
-            title: "病房附加属性",
+            title: "Phòng bệnhBổ sungThuộc tính",
             url: "/NurseManage/WardMaintenance/AttributesPlusBedForm?keyWord=" + keyValue,
             width: "500px",
             height: "550px",
@@ -443,7 +443,7 @@
     function DeleteBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         $.deleteForm({
@@ -462,7 +462,7 @@
     }
 
     function OpenBedForm(bedNo) {
-        var title = bedNo === "" ? "新增床位" : "修改床位";
+        var title = bedNo === "" ? "Thêm mớiGiường bệnh" : "SửaGiường bệnh";
         $.modalOpen({
             id: "BedForm",
             title: title,
@@ -481,12 +481,12 @@
     function AddCosts() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         $.modalOpen({
             id: "BedBindingCostForm",
-            title: "维护床位费",
+            title: "Quản lý phí giường bệnh",
             url: "/NurseManage/WardMaintenance/BedBindingCostForm?keyValue" + keyValue + "&zyh=''" ,
             width: "500px",
             height: "480px",

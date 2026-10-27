@@ -1,0 +1,27 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Phiếu in</title>
+</head>
+<body style="overflow-x:hidden; overflow-y:hidden; margin: 0; text-align: center;">
+    <div style="position: absolute;width:100%;height:100%;">
+        @if (ViewBag.ReportUnavailable == true)
+    {
+        <div style="padding:40px;font-family:sans-serif;color:#333;">
+            <h3>Báo cáo không khả dụng</h3>
+            <p>Máy chủ báo cáo SSRS chưa được cấu hình trong môi trường này (ReportServer.HOST trống), nên báo cáo <b>@Context.Request.Query["type"]</b> không thể hiển thị. Trang này giữ đúng tuyến đường gốc thay vì trả về lỗi 404.</p>
+        </div>
+    }
+    else
+    {
+        <iframe src="@ViewBag.ReportServerHost" frameborder="0" style="width:99%;height:99%;"></iframe>
+    }
+    </div>
+</body>
+</html>

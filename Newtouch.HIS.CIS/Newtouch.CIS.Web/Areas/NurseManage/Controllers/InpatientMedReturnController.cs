@@ -1,22 +1,31 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common.Utils;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using NewtouchHIS.Lib.Framework.Operator;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO.InputDto.Inpatient;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository.Inpatient;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Domain.ValueObjects.Inpatient;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class InpatientMedReturnController : OrgControllerBase
     {
         // GET: NurseManage/InpatientMedReturn
@@ -24,7 +33,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         private readonly IDrug_withdrawalzy_tyjlRepo _IDrug_withdrawalzy_tyjlRepo;
         private readonly ISysConfigRepo _sysConfigRepo;
-        public ActionResult GetGridJson(string patInfo, string keyword, string kssj, string jssj)
+
+        public InpatientMedReturnController(IInpatientMedReturnDmnService inpatientMedReturnDmnService, IDrug_withdrawalzy_tyjlRepo iDrug_withdrawalzy_tyjlRepo, ISysConfigRepo sysConfigRepo)
+        {
+            this._InpatientMedReturnDmnService = inpatientMedReturnDmnService;
+            this._IDrug_withdrawalzy_tyjlRepo = iDrug_withdrawalzy_tyjlRepo;
+            this._sysConfigRepo = sysConfigRepo;
+        }
+        public IActionResult GetGridJson(string patInfo, string keyword, string kssj, string jssj)
         {
             IList<InpatientMedicineGrantDto> patList = null;
             if (patInfo != null && patInfo != "")
@@ -38,7 +54,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取病区人员发药树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatWardTree(string keyword)
+        public IActionResult GetPatWardTree(string keyword)
         {
             string ReturnZcyMed = _sysConfigRepo.GetValueByCode("EnableReturnZcyMed", this.OrganizeId);
             string staffId = this.UserIdentity.StaffId;
@@ -52,11 +68,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.OrderBy(p => p.BedNo);
                 foreach (InpWardPatTreeVO itempat in NewPatInfo)
                 { 
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
                     //床号 + 姓名(住院天数)+住院号 + 年龄 +性别
-                    treepat.text = itempat.BedNo + "-"  + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh+ "-" + itempat.nl + "岁-" + gender;
+                    treepat.text = itempat.BedNo + "-"  + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh+ "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
                     treepat.isexpand = false;
@@ -86,18 +102,18 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(treeList.TreeViewJson(null));
         }
         
-        public ActionResult MedReturnSubmit(string medIds)
+        public IActionResult MedReturnSubmit(string medIds)
         {
             OperatorModel user = this.UserIdentity;
             if (!String.IsNullOrWhiteSpace(medIds))
             {
                 string tyxh = _InpatientMedReturnDmnService.MedReturnSubmit(user, medIds);
                 //return Content(new { tyxh = tyxh }.ToJson());
-                return Success("退药成功", tyxh);
+                return Success("Trả thuốcthành công", tyxh);
             }
             else
             {
-                return Error("请选择药品");
+                return Error("Vui lòng chọnThuốc");
             }
 
         }
@@ -107,14 +123,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         //--------------------------------------以下是：医嘱退药查询--------------------------------------
 
-        public ActionResult Drug_withdrawal() {
+        public IActionResult Drug_withdrawal() {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.OrganizeId = this.OrganizeId;
             return View();
         }
 
-        public ActionResult Griddata(string patInfo, string keyword, string kssj, string jssj) {
+        public IActionResult Griddata(string patInfo, string keyword, string kssj, string jssj) {
             var kongzhi = "";
             if (patInfo != null && patInfo != "")
             {
@@ -129,7 +145,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         
-        public ActionResult Treecx(string keyword) {
+        public IActionResult Treecx(string keyword) {
             
 
             string staffId = this.UserIdentity.StaffId;
@@ -143,10 +159,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.OrderBy(p => p.BedNo);
                 foreach (GrugTreezsVO itempat in NewPatInfo)
                 {
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" +itempat.zyh + "-" + itempat.nl + "岁-" + gender;
+                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" +itempat.zyh + "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
                     treepat.isexpand = false;

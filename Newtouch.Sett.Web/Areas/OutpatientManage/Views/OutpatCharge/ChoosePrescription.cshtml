@@ -1,0 +1,76 @@
+
+@{
+    ViewBag.Title = "ChoosePrescription";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<script>
+    $(function () {
+        gridList();
+    });
+
+    ///lấydanh sách đơn thuốc
+    function GetPrescriptionInfo() {
+        var PrescriptionInfo = sessionStorage.getItem("PrescriptionInfo");
+        if (PrescriptionInfo) {
+            sessionStorage.removeItem("PrescriptionInfo")
+            return $.parseJSON(PrescriptionInfo);
+        }
+
+    }
+
+    function gridList() {
+        var $gridList = $("#parentgridList");
+        $gridList.newtouchLocalDataGrid({
+            multiselect: true,
+            unwritten: false,
+            height: 150,
+            colModel: [
+                { label: "cfnm", name: "cfnm", key: true, hidden: true },
+                { label: "Số đơn thuốc", name: "cfh", width: 200, align: 'left' },
+                { label: 'Tổng số tiền', name: 'zje', width: 50, align: 'left' },
+                { label: 'Loại đơn thuốc', name: 'cflx', width:80, align: 'left' },
+                { label: 'Tên khoa', name: 'ksmc', width: 50, align: 'left' },
+                { label: 'Tên bác sĩ', name: 'ysmc', width: 50, align: 'left' }
+            ]
+        });
+        $gridList.newtouchLocalDataGrid(null, GetPrescriptionInfo());
+    }
+
+
+    function submitForm(callback) {
+        //lấydòng đã chọnId
+        var selRowIds = $("#parentgridList").jqGrid('getGridParam', 'selarrrow');
+        if (selRowIds.length == 0) {
+            $.modalAlert("Vui lòng chọn trước đơn thuốc", 'warning');
+            return;
+        }
+        //cfnm
+        var cfnmList = [];//mã nội bộ đơn thuốc tra cứu chi tiết đơn thuốclist
+        for (var i = 0; i < selRowIds.length; i++) {
+            var rowData = $("#parentgridList").jqGrid('getRowData', selRowIds[i]);
+            if (!rowData) {
+                break;
+            }
+            cfnmList.push(parseInt(rowData.cfnm));
+        }
+        $.ajax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatCharge/loadPrescriptionDetailDataBycfnm",
+            data: { cfnmList: cfnmList },
+            dataType: "json",
+            cache: false,
+            async: true,
+            success: function (ajaxresp) {
+                callback(ajaxresp, cfnmList);
+                $.modalClose();
+            },
+            complete: function () {
+                $.loading(false);
+            }
+        });
+    }
+</script>
+<div class="gridPanel">
+    <table id="parentgridList"></table>
+</div>

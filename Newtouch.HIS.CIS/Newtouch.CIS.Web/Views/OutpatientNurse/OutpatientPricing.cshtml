@@ -1,31 +1,31 @@
-﻿
+
 @{
-    ViewBag.Title = "门诊划价";
+    ViewBag.Title = "Ngoại trúĐịnh giá";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="dv-body">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
 
         <table class="form" style="width:95%">
             <tbody>
                 <tr>
-                    <th class="formTitle">登记日期：</th>
+                    <th class="formTitle">Đăng kýNgày:</th>
                     <td class="formValue" colspan="2">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">姓名/门诊号：</th>
+                    <th class="formTitle">Họ tên/Số khám ngoại trú:</th>
                     <td class="formValue">
                         <input id="keyword" type="text" class="form-control">
                     </td>
                     <td class="formValue">
                         <a id="btn_refresh" class="btn btn-primary" onclick="RefreshOrder()" style="width:80px;">
-                            <i class="fa fa-refresh"></i>查询
+                            <i class="fa fa-refresh"></i>Tra cứu
                         </a>
                     </td>
                     
@@ -79,16 +79,16 @@
             autowidth: true,
             colModel: [
                 { label: 'lgjlid', name: 'lgjlid', align: 'center', hidden: true, key: true },
-                { label: '门诊号', name: 'mzh', align: 'center', width: 100 },
-                { label: '患者姓名', name: 'xm', align: 'center', width: 50 },
-                { label: '性别', name: 'xb', align: 'left', width: 30 },
-                { label: '处方号', name: 'cfh', align: 'center', width: 100, formatter: function (val) { if (val != null) return val; else return ""; } },
-                { label: '处方内容', name: 'cfmxnr', align: 'left', width: 100 },
-                { label: '开始时间', name: 'lgksrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '结束时间', name: 'lgjsrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '登记原因', name: 'miaoshu', align: 'center', width: 200 },
-                { label: '登记人员', name: 'djrymc', align: 'center', width: 50 },
-                { label: '登记时间', name: 'djrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Số khám ngoại trú', name: 'mzh', align: 'center', width: 100 },
+                { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 50 },
+                { label: 'Giới tính', name: 'xb', align: 'left', width: 30 },
+                { label: 'Số đơn thuốc', name: 'cfh', align: 'center', width: 100, formatter: function (val) { if (val != null) return val; else return ""; } },
+                { label: 'Nội dung đơn thuốc', name: 'cfmxnr', align: 'left', width: 100 },
+                { label: 'Thời gian bắt đầu', name: 'lgksrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Kết thúcThời gian', name: 'lgjsrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Nguyên nhân đăng ký', name: 'miaoshu', align: 'center', width: 200 },
+                { label: 'Người đăng ký', name: 'djrymc', align: 'center', width: 50 },
+                { label: 'Thời gian đăng ký', name: 'djrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
             ],
             pager: "#gridPager",
             sortname: 'djrq Desc',

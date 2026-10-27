@@ -1,18 +1,29 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using NewtouchHIS.Lib.Framework.Attributes;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ViewModels;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
+    [Area("ReportManage")]
     public class ReportController : OrgControllerBase
     {
         private readonly IReportDmnService reportDmnService;
@@ -20,7 +31,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 康复处方单
         /// </summary>
         /// <returns></returns>
-        public ActionResult RehabPresReport()
+        public IActionResult RehabPresReport()
         {
             ReportingServiceCom();
             return View();
@@ -30,7 +41,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 常规项目处方单
         /// </summary>
         /// <returns></returns>
-        public ActionResult RegularItemPresReport()
+        public IActionResult RegularItemPresReport()
         {
             ReportingServiceCom();
             return View();
@@ -40,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 康复治疗单
         /// </summary>
         /// <returns></returns>
-        public ActionResult RehabPresTreatmentReport()
+        public IActionResult RehabPresTreatmentReport()
         {
             ReportingServiceCom();
             return View();
@@ -49,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 查询医嘱发药
         /// </summary>
         /// <returns></returns>
-        public ActionResult DispensingQuery()
+        public IActionResult DispensingQuery()
         {
             ReportingServiceCom();
             return View();
@@ -58,7 +69,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 西药处方单
         /// </summary>
         /// <returns></returns>
-        public ActionResult WMPresReport()
+        public IActionResult WMPresReport()
         {
             ReportingServiceCom();
             return View();
@@ -68,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 中药处方单
         /// </summary>
         /// <returns></returns>
-        public ActionResult TCMPresReport()
+        public IActionResult TCMPresReport()
         {
             ReportingServiceCom();
             return View();
@@ -78,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 病历单
         /// </summary>
         /// <returns></returns>
-        public ActionResult MRReport()
+        public IActionResult MRReport()
         {
             ReportingServiceCom();
             return View();
@@ -87,7 +98,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 长期医嘱打印
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrintCqyzReport()
+        public IActionResult PrintCqyzReport()
         {
             ReportingServiceCom();
             return View();
@@ -96,16 +107,16 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// 临时医嘱打印
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrintLsyzReport()
+        public IActionResult PrintLsyzReport()
         {
             ReportingServiceCom();
             return View();
         }
         /// <summary>
-        /// 医嘱执行后，打印药品单
+        /// 医嘱Thực hiện后，打印药品单
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrintYzYpReport()
+        public IActionResult PrintYzYpReport()
         {
             ReportingServiceCom();
             return View();
@@ -116,31 +127,31 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult PrintJyReport()
+        public IActionResult PrintJyReport()
         {
             ReportingServiceCom();
             return View();
         }
         //检查申请单
-        public ActionResult PrintJcReport()
+        public IActionResult PrintJcReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //全院抗生素药物使用金额排名
-        public ActionResult PrintKssJePMReport()
+        //Toàn viện抗生素药物使用金额排名
+        public IActionResult PrintKssJePMReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //全院抗生素药物使用量排名
-        public ActionResult PrintKssSlPMReport()
+        //Toàn viện抗生素药物使用量排名
+        public IActionResult PrintKssSlPMReport()
         {
             ReportingServiceCom();
             return View();
         }
         //门诊抗菌药物处方比例
-        public ActionResult PrintKssCfPropReport()
+        public IActionResult PrintKssCfPropReport()
         {
             ReportingServiceCom();
             return View();
@@ -156,7 +167,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         {
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
@@ -165,29 +176,29 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         #endregion
 
 
-        #region 报表工具
-        public ActionResult ReportConfig()
+        #region Báo cáo工具
+        public IActionResult ReportConfig()
         {
             return View();
         }
-        public ActionResult ReportConfigForm()
+        public IActionResult ReportConfigForm()
         {
             return View();
         }
-        public ActionResult PrintReport(string rpt)
+        public IActionResult PrintReport(string rpt)
         {
             ViewBag.rptCode = rpt;
             ViewBag.user = this.UserIdentity.rygh;
             ViewBag.orgId = OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
-        public ActionResult GetReportFormJson(string keyValue)
+        public IActionResult GetReportFormJson(string keyValue)
         {
             var data = reportDmnService.ReportConfInfo(OrganizeId, keyValue);            
             return Content(data.ToJson());
         }
-        public ActionResult GetGridJson(Pagination pagination, string keyword)
+        public IActionResult GetGridJson(Pagination pagination, string keyword)
         {
             var data = new
             {
@@ -198,13 +209,13 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult ReportEdit(ReportConfigVO vo,string keyValue)
+        public IActionResult ReportEdit(ReportConfigVO vo,string keyValue)
         {
             vo.OrganizeId = OrganizeId;
             reportDmnService.ReportAdd(vo,keyValue, this.UserIdentity.rygh);
             return Success();
         }
-        public ActionResult ReportDelete(string keyValue)
+        public IActionResult ReportDelete(string keyValue)
         {
             reportDmnService.ReportDelete(keyValue, this.UserIdentity.rygh, OrganizeId);
             return Success();

@@ -1,33 +1,47 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
-using Newtouch.Core.Common.Exceptions;
+
+using Newtouch.CIS.Compat;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Infrastructure;
 using Newtouch.PDS.Requset.Zyypyz;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class sldAPPlicationController : OrgControllerBase
     {
 
-        //private readonly IWZsldDmnService _wZsldDmnService;
+        private readonly IWZsldDmnService _wZsldDmnService;
+
+        public sldAPPlicationController(IWZsldDmnService wZsldDmnService)
+        {
+            this._wZsldDmnService = wZsldDmnService;
+        }
         //// GET: NurseManage/sldAPPlication
-        //public ActionResult WzSldIndex()
+        //public IActionResult WzSldIndex()
         //{
         //    return View();
         //}
@@ -37,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// </summary>
         ///// <returns></returns>
         //[HttpGet]
-        //public ActionResult GetNewCkzksdh()
+        //public IActionResult GetNewCkzksdh()
         //{
         //    var result = "SLD"+string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
         //    return Content(result);
@@ -51,7 +65,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// <returns></returns>
 
         //[HttpGet]
-        //public ActionResult DepartmentStockListQuery(string key, string slksbm)
+        //public IActionResult DepartmentStockListQuery(string key, string slksbm)
         //{
         //    var param = new DepartmentStockListQueryParamDTO
         //    {
@@ -74,7 +88,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// <param name="keyword"></param>
         ///// <returns></returns>
         //[HttpGet]
-        //public ActionResult ProductBatchQuery(string proId,  string slksbm, string keyword = "")
+        //public IActionResult ProductBatchQuery(string proId,  string slksbm, string keyword = "")
         //{
         //    return Content(_wZsldDmnService.ProductBatchQuery(proId, slksbm, OrganizeId, keyword: keyword).ToJson());
         //}
@@ -83,7 +97,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// 获取库房
         ///// </summary>
         ///// <returns></returns>
-        //public ActionResult GetDeptByKf(string keyword)
+        //public IActionResult GetDeptByKf(string keyword)
         //{
         //    var list = _wZsldDmnService.GetList(OrganizeId, keyword ?? "");
         //    return Content(list.ToJson());
@@ -93,7 +107,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// 获取病区
         ///// </summary>
         ///// <returns></returns>
-        //public ActionResult GetDeptBy(string keyword)
+        //public IActionResult GetDeptBy(string keyword)
         //{
         //    var list = _wZsldDmnService.GetDeptList(OrganizeId, keyword ?? "");
         //    return Content(list.ToJson());

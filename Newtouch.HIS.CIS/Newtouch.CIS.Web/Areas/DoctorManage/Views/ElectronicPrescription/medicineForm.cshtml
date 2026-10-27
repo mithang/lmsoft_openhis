@@ -1,18 +1,18 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "examForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
 
 <table class="form">
     <tr>
-        <th class="formTitle">医保处方编号：</th>
+        <th class="formTitle">Bảo hiểm y tếĐơn thuốcSố hiệu:</th>
         <td class="formValue">
             <input id="hiRxno" name="hiRxno" type="text" disabled="disabled" class="form-control" placeholder="" />
         </td>
-        <th class="formTitle">医保结算时间：</th>
+        <th class="formTitle">Bảo hiểm y tếQuyết toánThời gian:</th>
         <td class="formValue">
             <input id="setlTime" name="setlTime" type="text" disabled="disabled" class="form-control" placeholder="" />
         </td>
@@ -58,43 +58,43 @@
                         $("#gridList").newtouchLocalDataGrid({
                             autowidth: false,
                             unwritten: false,
-                            caption: "处方信息",
+                            caption: "Đơn thuốcThông tin",
                         }, data2.seltdelts);
                     } else {
-                        $.modalAlert("电子处方取药结果査询失败：" + data1.message, 'error');
+                        $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + data1.message, 'error');
                         return;
                     }
                 }
                 else {
-                    $.modalAlert("电子处方取药结果査询失败：" + tfReturn.err_msg, 'error');
+                    $.modalAlert("Tra cứu kết quả lấy thuốc đơn điện tử thất bại:" + tfReturn.err_msg, 'error');
                     return;
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert('医保服务【电子处方取药结果査询】不可访问：' + ex, 'error');
+                $.modalAlert('Bảo hiểm y tếDịch vụ【Điện tửĐơn thuốcLấy thuốcKết quảTra cứu】Không thể truy cập:' + ex, 'error');
             }
         })
     }
     function gridListData() {
         var $gridList = $("#gridList");
-        var captionCon = "处方取药信息";
+        var captionCon = "Đơn thuốcLấy thuốcThông tin";
         $gridList.dataGrid({
             height: $(window).height() - 200,
             caption: captionCon,
             multiselect: false,
             unwritten: false,
             colModel: [
-                { label: '医药机构药品编号', name: 'medinsListCodg', width: 120, align: 'left' },
-                { label: '通用名', name: 'drugGenname', width: 120, align: 'left' },
-                { label: '药品商品名', name: 'drugProdname', width: 120, align: 'left' },
-                { label: '药品剂型', name: 'drugDosform', width: 80, align: 'left' },
-                { label: '药品规格', name: 'drugSpec', width: 80, align: 'left' },
-                { label: '数量', name: 'ent', width: 80, align: 'left' },
-                { label: '批准文号', name: 'aprvno', width: 100, align: 'left' },
-                { label: '批次号', name: 'bchno', width: 80, align: 'left' },
-                { label: '生产批号', name: 'manuLotnum', width: 80, align: 'left' },
-                { label: '生厂厂家', name: 'prdrName', width: 120, align: 'left' }
+                { label: 'Số hiệu thuốc cơ sở y dược', name: 'medinsListCodg', width: 120, align: 'left' },
+                { label: 'Tên chung', name: 'drugGenname', width: 120, align: 'left' },
+                { label: 'Tên thương mại thuốc', name: 'drugProdname', width: 120, align: 'left' },
+                { label: 'Dạng bào chế thuốc', name: 'drugDosform', width: 80, align: 'left' },
+                { label: 'ThuốcQuy cách', name: 'drugSpec', width: 80, align: 'left' },
+                { label: 'Số lượng', name: 'ent', width: 80, align: 'left' },
+                { label: 'Số phê duyệt', name: 'aprvno', width: 100, align: 'left' },
+                { label: 'Số lô', name: 'bchno', width: 80, align: 'left' },
+                { label: 'Sản xuấtSố lô', name: 'manuLotnum', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'prdrName', width: 120, align: 'left' }
             ],
             viewrecords: true
         });

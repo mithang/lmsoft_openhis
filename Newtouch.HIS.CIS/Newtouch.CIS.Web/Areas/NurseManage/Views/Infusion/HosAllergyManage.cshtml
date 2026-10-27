@@ -1,5 +1,5 @@
-﻿@{
-    ViewBag.Title = "住院过敏信息管理";
+@{
+    ViewBag.Title = "Nhập việnDị ứngThông tinQuản lý";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -10,37 +10,37 @@
 </style>
 <div class="panel panel-default">
     <div class="panel-heading navb-bg">
-        筛选条件
+        Điều kiện lọc
     </div>
     <div style="padding: 2px;">
         <table class="form">
             <tr>
-                <td class="formTitle">关键字：</td>
+                <td class="formTitle">Từ khóa:</td>
                 <td class="formValue">
-                    <input type="text" class="form-control" id="keyword" placeholder="单据号/姓名" />
+                    <input type="text" class="form-control" id="keyword" placeholder="Số chứng từ/Họ tên" />
                 </td>
-                <td class="formTitle">科室：</td>
+                <td class="formTitle">Khoa:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" id="lb">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">状态：</td>
+                <td class="formTitle">Trạng thái:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" id="lb">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">时间：</td>
+                <td class="formTitle">Thời gian:</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-01")">
                 </td>
-                <td class="formTitle" style="width:5px">至</td>
+                <td class="formTitle" style="width:5px">đến</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                 </td>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -57,8 +57,8 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 7, 8 },
-    F7Text = "执行",
-    F8Text = "取消执行"
+    F7Text = "Thực hiện",
+    F8Text = "HủyThực hiện"
 })
 <script>
     var localdata = [];
@@ -110,18 +110,18 @@
             height: $(window).height() - document.getElementById('gridListPatient').offsetTop - 120,
             colModel: [
                 { label: 'Id', name: 'Id', key: true, hidden: true },
-                { label: '来源', name: 'Name', width: 30, align: 'center' },
-                { label: '单据号', name: 'py', width: 100, align: 'center' },
-                { label: '姓名', name: 'DietBigType', width: 50, align: 'center' },
+                { label: 'Nguồn', name: 'Name', width: 30, align: 'center' },
+                { label: 'Số chứng từ', name: 'py', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'DietBigType', width: 50, align: 'center' },
                 {
-                    label: '性别', name: 'DietType', width: 30, align: 'center', formatter: function (cellvalue) {
+                    label: 'Giới tính', name: 'DietType', width: 30, align: 'center', formatter: function (cellvalue) {
                         return $.enum.getDescByValue("EnumSSLB", cellvalue);
                     }
                 },
-                { label: '年龄', name: 'bdsfxm', width: 30, align: 'center' },
-                { label: '住院号', name: 'bdsfxm', width: 50, align: 'center' },
-                { label: '床号', name: 'bdsfxm', width: 50, align: 'center' },
-                { label: '科室', name: 'bdsfxm', width: 50, align: 'center' }
+                { label: 'Tuổi', name: 'bdsfxm', width: 30, align: 'center' },
+                { label: 'Số nhập viện', name: 'bdsfxm', width: 50, align: 'center' },
+                { label: 'Số giường', name: 'bdsfxm', width: 50, align: 'center' },
+                { label: 'Khoa', name: 'bdsfxm', width: 50, align: 'center' }
             ],
             pager: "#gridPager1",
             rowNum: '15',
@@ -170,15 +170,15 @@
             multiselect: true,
             colModel: [
                 { label: 'Id', name: 'Id', key: true, hidden: true },
-                { label: '项目名称', name: 'Name', width: 100, align: 'center' },
-                { label: '项目规格', name: 'py', width: 50, align: 'center' },
-                { label: '数量', name: 'py', width: 50, align: 'center' },
-                { label: '单价', name: 'py', width: 50, align: 'center' },
-                { label: '金额', name: 'py', width: 50, align: 'center' },
-                { label: '执行人', name: 'py', width: 50, align: 'center' },
-                { label: '状态', name: 'py', width: 50, align: 'center' },
-                { label: '结果', name: 'py', width: 50, align: 'center' },
-                { label: '备注', name: 'py', width: 50, align: 'center' }
+                { label: 'Tên mục', name: 'Name', width: 100, align: 'center' },
+                { label: 'MụcQuy cách', name: 'py', width: 50, align: 'center' },
+                { label: 'Số lượng', name: 'py', width: 50, align: 'center' },
+                { label: 'Đơn giá', name: 'py', width: 50, align: 'center' },
+                { label: 'Số tiền', name: 'py', width: 50, align: 'center' },
+                { label: 'Người thực hiện', name: 'py', width: 50, align: 'center' },
+                { label: 'Trạng thái', name: 'py', width: 50, align: 'center' },
+                { label: 'Kết quả', name: 'py', width: 50, align: 'center' },
+                { label: 'Ghi chú', name: 'py', width: 50, align: 'center' }
             ],
             pager: "#gridPager2",
             rowNum: '15',
@@ -194,7 +194,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增膳食",
+            title: "Thêm mớiSuất ăn",
             url: "/NurseManage/DietaryAdvice/Form",
             width: "700px",
             height: "300px",
@@ -210,12 +210,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改膳食",
+            title: "SửaSuất ăn",
             url: "/NurseManage/DietaryAdvice/Form?keyValue=" + keyValue,
             width: "700px",
             height: "300px",
@@ -233,14 +233,14 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.deleteForm({
             url: "@Url.Action("DeleteForm")",
             param: { keyValue: keyValue },
             success: function () {
-                $.modalMsg("删除成功","warning");
+                $.modalMsg("Xóa thành công","warning");
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }
@@ -256,7 +256,7 @@
     function newsfxmData() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条膳食信息", 'warning');
+            $.modalAlert("Vui lòng chọn một dòng thông tin suất ăn", 'warning');
             return;
         }
          var dataRow = {
@@ -276,7 +276,7 @@
         //获取所有行Id，遍历使编辑框处于保存状态
         var rowIds = $gridMxList.jqGrid('getDataIDs');
         if (rowIds < 1) {
-            $.modalAlert("当前没有保存的膳食内容", 'warning');
+            $.modalAlert("Hiện tại không có nội dung suất ăn đã lưu", 'warning');
             return;
         }
         for (var i = 0; i < rowIds.length; i++) {
@@ -290,7 +290,7 @@
 
         var gridMxData = $gridMxList.jqGrid('getRowData_AllLine', null, true);
         if (gridMxData.length < 1) {
-            $.modalAlert("当前没有保存的医嘱内容", 'warning');
+            $.modalAlert("Hiện tại không có nội dung y lệnh đã lưu", 'warning');
         }
 
         $.each(gridMxData, function () {
@@ -305,7 +305,7 @@
             type: "POST",
             async: false,
             success: function (data) {
-                $.modalMsg("保存成功", "success");
+                $.modalMsg("Lưu thành công", "success");
                 $(".hiding").click();
             }
         });
@@ -326,7 +326,7 @@
         var key = "";
         $.modalOpen({
             id: "Form",
-            title: "过敏信息",
+            title: "Thông tin dị ứng",
             url: "/NurseManage/Infusion/AllergyForm?id=" + key,
             width: "500px",
             height: "340px",

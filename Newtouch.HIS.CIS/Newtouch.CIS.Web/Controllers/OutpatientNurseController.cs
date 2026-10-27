@@ -1,16 +1,25 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Lib.Framework.Operator;
+
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Controllers
 {
@@ -19,22 +28,28 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly IOutpatientNurseDmnServise _OutpatientNurseDmnService;
         private readonly IOrderAuditDmnService _OrderAuditDmnService;
 
-        #region View 视图
+        public OutpatientNurseController(IOutpatientNurseDmnServise outpatientNurseDmnService, IOrderAuditDmnService orderAuditDmnService)
+        {
+            this._OutpatientNurseDmnService = outpatientNurseDmnService;
+            this._OrderAuditDmnService = orderAuditDmnService;
+        }
+
+        #region View Chế độ xem
         // GET: OutpatientNurse
         /// <summary>
-        /// 皮试执行页面
+        /// Test daThực hiện页面
         /// </summary>
         /// <returns></returns>
-        public ActionResult PerformIndex()
+        public IActionResult PerformIndex()
         {
             return View();
         }
         /// <summary>
-        /// 皮试查询
+        /// Test da查询
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult Skintestquery()
+        public IActionResult Skintestquery()
         {
             return View();
         }
@@ -43,17 +58,17 @@ namespace Newtouch.CIS.Web.Controllers
         /// 门诊处方查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult prescriptionquery()
+        public IActionResult prescriptionquery()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
         /// <summary>
         /// 门诊留观查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult observationQuery()
+        public IActionResult observationQuery()
         {
             return View();
         }
@@ -61,15 +76,15 @@ namespace Newtouch.CIS.Web.Controllers
         /// 门诊划价
         /// </summary>
         /// <returns></returns>
-        public ActionResult OutpatientPricing()
+        public IActionResult OutpatientPricing()
         {
             return View();
         }
         #endregion
         
-        #region 皮试
-        //皮试页面树控件
-        public ActionResult SkintestTree(string keyword, DateTime? kssj, DateTime? jssj, string type)
+        #region Test da
+        //Test da页面树控件
+        public IActionResult SkintestTree(string keyword, DateTime? kssj, DateTime? jssj, string type)
         {
             var wardTree = _OutpatientNurseDmnService.OutpatientNurseTreeVO(this.OrganizeId, keyword, kssj, jssj, type);
             var wardonly = wardTree.GroupBy(p => new { p.ghksmc }).Select(p => new { p.Key.ghksmc });
@@ -114,7 +129,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(treeList.TreeViewJson(null));
         }
 
-        public ActionResult Inputinformation(Pagination pagination, string patList, string organizeId, string selectkey)
+        public IActionResult Inputinformation(Pagination pagination, string patList, string organizeId, string selectkey)
         {
 
             IList<OutpatientNursequeryVO> list = new List<OutpatientNursequeryVO>();
@@ -132,7 +147,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
 
-        public ActionResult EnteragainMuti(string cfmxid, string lrjg)
+        public IActionResult EnteragainMuti(string cfmxid, string lrjg)
         {
             OperatorModel user = this.UserIdentity;
             string msg = _OutpatientNurseDmnService.Enteragain(user, cfmxid, lrjg);
@@ -142,12 +157,12 @@ namespace Newtouch.CIS.Web.Controllers
             }
             else
             {
-                return Success("保存成功");
+                return Success("Lưu thành công");
             }
 
         }
         
-        public ActionResult skintesfrom(Pagination pagination, DateTime? kssj, DateTime? jssj, string keyword)
+        public IActionResult skintesfrom(Pagination pagination, DateTime? kssj, DateTime? jssj, string keyword)
         {
             IList<OutpatientNursequeryVO> list = new List<OutpatientNursequeryVO>();
 
@@ -163,7 +178,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         }
 
-        public ActionResult skintescancel(string gmxxid)
+        public IActionResult skintescancel(string gmxxid)
         {
             OperatorModel user = this.UserIdentity;
             string msg = _OutpatientNurseDmnService.skintescancel(gmxxid, user);
@@ -173,17 +188,17 @@ namespace Newtouch.CIS.Web.Controllers
             }
             else
             {
-                return Success("取消执行成功");
+                return Success("HủyThực hiệnthành công");
             }
         }
         #endregion
 
-        #region 门诊病历打印
+        #region Ngoại trúBệnh ánIn
         /// <summary>
         /// 获取处方人员查询树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatcfTree(string keyword)
+        public IActionResult GetPatcfTree(string keyword)
         {
 
             var wardTree = _OutpatientNurseDmnService.GetPatTree(OrganizeId, keyword);
@@ -231,12 +246,12 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(treeList.TreeViewJson(null));
         }
 
-        public ActionResult GetBarCodeBycfh(string cfid)
+        public IActionResult GetBarCodeBycfh(string cfid)
         {
             var cfh = _OutpatientNurseDmnService.getcfh(cfid, OrganizeId);
             return Content(CommmHelper.GenerateBarCode(cfh, 25, 25));
         }
-        public ActionResult prescriptionfrom(Pagination pagination, string jzid, DateTime? klrq, string cfdlb)
+        public IActionResult prescriptionfrom(Pagination pagination, string jzid, DateTime? klrq, string cfdlb)
         {
             IList<OutpatientNursequeryVO> list = new List<OutpatientNursequeryVO>();
 
@@ -245,7 +260,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 var Total = list.Sum(t => t.je);
                 OutpatientNursequeryVO zje = new OutpatientNursequeryVO();
-                zje.cfh = "总计"; zje.je = Total; zje.kssj = list[0].kssj;
+                zje.cfh = "Tổng cộng"; zje.je = Total; zje.kssj = list[0].kssj;
                 list.Add(zje);
             }
             foreach (var item in list)
@@ -266,8 +281,8 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region 留观
-        public ActionResult observationfrom(Pagination pagination, DateTime? kssj, DateTime? jssj, string keyword)
+        #region Theo dõi
+        public IActionResult observationfrom(Pagination pagination, DateTime? kssj, DateTime? jssj, string keyword)
         {
             IList<ObservationFromVO> list = new List<ObservationFromVO>();
 
@@ -284,7 +299,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region 门诊划价
+        #region Ngoại trú划价
 
 
         #endregion

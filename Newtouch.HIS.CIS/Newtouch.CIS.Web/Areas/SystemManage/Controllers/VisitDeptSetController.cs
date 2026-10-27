@@ -1,20 +1,28 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using System.Linq;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Core.Common;
+
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ViewModels;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
     /// 出诊管理
     /// </summary>
+    [Area("SystemManage")]
     public class VisitDeptSetController : OrgControllerBase
     {
         private readonly IVisitDeptSetDmnService _visitDeptSetDmnService;
@@ -22,19 +30,27 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly IVisitDeptSetRepo _visitDeptSetRepo;
         private readonly IVisitDeptSetApp _visitDeptSetApp;
 
+        public VisitDeptSetController(IVisitDeptSetDmnService visitDeptSetDmnService, ISysUserDmnService sysUserDmnService, IVisitDeptSetRepo visitDeptSetRepo, IVisitDeptSetApp visitDeptSetApp)
+        {
+            this._visitDeptSetDmnService = visitDeptSetDmnService;
+            this._sysUserDmnService = sysUserDmnService;
+            this._visitDeptSetRepo = visitDeptSetRepo;
+            this._visitDeptSetApp = visitDeptSetApp;
+        }
+
         /// <summary>
-        /// 获取出诊医生信息
+        /// 获取Bác sĩ khám信息
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetGridJson(Pagination pagination, string keyword)
+        public IActionResult GetGridJson(Pagination pagination, string keyword)
         {
             keyword = string.IsNullOrWhiteSpace(keyword) ? "Doctor" : keyword;
             var rows = _sysUserDmnService.GetStaffByDutyCode(OrganizeId, keyword);
-            var total = Math.Ceiling(Convert.ToDecimal(rows.Count) / pagination.rows);
+            var total = Math.Ceiling(Convert.ToDecimal(rows.Count) / (pagination.rows ?? 20));
             if (rows.Count > 0)
-                rows = rows.Skip((pagination.page - 1) * pagination.rows).Take(pagination.rows).ToList();
+                rows = rows.Skip(((pagination.page ?? 1) - 1) * (pagination.rows ?? 20)).Take(pagination.rows ?? 20).ToList();
             var list = new
             {
                 rows = rows,
@@ -50,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="ysgh"></param>
         /// <returns></returns>
-        public ActionResult GetVisitDeptDetail(string ysgh)
+        public IActionResult GetVisitDeptDetail(string ysgh)
         {
             var result = _visitDeptSetDmnService.SelectVisitDeptSetDetail(ysgh, OrganizeId);
             return Content(result.ToJson());
@@ -61,18 +77,18 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult DeleteItem(string keyword)
+        public IActionResult DeleteItem(string keyword)
         {
             return _visitDeptSetRepo.DeleteItem(keyword) > 0 ? Success() : Error("");
         }
 
         /// <summary>
-        /// 根据ID获取出诊科室信息
+        /// 根据ID获取Khoa khám信息
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string ysgh, string keyValue)
+        public IActionResult GetFormJson(string ysgh, string keyValue)
         {
             var result = _visitDeptSetDmnService.SelectDoctorInfo(ysgh, OrganizeId, keyValue);
             return Content(result.ToJson());
@@ -83,7 +99,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
-        public ActionResult SubmitForm(VisitDeptDetail vo)
+        public IActionResult SubmitForm(VisitDeptDetail vo)
         {
             vo.zt = vo.zt == "true" ? "1" : "0";
             var result = _visitDeptSetApp.SubmitForm(vo, UserIdentity.UserCode, OrganizeId);

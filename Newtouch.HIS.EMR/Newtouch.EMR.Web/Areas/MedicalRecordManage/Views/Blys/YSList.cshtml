@@ -2,14 +2,14 @@
     Layout = null;
 }
 
-<script src="@SiteUrl.GetStaticResourceScriptUrl(" ~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl(" ~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl(" ~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl(" ~/js/wdtree/tree.css")" rel="stylesheet" />
 <div class="topPanel">
     <div class="search">
         <table>
             <tr>
                 <td class="formValue">
-                    <input id="txt_keyword" type="text" class="form-control" onblur="yssx()" placeholder="元素名称" style="width:100px;height:17px;">
+                    <input id="txt_keyword" type="text" class="form-control" onblur="yssx()" placeholder="Tên phần tử" style="width:100px;height:17px;">
                 </td>
             </tr>
         </table>
@@ -44,12 +44,12 @@
                 { label: "BindingPath", name: "BindingPath", hidden: true },
                 { label: "TypeName", name: "TypeName", hidden: true },
                 { label: "yslx", name: "yslx", hidden: true },
-                { label: "元素控件",width:210, name: "ysmc" },
+                { label: "Điều khiển phần tử",width:210, name: "ysmc" },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
                     var rowData = $("#gridListYs").jqGrid('getRowData', rowid);
-                    $("#tijiao").html("修改");
+                    $("#tijiao").html("Sửa");
                     GetFormJson(rowData.Id);    
                 }
             }

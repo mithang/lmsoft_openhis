@@ -1,0 +1,90 @@
+
+@{
+    ViewBag.Title = "QueFpList";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+   .table-responsive{
+        border:0;
+    }
+</style>
+
+<!--Danh sách hóa đơn-->
+<form id="tabGrid" style="margin:2px;margin-top:10px;">
+    <div class="gridPanel">
+        <table id="gridListFPH" rel="tabGrid"></table>
+    </div>
+</form>
+
+<script> 
+     
+    $(function () {
+        var fapiaodata = localStorage.getItem("fapiaodata");
+        gridListFPH(JSON.parse(fapiaodata));
+    });
+
+    //tảidanh sách hóa đơn
+    function gridListFPH(mydata) {
+        var $gridList = $("#gridListFPH");
+        $gridList.dataNewGrid({
+            height: 500, 
+            caption: "Danh sách hóa đơn",
+            colModel: [
+                { label: 'jsnm', name: 'jsnm', hidden: true },
+                { label: 'flzffy', name: 'flzffy', hidden: true },
+                { label: 'zffy', name: 'zffy', hidden: true },
+                { label: 'jzfy', name: 'jzfy', hidden: true },
+                { label: 'zlfy', name: 'zlfy', hidden: true },
+                { label: 'xjzf', name: 'xjzf', hidden: true },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 100, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'left' },
+                {
+                    label: 'Ngày quyết toán', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
+                        return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : ""
+                    }
+                },
+                { label: 'Tổng số tiền', name: 'zje', width: 100, align: 'left' }
+            ]
+        }, mydata);
+        if (mydata.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+        }
+    }
+
+ 
+
+    //sự kiện nhấn danh sách hóa đơn 
+    function btn_edit() {
+        var data = $("#gridListFPH").jqGridRowValue();
+        if (data) {
+            //inputđiều khiển đã hủy，đặt tạitdtrong
+            $.currentWindow().loadFpData(data); //phương thức trong trang chính
+            PatSearchConfirm();
+          
+        } else {
+            $.modalAlert("Hiện tại không có hóa đơn được chọn！", "warning");
+        }
+
+    }
+
+    //xác nhận trang chínhgọi
+    function PatSearchConfirm() {
+        var $gridList = $("#gridListFPH");
+        var kh = $gridList.jqGridRowValue().kh;
+        var zyh = $gridList.jqGridRowValue().zyh;
+        var xm = $gridList.jqGridRowValue().xm;
+        var obj = new Object();
+        obj.kh = kh;
+        obj.zyh = zyh;
+        obj.xm = xm; 
+        //đóng cửa sổ
+        ReceiptCancle();
+    }
+
+    //hủy
+    function ReceiptCancle() {
+        $.modalClose();
+    }
+</script>
+

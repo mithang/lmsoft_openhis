@@ -1,0 +1,204 @@
+@using Newtouch.Sett.Domain;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var brzybzType = ((int)EnumZYBZ.Djz).ToString();
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
+}
+
+<div class="rows" style="margin-bottom: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        @*<div class="panel-heading navb-bg">
+                Thông tin bệnh nhân nhập viện
+            </div>*@
+        <table class="form" style="width:96%;">
+            <tbody>
+                <tr>
+                    <th class="formTitle">Mã nhập viện：</th>
+                    <td class="formValue">
+                        <input class="form-control" type="text" id="zyh" value="" style="width:49%;float:left;" />
+                        &nbsp;&nbsp; <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25%;" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView();">
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue" colspan="7">
+                        <label id="xm"></label><label style="width:15%"></label><span>tính chất:</span> <label id="brxz"></label>
+                        <label style="width:15%"></label> <span>Giới tính:</span> <label id="xb"></label>
+                        <label style="width:15%"></label><span>Ngày nhập viện:</span> <label id="ryrq"></label>
+                        <label style="width:15%"></label><span>Ngày xuất viện:</span> <label id="cyrq"></label>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="gridPanel" style="margin-top:1%">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script>
+
+    var $gridList = $("#gridList"); 
+    $(function () {
+        gridListData();
+
+    });
+
+    //Truy vấn bệnh nhân(nhập viện)
+    function GetPatSerarchView() {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Truy vấn bệnh nhân",
+            url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@(brzybzType)' + "&t=" + Math.random() + "&zyh=" + $("#zyh").val(),
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                //Gọi truy vấn số thẻ và mã nhập viện
+            }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
+        });
+    }
+
+    //Bệnh nhân đã chọn callback
+    function getPatInfoAjax(selePatInfo) {
+        //Xóa một chút
+        newtouch_event_f4();
+        //
+        patModel = null;
+        jszje = 0.00;
+        if (selePatInfo && selePatInfo.zyh) {
+            $('#zyh').val(selePatInfo.zyh);
+            ajaxLoadDataResult(selePatInfo.zyh);
+            GetPatInfo(selePatInfo.zyh);
+        }
+        else {
+            $('#zyh').val('');
+        }
+    }
+
+    function GetPatInfo(zyh)
+    {
+        $.ajax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatCharge/GetQHDjzdjDataInfo",
+            data: { zyh: zyh },
+            dataType: "json",
+            cache: false,
+            async: false,
+            success: function (payoptype) {
+                if (payoptype) {
+                    cqPatInfo = payoptype;
+                }
+            }
+        });
+    }
+
+    //
+    var patModel = null;
+    //
+    var jszje = 0.00;
+    var scbz = false;//trueTải lên tất cả false"Tải lên mục đã chọn
+
+    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    function ajaxLoadDataResult(zyh) {
+        $.najax({
+            type: "POST",
+            url: "/HospitalizationManage/DischargeSettle/GetZybrInfo",
+            data: { zyh: zyh,jslx: 'mnjs' },
+            dataType: "json",
+            success: function (ajaxresp) {
+                //Thông tin bệnh nhân nhập viện
+                patModel = ajaxresp.data.InpatientSettPatInfo;
+
+                //isYbjyjz = openYbSett && patModel.brxz != '0' && patModel.CardType == "@((int)Newtouch.Sett.Domain.EnumCardType.YBJYK)";
+
+                $('#xm').html(patModel.xm);
+                $('#xb').html($.getGender(patModel.xb));
+                $('#brxz').html($.getGender(patModel.brxz == '0' ? 'Tự phí' : 'BHYT'));
+                $('#cybz').val(patModel.zybz);
+                $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+                //$('#ryzd').html(patModel.ryzdmc);
+                $('#cyzd').html(patModel.cyzd);
+                $('#zyts').html(patModel.zyts);
+                $('#csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+                $('#ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+                $('#cyrq').html(patModel.cyrq ? patModel.cyrq.substring(0, 10) : '');
+                if (ajaxresp.data.InpatientSettPatInfo) {
+                    //loadJfmxByZyh();
+                    bindGridList();
+                }
+                else {
+                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    return false;
+                }
+            },
+            errorCallback: function (data) {
+                newtouch_globalevent_f4();
+                $('#zyh').trigger('focus');
+            }
+        });
+    }
+
+    function bindGridList() {
+        $gridList.jqGrid('setGridParam', {
+            postData: { zyh: patModel.zyh, sczt: "", jssj: $('#jssj').val(), xmmc: $('#xmmc').val(), cybz: $('#cybz').val(), orgId: '@(opr.OrganizeId)' },
+            url: "http://127.0.0.1:33333/api/YiBao/QueryQltctrlProblem_4104",
+        }).trigger('reloadGrid');
+    }
+
+    function gridListData() {
+        var $gridList = $("#gridList");
+        var captionCon = "Kết quả kiểm soát chất lượng";
+        $gridList.dataGrid({
+            height: $(window).height() - 80,
+            caption: captionCon,
+            multiselect: true,
+            unwritten: false,
+            colModel: [
+                {
+                    label: 'Số hiệu cơ sở y tếchỉ định', name: 'fixmedins_code', align: 'center', width: 50, key: true },
+                {label: 'Tên cơ sở y tếchỉ định', name: 'fixmedins_name', align: 'center', width: 50 },
+                { label: 'Năm-thángquyết toán', name: 'setl_ym', align: 'center', width: 150 },
+                { label: 'quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
+                { label: 'Số hiệu nhân viên', name: 'psn_no', align: 'left', width: 170 },
+                { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 30 },
+                { label: 'Kết quả kiểm soát chất lượng', name: 'qltctrl_rslt', align: 'center', width: 50 },
+                { label: 'Cấp lỗi', name: 'err_lv', align: 'center', width: 50 },
+                { label: 'Cờ hoàn trả', name: 'retn_flag', align: 'center', width: 50 },
+                { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50},
+                { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 50 },
+                { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 50 },
+                //{ label: 'Kiểm soát chất lượngquyết toánbảngKết quảChi tiếtthông tin', name: 'detailinfo', align: 'center', width: 50 },
+               
+            ],
+            pager: "#gridPager",
+            sortname: 'setl_ym',
+            viewrecords: true,
+            onSelectAll: function (aRowids, status) {
+                scbz = status;
+            }
+        });
+    }
+
+
+    function newtouch_event_f4() {
+        $('#xm').html('');
+        $('#xb').html('');
+        $('#nlshow').html('');
+        //$('#ryzd').html('');
+        $('#cyzd').html('');
+        $('#zyts').html('');
+        $('#csny').html('');
+        $('#ryrq').html('');
+        $('#cyrq').html('');
+        patModel = null;
+        jszje = 0.00;
+        scbz = false;
+        $('#yeCon').text('0.00');
+        $('#gridList').jqGrid("clearGridData");
+    }
+
+</script>

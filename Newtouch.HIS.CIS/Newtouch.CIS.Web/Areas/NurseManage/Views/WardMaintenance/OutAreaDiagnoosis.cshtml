@@ -1,7 +1,7 @@
-﻿@model dynamic
+@model dynamic
 
 @{
-    ViewBag.Title = "出区诊断";
+    ViewBag.Title = "Ra khuChẩn đoán";
     Layout = "~/Views/Shared/_Index.cshtml";
     var isShowDiag = SysConfigReader.String("Inpatient_OutAre");
 }
@@ -42,7 +42,7 @@
 </style>
 <div class="dv-body" style="background-color: white;">
     <div class="dv-left">
-        <div class="dv-left-title">病区列表</div>
+        <div class="dv-left-title">Khu bệnhDanh sách</div>
         @*<table id="gridBqList"></table>*@
         @Html.Partial("_WardTreeForm")
     </div>
@@ -51,17 +51,17 @@
         <form name="form1">
             <div class="panel panel-default">
                 <div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
                 </div>
                 <div>
                     <table class="form">
                         <tr>
-                            <th class="formTitle">姓名/住院号：</th>
+                            <th class="formTitle">Họ tên/Số nhập viện:</th>
                             <td class="formValue">
-                                <input id="txt_name" type="text" class="form-control" placeholder="姓名/住院号" />
+                                <input id="txt_name" type="text" class="form-control" placeholder="Họ tên/Số nhập viện" />
                             </td>
                             <td class="formTitle">
-                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                             </td>
                             <td colspan="4"></td>
 
@@ -109,7 +109,7 @@
     $("#btn_search").click(function () {
         var keyValue = bqdm;
         if (!!!keyValue) {
-            $.modalAlert("请选中病区", 'warning');
+            $.modalAlert("Vui lòng chọn khu bệnh", 'warning');
             return;
         }
         $("#gridPatList").jqGrid('setGridParam', {
@@ -143,26 +143,26 @@
             //unwritten:false,
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '住院号', name: 'zyh', align: 'center', width: 60 },
-                { label: '姓名', name: 'xm', align: 'center', width: 90 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 60 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 90 },
                 {
-                    label: '性别', name: 'sex', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Giới tính', name: 'sex', align: 'center', width: 50, formatter: function (val) {
                         return $.getGender(val);
                     }
                 },
-                { label: '年龄', name: 'nl', align: 'center', width: 50 },
-                { label: '床号', name: 'cwmc', align: 'center', width: 70 },
-                { label: '入院日期', name: 'ryrq', align: 'center', width: 85, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-                { label: '病人性质', name: 'brxz', hidden: true },
-                { label: '费用类型', name: 'brxzmc', align: 'center', width: 80 },
-                { label: '入院诊断', name: 'zzdmc', align: 'center', width: 150 },
-                { label: '出院诊断', name: 'cyzdmc', align: 'center', width: 150 },
-                { label: '床位医生', name: 'ysxm', align: 'center', width: 90 },
+                { label: 'Tuổi', name: 'nl', align: 'center', width: 50 },
+                { label: 'Số giường', name: 'cwmc', align: 'center', width: 70 },
+                { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 85, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Tính chất bệnh nhân', name: 'brxz', hidden: true },
+                { label: 'Chi phíLoại', name: 'brxzmc', align: 'center', width: 80 },
+                { label: 'Chẩn đoán nhập viện', name: 'zzdmc', align: 'center', width: 150 },
+                { label: 'Xuất việnChẩn đoán', name: 'cyzdmc', align: 'center', width: 150 },
+                { label: 'Giường bệnhBác sĩ', name: 'ysxm', align: 'center', width: 90 },
                 {
-                    label: "操作", name: "", align: "center", width: 100,
+                    label: "Thao tác", name: "", align: "center", width: 100,
                     formatter: function (cellvalue, options, rowobject) {
-                        return "<a href=\#\" onclick='recall1(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='入院诊断' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>入院诊断</a>" +
-                            "<a href=\#\" onclick='recall2(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='出区诊断' style='text-decoration: none;color: #dd4b39;cursor: pointer;margin-left:5px;'>出区诊断</a>";
+                        return "<a href=\#\" onclick='recall1(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='Chẩn đoán nhập viện' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Chẩn đoán nhập viện</a>" +
+                            "<a href=\#\" onclick='recall2(\"" + rowobject.zyh + "\",\"" + rowobject.brxz + "\")'' title='Chuyển khuChẩn đoán' style='text-decoration: none;color: #dd4b39;cursor: pointer;margin-left:5px;'>Chuyển khuChẩn đoán</a>";
                     }
                 }
             ],
@@ -178,12 +178,12 @@
     //入院诊断
     function recall1(zyh,brxz) {
         if (zyh == null || zyh === "") {
-            $.modalAlert("请选择一个患者", 'warning');
+            $.modalAlert("Vui lòng chọnmộtBệnh nhân", 'warning');
             return;
         }
         $.modalOpen({
             id: "InAreaDiagnoosisForm",
-            title: "入院诊断",
+            title: "Chẩn đoán nhập viện",
             url: "/NurseManage/WardMaintenance/InAreaDiagnoosisForm?zyh=" + zyh + "&brxz=" + brxz,
             width: "620px",
             height: "400px",
@@ -199,19 +199,19 @@
     //出院诊断
     function recall2(zyh, brxz) {
         if (zyh == null || zyh === "") {
-            $.modalAlert("请选择一个患者", 'warning');
+            $.modalAlert("Vui lòng chọnmộtBệnh nhân", 'warning');
             return;
         }
-        var btn = ['确定', '关闭'];
+        var btn = ['Xác nhận', 'Đóng'];
         var btnclass = ['btn btn-primary', 'btn btn-danger'];
         if ('@isShowDiag'=='OFF')
         {
-            btn = ['', '关闭']
+            btn = ['', 'Đóng']
             btnclass = ['', 'btn btn-danger'];
         }
         $.modalOpen({
             id: "OutAreaDiagnoosisForm",
-            title: "患者出区",
+            title: "Bệnh nhân chuyển khu",
             url: "/NurseManage/WardMaintenance/OutAreaDiagnoosisForm?zyh=" + zyh + "&brxz=" + brxz,
             width: "620px",
             height: "460px",

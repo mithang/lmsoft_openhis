@@ -1,15 +1,19 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Mvc;
-using System.Web.WebPages;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common.Operator;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
+
 using Newtouch.Domain.DTO.InputDto;
 using Newtouch.Domain.DTO.OutputDto;
 using Newtouch.Domain.Entity;
@@ -18,7 +22,7 @@ using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Controllers
 {
@@ -30,7 +34,7 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly ITreatmentRepo _treatmentRepo;
         private readonly IPatientVitalSignsRepo _patientVitalSignsRepo;
         private readonly IInpatientPatientDmnService _inpatientPatientDmnService;
-        private readonly FrameworkBase.MultiOrg.Domain.IDomainServices.IBaseDataDmnService _iBaseDataDmnService;
+        private readonly IBaseDataDmnService _iBaseDataDmnService;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IIDBDmnService _idbDmnService;
         private readonly IVisitDeptSetRepo visitDeptSetRepo;
@@ -40,15 +44,25 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly IInpatientPatientDiagnosisRepo _inpatientPatientDiagnosisRepo;
 
         // GET: PatientList
-        public PatientListController()
+        public PatientListController(ITreatmentRepo treatmentRepo, IPatientVitalSignsRepo patientVitalSignsRepo, IInpatientPatientDmnService inpatientPatientDmnService, IBaseDataDmnService iBaseDataDmnService, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, ISysUserDmnService sysUserDmnService, IMedicalRecordDmnService medicalRecordDmnService, ITreatmentDmnService treatmentDmnService, IInpatientPatientDiagnosisRepo inpatientPatientDiagnosisRepo)
         {
+            this._treatmentRepo = treatmentRepo;
+            this._patientVitalSignsRepo = patientVitalSignsRepo;
+            this._inpatientPatientDmnService = inpatientPatientDmnService;
+            this._iBaseDataDmnService = iBaseDataDmnService;
+            this._sysConfigRepo = sysConfigRepo;
+            this._idbDmnService = idbDmnService;
+            this._sysUserDmnService = sysUserDmnService;
+            this._medicalRecordDmnService = medicalRecordDmnService;
+            this._treatmentDmnService = treatmentDmnService;
+            this._inpatientPatientDiagnosisRepo = inpatientPatientDiagnosisRepo;
 
         }
         /// <summary>
         /// 患者列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientList()
+        public IActionResult PatientList()
         {
             return View();
         }
@@ -56,7 +70,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 患者预诊
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientPreDiag()
+        public IActionResult PatientPreDiag()
         {
             return View();
         }
@@ -64,14 +78,14 @@ namespace Newtouch.CIS.Web.Controllers
         /// 患者就诊信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientVisitList()
+        public IActionResult PatientVisitList()
 		{
             return View();
 		}
 
-    #region 就诊信息
+    #region Khám bệnhThông tin
 
-    public ActionResult SelectPatientVisitList(Pagination pagination, string kh, string xm, string jzlx,string jszt, DateTime? kssj, DateTime? jssj)
+    public IActionResult SelectPatientVisitList(Pagination pagination, string kh, string xm, string jzlx,string jszt, DateTime? kssj, DateTime? jssj)
         {
             var data = new
             {
@@ -82,7 +96,7 @@ namespace Newtouch.CIS.Web.Controllers
             };
             return Content(data.ToJson());
         }
-        public ActionResult GetInPatientInfo(string zyh)
+        public IActionResult GetInPatientInfo(string zyh)
         {
             var data = _treatmentDmnService.GetInPatientInfo(zyh,OrganizeId);
             var ryDiaList = _inpatientPatientDiagnosisRepo.SelectDiagData(zyh, OrganizeId, "1");
@@ -99,14 +113,14 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
-        public ActionResult GetVitalSignsByMzh(string mzh)
+        public IActionResult GetVitalSignsByMzh(string mzh)
         {
             var data = _patientVitalSignsRepo.IQueryable().Where(a => a.mzh == mzh && a.zt == "1" && a.OrganizeId == this.OrganizeId).FirstOrDefault();
 
             return Content(data.ToJson());
         }
 
-        public ActionResult GetTreatEntityByMzh(string mzh)
+        public IActionResult GetTreatEntityByMzh(string mzh)
         {
             var data = _treatmentDmnService.SelectTreatmentEntitie(mzh, OrganizeId);
             return Content(data.ToJson());
@@ -118,10 +132,10 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult SelectNotYetTreateList(Pagination pagination, string keyword, int mjzbz,bool? zzhz)
+        public IActionResult SelectNotYetTreateList(Pagination pagination, string keyword, int mjzbz,bool? zzhz)
         {
 
-            #region 获取出诊科室
+            #region LấyKhoa khám
 
             var kcCode = UserIdentity.DepartmentCode;
             var visitDept = visitDeptSetRepo.SelectData(OperatorProvider.GetCurrent().rygh, OrganizeId);
@@ -179,7 +193,7 @@ namespace Newtouch.CIS.Web.Controllers
             //拉取挂号信息
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RegisteredInfoResponse>>(
                 "/api/Patient/OutPatientRegistrationQuery", reqObj);
-            if (apiResp.data == null) return Error("接口调用失败【" + apiResp.msg + apiResp.sub_msg + "】");
+            if (apiResp.data == null) return Error("Gọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
 
             var showUnTreateDays = _sysConfigRepo.GetValueByCode("ShowUnTreateDays", this.OrganizeId);
             var unTreateDays = 3;
@@ -252,7 +266,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult SelectTreatingOrTreatedList(Pagination pagination, int jzzt, string keyword, int mjzbz, DateTime? kzrq, bool? zzhz)
+        public IActionResult SelectTreatingOrTreatedList(Pagination pagination, int jzzt, string keyword, int mjzbz, DateTime? kzrq, bool? zzhz)
         {
             pagination.sidx = "ghsj desc";
             pagination.sord = "";
@@ -281,7 +295,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="jzid"></param>
         /// <returns></returns>
-        public ActionResult ResumeTreat(string jzId)
+        public IActionResult ResumeTreat(string jzId)
         {
             _treatmentRepo.ResumeTreat(this.OrganizeId, jzId);
             return Success();
@@ -292,7 +306,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="ks"></param>
         /// <param name="blh"></param>
         /// <returns></returns>
-        public ActionResult GetLastTreate(string blh, int mjzbz)
+        public IActionResult GetLastTreate(string blh, int mjzbz)
         {
             var orgId = this.OrganizeId;
             var ks = this.UserIdentity.DepartmentCode;
@@ -310,7 +324,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="blh"></param>
         /// <returns></returns>
-        public ActionResult SyncPresChargeStatus(string blh)
+        public IActionResult SyncPresChargeStatus(string blh)
         {
             var syncMethod = _sysConfigRepo.GetValueByCode("HISSyncMethod", this.OrganizeId);
             if (syncMethod == "IDB")
@@ -321,7 +335,7 @@ namespace Newtouch.CIS.Web.Controllers
             return null;
         }
 
-        #region 住院患者一览
+        #region Nhập việnBệnh nhân一览
         /// <summary>
         /// 获取在病区的病人
         /// </summary>
@@ -329,7 +343,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="ys"></param>
         /// <param name="bedCode"></param>
         /// <returns></returns>
-        public ActionResult GetzbqPatientList(int rows,string page, string bqCode, string ys, string bedCode)
+        public IActionResult GetzbqPatientList(int rows,string page, string bqCode, string ys, string bedCode)
         {
             Pagination pagination = new Pagination();
             pagination.sidx = " cwmc";
@@ -356,7 +370,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="jsrq"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetycqPatientList(Pagination pagination, string bqCode, string ys, string bedCode, string ksrq, string jsrq, string zyh)
+        public IActionResult GetycqPatientList(Pagination pagination, string bqCode, string ys, string bedCode, string ksrq, string jsrq, string zyh)
         {
             var data = new
             {
@@ -368,13 +382,13 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult patientFloatingSelectorSource(string keyword)
+        public IActionResult patientFloatingSelectorSource(string keyword)
         {
             var data = _inpatientPatientDmnService.GetInfoBykeyword(keyword, OrganizeId);
            return Content(data.ToJson());
         }
 
-        public ActionResult inpatientBedUsedInfo(string zyh)
+        public IActionResult inpatientBedUsedInfo(string zyh)
         {
             var data = new
             {
@@ -387,7 +401,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region 生命体征
+        #region Dấu hiệu sinh tồn
         /// <summary>
         /// 根据门诊号查询生命体征
         /// </summary>
@@ -395,7 +409,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetFormJson(string mzh)
+        public IActionResult GetFormJson(string mzh)
         {
             var entity = _patientVitalSignsRepo.IQueryable().Where(a => a.mzh == mzh && a.zt == "1" && a.OrganizeId == this.OrganizeId).FirstOrDefault();
             return Content(entity.ToJson());
@@ -406,22 +420,22 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(PatientVitalSignsEntity entity, string keyValue)
+        public IActionResult SubmitForm(PatientVitalSignsEntity entity, string keyValue)
         {
             entity.zt = "1";
             entity.OrganizeId = this.OrganizeId;
             _patientVitalSignsRepo.SubmitForm(entity, keyValue);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
         #endregion
 
-        #region 住院患者
+        #region Nhập việnBệnh nhân
 
         /// <summary>
         /// 住院患者一览
         /// </summary>
         /// <returns></returns>
-        public ActionResult InpatientList()
+        public IActionResult InpatientList()
         {
             //ViewBag.bqval = "==请选择==";
             var bqAuth = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault();
@@ -443,19 +457,19 @@ namespace Newtouch.CIS.Web.Controllers
         /// 住院患者信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult InpatientInfo()
+        public IActionResult InpatientInfo()
         {
             return View();
         }
         #endregion
 
-        #region 住院患者选择弹层
+        #region Nhập việnBệnh nhânChọn弹层
 
         /// <summary>
         /// 住院患者选择弹层
         /// </summary>
         /// <returns></returns>
-        public ActionResult InPatSearchView()
+        public IActionResult InPatSearchView()
         {
             return View();
         }
@@ -471,7 +485,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult InPatSearchInfo(Pagination pagination, string bq, string zyh, string xm,string ch, string zybz = null)
+        public IActionResult InPatSearchInfo(Pagination pagination, string bq, string zyh, string xm,string ch, string zybz = null)
         {
 			var StaffId = this.UserIdentity.StaffId;
 			//根据StaffId获取病区
@@ -493,26 +507,26 @@ namespace Newtouch.CIS.Web.Controllers
 
         #endregion
 
-        #region 住院患者信息
+        #region Nhập việnBệnh nhânThông tin
 
-        public ActionResult InpatientInfoShow()
+        public IActionResult InpatientInfoShow()
         {
             return View();
         }
         #endregion
 
-        #region 结算查询
-        public ActionResult PatZySettInfobyJsnm(string zyh)
+        #region Quyết toánTra cứu
+        public IActionResult PatZySettInfobyJsnm(string zyh)
         {
             var data = _inpatientPatientDmnService.PreSettbyId(zyh,this.OrganizeId);
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 欠费开立/执行提醒
+        /// 欠费开立/Thực hiện提醒
         /// </summary>
         /// <param name="patlist"></param>
         /// <returns></returns>
-        public ActionResult PatYjjWarn(string patlist)
+        public IActionResult PatYjjWarn(string patlist)
         {
             var data = _inpatientPatientDmnService.PatYjjWarn(patlist,this.OrganizeId);
             return Content(data.ToJson()); ;
@@ -523,7 +537,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 登录用户是否是专家医生
         /// </summary>
         /// <returns></returns>
-        public ActionResult IsExpertByLoginUser() {
+        public IActionResult IsExpertByLoginUser() {
             var flag = false;
             var ysgh = this.UserIdentity.UserCode;
             var sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(this.OrganizeId);
@@ -540,7 +554,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
 
-		public ActionResult GetdjzList(Pagination pagination, string keyword, int mjzbz)
+		public IActionResult GetdjzList(Pagination pagination, string keyword, int mjzbz)
 		{
 			pagination.sidx = " SBXH ";
 			var data = _treatmentRepo.GetdjzList(pagination, keyword, mjzbz);

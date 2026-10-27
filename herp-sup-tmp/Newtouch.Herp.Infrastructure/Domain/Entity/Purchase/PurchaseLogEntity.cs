@@ -1,0 +1,45 @@
+
+using System;
+using SqlSugar;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Newtouch.Herp.Domain.Entity.Purchase
+{
+    /// <summary>
+    /// 物资采购接口返回日志表
+    /// </summary>
+    [SugarTable("xt_wz_cg_log")]
+    public class PurchaseLogEntity : IEntity<PurchaseLogEntity>
+    {
+        [SugarColumn(IsPrimaryKey = true)]
+        public string Id { get; set; }
+        public string OrganizeId { get; set; }
+        /// <summary>
+        /// 交易代码
+        /// </summary>
+        public string jydm { get; set; }
+        /// <summary>
+        /// 交易名称
+        /// </summary>
+        public string jymc { get; set; }
+        public string param { get; set; }
+        /// <summary>
+        /// 入参xml
+        /// </summary>
+        public string XmlRequest { get; set; }
+        /// <summary>
+        /// 出参xml
+        /// </summary>
+        public string XmlResponse { get; set; }
+        public string zt { get; set; }
+        public DateTime CreateTime { get; set; }
+        public string CreatorCode { get; set; }
+        public DateTime? LastModifyTime { get; set; }
+        public string LastModifierCode { get; set; }
+    }
+}

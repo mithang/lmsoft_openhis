@@ -1,38 +1,35 @@
-﻿using System;
-using System.Net.Http;
-using System.Web.Http;
-using Autofac;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Implementation;
-using Newtouch.HIS.API.Common;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset.ClinicTfOperate;
 
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 门诊退费更新待发药处方
+    /// Port của api/ClinicTfOperate (hoàn phí ngoại trú cập nhật đơn thuốc chờ phát).
+    /// Gốc dùng `new ClinicTfOperateApp(par).Process()`; bản port giữ nguyên cách gọi đó.
+    /// ProcessorBase kế thừa AppBase nên các field repo của App được resolve qua
+    /// ServiceLocator (Provider do Program.cs gán, giống PDS Web).
     /// </summary>
-    [RoutePrefix("api/ClinicTfOperate")]
-    public class ClinicTfOperateController : ApiControllerBase<ClinicTfOperateController>
+    [ApiController]
+    [Route("api/ClinicTfOperate")]
+    public class ClinicTfOperateController : ApiControllerBase
     {
-        public ClinicTfOperateController(IComponentContext com) : base(com)
+        public ClinicTfOperateController(TokenStore tokenStore)
+            : base(tokenStore)
         {
         }
 
-        /// <summary>
-        /// 更新处方by退费
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [Route("UpdateCfByTf")]
-        [HttpPost]
-        public HttpResponseMessage UpdateCfByTf(ClinicTfOperateRequest par)
+        [HttpPost("UpdateCfByTf")]
+        public IActionResult UpdateCfByTf([FromBody] ClinicTfOperateRequest par)
         {
-            Action<ClinicTfOperateRequest, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<ClinicTfOperateRequest, DefaultResponse>((req, resp) =>
             {
                 resp.data = new ClinicTfOperateApp(par).Process();
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
     }
 }

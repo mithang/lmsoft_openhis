@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "常用诊断列表";
+    ViewBag.Title = "Thường dùngChẩn đoánDanh sách";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -20,9 +20,9 @@
             {
                 url: "/MedicalRecord/GetDiagsLists?type=" + type + "&mzh=" + mzh,
                 colModel: [
-                    { label: '诊断名称', name: 'zdmc', width: 100, align: 'left' },
-                    { label: '诊断编码', name: 'zdCode', width: 150, align: 'left' },
-                    { label: '拼音', name: 'py', width: 150, align: 'left', hidden: true },
+                    { label: 'Chẩn đoánTên', name: 'zdmc', width: 100, align: 'left' },
+                    { label: 'Chẩn đoánMã', name: 'zdCode', width: 150, align: 'left' },
+                    { label: 'Pinyin', name: 'py', width: 150, align: 'left', hidden: true },
                     { label: 'icd10', name: 'icd10', width: 120, align: 'left' },
                 ],
                 viewrecords: false,

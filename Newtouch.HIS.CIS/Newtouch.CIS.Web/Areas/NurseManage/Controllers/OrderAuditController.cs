@@ -1,27 +1,35 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using System.Web.UI;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using NewtouchHIS.Lib.Framework.Operator;
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
+    [Area("NurseManage")]
     public class OrderAuditController : OrgControllerBase
     {
         private readonly IOrderAuditDmnService _OrderAuditDmnService;
@@ -33,8 +41,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private bool isNurse;
         private bool isRehabDoctor;
 
-        public OrderAuditController(IOrderAuditDmnService OrderAuditDmnService)
+        public OrderAuditController(IOrderAuditDmnService OrderAuditDmnService, ISysConfigRepo sysConfigRepo, ISysUserDmnService sysUserDmnService, IAllergyManageDmnService allergyManageDmnService, ISysDepartmentRepo sysDepartmentRepo)
         {
+            this._sysConfigRepo = sysConfigRepo;
+            this._sysUserDmnService = sysUserDmnService;
+            this._allergyManageDmnService = allergyManageDmnService;
+            this._sysDepartmentRepo = sysDepartmentRepo;
             this._OrderAuditDmnService = OrderAuditDmnService;
             //IsRehabAuthtoNurse= _sysConfigRepo.GetValueByCode("IsRehabAuthtoNurse", this.OrganizeId);
             //isNurse = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Nurse");
@@ -43,11 +55,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         // GET: NurseManage/OrderAudit
-        //public ActionResult Index()
+        //public IActionResult Index()
         //{
         //    return View();
         //}
-        public ActionResult GetGridJson(Pagination pagination, string patList, string organizeId)
+        public IActionResult GetGridJson(Pagination pagination, string patList, string organizeId)
         {
             IsRehabAuthtoNurse = _sysConfigRepo.GetValueByCode("IsRehabAuthtoNurse", this.OrganizeId);
             isNurse = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Nurse");
@@ -83,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
 
-        public ActionResult submitOrderList(IList<OrderAuditVO> orderList)
+        public IActionResult submitOrderList(IList<OrderAuditVO> orderList)
         {
             //entity.zt = entity.zt == "true" ? "1" : "0";
             OperatorModel user = this.UserIdentity;
@@ -91,7 +103,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
             if (data == "")
             {
-                return Success("审核成功");
+                return Success("Duyệtthành công");
             }
             else
             {
@@ -100,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         }
 
-        public ActionResult submitOrderListbyPat(string patList, int yzxz, IList<OrderAuditVO> orderList)
+        public IActionResult submitOrderListbyPat(string patList, int yzxz, IList<OrderAuditVO> orderList)
         {
             IsRehabAuthtoNurse = _sysConfigRepo.GetValueByCode("IsRehabAuthtoNurse", this.OrganizeId);
             isNurse = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Nurse");
@@ -126,7 +138,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var data = _OrderAuditDmnService.OrderAuditSubmitbyPat(user, patList, yzxz, orderList);
                 if (data == "")
                 {
-                    return Success("审核成功");
+                    return Success("Duyệtthành công");
                 }
                 else
                 {
@@ -134,7 +146,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     return Success("", data);
                 }
             }
-            return Success("审核成功");
+            return Success("Duyệtthành công");
         }
 
         /// <summary>
@@ -143,7 +155,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="aa"></param>
         /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult GetPatWardTree(string aa,string keyword)
+        public IActionResult GetPatWardTree(string aa,string keyword)
         {
             IsRehabAuthtoNurse = _sysConfigRepo.GetValueByCode("IsRehabAuthtoNurse", this.OrganizeId);
             var medicalInsurance = _sysConfigRepo.GetValueByCode("medicalInsurance", this.OrganizeId);
@@ -173,11 +185,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.OrderBy(p => p.BedNo);
                 foreach (InpWardPatTreeVO itempat in NewPatInfo)
                 {  
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
                     //床号 + 姓名(住院天数)+住院号 + 年龄 +性别
-                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh + "-" + itempat.nl + "岁-" + gender;
+                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
                     treepat.isexpand = false;
@@ -212,16 +224,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         } 
          
         /// <summary>
-        /// 录入皮试结果
+        /// 录入Test da结果
         /// </summary>
         /// <returns></returns>
-        public ActionResult InputresultsSkintest()
+        public IActionResult InputresultsSkintest()
         {
             return View();
         }
 
-        //皮试页面树控件
-        public ActionResult SkintestTree(string keyword, string selectkey)
+        //Test da页面树控件
+        public IActionResult SkintestTree(string keyword, string selectkey)
         {
             //IList<SkintestVO> patTree = new List<SkintestVO>();
             //patTree = _OrderAuditDmnService.SkintestVO(this.OrganizeId);
@@ -270,7 +282,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 
-        public ActionResult Inputinformation(Pagination pagination, string patList, string organizeId, string selectkey)
+        public IActionResult Inputinformation(Pagination pagination, string patList, string organizeId, string selectkey)
         {
 
             IList<SkintestqueryVO> list = new List<SkintestqueryVO>();
@@ -288,40 +300,40 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
 
-        public ActionResult Inputskintestresults(IList<SkintestqueryVO> orderList)
+        public IActionResult Inputskintestresults(IList<SkintestqueryVO> orderList)
         {
             //entity.zt = entity.zt == "true" ? "1" : "0";
             OperatorModel user = this.UserIdentity;
             _OrderAuditDmnService.Inputskintestresults(user, orderList);
-            return Success("皮试录入成功");
+            return Success("Test daNhậpthành công");
         }
 
-        public ActionResult AuditTips()
+        public IActionResult AuditTips()
         {
 
             return View();
         }
 
-        public ActionResult Displayinformation(string patList)
+        public IActionResult Displayinformation(string patList)
         {
             var data = _OrderAuditDmnService.Displayinformation(patList, this.OrganizeId);
             return Content(data.ToJson());
         }
 
-        public ActionResult Inputresults()
+        public IActionResult Inputresults()
         {
 
             return View();
         }
 
-        public ActionResult Enteragain(string zyh, string yzid, string lrjg, string yzlb)
+        public IActionResult Enteragain(string zyh, string yzid, string lrjg, string yzlb)
         {
             OperatorModel user = this.UserIdentity;
             var data = _OrderAuditDmnService.Enteragain(user, zyh, yzid, lrjg, yzlb);
             return Success(data);
 
         }
-        public ActionResult EnteragainMuti(string yzids, string lrjg)
+        public IActionResult EnteragainMuti(string yzids, string lrjg)
         {
             OperatorModel user = this.UserIdentity;
             string msg = _OrderAuditDmnService.Enteragain(user, yzids, lrjg);
@@ -331,15 +343,15 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             else
             {
-                return Success("保存成功");
+                return Success("Lưu thành công");
             }
 
         }
-        public ActionResult Drug_Inquiry()
+        public IActionResult Drug_Inquiry()
         {
             return View();
         }
-        public ActionResult Ward_Application()
+        public IActionResult Ward_Application()
         {
             return View();
         }
@@ -353,7 +365,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="kssj">开始时间</param>
         /// <param name="jssj">结束时间</param>
         /// <returns></returns>
-        public ActionResult GetOrdersDrugsGridJson(Pagination pagination, string xm, string bqCode, string ypmc, string cw, string zyh, DateTime kssj, DateTime jssj)
+        public IActionResult GetOrdersDrugsGridJson(Pagination pagination, string xm, string bqCode, string ypmc, string cw, string zyh, DateTime kssj, DateTime jssj)
         {
             var tt = _OrderAuditDmnService.GetOrdersDrugsGridJson(pagination, xm, bqCode, ypmc, cw, zyh, kssj, jssj, OrganizeId);
             var data = new
@@ -366,12 +378,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson()); ;
         }
 
-        public ActionResult SkinTestInfo()
+        public IActionResult SkinTestInfo()
         {
 
             return View();
         }
-        public ActionResult GetSkinTestInfoGridJson(Pagination pagination, string zyh)
+        public IActionResult GetSkinTestInfoGridJson(Pagination pagination, string zyh)
         {
             var tt = _OrderAuditDmnService.GetSkinTestInfoGridJson(pagination, zyh, OrganizeId);
             var data = new
@@ -384,13 +396,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson()); ;
         }
 
-        #region 科室备药申请管理
+        #region Đề nghị chuẩn bị thuốc của khoaQuản lý
         /// <summary>
         /// 获取需要申领的病区
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetTheLowerKsCodeList(string keyword)
+        public IActionResult GetTheLowerKsCodeList(string keyword)
         {
             var data = _OrderAuditDmnService.GetTheLowerKsCodeList(OrganizeId, keyword);
             return Content(data.ToJson());
@@ -399,28 +411,28 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取科室
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetSysDepartmentList()
+        public IActionResult GetSysDepartmentList()
         {
             var data = _sysDepartmentRepo.GetList(OperatorProvider.GetCurrent().OrganizeId, "1");
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data);
         }
         /// <summary>
         /// 保存科室备药
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult SubmitKsby(BYDjInfoDTO Djnr)
+        public IActionResult SubmitKsby(BYDjInfoDTO Djnr)
         {
             OperatorModel user = this.UserIdentity;
             var data = _OrderAuditDmnService.PrepareMedicine(user, OrganizeId, Djnr);
             return Success(data);
         }
-        public ActionResult DrugAndStockSearch(string keyword, string yfbm)
+        public IActionResult DrugAndStockSearch(string keyword, string yfbm)
         {
             var result = _OrderAuditDmnService.GetDrugAndStock(yfbm, keyword, OrganizeId);
             return Content(result.ToJson());
         }
-        public ActionResult GetTheLowerYfbmCodeList(string keyword)
+        public IActionResult GetTheLowerYfbmCodeList(string keyword)
         {
             var data = _OrderAuditDmnService.GetTheLowerYfbmCodeList(keyword, OrganizeId);
             return Content(data.ToJson());
@@ -430,7 +442,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
-        public ActionResult InitDjh(string djmc, string yfbmCode)
+        public IActionResult InitDjh(string djmc, string yfbmCode)
         {
             return Success(null, EFDBBaseFuncHelper.Instance.GetNewMedicineReceiptNo(djmc, yfbmCode, OrganizeId));
         }
@@ -439,13 +451,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
-        public ActionResult Bydjtj(string ById)
+        public IActionResult Bydjtj(string ById)
         {
             OperatorModel user = this.UserIdentity;
             var data = _OrderAuditDmnService.PrepareMedicineSubmit(ById, OrganizeId, user);
             return Success(data);
         }
-        public ActionResult Bydjupdate(string ById)
+        public IActionResult Bydjupdate(string ById)
         {
             OperatorModel user = this.UserIdentity;
             var data = _OrderAuditDmnService.PrepareMedicineSubmit(ById, OrganizeId, user);
@@ -457,20 +469,20 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 科室备药申请
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrepareMedicineApply()
+        public IActionResult PrepareMedicineApply()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
         /// <summary>
         /// 科室备药库存管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult PreparationStock()
+        public IActionResult PreparationStock()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
             return View();
         }
         /// <summary>
@@ -478,7 +490,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="Djnr"></param>
         /// <returns></returns>
-        public ActionResult PreparationStockGridJson(Pagination pagination, string ypmc)
+        public IActionResult PreparationStockGridJson(Pagination pagination, string ypmc)
         {
             var data = new
             {
@@ -494,7 +506,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="Djnr"></param>
         /// <returns></returns>
-        public ActionResult PrepareMedicineApplyGridJson(Pagination pagination, string ksbyzt, DateTime? kssj = null, DateTime? jssj = null)
+        public IActionResult PrepareMedicineApplyGridJson(Pagination pagination, string ksbyzt, DateTime? kssj = null, DateTime? jssj = null)
         {
             var data = new
             {
@@ -510,7 +522,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
-        public ActionResult QueryPrepareMedicine(string djId)
+        public IActionResult QueryPrepareMedicine(string djId)
         {
             var result = _OrderAuditDmnService.QueryPrepareMedicine(djId, this.OrganizeId);
             return Content(result.ToJson());
@@ -520,7 +532,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
-        public ActionResult BydjQueryKykc(string ypbm, string pc, string ph, string yfbm)
+        public IActionResult BydjQueryKykc(string ypbm, string pc, string ph, string yfbm)
         {
             var result = new
             {
@@ -534,7 +546,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
-        public ActionResult QueryPrepareMedicinebyId(string djId)
+        public IActionResult QueryPrepareMedicinebyId(string djId)
         {
             var result = _OrderAuditDmnService.QueryPrepareMedicinebyId(djId, this.OrganizeId);
             return Content(result.ToJson());
@@ -544,7 +556,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
-        public ActionResult Bydjback(string Djh)
+        public IActionResult Bydjback(string Djh)
         {
             OperatorModel user = this.UserIdentity;
             var data = _OrderAuditDmnService.PrepareMedicineback(Djh, OrganizeId, user);
@@ -555,7 +567,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
-        public ActionResult Bydjdelete(string ById)
+        public IActionResult Bydjdelete(string ById)
         {
             OperatorModel user = this.UserIdentity;
             var data = _OrderAuditDmnService.PrepareMedicinedelete(ById, OrganizeId, user);

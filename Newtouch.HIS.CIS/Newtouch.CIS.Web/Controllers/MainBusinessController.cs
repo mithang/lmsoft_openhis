@@ -1,16 +1,23 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.Entity;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
 using Newtouch.Domain.DTO;
 using Newtouch.Domain.DTO.OutputDto;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Controllers
 {
@@ -26,8 +33,18 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly ISysStaffRepo _sysStaffRepo;
         private readonly IOutpatientCmmManagerApp _outpatientCmmManagerApp;
 
+        public MainBusinessController(ISysConfigRepo sysConfigRepo, ISysOrganizeDmnService organizeDmnService, ISysUserDmnService sysUserDmnService, IPrescriptionDmnService prescriptionDmnService, ISysStaffRepo sysStaffRepo, IOutpatientCmmManagerApp outpatientCmmManagerApp)
+        {
+            this._sysConfigRepo = sysConfigRepo;
+            this._organizeDmnService = organizeDmnService;
+            this._sysUserDmnService = sysUserDmnService;
+            this._prescriptionDmnService = prescriptionDmnService;
+            this._sysStaffRepo = sysStaffRepo;
+            this._outpatientCmmManagerApp = outpatientCmmManagerApp;
+        }
 
-        public override ActionResult Index()
+
+        public override IActionResult Index()
         {
             //登录人是否是护士
             ViewBag.IsNurse = _sysUserDmnService.CheckStaffIsBelongDuty(this.UserIdentity.StaffId, "Nurse");
@@ -49,10 +66,10 @@ namespace Newtouch.CIS.Web.Controllers
             //开关：药品是否关联药房库存
             ViewBag.ISMedicineSearchRelatedKC = _sysConfigRepo.GetBoolValueByCode("IS_MedicineSearchRelatedKC", OrganizeId);
             //康复处方打印开关
-            ViewBag.ISPrintRehabPres = _sysConfigRepo.GetBoolValueByCode("IS_PrintRehabPres", OrganizeId) ?? true;
+            ViewBag.ISPrintRehabPres = _sysConfigRepo.GetBoolValueByCode("IS_PrintRehabPres", OrganizeId, true);
             //治疗单打印开关
             ViewBag.ISPrintRehabTreatment = _sysConfigRepo.GetBoolValueByCode("IS_PrintRehabTreatment", OrganizeId);
-            #region 抗生素相关
+            #region Kháng sinhliên quan
             ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//是否启用抗生素
             ViewBag.qxjb = "0";//抗生素权限级别(默认 0 非限制用药)
             SysStaffVEntity staff = _sysStaffRepo.GetValidStaffByGh(UserIdentity.rygh, OrganizeId);
@@ -74,7 +91,7 @@ namespace Newtouch.CIS.Web.Controllers
                         break;
                 }
             }
-            #endregion 抗生素相关
+            #endregion Kháng sinhliên quan
 
             //开关：预约挂号
             ViewBag.ISOpenBespeakRegister = _sysConfigRepo.GetBoolValueByCode("IS_BespeakRegister", OrganizeId);
@@ -98,16 +115,16 @@ namespace Newtouch.CIS.Web.Controllers
 
             //影像配置
             ViewBag.PACSCode = _sysConfigRepo.GetValueByCode("PACSCode", OrganizeId);
-            ViewBag.yysz_hyfqURL = Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("yysz_hyfqURL");
+            ViewBag.yysz_hyfqURL = Newtouch.CIS.Compat.AppConfig.Get("yysz_hyfqURL");
             //影像调阅程序位置配置
             ViewBag.exelink_pacs = _sysConfigRepo.GetValueByCode("exelink_pacs", OrganizeId);
             //远程医疗
             ViewBag.OrganizeCodeSd = _organizeDmnService.GetCodeByOrgId(OrganizeId);
-            //ViewBag.OrganizeCodeSd = Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("OrganizeCodeSd");
-            ViewBag.RemoteTreatRPTURL = Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("RemoteTreatRPTURL");
+            //ViewBag.OrganizeCodeSd = Newtouch.CIS.Compat.AppConfig.Get("OrganizeCodeSd");
+            ViewBag.RemoteTreatRPTURL = Newtouch.CIS.Compat.AppConfig.Get("RemoteTreatRPTURL");
           
 
-            #region 滴速
+            #region Tốc độ truyền
             var frds = _sysConfigRepo.GetValueByCode("frequencyRelDroppingSpeed", OrganizeId);
             frds = string.IsNullOrWhiteSpace(frds) ? "静滴" : frds;
             ViewBag.frequencyRelDroppingSpeed = frds;
@@ -121,9 +138,9 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <returns></returns>
-        public ActionResult ValidateMedicalInsurance(string cfDto)
+        public IActionResult ValidateMedicalInsurance(string cfDto)
         {
-            var cfDtoList = Tools.Json.ToList<PrescriptionHtmlDTO>(cfDto);
+            var cfDtoList = Newtouch.CIS.Compat.Tools.Json.ToList<PrescriptionHtmlDTO>(cfDto);
             Dictionary<int, string> sfxmdic = new Dictionary<int, string>();
             foreach (var item in cfDtoList)
             {
@@ -149,13 +166,13 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region 中医馆
+        #region Phòng khám YHCT
 
         /// <summary>
         /// 中医馆部分视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult TcmHis()
+        public IActionResult TcmHis()
         {
             return View();
         }
@@ -165,7 +182,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="jzxx"></param>
         /// <returns></returns>
-        public ActionResult TcmHis01(TreatEntityObj jzxx)
+        public IActionResult TcmHis01(TreatEntityObj jzxx)
         {
             var result = _outpatientCmmManagerApp.TcmHis01(jzxx, OrganizeId, UserIdentity.UserCode);
             return "1".Equals(result.code) ? Success() : Error(result.desc);
@@ -177,7 +194,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="mzh">门诊号</param>
         /// <param name="jzys">就诊医生工号</param>
         /// <returns></returns>
-        public ActionResult GetIntegrateEmrUrl(string mzh, string jzys)
+        public IActionResult GetIntegrateEmrUrl(string mzh, string jzys)
         {
             string response;
             var result = _outpatientCmmManagerApp.GetIntegrateEmrUrl(mzh, jzys, OrganizeId, out response);
@@ -189,7 +206,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="aeRequest"></param>
         /// <returns></returns>
-        public ActionResult GetIntegrateAeUrl(GetAeRequestDto aeRequest)
+        public IActionResult GetIntegrateAeUrl(GetAeRequestDto aeRequest)
         {
             string response;
             if (aeRequest == null) aeRequest = new GetAeRequestDto();
@@ -204,7 +221,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="mzh">门诊号</param>
         /// <returns></returns>
-        public ActionResult ExtractIntegrateEmr(string mzh)
+        public IActionResult ExtractIntegrateEmr(string mzh)
         {
             var result = _outpatientCmmManagerApp.ExtractIntegrateEmr(mzh, OrganizeId);
             return Content(result.ToJson());
@@ -215,7 +232,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="mzh">门诊号</param>
         /// <returns></returns>
-        public ActionResult ExtractIntegrateDiagnosis(string mzh)
+        public IActionResult ExtractIntegrateDiagnosis(string mzh)
         {
             var result = _outpatientCmmManagerApp.ExtractIntegrateDiagnosis(mzh, OrganizeId);
             return Content(result.ToJson());
@@ -225,7 +242,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 中医馆弹框
         /// </summary>
         /// <returns></returns>
-        public ActionResult CmmAlertForm()
+        public IActionResult CmmAlertForm()
         {
             return View();
         }
@@ -234,7 +251,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 推送草药
         /// </summary>
         /// <returns></returns>
-        public ActionResult PushMedicineInfo()
+        public IActionResult PushMedicineInfo()
         {
             var result = _outpatientCmmManagerApp.PushMedicineInfo(OrganizeId, UserIdentity.UserCode);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -246,7 +263,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="mzh"></param>
         /// <param name="mzzybz">门诊住院标志 0-药库  1-门诊  2-住院  3-通用(取门诊单位) </param>
         /// <returns></returns>
-        public ActionResult ExtractIntegrateRp(string mzh, string mzzybz)
+        public IActionResult ExtractIntegrateRp(string mzh, string mzzybz)
         {
             var result = _outpatientCmmManagerApp.ExtractIntegrateRp(mzh, OrganizeId, mzzybz);
             return Success("", result.ToJson());
@@ -256,7 +273,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 知识库系统模块
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetIntegrateKUrl()
+        public IActionResult GetIntegrateKUrl()
         {
             var response = "";
             var result = _outpatientCmmManagerApp.GetIntegrateKUrl(out response);
@@ -271,7 +288,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>
         /// <returns></returns>
-        public ActionResult GetIntegrateHEALUrl(string blh, string mzh, string zjlx, string zjh)
+        public IActionResult GetIntegrateHEALUrl(string blh, string mzh, string zjlx, string zjh)
         {
             string response;
             var result = _outpatientCmmManagerApp.GetIntegrateHEALUrl(blh, mzh, zjlx, zjh, OrganizeId, out response);
@@ -289,7 +306,7 @@ namespace Newtouch.CIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(jzys)) jzys = UserIdentity.UserCode;
             var result = _outpatientCmmManagerApp.GetIntegrateRCRequsetParam(blh, mzh, jzys, OrganizeId);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(result);
         }
         #endregion
     }

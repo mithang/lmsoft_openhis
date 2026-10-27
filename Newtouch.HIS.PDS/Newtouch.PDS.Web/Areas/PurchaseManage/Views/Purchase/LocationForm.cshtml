@@ -1,0 +1,139 @@
+
+@using Newtouch.Infrastructure.Enum
+@{
+    ViewBag.Title = "Điểm phân phối";
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+}
+
+<form id="form1">
+    <div class="container" style="padding:0;">
+        <div class="tab-content" style="margin-top:10px;padding-right:10px;">
+            <div role="tabpanel" class="tab-pane fade in active">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Mã điểm phân phối：</th>
+                        <td class="formValue">
+                            <input id="psdbm" name="psdbm" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Tên điểm phân phối：</th>
+                        <td class="formValue">
+                            <input id="psdmc" name="psdmc" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Địa chỉ phân phối：</th>
+                        <td class="formValue">
+                            <input id="psdz" name="psdz" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Tên người liên hệ：</th>
+                        <td class="formValue">
+                            <input id="lxrxm" name="lxrxm" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Số điện thoại liên hệ：</th>
+                        <td class="formValue">
+                            <input id="lxdh" name="lxdh" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Mã bưu điện：</th>
+                        <td class="formValue">
+                            <input id="yzbm" name="yzbm" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Thông tin ghi chú：</th>
+                        <td class="formValue">
+                            <input id="bzxx" name="bzxx" type="text" class="form-control" placeholder="" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script lang="javascript">
+
+    var keyValue = $.request("keyValue");
+    initForm();
+
+    //初始化表单
+    function initForm() {
+        if (keyValue != null && keyValue != "") {
+            $.najax({
+                type: "Get",
+                url: "/PurchaseManage/Purchase/QueryLocationbyId",
+                data: { Id: keyValue },
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp !== null) {
+                        $("#psdbm").val(ajaxresp.psdbm);
+                        $("#psdmc").val(ajaxresp.psdmc);
+                        $("#psdz").val(ajaxresp.psdz);
+                        $("#lxrxm").val(ajaxresp.lxrxm);
+                        $("#ddlx").val(ajaxresp.ddlx);
+                        $("#lxdh").val(ajaxresp.lxdh);
+                        $("#yzbm").val(ajaxresp.yzbm);
+                        $("#bzxx").val(ajaxresp.bzxx);
+                    }
+                }
+            });
+        }
+    }
+
+    //保存
+    function SubmitForm() {
+        if (!DataValidate()) {
+            return;
+        }
+        var postData = $("#form1").formSerialize();
+        postData.Id = keyValue;
+        $.submitForm({
+            url: "/PurchaseManage/Purchase/SubmitLocation",
+            param: postData,
+            success: function () {
+                $.modalMsg('Lưu thành công', 'success');
+                $.modalClose();
+                callback();
+            }
+        });
+    }
+
+    //数据效验
+    function DataValidate() {
+        if ($("#psdbm").val() === "") {
+            $.modalAlert("Mã điểm phân phối là bắt buộc", 'warning');
+            return false;
+        }
+        if ($("#psdmc").val() === "") {
+            $.modalAlert("Tên điểm phân phối là bắt buộc", 'warning');
+            return false;
+        }
+        if ($("#psdz").val() === "") {
+            $.modalAlert("Địa chỉ phân phối là bắt buộc", 'warning');
+            return false;
+        }
+        if ($("#lxrxm").val() === "") {
+            $.modalAlert("Tên người liên hệ là bắt buộc", 'warning');
+            return false;
+        }
+        if ($("#lxdh").val() === "") {
+            $.modalAlert("Số điện thoại liên hệ là bắt buộc", 'warning');
+            return false;
+        }
+        if ($("#yzbm").val() === "") {
+            $.modalAlert("Mã bưu điện là bắt buộc", 'warning');
+            return false;
+        }
+        return true;
+    }
+
+
+</script>

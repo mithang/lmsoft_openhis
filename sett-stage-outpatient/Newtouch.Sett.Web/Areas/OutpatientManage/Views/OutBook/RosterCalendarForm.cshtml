@@ -1,0 +1,682 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form1">
+    <div class="widget-body">
+        @*<div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
+        <ul class="steps">
+            <li data-target="#step-1" class="active">Thông tin liên quan<span class="chevron"></span></li>
+            <li data-target="#step-2"><span class="step">2</span>Quyền chức năng action="~/Treatment/AForm" method="post"<span class="chevron"></span></li>
+        </ul>*@
+    </div>
+                @*<div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
+                    <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+                    Vui lòng điền thông tin tương ứng！
+                </div>*@
+                <div class="panel panel-default">
+                    @*<div class="panel-heading">
+                        <h3 class="panel-title">Thông tin biểu mẫu</h3>
+                    </div>*@
+                    <div class="panel-bodys" style="width: 95%;padding-left:15px;">
+                        <h2 id="sjxs" style="text-align:center"></h2>
+                        <table class="form">
+                            <tr>
+                                <th class="formTitle">Khoa ：</th>
+                                <td class="formValue">
+                                    <input type="hidden" class="form-control" id="ks" />
+                                    <input type="text" class="form-control required" id="ksmz" />
+                                </td>
+                                <th class="formTitle">Loại khám ngoại trú：</th>
+                                <td class="formValue">
+                                    <select id="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
+                                        <option value="">Vui lòng chọn</option>
+                                    </select>
+                                    @*<select id="mjzbz" name="mjzbz" class="form-control required">
+                                        <option value="">==Vui lòng chọn==</option>
+                                        <option value="1">Khám thường</option>
+                                        <option value="2">Cấp cứu</option>
+                                        <option value="3">Khám chuyên gia</option>
+                                        <option value="4">Khám bệnh đặc biệt</option>
+                                        <option value="5">Khám bệnh hiểm nghèo</option>
+                                        <option value="6">Khám bệnh mạn tính</option>
+                                        <option value="7">Hai bệnh của dân cư</option>
+                                        <option value="8">Khám tai nạn thương tích</option>
+                                        <option value="9">Khám sinh sản</option>
+                                        <option value="10">Khám lao đa kháng thuốc</option>
+                                        <option value="11">Hai bệnh trẻ em</option>
+                                    </select>*@
+                                </td>
+                                <th class="formTitle">Bác sĩ trực：</th>
+                                <td class="formValue"><input type="text" id="doctormc" name="doctormc" class="form-control form-an" /></td>
+                                <th class="formTitle"></th>
+                                <td class="formTitle">
+                                    <input type="button" style="float:right" id="btn_search" class="btn btn-primary" value="Tra cứu" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="gridPanel">
+                    <table id="gridList"></table>
+                    <div id="gridPager"></div>
+                </div>
+        @*<div class="form-button" id="wizard-actions">
+            <a id="btn_finish2" class="btn btn-default" onclick="AcceptClick()">Hoàn thành</a>
+            <a id="btn_last" disabled class="btn btn-default btn-prev">Bước trước</a>
+            <a id="btn_next" class="btn btn-default btn-next">Bước tiếp</a>
+            <a id="btn_finish" class="btn btn-default" style="display: none;" onclick="AcceptClick()">Hoàn thành</a>
+        </div>*@
+</form>
+
+<script>
+    function getWeek(dateString) {
+        var dateArray = dateString.split("-");
+        date = new Date(dateArray[0], parseInt(dateArray[1] - 1), dateArray[2]);
+        return "tuần" + "CN T2 T3 T4 T5 T6 T7".charAt(date.getDay());
+    };
+    var sj = $.request("sj");
+    var lx = $.request("lx");
+    
+    $(function () {
+        $("#sjxs").text(sj);
+        if (lx == 'pt') {
+            $("#mjzbz option[value='1']").prop("selected", true).trigger('change');
+        } else if (lx == 'zj') {
+            $("#mjzbz option[value='3']").prop("selected", true).trigger('change');
+        }
+        GridInit();
+    })
+    //tra cứu
+    $('#btn_search').click(function () {
+        getGriddata();
+    });
+    function getGriddata() {
+        var ys = $("#doctormc").attr("data-label");
+        if (ys == null || ys == "" || ys == "undefined" || $("#doctormc").val() == "") {
+            ys = "";
+        }
+
+        var ks = $("#ksmz").val();
+        if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+            ks = "";
+        }
+        $('#gridList').jqGrid("clearGridData");
+        $('#gridList').jqGrid('setGridParam', {
+            postData: { kssj: sj, jssj: sj, ys: ys, czztcx: '0', ScheduId: '', ks: ks, lx: $("#mjzbz").val() },
+        }).trigger('reloadGrid');
+    }
+    function GridInit() {
+        var ys = $("#doctormc").attr("data-label");
+        if (ys == null || ys == "" || ys == "undefined") {
+            ys = "";
+        }
+        var ks = $("#ksmz").val();
+        if (ks == null || ks == "" || ks == "undefined") {
+            ks = "";
+        }
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/OutPatientManage/OutBook/GetSchedule",
+            autowidth: true,
+            postData: { kssj: sj, jssj: sj, ys: ys, czztcx: '0', ScheduId: '', ks: ks, lx: $("#mjzbz").val() },
+            unwritten: false,
+            height: $(window).height() - 180,
+            colModel: [
+                { label: "ScheduId", name: "ScheduId", hidden: true },
+                { label: "Mã số", name: "ghpbId", width: 40, align: 'left', hidden: true },
+                { label: "Mã nhân viên bác sĩ", name: "ysgh", width: 50, align: 'left', hidden: true },
+                { label: "Khoa khám bệnh", name: "czks", width: 80, align: 'left', hidden: true },
+                { label: "Tên khoa khám bệnh", name: "czksmc", width: 90, align: 'left' },
+                { label: "Tên bác sĩ", name: "ysxm", width: 50, align: 'left' },
+                {
+                    label: "Loại đăng ký khám", name: "RegType", width: 90, align: 'left', formatter: function (val) {
+                        return $.enum.getDescByValue("EnumOutPatientType", val);
+                        //if (val == "1") {
+                        //    return "thườngngoại trúkhám";
+                        //}
+                        //else if (val == "2") {
+                        //    return "cấp cứukhám";
+                        //} else if (val == "3") {
+                        //    return "chuyên giangoại trúkhám";
+                        //}
+                        //else if (val == "4") {
+                        //    return "bệnh đặc biệtngoại trúkhám";
+                        //}
+                        //else if (val == "5") {
+                        //    return "bệnh hiểm nghèongoại trúkhám";
+                        //}
+                        //else if (val == "6") {
+                        //    return "bệnh mạn tínhngoại trúkhám";
+                        //}
+                        //else if (val == "7") {
+                        //    return "hai bệnh dân cư";
+                        //}
+                        //else if (val == "8") {
+                        //    return "tai nạn thương tíchngoại trúkhám";
+                        //}
+                        //else if (val == "9") {
+                        //    return "sinh sảnngoại trúkhám";
+                        //}
+                        //else if (val == "10") {
+                        //    return "lao đa kháng thuốcngoại trúkhám";
+                        //}
+                        //else if (val == "11") {
+                        //    return "hai bệnh trẻ emngoại trúkhám";
+                        //}
+                    }
+                },
+                { label: "Mô tả lịch trực", name: "Title", width: 100, align: 'left' },
+                { label: "Khoảng thời gian khám bệnh", name: "PeriodDesc", width: 80, align: 'left' },
+                { label: "yynum", name: "YYNum", width: 80, align: 'left', hidden: true },
+                { label: "Nguồn số khám", name: "TotalNum", width: 60, align: 'left'},
+                {
+                    label: "Số nguồn khám còn lại", name: "action", width: 80, align: 'left', formatter: function (cellvalue, options, rowobject) {
+                        return '&nbsp;<a style="color:red">'+(rowobject.TotalNum - rowobject.YYNum)+'<a>'
+                    }
+                },
+                {
+                    label: "Đã ngừng khám chưa", name: "action", width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowobject) {
+                        var str = "";
+                        if (rowobject.istz == "1") {
+                            str += '&nbsp;<a style="color:#ff0000">Đã ngừng khám<a>';
+                        } else {
+                            str += '&nbsp;Đã khám';
+                        }
+                        return str;
+                    }
+                },
+                { label: "Giờ bắt đầu", name: "PeriodStart", width: 40, align: 'left', hidden: true },
+                { label: "Giờ kết thúc", name: "PeriodEnd", width: 40, align: 'left', hidden: true },
+                { label: "Phí đăng ký khám", name: "RegFee", width: 60, align: 'left' },
+                { label: "Khoản mục đăng ký khám", name: "sfxmmc", width: 80, align: 'left' },
+                { label: "zt", name: "zt", width: 50, align: 'left', hidden: true },
+            ],
+            ondblClickRow: function (rowid) {
+                AcceptClick(ScheduId);
+            }
+        });
+    }
+    function AcceptClick(callBack) {
+        var ScheduId = $("#gridList").jqGridRowValue().ScheduId;
+        if (!!!ScheduId) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return false;
+        }
+        var ys = $("#ksmz").attr("data-label");
+        if (ys == null || ys == "" || ys == "undefined") {
+            ys = "";
+        }
+        callBack(ScheduId);
+        $.modalClose();
+    }
+    $("#doctormc").newtouchFloatingSelector({
+        height: 200,
+        width: 260,
+        clickautotrigger: true,
+        filter: function (keyword) {
+            //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+            var resultObjArr = new Array();
+
+            $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
+                if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
+                    || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
+                    || keyword.trim() == "")
+                    && val.DutyCode == "Doctor") {
+                    resultObjArr.push(val);
+                }
+            });
+            return resultObjArr;
+
+        },
+        caption: "Bác sĩ",
+        colModel: [
+            {
+                label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
+            },
+            {
+                label: 'Tên', name: 'StaffName', widthratio: 25
+            },
+            { label: 'Phiên âm', name: 'StaffPY', widthratio: 25 }
+        ],
+        itemdbclickhandler: function ($thistr) {
+            $("#doctormc").attr("data-label", $thistr.find("td:eq(0)").html());
+            $("#doctormc").val($thistr.find('td:eq(1)').html());
+            return;
+        }
+    });
+    //khoa
+    $('#ksmz').newtouchFloatingSelector({
+        width: 400,
+        height: 180,
+        caption: "Khoa",
+        clickautotrigger: true,
+        url: '/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList',
+        ajaxmethod: 'POST',
+        ajaxreqdata: function () {
+            var reqData = {};
+            reqData.keyword = $("#ksmz").val();
+            return reqData;
+        },
+        itemdbclickhandler: function ($thistr) {
+            $('#ksmz').attr('data-ks', $thistr.attr('data-code'))
+                .val($thistr.attr('data-Name'));
+            $('#ks').attr('data-ks', $thistr.attr('data-code'))
+                .val($thistr.attr('data-code'));
+            ////theokhoamã sốlấybác sĩhọ tên
+            //var ks = $thistr.attr('data-code');
+
+            //$.ajax({
+            //    url: "/OutPatientManage/OutBook/getStaffByKs?ks=" + ks,
+            //    dataType: "json",
+            //    async: false,
+            //    success: function (data) {
+            //        var staff = "";
+            //        for (i = 0; i < data.length; i++) {
+            //            staff += data[i] + ",";
+            //        }
+            //        if (staff.indexOf(",") != -1) {
+            //            staff = staff.substring(0, staff.length - 1);
+            //        }
+            //        $("#ysxm").val(staff);
+            //    }
+            //});
+        },
+        colModel: [{ label: 'Mã', name: 'Code', widthratio: 30 },
+        { label: 'Tên khoa', name: 'Name', widthratio: 30 },
+        { label: 'Phiên âm', name: 'py', widthratio: 30 }
+        ]
+    });
+    function initControl() {
+        //hộp thả xuống tổ chức
+        $("#OrganizeId").bindSelect({
+            url: "/Organize/GetChildTreeSelectJson",
+            selectedValue: $.request('orgId'),
+        });
+
+      
+        $("#permissionTree").treeview({
+            height: 400,
+            slimscroll: false,
+            showcheck: true,
+            url: "/SystemManage/SysRoleAuthorize/GetPermissionTree",
+            param: { roleId: keyValue }
+        });
+    }
+
+    $("#zlxmmc").click(function () {
+        $("#zlxmmc").val('');
+    });
+    
+    var sfxmmc123 = "";
+    var price123 = "";
+
+    var zlxmpy123 = "";
+    var sfdl = "";
+    var zlxm123 = "";
+    
+
+    $('#zlxmmc').newtouchFloatingSelector({
+        width: 600,
+        height: 220,
+        caption: "Khoản thu phí",
+        clickautotrigger: true,
+        url: '/SystemManage/BaseData/SelectSfxmYp',
+        ajaxparameters: function () {
+            return "keyword=" + $.trim($('#zlxmmc').val()) + "&mzzybz=1&dllb=2&sfdllx=OutpatientReg";
+        },
+        itemdbclickhandler: function ($thistr) {
+            $('#zlxmmc').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-sfxmmc'));
+            $('#price').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-dj'));
+            $('#zlxmpy').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-py'));
+
+            sfxmmc123 = $thistr.attr('data-sfxmmc');
+            price123 = $thistr.attr('data-dj');
+            zlxmpy123 = $thistr.attr('data-py');
+
+            sfdl = $thistr.attr('data-sfdlmc');
+            zlxm123 = $thistr.attr('data-sfxmCode');
+        },
+        colModel: [{ label: 'Mã', name: 'sfxmCode', widthratio: 15 },
+        { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+        { label: 'Phiên âm', name: 'py', widthratio: 15 },
+        { label: 'Đơn vị', name: 'dw', widthratio: 8 },
+        { label: 'Đơn giá', name: 'dj', widthratio: 10 },
+        { label: 'Nhóm thu phí lớn', name: 'sfdlmc', widthratio: 15 },
+        ]
+    });
+    
+
+
+
+    function tianjiamx() {
+        console.info("Nhóm thu phí lớn" + sfdl);
+        var zlxmmcnull = $("#zlxmmc").val();
+        if (!zlxmmcnull) {
+            $.modalAlert("Tên không được trống", 'warning');
+        }
+        else {
+
+        
+        if (!keyValue) {
+            var btcode = $("#zhcode").val();
+            var btzhmc = $("#zhmc").val();
+            if (!btcode || !btzhmc) {
+                $.modalAlert("Tên và mã là bắt buộc！", 'warning');
+                return;
+            }
+
+            //xác định trong hộp văn bảncủamãvàtrong bảng chi tiếtcủamã làkhôngnhất quán
+            var jjzhcode = $("#MXTable").getCol("zhcode", false);
+            
+            var jjzhcodelie = $("#zhcode").val();
+            var inzhcode = $.inArray(jjzhcode, chkzhcode)
+
+           
+            var count = $("#MXTable").getGridParam("reccount");
+            
+            if (count > 0) {
+                if (jjzhcode != jjzhcodelie) {
+                    $.modalAlert("Hai mã không giống nhau", 'warning');
+                    addMX();
+                    $("#MXTable").jqGrid("clearGridData");
+                    
+                }
+            }
+            var zhmc = $("#zhmc").val();
+            var zhcode = $("#zhcode").val();
+            var ord = $("#ord").val();
+            //var zlxm = $("#zlxm").val();
+            var datamx = [{ "zhmc": zhmc, "zhcode": zhcode, "ord": ord, "zlxm": zlxm123, "zlxmmc": sfxmmc123, "price": price123, "zlxmpy": zlxmpy123, "sfdl": sfdl }];
+            //console.info(JSON.parse(data));
+            var rowid = 0;
+
+
+            var zhcodetj = $("#zhcode").val();
+            
+            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid（idlàjsonReader: {id: "id" },）
+            //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trênidlấy tất cả dữ liệu của dòng này
+            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị （auditStatus làcolModelcủaname）
+            //var zlxmmccx = rowData.zlxmmc;
+
+            //lấycột nào đódữ liệu
+            var chkzhcode = $("#MXTable").getCol("zhcode", false);
+            var inzhcode = $.inArray(zhcodetj, chkzhcode);
+            var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
+            var inzlxmmc = $.inArray(sfxmmc123, chkzlxmmc);
+
+            
+
+            if (inzhcode = -1 && inzlxmmc == -1) {
+                $.ajax({
+                    url: "/Treatment/Tjchaxun",  //được yêu cầuurlđịa chỉ
+                    dataType: "json",   //định dạng trả về làjson
+                    async: true,
+                    data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 },  //giá trị tham số
+                    type: "POST",   //phương thức yêu cầu
+                    traditional: true,
+                    success: function (data) {
+                        
+                        if (data = "0") {
+                            $("#MXTable").addRowData(rowid, datamx, "last");
+                        }
+                        else {
+                            $.modalAlert("Chi tiết này đã tồn tại",'success')
+                        }
+
+                        // $("#MXTable").addRowData(rowid, data, "last");
+                        //khi yêu cầu thành côngxử lý
+                    },
+                    error: function () {
+                        //yêu cầu lỗixử lý
+                    }
+                });
+            }
+            else {
+                
+                $.modalAlert("Chi tiết này đã tồn tại", 'success');
+            }
+        }
+        else {
+            
+            $('#zhmc').attr("readonly", "readonly");
+            $('#zhcode').attr("readonly", "readonly");
+            
+            var count = $("#MXTable").getGridParam("reccount");
+            
+            if (count > 0) {
+                if (jjzhcode != jjzhcodelie) {
+                    $.modalAlert("Hai mã không giống nhau", 'warning');
+                    addMX();
+                    $("#MXTable").jqGrid("clearGridData");
+
+                }
+            }
+            
+            var zhmc = $("#zhmc").val();
+            var zhcode = $("#zhcode").val();
+            var ord = $("#ord").val();
+            //var zlxm = $("#zlxm").val();
+            var datamx = [{ "zhmc": zhmc, "zhcode": zhcode, "ord": ord, "zlxm": zlxm123, "zlxmmc": sfxmmc123, "price": price123, "zlxmpy": zlxmpy123, "sfdl": sfdl }];
+            console.info("sfdl" + JSON.stringify( datamx));
+            //console.info(JSON.parse(data));
+            var rowid = 0;
+            
+            var zhcodetj = $("#zhcode").val();
+
+            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid（idlàjsonReader: {id: "id" },）
+            //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trênidlấy tất cả dữ liệu của dòng này
+            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị （auditStatus làcolModelcủaname）
+            //var zlxmmccx = rowData.zlxmmc;
+
+            //lấycột nào đódữ liệu
+            var chkzhcode = $("#MXTable").getCol("zhcode", false);
+            var inzhcode = $.inArray(zhcodetj, chkzhcode);
+            var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
+            var inzlxmmc = $.inArray(sfxmmc123, chkzlxmmc);
+            
+            if (inzhcode = -1 && inzlxmmc == -1) {
+                $.ajax({
+                    url: "/Treatment/Tjchaxun",  //được yêu cầuurlđịa chỉ
+                    dataType: "json",   //định dạng trả về làjson
+                    async: true,
+                    data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 },  //giá trị tham số
+                    type: "POST",   //phương thức yêu cầu
+                    traditional: true,
+                    success: function (data2) {
+                        
+                        if (data2 = "0") {
+                            $("#MXTable").addRowData(rowid, datamx, "last");
+                        }
+                        else {
+                            $.modalAlert("Chi tiết này đã tồn tại",'success')
+                        }
+
+                        // $("#MXTable").addRowData(rowid, data, "last");
+                        //khi yêu cầu thành côngxử lý
+                    },
+                    error: function () {
+                        //yêu cầu lỗixử lý
+                    }
+                });
+            }
+            else {
+
+                $.modalAlert("Chi tiết này đã tồn tại",'success')
+            }
+        }
+        }
+        
+        $("#zlxmmc").val('');
+
+    }
+    
+    function deleteMX() {
+        var keyValue = $.request("keyValue");
+        console.info("LấykeyvalueGiá trị"+keyValue)
+        if (!keyValue) {
+            var rowKey = $("#MXTable").jqGrid('getGridParam', "selrow");
+            var rowid = $("#MXTable").getGridParam("selrow");
+            $("#MXTable").delRowData(rowid);
+        }
+        else {
+            var keyValue = $("#MXTable").jqGridRowValue().zlxmmc;
+            var zhcodemc = $("#zhcode").val();
+            console.info("Đây là giá trị lấy đượcID" + keyValue);
+            if (!!!keyValue) {
+                $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+                return;
+            }
+            $.deleteForm({
+                url: "/Treatment/deletemc",
+                param: { keyValue: keyValue, zhcodemc: zhcodemc },
+                success: function () {
+                    //var rowKey = $("#MXTable").jqGrid('getGridParam', "selrow");
+                    var rowid = $("#MXTable").getGridParam("selrow");
+                    $("#MXTable").delRowData(rowid);
+                    $.currentWindow().$("#MXTable").trigger("reloadGrid");
+                }
+            })
+        }
+        
+    }
+    
+    function addBC() {
+
+
+
+        var postData = $("#form1").formSerialize();
+        postData["permissionIds"] = String($("#permissionTree").getCheckedNodes());
+
+        //$.submitForm({
+        //    param: postData,
+        //    url: "/Treatment/tianjia?keyValue=" + keyValue,
+        //    success: function () {
+
+        //        $.currentWindow().$("#gridList").resetSelection();
+        //        $.currentWindow().$("#gridList").trigger("reloadGrid");
+        //        $.modalClose();
+        //    }
+
+        //})
+
+        
+
+
+        var postData = $("#form1").formSerialize();
+        postData["permissionIds"] = String($("#permissionTree").getCheckedNodes());
+        
+        $.submitForm({
+            param: postData,
+            url: "/Treatment/tianjia?keyValue=" + keyValue,
+            success: function () {
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.modalClose();
+            }
+            
+        })
+        
+    }
+
+
+
+    function addMX() {
+        
+        var rowData = $('#MXTable').jqGrid('getRowData');
+
+        //var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
+        //xử lýthiếu một dòngbug 
+        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //ở đây lấy tất cả các dòng khóa chínhid là đầy đủ
+        rowData.push($('#MXTable').jqGrid('getRowData', allOrgId[allOrgId.length - 1]));
+        
+        
+
+        var dataset = JSON.stringify(rowData);
+
+        var lastdata = $("#MXTable").jqGrid('getRowData_AllLine');
+        $.najax({
+            url: "/Treatment/rowdata",
+            dataType: "json",
+            data: { dataset: dataset },
+            traditional: true,
+            type: "POST",
+            success: function (data) {
+                $.modalAlert("Lưu thành công", 'success');
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.modalClose();
+                
+            }
+        });
+        
+
+    }
+    
+    $("#MXTable").dataGrid({
+        //url: "/Treatment/Login",
+        //height: $(window).height() - 128,
+        //postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
+        colModel: [
+            //{ label: "khóa chính", name: "Id", hidden: true, key: true },
+            { label: 'Chức danh', name: 'zhcode', width: 80, align: 'left', hidden: true },
+            {
+                label: "Loại đăng ký khám", name: "RegType", width: 60, align: 'left', formatter: function (val) {
+                    if (val == "1") {
+                        return "Khám thường";
+                    }
+                    else if (val == "2") {
+                        return "Cấp cứu";
+                    } else if (val == "3") {
+                        return "Khám chuyên gia";
+                    }
+                    else if (val == "4") {
+                        return "Khám bệnh đặc biệt";
+                    }
+                    else if (val == "5") {
+                        return "Khám bệnh hiểm nghèo";
+                    }
+                    else if (val == "6") {
+                        return "Khám bệnh mạn tính";
+                    }
+                    else if (val == "7") {
+                        return "Hai bệnh của dân cư";
+                    }
+                    else if (val == "8") {
+                        return "Khám tai nạn thương tích";
+                    }
+                    else if (val == "9") {
+                        return "Khám sinh sản";
+                    }
+                    else if (val == "10") {
+                        return "Khám lao đa kháng thuốc";
+                    }
+                    else if (val == "11") {
+                        return "Hai bệnh trẻ em";
+                    }
+                }
+            },
+            { label: "Mã nhân viên bác sĩ", name: "ysgh", width: 50, align: 'left', hidden: true },
+            { label: "Tên bác sĩ", name: "ysxm", width: 50, align: 'left' },
+            { label: "Khoa khám bệnh", name: "czks", width: 80, align: 'left', hidden: true },
+            { label: "Tên khoa khám bệnh", name: "czksmc", width: 80, align: 'left' },
+            { label: "Khoảng thời gian khám bệnh", name: "PeriodDesc", width: 80, align: 'left' },
+            { label: 'Nguồn số khám', name: 'TotalNum', width: 90, align: 'left', },
+        ],
+        width: "510",
+        height: "150",
+        pager: "#gridPager",
+       // sortname: 'CreateTime desc',
+        //viewrecords: true,
+        rowNum: '10',
+        unwritten: false,
+    });
+    
+</script>

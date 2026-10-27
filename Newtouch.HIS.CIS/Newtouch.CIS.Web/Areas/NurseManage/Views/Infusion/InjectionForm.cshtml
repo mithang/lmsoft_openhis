@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
@@ -6,40 +6,40 @@
     <div class="panel panel-default" style="padding-right: 10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">配药师：</th>
+                <th class="formTitle">Dược sĩ pha chế:</th>
                 <td class="formValue formDdlSelectorTd">
-                    <input id="txtDispenser" name="txtDispenser" type="text" class="form-control" placeholder="请输入配药师" />
+                    <input id="txtDispenser" name="txtDispenser" type="text" class="form-control" placeholder="Vui lòng nhập dược sĩ pha thuốc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">执行人：</th>
+                <th class="formTitle">Người thực hiện:</th>
                 <td class="formValue">
-                    <input id="txtExecutor" name="txtExecutor" type="text" class="form-control " placeholder="请输入执行人" />
+                    <input id="txtExecutor" name="txtExecutor" type="text" class="form-control " placeholder="Vui lòng nhậpNgười thực hiện" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">输液开始时间：</th>
+                <th class="formTitle">Truyền dịchThời gian bắt đầu:</th>
                 <td class="formValue">
                     <input id="txtsfkssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">输液结束时间：</th>
+                <th class="formTitle">Truyền dịchKết thúcThời gian:</th>
                 <td class="formValue">
                     <input id="txtsfjssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" >
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">选项：</th>
+                <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    备注：
+                    Ghi chú:
                 </th>
                 <td class="formValue">
                     <textarea id="remark" name="remark" class="form-control" style="height: 60px;"></textarea>
@@ -70,8 +70,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '姓名', name: 'Name', widthratio: 50, align: 'center' },
-                { label: '工号', name: 'gh', widthratio: 50, align: 'center' }
+                { label: 'Họ tên', name: 'Name', widthratio: 50, align: 'center' },
+                { label: 'Mã nhân viên', name: 'gh', widthratio: 50, align: 'center' }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#txtDispenser").val($thistr.attr('data-Name'));
@@ -90,8 +90,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '姓名', name: 'Name', widthratio: 50, align: 'center' },
-                { label: '工号', name: 'gh', widthratio: 50, align: 'center' }
+                { label: 'Họ tên', name: 'Name', widthratio: 50, align: 'center' },
+                { label: 'Mã nhân viên', name: 'gh', widthratio: 50, align: 'center' }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#txtExecutor").val($thistr.attr('data-Name'));

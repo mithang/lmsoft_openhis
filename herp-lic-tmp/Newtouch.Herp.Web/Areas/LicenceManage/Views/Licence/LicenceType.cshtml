@@ -1,0 +1,163 @@
+@using NewtouchHIS.Lib.Framework.Operator
+@model dynamic
+
+@{
+    ViewBag.Title = "Bảo trì loại giấy phép";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Thêm mới</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script lang="javascript">
+    $(function () {
+        gridList();
+    });
+
+    //Lấy dữ liệu
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/LicenceManage/Licence/GetLicenceTypeGridJson",
+            height: $(window).height() - 120,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên loại', name: 'typeName', width: 150, align: 'left' },
+                { label: 'Chủ thể', name: 'belonged', width: 150, align: 'left' },
+                {
+                    label: "Hiệu lực", name: "zt", width: 100, align: "center",
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
+                },
+                { label: 'Người tạo', name: 'CreatorCode', width: 120, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Người sửa cuối', name: 'LastModifierCode', width: 120, align: 'left' },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: "belongedId", name: "belongedId", hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'typeName',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: { keyWord: $("#txt_keyword").val() }
+                }).trigger('reloadGrid');
+        });
+    }
+
+    //Nhấn Enter kích hoạt tìm kiếm
+    $("#txt_keyword").keydownEnterEvent(function() {
+        $("#btn_search").trigger("click");
+    });
+
+    //Thêm mới
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mới",
+            url: "/LicenceManage/Licence/LicenceTypeForm",
+            width: "400px",
+            height: "300px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function() {
+                    cleanSearchInput();
+                    $('#gridList').jqGrid("clearGridData"); //Xóa dữ liệu grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //Sửa
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
+            $.modalAlert("Không có quyềnSửa", 'warning');
+            return;
+        }*@
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa",
+            url: "/LicenceManage/Licence/LicenceTypeForm?keyValue=" + keyValue,
+            width: "400px",
+            height: "300px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function() {
+                    cleanSearchInput();
+                    $('#gridList').jqGrid("clearGridData"); //Xóa dữ liệu grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //Xóa
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
+            $.modalAlert("Không có quyềnSửa", 'warning');
+            return;
+        }*@
+        $.deleteForm({
+            url: "/LicenceManage/Licence/DeleteLicenceType",
+            param: { keyValue: keyValue },
+            success: function () {
+                cleanSearchInput();
+                $('#gridList').jqGrid("clearGridData"); //Xóa dữ liệu grid chi tiết
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+            }
+        });
+        cleanSearchInput();
+    }
+
+    //Xóa nội dung tìm kiếm
+    function cleanSearchInput() {
+        $("#txt_keyword").val("");
+    }
+
+</script>

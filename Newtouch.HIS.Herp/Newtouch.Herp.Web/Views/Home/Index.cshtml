@@ -1,421 +1,300 @@
-﻿@using Newtouch.Core.Common.Utils;
-@{
-    Layout = null;
-    //是否页面加载时就必须选择Org
-    var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
-    //是否页面加载时就必须选择Org
-    var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
-}
 <!DOCTYPE html>
-<html style="overflow: hidden;">
+<html>
 <head>
-    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
-    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
-    <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppName ?? "医疗物资耗材系统")</title>
-    <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/ophislogo.ico")">
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
-    @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/AdminLTE.min.css")" rel="stylesheet" />
-    @Html.Partial("_BrowseAdaptiveSupport")
-    @Html.Partial("_IndexHeadBehind")
+    <meta charset="utf-8" />
+    <title>Herp — Trang chủ hệ thống quản lý vật tư (ASP.NET Core 6.0)</title>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
+    <style>
+        .dashboard-stats { float: left; width: 20%; }
+        .dashboard-stats-item { position: relative; overflow: hidden; color: #fff; cursor: pointer; height: 105px; margin-right: 25px; margin-bottom: 10px; padding: 20px 20px; }
+        .dashboard-stats-item .m-top-none { margin-top: 2px; }
+        .dashboard-stats-item h2 { font-size: 35px; font-family: inherit; line-height: 1.1; font-weight: 500; }
+        .dashboard-stats-item h5 { font-size: 14px; font-family: inherit; margin-top: 3px; line-height: 1.1; }
+        .dashboard-stats-item .stat-icon { position: absolute; top: 10px; right: 10px; font-size: 30px; opacity: .3; }
+        .panel-default { border: none; border-radius: 0; margin-bottom: 0; box-shadow: none; -webkit-box-shadow: none; }
+        .panel-default > .panel-heading { color: #777; background-color: #fff; border-color: #e6e6e6; padding: 10px 10px; }
+        .panel-default > .panel-body { padding: 10px; padding-bottom: 0; }
+    </style>
 </head>
-<body style="overflow: hidden;" class="hold-transition skin-black sidebar-mini"
-      onload="Onload()"
-      data-appid="@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppId)"
-      data-loadnavtree="@(ConfigurationHelper.GetAppConfigValue("Is_LoadNavTree"))">
-    <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
-        <img src="~/Content/img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
-    </div>
-    <div id="theme-wrapper">
-        <header class="navbar" id="header-navbar">
-            <div class="container" style="padding-right: 0px;">
-                <a href="#" id="logo" class="navbar-brand" style="background-image:url(/Content/img/logo1.png); background-size: 100% auto;background-position:left center; background-repeat:no-repeat"></a>
-                <div class="clearfix">
-                    <div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
-                        <ul class="nav navbar-nav pull-left">
-                            <li>
-                                <a class="btn btnshrink" id="make-small-nav"><i class="fa fa-dedent"></i></a>
-                            </li>
-                            <li onclick="@(mediOrgList != null && mediOrgList.Count > 1 ? "showSwitchOrgPrompt();" : "return;")">
-                                <a>
-                                    <b>@Html.Raw(ViewBag.OrgName)</b>
-                                    @if (mediOrgList != null && mediOrgList.Count > 1)
-                                    {
-                                        <i id="iSwitchOrg" title="切换机构" class="fa fa-hospital-o"></i>
-                                    }
-                                </a>
-                            </li>
-                        </ul>
+<body style="padding: 20px 30px; font-family: sans-serif;">
+    <h2>Herp — Hệ thống quản lý vật tư (bản ASP.NET Core 6.0)</h2>
+    <p>
+        <a href="/WarehouseManage/Warehouse/Index">Quản lý kho</a> |
+        <a href="/BillManage/ApplyBill/Index">Quản lý phiếu</a> |
+        <a href="/DeliveryManage/Delivery/Index">Quản lý giao hàng</a> |
+        <a href="/DepartmentManage/Department/Index">Quản lý khoa phòng</a> |
+        <a href="/LicenceManage/Licence/Index">Quản lý giấy phép</a> |
+        <a href="/ProductManage/Product/Index">Quản lý vật tư</a> |
+        <a href="/PurchaseManage/Purchase/Index">Quản lý mua sắm</a> |
+        <a href="/StorageManage/Storage/Index">Quản lý tồn kho</a> |
+        <a href="/SupplierManage/Supplier/Index">Quản lý nhà cung cấp</a> |
+        <a href="/SystemManage/System/Index">Quản lý hệ thống</a> |
+        <a href="/Report/Index">Báo cáo (SSRS — cần máy chủ báo cáo riêng)</a> |
+        <a href="/Home/KfChange">Chuyển kho hiện tại</a> |
+        <a href="/Login/OutLogin">Đăng xuất</a>
+    </p>
+    <p id="p_msgalert" style="color:#a94442;">Đang tải cảnh báo…</p>
+    <div id="areascontent">
+        <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>Số lượng cần xử lý
+                </div>
+                <div class="panel-body" style="width:100%" id="dv_needDeal"></div>
+            </div>
+        </div>
+        <div class="rows" style="overflow: hidden;">
+            <div style="float: left; width: 64%;">
+                <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>Thống kê nhập–xuất–tồn
+                            <div style="float: right">
+                                <span style="font-weight: 500;"><i id="i_Item1" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle;"></i></span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item2" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item3" class="fa fa-square" style=" font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="padding-bottom: 0;width:100%;">
+                            <canvas id="PSIStatistics" style="height: 285px; width: 100%; padding-right: 10px;"></canvas>
+                        </div>
                     </div>
-                    @Html.Partial("_IndexHeaderNav")
                 </div>
             </div>
-        </header>
-        <div id="page-wrapper" class="container">
-            <div class="row">
-                @Html.Partial("_IndexNavCol")
-                @Html.Partial("_IndexContentWrapper")
+            <div style="float: right; width: 35%;">
+                <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin-right:5px;" class="fa fa-pie-chart fa-lg"></i>Thống kê nhập kho năm nay</div>
+                        <div class="panel-body">
+                            <div id="container" style="min-width:350px;height:300px"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div id="loadingPage" style="display: none;">
-        <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
-    </div>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)" charset="gb2312"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/indextab.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/loading/pace.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/charts/Chart.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/highcharts/highcharts.js", false)"></script>
     <script type="text/javascript">
-        var my_skins;
-        $(document).ready(function () {
-            my_skins = [
-    "skin-black",
-    "skin-red",
-    "skin-white",
-    "skin-purple",
-    "skin-green",
-    "skin-black-light",
-    "skin-red-light",
-    "skin-white-light",
-    "skin-purple-light",
-    "skin-green-light"
-            ];
-        });
-        var requexx = "";
-        var times;
-        var kcyjypcode = "", gqyjypcode = "";
         $(function () {
-            $('#txtb').hide();
-            if (requexx != 1) {
-                MSGQuery();
-            }
-            else {
-                clearTimeout(times);
-            }
-        })
-        //图标闪烁
-        function blink(selector) {
-            $(selector).fadeOut('slow', function () {
-                $(this).fadeIn('slow', function () {
-                    blink(this);
-                });
+            GetNeedDealDiv();
+            GetPSIByKf();
+            GetRKCountByLx();
+            GetMsgQuery();
+            $("#dv_needDeal").on("click", "div", function () {
+                // Trong portal thì mở tab, mở độc lập thì điều hướng trực tiếp.
+                var menuName = $(this).attr("menuName"), menuUrl = $(this).attr("menuUrl");
+                try {
+                    if (top.top.$ && top.top.$.Newtouchtab) {
+                        top.top.$.Newtouchtab.tryCloseTab({ name: menuName, url: menuUrl });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuName, enName: "", url: menuUrl });
+                        return;
+                    }
+                } catch (e) { /* khác origin với khung cha: rơi về điều hướng trực tiếp */ }
+                if (menuUrl) { window.location = menuUrl; }
             });
-        }
-        function MSGQuery() {
-            $('#txtb').stop().fadeIn();
-            $('#txtb').stop().fadeOut();
-            $('#txtb').hide();
+        });
+
+        // Lấy khối "cần xử lý"
+        function GetNeedDealDiv() {
             $.ajax({
-                url: "/Home/getmesquery",
-                datatype: "json",
-                async: false,
-                type: "post",
-                success: function (rst) {
-                    var da = JSON.parse(rst);
-                    if (da != "" && da != null) {
-                        $("#badge1").text(da.kcyj + da.gqyj);
-                        $("#badge2").text(da.kcyj == 0 ? "" : da.kcyj);
-                        $("#badge3").text(da.gqyj == 0 ? "" : da.gqyj);
-                        if (da.rows != "") {
-                            $('#txtb').show();
-                            blink('#txtb');
-                        }
-                        var rows = da.rows
-                        //1:库存预警 2:过期预警
-                        for (var i = 0; i < rows.length; i++) {
-                            if (rows[i].typeas == "1") {
-                                kcyjypcode += rows[i].ypCode + ",";
-                            }
-                            else if (rows[i].typeas == "2") {
-                                gqyjypcode += rows[i].ypCode + ",";
-                            }
-                        }
-                    } else {
-                        requexx = 1;
+                type: "Get",
+                url: "/Home/GetNeedDealDiv?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null && ajaxresp.state === "success") {
+                        $("#dv_needDeal").html(ajaxresp.data);
+                        GetPendingCount();
                     }
                 }
-            })
-        }
-        $("#kcyj").click(function () {
-            kcyj();
-        });
-
-        $("#gqyj").click(function () {
-            gqyj();
-        });
-
-        function kcyj() {
-            //$("#badge2").text("");
-            var badge2 = Number($("#badge2").text());
-            var badge3 = Number($("#badge3").text());
-            var badge1 = badge2 + badge3;
-            $("#badge1").text(badge1 == 0 ? "" : badge1);
-            if (badge1 == 0) {
-                $('#txtb').stop().fadeIn();
-                $('#txtb').stop().fadeOut();
-                $('#txtb').hide();
-            }
-            //sessionStorage.setItem('kcyjyp', kcyjypcode);
-            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "库存量查询（消息提醒）", enName: "", url: "/BillManage/PurchasingPlan/PurchasingPlan" });
-        }
-        //已过期
-        function gqyj() {
-            //$("#badge3").text("");
-            var badge2 = Number($("#badge2").text());
-            var badge3 = Number($("#badge3").text());
-            var badge1 = badge2 + badge3;
-            $("#badge1").text(badge1 == 0 ? "" : badge1);
-            if (badge1 == 0) {
-                $('#txtb').stop().fadeIn();
-                $('#txtb').stop().fadeOut();
-                $('#txtb').hide();
-            }
-            //sessionStorage.setItem('gqyjyp', gqyjypcode);
-            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "过期药品查询（消息提醒）", enName: "", url: "/StorageManage/Storage/ExpiredStorageQuery" });
+            });
         }
 
-        function Onload() {
-            //Create the new tab
-            var tab_pane = $("<div />", {
-                "id": "control-sidebar-theme-demo-options-tab",
-                "class": "tab-pane active"
-            });
-
-            //Create the menu
-            var demo_settings = $("<div />");
-            var skins_list = $("<ul />", { "class": 'list-unstyled clearfix' });
-            //Dark sidebar skins
-            var skin_black =
-                $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-                    .append("<a href='javascript:void(0);' data-skin='skin-black' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-                    + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #383d41;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-                    + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-                    + "</a>"
-                    + "<p class='text-center no-margin'>Black</p>");
-            skins_list.append(skin_black);
-
-            var skin_black_light =
-              $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-                  .append("<a href='javascript:void(0);' data-skin='skin-black-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #383d41;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-                  + "</a>"
-                  + "<p class='text-center no-margin' style='font-size: 12px'>Black Light</p>");
-            skins_list.append(skin_black_light);
-
-            var skin_white_light =
-                  $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-                  .append("<a href='javascript:void(0);' data-skin='skin-white-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #333743;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-                  + "</a>"
-                  + "<p class='text-center no-margin' style='font-size: 12px;'>White Light</p>");
-            skins_list.append(skin_white_light);
-            //var skin_white =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //    .append("<a href='javascript:void(0);' data-skin='skin-white' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //    + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //    + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //    + "</a>"
-            //    + "<p class='text-center no-margin'>White</p>");
-            //skins_list.append(skin_white);
-
-            //var skin_purple =
-            // $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //     .append("<a href='javascript:void(0);' data-skin='skin-purple' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //     + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //     + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //     + "</a>"
-            //     + "<p class='text-center no-margin'>Purple</p>");
-            //skins_list.append(skin_purple);
-            //var skin_green =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-green' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin'>Green</p>");
-            //skins_list.append(skin_green);
-            //var skin_red =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-red' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin'>Red</p>");
-            //skins_list.append(skin_red);
-
-            //var skin_purple_light =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-purple-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin' style='font-size: 12px'>Purple Light</p>");
-            //skins_list.append(skin_purple_light);
-            //var skin_green_light =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-green-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin' style='font-size: 12px'>Green Light</p>");
-            //skins_list.append(skin_green_light);
-            //var skin_red_light =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-red-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin' style='font-size: 12px'>Red Light</p>");
-            //skins_list.append(skin_red_light);
-
-            demo_settings.append(skins_list);
-
-            tab_pane.append(demo_settings);
-            $("#control-sidebar-home-tab").after(tab_pane);
-
-            setup();
-        };
-        function setup() {
-            var tmp = get('skin');
-            if (tmp && $.inArray(tmp, my_skins))
-                change_skin(tmp);
-
-            //Add the change skin listener
-            $("[data-skin]").on('click', function (e) {
-                if ($(this).hasClass('knob'))
-                    return;
-                e.preventDefault();
-                change_skin($(this).data('skin'));
-            });
-
-            //Add the layout manager
-            $("[data-layout]").on('click', function () {
-                change_layout($(this).data('layout'));
-            });
-
-            $("[data-controlsidebar]").on('click', function () {
-                change_layout($(this).data('controlsidebar'));
-                var slide = !AdminLTE.options.controlSidebarOptions.slide;
-                AdminLTE.options.controlSidebarOptions.slide = slide;
-                if (!slide)
-                    $('.control-sidebar').removeClass('control-sidebar-open');
-            });
-
-            $("[data-sidebarskin='toggle']").on('click', function () {
-                var sidebar = $(".control-sidebar");
-                if (sidebar.hasClass("control-sidebar-dark")) {
-                    sidebar.removeClass("control-sidebar-dark")
-                    sidebar.addClass("control-sidebar-light")
-                } else {
-                    sidebar.removeClass("control-sidebar-light")
-                    sidebar.addClass("control-sidebar-dark")
+        // Lấy thống kê theo tháng
+        function GetPSIByKf() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetPsiByKf?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null && ajaxresp.length > 2) {
+                        GetPSIStatisticsChart(ajaxresp);
+                        $("#i_Item1").html(ajaxresp[0].ItemName);
+                        $("#i_Item1").css("color", "#7cb5ec");
+                        $("#i_Item2").html(ajaxresp[1].ItemName);
+                        $("#i_Item2").css("color", "#434348");
+                        $("#i_Item3").html(ajaxresp[2].ItemName);
+                        $("#i_Item3").css("color", "#90ed7d");
+                    }
                 }
             });
-
-            $("[data-enable='expandOnHover']").on('click', function () {
-                $(this).attr('disabled', true);
-                AdminLTE.pushMenu.expandOnHover();
-                if (!$('body').hasClass('sidebar-collapse'))
-                    $("[data-layout='sidebar-collapse']").click();
-            });
-        };
-        function change_skin(cls) {
-            $.each(my_skins, function (i) {
-                $("body").removeClass(my_skins[i]);
-            });
-
-            $("body").addClass(cls);
-            store('skin', cls);
-            var pifu = "#1ABC9C";
-            var cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")";  //~/Content/css/framework-theme.css
-            switch (cls) {
-                case "skin-black": pifu = "#383d41"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
-
-                case "skin-red": pifu = "#e98a7e"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red.css")"; break;
-                    @*case "skin-white": pifu = "#f39c12"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow_tab.css")"; break*@
-                case "skin-purple": pifu = "#9895c6"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple.css")"; break;
-                case "skin-green": pifu = "#1ABC9C"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
-                case "skin-black-light": pifu = "#383d41"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue-left.css")"; break;
-                case "skin-black-light": pifu = "#fff"; break;
-                case "skin-red-light": pifu = "#e98a7e"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red-left.css")"; break;
-                case "skin-white-light": pifu = "#fff"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow.css")"; break;
-                case "skin-purple-light": pifu = "#9895c6"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple-left.css")"; break;
-                case "skin-green-light": pifu = "#1ABC9C"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-green-left.css")"; break;
-                default: break;
-            }
-            $("#header-navbar").css("background", pifu);
-            $("#color-skin").attr("href", cssURL);
-            setlocalStorage("cssPath", cssURL); //localstorage
-            return false;
-        };
-        function change_layout(cls) {
-            $("body").toggleClass(cls);
-            AdminLTE.layout.fixSidebar();
-            //Fix the problem with right sidebar and layout boxed
-            if (cls == "layout-boxed")
-                AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
-            if ($('body').hasClass('fixed') && cls == 'fixed') {
-                AdminLTE.pushMenu.expandOnHover();
-                AdminLTE.layout.activate();
-            }
-            AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
-            AdminLTE.controlSidebar._fix($(".control-sidebar"));
-        };
-        function store(name, val) {
-            if (typeof (Storage) !== "undefined") {
-                localStorage.setItem(name, val);
-            } else {
-                window.alert('Please use a modern browser to properly view this template!');
-            }
-        };
-        function get(name) {
-            if (typeof (Storage) !== "undefined") {
-                return localStorage.getItem(name);
-            } else {
-                window.alert('Please use a modern browser to properly view this template!');
-            }
-        }
-    </script>
-    <script type="text/javascript">
-        function showSwitchOrgPrompt(force) {
-            $.modalOpen({
-                id: "FormSwitchOrg",
-                title: "切换医疗机构",
-                url: "/Home/UserOrgChoose",
-                width: "400px",
-                height: "260px",
-                btn: null,
-                closeBtn: (!!force ? 0 : 1),
-            });
         }
 
-        $(function () {
-            //Home/Index加载时强制选择医疗机构
-            @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
-        });
-    </script>
-    <script type="text/javascript">
-        //Home/Index页面加载完成之后 再加载iframe
-        $(window).load(function () {
-            $('.mainContent .Newtouch_iframe').each(function () {
-                if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {
-                    $(this).attr('src', $(this).attr('data-id'));
+        // Vẽ biểu đồ đường (Chart.js v1, đúng API bản gốc dùng)
+        function GetPSIStatisticsChart(monthlySummary) {
+            // Bản gốc ghi nhầm nhãn tháng 9 thành tháng 8 (2 lần tháng 8); bản này sửa thành Th.9.
+            var lineChartData = {
+                labels: ["Th.1", "Th.2", "Th.3", "Th.4", "Th.5", "Th.6", "Th.7", "Th.8", "Th.9", "Th.10", "Th.11", "Th.12"],
+                datasets: [
+                    {
+                        label: monthlySummary[0].ItemName,
+                        fillColor: "rgba(124, 181, 236,0.2)",
+                        strokeColor: "rgba(124, 181, 236,1)",
+                        pointColor: "rgba(124, 181, 236,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(124, 181, 236,1)",
+                        data: [monthlySummary[0].January,
+                        monthlySummary[0].February,
+                        monthlySummary[0].March,
+                        monthlySummary[0].April,
+                        monthlySummary[0].May,
+                        monthlySummary[0].June,
+                        monthlySummary[0].July,
+                        monthlySummary[0].August,
+                        monthlySummary[0].September,
+                        monthlySummary[0].October,
+                        monthlySummary[0].November,
+                        monthlySummary[0].December]
+                    },
+                    {
+                        label: monthlySummary[1].ItemName,
+                        fillColor: "rgba(60, 60, 60,0.2)",
+                        strokeColor: "rgba(60, 60, 60,1)",
+                        pointColor: "rgba(60, 60, 60,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(60, 60, 60,1)",
+                        data: [monthlySummary[1].January,
+                        monthlySummary[1].February,
+                        monthlySummary[1].March,
+                        monthlySummary[1].April,
+                        monthlySummary[1].May,
+                        monthlySummary[1].June,
+                        monthlySummary[1].July,
+                        monthlySummary[1].August,
+                        monthlySummary[1].September,
+                        monthlySummary[1].October,
+                        monthlySummary[1].November,
+                        monthlySummary[1].December]
+                    },
+                    {
+                        label: monthlySummary[2].ItemName,
+                        fillColor: "rgba(144, 237, 125,0.2)",
+                        strokeColor: "rgba(144, 237, 125,1)",
+                        pointColor: "rgba(144, 237, 125,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(144, 237, 125,1)",
+                        data: [monthlySummary[2].January,
+                        monthlySummary[2].February,
+                        monthlySummary[2].March,
+                        monthlySummary[2].April,
+                        monthlySummary[2].May,
+                        monthlySummary[2].June,
+                        monthlySummary[2].July,
+                        monthlySummary[2].August,
+                        monthlySummary[2].September,
+                        monthlySummary[2].October,
+                        monthlySummary[2].November,
+                        monthlySummary[2].December]
+                    }
+                ]
+            }
+            var ctx = document.getElementById("PSIStatistics").getContext("2d");
+            window.myLine = new Chart(ctx).Line(lineChartData, {
+                responsive: false,
+                bezierCurve: false
+            });
+        }
+
+        // Lấy thống kê nhập kho theo loại phiếu
+        function GetRKCountByLx() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetRkCountByLx",
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null) {
+                        GetLeaveChart(ajaxresp);
+                    }
                 }
             });
-        });
+        }
+
+        // Vẽ biểu đồ tròn
+        function GetLeaveChart(pData) {
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>Tổng số: {point.y:,.0f}'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Tỷ trọng',
+                    colorByPoint: true,
+                    data: pData
+                }]
+            });
+            $(".highcharts-credits").hide();
+        }
+
+        // Lấy tổng số cần xử lý, đổ vào các thẻ dashboard
+        function GetPendingCount() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetPendingCount?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null) {
+                        $("#h_tjshCount").html(ajaxresp.tjshCount);
+                        $("#h_tjwzCount").html(ajaxresp.tjwzCount);
+                        $("#h_ckdshCount").html(ajaxresp.ckdshCount);
+                        $("#h_wbrkCount").html(ajaxresp.wbrkCount);
+                        $("#h_nbthCount").html(ajaxresp.nbthCount);
+                        $("#h_rkdshCount").html(ajaxresp.rkdshCount);
+                        $("#h_expriedWzCount").html(ajaxresp.expriedWzCount);
+                    }
+                }
+            });
+        }
+
+        // Lấy cảnh báo tồn kho / quá hạn
+        function GetMsgQuery() {
+            $.ajax({
+                type: "Post",
+                url: "/Home/getmesquery",
+                dataType: "json",
+                success: function (da) {
+                    if (da != null) {
+                        $("#p_msgalert").html("Cảnh báo tồn kho: <b>" + da.kcyj + "</b> mặt hàng &nbsp;|&nbsp; Cảnh báo quá hạn: <b>" + da.gqyj + "</b> mặt hàng");
+                    }
+                },
+                error: function () {
+                    $("#p_msgalert").html("Không tải được cảnh báo tồn kho / quá hạn.");
+                }
+            });
+        }
     </script>
 </body>
 </html>

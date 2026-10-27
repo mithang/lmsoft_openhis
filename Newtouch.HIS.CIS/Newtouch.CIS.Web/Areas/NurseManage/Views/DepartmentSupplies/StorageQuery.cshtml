@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "科室物资库存查询";
+    ViewBag.Title = "KhoaVật tưTồn khoTra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -57,36 +57,36 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">筛选条件</div>
+        <div class="panel-heading">Điều kiện lọc</div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">物资名称：</td>
+                    <td class="formTitle">Vật tưTên:</td>
                     <td class="formValue">
-                        <input type="text" id="keyWord" class="form-control" placeholder="拼音/名称" />
+                        <input type="text" id="keyWord" class="form-control" placeholder="Pinyin/Tên" />
                         <input type="hidden" id="productId" value="" />
                     </td>
-                    <td class="formTitle">科室：</td>
+                    <td class="formTitle">Khoa:</td>
                     <td class="formValue formDdlSelectorTd">
                         <input type="text" id="ks" class="form-control" autocomplete="off" style="width: 200px" />
                         <input type="text" id="ksCode" class="form-control" style="display:none;" />
                     </td>
-                    <td class="formTitle">类别：</td>
+                    <td class="formTitle">Loại:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="lb">
-                            <option value="">全部</option>
+                            <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">显示零库存：</td>
+                    <td class="formTitle">Hiển thị tồn kho bằng 0:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="xslkc" name="xslkc">
-                            <option value="1">是</option>
-                            <option value="0">否</option>
+                            <option value="1">Có</option>
+                            <option value="0">Không</option>
                         </select>
                     </td>
                     <th class="formTitle" colspan="2">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
-                        <input type="button" class="btn btn-primary btn-md" id="btn_sync" value="同步物资" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_sync" value="Đồng bộVật tư" />
                     </th>
                     <td class="formValue"></td>
                 </tr>
@@ -101,7 +101,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_mx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -193,35 +193,35 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
             colModel: [
                 { label: 'ks', name: 'ks', width: 180, align: 'left',hidden:true },
-                { label: '科室', name: 'ksName', width: 100, align: 'left' },
-                { label: '名称', name: 'wzmc', width: 180, align: 'left' },
-                { label: '拼音', name: 'py', width: 80, align: 'left' },
-                { label: '类别', name: 'lb', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 100, align: 'left' },
-                { label: '数量', name: 'slStr', width: 80, align: 'center' },
-                 { label: '零售单价', name: 'lsjStr', width: 80, align: 'center' },
+                { label: 'Khoa', name: 'ksName', width: 100, align: 'left' },
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Pinyin', name: 'py', width: 80, align: 'left' },
+                { label: 'Loại', name: 'lb', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'slStr', width: 80, align: 'center' },
+                 { label: 'Đơn giá bán lẻ', name: 'lsjStr', width: 80, align: 'center' },
                 {
-                    label: '零售单价', name: 'lsj', width: 80, align: 'center',
+                    label: 'Đơn giá bán lẻ', name: 'lsj', width: 80, align: 'center',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
-                { label: '单价单位', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
+                { label: 'Đơn giáĐơn vị', name: 'bmdwmc', width: 60, align: 'center', hidden: true },
                 {
-                    label: '零售总额', name: 'lsze', width: 80, align: 'center', 
+                    label: 'Tổng tiền bán lẻ', name: 'lsze', width: 80, align: 'center', 
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
                 {
-                    label: '进价总额', name: 'jjze', width: 80, align: 'right',hidden:true,
+                    label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'right',hidden:true,
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '品牌', name: 'brand', width: 100, align: 'center' },
-                { label: '有效期', name: 'yxqStr', width: 70, align: 'left', hidden: true },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 100, align: 'center' },
+                { label: 'Hạn hiệu lực', name: 'yxqStr', width: 70, align: 'left', hidden: true },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 { label: "productId", name: "productId", hidden: true}
             ],
             pager: "#gridPager",
@@ -252,7 +252,7 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.state === 'success') {
-                        $.modalMsg("耗材同步成功！", "success", 1000);
+                        $.modalMsg("Vật tư tiêu haoĐồng bộthành công!", "success", 1000);
                     }
                     else {
                         $.modalMsg(data, "error", 1000);
@@ -269,33 +269,33 @@
             postData: "",
             height: $(window).height() - document.getElementById('gridList').offsetTop - 200,
             colModel: [
-                { label: '名称', name: 'wzmc', width: 180, align: 'left', hidden: true },
-                { label: '库存数', name: 'bmkcslStr', width: 80, align: 'right' },
-                { label: '冻结数', name: 'bmdjslStr', width: 80, align: 'right' },
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left', hidden: true },
+                { label: 'Số lượng tồn kho', name: 'bmkcslStr', width: 80, align: 'right' },
+                { label: 'Số lượng đóng băng', name: 'bmdjslStr', width: 80, align: 'right' },
                
                
-                { label: '进价单价', name: 'jjStr', width: 120, align: 'right'},
-                { label: '单价单位', name: 'bmdwmc', width: 70, align: 'center',hidden:true },
+                { label: 'Đơn giá nhập', name: 'jjStr', width: 120, align: 'right'},
+                { label: 'Đơn giáĐơn vị', name: 'bmdwmc', width: 70, align: 'center',hidden:true },
                 {
-                    label: '进价总额', name: 'jjze', width: 100, align: 'center',
+                    label: 'Tổng giá nhập', name: 'jjze', width: 100, align: 'center',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
                 },
                  {
-                     label: '零售单价', name: 'lsjStr', width: 120, align: 'center'
+                     label: 'Đơn giá bán lẻ', name: 'lsjStr', width: 120, align: 'center'
                  },
                   {
-                      label: '零售总额', name: 'lsze', width: 100, align: 'center',
+                      label: 'Tổng tiền bán lẻ', name: 'lsze', width: 100, align: 'center',
                       formatter: function (cellvalue) {
                           return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                       }
                   },
-                   { label: '批号', name: 'ph', width: 120, align: 'left' },
-                { label: '批次', name: 'pc', width: 120, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                   { label: 'Số lô', name: 'ph', width: 120, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 120, align: 'left' },
+                { label: 'Hạn hiệu lực', name: 'yxq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 {
-                    label: '状态', name: 'zt', width: 50, align: 'center', formatter: function (val, options) {
+                    label: 'Trạng thái', name: 'zt', width: 50, align: 'center', formatter: function (val, options) {
                         return val === "1" ? "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-on\"></i>" : "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-off\"></i>";
                     }
                 },

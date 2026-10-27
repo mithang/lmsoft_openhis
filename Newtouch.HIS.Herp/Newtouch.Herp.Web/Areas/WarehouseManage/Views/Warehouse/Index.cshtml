@@ -1,6 +1,6 @@
-﻿@using Newtouch.Common.Operator
+@using NewtouchHIS.Lib.Framework.Operator
 @{
-    ViewBag.Title = "库房维护";
+    ViewBag.Title = "Bảo trì kho";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -10,16 +10,16 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Thêm mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_synce()"><i class="fa fa fa-exchange"></i>同步物资</a>
+            <a class="btn btn-primary" onclick="btn_synce()"><i class="fa fa fa-exchange"></i>Đồng bộ vật tư</a>
         </div>
     </div>
     <div class="search">
@@ -27,7 +27,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -54,24 +54,24 @@
             ExpandColumn: "address",
             height: $(window).height() - 90,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '库房名称', name: 'name', width: 190, align: 'left' },
-                { label: '位置', name: 'address', width: 190, align: 'left' },
-                { label: '等级', name: 'level', width: 40, align: 'left' },
-                { label: '备注', name: 'remark', width: 150, align: 'left' },
-                { label: '管理员', name: 'admins', width: 190, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên kho', name: 'name', width: 190, align: 'left' },
+                { label: 'Vị trí', name: 'address', width: 190, align: 'left' },
+                { label: 'Cấp', name: 'level', width: 40, align: 'left' },
+                { label: 'Ghi chú', name: 'remark', width: 150, align: 'left' },
+                { label: 'Quản trị viên', name: 'admins', width: 190, align: 'left' },
                 {
-                    label: "有效", name: "zt", width: 50, align: "center",
+                    label: "Hiệu lực", name: "zt", width: 50, align: "center",
                     formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
                 },
                 {
-                    label: "默认同步", name: "isDefSyn", width: 50, align: "center",
+                    label: "Đồng bộ mặc định", name: "isDefSyn", width: 50, align: "center",
                     formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
                 },
-                { label: '创建人', name: 'CreatorCode', width: 70, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '最后修改', name: 'LastModifierCode', hidden: true },
-                { label: '最后修改时间', name: 'LastModifyTime', hidden: true },
+                { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', hidden: true },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', hidden: true },
                 { label: 'OrganizeId', name: 'OrganizeId', hidden: true }
             ]
         });
@@ -83,7 +83,7 @@
         });
     }
 
-    //回车触发查询事件
+    //回车触发Tra cứu事件
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
@@ -92,7 +92,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增库房",
+            title: "Thêm kho mới",
             url: "/WarehouseManage/Warehouse/Form",
             width: "750px",
             height: "550px",
@@ -106,21 +106,21 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.modalOpen({
             id: "Form",
-            title: "修改库房",
+            title: "Sửa kho",
             url: "/WarehouseManage/Warehouse/Form?keyValue=" + keyValue,
             width: "750px",
             height: "550px",
@@ -134,16 +134,16 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.deleteForm({
@@ -157,19 +157,19 @@
         });
     }
 
-    //同步物资
+    //Đồng bộ vật tư
     function btn_synce() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         var rowid = $("#gridList").jqGrid("getGridParam","selrow");
         var kfName = $($("#gridList").jqGrid("getRowData", rowid).name).text(); //namekfName
-        var title = "同步【" + kfName + "】物资";
+        var title = "Đồng bộ 【" + kfName + "】 vật tư";
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.modalOpen({

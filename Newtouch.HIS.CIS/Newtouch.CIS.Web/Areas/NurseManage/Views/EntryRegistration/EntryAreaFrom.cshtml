@@ -1,7 +1,7 @@
-﻿@model dynamic
+@model dynamic
 
 @{
-    ViewBag.Title = "入区登记";
+    ViewBag.Title = "Vào khuĐăng ký";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,22 +9,22 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">危重级别：</th>
+                <th class="formTitle">Mức độ nguy kịch:</th>
                 <td class="formValue">
                     <select id="sel_wzjb" name="sel_wzjb" class="form-control required" data-EnumType="EnumWzjb">
-                        <option>==请选择==</option>
+                        <option>==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>入区日期：</th>
+                <th class="formTitle"><span class="required">*</span>Vào khuNgày:</th>
                 <td class="formValue">
                     <input id="txt_rqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>住院医生：</th>
+                <th class="formTitle"><span class="required">*</span>Nhập việnBác sĩ:</th>
                 <td class="formValue">
                     <input id="txt_doctor" name="txt_doctor" data-StaffGh="" type="text" class="form-control required" />
                 </td>
@@ -76,11 +76,11 @@
     function submitForm()
     {
         if ($('#txt_ryrq').val()=="") {
-            $.modalAlert("请选择入区日期！", 'warning');
+            $.modalAlert("Vui lòng chọnVào khuNgày!", 'warning');
             return null;
         }
         if ($('#txt_doctor').val() == "" || $("#txt_doctor").attr("data-StaffGh")=="") {
-            $.modalAlert("请选择住院医生！", 'warning');
+            $.modalAlert("Vui lòng chọnNhập việnBác sĩ!", 'warning');
             return null;
         }
         var obj = new Object();
@@ -101,7 +101,7 @@
             async: false,
             success: function (ajaxresp) {
                 if (ajaxresp.state == "success") {
-                    $.modalMsg('修改成功', 'success');
+                    $.modalMsg('Sửathành công', 'success');
                 }
                 else {
                     $.modalAlert(ajaxresp.message, 'warning');

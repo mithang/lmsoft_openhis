@@ -1,0 +1,95 @@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        $("#F_Type").bindSelect()
+        $.ajax({
+            url: "/SystemSecurity/FilterIP/GetFormJson",
+            data: { keyValue: keyValue },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $("#form1").formSerialize(data);
+                $("#form1").find('.form-control,select,input').attr('readonly', 'readonly');
+                $("#form1").find('div.ckbox label').attr('for', '');
+            }
+        });
+    });
+
+</script>
+
+<form id="form1">
+    <div style="margin-bottom: 0px; border-radius: 0px;" class="alert alert-warning alert-dismissable">
+        <strong>chú ý：</strong>&nbsp;IP địa chỉ Định dạng：192.168.0.1；192.168.0.*
+    </div>
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Loại chính sách</th>
+                <td class="formValue">
+                    <select id="F_Type" name="F_Type" class="form-control">
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="true">Cho phép truy cập</option>
+                        <option value="false">Từ chối truy cập</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">IP bắt đầu</th>
+                <td class="formValue">
+                    <input id="F_StartIP" name="F_StartIP" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Kết thúcIP</th>
+                <td class="formValue">
+                    <input id="F_EndIP" name="F_EndIP" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" style="height: 35px;">Tùy chọn</th>
+                <td class="formValue" style="padding-top: 1px;">
+                    <div class="ckbox">
+                        <input id="F_EnabledMark" name="F_EnabledMark" type="checkbox" checked="checked"><label for="F_EnabledMark">Hiệu lực</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle" valign="top" style="padding-top: 11px;">Ghi chú
+                </th>
+                <td class="formValue">
+                    <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Người tạo</th>
+                <td class="formValue">
+                    <input id="CreatorUserId" name="CreatorUserId" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+
+                <th class="formTitle">Thời gian tạo mới</th>
+                <td class="formValue">
+                    <input id="CreatorTime" name="CreatorTime" type="text" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Sửa Nhân viên</th>
+                <td class="formValue">
+                    <input id="LastModifyUserId" name="LastModifyUserId" type="text" class="form-control" />
+                </td>
+
+            </tr>
+            <tr>
+                <th class="formTitle">Sửa Thời gian</th>
+                <td class="formValue">
+                    <input id="LastModifyTime" name="LastModifyTime" type="text" class="form-control" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

@@ -1,21 +1,29 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Attributes;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 {
+    [Area("TemplateManage")]
     public class PresTemplateController : OrgControllerBase
     {
         // GET: TemplateManage/PresTemplate
@@ -25,11 +33,20 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         private readonly IPresTemplateDmnService _presTemplateDmnService;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IGroupPackageRepo _groupPackageRepo;
+
+        public PresTemplateController(IPresTemplateRepo presTemplateRepo, IPresTemplateDetailRepo presTemplateDetailRepo, IPresTemplateDmnService presTemplateDmnService, ISysConfigRepo sysConfigRepo, IGroupPackageRepo groupPackageRepo)
+        {
+            this._presTemplateRepo = presTemplateRepo;
+            this._presTemplateDetailRepo = presTemplateDetailRepo;
+            this._presTemplateDmnService = presTemplateDmnService;
+            this._sysConfigRepo = sysConfigRepo;
+            this._groupPackageRepo = groupPackageRepo;
+        }
         /// <summary>
         /// 康复
         /// </summary>
         /// <returns></returns>
-        public ActionResult RehabForm()
+        public IActionResult RehabForm()
         {
             return View();
         }
@@ -38,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// 常规项目处方
         /// </summary>
         /// <returns></returns>
-        public ActionResult RegularItemForm()
+        public IActionResult RegularItemForm()
         {
             return View();
         }
@@ -47,7 +64,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// 西药
         /// </summary>
         /// <returns></returns>
-        public ActionResult WMForm()
+        public IActionResult WMForm()
         {
             return View();
         }
@@ -56,7 +73,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// 中药
         /// </summary>
         /// <returns></returns>
-        public ActionResult TCMForm()
+        public IActionResult TCMForm()
         {
             return View();
         }
@@ -67,7 +84,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
         /// <returns></returns>
-        public ActionResult GetTreeList(int mblx, int cflx, int? expandCflx,string mbKeyword=null)
+        public IActionResult GetTreeList(int mblx, int cflx, int? expandCflx,string mbKeyword=null)
         {
             var treeList = new List<TreeViewModel>();
 
@@ -103,7 +120,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// <param name="expandCflx"></param>
         /// <param name="mbKeyword"></param>
         /// <returns></returns>
-        public ActionResult GetCfmbList(int mblx, int cflx, int? expandCflx,string mbKeyword=null)
+        public IActionResult GetCfmbList(int mblx, int cflx, int? expandCflx,string mbKeyword=null)
         {
             switch (cflx) {
                 case (int)EnumCflx.WMPres:
@@ -144,7 +161,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
-        public ActionResult PresTemplateDetail()
+        public IActionResult PresTemplateDetail()
         {
             //医保控制code
             ViewBag.ControlbrxzCode = _sysConfigRepo.GetValueByCode("ControlbrxzCode", OrganizeId);
@@ -157,13 +174,13 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// <param name="mbId"></param>
         /// <param name="mxIdStr"></param>
         /// <returns></returns>
-        public ActionResult SelectPresTemplateDetailByMbId(string mbId,  string mxIdStr)
+        public IActionResult SelectPresTemplateDetailByMbId(string mbId,  string mxIdStr)
         {
             var data = _presTemplateDmnService.SelectPresDetailByMbId(mbId, this.OrganizeId);
             return Content(data.ToJson());
         }
 
-        public ActionResult Delete(string mbId)
+        public IActionResult Delete(string mbId)
         {
             try
             {
@@ -174,7 +191,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             catch (System.Exception e)
             {
 
-                return Error("删除失败");
+                return Error("Xóathất bại");
             }
         }
 
@@ -183,7 +200,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         /// 保存
         /// </summary>
         /// <returns></returns>
-        public ActionResult SaveData(PresTemplateEntity mbObj, List<PresTemplateDetailmxVo> mxList)
+        public IActionResult SaveData(PresTemplateEntity mbObj, List<PresTemplateDetailmxVo> mxList)
         {
             if (mbObj.mblx == (int)EnumCfMbLx.department)
             {
@@ -244,7 +261,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             }
             return treeList;
         }
-        public ActionResult XzyyForm()
+        public IActionResult XzyyForm()
         {
             return View();
         }

@@ -1,16 +1,16 @@
-﻿@using Newtouch.Common.Operator;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
     var opr = OperatorProvider.GetCurrent();
     var loginFromFlag = ViewBag.loginFromFlag;
-    var MsgUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("SiteNoticeCenterHost");
+    var MsgUrl = Newtouch.CIS.Compat.AppConfig.Get("SiteNoticeCenterHost");
 }
 <style>
     .headtoolIcon {
         padding-top: 0.7rem;
     }
 </style>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/signalr/jquery.signalR-2.4.3.js")"></script>
-<script src="@Html.Raw(MsgUrl)signalr/hubs"></script>
+<!-- noticeHub (old SignalR 2.x, site notice center) NOT ported: the notice-center host is absent; live push disabled, list stays empty. -->
+<!-- old auto-generated signalR hub proxy removed (noticeHub stubbed, see InitNotice). -->
 <script src="~/Content/js/index.js"></script>
 <div class="nav-no-collapse pull-right" id="header-nav">
     <ul class="nav navbar-nav pull-right">
@@ -20,10 +20,10 @@
                 <span class="hidden-xs" style="width:120px">@OperatorProvider.GetCurrent().UserName【@OperatorProvider.GetCurrent().UserCode】</span>
             </a>
             <ul class="dropdown-menu pull-right">
-                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>个人信息</a></li>
-                <li><a href="javascript:void();" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>Cá nhânThông tin</a></li>
+                <li><a href="javascript:void();" onclick="layer.msg('Xóa sạch bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>Xóa trắngBộ nhớ đệm</a></li>
                 <li>
-                    <a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a>
+                    <a href="javascript:void();"><i class="fa fa-paint-brush"></i>DaCài đặt</a>
                     <div class="tab-pane" id="control-sidebar-home-tab">
                     </div>
                 </li>
@@ -31,7 +31,7 @@
                     if (loginFromFlag == "SSO")
                     {
                         <li class="divider" style="margin: 0px 0;"></li>
-                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>返回首页</a></li>
+                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>Quay lạiTrang chủ</a></li>
                         <li class="divider" style="margin: 0px 0;"></li>
                     }
                     else
@@ -39,7 +39,7 @@
                         <li class="divider"></li>
                     }
                 }
-                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>An toànThoát</a></li>
             </ul>
         </li>
     </ul>
@@ -48,10 +48,10 @@
     <ul class="nav nav-pills nav-stacked">
         <!-- kr.ver -->
         <li role="presentation" class="active" style="display:block">
-            <a href="#" class="hidden-xs" style="padding-top:15px" data-toggle="dropdown">消息列表<span class="badge" id="badge1"></span></a>
+            <a href="#" class="hidden-xs" style="padding-top:15px" data-toggle="dropdown">Tin nhắnDanh sách<span class="badge" id="badge1"></span></a>
             <ul class="dropdown-menu pull-right" style="width:100%;" id="uldiv">
-                <li style="height:25px;"><a style="width:100%;text-align:center;" id="yzsh">医嘱审核<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
-                <li style="height:25px;"><a style="width:100%;text-align:center;" id="yzzx">医嘱执行<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
+                <li style="height:25px;"><a style="width:100%;text-align:center;" id="yzsh">Y lệnhDuyệt<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
+                <li style="height:25px;"><a style="width:100%;text-align:center;" id="yzzx">Y lệnhThực hiện<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
             </ul>
         </li>
         <!-- Notifications Dropdown Menu -->
@@ -63,7 +63,7 @@
             <ul class="dropdown-menu pull-right" id="noticelist">
                 <li>
                     <a href="#" class="dropdown-item" id="notice_blzk">
-                        <i class="fa fa-wechat mr-2"></i> 病历质控消息
+                        <i class="fa fa-wechat mr-2"></i> Tin nhắn kiểm soát chất lượng bệnh án
                         <span class="float-right text-muted text-sm" id="notice_blzk_lasttime"></span>
                     </a>
                 </li>
@@ -96,7 +96,7 @@
 <div class="nav-no-collapse pull-right" id="header-dic" style="display:block">
     <ul class="nav nav-pills nav-stacked">
         <li role="presentation" class="active" id="countentli">
-            <a href="#" id="countents" class="hidden-xs" style="color:#ffffff;font-size:15px; padding-top:15px;float:left;"></a><span style="float:left; padding-top:15px;" id="txtb"><img src="~/Content/img/消息提醒.png" width="20" height="20" /></span>
+            <a href="#" id="countents" class="hidden-xs" style="color:#ffffff;font-size:15px; padding-top:15px;float:left;"></a><span style="float:left; padding-top:15px;" id="txtb"><img src="~/Content/img/Tin nhắnNhắc nhở.png" width="20" height="20" /></span>
         </li>
     </ul>
 </div>
@@ -126,10 +126,11 @@
     //<!-- Notifications Dropdown Menu -->
     var noticeArray = [];
     function InitNotice() {
-        $.connection.hub.url = hubUrl;
-        $.connection.hub.qs = { 'user': '@OperatorProvider.GetCurrent().UserCode', 'orgId': '@OperatorProvider.GetCurrent().OrganizeId' };
-        var hub = $.connection.noticeHub;
-        hub.client.sendToUser = function (msg, obj) {
+        // STUB: noticeHub live push not ported (no notice-center host in this deployment).
+        // The notice list below is populated only by the initial page data, if any.
+        return;
+        var hub = null;
+        var _unused_sendToUser = function (msg, obj) {
             var html = '<li><a onclick="readNotice()" data-id="'+obj.msgid+'" class="dropdown-items" id="notice_blzk' + obj.noticeid + '" style="color:#00a0ea;">' + msg + '</a></li>';
             $("#noticelist").append(html);
             var count = $("#sp_msgCount").text() == "" ? 0 : $("#sp_msgCount").text();
@@ -137,9 +138,7 @@
             blink('#sp_msgCount');
             noticeArray.push(obj);
         }
-        $.connection.hub.start().done(function () {
-
-        });
+        /* $.connection.hub.start() removed with the noticeHub stub above. */
     }
     function readNotice() {
         $('#sp_msgCount').stop().fadeIn();
@@ -161,7 +160,7 @@
     }
 
     //<!-- kr.ver -->
-    //图标闪烁
+    //Biểu tượng闪烁
     function blink(selector) {
         $(selector).fadeOut('slow', function () {
             $(this).fadeIn('slow', function () {
@@ -246,7 +245,7 @@
             $('#txtb').stop().fadeOut();
             $('#txtb').hide();
         }
-        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "医嘱审核（消息提醒）", enName: "", url: "/NurseManage/OrderAudit/Index?data=" + yzshzyh });
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Y lệnhDuyệt(Tin nhắnNhắc nhở)", enName: "", url: "/NurseManage/OrderAudit/Index?data=" + yzshzyh });
     }
 
     function YZZX() {
@@ -261,7 +260,7 @@
             $('#txtb').stop().fadeOut();
             $('#txtb').hide();
         }
-        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "医嘱执行（消息提醒）", enName: "", url: "/NurseManage/OrderExecution/Index?data=" + yzzxzyh });
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Y lệnhThực hiện(Tin nhắnNhắc nhở)", enName: "", url: "/NurseManage/OrderExecution/Index?data=" + yzzxzyh });
     }
 
 

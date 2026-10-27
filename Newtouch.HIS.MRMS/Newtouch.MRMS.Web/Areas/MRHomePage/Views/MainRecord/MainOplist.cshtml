@@ -1,0 +1,113 @@
+
+@{
+    Layout = null;
+}
+<style>
+    /*.ui-jqgrid .ui-jqgrid-bdiv{
+        border-top:1px solid #74e8b5;
+        overflow-x:auto;
+    }
+
+    .frozen-div, .frozen-bdiv{
+        background-color:#fff;
+    }*/
+</style>
+<div id="dv_edit_op">
+    <div>
+        <table id="gridopList"></table>
+    </div>
+    <div>
+        @Html.Partial("MainOpEdit")
+    </div>
+</div>
+<script>
+
+    function OpListGrid() {
+        var $gridList = $("#gridopList");
+        $gridList.dataGrid({
+            postData: {
+                bah: $("#BAH").val(),
+                zyh: $("#ZYH").val(),
+            },
+            url: "/MRHomePage/MainRecord/GetOpGridList",
+            autowidth: true,
+            height: $(window).height() - 120,
+            colModel: [
+                { label: "Id", name: "Id", hidden: true },
+                { label: "Số bệnh án", name: "BAH", width: 60, align: 'left' },
+                { label: "Số nội trú", name: "ZYH", width: 60, align: 'left' },
+                { label: "Phẫu thuật và<br />Mã thủ thuật", name: "SSJCZBM", width: 80, align: 'center' },
+                { label: "Phẫu thuật và<br />Ngày thủ thuật", name: "SSJCZRQ", width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Phẫu thuật<br />Cấp độ", name: "SSJB", width: 60, align: 'center' },
+                //{ label: "CYQK", name: "CYQK", hidden: true },
+                { label: "Tên phẫu thuật và thủ thuật", name: "SSJCZMC", width: 150, align: 'center' },
+                { label: "SZ", name: "SZ", hidden: true },
+                { label: "Bác sĩ mổ chính", name: "SZMC", width: 50, align: 'center' },
+                { label: "YZ", name: "YZ", hidden: true },
+                { label: "Phụ mổ I", name: "YZMC", width: 50, align: 'center' },
+                { label: "EZ", name: "EZ", hidden: true },
+                { label: "Phụ mổ II", name: "EZMC", width: 50, align: 'center' },
+                { label: "QKDJ", name: "QKDJ", hidden: true },
+                { label: "QKYHLB", name: "QKYHLB", hidden: true },
+                { label: "Lành vết mổ<br />Mức độ lành", name: "QKYHDJ", width: 50, align: 'center' },
+                //{
+                //    label: "Lành vết mổ<br />Mức độ lành", name: "QKYHDJ", width: 50, align: 'center', formatter: function (row, option, data) {
+                //        return data.QKDJ + "/" + data.QKYLB;
+                //    }
+                //},
+                { label: "MZFS", name: "MZFS", hidden: true },
+                { label: "Phương pháp gây mê", name: "MZFSMS", width: 100, align: 'center' },
+                { label: "MZYS", name: "MZYS", hidden: true },
+                { label: "Bác sĩ gây mê", name: "MZYSMC", width: 50, align: 'center' },
+                { label: "zt", name: "zt", hidden: true },
+                {
+                    label: "Trạng thái", name: "ztsm", width: 50, align: 'center', formatter: function (row, option, data) {
+                        if (data.zt == "0") {
+                            return "Hủy bỏ";
+                        }
+                        else {
+                            return "Bình thường";
+                        }
+                    }
+                }
+            ],
+            onSelectRow: function (row) {
+                $(".dv-left").show();
+                var rowData = $('#gridopList').jqGrid('getRowData', row);
+                $("#op_ssdm").val(rowData.SSJCZMC);
+                $("#op_ssdm").attr("attr-ssdm", rowData.SSJCZBM);
+                $("#op_ssdm").attr("attr-ssjb", rowData.SSJB);
+                $("#op_ssrq").val(rowData.SSJCZRQ);
+                $("#op_ssdm").val(rowData.SSJCZMC);
+                $("#op_yhdj").val(rowData.QKDJ).trigger("change");
+                $("#op_yhlb").val(rowData.QKYHLB).trigger("change");
+                $("#op_mzfs").val(rowData.MZFS).trigger("change");
+                $("#op_zdys").val(rowData.SZMC);
+                $("#op_zdys").attr("data-StaffGh",rowData.SZ);
+                $("#op_sszl1").val(rowData.YZMC);
+                $("#op_sszl1").attr("data-StaffGh", rowData.YZ);
+                $("#op_sszl2").val(rowData.EZMC);
+                $("#op_sszl2 ").attr("data-StaffGh", rowData.EZ);
+                $("#op_mzys").val(rowData.MZYSMC);
+                $("#op_mzys").attr("data-StaffGh", rowData.MZYS);
+                $("#op_rowid").val(row);
+            },
+            loadComplete: function () {
+
+            },
+            /*caption: "Danh sách phẫu thuật",*/
+            
+            //rowNum: 15,
+            //pager: "#gridzdPager",
+            viewrecords: false,
+            shrinkToFit: false,
+            autoScroll:true
+
+        });
+       // jQuery("#gridopList").jqGrid('navGrid', '#gridzdPager', { edit: false, add: false, del: false });
+        jQuery("#gridopList").jqGrid('sortableRows');
+
+    }
+
+
+</script>

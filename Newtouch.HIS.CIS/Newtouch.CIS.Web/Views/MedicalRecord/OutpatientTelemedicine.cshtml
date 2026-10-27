@@ -1,95 +1,99 @@
-﻿@{
+@{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
-<object id="ActiveX996" classid="clsid:F48D2AD3-23FF-4882-8A9A-FB540AA718F5"  codebase="CISActiveX.cab" style="display: none;"></object>
+<div class="alert alert-warning" style="margin:20px;padding:15px;border:1px solid #faebcc;background:#fcf8e3;color:#8a6d3b;">
+<strong>Thông báo:</strong> Tích hợp LIS ActiveX (điều khiển COM NewtouchActiveX, chỉ chạy trên Internet Explorer + Windows) không thể chạy trên Linux.
+Chức năng này cần giải pháp thay thế (SDK của nhà cung cấp / tiện ích trình duyệt / native messaging host) và đã được ghi nhận để triển khai riêng.
+Các chức năng khác của trang vẫn hoạt động bình thường.
+</div>
 <form id="form1">
     <table class="form">
         <tr>
-            <td class="formTitle">卡号：</td>
+            <td class="formTitle">Số thẻ:</td>
             <td class="formValue">
-                <input id="kh" class="form-control" placeholder="请输入卡号" value="c0004876" />
+                <input id="kh" class="form-control" placeholder="Vui lòng nhậpSố thẻ" value="c0004876" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_1" value="院内心电报告调阅" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_1" value="Trong việnĐiện timBáo cáoTra cứu" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">挂号ID：</td>
+            <td class="formTitle">Đăng ký khámID:</td>
             <td class="formValue">
-                <input id="ghid" class="form-control" placeholder="请输入挂号ID" />
+                <input id="ghid" class="form-control" placeholder="Vui lòng nhậpĐăng ký khámID" />
             </td>
-            <td class="formTitle">姓名：</td>
+            <td class="formTitle">Họ tên:</td>
             <td class="formValue">
-                <input id="ghname" class="form-control" placeholder="请输入姓名" />
+                <input id="ghname" class="form-control" placeholder="Vui lòng nhậpHọ tên" />
             </td>
-            <td class="formTitle">开始时间：</td>
+            <td class="formTitle">Thời gian bắt đầu:</td>
             <td class="formValue">
                 <input id="startdate" type="text" class="form-control input-wdatepicker form-an" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">结束时间：</td>
+            <td class="formTitle">Kết thúcThời gian:</td>
             <td class="formValue">
                 <input id="enddate" type="text" class="form-control input-wdatepicker form-an" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_7" value="院内影像B超报告调阅" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_7" value="Tra cứu báo cáo siêu âm B trong viện" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_8" value="检验院内报告调阅" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_8" value="Xét nghiệmTrong việnBáo cáoTra cứu" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">患者编号：</td>
+            <td class="formTitle">Bệnh nhânSố hiệu:</td>
             <td class="formValue">
-                <input id="patid" class="form-control" placeholder="请输入患者唯一编号" />
+                <input id="patid" class="form-control" placeholder="Vui lòng nhậpBệnh nhânDuy nhấtSố hiệu" />
             </td>
-            <td class="formTitle">申请单号：</td>
+            <td class="formTitle">Số phiếu:</td>
             <td class="formValue">
-                <input id="orderno" class="form-control" placeholder="请输入申请单号" />
+                <input id="orderno" class="form-control" placeholder="Vui lòng nhậpSố phiếu" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_3" value="远程医疗心电申请" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_3" value="Từ xaY tếĐiện timĐề nghị" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">病人唯一编码：</td>
+            <td class="formTitle">Bệnh nhânDuy nhấtMã:</td>
             <td class="formValue">
-                <input id="jypatid" class="form-control" placeholder="请输入病人唯一编码" />
+                <input id="jypatid" class="form-control" placeholder="Vui lòng nhậpBệnh nhânDuy nhấtMã" />
             </td>
-            <td class="formTitle">就诊流水号：</td>
+            <td class="formTitle">Khám bệnhSố thứ tự:</td>
             <td class="formValue">
-                <input id="jzlsh" class="form-control" placeholder="请输入就诊流水号" />
+                <input id="jzlsh" class="form-control" placeholder="Vui lòng nhậpKhám bệnhSố thứ tự" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_5" value="检验申请" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_5" value="Xét nghiệmĐề nghị" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">卡号：</td>
+            <td class="formTitle">Số thẻ:</td>
             <td class="formValue">
-                <input id="yxkh" class="form-control" placeholder="请输入卡号" />
+                <input id="yxkh" class="form-control" placeholder="Vui lòng nhậpSố thẻ" />
             </td>
-            <td class="formTitle">申请单号：</td>
+            <td class="formTitle">Số phiếu:</td>
             <td class="formValue">
-                <input id="yxnum" class="form-control" placeholder="请输入申请单号" />
+                <input id="yxnum" class="form-control" placeholder="Vui lòng nhậpSố phiếu" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_6" value="远程医疗影像申请" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_6" value="Từ xaY tếHình ảnhĐề nghị" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">卡号：</td>
+            <td class="formTitle">Số thẻ:</td>
             <td class="formValue">
-                <input id="xdkh" class="form-control" placeholder="请输入卡号" />
+                <input id="xdkh" class="form-control" placeholder="Vui lòng nhậpSố thẻ" />
             </td>
-            <td class="formTitle">申请单号：</td>
+            <td class="formTitle">Số phiếu:</td>
             <td class="formValue">
-                <input id="xdnum" class="form-control" placeholder="请输入申请单号" />
+                <input id="xdnum" class="form-control" placeholder="Vui lòng nhậpSố phiếu" />
             </td>
             <td>
-                <input type="button" class="btn btn-primary btn-md" id="btn_9" value="远程医疗心电调阅" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_9" value="Từ xaY tếĐiện timTra cứu" />
             </td>
         </tr>
     </table>
@@ -111,7 +115,7 @@
                          sessionStorage.setItem('XindianList', JSON.stringify(resp));
                          $.modalOpen({
                              id: "Form",
-                             title: "心电详情",
+                             title: "Điện timChi tiết",
                              url: "@Url.Action("ViewXindianList")",
                              width: "700px",
                              height: "530px",

@@ -1,55 +1,70 @@
-﻿using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ValueObjects.Outpatient;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+
+    [Area("NurseManage")]
 
     public class AllergyController : OrgControllerBase
     {
         private readonly IAllergyManageDmnService _IAllergyManageDmnService;
         private readonly ISysConfigRepo _sysConfigRepo;
 
-        #region 视图
-        public ActionResult OutHosAllergyManage()
+        public AllergyController(IAllergyManageDmnService iAllergyManageDmnService, ISysConfigRepo sysConfigRepo)
+        {
+            this._IAllergyManageDmnService = iAllergyManageDmnService;
+            this._sysConfigRepo = sysConfigRepo;
+        }
+
+        #region Chế độ xem
+        public IActionResult OutHosAllergyManage()
         {
             return View();
         }
 
-        public ActionResult AllergyForm()
+        public IActionResult AllergyForm()
         {
             return View();
         }
 
-        public ActionResult AllergyInfoQuery()
+        public IActionResult AllergyInfoQuery()
         {
             return View();
         }
 
-        public ActionResult InHosAllergyManage()
+        public IActionResult InHosAllergyManage()
         {
             return View();
         }
         #endregion
 
-        #region 获取数据
+        #region LấyDữ liệu
         /// <summary>
-        /// 获取门诊患者列表 (待做皮试)
+        /// 获取门诊患者列表 (待做Test da)
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetMzPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
+        public IActionResult GetMzPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
         {
             var PsItmeCode = _sysConfigRepo.GetValueByCode("AllergyItemSetting", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("请联系管理员配置过敏项目配置动态参数,参数编码：AllergyItemSetting");
+            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("Vui lòng liên hệ quản trị viên cấu hình mục dị ứng và tham số động, mã tham số: AllergyItemSetting");
             var patList = _IAllergyManageDmnService.GetOutPatientPaginationList(pagination, keyword, ks, kssj, jssj, this.OrganizeId, PsItmeCode, zxzt);
 
             var data = new
@@ -63,13 +78,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取住院患者列表 (待做皮试)
+        /// 获取住院患者列表 (待做Test da)
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetZyPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
+        public IActionResult GetZyPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
         {
             var PsItmeCode = _sysConfigRepo.GetValueByCode("AllergyItemSetting", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("请联系管理员配置过敏项目配置动态参数,参数编码：AllergyItemSetting");
+            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("Vui lòng liên hệ quản trị viên cấu hình mục dị ứng và tham số động, mã tham số: AllergyItemSetting");
             var patList = _IAllergyManageDmnService.GetInPatientPaginationList(pagination, keyword, ks, kssj, jssj, this.OrganizeId, PsItmeCode, zxzt);
 
             var data = new
@@ -83,16 +98,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取门诊患者皮试项目
+        /// 获取门诊患者Test da项目
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
         /// <param name="mzzybz">1门诊，2住院</param>
         /// <returns></returns>
-        public ActionResult GetMzPatientPsItemsJson(Pagination pagination, string Id)
+        public IActionResult GetMzPatientPsItemsJson(Pagination pagination, string Id)
         {
             var PsItmeCode = _sysConfigRepo.GetValueByCode("AllergyItemSetting", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("请联系管理员配置过敏项目配置动态参数,参数编码：AllergyItemSetting");
+            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("Vui lòng liên hệ quản trị viên cấu hình mục dị ứng và tham số động, mã tham số: AllergyItemSetting");
             var patList = _IAllergyManageDmnService.GetMzPatientPsItemsList(pagination, Id, this.OrganizeId, PsItmeCode);
 
             var data = new
@@ -106,16 +121,16 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取住院患者皮试项目
+        /// 获取住院患者Test da项目
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
         /// <param name="mzzybz">1门诊，2住院</param>
         /// <returns></returns>
-        public ActionResult GetZyPatientPsItemsJson(Pagination pagination, string zyh)
+        public IActionResult GetZyPatientPsItemsJson(Pagination pagination, string zyh)
         {
             var PsItmeCode = _sysConfigRepo.GetValueByCode("AllergyItemSetting", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("请联系管理员配置过敏项目配置动态参数,参数编码：AllergyItemSetting");
+            if (string.IsNullOrWhiteSpace(PsItmeCode)) throw new Exception("Vui lòng liên hệ quản trị viên cấu hình mục dị ứng và tham số động, mã tham số: AllergyItemSetting");
             var patList = _IAllergyManageDmnService.GetZyPatientPsItemsList(pagination, zyh, this.OrganizeId, PsItmeCode);
 
             var data = new
@@ -137,7 +152,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <returns></returns>
-        public ActionResult GetPatientGmxxListJson(Pagination pagination, string keyword)
+        public IActionResult GetPatientGmxxListJson(Pagination pagination, string keyword)
         {
             var patList = _IAllergyManageDmnService.GetPatientGmxxList(pagination, keyword, this.OrganizeId);
 
@@ -155,7 +170,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取抗生素药品信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetKssYpListJson()
+        public IActionResult GetKssYpListJson()
         {
             var list = _IAllergyManageDmnService.GetKssYpListData(this.OrganizeId);
             return Content(list.ToJson());
@@ -165,7 +180,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 获取抗生素药品类别
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetKssYpLbJson(string ypCode)
+        public IActionResult GetKssYpLbJson(string ypCode)
         {
             if (string.IsNullOrEmpty(ypCode))
             {
@@ -176,8 +191,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        #region 保存数据
-        public ActionResult SaveAllergyInfo(AllergyEntity postData)
+        #region Lưu dữ liệu
+        public IActionResult SaveAllergyInfo(AllergyEntity postData)
         {
             postData.Id = Guid.NewGuid().ToString();
             postData.OrganizeId = this.OrganizeId; 
@@ -192,14 +207,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// 删除执行的过敏信息
+        /// 删除Thực hiện的过敏信息
         /// </summary>
         /// <param name="xmCode"></param>
         /// <returns></returns>
-        public ActionResult DeleteExecutedGmxx(string gmxxId)
+        public IActionResult DeleteExecutedGmxx(string gmxxId)
         {
             int ret = _IAllergyManageDmnService.DeleteAllergyInfo(gmxxId, this.OrganizeId, UserIdentity.UserCode, UserIdentity.UserName);
-            return ret > 0 ? Success("操作成功") : Error("取消执行失败，请联系管理员！");
+            return ret > 0 ? Success("Thao tác thành công") : Error("HủyThực hiệnthất bại,Vui lòng liên hệQuản trị viên!");
         }
         #endregion
     }

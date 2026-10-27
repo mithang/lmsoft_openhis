@@ -1,12 +1,12 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     
     //开关：是否开放检验检查
     var iSOpenZycfnew = ViewData["ISOpenZycfnew"] as bool?;
     
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <div id="floadHistoryPresTree" style="display:none;z-index:1;background: white;">
     <div id="divPresTree"></div>
 </div>
@@ -58,10 +58,10 @@
 					getActionStr = getdzcfActionStr();
                     grid = "griddzcf";
                 }
-                //本次就诊   // 已收费处方进else引用处方
+                //本次就诊   // 已收费处方进elseTrích dẫn处方
                 if (item.Ex2 == "current"
                     && !(!!item.Ex1 && item.Ex1.toString().toLowerCase() === "true")) {
-                    //重置 历史处方、处方模板
+                    //重置 Đơn thuốc lịch sử、处方模板
                     cfLeftFloatHide();
 
                     //重复添加到右边的判断
@@ -136,7 +136,7 @@
                     }
                     if (fromcflx == '@Html.Raw(((int)EnumCflx.Dzcf).ToString())') {
                         if ($("#griddzcf").jqGrid('getRowData_AllLine').length > 0) {
-                            $.modalAlert("不能同时编辑多张电子处方", 'warning');
+                            $.modalAlert("Không thểĐồng thờiSửanhiều tờĐiện tửĐơn thuốc", 'warning');
                             return;
                         }
                         if (window.alldataArray.dzcf) {
@@ -149,7 +149,7 @@
                     }
                     if (fromcflx == '@Html.Raw(((int)EnumCflx.TCMPres).ToString())') {
                         if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length > 0) {
-                            $.modalAlert("不能同时编辑多张中药处方", 'warning');
+                            $.modalAlert("Không thể đồng thời sửa nhiều tờ đơn thuốc YHCT", 'warning');
                             return;
                         }
                         if (window.alldataArray.zycf) {
@@ -205,14 +205,14 @@
                     }
                 }
                 else {
-                    //引用历史处方
+                    //Trích dẫnĐơn thuốc lịch sử
                     $.modalOpen({
                         id: "FormShowHistoryPresForm",
-                        title: "历史处方明细",
+                        title: "Lịch sửĐơn thuốcChi tiết",
                         url: "/Prescription/HistoryPresForm?cfId=" + item.id + "&cflx=" + fromcflx + "&brxzCode=" + window.currPatientInfo.brxzCode,
                         width: "800px",
                         height: "650px",
-                        btn: ['复制', '关闭'],
+                        btn: ['Sao chép', 'Đóng'],
                         callBack: function (iframeId) {
                             top.frames[iframeId].submitForm(function (data) {
                                 var jj = 0;
@@ -351,7 +351,7 @@
                                         }
                                     }
                                     if (isRepeatedAdd) {
-                                        $.modalAlert("单张处方下明细不能重复", 'warning');
+                                        $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
                                         return;
                                     }
                                     else {
@@ -378,7 +378,7 @@
                                         }
                                     }
                                 });
-                                //重置 历史处方、处方模板
+                                //重置 Đơn thuốc lịch sử、处方模板
                                 cfLeftFloatHide();
                                 $.modalClose("FormShowHistoryPresForm");
                             });

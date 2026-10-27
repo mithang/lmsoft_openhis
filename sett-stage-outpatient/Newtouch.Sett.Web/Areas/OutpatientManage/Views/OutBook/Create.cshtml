@@ -1,0 +1,132 @@
+
+@{
+
+    ViewBag.Title = "Tạo lịch trực";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<!DOCTYPE html>
+
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+
+<script>
+
+    $(function () {
+        GridInit();
+    });
+    
+    function GridInit() {
+        var $gridList = $("#gridList");
+        var myDate = new Date(); 
+        var time = myDate.getFullYear() + "-" +(myDate.getMonth() + 1) + "-" + myDate.getDate() + " " +"00:00:00";
+        $gridList.dataGrid({
+            url: "/OutPatientManage/OutBook/CreateSchedule?time="+time,
+            autowidth: true,
+            height: $(window).height() - 118,
+            colModel: [
+                { label: "ghpbId", name: "ScheduId", hidden: true },
+                { label: "Mã số", name: "ghpbId", width: 40, align: 'left' },
+                {
+                    label: "Ngày khám bệnh", name: "OutDate", width: 120, align: 'left', formatter: function (val) {
+                        if (val.indexOf("T")) {
+                            return val.replace('T', ' ');
+                        } else {
+                            return val;
+                        }
+                    }
+                },
+                { label: "Mã nhân viên bác sĩ", name: "ysgh", width: 80, align: 'left', hidden: true },
+                { label: "Tên bác sĩ", name: "ysxm", width: 100, align: 'left' },
+                { label: "Khoa khám bệnh", name: "czks", width: 80, align: 'left', hidden: true},
+                { label: "Tên khoa khám bệnh", name: "czksmc", width: 80, align: 'left' },
+                {
+                    label: "Loại đăng ký khám", name: "RegType", width: 60, align: 'left', formatter: function (val) {
+                        if (val == "1") {
+                            return "Khám thường";
+                        }
+                        else if (val == "2") {
+                            return "Cấp cứu";
+                        } else if (val == "3") {
+                            return "Khám chuyên gia";
+                        }
+                        else if (val == "4") {
+                            return "Khám bệnh đặc biệt";
+                        }
+                        else if (val == "5") {
+                            return "Khám bệnh hiểm nghèo";
+                        }
+                        else if (val == "6") {
+                            return "Khám bệnh mạn tính";
+                        }
+                        else if (val == "7") {
+                            return "Hai bệnh của dân cư";
+                        }
+                        else if (val == "8") {
+                            return "Khám tai nạn thương tích";
+                        }
+                        else if (val == "9") {
+                            return "Khám sinh sản";
+                        }
+                        else if (val == "10") {
+                            return "Khám lao đa kháng thuốc";
+                        }
+                        else if (val == "11") {
+                            return "Hai bệnh trẻ em";
+                        }
+                    }
+                },
+                { label: "Chức danh", name: "Title", width: 90, align: 'left' },
+                { label: "Khoảng thời gian khám bệnh", name: "PeriodDesc", width: 80, align: 'left' },
+                { label: "Nguồn số khám", name: "TotalNum", width: 60, align: 'left' },
+                { label: "Giờ bắt đầu", name: "PeriodStart", width: 80, align: 'left' },
+                { label: "Giờ kết thúc", name: "PeriodEnd", width: 80, align: 'left' },
+                { label: "Phí đăng ký khám", name: "RegFee", width: 60, align: 'left' },
+                {
+                    label: "Có mở đăng ký khám hẹn qua mạng không", name: "IsBook", width: 100, align: 'left', formatter: function (val) {
+                        if (val == "1") {
+                            return "Có";
+                        }
+                        else if (val == "0") {
+                            return "Không";
+                        }
+                    }
+                },
+                { label: "Khoản mục đăng ký khám", name: "sfxmmc", width: 80, align: 'left' },
+                { label: "Khoản mục bổ sung", name: "zlxmmc", width: 120, align: 'left' },
+                {
+                    label: "Thứ", name: "weekdd", width: 80, align: 'left', formatter: function (val) {
+                        if (val == "1") {
+                            return "Thứ hai";
+                        }
+                        else if (val == "2") {
+                            return "Thứ ba";
+                        }
+                        else if (val == "3") {
+                            return "Thứ tư";
+                        }
+                        else if (val == "4") {
+                            return "Thứ năm";
+                        }
+                        else if (val == "5") {
+                            return "Thứ sáu";
+                        }
+                        else if (val == "6") {
+                            return "Thứ bảy";
+                        }
+                        else if (val == "7") {
+                            return "Chủ nhật";
+                        }
+                    }
+                },
+            ],
+            sortname: "ScheduId desc",
+            rowNum: 10,
+            pager: "#gridPager",
+            viewrecords: true,
+        });
+    }
+</script>

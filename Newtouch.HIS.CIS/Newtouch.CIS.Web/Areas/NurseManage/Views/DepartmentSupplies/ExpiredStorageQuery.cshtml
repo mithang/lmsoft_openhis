@@ -1,10 +1,10 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 
 @{
-    ViewBag.Title = "过期库物资查询";
+    ViewBag.Title = "Hết hạnVật tư khoTra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var reportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
 
 }
 <style>
@@ -57,58 +57,58 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">筛选条件</div>
+        <div class="panel-heading">Điều kiện lọc</div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">物资名称：</td>
+                    <td class="formTitle">Vật tưTên:</td>
                     <td class="formValue" s>
-                        <input type="text" id="keyWord" class="form-control" placeholder="拼音/名称" />
+                        <input type="text" id="keyWord" class="form-control" placeholder="Pinyin/Tên" />
                         <input type="hidden" id="productId" value="" />
                     </td>
-                    <td class="formTitle">类别：</td>
+                    <td class="formTitle">Loại:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="lb">
-                            <option value="">全部</option>
+                            <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">使用状态：</td>
+                    <td class="formTitle">Sử dụngTrạng thái:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="kzbz" name="kzbz">
-                            <option value="">全部</option>
-                            <option value="1" selected>正常</option>
-                            <option value="0">控制</option>
+                            <option value="">Tất cả</option>
+                            <option value="1" selected>Bình thường</option>
+                            <option value="0">Kiểm soát</option>
                         </select>
                     </td>
                     <td class="formTitle">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">物资状态：</td>
+                    <td class="formTitle">Vật tưTrạng thái:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="wzzt" name="wzzt">
-                            <option value="">全部</option>
-                            <option value="1" selected>有效</option>
-                            <option value="0">无效</option>
+                            <option value="">Tất cả</option>
+                            <option value="1" selected>Hiệu lực</option>
+                            <option value="0">Không hiệu lực</option>
                         </select>
                     </td>
-                    <td class="formTitle">显示零库存：</td>
+                    <td class="formTitle">Hiển thị tồn kho bằng 0:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="xslkc" name="xslkc">
-                            <option value="1">是</option>
-                            <option value="0" selected>否</option>
+                            <option value="1">Có</option>
+                            <option value="0" selected>Không</option>
                         </select>
                     </td>
                     <td class="formValue" colspan="2">
-                        <label style="line-height: 20px; margin-left:10px; float:left;">只显示库存有效：</label>
+                        <label style="line-height: 20px; margin-left:10px; float:left;">Chỉ hiển thị tồn kho hiệu lực:</label>
                         <div class="ckbox">
                             <input id="mxyx" name="mxyx" type="checkbox" class="ckbox" checked />
-                            <label for="mxyx">是</label>
+                            <label for="mxyx">Có</label>
                         </div>
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In" />
                     </td>
                 </tr>
             </table>
@@ -160,22 +160,22 @@
             postData: $("#form1").formSerialize(),
             height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
             colModel: [
-                { label: '名称', name: 'wzmc', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 80, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '批号', name: 'ph', width: 100, align: 'left' },
-                { label: '批次', name: 'pc', width: 100, align: 'left' },
-                { label: '数量', name: 'slStr', width: 70, align: 'right' },
-                { label: '单价单位', name: 'lsjStr', width: 60, align: 'center' },
+                { label: 'Tên', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'Hạn hiệu lực', name: 'yxq', width: 90, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'slStr', width: 70, align: 'right' },
+                { label: 'Đơn giáĐơn vị', name: 'lsjStr', width: 60, align: 'center' },
                 {
-                    label: '进价总额', name: 'jjze', width: 70, align: 'right',
+                    label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '类别', name: 'lb', width: 90, align: 'left' },
-                { label: '品牌', name: 'brand', width: 90, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                { label: 'Loại', name: 'lb', width: 90, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 90, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 { label: "productId", name: "productId", hidden: true, key: true }
             ],
             pager: "#gridPager",

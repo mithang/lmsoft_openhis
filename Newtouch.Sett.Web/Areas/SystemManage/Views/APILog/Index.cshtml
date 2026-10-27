@@ -1,0 +1,225 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Nhật ký vấn đề giao diện";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .toolbar {
+        width: 45% !important;
+        margin: 10px 30px 12px;
+    }
+
+    .ui-jqgrid tr.jqgrow td {
+        white-space: normal !important;
+        height: auto;
+        vertical-align: text-top;
+        padding-top: 2px;
+    }
+</style>
+<form>
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <table class="form">
+            <tr>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control form-an" id="blh" />
+                </td>
+                <th class="formTitle">Họ tên：</th>
+                <td class="formValue">
+                    <input type="text" class="form-control form-an" id="xm" />
+                </td>
+                <th class="formTitle">tải lên Thời gian：</th>
+                <td class="formValue" colspan="2">
+                    <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left:1%;float:left;">—</span>
+                    <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width :42%;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="formTitle">Loại bệnh nhân：</th>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="brlx" class="form-control form-an">
+                        <option value="-1">Tất cả</option>
+                        <option value="Outpatient">Ngoại trú</option>
+                        <option value="Inpatient">Nhập viện</option>
+                    </select>
+                </td>
+                <th class="formTitle">dữ liệu Loại：</th>
+                <td class="formValue formDdlSelectorTd">
+                    <select id="wtjlbz" class="form-control form-an">
+                        <option value="-1">Tất cả</option>
+                        <option value=false>Bình thường</option>
+                        <option value=true selected>Có vấn đề</option>
+                    </select>
+                </td>
+                <th class="formTitle">Kỹ thuật viên trị liệu：</th>
+                <td class="formValue">
+                    @*<input type="text" readonly="readonly" class="form-control formClearIgnore form-an" id="smryName" data-smry="@OperatorProvider.GetCurrent().rygh" data-staffId="@OperatorProvider.GetCurrent().StaffId" value=@OperatorProvider.GetCurrent().UserName />*@
+                    <select id="smryName" class="form-control">
+                        <option>==Vui lòng chọn==</option>
+                    </select>
+                </td>
+                <th class="formTitle">Đã hay chưa Xóa：</th>
+                <td class="formValue">
+                    <select id="isDeleted" class="form-control">
+                        <option>Tất cả</option>
+                        <option value=false selected>Bình thường</option>
+                        <option value=true>Đã Xóa</option>
+                    </select>
+                </td>
+                <td class="formValue">
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+    <table class="form" style="width:255px;background-color:white;position: relative;bottom: 25px;left:235px;">
+        <tr>
+            <td style="width: 40px;">
+                <label style="height:7px;width:25px; margin-left:20%;background-color:white; border:1px solid #ddd"></label>
+            </td>
+            <td>
+                Biểu thị Bình thường
+            </td>
+            <td style="width: 40px;">
+                <label style="height:7px;width:25px;background-color:#f2dede; border:1px solid #ddd"></label>
+            </td>
+            <td>Biểu thị bất thường</td>
+        </tr>
+    </table>
+</form>
+<script>
+    //默认
+    //var Editing_ysList = []; //编辑域中的人员
+
+    $(function () {
+        gridList();
+        //Editing_ysList = [{ id: $('#smryName').attr('data-staffId'), gh: $('#smryName').attr('data-smry'), Name: $('#smryName').val(), ks: $('#smks').attr('data-smksCode'), ksmc: $('#smks').val() }];
+
+    });
+
+    //治疗师
+    $("#smryName").bindSelect({
+        url: "/Report/GetRehabDoctorList",
+        id: "StaffGh",
+        text: "StaffName"
+    });
+
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "@Url.Action("GetListJson")",
+            postData: getSearchPostData(),
+            height: $(window).height() - 200,
+            colModel: [
+                { label: 'Id', name: 'Id', align: 'left', hidden: true },
+                { label: 'Khoản thu phí', name: 'serviceDescription', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'patientName', width: 120, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'patientId', width: 100, align: 'left' },
+                { label: 'Nhập viện/Số khám ngoại trú', name: 'admsNum', width: 100, align: 'left' },
+                { label: 'Kỹ thuật viên trị liệu', name: 'therapistName', width: 60, align: 'left' },
+                { label: 'Loại phục hồi chức năng', name: 'disciplineTrack', width: 120, align: 'left' },
+                { label: 'wtjlbz', name: 'wtjlbz', hidden: true, formatter: "bool", align: 'left' },
+                {
+                    label: 'Loại bệnh nhân', name: 'patientType', width: 60, align: 'left', formatter: function (val) {
+                        switch (val) {
+                            case "outpatient":
+                                return "Ngoại trú"
+                                break;
+                            case "inpatient":
+                                return "Nhập viện"
+                                break;
+                            default:
+                                return val;
+                                break;
+                        }
+                    }
+                },
+                { label: 'Thời gian tạo mới', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Bất thường chi tiết', name: 'remark', width: 267, align: 'left' }
+
+            ],
+            pager: "#gridPager",
+            sortname: 'CreatedDate desc',
+            viewrecords: true,
+            ondblClickRow: function (rowid) {
+                gridEditRow(rowid);
+            }, gridComplete: function (data) {
+                var ids = $("#gridList").jqGrid('getDataIDs');
+                for (var i = 0; i < ids.length; i++) {
+
+                    var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
+                    if (rowData) {
+                        if (rowData.wtjlbz == 'true') {
+                            $('#gridList tr[id="' + ids[i] + '"]').css("background-color", "#f2dede");//.addClass('complete');
+                        }
+                    }
+                }
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var blh = $("#blh").val();
+        var xm = $("#xm").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var brlx = $("#brlx").val();
+        var wtjlbz = $("#wtjlbz").val();
+        var isDeleted = $("#isDeleted").val();
+        var rygh = $("#smryName").val();
+        return { blh: blh, xm: xm, kssj: kssj, jssj: jssj, brlx: brlx, wtjlbz: wtjlbz, isDeleted: isDeleted, rygh: rygh };
+
+    }
+    //作废
+    function newtouch_event_f8() {
+        var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
+        if (data == "[]") {
+            return;
+        }
+        var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
+        if (!ids || ids.length == 0) {
+            $.modalAlert("Vui lòng trước tiên tại Danh sách tích chọn Cần Hủy bỏ của bản ghi trị liệu", 'warning');
+            return false;
+        }
+        var arraryData = [];
+        for (var i = 0; i < ids.length; i++) {
+            var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
+            arraryData.push(rowData.Id);
+        }
+        $.najax({
+            url: "@Url.Action("Involid")",
+            dataType: "json",
+            data: { list: arraryData },
+            type: "POST",
+            async: false,
+            success: function (data) {
+                $.loading(false);
+                //刷新未确认列表
+                $('#btn_search').trigger('click');
+                $.modalMsg("Thao tác thành công", 'success');
+            },
+            errCallback: function (err) {
+                $.loading(false);
+            }
+        });
+
+    }
+
+</script>

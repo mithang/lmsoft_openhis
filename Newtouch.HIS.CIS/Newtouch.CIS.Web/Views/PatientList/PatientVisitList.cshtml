@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-	ViewBag.Title = "就诊信息查询";
+	ViewBag.Title = "Khám bệnhThông tinTra cứu";
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -11,44 +11,44 @@
 </style>
 <div class="panel panel-default">
 	<div class="panel-heading navb-bg">
-		筛选条件
+		Điều kiện lọc
 	</div>
 	<table class="form">
 		<tr>
-			<td class="formTitle"><span style="color:#ff0000;">*</span>就诊时间：</td>
+			<td class="formTitle"><span style="color:#ff0000;">*</span>Khám bệnhThời gian:</td>
 			<td class="formValue">
 				<input id="txt_kssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="    WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddMonths(-12).ToString("yyyy-MM-dd")">
 			</td>
-			<td class="formTitle" style="width:10px">至</td>
+			<td class="formTitle" style="width:10px">đến</td>
 			<td class="formValue">
 				<input id="txt_jssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="    WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")">
 			</td>
-			<td class="formTitle">就诊类型：</td>
+			<td class="formTitle">Khám bệnhLoại:</td>
 			<td class="formValue formDdlSelectorTd">
 				<select class="form-control" id="sel_jzlx">
-					<option value="">===全部===</option>
-					<option value="0">门诊</option>
-					<option value="1">住院</option>
+					<option value="">===Tất cả===</option>
+					<option value="0">Ngoại trú</option>
+					<option value="1">Nhập viện</option>
 				</select>
 			</td>
-			<td class="formTitle">结算状态：</td>
+			<td class="formTitle">Quyết toánTrạng thái:</td>
 			<td class="formValue formDdlSelectorTd">
 				<select class="form-control" id="sel_jszt">
-					<option value="">===全部===</option>
-					<option value="0">未结算</option>
-					<option value="1">已结算</option>
+					<option value="">===Tất cả===</option>
+					<option value="0">Chưa quyết toán</option>
+					<option value="1">Đã quyết toán</option>
 				</select>
 			</td>
-			<td class="formTitle">患者姓名：</td>
+			<td class="formTitle">Tên bệnh nhân:</td>
 			<td class="formValue">
-				<input type="text" class="form-control" id="txtxm" placeholder="患者姓名" />
+				<input type="text" class="form-control" id="txtxm" placeholder="Tên bệnh nhân" />
 			</td>
-			<td class="formTitle">卡号：</td>
+			<td class="formTitle">Số thẻ:</td>
 			<td class="formValue">
-				<input type="text" class="form-control" id="txtkh" placeholder="卡号" />
+				<input type="text" class="form-control" id="txtkh" placeholder="Số thẻ" />
 			</td>
 			<td class="formValue">
-				<input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+				<input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
 			</td>
 		</tr>
 	</table>
@@ -62,41 +62,41 @@
 		<form id="form1">
 			<table id="table1" class="form">
 				<tr>
-					<th class="formTitle">门诊号：</th>
+					<th class="formTitle">Số khám ngoại trú:</th>
 					<td class="formValue">
 						<input id="mzh" name="xuetang" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle" hidden>诊疗开始时间：</th>
+					<th class="formTitle" hidden>Thời gian khám chữa bệnh bắt đầu:</th>
 					<td class="formValue" hidden>
 						<input id="zlkssj" name="zlkssj" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">就诊科室：</th>
+					<th class="formTitle">Khám bệnhKhoa:</th>
 					<td class="formValue">
 						<input id="ghksmc" name="ghksmc" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">医保卡：</th>
+					<th class="formTitle">Thẻ bảo hiểm y tế:</th>
 					<td class="formValue">
 						<input id="sbbh" name="sbbh" type="text" class="form-control form-an vitalsignschange" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">就诊医生：</th>
+					<th class="formTitle">Khám bệnhBác sĩ:</th>
 					<td class="formValue">
 						<input id="ghys" name="ghys" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">婚姻：</th>
+					<th class="formTitle">Hôn nhân:</th>
 					<td class="formValue">
 						<input id="hymc" name="hymc" type="text" class="form-control form-an vitalsignschange" />
 					</td>
 					<td class="formValue" colspan="2">
 						<div id="cfzbz" style="margin-left:30px">
-							<label><input type="radio" name="cfzbzRadios" class="optionsRadios formClearIgnore" value="0" data-label="初诊" />初诊</label>
-							<label><input type="radio" name="cfzbzRadios" class="optionsRadios formClearIgnore" value="1" data-label="复诊" />复诊</label>
+							<label><input type="radio" name="cfzbzRadios" class="optionsRadios formClearIgnore" value="0" data-label="Khám lần đầu" />Khám lần đầu</label>
+							<label><input type="radio" name="cfzbzRadios" class="optionsRadios formClearIgnore" value="1" data-label="Tái khám" />Tái khám</label>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">身高：</th>
+					<th class="formTitle">Chiều cao:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-7">
@@ -107,7 +107,7 @@
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">体重：</th>
+					<th class="formTitle">Cân nặng:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-7">
@@ -118,7 +118,7 @@
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">体温：</th>
+					<th class="formTitle">Nhiệt độ:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-7">
@@ -131,29 +131,29 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">脉搏：</th>
+					<th class="formTitle">Mạch:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-7">
 								<input id="maibo" name="maibo" type="text" class="form-control form-an vitalsignschange" />
 							</div>
 							<div class="col-md-5">
-								<label>次/分</label>
+								<label>lần/phút</label>
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">呼吸：</th>
+					<th class="formTitle">Hô hấp:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-7">
 								<input id="huxi" name="huxi" type="text" class="form-control form-an vitalsignschange" />
 							</div>
 							<div class="col-md-5">
-								<label>次/分</label>
+								<label>lần/phút</label>
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">血糖：</th>
+					<th class="formTitle">Đường huyết:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-7">
@@ -166,11 +166,11 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">发病日期：</th>
+					<th class="formTitle">Khởi phátNgày:</th>
 					<td class="formValue">
 						<input id="fbsj" name="fbsj" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">收缩压：</th>
+					<th class="formTitle">Huyết áp tâm thu:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-10">
@@ -181,7 +181,7 @@
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">舒张压：</th>
+					<th class="formTitle">Huyết áp tâm trương:</th>
 					<td class="formValue">
 						<div class="row">
 							<div class="col-md-10">
@@ -196,69 +196,69 @@
 			</table>
 			<table class="form">
 				<tr>
-					<th class="formTitle">主诉：</th>
+					<th class="formTitle">Triệu chứng chính:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="zs" name="zs" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">现病史：</th>
+					<th class="formTitle">Bệnh sử hiện tại:</th>
 					<td class="formValue" colspan="4" id="xbsform">
 						<textarea id="xbs" name="xbs" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">既往史：</th>
+					<th class="formTitle">Tiền sử:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="jws" name="jws" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">月经史：</th>
+					<th class="formTitle">Tiền sử kinh nguyệt:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="yjs" name="yjs" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">过敏史：</th>
+					<th class="formTitle">Tiền sử dị ứng:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="gms" name="gms" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">查体：</th>
+					<th class="formTitle">Khám thực thể:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="ct" name="ct" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">处理：</th>
+					<th class="formTitle">Xử lý:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="clfa" name="clfa" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">辅助检查：</th>
+					<th class="formTitle">Kiểm tra hỗ trợ:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="fzjc" name="fzjc" class="form-control activeValue focusInput" style="height:35px;"></textarea>
 						<i class="fa fa-times" aria-hidden="true" hidden></i>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">西医诊断：</th>
+					<th class="formTitle">Chẩn đoán Tây y:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="tablexyzd" name="tablexyzd" class="form-control activeValue focusInput" style="height:60px;"></textarea>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">中医诊断：</th>
+					<th class="formTitle">Chẩn đoán YHCT:</th>
 					<td class="formValue" colspan="4">
 						<textarea id="tablezyzd" name="tablezyzd" class="form-control activeValue focusInput" style="height:60px;"></textarea>
 					</td>
@@ -287,56 +287,56 @@
 		<form id="form2">
 			<table id="table1" class="form supercompact" style="margin-left: 1.3%;">
 				<tr>
-					<th class="formTitle">住院号：</th>
+					<th class="formTitle">Số nhập viện:</th>
 					<td class="formValue">
 						<input id="zyh" name="zyh" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">病人性质：</th>
+					<th class="formTitle">Tính chất bệnh nhân:</th>
 					<td class="formValue">
 						<input id="brxz" name="brxz" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">在院状态：</th>
+					<th class="formTitle">Đang nằm việnTrạng thái:</th>
 					<td class="formValue">
 						<input id="zybz" name="zybz" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle" hidden>科室名称</th>
+					<th class="formTitle" hidden>KhoaTên</th>
 					<td class="formValue" hidden>
 						<input id="ksmc" name="ksmc" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
 
 				</tr>
 				<tr>
-					<th class="formTitle">住院医师：</th>
+					<th class="formTitle">Nhập việnBác sĩ:</th>
 					<td class="formValue">
 						<input id="zyys" name="zyys" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">主治医生：</th>
+					<th class="formTitle">Điều trị chínhBác sĩ:</th>
 					<td class="formValue">
 						<input id="zzys" name="zzys" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">主任医生：</th>
+					<th class="formTitle">Chủ nhiệmBác sĩ:</th>
 					<td class="formValue">
 						<input id="zrys" name="zrys" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">入院日期：</th>
+					<th class="formTitle">Ngày nhập viện:</th>
 					<td class="formValue">
 						<input id="ryrq" name="ryrq" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
-					<th class="formTitle">出院日期：</th>
+					<th class="formTitle">Xuất việnNgày:</th>
 					<td class="formValue">
 						<input id="cyrq" name="cyrq" readonly="readonly" type="text" class="form-control form-an vitalsignschange" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">入院诊断：</th>
+					<th class="formTitle">Chẩn đoán nhập viện:</th>
 					<td class="formValue" colspan="6">
 						<textarea id="tableryzd" name="tableryzd" class="form-control activeValue focusInput" style="height:60px;"></textarea>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">出院诊断：</th>
+					<th class="formTitle">Xuất việnChẩn đoán:</th>
 					<td class="formValue" colspan="6">
 						<textarea id="tablecyzd" name="tablecyzd" class="form-control activeValue focusInput" style="height: 60px;"></textarea>
 					</td>
@@ -425,15 +425,15 @@
             postData: getGridPatPar(),
             height: $(window).height() - document.getElementById('gridPatList').offsetTop - 70,
 			colModel: [
-				{ label: '就诊类型', name: 'jzlxmc', width: 80, align: 'center' },
+				{ label: 'Khám bệnhLoại', name: 'jzlxmc', width: 80, align: 'center' },
 				{ label: 'jzlx', name: 'jzlx', width: 100, align: 'center', hidden: true },
-                { label: '姓名', name: 'xm', width: 80, align: 'center' },
-				{ label: '科室', name: 'ksmc', width: 150, align: 'center' },
-				{ label: '日期', name: 'sj', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-				{ label: '结算状态', name: 'jsztmc', width: 100, align: 'center' },
-				{ label: '卡号', name: 'kh', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'center' },
+				{ label: 'Khoa', name: 'ksmc', width: 150, align: 'center' },
+				{ label: 'Ngày', name: 'sj', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+				{ label: 'Quyết toánTrạng thái', name: 'jsztmc', width: 100, align: 'center' },
+				{ label: 'Số thẻ', name: 'kh', width: 100, align: 'center' },
 				{ label: 'jzId', name: 'jzId', width: 100, align: 'center', hidden: true },
-				{ label: '门诊/住院号', name: 'mzzyh', width: 100, align: 'center' },
+				{ label: 'Ngoại trú/Số nhập viện', name: 'mzzyh', width: 100, align: 'center' },
             ],
             pager: "#gridPatPager",
             rowNum: '20',
@@ -456,9 +456,9 @@
 				type: "POST",
 				url: "/MedicalRecord/SelectNodeContent",
 				data: { jzId: jzId },
-				loadingtext: '病历数据加载中，请稍后…',
+				loadingtext: 'Đang tải dữ liệu bệnh án, vui lòng đợi trong giây lát…',
 				success: function (ajaxresp) {
-					//填充所有文本、处方、历史处方、grid列表
+					//填充所有文本、处方、Đơn thuốc lịch sử、grid列表
 					fillMzData(ajaxresp);
 				}
 			});
@@ -471,9 +471,9 @@
 				type: "POST",
 				url: "/PatientList/GetInPatientInfo",
 				data: { zyh: zyh },
-				loadingtext: '病历数据加载中，请稍后…',
+				loadingtext: 'Đang tải dữ liệu bệnh án, vui lòng đợi trong giây lát…',
 				success: function (ajaxresp) {
-					//填充所有文本、处方、历史处方、grid列表
+					//填充所有文本、处方、Đơn thuốc lịch sử、grid列表
 					fillZyData(ajaxresp);
 				}
 			});

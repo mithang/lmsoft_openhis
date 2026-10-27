@@ -1,0 +1,390 @@
+@{
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .form .formTitle {
+        width: 85px;
+    }
+
+
+    thead tr th {
+        background-color: #eee;
+        line-height: 30px;
+        padding-left: 15px;
+    }
+
+    tbody tr td {
+        line-height: 30px;
+        padding-left: 15px;
+    }
+
+    .cellvalue {
+        width: 90%;
+        line-height: 25px;
+    }
+
+    .redBord {
+        border-color: red;
+    }
+</style>
+<div class="panel panel-default" style="margin-bottom:0;">
+    <div class="panel-heading navb-bg">
+        Tra cứu hoàn phí ngoại trú
+    </div>
+    <div style="padding: 2px;padding-right:20px;">
+        <table class="form">
+            <tr>
+                <td class="formTitle">Số hồ sơ bệnh án：</td>
+                <td class="formValue">
+                    <input id="blh" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số hồ sơ bệnh án">
+                </td>
+                <td class="formValue">
+                    <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25px;" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
+                </td>
+                <td class="formTitle">Ngày thao tác：từ</td>
+                <td class="formValue">
+                    <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
+                                onpicked: function () {getAge($(this).val());return true;}})" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
+                </td>
+                <td class="formTitle">đến：</td>
+                <td class="formValue">
+                    <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
+                                onpicked: function () {getAge($(this).val());return true;}})" id="js" value="@DateTime.Now.AddDays(1).ToString("yyy-MM-dd")" />
+                </td>
+                <td class="formTitle"></td>
+                <td class="formValue">
+                    <button id="BtnQuery" class="btn btn btn-primary btn-md dropdown-text">Tra cứu</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<form id="tabGrid" style="margin-top: 10px;">
+    <div class="gridPanel">
+        <table id="gridListTuifei" rel="tabGrid"></table>
+    </div>
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 6 },
+    F6Text = "Hoàn phí"
+})
+<script>
+
+    $(function () {
+        //khi cửa sổ trình duyệt đổi kích thước thì tải lạitảijqGridcủarộng
+        $(window).resize(function () {
+            initLayout("tabGrid");
+        });
+
+        var txt_keyword = document.getElementById('blh');
+        txt_keyword.addEventListener('keydown',
+            function (event) {
+                event = event || window.event;
+                if (event.keyCode === 13) {
+                    if ($(this).val() == null || $(this).val() == undefined || $(this).val() == "") {
+                        $.modalAlert("Vui lòng nhập số hồ sơ bệnh án hợp lệ", 'warning');
+                        return false;
+                    }
+                    btnQuery();
+                }
+            });
+
+        //xóa
+        newtouch_event_f4();
+        gridListTuifei([]); //danh sách hoàn phí
+
+        //tra cứu
+        $("#BtnQuery").click(function () {
+            if ($('#ks').val() && $('#js').val() && ($('#ks').val() > $('#js').val())) {
+                $.modalAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc", 'warning');
+                return;
+            }
+            if ($("#blh").val() === "") {
+                $.modalAlert("Vui lòng nhập số hồ sơ bệnh án", "warning");
+                return;
+            }
+            btnQuery();
+        });
+    });
+
+    var jsnm; //lấy mã nội bộ quyết toán nhận được từ cửa sổ bật lên
+
+    //tra cứu nhân viên
+    function GetPatSerarchView(blh) {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Tra cứu bệnh nhân",
+            //url: "/OutpatientManage/OutpatientRefund/SysPatEntitiesReView?t=" + Math.random() + "&blh=" + blh,
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
+                //gọitra cứusố thẻvàsố nhập viện
+                //getPatInfoAjax(result);
+            }
+        });
+    }
+
+    function btnQuery() {
+        var obj = new Object;
+        obj.blh = $.trim($("#blh").val());
+        obj.startTime = $.trim($("#ks").val());
+        obj.endTime = $.trim($("#js").val());
+        GetQueryFphAjax(obj);
+    }
+
+    //tra cứu lịch sử
+    function GetQueryFphAjax(obj) {
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "@Url.Action("btnQuery")",
+            data: obj,
+            dataType: "json",
+            cache: false,
+            alerterror: false,
+            success: function (ajaxresp) {
+                if (ajaxresp.state === 'success') {
+                    localStorage.setItem("jsdata", JSON.stringify(ajaxresp.data));//dữ liệu quyết toán
+                    $('#gridList').jqGrid("clearGridData");
+                    $('#gridListTuifei').jqGrid("clearGridData");
+                    //bật cửa sổ danh sách lịch sử
+                    $.modalOpen({
+                        id: "QueFPList",
+                        title: "Tra cứu hoàn phí ngoại trú",
+                        url: "/OutpatientManage/OutpatientRefund/QueJsList?r=" + Math.random(),
+                        width: "550px",
+                        height: "300px",
+                        callBack: function (iframeId) {
+                            top.frames[iframeId].btn_edit(); //trong sự kiện cửa sổ bật lên
+                            //gọitra cứu hóa đơnquyết toánthông tin
+
+                        }
+                    });
+                } else if (ajaxresp.state === 'error') {
+                    //bật lêntảichọn nhân viêncủacửa sổ giao diện
+                    GetPatSerarchView($("#blh").val());
+                }
+            },
+            errorCallback: function (err) {
+                $.loading(false);
+            },
+            complete: function () {
+                $.loading(false);
+            }
+        });
+    }
+
+    function getDetail(jsnm) {
+        $.najax({
+            type: "POST",
+            url: "@Url.Action("GetGridViewMxByJsnm")",
+            data: { jsnm: jsnm },
+            cache: false,
+            dataType: "json",
+            success: function (ajaxresp) {
+                $('#gridListTuifei').jqGrid("clearGridData");
+                gridListTuifei(ajaxresp.data);
+                jsnm = ajaxresp.data[0].jsnm;
+                var je = Number(0.00);
+                $("#yingtui").html('0.00');
+            },
+            errorCallback: function (err) {
+            },
+            complete: function () {
+                $.loading(false);
+            }
+
+        });
+    }
+
+    //danh sách hoàn phí
+    function gridListTuifei(mydata) {
+        var lastRowId;
+        var $gridList = $("#gridListTuifei");
+        $gridList.dataNewGrid({
+            height: $(window).height() - 210,
+            //autowidth: false,
+            width: $("#tabGrid").width() - 2,
+            caption: "Hoàn phíDanh sách",
+            multiselect: true,
+            editurl: "clientArray",  //sửa dòng không gửi dữ liệu lên máy chủ
+            //onSelectRow_page: function (rowid, status) {
+            //    if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(xác định làkhôngcógiá trị)
+            //        $gridList.saveRow(lastRowId, function (result) {
+            //            // return false;   //xác thực nội dung nhập làkhônghợp lệ，hủy lưutrả vềfalse    //không hợp lệ v.v.sửa chữa
+            //        }); //lưu trước đang sửatrạng tháicủadòng đó    //function checksave
+            //    }
+            //    lastRowId = rowid;
+            //    $gridList.jqGrid('editRow', rowid, true, null, function (result) {
+            //        return false;   //xác thực nội dung nhập làkhônghợp lệ，hủy lưutrả vềfalse    //không hợp lệ v.v.sửa chữa
+            //    }, null, null, function () {
+            //    });
+            //},
+            onSelectRow: function (rowid) {
+                $("#" + $.jgrid.jqID(rowid) + "_RETURNS_SL").focus();
+            },
+            gridComplete: function () {
+                //bật khung sửa trong dòng
+                EnableInlineEditBox();
+            },
+            colModel: [
+                { label: "newid", name: "newid", align: "left", hidden: true },
+                { label: "Khoản thu phí", name: "SFXM", align: "left", hidden: true },
+                { label: 'xmnm', name: 'XMNM', hidden: true },
+                { label: 'zfxz', name: 'ZFXZ', hidden: true },
+                { label: 'nbdl', name: 'NBDL', hidden: true },
+                { label: 'jsnm', name: 'jsnm', hidden: true },
+                { label: 'ghnm', name: 'GHNM', hidden: true },
+                { label: 'CF_MXNM', name: 'CF_MXNM', hidden: true },
+                { label: 'InfoSet', name: 'InfoSet', hidden: true },
+                {
+                    label: 'Số lượng hoàn', name: 'RETURNS_SL', width: 120, align: 'left', editable: true
+                    //,
+                    //editrules: { integer: true }
+                },
+                {
+                    label: "Số lượng", name: "SL", width: 80, align: "left", formatter: function (val) {
+                        return val.length > 0 ? parseInt(val) : 0;
+                    }
+                },
+                { label: "Khoản thu phí", name: "YPMC", width: 150, align: "left" },
+                { label: "Loại", name: "DL", width: 50, align: "left", hidden: true },
+                { label: "Loại", name: "DLMC", width: 100, align: "left" },
+                { label: "Đơn vị", name: "DANWEI", width: 40, align: "left" },
+                { label: "Thời lượng đơn vị", name: "duration", width: 60, align: "left" },
+                {
+                    label: "Đơn giá(đồng)", name: "DJ", width: 60, align: "left", formatter: function (cellvalue) {
+                        return Number(cellvalue).toFixed(4);
+                    }
+                },
+                { label: "Kỹ thuật viên trị liệu", name: "ysmc", width: 180, align: "left" },
+                {
+                    label: "Tổng số tiền(đồng)", name: "JE", width: 60, align: "left", formatter: function (cellvalue) {
+                        return Number(cellvalue).toFixed(2);
+                    }
+                },
+                { label: "Ghi chú", name: "bz", width: 160, align: "left" },
+                {
+                    label: "ghi sổThời gian", name: "jzsj", width: 80, align: "left", formatter: function (cellvalue) {
+                        return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : "";
+                    }
+                }
+            ]
+        }, mydata);
+        if (mydata.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+        }
+    }
+    //bật khung sửa trong dòng
+    function EnableInlineEditBox() {
+        //Gridtảihoàn thành bật sửa trong dòng   1.trướclấynơicódòngId  2.duyệtgọieditRowphương thức
+        var rowIds = $("#gridListTuifei").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+            $("#gridListTuifei").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+
+            });
+        }
+    }
+
+    //hoàn phí
+    function Refund() {
+        var flag = true;
+        var blh = $("#blh").val();
+        if (!blh) {
+            $.modalAlert("Thiếu số hồ sơ bệnh án", 'warning');
+            return;
+        }
+        var tuifei = $("#gridListTuifei").jqGrid('getGridParam', 'data');
+        if (!tuifei || tuifei.length === 0) {
+            $.modalAlert("Thiếu khoản mục hoàn phí", 'warning');
+            return;
+        }
+        var selrowid = $("#gridListTuifei").jqGrid("getGridParam", "selarrrow");
+        if (selrowid.length < 1) {
+            flag = false;
+            $.modalAlert("Chưa chọn khoản mục hoàn phí", 'warning');
+            return;
+        }
+
+        //lấynơicódòngId
+        var rowIds = $("#gridListTuifei").jqGrid('getDataIDs');
+        for (var i = 0; i < rowIds.length; i++) {
+            //duyệt để khung sửa ở trạng thái lưutrạng thái
+            $("#gridListTuifei").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            var rowData = $("#gridListTuifei").jqGrid('getRowData', rowIds[i]);
+            if (!rowData) {
+                break;
+            }
+            if (!(/^(\+|-)?\d+$/.test(rowData.RETURNS_SL))) {
+                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn không phải số，Vui lòng xác nhận。", 'warning');
+                EnableInlineEditBox();
+                return;
+            }
+            if (parseInt(rowData.RETURNS_SL) > parseInt(rowData.SL)) {
+                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn lớn hơn số lượng ghi sổ，Vui lòng xác nhận。", 'warning');
+                EnableInlineEditBox();
+                return;
+            }
+            if (parseInt(rowData.RETURNS_SL) < 1) {
+                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn nhỏ hơn1，Vui lòng xác nhận。", 'warning');
+                EnableInlineEditBox();
+                return;
+            }
+        }
+        var rowid = $("#gridListTuifei").jqGrid("getGridParam", "selarrrow");
+        $.each(tuifei, function (idx, val) {
+            val.RETURNS_SL = 0;
+            $.each(rowid, function (idx2, val2) {
+                if (val2 != undefined && val2 == (idx + 1)) {
+                    val.RETURNS_SL = $('#gridListTuifei').jqGrid('getRowData', val2).RETURNS_SL;
+                }
+            });
+        });
+
+        var refundData = JSON.stringify(tuifei).toString();
+        $.modalConfirm("Bạn có chắc muốnHoàn phíkhông？", function (flag) {
+            if (flag) {
+                $.loading(true, "Đang yêu cầu dữ liệu...");
+                var jsnm = tuifei[0].jsnm;
+                if (jsnm && blh) {
+                    $.najax({
+                        type: "POST",
+                        async: false,
+                        url: "@Url.Action("btnReturn")",
+                        data: { blh: blh, jsnm: jsnm, refundData: refundData },
+                        dataType: "json",
+                        cache: false,
+                        success: function (ajaxresp) {
+                            var msg = "Hoàn phí thành công";
+                            $.modalAlert(msg, ajaxresp.state);
+                            $('#gridListTuifei').jqGrid("clearGridData");
+                        },
+                        errorCallback: function (err) {
+                            $.loading(false);
+                        },
+                        complete: function () {
+                            $.loading(false);
+                        }
+                    });
+                } else {
+                    $.modalAlert("Dữ liệu chưa đầy đủ，Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
+                }
+            }
+        }, false);
+
+    }
+
+    //phím tắt：xóa
+    function newtouch_event_f4() {
+        $('#gridListTuifei').jqGrid("clearGridData");
+    }
+
+    //phím tắt：F6：hoàn phí
+    function newtouch_event_f6() {
+        Refund();
+    }
+</script>

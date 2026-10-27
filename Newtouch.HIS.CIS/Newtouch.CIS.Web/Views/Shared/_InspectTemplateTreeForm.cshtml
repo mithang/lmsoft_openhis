@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 
 <div id="floatInspectTemplateTree" style="display:none;">
     <table class="form">
@@ -7,14 +7,14 @@
             <td class="formValue">
                 <select id="Template" class="form-control">
                     <option>
-                        全部
+                        Tất cả
                     </option>
                 </select>
             </td>
         </tr>
         <tr>
             <td class="formValue">
-                <input id="ztKeyword" type="text" class="form-control" placeholder="组套名称/简拼" />
+                <input id="ztKeyword" type="text" class="form-control" placeholder="Tên bộ mẫu/Viết tắt" />
             </td>
         </tr>
     </table>
@@ -106,7 +106,7 @@
         }//如果开始没有项目直接赋值
         else {
                 if (parentid != lsid) {
-                    $.modalAlert("同一申请单不可开立多个项目大类", "warning");
+                    $.modalAlert("Cùng một phiếu không thể kê nhiều mục loại lớn", "warning");
                     return;
                 }
         }
@@ -157,7 +157,7 @@
                             });
                         }
                         if (pdnr == "xtnr") {
-                            $.modalAlert("项目明细有相同内容", "warning");
+                            $.modalAlert("Mục chi tiết có nội dung giống nhau", "warning");
                             return;
                         }
                         var zje = 0;

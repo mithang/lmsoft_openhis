@@ -1,0 +1,553 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Quản lý hẹn đăng ký khám";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    //bật tổ hợp khoản trị liệu
+    var zlxmzhconf = SysConfigReader.String("EnableZlxmGroup");
+}
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#BookTab" data-toggle="tab">Danh sách hẹn</a></li>
+    <li><a href="#onlineBook" data-toggle="tab">Hẹn trực tuyến</a></li>
+</ul>
+<div class="tab-content" style="margin-top:1%">
+    <div class="tab-pane fade in active" id="BookTab">
+        <form name="form1">
+            <div class="panel panel-default">
+                <table class="form">
+                    <tr>
+
+                        <th class="formTitle"> Từ khóa</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="keyValue" name="KeyValue" placeholder="Họ tên hoặc số giấy tờ" />
+                        </td>
+                        <th class="formTitle">Trạng thái hẹn</th>
+                        <td class="formValue">
+                            <select id="sel_yyzt" class="form-control required" data-EnumType="EnumMzyyzt">
+                                <option value="">Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <th class="formTitle">Nguồn hẹn</th>
+                        <td class="formValue">
+                            <select id="sel_yyly" class="form-control required" data-EnumType="EnumMzghly">
+                                <option value="">Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <th class="formTitle">Ngày hẹn：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="txtyykssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <span style="margin-left:2%;float:left;">—</span>
+                            <input id="txtyyjssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+
+                        <td class="formValue"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">
+                            <span class="required">*</span>Khoa：
+                        </th>
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="txtkschoose" />
+                        </td>
+                        <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú：</th>
+                        <td class="formValue formDdlSelectorTd">
+                            <select id="sel_mzlx" class="form-control required" data-EnumType="EnumOutPatientType">
+                                <option value="">Vui lòng chọn</option>
+                            </select>
+
+                        </td>
+                        <td class="formValue" colspan="2">
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
+                            <input type="button" id="btn_CancalYy" class="btn btn-primary btn-md" style="margin-left:10px;" value="Hủy hẹn" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="gridPanel">
+                <table id="patGridList"></table>
+                <div id="gridPager"></div>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="onlineBook">
+            <div class="panel panel-default">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Số bệnh án/Họ tên：</th>
+                        <td class="formValue">
+                            <input type="hidden" id="patid" />
+                            <input type="text" class="form-control" id="blh" placeholder="Ít nhất1ký tự" />
+                        </td>
+                        <th class="formTitle">
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
+                        </th>
+                        <th class="formTitle">Họ tên：</th>
+                        <td class="formValue" style="width:80px;">
+                            <label id="xm"></label>
+                        </td>
+                        <th class="formTitle">Giới tính：</th>
+                        <td class="formValue">
+                            <label id="xb"></label>
+                        </td>
+                        <th class="formTitle">Tuổi：</th>
+                        <td class="formValue">
+                            <label id="nlshow"></label>
+                        </td>
+                        <td class="formTitle">Số thẻ：</td>
+                        <td class="formValue">
+                            <label id="CardTypeName"></label>
+                            <label id="kh"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">
+                            <label id="zjlx">Số giấy tờ：</label>
+                        </td>
+                        <td class="formValue">
+                            <label id="zjh"></label>
+                            <input type="text" style="display:none;" id="hiddenzjlx" />
+                        </td>
+                        <th class="formTitle">Khám lần đầu/tái khám：</th>
+                        <td class="formValue">
+                            <label id="txtcfz"></label>
+                        </td>
+                        <td class="formTitle"></td>
+                        <td class="formValue"></td>
+                        <td class="formTitle"></td>
+                        <td class="formValue"></td>
+                        <td class="formTitle"></td>
+                        <td class="formValue"></td>
+                    </tr>
+                </table>
+                <div class="panel-heading navb-bg">
+                    Lọc lịch trực
+                </div>
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Thời gian ：</th>
+                        <td class="formValue">
+                            <input type="text" id="czrq" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' });xzsj()" />
+                        </td>
+                        <th class="formTitle">Loại khám ngoại trú：</th>
+                        <td class="formValue">
+                            <select id="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
+                                <option value="">Vui lòng chọn</option>
+                            </select>
+                        </td>
+                        <th class="formTitle">Khoa：</th>
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="txtyykschoose" />
+                        </td>
+
+                        <th class="formTitle">Bác sĩ trực：</th>
+                        <td class="formValue"><input type="text" id="doctormc2" name="doctormc2" class="form-control form-an" /></td>
+                        <td class="formValue" colspan="2">
+                            <input type="button" id="btn_searchrl" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
+                            <input type="button" id="btn_yy" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Hẹn" />
+                        </td>
+                        <th class="formTitle"></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="gridPanel">
+                <table id="patGridList2"></table>
+                @*<div id="gridPager2"></div>*@
+            </div>
+    </div>
+
+</div>
+
+
+<script>
+    $(function () {
+        $(window).resize(function () {
+            initLayout("MyTabGrid");
+        });
+
+        InitBindSel();
+        gridList();
+
+    });
+    function InitBindSel()
+    {
+        //khoa
+        $("#txtkschoose").newtouchBatchFloatingSelector({
+            height: 200,
+            width: 300,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                var resultObjArr = new Array();
+                $.each(top.window.clients.sysDepartList, function (idx, val) {
+                    if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
+                        || (val.Name && val.Name.indexOf(keyword) >= 0)
+                        || keyword.trim() == "") {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Khoa",
+            colModel: [
+                { label: 'Mã số', name: 'Code', widthratio: 30 },
+                { label: 'Tên', name: 'Name', widthratio: 50 },
+                { label: 'Phiên âm', name: 'py', hidden: true }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#txtkschoose").attr("data-label", $thistr.find("td:eq(0)").html());
+                $("#txtkschoose").val($thistr.find('td:eq(1)').html());
+                $("#btn_search").trigger("click");
+                return;
+            },
+        });
+        //khoa
+        $("#txtyykschoose").newtouchBatchFloatingSelector({
+            height: 200,
+            width: 300,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                var resultObjArr = new Array();
+                $.each(top.window.clients.sysDepartList, function (idx, val) {
+                    if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
+                        || (val.Name && val.Name.indexOf(keyword) >= 0)
+                        || keyword.trim() == "") {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Khoa",
+            colModel: [
+                { label: 'Mã số', name: 'Code', widthratio: 30 },
+                { label: 'Tên', name: 'Name', widthratio: 50 },
+                { label: 'Phiên âm', name: 'py', hidden: true }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#txtyykschoose").attr("data-label", $thistr.find("td:eq(0)").html());
+                $("#txtyykschoose").val($thistr.find('td:eq(1)').html());
+                $("#btn_searchrl").trigger("click");
+                return;
+            },
+        });
+        ///bác sĩ
+        $("#doctormc2").newtouchFloatingSelector({
+            height: 200,
+            width: 480,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                var resultObjArr = new Array();
+
+                $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
+                    if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
+                        || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
+                        || keyword.trim() == "")
+                        && val.DutyCode == "Doctor") {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Bác sĩ",
+            colModel: [
+                {
+                    label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
+                },
+                {
+                    label: 'Tên', name: 'StaffName', widthratio: 25
+                },
+                { label: 'Phiên âm', name: 'StaffPY', widthratio: 25 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#doctormc2").attr("data-label", $thistr.find("td:eq(0)").html());
+                $("#doctormc2").val($thistr.find('td:eq(1)').html());
+                $("#btn_searchrl").trigger("click");
+                return;
+            }
+        });
+    }
+
+    function gridList()
+    {
+        var $gridList = $("#patGridList");
+        $gridList.dataGrid({
+            width:"100%",
+            height: $(window).height() - 225,
+            url: "/OutPatientManage/OutpatientReg/GetIsMzghBook",
+            postData: getSearchPostData(),
+            autowidth: true,
+            caption: 'Danh sách hẹn',
+            colModel: [
+                { label: 'ghpbId', name: 'ScheduId', hidden: true, },
+                {
+                    label: 'Ngày hẹn', name: 'OutDate', width: 60, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+                {
+                    label: 'Giới tính', name: 'xb', width: 30, align: 'left', formatter: function (val) {
+                        return val == "1" ? "Nam" : "Nữ";
+                    }
+                },
+                { label: 'Số thứ tự khám', name: 'QueueNo', width: 50, align: 'left' },
+                { label: 'Số giấy tờ', name: 'zjh', width: 100, align: 'left' },
+                { label: 'ysgh', name: 'ysgh', width: 120, align: 'left', hidden: true },
+                { label: 'Bác sĩ hẹn', name: 'ysxm', width: 55, align: 'left', },
+                { label: 'BookId', name: 'BookId', hidden: true },
+                { label: 'zlxm', name: 'zlxm', width: 100, align: 'left', hidden: true },
+                { label: 'ghlx', name: 'ghlx', width: 120, align: 'left', hidden: true },
+                {
+                    label: 'Loại khám ngoại trú', name: 'Regtype', width: 60, align: 'left', formatter: function (val) {
+                        return $.enum.getDescByValue("EnumOutPatientType", val);
+                    }
+                },
+                { label: 'Title', name: 'Title', width: 120, align: 'left', hidden: true },
+                {
+                    label: 'Nguồn hẹn', name: 'AppId', width: 60, align: 'left', formatter: function (val) {
+                        return $.enum.getDescByName("EnumMzghly", val);
+                    }
+                },
+                {
+                    label: 'Trạng thái hẹn', name: 'yyzt', width: 60, align: 'left', formatter: function (val) {
+                        return $.enum.getDescByValue("EnumMzyyzt", val);
+                    }
+                },
+                { label: 'ks', name: 'ks', hidden: true, width: 120, align: 'left', hidden: true },
+                { label: 'Khoa đăng ký khám', name: 'ksmc', width: 80, align: 'left' },
+                { label: 'Khoản mục đăng ký khám', name: 'sfxmmc', width: 120, align: 'left' },
+                { label: 'Khoản mục chẩn trị', name: 'zlxmmc', width: 120, align: 'left' },
+                { label: 'Khoảng thời gian', name: 'PeriodDesc', width: 80, align: 'left' },
+                { label: 'Chi phí', name: 'RegFee', width: 40, align: 'left' }
+            ],
+            pager: "#gridPager",
+            sortname: 'OutDate desc,ksmc,QueueNo',
+            multiselect: false,
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+            }).trigger('reloadGrid');
+        });
+        $("#sel_yyzt,#sel_yyly, #keyValue, #sel_mzlx").change(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+            }).trigger('reloadGrid');
+        });
+
+        var $gridList2 = $("#patGridList2");
+        $gridList2.dataGrid({
+            autowidth: false,
+            height: $(window).height() - 225,
+            url: "/OutpatientManage/OutpatientReg/GetNewRegSchedulebyGroupList",
+            postData: getyySearchPostData(),
+            caption: 'Danh sách lịch trực',
+            colModel: [
+                { label: 'Mô tả lịch trực', name: 'Title', width: 120 },
+                {
+                    label: 'Ngày khám bệnh', name: 'OutDate', width: 100, formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                },
+                {
+                    label: 'Loại khám ngoại trú', name: 'RegType', width: 80, formatter: function (val) {
+                        return $.enum.getDescByValue("EnumOutPatientType", val);
+                    }
+                },
+                { label: 'Khoa đăng ký khám', name: 'ksmc', width: 105 },
+                { label: 'Khoản mục đăng ký khám', name: 'sfxmmc', width: 120 },
+                { label: 'Tổ hợp khoản mục chẩn trị', name: 'zlxmmc', width: 120 },
+                { label: 'Bác sĩ', name: 'rymc', width: 70 },
+                
+                { label: 'Chi phí', name: 'RegFee', width: 60 },
+                { label: 'Nguồn số khám', name: 'TotalNum', width: 50 },
+                {
+                    label: 'Nguồn số khám còn lại', name: 'YYNum', width: 50, formatter: function (cellvalue, options, rowobject) {
+                        return (rowobject.TotalNum - rowobject.YYNum)
+                    }
+                },
+                {
+                    label: 'Mở hẹn', name: 'IsBook', width: 60, formatter: function (val) {
+                        return $.enum.getDescByValue("EnumMzpbBook", val);
+                    }
+                },
+                { label: 'Khoảng thời gian', name: 'PeriodDesc', width: 120 },
+                { label: 'RegType', name: 'RegType', hidden: true },
+                { label: 'ks', name: 'ks', hidden: true },
+                { label: 'gh', name: 'gh', hidden: true },
+                { label: 'ghlx', name: 'ghlx', hidden: true },
+                { label: 'zlxm', name: 'zlxm', hidden: true },
+                { label: 'ghpbId', name: 'ghpbId', hidden: true },
+            ],
+            //pager: "#gridPager2",
+            //sortname: 'RegType desc,ksmc',
+            viewrecords: true,
+        });
+        $("#btn_searchrl").click(function () {
+            $gridList2.jqGrid('setGridParam', {
+                postData: getyySearchPostData(),
+            }).trigger('reloadGrid');
+        });
+        $("#btn_searchrl, #mjzbz").change(function () {
+            $gridList2.jqGrid('setGridParam', {
+                postData: getyySearchPostData(),
+            }).trigger('reloadGrid');
+        });
+    }
+    function getSearchPostData()
+    {
+        return {
+            yykssj: $("#txtyykssj").val(), yyjssj: $("#txtyyjssj").val(), yyzt: $("#sel_yyzt").val(), ghly: $("#sel_yyly").val(),
+            keyValue: $("#keyValue").val(), isfeegroup: '@zlxmzhconf', mzlx: $("#sel_mzlx").val(), ks: $("#txtkschoose").val()//attr("data-label")
+        };
+    }
+    function getyySearchPostData()
+    {
+        return {
+            pbks: $("#txtyykschoose").val(), mzlx: $("#mjzbz").val(), ys: $("#doctormc2").val(),
+            OutDate: $("#czrq").val()
+        };
+    }
+
+
+    //bật tra cứu bệnh nhân
+    function GetPatSerarchView(blh) {
+        $.modalOpen({
+            id: "patSearch",
+            title: "Tra cứu bệnh nhân",
+            url: "/OutpatientManage/OutpatientAccounting/SysPatEntitiesblhView?t=" + Math.random() + "&blh=" + blh,
+            width: "700px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
+            }
+        });
+    }
+    var patModel = null;
+    function GetQueryFphAjax(obj, funcSuccCallback) {
+        newtouch_event_f4();
+        $.najax({
+            url: "/PatientManage/HospiterRes/GetOutpatientBasicInfo",
+            data: obj,
+            dataType: "json",
+            async: false,
+            success: function (rep) {
+                if (rep.data && !!!rep.data.brxz) {
+                    $.modalAlert("Thông tin bệnh nhân bất thường，Thiếu tính chất chi phí", 'warning');
+                    return false;
+                }
+                if (rep.data && !!!rep.data.CardTypeName) {
+                    $.modalAlert("Loại thẻ bệnh nhân bất thường", 'warning');
+                    return false;
+                }
+                patModel = rep.data;
+                $("#xb").html($.getGender(patModel.xb));
+                $("#zjh").html(patModel.zjh);
+                $("#xm").html(patModel.xm);
+                $("#blh").val(patModel.blh);
+                $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T', ' ') }).text);
+                $("#kh").html(patModel.kh);
+                $("#patid").val(patModel.patid);
+                $("#CardTypeName").html('（' + patModel.CardTypeName + '）');
+                if (patModel.fzbz === 0) {
+                    $("#txtcfz").html("Khám lần đầu");
+                }
+                else {
+                    $("#txtcfz").html("Tái khám");
+                }
+            }
+        });
+    }
+    //hẹn
+    $("#btn_yy").click(function () {
+        if (!patModel) {
+            $.modalAlert("Chưa chọn bệnh nhân", "warning");
+            return;
+        }
+        var seleRow = check();
+        if (!!!seleRow) {
+            return;
+        }
+        $.najax({
+            url: "/OutpatientManage/OutBook/PatBookGh",
+            dataType: "json",
+            loadingtext: "Đang hẹn，Vui lòng chờ…",
+            data: { OutDate: seleRow.OutDate, cardNo: patModel.kh, ScheduId: seleRow.ghpbId, brxz: patModel.brxz },
+            type: "POST",
+            success: function (ajaxresp) {
+                $.modalAlert("Hẹn thành công", "success");
+                $("#btn_searchrl").trigger("click");
+            }
+        });
+       
+    });
+    function check()
+    {
+        var seleRow = $("#patGridList2").jqGridRowValue();
+        if (!!!seleRow.ghpbId)
+        {
+            $.modalAlert("Chưa chọn bản ghi nào", "warning");
+            return;
+        }
+        if (seleRow.TotalNum==='0') {
+            $.modalAlert("Lịch trực này hết nguồn số khám", "warning");
+            return;
+        }
+        if (seleRow.YYNum === '0') {
+            $.modalAlert("Lịch trực này hết nguồn số khám", "warning");
+            return;
+        }
+        if (seleRow.IsBook === 'Không') {
+            $.modalAlert("Lịch trực này chưa mở hẹn", "warning");
+            return;
+        }
+        if (seleRow.OutDate < $.getDate()) {
+            $.modalAlert("Chỉ được hẹn ngày sau ngày hiện tại", "warning");
+            return;
+        }
+        return seleRow;
+    }
+
+
+    //hủy hẹn
+    $("#btn_CancalYy").click(function () {
+        var seleRow = $("#patGridList").jqGridRowValue();
+        if (!!!seleRow.BookId) {
+            $.modalAlert("Chưa chọn bản ghi nào", "warning");
+            return;
+        }
+        if (seleRow.AppId!="His")
+        {
+            $.modalAlert("Không phảiHISHẹn qua kênh khác vui lòng hủy tại nền tảng hẹn bên thứ ba", "warning");
+            return;
+        }
+        $.najax({
+            url: "/OutpatientManage/OutBook/CancalBook",
+            dataType: "json",
+            loadingtext: "Đang hẹn，Vui lòng chờ…",
+            data: { BookId: seleRow.BookId },
+            type: "POST",
+            success: function (ajaxresp) {
+                $.modalAlert("Hủy hẹn thành công", "success");
+                $("#btn_search").trigger("click");
+            }
+        });
+     
+    });
+
+    function newtouch_event_f4() {
+        patModel = null;
+        $("#patid").val("");
+        $("#blh").val("");
+        $("#xm").html("");
+        $("#xb").html("");
+        $("#nlshow").html("");
+        $("#CardTypeName").html('');
+        $("#kh").html("");
+        $("#zjh").html("");
+        $("#txtcfz").html("");
+    }
+
+</script>

@@ -1,92 +1,89 @@
-﻿using System;
-using System.Net.Http;
-using System.Web.Http;
-using Autofac;
-using Newtouch.HIS.API.Common;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
-using Newtouch.HIS.Web.Core.Attributes;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset;
 using Newtouch.PDS.Requset.Stock;
 
 namespace Newtouch.PDS.API.Controllers
 {
-    [RoutePrefix("api/Stock")]
-    public class StockController : ApiControllerBase<StockController>
+    /// <summary>
+    /// Port của api/Stock (tra cứu tồn kho, xếp thuốc, hủy xếp thuốc...).
+    /// SỬA BUG GỐC: _drugStorageApp ở bản Framework được khai báo nhưng không bao giờ
+    /// được gán (ctor chỉ nhận IComponentContext) — mọi action gốc đều sẽ NullReference.
+    /// Bản Core inject IDrugStorageApp qua DI nên các action chạy thật.
+    /// GHI CHÚ: các action gốc mang [HandlerAuthorizeIgnore] — đó là attribute của MVC
+    /// (Web.Core), không có tác dụng trong pipeline Web API; CommonExecute vẫn chạy
+    /// Authorize như thường. Không action nào mang [DefaultAuthorize] nên request không
+    /// token vẫn qua khi có Timestamp, đúng hành vi gốc.
+    /// GHI CHÚ 2: các action PrepareMedicine... gán resp.msg (không phải data) như gốc —
+    /// ResponseBase của bản port có trường msg chính vì vậy.
+    /// </summary>
+    [ApiController]
+    [Route("api/Stock")]
+    public class StockController : ApiControllerBase
     {
         private readonly IDrugStorageApp _drugStorageApp;
 
-        public StockController(IComponentContext com) : base(com)
+        public StockController(TokenStore tokenStore, IDrugStorageApp drugStorageApp)
+            : base(tokenStore)
         {
+            _drugStorageApp = drugStorageApp;
         }
 
-        /// <summary>
-        /// 库存查询
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("query")]
-        [HandlerAuthorizeIgnore]
-        public HttpResponseMessage query(StockQueryRequestDTO par)
+        [HttpPost("query")]
+        public IActionResult Query([FromBody] StockQueryRequestDTO par)
         {
-            Action<StockQueryRequestDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<StockQueryRequestDTO, DefaultResponse>((req, resp) =>
             {
                 resp.data = _drugStorageApp.StockQuery(req.yplist, req.OrganizeId);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
-        [HttpPost]
-        [Route("PrepareMedicine")]
-        [HandlerAuthorizeIgnore]
-        public HttpResponseMessage PrepareMedicine(PrepareMedicineDTO par)
+
+        [HttpPost("PrepareMedicine")]
+        public IActionResult PrepareMedicine([FromBody] PrepareMedicineDTO par)
         {
-            Action<PrepareMedicineDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<PrepareMedicineDTO, DefaultResponse>((req, resp) =>
             {
-                resp.msg = _drugStorageApp.PrepareMedicine(req.yplist, req.OrganizeId,req.yhgh);
+                resp.msg = _drugStorageApp.PrepareMedicine(req.yplist, req.OrganizeId, req.yhgh);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
-        [HttpPost]
-        [Route("WithdrawalPreparation")]
-        [HandlerAuthorizeIgnore]
-        public HttpResponseMessage WithdrawalPreparation(WithdrawalPrepareDTO par)
+
+        [HttpPost("WithdrawalPreparation")]
+        public IActionResult WithdrawalPreparation([FromBody] WithdrawalPrepareDTO par)
         {
-            Action<WithdrawalPrepareDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<WithdrawalPrepareDTO, DefaultResponse>((req, resp) =>
             {
-                resp.msg = _drugStorageApp.WithdrawalPreparation(req.Djh, req.OrganizeId, req.yhgh,par.shzt);
+                resp.msg = _drugStorageApp.WithdrawalPreparation(req.Djh, req.OrganizeId, req.yhgh, par.shzt);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
-        
-        [HttpPost]
-        [Route("PrepareMedicineReturn")]
-        [HandlerAuthorizeIgnore]
-        public HttpResponseMessage PrepareMedicineReturn(PrepareMedicineReturnDTO par)
+
+        [HttpPost("PrepareMedicineReturn")]
+        public IActionResult PrepareMedicineReturn([FromBody] PrepareMedicineReturnDTO par)
         {
-            Action<PrepareMedicineReturnDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<PrepareMedicineReturnDTO, DefaultResponse>((req, resp) =>
             {
                 resp.msg = _drugStorageApp.PrepareMedicineReturn(req.yplist, req.OrganizeId, req.yhgh);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
 
-
-        [HttpPost]
-        [Route("WithdrawalPreparationReturn")]
-        [HandlerAuthorizeIgnore]
-        public HttpResponseMessage WithdrawalPreparationReturn(WithdrawalPrepareDTO par)
+        [HttpPost("WithdrawalPreparationReturn")]
+        public IActionResult WithdrawalPreparationReturn([FromBody] WithdrawalPrepareDTO par)
         {
-            Action<WithdrawalPrepareDTO, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<WithdrawalPrepareDTO, DefaultResponse>((req, resp) =>
             {
                 resp.msg = _drugStorageApp.WithdrawalPreparationReturn(req.Djh, req.OrganizeId, req.yhgh, par.shzt);
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
-
     }
 }

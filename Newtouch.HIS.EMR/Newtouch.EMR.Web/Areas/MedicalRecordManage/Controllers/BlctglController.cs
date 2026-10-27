@@ -1,16 +1,19 @@
-﻿using Newtouch.EMR.Domain.Entity;
+using Newtouch.EMR.Domain.Entity;
 
-using System.Web.Mvc;
-using Newtouch.Tools;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Base.Domain;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Framework.Web.Controllers;
 using System.Collections.Generic;
-using Newtouch.Common;
+
 using Newtouch.EMR.Domain.IRepository;
 using System.Linq;
 using System;
-using FrameworkBase.MultiOrg.Domain.IRepository;
+
 using Newtouch.EMR.Domain.IDomainServices;
-using Newtouch.Core.Common;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
@@ -19,6 +22,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
     /// 日 期：2018-09-07 15:46
     /// 描 述：词条管理
     /// </summary>
+    [Area("MedicalRecordManage")]
     public class BlctglController : OrgControllerBase
     {
         private readonly IBlctglRepo _blctglRepo;
@@ -30,23 +34,23 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// 默认构造函数
         /// </summary>
         /// <param name="blctglRepo"></param>
-        public BlctglController(IBlctglRepo blctglRepo)
+        public BlctglController(IBlctglRepo blctglRepo, ICommonDmnService commonDmnService)
         {
             this._blctglRepo = blctglRepo;
+            this._CommonDmnService = commonDmnService;
         }
 
-
-        public ActionResult CTGLList()
+        public IActionResult CTGLList()
         {
             return View();
         }
 
-		public ActionResult YXFHlist()
+		public IActionResult YXFHlist()
 		{
 			return View();
 		}
 
-        public ActionResult GetTreeList(int qx)
+        public IActionResult GetTreeList(int qx)
         {
 
             var treeList = new List<TreeViewModel>();
@@ -94,7 +98,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var entity = _blctglRepo.FindEntity(keyValue);
             string mlmc = "";
@@ -115,7 +119,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="entity">实体对象</param>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult SubmitForm(BlctglEntity entity, string keyValue)
+        public IActionResult SubmitForm(BlctglEntity entity, string keyValue)
         {
             
             if (!string.IsNullOrEmpty(entity.ID))
@@ -124,15 +128,15 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             else
             {
-                if (Request["type"].ToString() == "mulu")
+                if (Request.ReqVal("type").ToString() == "mulu")
                 {
                     entity.parentId = "0";
-                    entity.qx = Convert.ToInt32(Request["mlqx"]);
-                    entity.mc = Request["mlmc"].ToString().Trim(trimstr);
+                    entity.qx = Convert.ToInt32(Request.ReqVal("mlqx"));
+                    entity.mc = Request.ReqVal("mlmc").ToString().Trim(trimstr);
                 }
                 else
                 {
-                    string PartCTID = Request["parentId"].ToString();
+                    string PartCTID = Request.ReqVal("parentId").ToString();
                     entity.parentId = PartCTID;
                 }
                 entity.CreatorCode = this.UserIdentity.UserCode;
@@ -150,7 +154,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
 
             _blctglRepo.SubmitForm(entity, entity.ID);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
         /// <summary>
@@ -159,17 +163,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
 
-        public ActionResult DeleteForm(string delCTID)
+        public IActionResult DeleteForm(string delCTID)
         {
             _blctglRepo.DeleteForm(delCTID);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
-        public ActionResult ShowTab()
+        public IActionResult ShowTab()
         {
             return View();
         }
-        public ActionResult DiagList()
+        public IActionResult DiagList()
         {
             return View();
         }
@@ -177,7 +181,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// 诊断列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult ShowDiagList()
+        public IActionResult ShowDiagList()
         {
             return View();
         }
@@ -187,7 +191,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         ///// </summary>
         ///// <param name="keyword"></param>
         ///// <returns></returns>
-        //public ActionResult GetDiagnosisList(string keyword, string zdlx, string ybnhlx)
+        //public IActionResult GetDiagnosisList(string keyword, string zdlx, string ybnhlx)
         //{
         //    var list = _CommonDmnService.GetList(this.OrganizeId);
         //    var data = new List<object>();
@@ -204,7 +208,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         //    //return Json(list, JsonRequestBehavior.AllowGet);
         //}
 
-        public ActionResult GetDiagnosisGrid(Pagination pagination,string keyword,int? zdlx)
+        public IActionResult GetDiagnosisGrid(Pagination pagination,string keyword,int? zdlx)
         {
             var data = new
             {
@@ -216,8 +220,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
 
-
-		public ActionResult Getyxfhlist(int ls)
+		public IActionResult Getyxfhlist(int ls)
 		{
 			var data = _blctglRepo.Getyxfhlist(ls);
 			return Content(data.ToJson());

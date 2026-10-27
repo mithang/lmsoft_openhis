@@ -1,44 +1,36 @@
-﻿using Newtouch.HIS.Domain.IRepository;
 using System.Collections.Generic;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>
-    /// 药品
-    /// </summary>
-    public class MedicineController : ApiController
+    /// <summary>药品 (scaffold gốc — giữ nguyên hành vi value1/value2).</summary>
+    [Route("api/Medicine")]
+    [ApiController]
+    public class MedicineController : ControllerBase
     {
-        private readonly ISysMedicineRepo _sysMedicineRepo;
-
-        public MedicineController(ISysMedicineRepo sysMedicineRepo)
-        {
-            this._sysMedicineRepo = sysMedicineRepo;
-        }
-
-        // GET: api/Medicine
+        [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Medicine/5
+        [HttpGet("{id:int}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Medicine
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/Medicine/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("{id:int}")]
+        public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE: api/Medicine/5
+        [HttpDelete("{id:int}")]
         public void Delete(int id)
         {
         }

@@ -1,6 +1,5 @@
-﻿@using Newtouch.Infrastructure;
-@using Newtouch.Common.Operator;
-@using System.IdentityModel.Metadata
+@using Newtouch.Infrastructure;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
 	/**/
 
@@ -18,26 +17,26 @@
     <div class="topPanel" style="width: 99%; margin-top: 15px; border-radius: 5px; height:75px">
         <table class="form">
             <tr>
-                <th class="formTitle">就诊类型：</th>
+                <th class="formTitle">Khám bệnhLoại:</th>
                 <td class="formValue" style="width:10%;">
                     <select id="mjzbz" name="mjzbz" class="form-control formClearIgnore" data-EnumType="EnumOutPatientType">
                     </select>
                 </td>
                 <td class="formValue" style="width:18%;">
                     <div class="panelposition">
-                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" onclick="refleshPatientList()" checked value=@Html.Raw(((int)EnumJzzt.NotYetTreate).ToString()) />待就诊</label>
-                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" onclick="refleshPatientList()" value=@Html.Raw(((int)EnumJzzt.Treating).ToString()) />就诊中</label>
-                        <label><input type="radio" id="radioTreated" name="optionsRadios" class="optionsRadios formClearIgnore" onclick="refleshPatientList()" value=@Html.Raw(((int)EnumJzzt.Treated).ToString()) />已就诊</label>
+                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" onclick="refleshPatientList()" checked value=@Html.Raw(((int)EnumJzzt.NotYetTreate).ToString()) />Chờ khám bệnh</label>
+                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" onclick="refleshPatientList()" value=@Html.Raw(((int)EnumJzzt.Treating).ToString()) />Đang khám bệnh</label>
+                        <label><input type="radio" id="radioTreated" name="optionsRadios" class="optionsRadios formClearIgnore" onclick="refleshPatientList()" value=@Html.Raw(((int)EnumJzzt.Treated).ToString()) />Đã khám bệnh</label>
                     </div>
                 </td>
-                <th class="formTitle">看诊日期：</th>
+                <th class="formTitle">Ngày khám:</th>
                 <td class="formValue" style="width:13%;">
                     <input id="kzrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshPatientList(); } })" />
                 </td>
                 <td class="formValue" style="width:18%;">
                     <div class="row">
                         <div class="col-md-10">
-                            <input id="txt_keyword" type="text" class="form-control formClearIgnore" placeholder="请输入门诊号、病历号、姓名">
+                            <input id="txt_keyword" type="text" class="form-control formClearIgnore" placeholder="Vui lòng nhậpSố khám ngoại trú,Số bệnh án,Họ tên">
                         </div>
                         <div class="col-md-2" style="line-height:26px;">
                             <button id="btn_search" type="button" class="btn btn-info"><i class="fa fa-search"></i></button>
@@ -45,8 +44,8 @@
                     </div>
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_startTreat" class="panelposition btn btn-default btn-md" onclick="startTreat()" value="开始诊疗">
-                    <input type="button" id="btn_resumeTreat" class="panelposition btn btn-default btn-md" onclick="resumeTreat()" value="恢复诊疗" style="margin-left:6%;">
+                    <input type="button" id="btn_startTreat" class="panelposition btn btn-default btn-md" onclick="startTreat()" value="Bắt đầuKhám chữa bệnh">
+                    <input type="button" id="btn_resumeTreat" class="panelposition btn btn-default btn-md" onclick="resumeTreat()" value="Tiếp tục điều trị" style="margin-left:6%;">
                 </td>
                 @*<td class="formValue" style="width: 70px;">
                         <input id="syncPdsbc" type="text" class="form-control" value="2021-6-18" />
@@ -110,20 +109,20 @@
             url: GetSearchUrl(),
             postData: getSearchPostData(),
             height: $(window).height() - 230,
-            caption: "挂号信息",
+            caption: "Đăng ký khámThông tin",
             colModel: [
                 { label: 'jzId', name: 'jzId', width: 80, align: 'left', hidden: true },
-                { label: '门诊号', name: 'mzh', width: 100, align: 'left' },
-                { label: '序号', name: 'queno', width: 30, align: 'left' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+                { label: 'Số thứ tự', name: 'queno', width: 30, align: 'left' },
                 {
-                    label: '就诊类别', name: 'mjzbz', width: 70, align: 'left',
+                    label: 'Khám bệnhLoại', name: 'mjzbz', width: 70, align: 'left',
                     formatter: function (celvalue) {
                         return $.enum.getDescByValue("EnumOutPatientType", celvalue);
                     }
                 },
-                { label: '病历号', name: 'blh', width: 80, align: 'left' },
+                { label: 'Số bệnh án', name: 'blh', width: 80, align: 'left' },
                 {
-                    label: '姓名', name: 'xmms', width: 100, align: 'left', formatter: function (val, option, rows) {
+                    label: 'Họ tên', name: 'xmms', width: 100, align: 'left', formatter: function (val, option, rows) {
                         if ('@isShowghlybz' == "ON" && rows.ghlybz) {
                             var desc = $.enum.getDescByValue("EnumMzghly", rows.ghlybz);
                             return rows.xm + "[" + desc + "]";
@@ -133,20 +132,20 @@
                     }
                 },
                 { label: 'xm', name: 'xm', hidden: true},
-                { label: '性别', name: 'xb', width: 50, align: 'left' },
-                { label: '出生年月', name: 'csny', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '费别', name: 'brxzmc', width: 80, align: 'left' },
-                { label: '挂号科室', name: 'ghksmc', width: 80, align: 'left' },
-                { label: '挂号医生', name: 'ghys', width: 80, align: 'left' },
-                { label: '挂号日期', name: 'ghsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '挂号操作时间', name: 'ghczsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '就诊医生', name: 'ghys', width: 80, align: 'left' },
+                { label: 'Giới tính', name: 'xb', width: 50, align: 'left' },
+                { label: 'Ngày sinh', name: 'csny', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Loại phí', name: 'brxzmc', width: 80, align: 'left' },
+                { label: 'Đăng ký khámKhoa', name: 'ghksmc', width: 80, align: 'left' },
+                { label: 'Đăng ký khámBác sĩ', name: 'ghys', width: 80, align: 'left' },
+                { label: 'Đăng ký khámNgày', name: 'ghsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Đăng ký khámThao tácThời gian', name: 'ghczsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Khám bệnhBác sĩ', name: 'ghys', width: 80, align: 'left' },
                 {
-                    label: '操作', name: 'action', width: 150, align: 'center', formatter: function (val, option, rows) {
+                    label: 'Thao tác', name: 'action', width: 150, align: 'center', formatter: function (val, option, rows) {
 
                         if (djz == "1") {
-							return "<input class='btn btn-default btn-md btn_add' type='button' value='叫号' onclick='jiaohao(" + rows.mzh + ",$(this).parent().parent().attr(\"id\"))'/>"+"<input class='btn btn-default btn-md btn_del' type='button' value='过号' onclick='guohao(" + rows.mzh + ")'/>";
-                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + rows.mzh + ',' + $(this).parent().parent().attr("\'id\'") + ')" value="叫号" /> <input type="button" class="btn btn-default"  onclick="guohao(' + rows.mzh + ')" value="过号" />';
+							return "<input class='btn btn-default btn-md btn_add' type='button' value='Gọi số' onclick='jiaohao(" + rows.mzh + ",$(this).parent().parent().attr(\"id\"))'/>"+"<input class='btn btn-default btn-md btn_del' type='button' value='Quá số' onclick='guohao(" + rows.mzh + ")'/>";
+                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + rows.mzh + ',' + $(this).parent().parent().attr("\'id\'") + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="guohao(' + rows.mzh + ')" value="过号" />';
                         } else {
                             return '';
                         }
@@ -240,7 +239,7 @@
   //          dataType: "json",
   //          async: false,
   //          success: function (data) {
-  //              $.modalAlert("叫号完成！", 'success');
+  //              $.modalAlert("Gọi số完成！", 'success');
   //              startTreat(rowid);
   //          }
 		//});
@@ -254,7 +253,7 @@
 				if (refdata.falg == null || refdata.falg == undefined) {
 					startTreat(rowid);
 				} else {
-					$.modalAlert("该病人已经被叫号过", 'success');
+					$.modalAlert("Bệnh nhân này đã được gọi số", 'success');
 				}
 			}
 		});
@@ -268,7 +267,7 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalAlert("过号完成！", 'success');
+                $.modalAlert("Quá sốHoàn thành!", 'success');
             }
         });
     }
@@ -299,7 +298,7 @@
             selrowId = $("#gridPatientList").jqGrid("getGridParam", "selrow");
         }
         if (!selrowId) {
-            $.modalAlert("请先选择一个患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước mộtBệnh nhân", 'warning');
             return;
         }
         
@@ -316,7 +315,7 @@
                     //当前登录人是护士
                     $.modalOpen({
                         id: "Form",
-                        title: "生命体征",
+                        title: "Dấu hiệu sinh tồn",
                         url: "/PatientList/Form?mzh=" + selRowData.mzh,
                         width: "550px",
                         height: "470px",
@@ -343,7 +342,7 @@
             });
 
             if (historyLastTreat != null && !!historyLastTreat.jzzt && historyLastTreat.jzzt != '@((int)EnumJzzt.Treated)') {
-                $.modalAlert("不能开始新的就诊<br/>" + "存在尚未结束的就诊" + $.getDate({ date: historyLastTreat.zlkssj }), 'warning');
+                $.modalAlert("Không thể bắt đầu lượt khám mới<br/>" + "Tồn tại lượt khám chưa kết thúc" + $.getDate({ date: historyLastTreat.zlkssj }), 'warning');
                 return;
             }
             //3.
@@ -391,11 +390,11 @@
         }
 
         $.loading(true);
-        window.mrflag = 0;    //认为是第一次加载病历页，这样每次诊断，都会根据病人的jzId查出历史病历
+        window.mrflag = 0;    //认为是第一次加载病历页，这样每次诊断，都会根据病人的jzId查出Lịch sử病历
         selRowData.mjzbz = $('#mjzbz option:selected').val();
         window.currPatientInfo = selRowData;
         $('#tip_yfly').unbind('change'); //去除默认药房change事件
-        //清空 所有文本、处方、历史处方、grid列表
+        //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
         newtouch_globalevent_f4();  //在病例页
 
         //显示患者信息
@@ -435,7 +434,7 @@
     function resumeTreat() {
         var selrowId = $("#gridPatientList").jqGrid("getGridParam", "selrow");
         if (!selrowId) {
-            $.modalAlert("请先选择一个患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước mộtBệnh nhân", 'warning');
             return;
         }
         var selRowData = $("#gridPatientList").getRowData(selrowId);
@@ -462,7 +461,7 @@
             return;
         }
         if (historyLastTreat.jzId != selRowData.jzId) {
-            $.modalAlert("不能恢复<br/>" + "仅最后一次就诊可恢复", 'warning');
+            $.modalAlert("Không thể khôi phục<br/>" + "Chỉ lần khám cuối cùng mới khôi phục được", 'warning');
             return;
         }
         $.najax({
@@ -471,7 +470,7 @@
             data: { jzId: selRowData.jzId },
             type: "POST",
             success: function (data) {
-                $.modalAlert("已恢复就诊", 'success');
+                $.modalAlert("Đã khôi phục lượt khám", 'success');
                 $("#btn_search").trigger('click');
             }
         });

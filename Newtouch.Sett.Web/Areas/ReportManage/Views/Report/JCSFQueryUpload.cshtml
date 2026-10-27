@@ -1,0 +1,138 @@
+
+@{
+    ViewBag.Title = "JCSFQueryUpload";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var reportUrl = "";
+    var ReportSystemCode = "";
+}
+<div class="rows">
+    <div class="panel panel-default">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Ngày bắt đầu：</th>
+                <td class="formValue">
+                    <input id="ksrqjcsf" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                </td>
+                <th class="formTitle">Ngày kết thúc：</th>
+                <td class="formValue">
+                    <input id="jsrqjcsf" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
+                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
+                           value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </td>
+                <th class="formTitle"></th>
+                <td class="formValue" style="padding-left:20px;">
+                    <input type="button" id="btn_searchjcsf" onclick="jyjlsearchjcsf();" class="btn btn-primary btn-md" value="phát sinh" style="width:55px" />
+                    <input type="button" id="btn_searchtotxtjcsf" onclick="searchtotxtjcsf();" class="btn btn-primary btn-md" value="tải lên" style="width:55px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="ui-layout" id="layout" style="height:100%;width:100%;">
+    <div class="gridPanel">
+        <table id="gridListjcsf"></table>
+        <div id="gridPagerjcsf"></div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        gridListjcsf();
+    });
+    function gridListjcsf() {
+        var $gridList = $("#gridListjcsf");
+        $gridList.dataGrid({
+            url: "/ReportManage/Report/GetMjzjcsfData",
+            height: $(window).height() - 200,
+            postData: getpostDatajcsf(),
+            colModel: [
+                { label: 'Số giao dịch', name: 'yblsh', width: 60, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 60, align: 'left' },
+                { label: 'Mã khoa', name: 'ksbm', width: 60, align: 'left' },
+                { label: 'Tên khoa', name: 'ksmc', width: 60, align: 'left' },
+                { label: 'Mã nhân viên bác sĩ', name: 'ysgh', width: 60, align: 'left' },
+                { label: 'Tên bác sĩ', name: 'ysxm', width: 60, align: 'left' },
+                { label: 'đơn thuốc Mã số', name: 'cfbh', width: 60, align: 'left' },
+                { label: 'Loại chi phí', name: 'fylb', width: 60, align: 'left' },
+                { label: 'Tên khoản mục', name: 'xmmc', width: 60, align: 'left' },
+                { label: 'Khoản mục Đơn vị', name: 'xmdw', width: 60, align: 'left' },
+                { label: 'Khoản mục Đơn giá', name: 'xmdj', width: 60, align: 'left' },
+                { label: 'Khoản mục Số lượng', name: 'xmsl', width: 60, align: 'left' },
+                { label: 'Khoản mục Số tiền', name: 'xmje', width: 60, align: 'left' },
+                { label: 'giao dịch Số tiền', name: 'jyje', width: 60, align: 'left' },
+                { label: 'Dấu hiệu thanh toán bảo hiểm', name: 'bxbz', width: 60, align: 'left' },
+                { label: 'BHYT phạm vi Số tiền', name: 'ybfwje', width: 60, align: 'left' },
+                { label: 'giao dịch Thời gian', name: 'jysj', width: 60, align: 'left' },
+                { label: 'BHYT Loại', name: 'yblx', width: 60, align: 'left' },
+                { label: 'Loại quyết toán', name: 'jslx', width: 60, align: 'left' },
+                { label: 'Hoàn phí dấu hiệu', name: 'tfbz', width: 60, align: 'left' },
+                { label: 'Số giao dịch', name: 'lsh', width: 60, align: 'left' },
+                { label: 'Số giao dịch chi tiết', name: 'xflsh', width: 60, align: 'left' },
+                { label: 'Tên chung thuốc/Thương hiệu vật tư y dùng', name: 'yptym', width: 60, align: 'left' },
+                { label: 'Số chứng nhận đăng ký', name: 'zczh', width: 60, align: 'left' },
+                { label: 'chi tiết Khoản mục Quy cách', name: 'mxxmgg', width: 60, align: 'left' },
+
+            ],
+            pager: "#gridPagerjcsf",
+            sortname: 'jysj desc',
+            viewrecords: true,
+        });
+
+        $("#btn_searchjcsf").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: getpostDatajcsf(),
+                page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+    function getpostDatajcsf() {
+        return {
+            ksrq: $("#ksrqjcsf").val(), jsrq: $("#jsrqjcsf").val()
+        };
+    }
+    function searchtotxtjcsf() {
+        $.najax({
+            type: "POST",
+            url: "/ReportManage/Report/GetMjzjcsfDatatxt",
+            data: { ksrq: $("#ksrqjcsf").val(), jsrq: $("#jsrqjcsf").val() },
+            dataType: "json",
+            success: function (ajaxresp) {
+                var strtxt = "";
+                for (var i = 0; i < ajaxresp.length; i++) {
+                    strtxt += ajaxresp[i].yblsh + "    ";
+                    strtxt += ajaxresp[i].kh + "    ";
+                    strtxt += ajaxresp[i].ksbm + "    ";
+                    strtxt += ajaxresp[i].ksmc + "    ";
+                    strtxt += ajaxresp[i].ysgh + "    ";
+                    strtxt += ajaxresp[i].ysxm + "    ";
+                    strtxt += ajaxresp[i].cfbh + "    ";
+                    strtxt += ajaxresp[i].fylb + "    ";
+                    strtxt += ajaxresp[i].xmmc + "    ";
+                    strtxt += ajaxresp[i].xmdw + "    ";
+                    strtxt += ajaxresp[i].xmdj + "    ";
+                    strtxt += ajaxresp[i].xmsl + "    ";
+                    strtxt += ajaxresp[i].xmje + "    ";
+                    strtxt += ajaxresp[i].jyje + "    ";
+                    strtxt += ajaxresp[i].ybfwje + "    ";
+                    strtxt += ajaxresp[i].bxbz + "    ";
+                    strtxt += ajaxresp[i].jysj + "    ";
+                    strtxt += ajaxresp[i].yblx + "    ";
+                    strtxt += ajaxresp[i].jslx + "    ";
+                    strtxt += ajaxresp[i].tfbz + "    ";
+                    strtxt += ajaxresp[i].lsh + "    ";
+                    strtxt += ajaxresp[i].xflsh + "    ";
+                    strtxt += ajaxresp[i].yptym + "    ";
+                    strtxt += ajaxresp[i].zczh + "    ";
+                    strtxt += ajaxresp[i].mxxmgg + "    ";
+                    strtxt += "\t\n";
+                }
+                var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
+                saveAs(blob, "Kho thu phí giường tại nhà bệnh nặng cấp cứu ngoại trú.txt");
+            }
+        });
+    }
+</script>

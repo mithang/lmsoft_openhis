@@ -1,0 +1,794 @@
+
+@{
+    ViewBag.Title = "Bắt đầu kiểm kê";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .dv-navigation {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+
+    .progress_bar {
+        margin-left: 10px;
+        padding: 10px 0 10px;
+    }
+
+        .progress_bar li {
+            width: 180px;
+            float: left;
+            text-align: center;
+            position: relative;
+            line-height: 30px;
+            list-style: none;
+            border-top: 6px solid #f5f5f5;
+        }
+
+            .progress_bar li i {
+                position: absolute;
+                left: 50%;
+                margin-left: -10px;
+                top: -14px;
+                height: 18px;
+                width: 18px;
+                border: 2px solid white;
+                border-radius: 10px;
+                background-color: #f5f5f5;
+            }
+
+        .progress_bar .completeLi {
+            color: #ff9813;
+            border-top-color: #ff9813;
+        }
+
+        .progress_bar .completePoint {
+            background-color: #ff9813;
+        }
+
+    input[name=deptSjsl] {
+        padding: 2px;
+    }
+
+    input[name=minSjsl] {
+        padding: 2px;
+    }
+    .scan-input {
+        border: 2px solid #007bff;
+        padding: 5px;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default dv-navigation">
+        <ol class="progress_bar">
+            <li id="dv_startPd"><i></i><label>Bắt đầu kiểm kê</label></li>
+            <li id="dv_savePd"><i></i><label>Lưu</label></li>
+            <li id="dv_endPd"><i></i><label>Kết thúc kiểm kê</label></li>
+            <li id="dv_completePd"><i></i><label>Hoàn thành</label></li>
+        </ol>
+    </div>
+    <div class="panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading">Điều kiện tra cứu</div>
+        <table class="form">
+            <tr>
+                <th class="formTitle" style="width: 50px;">Ngày：</th>
+                <td class="formValue" colspan="2">
+                    <select id="ddlRQ" class="form-control"></select>
+                </td>
+                <th class="formTitle" style="width: 65px;">Từ khóa：</th>
+                <td class="formValue" style="width: 115px;">
+                    <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin Tên thuốc" />
+                </td>
+                <th class="formTitle">Trạng thái thuốc：</th>
+                <td class="formValue" style="width: 55px;">
+                    <select id="ddlYPZT" name="ddlYPZT" class="form-control">
+                        <option value="-1">Tất cả</option>
+                        <option value="1">Bật</option>
+                        <option value="0">Ngừng dùng</option>
+                    </select>
+                </td>
+                <th class="formTitle" style="display:none">Loại thuốc：</th>
+                <td class="formValue" style="display:none">
+                    <select id="ddlYPLB" class="form-control">
+                        <option value="">Tất cả</option>
+                    </select>
+                </td>
+                <th class="formTitle">Hiển thị tồn kho：</th>
+                <td class="formValue">
+                    <select id="ddlKCXS" name="ddlKCXS" class="form-control">
+                        <option value="-1">Tất cả</option>
+                        <option value="0">Hiển thị tồn kho bằng 0</option>
+                        <option value="1">Không hiển thị số lượng lý thuyết bằng 0</option>
+                        <option value="2">Không hiển thị số lượng thực tế bằng 0</option>
+                        <option value="4">Không hiển thị khi cả hai đều bằng 0</option>
+                    </select>
+                </td>
+                <td class="formValue" style="width: 160px;">
+                    <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" />
+                    <input type="button" id="btn_backIndex" class="btn btn-primary" value="Về trang chủ" style="float:right;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="margin-bottom: 0;">
+        <div class="panel-heading">
+            <span>Chi tiết kiểm kê | Chọn đơn vị：  Đơn vị khoa</span>
+            <i id='i-changeUnit' onclick='ChooseUnit(this)' class='fa fa-toggle-off' style='margin:0 5px;font-size:1.6rem;color:#ff9813;vertical-align:middle;'></i>Đơn vị nhỏ nhất
+        </div>
+    </div>
+    <div id="dv-pdmx-deptUnit">
+        <table id="gridKCInfo"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+    <div id="dv-pdmx-minUnit" style="display: none;">
+        <table id="gridKCInfoByMinUnit"></table>
+        <div id="gridKCInfoByMinUnitPager" rel="form1"></div>
+    </div>
+    <div style="color: #ff0000;float: left;margin-top: 10px;">(Thực tế)Số khoa：Số đơn vị khoa thực tế；(Thực tế)Số nhỏ nhất：Số đơn vị nhỏ nhất thực tế！</div>
+    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new[] { 8,  7, 3,9 },
+    F3Text = "Kết thúc",
+    F7Text = "Kiểm kê lại",
+    F9Text = "In kiểm kê"
+})
+    <div class="ckbox" style="float: right;margin-top: 10px;">
+        <input id="autoCarryDown" name="autoCarryDown" type="checkbox" checked="checked">
+        <label for="autoCarryDown"></label>
+    </div>
+    <div style="float:right;margin: 10px 5px 0 0;font-size: 14px;">Tự động kết chuyển：</div>
+</form>
+<script language="javascript">
+    var $gridKCInfo = $("#gridKCInfo");
+    var $gridKCInfoMinUnit = $("#gridKCInfoByMinUnit");
+    var lastRowId;
+    var ObjArr_Load = new Array();
+    $(".toolbar").css("width", 350);
+
+    $(function () {
+        $("#btn_backIndex").click(function () {//Quay lại
+            $.loading("Đang chuyển trang");
+            window.location.href = "StockInventoryV2";
+        });
+        StartInventory();
+        InitialPd();
+
+        $gridKCInfo.on('keydown', '.scan-input', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+
+                const inputField = $(this);
+                const row = inputField.closest('tr');
+
+                // 是否拆零
+                const sfcl = parseInt(row.find('.sfcl').val(), 10);
+                var maxEntries = 1;
+                if (sfcl === 1) {
+                    maxEntries = 1
+                } else {
+                    maxEntries = parseInt(row.find('.quantity').text(), 10);
+                }
+
+
+                const entries = inputField.val().split(',').filter(entry => entry.trim() !== '').length;
+
+                if (inputField.val() && !inputField.val().endsWith(',')) {
+                     inputField.val(removeDuplicates(inputField.val()));
+                }
+
+                if (entries >= maxEntries) {
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1000);
+                    inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
+                }
+            }
+        });
+        $gridKCInfoMinUnit.on('keydown', '.scan-input', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+
+                const inputField = $(this);
+                const row = inputField.closest('tr');
+
+                // 是否拆零
+                const sfcl = parseInt(row.find('.sfcl').val(), 10);
+                var maxEntries = 1;
+                if (sfcl === 1) {
+                    maxEntries = 1
+                } else {
+                    maxEntries = parseInt(row.find('.quantity').text(), 10);
+                }
+
+
+                const entries = inputField.val().split(',').filter(entry => entry.trim() !== '').length;
+
+                if (inputField.val() && !inputField.val().endsWith(',')) {
+                     inputField.val(removeDuplicates(inputField.val()));
+                }
+
+                if (entries >= maxEntries) {
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1000);
+                    inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
+                }
+            }
+        });
+    });
+
+    function removeDuplicates(str){
+        const arr = str.split(',')
+        const uniqueArr = [...new Set(arr)]
+        return uniqueArr.join(',')+','
+    }
+
+    //初始化盘点
+    function InitialPd() {
+        gridKCInfo();
+        gridKCInfoMinUnit();
+        $("#btn_search").click(function () {//绑定查询查询
+            if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
+                $gridKCInfo.jqGrid('setGridParam',
+                    {
+                        url: "/PharmacyDrugStorage/InventoryInfoQuery?r=" + Math.random(),
+                        postData: getSearchPostData()
+                    }).trigger('reloadGrid');
+            } else {
+                $gridKCInfoMinUnit.jqGrid('setGridParam',
+                    {
+                        url: "/PharmacyDrugStorage/InventoryInfoQuery?r=" + Math.random(),
+                        postData: getSearchPostData()
+                    }).trigger('reloadGrid');
+            }
+        });
+    }
+
+    //开始盘点
+    function StartInventory() {
+        $.najax({
+            type: "POST",
+            url: "/PharmacyDrugStorage/StartInventory",
+            dataType: "json",
+            cache: false,
+            success: function (ajaxresp) {
+                GetPDSJ();//获取盘点日期
+                $.UpdateProgressbar.update(1);
+            }
+        });
+    }
+
+    //获取盘点时间
+    function GetPDSJ() {
+        $.najax({
+            type: "GET",
+            url: "/PharmacyDrugStorage/GetPDDateDropdownList",
+            dataType: "json",
+            success: function (ajaxresp) {
+                //先清空，再填充
+                $("#ddlRQ").empty();
+                for (var i = 0; i < ajaxresp.data.length; i++) {
+                    $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
+                }
+                $("#btn_search").trigger("click");
+            }
+        });
+    }
+
+    //库存信息
+    function gridKCInfo() {
+        $gridKCInfo.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 270,
+            url: "",
+            editurl: "clientArray",  //行编辑不向服务器提交数据
+            colModel: [
+                { label: 'Mã thuốc', name: 'ypCode', width: 80, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'Số lý thuyết', name: 'llsl', width: 80, align: 'left' },
+                { label: '(Thực tế)Số khoa', name: 'deptSjsl', width: 70, align: 'center', editable: true, editwidth: "90%", classes: 'quantity' },
+                { label: 'Đơn vị', name: 'deptdw', width: 40, align: 'left' },
+                {
+                    label: '<span class="required">*</span>Mã truy xuất', name: 'zsm', width: 80, align: 'center',
+                    formatter: function (cellvalue, options) {
+                        if (!cellvalue) {
+                            cellvalue = ""
+                        }
+                        return "<input name=\"zsm\" type=\"text\" value=\"" + cellvalue + "" + "\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + " class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
+                    }
+                },
+                {
+                    label: '<span class="required">*</span>Có tách lẻ không', name: 'sfcl', width: 80, align: 'center',
+                    formatter: function (cellvalue, options) {
+                        if (!cellvalue) {
+                            cellvalue = 1
+                        }
+                        let html = `<select name="sfcl" id="sel_sfcl_${options.rowId}" rowid="${options.rowId} " class="sfcl editable inline-edit-cell form-control" style="padding:0; border-radius: 0px; border: 0px;" ><option value="1" ${cellvalue === 1 ? "selected" : ""}>Có</option><option value="2" ${cellvalue !== 1 ? "selected" : ""}>Không</option></select>`
+                        return html
+                    }
+                },
+                { label: 'Hệ số', name: 'zhyz', width: 40, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 60, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 60, align: 'left' },
+                { label: 'Tiền bán buôn(Lý thuyết)', name: 'llpfje', width: 70, align: 'left' },
+                { label: 'Tiền bán lẻ(Lý thuyết)', name: 'lllsje', width: 70, align: 'left' },
+                { label: 'Tiền bán buôn(Thực tế)', name: 'sjpfje', width: 70, align: 'left' },
+                { label: 'Tiền bán lẻ(Thực tế)', name: 'sjlsje', width: 70, align: 'left' },
+                { label: 'Xuất xứ', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Pinyin', name: 'py', width: 100, align: 'left' },
+                { label: 'pdmxId', name: 'pdmxId', hidden: true },
+                { label: 'Số lý thuyết', name: 'llsl_zxbz', hidden: true },
+                { label: 'Số lượng thực tế(Đóng gói khoa)', name: 'sjslstr', hidden: true },
+                { label: 'CreateTime', name: 'CreateTime', hidden: true }
+            ],
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'ypmc asc',
+            sortable: true,
+            viewrecords: true,
+            onPaging: function () {
+                savePdsPage();
+            },
+            gridComplete: function () {
+                afterCompleteFunction();
+                window.initLayout("MyTabGrid");
+            },
+            onSelectRow: function (rowid) {
+                $("#" + $.jgrid.jqID(rowid) + "_deptSjsl").focus();
+            }
+        });
+    }
+
+    //库存信息
+    function gridKCInfoMinUnit() {
+        $gridKCInfoMinUnit.dataGrid({
+            postData: getSearchPostData(),
+            height: $(window).height() - 270,
+            url: "",
+            editurl: "clientArray",  //行编辑不向服务器提交数据
+            colModel: [
+                { label: 'Mã thuốc', name: 'ypCode', width: 80, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'Số lý thuyết', name: 'llsl', width: 80, align: 'left' },
+                { label: '(Thực tế)Số nhỏ nhất', name: 'minSjsl', width: 70, align: 'center', editable: true, editwidth: "90%", classes: 'quantity' },
+                { label: 'Đơn vị', name: 'zxdw', width: 40, align: 'left' },
+                {
+                    label: '<span class="required">*</span>Mã truy xuất', name: 'zsm', width: 80, align: 'center',
+                    formatter: function (cellvalue, options) {
+                        if (!cellvalue) {
+                            cellvalue = ""
+                        }
+                        return "<input name=\"zsm\" type=\"text\" value=\"" + cellvalue + "" + "\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + " class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
+                    }
+                },
+                {
+                    label: '<span class="required">*</span>Có tách lẻ không', name: 'sfcl', width: 80, align: 'center',
+                    formatter: function (cellvalue, options) {
+                        if (!cellvalue) {
+                            cellvalue = 1
+                        }
+                        let html = "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\" " + cellvalue === 1 ? "selected" : "" + " >Có</option><option value=\"2\" " + cellvalue === 2 ? "selected" : "" + ">Không</option></select>";
+                        console.log(html)
+                        return html
+                    }
+                },
+                { label: 'Hệ số', name: 'zhyz', width: 40, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'center' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 80, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 60, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 60, align: 'left' },
+                { label: 'Tiền bán buôn(Lý thuyết)', name: 'llpfje', width: 70, align: 'left' },
+                { label: 'Tiền bán lẻ(Lý thuyết)', name: 'lllsje', width: 70, align: 'left' },
+                { label: 'Tiền bán buôn(Thực tế)', name: 'sjpfje', width: 70, align: 'left' },
+                { label: 'Tiền bán lẻ(Thực tế)', name: 'sjlsje', width: 70, align: 'left' },
+                { label: 'Xuất xứ', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Pinyin', name: 'py', width: 100, align: 'left' },
+                { label: 'pdmxId', name: 'pdmxId', hidden: true },
+                { label: 'Số lý thuyết', name: 'llsl_zxbz', hidden: true },
+                { label: 'Số lượng thực tế(Đóng gói khoa)', name: 'sjslstr', hidden: true },
+                { label: 'CreateTime', name: 'CreateTime', hidden: true }
+            ],
+            multiselect: false,
+            pager: "#gridKCInfoByMinUnitPager",
+            sortname: 'ypmc asc',
+            sortable: true,
+            viewrecords: true,
+            onPaging: function () {
+                savePdsPage();
+            },
+            gridComplete: function () {
+                afterCompleteFunctionMinUnit();
+                window.initLayout("MyTabGrid");
+            },
+            onSelectRow: function (rowid) {
+                $("#" + $.jgrid.jqID(rowid) + "_minSjsl").focus();
+            }
+        });
+    }
+
+    //选择单位
+    function ChooseUnit(obj) {
+        if ($(obj).hasClass("fa-toggle-off")) {
+            $(obj).removeClass("fa-toggle-off");
+            $(obj).addClass("fa-toggle-on");
+            $("#dv-pdmx-deptUnit").hide();
+            $("#dv-pdmx-minUnit").show();
+        } else {
+            $(obj).removeClass("fa-toggle-on");
+            $(obj).addClass("fa-toggle-off");
+            $("#dv-pdmx-deptUnit").show();
+            $("#dv-pdmx-minUnit").hide();
+        }
+        $("#btn_search").trigger("click");
+    }
+
+    //查询条件
+    function getSearchPostData() {
+        var pdsj = $("#ddlRQ").val();
+        var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+        var srm = $("#txtSRM").val();
+        var ypzt = $("#ddlYPZT").val();
+        var kcxs = $("#ddlKCXS").val();
+        if (!pdsj && !pdId) {
+            return false;
+        }
+        if (kcxs === "" || kcxs == null) {
+            kcxs = -1;
+        }
+        return { pdsj: pdsj, pdId: pdId, srm: srm, ypzt: ypzt, yplb: "", kcxs: kcxs };
+    };
+
+    //加载第一次查询数据
+    function afterCompleteFunction() {
+        ObjArr_Load = [];
+        $.loading("Đang tải dữ liệu");
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        for (var i = 0; i < rowIds.length; i++) {
+            ObjArr_Load.push($gridKCInfo.jqGrid('getRowData', rowIds[i]));
+            $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            });
+
+        }
+        $.loading(false);
+    }
+
+    //加载第一次查询数据
+    function afterCompleteFunctionMinUnit() {
+        ObjArr_Load = [];
+        $.loading("Đang tải dữ liệu");
+        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        for (var i = 0; i < rowIds.length; i++) {
+            ObjArr_Load.push($gridKCInfoMinUnit.jqGrid('getRowData', rowIds[i]));
+            $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            });
+        }
+        $.loading(false);
+    }
+
+    function savePdsPage() {
+        var $targetJqg;
+        if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
+            $targetJqg = $gridKCInfo;//获取所有行Id，遍历使编辑框处于保存状态
+        } else {
+            $targetJqg = $gridKCInfoMinUnit;//获取所有行Id，遍历使编辑框处于保存状态
+        }
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//获取所有行Id，遍历使编辑框处于保存状态
+
+        //判断退数量
+        for (var i = 0; i < rowIds.length; i++) {
+            $targetJqg.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            var rowData = $targetJqg.jqGrid('getRowData', rowIds[i]);
+            if (!rowData) {
+                return false;
+            }
+            if ($("#i-changeUnit").hasClass("fa-toggle-off")) { //Đơn vị khoa
+                if (rowData.deptSjsl.replace(/(^\s*)|(\s*$)/g, "") === "" || rowData.deptSjsl < 0 || isNaN(rowData.deptSjsl) || rowData.deptSjsl === "") {
+                    $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                    EnableInlineEditBox();//Bật khung sửa trong dòng
+                    return false;
+                }
+            } else { //Đơn vị nhỏ nhất
+                if (rowData.minSjsl.replace(/(^\s*)|(\s*$)/g, "") === "" || rowData.minSjsl < 0 || isNaN(rowData.minSjsl) || rowData.minSjsl === "") {
+                    $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                    EnableInlineEditBoxMinUnit();//Bật khung sửa trong dòng
+                    return false;
+                }
+            }
+        }
+        var kcInfoJsonSave = $targetJqg.jqGrid('getRowData_AllLine');
+        var objArrSave = new Array();
+        $.each(kcInfoJsonSave, function () {//保存时将Grid的数据行放在新的数组中
+            //追溯码
+            var zsm = $("#sel_zsm_" + this.jqRowId).val();
+            //是否拆零
+            var sfcl = parseInt($("#sel_sfcl_" + this.jqRowId).val(), 10);
+            this.zsm = zsm
+            this.sfcl = sfcl
+            objArrSave.push(this);
+        });
+        var resultObjArr = new Array();
+        //与页面加载的数组进行比对，将修改过的数据行放在resultObjArr中，传给后台
+        for (var i = 0; i < objArrSave.length; i++) {
+            if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
+                // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+                const zsmLength = objArrSave[i].zsm.split(',').filter(entry => entry.trim() !== '').length
+                var maxZsmLength = 1
+                if (objArrSave[i].sfcl === 1) {
+                    maxZsmLength = 1
+                } else {
+                    maxZsmLength = CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz)
+                }
+
+                if (zsmLength != 0 && zsmLength != maxZsmLength) {
+                    $.modalMsg("Mục: " + objArrSave[i].ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                    return false;
+                }
+
+                resultObjArr.push({ pdmxId: objArrSave[i].pdmxId, sjsl: CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz), zsm: objArrSave[i].zsm, sfcl: objArrSave[i].sfcl });
+            }
+        }
+        if (resultObjArr.length === 0) {
+        }
+        else {
+            $.najax({
+                type: "POST",
+                url: "/PharmacyDrugStorage/SaveInventoryInfo",
+                dataType: "json",
+                data: { resultObjArr: JSON.stringify(resultObjArr), pdId: $("#ddlRQ option:selected").attr('data-pdId') },
+                success: function (ajaxresp) {
+                    //$("#btn_search").trigger("click");
+                    $.UpdateProgressbar.update(2);
+                    //$.modalAlert("保存成功", 'success');
+                },
+                error: function (ajaxresp) {
+                    $.modalAlert(ajaxresp.message, Error);
+                }
+            });
+        }
+    };
+
+    //保存
+    function newtouch_event_f8() {
+        var $targetJqg;
+        if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
+            $targetJqg = $gridKCInfo;//获取所有行Id，遍历使编辑框处于保存状态
+        } else {
+            $targetJqg = $gridKCInfoMinUnit;//获取所有行Id，遍历使编辑框处于保存状态
+        }
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//获取所有行Id，遍历使编辑框处于保存状态
+
+        //判断退数量
+        for (var i = 0; i < rowIds.length; i++) {
+            $targetJqg.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            var rowData = $targetJqg.jqGrid('getRowData', rowIds[i]);
+            if (!rowData) {
+                return false;
+            }
+            if ($("#i-changeUnit").hasClass("fa-toggle-off")) { //Đơn vị khoa
+                if (rowData.deptSjsl.replace(/(^\s*)|(\s*$)/g, "") === "" || rowData.deptSjsl < 0 || isNaN(rowData.deptSjsl) || rowData.deptSjsl === "") {
+                    $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                    EnableInlineEditBox();//Bật khung sửa trong dòng
+                    return false;
+                }
+            } else { //Đơn vị nhỏ nhất
+                if (rowData.minSjsl.replace(/(^\s*)|(\s*$)/g, "") === "" || rowData.minSjsl < 0 || isNaN(rowData.minSjsl) || rowData.minSjsl === "") {
+                    $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                    EnableInlineEditBoxMinUnit();//Bật khung sửa trong dòng
+                    return false;
+                }
+            }
+        }
+        var kcInfoJsonSave = $targetJqg.jqGrid('getRowData_AllLine');
+        var objArrSave = new Array();
+        $.each(kcInfoJsonSave, function () {//保存时将Grid的数据行放在新的数组中
+            //追溯码
+            var zsm = $("#sel_zsm_" + this.jqRowId).val();
+            //是否拆零
+            var sfcl = parseInt($("#sel_sfcl_" + this.jqRowId).val(), 10);
+            this.zsm = zsm
+            this.sfcl = sfcl
+            objArrSave.push(this);
+        });
+        var resultObjArr = new Array();
+        //与页面加载的数组进行比对，将修改过的数据行放在resultObjArr中，传给后台
+        for (var i = 0; i < objArrSave.length; i++) {
+            if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
+
+                // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+                const zsmLength = objArrSave[i].zsm.split(',').filter(entry => entry.trim() !== '').length
+                var maxZsmLength = 1
+                if (objArrSave[i].sfcl === 1) {
+                    maxZsmLength = 1
+                } else {
+                    maxZsmLength = CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz)
+                }
+
+                if (zsmLength != 0 && zsmLength != maxZsmLength) {
+                    $.modalMsg("Mục: " + objArrSave[i].ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                    return false;
+                }
+
+                resultObjArr.push({ pdmxId: objArrSave[i].pdmxId, sjsl: CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz), zsm: objArrSave[i].zsm, sfcl: objArrSave[i].sfcl });
+
+            }
+        }
+        if (resultObjArr.length === 0) {
+            $.modalAlert("Không có dữ liệu cần lưu", 'warning');
+            $("#btn_search").trigger("click");
+            $.UpdateProgressbar.update(2);
+            return false;
+        }
+        $.najax({
+            type: "POST",
+            url: "/PharmacyDrugStorage/SaveInventoryInfo",
+            dataType: "json",
+            data: { resultObjArr: JSON.stringify(resultObjArr), pdId: $("#ddlRQ option:selected").attr('data-pdId') },
+            success: function (ajaxresp) {
+                $("#btn_search").trigger("click");
+                $.UpdateProgressbar.update(2);
+                $.modalAlert("Lưu thành công", 'success');
+            },
+            error: function (ajaxresp) {
+                $.modalAlert(ajaxresp.message, Error);
+            }
+        });
+    };
+
+    //将库存换算成最小单位数  拆零
+    function CalculationMinUnitNum(deptNum, minNum, zhyz) {
+        if (deptNum == null) return parseInt(minNum);
+        if (minNum == null) return parseInt(deptNum) * parseInt(zhyz);
+        return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
+    }
+
+    //将库存换算成最小单位数  不拆零
+    function CalculationMinUnitNumNoOpen(deptNum, zhyz) {
+        return parseInt(deptNum) * parseInt(zhyz);
+    }
+
+    //启用行内编辑框
+    function EnableInlineEditBox() {
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        for (var i = 0; i < rowIds.length; i++) {
+            $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            });
+        }
+    }
+
+    //启用行内编辑框
+    function EnableInlineEditBoxMinUnit() {
+        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        for (var i = 0; i < rowIds.length; i++) {
+            $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            });
+        }
+    }
+
+    //结束盘点
+    function newtouch_event_f3() {
+        savePdsPage();
+
+        if ($("#autoCarryDown").is(":checked")) {
+            $.modalConfirm("Bạn có chắc muốn tự động tạo kết chuyển không?？",
+                function (flag) {
+                    if (flag) {
+                        InventorySubmit();
+                    }
+                });
+        } else {
+            InventorySubmit();
+        }
+    }
+
+    //提交
+    function InventorySubmit() {
+        $.najax({
+            type: "POST",
+            url: "/PharmacyDrugStorage/EndInventory",
+            dataType: "json",
+            data: { pdId: $("#ddlRQ option:selected").attr('data-pdId'), autoCarryDown: $("#autoCarryDown").is(":checked") ? "1" : "0" },
+            success: function (ajaxresp) {
+                $.modalAlert("Kiểm kê hoàn tất", 'success');
+                GetPDSJ();//刷新盘点时间及药品信息
+                $.UpdateProgressbar.update(4);
+            },
+            error: function (ajaxresp) {
+                $.modalAlert(ajaxresp.message, Error);
+            }
+        });
+    }
+
+    //取消盘点
+    function newtouch_event_f7() {
+        $.modalConfirm("Bạn có chắc muốn kiểm kê lại không?？",
+            function (flag) {
+                if (flag) {
+                    var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+                    $.najax({
+                        type: "POST",
+                        url: "/PharmacyDrugStorage/CancelInventory",
+                        dataType: "json",
+                        data: { pdId: pdId },
+                        success: function (ajaxresp) {
+                            $("#ddlRQ option[data-pdId='" + pdId + "']").remove();
+                            StartInventory();
+                        }
+                    });
+                }
+            });
+    }
+
+    //盘点明细打印
+    function newtouch_event_f9() {
+        var srm = $("#txtSRM").val();
+        var ypzt = $("#ddlYPZT").val();
+        var kcxs = $("#ddlKCXS").val();
+        var pdId = $("#ddlRQ option:selected").attr('data-pdId');
+        window.open("/Report/PrintReport?type=StockInventoryV2&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=@ViewBag.bmCode |OrganizeId=@ViewBag.OrganizeId", "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+    }
+
+    //进度调更新
+    $.UpdateProgressbar = {
+        startPd: function () {
+            $(".progress_bar").find("li").removeClass("completeLi");
+            $(".progress_bar").find("i").removeClass("completePoint");
+            if (!$("#dv_startPd").hasClass("completeLi")) {
+                $("#dv_startPd").addClass("completeLi");
+            }
+            if (!$("#dv_startPd").find("i").hasClass("completePoint")) {
+                $("#dv_startPd").find("i").addClass("completePoint");
+            }
+        },
+        savePd: function () {
+            if (!$("#dv_savePd").hasClass("completeLi")) {
+                $("#dv_savePd").addClass("completeLi");
+            }
+            if (!$("#dv_savePd").find("i").hasClass("completePoint")) {
+                $("#dv_savePd").find("i").addClass("completePoint");
+            }
+        },
+        endPd: function () {
+            if (!$("#dv_endPd").hasClass("completeLi")) {
+                $("#dv_endPd").addClass("completeLi");
+            }
+            if (!$("#dv_endPd").find("i").hasClass("completePoint")) {
+                $("#dv_endPd").find("i").addClass("completePoint");
+            }
+        },
+        completePd: function () {
+            if (!$("#dv_completePd").hasClass("completeLi")) {
+                $("#dv_completePd").addClass("completeLi");
+            }
+            if (!$("#dv_completePd").find("i").hasClass("completePoint")) {
+                $("#dv_completePd").find("i").addClass("completePoint");
+            }
+        },
+        update: function (step) {
+            switch (step) {
+                case 1:
+                    $.UpdateProgressbar.startPd();
+                    break;
+                case 2:
+                    $.UpdateProgressbar.startPd();
+                    $.UpdateProgressbar.savePd();
+                    break;
+                case 3:
+                    $.UpdateProgressbar.startPd();
+                    $.UpdateProgressbar.savePd();
+                    $.UpdateProgressbar.endPd();
+                    break;
+                case 4:
+                    $.UpdateProgressbar.startPd();
+                    $.UpdateProgressbar.savePd();
+                    $.UpdateProgressbar.endPd();
+                    $.UpdateProgressbar.completePd();
+                    break;
+            }
+        },
+        clean: function () {//Khởi tạo thanh tiến trình Về 0
+            $("li").removeClass("completeLi");
+            $("i").removeClass("completePoint");
+        }
+    };
+</script>

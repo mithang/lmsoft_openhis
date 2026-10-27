@@ -1,27 +1,35 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using Newtouch.CIS.Web.Helpers;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Domain.Entity;
+using Newtouch.CIS.Repository;
 using Newtouch.Application.Interface;
-using Newtouch.Core.Common;
+
 using Newtouch.Domain.IDomainServices;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
+
 using System.IO;
 using System.Text;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.Infrastructure;
 using Newtouch.Domain.ViewModels;
-using FrameworkBase.MultiOrg.Domain.IDomainServices;
+using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ViewModels.Outpatient;
 using Newtouch.Domain.ValueObjects;
-using Newtouch.Common.Operator;
+using NewtouchHIS.Lib.Framework.Operator;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
     /// 输液管理
     /// </summary>
+    [Area("NurseManage")]
     public class InfusionController : OrgControllerBase
     {
         private readonly IMzsyypxxDmnService _mzsyypxxDmnService;
@@ -31,30 +39,40 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly IMzsyypxxRepo _mzsyypxxRepo;
         private readonly IOutpatientNurseDmnServise _OutpatientNurseDmnService;
 
-        #region 视图
+        public InfusionController(IMzsyypxxDmnService mzsyypxxDmnService, IInfusionApp infusionApp, ISysUserDmnService sysUserDmnService, IMzsyzxxxRepo mzsyzxxxRepo, IMzsyypxxRepo mzsyypxxRepo, IOutpatientNurseDmnServise outpatientNurseDmnService)
+        {
+            this._mzsyypxxDmnService = mzsyypxxDmnService;
+            this._infusionApp = infusionApp;
+            this._sysUserDmnService = sysUserDmnService;
+            this._mzsyzxxxRepo = mzsyzxxxRepo;
+            this._mzsyypxxRepo = mzsyypxxRepo;
+            this._OutpatientNurseDmnService = outpatientNurseDmnService;
+        }
+
+        #region Chế độ xem
         /// <summary>
-        /// 注射执行
+        /// 注射Thực hiện
         /// </summary>
         /// <returns></returns>
-        public ActionResult Injection()
+        public IActionResult Injection()
         {
             return View();
         }
 
         /// <summary>
-        /// 注射历史查询
+        /// 注射Lịch sử查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult InfusionHistory()
+        public IActionResult InfusionHistory()
         {
             return View();
         }
 
         /// <summary>
-        /// 输液执行
+        /// 输液Thực hiện
         /// </summary>
         /// <returns></returns>
-        public ActionResult InjectionForm()
+        public IActionResult InjectionForm()
         {
             return View();
         }
@@ -63,7 +81,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 留观登记
         /// </summary>
         /// <returns></returns>
-        public ActionResult observationFrom()
+        public IActionResult observationFrom()
         {
             return View();
         }
@@ -71,19 +89,19 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 不良反应药品管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult DrugReactManage()
+        public IActionResult DrugReactManage()
         {
             return View();
         }
         #endregion
 
-        #region 获取数据
+        #region LấyDữ liệu
 
         /// <summary>
         /// 获取门诊患者列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
+        public IActionResult PatientListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
         {
             var data = new
             {
@@ -96,10 +114,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取门诊患者列表 (待做皮试)
+        /// 获取门诊患者列表 (待做Test da)
         /// </summary>
         /// <returns></returns>
-        public ActionResult PatientHistoryListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
+        public IActionResult PatientHistoryListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
         {
             var data = new
             {
@@ -117,7 +135,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
         /// <returns></returns>
-        public ActionResult MzsyypxxQury(Pagination pagination, string kh,string mzh)
+        public IActionResult MzsyypxxQury(Pagination pagination, string kh,string mzh)
         {
             var data = new
             {
@@ -135,7 +153,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
         /// <returns></returns>
-        public ActionResult HistoryMzsyypxxQury(Pagination pagination, string kh,string mzh)
+        public IActionResult HistoryMzsyypxxQury(Pagination pagination, string kh,string mzh)
         {
             var data = new
             {
@@ -155,7 +173,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <returns></returns>
-        public ActionResult SyncSettRpDetail(string kh,string mzh, string fph, DateTime kssj, DateTime jssj)
+        public IActionResult SyncSettRpDetail(string kh,string mzh, string fph, DateTime kssj, DateTime jssj)
         {
             var result = _infusionApp.SyncSettRpDetail(kssj, jssj, fph, kh,mzh);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -167,14 +185,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="keyword"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GetStaffList(string keyword)
+        public IActionResult GetStaffList(string keyword)
         {
             return Content(_sysUserDmnService.GetSatffList(OrganizeId, keyword).ToJson());
         }
 
         #endregion
 
-        #region 执行
+        #region Thực hiện
 
         /// <summary>
         /// 分组
@@ -182,7 +200,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="tags"></param>
         /// <param name="kh"></param>
         /// <returns></returns>
-        public ActionResult Grouping(List<long> tags, string kh,string mzh)
+        public IActionResult Grouping(List<long> tags, string kh,string mzh)
         {
             var groupNo = _infusionApp.CreateGroupNo(kh,mzh);
             var result = _infusionApp.Grouping(tags, groupNo);
@@ -195,7 +213,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="tags"></param>
         /// <param name="seatNum">座号/床号</param>
         /// <returns></returns>
-        public ActionResult StartInfusion(List<long> tags, string seatNum)
+        public IActionResult StartInfusion(List<long> tags, string seatNum)
         {
             var result = _infusionApp.StartInfusion(tags, DateTime.Now, seatNum);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -206,7 +224,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
-        public ActionResult EndInfusion(List<long> tags)
+        public IActionResult EndInfusion(List<long> tags)
         {
             var result = _infusionApp.EndInfusion(tags, DateTime.Now);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -218,7 +236,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="tag">目标ID</param>
         /// <param name="seatNum">座位号</param>
         /// <returns></returns>
-        public ActionResult SetSeatNum(long tag, string seatNum)
+        public IActionResult SetSeatNum(long tag, string seatNum)
         {
             var result = _infusionApp.SetSeatNum(tag, seatNum);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -228,7 +246,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// 打印瓶贴
         /// </summary>
         /// <returns></returns>
-        public ActionResult PrintBottleLabel(string tags)
+        public IActionResult PrintBottleLabel(string tags)
         {
             var ids = new List<long>();
             if (!string.IsNullOrWhiteSpace(tags))
@@ -262,12 +280,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <returns></returns>
         private string GenerateInfusionQueryQr(List<long> tags)
         {
-            var authority = "";
-            if (HttpContext.Request.Url != null)
-            {
-                authority = HttpContext.Request.Url.Authority;
-            }
-            if (string.IsNullOrWhiteSpace(authority)) throw new Exception("获取服务器地址失败，请联系管理员");
+            var authority = HttpContext.Request.Host.Value;
+            if (string.IsNullOrWhiteSpace(authority)) throw new Exception("Lấy địa chỉ máy chủ thất bại, vui lòng liên hệ quản trị viên");
             const string absolutePath = "/InfusionManage/Query";
             var query = new StringBuilder("?organizeId=").Append(OrganizeId).Append("&tags=");
             if (tags != null && tags.Count > 0)
@@ -275,18 +289,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 tags.ForEach(p => { query.Append(p + ","); });
             }
             var url = new StringBuilder("http://").Append(authority).Append(absolutePath).Append(query.ToString().Trim(','));
-            var iconPath = HttpContext.Server.MapPath("~/Content/img/cloud.png");
+            var iconPath = WebPath.MapPath("~/Content/img/cloud.png");
+            // Ported QREncoder returns PNG bytes directly (no GDI+ on Linux).
             var qrCode = QrEncoder.Code(url.ToString(), 12, 15, iconPath, 0, 0, false);
-            using (var ms = new MemoryStream())
-            {
-                qrCode.Save(ms, ImageFormat.Png);
-                var b = ms.ToArray();
-                return Convert.ToBase64String(b);
-            }
+            return Convert.ToBase64String(qrCode);
         }
 
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="syIds"></param>
         /// <param name="zt"></param>
@@ -295,9 +305,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="remark"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SubmitExec(string syIds, string seatNum, string zt, string dispenser, string executor,DateTime? sykssj,DateTime? syjssj, string remark)
+        public IActionResult SubmitExec(string syIds, string seatNum, string zt, string dispenser, string executor,DateTime? sykssj,DateTime? syjssj, string remark)
         {
-            if (string.IsNullOrWhiteSpace(syIds)) return Error("请传入要执行的药品");
+            if (string.IsNullOrWhiteSpace(syIds)) return Error("Vui lòng truyền vào thuốc cần thực hiện");
             var ids = new List<long>();
             foreach (var item in syIds.Split(','))
             {
@@ -311,13 +321,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 输液执行撤销
+        /// 输液Thực hiện撤销
         /// </summary>
         /// <param name="syIds"></param>
         /// <returns></returns>
-        public ActionResult CancelExec(string syIds)
+        public IActionResult CancelExec(string syIds)
         {
-            if (string.IsNullOrWhiteSpace(syIds)) return Error("请传入要执行的药品");
+            if (string.IsNullOrWhiteSpace(syIds)) return Error("Vui lòng truyền vào thuốc cần thực hiện");
             var idss = syIds.Split('|');
             var ids = new List<string>();
             var ypids = new List<long>();
@@ -338,7 +348,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         #endregion
 
-        public ActionResult Getlgjl(string syxxids)
+        public IActionResult Getlgjl(string syxxids)
         {
             var data = new
             {
@@ -348,11 +358,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult SavaLgdj(IList<ObservationFromVO> lgdjlist)
+        public IActionResult SavaLgdj(IList<ObservationFromVO> lgdjlist)
         {
             OperatorModel user = this.UserIdentity;
             var patOutMsg = _OutpatientNurseDmnService.SavaLgdj(lgdjlist, this.OrganizeId, user);
-            return patOutMsg == "T" ? Success("保存成功。") : Error(patOutMsg);
+            return patOutMsg == "T" ? Success("Lưu thành công。") : Error(patOutMsg);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -7,13 +7,13 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -21,13 +21,13 @@
             <tr>
                 <td class="formTitle">
                     <select id="bwdl" name="bwdl" class="form-control" style="height:20px;width:100px;display:inline">
-                        <option value="sfxm">收费项目</option>
-                        <option value="jc">检查</option>
+                        <option value="sfxm">Mục thu phí</option>
+                        <option value="jc">Kiểm tra</option>
                     </select>
                 </td>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -56,17 +56,17 @@
             height: $(window).height() - 96,
             postData: { keyword: $("#txt_keyword").val(), bwlx: $("#bwdl").val() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '类别编码', name: 'bwflCode', width: 80, align: 'left' },
-                { label: '类别', name: 'bwflmc', width: 100, align: 'left' },
-                { label: '编码', name: 'bwCode', width: 100, align: 'left' },
-                { label: '名称', name: 'bwmc', width: 80, align: 'left' },
-                { label: '检查方法', name: 'jcff', width: 100, align: 'left'},
-                { label: "有效", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 120, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 120, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'LoạiMã', name: 'bwflCode', width: 80, align: 'left' },
+                { label: 'Loại', name: 'bwflmc', width: 100, align: 'left' },
+                { label: 'Mã', name: 'bwCode', width: 100, align: 'left' },
+                { label: 'Tên', name: 'bwmc', width: 80, align: 'left' },
+                { label: 'Kiểm traPhương pháp', name: 'jcff', width: 100, align: 'left'},
+                { label: "Hiệu lực", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 120, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 120, align: 'left' },
+                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ]
         });
         $("#btn_search").click(function () {
@@ -89,9 +89,9 @@
 
     function btn_add() {
         var addUrl = "/SystemManage/BodyParts/Form";
-        var title = "新增部位";
+        var title = "Thêm mớiVị trí";
         if ($("#bwdl").val() == "jc") { 
-            title = "新增检查部位";
+            title = "Thêm mớiKiểm traVị trí";
             addUrl = "/SystemManage/BodyParts/JcForm";
         }
         $.modalOpen({
@@ -109,19 +109,19 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().Id;
         var editUrl = "/SystemManage/BodyParts/Form?keyValue=" + keyValue;
-        var title = "修改部位";
+        var title = "SửaVị trí";
         if ($("#bwdl").val() == "jc"){
             editUrl = "/SystemManage/BodyParts/JcForm?keyValue=" + keyValue;
-            title = "修改检查部位";
+            title = "SửaKiểm traVị trí";
         }
         $.modalOpen({
             id: "Form",
-            title: "修改部位",
+            title: "SửaVị trí",
             url: editUrl,
             width: "550px",
             height: "470px",
@@ -134,7 +134,7 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var delUrl = "/SystemManage/BodyParts/DeleteForm";

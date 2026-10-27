@@ -1,0 +1,121 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+
+@{
+    ViewBag.Title = "DzrCheck";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var opr = OperatorProvider.GetCurrent();
+    var reportUrl = "";
+}
+<div class="rows">
+    <div class="panel panel-default">
+        <table class="form">
+            <tr>
+                <th class="formTitle" id="thCZRQ">Ngày:</th>
+                <td class="formValue" colspan="2">
+                    <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:20%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <span style="margin-left:2%;float:left;">—</span>
+                    <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :20%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+
+                    <input type="button" id="btn_search_tj" class="btn btn-primary btn-md" style="margin-left:10px;width:70px;" onclick="search()" value="Tra cứu chi tiết cục bộ" />
+                    @*<input type="button" id="btn_search_dzz" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="对帐" />*@
+                </td>
+                <td class="formValue"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridJSList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    $(function () {
+        var h = $(window).height() - 55;
+        $('#layout iframe').css('height', h);
+        gridJSListData();
+    });
+    function gridJSListData() {
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSList");
+        $gridJsList.dataGrid({
+            postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val() },
+            height: 400,
+            caption: 'Dữ liệu chi tiết cục bộ',
+            url: "/DaySettleManage/DaySettle/GetHistoryCheckList",
+            colModel: [
+                { label: 'Số giao dịch trung tâm', name: 'lsh', width: 50, align: 'left' },
+                { label: 'Số thẻ', name: 'cardid', width: 100, align: 'left' },
+                { label: 'giao dịch Thời gian', name: 'jysj', width: 120, align: 'left' },
+                { label: 'Loại', name: 'lx', width: 50, align: 'left' },
+                { label: 'khi năm', name: 'dn', width: 50, align: 'left' },
+                { label: 'các năm trước', name: 'ln', width: 50, align: 'left' },
+                { label: 'Tiền mặt', name: 'xj', width: 50, align: 'left' },
+                { label: 'quỹ chung', name: 'tc', width: 50, align: 'left' },
+                { label: 'địa phương', name: 'df', width: 50, align: 'left' },
+                { label: 'Tự chi trả theo loại', name: 'flzf', width: 50, align: 'left' },
+                { label: 'Tự chi trả cá nhân', name: 'grzf', width: 50, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Ngoại trú Mã số', name: 'mzbh', width: 50, align: 'left' },
+                { label: 'số', name: 'hm', width: 50, align: 'left' },
+                { label: 'Thiết bị đầu cuối', name: 'zd', width: 50, align: 'left' },
+                { label: 'dấu hiệu', name: 'bz', width: 50, align: 'left' }
+
+            ],
+            pager: "#gridPager",
+            sortname: gridSort,
+            viewrecords: true,
+            onSelectRow_page: function (rowid) {
+                //console.log(rowid);
+            },
+            gridComplete: function (gridJszbList) {
+                jszbList = null;
+                if (gridJszbList && gridJszbList.rows) {
+                    jszbList = gridJszbList.rows;
+                    console.log(jszbList);
+                }
+            }
+        });
+
+        //查询事件
+        $("#btn_search_tj").click(function () {
+            $gridJsList.jqGrid('setGridParam', {
+                postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val() },
+                url: '/DaySettleManage/DaySettle/GetHistoryCheckList',
+                //page: 1,
+            }).trigger('reloadGrid');
+        });
+    }
+    @*function search() {
+        if ($('#txtCreateTimestart').val().length == 0) {
+            $.modalAlert("缺少开始时间", "error");
+            return;
+        }
+        if ($('#txtCreateTimeEnd').val().length == 0) {
+            $.modalAlert("缺少结束时间", "error");
+            return;
+        }
+        if ($('#txtCreateTimestart').val() > $('#txtCreateTimeEnd').val()) {
+            $.modalAlert("开始时间不能大于结束时间", "error");
+            return;
+        }
+
+        var url = getUrl();
+        var orgId = '@opr.OrganizeId';
+        url += "&orgId=" + orgId;
+        url += "&kssj=" + $('#txtCreateTimestart').val();
+        url += "&jssj=" + $('#txtCreateTimeEnd').val();
+        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
+    }
+     function getUrl() {
+        var srcUrl = '@Html.Raw(reportUrl)';
+         srcUrl += "?tempCode=1260";
+        return srcUrl;
+    }
+    $("#iframerightiframerightiframerightttt").load(function () {
+        $.loading(false);
+    });*@
+    function AcceptClick(callBack) {
+        $.modalClose();
+    }
+</script>

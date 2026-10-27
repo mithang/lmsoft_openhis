@@ -1,7 +1,7 @@
-﻿
+
 @using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "配货单验收";
+    ViewBag.Title = "Nghiệm thu phiếu giao hàng";
     Layout = "~/Views/Shared/_Form.cshtml";
 
 }
@@ -12,35 +12,35 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">配送明细编号：</th>
+                        <th class="formTitle">Số chi tiết phiếu giao hàng:</th>
                         <td class="formValue">
                             <input id="psmxbh" name="psmxbh" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>配送验收类型：</td>
+                        <td class="formTitle"><span class="required">*</span>Loại nghiệm thu giao hàng:</td>
                         <td class="formValue formDdlSelectorTd">
                             <select id="psyslx" name="psyslx" class="form-control required">
-                                <option value="">==请选择==</option>
-                                <option value="1">预验收</option>
-                                <option value="2">实验收</option>
+                                <option value="">==Vui lòng chọn==</option>
+                                <option value="1">Kiểm nghiệm trước</option>
+                                <option value="2">Nghiệm thu thử nghiệm</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">本次验收通过数：</th>
+                        <th class="formTitle">Số lượng nghiệm thu đạt lần này:</th>
                         <td class="formValue">
                             <input id="ystgs" name="ystgs" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">本次验收不过数：</th>
+                        <th class="formTitle">Số lượng nghiệm thu không đạt lần này:</th>
                         <td class="formValue">
                             <input id="ysbgs" name="ysbgs" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">验收备注说明：</th>
+                        <th class="formTitle">Giải thích ghi chú nghiệm thu:</th>
                         <td class="formValue">
                             <input id="ysbzsm" name="ysbzsm" type="text" class="form-control" placeholder="" />
                         </td>
@@ -51,10 +51,10 @@
     </div>
 </form>
 
-@*@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@*@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] {  8 },
-    F8Text = "保存",
+    F8Text = "Lưu",
 })*@
 
 
@@ -67,7 +67,7 @@
     $("#psmxbh").val(psmxbh);
     
 
-    ////保存
+    ////Lưu
     //function newtouch_event_f8() {
     //    if (!DataValidate()) {
     //        return;
@@ -78,7 +78,7 @@
     //    postData.psl = psl;
 
     //    $.submitForm({
-    //        url: "/Purchase/DeliveryAccept",
+    //        url: "/PurchaseManage/Purchase/DeliveryAccept",
     //        param: postData,
     //        success: function () {
     //            $.modalClose();
@@ -87,7 +87,7 @@
     //    });
     //}
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -98,10 +98,10 @@
         postData.psl = psl;
 
         $.submitForm({
-            url: "/Purchase/DeliveryAccept",
+            url: "/PurchaseManage/Purchase/DeliveryAccept",
             param: postData,
             success: function () {
-                $.modalMsg('验收成功', 'success');
+                $.modalMsg('Nghiệm thu thành công', 'success');
                 $.modalClose();
                 callback();
             }
@@ -111,11 +111,11 @@
     //数据效验
     function DataValidate() {
         if ($("#ystgs").val() === "") {
-            $.modalAlert("本次验收通过数必填", 'warning');
+            $.modalAlert("Số lượng nghiệm thu đạt lần này là bắt buộc", 'warning');
             return false;
         }
         if ($("#ysbgs").val() === "") {
-            $.modalAlert("本次验收不过数必填", 'warning');
+            $.modalAlert("Số lượng nghiệm thu không đạt lần này là bắt buộc", 'warning');
             return false;
         }
         return true;

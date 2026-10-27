@@ -1,21 +1,21 @@
-﻿
+
 @{
-    ViewBag.Title = "调价申请";
+    ViewBag.Title = "Đơn xin điều chỉnh giá";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">筛选条件</div>
+        <div class="panel-heading">Điều kiện lọc</div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">关键字</th>
+                    <th class="formTitle">Từ khóa</th>
                     <td class="formValue">
-                        <input type="text" id="wzmc" class="form-control" placeholder="物资名称/拼音" />
+                        <input type="text" id="wzmc" class="form-control" placeholder="Tên vật tư/Phiên âm" />
                     </td>
                     <td class="formValue" colspan="3">
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                     </td>
                 </tr>
             </table>
@@ -28,28 +28,28 @@
         </div>
     </div>
     <div class="panel panel-default" style="margin-top:10px; margin-bottom:0;">
-        <div class="panel-heading">调价明细</div>
+        <div class="panel-heading">Chi tiết điều chỉnh giá</div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>零售价</th>
+                    <th class="formTitle"><span class="required">*</span>Giá bán lẻ</th>
                     <td class="formValue">
                         <input type="text" id="txtLSJ" class="form-control" style="width:65%;float: left;" />
-                        <span name="sp_bmdw" style="line-height:24px;margin-left: 10px;">(元/)</span>
+                        <span name="sp_bmdw" style="line-height:24px;margin-left: 10px;">(đồng/)</span>
                         <input type="hidden" id="dwmc" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>执行文件</th>
+                    <th class="formTitle"><span class="required">*</span>Văn bản thực hiện</th>
                     <td class="formValue">
                         <input type="text" id="txtZXWJ" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>执行时间</th>
+                    <th class="formTitle"><span class="required">*</span>Thời gian thực hiện</th>
                     <td class="formValue">
                         <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
                     </td>
-                    <th class="formTitle">原零售价</th>
+                    <th class="formTitle">Giá bán lẻ cũ</th>
                     <td class="formValue">
                         <input type="text" id="txtYLSJ" class="form-control newtouch_Readonly" style="width:65%;float: left;" />
-                        <span name="sp_bmdw" style="line-height:24px;margin-left: 10px;">(元/)</span>
+                        <span name="sp_bmdw" style="line-height:24px;margin-left: 10px;">(đồng/)</span>
                         <input type="hidden" id="productId" />
                     </td>
                 </tr>
@@ -58,10 +58,10 @@
     </div>
 </form>
 
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 6 },
-    F6Text = "申请"
+    F6Text = "Đơn xin"
 })
 
 <script>
@@ -88,19 +88,19 @@
             url: "/StorageManage/Storage/DepartmentStockListQueryByPage",
             height: $(window).height() - document.getElementById('gridYPInfoList').offsetTop - 195,
             colModel: [
-                { label: '类别', name: 'lbmc', width: 150, align: 'left' },
-                { label: '物资', name: 'name', width: 150, align: 'left' },
-                { label: '规格', name: 'gg', width: 120, align: 'left' },
+                { label: 'Loại', name: 'lbmc', width: 150, align: 'left' },
+                { label: 'Vật tư', name: 'name', width: 150, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 120, align: 'left' },
                 {
-                    label: '零售价', name: 'bmlsj', width: 100, align: 'right',
+                    label: 'Giá bán lẻ', name: 'bmlsj', width: 100, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
-                { label: '零售单位', name: 'bmdwmc', width: 80, align: 'center' },
-                { label: '转化因子', name: 'zhyz', width: 80, align: 'left' },
-                { label: '最小单位', name: 'mindwmc', width: 80, align: 'left' },
-                { label: '生产厂家', name: 'supplierName', width: 150, align: 'left' },
+                { label: 'Đơn vị bán lẻ', name: 'bmdwmc', width: 80, align: 'center' },
+                { label: 'Hệ số chuyển đổi', name: 'zhyz', width: 80, align: 'left' },
+                { label: 'Đơn vị nhỏ nhất', name: 'mindwmc', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 150, align: 'left' },
                 { label: "Id", name: "Id", hidden: true }
             ],
             multiselect: false,
@@ -114,7 +114,7 @@
                     if (getRowData) {
                         $("#txtYLSJ").val(getRowData.bmlsj);
                         $("#productId").val(getRowData.Id);
-                        $("span[name=sp_bmdw]").html("(元/" + getRowData.bmdwmc + ")").attr("data-zhyz", getRowData.zhyz);
+                        $("span[name=sp_bmdw]").html("(đồng/" + getRowData.bmdwmc + ")").attr("data-zhyz", getRowData.zhyz);
                         $("#dwmc").val(getRowData.bmdwmc);
                     }
                 }
@@ -122,14 +122,14 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         return { key: $("#wzmc").val() };
     };
 
-    //提交申请
+    //Gửi đơn
     function newtouch_event_f6() {
-        if (!CheckData()) {//校验数据
+        if (!CheckData()) {//Kiểm tra dữ liệu
             return false;
         }
         var yzhyz = isNaN($("[name=sp_bmdw]").attr("data-zhyz")) ? 1 : parseFloat($("[name=sp_bmdw]").attr("data-zhyz"));
@@ -149,13 +149,13 @@
             async: "false",
             success: function (data) {
                 if (data.state === "success") {
-                    $.modalAlert("申请提交成功", 'success');
+                    $.modalAlert("Gửi đơn thành công", 'success');
                     $("#txtLSJ").val("");
                     $("#txtZXWJ").val("");
                     $("#txtZXSJ").val("");
                     $("#txtYLSJ").val("");
                     $("#dwmc").val("");
-                    $("span[name=sp_bmdw]").html("(元/)").attr("data-zhyz", "");
+                    $("span[name=sp_bmdw]").html("(đồng/)").attr("data-zhyz", "");
                 } else {
                     $.modalAlert(data.message, 'error');
                 }
@@ -164,30 +164,30 @@
     }
 
 
-    //校验数据
+    //Kiểm tra dữ liệu
     function CheckData() {
         if ($("#txtYLSJ").val() === "") {
-            $.modalAlert("请选择物资！", 'warning');
+            $.modalAlert("Vui lòng chọn vật tư！", 'warning');
             return false;
         }
         if ($("#txtLSJ").val() === "") {
-            $.modalAlert("零售价不能为空！", 'warning');
+            $.modalAlert("Giá bán lẻ không được để trống！", 'warning');
             return false;
         }
         if (isNaN($("#txtLSJ").val())) {
-            $.modalAlert("零售价格式错误,请填写数字！", 'warning');
+            $.modalAlert("Định dạng giá bán lẻ sai,Vui lòng nhập số！", 'warning');
             return false;
         }
         if ($("#txtZXWJ").val() === "") {
-            $.modalAlert("执行文件不能为空！", 'warning');
+            $.modalAlert("Văn bản thực hiện không được để trống！", 'warning');
             return false;
         }
         if ($("#txtZXSJ").val() === "") {
-            $.modalAlert("执行时间不能为空！", 'warning');
+            $.modalAlert("Thời gian thực hiện không được để trống！", 'warning');
             return false;
         }
         if ($("#txtLSJ").val() === $("#txtYLSJ").val()) {
-            $.modalAlert("批发价不能与原价相同！", "warning");
+            $.modalAlert("Giá bán buôn không được giống giá gốc！", "warning");
             return false;
         }
         return true;

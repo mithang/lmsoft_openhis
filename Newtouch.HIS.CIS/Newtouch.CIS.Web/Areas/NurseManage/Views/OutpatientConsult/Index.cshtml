@@ -1,8 +1,8 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-	ViewBag.Title = "门诊分诊";
+	ViewBag.Title = "Ngoại trúPhân loại khám";
 	Layout = "~/Views/Shared/_Index.cshtml";
-	var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+	var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 <style>
 
@@ -27,7 +27,7 @@
 	<div class="search">
 		<table class="form">
 			<tr>
-				<td class="formTitle">科室</td>
+				<td class="formTitle">Khoa</td>
 				@*<td class="formValue">
 						<input type="text" id="ks" class="form-control" style="width: 200px" />
 						<input type="text" id="ksCode" class="form-control" style="display:none;" />
@@ -36,15 +36,15 @@
 					<div class="input-group">
 						<input type="text" id="ks" class="form-control" autocomplete="off" style="width: 200px" />
 						<input type="text" id="ksCode" class="form-control" style="display:none;" />
-						<input id="txt_keyword" type="text" class="form-control" placeholder="姓名" autocomplete="off" style="width: 100px;float:left;margin-left:20px;">
+						<input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên" autocomplete="off" style="width: 100px;float:left;margin-left:20px;">
 						<span class="input-group-btn" style="width: 100px;float:left;margin-left:20px;">
 							<button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
 						</span>
 						<span class="input-group-btn" style="float:left;">
-							<button id="btn_consultCall" type="button" onclick="ConsultCall()" class="btn btn-primary" style="width: 100px;">分诊叫号</button>
+							<button id="btn_consultCall" type="button" onclick="ConsultCall()" class="btn btn-primary" style="width: 100px;">Phân loại khámGọi số</button>
 						</span>
 						<span class="input-group-btn">
-							<button type="button" class="btn btn-primary" onclick="ConsultCallOpen()">大屏显示</button>
+							<button type="button" class="btn btn-primary" onclick="ConsultCallOpen()">Màn hình lớnHiển thị</button>
 						</span>
 					</div>
 				</td>
@@ -100,36 +100,36 @@
             postData: { ksCode: $("#ksCode").val(),keyword: $("#txt_keyword").val(), ghrq: new Date().format('yyyy-MM-dd')},
             colModel: [
                 { label: 'Id', name: 'ghzsId', hidden: true, },
-                { label: '挂号内码', name: 'ghnm', hidden: true, },
+                { label: 'Đăng ký khámMã nội bộ', name: 'ghnm', hidden: true, },
                 @*{
                     label: '操作区', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
                         if (row.ghzsId==0) {
                             return '';
                         }
                         else if (row.calledstu == "2" ) {//已叫号
-                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghzsId + ',' + @Html.Raw(((int)EmunConsultCalledStu.pass)) + ')" value="过号" />';
+                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghzsId + ',' + @Html.Raw(((int)EmunConsultCalledStu.pass)) + ')" value="Qua số" />';
                         }
                         else if (row.calledstu == "3") {//过号
-                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghzsId + ',' + @Html.Raw(((int)EmunConsultCalledStu.recall)) + ')" value="重叫" />';
+                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghzsId + ',' + @Html.Raw(((int)EmunConsultCalledStu.recall)) + ')" value="Gọi lại" />';
                         }
 
                         else
                             return '';
                     },
                 },*@
-                { label: '序号', name: 'jzxh', width: 30, align: 'center' },
-                { label: '病人姓名', name: 'xm', width: 60, align: 'left'},
-                { label: '挂号时间', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '科室', name: 'ksmc', width: 80, },
-                { label: '科室编码', name: 'ksCode', hidden: true, },
-                { label: '医生', name: 'ysmc', width: 50,   },
-                { label: '诊室', name: 'zsmc', width: 80, },
-                { label: '诊室编码', name: 'zsCode', hidden: true, },
+                { label: 'Số thứ tự', name: 'jzxh', width: 30, align: 'center' },
+                { label: 'Họ tên bệnh nhân', name: 'xm', width: 60, align: 'left'},
+                { label: 'Đăng ký khámThời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Khoa', name: 'ksmc', width: 80, },
+                { label: 'KhoaMã', name: 'ksCode', hidden: true, },
+                { label: 'Bác sĩ', name: 'ysmc', width: 50,   },
+                { label: 'Phòng khám', name: 'zsmc', width: 80, },
+                { label: 'Phòng khámMã', name: 'zsCode', hidden: true, },
             ],
             pager: "#gridPager",
             sortname: 'ghrq asc',
             viewrecords: true,
-            caption: "专家诊室",
+            caption: "Chuyên giaPhòng khám",
             autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
             shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
         });
@@ -181,31 +181,31 @@
             colModel: [
 
                 { label: 'Id', name: 'ghzsId', hidden: true, },
-                { label: '挂号内码', name: 'ghnm', hidden: true, },
+                { label: 'Đăng ký khámMã nội bộ', name: 'ghnm', hidden: true, },
                 {
-                    label: '操作区', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
+                    label: 'Khu thao tác', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
                         if (row.ghzsId==0) {
                             return '';
                         }
                         @*else if (row.calledstu == "2" ) {//已叫号未应答
-							return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghnm + ',' + @Html.Raw(((int)EmunConsultCalledStu.pass)) + ')" value="过号" />';
+							return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghnm + ',' + @Html.Raw(((int)EmunConsultCalledStu.pass)) + ')" value="Qua số" />';
                         }*@
-						else if (row.calledstu == "2") {//已叫号可以重叫
-							return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghnm + ',' + @Html.Raw(((int)EmunConsultCalledStu.recall)) + ')" value="重叫" />';
+						else if (row.calledstu == "2") {//已Gọi số可以重叫
+							return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghnm + ',' + @Html.Raw(((int)EmunConsultCalledStu.recall)) + ')" value="Gọi lại" />';
                         }
 
                         else
                             return '';
                     },
                 },
-                { label: '序号', name: 'jzxh', width: 30, align: 'center' },
-                { label: '病人姓名', name: 'xm', width: 60, align: 'left' },
-                { label: '挂号时间', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-				{ label: '科室', name: 'ksmc', width: 80 },
-				{ label: '科室编码', name: 'ksCode', hidden: true, editwidth: '93%', editable: true },
-				{ label: '医生', name: 'ysmc', width: 50,  },
-                { label: '诊室', name: 'zsmc', width: 80, editwidth: '93%', editable: true },
-                { label: '诊室编码', name: 'zsCode', editwidth: '93%', editable: true, hidden: true, },
+                { label: 'Số thứ tự', name: 'jzxh', width: 30, align: 'center' },
+                { label: 'Họ tên bệnh nhân', name: 'xm', width: 60, align: 'left' },
+                { label: 'Đăng ký khámThời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+				{ label: 'Khoa', name: 'ksmc', width: 80 },
+				{ label: 'KhoaMã', name: 'ksCode', hidden: true, editwidth: '93%', editable: true },
+				{ label: 'Bác sĩ', name: 'ysmc', width: 50,  },
+                { label: 'Phòng khám', name: 'zsmc', width: 80, editwidth: '93%', editable: true },
+                { label: 'Phòng khámMã', name: 'zsCode', editwidth: '93%', editable: true, hidden: true, },
 
             ],
             pager: "#gridPagerRight",
@@ -213,7 +213,7 @@
 			viewrecords: true,
 			unwritten: false,
 			editurl: "clientArray",  //行编辑不向服务器提交数据
-            caption: "普通诊室",
+            caption: "ThườngPhòng khám",
             autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
             shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
             gridComplete: function () {
@@ -249,7 +249,7 @@
         return queryJson;
     }
 
-    //获取各诊室待就诊患者数量
+    //获取各Phòng khám待就诊患者数量
     function getConsultCount() {
         if (ksCode) {
             $.najax({
@@ -262,7 +262,7 @@
                     $("#tbody").html("");
                     for (var i = 0; i < ajaxresp.length; i++) {
                         var zsmc = " <th> <span id='sp_zsmc'>" + ajaxresp[i].zsmc + "</span></th>";
-                        var num = "<td ><span id='sp_num'>" + "等待人数：" + ajaxresp[i].num + "</span> </td>";
+                        var num = "<td ><span id='sp_num'>" + "Số người chờ:" + ajaxresp[i].num + "</span> </td>";
                         var html = "<tr>" + zsmc + num + "</tr>"
                         $("#tbody").append(html);
                     }
@@ -271,7 +271,7 @@
         }
     }
 
-    //诊室行编辑
+    //Phòng khám行编辑
     function EnableInlineEditBox() {
         var ids = $("#gridListRight").getDataIDs();
         $.each(ids, function () {
@@ -281,11 +281,11 @@
         })
     }
 
-    //诊室行编辑
+    //Phòng khám行编辑
 	function initInlineFunc(rowid) {
 		$("#" + rowid + "_zsmc").attr('autocomplete', 'off');
         //$("#" + rowid + "_zsmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
-        //诊室浮层
+        //Phòng khám浮层
         $("#" + rowid + "_zsmc").zsFloatingSelector({
             djDecimalPlaces: 4,
             searchType: 'sfxm',
@@ -333,7 +333,7 @@
             data: {  ghzslist: ghzslist },
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'warning');
+                $.modalAlert("Lưu thành công", 'warning');
                 //清空
 				$("#txt_keyword").val("");
 
@@ -350,7 +350,7 @@
 	function ConsultCallOpen() {
 		var ksCode = $("#ksCode").val();
 		if (!ksCode) {
-			$.modalAlert("请选择科室", 'warning');
+			$.modalAlert("Vui lòng chọnKhoa", 'warning');
 			return;
 		}
 		window.open("/NurseManage/OutpatientConsult/ConsultCall?ksCode=" + ksCode, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -359,7 +359,7 @@
     function ConsultCall() {
         var ksCode = $("#ksCode").val();
 		if (!ksCode) {
-            $.modalAlert("请选择科室", 'warning');
+            $.modalAlert("Vui lòng chọnKhoa", 'warning');
             return;
 		}
 		var selrowId = $("#gridListRight").jqGrid("getGridParam", "selrow");
@@ -389,7 +389,7 @@
 					//for (var k = 1; k <= 3; k++) {
 					//	bobao(text);
 					//}
-					//更新叫号状态（2已叫）
+					//更新Gọi số状态（2已叫）
 					$.najax({
 					    type: "POST",
 						url: "/NurseManage/OutpatientConsult/UpdateCalledstu",
@@ -418,7 +418,7 @@
 
 	function jiaohao(ghzsId, calledstu) {
 
-        //更新叫号状态
+        //更新Gọi số状态
         $.najax({
             type: "POST",
             url: "/NurseManage/OutpatientConsult/UpdateCalledstu",
@@ -426,7 +426,7 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-				$.modalAlert("保存成功", 'warning');
+				$.modalAlert("Lưu thành công", 'warning');
 
 				//var text = ajaxresp[0].xm + "请到" + ajaxresp[0].zslc + "楼" + ajaxresp[0].ksmc + "" + ajaxresp[0].zsmc.replace(/[0-9]/g, '') + zsfhnew + "就诊";
 				//for (var k = 1; k <= 3; k++) {

@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "XzyyForm";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
@@ -9,13 +9,13 @@
                 <td id="xzyysm" colspan="3" class="formValue"></td>
             </tr>
             <tr>
-                <td class="formValue" colspan="3"><span class="required">*</span>请选择是否可报？</td>
+                <td class="formValue" colspan="3"><span class="required">*</span>Vui lòng chọn có được thanh toán không?</td>
             </tr>
             <tr>
                 <td class="formValue"  colspan="3" style="width:18%;">
                     <div class="panelposition">
-                        <label style="font-weight:bold;"><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="1" /><span>不可报销</span></label>
-                        <label style="font-weight:bold; padding-left:20px"><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="2"/><span>可报销</span></label>
+                        <label style="font-weight:bold;"><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="1" /><span>Không thể thanh toán</span></label>
+                        <label style="font-weight:bold; padding-left:20px"><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="2"/><span>Được thanh toán</span></label>
                     </div>
                 </td>
             </tr>
@@ -33,7 +33,7 @@
     //var tdobj = document.getElementById('xzyysm');
     $(function () {
         if (!!xzyysm) {
-            document.getElementById('xzyysm').innerText = "该药品为限制用药，限制原因为【" + xzyysm+ "】";
+            document.getElementById('xzyysm').innerText = "Thuốc này là thuốc hạn chế, nguyên nhân hạn chế là 【" + xzyysm+ "】";
         }
         $("input[name='optionsRadios']:checked").next().css('color', 'red');
         $(":radio").click(function () {

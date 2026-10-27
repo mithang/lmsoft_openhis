@@ -1,8 +1,8 @@
-﻿@using Newtouch.Herp.Infrastructure;
+@using Newtouch.Herp.Infrastructure;
 @using Newtouch.Herp.Infrastructure.Enum;
-@using Newtouch.Tools
+@using NewtouchHIS.Lib.Base.Extension
 @{
-    ViewBag.Title = "出入库单查询";
+    ViewBag.Title = "Tra cứu phiếu xuất/nhập kho";
     Layout = "~/Views/Shared/_Index.cshtml";
 
     var djlxItemStrs = Constants.CurrentKf.currentKfLevel != 1 ?
@@ -20,8 +20,8 @@
 (int) EnumOutOrInStorageBillType.Nbth,
 (int) EnumOutOrInStorageBillType.chukuzhikeshi
 };
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    var reportUrl = Newtouch.Herp.Infrastructure.Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Newtouch.Herp.Infrastructure.Constants.GetAppConfigValue("ReportSystemCode");
 }
 <style>
     #btn_search {
@@ -74,44 +74,44 @@
 <form id="form1">
     <div class="panel panel-default" id="dv_search">
         <div class="panel-heading">
-            查询条件
+            Điều kiện tra cứu
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">审核状态：</th>
+                    <th class="formTitle">Trạng thái duyệt：</th>
                     <td class="formValue">
                         <select class="form-control" id="ddlSHZT"></select>
                     </td>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">Ngày：</th>
                     <td class="formValue">
                         <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">至：</th>
+                    <th class="formTitle">Đến：</th>
                     <td class="formValue">
                         <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">发票号：</th>
+                    <th class="formTitle">Số hóa đơn：</th>
                     <td class="formValue">
-                        <input id="txtFPH" type="text" class="form-control" placeholder="发票号" />
+                        <input id="txtFPH" type="text" class="form-control" placeholder="Số hóa đơn" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">单据号：</th>
+                    <th class="formTitle">Số phiếu：</th>
                     <td class="formValue">
-                        <input type="text" class="form-control" id="txtPDH" placeholder="单据号" />
+                        <input type="text" class="form-control" id="txtPDH" placeholder="Số phiếu" />
                     </td>
-                    <th class="formTitle">单据类型：</th>
+                    <th class="formTitle">Loại phiếu：</th>
                     <td class="formValue">
-                        @Html.DropDownList("ddlDJLX", EnumOutOrInStorageBillType.Wbrk.ToSomeDescSelectList(String.Join(",", djlxItemStrs)), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlDJLX", EnumOutOrInStorageBillType.Wbrk.ToSomeDescSelectList(String.Join(",", djlxItemStrs)), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">配送单号：</th>
+                    <th class="formTitle">Số phiếu giao hàng：</th>
                     <td class="formValue">
-                        <input type="text" class="form-control" id="deliveryNo" placeholder="配送单号" />
+                        <input type="text" class="form-control" id="deliveryNo" placeholder="Số phiếu giao hàng" />
                     </td>
                     <td class="formTitle" colspan="2">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In" />
                     </td>
                 </tr>
             </table>
@@ -125,7 +125,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết phiếu</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -232,7 +232,7 @@
             url: "/OutOrInStorageBill/SelectReceiptMainInfo?from=query",
             colModel: [
                 {
-                    label: '审核状态', name: 'shzt', width: 60, align: 'left', formatter: function (val) {
+                    label: 'Trạng thái duyệt', name: 'shzt', width: 60, align: 'left', formatter: function (val) {
                         switch (val) {
                         case '@((int)EnumAuditState.Temporary)':
                             return "@EnumAuditState.Temporary.GetDescription()";
@@ -250,7 +250,7 @@
                     }
                 },
                 {
-                    label: '单据类型', name: 'djlx', width: 65, align: 'center', formatter: function (val) {
+                    label: 'Loại phiếu', name: 'djlx', width: 65, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumOutOrInStorageBillType.Nbth):
                             return "@EnumOutOrInStorageBillType.Nbth.GetDescription()";
@@ -267,16 +267,16 @@
                         }
                     }
                 },
-                { label: '单据号', name: 'Pdh', width: 135, align: 'center' },
-                { label: '配送单号', name: 'deliveryNo', width: 100, align: 'center' },
-                { label: '出库库房', name: 'ckbmmc', width: 130, align: 'center' },
-                { label: '入库部门', name: 'rkbmmc', width: 130, align: 'center' },
-                { label: '出入库方式', name: 'crkfsmc', width: 70, align: 'center' },
-                { label: '操作时间', name: 'czsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '入库时间', name: 'rksj', width: 120, align: 'center' },
-                { label: '零售总额', name: 'ljze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); } },
-                { label: '进价总额', name: 'jjze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); } },
-                { label: '进销差价', name: 'jxcj', width: 65, align: 'left', formatter: function (val) { return val.toFixed(2); } },
+                { label: 'Số phiếu', name: 'Pdh', width: 135, align: 'center' },
+                { label: 'Số phiếu giao hàng', name: 'deliveryNo', width: 100, align: 'center' },
+                { label: 'Kho xuất', name: 'ckbmmc', width: 130, align: 'center' },
+                { label: 'Bộ phận nhập', name: 'rkbmmc', width: 130, align: 'center' },
+                { label: 'Hình thức xuất/nhập kho', name: 'crkfsmc', width: 70, align: 'center' },
+                { label: 'Thời gian thao tác', name: 'czsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thời gian nhập', name: 'rksj', width: 120, align: 'center' },
+                { label: 'Tổng giá bán lẻ', name: 'ljze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); } },
+                { label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); } },
+                { label: 'Chênh lệch giá nhập-bán', name: 'jxcj', width: 65, align: 'left', formatter: function (val) { return val.toFixed(2); } },
                 { label: 'crkId', name: 'crkId', hidden: true },
                 { label: 'djlx', name: 'djlx', hidden: true }
             ],
@@ -315,7 +315,7 @@
 
     //单击事件
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空Chi tiết 再重新加载所有选中行Chi tiết
         $.najax({
             type: "POST",
             url: "/OutOrInStorageBill/SelectReceipDetailInfo",
@@ -336,20 +336,20 @@
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '出入库明细序号', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
-            { label: '类别', name: 'lbmc', width: 100, align: 'left' },
-            { label: '名称', name: 'wzmc', width: 150, align: 'left' },
-            { label: '数量', name: 'slStr', width: 60, align: 'left' },
-            { label: '数量', name: 'sl', hidden: true },
-            { label: '零售总额', name: 'ljze', width: 70, align: 'left', formatter: function (val) { return val.toFixed(2); } },
-            { label: '进价总额', name: 'jjze', width: 70, align: 'left', formatter: function (val) { return val.toFixed(2); }},
-            { label: '进销差价', name: 'jxcj', width: 60, align: 'left', formatter: function (val) { return val.toFixed(2); }},
-            { label: '单位', name: 'dw', hidden: true },
-            { label: '规格', name: 'gg', width: 80, align: 'left' },
-            { label: '批号', name: 'ph', width: 120, align: 'left' },
-            { label: '批次', name: 'pc', width: 120, align: 'left' },
-            { label: '发票', name: 'fph', width: 110, align: 'left' },
-            { label: '生产厂家', name: 'sccj', width: 150, align: 'left' }
+            { label: 'Số thứ tự chi tiết phiếu xuất/nhập kho', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
+            { label: 'Loại', name: 'lbmc', width: 100, align: 'left' },
+            { label: 'Tên', name: 'wzmc', width: 150, align: 'left' },
+            { label: 'Số lượng', name: 'slStr', width: 60, align: 'left' },
+            { label: 'Số lượng', name: 'sl', hidden: true },
+            { label: 'Tổng giá bán lẻ', name: 'ljze', width: 70, align: 'left', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'left', formatter: function (val) { return val.toFixed(2); }},
+            { label: 'Chênh lệch giá nhập-bán', name: 'jxcj', width: 60, align: 'left', formatter: function (val) { return val.toFixed(2); }},
+            { label: 'Đơn vị', name: 'dw', hidden: true },
+            { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+            { label: 'Số lô', name: 'ph', width: 120, align: 'left' },
+            { label: 'Lô', name: 'pc', width: 120, align: 'left' },
+            { label: 'Hóa đơn', name: 'fph', width: 110, align: 'left' },
+            { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' }
         ]
     });
 

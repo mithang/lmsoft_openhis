@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "StopPlan";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 55px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Thời gian dừng：</th>
+                <td class="formValue">
+                    <input class="form-control input-wdatepicker required" id="PreStopDate" name="PreStopDate"
+                           value=@DateTime.Now.ToString("yyyy-MM-dd") type="text"
+                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script>
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var date = $('#PreStopDate').val();
+        if ($.getDate() > date) {
+            $.modalAlert('Ngày dừng không được trước hôm nay');
+        }
+        return date;
+    }
+</script>

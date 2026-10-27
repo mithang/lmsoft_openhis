@@ -1,20 +1,20 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>套餐类型：</th>
+                <th class="formTitle"><span class="required">*</span>GóiLoại:</th>
                 <td class="formValue formDdlSelectorTd">
                   <select id="mblx" class="form-control required" ></select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>套餐名称：</th>
+                <th class="formTitle"><span class="required">*</span>GóiTên:</th>
                 <td class="formValue">
                     <input type="text" id="mbmc" class="form-control required" placeholder="" />
                 </td>
@@ -35,7 +35,7 @@
     });
     function submitForm() {
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         var obj = new Object();

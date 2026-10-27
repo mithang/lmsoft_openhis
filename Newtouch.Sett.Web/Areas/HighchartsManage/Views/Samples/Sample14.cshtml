@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Biểu đồ phễu</title>
+    <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
+    <script>
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'funnel',
+                    marginRight: 100
+                },
+                title: {
+                    text: 'Biểu đồ phễu',
+                    x: -50
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b> ({point.y:,.0f})',
+                            color: 'black',
+                            softConnector: true
+                        },
+                        neckWidth: '30%',
+                        neckHeight: '25%'
+
+                        //-- Other available options
+                        // height: pixels or percent
+                        // width: pixels or percent
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Người dùng độc lập',
+                    data: [
+                        ['Lượt truy cập website', 15654],
+                        ['Tải xuống', 4064],
+                        ['Lấy bảng giá', 1987],
+                        ['Tư vấn', 976],
+                        ['Yêu thích', 846]
+                    ]
+                }]
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container" style="width: 650px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>

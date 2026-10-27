@@ -1,5 +1,5 @@
-﻿@{
-    ViewBag.Title = "新增/修改";
+@{
+    ViewBag.Title = "Thêm mới / Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -13,25 +13,25 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>标志：</th>
+                        <th class="formTitle"><span class="required">*</span>Cờ：</th>
                         <td class="formValue">
                             <select id="crkbz" name="crkbz" class="form-control">
-                                <option value="0">入库</option>
-                                <option value="1">出库</option>
+                                <option value="0">Nhập kho</option>
+                                <option value="1">Xuất kho</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>方式名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên phương thức：</th>
                         <td class="formValue">
-                            <input id="crkfsmc" name="crkfsmc" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="crkfsmc" name="crkfsmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -72,10 +72,10 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#crkfsmc").val() === "") {
-            $.modalAlert("出入库方式名称必填", 'warning');
+            $.modalAlert("Tên phương thức xuất/nhập kho là bắt buộc", 'warning');
             return false;
         }
         return true;

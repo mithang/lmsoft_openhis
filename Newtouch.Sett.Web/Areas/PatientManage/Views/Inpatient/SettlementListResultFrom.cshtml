@@ -1,0 +1,125 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "SettlementListResultFrom";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var brzybzType = ((int)EnumZYBZ.Djz).ToString();
+    var opr = OperatorProvider.GetCurrent();
+}
+<form>
+    <div class="gridPanel" style="margin-top:1%">
+        <table id="gridList"></table>
+        @*<div id="gridPager"></div>*@
+        <table id="detailGrid"></table>
+    </div>
+</form>
+<script>
+    var colModel;
+    var zyh = $.request('zyh');
+    var $gridList = $("#gridList");
+    var $detailGrid = $("#detailGrid");
+    $(function () {
+        gridListData();
+        bindGridList();
+        displayDetailInfo([]);
+    });
+    function bindGridList() {
+        colModel = [
+            {
+                label: 'Mã cơ sở', name: 'fixmedins_code', align: 'center', width: 90, key: true
+            },
+            { label: 'Cơ sở Tên', name: 'fixmedins_name', align: 'center', width: 120 },
+            { label: 'Năm tháng quyết toán', name: 'setl_ym', align: 'center', width: 50 },
+            { label: 'quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
+            { label: 'Số hiệu nhân viên', name: 'psn_no', align: 'left', width: 130 },
+            { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 50 },
+            { label: 'Kết quả kiểm soát chất lượng', name: 'qltctrl_rslt', align: 'center', width: 60 },
+            { label: ' Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+            { label: 'Cờ hoàn trả', name: 'retn_flag', align: 'center', width: 50 },
+            { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50 },
+            { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 80 },
+            { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 100 },
+
+        ];
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/QueryQltctrlProblem_4104",//QueryNumMedicalSettlement_4104
+            data: { hisId: zyh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', orgId: '@(opr.OrganizeId)' },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                debugger;
+                var tfReturn = eval('(' + data + ')');
+                if (tfReturn) {
+                    if (tfReturn.infcode == 0 || tfReturn.infcode == "0") {
+                        $gridList.newtouchLocalDataGrid({
+                            autowidth: false,
+                            unwritten: false,
+                            caption: "quyết toán bảng Kiểm soát chất lượng Tra cứu",
+                            colModel: colModel,
+                        }, tfReturn.output.data);
+                        // 调用显示详情信息表格的函数
+                        displayDetailInfo(tfReturn.output.data[0].detailinfo);
+                    }
+                    else {
+                        $.modalAlert("quyết toán bảng Kiểm soát chất lượng Tra cứu thất bại：" + tfReturn.err_msg, 'error');
+                        return;
+                    }
+                }
+            }, error: function () {
+                $.loading(false);
+                $.modalAlert("Dịch vụ bất thường：", 'error');
+                return;
+            }
+        });
+
+    }
+    function gridListData() {
+        var $gridList = $("#gridList");
+        var captionCon = "Kết quả kiểm soát chất lượng";
+        $gridList.dataGrid({
+            height: $(window).height() - 300,
+            caption: captionCon,
+            multiselect: false,
+            unwritten: false,
+            colModel: [
+                {
+                    label: 'Mã cơ sở', name: 'fixmedins_code', align: 'center', width: 90, key: true
+                },
+                { label: 'Cơ sở Tên', name: 'fixmedins_name', align: 'center', width: 120 },
+                { label: 'Năm tháng quyết toán', name: 'setl_ym', align: 'center', width: 50 },
+                { label: 'quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
+                { label: 'Số hiệu nhân viên', name: 'psn_no', align: 'left', width: 130 },
+                { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 50 },
+                { label: 'Kết quả kiểm soát chất lượng', name: 'qltctrl_rslt', align: 'center', width: 60 },
+                { label: ' Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+                { label: 'Cờ hoàn trả', name: 'retn_flag', align: 'center', width: 50 },
+                { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50 },
+                { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 80 },
+                { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 100 },
+
+            ],
+            //pager: "#gridPager",
+            viewrecords: true
+        });
+    }
+
+    // 显示详情信息的函数
+    function displayDetailInfo(detailData) {
+        var $detailGrid = $("#detailGrid");
+        var detailColModel = [
+            { label: 'Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+            { label: 'Kiểm soát chất lượng kiểm tra kết quả', name: 'qltctrl_chk_rslt', align: 'center', width: 150 },
+            { label: 'Giá trị ban đầu', name: 'init_val', align: 'center', width: 50 },
+            { label: 'kiểm tra dữ liệu trường', name: 'exam_data_fld', align: 'center', width: 150 },
+            { label: 'Cờ hoàn trả', name: 'retn_flag', align: 'center', width: 50 }
+        ];
+
+        // 创建并填充detailGrid表格
+        $detailGrid.newtouchLocalDataGrid({
+            autowidth: true,
+            unwritten: false,
+            caption: "Kiểm soát chất lượng chi tiết",
+            colModel: detailColModel,
+        }, detailData.length > 0 ? detailData : [{/* Empty row to show column headers */ }]);
+    }
+</script>

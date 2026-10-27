@@ -1,0 +1,694 @@
+@using Newtouch.Infrastructure
+@{
+    ViewBag.Title = "HandOutMedicine";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .inline {
+        width: 85%;
+        display: inline;
+    }
+
+    .PriceInline {
+        width: 75%;
+        display: inline;
+    }
+
+    #bzdw {
+        line-height: 25px;
+    }
+</style>
+
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Thông tin lĩnh thuốc
+        </div>
+        <table class="form" style="width:98%;border:0">
+            <tr>
+                <td class="formTitle">Số đơn phát thuốc</td>
+                <td class="formValue"><input type="text" id="fydh" name="fydh" class="form-control newtouch_Readonly" /></td>
+                <td class="formTitle"><span class="required">*</span>Khoa lĩnh thuốc</td>
+                <td class="formValue">
+                    <input type="text" id="lybm" name="lybm" placeholder="Vui lòng chọn khoa lĩnh thuốc" class="form-control" />
+                </td>
+                <td class="formTitle"><span class="required">*</span>Ngày phát thuốc</td>
+                <td class="formValue">
+                    <input type="text" id="fyrq" name="fyrq" class="form-control input-wdatepicker" onchange="ValidateForm()" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                </td>
+                <td class="formTitle"><span class="required">*</span>Cách phát thuốc</td>
+                <td class="formValue">
+                    @Html.DropDownList("fyfs", EnumFyfs.Zcck.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="margin-bottom:0; margin-top:10px;">
+        <div class="panel-heading">
+            Thông tin thuốc
+        </div>
+        <table class="form" style="width:98%;border:0;" id="form3">
+            <tr>
+                <td class="formTitle"><span class="required">*</span>Mã thuốc</td>
+                <td class="formValue">
+                    <input type="hidden" id="newid" name="newid" class="form-control" />
+                    <input type="text" id="srm" name="srm" class="form-control newtouch_Readonly required" />
+                </td>
+                <td class="formTitle"><span class="required">*</span>Lô</td>
+                <td class="formValue">
+                    <input type="text" id="pc" name="pc" class="form-control newtouch_Readonly required" />
+                    @*<select id="pc" name="pc" class="form-control newtouch_Readonly required" style="background-color: rgb(238, 238, 238)"></select>*@
+                </td>
+                <td class="formTitle"><span class="required">*</span>Hạn sử dụng</td>
+                <td class="formValue">
+                    <input type="text" id="yxq" name="yxq" class="form-control newtouch_Readonly required" />
+                    @*<select id="yxq" name="yxq" class="form-control newtouch_Readonly required" style="background-color: rgb(238, 238, 238)"></select>*@
+                </td>
+                <td class="formTitle"><span class="required">*</span>Số lượng phát thuốc</td>
+                <td class="formValue">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input id="fysl" name="fysl" type="text" class="form-control required" style="width: 90px;" />
+                            <input id="maxsl" type="hidden" />
+                        </div>
+                        <div class="col-md-4">
+                            <label id="bzdw"></label>
+                            <input id="ykxs" hidden="hidden" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Tên thuốc</td>
+                <td class="formValue"><input type="text" id="ypmc" class="form-control newtouch_Readonly" /></td>
+                <td class="formTitle">Quy cách</td>
+                <td class="formValue"><input type="text" id="gg" class="form-control newtouch_Readonly" /></td>
+                <td class="formTitle">Tồn kho khả dụng</td>
+                <td class="formValue">
+                    <input type="text" id="kykc" class="form-control newtouch_Readonly inline" />
+                </td>
+                <td class="formTitle">Nhà sản xuất</td>
+                <td class="formValue"><input type="text" id="sccj" class="form-control newtouch_Readonly" /></td>
+            </tr>
+            <tr>
+                <td class="formTitle">Giá bán buôn</td>
+                <td class="formValue">
+                    <input type="text" id="pfj" class="form-control newtouch_Readonly PriceInline" style="width: 90px;" />
+                    <label id="pf_dw">đ/Chai</label>
+                </td>
+                <td class="formTitle">Giá bán lẻ</td>
+                <td class="formValue">
+                    <input type="text" id="lsj" class="form-control newtouch_Readonly PriceInline" style="width: 90px;" />
+                    <label id="ls_dw">đ/Chai</label>
+                </td>
+                <td class="formTitle">Tiền bán buôn</td>
+                <td class="formValue">
+                    <input type="text" id="pfje" class="form-control newtouch_Readonly inline" />
+                    <label>đ</label>
+                </td>
+                <td class="formTitle">Tiền bán lẻ</td>
+                <td class="formValue">
+                    <input type="text" id="lsje" class="form-control newtouch_Readonly inline" />
+                    <label>đ</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="formTitle">Số thứ tự sổ sách</td>
+                <td class="formValue"><input type="text" id="zcxh" class="form-control newtouch_Readonly" /></td>
+                <td class="formTitle"></td>
+                <td class="formValue">
+                    <input type="hidden" id="ph" />
+                    <input type="hidden" id="ypdm" />
+                    <input type="hidden" id="zxsl" />
+                </td>
+                <td colspan="4"></td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+@Html.Partial("_MiddleButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 2, 3, 6, 9 },
+    F2Text = "Thêm",
+    F3Text = "Sửa",
+    F6Text = "Xóa",
+    F9Text = "Hủy sửa",
+    F9Hidden = true
+})
+
+<div class="gridPanel" style="margin-top:10px">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 7, 8 },
+    F7Text = "Đơn phát thuốc mới",
+    F8Text = "Phát thuốc"
+
+})
+<script type="text/javascript">
+    var yplb;
+    var dtdw;
+    var zhyz;
+    var pc;
+    var globalpc;
+    var bzdw;//Đơn vị đóng gói
+    var newxmList = [];   //新项目List
+    var editingNewid = null;    //正在修改的行
+
+    $(function () {
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        init();
+    });
+
+    //初始化
+    function init() {
+        GetDjh();
+        bottomButtonsReset();
+        $("#lybm").blur(function () { ValidateForm(); });
+        $("#fyfs").change(function () {
+            ValidateForm();
+        });
+        //初始化输入码
+        $("#srm").newtouchBatchFloatingSelector({
+            height: 300,
+            width: 1100,
+            clickautotrigger: true,
+            id: 'initialSRM',
+            url: "/DrugStorage/SelectDepartmentMedicineList",
+            ajaxmethod: 'POST',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $.trim($("#srm").val());
+                reqData.ckbm = '@Constants.CurrentYfbm.yfbmCode';
+                return reqData;
+            },
+            caption: "Mã nhập",
+            colModel: [
+            { label: 'Loại', name: 'yplb', width: 50 },
+            { label: 'Mã', name: 'ypCode', width: 100 },
+            { label: 'Tên', name: 'ypmc', width: 200, align: 'left' },
+            { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+            { label: 'Tồn kho', name: 'xykcstr', width: 70 },
+            { label: 'Đơn vị', name: 'ykdw', width: 60 },
+            { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
+            { label: 'Số đăng ký', name: 'pzwh', width: 150, align: 'left' },
+            { label: 'Giá bán lẻ', name: 'lsj', width: 70 },
+            { label: 'Giá bán buôn', name: 'pfj', width: 70 },
+            { label: 'bzs', name: 'bzs', hidden: true },
+            { label: 'zxdw', name: 'zxdw', hidden: true },
+            { label: 'xykc', name: 'xykc', hidden: true }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $.najax({
+                    type: "Get",
+                    url: "/DrugStorage/CheckRkbmOwnMedicine?yp=" + $thistr.attr('data-ypCode') + "&rkbm=" + $("#lybm").val(),
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.state === "success") {
+                            $("#srm").val($thistr.attr('data-ypCode'));
+                            $("#ypdm").val($thistr.attr('data-ypCode'));
+                            yplb = $thistr.attr('data-yplb');
+                            $("#ypmc").val($thistr.attr('data-ypmc')); $("#gg").val($thistr.attr('data-gg'));
+                            $("#sccj").val($thistr.attr('data-sccj'));
+                            $("#pf_dw").html("đ/" + $thistr.attr('data-ykdw'));
+                            $("#ls_dw").html("đ/" + $thistr.attr('data-ykdw'));
+                            var ykpfj = $thistr.attr('data-pfj');
+                            var yklsj = $thistr.attr('data-lsj');
+                            $("#lsj").val(yklsj);
+                            $("#pfj").val(ykpfj);
+                            var list = new Array();
+                            list.push({ id: 'pc' });
+                            readonly(list, 2);
+                            $("#fysl").val("");
+                            $("#pc").val("");
+
+                            //初始化药品批次
+                            $("#pc").newtouchBatchFloatingSelector({
+                            height: 300,
+                            width: 550,
+                            clickautotrigger: true,
+                            url: "/DrugStorage/HandOutMedicinesrmList",
+                            ajaxmethod: 'POST',
+                            ajaxreqdata: function () {
+                                var reqData = {};
+                                reqData.keyword = $.trim($("#ypdm").val());
+                                reqData.ckbm = '@Constants.CurrentYfbm.yfbmCode';
+                                return reqData;
+                            },
+                            caption: "Lô",
+                            colModel: [                                
+                                //{ label: '药品名称', name: 'ypmc', width: 100, align: 'left' },
+                                { label: 'Lô', name: 'pc', width: 150, align: 'center' },
+                                { label: 'Số lô', name: 'ph', width: 150, align: 'center' },                                
+                                { label: 'Tồn kho', name: 'kykc', width: 100, align: 'right' },
+                                { label: 'Hạn sử dụng', name: 'yxq', width: 150, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }, align: 'center' },
+                                { label: 'Hệ số chuyển đổi', name: 'zhyz', hidden: true },
+                                { label: 'Đơn vị khoa', name: 'bmdw', hidden: true },
+                                { label: 'Mã thuốc', name: 'ypdm', hidden: true },
+                                { label: 'Tồn kho tối thiểu', name: 'zxsl', hidden: true },
+                                { label: 'Đơn vị kho thuốc', name: 'zxdw', hidden: true },
+                                { label: 'Hệ số', name: 'bzs', hidden: true },
+                                { label: 'Đơn vị đóng gói', name: 'bzdw', hidden: true },
+                                { label: 'Số tối đa khả dụng sau khi chuyển sang đơn vị khoa', name: 'bmdwsl', hidden: true }
+                            ],
+                            itemdbclickhandler: function ($thistr) {
+                                $("#ph").val($thistr.attr('data-ph'));
+                                $("#kykc").val($thistr.attr('data-kykc'));
+                                zhyz = $thistr.attr('data-zhyz');
+                                pc = $thistr.attr('data-pc');
+                                $("#pc").val($thistr.attr('data-pc'));
+                                $("#yxq").val($thistr.attr('data-yxq'));
+                                $("#zxsl").val($thistr.attr('data-zxsl'));
+                                $("#ykxs").val($thistr.attr('data-bzs'));//Số lượng đóng gói
+                                $("#bzdw").html($thistr.attr('data-bzdw'));//Đơn vị đóng gói
+                                $("#maxsl").val($thistr.attr('data-bmdwsl'));
+                                $("#fysl").val("");
+                            }
+                        });
+                        } else {
+                            $.modalAlert(res.message, 'error');
+                        }
+                    }
+                });
+            }
+        });
+
+        //初始化退药部门
+        $("#lybm").newtouchBatchFloatingSelector({
+            height: 200,
+            width: 250,
+            clickautotrigger: true,
+            url: "/DrugStorage/GetTheLowerYfbmCodeList",
+            ajaxmethod: 'POST',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $.trim($("#lybm").val());
+                return reqData;
+            },
+            caption: "Khoa lĩnh thuốc",
+            colModel: [
+                { label: 'Mã nhà thuốc', name: 'yfbmCode', widthratio: 50 },
+                { label: 'Tên nhà thuốc', name: 'yfbmmc', widthratio: 50 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#lybm").val($thistr.find('td:eq(0)').html());
+                return;
+            }
+        });
+
+        $("#gridList").newtouchLocalDataGrid({
+            height: $(window).height() - 375,
+            unwritten: false,
+            colModel: [
+                { label: "Loại thuốc", name: "yplb", width: 80, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 190, align: 'left' },
+                { label: 'Số lượng', name: 'fysl', width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'bzdw', width: 50, align: 'left' },
+                { label: 'Tồn kho có thể trả', name: 'kykc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 50, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 50, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 190, align: 'left' },
+                {
+                    label: 'Giá bán buôn', name: 'pfj', width: 50, align: 'left', formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                {
+                    label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                {
+                    label: 'Tổng giá bán buôn', name: 'pfje', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                {
+                    label: 'Tổng giá lẻ', name: 'lsje', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
+                    }
+                },
+                { label: "newid", name: "newid", hidden: true },
+                { label: "Khóa chính", name: "ypdm", hidden: true, key: true },
+                { label: 'Mã nhập', name: 'srm', hidden: true },
+                { label: 'Số lượng đơn vị nhỏ nhất', name: 'fysl', hidden: true },
+                { label: 'Số lượng lĩnh', name: 'sqsl', hidden: true },
+                { label: 'Số tối đa khả dụng sau khi chuyển sang đơn vị khoa', name: 'maxsl', hidden: true }
+            ],
+            ondblClickRow: function (rowid) {
+                gridEditRow(rowid);
+            },
+            onSelectRow: function (rowid) {
+                $('#btn_bottombutton_f3').removeAttr('disabled');
+                $('#btn_bottombutton_f6').removeAttr('disabled');
+            }
+        });
+
+        $("#fysl").blur(function () {//计算批发总价和零售总价
+            var fysl = Number($("#fysl").val());
+            var pfje = Number($("#pfj").val()).toFixed(2);
+            var lsje = Number($("#lsj").val()).toFixed(2);
+            $("#pfje").val((fysl * pfje).toFixed(2));
+            $("#lsje").val((fysl * lsje).toFixed(2));
+        });
+    }
+
+    //生成单据号
+    function GetDjh() {
+        $.ajax({
+            type: "Get",
+            url: "/DrugStorage/InitDjh",
+            data: { djmc: 'Đơn phát thuốc nội bộ', r: Math.random() },
+            dataType: "json",
+            success: function (res) {
+                if (res.state === "success") {
+                    $("#fydh").val(res.data);
+                }
+                else {
+                    $.modalAlert(res.message, 'error');
+                }
+            }
+        });
+    }
+
+    //请求 编辑 行
+    function gridEditRow(rowid) {
+        if (rowid) {
+            var rowData = $("#gridList").jqGrid('getRowData', rowid);
+            if (rowData) {
+                var rowDataArr = $.jsonWhere(newxmList, function (v) {
+                    return v && v.newid === rowData.newid;
+                });
+                if (!rowDataArr || rowDataArr.length === 0) {
+                    return; //为什么没找到
+                }
+                if (true) { //&&可编辑
+                    $("#form1").formSerialize(rowData);
+                    $("#bzdw").html(rowData.bzdw);
+                    $('#btn_bottombutton_f6').attr('disabled', 'disabled');
+                    $('#btn_bottombutton_f9').show();
+                    $('#btn_bottombutton_f2').attr('disabled', 'disabled');
+                    editingNewid = rowData.newid;    //正在修改的行
+                }
+            }
+        }
+    }
+
+    //添加
+    function newtouch_event_f2() {
+        if (editingNewid) {
+            return; //正在处于修改状态，是不能点击添加按钮的   要disable处理
+        }
+        if (!(checkEditingRowData() && CheckExistPC())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
+            return;
+        }
+        var data = getEditRowData();
+        data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
+        editingNewid = null;    //?进入修改状态，然后点击添加？
+        newxmList.unshift(data);   //作为新项添加 //”数组最前端“
+        fillDataToGrid();//重新将xm数组呈现至grid
+        clearMedicineInfo();//清空药品信息
+    }
+
+    //检查之前是否已存在添加药品
+    function CheckExistPC() {
+        var ypdm = $("#ypdm").val();
+        var pc = $("#pc").val();
+        var ph = $("#ph").val();
+        for (var i = 0; i < newxmList.length; i++) {
+            if (newxmList[i]["ypdm"] === ypdm && newxmList[i]["pc"] === pc && newxmList[i]["ph"] === ph) {
+                $.modalAlert("Lô thuốc này đã đăng ký，Không cho phép thêm mới！", 'warning');
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //获取编辑域的对象数据
+    function getEditRowData() {
+        var newData = $("#form1").formSerialize();
+        newData["yplb"] = yplb;
+        newData["zhyz"] = zhyz;
+        newData["bzdw"] = $("#bzdw").html();
+        return newData;
+    }
+
+    //填充JQGrid数据（出库药品） 先检查入库部门是否有权限使用该药品
+    function fillDataToGrid() {
+        $("#gridList").resetSelection();
+        $('#gridList').jqGrid("clearGridData");
+        $("#gridList").newtouchLocalDataGrid(null, newxmList);
+    }
+
+    //修改
+    function newtouch_event_f3() {
+        if (editingNewid) {
+            var data = getEditRowData();//提交修改
+            if (!(checkEditingRowData())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
+                return;
+            }
+            //检查重复项
+            //先在xm数组中找到之
+            if (editingNewid) {
+                var matchedIndex = -1;
+                for (var ii = 0; ii < newxmList.length; ii++) {
+                    if (newxmList[ii].newid === data.newid) {
+                        matchedIndex = ii;
+                        break;
+                    }
+                }
+                if (matchedIndex == -1) {
+                    return; //应该是异常
+                }
+                newxmList.remove(matchedIndex);   //移除该项
+                newxmList.unshift(data);   //作为新项添加    //”数组最前端“
+            }
+            fillDataToGrid(); //重新将xm数组呈现至grid
+            clearMedicineInfo(); //清空药品信息
+            bottomButtonsReset();//重置按钮
+        } else {
+            //获取grid当前选中的那一行
+            var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
+            if (seleId) {
+                //请求修改该行
+                gridEditRow(seleId);
+            }
+        }
+    }
+
+    //删除
+    function newtouch_event_f6() {
+        var rowid = $("#gridList").jqGrid("getGridParam", "selrow");
+        if (rowid) {
+            var rowData = $("#gridList").jqGrid('getRowData', rowid);
+            if (rowData) {
+                if (rowData.newid === editingNewid) {
+                    $.modalAlert("Dòng này đang ở trạng thái sửa，Không thể xóa", 'warning');
+                    return; //Dòng này đang ở trạng thái sửa，Không thể xóa
+                }
+                var matchedIndex = -1;
+                for (var ii = 0; ii < newxmList.length; ii++) {
+                    if (newxmList[ii].newid === rowData.newid) {
+                        matchedIndex = ii;
+                    }
+                }
+
+                if (matchedIndex === -1) {
+                    return; //应该是异常
+                }
+                newxmList.remove(matchedIndex);   //移除该项
+
+                //重新将xm数组呈现至grid
+                fillDataToGrid();
+                bottomButtonsReset();
+                //对其他都不产生影响
+            }
+        }
+    }
+
+    //发药
+    function newtouch_event_f8() {
+        if (newxmList.length === 0) {
+            $.modalAlert("Thông tin thuốc không được để trống！", 'warning');
+            return;
+        }
+        var par = new Object();
+
+        par["XT_YP_LS_NBFYMXK"] = newxmList;
+        par["lybm"] = $("#lybm").val();
+        par["fydh"] = $("#fydh").val();
+        par["fyfs"] = $("#fyfs").val();
+        par["type"] = 3;//直接发药
+
+        if (newxmList && par["lybm"] && par["fydh"] && par["fyfs"]) {
+            $.najax({
+                type: "POST",
+                url: "/DrugStorage/ExecHandOutMedicine",
+                data: par,
+                dataType: "json",
+                success: function (res) {
+                    if (res.state === "success") {
+                        $.modalMsg('Phát thuốc thành công', 'success', 1000);
+                        newtouch_event_f7();
+                    } else {
+                        $.modalAlert(res.message, 'error');
+                    }
+                }
+            });
+        }
+    }
+
+    //新发药单
+    function newtouch_event_f7() {
+        //解禁退药信息
+        var list = new Array();
+        list.push({ id: 'lybm' });
+        list.push({ id: 'fyrq' });
+        list.push({ id: 'fyfs' });
+        readonly(list, 2);
+        //禁用药品信息
+        var list2 = new Array();
+        list2.push({ id: 'srm' });
+        list2.push({ id: 'pc' });
+        list2.push({ id: 'yxq' });
+        list2.push({ id: 'bmsl' });
+        list2.push({ id: 'fysl' });
+        readonly(list2, 1);
+        $("#gridList").clearGridData();
+        init();
+        $("#lybm").val("");
+        $("#fyfs").val("");
+        newtouch_globalevent_f4(null, {
+            container: "#form2",
+            inner: false
+        });
+        newxmList = [];   //新项目List
+        editingNewid = null;    //正在修改的行
+        bottomButtonsReset();
+    }
+
+    //按钮重置
+    function bottomButtonsReset() {
+        $('#btn_bottombutton_f2').removeAttr('disabled');
+        $('#btn_bottombutton_f3').attr('disabled', 'disabled');
+        $('#btn_bottombutton_f6').attr('disabled', 'disabled');
+        $('#btn_bottombutton_f9').hide();
+    }
+
+    //清空药品信息
+    function clearMedicineInfo() {
+        newtouch_globalevent_f4(null, {
+            container: "#form3",
+            inner: false
+        });
+        //$("#pc").find("option").remove();
+        //$("#yxq").find("option").remove();
+        $("#pc").val("");
+        $("#yxq").val("");
+        $("#bzdw").html("");
+        $("#fysl").val("");
+        $("#maxsl").val("");
+        editingNewid = null;
+    }
+
+    //检查正在编辑的数据（待提交）的完整性
+    function checkEditingRowData() {
+        var validator = $('#form1').validate();
+        validator.settings = {
+            rules: {
+                lybm: { required: true },
+                fyfs: { required: true },
+                srm: { required: true },
+                fysl: { required: true }
+            },
+            messages: {
+                lybm: { required: "Bắt buộc nhập khoa lĩnh thuốc" },
+                fyfs: { required: "Bắt buộc chọn cách phát thuốc" },
+                srm: { required: "Mã thuốc không được để trống" },
+                fysl: { required: "Số lượng phát thuốc phải là số dương" }
+            },
+            showErrors: function (errorMap, errorList) {
+                if (!$.isEmptyObject(errorList)) {
+                    $.modalAlert(errorList[0].message, 'warning');
+                }
+            }
+        };
+        if (!validator.form()) {
+            return false;
+        }
+        var bmsl = Number($("#fysl").val());
+        var maxsl = Number($("#maxsl").val());
+        if (bmsl > maxsl) {
+            $("#fysl").val("");
+            $("#fysl").focus();
+            $.modalAlert("Số lượng tối đa của lô này không được vượt quá " + maxsl + " ！", 'warning');
+            return false;
+        }
+        else if (bmsl <= 0) {
+            $.modalAlert("Số lượng phát thuốc phải là số dương", 'warning');
+        }
+        return true;
+    }
+
+    function changeval(type) {
+        globalpc = globalpc || [];
+        var t = type === 'pc' ? 'yxq' : 'pc';
+        var val = $("#" + type).val();
+        for (var i = 0; i < globalpc.length; i++) {
+            if (globalpc[i][type] === val) {
+                $('#' + t).val(globalpc[i][t]);
+                return;
+            }
+        }
+    }
+
+    //禁用软件
+    function readonly(list, type) {
+        if (list && list.length > 0) {
+            for (var i = 0; i < list.length; i++) {
+                if (type === 1) {//Vô hiệu hóa
+                    $("#" + list[i]["id"]).addClass('newtouch_Readonly').attr("disabled", "disabled").css("background-color", "rgb(238,238,238)");
+                } else {//Bật
+                    $("#" + list[i]["id"]).removeClass("newtouch_Readonly").removeAttr("disabled").css("background-color", "");
+                }
+
+            }
+        }
+    }
+
+    //验证form
+    function ValidateForm() {
+        var lybm = $("#lybm").val();
+        var fyrq = $("#fyrq").val();
+        var fydh = $("#fydh").val();
+        var fyfs = $("#fyfs").find("option:selected").text();;
+        if (!lybm || !fyrq || !fydh || fyfs === "==Vui lòng chọn==") {
+            return false;
+        }
+        //禁用领药信息
+        var list = new Array();
+        list.push({ id: 'lybm' });
+        list.push({ id: 'fyrq' });
+        list.push({ id: 'fyfs' });
+        readonly(list, 1);
+        //解锁药品信息
+        var list2 = new Array();
+        list2.push({ id: 'srm' });
+        //list2.push({ id: 'pc' });
+        //list2.push({ id: 'yxq' });
+        //list2.push({ id: 'bzdw' });
+        list2.push({ id: 'fysl' });
+        readonly(list2, 2);
+        return true;
+    }
+</script>

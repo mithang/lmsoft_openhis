@@ -1,34 +1,32 @@
-﻿using Autofac;
-using Newtouch.HIS.API.Common;
-using Newtouch.HIS.Base.HOSP.Request;
 using System;
-using System.Net.Http;
-using System.Web.Http;
-using Newtouch.HIS.API.Common.Models;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.HIS.Base.HOSP.API.Envelope;
+using Newtouch.HIS.Base.HOSP.API.Services;
+using Newtouch.HIS.Base.HOSP.Request;
 using Newtouch.HIS.Domain.IDomainServices;
 using Newtouch.HIS.Domain.Entity;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>
-    /// 授权认证
-    /// </summary>
-    [RoutePrefix("api/Auth")]
-    public class AuthController : ApiControllerBase<AuthController>
+    /// <summary>授权认证</summary>
+    [Route("api/Auth")]
+    [ApiController]
+    public class AuthController : ApiControllerBase
     {
-        public AuthController(IComponentContext com) : base(com)
-        { }
-        #region private
         private readonly IAccessAuthDmnService _accessAuthDmnService;
-        #endregion
+
+        public AuthController(TokenStore tokenStore, IAccessAuthDmnService accessAuthDmnService)
+            : base(tokenStore)
+        {
+            _accessAuthDmnService = accessAuthDmnService;
+        }
+
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// 以关键信息换取访问令牌（经代理授权验证）。Gốc gọi Authorized() kiểm tra
+        /// quyền truy cập rồi mới cấp token — bản port giữ nguyên bước kiểm tra này.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("GetTokenbyProxy")]
-        public HttpResponseMessage GetTokenbyProxy(AuthGetTokenRequest request)
+        [HttpPost("GetTokenbyProxy")]
+        public ContentResult GetTokenbyProxy([FromBody] AuthGetTokenRequest request)
         {
             Action<AuthGetTokenRequest, DefaultResponse> ac = (req, resp) =>
             {
@@ -41,18 +39,15 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                     resp.sub_msg = "";
                     return;
                 }
-                //then假设身份验证通过了
-                AccessIdentity ident= new AccessIdentity();
+                var ident = new Newtouch.HIS.Domain.Entity.AccessIdentity();
                 ident.AppId = request.AppId;
                 ident.OrganizeId = request.OrganizeId;
                 ident.Account = request.Account;
-                //1、由request验证出用户身份 //需要的时候加上验证
                 string message = "";
-                bool authed= _accessAuthDmnService.Authorized(ident, out message);
+                bool authed = _accessAuthDmnService.Authorized(ident, out message);
                 if (authed)
                 {
-                    //2、身份存储在Redis（有一定的过期时间）
-                    var identity = new UserIdentity
+                    var identity = new Identity
                     {
                         AppId = request.AppId,
                         TokenType = request.TokenType,
@@ -60,70 +55,39 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                         Account = request.Account,
                         OrganizeId = request.OrganizeId,
                         TopOrganizeId = request.TopOrganizeId,
-                        //Tag = "ProxyAPI_TP"
                     };
                     var token = SaveIdentity(identity);
-                    //3、返回key
-                    resp.data = new
-                    {
-                        token = token
-                    };
+                    resp.data = new { token = token };
                 }
                 else
                 {
-                    resp.msg = message;
+                    resp.sub_msg = message;
                 }
+                // QUIRK GỐC (giữ nguyên): code vẫn là SUCCESS ngay cả khi
+                // Authorized() trả false (chỉ khác ở sub_msg). Không tự ý sửa
+                // hành vi này để tránh lệch contract với client cũ.
                 resp.code = ResponseResultCode.SUCCESS;
             };
-            var response = base.CommonExecute(ac, request);
-            return base.CreateResponse(response);
+            var response = CommonExecute(ac, request);
+            return CreateResponse(response);
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// STUB CÓ CHỦ ĐÍCH — KHÔNG cấp token thật: action GetToken gốc mint token
+        /// mà KHÔNG kiểm tra bất kỳ credential nào ("giả thiết đã xác thực xong").
+        /// Port thành token thật sẽ là lỗ hổng bảo mật (tiền lệ MRMS/OR). Client cần
+        /// dùng GetTokenbyProxy (có bước Authorized) để lấy token.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public HttpResponseMessage GetToken(AuthGetTokenRequest request)
+        [HttpPost("GetToken")]
+        public ContentResult GetToken([FromBody] AuthGetTokenRequest request)
         {
-            Action<AuthGetTokenRequest, DefaultResponse> ac = (req, resp) =>
+            var response = new DefaultResponse
             {
-                if (string.IsNullOrWhiteSpace(request.UserId)
-                    || string.IsNullOrWhiteSpace(request.Account)
-                    || string.IsNullOrWhiteSpace(request.OrganizeId)
-                    || string.IsNullOrWhiteSpace(request.TopOrganizeId))
-                {
-                    resp.code = ResponseResultCode.FAIL;
-                    resp.sub_code = "AUTH_FAILED";
-                    resp.sub_msg = "";
-                    return;
-                }
-                //then假设身份验证通过了
-                //1、由request验证出用户身份 //需要的时候加上验证
-
-                //2、身份存储在Redis（有一定的过期时间）
-                var identity = new UserIdentity
-                {
-                    AppId = request.AppId,
-                    TokenType = request.TokenType,
-                    UserId = request.UserId,
-                    Account = request.Account,
-                    OrganizeId = request.OrganizeId,
-                    TopOrganizeId = request.TopOrganizeId,
-                };
-                var token = SaveIdentity(identity);
-
-                //3、返回key
-                resp.data = new
-                {
-                    token = token
-                };
-                resp.code = ResponseResultCode.SUCCESS;
+                code = ResponseResultCode.FAIL,
+                sub_code = "GETTOKEN_DISABLED",
+                sub_msg = "GetToken đã bị vô hiệu hóa: action gốc cấp token mà không kiểm tra credential. Vui lòng dùng GetTokenbyProxy (có xác thực quyền truy cập) để lấy token.",
             };
-            var response = base.CommonExecute(ac, request);
-            return base.CreateResponse(response);
+            return CreateResponse(response);
         }
-
     }
 }

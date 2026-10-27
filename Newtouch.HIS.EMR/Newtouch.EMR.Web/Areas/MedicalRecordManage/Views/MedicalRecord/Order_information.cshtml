@@ -17,7 +17,7 @@
 <div class="panel panel-default">
     <table class="form">
         <tr>
-            <th class="formTitle" style="width:60px;">日期：</th>
+            <th class="formTitle" style="width:60px;">Ngày:</th>
             <td class="formValue" style="width:100px;">
                 <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                        onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -31,47 +31,47 @@
                        onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick();  } })"
                        value="@DateTime.Now.ToString("yyyy-MM-dd")" />
             </td>
-            <th class="formTitle" style="text-align:right;width:70px;">医嘱内容：</th>
+            <th class="formTitle" style="text-align:right;width:70px;">Nội dung y lệnh:</th>
             <td class="formValue" style="width:90px;">
                 <input id="keyword" type="text" class="form-control" style="width:90px;">
             </td>
-            <th class="formTitle" style="text-align:right;width:70px;">医嘱类别：</th>
+            <th class="formTitle" style="text-align:right;width:70px;">Loại y lệnh:</th>
             <td class="formValue formDdlSelectorTd" style="width:55px">
                 <select id="yzlb" name="yzlb" class="form-control " style="width:50px;">
-                    <option value="0">全部</option>
-                    <option value="1"> 长期 </option>
-                    <option value="2"> 临时 </option>
+                    <option value="0">Tất cả</option>
+                    <option value="1"> Dài hạn </option>
+                    <option value="2"> Tạm thời </option>
                 </select>
             </td>
-            <th class="formTitle" style="text-align:right;width:70px;">医嘱类型：</th>
+            <th class="formTitle" style="text-align:right;width:70px;">Kiểu y lệnh:</th>
             <td class="formValue formDdlSelectorTd" style="width:65px">
                 <select id="yzlx" name="yzlx" class="form-control " style="width:60px;">
-                    <option value="1"> 全部 </option>
-                    <option value="2"> 药品 </option>
-                    <option value="3"> 文字 </option>
-                    <option value="4"> 出院带药 </option>
-                    <option value="5"> 项目 </option>
-                    <option value="6"> 检验 </option>
-                    <option value="7"> 检查 </option>
-                    <option value="8"> 膳食医嘱 </option>
-                    <option value="9"> 手术 </option>
-                    <option value="10"> 中草药 </option>
-                    <option value="11"> 康复 </option>
+                    <option value="1"> Tất cả </option>
+                    <option value="2"> Thuốc </option>
+                    <option value="3"> Văn bản </option>
+                    <option value="4"> Thuốc mang về khi ra viện </option>
+                    <option value="5"> Hạng mục </option>
+                    <option value="6"> Xét nghiệm </option>
+                    <option value="7"> kiểm tra </option>
+                    <option value="8"> Y lệnh ăn uống </option>
+                    <option value="9"> Phẫu thuật </option>
+                    <option value="10"> Thuốc đông y </option>
+                    <option value="11"> Phục hồi chức năng </option>
                 </select>
             </td>
-            <th class="formTitle" style="text-align:right;width:70px;">医嘱状态：</th>
+            <th class="formTitle" style="text-align:right;width:70px;">Trạng thái y lệnh:</th>
             <td class="formValue formDdlSelectorTd" style="width:60px">
                 <select id="yzzt" name="yzzt" class="form-control " style="width:50px;">
-                    <option value="5"> 全部 </option>
-                    <option value="0"> 待审 </option>
-                    <option value="1"> 审核 </option>
-                    <option value="2"> 执行 </option>
-                    <option value="3"> 撤DC </option>
-                    <option value="4"> 停止 </option>
+                    <option value="5"> Tất cả </option>
+                    <option value="0"> Chờ duyệt </option>
+                    <option value="1"> Duyệt </option>
+                    <option value="2"> Thực hiện </option>
+                    <option value="3"> Thu hồiDC </option>
+                    <option value="4"> Dừng </option>
                 </select>
             </td>
             <th>
-                <button type="button" class="btn btn-default" style="width:50px; margin-left:5px;" onclick="Timeclick()">查询</button>
+                <button type="button" class="btn btn-default" style="width:50px; margin-left:5px;" onclick="Timeclick()">Tìm kiếm</button>
             </th>
         </tr>
     </table>
@@ -85,7 +85,7 @@
     <div style="width:215px;float:left;border:1px solid #bdbdbd">
         <table id="gridListxz"></table>
         <div id="gridPagerxz"></div>
-        @*<button type="button" class="btn btn-default" style="width:60px; margin-left:5px;float:right" onclick="DeleteSelectRow()">删除选中行</button>*@
+        
     </div>
     
 </div>
@@ -121,41 +121,41 @@
             height: $(window).height() - 120,
             colModel: [
                 { label: 'Id', name: 'Id', width: 60, hidden: true, key: true },
-                { label: '类别', name: 'yzlb', width: 30 },
+                { label: 'Loại', name: 'yzlb', width: 30 },
                 {
-                    label: '类型', name: 'yzlx', width: 30, formatter: function (cellvalue) {
+                    label: 'Loại', name: 'yzlx', width: 30, formatter: function (cellvalue) {
                         if (cellvalue == "2")
-                            return "药品";
+                            return "Thuốc";
                         else if (cellvalue == "3")
-                            return "文字";
+                            return "Văn bản";
                         else if (cellvalue == "4")
-                            return "出院带药";
+                            return "Thuốc mang về khi ra viện";
                         else if (cellvalue == "5")
-                            return "项目";
+                            return "Hạng mục";
                         else if (cellvalue == "6")
-                            return "检验";
+                            return "Xét nghiệm";
                         else if (cellvalue == "7")
-                            return "检查";
+                            return "kiểm tra";
                         else if (cellvalue == "8")
-                            return "膳食医嘱";
+                            return "Y lệnh ăn uống";
                         else if (cellvalue == "9")
-                            return "手术";
+                            return "Phẫu thuật";
                         else if (cellvalue == "10")
-                            return "中草药";
+                            return "Thuốc đông y";
                         else if (cellvalue == "11")
-                            return "康复";
+                            return "Phục hồi chức năng";
                         else
                             return "";
                     } },
-                { label: '住院号', name: 'zyh', width: 50, hidden: true },
-                { label: '科室', name: 'DeptCode', width: 80 },
-                { label: '开始时间', name: 'kssj', width: 100 },
-                { label: '医生', name: 'ysgh', width: 60 },
+                { label: 'Số nhập viện', name: 'zyh', width: 50, hidden: true },
+                { label: 'Khoa', name: 'DeptCode', width: 80 },
+                { label: 'Thời gian bắt đầu', name: 'kssj', width: 100 },
+                { label: 'Bác sĩ', name: 'ysgh', width: 60 },
                 {
-                    label: '医嘱内容', name: 'yznr', width: 180, formatter: function (val) {
+                    label: 'Nội dung y lệnh', name: 'yznr', width: 180, formatter: function (val) {
                         if (val != null) {
                             if (val.indexOf("[停]") != -1) {
-                                return "<span style='color:red'>[停]</span>" + val.replace("[停]", "")
+                                return "<span style='color:red'>[Dừng]</span>" + val.replace("[停]", "")
                             }
                             else
                                 return val;
@@ -163,8 +163,8 @@
 
                         else return "";
                     } },
-                { label: '执行时间', name: 'zxsj', width: 80 },
-                { label: '医嘱状态', name: 'yzzt', width: 80, hidden: true }
+                { label: 'Thực hiện thời gian', name: 'zxsj', width: 80 },
+                { label: 'Trạng thái y lệnh', name: 'yzzt', width: 80, hidden: true }
             ],
             ondblClickRow: function (row) {
                 var rowData = $('#gridList').jqGrid('getRowData', row);
@@ -190,7 +190,7 @@
                     checkBox = [];//每次加载清空选中状态
                 }
                 cPage = 0;
-                //此处需要注意页面值是动态加载数据还是一次性加载全部数据，写法不一样，这里是动态加载页面数据
+                //此处需要注意页面值是动态加载数据还是一次性加载全部数据, 写法不一样, 这里是动态加载页面数据
                 var rowArr = data.rows;
 
                 if (checkBox.length > 0) {
@@ -297,7 +297,7 @@
             {
                 colModel: [
                     { label: 'Id', name: 'Id', width: 60, hidden: true, key: true },
-                    { label: '所选中的医嘱内容', name: 'yznr', width: 210 }
+                    { label: 'Nội dung y lệnh đã chọn', name: 'yznr', width: 210 }
                 ],
                 sortname: 'Id desc',
                 //multiselect: true,
@@ -349,10 +349,10 @@
             yzlb = "";
         }
         else if (yzlb == "1") {
-            yzlb = "长期";
+            yzlb = "Dài hạn";
         }
         else {
-            yzlb = "临时";
+            yzlb = "Tạm thời";
         }
 
         if (yzlx == "1") {

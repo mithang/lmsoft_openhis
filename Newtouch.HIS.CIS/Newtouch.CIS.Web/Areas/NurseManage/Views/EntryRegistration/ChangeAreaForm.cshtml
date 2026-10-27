@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "患者转区";
+    ViewBag.Title = "Bệnh nhânChuyển khu";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -8,10 +8,10 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">病区：</th>
+                <th class="formTitle">Khu bệnh:</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="sel_inpatientArea" class="form-control">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
@@ -34,7 +34,7 @@
     {
         var bqdm = $('#sel_inpatientArea').val();
         if (bqdm == "" || bqdm==null) {
-            $.modalAlert('请选择病区！', 'warning');
+            $.modalAlert('Vui lòng chọnKhu bệnh!', 'warning');
             return;
         }
         $.ajax({
@@ -45,7 +45,7 @@
             async: false,
             success: function (ajaxresp) {
                 if (ajaxresp.state == "success") {
-                    $.modalMsg('转区成功', 'success');
+                    $.modalMsg('Chuyển khuthành công', 'success');
                 }
                 else {
                     $.modalAlert(ajaxresp.message, 'warning');

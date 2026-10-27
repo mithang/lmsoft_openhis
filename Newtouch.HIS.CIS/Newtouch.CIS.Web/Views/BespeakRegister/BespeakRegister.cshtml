@@ -1,5 +1,5 @@
-﻿@{
-    ViewBag.Title = "门诊预约";
+@{
+    ViewBag.Title = "Ngoại trúHẹn trước";
     Layout = null;
 }
 <style>
@@ -93,21 +93,21 @@
     <div class="dv-yy">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>科室：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa:</th>
                 <td class="formValue" style="width:100%;">
                     <select id="sel_dept" class="form-control required"></select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">专家：</th>
+                <th class="formTitle">Chuyên gia:</th>
                 <td class="formValue">
                     <select id="sel_ys" class="form-control">
-                        <option value="">== 医生 ==</option>
+                        <option value="">== Bác sĩ ==</option>
                     </select>
                 </td>
             </tr>
             <tr style="display: none;">
-                <th class="formTitle"><span class="required">*</span>日期：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày:</th>
                 <td class="formValue">
                     <select id="sel_rq" class="form-control required"></select>
                 </td>
@@ -117,15 +117,15 @@
                     <div class="dv-calendar ">
                         <div class="dv-search">
                             <select class="form-control" name="selDate" id="selYear" style="border-radius: 0; width: 65px; float: left; padding: 3px 6px;">
-                                <option value="@DateTime.Now.Year">@DateTime.Now.Year 年</option>
-                                <option value="@DateTime.Now.AddYears(1).Year">@DateTime.Now.AddYears(1).Year 年</option>
+                                <option value="@DateTime.Now.Year">@DateTime.Now.Year năm</option>
+                                <option value="@DateTime.Now.AddYears(1).Year">@DateTime.Now.AddYears(1).Year năm</option>
                             </select>
                             <select class="form-control" name="selDate" id="selMonth" style="border-radius: 0;width: 50px; float: left;padding: 3px 6px;">
                                 @{
                                     var otherMonthCount = 12 - DateTime.Now.Month + 1;
                                     for (var i = 0; i < otherMonthCount; i++)
                                     {
-                                        <option value="@DateTime.Now.AddMonths(i).Month">@DateTime.Now.AddMonths(i).Month 月</option>
+                                        <option value="@DateTime.Now.AddMonths(i).Month">@DateTime.Now.AddMonths(i).Month tháng</option>
                                     }
                                 }
                             </select>
@@ -134,13 +134,13 @@
                             <table style="width:100%;">
                                 <thead>
                                     <tr>
-                                        <th>一</th>
-                                        <th>二</th>
-                                        <th>三</th>
-                                        <th>四</th>
-                                        <th>五</th>
-                                        <th class="td-weekend">六</th>
-                                        <th class="td-weekend">日</th>
+                                        <th>Hai</th>
+                                        <th>Ba</th>
+                                        <th>Tư</th>
+                                        <th>Năm</th>
+                                        <th>Sáu</th>
+                                        <th class="td-weekend">Bảy</th>
+                                        <th class="td-weekend">CN</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tb_clendarContent"></tbody>
@@ -150,18 +150,18 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>时间：</th>
+                <th class="formTitle"><span class="required">*</span>Thời gian:</th>
                 <td class="formValue" id="td_regTime"></td>
             </tr>
             <tr>
-                <th class="formTitle">已预约数：</th>
+                <th class="formTitle">Số đã đặt hẹn:</th>
                 <td class="formValue" colspan="3">
                     <span id="zyys" style="color: #fe2e01;"></span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center" style="padding:10px 0;">
-                    <input type="button" class="btn btn-primary" value="保存预约" onclick="SaveYy()" />
+                    <input type="button" class="btn btn-primary" value="LưuĐặt hẹn" onclick="SaveYy()" />
                 </td>
             </tr>
         </table>
@@ -171,9 +171,9 @@
             <table id="yyGridList"></table>
             <div id="yyGridPager"></div>
         </div>
-        <span style="margin-right: 10px; color: #fe2e01;margin-left: 10px; line-height: 30px;">注：只显示当月1号以后的预约信息</span>
+        <span style="margin-right: 10px; color: #fe2e01;margin-left: 10px; line-height: 30px;">Lưu ý: chỉ hiển thị thông tin đặt hẹn từ ngày 1 tháng này trở đi</span>
         <div class="dv-yydetail-bottom">
-            <input type="button" class="btn btn-primary" value="取消预约" onclick="CancelYy()" />
+            <input type="button" class="btn btn-primary" value="HủyĐặt hẹn" onclick="CancelYy()" />
         </div>
     </div>
 </div>
@@ -249,15 +249,15 @@
             url: "/SystemManage/BespeakRegisterManage/GetArrangedRegistersGridJson",
             postData: { blh: window.currPatientInfo.blh, r: Math.random() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '门诊类型', name: 'mzlx', width: 80, align: 'left' },
-                { label: '科室', name: 'ksmc', width: 120, align: 'left' },
-                { label: '日期', name: 'regDate', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '时间', name: 'regTime', width: 70, align: 'left' },
-                { label: '专家', name: 'zjmc', width: 90, align: 'left' },
-                { label: '预约号', name: 'bespeakNo', width: 60, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 80, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Ngoại trúLoại', name: 'mzlx', width: 80, align: 'left' },
+                { label: 'Khoa', name: 'ksmc', width: 120, align: 'left' },
+                { label: 'Ngày', name: 'regDate', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian', name: 'regTime', width: 70, align: 'left' },
+                { label: 'Chuyên gia', name: 'zjmc', width: 90, align: 'left' },
+                { label: 'Số đặt hẹn', name: 'bespeakNo', width: 60, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ],
             pager: "#yyGridPager",
             sortname: 'CreateTime desc',
@@ -276,7 +276,7 @@
         }
     }
 
-    //获取指定日期预约排班信息
+    //获取指定日期预约Xếp lịch信息
     function GetRegTimes(ksCode, regDate, gh) {
         if (ksCode == null || regDate == null) return;
         $.najax({
@@ -299,7 +299,7 @@
         }
     }
 
-    //选择时段
+    //选择Khung giờ
     function chooseRegTime(obj) {
         var regTime = $(obj).val();
         if (regTime == undefined || regTime === "") return;
@@ -316,7 +316,7 @@
                 if (data != null) {
                     $("#zyys").html(data.yyys + " / " + data.bespeakMaxCount);
                     if (data.yyys >= data.bespeakMaxCount) {
-                        $.modalMsg("该科室或专家已满额，无法继续预约", "error", 2000);
+                        $.modalMsg("Khoa hoặc chuyên gia này đã đủ số lượng, không thể tiếp tục đặt hẹn", "error", 2000);
                     }
                 }
             }
@@ -327,16 +327,16 @@
     function SaveYy() {
         var chs = $(".td-choose");
         if (chs == null || chs.length === 0) {
-            $.modalMsg("请选择预约日期", "warning", 1500);
+            $.modalMsg("Vui lòng chọnĐặt hẹnNgày", "warning", 1500);
             return;
         }
         if ($("#td_regTime").html() === "") {
-            $.modalMsg("当天没有预约挂号资源,请重新选择", "warning", 1500);
+            $.modalMsg("Hôm nayKhông cóĐặt hẹnĐăng ký khámTài nguyên,Vui lòng chọn lại", "warning", 1500);
             return;
         }
         var obj = $("input[name=rd_regTime]:checked");
         if (obj == null || obj.length === 0) {
-            $.modalMsg("请选择预约时间", "warning", 1500);
+            $.modalMsg("Vui lòng chọnĐặt hẹnThời gian", "warning", 1500);
             return;
         }
         $.najax({
@@ -346,7 +346,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    $.modalMsg("提交预约成功", "success", 1000);
+                    $.modalMsg("GửiĐặt hẹnthành công", "success", 1000);
                     RefreshJqgridData();
                     BuildCalendar();
                 }
@@ -369,10 +369,10 @@
     function CancelYy() {
         var id = $gridList.jqGrid('getGridParam', 'selrow');
         if (id == null || id === "") {
-            $.modalMsg("请选择要取消的预约挂号", "warning", 1000);
+            $.modalMsg("Vui lòng chọn đăng ký hẹn khám cần hủy", "warning", 1000);
             return;
         }
-        $.modalConfirm("您确定要取消吗",
+        $.modalConfirm("Bạn xác nhận muốn hủy chứ",
             function (flag) {
                 if (flag) {
                     $.najax({
@@ -382,7 +382,7 @@
                         dataType: "json",
                         success: function (data) {
                             if (data.state === 'success') {
-                                $.modalMsg("取消预约成功", "success", 1000);
+                                $.modalMsg("HủyĐặt hẹnthành công", "success", 1000);
                                 RefreshJqgridData();
                                 BuildCalendar();
                             } else {

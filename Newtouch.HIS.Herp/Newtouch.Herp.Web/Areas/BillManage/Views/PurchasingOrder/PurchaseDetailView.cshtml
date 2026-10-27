@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "采购单明细";
+    ViewBag.Title = "Chi tiết đơn mua sắm";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -21,7 +21,7 @@
 </form>
 
 <script>
-    var subOrderNo = $.request("subOrderNo");//采购Id;
+    var subOrderNo = $.request("subOrderNo");//Mua sắmId;
     $(function () {
         gridList();
     });
@@ -33,14 +33,14 @@
             height: $(window).height() - 80,
             postData: { subOrderNo: subOrderNo},
             colModel: [
-                { label: '名称', name: 'wzmc', width: 80, align: 'center' },
-                { label: '采购数量', name: 'slStr', width: 70, align: 'center' },
-                { label: '规格', name: 'gg', width: 70, align: 'center' },
-                { label: '进价', name: 'jjStr', width: 70, align: 'center' },
-                { label: '进价总额', name: 'jjze', width: 70, align: 'center' },
-                { label: '厂家', name: 'sccj', width: 160, align: 'center' },
-                { label: '供应商', name: 'gysmc', width: 150, align: 'left' },
-                { label: '发票号', name: 'fph', width: 120, align: 'left' ,hidden:true},
+                { label: 'Tên', name: 'wzmc', width: 80, align: 'center' },
+                { label: 'Số lượng mua', name: 'slStr', width: 70, align: 'center' },
+                { label: 'Quy cách', name: 'gg', width: 70, align: 'center' },
+                { label: 'Giá nhập', name: 'jjStr', width: 70, align: 'center' },
+                { label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'center' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 160, align: 'center' },
+                { label: 'Nhà cung cấp', name: 'gysmc', width: 150, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fph', width: 120, align: 'left' ,hidden:true},
             ],
 
             multiselect: false,

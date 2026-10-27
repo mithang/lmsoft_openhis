@@ -1,20 +1,29 @@
-﻿using System;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.CIS.Compat;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.CIS.Repository;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.Application.Interface;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ViewModels;
 using Newtouch.Domain.ViewModels.Outpatient;
-using Autofac;
-using Newtouch.HIS.Web.Core.Attributes;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
     /// 输液管理 移动端
     /// </summary>
-    public class InfusionManageController : Controller
+    public class InfusionManageController : ControllerBase
     {
         private readonly IMzsyypxxRepo _mzsyypxxRepo;
         private readonly IInfusionApp _infusionApp;
@@ -32,7 +41,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="organizeId"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Query(string tags, string organizeId)
+        public IActionResult Query(string tags, string organizeId)
         {
             if (string.IsNullOrWhiteSpace(tags))
             {

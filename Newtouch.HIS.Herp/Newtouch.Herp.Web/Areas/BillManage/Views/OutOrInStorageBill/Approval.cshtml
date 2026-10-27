@@ -1,8 +1,8 @@
-﻿@using Newtouch.Herp.Infrastructure;
+@using Newtouch.Herp.Infrastructure;
 @using Newtouch.Herp.Infrastructure.Enum;
-@using Newtouch.Tools
+@using NewtouchHIS.Lib.Base.Extension
 @{
-    ViewBag.Title = "出入库单审核";
+    ViewBag.Title = "Duyệt phiếu xuất/nhập kho";
     Layout = "~/Views/Shared/_Index.cshtml";
 
     var djlxItemStrs = Constants.CurrentKf.currentKfLevel != 1 ? "3,4" : "1,2,3,5";
@@ -68,43 +68,43 @@
 <form id="form1">
     <div class="panel panel-default" id="dv_search">
         <div class="panel-heading">
-            查询条件
+            Điều kiện tra cứu
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">审核状态：</th>
+                    <th class="formTitle">Trạng thái duyệt：</th>
                     <td class="formValue">
                         <select class="form-control" id="ddlSHZT"></select>
                     </td>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">Ngày：</th>
                     <td class="formValue">
                         <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">至：</th>
+                    <th class="formTitle">Đến：</th>
                     <td class="formValue">
                         <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">发票号：</th>
+                    <th class="formTitle">Số hóa đơn：</th>
                     <td class="formValue">
                         <input id="txtFPH" type="text" class="form-control " />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">单据号：</th>
+                    <th class="formTitle">Số phiếu：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtPDH" />
                     </td>
-                    <th class="formTitle">单据类型：</th>
+                    <th class="formTitle">Loại phiếu：</th>
                     <td class="formValue">
-                        @Html.DropDownList("ddlDJLX", EnumOutOrInStorageBillType.Wbrk.ToSomeDescSelectList(djlxItemStrs), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlDJLX", EnumOutOrInStorageBillType.Wbrk.ToSomeDescSelectList(djlxItemStrs), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">配送单号：</th>
+                    <th class="formTitle">Số phiếu giao hàng：</th>
                     <td class="formValue">
-                        <input type="text" class="form-control" id="deliveryNo" placeholder="配送单号" />
+                        <input type="text" class="form-control" id="deliveryNo" placeholder="Số phiếu giao hàng" />
                     </td>
                     <td class="formTitle" colspan="2">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -118,7 +118,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết phiếu</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -131,13 +131,13 @@
 <div class="showbotton">
     <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
 </div>
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 6, 7, 8, 9},
-    F6Text = "审核通过",
-    F7Text = "不通过",
-    F8Text = "撤销审核",
-    F9Text = "打回申请"
+    F6Text = "Duyệt đạt",
+    F7Text = "Không đạt",
+    F8Text = "Hủy duyệt",
+    F9Text = "Trả lại đơn"
 })
 
 <script>
@@ -203,7 +203,7 @@
             url: "/OutOrInStorageBill/SelectReceiptMainInfo?from=approval",
             colModel: [
                 {
-                    label: '审核状态', name: 'shzt', width: 60, align: 'left', formatter: function (val) {
+                    label: 'Trạng thái duyệt', name: 'shzt', width: 60, align: 'left', formatter: function (val) {
                         switch (val) {
                             case '@((int)EnumAuditState.Temporary)':
                                 return "@EnumAuditState.Temporary.GetDescription()";
@@ -221,7 +221,7 @@
                     }
                 },
                 {
-                    label: '单据类型', name: 'djlx', width: 65, align: 'left', formatter: function (val) {
+                    label: 'Loại phiếu', name: 'djlx', width: 65, align: 'left', formatter: function (val) {
                         switch (val) {
                             case @((int)EnumOutOrInStorageBillType.Nbth):
                                 return "@EnumOutOrInStorageBillType.Nbth.GetDescription()";
@@ -236,16 +236,16 @@
                         }
                     }
                 },
-                { label: '单据号', name: 'Pdh', width: 135, align: 'center' },
-                { label: '配送单号', name: 'deliveryNo', width: 100, align: 'center' },
-                { label: '出库库房', name: 'ckbmmc', width: 120, align: 'center' },
-                { label: '入库部门', name: 'rkbmmc', width: 120, align: 'center' },
-                { label: '出入库方式', name: 'crkfsmc', width: 70, align: 'center' },
-                { label: '操作时间', name: 'czsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '入库时间', name: 'rksj', width: 120, align: 'center',formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '零售总额', name: 'ljze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); } },
-                { label: '进价总额', name: 'jjze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); }},
-                { label: '进销差价', name: 'jxcj', width: 65, align: 'left', formatter: function (val) { return val.toFixed(2); }},
+                { label: 'Số phiếu', name: 'Pdh', width: 135, align: 'center' },
+                { label: 'Số phiếu giao hàng', name: 'deliveryNo', width: 100, align: 'center' },
+                { label: 'Kho xuất', name: 'ckbmmc', width: 120, align: 'center' },
+                { label: 'Bộ phận nhập', name: 'rkbmmc', width: 120, align: 'center' },
+                { label: 'Hình thức xuất/nhập kho', name: 'crkfsmc', width: 70, align: 'center' },
+                { label: 'Thời gian thao tác', name: 'czsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thời gian nhập', name: 'rksj', width: 120, align: 'center',formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Tổng giá bán lẻ', name: 'ljze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); } },
+                { label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'center', formatter: function (val) { return val.toFixed(2); }},
+                { label: 'Chênh lệch giá nhập-bán', name: 'jxcj', width: 65, align: 'left', formatter: function (val) { return val.toFixed(2); }},
                 { label: 'crkId', name: 'crkId', hidden: true },
                 { label: 'djlx', name: 'djlx', hidden: true }
             ],
@@ -282,7 +282,7 @@
 
     //单击事件
     function btn_selectrow(rowid) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空Chi tiết 再重新加载所有选中行Chi tiết
         $.najax({
             type: "POST",
             url: "/OutOrInStorageBill/SelectReceipDetailInfo",
@@ -303,24 +303,24 @@
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '出入库明细序号', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
-            { label: '类别', name: 'lbmc', width: 100, align: 'left' },
-            { label: '名称', name: 'wzmc', width: 150, align: 'left' },
-            { label: '数量', name: 'slStr', width: 60, align: 'right' },
-            { label: '数量', name: 'sl', hidden: true },
-            { label: '零售总额', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
-            { label: '进价总额', name: 'jjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }},
-            { label: '进销差价', name: 'jxcj', width: 60, align: 'right', formatter: function (val) { return val.toFixed(2); }},
-            { label: '单位', name: 'dw', hidden: true },
-            { label: '规格', name: 'gg', width: 80, align: 'left' },
-            { label: '批号', name: 'ph', width: 120, align: 'center' },
-            { label: '批次', name: 'pc', width: 120, align: 'center' },
+            { label: 'Số thứ tự chi tiết phiếu xuất/nhập kho', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
+            { label: 'Loại', name: 'lbmc', width: 100, align: 'left' },
+            { label: 'Tên', name: 'wzmc', width: 150, align: 'left' },
+            { label: 'Số lượng', name: 'slStr', width: 60, align: 'right' },
+            { label: 'Số lượng', name: 'sl', hidden: true },
+            { label: 'Tổng giá bán lẻ', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'Tổng giá nhập', name: 'jjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }},
+            { label: 'Chênh lệch giá nhập-bán', name: 'jxcj', width: 60, align: 'right', formatter: function (val) { return val.toFixed(2); }},
+            { label: 'Đơn vị', name: 'dw', hidden: true },
+            { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+            { label: 'Số lô', name: 'ph', width: 120, align: 'center' },
+            { label: 'Lô', name: 'pc', width: 120, align: 'center' },
             //{ label: '发票号', name: 'fph', width: 90, align: 'left' },
             {
-                label: '发票号', name: 'fph', width: 90, align: 'center',
+                label: 'Số hóa đơn', name: 'fph', width: 90, align: 'center',
                 formatter: function (cellvalue, options) { return cellvalue === "" || cellvalue === null ? "<input type=\"text\" name=\"fph\" rowid=" + options.rowId + " role=\"textbox\" onblur=\"UpdateFph(this)\">" : cellvalue; }
             },
-            { label: '生产厂家', name: 'sccj', width: 150, align: 'left' }
+            { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' }
         ]
     });
 
@@ -329,7 +329,7 @@
         var fph = $(obj).val();
         var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;
         if (fph !== "") {
-            $.modalConfirm("您确定要将发票号改为" + fph + "吗？",
+            $.modalConfirm("Bạn có chắc muốn đổi số hóa đơn thành " + fph + " không?",
                 function(flag) {
                     if (flag) {
                         $.najax({
@@ -339,7 +339,7 @@
                             dataType: "json",
                             success: function(data) {
                                 if (data.state === 'success') {
-                                    $.modalMsg("发票号修改成功", "success", 1000);
+                                    $.modalMsg("Sửa số hóa đơn thành công", "success", 1000);
                                 } else {
                                     $.newtouchAlert(data);
                                 }
@@ -369,11 +369,11 @@
     function newtouch_event_f9() {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
-            $.modalMsg('请选择一条单据', 'warning', 1500);
+            $.modalMsg('Vui lòng chọn một phiếu', 'warning', 1500);
             return;
         }
         if (selRowData.shzt != "@EnumAuditState.Waiting.GetDescription()") {
-            $.modalMsg('【打回申请】只针对待处理的单据', 'warning', 1500);
+            $.modalMsg('【Trả lại đơn】chỉ áp dụng cho phiếu đang chờ xử lý', 'warning', 1500);
             return;
         }
         $.najax({
@@ -383,7 +383,7 @@
             dataType: 'json',
             success: function (ajaxresp) {
                 if (ajaxresp.state === 'success') {
-                    $.modalMsg("操作成功", 'success', 1000);
+                    $.modalMsg("Thao tác thành công", 'success', 1000);
                 }
                 else {
                     $.modalAlert(ajaxresp.message, 'error');
@@ -400,7 +400,7 @@
     function submitReceiptApproval(dstnShzt) {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
-            $.modalMsg('请选择一条单据', 'warning', 1500);
+            $.modalMsg('Vui lòng chọn một phiếu', 'warning', 1500);
             return;
         }
         var postData = { djId: selRowData.crkId, djlx: selRowData.djlx, shzt: dstnShzt };
@@ -411,7 +411,7 @@
             dataType: 'json',
             success: function (ajaxresp) {
                 if (ajaxresp.state === 'success') {
-                    $.modalMsg("操作成功", 'success',1500);
+                    $.modalMsg("Thao tác thành công", 'success',1500);
                 }
                 else {
                     $.modalAlert(ajaxresp.message, 'error');

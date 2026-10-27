@@ -18,7 +18,7 @@
     <form method="post" action="#">
        
         <div>
-            <span>文件:</span>
+            <span>Tệp:</span>
       
 
             <select id="cboFileName" name="cboFileName" onchange="OpenDocument();">
@@ -30,23 +30,23 @@
   
             <div>
 
-                <input type="submit" name="saveDocument" value="保存文档"  class="edtBtn"   style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 30%;padding-left: 30px;height: 30px;" />
-                <input type="button" value="粗体"
+                <input type="submit" name="saveDocument" value="Lưu tài liệu"  class="edtBtn"   style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 30%;padding-left: 30px;height: 30px;" />
+                <input type="button" value="Đậm"
                        onclick="document.getElementById('myWriterControl').DCExecuteCommand('Bold',false ,null);" />
-                <input type="button" value="斜体"
+                <input type="button" value="Nghiêng"
                        onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic',false ,null);" />
-                <input type="button" value="下划线"
+                <input type="button" value="Gạch chân"
                        onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline',false ,null);" />
-                <input type="button" value="7号字体"
+                <input type="button" value="Cỡ chữ 7"
                        onclick="document.getElementById('myWriterControl').DCExecuteCommand('FontSize',false ,'7');" />|
-                <input type="button" value="复制"
+                <input type="button" value="Sao chép"
                        onclick="document.getElementById('myWriterControl').DCExecuteCommand('Copy',false ,null);" />
-                <input type="button" value="粘贴"
+                <input type="button" value="Dán"
                        onclick="document.getElementById('myWriterControl').DCExecuteCommand('Paste',false ,null);" />
-                <input type="button" value="文档校验"
+                <input type="button" value="Kiểm tra tài liệu"
                        onclick="MyValueValidate();" />
                 <select id="validateResult" onchange="validateResult_Click();"></select>
-                <input class="edtBtn"  value="删除线" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);"/>
+                <input class="edtBtn"  value="Gạch ngang" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);"/>
 
             </div>
            
@@ -81,7 +81,7 @@
                         //opt.text = iCount + " |" + item.ElementID + " " + item.Message;
                         sel.appendChild(opt);
                     }
-                    //                    var strIndex = window.prompt("共" + result.length + "条信息，请输入序号", "0");
+                    //                    var strIndex = window.prompt("共" + result.length + "条信息, 请输入序号", "0");
                     //                    var index = parseInt(strIndex, 10);
                     //                    if (isNaN(index) == false) {
                     //                        var item = result[index];

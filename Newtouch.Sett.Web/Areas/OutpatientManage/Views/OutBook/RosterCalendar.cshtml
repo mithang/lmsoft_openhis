@@ -1,0 +1,1205 @@
+@using NewtouchHIS.Lib.Framework.Operator
+
+@{
+    ViewBag.Title = "Lịch trực dạng lịch";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    body {
+        background-color: #fff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .main {
+        width: 100%;
+        height: 730px;
+        margin: 30px auto;
+    }
+
+    .cxtj {
+        width: 96%;
+    }
+
+    button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #73d4ff;
+        font-size: 12px;
+        text-align: center;
+        line-height: 30px;
+        border: none;
+        position: absolute;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .prev {
+        top: 10px;
+        left: 35%;
+    }
+
+    .xzsj {
+        top: 30px;
+        left: 1%;
+        position: relative;
+    }
+
+    .next {
+        top: 10px;
+        right: 40%;
+    }
+
+    .nowTime {
+        width: 120px;
+        position: absolute;
+        top: 15px;
+        right: calc(50% - 45px);
+        font-size: 20px;
+        font-weight: bold;
+        background: linear-gradient(to right, rgb(48, 246, 159), #b5e4f8);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .container {
+        width: 1205px;
+        margin: 50px auto;
+    }
+
+        .container ul:first-of-type {
+            background: linear-gradient(to right, rgb(202, 254, 231), #b5e4f8);
+            color: rgb(43, 40, 40);
+        }
+
+        .container ul {
+            width: 1205px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container li {
+            width: 170px;
+            height: 100px;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+            border: 1px solid #dbdbdb;
+        }
+
+            .container li:not(.disabled):hover {
+                border: 1px solid #fe6d6d;
+            }
+
+    li.disabled {
+        background: linear-gradient(to right, #e8efe6, #e8efe6);
+        cursor: not-allowed;
+        color: #00608a;
+    }
+
+    li.active {
+        border: 1px solid rgb(246, 170, 165);
+        /*background: linear-gradient(to right, rgb(252, 202, 199), rgb(252, 244, 243));*/
+    }
+
+        li.active span {
+            font-weight: bold;
+            color: red;
+        }
+
+    .ultitle li {
+        width: 170px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        border: 1px solid #73d4ff;
+    }
+
+    .syhys {
+        margin-left: 10px;
+        margin-right: 5px;
+        width: 90%;
+        height: 20px;
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        border-radius: 15px;
+    }
+
+        .syhys:hover {
+            border: 1.5px solid #fe6d6d;
+            box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
+        }
+
+    .rqxs {
+        width: 170px;
+        height: 20px;
+        background-color: #eaeaea;
+        font-size: 20px;
+    }
+
+    .progress-bg {
+        height: 100%;
+        box-sizing: border-box;
+        background: #99ccff;
+        animation: panoramic 20s linear infinite;
+        border-radius: 5px;
+        border: 1px solid #b7e5fa;
+    }
+
+    .progress-zj {
+        height: 100%;
+        box-sizing: border-box;
+        background: #fede7e;
+        animation: panoramic 20s linear infinite;
+        border-radius: 5px;
+        border: 1px solid #ffcc33;
+    }
+
+    .progress-qt {
+        height: 100%;
+        box-sizing: border-box;
+        background: rgb(202, 254, 231);
+        animation: panoramic 20s linear infinite;
+        border-radius: 5px;
+        border: 1px solid rgb(202, 254, 231);
+    }
+
+    .xszdc {
+        position: relative;
+        font-size: 12px;
+        top: -20px;
+        border: 1px solid #fcf6f6;
+        border-radius: 5px;
+    }
+
+        .xszdc:hover {
+            font-size: 15px;
+        }
+
+    .ztsz:hover {
+        font-size: 15px;
+    }
+</style>
+<div id="cxdiv" class="panel panel-default" style="background-color:#fff">
+    <div class="panel-heading navb-bg">
+        Điều kiện lọc
+    </div>
+    <table class="form">
+        <tr>
+            <th class="formTitle">Ngày bắt đầu：</th>
+            <td class="formValue">
+                <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+            </td>
+            <th class="formTitle">Ngày kết thúc：</th>
+            <td class="formValue">
+                <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left; margin-left:5%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+            </td>
+            <th class="formTitle">Bác sĩ trực：</th>
+            <td class="formValue"><input type="text" id="doctormc" name="doctormc" class="form-control form-an" /></td>
+            <th class="formTitle">Trạng thái khám bệnh：</th>
+            <td class="formValue">
+                <select class="form-control" id="czztcx">
+                    <option value="0">-----</option>
+                    <option value="1" selected="selected">Đã khám</option>
+                    <option value="2">Đã ngừng khám</option>
+                </select>
+            </td>
+            <td class="formTitle">
+                <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" />
+            </td>
+            <td class="formTitle">
+                <input type="button" id="btn_zhrl" class="btn btn-primary" value="Chuyển danh sách dạng lịch" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="main">
+    <div class="cxtj">
+        <table class="xzsj form">
+            <tr>
+                <th class="formTitle">Thời gian ：</th>
+                <td class="formValue">
+                    <input type="text" id="rlsj" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.ToString("yyyy-MM")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM' });xzsj()" />
+                </td>
+                <th class="formTitle">Khoa ：</th>
+                <td class="formValue">
+                    <input type="hidden" class="form-control" id="ks" />
+                    <input type="text" class="form-control required" id="ksmz" />
+                </td>
+                <th class="formTitle">Loại khám ngoại trú：</th>
+                <td class="formValue">
+                    <select id="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
+                        <option value="">Vui lòng chọn</option>
+                    </select>
+                </td>
+                <th class="formTitle">Bác sĩ trực：</th>
+                <td class="formValue"><input type="text" id="doctormc2" name="doctormc2" class="form-control form-an" /></td>
+                <td class="formTitle">
+                    <input type="button" style="float:right" id="btn_searchrl" class="btn btn-primary" value="Tra cứu" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button class="prev"><span class="glyphicon glyphicon-chevron-left" title="Tháng trước"></span></button>
+    <span class="nowTime">
+    </span>
+    <button class="next"><span class="glyphicon glyphicon-chevron-right" title="Tháng sau"></span></button>
+    <div class="container">
+        <ul class="ultitle">
+            <li>Chủ nhật</li>
+            <li>Thứ hai</li>
+            <li>Thứ ba</li>
+            <li>Thứ tư</li>
+            <li>Thứ năm</li>
+            <li>Thứ sáu</li>
+            <li>Thứ bảy</li>
+        </ul>
+        <ul class="content"></ul>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] {4,8},
+    F4Text = "Chuyển danh sách lịch trực",
+    F8Text = "Lưu"
+})
+<script>
+        var isf = true;
+        function formatDate(datetime) {
+            var month = (datetime.getMonth() < 9) ? '0' + (datetime.getMonth() + 1) : (datetime.getMonth() + 1);
+            var thatDate = datetime.getFullYear() + "-" + month;
+            // trả về
+            return thatDate;
+        }
+        function loadrl(gridzljyData,loaddata) {
+            let allDays = 0
+            let now = new Date()
+            let global_month = now.getMonth() + 1
+            let global_year = now.getFullYear()
+            let today = now.getDate()
+            $('#rlsj').val(formatDate(now));
+            $('.prev').click(function () {
+                now.setMonth(now.getMonth() - 1)
+                $('#rlsj').val(formatDate(now));
+                var pbrq = $('#rlsj').val() + '-01';
+                var pbrldate = new Date(pbrq);
+                var mon = (pbrldate.getMonth() + 1);
+                var lastDay = new Date(pbrldate.getFullYear(), pbrldate.getMonth() + 1, 0).getDate();//lấy ngày cuối cùng của tháng hiện tại
+                var kssj = pbrq;
+                var jssj = pbrldate.getFullYear() + '-' + mon + '-' + lastDay;
+                var ys = $("#doctormc2").attr("data-label");
+                if (ys == null || ys == "" || ys == "undefined") {
+                    ys = "";
+                }
+                var ks = $("#ksmz").val();
+                if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+                    ks = "";
+                }
+                $.najax({
+                    url: "/OutPatientManage/OutBook/GetSchedule",
+                    dataType: "json",
+                    data: { kssj: kssj, jssj: jssj, ys: ys, czztcx: '1', ScheduId: null, ks: ks, lx: $("#mjzbz").val() },
+                    type: "POST",
+                    success: function (data) {
+                        $(".main").show();
+                        $(".gridPanel").hide();
+                        $("#cxdiv").hide();
+                        calendar(data);
+                    }
+                });
+            })
+            $('.next').click(function () {
+                now.setMonth(now.getMonth() + 1)
+                $('#rlsj').val(formatDate(now));
+                var pbrq = $('#rlsj').val() + '-01';
+                var pbrldate = new Date(pbrq);
+                var mon = (pbrldate.getMonth() + 1);
+                var lastDay = new Date(pbrldate.getFullYear(), pbrldate.getMonth() + 1, 0).getDate();//lấy ngày cuối cùng của tháng hiện tại
+                var kssj = pbrq;
+                var jssj = pbrldate.getFullYear() + '-' + mon + '-' + lastDay;
+                var ys = $("#doctormc2").attr("data-label");
+                if (ys == null || ys == "" || ys == "undefined") {
+                    ys = "";
+                }
+                var ks = $("#ksmz").val();
+                if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+                    ks = "";
+                }
+                $.najax({
+                    url: "/OutPatientManage/OutBook/GetSchedule",
+                    dataType: "json",
+                    data: { kssj: kssj, jssj: jssj, ys: ys, czztcx: '1', ScheduId: null, ks: ks, lx: $("#mjzbz").val() },
+                    type: "POST",
+                    success: function (data) {
+                        $(".main").show();
+                        $(".gridPanel").hide();
+                        $("#cxdiv").hide();
+                        calendar(data);
+                    }
+                });
+
+            })
+            $('#btn_searchrl').click(function () {
+                var sj = $("#rlsj").val();
+                now.setMonth(parseInt(sj.substring(5, 7)) - 1)
+                now.setFullYear(parseInt(sj.substring(0, 4)))
+                var pbrq = $('#rlsj').val() + '-01';
+                var pbrldate = new Date(pbrq);
+                var mon = (pbrldate.getMonth() + 1);
+                var lastDay = new Date(pbrldate.getFullYear(), pbrldate.getMonth() + 1, 0).getDate();//lấy ngày cuối cùng của tháng hiện tại
+
+                var kssj = pbrq;
+                var jssj = pbrldate.getFullYear() + '-' + mon + '-' + lastDay;
+                var ys = $("#doctormc2").attr("data-label");
+                if (ys == null || ys == "" || ys == "undefined") {
+                    ys = "";
+                }
+                var ks = $("#ksmz").val();
+                if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+                    ks = "";
+                }
+                $.najax({
+                    url: "/OutPatientManage/OutBook/GetSchedule",
+                    dataType: "json",
+                    data: { kssj: kssj, jssj: jssj, ys: ys, czztcx: '1', ScheduId: null, ks: ks, lx: $("#mjzbz").val() },
+                    type: "POST",
+                    success: function (data) {
+                        $(".main").show();
+                        $(".gridPanel").hide();
+                        $("#cxdiv").hide();
+                        calendar(data);
+                    }
+                });
+            });
+            $('#rlsj').focus(function () {
+                var sj = $("#rlsj").val();
+                now.setMonth(parseInt(sj.substring(5, 7)) - 1)
+                now.setFullYear(parseInt(sj.substring(0, 4)))
+                calendar()
+            })
+            function calendar(data) {
+                $('.content').empty()
+                let month = now.getMonth() + 1
+                let year = now.getFullYear()
+
+                //lấy mỗithángbao nhiêu ngày
+                switch (month) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        allDays = 31
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        allDays = 30
+                        break;
+                    default:
+                        //xác định nhuậnnăm lấy tháng haithángphầncủasố ngày
+                        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+                            allDays = 29
+                        } else {
+                            allDays = 28
+                        }
+
+                        break;
+                }
+                //lấyhiện tạithángphầncóbao nhiêu ngày tạo số lượng tương ứngcủali
+                for (let i = 1; i <= allDays; i++) {
+                    var shijianstr = '';
+                    var pthyzs = 0;
+                    var ptsyhys = 0;
+                    var zjhyzs = 0;
+                    var zjsyhys = 0;
+                    var qthyzs = 0;
+                    var qtsyhys = 0;
+                    if (gridzljyData!=null) {
+                        for (var j = 0; j < gridzljyData.length; j++) {
+                            if (gridzljyData[j].OutDate.toString().substring(0, 4) == now.getFullYear().toString() && parseInt(gridzljyData[j].OutDate.toString().substring(5, 7)).toString() == (now.getMonth() + 1).toString() && parseInt(gridzljyData[j].OutDate.toString().substring(8, 10)).toString() == i.toString()) {
+                                if (gridzljyData[j].RegType == "Khám thường") {
+                                    if (gridzljyData[j].TotalNum != 0) {
+                                        pthyzs += parseInt(gridzljyData[j].TotalNum);
+                                        ptsyhys += (parseInt(gridzljyData[j].TotalNum) - parseInt(gridzljyData[j].YYNum));
+                                    }
+                                }
+                                else if (gridzljyData[j].RegType == "Khám chuyên gia") {
+                                    if (gridzljyData[j].TotalNum != 0) {
+                                        zjhyzs += parseInt(gridzljyData[j].TotalNum);
+                                        zjsyhys += (parseInt(gridzljyData[j].TotalNum) - parseInt(gridzljyData[j].YYNum));
+                                    }
+                                }
+                                else {
+                                    if (gridzljyData[j].TotalNum != 0) {
+                                        qthyzs += parseInt(gridzljyData[j].TotalNum);
+                                        qtsyhys += (parseInt(gridzljyData[j].TotalNum) - parseInt(gridzljyData[j].YYNum));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                   else if (data != null && data.rows.length != null) {
+                        for (var j = 0; j < data.rows.length; j++) {
+                            //alert(data.rows[j].OutDate.toString().substring(0, 4) + "=="+now.getFullYear().toString())
+                            //alert(parseInt(data.rows[j].OutDate.toString().substring(5, 7)).toString() + "==" + (now.getMonth() + 1).toString())
+                            //alert(parseInt(data.rows[j].OutDate.toString().substring(8, 10)).toString() +"=="+ i.toString());
+                            if (data.rows[j].OutDate.toString().substring(0, 4) == now.getFullYear().toString() && parseInt(data.rows[j].OutDate.toString().substring(5, 7)).toString() == (now.getMonth() + 1).toString() && parseInt(data.rows[j].OutDate.toString().substring(8, 10)).toString() == i.toString()) {
+                                if (data.rows[j].RegType == "1") {
+                                    if (data.rows[j].TotalNum != 0) {
+                                        pthyzs += parseInt(data.rows[j].TotalNum);
+                                        ptsyhys += (parseInt(data.rows[j].TotalNum) - parseInt(data.rows[j].YYNum));
+                                    }
+                                }
+                                else if (data.rows[j].RegType == "3") {
+                                    if (data.rows[j].TotalNum != 0) {
+                                        zjhyzs += parseInt(data.rows[j].TotalNum);
+                                        zjsyhys += (parseInt(data.rows[j].TotalNum) - parseInt(data.rows[j].YYNum));
+                                    }
+                                }
+                                else {
+                                    if (data.rows[j].TotalNum != 0) {
+                                        qthyzs += parseInt(data.rows[j].TotalNum);
+                                        qtsyhys += (parseInt(data.rows[j].TotalNum) - parseInt(data.rows[j].YYNum));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (loaddata != null && loaddata.rows.length != null) {
+                        for (var j = 0; j < loaddata.rows.length; j++) {
+                            //alert(data.rows[j].OutDate.toString().substring(0, 4) + "=="+now.getFullYear().toString())
+                            //alert(parseInt(data.rows[j].OutDate.toString().substring(5, 7)).toString() + "==" + (now.getMonth() + 1).toString())
+                            //alert(parseInt(data.rows[j].OutDate.toString().substring(8, 10)).toString() +"=="+ i.toString());
+                            if (loaddata.rows[j].OutDate.toString().substring(0, 4) == now.getFullYear().toString() && parseInt(loaddata.rows[j].OutDate.toString().substring(5, 7)).toString() == (now.getMonth() + 1).toString() && parseInt(loaddata.rows[j].OutDate.toString().substring(8, 10)).toString() == i.toString()) {
+                                if (loaddata.rows[j].RegType == "1") {
+                                    if (loaddata.rows[j].TotalNum != 0) {
+                                        pthyzs += parseInt(loaddata.rows[j].TotalNum);
+                                        ptsyhys += (parseInt(loaddata.rows[j].TotalNum) - parseInt(loaddata.rows[j].YYNum));
+                                    }
+                                }
+                                else if (loaddata.rows[j].RegType == "3") {
+                                    if (loaddata.rows[j].TotalNum != 0) {
+                                        zjhyzs += parseInt(loaddata.rows[j].TotalNum);
+                                        zjsyhys += (parseInt(loaddata.rows[j].TotalNum) - parseInt(loaddata.rows[j].YYNum));
+                                    }
+                                }
+                                else {
+                                    if (loaddata.rows[j].TotalNum != 0) {
+                                        qthyzs += parseInt(loaddata.rows[j].TotalNum);
+                                        qtsyhys += (parseInt(loaddata.rows[j].TotalNum) - parseInt(loaddata.rows[j].YYNum));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    var topheight = 60;
+                    shijianstr = '<div class="rqxs"><span>' + i.toString() + '</span></div>';
+                    if (pthyzs != 0) {
+                        shijianstr += '<div class="syhys" style="top:' + topheight + 'px"><div  class="progress-bg" style="width:' + ((ptsyhys / pthyzs) * 100) + '%"></div><div class="xszdc" onclick="xzsjlx(\'' + (year + "-" + ((month < 10) ? '0' + month : month) + "-" + ((i < 10) ? '0' + i : i)) + '\',\'pt\')"><span style="padding:2px 5px;">Thường</span>còn lại:<span  class="ztsz">' + ptsyhys + '</span></div></div>';
+                        topheight -= 46;
+                    }
+                    if (zjhyzs != 0) {
+                        shijianstr += '<div style="top:' + topheight + 'px"><div  class="syhys" style="top:' + topheight + 'px"><div class="progress-zj" style="width:' + ((zjsyhys / zjhyzs) * 100) + '%"></div><div class="xszdc" onclick="xzsjlx(\'' + (year + "-" + ((month < 10) ? '0' + month : month) + "-" + ((i < 10) ? '0' + i : i)) + '\',\'zj\')"><span style="padding:2px 5px;">Chuyên gia</span>còn lại:<span  class="ztsz">' + zjsyhys + '</span></div></div>';
+                        topheight -= 46;
+                    }
+                    if (qthyzs != 0) {
+                        shijianstr += '<div class="syhys" style="top:' + topheight + 'px"><div   class="progress-qt" style="width:' + ((qtsyhys / qthyzs) * 100) + '%"></div><div class="xszdc"  onclick="xzsjlx(\'' + (year + "-" + ((month < 10) ? '0' + month : month) + "-" + ((i < 10) ? '0' + i : i)) + '\',\'qt\')"><span style="padding:2px 5px;">Khác</span>còn lại:<span  class="ztsz" >' + qtsyhys + '</span></div></div>';
+                    }
+                    let li = $('<li />').html(shijianstr)
+                    //cho ngày hôm nay tương ứngcủalithêm hiệu ứng nổi bật
+                    if (i === today && year === global_year && month === global_month) {
+                        li.addClass('active')
+                    } else { li.addClass('btnli' + i) }
+                    $('.content').append(li)
+                    if (i === today && year === global_year && month === global_month) {
+                        var liactive = $(".active");
+                        $(liactive[0]).click(function () {
+                            //alert();
+                        })
+                    }
+                    var lis = $(".btnli" + i);
+                    $(lis[0]).click(function () {
+                        //alert(year + "-" + ((month < 10) ? '0' + month : month) + "-" + ((i < 10) ? '0' + i : i));
+                    })
+
+                }
+                //hướng suy nghĩ：mỗithángtrước ngày mùng 1 trống mấy ô trốngcủasố lượnglàthứ mấy thì trống mấy ô
+                now.setDate(1) //đặt thời gian thành ngày mùng 1 tháng này
+                let firstDay = now.getDay() // lấy ngày mùng 1 là thứ mấy
+                for (let i = 0; i < firstDay; i++) { // số lần lặp tương ứng với thứ mấy
+                    now.setDate(now.getDate() - 1) //mỗi lần lặp ngày lùi lại một ngày
+                    let li = $('<li />').text(now.getDate()).addClass('disabled') //tạo khoảng trắng tương ứng
+                    $('.content').prepend(li)
+                }
+                now.setDate(now.getDate() + firstDay) //đặt thời gian về thời gian hiện tại nếu không sẽ ảnh hưởng việc lấy thời gian phía sau
+                now.setDate(allDays)
+                //hướng suy nghĩ：mỗithángnhấtsaumột ngàysaumặt trống mấy ô trốngcủasố lượnglà6trừ thứ mấy thì trống mấy ô
+                now.setDate(allDays) //đặt thời gian thành ngày cuối cùng mỗi tháng
+                let lastDay = 6 - now.getDay() //số ô trống cuối cùng
+                for (let i = 0; i < lastDay; i++) {
+                    now.setDate(now.getDate() + 1) //mỗi lần lặp ngày cộng thêm một ngày
+                    let li = $('<li />').text(now.getDate()).addClass('disabled') //tạo khoảng trắng tương ứng
+                    $('.content').append(li)
+                }
+                now.setDate(now.getDate() - lastDay) //đặt thời gian về thời gian hiện tại nếu không sẽ ảnh hưởng việc lấy thời gian phía sau
+                now.setDate(1)
+
+                $('.nowTime').html(now.getFullYear() + 'năm' + (now.getMonth() + 1) + 'tháng')
+            }
+
+            calendar()
+        }
+        function xzsjlx(sj, lx) {
+            $.modalOpen({
+                id: "RosterCalendarForm",
+                title: "Nội dung lịch trực",
+                url: "/OutPatientManage/OutBook/RosterCalendarForm?sj=" + sj + "&lx=" + lx,
+                width: "950px",
+                height: "600px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function (ScheduId) {
+                        $(".main").hide();
+                        $(".gridPanel").show();
+                        $("#cxdiv").show();
+                        isf = true;
+                        getGriddata(ScheduId);
+                    });
+                }
+            });
+        }
+        function zhrllist() {
+            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            for (var i = 0; i < rowIds.length; i++) {
+                var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+                if (!saveResult) {
+                    EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                    return;   //lưu thất bại，thìreturn
+                }
+            }
+            var gridzljyData = $("#gridList").jqGrid('getRowData');
+            gridzljyData.push($("#gridList").jqGrid('getRowData', rowIds[rowIds.length - 1]));
+            if (!gridzljyData || gridzljyData.length == 0) {
+                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
+                return;
+            }
+            $.each(gridzljyData, function () {    //bỏ điaction
+                for (var i = 0; i < $(this).length; i++) {
+                    delete $(this)[i].action;
+                }
+            });
+            $(".main").show();
+            $(".gridPanel").hide();
+            $("#cxdiv").hide();
+            loadrl(gridzljyData,null);
+        }
+        $('#btn_zhrl').click(function () {
+            isf = false;
+            var pbrq = $('#rlsj').val() + '-01';
+            var pbrldate = new Date(pbrq);
+            var mon = (pbrldate.getMonth() + 1);
+            var lastDay = new Date(pbrldate.getFullYear(), pbrldate.getMonth() + 1, 0).getDate();//lấy ngày cuối cùng của tháng hiện tại
+
+            var kssj = pbrq;//2022năm8tháng19ngày  đổi thành hiển thị lịch tháng hiện tại
+            var jssj = pbrldate.getFullYear() + '-' + mon + '-' + lastDay;
+            var ys = $("#doctormc2").attr("data-label");
+            if (ys == null || ys == "" || ys == "undefined") {
+                ys = "";
+            }
+            var ks = $("#ksmz").val();
+            if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+                ks = "";
+            }
+            $.najax({
+                url: "/OutPatientManage/OutBook/GetSchedule",
+                dataType: "json",
+                data: { kssj: kssj, jssj: jssj, ys: ys, czztcx: '1', ScheduId: null, ks: ks, lx: $("#mjzbz").val() },
+                type: "POST",
+                success: function (data) {
+                    $(".main").show();
+                    $(".gridPanel").hide();
+                    $("#cxdiv").hide();
+                    loadrl(null, data);
+                }
+            });
+        });
+        function btn_details(nowdate) {
+            $(".main").hide();
+            $(".gridPanel").show();
+            $("#cxdiv").show();
+            $("#kssj").val(nowdate);
+            $("#jssj").val(nowdate);
+            getGriddata(null);
+        }
+        function newtouch_event_f4() {
+            isf = true;
+            $(".main").hide();
+            $(".gridPanel").show();
+            $("#cxdiv").show();
+            getGriddata(null);
+
+        };
+        $(function () {
+            GridInit();
+            $(".main").show();
+            $(".gridPanel").hide();
+            $("#cxdiv").hide();
+            isf = false;
+            var pbrq = $('#rlsj').val() + '-01';
+            var pbrldate = new Date(pbrq);
+            var mon = (pbrldate.getMonth() + 1);
+            var lastDay = new Date(pbrldate.getFullYear(), pbrldate.getMonth() + 1, 0).getDate();//lấy ngày cuối cùng của tháng hiện tại
+            var kssj = pbrq;
+            var jssj = pbrldate.getFullYear() + '-' + mon + '-' + lastDay;
+            var ys = $("#doctormc2").attr("data-label");
+            if (ys == null || ys == "" || ys == "undefined") {
+                ys = "";
+            }
+            var ks = $("#ksmz").val();
+            if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+                ks = "";
+            }
+            $.najax({
+                url: "/OutPatientManage/OutBook/GetSchedule",
+                dataType: "json",
+                data: { kssj: kssj, jssj: jssj, ys: ys, czztcx: '1', ScheduId: null, ks: ks, lx: $("#mjzbz").val() },
+                type: "POST",
+                success: function (data) {
+                    $(".main").show();
+                    $(".gridPanel").hide();
+                    $("#cxdiv").hide();
+                    loadrl(null,data);
+                }
+            });
+        });
+        function newtouch_event_f8() {
+            if (isf == false) {
+                $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
+                return;
+            }
+            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            if (rowIds.length == 0) {
+                $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
+                return;
+            }
+            for (var i = 0; i < rowIds.length; i++) {
+                var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+
+                if (!saveResult) {
+                    EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                    return;   //lưu thất bại，thìreturn
+                }
+            }
+            var gridzljyData = $("#gridList").jqGrid('getRowData');
+            gridzljyData.push($("#gridList").jqGrid('getRowData', rowIds[rowIds.length - 1]));
+            if (!gridzljyData || gridzljyData.length == 0) {
+                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
+                return;
+            }
+            $.each(gridzljyData, function () {    //bỏ điaction
+                for (var i = 0; i < $(this).length; i++) {
+                    delete $(this)[i].action;
+                }
+            });
+            $.najax({
+                url: "/OutPatientManage/OutBook/SaveDataPbhy",
+                dataType: "json",
+                data: { pbList: gridzljyData },
+                type: "POST",
+                success: function (data) {
+                    getGriddata();
+                    $.modalAlert("Lưu thành công", 'warning');
+                },
+                complete: function () {
+                    EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                }
+            });
+        }
+        function EnableRehabInlineEditBox() {
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            for (var i = 0; i < rowIds.length; i++) {
+                $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+
+                });
+            }
+        }
+        ///bác sĩ
+        $("#doctormc").newtouchFloatingSelector({
+            height: 200,
+            width: 480,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                var resultObjArr = new Array();
+
+                $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
+                    if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
+                        || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
+                        || keyword.trim() == "")
+                        && val.DutyCode == "Doctor") {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Bác sĩ",
+            colModel: [
+                {
+                    label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
+                },
+                {
+                    label: 'Tên', name: 'StaffName', widthratio: 25
+                },
+                { label: 'Phiên âm', name: 'StaffPY', widthratio: 25 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#doctormc").attr("data-label", $thistr.find("td:eq(0)").html());
+                $("#doctormc").val($thistr.find('td:eq(1)').html());
+                return;
+            }
+        });
+        //khoa
+        $('#ksmz').newtouchFloatingSelector({
+            width: 400,
+            height: 180,
+            caption: "Khoa",
+            clickautotrigger: true,
+           /*
+            url: '/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList',
+            ajaxmethod: 'POST',
+            ajaxreqdata: function () {
+                var reqData = {};
+                reqData.keyword = $("#ksmz").val();
+                return reqData;
+            },
+            */
+            filter: function (keyword) {
+                var resultObjArr = new Array();
+                $.each(top.window.clients.sysDepartList, function (idx, val) {
+                    if (keyword == "" || val.Name.indexOf(keyword) >= 0) {
+                        if (val.zlks == "1" || val.zlks == undefined || val.zlks == null) {
+                            resultObjArr.push(val);
+                        }
+                    }
+                });
+                return resultObjArr;
+            },
+            itemdbclickhandler: function ($thistr) {
+                $('#ksmz').attr('data-ks', $thistr.attr('data-code'))
+                    .val($thistr.attr('data-Name'));
+                $('#ks').attr('data-ks', $thistr.attr('data-code'))
+                    .val($thistr.attr('data-code'));
+                ////theokhoamã sốlấybác sĩhọ tên
+                //var ks = $thistr.attr('data-code');
+
+                //$.ajax({
+                //    url: "/OutPatientManage/OutBook/getStaffByKs?ks=" + ks,
+                //    dataType: "json",
+                //    async: false,
+                //    success: function (data) {
+                //        var staff = "";
+                //        for (i = 0; i < data.length; i++) {
+                //            staff += data[i] + ",";
+                //        }
+                //        if (staff.indexOf(",") != -1) {
+                //            staff = staff.substring(0, staff.length - 1);
+                //        }
+                //        $("#ysxm").val(staff);
+                //    }
+                //});
+            },
+            colModel: [{ label: 'Mã', name: 'Code', widthratio: 30 },
+            { label: 'Tên khoa', name: 'Name', widthratio: 30 },
+            { label: 'Phiên âm', name: 'py', widthratio: 30 }
+            ]
+        });
+        ///bác sĩ
+        $("#doctormc2").newtouchFloatingSelector({
+            height: 200,
+            width: 480,
+            clickautotrigger: true,
+            filter: function (keyword) {
+                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                var resultObjArr = new Array();
+
+                $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
+                    if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
+                        || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
+                        || keyword.trim() == "")
+                        && val.DutyCode == "Doctor") {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+
+            },
+            caption: "Bác sĩ",
+            colModel: [
+                {
+                    label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
+                },
+                {
+                    label: 'Tên', name: 'StaffName', widthratio: 25
+                },
+                { label: 'Phiên âm', name: 'StaffPY', widthratio: 25 }
+            ],
+            itemdbclickhandler: function ($thistr) {
+                $("#doctormc2").attr("data-label", $thistr.find("td:eq(0)").html());
+                $("#doctormc2").val($thistr.find('td:eq(1)').html());
+                return;
+            }
+        });
+        //tra cứu
+        $('#btn_search').click(function () {
+            getGriddata(null);
+        });
+        function btn_searchrl() {
+            var pbrq = $('#rlsj').val() + '-01';
+            var pbrldate = new Date(pbrq);
+            var mon = (pbrldate.getMonth() + 1);
+            var lastDay = new Date(pbrldate.getFullYear(), pbrldate.getMonth() + 1, 0).getDate();//lấy ngày cuối cùng của tháng hiện tại
+
+            var kssj = pbrq;
+            var jssj = pbrldate.getFullYear() + '-' + mon + '-' + lastDay;
+            var ys = $("#doctormc2").attr("data-label");
+            if (ys == null || ys == "" || ys == "undefined") {
+                ys = "";
+            }
+            var ks = $("#ksmz").val();
+            if (ks == null || ks == "" || ks == "undefined" || $("#ksmz").val() == "") {
+                ks = "";
+            }
+            $.najax({
+                url: "/OutPatientManage/OutBook/GetSchedule",
+                dataType: "json",
+                data: { kssj: kssj, jssj: jssj, ys: ys, czztcx: '1', ScheduId: null, ks: ks, lx: $("#mjzbz").val() },
+                type: "POST",
+                success: function (data) {
+                    $(".main").show();
+                    $(".gridPanel").hide();
+                    $("#cxdiv").hide();
+                    calendar(data);
+                }
+            });
+        }
+        function getGriddata(ScheduId) {
+            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
+                $.modalAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc", 'warning');
+                return;
+            }
+            if (ScheduId != null && ScheduId!="") {
+                $("#czztcx").val('0');
+            }
+            var kssj = $('#kssj').val();
+            var jssj = $('#jssj').val();
+            var ys = $("#doctormc").attr("data-label");
+            if (ys == null || ys == "" || ys == "undefined") {
+                ys = "";
+            }
+            $('#gridList').jqGrid("clearGridData");
+            $('#gridList').jqGrid('setGridParam', {
+                postData: { kssj: kssj, jssj: jssj, ys: ys, czztcx: $("#czztcx").val(), ScheduId: ScheduId },
+            }).trigger('reloadGrid');
+        }
+        function GridInit() {
+            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
+                $.modalAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc", 'warning');
+                return;
+            }
+            var kssj = $('#kssj').val();
+            var jssj = $('#jssj').val();
+            var ys = $("#doctormc").attr("data-label");
+            if (ys == null || ys == "" || ys == "undefined") {
+                ys = "";
+            }
+            var $gridList = $("#gridList");
+            $gridList.dataGrid({
+                url: "/OutPatientManage/OutBook/GetSchedule",
+                autowidth: true,
+                postData: { kssj: kssj, jssj: jssj, ys: ys, czztcx: $("#czztcx").val() },
+                unwritten: false,
+                height: $(window).height() - 180,
+                colModel: [
+                    { label: "ghpbId", name: "ScheduId", hidden: true },
+                    { label: "Mã số", name: "ghpbId", width: 40, align: 'left', hidden: true },
+                    {
+                        label: "Ngày khám bệnh", name: "OutDate", width: 120, align: 'left', formatter: function (val) {
+                            if (val.indexOf("T")) {
+                                return val.replace('T', ' ');
+                            } else {
+                                return val;
+                            }
+                        }
+                    },
+                    {
+                        label: "Thứ", name: "weekdd", width: 80, align: 'left', formatter: function (val) {
+                            if (val == "1") {
+                                return "Thứ hai";
+                            }
+                            else if (val == "2") {
+                                return "Thứ ba";
+                            }
+                            else if (val == "3") {
+                                return "Thứ tư";
+                            }
+                            else if (val == "4") {
+                                return "Thứ năm";
+                            }
+                            else if (val == "5") {
+                                return "Thứ sáu";
+                            }
+                            else if (val == "6") {
+                                return "Thứ bảy";
+                            }
+                            else if (val == "7") {
+                                return "Chủ nhật";
+                            }
+                        }
+                    },
+                    { label: "Mã nhân viên bác sĩ", name: "ysgh", width: 50, align: 'left', hidden: true },
+                    { label: "Tên bác sĩ", name: "ysxm", width: 50, align: 'left' },
+                    { label: "Khoa khám bệnh", name: "czks", width: 80, align: 'left', hidden: true },
+                    { label: "Tên khoa khám bệnh", name: "czksmc", width: 80, align: 'left' },
+                    {
+                        label: "Loại đăng ký khám", name: "RegType", width: 60, align: 'left', formatter: function (val) {
+                            if (val == "1") {
+                                return "Khám thường";
+                            }
+                            else if (val == "2") {
+                                return "Cấp cứu";
+                            } else if (val == "3") {
+                                return "Khám chuyên gia";
+                            }
+                            else if (val == "4") {
+                                return "Khám bệnh đặc biệt";
+                            }
+                            else if (val == "5") {
+                                return "Khám bệnh hiểm nghèo";
+                            }
+                            else if (val == "6") {
+                                return "Khám bệnh mạn tính";
+                            }
+                            else if (val == "7") {
+                                return "Hai bệnh của dân cư";
+                            }
+                            else if (val == "8") {
+                                return "Khám tai nạn thương tích";
+                            }
+                            else if (val == "9") {
+                                return "Khám sinh sản";
+                            }
+                            else if (val == "10") {
+                                return "Khám lao đa kháng thuốc";
+                            }
+                            else if (val == "11") {
+                                return "Hai bệnh trẻ em";
+                            }
+                        }
+                    },
+                    { label: "Chức danh", name: "Title", width: 90, align: 'left' },
+                    { label: "Khoảng thời gian khám bệnh", name: "PeriodDesc", width: 80, align: 'left' },
+                    { label: "yynum", name: "YYNum", width: 80, align: 'left', hidden: true },
+                    { label: "Nguồn số khám", name: "TotalNum", width: 60, align: 'left', editable: true, editrules: { numeric: true, minValue: 0 } },
+                    {
+                        label: "Số nguồn khám còn lại", name: "action", width: 80, align: 'left', formatter: function (cellvalue, options, rowobject) {
+                            return (rowobject.TotalNum - rowobject.YYNum)
+                        }
+                    },
+                    { label: "Giờ bắt đầu", name: "PeriodStart", width: 40, align: 'left', hidden: true },
+                    { label: "Giờ kết thúc", name: "PeriodEnd", width: 40, align: 'left', hidden: true },
+                    { label: "Phí đăng ký khám", name: "RegFee", width: 60, align: 'left' },
+                    {
+                        label: "Có mở đăng ký khám hẹn qua mạng không", name: "IsBook", width: 80, align: 'left', formatter: function (val) {
+                            if (val == "1") {
+                                return "Có";
+                            }
+                            else if (val == "0") {
+                                return "Không";
+                            }
+                        }
+                    },
+                    { label: "Khoản mục đăng ký khám", name: "sfxmmc", width: 80, align: 'left' },
+                    {
+                        label: "Thao tác", name: "action", width: 80, align: 'left',
+                        formatter: function (cellvalue, options, rowobject) {
+                            var str = "";
+                            if (rowobject.istz == "1") {
+                                str += '&nbsp;<a class="btn btn-default" title="Khám bệnh" style="width: 50%;background-color:#ff0000" onclick="istz(\'' + rowobject.ScheduId + '\',\'' + '0' + '\')">Khám bệnh</a>';
+                            } else {
+                                str += '&nbsp;<a class="btn btn-default" title="Ngừng khám" style="width: 50%;background-color:#73d4ff" onclick="istz(\'' + rowobject.ScheduId + '\',\'' + '1' + '\')">Ngừng khám</a>';
+                            }
+                            return str;
+                        }
+                    },
+                    { label: "Lý do ngừng khám", name: "tzyy", width: 150, align: 'left', editable: true, editrules: { numeric: false, minValue: 0 } },
+                    { label: "Khoản mục bổ sung", name: "zlxmmc", width: 80, align: 'left' },
+                    { label: "zt", name: "zt", width: 50, align: 'left', hidden: true },
+                ],
+                onSelectRow: function (rowid) {
+                },
+                gridComplete: function () {
+                    //bật khung sửa trong dòng
+                    EnableInlineEditBox();
+                }
+            });
+        }
+        //bật khung sửa trong dòng
+        function EnableInlineEditBox() {
+            //Gridtảihoàn thành bật sửa trong dòng   1.trướclấynơicódòngId  2.duyệtgọieditRowphương thức
+            var rowIds = $("#gridList").jqGrid('getDataIDs');
+            for (var i = 0; i < rowIds.length; i++) {
+                $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+
+                });
+
+            }
+        }
+
+        function istz(ScheduId, czzt) {
+            var tzyystr = "";
+            if (czzt == "1") {
+                //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+                var rowIds = $("#gridList").jqGrid('getDataIDs');
+                for (var i = 0; i < rowIds.length; i++) {
+                    var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+                    if (!saveResult) {
+                        EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                        return;   //lưu thất bại，thìreturn
+                    }
+                }
+                var gridzljyData = $("#gridList").jqGrid('getRowData');
+                gridzljyData.push($("#gridList").jqGrid('getRowData', rowIds[rowIds.length - 1]));
+                if (!gridzljyData || gridzljyData.length == 0) {
+                    EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                    $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
+                    return;
+                }
+                $.each(gridzljyData, function () {    //bỏ điaction
+                    for (var i = 0; i < $(this).length; i++) {
+                        delete $(this)[i].action;
+                    }
+                });
+                for (var i = 0; i < gridzljyData.length; i++) {
+                    if (gridzljyData[i].ScheduId == ScheduId) {
+                        if (gridzljyData[i].tzyy == "") {
+                            $.modalAlert("Vui lòng điền lý do ngừng khám！", 'warning');
+                            EnableInlineEditBox();
+                            return;
+                        } else {
+                            tzyystr = gridzljyData[i].tzyy;
+                        }
+
+                    }
+                }
+            }
+            $.najax({
+                url: "/OutPatientManage/OutBook/SaveDatatzcz",
+                dataType: "json",
+                data: { ScheduId: ScheduId, czzt: czzt, tzyy: tzyystr },
+                type: "POST",
+                success: function (data) {
+                    $.modalAlert("Lưu thành công", 'warning');
+                    EnableInlineEditBox();
+                    getGriddata(null);
+                }
+            });
+        }
+        function btn_set() {
+            var ghpbId = $("#gridList").jqGridRowValue().ghpbId;
+            var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
+            if (!!!ghpbId) {
+                $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+                return false;
+            }
+            $.modalOpen({
+                id: "updateForm",
+                title: "Sửa lịch trực",
+                url: "/OutPatientManage/OutBook/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId + "&type=update",
+                width: "800px",
+                height: "900px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+                        $("#gridList").resetSelection();
+                        $("#gridList").trigger("reloadGrid");
+                    });
+                }
+            });
+        }
+
+        //thêm mớilịch trực
+        function btn_add() {
+            var ghpbId = 0;
+            var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
+            $.modalOpen({
+                id: "updateForm",
+                title: "Sửa lịch trực",
+                url: "/OutPatientManage/OutBook/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId + "&type=add",
+                width: "800px",
+                height: "900px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+                        $("#gridList").resetSelection();
+                        $("#gridList").trigger("reloadGrid");
+                    });
+                }
+            });
+        }
+
+        //tạo lịch trực
+        function btn_create() {
+            $.modalOpen({
+                id: "updateForm",
+                title: "Tạo lịch trực",
+                url: "/OutPatientManage/OutBook/Create",
+                width: "800px",
+                height: "800px",
+                btn: null,
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+                        $("#gridList").resetSelection();
+                        $("#gridList").trigger("reloadGrid");
+                    });
+                }
+            });
+        }
+        //tạo thời gian lịch trực
+        function btn_createtime() {
+            $.modalOpen({
+                id: "TimeForm",
+                title: "Sửa thời gian lịch trực",
+                url: "/OutPatientManage/OutBook/TimeForm?type=add",
+                width: "600px",
+                height: "600px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+                    });
+                }
+            });
+        }
+</script>

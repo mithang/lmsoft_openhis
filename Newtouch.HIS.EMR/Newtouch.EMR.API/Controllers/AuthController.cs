@@ -1,62 +1,39 @@
-﻿using Autofac;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.EMR.API.Models;
 using Newtouch.EMR.APIRequest;
+using Newtouch.EMR.Infrastructure;
 using Newtouch.HIS.API.Common;
-using System;
-using System.Net.Http;
-using System.Web.Http;
+using StackExchange.Redis;
 
 namespace Newtouch.EMR.API.Controllers
 {
-    /// <summary>
-    /// 授权认证
-    /// </summary>
-    [RoutePrefix("api/Auth")]
+    /// <summary>Port of Web API 2 AuthController (GetToken) — as an EXPLICIT-ERROR STUB ONLY.
+    /// Reason (parent-track pattern, same as OR.API): the original GetToken minted tokens
+    /// for dummy identities (UserId/Account/OrganizeId all "?") WITHOUT any credential
+    /// validation — its "verify identity from request" step is empty in source. Porting it
+    /// as a real token minter would be a security regression, so this port refuses to
+    /// issue tokens and says so explicitly. A real GetToken needs credential validation
+    /// against the user store first; that is the one remaining item for EMR.API auth.</summary>
+    [ApiController]
+    [Route("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
     {
-        public AuthController(IComponentContext com)
-       : base(com)
+        public AuthController(IConnectionMultiplexer redis) : base(redis)
         {
-
         }
 
-        /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [Route("GetToken")]
+        /// <summary>换取访问令牌 — not available: see class note.</summary>
         [HttpPost]
-        public HttpResponseMessage GetToken(AuthGetTokenRequest request)
+        [Route("GetToken")]
+        public ContentResult GetToken([FromBody] AuthGetTokenRequest request)
         {
-            Action<AuthGetTokenRequest, DefaultResponse> ac = (req, resp) =>
+            var resp = new DefaultResponse
             {
-                //1、由request验证出用户身份
-
-                //2、身份存储在Redis（有一定的过期时间）
-                var identity = new UserIdentity()
-                {
-                    AppId = request.AppId,
-                    TokenType = request.TokenType,
-                    UserId = "?",
-                    Account = "?",
-                    OrganizeId = "?",
-                    TopOrganizeId = "?",
-                };
-                var token = SaveIdentity(identity);
-
-                //3、返回key
-                resp.data = new
-                {
-                    token = token
-                };
-                resp.code = ResponseResultCode.SUCCESS;
+                code = APIRequestHelper.ResponseResultCode.FAIL,
+                msg = "Chức năng cấp token chưa khả dụng: bản gốc cấp token mà không kiểm tra thông tin đăng nhập, cần bổ sung xác thực tài khoản trước khi đưa vào sử dụng.",
+                data = null
             };
-
-            var response = base.CommonExecute(ac, request);
-
-            return base.CreateResponse(response);
+            return CreateResponse(resp);
         }
-
     }
 }

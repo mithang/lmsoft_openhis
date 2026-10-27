@@ -1,10 +1,10 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "分诊叫号";
+    ViewBag.Title = "Phân loại khámGọi số";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //分诊叫号自动刷新时间
+    //分诊Gọi số自动刷新时间
     var ConsultCallRefreshTime = SysConfigReader.String("ConsultCallRefreshTime");
-    var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 <style>
     html, body {
@@ -86,7 +86,7 @@
 <div id="content" style="width:100%;float:left;">
     <div class="topPanel back" style="height:20%;">
         <div>
-            <span style="font-size:30px;color:red;margin-left:20px;">@(ViewBag.orgName)排队叫号系统</span>
+            <span style="font-size:30px;color:red;margin-left:20px;">@(ViewBag.orgName)Xếp hàngGọi sốHệ thống</span>
             <span id="dateTime" style="font-size:30px;color:#F4F897;float:right;margin-right:20px;"></span>
         </div>
     </div>
@@ -104,7 +104,7 @@
     <div id="fade" class="black_overlay"></div>
 
     <div id="word" style="font-size:28px;color:red;position:absolute;left:125px;bottom:0px;height:10%;">
-        欢迎来到@(ViewBag.orgName)就诊
+        Chào mừng đến @(ViewBag.orgName) khám bệnh
     </div>
 </div>
 <script>
@@ -132,7 +132,7 @@
             }
         }
         setInterval(scrollTable, 2000);
-    //定时器显示诊室叫号信息
+    //定时器显示Phòng khámGọi số信息
     var intervalId = window.setInterval("getConsultCall()", 3000);
 
     //定时器实时显示当前时间
@@ -174,27 +174,27 @@
                     postData: { ksCode: ksCode, keyword: '', ghrq: new Date().format('yyyy-MM-dd') },
                     colModel: [
 
-                        { label: '科室', name: 'ksmc', width: 80, },
+                        { label: 'Khoa', name: 'ksmc', width: 80, },
                         {
-                            label: '病人姓名', name: 'xm', width: 60, align: 'left', formatter: function (val, option, rows) {
+                            label: 'Họ tên bệnh nhân', name: 'xm', width: 60, align: 'left', formatter: function (val, option, rows) {
 
 
                                 return nameDesensitization(val);
 
                             }
                         },
-                        { label: '序号', name: 'jzxh', width: 30, align: 'center' },
+                        { label: 'Số thứ tự', name: 'jzxh', width: 30, align: 'center' },
                         //{ label: '挂号时间', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
                         //{ label: '科室', name: 'ksmc', width: 80, },
-                        { label: '科室编码', name: 'ksCode', hidden: true, },
-                        { label: '医生', name: 'ysmc', width: 50, hidden: true, },
-                        { label: '诊室', name: 'zsmc', width: 80, },
-                        { label: '诊室编码', name: 'zsCode', editwidth: '93%', editable: true, hidden: true, },
+                        { label: 'KhoaMã', name: 'ksCode', hidden: true, },
+                        { label: 'Bác sĩ', name: 'ysmc', width: 50, hidden: true, },
+                        { label: 'Phòng khám', name: 'zsmc', width: 80, },
+                        { label: 'Phòng khámMã', name: 'zsCode', editwidth: '93%', editable: true, hidden: true, },
                     ],
                     pager: "#gridPager",
                     sortname: 'ghrq asc',
                     viewrecords: true,
-                    caption: "普通诊室",
+                    caption: "ThườngPhòng khám",
                     autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
                     shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
                     gridComplete: function () {
@@ -247,7 +247,7 @@
     return queryJson;
 }
 
-//分诊叫号
+//分诊Gọi số
         function getConsultCall() {
             //console.log(new Date().format('yyyy-MM-dd'));
             if (ksCode) {
@@ -269,10 +269,10 @@
                         //显示
                         $("#tbody").html("");
                         var th = "<tr>";
-                        th += "<td style='color:#619daf;'>科室名称</td>";
-                        th += "<td style='color:#619daf;'>姓名</td>";
-                        //th += "<td>就诊序号</td>";
-                        th += "<td style='color:#619daf;'>就诊诊室</td>";
+                        th += "<td style='color:#619daf;'>KhoaTên</td>";
+                        th += "<td style='color:#619daf;'>Họ tên</td>";
+                        //th += "<td>就诊Số thứ tự</td>";
+                        th += "<td style='color:#619daf;'>Khám bệnhPhòng khám</td>";
                         th += "</tr>";
                         $("#tbody").append(th);
                         for (var i = 0; i < ajaxresp.length; i++) {
@@ -295,15 +295,15 @@
                                     async: false,
                                     success: function (refdata) {
                                         //console.log("已修改数据", refdata);
-                                        var changeNum = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+                                        var changeNum = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
                                         var num = parseInt(refdata.zsfh);
                                         var strArr = num.toString().split("");
                                         var newzsfh = "";
                                         for (var i = 0; i < strArr.length; i++) {
                                             newzsfh += changeNum[strArr[i]];
                                         }
-                                        var xstext = refdata.xm + "请到" + refdata.zslc + "楼" + refdata.zsmc.replace(/[0-9]/g, '') + refdata.zsfh + "就诊";
-                                        var text = refdata.xm + "请到" + refdata.zslc + "楼" + refdata.zsmc.replace(/[0-9]/g, '') + newzsfh + "就诊";
+                                        var xstext = refdata.xm + " vui lòng đến tầng " + refdata.zslc + " " + refdata.zsmc.replace(/[0-9]/g, '') + refdata.zsfh + " khám bệnh";
+                                        var text = refdata.xm + " vui lòng đến tầng " + refdata.zslc + " " + refdata.zsmc.replace(/[0-9]/g, '') + newzsfh + " khám bệnh";
                                         $("#light").css("display", "block");//.style.display = 'block';
                                         $("#fade").css("display", "block");//.style.display = 'block';
                                         $("#texttx").html(xstext);

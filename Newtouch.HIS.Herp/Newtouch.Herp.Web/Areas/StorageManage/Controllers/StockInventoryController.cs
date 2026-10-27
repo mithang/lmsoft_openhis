@@ -1,70 +1,60 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using System;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.DTO.InputDto;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Infrastructure;
-using Newtouch.Tools;
 
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 库存盘点
+    /// 库存盘点 (kiểm kê tồn kho).
+    /// InventoryQuery grid data comes from normal JSON actions, so it is
+    /// ported fully; only its SSRS print buttons (tempCode 1262/1263) are
+    /// stubbed in the view. Index() is inherited from the controller base
+    /// (as in the Framework version, which declared no Index action).
     /// </summary>
+    [Area("StorageManage")]
     public class StockInventoryController : ControllerBase
     {
         private readonly IStockInventoryDmnService _stockInventoryDmnService;
         private readonly IStockInventoryApp _stockInventoryApp;
         private readonly IKcKcjzDmnService _kcKcjzDmnService;
 
-        /// <summary>
-        /// 开始盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult InventoryAction()
+        public StockInventoryController(IStockInventoryDmnService stockInventoryDmnService,
+            IStockInventoryApp stockInventoryApp, IKcKcjzDmnService kcKcjzDmnService)
+        {
+            _stockInventoryDmnService = stockInventoryDmnService;
+            _stockInventoryApp = stockInventoryApp;
+            _kcKcjzDmnService = kcKcjzDmnService;
+        }
+
+        public IActionResult InventoryAction()
         {
             return View();
         }
 
-        /// <summary>
-        /// 开始盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult InventoryQuery()
+        public IActionResult InventoryQuery()
         {
             ViewBag.OrganizeId = OrganizeId;
             return View();
         }
 
-        /// <summary>
-        /// 获取盘点时间
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetPdsj()
+        public IActionResult GetPdsj()
         {
             var result = _stockInventoryDmnService.GetPdSj(Constants.CurrentKf.currentKfId, OrganizeId);
             return Content(result.ToJson());
         }
 
-        /// <summary>
-        /// 开始盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult StartInventory()
+        public IActionResult StartInventory()
         {
             return Success(null, _stockInventoryApp.StartInventory(Constants.CurrentKf.currentKfId, OrganizeId));
         }
 
-        /// <summary>
-        /// 查询盘点信息
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="inventorySearchDTO"></param>
-        /// <returns></returns>
-        public ActionResult QueryInventoryInfoList(Pagination pagination, InventorySearchDTO inventorySearchDTO)
+        public IActionResult QueryInventoryInfoList(Pagination pagination, InventorySearchDTO inventorySearchDTO)
         {
             var list = new
             {
@@ -76,13 +66,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
             return Content(list.ToJson());
         }
 
-        /// <summary>
-        /// 查询盘点信息 不分批次
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="inventorySearchDTO"></param>
-        /// <returns></returns>
-        public ActionResult QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO inventorySearchDTO)
+        public IActionResult QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO inventorySearchDTO)
         {
             var list = new
             {
@@ -94,36 +78,19 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
             return Content(list.ToJson());
         }
 
-        /// <summary>
-        /// 保存盘点
-        /// </summary>
-        /// <param name="resultObjArr"></param>
-        /// <param name="pdId"></param>
-        /// <param name="noPc">0：按批次盘点  1：不按批次盘点</param>
-        /// <returns></returns>
-        public ActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
+        public IActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
         {
             _stockInventoryApp.SaveInventoryInfo(resultObjArr.ToList<SaveInventoryDTO>(), pdId, noPc);
             return Success();
         }
 
-        /// <summary>
-        /// 取消盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult CancelInventory(long pdId)
+        public IActionResult CancelInventory(long pdId)
         {
             _stockInventoryApp.CancelInventory(pdId);
             return Success();
         }
 
-        /// <summary>
-        /// 结束盘点
-        /// </summary>
-        /// <param name="pdId">盘点单ID</param>
-        /// <param name="autoCarryDown">null/0：不自动结转  1：自动结转</param>
-        /// <returns></returns>
-        public ActionResult EndInventory(long pdId, string autoCarryDown)
+        public IActionResult EndInventory(long pdId, string autoCarryDown)
         {
             _stockInventoryApp.EndInventory(pdId);
             if (!"1".Equals(autoCarryDown)) return Success();

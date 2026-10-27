@@ -1,0 +1,821 @@
+
+@{
+    ViewBag.Title = "InStorage";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .req {
+        color: red;
+    }
+</style>
+<div id="all" style="position:fixed;top:0px;bottom:0px;">
+    <form id="form1" style="overflow:auto;height:50%">
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                Thông tin nhập kho
+            </div>
+            <div style="padding: 2px;padding-right:10px;">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">Số phiếu nhập kho：</th>
+                        <td class="formValue">
+                            <input id="txtRKDH" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle"><span class="req">*</span>Mã nhà cung cấp：</th>
+                        <td class="formValue">
+                            <input id="txtGYSCODE" type="text" class="form-control" onchange="ChangeGYSCODE()" placeholder="Mã Tên Pinyin" />
+                        </td>
+                        <th class="formTitle">Tên nhà cung cấp：</th>
+                        <td class="formValue">
+                            <input id="txtGYSMC" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle">Ngày nhập kho：</th>
+                        <td class="formValue">
+                            <input id="txtRKRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Cách nhập kho：</th>
+                        <td class="formValue formDdlSelectorTd">
+                            <select id="ddlRKFS" class="form-control required"></select>
+                        </td>
+                        <th class="formTitle">Tổng nhập kho(đ)：</th>
+                        <td class="formValue">
+                            <input id="txtRKZE" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-heading">
+                Chi tiết thuốc
+            </div>
+            <div id="divYPMX" style="padding-right:10px;">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle"><span class="req">*</span>Mã thuốc：</th>
+                        <td class="formValue">
+                            <input id="txtSRM" type="text" class="form-control" placeholder="Mã Tên Pinyin Tên hàng hóa" />
+                        </td>
+                        <th class="formTitle"><span class="req">*</span>Số lượng nhập kho：</th>
+                        <td class="formValue">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input id="txtRKSL" type="text" class="form-control" onchange="RKSL_Leave()" />
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="ddlRKDW" class="form-control required" onchange="RKSL_Leave()"></select>
+                                    <input id="kxdw" hidden="hidden" />
+                                </div>
+                            </div>
+                        </td>
+                        <th class="formTitle"><span class="req">*</span>Số lô：</th>
+                        <td class="formValue">
+                            <input id="txtPH" type="text" class="form-control" />
+                        </td>
+                        <th class="formTitle"><span class="req">*</span>Tổng giá nhập：</th>
+                        <td class="formValue">
+                            <input id="txtJJZE" type="text" class="form-control" onchange="JJZE_Leave()" style="width: 75%;float: left;" />
+                            <span style="float: left;line-height:24px;margin-left: 5px;">(đ)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Số hóa đơn：</th>
+                        <td class="formValue">
+                            <input id="txtFPH" type="text" class="form-control" />
+                            <input id="editRowId" value="" style="display:none;" />
+                        </td>
+                        <th class="formTitle">Ngày lập hóa đơn：</th>
+                        <td class="formValue">
+                            <input id="txtKPRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <th class="formTitle">Hạn sử dụng：</th>
+                        <td class="formValue">
+                            <input id="txtYXQ" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onblur="updatePC()" />
+                        </td>
+                        <th class="formTitle">Ngày sản xuất：</th>
+                        <td class="formValue">
+                            <input id="txtSCRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Kết quả nghiệm thu：</th>
+                        <td class="formValue">
+                            <input id="txtYSJG" type="text" class="form-control" />
+                        </td>
+                        <th class="formTitle">Ngoại quan：</th>
+                        <td class="formValue">
+                            <input id="txtWG" type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Tên thuốc：</th>
+                        <td class="formValue">
+                            <input id="txtYPMC" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle" id="thPFJDW">Giá bán buôn(đ)：</th>
+                        <td class="formValue">
+                            <input id="txtPFJ" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle" id="thLSJDW">Giá bán lẻ(đ)：</th>
+                        <td class="formValue">
+                            <input id="txtLSJ" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle" id="thJJDW">Giá nhập(đ)：</th>
+                        <td class="formValue">
+                            <input id="txtJJ" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th class="formTitle">Tỷ lệ chiết khấu(%)：</th>
+                        <td class="formValue">
+                            <input id="txtKL" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle" id="thPFZEDW">Tổng giá bán buôn(đ)：</th>
+                        <td class="formValue">
+                            <input id="txtPFZE" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle" id="thLSZEDW">Tổng tiền bán lẻ(đ)：</th>
+                        <td class="formValue">
+                            <input id="txtLSZE" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle">Số đăng ký：</th>
+                        <td class="formValue">
+                            <input id="txtPZWH" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">Tồn kho hiện có：</th>
+                        <td class="formValue">
+                            <input id="txtXYKC" type="text" class="form-control newtouch_Readonly" />
+                            <input id="hidden_kcsl" type="text" hidden="hidden" />
+                        </td>
+                        <th class="formTitle">Quy cách：</th>
+                        <td class="formValue">
+                            <input id="txtGG" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle">Lô：</th>
+                        <td class="formValue">
+                            <input id="txtPC" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                        <th class="formTitle">Nhà sản xuất：</th>
+                        <td class="formValue">
+                            <input id="txtSCCJ" type="text" class="form-control newtouch_Readonly" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+        @Html.Partial("_MiddleButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new[] { 2, 3, 6 },
+    F2Text = "Thêm",
+    F3Text = "Sửa",
+    F6Text = "Xóa"
+})
+
+        <div style="background-color: #fff;width:99%;">
+            <table id="gridRKMX"></table>
+        </div>
+
+        @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 7, 8 },
+    F7Text = "Đặt lại",
+    F8Text = "Đăng ký nhập kho"
+})
+</div>
+<script>
+    window.newtouch_globalconfig.f4opions = {
+        container: "#divYPMX"
+    };
+    $(function () {
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+            $("#gridRKMX").setGridHeight($("#form1").height()-110);
+        });
+        gridRKMX([]);
+        initialRKFS();//加载入库方式
+        initialYPGYS();//注册药品供应商的浮层
+        initialRKDH();//加载入库单号
+        $('#txtYXQ').val(Getyxq($("#txtSCRQ").val()));
+    });
+
+    //入库方式
+    function initialRKFS() {
+        $("#ddlRKFS").bindSelect({
+            url: "/MedicineStorageIOMode/MedicineStorageIOModeList?crkbz=0",
+        });
+    }
+
+    //Nhà cung cấp thuốc
+    function initialYPGYS() {
+        $("#txtGYSCODE").newtouchBatchFloatingSelector({
+            clickautotrigger: true,
+            url: '/Medicine/MedicineSupplierList',
+            height: 200,
+            width: 500,
+            caption: "Nhà cung cấp thuốc",
+            colModel: [
+                { label: 'gysId', name: 'gysId', hidden: true },
+                { label: 'Mã nhà cung cấp', name: 'gysCode', widthratio: 40 },
+                { label: 'Tên nhà cung cấp', name: 'gysmc', widthratio: 40 }
+            ],
+            ajaxparameters: function () {
+                return "keyword=" + $("#txtGYSCODE").val();
+            },
+            itemdbclickhandler: function ($thistr) {
+                $("#txtGYSCODE").val($thistr.attr('data-gysCode'));
+                $("#txtGYSMC").val($thistr.attr('data-gysmc'));
+            }
+        });
+    }
+
+    //加载入库单号
+    function initialRKDH() {
+        $.najax({
+            url: "/DrugStorage/initialRKDH?r=" + Math.random(),
+            dataType: "text",
+            async: false,
+            success: function (data) {
+                $("#txtRKDH").val(data);
+            }
+        });
+    }
+
+    //输入码
+    $("#txtSRM").newtouchBatchFloatingSelector({
+        clickautotrigger: true,
+        height: 300,
+        width: 1100,
+        id: 'initialSRM',
+        url: '/DrugStorage/SelectDepartmentMedicineList',
+        ajaxmethod: 'POST',
+        ajaxreqdata: function () {
+            var reqData = {};
+            reqData.keyword = $("#txtSRM").val();
+            return reqData;
+        },
+        caption: "Thông tin thuốc",
+        colModel: [
+            { label: 'Loại', name: 'yplb', width: 50 },
+            { label: 'Mã', name: 'ypCode', width: 100 },
+            { label: 'Tên', name: 'ypmc', width: 200, align: 'left' },
+            { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+            { label: 'Tồn kho', name: 'xykcstr', width: 70 },
+            { label: 'Đơn vị', name: 'ykdw', width: 60 },
+            { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
+            { label: 'Số đăng ký', name: 'pzwh', width: 150, align: 'left' },
+            { label: 'Giá bán lẻ', name: 'lsj', width: 70 },
+            { label: 'Giá bán buôn', name: 'pfj', width: 70 },
+            { label: 'bzs', name: 'bzs', hidden: true },
+            { label: 'zxdw', name: 'zxdw', hidden: true },
+            { label: 'xykc', name: 'xykc', hidden: true }
+        ],
+        itemdbclickhandler: function ($thistr) {
+            $("#txtSRM").attr('data-yplb', $thistr.attr('data-yplb'))
+                .attr('data-bzs', $thistr.attr('data-bzs'))
+                .val($thistr.attr('data-ypCode'));
+            $("#txtYPMC").attr('data-ykdw', $thistr.attr('data-ykdw'))
+                .val($thistr.attr('data-ypmc'));
+            $("#thPFJDW").text("Giá bán buôn(đ/" + $thistr.attr('data-ykdw') + "):");
+            $("#thLSJDW").text("Giá bán lẻ(đ/" + $thistr.attr('data-ykdw') + "):");
+            $("#thJJDW").text("Giá nhập(đ/" + $thistr.attr('data-ykdw') + "):");
+            $("#txtGG").val($thistr.attr('data-gg'));
+            $("#txtXYKC").val($thistr.attr('data-xykcstr'));
+            $("#hidden_kcsl").val($thistr.attr('data-xykc'));
+            $("#ddlRKDW").empty();
+            var kxdw;
+            //if ($thistr.attr('data-ykdw') === $thistr.attr('data-zxdw')) {
+            //    kxdw = $thistr.attr('data-ykdw');
+            //    $("#ddlRKDW").append('<option >' + $thistr.attr('data-ykdw') + '</option>');   //出库单位
+            //} else {
+            //    kxdw = $thistr.attr('data-ykdw') + "," + $thistr.attr('data-zxdw');
+            //    $("#ddlRKDW").append('<option >' + $thistr.attr('data-ykdw') + '</option>');
+            //    $("#ddlRKDW").append('<option >' + $thistr.attr('data-zxdw') + '</option>');
+            //}
+            $("#ddlRKDW").append('<option >' + $thistr.attr('data-ykdw') + '</option>');   //Đơn vị xuất kho
+            $("#kxdw").val(kxdw);   //Đơn vị có thể chọn
+
+            $("#txtSCCJ").val($thistr.attr('data-sccj'));
+            $("#txtPZWH").val($thistr.attr('data-pzwh'));
+            $("#txtLSJ").val(parseFloat($thistr.attr('data-lsj')).toFixed(4));
+            $("#txtPFJ").val(parseFloat($thistr.attr('data-pfj')).toFixed(4));
+            var date = new Date();
+            var hours = date.getHours().toString();
+            if (hours.length === 1) {
+                hours = "0" + hours;
+            }
+            var minutes = date.getMinutes().toString();
+            if (minutes.length === 1) {
+                minutes = "0" + minutes;
+            }
+            var milliseconds = date.getMilliseconds().toString();
+            if (milliseconds.length === 1) {
+                milliseconds = milliseconds + "00";
+            }
+            else if (milliseconds.length === 2) {
+                milliseconds = milliseconds + "0";
+            }
+            var currentTime = hours + minutes + milliseconds;
+            $("#txtPC").val($("#txtYXQ").val().replace(/-/g, "").toString() + currentTime);
+
+            return;
+        }
+
+    });
+
+    //供应商code变更，药品明细div清空
+    function ChangeGYSCODE() {
+        ClearRKMX();
+    }
+
+    //入库明细
+    function gridRKMX(mydata) {
+        var $gridRkmx = $("#gridRKMX");
+        $gridRkmx.newtouchLocalDataGrid({
+            height: $("#form1").height() - 110,
+            unwritten: false,
+            colModel: [
+                { label: 'Loại thuốc', name: 'yplb', width: 70, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fph', width: 80, align: 'left' },
+                { label: 'Mã thuốc', name: 'ypdm', width: 70, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'Số lượng', name: 'rksl', width: 60, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 60, align: 'left' },
+                { label: 'Số lô', name: 'ph', width: 100, align: 'left' },
+                { label: 'Lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 70, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 70, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 70, align: 'left' },
+                { label: 'Giá nhập', name: 'jj', width: 70, align: 'left' },
+                { label: 'Tiền giá nhập', name: 'zje', width: 80, align: 'left' },
+                { label: 'Tỷ lệ chiết khấu', name: 'kl', width: 55, align: 'left' },
+                { label: 'Tồn kho hiện có', name: 'rkbmkcstr', width: 70, align: 'left' },
+                { label: 'Ngày lập hóa đơn', name: 'kprq', width: 75, align: 'left' },
+                { label: 'Ngoại quan', name: 'wg', width: 100, align: 'left' },
+                { label: 'Số đăng ký', name: 'pzwh', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 100, align: 'left' },
+                { label: 'Ngày sản xuất', name: 'scrq', width: 70, align: 'left' },
+                { label: 'pfze', name: 'pfze', hidden: true, align: 'left' },
+                { label: 'lsze', name: 'lsze', hidden: true, align: 'left' },
+                { label: 'Rkzhyz', name: 'Rkzhyz', hidden: true, align: 'left' },
+                { label: 'Ysjg', name: 'Ysjg', hidden: true, align: 'left' },
+                { label: 'rkbmkc', name: 'rkbmkc', hidden: true },
+                { label: 'sl', name: 'sl', hidden: true }, //最后保存到数据库的数量
+                { label: 'kxdw', name: 'kxdw', hidden: true }  //Đơn vị có thể chọn
+            ],
+            ondblClickRow: function (rowid) {
+                gridDbclickRow(rowid);
+            }
+        }, mydata);
+    }
+
+    //双击
+    function gridDbclickRow(rowid) {
+        if (rowid) {
+            var getRowData = $("#gridRKMX").jqGrid('getRowData', rowid);
+            if (getRowData) {
+                $("#txtSRM").val(getRowData.ypdm);
+                $("#txtFPH").val(getRowData.fph);
+                $("#txtYPMC").val(getRowData.ypmc);
+                $("#txtGG").val(getRowData.gg);
+                $("#txtRKSL").val(getRowData.sl);
+                $("#txtPH").val(getRowData.ph);
+                $("#txtPC").val(getRowData.pc);
+                $("#txtYXQ").val(Getyxq(getRowData.scrq));
+                $("#txtPFJ").val(getRowData.pfj);
+                $("#txtLSJ").val(getRowData.lsj);
+                $("#txtJJ").val(getRowData.jj);
+                $("#txtKL").val(getRowData.kl);
+                //var result = getRowData.kxdw.split(',');
+                $("#ddlRKDW").empty();
+                //if (result[0] === getRowData.dw) {
+                //    $("#ddlRKDW").append('<option selected="selected">' + result[0] + '</option>');
+                //    $("#ddlRKDW").append('<option >' + result[1] + '</option>');
+                //} else {
+                //    $("#ddlRKDW").append('<option >' + result[0] + '</option>');
+                //    $("#ddlRKDW").append('<option selected="selected">' + result[1] + '</option>');
+                //}
+                $("#ddlRKDW").append('<option >' + getRowData.dw + '</option>');
+
+                $("#txtXYKC").val(getRowData.rkbmkcstr);
+                $("#txtKPRQ").val(getRowData.kprq);
+                $("#txtWG").val(getRowData.wg);
+                $("#txtPZWH").val(getRowData.pzwh);
+                $("#txtSCCJ").val(getRowData.sccj);
+                $("#txtSCRQ").val(getRowData.scrq);
+                $("#txtJJZE").val(getRowData.zje);
+                $("#txtPFZE").val(getRowData.pfze);
+                $("#txtLSZE").val(getRowData.lsze);
+                $("#txtYSJG").val(getRowData.Ysjg);
+                $("#hidden_kcsl").val(getRowData.rkbmkc);
+
+                $('#editRowId').val(rowid);
+            }
+        }
+    }
+
+    //重置
+    function newtouch_event_f7() {
+        initialRKDH(); //Đổi số đơn
+        $("#txtGYSCODE").val("");
+        $("#txtGYSMC").val("");
+        $("#txtRKZE").val("");
+        EnabledSysBasicInfo();//Bật
+        ClearRKMX();//Xóa trống chi tiết
+        $('#gridRKMX').jqGrid("clearGridData");
+    }
+
+    //回车加载grid
+    $('#txtWG').keydownEnterEvent(function () {
+        if ($('#editRowId').val()) {            //是修改
+            newtouch_event_f3();    //模拟 Sửa nút Nhấn
+        }
+        else {
+            newtouch_event_f2();    //模拟 Nút xác nhận Nhấn
+        }
+    });
+
+    //获取明细
+    function getEditRowData() {
+        var count = $("#gridRKMX").getGridParam('records');
+        if (count < 1) {
+            //检查主数据
+            if (!CheckMainData()) {
+                return false;
+            }
+        }
+        //检查明细
+        if (!CheckDetailData()) {
+            return false;
+        }
+
+        var sl;
+        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {
+            sl = parseFloat($("#txtRKSL").val());
+        } else {
+            sl = parseFloat($("#txtRKSL").val() / parseFloat($("#txtSRM").attr('data-bzs'))); //如果选择的入库单位：Đơn vị kho thuốc,则sl为入库数量/Hệ số chuyển đổi，后面保存到数据库
+        }
+        var data = [{
+            yplb: $("#txtSRM").attr('data-yplb'),
+            fph: $("#txtFPH").val(),
+            ypdm: $("#txtSRM").val(),
+            ypmc: $("#txtYPMC").val(),
+            gg: $("#txtGG").val(),
+            sl: sl,   //最后保存到数据库的数量
+            rksl: $("#txtRKSL").val(),   //页面上的入库数量
+            dw: $("#ddlRKDW").find("option:selected").text(),
+            kxdw: $("#kxdw").val(),
+            ph: $("#txtPH").val(),
+            pc: $("#txtPC").val(),
+            yxq: $("#txtYXQ").val(),
+            pfj: $("#txtPFJ").val(),
+            lsj: $("#txtLSJ").val(),
+            jj: $("#txtJJ").val(),
+            zje: $("#txtJJZE").val(),
+            kl: $("#txtKL").val(),
+            rkbmkcstr: $("#txtXYKC").val(),
+            kprq: $("#txtKPRQ").val(),
+            wg: $("#txtWG").val(),
+            pzwh: $("#txtPZWH").val(),
+            sccj: $("#txtSCCJ").val(),
+            scrq: $("#txtSCRQ").val(),
+            pfze: $("#txtPFZE").val(),
+            lsze: $("#txtLSZE").val(),
+            Rkzhyz: $("#txtSRM").attr('data-bzs'),
+            Ysjg: $("#txtYSJG").val(),
+            rkbmkc: $("#hidden_kcsl").val()
+
+        }];
+        return data;
+    }
+
+
+    //添加按钮
+    function newtouch_event_f2() {
+        if ($("#txtYXQ").val() <= $("#txtSCRQ").val()) {
+            $.modalMsg("Hạn sử dụng phải muộn hơn ngày sản xuất của thuốc", "warning", 1500);
+            return false;
+        }
+        var count = $("#gridRKMX").getGridParam('records');
+        if (count < 1) {
+            //检查主数据
+            if (!CheckMainData()) {
+                return false;
+            }
+        }
+        //检查明细
+        if (!CheckDetailData()) {
+            return false;
+        }
+        //获取明细
+        var data = getEditRowData();
+        //检查重复项
+        var isRepeatedAdd = false;
+        $.each($("#gridRKMX").getDataIDs(), function () {
+            var rowData = $("#gridRKMX").jqGrid('getRowData', this);
+            if (rowData.ypdm === data[0].ypdm && rowData.ph === data[0].ph || rowData.pc === data[0].pc) {
+                isRepeatedAdd = true;
+            }
+        });
+
+        if (isRepeatedAdd) {
+            $.modalMsg("Không được thêm trùng", "warning", 1000);
+            return false;
+        }
+        $("#gridRKMX").newtouchLocalDataGrid(null, data);
+        //计算入库金额
+        ComputeRKZE();
+        //禁用
+        DisableControls();
+        ClearRKMX();
+    }
+
+    //Sửa nút
+    function newtouch_event_f3() {
+        if ($("#txtYXQ").val() <= $("#txtSCRQ").val()) {
+            $.modalMsg("Hạn sử dụng phải muộn hơn ngày sản xuất của thuốc", "warning", 1500);
+            return false;
+        }
+        if ($('#editRowId').val()) {
+            var count = $("#gridRKMX").getGridParam('records');
+            if (count < 1) {
+                //检查主数据
+                if (!CheckMainData()) {
+                    return false;
+                }
+            }
+            //检查明细
+            if (!CheckDetailData()) {
+                return false;
+            }
+            //获取明细
+            var data = getEditRowData();
+            $('#gridRKMX').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
+            //检查重复项
+            var isRepeatedAdd = false;
+            $.each($("#gridRKMX").getDataIDs(), function () {
+                var rowData = $("#gridRKMX").jqGrid('getRowData', this);
+                if (rowData.ypdm === data[0].ypdm && rowData.ph === data[0].ph && rowData.pc === data[0].pc) {
+                    isRepeatedAdd = true;
+                }
+            });
+
+            if (isRepeatedAdd) {
+                $.modalAlert("Không được thêm trùng", 'warning');
+                return false;
+            }
+            $("#gridRKMX").newtouchLocalDataGrid(null, data);
+            //计算入库金额
+            ComputeRKZE();
+            //禁用
+            DisableControls();
+            ClearRKMX();
+        }
+        else {
+            //获取grid当前选中的那一行
+            var seleId = $('#gridRKMX').jqGrid('getGridParam', 'selrow');
+            if (seleId) {
+                //请求修改该行
+                gridDbclickRow(seleId);
+            }
+        }
+    }
+
+    //删除
+    function newtouch_event_f6() {
+        var delRowid = $("#gridRKMX").jqGrid('getGridParam', 'selrow');
+        if (!delRowid) {
+            $.modalMsg("Chưa chọn dòng", "warning", 1500);
+            return;
+        }
+        $('#gridRKMX').jqGrid('delRowData', delRowid);
+        //计算入库总额
+        ComputeRKZE();
+        //清空
+        //$("#txtGYSCODE").val("");
+        //$("#txtGYSMC").val("");
+        //启用
+        EnabledSysBasicInfo();
+    }
+
+    //入库
+    function newtouch_event_f8() {
+        var crkdj = Object();
+        crkdj.pdh = $("#txtRKDH").val();
+        crkdj.ckbm = $("#txtGYSCODE").val();
+        crkdj.crkfsdm = $("#ddlRKFS").val();
+        var djmx = $("#gridRKMX").jqGrid('getRowData_AllLine');
+        if (djmx == null || djmx.length <= 0) {
+            $.modalAlert("Vui lòng thêm thông tin nhập kho trước", 'warning');
+            return;
+        }
+        $.najax({
+            url: "/DrugStorage/SaveInStorageInfo",
+            dataType: "json",
+            data: { crkdj: crkdj, crkdjmx: djmx },
+            type: "POST",
+            async: false,
+            success: function (data) {
+                if (data.state === 'success') {
+                    $.modalMsg("Đăng ký nhập kho đã được gửi", "success", 1000);
+                    newtouch_event_f7();//新入库：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
+                    $('#gridRKMX').jqGrid("clearGridData");//Xóa trốngGrid
+                }
+                else {
+                    $.newtouchAlert(data);
+                }
+            }
+        });
+
+    }
+
+    //数量失焦,计算批发金额 零售金额
+    function RKSL_Leave() {
+        if ($("#txtRKSL").val() === "") {
+            return false;
+        }
+        if (isNaN($("#txtRKSL").val())) {
+            $.modalAlert("Lỗi định dạng số lượng", 'warning');
+            return false;
+        }
+        var sl;
+        var pfj = parseFloat($("#txtPFJ").val());
+        var lsj = parseFloat($("#txtLSJ").val());
+        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {
+            sl = parseFloat($("#txtRKSL").val());
+        } else {
+            sl = roundingBy4she6ru5chengshuang(parseFloat($("#txtRKSL").val()) / parseFloat($("#txtSRM").attr('data-bzs')), 4);
+        }
+
+        $("#thPFZEDW").text("Tổng giá bán buôn(đ/" + $("#ddlRKDW").find("option:selected").text() + "):");
+        $("#thLSZEDW").text("Tổng tiền bán lẻ(đ/" + $("#ddlRKDW").find("option:selected").text() + "):");
+        $("#txtPFZE").val((pfj * sl).toFixed(4));
+        $("#txtLSZE").val((lsj * sl).toFixed(4));
+
+        //重算入库单价
+        JJZE_Leave();
+        //计算扣率
+        ComputeKL();
+    }
+
+    //进价总额失焦，计算入库单价
+    function JJZE_Leave() {
+        if (isNaN($("#txtJJZE").val())) {
+            $.modalAlert("Định dạng tổng giá nhập sai", 'warning');
+            return false;
+        }
+        if ($("#txtJJZE").val() === "") {
+            return false;
+        }
+        if ($("#txtRKSL").val() === "") {
+            return false;
+        }
+        var sl;
+        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //如果选择的可退单位：Đơn vị kho thuốc Số lượng=Nhập số lượng
+            sl = parseFloat($("#txtRKSL").val());
+        } else {   //可退单位：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
+            sl = roundingBy4she6ru5chengshuang(parseFloat($("#txtRKSL").val()) / parseFloat($("#txtSRM").attr('data-bzs')), 4);
+        }
+        var jjze = parseFloat($("#txtJJZE").val());
+        var jj = (sl === 0 ? 0 : roundingBy4she6ru5chengshuang((jjze / sl), 4));
+        $("#txtJJ").val(parseFloat(jj).toFixed(4));
+
+        ComputeKL();
+    }
+
+    //计算扣率
+    function ComputeKL() {
+        if ($("#txtJJ").val() === "") {
+            return;
+        }
+        var pfj = parseFloat($("#txtPFJ").val());
+        var jj = parseFloat($("#txtJJ").val());
+
+        $("#txtKL").val(roundingBy4she6ru5chengshuang((pfj * 100 / jj), 2));  //五舍六入
+    }
+
+    //计算入库总额
+    function ComputeRKZE() {
+        var rkze = 0;
+        var count = $("#gridRKMX").getGridParam('records');
+        if (count > 0) {
+            var rowIds = $("#gridRKMX").getDataIDs();
+            for (var i = 0; i < rowIds.length; i++) {
+                var getRowZje = $("#gridRKMX").getRowData(rowIds[i]).zje;
+                rkze = parseFloat(rkze) + parseFloat(getRowZje);
+            }
+            //入库金额
+            $("#txtRKZE").val(rkze.toFixed(4));
+        } else {
+            $("#txtRKZE").val('');
+        }
+    }
+
+    //当有效期发生变更，药品批次也随之变更
+    function updatePC() {
+        var date = new Date();
+        var hours = date.getHours().toString();
+        if (hours.length === 1) {
+            hours = "0" + hours;
+        }
+        var minutes = date.getMinutes().toString();
+        if (minutes.length === 1) {
+            minutes = "0" + minutes;
+        }
+        var milliseconds = date.getMilliseconds().toString();
+        if (milliseconds.length === 1) {
+            milliseconds = milliseconds + "00";
+        }
+        else if (milliseconds.length === 2) {
+            milliseconds = milliseconds + "0";
+        }
+        var currentTime = hours + minutes + milliseconds;
+        $("#txtPC").val($("#txtYXQ").val().replace(/-/g, "").toString() + currentTime);
+    }
+
+    //校验主数据
+    function CheckMainData() {
+        if ($("#txtRKDH").val() === "") {
+            $.modalMsg("Số phiếu nhập kho trống", "warning", 1000);
+            return false;
+        }
+        if ($("#txtGYSCODE").val() === "") {
+            $.modalMsg("Mã nhà cung cấp trống", "warning", 1000);
+            return false;
+        }
+        if ($("#txtGYSMC").val() === "") {
+            $.modalMsg("Tên nhà cung cấp trống", "warning", 1000);
+            return false;
+        }
+        return true;
+    }
+
+    //校验明细数据
+    function CheckDetailData() {
+        //var reg2 = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;//金额
+        //if ($("#ddlRKFS").val() !== "2") {
+        //    if ($("#txtFPH").val() == "") {
+        //        $.modalAlert("Số hóa đơn trống", 'warning');
+        //        return false;
+        //    }
+        //}
+        if ($("#txtSRM").val() === "") {
+            $.modalMsg("Mã thuốc trống！", "warning", 1000);
+            return false;
+        }
+        if ($("#txtYPMC").val() === "") {
+            $.modalMsg("Tên thuốc trống！", "warning", 1000);
+            return false;
+        }
+        var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
+        if (!reg.test($("#txtRKSL").val())) {
+            $.modalMsg("Số lượng nhập kho phải lớn hơn0 số nguyên！", "warning", 1000);
+            return false;
+        }
+        var reg2 = /^\d+(?:\.\d{0,2})?$/;
+        if (!reg2.test($("#txtJJZE").val())) {
+            $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền！", "warning", 1000);
+            return false;
+        }
+        if ($("#txtPH").val() === "") {
+            $.modalMsg("Số lô trống！", "warning", 1000);
+            return false;
+        }
+        return true;
+    }
+
+    //清空明细
+    function ClearRKMX() {
+        newtouch_globalevent_f4();
+        $("#ddlRKDW").empty();
+        $("#txtKPRQ").val($.getDate());
+        $("#txtSCRQ").val($.getDate());
+        $("#txtYXQ").val(Getyxq($("#txtSCRQ").val()));
+
+    }
+
+    //禁用
+    function DisableControls() {
+        $("#txtGYSCODE").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+        $("#txtRKRQ").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+        $("#ddlRKFS").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+    }
+
+    //启用
+    function EnabledSysBasicInfo() {
+        $("#txtGYSCODE").removeAttr("disabled").removeAttr("style");
+        $("#txtRKRQ").removeAttr("disabled").removeAttr("style");
+        $("#ddlRKFS").removeAttr("disabled").removeAttr("style");
+    }
+
+    //有效期默认加12个月
+    function Getyxq(scrq) {
+        var s = scrq.split('-');
+        var year = Number($('#txtSCRQ').val().split('-')[0]) + 1;
+        return year + "-" + s[1] + "-" + s[2];
+    }
+</script>

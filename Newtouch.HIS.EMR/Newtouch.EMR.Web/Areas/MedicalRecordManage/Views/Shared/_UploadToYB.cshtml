@@ -30,7 +30,7 @@
                         return ret;
                     }
                     else {
-                        $.modalAlert("上传失败，请查看日志", "error");
+                        $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
                     }
                 }
             });
@@ -51,7 +51,7 @@
                         ret = Upload(data);
                     }
                     else {
-                        $.modalAlert("上传失败，请查看日志", "error");
+                        $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
                     }
                 }
             });
@@ -71,19 +71,19 @@
                 if (!!ajaxdata) {
                     var resp = JSON.parse(ajaxdata);
                     if (resp.code == "-1") {
-                        $.modalAlert("上传失败" + resp.message, "error");
+                        $.modalAlert("Tải lên thất bại" + resp.message, "error");
                     }
                     else {
-                        $.modalAlert("上传成功", "success");
+                        $.modalAlert("Tải lên thành công", "success");
                         return 1;
                     }
                 }
                 else
-                    $.modalAlert("上传失败，请查看日志", "error");
+                    $.modalAlert("Tải lên thất bại, Vui lòng xem nhật ký", "error");
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $.modalAlert("上传失败." + jqXHR.readyState + ";" + errorThrown, "error");
+                $.modalAlert("Tải lên thất bại." + jqXHR.readyState + ";" + errorThrown, "error");
             },
         });
 

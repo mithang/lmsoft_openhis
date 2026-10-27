@@ -1,11 +1,11 @@
 ﻿@using Newtouch.Infrastructure;
-@using Newtouch.Common.Operator;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <script src="~/Content/js/BootstrapMenu.min.js"></script>
 <div class="topPanel">
     <div class="search">
@@ -13,13 +13,13 @@
             <tr>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" style="width:45px;height:17px;" id="mbqx" onchange="mbqxquery()">
-                        <option value="0" selected="selected">通用</option>
-                        <option value="1">个人</option>
-                        <option value="2">科室</option>
+                        <option value="0" selected="selected">Chung</option>
+                        <option value="1">Cá nhân</option>
+                        <option value="2">Khoa</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="keypress()" placeholder="模板名称" style="width:80px;height:17px;">
+                    <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="keypress()" placeholder="Mẫu tên" style="width:80px;height:17px;">
                 </td>
             </tr>
         </table>
@@ -57,9 +57,9 @@
             height: $(window).height() - 60,
             width: $(window).width()-20,
             colModel: [
-                { label: "病历模板Id", name: "Id", key: true, hidden: true },
+                { label: "Mẫu bệnh án id", name: "Id", key: true, hidden: true },
                 { label: "Turl", name: "Turl", hidden: true },
-                { label: "病历模板", name: "mbmc",width:30 },
+                { label: "Mẫu bệnh án", name: "mbmc",width:30 },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
@@ -93,7 +93,7 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 删除模板',
+                name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xóa mẫu',
                 width: 300,
                 onClick: function (obj) {
                     $.deleteForm({
@@ -101,7 +101,7 @@
                         param: { keyValue: rowData.Id },
                         success: function (data) {
                             if (data.state == "success") {
-                                $.modalAlert('删除成功', 'success');
+                                $.modalAlert('Xóa thành công', 'success');
                             }
                             else {
                                 $.modalAlert(data.message, 'error');

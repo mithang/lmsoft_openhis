@@ -1,0 +1,481 @@
+@using Newtouch.Tools;
+@using Newtouch.Infrastructure;
+@using Newtouch.HIS.Web.Core.Extensions;
+@{
+    ViewBag.Title = "Duyệt chứng từ nhập/xuất kho";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var djlxItemStrs = Constants.CurrentYfbm.yfbmjb != "1" ?
+        new[] {
+(int) EnumDanJuLX.zhijiefayao,
+(int) EnumDanJuLX.shenlingfayao,
+(int) EnumDanJuLX.neibufayaotuihui,
+(int) EnumDanJuLX.keshifayao
+            }
+            : new[] {
+(int) EnumDanJuLX.yaopinruku,
+(int) EnumDanJuLX.waibucuku,
+(int) EnumDanJuLX.neibufayaotuihui,
+(int) EnumDanJuLX.keshifayao
+            };
+}
+<script src="~/Content/js/bootstrap-multiselect.js"></script>
+<link href="~/Content/js/bootstrap-multiselect.css" rel="stylesheet" />
+<style>
+    #btn_search {
+        height: 45px;
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+
+    .showbotton {
+        display: none;
+        position: fixed;
+        bottom: 5px;
+        right: 0;
+        z-index: 9999;
+        background-color: #ccc;
+        width: 50px;
+        height: 44px;
+        filter: alpha(Opacity=90);
+        -moz-opacity: 0.9;
+        opacity: 0.9;
+        cursor: pointer;
+        border-radius: 100px 0 0 100px;
+    }
+
+    #TabGrid {
+        width: 100%;
+        position: fixed;
+        bottom: 50px;
+        right: 0;
+        z-index: 8888;
+        background-color: #253443;
+        filter: alpha(Opacity=92);
+        -moz-opacity: 0.92;
+        opacity: 0.92;
+        box-shadow: 0px 2px 10px #909090;
+    }
+
+        #TabGrid > * {
+            filter: alpha(Opacity=92);
+            -moz-opacity: 0.92;
+            opacity: 0.92;
+        }
+
+    input[name=fph] {
+        padding: 2px;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default" id="dv_search">
+        <div class="panel-heading">Điều kiện tra cứu</div>
+        <div>
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Trạng thái duyệt：</th>
+                    <td class="formValue">
+                        @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <th class="formTitle">Ngày：</th>
+                    <td class="formValue">
+                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">đến：</th>
+                    <td class="formValue">
+                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    </td>
+                    <th class="formTitle">Số hóa đơn：</th>
+                    <td class="formValue">
+                        <input id="txtFPH" type="text" class="form-control " />
+                    </td>
+                    <td class="formTitle" rowspan="2">
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Số chứng từ：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="txtPDH" />
+                    </td>
+                    <th class="formTitle">Loại chứng từ：</th>
+                    <td class="formValue">
+                        @Html.DropDownList("ddlDJLX", EnumDanJuLX.yaopinruku.ToSomeDescSelectList(String.Join(",", djlxItemStrs)), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <th class="formTitle">Nhà cung cấp：</th>
+                    <td class="formValue">
+                        <select id="selgys" name="selgys" class="form-control" multiple="multiple"></select>
+                    </td>
+                    <th class="formTitle">Tổng giá nhập：</th>
+                    <td class="formValue">
+                        <input type="text" id="jjze" name="jjze" class="form-control newtouch_Readonly" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridDJMainRecords"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+</form>
+<div id="TabGrid">
+    <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
+        <li role="presentation" class="active">
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
+        </li>
+        <li style="float:right">
+            <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
+        </li>
+    </ul>
+    <div id="dv_djmx" style="">
+        <table id="gridDJMXInfo"></table>
+    </div>
+</div>
+<div class="showbotton">
+    <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
+</div>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 3, 6, 7, 8 },
+    F3Text = "Đã duyệt",
+    F6Text = "Duyệt hàng loạt đạt",
+    F7Text = "Không đạt",
+    F8Text = "Thu hồi duyệt"
+})
+<script>
+    $(function () {
+        //浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {
+            window.initLayout("MyTabGrid");
+        });
+        $('#ddlSHZT').val('0');
+        //搜索框隐藏显示控制
+        $(".hiding,.rows,#dv_search,.toolbar").click(function () {
+            TabGridHide();
+        });
+        $(".showbotton").click(function () {
+            $(".showbotton").animate({ width: 'hide' }, "fast", function () {
+                $("#TabGrid").animate({ left: '0px' }, "slow");
+            });
+        });
+        TabGridHide();
+        gridDJMainRecords();
+        BindGys();
+    });
+
+    //绑定供应商
+    function BindGys() {
+        $.najax({
+            type: "Get",
+            url: "/Medicine/MedicineSupplierList?keyword=",
+            dataType: "json",
+            success: function (ajaxresp) {
+                if (ajaxresp !== null) {
+                    $("#selgys").html("");
+                    for (var i = 0; i < ajaxresp.length; i++) {
+                        $("#selgys").append("<option value='" + ajaxresp[i].gysCode + "'>" + ajaxresp[i].gysmc + "</option>");
+                    }
+                    $('#selgys').multiselect({
+                        buttonWidth: '100%',
+                        includeSelectAllOption: true,
+                        enableClickableOptGroups: true,
+                        enableCollapsibleOptGroups: true,
+                        selectAllText: "Chọn tất cả",
+                        nonSelectedText: "Chưa chọn",
+                        allSelectedText: "Chọn tất cả"
+                    });
+                }
+            }
+        });
+    }
+
+    //隐藏搜索框并显示箭头
+    function TabGridHide() {
+        var tabGridwith = $("#TabGrid").width() + 200;
+        if ($(".showbotton").is(":hidden")) {
+            $("#TabGrid").animate({ left: tabGridwith }, "slow", function () {
+                $(".showbotton").animate({ width: 'show' }, "fast");
+            });
+        }
+    }
+
+    //单据主记录
+    function gridDJMainRecords() {
+        var $gridDjMainRecords = $("#gridDJMainRecords");
+        $gridDjMainRecords.dataGrid({
+            height: $(window).height() - 230,
+            postData: getSearchPostData(),
+            url: "/PharmacyDrugStorage/SelectReceiptMainInfoV2?from=approval",
+            colModel: [
+                {
+                    label: 'Trạng thái duyệt', name: 'shzt', width: 55, align: 'left', formatter: function (val) {
+                        switch (val) {
+                        case '@((int)EnumDjShzt.WaitingApprove)':
+                            return "@EnumDjShzt.WaitingApprove.GetDescription()";
+                        case '@((int)EnumDjShzt.Approved)':
+                            return "@EnumDjShzt.Approved.GetDescription()";
+                        case '@((int)EnumDjShzt.Cancelled)':
+                            return "@EnumDjShzt.Cancelled.GetDescription()";
+                        case '@((int)EnumDjShzt.Rejected)':
+                            return "@EnumDjShzt.Rejected.GetDescription()";
+                        default:
+                            return "";
+                        }
+                    }
+                },
+                {
+                    label: 'Loại chứng từ', name: 'djlx', width: 80, align: 'left', formatter: function (val) {
+                        switch (val) {
+                        case @((int)EnumDanJuLX.zhijiefayao):
+                            return "@EnumDanJuLX.zhijiefayao.GetDescription()";
+                        case @((int)EnumDanJuLX.keshifayao):
+                            return "@EnumDanJuLX.keshifayao.GetDescription()";
+                        case @((int)EnumDanJuLX.neibufayaotuihui):
+                            return "@EnumDanJuLX.neibufayaotuihui.GetDescription()";
+                        case @((int)EnumDanJuLX.shenlingfayao):
+                            return "@EnumDanJuLX.shenlingfayao.GetDescription()";
+                        case @((int)EnumDanJuLX.waibucuku):
+                            return "@EnumDanJuLX.waibucuku.GetDescription()";
+                        case @((int)EnumDanJuLX.yaopinruku):
+                            return "@EnumDanJuLX.yaopinruku.GetDescription()";
+                        default:
+                            return "";
+                        }
+                    }
+                },
+                { label: 'Số chứng từ', name: 'pdh', width: 130, align: 'center' },
+                { label: 'Kho xuất', name: 'ckbmmc', width: 100, align: 'left' },
+                { label: 'Nhà cung cấp', name: 'gysmc', width: 100, align: 'left' },
+                { label: 'Kho nhập', name: 'rkbmmc', width: 100, align: 'left' },
+                { label: 'Cách nhập/xuất kho', name: 'crkfsmc', width: 70, align: 'left' },
+                { label: 'Tổng giá bán buôn', name: 'pjze', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+                { label: 'Tổng tiền bán lẻ', name: 'ljze', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+                { label: 'Tổng giá nhập', name: 'zje', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+                { label: 'Chênh lệch nhập-xuất', name: 'jxcj', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true},
+                { label: 'Thời gian gửi', name: 'czsj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
+                { label: 'Thời gian nhập kho', name: 'Rksj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
+                { label: 'Thời gian xuất kho', name: 'Cksj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
+                { label: 'crkId', name: 'crkId', hidden: true },
+                { label: 'djlx', name: 'djlx', hidden: true, align: 'left' },
+                { label: 'jjzje', name: 'jjzje', hidden: true, align: 'left' }
+            ],
+            unwritten: false,
+            multiselect: false,
+            pager: "#gridPager",
+            sortname: 'czsj desc',
+            viewrecords: true,
+            gridComplete: function() {
+                ComputeJJze();
+            },
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                btn_selectrow(rowid);
+            }
+        });
+
+        $("#btn_search").click(function () {
+            $('#gridDJMXInfo').jqGrid("clearGridData");
+            $gridDjMainRecords.jqGrid('setGridParam', {
+                postData: getSearchPostData(),
+                url: "/PharmacyDrugStorage/SelectReceiptMainInfoV2?from=approval"
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //组装查询条件
+    function getSearchPostData() {
+        var shzt = $("#ddlSHZT").val();
+        var qsrj = $("#txtStartDate").val();
+        var jsrj = $("#txtEndDate").val();
+        var pdh = $("#txtPDH").val();
+        var djlx = $("#ddlDJLX").val();
+        var fph = $("#txtFPH").val();
+        var gys = $("#selgys").val();
+        return { qsrj: qsrj, jsrj: jsrj, pdh: pdh, djlx: djlx, shzt: shzt, gys: gys, fph: fph};
+    };
+
+    //单击事件
+    function btn_selectrow(rowId) {
+        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $.najax({
+            type: "Get",
+            url: "/BillManage/OutOrInStorageBill/QueryOutOrInStorageBillDetail",
+            data: { crkId: $("#gridDJMainRecords").jqGrid('getRowData', rowId).crkId, djlx: $("#gridDJMainRecords").jqGrid('getRowData', rowId).djlx },
+            dataType: "json",
+            success: function (ajaxresp) {
+                if (ajaxresp !== null) {
+                    $('#gridDJMXInfo').newtouchLocalDataGrid(null, ajaxresp);
+                }
+                $(".showbotton").click().trigger("click");
+            }
+        });
+    }
+
+    //单据明细
+    $('#gridDJMXInfo').newtouchLocalDataGrid({
+        height: $(window).height() - 240,
+        unwritten: false,
+        sortable: false,
+        colModel: [
+            { label: 'Số thứ tự chi tiết nhập/xuất kho', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
+            {
+                label: 'Số hóa đơn', name: 'fph', width: 90, align: 'center',
+                formatter: function (cellvalue, options) { return cellvalue === "" || cellvalue === null ? "<input type=\"text\" name=\"fph\" rowid=" + options.rowId + " role=\"textbox\" class=\"editable inline-edit-cell form-control\" style=\"width: 90%; height: 99%;\" onblur=\"UpdateFph(this)\">" : cellvalue; }
+            },
+            { label: 'Loại thuốc', name: 'yplbmc', width: 60, align: 'left' },
+            { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+            { label: 'Số lượng', name: 'slanddw', width: 60, align: 'right' },
+            { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
+            { label: 'Mã truy xuất', name: 'zsm', width: 60, align: 'right' },
+            { label: 'Có tách lẻ không', name: 'sfcl', width: 60, align: 'right' },
+            { label: 'Số lô', name: 'ph', width: 90, align: 'center' },
+            { label: 'Lô', name: 'pc', width: 100, align: 'center' },
+            { label: 'Hạn sử dụng', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'Đơn giá nhập', name: 'jjdwdj', width: 90, align: 'right' },
+            { label: 'Tổng giá bán buôn', name: 'pjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'Tổng tiền bán lẻ', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'Tổng giá nhập', name: 'zje', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'Chênh lệch nhập-xuất', name: 'jxcj', width: 60, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+            { label: 'Lý do trả hàng', name: 'thyy', width: 80, align: 'left' },
+            { label: 'Đơn giá nhập', name: 'jj', hidden: true }
+        ]
+    });
+
+    //计算进价总额
+    function ComputeJJze() {
+        var t = 0;
+        var count = $("#gridDJMainRecords").getGridParam('records');
+        if (count > 0) {
+            var rowIds = $("#gridDJMainRecords").getDataIDs();
+            t = $("#gridDJMainRecords").getRowData(rowIds[0]).jjzje;
+            $("#jjze").val(t);
+        } else {
+            $("#jjze").val('');
+        }
+    }
+
+    //审核
+    function newtouch_event_f3() {
+        submitReceiptApproval('@((int)EnumDjShzt.Approved)');
+    }
+
+    //批量审核
+    function newtouch_event_f6() {
+        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        if (ids == null || ids.length === 0) {
+            $.modalMsg('Vui lòng tra cứu chứng từ cần phê duyệt', 'warning', 2000);
+            return false;
+        }
+        var shdj = [];
+        for (var i = 0; i < ids.length; i++) {
+            var selRowData = $("#gridDJMainRecords").jqGrid('getRowData', ids[i]);
+            if (selRowData.crkId && selRowData.djlx) {
+                var item = {
+                    crkId: selRowData.crkId,
+                    djlx: selRowData.djlx,
+                    shzt: '@((int)EnumDjShzt.Approved)'
+                };
+                shdj.push(item);
+            }
+        }
+        if (shdj.length === 0) {
+            $.modalMsg('Không tìm thấy chứng từ đáp ứng yêu cầu phê duyệt', 'warning', 2000);
+            return false;
+        }
+
+        $.modalConfirm("Bạn có chắc muốn phê duyệt hàng loạt không?？Phê duyệt hàng loạt chỉ áp dụng cho chứng từ trên trang hiển thị hiện tại！",
+            function(flag) {
+                if (!flag) return false;
+                $.najax({
+                    url: "/OutOrInStorageBill/SubmitReceiptApprovalBatch",
+                    data: { param: shdj },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (ajaxresp) {
+                        if (ajaxresp.state === 'success') {
+                            $.modalMsg("Thao tác thành công", 'success', 1500);
+                        }
+                        else {
+                            $.modalMsg("Thao tác thất bại", 'error', 1500);
+                            $.newtouchAlert(ajaxresp);
+                        }
+                        return;
+                    },
+                    complete: function () {
+                        $("#btn_search").trigger('click');
+                    }
+                });
+            });
+    }
+
+    //未通过
+    function newtouch_event_f7() {
+        submitReceiptApproval('@((int)EnumDjShzt.Rejected)');
+    }
+
+    //作废
+    function newtouch_event_f8() {
+        submitReceiptApproval('@((int)EnumDjShzt.Cancelled)');
+    }
+
+    //更新单据审核状态，提交至服务器
+    function submitReceiptApproval(dstnShzt) {
+        var selRowData = $("#gridDJMainRecords").jqGridRowValue();
+        if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
+            $.modalAlert('Vui lòng chọn một chứng từ', 'error');
+            return;
+        }
+        if (selRowData.crkId && selRowData.djlx) {
+            $.najax({
+                url: "/OutOrInStorageBill/SubmitReceiptApproval",
+                data: { crkId: selRowData.crkId, djlx: selRowData.djlx, shzt: dstnShzt },
+                type: 'POST',
+                dataType: 'json',
+                success: function (ajaxresp) {
+                    if (ajaxresp.state === 'success') {
+                        $.modalMsg("Thao tác thành công", 'success', 1500);
+                    }
+                    else {
+                        $.modalMsg("Thao tác thất bại", 'error', 1500);
+                        $.newtouchAlert(ajaxresp);
+                    }
+                    return;
+                },
+                complete: function () {
+                    $("#btn_search").trigger('click');
+                }
+            });
+        }
+    }
+
+
+    //补发票号
+    function UpdateFph(obj) {
+        var fph = $(obj).val();
+        var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;
+        if (fph !== "") {
+            $.modalConfirm("Bạn có chắc muốn đổi số hóa đơn thành " + fph + " không？",
+                function(flag) {
+                    if (flag) {
+                        $.najax({
+                            url: "/PharmacyDrugStorage/UpdateFph",
+                            type: "POST",
+                            data: { crkmxId: crkmxId, fph: fph },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data.state === 'success') {
+                                    $.modalMsg("Đổi số hóa đơn thành công", "success", 1000);
+                                } else {
+                                    $.newtouchAlert(data);
+                                }
+                            }
+                        });
+                    }
+                });
+
+        }
+    }
+</script>

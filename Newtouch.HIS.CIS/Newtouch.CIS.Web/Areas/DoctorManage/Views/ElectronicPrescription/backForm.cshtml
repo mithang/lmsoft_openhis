@@ -1,8 +1,8 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "backForm";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
 <form>
@@ -10,7 +10,7 @@
         <table class="form" style="margin-top:20px;">
             <tr>
 
-                <th class="formTitle">撤销原因：</th>
+                <th class="formTitle">Hủy bỏNguyên nhân:</th>
                 <td class="formValue">
                     <input id="cxyy" type="text" class="form-control" style="width:75%; float:left;" />
                 </td>
@@ -51,17 +51,17 @@
             success: function (data) {
                 var refdata=eval('(' + data + ')');
                 if (refdata.infcode === "0") {
-                    $.modalMsg('撤销成功', 'success');
+                    $.modalMsg('Hủy bỏthành công', 'success');
                     //callback();
                 } else {
                     $.loading(false);
-                    $.modalAlert('撤销电子处方失败：' + refdata.err_msg, 'error');
+                    $.modalAlert('Hủy bỏĐiện tửĐơn thuốcthất bại:' + refdata.err_msg, 'error');
                 }
 
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert('医保服务【撤销电子处方】不可访问：' + ex, 'error');
+                $.modalAlert('Bảo hiểm y tếDịch vụ【Hủy bỏĐiện tửĐơn thuốc】Không thể truy cập:' + ex, 'error');
             }
         });
     }
@@ -70,7 +70,7 @@
     //数据效验
     function DataValidate() {
         if ($("#cxyy").val() === "") {
-            $.modalAlert("请填写撤销原因", 'warning');
+            $.modalAlert("Vui lòng điềnHủy bỏNguyên nhân", 'warning');
             return false;
         }
         return true;

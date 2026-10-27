@@ -1,8 +1,8 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "分诊医生";
+    ViewBag.Title = "Phân loại khámBác sĩ";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -14,7 +14,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="科室名称/科室编码" style="width: 180px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="KhoaTên/KhoaMã" style="width: 180px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>
@@ -54,8 +54,8 @@
             height: $(window).height() - 120,
             postData: { keyValue: $("#txt_keyword").val() },
             colModel: [
-                { label: '科室编码', name: 'Code', width: 70, align: 'left' },
-                { label: "科室名称", name: "Name", width: 70, align: "left" },
+                { label: 'KhoaMã', name: 'Code', width: 70, align: 'left' },
+                { label: "KhoaTên", name: "Name", width: 70, align: "left" },
             ],
             rownumbers:false,
             pager: "#gridPager",
@@ -81,20 +81,20 @@
         $gridmxList.dataGrid({
             //url: "/Consult/GetConsultListByDept",
             //postData: { ksCode: data.Code },
-            caption: "诊室医生",
+            caption: "Phòng khámBác sĩ",
             height: $(window).height() - 120,
             colModel: [
                // { label: "Id", name: "Id",hidden:true, key: true },
-                { label: "诊室编码", name: "zsCode", key: true   },
-                { label: '诊室名称', name: 'zsmc', width: 120, align: 'left' },
-                { label: '日期', name: 'rq', width: 120, align: 'left', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
-                { label: '医生工号', name: 'gh', width: 80, align: 'left', editable: true ,hidden:true },
-				{ label: '医生', name: 'ysxm', width: 80, align: 'left', editwidth: '93%', editable: true },
-				{ label: '诊室楼层数', name: 'zslc', width: 60, align: 'left', editwidth: '93%', editable: true },
-				{ label: '诊室房号', name: 'zsfh', width: 60, align: 'left', editwidth: '93%', editable: true },
+                { label: "Phòng khámMã", name: "zsCode", key: true   },
+                { label: 'Phòng khámTên', name: 'zsmc', width: 120, align: 'left' },
+                { label: 'Ngày', name: 'rq', width: 120, align: 'left', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
+                { label: 'Bác sĩMã nhân viên', name: 'gh', width: 80, align: 'left', editable: true ,hidden:true },
+				{ label: 'Bác sĩ', name: 'ysxm', width: 80, align: 'left', editwidth: '93%', editable: true },
+				{ label: 'Số tầng phòng khám', name: 'zslc', width: 60, align: 'left', editwidth: '93%', editable: true },
+				{ label: 'Phòng khámSố phòng', name: 'zsfh', width: 60, align: 'left', editwidth: '93%', editable: true },
                 {
-                    label: '操作', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
-                        return '<span style="color:#ff0000" onclick=\'ConsultInfo("' + cell.zsCode + '")\'>分诊信息</span>';
+                    label: 'Thao tác', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
+                        return '<span style="color:#ff0000" onclick=\'ConsultInfo("' + cell.zsCode + '")\'>Phân loại khámThông tin</span>';
                     }
                 },
             ],
@@ -122,7 +122,7 @@
         })
     }
 
-    //诊室行编辑
+    //Phòng khám行编辑
     function initInlineFunc(rowid) {
         //医生浮层
         $("#" + rowid + "_ysxm").newtouchFloatingSelector({
@@ -137,8 +137,8 @@
             colModel: [
                 { label: 'StaffGh', name: 'StaffGh', hidden: true },
                 { label: 'ks', name: 'ks', hidden: true },
-                { label: '医生名称', name: 'StaffName', widthratio: 48 },
-                { label: '科室名称', name: 'ksmc', widthratio: 50 },
+                { label: 'Bác sĩTên', name: 'StaffName', widthratio: 48 },
+                { label: 'KhoaTên', name: 'ksmc', widthratio: 50 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $("#" + rowid + "_ysxm").val($thistr.attr('data-StaffName'));
@@ -187,7 +187,7 @@
 
         //同科室医生重复
         if (flag == false) {
-            $.modalAlert("医生不能分配多个诊室,请重新分配", 'warning');
+            $.modalAlert("Bác sĩKhông thểPhân bổ nhiềuPhòng khám,Vui lòng phân bổ lại", 'warning');
             EnableInlineEditBox();//重新编辑
             ////清空
             //newtouch_globalevent_f4();
@@ -215,7 +215,7 @@
                         data: { zsyslist: zsyslist },
                         type: "POST",
                         success: function (data) {
-                            $.modalAlert("保存成功", 'warning');
+                            $.modalAlert("Lưu thành công", 'warning');
                             //清空
                             newtouch_globalevent_f4();
                             $("#gridmxList").clearGridData();
@@ -229,7 +229,7 @@
                     });
                 } else {
                     //医生与其他科室重复
-                    $.modalAlert("医生不能分配多个诊室,请重新分配", 'warning');
+                    $.modalAlert("Bác sĩKhông thểPhân bổ nhiềuPhòng khám,Vui lòng phân bổ lại", 'warning');
                     EnableInlineEditBox();//重新编辑
                     ////清空
                     //newtouch_globalevent_f4();
@@ -246,11 +246,11 @@
         });
     }
 
-    //诊室信息弹出页（小屏）
+    //Phòng khám信息弹出页（小屏）
     function ConsultInfo(zsCode) {
         
         if (!zsCode) {
-            $.modalAlert("请选择诊室", 'warning');
+            $.modalAlert("Vui lòng chọnPhòng khám", 'warning');
             return;
         }
         //if (!gh) {

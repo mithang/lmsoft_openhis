@@ -1,0 +1,268 @@
+@using NewtouchHIS.Lib.Framework.Operator
+@model dynamic
+
+@{
+    ViewBag.Title = "Bảo trì giấy phép";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .dv-searchP {
+        float: left;
+        margin-left: 10px;
+    }
+
+        .dv-searchP div {
+            float: left;
+            margin-right: 20px;
+            width: 130px;
+        }
+
+        .dv-searchP select {
+            padding: 2px 4px;
+            line-height: 24px;
+            height: 22px;
+            display: initial;
+        }
+
+    .sp-operate {
+        margin-left: 5px;
+        color: #00a0ea;
+    }
+</style>
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Thêm mới</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+        </div>
+    </div>
+    <div class="dv-searchP">
+        <div>
+            <select class="form-control" id="belongedId" onchange="changeBelonged()">
+                <option value="">==Chọn chủ thể==</option>
+            </select>
+        </div>
+        <div>
+            <select class="form-control" id="licenceTypeId">
+                <option value="">==Chọn loại==</option>
+            </select>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Số giấy phép/Tên đối tượng" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script lang="javascript">
+    $(function () {
+        gridList();
+        Init();
+    });
+
+    //Khởi tạo
+    function Init() {
+        //Tải Chủ thể
+        $("#belongedId").bindSelect({
+            url: "/LicenceManage/Licence/Getbelonged"
+        });
+        $("#licenceTypeId").bindSelect({
+            url: "/LicenceManage/Licence/GetlicenceType"
+        });
+    }
+
+    //Đổi Chủ thể Lấy Loại
+    function changeBelonged() {
+        var s = $("#belongedId").val();
+        if (s !== "") {
+            //Tải Loại
+            $("#licenceTypeId").bindSelect({
+                url: "/LicenceManage/Licence/GetlicenceType?belonged=" + $("#belongedId").val()
+            });
+        }
+    }
+
+    //Lấy dữ liệu
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/LicenceManage/Licence/GetLicenceGridJson",
+            postData:getPostData(),
+            height: $(window).height() - 120,
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Chủ thể giấy phép", name: "belonged", width: 100, align: "left" },
+                { label: "Tên đối tượng", name: "objectName", width: 100, align: "left" },
+                { label: "Loại giấy phép", name: "typeName", width: 130, align: "left" },
+                { label: 'Số giấy phép', name: 'licenceNo', width: 100, align: 'left' },
+                { label: 'Ngày hiệu lực', name: 'qxrq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Ngày hết hiệu lực', name: 'sxrq', width: 70, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Đường dẫn tệp', name: 'fileUrl', width: 120, align: 'left' },
+                {
+                    label: "Hiệu lực", name: "zt", width: 50, align: "center",
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; }
+                },
+                { label: 'Người tạo', name: 'CreatorCode', width: 70, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                {
+                    label: 'Thao tác', name: 'objectName', width: 50, align: 'center',
+                    formatter: function (cellvalue) {
+                        return '<span class="sp-operate" onclick="downloadFile()">Tải xuống</span>' }
+                },
+                { label: 'Người sửa cuối', name: 'LastModifierCode', hidden: true },
+                { label: 'Thời gian sửa cuối', name: 'LastModifyTime', hidden: true  }
+            ],
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
+            {
+                postData: getPostData()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //Ghép tham số yêu cầu
+    function getPostData() {
+        return {
+            keyWord: $("#txt_keyword").val(),
+            belongedId: $("#belongedId").val(),
+            licenceTypeId: $("#licenceTypeId").val()
+        };
+    }
+
+    //Nhấn Enter kích hoạt tìm kiếm
+    $("#txt_keyword").keydownEnterEvent(function() {
+        $("#btn_search").trigger("click");
+    });
+
+    //Thêm mới
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm mới",
+            url: "/LicenceManage/Licence/Form",
+            width: "550px",
+            height: "310px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function() {
+                    cleanSearchInput();
+                    $('#gridList').jqGrid("clearGridData"); //Xóa dữ liệu grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //Sửa
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
+            $.modalAlert("Không có quyềnSửa", 'warning');
+            return;
+        }*@
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa",
+            url: "/LicenceManage/Licence/Form?keyValue=" + keyValue,
+            width: "550px",
+            height: "310px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function() {
+                    cleanSearchInput();
+                    $('#gridList').jqGrid("clearGridData"); //Xóa dữ liệu grid chi tiết
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //Xóa
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
+            return;
+        }
+        @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
+            $.modalAlert("Không có quyềnSửa", 'warning');
+            return;
+        }*@
+        $.deleteForm({
+            url: "/LicenceManage/Licence/DeleteLicForm",
+            param: { keyValue: keyValue },
+            success: function () {
+                cleanSearchInput();
+                $('#gridList').jqGrid("clearGridData"); //Xóa dữ liệu grid chi tiết
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
+            }
+        });
+        cleanSearchInput();
+    }
+
+    //Xóa nội dung tìm kiếm
+    function cleanSearchInput() {
+        $("#txt_keyword").val("");
+    }
+
+    //Tải xuống
+    function downloadFile() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        GetFileUrl(keyValue);
+    }
+
+    //Lấy URL tệp hiện tại
+    function GetFileUrl(t) {
+        $.najax({
+            url: "/LicenceManage/Licence/GetFileUrl?t=" + t,
+            dataType: "text",
+            type: "Get",
+            async: false,
+            success: function (res) {
+                if (res === "") {
+                    return "";
+                }
+                var o = JSON.parse(res);
+                if (o != null) {
+                    var a = $("<a href='http://" + o.Authority + o.uri+"' target='_blank'>baidu</a>").get(0);
+                    var e = document.createEvent('MouseEvents');
+                    e.initEvent( 'click', true, true );
+                    a.dispatchEvent(e);
+                }
+                return "";
+            }
+        });
+    }
+</script>

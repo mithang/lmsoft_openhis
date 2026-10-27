@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "医技管理-医技执行查询";
+    ViewBag.Title = "Kỹ thuật y tếQuản lý-Kỹ thuật y tếThực hiệnTra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -19,42 +19,42 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="thshrq">执行时间：</th>
+                <th class="formTitle" id="thshrq">Thực hiệnThời gian:</th>
                 <td class="formValue" colspan="2">
                     <input id="txtkssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     <span style="margin-left: 2%; float: left;">—</span>
                     <input id="txtjssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                 </td>
-                <th class="formTitle">患者类型：</th>
+                <th class="formTitle">Bệnh nhânLoại:</th>
                 <td class="formValue" >
                     <select class="form-control" id="hzlx">
-                        <option value="qb" selected>全部</option>
-                        <option value="mz">门诊</option>
-                        <option value="zy" selected>住院</option>
+                        <option value="qb" selected>Tất cả</option>
+                        <option value="mz">Ngoại trú</option>
+                        <option value="zy" selected>Nhập viện</option>
                     </select>
                 </td>
-                <th class="formTitle">费用类型：</th>
+                <th class="formTitle">Chi phíLoại:</th>
                 <td class="formValue">
                     <select class="form-control" id="fylx">
-                        <option value="qb" selected>全部</option>
-                        <option value="jy">检查</option>
-                        <option value="jc">检验</option>
+                        <option value="qb" selected>Tất cả</option>
+                        <option value="jy">Kiểm tra</option>
+                        <option value="jc">Xét nghiệm</option>
                     </select>
                 </td>
-                <th class="formTitle">申请单类型：</th>
+                <th class="formTitle">PhiếuLoại:</th>
                 <td class="formValue">
                     <select class="form-control" id="sqdlx">
-                        <option value="" selected>全部</option>
+                        <option value="" selected>Tất cả</option>
                     </select>
                 </td>
                 <td class="formValue" colspan="2">
-                    <input id="txt_keyword" name="txt_keyword" type="text" style="width:80%;float:left" class="form-control" placeholder="请输入患者姓名/就诊号/身份证号/申请单号" />
+                    <input id="txt_keyword" name="txt_keyword" type="text" style="width:80%;float:left" class="form-control" placeholder="Vui lòng nhập tên bệnh nhân/số khám bệnh/số CMND-CCCD/số phiếu" />
                 </td>
             </tr>
             <tr>
                 <td class="formValue" colspan="2">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
-                    <input type="button" id="btn_result" class="btn btn-primary btn-md" style="margin-left: 10px; width: 100px;" value="报告结果上传&查看" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
+                    <input type="button" id="btn_result" class="btn btn-primary btn-md" style="margin-left: 10px; width: 100px;" value="Báo cáoKết quảTải lên&Xem" />
                 </td>
             </tr>
         </table>
@@ -81,7 +81,7 @@
 
     function sqdlxinit() {
         $("#sqdlx").empty();
-        $("#sqdlx").append("<option value='qb'>全部</option>");
+        $("#sqdlx").append("<option value='qb'>Tất cả</option>");
         var type = $("#fylx").val()=="jy"?@((int)EnumjyjcmbLx.jy):$("#fylx").val()=="jc"?@((int)EnumjyjcmbLx.jc):0;
         $.najax({
             url: "/TemplateManage/InspectionTemplate/SelectGridList?type=" + type,
@@ -110,35 +110,35 @@
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', width: 50, key: true, hidden: true },
                 {
-                    label: '患者类型', name: 'hzlx', width: 60, align: 'center', formatter: function (val) {
-                        return val=="1"?"门诊":"住院"
+                    label: 'Bệnh nhânLoại', name: 'hzlx', width: 60, align: 'center', formatter: function (val) {
+                        return val=="1"?"Ngoại trú":"Nhập viện"
                     }
                 },
-                { label: '就诊号/住院号', name: 'mzzyh', width: 90, align: 'center' },
-                { label: '患者姓名', name: 'hzxm', align: 'center', width: 80 },
-                { label: '身份证', name: 'zjh', align: 'center', width: 120 },
+                { label: 'Số khám bệnh/Số nhập viện', name: 'mzzyh', width: 90, align: 'center' },
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
+                { label: 'CMND/CCCD', name: 'zjh', align: 'center', width: 120 },
                 {
-                    label: '费用类型', name: 'fylx', align: 'center', width: 80, formatter: function (val) {
+                    label: 'Chi phíLoại', name: 'fylx', align: 'center', width: 80, formatter: function (val) {
                         if(val=="4" ||val=="6")
-                            return "检验"
+                            return "Xét nghiệm"
                         if(val=="5" ||val=="7")
-                            return "检查"
+                            return "Kiểm tra"
                     }
                 },
-                { label: '申请单号', name: 'sqdh', align: 'center', width: 130 },
-                { label: '申请单类型', name: 'sqdlx', align: 'center', width: 70 },
-                { label: '项目名称', name: 'ztmc', width: 90, align: 'center' },
-                { label: '规格', name: 'gg', width: 50, align: 'center' },
-                { label: '单位', name: 'dw', width: 50, align: 'center' },
-                { label: '费用数量', name: 'sl', width: 50, align: 'center' },
-                { label: '金额', name: 'je', width: 50, align: 'center' },
-                { label: '记账人', name: 'jzr', width: 80, align: 'center' },
-                { label: '记账时间', name: 'kdrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '开单科室', name: 'kdksmc', width: 100, align: 'center' },
-                { label: '开单医生', name: 'kdysmc', width: 100, align: 'center' },
-                { label: '执行人', name: 'zxr', width: 80, align: 'center' },
-                { label: '执行时间', name: 'zxrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '执行科室', name: 'zxksmc', width: 100, align: 'center' },
+                { label: 'Số phiếu', name: 'sqdh', align: 'center', width: 130 },
+                { label: 'PhiếuLoại', name: 'sqdlx', align: 'center', width: 70 },
+                { label: 'Tên mục', name: 'ztmc', width: 90, align: 'center' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'center' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'center' },
+                { label: 'Chi phíSố lượng', name: 'sl', width: 50, align: 'center' },
+                { label: 'Số tiền', name: 'je', width: 50, align: 'center' },
+                { label: 'Người ghi nhận chi phí', name: 'jzr', width: 80, align: 'center' },
+                { label: 'Ghi nhận chi phíThời gian', name: 'kdrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Lập phiếuKhoa', name: 'kdksmc', width: 100, align: 'center' },
+                { label: 'Lập phiếuBác sĩ', name: 'kdysmc', width: 100, align: 'center' },
+                { label: 'Người thực hiện', name: 'zxr', width: 80, align: 'center' },
+                { label: 'Thực hiệnThời gian', name: 'zxrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 100, align: 'center' },
             ],
             onSelectRow: function (rowIndex, s) {
                 if (!checkTrigger) {
@@ -227,17 +227,17 @@
             return $("#gridList").jqGrid("getRowData", rowId); // 获取选中行的数据
         });
         if (selectedRowData.length == 0) {
-            $.modalAlert("请选中需上传的申请单", 'warning');
+            $.modalAlert("Vui lòng chọn phiếu cần tải lên", 'warning');
             return;
         }
         var sqdcnt=Array.from(new Set(selectedRowData.map(item => item.sqdh)));
         if (sqdcnt.length > 1) {
-            $.modalAlert("申请单不可多选！", 'warning');
+            $.modalAlert("Phiếu không thể chọn nhiều!", 'warning');
             return;
         }
         $.modalOpen({
             id: "ApplyFormUpload",
-            title: "报告上传预览",
+            title: "Báo cáoTải lênXem trước",
             url:"/NurseManage/OrderExecution/ApplyFormUpload?sqdh="+selectedRowData[0].sqdh,
             width: "800px",
             height: "700px",

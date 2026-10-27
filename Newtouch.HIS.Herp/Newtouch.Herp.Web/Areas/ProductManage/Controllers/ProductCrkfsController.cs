@@ -1,31 +1,45 @@
-﻿using System.Web.Mvc;
-using Newtouch.Core.Common;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.IRepository;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Framework.Filter;
 
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
     /// 出入库方式
     /// </summary>
+    [Area("ProductManage")]
     public class ProductCrkfsController : ControllerBase
     {
         private readonly IWzCrkfsRepo _wzCrkfsRepo;
         private readonly IWzCrkfsApp _wzCrkfsApp;
 
-        /// <summary>
-        /// 获取出入库方式列表
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetCrkfsGridJson(Pagination pagination, string keyWord = "")
+        public ProductCrkfsController(IWzCrkfsRepo wzCrkfsRepo, IWzCrkfsApp wzCrkfsApp)
         {
+            _wzCrkfsRepo = wzCrkfsRepo;
+            _wzCrkfsApp = wzCrkfsApp;
+        }
+
+        public IActionResult GetCrkfsGridJson(Pagination pagination, string keyWord = "")
+        {
+            // RepositoryBase in this copy has no FindList(predicate, pagination)
+            // overload, so pagination is applied here on the filtered list.
+            var all = _wzCrkfsRepo.IQueryable()
+                .Where(p => "" == keyWord || p.crkfsmc.Contains(keyWord.Trim())).ToList();
+            int pageSize = pagination.rows ?? 15;
+            if (pageSize <= 0) pageSize = 15;
+            int pageIndex = pagination.page ?? 1;
+            if (pageIndex <= 0) pageIndex = 1;
+            pagination.rows = pageSize;
+            pagination.page = pageIndex;
+            pagination.records = all.Count;
             var data = new
             {
-                rows = _wzCrkfsRepo.FindList(p => "" == keyWord || p.crkfsmc.Contains(keyWord.Trim()), pagination),
+                rows = all.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -33,38 +47,22 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             return Content(data.ToJson());
         }
 
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="keyValue"></param>
-        /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
-            return _wzCrkfsRepo.DeleteCrkfsById(keyValue) > 0 ? Success("删除成功") : Error("删除失败");
+            return _wzCrkfsRepo.DeleteCrkfsById(keyValue) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
-        /// <summary>
-        /// 获取出入库方式信息
-        /// </summary>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetFormJson(string keyWord)
+        public IActionResult GetFormJson(string keyWord)
         {
             var supplier = _wzCrkfsRepo.FindEntity(p => p.Id == keyWord);
             return Content(supplier.ToJson());
         }
 
-        /// <summary>
-        /// 物资单位维护 表单提交
-        /// </summary>
-        /// <param name="wzCrkfsEntity"></param>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(WzCrkfsEntity wzCrkfsEntity, string keyWord)
+        public IActionResult SubmitForm(WzCrkfsEntity wzCrkfsEntity, string keyWord)
         {
             wzCrkfsEntity.zt = wzCrkfsEntity.zt == "true" ? "1" : "0";
-            return _wzCrkfsApp.SubmitForm(wzCrkfsEntity, keyWord) > 0 ? Success("操作成功") : Error("操作失败");
+            return _wzCrkfsApp.SubmitForm(wzCrkfsEntity, keyWord) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
     }
 }

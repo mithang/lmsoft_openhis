@@ -1,4 +1,3 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
 @{
     Layout = null;
 }
@@ -34,77 +33,25 @@
 </head>
 <body>
     <div class="text">
-        <img src="@SiteUrl.GetStaticResourceScriptUrl("~/img/error_170503.png")" />
-        <div class="Prompt">程序员开小差了，请联系管理员&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" title="查看异常详情" onclick="showException(); return false;">异常详情</a></div>
+        <img src="@MvcHelper.GetStaticResourceScriptUrl("~/img/error_170503.png")" />
+        <div class="Prompt">Đã xảy ra sự cố, vui lòng liên hệ quản trị viên&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" title="Xem chi tiết ngoại lệ" onclick="showException(); return false;">Chi tiết ngoại lệ</a></div>
     </div>
 
-    <div style="display: none">
-        @if (Model != null && Model.Exception != null)
-        {
-            <h2><strong>页面访问时抛出异常： @Model.Exception.GetType().Name</strong></h2>
-            <br />
-            <p>
-                在执行 @Model.ControllerName 控制器的 @Model.ActionName 操作的时候抛出该异常。
-            </p>
-            <p>错误详情:</p>
-            <p>@Model.Exception.Message</p>
-            <div class="ep-info-holder ep-intro closed J_ExpanHolder">
-                <h4>调用堆栈</h4>
-                <div class="info">
-                    @Html.Raw(Model.Exception.StackTrace)
-                </div>
-                <div class="clearfix morebtn-holder">
-                    <a class="a-btn o-link J_ExpanBtn"></a>
-                </div>
-            </div>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function showException() {
+            alert('Ngoại lệ không xác định');
         }
-    </div>
-
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
-    @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
-
-    @if (Model != null && Model.Exception != null)
-    {
-        <script type="text/javascript">
-            function showException() {
-                @*var data = {
-                state: 'error',
-                code: 'code',
-                message: '@(Model.Exception.Message)'
-            };
-            data.exStackTrace = $('.ep-info-holder .info').html();
-            $.xhrSuccessDataExCheckHandle(data);*@
-
-                var exStackTrace = $('.ep-info-holder .info').html();
-                exStackTrace = $.htmlEncode(exStackTrace);
-                //exStackTrace = exStackTrace.replace('\\r\\n', '<br/>');
-                top.layer.open({
-                    type: 1,
-                    title: '异常详情',
-                    area: ['700px', '500px'],
-                    closeBtn: 1,
-                    shadeClose: true,
-                    skin: 'divSysExceptionDetail',
-                    content: '<h3>' + '@(Model.Exception.Message)' + '</h3><div>' + exStackTrace + '</div>'
-                });
-            }
-        </script>
-    }
-    else
-    {
-        <script type="text/javascript">
-            function showException() {
-                alert('未知异常');
-            }
-        </script>
-    }
+    </script>
 </body>
 </html>

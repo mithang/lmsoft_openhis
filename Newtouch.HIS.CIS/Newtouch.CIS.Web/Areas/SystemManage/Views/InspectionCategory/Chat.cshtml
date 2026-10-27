@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Chat";
     Layout = null;
 }
@@ -191,8 +191,8 @@
                 </ul>
             </div>
             <div class="footer">
-                <textarea id="message" maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; " placeholder="请在此输入要发送的内容..."></textarea>
-                <button id="sendbtn" class="sendbtn">发送</button>
+                <textarea id="message" maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; " placeholder="Vui lòng nhập nội dung cần gửi tại đây..."></textarea>
+                <button id="sendbtn" class="sendbtn">Gửi</button>
             </div>
         </div>
     </div>
@@ -211,17 +211,15 @@
     </div>*@
 <!--jQuery库是必需的,默认情况下在_Layout.cshtml引用. -->
 <!--引用SignalR库. -->
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-<!--引用自动生成的SignalR 集线器(Hub)脚本.在运行的时候在浏览器的Source下可看到. -->
-<script src="~/signalr/hubs"></script>
+<!-- ASP.NET Core SignalR client (port of the old jquery.signalR 2.x proxy). Hub route: /signalr (ChatHub). -->
+<script src="/js/signalr.min.js"></script>
 <script>
     $(function () {
-        // 引用自动生成的集线器代理 必须用小写字母开头.
-        var chat = $.connection.chatHub;
+        // ASP.NET Core SignalR: ChatHub at /signalr, server event addNewMessageToPage.
+        var connection = new signalR.HubConnectionBuilder().withUrl("/signalr").build();
 
         // 定义服务器端调用的客户端addNewMessageToPage来处理接收到的消息.
-        chat.client.addNewMessageToPage = function (name, message) {
+        connection.on("addNewMessageToPage", function (name, message) {
             if (name == $('#displayname').val()) {
                 $('#discussion').append('<li class="msgright"><p class="touxiangright">' + htmlEncode(name)+'</p><p class="msgcardright">' + htmlEncode(message) + '</p></li >');
             }
@@ -234,16 +232,16 @@
         };
 
         // 获取用户名.
-        $('#displayname').val(prompt('请输入你的名字:', ''));
+        $('#displayname').val(prompt('Vui lòng nhập tên của bạn:', ''));
 
         // 设置焦点到输入框.
         $('#message').focus();
 
-        // 开始连接服务器 done函数表明建立连接成功后为发送按钮注册了一个click事件.
-        $.connection.hub.start().done(function () {
+        // 开始Liên kết服务器，Liên kết成功后为Gửi按钮注册click事件.
+        connection.start().then(function () {
             $('#sendbtn').click(function () {
-                // 调用服务器端集线器的Send方法 也要小写开头.
-                chat.server.send($('#displayname').val(), $('#message').val());
+                // 调用服务器端集线器的Send方法.
+                connection.invoke("Send", $('#displayname').val(), $('#message').val());
                 // 清空输入框信息并获取焦点.
                 $('#message').val('').focus();
             });

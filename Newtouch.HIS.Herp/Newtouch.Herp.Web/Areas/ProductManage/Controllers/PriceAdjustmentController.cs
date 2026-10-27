@@ -1,73 +1,60 @@
-﻿using System;
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.DTO.InputDto;
 using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
 using Newtouch.Herp.Infrastructure;
-using Newtouch.Herp.Infrastructure.Common;
 using Newtouch.Herp.Infrastructure.Enum;
-using Newtouch.Tools;
+using NewtouchHIS.Lib.Base.Extension;
 
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
+    [Area("ProductManage")]
     public class PriceAdjustmentController : ControllerBase
     {
         private readonly IWzPriceAdjustmentRepo _wzPriceAdjustmentRepo;
         private readonly IWzPriceAdjustmentDmnService _wzPriceAdjustmentDmnService;
         private readonly IAdjustPriceApp adjustPriceApp;
 
-        /// <summary>
-        /// GET: WarehouseManage/PriceAdjustment  调价申请
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult PriceAdjustmentRequest()
+        public PriceAdjustmentController(IWzPriceAdjustmentRepo wzPriceAdjustmentRepo,
+            IWzPriceAdjustmentDmnService wzPriceAdjustmentDmnService, IAdjustPriceApp adjustPriceApp)
+        {
+            _wzPriceAdjustmentRepo = wzPriceAdjustmentRepo;
+            _wzPriceAdjustmentDmnService = wzPriceAdjustmentDmnService;
+            this.adjustPriceApp = adjustPriceApp;
+        }
+
+        public IActionResult PriceAdjustmentRequest()
         {
             return View();
         }
 
-        /// <summary>
-        /// 调价审核
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult PriceAdjustmentApproval()
+        public IActionResult PriceAdjustmentApproval()
         {
             return View();
         }
 
-        /// <summary>
-        /// 调价历史
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult PriceAdjustmentHistory()
+        public IActionResult PriceAdjustmentHistory()
         {
             return View();
         }
 
-        /// <summary>
-        /// 调价盈亏查询
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult PriceAdjustmentProfitAndLossQuery()
+        public IActionResult PriceAdjustmentProfitAndLossQuery()
         {
             return View();
         }
 
-        /// <summary>
-        /// 提交调价申请
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public ActionResult SubmitPriceAdjustmentRequest(SubmitPriceAdjustmentRequestDTO param)
+        public IActionResult SubmitPriceAdjustmentRequest(SubmitPriceAdjustmentRequestDTO param)
         {
             if (_wzPriceAdjustmentRepo.GetUnexecutedList(param.productId, OrganizeId).Any())
             {
-                return Error("该物资已申请调价（未执行），请先执行已提交申请！");
+                return Error("Vật tư này đã có đơn xin điều chỉnh giá (chưa thực hiện), vui lòng thực hiện đơn đã gửi trước!");
             }
 
             var entity = new WzPriceAdjustmentEntity
@@ -90,17 +77,13 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
                 zxsj = param.zxsj
             };
             entity.Create(true);
-            return _wzPriceAdjustmentRepo.Insert(entity) > 0 ? Success() : Error("保存调价信息失败");
+            // EntityExtensions.Create only stamps an "Id" property; this
+            // entity's key is wztjId, so generate it explicitly.
+            if (string.IsNullOrWhiteSpace(entity.wztjId)) entity.wztjId = Guid.NewGuid().ToString();
+            return _wzPriceAdjustmentRepo.Insert(entity) > 0 ? Success() : Error("Lưu thông tin điều chỉnh giá thất bại");
         }
 
-        /// <summary>
-        /// 调价审核查询
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="inputCode"></param>
-        /// <param name="shzt"></param>
-        /// <returns></returns>
-        public ActionResult SelectAdjustPriceApprovalList(Pagination pagination, string inputCode, string shzt)
+        public IActionResult SelectAdjustPriceApprovalList(Pagination pagination, string inputCode, string shzt)
         {
             var list = new
             {
@@ -112,39 +95,20 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             return Content(list.ToJson());
         }
 
-        /// <summary>
-        /// 调价审核 
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <param name="operationType"></param>
-        /// <returns></returns>
-        public ActionResult AdjustPriceApproval(string ids, string operationType)
+        public IActionResult AdjustPriceApproval(string ids, string operationType)
         {
             var idList = ids.TrimEnd(',').Split(',').ToList();
             var result = _wzPriceAdjustmentDmnService.Approval(idList, operationType, OperatorProvider.GetCurrent().UserCode, OrganizeId);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }
 
-        /// <summary>
-        /// 调价执行
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        public ActionResult AdjustPriceExecute(string ids)
+        public IActionResult AdjustPriceExecute(string ids)
         {
             var result = adjustPriceApp.AdjustPriceExecute(ids);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }
 
-        /// <summary>
-        /// 调价历史查询
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="inputCode"></param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <returns></returns>
-        public ActionResult SelectAdjustPriceHistoryList(Pagination pagination, string inputCode, DateTime startTime, DateTime endTime)
+        public IActionResult SelectAdjustPriceHistoryList(Pagination pagination, string inputCode, DateTime startTime, DateTime endTime)
         {
             var list = new
             {
@@ -156,21 +120,15 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             return Content(list.ToJson());
         }
 
-        /// <summary>
-        /// 调价历史查询
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public ActionResult GetPriceAdjustmentProfitLoss(Pagination pagination, PriceAdjustmentProfitLossDTO param)
+        public IActionResult GetPriceAdjustmentProfitLoss(Pagination pagination, PriceAdjustmentProfitLossDTO param)
         {
-            param.kfList = new System.Collections.Generic.List<string>();
+            param.kfList = new List<string>();
             param.organizeId = OrganizeId;
             if (Constants.CurrentKf.kfList != null && Constants.CurrentKf.kfList.Count > 0)
             {
                 Constants.CurrentKf.kfList.ForEach(p =>
                 {
-                    param.kfList.Add("'" + p.kfId.FilterSql() + "'");
+                    param.kfList.Add("'" + (p.kfId ?? "").Replace("'", "''") + "'");
                 });
             }
             var list = new
@@ -183,12 +141,8 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             return Content(list.ToJson());
         }
 
-        /// <summary>
-        /// 获取当前登陆者所有库房
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
-        public ActionResult GetCurrentUserKfList()
+        public IActionResult GetCurrentUserKfList()
         {
             var list = Constants.CurrentKf.kfList;
             return Content(list.ToJson());

@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewBag.Title = "prescriptionquery";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -11,13 +11,13 @@
     var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//注射单 zszPrint
     var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//就诊单
     var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//门诊常规项目处方单
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <style>
     .dv-left {
         width: 230px;
@@ -56,12 +56,12 @@
     <div class="dv-left">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle">姓名/门诊号：</th>
+                        <th class="formTitle">Họ tên/Số khám ngoại trú:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control">
                         </td>
@@ -71,18 +71,18 @@
             </table>
         </div>
         <div class="dv-left-title">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="dv-left-tree" id="PatTreeList"></div>
     </div>
     <div class="dv-right">
         <table class="form" style="background-color:white">
             <tr>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue"><label id="hzxm"></label></td>
-                <td class="formTitle">性别：</td>
+                <td class="formTitle">Giới tính:</td>
                 <td class="formValue" style="width:170px"><label id="sex"></label></td>
-                <td class="formTitle">年龄：</td>
+                <td class="formTitle">Tuổi:</td>
                 <td class="formValue"><label id="nl"></label></td>
                 <td class="formTitle"> <input id="mzh" hidden /></td>
                 <td class="formValue"></td>
@@ -90,7 +90,7 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle"> 开立日期：</td>
+                <td class="formTitle"> KêNgày:</td>
                 <td class="formValue" colspan="2">
                     <input id="txt_klrq" type="text" class="form-control input-wdatepicker" style="width:70%;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -104,19 +104,19 @@
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" />
                     </td>*@
                 <td class="formTitle">
-                    执行类别：
+                    Thực hiệnLoại:
                 </td>
                 <td class="formValue" colspan="2">
                     <select class="form-control" id="cfdlb">
-                        <option value="">请选择</option>
-                        <option value="xycf">西药处方单</option>
-                        <option value="zycf">中药处方单</option>
-                        <option value="jycf">检验处方单</option>
-                        <option value="jccf">检查处方单</option>
-                        <option value="zscf">注射处方单</option>
+                        <option value="">Vui lòng chọn</option>
+                        <option value="xycf">Thuốc TâyĐơn thuốc</option>
+                        <option value="zycf">Thuốc YHCTĐơn thuốc</option>
+                        <option value="jycf">Xét nghiệmĐơn thuốc</option>
+                        <option value="jccf">Kiểm traĐơn thuốc</option>
+                        <option value="zscf">TiêmĐơn thuốc</option>
                         @*<option value="sycf">输液处方单</option>*@
-                        <option value="kfcf">康复处方单</option>
-                        <option value="cgcf">常规处方单</option>
+                        <option value="kfcf">Phục hồi chức năngĐơn thuốc</option>
+                        <option value="cgcf">Thường quyĐơn thuốc</option>
                     </select>
 
                 </td>
@@ -124,7 +124,7 @@
 
                     <div class="btn-group">
                         <a id="btn_search" class="btn btn-primary">
-                            查询
+                            Tra cứu
                         </a>
                     </div>
 
@@ -132,10 +132,10 @@
 
                 <td class="formValue" colspan="3">
                     <a id="ExecutionChecked" class="btn btn-primary" onclick="bingliprit()">
-                        <i class="fa fa-pencil-square-o"></i>病历打印
+                        <i class="fa fa-pencil-square-o"></i>Bệnh ánIn
                     </a>
                     <a id="ExecutionChecked" class="btn btn-primary" onclick="ExecutionChecked()">
-                        <i class="fa fa-pencil-square-o"></i>处方笺打印
+                        <i class="fa fa-pencil-square-o"></i>In đơn thuốc
                     </a>
 
                 </td>
@@ -231,19 +231,19 @@
             url: "/OutpatientNurse/prescriptionfrom",
             height: $(window).height() - 125,
             colModel: [
-                { label: '处方明细ID', name: 'cfmxId', align: 'center', width: 50, key: true, hidden: true },
-                { label: '处方号', name: 'cfh', align: 'center', width: 140 },
+                { label: 'Đơn thuốcChi tiếtID', name: 'cfmxId', align: 'center', width: 50, key: true, hidden: true },
+                { label: 'Số đơn thuốc', name: 'cfh', align: 'center', width: 140 },
                 { label: 'cfid', name: 'cfid', align: 'center', hidden: true },
                 { label: 'mzh', name: 'mzh', align: 'center', hidden: true },
                 { label: 'blh', name: 'blh', align: 'center', hidden: true },
-                { label: '组号', name: 'zh', align: 'center', width: 50 },
-                { label: '开始时间', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '处方内容', name: 'cfmxnr', align: 'left', width: 230 },
-                { label: '金额/元', name: 'je', align: 'right', width: 60 },
-                { label: '用法', name: 'ypyfmc', align: 'center', width: 60 },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Nội dung đơn thuốc', name: 'cfmxnr', align: 'left', width: 230 },
+                { label: 'Số tiền', name: 'je', align: 'right', width: 60 },
+                { label: 'Cách dùng', name: 'ypyfmc', align: 'center', width: 60 },
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
-                { label: '开立医生', name: 'ysmc', align: 'center', width: 60 },
-                { label: '处方类型', name: 'cflx', align: 'center', width: 60, formatter: function (val) { return val == 1 ? "西药处方" : val == 2 ? "中药处方" : val == 3 ? "康复处方" : val == 4 ? "检验处方" : val == 5 ? "检查处方" : val == 6 ?"常规处方":"" }},
+                { label: 'KêBác sĩ', name: 'ysmc', align: 'center', width: 60 },
+                { label: 'Đơn thuốcLoại', name: 'cflx', align: 'center', width: 60, formatter: function (val) { return val == 1 ? "Thuốc TâyĐơn thuốc" : val == 2 ? "Thuốc YHCTĐơn thuốc" : val == 3 ? "Phục hồi chức năngĐơn thuốc" : val == 4 ? "Xét nghiệmĐơn thuốc" : val == 5 ? "Kiểm traĐơn thuốc" : val == 6 ?"Thường quyĐơn thuốc":"" }},
                 { label: 'ypyfdm', name: 'yfcode', align: 'center', hidden: true },
                 { label: 'barcode', name: 'barcode', align: 'center', hidden: true }
             ],
@@ -327,12 +327,12 @@
         var cfdlb = $('#cfdlb').val();
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请先选中需打印的处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc cần in", 'warning');
             return;
         }
 
         if (!cfdlb) {
-            $.modalAlert("请先选择处方单类别", 'warning');
+            $.modalAlert("Vui lòng chọn trướcĐơn thuốcLoại", 'warning');
             return;
         }
         var listarry = new Array();
@@ -381,7 +381,7 @@
     function bingliprit() {
         var mzh = $('#mzh').val();
         if (mzh == null || mzh == "") {
-            $.modalAlert("请选择病人！", "error");
+            $.modalAlert("Vui lòng chọnBệnh nhân!", "error");
             return;
         }
         window.open('@Html.Raw(reportUrl)' + "?tempCode=13&systemCode=CIS&mzh=" + mzh + "&orgId=" + '@curOpr.OrganizeId', "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");

@@ -1,21 +1,29 @@
-﻿using System;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
+using System;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects.Inpatient;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Areas.DoctorManage
 {
+    [Area("DoctorManage")]
     public class OperationController : OrgControllerBase
     {
         private readonly ISysConfigRepo _sysConfigRepo;
-        private readonly FrameworkBase.MultiOrg.Domain.IDomainServices.IBaseDataDmnService _IBaseDataDmnService;
+        private readonly IBaseDataDmnService _IBaseDataDmnService;
         private readonly IInpatientOperationArrangementRepo _inpatientOperationArrangementRepo;
         private readonly IOperationDmnService _iIOperationDmnService;
         private readonly ISysStaffRepo _sysStaffRepo;
@@ -23,11 +31,23 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         private readonly IInpatientPatientInfoRepo _IInpatientPatientInfoRepo;
         private readonly IBaseDataDmnService _IIBaseDataDmnService;
 
+        public OperationController(ISysConfigRepo sysConfigRepo, IBaseDataDmnService iBaseDataDmnService, IInpatientOperationArrangementRepo inpatientOperationArrangementRepo, IOperationDmnService iIOperationDmnService, ISysStaffRepo sysStaffRepo, IInpatientFeeDetailRepo iInpatientFeeDetailRepo, IInpatientPatientInfoRepo iInpatientPatientInfoRepo, IBaseDataDmnService iIBaseDataDmnService)
+        {
+            this._sysConfigRepo = sysConfigRepo;
+            this._IBaseDataDmnService = iBaseDataDmnService;
+            this._inpatientOperationArrangementRepo = inpatientOperationArrangementRepo;
+            this._iIOperationDmnService = iIOperationDmnService;
+            this._sysStaffRepo = sysStaffRepo;
+            this._IInpatientFeeDetailRepo = iInpatientFeeDetailRepo;
+            this._IInpatientPatientInfoRepo = iInpatientPatientInfoRepo;
+            this._IIBaseDataDmnService = iIBaseDataDmnService;
+        }
+
         /// <summary>
         /// 手术安排录入 视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult ArrangeForm()
+        public IActionResult ArrangeForm()
         {
             ViewBag.OperationAssistant = _sysConfigRepo.GetIntValueByCode("OperationAssistant", OrganizeId, 3);//住院手术助手个数
             return View();
@@ -37,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// 手术安排总览 视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult ArrangeQuery()
+        public IActionResult ArrangeQuery()
         {
             return View();
         }
@@ -46,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// 手术补录 视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult OperationSupplement()
+        public IActionResult OperationSupplement()
         {
             return View();
         }
@@ -55,7 +75,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// 收费项目单条录入 视图
         /// </summary>
         /// <returns></returns>
-        public ActionResult originalCharge()
+        public IActionResult originalCharge()
         {
             return View();
         }
@@ -66,7 +86,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <param name="pagination"></param>
         /// <param name="req"></param>
         /// <returns></returns>
-        public ActionResult ArrangeQueryGridView(Pagination pagination, ArrangeQueryRequestVO req)
+        public IActionResult ArrangeQueryGridView(Pagination pagination, ArrangeQueryRequestVO req)
         {
             req.orgId = OrganizeId;
             var data = new
@@ -85,7 +105,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <param name="pagination"></param>
         /// <param name="req"></param>
         /// <returns></returns>
-        public ActionResult ArrangementForID(Pagination pagination, ArrangementRequestVO req)
+        public IActionResult ArrangementForID(Pagination pagination, ArrangementRequestVO req)
         {
             req.orgId = OrganizeId;
             return Content(_iIOperationDmnService.ArrangementForID(pagination, req).ToJson());
@@ -97,21 +117,21 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <param name="xm"></param>
         /// <param name="keyvalue"></param>
         /// <returns></returns>
-        public ActionResult submitForm_Arrangement(InpatientOperationArrangementEntity xm, string keyvalue)
+        public IActionResult submitForm_Arrangement(InpatientOperationArrangementEntity xm, string keyvalue)
         {
             xm.OrganizeId = OrganizeId;
             xm.zt = "1";
             if (_inpatientOperationArrangementRepo.SubmitForm(xm, keyvalue))
                 return Success();
             else
-                return Error("保存手术安排信息失败");
+                return Error("LưuPhẫu thuậtSắp xếpThông tinthất bại");
         }
 
         /// <summary>
         /// 获取手术病人(手术补录)
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetOperatPatSearchList()
+        public IActionResult GetOperatPatSearchList()
         {
             return Content(_iIOperationDmnService.GetOperationPatSearchList(OrganizeId).ToJson());
         }
@@ -121,18 +141,18 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="FeeDetails"></param>
         /// <returns></returns>
-        public ActionResult submitForm_Supplement(List<InpatientFeeDetailEntity> RequestItems, string zyh)
+        public IActionResult submitForm_Supplement(List<InpatientFeeDetailEntity> RequestItems, string zyh)
         {
 
             InpatientPatientInfoEntity zybr = _IInpatientPatientInfoRepo.GetByZyh(OrganizeId, zyh);
             if (zybr == null)//住院病人判空
-                throw new Exception(string.Format("orgId:{0}, 住院号:{1} 病人不存在", OrganizeId, zyh));
+                throw new Exception(string.Format("orgId:{0}, Số nhập viện:{1} Bệnh nhânKhông tồn tại", OrganizeId, zyh));
             InpatientOperationArrangementEntity Arrangement = _inpatientOperationArrangementRepo.FindEntity(p => p.zyh == zyh && p.zt == "1");
             if (Arrangement == null)//手术安排判空
-                throw new Exception("请先进入“手术安排”界面，录入手术相关信息。");
+                throw new Exception("Vui lòng vào giao diện “Sắp xếp phẫu thuật”, nhập thông tin liên quan đến phẫu thuật.");
             string lsDepartment = _IIBaseDataDmnService.GetDoctorDepartCode(OrganizeId, Arrangement.surgeonId);
             if (lsDepartment.Length == 0)//手术医生科室判空
-                throw new Exception("获取手术医生科室失败！");
+                throw new Exception("LấyPhẫu thuậtBác sĩKhoathất bại!");
             //赋值
             foreach (InpatientFeeDetailEntity item in RequestItems)
             {
@@ -162,7 +182,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult getSupplement(string zyh)
+        public IActionResult getSupplement(string zyh)
         {
             return Content((new List<OperatFeeVO>()).ToJson());
             //return Content(_iIOperationDmnService.GetOperatFee(OrganizeId, zyh, "7").ToJson());//手术费用

@@ -1,0 +1,72 @@
+﻿@{
+	ViewBag.Title = "SimulateForm";
+	Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<div class="gridPanel" style="margin-top:1%">
+	<table id="gridList"></table>
+	<div id="gridPager"></div>
+</div>
+<script>
+	var zyh = $.request("zyh");
+	var dlCode = $.request("dlCode");
+	$(function () {
+		gridInit();
+	});
+
+	function gridInit() {
+		var $gridList = $("#gridList");
+		$gridList.dataGrid({
+			postData: { zyh: zyh, dlCode: dlCode },
+			url: "/HospitalizationManage/DischargeSettle/GetInpatientSettleStatusDetailbySfdl",
+			height: $(window).height() - 80,
+			colModel: [
+				{ label: 'Nhóm phí', name: 'dlmc', align: 'center', width: 60 },
+				{ label: 'thuộc tính', name: 'zfxz', align: 'center', width: 40 },
+				{ label: 'Tên thuốc', name: 'sfxmmc', align: 'left', width: 150 },
+				{ label: 'Quy cách', name: 'gg', align: 'center', width: 60 },
+				{ label: 'Đơn vị', name: 'jfdw', align: 'center', width: 60 },
+				{
+					label: 'Đơn giá', name: 'dj', align: 'center', width: 60, formatter: "number"
+					, formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+				},
+				{ label: 'Số lượng', name: 'sl', align: 'center', width: 30 },
+				{ label: 'zyh', name: 'zyh', align: 'center', hidden: true, },
+				{
+					label: 'phí', name: 'je', align: 'center', width: 60, formatter: "number"
+					, formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
+				},
+				{ label: 'Có tự phí hay không', name: 'zzfbz', align: 'center', width: 50 },
+				{ label: 'sfxm', name: 'sfxm', align: 'center', hidden: true, },
+				//{ label: 'Ngày tính giá', name: 'tdrq', align: 'center', width: 100 },
+
+			],
+			pager: "#gridPager",
+			sortname: 'sfxmmc',
+			viewrecords: true,
+			//rowNum:20
+			onSelectRow: function (rowIndex, s) {
+				getItemsbySfdl(rowIndex);
+			}
+		});
+	}
+
+	function getItemsbySfdl(id) {
+		var rowData = $("#gridList").jqGrid('getRowData', id);
+		var smxmCode = rowData.sfxm;
+		var dj = rowData.dj;
+		var zzfbz = rowData.zzfbz;
+		if (!!rowData) {
+			$.modalOpen({
+				id: "mxcx",
+				title: "Chi tiếtMụcTruy vấn",
+				url: "/HospitalizationManage/DischargeSettle/DetailedQuery?sfxmCode=" + smxmCode + "&zyh=" + zyh + "&zzfbz=" + zzfbz + "&dj=" + dj,
+				width: "800px",
+				height: "600px",
+				btn: null,
+				callBack: function (iframeId) {
+				}
+			});
+		}
+	}
+</script>

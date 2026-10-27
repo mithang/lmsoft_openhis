@@ -1,14 +1,14 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
     var ypbjyfpz = SysConfigReader.String("ypbjyfpz");
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 
 <style>
     .dv-left {
@@ -48,23 +48,23 @@
     <div class="dv-left">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle">姓名/住院号：</th>
+                        <th class="formTitle">Họ tên/Số nhập viện:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control">
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">在院状态：</th>
+                        <th class="formTitle">Đang nằm việnTrạng thái:</th>
                         <td class="formValue formDdlSelectorTd">
                             <select class="form-control" id="zyzt">
-                                <option value="">全部</option>
-                                <option value="zy" selected>在院</option>
-                                <option value="cy">出院</option>
+                                <option value="">Tất cả</option>
+                                <option value="zy" selected>Đang nằm viện</option>
+                                <option value="cy">Xuất viện</option>
                             </select>
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
             </table>
         </div>
         <div class="dv-left-title">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="dv-left-tree" id="PatTreeList"></div>
     </div>
@@ -87,7 +87,7 @@
                 <td class="formValue"><label id="nl"></label></td>
             </tr>*@
             <tr>
-                <td class="formTitle"> 执行日期：</td>
+                <td class="formTitle"> Thực hiệnNgày:</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:100%;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
@@ -101,13 +101,13 @@
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" />
                     </td>
                 <td class="formTitle">
-                    执行类别：
+                    Thực hiệnLoại:
                 </td>
                 <td class="formValue">
                     <select class="form-control" id="zxdlb">
-                        <option value="">请选择</option>
-                        <option value="ypbj">药品标签</option>
-                        <option value="jyztdy">检验组套标签</option>
+                        <option value="">Vui lòng chọn</option>
+                        <option value="ypbj">ThuốcNhãn</option>
+                        <option value="jyztdy">Xét nghiệmBộ mẫuNhãn</option>
                     </select>
 
                 </td>
@@ -115,19 +115,19 @@
 
                     <div class="btn-group">
                         <a id="btn_search" class="btn btn-primary">
-                            查询
+                            Tra cứu
                         </a>
                     </div>
-                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />全部</label>
-                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="2" />长期</label>
-                    <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />临时</label>
+                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cả</label>
+                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="2" />Dài hạn</label>
+                    <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />Tạm thời</label>
                 </td>
 
                 <td class="formTitle">
                     
                     <div class="btn-group">
                         <a id="ExecutionChecked" class="btn btn-primary" onclick="ExecutionChecked()">
-                            <i class="fa fa-pencil-square-o"></i>打印
+                            <i class="fa fa-pencil-square-o"></i>In
                         </a>
                     </div>
                 </td>
@@ -320,26 +320,26 @@
             url: "@Url.Action("QueryExecDetailGridJson")",
             height: $(window).height() - 125,
             colModel: [
-                { label: '医嘱ID', name: 'yzId', align: 'center', width: 50, key: true, hidden: true },
-                { label: '姓名', name: 'hzxm', align: 'center', width: 50 },
-                { label: '长临', name: 'clbz', align: 'center', width: 30},
-                { label: '医嘱号', name: 'yzh', align: 'center', width: 120 },
-	            { label: '领药序号', name: 'lyxh', align: 'center',width: 60  },
-                { label: '分组号', name: 'zh', align: 'center', width: 50 },
+                { label: 'Y lệnhID', name: 'yzId', align: 'center', width: 50, key: true, hidden: true },
+                { label: 'Họ tên', name: 'hzxm', align: 'center', width: 50 },
+                { label: 'Dài hạn/Tạm thời', name: 'clbz', align: 'center', width: 30},
+                { label: 'Số y lệnh', name: 'yzh', align: 'center', width: 120 },
+	            { label: 'Lĩnh thuốcSố thứ tự', name: 'lyxh', align: 'center',width: 60  },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
                 {
-                    label: '是否计费', name: 'isjf', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Có tính phí không', name: 'isjf', align: 'center', width: 50, formatter: function (val) {
                         if (val == "0") {
-                            return "否";
+                            return "Không";
                         }
                         else {
-                            return "是";
+                            return "Có";
                         }
                     }
                 },
-                { label: '医嘱', name: 'yznr', align: 'center', width: 250 },
-                { label: '最后执行时间', name: 'zxsj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '审核者', name: 'shz', align: 'center', width: 55 },
-                { label: '执行者', name: 'zxz', align: 'center', width: 55 },
+                { label: 'Y lệnh', name: 'yznr', align: 'center', width: 250 },
+                { label: 'Cuối cùngThực hiệnThời gian', name: 'zxsj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Người duyệt', name: 'shz', align: 'center', width: 55 },
+                { label: 'Người thực hiện', name: 'zxz', align: 'center', width: 55 },
                 { label: 'yzlx', name: 'yzlx', align: 'center', hidden: true },
                 { label: 'ypyfdm', name: 'ypyfdm', align: 'center', hidden: true }
             ],
@@ -427,12 +427,12 @@
         //选中的id
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请先选中需打印的医嘱", 'warning');
+            $.modalAlert("Vui lòng chọn y lệnh cần in", 'warning');
             return;
         }
         var zxdlb = $('#zxdlb').val();
         if (!zxdlb) {
-            $.modalAlert("请先选择执行单类别", 'warning');
+            $.modalAlert("Vui lòng chọn trước loại phiếu thực hiện", 'warning');
             return;
         }
         var printed = [];

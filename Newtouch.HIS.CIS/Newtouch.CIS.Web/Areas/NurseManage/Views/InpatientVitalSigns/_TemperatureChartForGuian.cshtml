@@ -1,4 +1,4 @@
-﻿<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/TemperatureChart.css", false)" rel="stylesheet" />
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/TemperatureChart.css", false)" rel="stylesheet" />
 <style type="text/css">
     #tablBaseInfo {
         margin: 5px 0 0 3px;
@@ -10,58 +10,58 @@
 </style>
 <table id="tablBaseInfo" class="form" style="width:750px;">
     <tr>
-        <td class="formValue" colspan="4">日期：<label id="lblRq"></label></td>
+        <td class="formValue" colspan="4">Ngày:<label id="lblRq"></label></td>
     </tr>
     <tr>
-        <td class="formValue">姓名：<label id="lblXm"></label></td>
-        <td class="formValue">病历号：<label id="lblBlh"></label></td>
-        <td class="formValue">住院号：<label id="lblZyh"></label></td>
-        <td class="formValue">病区：<label id="lblBq"></label></td>
+        <td class="formValue">Họ tên:<label id="lblXm"></label></td>
+        <td class="formValue">Số bệnh án:<label id="lblBlh"></label></td>
+        <td class="formValue">Số nhập viện:<label id="lblZyh"></label></td>
+        <td class="formValue">Khu bệnh:<label id="lblBq"></label></td>
     </tr>
     <tr>
-        <td class="formValue">床位：<label id="lblCw"></label></td>
-        <td class="formValue">入院日期：<label id="lblRqrq"></label></td>
-        <td class="formValue" style="display:none">出区日期：<label id="lblCqrq"></label></td>
+        <td class="formValue">Giường bệnh:<label id="lblCw"></label></td>
+        <td class="formValue">Ngày nhập viện:<label id="lblRqrq"></label></td>
+        <td class="formValue" style="display:none">Chuyển khuNgày:<label id="lblCqrq"></label></td>
     </tr>
 </table>
 <div id="3cbill">
     <div class="drawingboard" id="board0">
         <table class="bottomtbl">
             <tr>
-                <td>呼吸(次/分)</td>
+                <td>Hô hấp(lần/phút)</td>
             </tr>
             <tr>
-                <td>血压(mmHg)</td>
+                <td>Huyết áp(mmHg)</td>
             </tr>
             <tr>
-                <td>血氧饱和度%</td>
+                <td>Độ bão hòa oxy máu%</td>
             </tr>
             <tr>
-                <td>氧流量(升/分)</td>
+                <td>Lưu lượng oxy(lít/phút)</td>
             </tr>
             <tr>
-                <td>大便次数</td>
+                <td>Số lần đại tiện</td>
             </tr>
             <tr>
-                <td>摄入量(ml)</td>
+                <td>Lượng đưa vào(ml)</td>
             </tr>
             <tr>
-                <td>小&nbsp;&nbsp;便(ml)</td>
+                <td>Nước tiểu (ml)</td>
             </tr>
             <tr>
-                <td>呕吐量(ml)</td>
+                <td>Lượng nôn(ml)</td>
             </tr>
             <tr>
-                <td>引流量(ml)</td>
+                <td>Lượng dịch dẫn lưu(ml)</td>
             </tr>
             <tr>
-                <td>输入液体量(ml)</td>
+                <td>Lượng dịch truyền vào(ml)</td>
             </tr>
             <tr>
-                <td>体&nbsp;&nbsp;重(kg)</td>
+                <td>Cân&nbsp;&nbsp;nặng (kg)</td>
             </tr>
             <tr>
-                <td>身&nbsp;&nbsp;高(cm)</td>
+                <td>Chiều&nbsp;&nbsp;cao (cm)</td>
             </tr>
         </table>
     </div>
@@ -130,7 +130,7 @@
         tempKssj = null;
         $('#tablBaseInfo td label').html('');
         if (!kssj || !jssj || !zyh) {
-            $.modalAlert('请完善筛选条件', 'error');
+            $.modalAlert('Vui lòng hoàn thiệnĐiều kiện lọc', 'error');
             return;
         }
         billIndex = 0;
@@ -138,14 +138,14 @@
         $.najax({
             url: "/NurseManage/InpatientVitalSigns/GetTemperatureChartJson",
             data: { kssj: kssj, jssj: jssj, zyh: zyh },
-            loadingtext: "体温单数据请求中，请稍后...",
+            loadingtext: "Phiếu nhiệt độĐang tải dữ liệu,Vui lòng đợi trong giây lát...",
             asnyc: false,
             success: function (data) {
                 //
                 if (!(data && data.list && data.list.length)) {
                     //draw([]);
                     if (!(data && data.patInfo)) {
-                        $.modalAlert('请选择住院号', 'warning');
+                        $.modalAlert('Vui lòng chọnSố nhập viện', 'warning');
                         return;
                     }
                     //return;
@@ -155,7 +155,7 @@
                     fillPatBaseInfo(data.patInfo);
                     ryrq = data.patInfo.ryrq;
                 }
-                $('#lblRq').html($.getDate({ date: kssj }) + " 至 " + $.getDate({ date: jssj }));
+                $('#lblRq').html($.getDate({ date: kssj }) + " đến " + $.getDate({ date: jssj }));
                 //
                 if (!(data && data.list && data.list.length)) {
                     data.list = [];
@@ -171,11 +171,11 @@
                     var thiskssj = tempKssj;
                     // 当前结束时间
                     var thisjssj = $.getDate({ date: $.dateAdd($.strToDate(thiskssj), 'd', 6) });
-                    var billHtml = '<div class="drawingboard" id="board' + billIndex + '" style="width:1139px;height:660px;"><table class="bottomtbl"><tr><td>呼吸(次/分)</td></tr>';
-                    billHtml += '<tr><td>血压(mmHg)</td></tr><tr><td>血氧饱和度%</td></tr><tr><td>氧流量(升/分)</td></tr>';
-                    billHtml += '<tr><td>大便次数</td></tr><tr><td>摄入量(ml)</td></tr><tr><td>小&nbsp;&nbsp;便(ml)</td></tr>';
-                    billHtml += '<tr><td>呕吐量(ml)</td></tr><tr><td>引流量(ml)</td></tr><tr><td>输入液体量(ml)</td></tr><tr><td>体&nbsp;&nbsp;重(kg)</td></tr>';
-                    billHtml += '<tr><td>身&nbsp;&nbsp;高(cm)</td></tr></table></div>';
+                    var billHtml = '<div class="drawingboard" id="board' + billIndex + '" style="width:1139px;height:660px;"><table class="bottomtbl"><tr><td>Hô hấp(lần/phút)</td></tr>';
+                    billHtml += '<tr><td>Huyết áp(mmHg)</td></tr><tr><td>Độ bão hòa oxy máu%</td></tr><tr><td>Lưu lượng oxy(lít/phút)</td></tr>';
+                    billHtml += '<tr><td>Số lần đại tiện</td></tr><tr><td>Lượng đưa vào(ml)</td></tr><tr><td>Nước tiểu (ml)</td></tr>';
+                    billHtml += '<tr><td>Lượng nôn(ml)</td></tr><tr><td>Lượng dịch dẫn lưu(ml)</td></tr><tr><td>Lượng dịch truyền vào(ml)</td></tr><tr><td>Cân&nbsp;&nbsp;nặng (kg)</td></tr>';
+                    billHtml += '<tr><td>Chiều&nbsp;&nbsp;cao (cm)</td></tr></table></div>';
                     $(billHtml).appendTo($("#3cbill"))
                     rqCellValueArr.splice(0, rqCellValueArr.length);
                     for (var sj = thiskssj; sj <= thisjssj;) {
@@ -254,7 +254,7 @@
             startDraw();
         }
         else {
-            setTimeout("$.loading(true, '体温单绘制中，请稍后...');", 25);
+            setTimeout("$.loading(true, 'Đang vẽ phiếu nhiệt độ, vui lòng đợi trong giây lát...');", 25);
             setTimeout("startDraw();", 50);
         }
     }
@@ -281,7 +281,7 @@
             startDraw3();
         }
         else {
-            $.loading(true, '连线绘制中，可能耗时较长，请稍后...');
+            $.loading(true, 'Đang vẽ đường nối,Có thể mất nhiều thời gian,Vui lòng đợi trong giây lát...');
             setTimeout("startDraw3();", 50);
         }
     }
@@ -621,18 +621,18 @@
             var top = origin.y;
             var $div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + top
                 + 'px;width:' + (contentStartLeft - left) + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">'
-                + '日期' + '</div>');
+                + 'Ngày' + '</div>');
             $div.appendTo($board);
             var top = origin.y + spc;
             var $div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + top
                 + 'px;width:' + (contentStartLeft - left) + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">'
-                + '住院天数' + '</div>');
+                + 'Nhập việnSố ngày' + '</div>');
             $div.appendTo($board);
             var left = origin.x;
             var top = top + spc;
             var $div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + top
                 + 'px;width:' + (contentStartLeft - left) + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">'
-                + '时间' + '</div>');
+                + 'Thời gian' + '</div>');
             $div.appendTo($board);
         }
         //写日期和时间点
@@ -673,7 +673,7 @@
             //                drawDownarrow(left - sspacewidth * 1.2, top + sspace * (4.5), xyxzColor);
             //            }
             $div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + top + 'px;width:' + ((contentStartLeft - origin.x) / 2) + 'px;height:' + spc * 1 + 'px;line-height:' + spc + 'px;">'
-                + (i == 0 ? '脉搏(次/分)' : (i == 1 ? '体温<br/>(℃)' : '')) + '</div>');
+                + (i == 0 ? 'Mạch(lần/phút)' : (i == 1 ? 'Nhiệt độ<br/>(℃)' : '')) + '</div>');
             i == 0 ? drawDot(left + sspacewidth * 1.2, top + sspace * 3, mbColor)
                 : (i == 1 ? drawX(left + sspacewidth * 1.8, top + sspace * 3, twColor)
                     : '');
@@ -749,15 +749,15 @@
         //物理降温和体温连线
         for (var i = 0; i < (tempArr = $.jsonWhere(data, function (v) { return v.twLocation })).length; i++) {
             if (tempArr[i].twLocation && tempArr[i].wljwLocation) {
-                drawLigature(tempArr[i].twLocation, tempArr[i].wljwLocation, twColor, 'dotline');//虚线连接
+                drawLigature(tempArr[i].twLocation, tempArr[i].wljwLocation, twColor, 'dotline');//虚线Liên kết
             }
         }
-		//住院状态和时间 虚线连接
+		//住院状态和时间 虚线Liên kết
 		for (var i = 0; i < (tempArr = $.jsonWhere(data, function (v) { return v.twLocation })).length; i++) {
 			if (tempArr[i].brzt == "1" || tempArr[i].brzt == "3" || tempArr[i].brzt == "4" || tempArr[i].brzt == "8") {
 				var brztLocation = { x: tempArr[i].twLocation.x, y: origin.y + spc * 6 -spc};
 				var sjLocation = { x: tempArr[i].twLocation.x, y: origin.y + spc * 7.2 -spc};
-				drawLigature(brztLocation, sjLocation, twColor, 'dotline');//虚线连接
+				drawLigature(brztLocation, sjLocation, twColor, 'dotline');//虚线Liên kết
 			}
 		}
     }

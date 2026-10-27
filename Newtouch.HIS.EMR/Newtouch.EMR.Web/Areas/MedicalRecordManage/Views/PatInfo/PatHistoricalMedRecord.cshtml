@@ -1,10 +1,9 @@
-﻿@using Newtouch.Common.Operator;
-@using Newtouch.Infrastructure;
+﻿@using NewtouchHIS.Lib.Framework.Operator;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
-    var EnableLinkToMRMS = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("EnableLinkToMRMS");
+    var EnableLinkToMRMS = EmrConfig.GetAppConfigValue("EnableLinkToMRMS");
 }
 <script src="~/Content/js/BootstrapMenu.min.js"></script>
 <style>
@@ -69,7 +68,7 @@
                     <td>
                         <div id="dv_tool">
                             <div class="input-group">
-                                <input id="txt_keyword" type="text" class="form-control" placeholder="住院号" style="width:180px;">
+                                <input id="txt_keyword" type="text" class="form-control" placeholder="Số nhập viện" style="width:180px;">
                                 <span class="input-group-btn" style="float:left;">
                                     <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -172,20 +171,20 @@
             postData: { zyh: zyh },
             height: $(window).height() - 96,
             colModel: [
-                { label: "病历关系ID", name: "Id", hidden: true, key: true },
-                { label: "病历大类ID", name: "BllxId", hidden: true },
-                { label: "模板加载方式", name: "LoadWay", hidden: true },
-                { label: "模板路径", name: "mblj", hidden: true },
-                { label: "住院号", name: "zyh", hidden: true },
-                { label: "门诊号", name: "mzh", hidden: true },
-                { label: "病历ID", name: "BlId", hidden: true },
+                { label: "Quan hệ bệnh án iD", name: "Id", hidden: true, key: true },
+                { label: "Nhóm lớn bệnh án iD", name: "BllxId", hidden: true },
+                { label: "Cách tải mẫu", name: "LoadWay", hidden: true },
+                { label: "Đường dẫn mẫu", name: "mblj", hidden: true },
+                { label: "Số nhập viện", name: "zyh", hidden: true },
+                { label: "Số khám ngoại trú", name: "mzh", hidden: true },
+                { label: "Bệnh án iD", name: "BlId", hidden: true },
                 { label: "Ybbm", name: "Ybbm", hidden: true },
                 { label: "PlanStu", name: "PlanStu", hidden: true },
-                { label: "病历类型标识", name: "bllx", hidden: true },
-                { label: "文件读取编辑权限控制标志", name: "ctrlLevel", hidden: true },
+                { label: "Mã định danh loại bệnh án", name: "bllx", hidden: true },
+                { label: "Cờ kiểm soát quyền đọc/sửa tệp", name: "ctrlLevel", hidden: true },
                 { label: "Name", name: "Name", hidden: true },
                 {
-                    label: '病历名称', name: 'BLName', width: 200, align: 'left',
+                    label: 'Tên bệnh án', name: 'BLName', width: 200, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
                         if (rowobject.parentId == null) {
                             return rowobject.Name + '<i id="addCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color:#6ff3ad; font-size: small;"></i>';
@@ -198,19 +197,19 @@
                     }
                 },
                 {
-                    label: "病历状态", name: "Blzt", width: 80, align: "center",hidden:true, formatter: function (cellvalue) {
+                    label: "Trạng thái bệnh án", name: "Blzt", width: 80, align: "center",hidden:true, formatter: function (cellvalue) {
                         if (cellvalue == "1")
-                            return "已签名";
+                            return "Đã ký";
                         else if (cellvalue == "0")
-                            return "未签名";
+                            return "Chưa ký";
                         else
                             return "";
                     }
                 },
-                { label: '医生名称', name: 'Docname', width: 80, align: 'center' },
-                { label: "医生工号", name: "Doccode", hidden: true },
-                { label: '病历日期', name: 'Blrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '更新日期', name: 'LastModifierTime', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Tên bác sĩ', name: 'Docname', width: 80, align: 'center' },
+                { label: "Mã nhân viên bác sĩ", name: "Doccode", hidden: true },
+                { label: 'Ngày bệnh án', name: 'Blrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày cập nhật', name: 'LastModifierTime', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
 
             ],
             onRightClickRow: function (rowid, irow, icol, e) {
@@ -271,18 +270,18 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 浏览病历',
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
                     if (obj.LoadWay == '@((int)EnummbqxTempLoadWay.View)' && !!obj.mblj) {
                         var menuname = obj.zyh + "-" + obj.Name + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>"
-                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "病历操作" : menuname, enName: "", url: obj.mblj + "?zyh=" + obj.zyh + "&blId=" + obj.BlId, AppId: "EMR" });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "Thao tác bệnh án" : menuname, enName: "", url: obj.mblj + "?zyh=" + obj.zyh + "&blId=" + obj.BlId, AppId: "EMR" });
 
                     }
                     else {
                         var menuurl = "/MedicalRecordManage/MedicalRecord/PreView?blid=" + obj.BlId + "&bllx=" + obj.bllx + "&zyh=" + obj.zyh + "&mzh=" + obj.mzh + "&Readonly="+"true";
                         var menuname = obj.zyh + "-" + obj.Name + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>"
-                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "病历操作" : menuname, enName: "", url: menuurl, AppId: "EMR" });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "Thao tác bệnh án" : menuname, enName: "", url: menuurl, AppId: "EMR" });
                     }
                 }
             }
@@ -300,18 +299,18 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 浏览病历',
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
                     if (obj.LoadWay == '@((int)EnummbqxTempLoadWay.View)' && !!obj.mblj) {
                         alert(1);
                         var menuname = obj.zyh + "-" + obj.Name + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>"
-                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "病历操作" : menuname, enName: "", url: obj.mblj + "?zyh=" + obj.zyh + "&blId=" + obj.BlId, AppId: "EMR" });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "Thao tác bệnh án" : menuname, enName: "", url: obj.mblj + "?zyh=" + obj.zyh + "&blId=" + obj.BlId, AppId: "EMR" });
 
                     }
                     else {
                         alert(2);
-                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "病历操作" : obj.zyh + "-" + obj.Name, enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?justshow=true&blid=" + obj.BlId + "&bllx=" + obj.bllx + "&zyh=" + obj.zyh, AppId: "EMR" });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "Thao tác bệnh án" : obj.zyh + "-" + obj.Name, enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?justshow=true&blid=" + obj.BlId + "&bllx=" + obj.bllx + "&zyh=" + obj.zyh, AppId: "EMR" });
                     }
                 }
             }
@@ -329,7 +328,7 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 浏览病历',
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
                     //报表管理器
@@ -352,7 +351,7 @@
                 return data;    //return的目的是给下面的onClick传递参数
             },
             actions: [{
-                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 浏览病历',
+                name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
                     //window.open("/MRHomePage/Report/BasyReport?zyh=" + obj.zyh, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
@@ -395,65 +394,65 @@
                 { label: 'ID', name: 'Id', hidden: true, key: true },
                 { label: 'zybz', name: 'zybz', hidden: true},
                 {
-                    label: "提交病案", name: "RecordStusm", width: 50, align: "center", formatter: function (cellvalue, option, row) {
+                    label: "Nộp hồ sơ bệnh án", name: "RecordStusm", width: 50, align: "center", formatter: function (cellvalue, option, row) {
                         if (row.RecordStu == '@((int)EnumRecordStu.wtj)')
-                            return "否";
+                            return "Không";
                         else if (row.RecordStu == '@((int)EnumRecordStu.ytj)')
-                            return "是";
+                            return "Có";
                         else if (row.RecordStu == '@((int)EnumRecordStu.th)')
-                            return "<span style='color:red;font-weight:bold;'>退</span>";
+                            return "<span style='color:red;font-weight:bold;'>Trả lại</span>";
                         else if (row.RecordStu == '@((int)EnumRecordStu.yqs)')
-                            return "<span style='color:blue;font-weight:bold;'>签</span>";
+                            return "<span style='color:blue;font-weight:bold;'>Ký</span>";
                         else
                             return '';
                     }
                 },
                 {
-                    label: '状态', name: 'zybzmc', width: 40, align: 'left', formatter: function (val,option,row) {
-                        @*if (row.zybz == '@((int)EnumZYBZ.Djz)' || row.zybz == '@((int)EnumZYBZ.Ycy)') {
-                            return "出院";
-                        }*@
+                    label: 'Trạng thái', name: 'zybzmc', width: 40, align: 'left', formatter: function (val,option,row) {
+                        
+                            return "Ra viện";
+
                         if (row.zybz == '@((int)EnumZYBZ.Ycy)') {
-                            return "出院";
+                            return "Ra viện";
                         }
                         else if(row.zybz == '@((int)EnumZYBZ.Djz)') {
-                            return "待结账";
+                            return "Chờ quyết toán";
                         }
                         else if (row.zybz == '@((int)EnumZYBZ.Bqz)') {
-                            return "在院";
+                            return "Đang nằm viện";
                         }
                         else if (row.zybz == '@((int)EnumZYBZ.Zq)') {
-                            return "转区";
+                            return "Chuyển khu";
                         }
                         else if (row.zybz == '@((int)EnumZYBZ.Wry)')
                         {
-                            return "取消入院";
+                            return "Hủy nhập viện";
                         }
-                        else{ return "其他"; }
+                        else{ return "Khác"; }
                     }
                 },
-                { label: '住院号', name: 'zyh', width: 50, align: 'left' },
-                { label: '床号', name: 'cwmc', width: 50, align: 'left' },
-                { label: '姓名', name: 'xm', width: 80, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 50, align: 'left' },
+                { label: 'Số giường', name: 'cwmc', width: 50, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
                 {
-                    label: '性别', name: 'sex', width: 40, align: 'left', formatter: function (val) {
+                    label: 'Giới tính', name: 'sex', width: 40, align: 'left', formatter: function (val) {
                         if (val == '@((int)EnumSex.F)') {
-                            return "女";
+                            return "Nữ";
                         }
                         else if (val == '@((int)EnumSex.M)') {
-                            return "男";
+                            return "Nam";
                         }
-                        else { return "其他"; }
+                        else { return "Khác"; }
                     }
                 },
-                { label: '卡号', name: 'cardno', hidden: true },
-                { label: '入院诊断', name: 'zdmc', width: 120, align: 'left' },
-                { label: '出院诊断', name: 'cyzdmc', width: 120, align: 'left' },
-                { label: '出院天数', name: 'cyts', width: 60, align: 'left' },
+                { label: 'Số thẻ', name: 'cardno', hidden: true },
+                { label: 'Chẩn đoán nhập viện', name: 'zdmc', width: 120, align: 'left' },
+                { label: 'Chẩn đoán ra viện', name: 'cyzdmc', width: 120, align: 'left' },
+                { label: 'Số ngày ra viện', name: 'cyts', width: 60, align: 'left' },
                 { label: 'RecordStu', name: 'RecordStu', hidden: true },
-                { label: '出区日期', name: 'cqrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '提交日期', name: 'CommitTime', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '是否当前', name: 'isCheck', hidden: true }
+                { label: 'Ngày ra khỏi khu', name: 'cqrq', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày nộp', name: 'CommitTime', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Là hiện tại', name: 'isCheck', hidden: true }
             ],
             pager: "#gridPagerPat",
             sortname: 'isCheck desc,cqrq',
@@ -481,7 +480,7 @@
                     }
                 }
                 debugger;
-                $('#divPatientBasicInfo').html("患者信息："
+                $('#divPatientBasicInfo').html("Thông tin bệnh nhân:"
                     + rowData.xm
                     + '&nbsp;/&nbsp;' + $.getGender(rowData.sex)
                     //+ '&nbsp;/&nbsp;' + window.currentobj.age + "岁"

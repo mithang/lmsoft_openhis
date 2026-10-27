@@ -1,0 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Exceptions;
+using Newtouch.HIS.Domain.Entity;
+using Newtouch.HIS.Domain.IDomainServices;
+using Newtouch.HIS.Domain.IDomainServices.Settlement;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Tools;
+
+namespace Newtouch.HIS.Base.HOSP.Web.Controllers
+{
+    public class SysWardRoomController : ControllerBase
+    {
+        private readonly ISysWardRoomRepo _SysWardRoomRepo;
+        private readonly ISysOrganizeDmnService _SysOrganizeDmnService;
+        private readonly ISysWardRoomDmnService _SysWardRoomDmnService;
+
+        public SysWardRoomController(ISysWardRoomRepo SysWardRoomRepo, ISysOrganizeDmnService SysOrganizeDmnService,ISysWardRoomDmnService SysWardRoomDmnService)
+        {
+            this._SysWardRoomRepo = SysWardRoomRepo;
+            this._SysOrganizeDmnService = SysOrganizeDmnService;
+            this._SysWardRoomDmnService = SysWardRoomDmnService;
+
+        }
+        // GET: SysWardRoom
+        //public override IActionResult Index()
+        //{
+        //    return View();
+        //}
+        //public override IActionResult Form()
+        //{
+        //    return View();
+        //}
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pagination"></param>
+        /// <param name="keyword"></param>
+        /// <param name="organizeId"></param>
+        /// <returns></returns>
+        public IActionResult GetGridJson(Pagination pagination, string keyword, string organizeId)
+        {
+            pagination.sidx = "CreateTime desc";
+            pagination.sord = "asc";
+            var data = new
+            {
+                rows = _SysWardRoomDmnService.GetPagintionList(pagination, organizeId, keyword),
+                //rows = _SysWardRoomRepo.GetPagintionList(pagination, organizeId, keyword),
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records,
+            };
+            return Content(data.ToJson());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
+        public IActionResult GetFormJson(int? keyValue)
+        {
+            var data = _SysWardRoomRepo.FindEntity(keyValue);
+            return Content(data.ToJson());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
+        public IActionResult submitForm(SysWardRoomEntity entity, int? keyValue)
+        {
+            entity.zt = entity.zt == "true" ? "1" : "0";
+            _SysWardRoomRepo.submitForm(entity, keyValue);
+            return Success("Thao tác thành công");
+        }
+
+        #region 提供字典查询
+        /// <summary>
+        /// 病放下拉
+        /// </summary>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        public IActionResult GetWardRoomValidSelect(string orgId,string bqCode)
+        {
+            if (string.IsNullOrEmpty(orgId))
+            {
+                throw new FailedCodeException("SYS_GET_ORGANIZATIONAL_FAILURE");
+            }
+            var data = _SysWardRoomDmnService.GetWardRoomListValid(orgId,bqCode);
+            var treeList = new List<TreeSelectModel>();
+            foreach (var item in data)
+            {
+                TreeSelectModel treeModel = new TreeSelectModel();
+                treeModel.id = item.bfCode;
+                treeModel.text = item.bfNo;
+                treeModel.parentId = "0";
+                treeList.Add(treeModel);
+            }
+            return Content(treeList.TreeSelectJson());
+        }
+        #endregion
+
+    }
+}

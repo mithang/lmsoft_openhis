@@ -1,0 +1,94 @@
+
+@{
+    ViewBag.Title = "QuejsList";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .table-responsive {
+        border: 0;
+    }
+</style>
+<!--Danh sách quyết toán-->
+<form id="tabGrid" style="margin:2px;margin-top:10px;">
+    <div class="gridPanel" style="margin: 5px;">
+        <table id="gridList" rel="tabGrid"></table>
+    </div>
+</form>
+<script>
+
+    $(function () {
+        var jsdata = localStorage.getItem("jsdata");
+        gridListFPH(JSON.parse(jsdata));
+    });
+
+    //tảiquyết toándanh sách
+    function gridListFPH(mydata) {
+        var $gridList = $("#gridList");
+        $gridList.dataNewGrid({
+            height: 150,
+            colModel: [
+                { label: 'Mã nội bộ quyết toán', width: 60, name: 'jsnm' },
+                { label: 'flzffy', name: 'flzffy', hidden: true },
+                { label: 'zffy', name: 'zffy', hidden: true },
+                { label: 'jzfy', name: 'jzfy', hidden: true },
+                { label: 'zlfy', name: 'zlfy', hidden: true },
+                { label: 'xjzf', name: 'xjzf', hidden: true },
+                { label: 'Họ tên', name: 'xm', width: 70, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 70, align: 'left' },
+                {
+                    label: 'ghi sổNgày', name: 'CreateTime', width: 80, align: 'left', formatter: function (cellvalue) {
+                        return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : "";
+                    }
+                },
+                { label: 'Người thao tác', name: 'czr', width: 70, align: 'left' },
+                {
+                    label: 'Tổng số tiền', name: 'zje', width: 80, align: 'left', formatter: function (cellvalue) {
+                        return Number(cellvalue).toFixed(2);
+                    }
+                }
+            ]
+        }, mydata);
+        if (mydata.length > 0) {
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+        }
+    }
+
+
+    //function submitForm() {
+    //    btn_edit();
+    //}
+    //quyết toánsự kiện nhấn danh sách
+    function btn_edit() {
+        var data = $("#gridList").jqGridRowValue();
+        if (data) {
+            var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+            if (!(seleRowid)) {
+                $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+                return;
+            }
+            $.currentWindow().$("#blh").val(data.blh);
+            $.currentWindow().getDetail(data.jsnm); //phương thức trong trang chính
+            PatSearchConfirm();
+        } else {
+            $.modalAlert("Hiện tại không có dữ liệu được chọn！", "warning");
+        }
+
+    }
+
+    //xác nhận trang chínhgọi
+    function PatSearchConfirm() {
+        var $gridList = $("#gridList");
+        var blh = $gridList.jqGridRowValue().blh;
+        var xm = $gridList.jqGridRowValue().xm;
+        var obj = new Object();
+        obj.blh = blh;
+        obj.xm = xm;
+        //đóng cửa sổ
+        ReceiptCancle();
+    }
+
+    //hủy
+    function ReceiptCancle() {
+        $.modalClose();
+    }
+</script>

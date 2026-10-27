@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "Ward_Application";//科室备药
+    ViewBag.Title = "Ward_Application";//Chuẩn bị thuốc khoa
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -44,30 +44,30 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">发药信息</div>
+        <div class="panel-heading">Phát thuốcThông tin</div>
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>申领科室：</th>
+                <th class="formTitle"><span class="required">*</span>Đề nghị lĩnhKhoa:</th>
                 <td class="formValue">
-                    <input type="text" id="slksmc" name="slksmc" class="form-control" placeholder="请选择领药科室" />
+                    <input type="text" id="slksmc" name="slksmc" class="form-control" placeholder="Vui lòng chọnLĩnh thuốcKhoa" />
                     <input type="hidden" id="slksbm" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>申领病区：</th>
+                <th class="formTitle"><span class="required">*</span>Đề nghị lĩnhKhu bệnh:</th>
                 <td class="formValue">
-                    <input type="text" id="rkbmmc" name="rkbmmc" class="form-control" placeholder="请选择领药病区" />
+                    <input type="text" id="rkbmmc" name="rkbmmc" class="form-control" placeholder="Vui lòng chọnLĩnh thuốcKhu bệnh" />
                     <input type="hidden" id="rkbm" />
                 </td>
-                <th class="formTitle "><span class="required">*</span>目标药房：</th>
+                <th class="formTitle "><span class="required">*</span>Mục tiêuNhà thuốc:</th>
                 <td class="formValue">
-                    <input type="text" id="lybm" name="lybm" data-yfbmCode="" placeholder="请选择目标药房" class="form-control" />
+                    <input type="text" id="lybm" name="lybm" data-yfbmCode="" placeholder="Vui lòng chọnMục tiêuNhà thuốc" class="form-control" />
                     <input type="hidden" id="yfbm" />
                 </td>
-                <th class="formTitle "><span class="required">*</span>单据号：</th>
+                <th class="formTitle "><span class="required">*</span>Số chứng từ:</th>
                 <td class="formValue">
                     <input type="text" id="djh" name="djh" class="form-control newtouch_Readonly"/>
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="添加" />
+                    <input type="button" id="btn_add" class="btn btn-md btn-primary" value="Thêm" />
                 </th>
                 <td></td>
             </tr>
@@ -82,9 +82,9 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 7, 8, 9 },
-    F7Text = "重置",
-    F8Text = "保存",
-    F9Text = "保存并提交"
+    F7Text = "Đặt lại",
+    F8Text = "Lưu",
+    F9Text = "Lưu và gửi"
 })
 <script type="text/javascript">
 
@@ -185,7 +185,7 @@
         $.ajax({
             type: "Get",
             url: "/OrderAudit/InitDjh",
-            data: { djmc: '备药申请单', yfbmCode: $("#yfbm").val(), r: Math.random() },
+            data: { djmc: 'Chuẩn bị thuốcPhiếu', yfbmCode: $("#yfbm").val(), r: Math.random() },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
@@ -243,24 +243,24 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             multiselect: true,
             editurl: "clientArray",  //行编辑不向服务器提交数据
             unwritten: false,
             colModel: [
-                { label: '操作', name: 'operate', width: 50, align: 'center' },
-                { label: '<span class="required">*</span>药品名称', name: 'ypmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
-                { label: "药品代码", name: "ypdm", width: 75, align: 'center', editable: true, editwidth: "100%" },
-                { label: "药品类别", name: "dlmc", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
+                { label: '<span class="required">*</span>Tên thuốc', name: 'ypmc', width: 200, align: 'center', editable: true, editwidth: "100%" },
+                { label: "ThuốcMã", name: "ypdm", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: "ThuốcLoại", name: "dlmc", width: 75, align: 'center', editable: true, editwidth: "100%" },
                 //{ label: '<span class="required">*</span>批次', name: 'pc', width: 95, align: 'center', editable: true, editwidth: "100%" },
-                { label: '库存量', name: 'slStr', width: 70, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>申请数量', name: 'sl', width:75, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>单位', name: 'dw', width: 50, align: 'center', formatter: function (cellvalue, options) { return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>"; } },
-                { label: '规格', name: 'gg', width: 105, align: 'center', editable: true, editwidth: "100%" },
-                { label: '批次', name: 'pc', width: 90, align: 'center', editable: true, editwidth: "100%" },
-                { label: '批号', name: 'ph', width: 80, align: 'center', editable: true, editwidth: "100%" },
-                { label: '有效期', name: 'yxq', width: 70, align: 'center', editable: true, editwidth: "100%" },
-                { label: '生产厂家', name: 'sccj', width: 200, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Lượng tồn kho', name: 'slStr', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Đề nghịSố lượng', name: 'sl', width:75, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 50, align: 'center', formatter: function (cellvalue, options) { return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>"; } },
+                { label: 'Quy cách', name: 'gg', width: 105, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Lô', name: 'pc', width: 90, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Số lô', name: 'ph', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Hạn hiệu lực', name: 'yxq', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'center', editable: true, editwidth: "100%" },
                 //{ label: '零售单价', name: 'lsjdjdw', width: 75, align: 'center', editable: true, editwidth: "100%" },
                 //{ label: '零售总额', name: 'lsze', width: 80, align: 'center', editable: true, editwidth: "100%" },
                 //{ label: 'ph', name: 'ph', hidden: true, editable: true },
@@ -363,10 +363,10 @@
                 reqData.keyword = $.trim($("#lybm").val());
                 return reqData;
             },
-            caption: "领药部门",
+            caption: "Lĩnh thuốcPhòng ban",
             colModel: [
-                { label: '药房编码', name: 'yfbmCode', widthratio: 50 },
-                { label: '药房名称', name: 'yfbmmc', widthratio: 50 }
+                { label: 'Nhà thuốcMã', name: 'yfbmCode', widthratio: 50 },
+                { label: 'Nhà thuốcTên', name: 'yfbmmc', widthratio: 50 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#lybm").val($thistr.attr('data-yfbmmc'));
@@ -387,7 +387,7 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "" || $("#lybm").val() === "" || $("#yfbm").val() === "" || $("#slksmc").val() === "" || $("#slksbm").val() === "") {
-                    $.modalMsg("请在浮层中选择科室、病区和药房", "error", 1000);
+                    $.modalMsg("Vui lòng chọn khoa, khu bệnh và nhà thuốc trong lớp nổi", "error", 1000);
                     return false;
                 }
                 return true;
@@ -399,15 +399,15 @@
                 return reqData;
             },
             colModel: [
-                { label: '类别', name: 'dlmc', width: 60 },
-                { label: '代码', name: 'ypdm', width: 100 },
-                { label: '名称', name: 'ypmc', width: 200, align: 'left' },
-                { label: '规格', name: 'gg', width: 110, align: 'left' },
-                { label: '库存', name: 'slStr', width: 90, align: 'center' },
-                { label: '零售单价', name: 'lsjdjdw', width: 120, align: 'center' },//部门单位零售价
-                { label: '批次', name: 'pc', width: 120, align: 'center' },
-                { label: '厂家', name: 'sccj', width: 150, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 150, align: 'left' },
+                { label: 'Loại', name: 'dlmc', width: 60 },
+                { label: 'Mã', name: 'ypdm', width: 100 },
+                { label: 'Tên', name: 'ypmc', width: 200, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 110, align: 'left' },
+                { label: 'Tồn kho', name: 'slStr', width: 90, align: 'center' },
+                { label: 'Đơn giá bán lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//部门单位零售价
+                { label: 'Lô', name: 'pc', width: 120, align: 'center' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+                { label: 'Hạn hiệu lực', name: 'yxq', width: 150, align: 'left' },
                 { label: 'ph', name: 'ph', hidden: true },
                 { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
                 { label: 'lsj', name: 'lsj', hidden: true },//部门单位零售价
@@ -472,7 +472,7 @@
         var sl = Number($("#" + rowid + "_sl").val());
         var maxsl = Number($("#" + rowid + "_kykc").val());
         if (zhyz * sl > maxsl) {
-            $.modalMsg("发药数不得超过库存总量", "error", 1000);
+            $.modalMsg("Số lượng phát thuốc không được vượt quá tổng lượng tồn kho", "error", 1000);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -565,8 +565,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '病区编码', name: 'bqCode', width: 100 },
-                { label: '病区名称', name: 'bqmc', width: 220 }
+                { label: 'Khu bệnhMã', name: 'bqCode', width: 100 },
+                { label: 'Khu bệnhTên', name: 'bqmc', width: 220 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#rkbm").val($thistr.attr('data-bqCode'));
@@ -586,8 +586,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '科室编码', name: 'Code', width: 100 },
-                { label: '科室名称', name: 'Name', width: 220 }
+                { label: 'KhoaMã', name: 'Code', width: 100 },
+                { label: 'KhoaTên', name: 'Name', width: 220 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#slksbm").val($thistr.attr('data-Code'));
@@ -618,7 +618,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("Vui lòng tick chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -662,7 +662,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("Vui lòng tick chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -688,31 +688,31 @@
     //数值验证
     function Validately(rowData, rowid) {
         if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") {   //去掉左右两端空格
-            $.modalMsg("请选择发药部门", "error", 1000);
+            $.modalMsg("Vui lòng chọnPhát thuốcPhòng ban", "error", 1000);
             return false;
         }
         if (rowData.ypmc === "") {
-            $.modalMsg('药品必选', 'error', 1000);
+            $.modalMsg('ThuốcBắt buộc chọn', 'error', 1000);
             return false;
         }
         if (rowData.pc === "") {
-            $.modalMsg('批次必选', 'error', 1000);
+            $.modalMsg('LôBắt buộc chọn', 'error', 1000);
             return false;
         }
         var reg = /^[1-9]\d*$/;//大于0的整数
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("数量必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Số lượng phải là số nguyên lớn hơn 0!", "warning", 1500);
             return false;
         }
         if ($("#sel_dw_" + rowid).val() === "") {
-            $.modalMsg('请选择单位', 'error', 1000);
+            $.modalMsg('Vui lòng chọnĐơn vị', 'error', 1000);
             return false;
         }
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number(rowData.sl);
         var maxsl = Number(rowData.kykc);
         if (zhyz * sl > maxsl) {
-            $.modalMsg("发药数不得超过库存总量", "error", 1000);
+            $.modalMsg("Số lượng phát thuốc không được vượt quá tổng lượng tồn kho", "error", 1000);
             $("#" + rowid + "_sl").val("");
             return false;
         }

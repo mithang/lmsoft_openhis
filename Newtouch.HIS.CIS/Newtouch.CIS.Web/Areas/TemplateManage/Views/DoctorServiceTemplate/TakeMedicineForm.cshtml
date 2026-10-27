@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "TakeMedicineForm";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -14,9 +14,9 @@
         border: solid 1px #ddd;
     }
 </style>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/wmgridmenu.css", false)" rel="stylesheet" />
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/wmgridmenu.css", false)" rel="stylesheet" />
 
 
 <div id="linkcydy" style="width:100%;">
@@ -25,19 +25,19 @@
     <form id="form1">
         <table class="form" style="margin-top:10px;">
             <tr>
-                <th class="formTitle"><span class="required">*</span>模板名称: </th>
+                <th class="formTitle"><span class="required">*</span>MẫuTên: </th>
                 <td class="formValue">
                     <input id="mbmc" name="mbmc" type="text" class="form-control required" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>模板类型：</td>
+                <td class="formTitle"><span class="required">*</span>Loại mẫu:</td>
                 <td class="formValue">
                     <select id="mblx" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input type="button" id="" class="btn btn-primary" value="保存" style="margin-left:20%; width:20%;" onclick="Save()" />
-                    <input type="button" id="" class="btn btn-primary" value="删除" style="margin-left:10%; width:20%;" onclick="Delete()" />
+                    <input type="button" id="" class="btn btn-primary" value="Lưu" style="margin-left:20%; width:20%;" onclick="Save()" />
+                    <input type="button" id="" class="btn btn-primary" value="Xóa" style="margin-left:10%; width:20%;" onclick="Delete()" />
                 </td>
                 <td></td>
             </tr>
@@ -89,7 +89,7 @@
             //altRows: true,//隔行换色
             shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             editurl: "clientArray",  //行编辑不向服务器提交数据
             unwritten: false,
             colModel: [
@@ -97,25 +97,25 @@
                     label: 'Id', name: 'Id', width: 120, editwidth: '81%', align: 'center', hidden: true
                 },
                 {
-                    label: '<span class="required">*</span>药名', name: 'xmmc', width: 140, editwidth: '100%', align: 'center', editable: true, editrules: { required: true }
+                    label: '<span class="required">*</span>Tên thuốc', name: 'xmmc', width: 140, editwidth: '100%', align: 'center', editable: true, editrules: { required: true }
                 },
                 { label: 'xmdm', name: 'xmdm', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
-                { label: '<span class="required">*</span>规格', name: 'ypgg', hidden: true, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
+                { label: '<span class="required">*</span>Quy cách', name: 'ypgg', hidden: true, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
                 { label: 'jlzhxs', name: 'jlzhxs', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'zyzhxs', name: 'zyzhxs', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>剂量', name: 'ypjl', width: 50, editwidth: '100%', align: 'center', editable: true, editoptions: {
+                    label: '<span class="required">*</span>Liều lượng', name: 'ypjl', width: 50, editwidth: '100%', align: 'center', editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("剂量为空，请确认。", 'warning');
+                                        $.modalAlert("Liều lượngđể trống,Vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert("剂量：请填写数字", 'warning');
+                                        $.modalAlert("Liều lượng:Vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -128,7 +128,7 @@
                     }, editrules: { required: true }
                 },
                 {
-                    label: '<span class="required">*</span>单位', name: 'dw', width: 65, editwidth: '70%', align: 'center', editable: true, edittype: "select", editoptions: {
+                    label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 65, editwidth: '70%', align: 'center', editable: true, edittype: "select", editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -148,15 +148,15 @@
                 { label: 'dwlb', name: 'dwlb', editwidth: '', align: 'center', editable: true, hidden: true },  //不可去掉
                 { label: 'redundant_jldw', name: 'redundant_jldw', editwidth: '', align: 'center', editable: true, hidden: true },  //不可去掉
                 { label: 'dwwwwwww', name: 'dwwwwwww', editwidth: '', align: 'center', editable: true, hidden: true },  //不可去掉
-                { label: '<span class="required">*</span>用法', name: 'yfmcval', width: 50, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
+                { label: '<span class="required">*</span>Cách dùng', name: 'yfmcval', width: 50, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
                 { label: 'ypyfdm', name: 'ypyfdm', editwidth: '100%', align: 'center', editable: true, hidden: true },
-                { label: '<span class="required">*</span>频次', name: 'pcmc', width: 50, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 50, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
                 { label: 'pcCode', name: 'pcCode', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'zxcs', name: 'zxcs', editable: true, hidden: true },
                 { label: 'zxzq', name: 'zxzq', editable: true, hidden: true },
                 { label: 'zxzqdw', name: 'zxzqdw', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>用量单位', name: 'yldw', width: 95, editwidth: '80%', align: 'center', editable: true, edittype: "select", editoptions: {
+                    label: '<span class="required">*</span>Liều dùngĐơn vị', name: 'yldw', width: 95, editwidth: '80%', align: 'center', editable: true, edittype: "select", editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -187,11 +187,11 @@
                     }, editrules: { required: true }
                 },
                 { label: 'yldwwwwwww', name: 'yldwwwwwww', editwidth: '', align: 'center', editable: true, hidden: true },  //不可去掉
-                { label: '<span class="required">*</span>天数', name: 'yl', width: 40, editwidth: '100%', align: 'center', editable: true },
-                { label: '总量', name: 'sl', width: 50, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
-                { label: '住院单位', name: 'zydw', width: 50, editwidth: '100%', align: 'center', editable: true },
-                { label: '嘱托', name: 'ztnr', width: 120, editwidth: '100%', align: 'center', editable: true },
-                { label: '操作', name: 'action', width: 30, align: 'center' },
+                { label: '<span class="required">*</span>Số ngày', name: 'yl', width: 40, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Tổng lượng', name: 'sl', width: 50, editwidth: '100%', align: 'center', editable: true, editrules: { required: true } },
+                { label: 'Đơn vị nhập viện', name: 'zydw', width: 50, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Dặn dò', name: 'ztnr', width: 120, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Thao tác', name: 'action', width: 30, align: 'center' },
                 { name: 'yzlx', hidden: true },
                 { name: 'zxksdm', width: 50, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { name: 'qzfs', width: 50, editwidth: '100%', editable: true, hidden: true }
@@ -215,7 +215,7 @@
                     var jldw = $("#" + rowid + "_redundant_jldw").val();    //剂量单位 药品字典表的单位
                     var dw = $("#" + rowid + "_dwwwwwww").val();     //住院单位
                     if (!!dw) {
-                        //这种找元素的方法不可取，但由于select没有id属性
+                        //这种找素的方法不可取，但由于select没有id属性
                         $("#" + rowid + "_ypjl").parent().next().children('select').html('');
 
                         if (jldw == dw) {
@@ -250,8 +250,8 @@
             .navButtonAdd('#gridTakePager',
             {
                 buttonicon: "glyphicon glyphicon-new-window",
-                title: "新明细",
-                caption: "新明细",
+                title: "Chi tiết mới",
+                caption: "Chi tiết mới",
                 position: "first",
                 onClickButton: function () {
                     newWMPresData();
@@ -265,7 +265,7 @@
                 {
                     startColumnName: 'ypjl',
                     numberOfColumns: 2,
-                    titleText: '每次剂量'
+                    titleText: 'Mỗi lầnLiều lượng'
                 }]
         });
     }
@@ -279,7 +279,7 @@
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
         $("#" + rowid + "_sl").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_zxzqdw").parent().next().children('select').html('');
-        $("#" + rowid + "_zxzqdw").parent().next().children('select').append('<option value="1">天数</option><option value="0">带药总量</option>');
+        $("#" + rowid + "_zxzqdw").parent().next().children('select').append('<option value="1">Số ngày</option><option value="0">Thuốc mang theoTổng lượng</option>');
         var yldwval = $("#" + rowid + "_yldwwwwwww").val();
         if (!!yldwval) {
             $("#" + rowid + "_zxzqdw").parent().next().children('select').val(yldwval);
@@ -312,7 +312,7 @@
                     $("#" + rowid + "_zydw").val($this.attr('data-dw'));
                     $("#" + rowid + "_zxksdm").val($this.attr('data-yfbmCode'));
                     $("#" + rowid + "_qzfs").val($this.attr('data-zyqzlx') == "1" ? "day" : "times"); 
-                    //这种找元素的方法不可取，但由于select没有id属性
+                    //这种找素的方法不可取，但由于select没有id属性
                     var jldw = $this.attr('data-jldw');    //剂量单位
                     var dw = $this.attr('data-dw');     //住院单位
                     $("#" + rowid + "_ypjl").parent().next().children('select').html('');
@@ -407,13 +407,13 @@
                     //$.modalAlert("缺少单位类别", 'warning');
                     return;
                 } else if (isNaN(zxcs) || zxcs == "") {
-                    //$.modalAlert("缺少执行次数", 'warning');
+                    //$.modalAlert("缺少Thực hiện次数", 'warning');
                     return;
                 } else if (isNaN(zxzq) || zxzq == "") {
-                    //$.modalAlert("缺少执行周期", 'warning');
+                    //$.modalAlert("缺少Thực hiện周期", 'warning');
                     return;
                 } else if (isNaN(zxzqdw) || zxzqdw == "") {
-                    //$.modalAlert("缺少执行周期单位", 'warning');
+                    //$.modalAlert("缺少Thực hiện周期单位", 'warning');
                     return;
                 } else if (isNaN(yl) || yl == "") {
                     //$.modalAlert("缺少用量", 'warning');
@@ -430,7 +430,7 @@
     function getpcsl(zxcs, zxzq, zxzqdw)
     {
         if (isNaN(zxzqdw) || zxzqdw=="") {
-            $.modalAlert("执行周期单位不能为空", 'error');
+            $.modalAlert("Thực hiệnChu kỳĐơn vịkhông được để trống", 'error');
             return;
         }
         var rtnsl;
@@ -456,7 +456,7 @@
     {
         var zysl = 0;
         if (isNaN(dwlb) || dwlb == "") {
-            $.modalAlert("单位类别不能为空", 'error');
+            $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
             return;
         }
         var qzint = ypjl * ts;//默认住院单位 ，不需转换
@@ -509,7 +509,7 @@
             }
             var gridsfxmData = $("#gridTake").jqGrid('getRowData_AllLine', null, true);
             if (gridsfxmData.length < 1) {
-                $.modalAlert("当前没有保存的套餐内容", 'warning');
+                $.modalAlert("Hiện tạiKhông cóLưunội dung gói", 'warning');
             }
             $.each(gridsfxmData, function () {    //去掉action
                 for (var i = 0; i < $(this).length; i++) {
@@ -534,9 +534,9 @@
             dataType: "json",
             data: { mbObj: mbObj, mbDetailList: gridmedicineData },
             type: "POST",
-            loadingtext: "套餐数据保存中，请稍后...",
+            loadingtext: "Đang lưu dữ liệu gói, vui lòng đợi trong giây lát...",
             success: function (data) {
-                $.modalMsg("保存成功", 'success');
+                $.modalMsg("Lưu thành công", 'success');
                    if(!mbId && data.data){
                     mbId = data.data;
                     $.currentWindow().expandyzlx = @Html.Raw(((int)EnumYzlx.Cydy).ToString());
@@ -553,7 +553,7 @@
         //是否有数据
         var data = $("#gridTake").jqGrid('getRowData_AllLine', null, true);
         if (data.length == 0) {
-            $.modalAlert("缺少套餐数据", 'warning');
+            $.modalAlert("Thiếu dữ liệu gói", 'warning');
             return false;
         }
         return true;
@@ -561,7 +561,7 @@
 
     function Delete() {
         if (mbId == null || mbId == "") {
-            $.modalAlert("缺少套餐", "warning");
+            $.modalAlert("Thiếu gói", "warning");
             return;
         }
             $.najax({
@@ -569,9 +569,9 @@
             dataType: "json",
             data: { mbId: mbId},
             type: "POST",
-            loadingtext: "套餐数据删除中，请稍后...",
+            loadingtext: "Đang xóa dữ liệu gói, vui lòng đợi trong giây lát...",
             success: function (data) {
-                $.modalMsg("删除成功", 'success');
+                $.modalMsg("Xóa thành công", 'success');
                 $.currentWindow().$("#beveltabs a[id='current']").trigger('click');
                 location.href = "/TemplateManage/DoctorServiceTemplate/TakeMedicineForm?mbId=";
             }

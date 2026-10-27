@@ -1,38 +1,40 @@
-﻿using Autofac;
-using Newtouch.Herp.APIRequest;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using Newtouch.HIS.API.Common;
 using System;
 using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Herp.API.Common;
+using Newtouch.Herp.API.Requests;
+using Newtouch.Herp.Domain.IRepository;
 
 namespace Newtouch.Herp.API.Controllers
 {
     /// <summary>
-    /// 
+    /// Port of Newtouch.Herp.API.Controllers.DefaultController (route api/Default).
+    /// Query: the original returns _sysConfigRepo.IQueryable().ToList() — every
+    /// system-config row. The repository is now resolved: the Herp API's only
+    /// context in the original was DefaultDbContext = NewtouchHIS_herp, and
+    /// CSDL Base has no Sys_Config table at all, so the thin Herp-local
+    /// ISysConfigRepo (Sys_Config in NewtouchHIS_herp) is the faithful source
+    /// — not a Base-module integration. The legacy scaffold actions
+    /// (Get/Post/Put/Delete from the conventional api/{controller}/{id} route)
+    /// are reproduced with their original behaviour.
     /// </summary>
-    [RoutePrefix("api/Default")]
+    [Route("api/Default")]
     public class DefaultController : ApiControllerBase<DefaultController>
     {
         private readonly ISysConfigRepo _sysConfigRepo;
 
-        public DefaultController(IComponentContext com)
-            : base(com)
+        public DefaultController(IUserIdentityResolver<Identity> userIdentityResolver,
+            ISysConfigRepo sysConfigRepo)
+            : base(userIdentityResolver)
         {
-
+            _sysConfigRepo = sysConfigRepo;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
         [HttpPost]
         [Route("Query")]
-        public HttpResponseMessage Query(DefaultQueryRequest par)
+        public IActionResult Query([FromBody] DefaultQueryRequest request)
         {
-            Action<DefaultQueryRequest, DefaultResponse> ac = (req, resp) =>
+            Action<DefaultQueryRequest, DefaultResponse> action = (req, resp) =>
             {
                 var data = _sysConfigRepo.IQueryable().ToList();
                 resp.data = data;
@@ -40,30 +42,36 @@ namespace Newtouch.Herp.API.Controllers
                 resp.code = ResponseResultCode.SUCCESS;
             };
 
-            var response = base.CommonExecute(ac, par);
-            
-            return base.CreateResponse(response);
+            var response = CommonExecute(action, request, nameof(Query));
+            return CreateResponse(request, response);
         }
 
-        // GET: api/Default1/5
-        public string Get(int id)
+        // GET: api/Default/5 (legacy scaffold from the original conventional route)
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Content("value");
         }
 
-        // POST: api/Default1
-        public void Post([FromBody]string value)
+        // POST: api/Default (legacy scaffold; the original ignored the body)
+        [HttpPost]
+        public IActionResult Post()
         {
+            return NoContent();
         }
 
-        // PUT: api/Default1/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Default/5 (legacy scaffold)
+        [HttpPut("{id:int}")]
+        public IActionResult Put(int id)
         {
+            return NoContent();
         }
 
-        // DELETE: api/Default1/5
-        public void Delete(int id)
+        // DELETE: api/Default/5 (legacy scaffold)
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
         {
+            return NoContent();
         }
     }
 }

@@ -1,31 +1,31 @@
-﻿
+
 @{
-    ViewBag.Title = "调价历史";
+    ViewBag.Title = "Lịch sử điều chỉnh giá";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <form id="form1">
     <div class="panel panel-default" >
         <div class="panel-heading">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">关键字</th>
+                    <th class="formTitle">Từ khóa</th>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="物资拼音/名称" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Phiên âm vật tư/Tên" />
                     </td>
-                    <th class="formTitle">执行时间</th>
+                    <th class="formTitle">Thời gian thực hiện</th>
                     <td class="formValue">
                         <input id="txtStartTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">至</th>
+                    <th class="formTitle">Đến</th>
                     <td class="formValue">
                         <input id="txtEndTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px;margin-left:30%;" />
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px;margin-left:30%;" />
                     </td>
                 </tr>
             </table>
@@ -49,27 +49,27 @@
             postData: getSearchPostData(),
             height: $(window).height() - document.getElementById('gridYPInfoList').offsetTop - 70,
             colModel: [
-                { label: '类别', name: 'lbmc', width: 80, align: 'left' },
-                { label: '物资名称', name: 'wzmc', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 100, align: 'left' },
+                { label: 'Loại', name: 'lbmc', width: 80, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 120, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
                 {
-                    label: '原零售价', name: 'ylsj', width: 70, align: 'right',
+                    label: 'Giá bán lẻ cũ', name: 'ylsj', width: 70, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
                 {
-                    label: '新零售价', name: 'lsj', width: 70, align: 'right',
+                    label: 'Giá bán lẻ mới', name: 'lsj', width: 70, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
-                { label: '定价单位', name: 'dwmc', width: 70, align: 'center' },
-                { label: '转化因子', name: 'zhyz', width: 70, align: 'center' },
-                { label: '调整文件', name: 'tzwj', width: 80, align: 'left' },
-                { label: '生产厂家', name: 'supplierName', width: 120, align: 'left' },
-                { label: '提交人员', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '执行时间', name: 'zxsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'Đơn vị định giá', name: 'dwmc', width: 70, align: 'center' },
+                { label: 'Hệ số chuyển đổi', name: 'zhyz', width: 70, align: 'center' },
+                { label: 'Văn bản điều chỉnh', name: 'tzwj', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'supplierName', width: 120, align: 'left' },
+                { label: 'Người gửi', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian thực hiện', name: 'zxsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
                 { label: 'productId', name: 'productId', hidden: true },
                 { label: 'wztjId', name: 'wztjId', hidden: true }
             ],
@@ -81,7 +81,7 @@
 
         $("#btn_search").click(function () {
             if ($("#txtStartDate").val() > $("#txtEndDate").val()) {
-                $.modalAlert("开始日期晚于结束日期", 'warning');
+                $.modalAlert("Ngày bắt đầu muộn hơn ngày kết thúc", 'warning');
                 return;
             }
 
@@ -90,7 +90,7 @@
             }).trigger('reloadGrid');
         });
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         var startTime = $("#txtStartTime").val();

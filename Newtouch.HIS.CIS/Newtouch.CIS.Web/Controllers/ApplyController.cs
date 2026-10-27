@@ -1,6 +1,16 @@
-﻿using FrameworkBase.MultiOrg.Web;
+using NewtouchHIS.Framework.Web.Controllers;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.CIS.Compat;
+using Newtouch.Application.Interface;
+using Newtouch.Domain.Entity;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.Domain.IRepository;
+using Newtouch.CIS.Repository;
 using Newtouch.HIS.Domain.IRepository;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.CIS.Web.Controllers
 {
@@ -11,11 +21,18 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly ITemplateGroupPackageRepo _templateGroupPackageRepo;
         private readonly IInspectionCategoryRepo _inspectionCategoryRepo;
 
+        public ApplyController(IInspectionTemplateRepo inspectionTemplateRepo, ITemplateGroupPackageRepo templateGroupPackageRepo, IInspectionCategoryRepo inspectionCategoryRepo)
+        {
+            this._inspectionTemplateRepo = inspectionTemplateRepo;
+            this._templateGroupPackageRepo = templateGroupPackageRepo;
+            this._inspectionCategoryRepo = inspectionCategoryRepo;
+        }
+
         /// <summary>
         /// 检验
         /// </summary>
         /// <returns></returns>
-        public ActionResult Inspection()
+        public IActionResult Inspection()
         {
             return View();
         }
@@ -24,12 +41,12 @@ namespace Newtouch.CIS.Web.Controllers
         /// 检查
         /// </summary>
         /// <returns></returns>
-        public ActionResult Examination()
+        public IActionResult Examination()
         {
             return View();
         }
 
-        public ActionResult Test()
+        public IActionResult Test()
         {
             return View();
         }

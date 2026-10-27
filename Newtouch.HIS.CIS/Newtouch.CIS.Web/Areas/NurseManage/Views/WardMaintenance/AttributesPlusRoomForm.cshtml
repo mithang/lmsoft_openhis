@@ -1,7 +1,7 @@
-﻿@model dynamic
+@model dynamic
 
 @{
-    ViewBag.Title = "病床附加属性";
+    ViewBag.Title = "Giường bệnhBổ sungThuộc tính";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,22 +9,22 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">可选属性：</th>
+                <th class="formTitle">Tùy chọnThuộc tính:</th>
                 <td class="formValue">
                     <select id="sel_attr" name="sel" class="form-control" onchange="ChangeAttr()">
-                        <option value="">请选择属性</option>
-                        <option value="1">房间朝向</option>
-                        <option value="2">房间面积</option>
-                        <option value="3">房间床位数</option>
+                        <option value="">Vui lòng chọnThuộc tính</option>
+                        <option value="1">PhòngHướng</option>
+                        <option value="2">PhòngDiện tích</option>
+                        <option value="3">Số giường bệnh phòng</option>
                     </select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>属性名称：</th>
+                <th class="formTitle"><span class="required">*</span>Thuộc tínhTên:</th>
                 <td class="formValue">
                     <input id="txt_attrName" name="txt_attrName" type="text" class="form-control required" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">描述：</th>
+                <th class="formTitle">Mô tả:</th>
                 <td class="formValue" colspan="3">
                     <textarea id="txt_describe" name="txt_describe" class="form-control" style="height: 60px;"></textarea>
                 </td>
@@ -33,7 +33,7 @@
         @Html.Partial("_MiddleButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
        {
            ShowKeyList = new[] { 2 },
-           F2Text = "添加"
+           F2Text = "Thêm"
        })
     </div>
 
@@ -58,15 +58,15 @@
         unwritten: false,
         colModel: [
             { label: "attrCode", name: "attrName", hidden: true },
-            { label: "属性名称", name: "attrName", width: 100, align: "left" },
-            { label: "描述", name: "attrDescribe", width: 220, align: "center" },
+            { label: "Thuộc tínhTên", name: "attrName", width: 100, align: "left" },
+            { label: "Mô tả", name: "attrDescribe", width: 220, align: "center" },
             {
-                label: "操作",
+                label: "Thao tác",
                 name: "attrCode",
                 width: 50,
                 align: "center",
                 formatter: function (cellvalue) {
-                    return "<a href=\#\" onclick='DeleteAttr(\"" + cellvalue + "\")'' title='删除属性' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>删除</a>";
+                    return "<a href=\#\" onclick='DeleteAttr(\"" + cellvalue + "\")'' title='XóaThuộc tính' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Xóa</a>";
                 }
             }
         ]
@@ -75,7 +75,7 @@
     //添加
     function newtouch_event_f2() {
         if ($("#txt_attrName").val() === "") {
-            $.modalAlert("属性名称必填", 'warning');
+            $.modalAlert("Thuộc tínhTênBắt buộc", 'warning');
             return;
         }
         var attr = {

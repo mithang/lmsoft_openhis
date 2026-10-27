@@ -1,19 +1,21 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common.Utils;
-using Newtouch.Infrastructure;
-using System.Web.Mvc;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
 {
+    [Area("MRHomePage")]
     public class ReportController : OrgControllerBase
     {
         // GET: MRHomePage/Report
-        //public ActionResult Index()
+        //public IActionResult Index()
         //{
         //    return View();
         //}
 
-        public ActionResult BasyReport()
+        public IActionResult BasyReport()
         {
             ReportingServiceCom();
             return View();
@@ -27,8 +29,8 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         private void ReportingServiceCom()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.topOrgId = Constants.TopOrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.topOrgId = EmrConfig.TopOrganizeId;
+            ViewBag.ReportServerHOST = EmrConfig.GetAppConfigValue("ReportServer.HOST");
             ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;

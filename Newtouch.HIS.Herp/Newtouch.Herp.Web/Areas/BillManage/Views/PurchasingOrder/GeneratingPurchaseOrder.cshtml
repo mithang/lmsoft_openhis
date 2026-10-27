@@ -1,6 +1,6 @@
-﻿@model dynamic
+@model dynamic
 @{
-    ViewBag.Title = "生成采购单";
+    ViewBag.Title = "Tạo đơn mua sắm";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -62,27 +62,27 @@
 
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">筛选信息</div>
+        <div class="panel-heading">Thông tin lọc</div>
         <table class="form">
             <tr>
-                <td class="formTitle">采购计划单：</td>
+                <td class="formTitle">Kế hoạch mua sắm：</td>
                 <td class="formValue">
-                    <input type="text" id="cgdh" name="cgdh" class="form-control" placeholder="请输入采购计划单号" />
+                    <input type="text" id="cgdh" name="cgdh" class="form-control" placeholder="Vui lòng nhập số kế hoạch mua sắm" />
                 </td>
-                <td class="formTitle">采购科室：</td>
+                <td class="formTitle">Khoa mua sắm：</td>
                 <td class="formValue">
-                    <select id="department" name="department" class="form-control"><option value="">全部</option></select>
+                    <select id="department" name="department" class="form-control"><option value="">Tất cả</option></select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>提交日期：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày gửi：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width: 60px;"><span class="required">*</span>到：</th>
+                <th class="formTitle" style="width: 60px;"><span class="required">*</span>Đến：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" value="查询" id="btn_search" />
+                    <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
                 </td>
             </tr>
         </table>
@@ -95,11 +95,11 @@
         <table id="gridMxList"></table>
         <div id="gridmxPager" rel="form1"></div>
     </div>
-    <div class="dv-remarks"><span>备注：</span><input type="text" id="remarks" value="" /></div>
-    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+    <div class="dv-remarks"><span>Ghi chú：</span><input type="text" id="remarks" value="" /></div>
+    @Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 8 },
-        F8Text = "提交"
+        F8Text = "Gửi"
     })
 </form>
 <script>
@@ -123,14 +123,14 @@
     //左侧，采购计划主信息区
     function gridList() {
         $gridList.dataGrid({
-            caption: "采购计划信息",
+            caption: "Thông tin kế hoạch mua sắm",
             url: "/BillManage/PurchasingPlan/GetAdoptWaitingPurchasePlanInfo",
             height: $(window).height() - 185,
             postData: getSearchPostData(),
             colModel: [
-                { label: '科室', name: 'rkbmmc', width: 70 ,align:"left"},
-                { label: '计划单号', name: 'cgdh', width: 130, align: "left" },
-                { label: '提交时间', name: 'LastModifyTime', width: 90, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+                { label: 'Khoa', name: 'rkbmmc', width: 70 ,align:"left"},
+                { label: 'Số phiếu kế hoạch', name: 'cgdh', width: 130, align: "left" },
+                { label: 'Thời gian gửi', name: 'LastModifyTime', width: 90, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ],
             pager: "#gridPager",
             sortname: 'LastModifyTime desc',
@@ -190,27 +190,27 @@
     //右侧，明细区域
     function gridMxList() {
         $GridMxList.dataGrid({
-            caption: "采购计划单明细",
+            caption: "Chi tiết kế hoạch mua sắm",
             url: "",
             height: $(window).height() - 220,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //行编辑不向服务器Gửi数据
             colModel: [
-                { label: '物资名称', name: 'wzmc', width: 110, align: 'left' },
-                { label: '计划采购数', name: 'slStr', width: 70 },
-                { label: '已购数', name: 'sjslStr', width: 60 },
-                { label: '继续采购', name: 'jxcgs', width: 60, align: 'center', editable: true, editwidth: "90%" },
-                { label: '单位', name: 'unitName', width: 40, align: 'left' },
+                { label: 'Tên vật tư', name: 'wzmc', width: 110, align: 'left' },
+                { label: 'Số lượng mua theo kế hoạch', name: 'slStr', width: 70 },
+                { label: 'Số lượng đã mua', name: 'sjslStr', width: 60 },
+                { label: 'Tiếp tục mua', name: 'jxcgs', width: 60, align: 'center', editable: true, editwidth: "90%" },
+                { label: 'Đơn vị', name: 'unitName', width: 40, align: 'left' },
                 {
-                    label: '供应商', name: 'gysmc', width: 200, align: 'center',
+                    label: 'Nhà cung cấp', name: 'gysmc', width: 200, align: 'center',
                     formatter: function (cellvalue, options) {
                         return "<select name=\"gys\" id=\"sel_gys_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>";
                     }
                 },
-                { label: '进价', name: 'jj', width: 40, align: 'left' },
-                { label: '规格', name: 'gg', width: 110, align: 'left' },
-                { label: '品牌', name: 'brand', width: 110, align: 'left' },
-                { label: '厂家', name: 'sccj', width: 200, align: 'left' },
-                { label: '备注', name: 'remark', width: 150, align: 'left', editable: true, editwidth: "95%" },
+                { label: 'Giá nhập', name: 'jj', width: 40, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 110, align: 'left' },
+                { label: 'Nhãn hiệu', name: 'brand', width: 110, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
+                { label: 'Ghi chú', name: 'remark', width: 150, align: 'left', editable: true, editwidth: "95%" },
                 { label: "productId", name: "productId", hidden: true },
                 { label: 'zhyz', name: 'zhyz', hidden: true },
                 { label: 'gysId', name: 'gysId', hidden: true },
@@ -281,7 +281,7 @@
     function RowDataValidate(obj) {
         var reg = /^[1-9]\d*$/;//大于0的整数
         if (!reg.test($(obj).val())) {
-            $.modalMsg("实际采购数量必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Số lượng mua thực tế phải là số nguyên lớn hơn 0！", "warning", 1500);
             $(obj).val("0");
             return false;
         }
@@ -293,7 +293,7 @@
         debugger;
         var rowIds = $GridMxList.getDataIDs();
         if (rowIds == undefined || rowIds.length <= 0) {
-            $.modalMsg("请选择采购计划明细！", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn chi tiết kế hoạch mua sắm！", 'warning', 1500);
             return false;
         }
         var cgmx = [];
@@ -308,7 +308,7 @@
             }
         });
         if (cgmx.length <= 0) {
-            $.modalMsg("未找到有效的出库明细！", 'warning', 1500);
+            $.modalMsg("Không tìm thấy chi tiết xuất kho hợp lệ！", 'warning', 1500);
             return false;
         }
         $.najax({
@@ -318,7 +318,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg('提交成功', 'success', 1000);
+                    $.modalMsg('Gửi thành công', 'success', 1000);
                     $gridList.trigger("reloadGrid");
                     $GridMxList.jqGrid("clearGridData");
                 } else if (res.state === "error") {

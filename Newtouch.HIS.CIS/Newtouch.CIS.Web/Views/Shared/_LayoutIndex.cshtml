@@ -1,23 +1,41 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.min.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.css")" rel="stylesheet" />
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
-    <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
+    <script type="text/javascript">
+        // Standalone bootstrap (MRQC pattern): the SSO portal frame normally
+        // provides top.clients (enums/itemDetails); standalone pages fetch
+        // their own copy synchronously so jqGrid enum formatters resolve.
+        try {
+            if (!window.clients) {
+                $.ajax({
+                    url: "/ClientsData/GetAsyncClientsDataJson", type: "GET", dataType: "json",
+                    async: false, timeout: 5000,
+                    success: function (d) { window.clients = { enums: d.enums, itemDetails: d.itemDetails }; },
+                    error: function () { window.clients = { enums: [], itemDetails: null }; }
+                });
+            }
+        } catch (e) { window.clients = { enums: [], itemDetails: null }; }
+    </script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.min.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
+    <script src="/js/jqgrid/grid.locale-vi.js"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+    <script src="/js/cis-vi.js"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
     <style>
         html, body {
             height: 100%;
@@ -27,9 +45,9 @@
         }
     </style>
 </head>
-<body data-appid="@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppId)">
+<body data-appid="@(Newtouch.CIS.Compat.AppConfig.AppId)">
     @RenderBody()
     @Html.AntiForgeryToken()
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-clientdata.framepage.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-clientdata.framepage.js")"></script>
 </body>
 </html>

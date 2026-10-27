@@ -1,6 +1,6 @@
-﻿@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure.Enum
 @{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới / Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -29,71 +29,71 @@
 <form id="form1">
     <div class="container" style="padding:0;">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab" style="width: 80px;">基本信息</a></li>
-            <li role="presentation"><a href="#contacts" role="tab" data-toggle="tab" style="width: 70px;">联系人</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab" style="width: 80px;">Thông tin cơ bản</a></li>
+            <li role="presentation"><a href="#contacts" role="tab" data-toggle="tab" style="width: 70px;">Người liên hệ</a></li>
         </ul>
         <div class="tab-content" style="margin-top:10px;padding-right:10px;">
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên：</th>
                         <td class="formValue">
-                            <input id="name" name="name" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="name" name="name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>首拼：</th>
+                        <th class="formTitle"><span class="required">*</span>Viết tắt đầu：</th>
                         <td class="formValue">
                             <input id="py" name="py" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">邮编：</th>
+                        <th class="formTitle">Mã bưu điện：</th>
                         <td class="formValue">
                             <input id="zipCode" name="zipCode" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">公司电话：</th>
+                        <th class="formTitle">Điện thoại công ty：</th>
                         <td class="formValue">
                             <input id="tel" name="tel" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">传真：</th>
+                        <th class="formTitle">Fax：</th>
                         <td class="formValue">
                             <input id="fax" name="fax" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">地址：</th>
+                        <th class="formTitle">Địa chỉ：</th>
                         <td class="formValue">
                             <input id="address" name="address" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">开户行：</th>
+                        <th class="formTitle">Ngân hàng：</th>
                         <td class="formValue">
                             <input id="khh" name="khh" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">开户行账号：</th>
+                        <th class="formTitle">Số tài khoản ngân hàng：</th>
                         <td class="formValue">
                             <input id="khhzh" name="khhzh" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">税号：</th>
+                        <th class="formTitle">Mã số thuế：</th>
                         <td class="formValue">
-                            <input id="sh" name="shsh" type="text" class="form-control" />
+                            <input id="sh" name="sh" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">结算周期：</th>
+                        <th class="formTitle">Chu kỳ thanh toán：</th>
                         <td class="formValue">
                             <input id="jszq" name="jszq" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">公司类型：</th>
+                        <th class="formTitle">Loại công ty：</th>
                         <td class="formValue">
-                            @Html.DropDownList("supplierType", EnumSupplierType.Distributor.ToDescSelectList((int)EnumSupplierType.Distributor), new { @class = "form-control form-an" })
+                            @Html.DropDownList("supplierType", EnumSupplierType.Distributor.ToDescSelectList(), new { @class = "form-control form-an" })
                         </td>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                         <td class="formValue" style="padding-top: 1px;" colspan="3">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -102,32 +102,32 @@
             <div id="contacts" role="tabpanel" class="tab-pane fade in">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>姓名：</th>
+                        <th class="formTitle"><span class="required">*</span>Họ tên：</th>
                         <td class="formValue">
-                            <input id="contactName" name="contactName" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="contactName" name="contactName" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                             <input type="hidden" id="hdId" value="" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>手机：</th>
+                        <th class="formTitle"><span class="required">*</span>Di động：</th>
                         <td class="formValue">
                             <input id="telphone" name="telphone" type="text" class="form-control required" />
                         </td>
-                        <th class="formTitle">职务：</th>
+                        <th class="formTitle">Chức vụ：</th>
                         <td class="formValue">
                             <input id="duties" name="duties" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">固话：</th>
+                        <th class="formTitle">Điện thoại cố định：</th>
                         <td class="formValue">
                             <input id="phone" name="phone" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">邮箱：</th>
+                        <th class="formTitle">Email：</th>
                         <td class="formValue">
                             <input id="email" name="email" type="text" class="form-control" />
                         </td>
                         <td class="formValue" colspan="2">
-                            <input type="button" id="btn_clean" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="清除" />
-                            <input type="button" id="btn_submit" class="btn btn-md btn-primary" style="width:50px; margin-left:10px;" value="确定" />
+                            <input type="button" id="btn_clean" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="Xóa trắng" />
+                            <input type="button" id="btn_submit" class="btn btn-md btn-primary" style="width:50px; margin-left:10px;" value="Xác nhận" />
                         </td>
                     </tr>
                 </table>
@@ -192,14 +192,14 @@
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
                 { label: 'OrganizeId', name: 'OrganizeId', hidden: true },
-                { label: '姓名', name: 'contactName', width: 80, align: 'left' },
-                { label: '职务', name: 'duties', width: 100, align: 'left' },
-                { label: '固话', name: 'phone', width: 120, align: 'left' },
-                { label: '手机', name: 'telphone', width: 120, align: 'left' },
+                { label: 'Họ tên', name: 'contactName', width: 80, align: 'left' },
+                { label: 'Chức vụ', name: 'duties', width: 100, align: 'left' },
+                { label: 'Điện thoại cố định', name: 'phone', width: 120, align: 'left' },
+                { label: 'Di động', name: 'telphone', width: 120, align: 'left' },
                 { label: 'Email', name: 'email', width: 150, align: 'left' },
                 {
-                    label: '操作', name: '操作', width: 100, align: 'center', formatter: function (cellvalue, options, rowObject) {
-                        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"删除\" onclick=\"DeleteContacts('" + rowObject.Id + "');\" />";
+                    label: 'Thao tác', name: 'thaotac', width: 100, align: 'center', formatter: function (cellvalue, options, rowObject) {
+                        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"Xóa\" onclick=\"DeleteContacts('" + rowObject.Id + "');\" />";
                     }
                 }
             ],
@@ -244,15 +244,15 @@
     //add contacts
     function SubmitContact() {
         if (keyWord === "") {
-            $.modalAlert("请提交供应商基本信息后在修改联系人信息", 'warning');
+            $.modalAlert("Vui lòng lưu thông tin cơ bản của nhà cung cấp trước khi sửa thông tin người liên hệ", 'warning');
             return false;
         }
         if ($("#contactName").val() === "") {
-            $.modalAlert("联系人姓名必填", 'warning');
+            $.modalAlert("Họ tên người liên hệ là bắt buộc", 'warning');
             return false;
         }
         if ($("#telphone").val() === "") {
-            $.modalAlert("联系人手机号必填", 'warning');
+            $.modalAlert("Số di động của người liên hệ là bắt buộc", 'warning');
             return false;
         }
         var param = {
@@ -295,11 +295,11 @@
     //数据效验
     function DataValidate() {
         if ($("#name").val() === "") {
-            $.modalAlert("企业名称必填", 'warning');
+            $.modalAlert("Tên doanh nghiệp là bắt buộc", 'warning');
             return false;
         }
         if ($("#py").val() === "") {
-            $.modalAlert("拼音必选", 'warning');
+            $.modalAlert("Mã viết tắt đầu là bắt buộc", 'warning');
             return false;
         }
         return true;

@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Newtouch.EMR.API.Global" Language="C#" %>

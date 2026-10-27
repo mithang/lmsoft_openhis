@@ -1,0 +1,149 @@
+@using NewtouchHIS.Lib.Framework.Operator;
+@{
+    ViewBag.Title = "Trang danh sách menu nhanh";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var opr = OperatorProvider.GetCurrent();
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        @if (opr.IsRoot || opr.IsAdministrator)
+        {
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            </div>
+        }
+        else
+        {
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_authrole()"><i class="fa fa-gavel"></i>Phân quyền vai trò</a>
+            </div>
+        }
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+</div>
+
+<script>
+    $(function () {
+        initControl();
+        gridList();
+    });
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            postData: {},
+            url: "/SystemManage/SysShortcutMenu/GetGridJson",
+            height: $(window).height() - 128,
+            colModel: [
+                { label: "Id", name: "Id", width: 100, align: 'left', key: true, hidden: true },
+                { label: "Tên", name: "Name", width: 100, align: 'left' },
+                { label: "Mã", name: "Code", width: 150, align: 'left' },
+                { label: "địa chỉ", name: "UrlAddress", width: 320, align: 'left' },
+                { label: "Đường dẫn hình ảnh", name: "ImgPath", width: 320, align: 'left' },
+                { label: "Sắp xếp", name: "px", width: 60, align: 'right' },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+            ],
+            viewrecords: true,
+        });
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() }, page: 1
+            }).trigger('reloadGrid');
+        });
+    }
+
+    function initControl() {
+
+    }
+
+</script>
+@if (opr.IsRoot || opr.IsAdministrator)
+{
+    <script type="text/javascript">
+
+        function btn_add() {
+            $.modalOpen({
+                id: "Form",
+                title: "Thêm mới dữ liệu",
+                url: "/SystemManage/SysShortcutMenu/Form",
+                width: "500px",
+                height: "400px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+                        $("#gridList").resetSelection();
+                        $("#gridList").trigger("reloadGrid");
+                    });
+                }
+            });
+        }
+
+        function btn_edit() {
+            var keyValue = $("#gridList").jqGridRowValue().Id;
+            if (!!!keyValue) {
+                $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+                return;
+            }
+            $.modalOpen({
+                id: "Form",
+                title: "Sửa dữ liệu",
+                url: "/SystemManage/SysShortcutMenu/Form?keyValue=" + keyValue,
+                width: "500px",
+                height: "400px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+                        $("#gridList").resetSelection();
+                        $("#gridList").trigger("reloadGrid");
+                    });
+                }
+            });
+        }
+
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        function btn_authrole() {
+            var keyValue = $("#gridList").jqGridRowValue().Id;
+            if (!!!keyValue) {
+                $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+                return;
+            }
+            $.modalOpen({
+                id: "Roles",
+                title: "Phân quyền vai trò",
+                url: "/SystemManage/SysShortcutMenu/Roles?keyValue=" + keyValue,
+                width: "350px",
+                height: "550px",
+                callBack: function (iframeId) {
+                    $.currentWindow(iframeId).AcceptClick(function () {
+
+                    });
+                }
+            });
+        }
+    </script>
+}

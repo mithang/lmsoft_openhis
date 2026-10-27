@@ -1,0 +1,450 @@
+
+@{
+    ViewBag.Title = "AccountingPlan";
+    Layout = "~/Views/Shared/_Index.cshtml";
+
+    var from = Context.Request.Query["from"];
+}
+<style>
+    .toolbar {
+        width: 57% !important;
+    }
+
+    .gw_num {
+        border: 1px solid #dbdbdb;
+        width: 44px;
+        line-height: 26px;
+        overflow: hidden;
+        resize: none;
+        border-radius: 4px;
+        box-shadow: none;
+    }
+
+        .gw_num em {
+            display: block;
+            height: 26px;
+            width: 11px;
+            float: left;
+            color: #7A7979;
+            border-right: 1px solid #dbdbdb;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .gw_num .num {
+            display: block;
+            float: left;
+            text-align: center;
+            width: 20px;
+            font-style: normal;
+            font-size: 14px;
+            line-height: 24px;
+            border: 0;
+        }
+
+        .gw_num em.add {
+            float: right;
+            border-right: 0;
+            border-left: 1px solid #dbdbdb;
+        }
+</style>
+<form name="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg">
+            Điều kiện lọc
+        </div>
+        <div style="padding: 2px;padding-right:20px;">
+            <table class="form">
+                <tr>
+                    @if (!(from == "mz"))
+                    {
+                        <th class="formTitle">Dài/tạm thời：</th>
+                        <td class="formValue">
+                            <select id="yzxz" name="yzxz" class="form-control">
+                                <option value="">==Tất cả==</option>
+                                <option value="1">Tạm thời</option>
+                                <option value="2">Dài hạn</option>
+                            </select>
+                        </td>
+                    }
+                    <th class="formTitle">Trạng thái thực hiện：</th>
+                    <td class="formValue">
+                        <select id="zxzt" name="zxzt" class="form-control" data-EnumType="EnumJzjhZXZT">
+                            <option value="">==Tất cả==</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Từ khóa：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" id="keyword" placeholder="Tên bệnh nhân/Số bệnh án/Số ngoại trú">
+                    </td>
+                    <th class="formTitle">Thời gian nhập kế hoạch：</th>
+                    <td class="formValue" colspan="2">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">
+                        <span style="margin-left:1%;float:left">—</span>
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">
+                    </td>
+                    <td class="formValue">
+                        <input type="button" class="btn btn-primary btn_search" style="margin-left: 10%;" value="Truy vấn">
+                    </td>
+                </tr>
+                <tr class="mzrow">
+                    <th class="formTitle">Trạng tháithu phí：</th>
+                    <td class="formValue">
+                        <select id="sfzt" name="sfzt" class="form-control" data-EnumType="">
+                            <option value="">==Tất cả==</option>
+                            <option value="1">Đãthu phí</option>
+                            <option value="2">Chưathu phí</option>
+                        </select>
+                    </td>
+                    <th class="formTitle">Nhắcthu phí tiếp：</th>
+                    <td class="formValue">
+                        <div class="gw_num">
+                            <em class="jian">-</em>
+                            <input type="text" value="" class="num" id="zsftx" />
+                            <em class="add">+</em>
+                        </div>
+                    </td>
+                    <th class="formTitle" style="left:-90px">
+                        <span style="line-height:26px">Nhắc nhở số lần còn lại：</span>
+                    </th>
+                    <td class="formValue">
+                        <div class="gw_num" style="margin-left:-95px">
+                            <em class="jian">-</em>
+                            <input type="text" value="" class="num" id="sycstx" />
+                            <em class="add">+</em>
+                        </div>
+                    </td>
+                    <td class="formValue">
+                        <input type="button" class="btn btn-primary btn_searchmz" style="margin-left: -95px;" value="Truy vấn" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+        <div id="gridPager"></div>
+    </div>
+    <table style="width:400px;height:20px; margin-top:10px;margin-left:10px; float:left; color:#274b6d">
+        <tr>
+            <td>Chú thích: Có thể nhấp đúp vào bản ghi có số lần đã thực hiện lớn hơn 0 để xem chi tiết số lần thực hiện</td>
+        </tr>
+    </table>
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 7, 9 },
+    F7Text = "Dừng",
+    F9Text = "XuấtExcel",
+})
+<script>
+    var from = $.request("from");
+    if (!!!from) {
+        from = "zy";
+    }
+
+    if (from === 'mz') {
+        $('#keyword').attr('placeholder', 'Tên bệnh nhân/Số bệnh án/Số ngoại trú');
+        $('.btn_search').css("display", "none");
+    }
+    else {
+        $('#keyword').attr('placeholder', 'Tên bệnh nhân/Số bệnh án/Mã nhập viện');
+        $("tr[class^='mzrow']").remove();
+    }
+
+    $(function () {
+
+        //Trạng thái thực hiệnchuyển đổi tự độngKích hoạtTruy vấn
+        $('#yzxz').change(function () {
+            $('.btn_search').trigger('click');
+        });
+        //Trạng thái thực hiệnchuyển đổi tự độngKích hoạtTruy vấn
+        $('#zxzt').change(function () {
+            $('.btn_search').trigger('click');
+        });
+        //Trạng tháithu phí thực hiện tự độngKích hoạtTruy vấn
+        $('#sfzt').change(function () {
+            $('.btn_search').trigger('click');
+        });
+
+        gridList();
+    });
+
+    //Nhấn Enter theo từ khóa
+    $('#keyword').keydownEnterEvent(function () {
+        $('.btn_search,.btn_searchmz').trigger('click');
+    })
+
+    //Chi tiết
+    var $gridList = $("#gridList");
+    var gridOptins = {
+        url: "/HospitalizationManage/BookkeepInHos/AccountingPlanQuery",
+        postData: getSearchPostData(),
+        height: from == "mz" ? $(window).height() - 235 : $(window).height() - 205,
+        colModel: [
+        { label: "jzjhmxId", name: "jzjhmxId", key: true, hidden: true },
+        {
+            label: "Dài/tạm thời", name: "yzxz", width: 30, align: "left", formatter: function (cellvalue, a, b) {
+                return cellvalue == "2" ? "Dài hạn" : (cellvalue == "1" ? "Tạm thời" : "");
+            }, hidden: from == "mz" ? true : undefined
+        },
+        {
+            label: "Ngày lập phiếu", name: "startDate", width: 80, hidden: (from == "mz" ? true : undefined), formatter: function (val) {
+                if (!!val) {
+                    var date = $.getDate({ date: val });
+                    if (date < '2000-01-01') {
+                        return '';  //Một phần dữ liệu lịch sử1970-01-01
+                    }
+                    return date;
+                }
+                return "";
+            }
+        },
+        {
+            label: "Trạng thái thực hiện", name: "zxzt", width: 80, align: "left",
+            formatter: function (cellvalue, a, b) {
+                return $.enum.getDescByValue("EnumJzjhZXZT", cellvalue);
+            }
+        },
+        { label: "Tên bệnh nhân", name: "xm", width: 80, align: "left" },
+        { label: "Số bệnh án", name: "blh", width: 80, align: "left" },
+        { label: (from == "mz" ? "Số ngoại trú" : "Mã nhập viện"), name: "mzzyh", width: (from == "mz" ? 100 : 70), align: "left" },
+        { label: "Mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
+        { label: "Lượng điều trị mỗi lần", name: "zll", width: 75, align: "left" },
+        { label: "Đơn vị", name: "dw", width: 40, align: "left" },
+        { label: "Số lượng mỗi lần", name: "sl", width: 60, align: "left" },
+        { label: (from == "mz" ? "Tổng số lần" : "Số lần"), name: "zcs", width: 45, align: "left" },
+        { label: "Số lần đã thực hiện", name: "yzxcs", width: 40, align: "left" },
+        { label: "còn lạiSố lần", name: "sycs", width: 55, align: "left" },
+        {
+            label: "Ngày điều trị cuối cùng", name: "LastEexcutionTime", width: 100, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+        },
+            {
+                label: "Ngàythu phí", name: "sfrq", width: 100, align: "left", hidden: from == "mz" ? undefined : true,
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            },
+        {
+            label: "Thời gian thao tác cuối cùng", name: "zhxtzxsj", width: 120, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+        },
+        {
+            label: "Ngày nhập", name: "CreateTime", width: 100, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+        },
+        { label: "Ghi chú", name: "bz", width: 150, align: "left" },
+        ],
+        multiselect: true,
+        pager: "#gridPager",
+        sortname: 'CreateTime desc',
+        viewrecords: true,
+        gridComplete: function () {
+            var ids = $("#gridList").getDataIDs();
+            for (i = 0; i < ids.length; i++) {
+                var rowData = $("#gridList").getRowData(ids[i]);
+                if (rowData && rowData.zxzt) {
+                    if (rowData.zxzt == "Đang thực hiện") {
+                        $("#" + ids[i]).find("td").addClass('info');
+                    }
+                    if (rowData.zxzt == "Đã hoàn thành") {
+                        $("#" + ids[i]).find("td").addClass('complete');
+                    }
+                    if (rowData.zxzt == "Đã dừng") {
+                        $("#" + ids[i]).find("td").addClass('danger');
+                    }
+                }
+            }
+        },
+        ondblClickRow: function (rowid) {
+            var rowObj = $gridList.jqGrid('getRowData', rowid);
+            EditRow(rowObj);
+        }
+    };
+    function gridList() {
+        $gridList.dataGrid(gridOptins);
+        $('.btn_search,.btn_searchmz').click(function () {
+            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
+                $.modalAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc", 'warning');
+                return;
+            }
+            $gridList.jqGrid('setGridParam',
+                {
+                    postData: getSearchPostData(),
+                    page: 1,
+                    url: "/HospitalizationManage/BookkeepInHos/AccountingPlanQuery"
+                }).trigger('reloadGrid');
+        });
+    }
+    //Truy vấnđiều kiện
+    function getSearchPostData() {
+        var keyword = $("#keyword").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var yzxz = $("#yzxz").val();
+        var zxzt = $("#zxzt").val();
+        var zsftx = $('#zsftx').val();
+        var sycstx = $('#sycstx').val();
+        var sfzt = $("#sfzt").val();
+        return { keyword: keyword, kssj: kssj, jssj: jssj, yzxz: yzxz, zxzt: zxzt, sfzt: sfzt, from: from, zsftx: zsftx, sycstx: sycstx };
+    };
+
+    //终止
+    function newtouch_event_f7() {
+        var jzjhmxIdStr = "";
+        var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
+        $.each(allData, function () {
+            if (this.jzjhmxId && this.zxzt !== 'Đã hoàn thành' && this.zxzt !== 'Đã dừng') {
+                jzjhmxIdStr += this.jzjhmxId + ',';
+            }
+        });
+        if (!jzjhmxIdStr) {
+            if (allData.length > 0) {
+                $.modalAlert("Vui lòng chọn trước bản ghi có thể dừng", 'warning');
+            }
+            else {
+                $.modalAlert("Vui lòng chọn trước bản ghi cần dừng", 'warning');
+            }
+            return;
+        }
+        StopPlan(jzjhmxIdStr);
+    }
+
+    function StopPlan(jzjhmxIdStr) {
+        //Lấy dòng đã chọnId
+        $.najax({
+            type: "POST",
+            url: "/HospitalizationManage/BookkeepInHos/StopAccountingPlan",
+            data: { jzjhmxIdStr: jzjhmxIdStr, from: from },
+            dataType: "json",
+            success: function (ajaxresp) {
+                $.modalAlert(ajaxresp.message, 'success');
+                //Nạp lại
+                $('.btn_search').trigger('click');
+            },
+        });
+    }
+
+    //Xóa thao tác
+    function newtouch_event_f4() {
+        $('#gridList').jqGrid("resetSelection");
+        $('#gridList').jqGrid("clearGridData");
+        $('#kssj').val('@DateTime.Now.ToString("yyyy-MM-01")');
+        $('#jssj').val('@DateTime.Now.ToString("yyyy-MM-dd")');
+    }
+
+    function EditRow(rowObj) {
+        if (rowObj && rowObj.yzxcs > 0) {
+            $.modalOpen({
+                id: "Details",
+                title: "Xem chi tiết số lần thực hiện",
+                url: "/HospitalizationManage/BookkeepInHos/ViewPlanDetail?keyValue=" + rowObj.jzjhmxId + "&from=" + from + "&zxzt=" + rowObj.zxzt,
+                width: "1200px",
+                height: "600px",
+                btn: null
+            });
+        }
+    }
+
+    //XuấtExcel Cột
+    var exportCols = null;
+    function newtouch_event_f9() {
+        exportCols = new Array();
+        var colsChooseSourceArr = new Array();
+        $.each(gridOptins.colModel, function () {
+            if (!(this.hidden === true)) {
+                exportCols.push({ Heading: this.label, Name: this.name, Width: this.width });
+                colsChooseSourceArr.push({ Heading: this.label, Name: this.name });
+            }
+        });
+        var url = "/HospitalizationManage/BookkeepInHos/ExcelExportChooseColumns";
+        var cols = JSON.stringify(colsChooseSourceArr);
+        cols = encodeURIComponent(cols);
+        url += "?cols=" + cols;
+        $.modalOpen({
+            id: "ExcelExportChooseColumns",
+            title: "XuấtExcel",
+            url: url,
+            width: "600px",
+            height: "350px",
+            callBack: function (iframeId) {
+                //Kết quả
+                var restArr = top.frames[iframeId].GetChoosedCols();
+                if (!!!restArr || !!!restArr.length || restArr.length == 0) {
+                    $.modalAlert("Vui lòng chọn cột xuất", 'error');
+                    return false;
+                }
+                var isContainFilter = top.frames[iframeId].GetIsContainFilter();
+                //Đóng cửa sổ chọn
+                $.modalClose("ExcelExportChooseColumns");
+                //
+                exportCols = $.jsonWhere(exportCols, function (v) {
+                    var matched = false;
+                    for (var iIndex = 0; iIndex < restArr.length; iIndex++) {
+                        if (restArr[iIndex] == v.Name) {
+                            matched = true;
+                        }
+                    }
+                    return matched;
+                });
+                //Xuất
+                Export(isContainFilter);
+            }
+        });
+    }
+
+    function Export(isContainFilter) {
+        var url = "/HospitalizationManage/BookkeepInHos/AccountingPlanExportExcel?r=" + Math.random();
+        url += "&keyword=" + $('#keyword').val();
+        url += "&kssj=" + $('#kssj').val();
+        url += "&jssj=" + $('#jssj').val();
+        url += "&yzxz=" + $('#yzxz').val();
+        url += "&zxzt=" + $('#zxzt').val();
+        url += "&sfzt=" + $('#sfzt').val();
+        url += "&zsftx=" + $('#zsftx').val();
+        url += "&sycstx=" + $('#sycstx').val();
+        url += "&from=" + from;
+        url += "&isContainFilter=" + isContainFilter;
+        url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn chiều rộng cột
+        var cols = JSON.stringify(exportCols);
+        top.$.cookie('ExportExcelCols', cols, { path: "/" });
+        //url += "&cols=" + encodeURIComponent(cols);
+
+        window.open(url);
+    }
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        //加của效果
+        $(".add").click(function () {
+            var n = $(this).prev().val();
+            if (isNaN(parseInt(n))) {
+                num = 1;    //addtừ1Bắt đầu
+            } else {
+                var num = parseInt(n) + 1;
+            }
+            $(this).prev().val(num);
+        });
+        //减của效果
+        $(".jian").click(function () {
+            var n = $(this).next().val();
+            if (isNaN(parseInt(n)) || parseInt(n) < 1) {
+                num = 0;
+            } else {
+                var num = parseInt(n) - 1;
+            }
+            $(this).next().val(num);
+        });
+    });
+    var patter_num = /^[0-9]*$/;
+    $('#zsftx,#sycstx').keyup(function () {
+        var fob = $(this).val();
+        if (!patter_num.test(fob)) {
+            $.modalAlert("Giá trị nhập phải không nhỏ hơn0Số nguyên", 'warning');
+            $(this).val("");
+            $(this).focus();
+            return;
+        };
+    });
+</script>

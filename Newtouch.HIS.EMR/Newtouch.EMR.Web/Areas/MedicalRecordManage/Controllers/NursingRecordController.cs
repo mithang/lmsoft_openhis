@@ -1,17 +1,20 @@
-﻿using Newtouch.EMR.Domain.Entity;
+using Newtouch.EMR.Domain.Entity;
 
-using System.Web.Mvc;
-using Newtouch.Tools;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Base.Domain;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Framework.Web.Controllers;
 using System.Collections.Generic;
-using Newtouch.Common;
+
 using Newtouch.EMR.Domain.IRepository;
 using System.Linq;
 using System;
-using FrameworkBase.MultiOrg.Domain.IRepository;
+
 using Newtouch.EMR.Domain.IDomainServices;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+
 using Newtouch.Domain.ValueObjects;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
@@ -20,53 +23,62 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
     /// 日 期：2023-04-24 15:46
     /// 描 述：护理记录录入
     /// </summary>
+    [Area("MedicalRecordManage")]
     public class NursingRecordController : OrgControllerBase
     {
         private readonly IMedicalRecordDmnService _medicalRecordDmnService;
         private readonly INursingRecordDmnService _nursingRecordDmnService;
         private readonly INursingRecordWZDmnService _nursingRecordWZDmnService;
         private readonly INursingRecordSSDmnService _nursingRecordSSDmnService;
+
+        public NursingRecordController(IMedicalRecordDmnService medicalRecordDmnService, INursingRecordDmnService nursingRecordDmnService, INursingRecordWZDmnService nursingRecordWZDmnService, INursingRecordSSDmnService nursingRecordSSDmnService)
+        {
+            this._medicalRecordDmnService = medicalRecordDmnService;
+            this._nursingRecordDmnService = nursingRecordDmnService;
+            this._nursingRecordWZDmnService = nursingRecordWZDmnService;
+            this._nursingRecordSSDmnService = nursingRecordSSDmnService;
+        }
         /// <summary>
         /// 护理查询
         /// </summary>
         /// <returns></returns>
-        public override ActionResult Index()
+        public override IActionResult Index()
         {
             ViewBag.OrgId = this.OrganizeId;
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
+            ViewBag.ReportServerHOST = EmrConfig.GetAppConfigValue("ReportServer.HOST");
             return View();
         }
-        public override ActionResult Form()
+        public override IActionResult Form()
         {
             ViewBag.hsqm = UserIdentity.UserName;
             return View();
         }
-        public  ActionResult WZForm()
+        public  IActionResult WZForm()
         {
             ViewBag.hsqm = UserIdentity.UserName;
             return View();
         }
-        public ActionResult SSForm()
+        public IActionResult SSForm()
         {
             ViewBag.hsqm = UserIdentity.UserName;
             return View();
         }
-        public ActionResult OpenOutForm()
+        public IActionResult OpenOutForm()
         {
             ViewBag.hsqm = UserIdentity.UserName;
             return View();
         }
-        public ActionResult OpenPutForm()
+        public IActionResult OpenPutForm()
         {
             ViewBag.hsqm = UserIdentity.UserName;
             return View();
         }
-        public ActionResult GetPatWard(string zyh)
+        public IActionResult GetPatWard(string zyh)
         {
             var wardTree = _nursingRecordDmnService.GetPatList(OrganizeId, zyh);
             return Content(wardTree.ToJson());
         }
-        public ActionResult SubmitSrl(string srlstr,string zyh,string rq,string sj,string bllx)
+        public IActionResult SubmitSrl(string srlstr,string zyh,string rq,string sj,string bllx)
         {
             var orgId = OrganizeId;
             _nursingRecordDmnService.DeleteSrl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
@@ -74,9 +86,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 _nursingRecordDmnService.SubmitSrl(srlstr.Split(',')[i].Split('|')[0], srlstr.Split(',')[i].Split('|')[1], srlstr.Split(',')[i].Split('|')[2], srlstr.Split(',')[i].Split('|')[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
             }
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
-        public ActionResult SubmitScl(string srlstr, string zyh, string rq, string sj, string bllx)
+        public IActionResult SubmitScl(string srlstr, string zyh, string rq, string sj, string bllx)
         {
             var orgId = OrganizeId;
             _nursingRecordDmnService.DeleteScl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
@@ -84,18 +96,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 _nursingRecordDmnService.SubmitScl(srlstr.Split(',')[i].Split('|')[0], srlstr.Split(',')[i].Split('|')[1], srlstr.Split(',')[i].Split('|')[2], srlstr.Split(',')[i].Split('|')[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
             }
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
         /// <summary>
         /// 获取病区人员执行树
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetPatWardTree(string zyzt, string keyword)
+        public IActionResult GetPatWardTree(string zyzt, string keyword)
         {
 
             var wardTree = _nursingRecordDmnService.GetPatTree(OrganizeId, zyzt, keyword);
             var wardonly = wardTree.GroupBy(p => new { p.bqCode, p.bqmc }).Select(p => new { p.Key.bqCode, p.Key.bqmc });
-
 
             var treeList = new List<TreeViewModel>();
             foreach (var item in wardonly)
@@ -146,12 +157,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         [HttpPost]
         [HandlerAjaxOnly]
         //[ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(bl_hljl_ybEntity entity, string keyValue)
+        public IActionResult SubmitForm(bl_hljl_ybEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _nursingRecordDmnService.SubmitForm(entity, keyValue);
-            return Success("保存成功。");
+            return Success("Lưu thành công。");
         }
         /// <summary>
         /// 提交保存护理录入
@@ -162,12 +173,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         [HttpPost]
         [HandlerAjaxOnly]
         //[ValidateAntiForgeryToken]
-        public ActionResult SubmitFormWZ(bl_hljl_wzEntity entity, string keyValue)
+        public IActionResult SubmitFormWZ(bl_hljl_wzEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _nursingRecordWZDmnService.SubmitForm(entity, keyValue);
-            return Success("保存成功。");
+            return Success("Lưu thành công。");
         }
         /// <summary>
         /// 提交保存护理录入
@@ -178,12 +189,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         [HttpPost]
         [HandlerAjaxOnly]
         //[ValidateAntiForgeryToken]
-        public ActionResult SubmitFormSS(bl_hljl_ssEntity entity, string keyValue)
+        public IActionResult SubmitFormSS(bl_hljl_ssEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;
             entity.zt = "1";
             _nursingRecordSSDmnService.SubmitForm(entity, keyValue);
-            return Success("保存成功。");
+            return Success("Lưu thành công。");
         }
         /// <summary>
         /// 分页查询
@@ -193,7 +204,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="jssj"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult GetGridJson(Pagination pagination, DateTime? kssj, DateTime? jssj, string zyh, string wardCode, string isShowDelete,string hllx)
+        public IActionResult GetGridJson(Pagination pagination, DateTime? kssj, DateTime? jssj, string zyh, string wardCode, string isShowDelete,string hllx)
         {
             if (hllx == "1")
             {
@@ -211,17 +222,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 return Content(rows.ToJson());
             }
         }
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var data = _nursingRecordDmnService.FindEntity(keyValue);
             return Content(data.ToJson());
         }
-        public ActionResult GetFormJsonWZ(string keyValue)
+        public IActionResult GetFormJsonWZ(string keyValue)
         {
             var data = _nursingRecordWZDmnService.FindEntity(keyValue);
             return Content(data.ToJson());
         }
-        public ActionResult GetFormJsonSS(string keyValue)
+        public IActionResult GetFormJsonSS(string keyValue)
         {
             var data = _nursingRecordSSDmnService.FindEntity(keyValue);
             return Content(data.ToJson());
@@ -231,22 +242,22 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             _nursingRecordDmnService.DeleteForm(keyValue);
-            return Success("作废成功。");
+            return Success("Hủy hiệu lực thành công。");
         }
-        public ActionResult GetSrlScl(string zyh, string rq, string sj, string bllx)
+        public IActionResult GetSrlScl(string zyh, string rq, string sj, string bllx)
         {
             var wardTree = _nursingRecordDmnService.GetSrlScl(OrganizeId, zyh, rq, sj, bllx);
             return Content(wardTree.ToJson());
         }
-        public ActionResult GetScl(string zyh, string rq, string sj, string bllx)
+        public IActionResult GetScl(string zyh, string rq, string sj, string bllx)
         {
             var wardTree = _nursingRecordDmnService.GetScl(OrganizeId, zyh, rq, sj, bllx);
             return Content(wardTree.ToJson());
         }
-        public ActionResult Getzyhrq(string zyh)
+        public IActionResult Getzyhrq(string zyh)
         {
             var patInfo = _nursingRecordDmnService.GetInfoByZyh(zyh, this.OrganizeId);
             string ryrq = "";
@@ -256,7 +267,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             return Content(ryrq);
         }
-        public ActionResult Getzyhcqrq(string zyh)
+        public IActionResult Getzyhcqrq(string zyh)
         {
             var patInfo = _nursingRecordDmnService.GetInfoByZyh(zyh, this.OrganizeId);
             string cqrq = "";

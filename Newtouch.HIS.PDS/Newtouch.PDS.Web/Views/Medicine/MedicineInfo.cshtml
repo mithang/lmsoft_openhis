@@ -1,0 +1,246 @@
+@using Newtouch.Infrastructure;
+@using Newtouch.HIS.Web.Core.Extensions;
+@{
+    ViewBag.Title = "MedicineInfo";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .trSelected {
+        background-color: #87CEEB !important;
+    }
+
+    #btn_search {
+        height: 45px;
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Thông tin lọc thuốc
+        </div>
+        <div>
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Thuốc：</td>
+                    <td class="formValue">
+                        <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
+                    </td>
+                    <td class="formTitle">Loại thuốc：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="yplb">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Thuộc tính thuốc：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="ypsx">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formTitle" rowspan="2">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Dạng bào chế thuốc：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="ypjx" name="ypjx">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Trạng thái sử dụng：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        @Html.DropDownList("syzt", BenBuMenZT.Control.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <td class="formTitle">Trạng thái thuốc：</td>
+                    <td class="formValue formDdlSelectorTd">
+                        @Html.DropDownList("ypzt", EnumYPZT.Enabled.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel" style="margin-top:10px">
+        <table id="gridList"></table>
+        <div id="gridPager" rel="form1"></div>
+    </div>
+    <div style="float:left;margin:10px 30px 12px;">
+        <span style="background-color:#EECBAD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Đã kiểm soát
+    </div>
+</form>
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+{
+    ShowKeyList = new int[] { 6, 7, 9 },
+    F6Text = "Đồng bộ",
+    F7Text = "Điều khiển",
+    F9Text = "Hủy kiểm soát"
+})
+<script>
+    var $gridList = $("#gridList");
+    var par = new Object();
+    $(function () {
+        initialddlYPLBList();
+        initialddlJXList();
+        iniddlTSSXList();
+        gridList();
+    });
+
+    //回车事件绑定
+    $(document).keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn_search").trigger("click");
+        }
+    });
+
+    function gridList() {
+        $gridList.dataGrid({
+            url: "/Medicine/GetypGridJson",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - 235,
+            colModel: [
+                { label: "Mã thuốc", name: "ypCode", width: 70, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'Loại thuốc', name: 'yplb', width: 50, align: 'left' },
+                { label: 'Số lượng tồn kho', name: 'klsl', width: 70, align: 'left' },
+                //{ label: '药品属性', name: 'ypxzmc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'Giá bán buôn', name: 'pfj', width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'deptdw', width: 50, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'Trạng thái sử dụng', name: 'syzt', width: 50, align: 'left' },
+                { label: 'Vị trí kho', name: 'Ypkw', width: 55, align: 'left' },
+                { label: 'Giới hạn trên vị trí kho', name: 'Kcsx', width: 55, align: 'left' },
+                { label: 'Giới hạn dưới vị trí kho', name: 'Kcxx', width: 55, align: 'left' },
+                { label: 'Điểm nhập hàng', name: 'Jhd', width: 55, align: 'left' },
+                { label: 'Lượng kế hoạch', name: 'Jhl', width: 55, align: 'left' },
+                { label: 'Cờ ngừng sử dụng', name: 'ypzt', width: 65, align: 'left' },
+                { label: "Khóa chính", name: "ypId", hidden: true, key: true }
+                //{ label: 'syzt', name: 'syzt', hidden: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'ypmc asc',
+            viewrecords: true,
+            gridComplete: function () {
+                afterCompleteFunction();
+            }
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                url: "/Medicine/GetypGridJson?r=" + Math.random(),
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+        });
+    }
+
+    //控制的药品显示红色
+    function afterCompleteFunction() {
+        var ids = $("#gridList").getDataIDs();
+        for (i = 0; i < ids.length; i++) {
+            var rowData = $("#gridList").getRowData(ids[i]);
+            if (rowData.syzt === "控制") {
+                $("#" + ids[i]).find("td").css("background-color", "#EECBAD");
+            }
+        }
+    }
+
+    //同步
+    function newtouch_event_f6() {
+        $.modalOpen({
+            id: "Form",
+            title: "Chọn thuốc đồng bộ",
+            url: "/Medicine/SyncDeptDrug",
+            width: "950px",
+            height: "600px",
+            btn: null,
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
+                });
+            }
+        });
+    }
+
+    //控制
+    function newtouch_event_f7() {
+        var id = $("#gridList").jqGrid("getGridParam", "selrow");
+        if (id) {
+            var syzt = $("#gridList").jqGridRowValue().syzt;
+            if (syzt === "正常") {
+                ControlMedicine(0);
+            } else {
+                $.modalAlert("Hiện tại đang ở trạng thái kiểm soát！", 'warning');
+                return;
+            }
+        } else {
+            $.modalAlert("Vui lòng chọn thông tin！", 'warning');
+        }
+    }
+
+    //取消控制
+    function newtouch_event_f9() {
+        var id = $("#gridList").jqGrid("getGridParam", "selrow");
+        if (id) {
+            var syzt = $("#gridList").jqGridRowValue().syzt;
+            if (syzt === "控制") {
+                ControlMedicine(1);
+            } else {
+                $.modalAlert("Hiện tại đang ở trạng thái bình thường！", 'warning');
+                return;
+            }
+        } else {
+            $.modalAlert("Vui lòng chọn thông tin！", 'warning');
+        }
+    }
+
+    function ControlMedicine(type) {
+        if ($("#gridList").jqGrid("getGridParam", "selrow")) {
+            $.najax({
+                type: "POST",
+                url: "/Medicine/ControlMedicine",
+                data: { "ypCode": $("#gridList").jqGridRowValue().ypCode, "type": type },
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp.state === 'success') {
+                        $.currentWindow().$("#gridList").resetSelection();
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                    $.modalMsg('Thao tác thành công', 'success', 1000);
+                }
+            });
+        } else {
+            $.modalAlert("Vui lòng chọn một dòng dữ liệu！", 'error');
+        }
+        return;
+    }
+
+    //药品类别
+    function initialddlYPLBList() {
+        $("#yplb").bindSelect({
+            url: "/PharmacyDrugStorage/GetMedicineCategoryList"
+        });
+    }
+
+    //药品剂型
+    function initialddlJXList() {
+        $("#ypjx").bindSelect({
+            url: "/PharmacyDrugStorage/GetMedicineFormulationList",
+            id: "jxCode",
+            text: "jxmc"
+        });
+    }
+
+    //药品属性
+    function iniddlTSSXList() {
+        $("#ypsx").bindSelect({
+            url: "/Medicine/GetMedicineTSSXList",
+            id: "Code",
+            text: "Name"
+        });
+    }
+</script>

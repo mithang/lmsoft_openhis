@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "护士站患者中心-住院记账";
+    ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Nhập việnGhi sổ";
 }
 
 <div id="linkzyjz" role="tabpanel" class="tab-pane" style="width:100%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
@@ -15,7 +15,7 @@
      var iframeinit = document.getElementById('iframezyjz');
      iframeinit.onload = function () {
          $('#iframezyjz').contents().find('#zy_btnsyy').hide();
-         // 获取iframe元素
+         // 获取iframe素
          var iframe = document.getElementById('iframezyjz');
          // 访问iframe中的window对象
          var iframeWindow = iframe.contentWindow;
@@ -57,7 +57,7 @@
                  if (item.value && item.Ex1 == "c") {
                      debugger;
                      zyjzzyh = item.value;
-                     // 获取iframe元素
+                     // 获取iframe素
                      var iframe = document.getElementById('iframezyjz');
                      // 访问iframe中的window对象
                      var iframeWindow = iframe.contentWindow;

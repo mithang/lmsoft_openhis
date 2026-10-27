@@ -1,0 +1,54 @@
+
+@{
+    ViewBag.Title = "ViewChargeMoneyDetail";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+<script lang="javascript">
+    var year = $.request("year");
+    var siteId = $.request("siteId");
+    var month = $.request("month");
+    var dlcode = $.request("dlcode");
+    var type = $.request("type");
+    var $gridList = $("#gridList");
+
+    $(function () {
+        gridList();
+    });
+
+    //get data
+    function gridList() {
+        $gridList.dataGrid({
+            url: "/SiteManage/SiteStatistics/GetMoneyDetailGridJson",
+            height: window.$(window).height() - 45,
+            postData: getSearchData(),
+            colModel: [
+                { label: "Khóa chính", name: "sfxmCode", hidden: true, key: true },
+                { label: 'Bệnh nhân Tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Tên hạng mục thu phí', name: 'sfxmmc', width: 180, align: 'left' },
+                {
+                    label: 'Đơn giá', name: 'dj', width: 90, align: 'left',
+                    formatter: 'currency', formatoptions: { decimalPlaces: 2 }
+                },
+                {
+                    label: 'Số lượng', name: 'sl', width: 90, align: 'left',
+                    formatter: 'currency', formatoptions: { decimalPlaces: 2 }
+                },
+                {
+                    label: 'Tổng số tiền quyết toán', name: 'zje', width: 120, align: 'left',
+                    formatter: 'currency', formatoptions: { decimalPlaces: 2 }
+                }
+            ],
+            viewrecords: true,
+            unwritten: false
+        });
+    }
+
+    function getSearchData() {
+        return { year: year, siteId: siteId, month: month, dlcode: dlcode, type: type };
+    }
+</script>

@@ -1,23 +1,30 @@
-﻿using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.CIS.Repository;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using Newtouch.Application.Interface;
 using System.Collections.Generic;
 using System;
 using Newtouch.Domain.ViewModels;
-using Newtouch.Core.Common;
+
 
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
     /// 预约管理
     /// </summary>
+    [Area("SystemManage")]
     public class BespeakRegisterManageController : OrgControllerBase
     {
 
@@ -29,11 +36,22 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly IMzyyghDmnService _mzyyghDmnService;
         private readonly IMzyyghRepo _mzyyghRepo;
 
+        public BespeakRegisterManageController(ISysConfigRepo sysConfigRepo, ISysBespeakRegisterDmnService sysBespeakRegisterDmnService, ISysBespeakRegisterRepo sysBespeakRegisterRepo, ISysUserDmnService sysUserDmnService, IBespeakRegisterApp bespeakRegisterApp, IMzyyghDmnService mzyyghDmnService, IMzyyghRepo mzyyghRepo)
+        {
+            this._sysConfigRepo = sysConfigRepo;
+            this._sysBespeakRegisterDmnService = sysBespeakRegisterDmnService;
+            this._sysBespeakRegisterRepo = sysBespeakRegisterRepo;
+            this._sysUserDmnService = sysUserDmnService;
+            this._bespeakRegisterApp = bespeakRegisterApp;
+            this._mzyyghDmnService = mzyyghDmnService;
+            this._mzyyghRepo = mzyyghRepo;
+        }
+
         /// <summary>
         /// 预约挂号管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult BespeakRegister()
+        public IActionResult BespeakRegister()
         {
             ViewBag.OrganizeId = OrganizeId;
             ViewBag.defaultBespeakRegInfo = _bespeakRegisterApp.GetRegisterDateByWeek(DateTime.Now);
@@ -46,7 +64,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetTreeGridJson(Pagination pagination, string keyword)
+        public IActionResult GetTreeGridJson(Pagination pagination, string keyword)
         {
             var data = new
             {
@@ -59,12 +77,12 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取挂号排班
+        /// 获取挂号Xếp lịch
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
         /// <returns></returns>
-        public ActionResult GetArrangedRegistersGridJson(Pagination pagination, string blh)
+        public IActionResult GetArrangedRegistersGridJson(Pagination pagination, string blh)
         {
             if (string.IsNullOrWhiteSpace(blh)) return Content("");
             var data = new
@@ -78,12 +96,12 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取挂号排班日期
+        /// 获取挂号Xếp lịch日期
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
         /// <returns></returns>
-        public ActionResult GetArrangedRegDateGridJson(string deptCode)
+        public IActionResult GetArrangedRegDateGridJson(string deptCode)
         {
             var tmpDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
             var regData = _sysBespeakRegisterRepo.IQueryable(p => p.departmentCode == deptCode && p.OrganizeId == OrganizeId && p.regDate >= tmpDate);
@@ -99,12 +117,12 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取时段
+        /// 获取Khung giờ
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
         /// <returns></returns>
-        public ActionResult GetRegTimes(string deptCode, string regDate, string gh)
+        public IActionResult GetRegTimes(string deptCode, string regDate, string gh)
         {
             if (string.IsNullOrWhiteSpace(deptCode)) return Content(null);
             if (string.IsNullOrWhiteSpace(regDate)) return Content(null);
@@ -119,7 +137,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
         /// <returns></returns>
-        public ActionResult GetDoctorsByDept(string deptCode, DateTime? regDate)
+        public IActionResult GetDoctorsByDept(string deptCode, DateTime? regDate)
         {
             var result = regDate == null ? _sysBespeakRegisterDmnService.SelectSysBespeakregister(deptCode, OrganizeId) : _sysBespeakRegisterDmnService.SelectSysBespeakregister(deptCode, (DateTime)regDate, OrganizeId);
             return Content(result.ToJson());
@@ -130,10 +148,10 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(List<SysBespeakRegisterEntity> regData)
+        public IActionResult SubmitForm(List<SysBespeakRegisterEntity> regData)
         {
             var result = _bespeakRegisterApp.SubmitForm(regData);
-            return string.IsNullOrWhiteSpace(result) ? Success("操作成功。") : Error(result);
+            return string.IsNullOrWhiteSpace(result) ? Success("Thao tác thành công.") : Error(result);
         }
 
         /// <summary>
@@ -141,14 +159,14 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             var entity = _sysBespeakRegisterRepo.FindEntity(p => p.Id == keyValue);
             if (entity != null)
             {
-                return _sysBespeakRegisterRepo.Delete(entity) > 0 ? Success("删除成功。") : Error("删除失败");
+                return _sysBespeakRegisterRepo.Delete(entity) > 0 ? Success("Xóa thành công.") : Error("Xóathất bại");
             }
-            return Error("请选择要删除的信息。");
+            return Error("Vui lòng chọn thông tin cần xóa.");
         }
 
         /// <summary>
@@ -156,7 +174,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
-        public ActionResult GetStaff(string deptCode)
+        public IActionResult GetStaff(string deptCode)
         {
             if (string.IsNullOrWhiteSpace(deptCode)) return Content("");
             var data = _sysUserDmnService.GetStaffListByOrg(OrganizeId);
@@ -170,7 +188,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="rowCount"></param>
         /// <returns></returns>
-        public ActionResult GetGuid(int? rowCount)
+        public IActionResult GetGuid(int? rowCount)
         {
             var result = new List<string>();
             if (rowCount == null) return Content("");
@@ -241,7 +259,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <param name="regDate"></param>
         /// <param name="gh"></param>
         /// <returns></returns>
-        public ActionResult GetBespeakMaxCount(string deptCode, DateTime regDate, string regTime, string gh)
+        public IActionResult GetBespeakMaxCount(string deptCode, DateTime regDate, string regTime, string gh)
         {
             return string.IsNullOrWhiteSpace(deptCode) ? Content(null) : Content(regDate <= Convert.ToDateTime("1970-01-01") ? null : _bespeakRegisterApp.GetBespeakMaxCount(deptCode, regDate, regTime, gh).ToJson());
         }
@@ -255,7 +273,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>
         /// <returns></returns>
-        public ActionResult SaveYy(string brId, string blh, int? zjlx, string zjh)
+        public IActionResult SaveYy(string brId, string blh, int? zjlx, string zjh)
         {
             var result = _bespeakRegisterApp.SaveYY("", brId, blh, zjlx, zjh);
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -266,22 +284,22 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="yyId"></param>
         /// <returns></returns>
-        public ActionResult CancelYy(string yyId)
+        public IActionResult CancelYy(string yyId)
         {
-            return _mzyyghRepo.DeleteById(yyId) > 0 ? Success() : Error("删除失败");
+            return _mzyyghRepo.DeleteById(yyId) > 0 ? Success() : Error("Xóathất bại");
         }
 
         /// <summary>
-        /// 获取科室或医生预约排班
+        /// 获取科室或医生预约Xếp lịch
         /// </summary>
         /// <param name="year">预约年</param>
         /// <param name="month">预约月</param>
         /// <param name="deptCode">挂号科室</param>
         /// <param name="ysgh">专家工号</param>
         /// <returns></returns>
-        public ActionResult GetAllBespeakRegisterByMonth(int year, int month, string deptCode, string ysgh)
+        public IActionResult GetAllBespeakRegisterByMonth(int year, int month, string deptCode, string ysgh)
         {
-            if (month <= 0) throw new Exception("传入月份不合法,请传入自然数");
+            if (month <= 0) throw new Exception("Tháng truyền vào không hợp lệ, vui lòng truyền số tự nhiên");
             var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//门诊住院标志 1：普通门诊  2：急诊   3：专家门诊
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
@@ -290,7 +308,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 生成预约排班日历
+        /// 生成预约Xếp lịch日历
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

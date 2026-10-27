@@ -1,4 +1,4 @@
-﻿@model IList<string>
+@model IList<string>
 @{
     //ctlName、height、showCheck
     var ctlName = "wardTree";
@@ -18,8 +18,8 @@
     }
 }
 <div id="@(ctlName)"></div>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <script type="text/javascript">
     $(function () {
         $("#@(ctlName)").treeview({

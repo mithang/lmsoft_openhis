@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Newtouch.MRQC.API.Global" Language="C#" %>

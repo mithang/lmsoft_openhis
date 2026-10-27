@@ -1,4 +1,4 @@
-﻿@model Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@model Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 @{
     Array.Sort(Model.ShowKeyList);
 
@@ -16,7 +16,7 @@
                 , (Model.GetIndexHidden(i) ? "display:none;" : "")
                 , Model.GetIndexExtInlineStyle(i) ?? ""
                 ))
-            @Html.Raw(string.Format("F{0}：{1}", i, Model.GetIndexText(i)))
+            @Html.Raw(string.Format("F{0}:{1}", i, Model.GetIndexText(i)))
             @Html.Raw("</a>")
         }
     }

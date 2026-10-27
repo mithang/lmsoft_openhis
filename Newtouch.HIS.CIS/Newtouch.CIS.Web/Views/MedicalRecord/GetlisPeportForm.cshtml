@@ -1,6 +1,6 @@
-﻿
+
 @{
-	ViewBag.Title = "检验报告异常值";
+	ViewBag.Title = "Xét nghiệmBáo cáoGiá trị bất thường";
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,19 +9,19 @@
 		<div>
 			<table class="form">
 				<tr>
-                    <th class="formTitle">申请单号：</th>
+                    <th class="formTitle">Số phiếu:</th>
 					<td class="formValue">
-						<input id="sqdhtx" type="text" class="form-control" placeholder="申请单号" />
+						<input id="sqdhtx" type="text" class="form-control" placeholder="Số phiếu" />
 					</td>
-					<th class="formTitle">组套名称：</th>
+					<th class="formTitle">Tên bộ mẫu:</th>
 					<td class="formValue">
-						<input id="ztmc" type="text" class="form-control" placeholder="组套名称" />
+						<input id="ztmc" type="text" class="form-control" placeholder="Tên bộ mẫu" />
 					</td>
 					<td class="formValue">
 						&nbsp;&nbsp;
-						<input id="ycbz" type="checkbox" checked placeholder="是否只查询异常" /><label for="ycbz">是否只查询异常</label>
+						<input id="ycbz" type="checkbox" checked placeholder="Có hay khôngChỉ tra cứu bất thường" /><label for="ycbz">Có hay khôngChỉ tra cứu bất thường</label>
 						&nbsp;&nbsp;
-						<input type="button" id="btn_search" class="btn btn-primary" value=" 查 询 " />
+						<input type="button" id="btn_search" class="btn btn-primary" value=" Tra cứu " />
 					</td>
 				</tr>
 			</table>
@@ -68,14 +68,14 @@
 			colModel: [
 				{ label: 'id', name: 'Id', align: 'center', key: true, hidden: true },
 				{ label: 'sqdlx', name: 'sqdlx', align: 'center', hidden: true },
-				{ label: '申请单号', name: 'sqdh', align: 'center', width: '130px' },
-				{ label: '组套名称', name: 'ztmc', align: 'center', width: '200px' },
-				{ label: '项目名称', name: 'xmzwmc', align: 'left', width: '130px' },
-				{ label: '结果值', name: 'jyjg', align: 'center', width: '40px' },
-				{ label: '结果异常', name: 'gdbj', align: 'center', width: '50px' },
-				{ label: '参考值底限', name: 'ckzdx', align: 'center', width: '60px' },
-				{ label: '参考值高限', name: 'ckzgx', align: 'center', width: '60px' },
-				{ label: '参考值范围', name: 'ckz', align: 'center', width: '80px' }
+				{ label: 'Số phiếu', name: 'sqdh', align: 'center', width: '130px' },
+				{ label: 'Tên bộ mẫu', name: 'ztmc', align: 'center', width: '200px' },
+				{ label: 'Tên mục', name: 'xmzwmc', align: 'left', width: '130px' },
+				{ label: 'Giá trị kết quả', name: 'jyjg', align: 'center', width: '40px' },
+				{ label: 'Kết quảBất thường', name: 'gdbj', align: 'center', width: '50px' },
+				{ label: 'Giới hạn dưới tham chiếu', name: 'ckzdx', align: 'center', width: '60px' },
+				{ label: 'Giới hạn trên tham chiếu', name: 'ckzgx', align: 'center', width: '60px' },
+				{ label: 'Giá trị tham chiếuPhạm vi', name: 'ckz', align: 'center', width: '80px' }
 			],
             pager: "#gridPager",
             sortname: 'sqdh desc',
@@ -85,7 +85,7 @@
 				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //获取数据总条
 				if (rowNum==0) {
 					if ($("#norecords").html() == null) {
-						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>无异常值项目!</div>");
+						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>Không có mục giá trị bất thường!</div>");
 					}
 					$("#norecords").show();//显示提示信息
 				} else {
@@ -115,17 +115,17 @@
             if (ztmcjl == rowData[i].ztmc) {
                 outstr += "";
             } else {
-                outstr += "组套[" + rowData[i].ztmc + "]";
+                outstr += "Bộ mẫu[" + rowData[i].ztmc + "]";
             }
             
 			if (rowData[i].sqdlx=="4") {//为检验报告
 				if (rowData[i].gdbj != '') {
-                    outstr += "其中项目[" + rowData[i].xmzwmc + "]，结果为:" + rowData[i].jyjg + " " + rowData[i].gdbj + " 参考值，参考值范围为" + rowData[i].ckz + "；";
+                    outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + " " + rowData[i].gdbj + " Giá trị tham chiếu,phạm vi giá trị tham chiếu là" + rowData[i].ckz + ";";
 				} else {
-                    outstr += "其中项目[" + rowData[i].xmzwmc + "]，结果为:" + rowData[i].jyjg + "，参考值范围为" + rowData[i].ckz + "；";
+                    outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + ",phạm vi giá trị tham chiếu là" + rowData[i].ckz + ";";
 				}
             } else if (rowData[i].sqdlx == "5") {//为检查报告
-                outstr += "其中项目[" + rowData[i].xmzwmc + "]，结果为:" + rowData[i].jyjg + "；";
+                outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + ";";
 			}
 			
             ztmcjl = rowData[i].ztmc;

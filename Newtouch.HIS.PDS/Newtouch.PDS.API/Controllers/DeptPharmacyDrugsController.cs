@@ -1,44 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Autofac;
-using Newtouch.HIS.API.Common;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.PDS.API.Envelope;
+using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset.DeptPharmacyDrugs;
 
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 部门药房药品
+    /// Port của api/DeptPharmacyDrugs (thuốc nhà thuốc của bộ phận).
+    /// Hành vi gốc được giữ nguyên vẹn, kể cả chuỗi trả về hard-code của action duy nhất
+    /// (bản gốc cũng chỉ trả chuỗi đó, không truy vấn dữ liệu) — không tự bịa nghiệp vụ.
     /// </summary>
-    [RoutePrefix("api/DeptPharmacyDrugs")]
-    public class DeptPharmacyDrugsController : ApiControllerBase<DeptPharmacyDrugsController>
+    [ApiController]
+    [Route("api/DeptPharmacyDrugs")]
+    public class DeptPharmacyDrugsController : ApiControllerBase
     {
-        /// <summary>
-        /// 初始化
-        /// </summary>
-        /// <param name="com"></param>
-        public DeptPharmacyDrugsController(IComponentContext com) : base(com)
+        public DeptPharmacyDrugsController(TokenStore tokenStore)
+            : base(tokenStore)
         {
         }
 
-        /// <summary>
-        /// 门诊排药合计信息（待排药）
-        /// </summary>
-        /// <param name="par"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("GetDeptPharmacyDrugs")]
-        public HttpResponseMessage GetDeptPharmacyDrugs(DeptPharmacyDrugsRequset par)
+        [HttpPost("GetDeptPharmacyDrugs")]
+        public IActionResult GetDeptPharmacyDrugs([FromBody] DeptPharmacyDrugsRequset par)
         {
-            Action<DeptPharmacyDrugsRequset, DefaultResponse> ac = (req, resp) =>
+            var response = CommonExecute<DeptPharmacyDrugsRequset, DefaultResponse>((req, resp) =>
             {
                 resp.data = " GetDeptPharmacyDrugs 123123123";
                 resp.code = ResponseResultCode.SUCCESS;
-            };
-            return CreateResponse(CommonExecute(ac, par));
+            }, par);
+            return CreateResponse(par, response);
         }
     }
 }

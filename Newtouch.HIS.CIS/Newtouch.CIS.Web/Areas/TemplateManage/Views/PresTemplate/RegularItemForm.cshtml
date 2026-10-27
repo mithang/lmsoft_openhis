@@ -1,11 +1,11 @@
-﻿
+
 @{
     ViewBag.Title = "RegularItemForm";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 @using Newtouch.Infrastructure;
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
-<link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/RegularItemgridmenu.css", false)" rel="stylesheet" />
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/RegularItemgridmenu.css", false)" rel="stylesheet" />
 
 <div id="linkcgxmcf" style="width:100%;">
     <table id="gridcgxmcf"></table>
@@ -55,7 +55,7 @@
 
       function Delete() {
         if (mbId == null || mbId == "") {
-            $.modalAlert("缺少模板", "warning");
+            $.modalAlert("ThiếuMẫu", "warning");
             return;
         }
         $.najax({
@@ -63,9 +63,9 @@
             dataType: "json",
             data: { mbId: mbId },
             type: "POST",
-            loadingtext: "套餐数据删除中，请稍后...",
+            loadingtext: "Đang xóa dữ liệu gói, vui lòng đợi trong giây lát...",
             success: function (data) {
-                $.modalMsg("删除成功", 'success');
+                $.modalMsg("Xóa thành công", 'success');
                 $.currentWindow().$("#beveltabs a[id='current']").trigger('click');
                 location.href = "/TemplateManage/PresTemplate/WMForm?mbId=";
             }
@@ -82,7 +82,7 @@
             //altRows: true,//隔行换色
             shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             editurl: "clientArray",  //行编辑不向服务器提交数据
             unwritten: false,
             colModel: [
@@ -93,33 +93,33 @@
                     label: 'xmCode', name: 'xmCode', width: 120, editwidth: '100%', align: 'center', editable: true, hidden: true
                 },
                 {
-                    label: '<span class="required">*</span>项目名称', name: 'xmmc', width: 125, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
+                    label: '<span class="required">*</span>Tên mục', name: 'xmmc', width: 125, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
                 },
                 {
                     label: 'zxks', name: 'zxks', editwidth: '100%', align: 'center', editable: true, hidden: true
                 },
 				{
-				    label: '<span class="required">*</span>执行科室', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editrules: { required: true },editable: true
+				    label: '<span class="required">*</span>Khoa thực hiện', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editrules: { required: true },editable: true
 				},
                 {
-                    label: '<span class="required">*</span>单价', name: 'dj', width: 80, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
+                    label: '<span class="required">*</span>Đơn giá', name: 'dj', width: 80, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
                 },
-                { label: '<span class="required">*</span>单位', name: 'dw', width: 80, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 80, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
                 { label: 'dwjls', name: 'dwjls', width: 80, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'jjcl', name: 'jjcl', width: 80, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>每次治疗量', name: 'mczll', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true, editrules: { integer: true, minValue: 1 }, editoptions: {
+                    label: '<span class="required">*</span>Liều mỗi lần điều trị', name: 'mczll', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true, editrules: { integer: true, minValue: 1 }, editoptions: {
                         dataEvents: [
                                 {
                                     type: 'change',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if(cellval.replace(/(^\s*)|(\s*$)/g, "") == ""){
-                                            $.modalAlert("每次治疗量为空，请确认。", 'warning');
+                                            $.modalAlert("Liều mỗi lần điều trịđể trống,Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if(isNaN(cellval)){
-                                            $.modalAlert("每次治疗量：请填写数字", 'warning');
+                                            $.modalAlert("Liều mỗi lần điều trị:Vui lòng nhập số", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -132,21 +132,21 @@
                         ]
                     }
                 },
-                { label: '<span class="required">*</span>频次', name: 'pcmc', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
                 { label: 'pcCode', name: 'pcCode', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>数量', name: 'sl', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true, editrules: { integer: true, minValue: 1 }, editoptions: {
+                    label: '<span class="required">*</span>Số lượng', name: 'sl', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true, editrules: { integer: true, minValue: 1 }, editoptions: {
                         dataEvents: [
                                 {
                                     type: 'change',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if(cellval.replace(/(^\s*)|(\s*$)/g, "") == ""){
-                                            $.modalAlert("数量为空，请确认。", 'warning');
+                                            $.modalAlert("Số lượngđể trống,Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if(isNaN(cellval)){
-                                            $.modalAlert("数量：请填写数字", 'warning');
+                                            $.modalAlert("Số lượng:Vui lòng nhập số", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -159,10 +159,10 @@
                         ]
                     }
                 },
-                { label: '部位', name: 'bw', width: 100, editwidth: '100%', align: "center", editable: true },
-                { label: '<span class="required">*</span>总量', name: 'zl', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
-                { label: '<span class="required">*</span>金额', name: 'je', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
-                { label: '操作', name: 'action', width: 110, editwidth: '81%', align: 'center' }
+                { label: 'Vị trí', name: 'bw', width: 100, editwidth: '100%', align: "center", editable: true },
+                { label: '<span class="required">*</span>Tổng lượng', name: 'zl', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Số tiền', name: 'je', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: 'Thao tác', name: 'action', width: 110, editwidth: '81%', align: 'center' }
             ],
             editinputwidthborder: false,    //是否需要边框 默认为true
             editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
@@ -189,11 +189,11 @@
             {
                 startColumnName: 'xmmc',
                 numberOfColumns: 6,
-                titleText: '基本信息'
+                titleText: 'Thông tin cơ bản'
             }, {
                 startColumnName: 'mczll',
                 numberOfColumns: 5,
-                titleText: '项目用法'
+                titleText: 'MụcCách dùng'
             }]
         });
 
@@ -267,20 +267,20 @@
                 $("#" + rowid + "_bw").val(mcval);
             },
         });
-        //执行科室浮层
+        //Thực hiện科室浮层
         $("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
             height: 170,
             width: 300,
-            caption: "选择科室",
+            caption: "ChọnKhoa",
             url: '/Rehab/GetSfxmZxksSelectJson',
             clickautotrigger: true,
             ajaxparameters: function ($thisinput) {
                 return 'sfxmCode=' + $("#" + rowid + "_xmCode").val();
             },
             colModel: [
-				{ label: '编号', name: 'Code', widthratio: 40 },
-				{ label: '名称', name: 'Name', widthratio: 60 },
-				{ label: '拼音', name: 'py', hidden: true }
+				{ label: 'Số hiệu', name: 'Code', widthratio: 40 },
+				{ label: 'Tên', name: 'Name', widthratio: 60 },
+				{ label: 'Pinyin', name: 'py', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#" + rowid + "_zxks").val($thistr.find("td:eq(0)").html());
@@ -377,7 +377,7 @@
     function Save() {
         //必填信息验证  （主诉、发病时间）
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息尚未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         //获取所有行Id，遍历使编辑框处于保存状态
@@ -391,7 +391,7 @@
         }
         var gridcgxmcfData = $("#gridcgxmcf").jqGrid('getRowData_AllLine', null, true);
         if(!gridcgxmcfData || gridcgxmcfData.length==0){
-            $.modalAlert("模板明细不能为空", 'warning');
+            $.modalAlert("Chi tiết mẫu không được để trống", 'warning');
             return;
         }
         $.each(gridcgxmcfData, function () {    //去掉action
@@ -417,7 +417,7 @@
             data: { mbObj: mbObj, mxList: gridcgxmcfData },
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'warning');
+                $.modalAlert("Lưu thành công", 'warning');
                 //window.$("#gridcgxmcf").clearGridData();
                 //$('#mbmc').val('');
                 if(!mbId && data.data){

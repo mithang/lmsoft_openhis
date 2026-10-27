@@ -1,11 +1,11 @@
-﻿
+
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="kb_main_top">
         <h2 style="font-size: large;font-weight: bold;padding-left:10px">
-            当前医嘱内容：
+            Hiện tạiNội dung y lệnh:
         </h2>
     </div>
 <div class="rows" style="width:95%;margin-left:1%;">
@@ -38,13 +38,13 @@
 <div class="rows" style="width:95%;margin-left:1%;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            停止医嘱
+            DừngY lệnh
         </div>
         <div>
             <table class="form" style="width:229px;height:40px;">
                 <tr>
                     <td class="formTitle">
-                        停止时间：
+                        DừngThời gian:
                     </td>
                     <td colspan="2" class="formValue">
                         <input id="txt_EndDate" style="width:145px;" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">

@@ -1,7 +1,7 @@
-﻿@model dynamic
+@model dynamic
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "护士站患者中心-入区登记";
+    ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Vào khuĐăng ký";
 }
 <script src="~/Content/js/BootstrapMenu.min.js"></script>
 <style>
@@ -220,8 +220,8 @@
         <div class="dv-right-pat">
             <div class="nav-right"  style="margin-top:50px;">
                 <ul class="nav">
-                    <li role="presentation" class="active" id="li_new">新入区</li>
-                    <li role="presentation" id="li_turn">转区</li>
+                    <li role="presentation" class="active" id="li_new">Vào khu mới</li>
+                    <li role="presentation" id="li_turn">Chuyển khu</li>
                 </ul>
             </div>
             <ul class="ul_patInfo" id="ul_turn" style="display:none;"></ul>
@@ -231,18 +231,18 @@
         <div class="dv-mid-info" style="border-radius:10px">
             <table>
                 <tr>
-                    <td class="panel-title">&nbsp;&nbsp;患者信息：</td>
-                    <td class="panel-title">&nbsp;&nbsp;姓名：</td>
+                    <td class="panel-title">&nbsp;&nbsp;Bệnh nhânThông tin:</td>
+                    <td class="panel-title">&nbsp;&nbsp;Họ tên:</td>
                     <td class="td-info panel-title" id="labName"></td>
-                    <td>&nbsp;&nbsp;性别：</td>
+                    <td>&nbsp;&nbsp;Giới tính:</td>
                     <td class="td-info" id="labsex"></td>
-                    <td>&nbsp;&nbsp;住院号：</td>
+                    <td>&nbsp;&nbsp;Số nhập viện:</td>
                     <td class="td-info" id="labzyh"></td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;床位显示：</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;Giường bệnhHiển thị:</td>
                     <td>
-                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />全部</label>
+                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />Tất cả</label>
                         &nbsp;
-                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />空床</label>
+                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />Giường trống</label>
 
                     </td>
                 </tr>
@@ -362,7 +362,7 @@
         var patInfo = $(this).find("input[name='hid_patInfo']").val();
         var obj = $.parseJSON(patInfo);
         $("#labName").html((obj.name == "null") ? "" : obj.name);
-        $("#labsex").html((obj.xb == "null") ? "" : (obj.xb == "1" ? "男" : (obj.xb == "2" ? "女" : (obj.xb == "3" ? "未知" : ""))));
+        $("#labsex").html((obj.xb == "null") ? "" : (obj.xb == "1" ? "男" : (obj.xb == "2" ? "女" : (obj.xb == "3" ? "Không rõ" : ""))));
         $("#labzyh").html((obj.zyh == "null") ? "" : obj.zyh);
 
     })
@@ -390,7 +390,7 @@
             data: { bqdm: bqdm, qqlx: qqlx },
             dataType: "json",
             async: true,
-            loadingtext: "数据查询中，请稍后...",
+            loadingtext: "Đang tra cứu dữ liệu, vui lòng đợi trong giây lát...",
             success: function (ajaxresp) {
                 $("#ul_new").html("");
                 if (ajaxresp.rows.length > 0) {
@@ -406,11 +406,11 @@
 
                         var nls = "";
                         if (item.nlshow == "0" || item.nlshow == null || item.nlshow == "") {//数据为0表示nlshow为空
-                            nls = item.nl + "岁";
+                            nls = item.nl + " tuổi";
                         } else {
                             nls = item.nlshow;
                         }
-                        var title = "住院号：" + item.zyh + "; 年龄：" + nls + "; 性别：" + item.xb + "; 入院时间：" + item.ryrq + "; 入院诊断：" + item.zd + "";
+                        var title = "Số nhập viện:" + item.zyh + "; Tuổi:" + nls + "; Giới tính:" + item.xb + "; Nhập việnThời gian:" + item.ryrq + "; Chẩn đoán nhập viện:" + item.zd + "";
                         var hidInfo = "{\"zyh\":\"" + item.zyh + "\",\"name\":\"" + item.xm + "\",\"xb\":\"" + item.xb + "\",\"type\":\"" + item.brxzmc + "\",\"ryrq\":\"" + item.ryrq + "\",\"ysgh\":\"" + item.ysgh + "\",\"ysmc\":\"" + item.ysmc + "\",\"lastcwCode\":\"" + item.lastcwCode + "\",\"DeptCode\":\"" + item.DeptCode + "\"}";
                         $("#ul_new").append("<li draggable=\"true\" title=\"" + title + "\"><i class=\"fa " + hzxb + " li-sex\" aria-hidden=\"true\"></i><span>" + item.xm + "</span><span>" + nls + "</span><span>" + item.brxzmc + "</span><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                     })
@@ -429,7 +429,7 @@
             dataType: "json",
             data: strdata,
             async: true,
-            loadingtext: "数据查询中，请稍后...",
+            loadingtext: "Đang tra cứu dữ liệu, vui lòng đợi trong giây lát...",
             success: function (ajaxresp) {
                 $("#ul_bed").html("");
                 if (ajaxresp.rows.length > 0) {
@@ -452,7 +452,7 @@
                             }
 
                             if (item.cwsystu == '@((int)EnumCwjlzt.Zq)') {
-                                $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\"  noPatient=\"false\" menuclick=\"false\" draggable=\"true\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed dv-bedpat\"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"color:red\"></i><span class=\"dv-sp patName\">" + item.xm + "</span><i class=\"fa " + hzxb + " patxb\" aria-hidden=\"true\" style=\"color:#ef89d7\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:" + color + " \"></i><span class=\"dv-sp patDoctor\" style=\"color:red;font-weight:bold;\">" + "转区待入" + "</span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\">" + item.brxzmc + "</span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
+                                $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\"  noPatient=\"false\" menuclick=\"false\" draggable=\"true\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed dv-bedpat\"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"color:red\"></i><span class=\"dv-sp patName\">" + item.xm + "</span><i class=\"fa " + hzxb + " patxb\" aria-hidden=\"true\" style=\"color:#ef89d7\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:" + color + " \"></i><span class=\"dv-sp patDoctor\" style=\"color:red;font-weight:bold;\">" + "Chờ vào chuyển khu" + "</span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\">" + item.brxzmc + "</span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                             }
                             else {
                                 $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\"  noPatient=\"false\" menuclick=\"true\" draggable=\"true\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed dv-bedpat\"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"color:#6cf535\"></i><span class=\"dv-sp patName\">" + item.xm + "</span><i class=\"fa " + hzxb + " patxb\" aria-hidden=\"true\" style=\"color:" + color + "\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:#00a0e9\"></i><span class=\"dv-sp patDoctor\">" + item.ysmc + "</span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\">" + item.brxzmc + "</span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
@@ -469,7 +469,7 @@
                             if (item.cwlx == "3") {
                                 cwlx = "混";
                             }
-                            $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\" noPatient=\"true\" menuclick=\"true\"  patXb=\"" + cwlx + "\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed \"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"font-size:1.8rem; color:#ffffff\"></i><span class=\"dv-sp patName\">空床(" + cwlx + ")</span><i class=\"fa  patxb\" aria-hidden=\"true\" style=\"color:#ffffff\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:#00a0e9\"></i><span class=\"dv-sp patDoctor\"></span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\"></span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
+                            $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\" noPatient=\"true\" menuclick=\"true\"  patXb=\"" + cwlx + "\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed \"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"font-size:1.8rem; color:#ffffff\"></i><span class=\"dv-sp patName\">Giường trống(" + cwlx + ")</span><i class=\"fa  patxb\" aria-hidden=\"true\" style=\"color:#ffffff\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:#00a0e9\"></i><span class=\"dv-sp patDoctor\"></span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\"></span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                         }
 
                     })
@@ -585,7 +585,7 @@
                 } else {
 
                     if (item.xb != "null" && $(this).attr("patXb") != "混" && $(this).attr("patXb") != item.xb) {
-                        $.modalAlert("该患者不能入住\"" + $(this).attr("patXb") + "\"病床", 'warning');
+                        $.modalAlert("Bệnh nhân này không thể nhập vào giường bệnh \"" + $(this).attr("patXb") + "\"", 'warning');
                         return;
                     }
                     lastcwCode = item.lastcwCode;
@@ -617,12 +617,12 @@
                 return bedInfoJson[rowId];
             },
             actions: [{
-                name: '维护床位费',
+                name: 'Quản lý phí giường bệnh',
                 onClick: function (row) {
 
                     $.modalOpen({
                         id: "BedBindingCostForm",
-                        title: "维护床位费",
+                        title: "Quản lý phí giường bệnh",
                         url: "/NurseManage/WardMaintenance/BedBindingCostForm?bedCode=" + row[0].cwCode + "&zyh=" + $("#labzyh").html(),
                         width: "900px",
                         height: "500px",
@@ -641,12 +641,12 @@
                 return bedInfoJson[rowId];
             },
             actions: [{
-                name: '维护床位费',
+                name: 'Quản lý phí giường bệnh',
                 onClick: function (row) {
 
                     $.modalOpen({
                         id: "BedBindingCostForm",
-                        title: "维护床位费",
+                        title: "Quản lý phí giường bệnh",
                         url: "/NurseManage/WardMaintenance/BedBindingCostForm?bedCode=" + row[0].cwCode + "&zyh=" + $("#labzyh").html(),
                         width: "900px",
                         height: "500px",
@@ -658,11 +658,11 @@
                     });
                 }
             }, {
-                name: '维护入区登记信息',
+                name: 'Bảo trìĐăng ký vào khuThông tin',
                 onClick: function (row) {
                     $.modalOpen({
                         id: "updatWZForm",
-                        title: "维护入区登记信息",
+                        title: "Bảo trìĐăng ký vào khuThông tin",
                         url: "/NurseManage/EntryRegistration/EntryAreaFrom?ysgh=" + ysgh + "&ysmc=" + ysmc + "&zyh=" + row[0].zyh + "&type=" + "update",
                         width: "500px",
                         height: "480px",
@@ -675,11 +675,11 @@
                     });
                 }
             }, {
-                name: '绑定患者所属医生',
+                name: 'Gắn bác sĩ phụ trách của bệnh nhân',
                 onClick: function (row) {
                     $.modalOpen({
                         id: "DoctorBindingForm",
-                        title: "绑定患者所属医生",
+                        title: "Gắn bác sĩ phụ trách của bệnh nhân",
                         url: "/NurseManage/WardMaintenance/DoctorBindingForm?zyh=" + row[0].zyh,
                         width: "500px",
                         height: "480px",
@@ -691,13 +691,13 @@
                     });
                 }
             }, {
-                name: '患者出区',
+                name: 'Bệnh nhân chuyển khu',
                 onClick: function (row) {
-                    $.modalConfirm("确定出区？", function (flag) {
+                    $.modalConfirm("Xác nhậnChuyển khu?", function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "OutAreaForm",
-                                title: "患者出区",
+                                title: "Bệnh nhân chuyển khu",
                                 url: "/NurseManage/WardMaintenance/OutAreaForm?zyh=" + row[0].zyh,
                                 width: "500px",
                                 height: "480px",
@@ -713,13 +713,13 @@
                     });
                 }
             }, {
-                name: '患者转区',
+                name: 'Bệnh nhân chuyển khu',
                 onClick: function (row) {
-                    $.modalConfirm("确定转区？", function (flag) {
+                    $.modalConfirm("Xác nhậnChuyển khu?", function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "ChangeAreaForm",
-                                title: "患者转区",
+                                title: "Bệnh nhân chuyển khu",
                                 url: "/NurseManage/EntryRegistration/ChangeAreaForm?zyh=" + row[0].zyh,
                                 width: "350px",
                                 height: "300px",
@@ -735,9 +735,9 @@
                     });
                 }
             }, {
-                name: '取消入区登记',
+                name: 'HủyĐăng ký vào khu',
                 onClick: function (row) {
-                    $.modalConfirm("确定要取消入区登记吗？", function (flag) {
+                    $.modalConfirm("Xác nhận muốn hủy đăng ký vào khu?", function (flag) {
                         if (flag) {
                             $.ajax({
                                 type: "GET",
@@ -745,7 +745,7 @@
                                 dataType: "json",
                                 success: function (ajaxresp) {
                                     if (ajaxresp.state == "success") {
-                                        $.modalMsg('取消成功', 'success');
+                                        $.modalMsg('Hủythành công', 'success');
                                         getPatInitList(bqdm);
                                         getBedInitList(bqdm, 0);
                                     }
@@ -760,11 +760,11 @@
 
                 }
             }, {
-                name: '住院床卡',
+                name: 'Thẻ giường nhập viện',
                 onClick: function (row) {
                     $.modalOpen({
                         id: "InHospitalBedCard",
-                        title: "住院床卡",
+                        title: "Thẻ giường nhập viện",
                         url: "/NurseManage/WardMaintenance/InHospitalBedCard?zyh=" + row[0].zyh,
                         width: "500px",
                         height: "480px",
@@ -786,7 +786,7 @@
         debugger;
         $.modalOpen({
             id: "RqdjForm",
-            title: "入区登记",
+            title: "Đăng ký vào khu",
             url: "/NurseManage/EntryRegistration/EntryAreaFrom?ysgh=" + ysgh + "&ryrq=" + djrq + "&ysmc=" + ysmc,
             width: "500px",
             height: "400px",
@@ -810,10 +810,10 @@
                     url: "/EntryRegistration/EnterArea",
                     data: { enterArea: enterData },
                     dataType: "json",
-                    loadingtext: "患者入区中，请稍后...",
+                    loadingtext: "Bệnh nhân đang vào khu, vui lòng đợi trong giây lát...",
                     success: function (ajaxresp) {
                         if (ajaxresp.state == "success") {
-                            $.modalMsg('入区成功！', 'success');
+                            $.modalMsg('Vào khuthành công!', 'success');
                         }
                         else {
                             $.modalAlert(ajaxresp.message, 'warning');
@@ -834,17 +834,17 @@
 
     //转床
     function TransferBed(eleBeDv) {
-        $.modalConfirm("确定转床？", function (flag) {
+        $.modalConfirm("Xác nhận chuyển giường?", function (flag) {
             if (flag) {
                 $.najax({
                     type: "POST",
                     url: "/EntryRegistration/ChangeBed",
                     data: { zyh: zyh, bedCode: bedCode, wardCode: bqdm },
                     dataType: "json",
-                    loadingtext: "患者转床中，请稍后...",
+                    loadingtext: "Bệnh nhân đang chuyển giường, vui lòng đợi trong giây lát...",
                     success: function (ajaxresp) {
                         if (ajaxresp.state == "success") {
-                            $.modalMsg('转床成功！', 'success');
+                            $.modalMsg('Chuyển giường thành công!', 'success');
                         }
                         else {
                             $.modalAlert(ajaxresp.message, 'warning');

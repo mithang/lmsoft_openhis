@@ -1,49 +1,48 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common.Operator;
-using Newtouch.Core.Common;
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Herp.Domain.Entity.Purchase;
 using Newtouch.Herp.Domain.IDomainServices.Purchase;
 using Newtouch.Herp.Domain.IRepository.Purchase;
-using Newtouch.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-//using static Newtouch.Herp.Domain.DTO.OutputDto.OutputYY156;
 
 namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
 {
-    public class ReturnedMaterialsController :   OrgControllerBase
+    /// <summary>
+    /// Trả hàng mua sắm (port .NET 6 của ReturnedMaterialsController gốc).
+    /// Các trang ReIndex/ReForm thuộc PurchaseController; controller này chỉ
+    /// có API JSON/submit, giống bản gốc.
+    /// </summary>
+    [Area("PurchaseManage")]
+    public class ReturnedMaterialsController : ControllerBase
     {
-
         private readonly IReturnedRepo _returnedRepo;
         private readonly IReturnedDetailRepo _returnedDetailRepo;
         private readonly IPurchaseDmnService _purchaseDmnService;
         private readonly ISunPurchaseDmnService _sunPurchaseDmnService;
 
-        #region 退货单内容
-        /// <summary>
-        /// 保存
-        /// </summary>
-        /// <param name="cgEntity"></param>
-        /// <param name="cgmxList"></param>
-        /// <param name="keyValue"></param>
-        /// <returns></returns>
-        public ActionResult SubmitPurchase(ReturnedEntity thEntity, List<ReturnedDetailEntity> thmxList, string keyValue)
+        public ReturnedMaterialsController(IReturnedRepo returnedRepo, IReturnedDetailRepo returnedDetailRepo,
+            IPurchaseDmnService purchaseDmnService, ISunPurchaseDmnService sunPurchaseDmnService)
+        {
+            _returnedRepo = returnedRepo;
+            _returnedDetailRepo = returnedDetailRepo;
+            _purchaseDmnService = purchaseDmnService;
+            _sunPurchaseDmnService = sunPurchaseDmnService;
+        }
+
+        public IActionResult SubmitPurchase(ReturnedEntity thEntity, List<ReturnedDetailEntity> thmxList, string keyValue)
         {
             OperatorModel user = this.UserIdentity;
-
+            thmxList = thmxList ?? new List<ReturnedDetailEntity>();
             thEntity.OrganizeId = this.OrganizeId;
             thEntity.JLS = thmxList.Count;
-            // 1.新增或更新采购列表
             var thId = _returnedRepo.SubmitForm(thEntity, keyValue);
-            //2.删除采购明细
             if (keyValue != null)
             {
                 _returnedDetailRepo.DeleteItem(thId, this.OrganizeId);
             }
-            //3.添加采购明细
             foreach (var cgmx in thmxList)
             {
                 cgmx.OrganizeId = this.OrganizeId;
@@ -51,38 +50,27 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
             }
             return Success();
         }
-        public ActionResult SubmitAndUploadPurchase(ReturnedEntity thEntity, List<ReturnedDetailEntity> thmxList, string keyValue)
+
+        public IActionResult SubmitAndUploadPurchase(ReturnedEntity thEntity, List<ReturnedDetailEntity> thmxList, string keyValue)
         {
             OperatorModel user = this.UserIdentity;
-
+            thmxList = thmxList ?? new List<ReturnedDetailEntity>();
             thEntity.OrganizeId = this.OrganizeId;
             thEntity.JLS = thmxList.Count;
-            // 1.新增或更新采购列表
             var thId = _returnedRepo.SubmitForm(thEntity, keyValue);
-            //2.删除采购明细
             if (keyValue != null)
             {
                 _returnedDetailRepo.DeleteItem(thId, this.OrganizeId);
             }
-            //3.添加采购明细
             foreach (var cgmx in thmxList)
             {
                 cgmx.OrganizeId = this.OrganizeId;
                 _returnedDetailRepo.InsertItem(cgmx, thId);
             }
-            //4.采购订单退货与传报
-            PurchaseUpload(thId, 2);
-            return Success();
+            return PurchaseUpload(thId, 2);
         }
-        #endregion
-        /// <summary>
-        /// 分页查询退药单数据
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="kssj"></param>
-        /// <param name="jssj"></param>
-        /// <returns></returns>
-        public ActionResult GetPurchaseGridJson(Pagination pagination, DateTime kssj, DateTime jssj)
+
+        public IActionResult GetPurchaseGridJson(Pagination pagination, DateTime kssj, DateTime jssj)
         {
             var tt = _returnedRepo.GetReturnedGridJson(pagination, kssj, jssj, OrganizeId);
             var data = new
@@ -92,50 +80,41 @@ namespace Newtouch.Herp.Web.Areas.PurchaseManage.Controllers
                 page = pagination.page,
                 records = pagination.records,
             };
-            return Content(data.ToJson()); 
+            return Content(data.ToJson());
         }
 
-
-        public ActionResult QueryPurchaseReturnbyId(string thId)
+        public IActionResult QueryPurchaseReturnbyId(string thId)
         {
             var result = _purchaseDmnService.QueryPurchaseReturnbyId(thId, this.OrganizeId);
             return Content(result.ToJson());
         }
 
-        public ActionResult QueryPurchaseReturnDetailbyId(string thId)
+        public IActionResult QueryPurchaseReturnDetailbyId(string thId)
         {
             var result = _purchaseDmnService.QueryPurchaseReturnDetailbyId(thId, this.OrganizeId);
             return Content(result.ToJson());
         }
 
-        public ActionResult PurchaseReturnDelete(string thId)
+        public IActionResult PurchaseReturnDelete(string thId)
         {
             _returnedRepo.PurchaseReturnDelete(thId, this.OrganizeId);
             return Success();
         }
-        public ActionResult PurchaseStateUpdate(string thId, int thdzt)
+
+        public IActionResult PurchaseStateUpdate(string thId, int thdzt)
         {
             _returnedRepo.PurchaseReturnStateUpdate(thId, thdzt, this.OrganizeId);
             return Success();
         }
 
-        /// <summary>
-        /// 采购退货单单传报
-        /// </summary>
-        /// <param name="cgId"></param>
-        /// <param name="ddzt"></param>
-        /// <returns></returns>
-        public ActionResult PurchaseUpload(string thId, int ddzt)
+        /// <summary>Đơn trả hàng truyền báo</summary>
+        public IActionResult PurchaseUpload(string thId, int ddzt)
         {
-            //1.上传至阳光采购平台 YY113
-            var ddbh=_sunPurchaseDmnService.Purchase_YY113(this.OrganizeId, thId);
-            //2.获取YY113的订单编号  (YY113落地表)
-            //var ddbh = "00001";
-            //3.更新ddbh
+            var ddbh = _sunPurchaseDmnService.Purchase_YY113(this.OrganizeId, thId);
+            if (ddbh == null) return Error("Dịch vụ mua sắm tập trung hiện không khả dụng, vui lòng thử lại sau.");
             _returnedRepo.PurchaseDdbhUpdate(thId, ddbh, this.OrganizeId);
-            //4.订单填报确认 YY114
-            _sunPurchaseDmnService.Purchase_YY114(this.OrganizeId, thId);
-            //更新传报状态
+            var confirm = _sunPurchaseDmnService.Purchase_YY114(this.OrganizeId, thId);
+            if (!string.IsNullOrEmpty(confirm)) return Error("Xác nhận truyền báo đơn trả hàng thất bại: " + confirm);
             _returnedRepo.PurchaseReturnStateUpdate(thId, ddzt, this.OrganizeId);
             return Success();
         }

@@ -1,0 +1,258 @@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .btn-group {
+        float: right;
+        font-size: 12px;
+        font-weight: 200;
+    }
+</style>
+<div class="rows" style="float:left;width:24%;margin-left:1%;">
+    <div class="panel panel-default">
+        <div class="panel-heading navb-bg" style="height:23px;">
+            Điều kiện lọc
+            <div class="btn-group" data-toggle="buttons" id="status">
+                <label class="btn btn-default active" style="z-index:100">
+                    <input type="radio" value="1" name="optionsRadios" class="optionsRadios" checked="checked" />Chưa xác nhận
+                </label>
+                <label class="btn btn-default" style="z-index:100">
+                    <input type="radio" value="2" name="optionsRadios" class="optionsRadios" />Đã xác nhận
+                </label>
+            </div>
+        </div>
+        <div style="height:35px;" hidden id="searchDiv">
+            <table class="form" style="margin-left:10px">
+                <tr>
+                    <td class="formValue">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:35%; float:left;" value="@DateTime.Now.ToString(" yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <span style="margin-left:5px;float:left;">—</span>
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width: 35%; float: left; margin-left: 5px;" value="@DateTime.Now.ToString(" yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <button id="btn_search" type="button" class="btn  btn-default" style="margin-left:10px;"><i class="fa fa-search"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridList"></table>
+    </div>
+</div>
+<div class="rows" style="float:left;width:74%;margin-left:1%;">
+    <div class="panel panel-default" style="height:150px;">
+        <div class="panel-heading navb-bg">
+            Thông tin cơ bản
+        </div>
+        <div style="padding: 20px;padding-right:20px;" id="divPatInfo">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">Ngoại trú/Số nhập viện：</th>
+                    <td class="formValue">
+                        <label id="type">R25639</label>
+                    </td>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <label id="xm">大白</label>
+                    </td>
+                    <th class="formTitle">Giới tính：</th>
+                    <td class="formValue">
+                        <label id="xb">Nữ</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Tuổi：</th>
+                    <td class="formValue">
+                        <label id="nl">26</label>
+                    </td>
+                    <td class="formTitle">Số bảo hiểm：</td>
+                    <td class="formValue">
+                        <label id="bxh">35010343123456743</label>
+                    </td>
+                    <td class="formTitle">Loại phí：</td>
+                    <td class="formValue">
+                        <label id="fb">Tự chi trả</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formTitle">Chẩn đoán lâm sàng：</td>
+                    <td class="formValue">
+                        <label id="lczd">Đau lưng</label>
+                    </td>
+                    <th class="formTitle">Vị trí thực hiện thủ thuật：</th>
+                    <td class="formValue">
+                        <label id="ssbw">Vùng thắt lưng Cách du Tâm du Đốc du</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="gridPanel">
+        <table id="gridFeeDetail"></table>
+    </div>
+    <table class="form">
+        <tr>
+            <th class="formTitle">Giá gốc：</th>
+            <td class="formValue">
+                <label id="yj">￥2000</label>
+            </td>
+            <th class="formTitle">Số tiền phải thu：</th>
+            <td class="formValue">
+                <label id="ysk">￥1000</label>
+            </td>
+            <th class="formTitle">chiết khấu：</th>
+            <td class="formValue">
+                <input type="text" id="zk" class="form-control"/>
+            </td>
+            <th class="formTitle">Số tiền thực thu：</th>
+            <td class="formValue">
+                <input type="text" id="ssk" class="form-control" />
+            </td>
+            <th class="formTitle">Tiền thừa：</th>
+            <td class="formValue">
+                <label id="zl">￥1000</label>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    @Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new[] { 8, 9 },
+    F8Text = "Xác nhận thu phí",
+    F9Text = "Hủy xác nhận"
+})
+</div>
+
+<script>
+    $(function () {
+        //radio选中事件
+        $("input[name='optionsRadios']").off().on("change", function () {
+            $('#gridList').jqGrid("clearGridData");
+            var mydata;
+            if ($(this).val() == "2") {     //已确认
+                $("#searchDiv").show();
+                mydata = getConfirmedData();
+            } else {    //未确认
+                $("#searchDiv").hide();
+                mydata = getNotYetConfirm();
+            }
+            gridList(mydata);
+        })
+
+        var mydata = getNotYetConfirm();
+        gridList(mydata);
+        $("#gridFeeDetail").newtouchLocalDataGrid(null, []);
+    });
+
+    //未确认
+    function getNotYetConfirm() {
+        var mydata = [
+               {
+                   blh: 'R000001', xm: '李小璐', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt:'false'
+               },
+        ];
+        return mydata;
+    }
+    //已确认
+    function getConfirmedData() {
+        var mydata = [
+               {
+                   blh: 'R000022', xm: '大白', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt: 'true'
+               },
+               {
+                   blh: 'R000023', xm: '小二', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt: 'true'
+               },
+        ];
+        return mydata;
+    }
+
+    //患者信息
+    function gridList(mydata) {
+        var $gridList = $("#gridList");
+        $gridList.newtouchLocalDataGrid({
+            height: $(window).height() - 175,
+            caption: "thông tin bệnh nhân",
+            unwritten: false,
+            colModel: [
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 40, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 40, align: 'left' },
+                { label: 'Loại phí', name: 'fb', width: 40, align: 'left' },
+                { label: 'Ngoại trú/Nhập viện', name: 'type', width: 40, align: 'left' },
+                { label: 'qrzt', name: 'qrzt', width: 40, align: 'left',hidden: true },
+
+            ],
+            ondblClickRow: function (rowid) {
+                gridDbclickRow(rowid);
+            },
+            gridComplete: function () {
+                var ids = $("#gridList").getDataIDs();
+                for (i = 0; i < ids.length; i++) {
+                    var rowdata = $("#gridList").getRowData(ids[i]);
+                    if (rowdata && rowdata.qrzt == "true") {
+                        $('#gridList tr[id="' + ids[i] + '"]').addClass('success');
+                    }
+                }
+            }
+        }, mydata);
+    }
+
+    //双击
+    function gridDbclickRow(rowid) {
+        var mydata = [
+           {
+               sfdlmc: 'Vật lý trị liệu', sfxmmc: 'Châm cứu thường', sl: '3', dw: '5 huyệt vị', dj: '30.00', zje: '90.00'
+           },
+           {
+               sfdlmc: 'Vật lý trị liệu', sfxmmc: 'Điện châm', sl: '2', dw: '2 huyệt vị', dj: '30.00', zje: '60.00'
+           },
+           {
+               sfdlmc: 'Vật lý trị liệu', sfxmmc: 'Cứu cách vật', sl: '3', dw: 'lần', dj: '15.00', zje: '45.00'
+           }
+        ];
+
+        $('#gridFeeDetail').newtouchLocalDataGrid(null, mydata);
+        $('#btn_bottombutton_f8').addClass('newtouch_Readonly').attr('disabled', 'disabled');
+    }
+
+    $("#gridFeeDetail").newtouchLocalDataGrid({
+        height: $(window).height() - 280,
+        unwritten: false,
+        treeGridModel: "adjacency",
+        colModel: [
+            { label: "Loại", name: "sfdlmc", width: 100, align: "left" },
+            { label: "Khoản thu phí", name: "sfxmmc", width: 150, align: "left" },
+            { label: "Số lượng", name: "sl", width: 100, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 100, align: "left" },
+            { label: "Đơn giá(đồng)", name: "dj", width: 100, align: "left" },
+            { label: "Số tiền(đồng)", name: "zje", width: 100, align: "left" },
+        ],
+        gridComplete: function () {
+            var ids = $("#gridFeeDetail").getDataIDs();
+            for (i = 0; i < ids.length; i++) {
+                $('#gridFeeDetail tr[id="' + ids[i] + '"]').addClass('info');
+            }
+        }
+    });
+
+    //弹出金额确认窗口
+    function newtouch_event_f8(yj, ysk, ssk, zk, zl) {
+        var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + ysk
+            + "&ssk=" + ssk
+            + "&srce=" + 0.00
+            + "&zhaoling=" + zl;
+        $.modalOpen({
+            id: "FormShowBillSuccessDialog",
+            title: "Xác nhận quyết toán",
+            url: url,
+            width: "320px",
+            height: "260px",
+            callBack: function (iframeId) {
+                $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
+            }
+        });
+    }
+
+</script>
+
+

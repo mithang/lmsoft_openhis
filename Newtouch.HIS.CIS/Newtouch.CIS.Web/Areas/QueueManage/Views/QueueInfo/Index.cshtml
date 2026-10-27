@@ -1,6 +1,6 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "队列查询";
+    ViewBag.Title = "Tra cứu hàng đợi";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -27,21 +27,21 @@
             <tr>
                 <td colspan="3">
                     <div id="time_horizon" class="btn-group" style="float:left;margin-top:10px;">
-                        <a class="btn btn-default active" data-value="1">今天</a>
-                        <a class="btn btn-default" data-value="2">历史叫号</a>
+                        <a class="btn btn-default active" data-value="1">Hôm nay</a>
+                        <a class="btn btn-default" data-value="2">Lịch sử gọi số</a>
                     </div>
                     <input id="txt_jhrq" type="text" class="form-control input-wdatepicker" style="height:12px;margin-top:10px;width:30%;float:left;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd',maxDate: new Date().format('yyyy-MM-dd')})" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
                 </td>
-                <td class="formTitle">队列类型</td>
+                <td class="formTitle">Loại hàng đợi</td>
                 <td class="formValue">
                     <select id="ywbz" style="width:50%;" data-enumType="Enummzzybz"></select>
                 </td>
-                <td class="formTitle">号源类型</td>
+                <td class="formTitle">Loại nguồn số</td>
                 <td class="formValue">
                     <select id="ywlx" data-enumType="EnumOutPatientType">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
                 @*<td class="formTitle">科室</td>*@
@@ -52,7 +52,7 @@
                 <td></td>
                 <td colspan="2">
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="姓名/卡号" style="width: 100px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên/Số thẻ" style="width: 100px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -67,42 +67,42 @@
 <div id="dv_pretb" style="width:98%;text-align:center;height:100px;">
     <table id="pretb" style="border-right:2.5px solid rgb(111, 216, 171);">
         <tr id="tr_calling">           
-            <th rowspan="3">普<br />通<br />队<br />列</th>
+            <th rowspan="3">Hàng<br />đợi<br />thường</th>
             <td>
-                <span style="color:red;">当前叫号：</span> <span id="sp_calling_no" style="font-weight:bold;color:red;text-decoration:underline;">1</span>
+                <span style="color:red;">Số đang gọi:</span> <span id="sp_calling_no" style="font-weight:bold;color:red;text-decoration:underline;">1</span>
             </td>
             <td>
                 <span id="sp_calling_xm">张三</span>
             </td>
             <td>
-                <span id="sp_calling_dept">消化内科门诊</span>
+                <span id="sp_calling_dept">消化Khoa nộiNgoại trú</span>
             </td>
             <td>
                 <span id="sp_calling_doc">熊甜甜 </span>
             </td>
             <td>
-                <span id="sp_calling_ywlx" style="color:#ff6a00;">【专家】</span>
+                <span id="sp_calling_ywlx" style="color:#ff6a00;">【Chuyên gia】</span>
             </td>
         </tr>
         <tr id="tr_nextcall">
             <td>
-                <span>接续待叫：</span><span id="sp_nextcall_no">2</span>
+                <span>Tiếp tục chờ gọi:</span><span id="sp_nextcall_no">2</span>
             </td>
             <td>
                 <span id="sp_nextcall_xm">李四</span>
             </td>
             <td>
-                <span id="sp_nextcall_dept">消化内科门诊</span>
+                <span id="sp_nextcall_dept">消化Khoa nộiNgoại trú</span>
             </td>
             <td>
                 <span id="sp_nextcall_doc">熊甜甜 </span>
             </td>
             <td>
-                <span id="sp_nextcall_ywlx" style="color:#ff6a00;">【专家】</span>
+                <span id="sp_nextcall_ywlx" style="color:#ff6a00;">【Chuyên gia】</span>
             </td>
         </tr>
         <tr>
-            <td>等待人数：<span id="sp_waiting_count">0 </span></td>
+            <td>Số người chờ:<span id="sp_waiting_count">0 </span></td>
             <td></td>
             <td></td>
         </tr>
@@ -120,9 +120,9 @@
             @*<a class="btn btn-default active" id="btn_call" data-value="@((int)EmunQueueCalledStu.call)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.call)')">已叫队列</a>
         <a class="btn btn-default" id="btn_pass" data-value="@((int)EmunQueueCalledStu.pass)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.pass)')">过号队列</a>
         <a class="btn btn-default" id="btn_reply" data-value="@((int)EmunQueueCalledStu.reply)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.reply)')">到诊队列</a>*@
-            <a class="btn btn-default active" id="btn_call" data-value="@((int)EmunQueueCalledStu.call)" >已叫队列</a>
-            <a class="btn btn-default " id="btn_pass" data-value="@((int)EmunQueueCalledStu.pass)" >过号队列</a>
-            <a class="btn btn-default" id="btn_reply" data-value="@((int)EmunQueueCalledStu.reply)" >到诊队列</a>
+            <a class="btn btn-default active" id="btn_call" data-value="@((int)EmunQueueCalledStu.call)" >Hàng đợi đã gọi</a>
+            <a class="btn btn-default " id="btn_pass" data-value="@((int)EmunQueueCalledStu.pass)" >Hàng đợi quá số</a>
+            <a class="btn btn-default" id="btn_reply" data-value="@((int)EmunQueueCalledStu.reply)" >Hàng đợi đã đến khám</a>
         </div>
         <hr />
     </div>
@@ -149,20 +149,20 @@
             postData: { keyword: $("#txt_keyword").val(), qdsj: new Date().format('yyyy-MM-dd'), calledstu: '@((int)EmunQueueCalledStu.sign)'},
             colModel: [
                 {
-                    label: '操作区', name: 'action', width: 80, align: 'center', frozen: true, formatter: function (cellvalue, op, row) {
+                    label: 'Khu thao tác', name: 'action', width: 80, align: 'center', frozen: true, formatter: function (cellvalue, op, row) {
                         if ($("#time_horizon a.active").attr('data-value') != 1) {
                             return '';
                         } else {
-                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="叫号" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="过号" />';
+                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="Quá số" />';
                         }
                     },
                 },
-                { label: '序号', name: 'queno', width: 30, align: 'center', frozen: true },
-                { label: '姓名', name: 'xm', width: 80, align: 'left', frozen: true },
-                { label: '主键', name: 'Id', hidden: true },
+                { label: 'Số thứ tự', name: 'queno', width: 30, align: 'center', frozen: true },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left', frozen: true },
+                { label: 'Khóa chính', name: 'Id', hidden: true },
                 { label: 'ywbz', name: 'ywbz', hidden: true },
                 {
-                    label: '号源类型', name: 'ywlx', width: 50, align: 'left',
+                    label: 'Loại nguồn số', name: 'ywlx', width: 50, align: 'left',
                     formatter: function (cellvalue, op, rows) {
                         if (rows.ywbz == 1) {
                             return $.enum.getDescByValue("EnumOutPatientType", cellvalue);
@@ -172,13 +172,13 @@
                         }
                     }
                 },
-                { label: '出诊科室', name: 'czksmc', width: 80, align: 'left' },
-                { label: '出诊医生', name: 'czysxm', width: 60, align: 'center' },
+                { label: 'Khoa khám', name: 'czksmc', width: 80, align: 'left' },
+                { label: 'Bác sĩ khám', name: 'czysxm', width: 60, align: 'center' },
             ],
             pager: "#gridPager",
             sortname: 'czksmc,Period,queno asc',
             viewrecords: true,
-            caption: "未分诊队列",
+            caption: "Hàng đợi chưa phân loại",
             autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
             shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
         });
@@ -236,7 +236,7 @@
             dataType: "json",
             async: false,
             success: function (data) {
-                $.modalAlert($.enum.getDescByValue("EmunQueueCalledStu", calledstu)+"完成！", 'success');
+                $.modalAlert($.enum.getDescByValue("EmunQueueCalledStu", calledstu)+"Hoàn thành!", 'success');
                 $("#btn_search").trigger('click');
             }
         });
@@ -256,30 +256,30 @@
             postData: { keyword: $("#txt_keyword").val(), qdsj: new Date().format('yyyy-MM-dd'), calledstu: $("#called_horizon a.active").attr('data-value')},
             colModel: [
                 {
-                    label: '操作区', name: 'action', width: 80, align: 'center', frozen: true, formatter: function (cellvalue, op, row) {
+                    label: 'Khu thao tác', name: 'action', width: 80, align: 'center', frozen: true, formatter: function (cellvalue, op, row) {
                         if ($("#time_horizon a.active").attr('data-value') != 1) {
                             return '';
                         }
                         else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') == '@((int)EmunQueueCalledStu.pass)') {//已过号
-                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="重新叫号" />';
+                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="LạiGọi số" />';
                         }
-                        else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') != '@((int)EmunQueueCalledStu.pass)') {//已过号,重新叫号过 显示在叫号队列
-                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="叫号" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="过号" />';
+                        else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') != '@((int)EmunQueueCalledStu.pass)') {//已过号,重新Gọi số过 显示在Gọi số队列
+                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="Quá số" />';
                         }
                         else if (cellvalue == '@((int)EmunQueueCalledStu.reply)') {
-                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="呼叫" />';
+                            return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi" />';
                         }
                         else
                             return '';
-                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="叫号" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="过号" />';
+                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="过号" />';
                     },
                 },
-                { label: '序号', name: 'queno', width: 30, align: 'center', frozen: true },
-                { label: '姓名', name: 'xm', width: 80, align: 'left', frozen: true },
-                { label: '主键', name: 'Id', hidden: true },
+                { label: 'Số thứ tự', name: 'queno', width: 30, align: 'center', frozen: true },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left', frozen: true },
+                { label: 'Khóa chính', name: 'Id', hidden: true },
                 { label: 'ywbz', name: 'ywbz', hidden: true },
                 {
-                    label: '号源类型', name: 'ywlx', width: 50, align: 'left',
+                    label: 'Loại nguồn số', name: 'ywlx', width: 50, align: 'left',
                     formatter: function (cellvalue, op, rows) {
                         if (rows.ywbz == 1) {
                             return $.enum.getDescByValue("EnumOutPatientType", cellvalue);
@@ -289,12 +289,12 @@
                         }
                     }
                 },
-                { label: '出诊科室', name: 'czksmc', width: 80, align: 'left' },
-                { label: '出诊医生', name: 'czysxm', width: 60, align: 'center' },
+                { label: 'Khoa khám', name: 'czksmc', width: 80, align: 'left' },
+                { label: 'Bác sĩ khám', name: 'czysxm', width: 60, align: 'center' },
                 {
-                    label: '状态', name: 'calledstu', width: 50, align: 'center', formatter: function (cellvalue, op, row) {
+                    label: 'Trạng thái', name: 'calledstu', width: 50, align: 'center', formatter: function (cellvalue, op, row) {
                         if (cellvalue == '@((int)EmunQueueCalledStu.reply)') {
-                            return "正在就诊";
+                            return "ĐangKhám bệnh";
                         }
                         else if (cellvalue != "") {
                             return $.enum.getDescByValue("EmunQueueCalledStu", cellvalue);
@@ -304,19 +304,19 @@
                         }
                     }
                 },
-                { label: '叫号次数', name: 'calledtimes', width: 80, align: 'center' },
+                { label: 'Số lần gọi', name: 'calledtimes', width: 80, align: 'center' },
                 //{ label: '年龄', name: 'nlshow', width: 50, align: 'left', },
                 //{ label: '卡号', name: 'kh', width: 50, align: 'left', },
-                //{ label: '病人性质', name: 'brxz', width: 50, align: 'left', },
+                //{ label: 'Tính chất bệnh nhân', name: 'brxz', width: 50, align: 'left', },
                 //{ label: '病人来源', name: 'brly', width: 50, align: 'left', },
-                //{ label: '叫号次数', name: 'calledtimes', width: 50, align: 'left' },
+                //{ label: 'Số lần gọi', name: 'calledtimes', width: 50, align: 'left' },
                 {
-                    label: '是否过号', name: 'ispassed', width: 50, align: 'center', formatter: function (cellvalue, op, row) {
+                    label: 'Có quá số không', name: 'ispassed', width: 50, align: 'center', formatter: function (cellvalue, op, row) {
                         if (cellvalue == 1) {
-                            return "是";
+                            return "Có";
                         }
                         else {
-                            return "否";
+                            return "Không";
                         }
                     }
                 },
@@ -340,7 +340,7 @@
             shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
         });
         $gridListcalled.jqGrid('setFrozenColumns');//设置冻结列生效
-        //已叫队列
+        //Hàng đợi đã gọi
         $("#btn_call").click(function () {
             $("#btn_call").addClass("active");
             $("#btn_pass").removeClass("active");
@@ -352,7 +352,7 @@
                 page: 1,
             }).trigger('reloadGrid');
         });
-        //过号队列
+        //Hàng đợi quá số
         $("#btn_pass").click(function () {
             $("#btn_call").removeClass("active");
             $("#btn_pass").addClass("active");
@@ -364,7 +364,7 @@
                 page: 1,
             }).trigger('reloadGrid');
         });
-        //到诊队列
+        //Hàng đợi đã đến khám
         $("#btn_reply").click(function () {
             $("#btn_call").removeClass("active");
             $("#btn_pass").removeClass("active");
@@ -444,8 +444,8 @@
                 dataType: "json",
                 async: false,
                 success: function (ajaxresp) {
-                    var sp_calling_ywlx = $.enum.getDescByValue("EnumOutPatientType", ajaxresp.sp_calling_ywlx).replace("门诊", "");
-                    var sp_nextcall_ywlx = $.enum.getDescByValue("EnumOutPatientType", ajaxresp.sp_nextcall_ywlx).replace("门诊","");
+                    var sp_calling_ywlx = $.enum.getDescByValue("EnumOutPatientType", ajaxresp.sp_calling_ywlx).replace("Ngoại trú", "");
+                    var sp_nextcall_ywlx = $.enum.getDescByValue("EnumOutPatientType", ajaxresp.sp_nextcall_ywlx).replace("Ngoại trú","");
                     $("#sp_calling_no").html(ajaxresp.sp_calling_no == 0?"": ajaxresp.sp_calling_no);
                     $("#sp_calling_xm").html(ajaxresp.sp_calling_xm);
                     $("#sp_calling_dept").html(ajaxresp.sp_calling_dept);

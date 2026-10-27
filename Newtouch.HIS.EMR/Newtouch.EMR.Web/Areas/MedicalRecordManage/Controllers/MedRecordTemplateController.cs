@@ -1,21 +1,22 @@
-﻿using FrameworkBase.MultiOrg.Web;
-using Newtouch.Core.Common;
+using NewtouchHIS.Framework.Web.Controllers;
+
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IDomainServices;
 using Newtouch.EMR.Domain.IRepository;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using Newtouch.Tools;
+
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Framework.Filter;
+using NewtouchHIS.Lib.Framework.Attributes;
 using Newtouch.EMR.Infrastructure;
-using Newtouch.Core.Common.Utils;
-using Newtouch.Infrastructure;
-using Newtouch.Common.Operator;
-using DCSoft.Writer.Controls;
-using DCSoft.Writer;
+
+using NewtouchHIS.Lib.Framework.Operator;
+
 using System.IO;
 using Newtouch.EMR.Domain.ValueObjects;
 using System.Text;
@@ -25,6 +26,7 @@ using System.Xml.Linq;
 
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
+    [Area("MedicalRecordManage")]
     public class MedRecordTemplateController : OrgControllerBase
     {
     
@@ -34,42 +36,52 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private readonly ISysStaffRepo _SysStaffRepo;
         private readonly IBlmblbDmnService _BlmblbDmnService;
         private readonly ICommonDmnService _CommonDmnService;
-        public static string BlTemplatePath = ConfigurationHelper.GetAppConfigValue("BlTemplatePath");
+
+        public MedRecordTemplateController(IBlmblbRepo blmblbRepo, IZybrjbxxDmnService zybrjbxxDmnService, ISysDepartmentRepo sysDepartmentRepo, ISysStaffRepo sysStaffRepo, IBlmblbDmnService blmblbDmnService, ICommonDmnService commonDmnService)
+        {
+            this._BlmblbRepo = blmblbRepo;
+            this._ZybrjbxxDmnService = zybrjbxxDmnService;
+            this._SysDepartmentRepo = sysDepartmentRepo;
+            this._SysStaffRepo = sysStaffRepo;
+            this._BlmblbDmnService = blmblbDmnService;
+            this._CommonDmnService = commonDmnService;
+        }
+        public static string BlTemplatePath = EmrConfig.GetAppConfigValue("BlTemplatePath");
 
         #region View
-        public ActionResult FormQX()
+        public IActionResult FormQX()
         {
             return View();
         }
-        //public ActionResult MedicalTemplate()
+        //public IActionResult MedicalTemplate()
         //{
         //    return View();
         //}
-        public ActionResult LeftMedicalTemplate()
+        public IActionResult LeftMedicalTemplate()
         {
             return View();
         }
-        public ActionResult RightMedicalTemplate()
+        public IActionResult RightMedicalTemplate()
         {
             return View();
         }
-        public ActionResult BlTemplate()
+        public IActionResult BlTemplate()
         {
             return View();
         }
-        public ActionResult testbl()
+        public IActionResult testbl()
         {
             return View();
         }
         //openVer
-        public ActionResult MedicalOpenEditor()
+        public IActionResult MedicalOpenEditor()
         {
             return View();
         }
         #endregion
 
         #region 病历模板管理
-        public ActionResult GetGridJson(Pagination pagination, string keyword)
+        public IActionResult GetGridJson(Pagination pagination, string keyword)
         {
             OperatorModel user = this.UserIdentity;
             var data = new
@@ -88,7 +100,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="blId"></param>
         /// <param name="bllx"></param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string keyValue, string blId,string bllx)
+        public IActionResult GetFormJson(string keyValue, string blId,string bllx)
         {
             if (!string.IsNullOrWhiteSpace(blId)) //保存个人模板
             {
@@ -102,7 +114,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 data.mbqx = mod.mbqx;
                 data.Memo = mod.blxtml + mod.blxtmc;
                 data.zt = "true";
-                data.mblj= ConfigurationHelper.GetAppConfigValue("BlTemplatePath");
+                data.mblj= EmrConfig.GetAppConfigValue("BlTemplatePath");
                 data.LoadWay = Convert.ToInt32(EnummbqxTempLoadWay.DcWriter);
                 if (data.mbqx == Convert.ToInt32( Enummbqx.prv))
                 {
@@ -123,7 +135,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <param name="keyValue"></param>
         /// <param name="mbly">模板来源</param>
         /// <returns></returns>
-        public ActionResult submitForm(BlmblbEntity blmb,string keyValue,int? mbly)
+        public IActionResult submitForm(BlmblbEntity blmb,string keyValue,int? mbly)
         {
             blmb.OrganizeId = this.OrganizeId;
             if (blmb.Isempty == null)
@@ -150,7 +162,6 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             blmb.bllxId = bllxDic.Id;
             blmb.bllxmc = bllxDic.bllxmc;
 
-
             _BlmblbRepo.SubmitForm(blmb, keyValue);
 
             if (mbly != null && mbly == 0)  //病历转模板标志，文件迁移操作
@@ -158,33 +169,33 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 //文件迁移
                 if (!string.IsNullOrWhiteSpace(blmb.Memo))
                 {
-                    blmb.mblj = Server.MapPath(blmb.mblj);
-                    blmb.Memo = Server.MapPath(blmb.Memo);
+                    blmb.mblj = WebPath.Map(blmb.mblj);
+                    blmb.Memo = WebPath.Map(blmb.Memo);
                     _BlmblbDmnService.BlConvertToTemplateProcess(blmb);
                 }
             }
             return Success();
         }
 
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             var ety = _BlmblbRepo.FindEntity(keyValue);
             ety.zt = "0";
             _BlmblbRepo.SubmitForm(ety, keyValue);
             return Success();
             ////文件迁移
-            //var delpath = Server.MapPath(ConfigurationHelper.GetAppConfigValue("BlTemplateDelPath"));
-            //var cutpath = Server.MapPath(ety.mblj);
+            //var delpath = WebPath.Map(EmrConfig.GetAppConfigValue("BlTemplateDelPath"));
+            //var cutpath = WebPath.Map(ety.mblj);
             //var flag = _BlmblbDmnService.CopyDir(cutpath, delpath, "",1);
             //if (flag == true)
             //{
             //    return Success();
             //}
             //else
-            //    return Error("删除模板异常，请联系管理员");
+            //    return Error("Xóa mẫu bất thường，Vui lòng liên hệ quản trị viên");
         }
 
-        public ActionResult GetSysDept()
+        public IActionResult GetSysDept()
         {
             var list = _SysDepartmentRepo.GetList(OrganizeId, "1", null);
             var data = new List<object>();
@@ -201,7 +212,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
 
-        public ActionResult GetSysStaff()
+        public IActionResult GetSysStaff()
         {
             var data = _SysStaffRepo.GetValidStaffListByOrganizeId(OrganizeId);
             return Content(data.ToJson());
@@ -209,14 +220,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #endregion
 
         #region 权限控制
-        public ActionResult GetblmbDuty(string mbId)
+        public IActionResult GetblmbDuty(string mbId)
         {
             OperatorModel user = this.UserIdentity;
             var data = _CommonDmnService.GetblmbDuty(mbId,user);
             return Content(data.ToJson());
         }
         
-        public ActionResult SubmitAssigned(string list,string mbId,string mbbm)
+        public IActionResult SubmitAssigned(string list,string mbId,string mbbm)
         {
             OperatorModel user = this.UserIdentity;
            // submitForm(mbInfo, mbId, mbly);
@@ -234,18 +245,18 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         #endregion
 
-        public ActionResult TemplateEdit()
+        public IActionResult TemplateEdit()
         {
             //根据id获取模板
             //如果找不到加载的xml就默认为空白的xml
-            string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
+            string currentFileName = WebPath.Map(BlTemplatePath + "newFile.xml");
             // 加载文件
             WebWriterControlEngine eng = GetControlEngine();
-            if (this.Request.HttpMethod != "GET")
+            if (Request.Method != "GET")
             {
                 string sd = this.Request.Form["saveDocument"];
                 bool loaded = false;
-                if (sd == "保存文档" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
+                if ((sd == "保存文档" || sd == "Lưu tài liệu") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
                     // 用户点击了“保存文档”按钮，
                     // 则试图从WEB请求中加载文档然后保存
@@ -256,7 +267,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         IsExistDir(path);
                         string BLMC = DateTime.Now.ToString("ddHHmm");
 
-                        currentFileName = Server.MapPath(path)+ BLMC + ".xml";
+                        currentFileName = WebPath.Map(path)+ BLMC + ".xml";
                         eng.SaveDocument(currentFileName , null);              
                     }
                 }
@@ -268,70 +279,47 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         private WebWriterControlEngine GetControlEngine()
         {
-            WebWriterControlEngine engine = new WebWriterControlEngine();
-            //编辑器ID
-            engine.Options.ClientID = "myWriterControl";
-            //违禁关键字
-            engine.Options.ExcludeKeywords = "月经,子宫,卵巢";
-            // 是否显示输入域状态标签
-            engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            // 文本输入域数据异常时的高亮度文本色            engine.DocumentOptions.ViewOptions.FieldInvalidateValueBackColor = Color.Yellow;
-            // 用Tab键在各个输入域之间切换
-            engine.DocumentOptions.BehaviorOptions.MoveFocusHotKey = MoveFocusHotKeys.Tab;
-            //表单视图模式 Strict:严格视图模式
-            engine.ControlOptions.FormView = FormViewMode.Strict;
-            //显示段落标记
-            engine.DocumentOptions.ViewOptions.ShowParagraphFlag = false;
-            //是否显示输入域状态标签
-            engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            //是否允许视图加密显示
-            engine.DocumentOptions.ViewOptions.EnableEncryptView = true;
+            return new WebWriterControlEngine();
+        }
 
-            //输入域背景文字的输出模式 Underline：输出下划线
-            engine.Options.BackgroundTextOutputMode = DCBackgroundTextOutputMode.Underline;
-            //内容呈现模式 NormalHtmlEditable：以普通的HTML模式显示可编辑的文档
-            engine.Options.ContentRenderMode = WebWriterControlRenderMode.NormalHtmlEditable;
-            //引用路径
-            engine.Options.ServicePageURL = this.Url.Action("HandelDCWriterServicePage");
-            //工作区域背景色
-            engine.Options.WorkspaceBackColorString = "#B1CAEB";
-            //工作区域背景图片
-            engine.Options.WorkspaceBackgroundImage = "Workspace-Background.jpg";
-            //边框样式
-            engine.BorderStyle = "1px solid black";
-            return engine;
-        }
         //设置编辑器的引用路径
-        public ActionResult HandelDCWriterServicePage()
+        // DCSoft.Writer has no .NET Core build: this service endpoint reports the
+        // limitation explicitly instead of 404. A replacement web editor is the
+        // remaining EMR item.
+        public IActionResult HandelDCWriterServicePage()
         {
-            return new DCWriterActionResult();
+            return Content(new AjaxResult
+            {
+                state = ResultType.error.ToString(),
+                message = "Trình soạn thảo văn bản DCSoft chưa khả dụng trên .NET Core (không có bản build .NET Core). Cần thay bằng trình soạn thảo web khác."
+            }.ToJson());
         }
+
 
         //处理操作结果生成一个带文档内容的编辑器
-        private class DCWriterActionResult : ActionResult
-        {
-            public override void ExecuteResult(ControllerContext context)
-            {
-                //在web中显示文档内容的WEB控件
-                DCSoft.Writer.Controls.WebWriterControl.HandleService();
-            }
-        }
         public void IsExistDir(string path)
         {
-            if (Directory.Exists(Server.MapPath(path)) == false)//如果不存在就创建file文件夹
+            if (Directory.Exists(WebPath.Map(path)) == false)//如果不存在就创建file文件夹
             {
-                Directory.CreateDirectory(Server.MapPath(path));
+                Directory.CreateDirectory(WebPath.Map(path));
             }
         }
 
         #region  dc版
-        [ValidateInput(false)]
-        public ActionResult MoreHandleDCWriterServicePage()
+        // DCSoft.Writer has no .NET Core build: this service endpoint reports the
+        // limitation explicitly instead of 404. A replacement web editor is the
+        // remaining EMR item.
+        public IActionResult MoreHandleDCWriterServicePage()
         {
-            return new MoreActionResult();
+            return Content(new AjaxResult
+            {
+                state = ResultType.error.ToString(),
+                message = "Trình soạn thảo văn bản DCSoft chưa khả dụng trên .NET Core (không có bản build .NET Core). Cần thay bằng trình soạn thảo web khác."
+            }.ToJson());
         }
 
-        public ActionResult MedicalTemplate()
+
+        public IActionResult MedicalTemplate()
         {
             //DCwriterServer dcControl = new DCwriterServer();
             //dcControl.MedicalTemplate();
@@ -341,88 +329,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //eng.Dispose();
             return View();
         }
-        private class MoreActionResult : ActionResult
-        {
-            public MoreActionResult()
-            {
-            }
-            public override void ExecuteResult(ControllerContext context)
-            {
-                WebWriterControlServicePageExecuter executer = new WebWriterControlServicePageExecuter();
-                executer.CrossDomainSettings.Enabled = true;//是否跨域
-                executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//事件
-                executer.EventReadFileContent = new DCSoft.Writer.WriterReadFileContentEventHandler(My_ReadFileContent);
-                if (executer.HandleService())
-                {
-                    return;
-                }
-            }
-
-            private void My_ReadFileContent(object eventSender, WriterReadFileContentEventArgs args)
-            {
-                if (!string.IsNullOrWhiteSpace(args.FileName))
-                {
-                    string [] arr = args.FileName.Split('\\');
-                    string filename = arr.LastOrDefault();
-                    string ml = AppDomain.CurrentDomain.BaseDirectory;
-                    var tempaleUrl = "";
-                    for (var item=1;item<arr.Length; item++)
-                    {
-                        if (arr[item].Contains(".xml"))
-                        {
-                            var xmlfile = ml + tempaleUrl + arr[item];
-                            var t = System.IO.File.Exists((xmlfile));
-                            if (!System.IO.File.Exists((xmlfile)))
-                            {
-                                //var defalutxml = "<XTextDocumentxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"EditorVersionString=\"1.2023.2.14\"></XTextDocument>";
-                                //System.IO.Directory.CreateDirectory(ml + tempaleUrl);
-                                var d = $"{ml}{tempaleUrl}{filename}";
-                                System.IO.File.WriteAllText($"{ml}{tempaleUrl}{filename}", "");
-                                //args.Handled = true;
-                                //return;
-                            }
-                            tempaleUrl += arr[item];
-                        }
-                        else
-                        {
-                            var d = arr[item];
-                            var dd = ml + tempaleUrl + arr[item];
-                            if (!System.IO.Directory.Exists(ml + tempaleUrl + arr[item]))
-                            {
-                                System.IO.Directory.CreateDirectory(ml + tempaleUrl + arr[item]);
-                            }
-                            tempaleUrl +=arr[item]+ "\\" ;
-                            
-                        }
-                    }
-                    //string filename = args.FileName + ".xml";
-                    string xml = System.IO.File.ReadAllText($"{ml}{tempaleUrl}");
-
-                    byte[] bs = System.IO.File.ReadAllBytes($"{ml}{tempaleUrl}");
-                    args.ResultBinary = bs;
-                    //args.Message = "加载以后的返回信息";//传递给前端的信息 
-                    args.Handled = true;
-                }
-
-            }
-
-            private void My_SaveFileContent(object sender, DCSoft.Writer.WriterSaveFileContentEventArgs args)
-            {
-                string filename = args.FileName;
-                string ml = AppDomain.CurrentDomain.BaseDirectory;
-                ml = ml.Substring(0, ml.Length-1);
-                if (!System.IO.Directory.Exists(ml + "File"))
-                {
-                    System.IO.Directory.CreateDirectory(ml + "File");
-                }
-                var d= $"{ml}{filename}";
-                System.IO.File.WriteAllText($"{ml}{filename}", args.Document.InnerXML);
-            }
-
-        }
 
         #region  dc5.0实现方式
-        public ActionResult GetTemplateXml(string templateUrl)
+        public IActionResult GetTemplateXml(string templateUrl)
         {
             string[] arr = templateUrl.Split('\\');
             string filename = arr.LastOrDefault();
@@ -487,7 +396,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             #endregion
         }
 
-        public ActionResult SaveTemplateXml(string templateUrl,string templateData)
+        public IActionResult SaveTemplateXml(string templateUrl,string templateData)
         {
             string filename = templateUrl;
             byte[] decodedBytes = Convert.FromBase64String(templateData);
@@ -507,7 +416,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #endregion
 
         #region openeditor
-        public ActionResult GetTemplateHtml(string templateUrl)
+        public IActionResult GetTemplateHtml(string templateUrl)
         {
             templateUrl = templateUrl.Replace("xml","html");
             string[] arr = templateUrl.Split('\\');
@@ -542,7 +451,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             vo.xmldata = xml;
             return Content(vo.ToJson());
         }
-        public ActionResult SaveTemplateHtml(string templateUrl, string templateData)
+        public IActionResult SaveTemplateHtml(string templateUrl, string templateData)
         {
             string filename = templateUrl.Replace("xml", "html");
             byte[] decodedBytes = Convert.FromBase64String(templateData);

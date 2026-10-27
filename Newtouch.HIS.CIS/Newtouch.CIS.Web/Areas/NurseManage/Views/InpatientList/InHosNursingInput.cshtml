@@ -1,9 +1,9 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "护士站患者中心-多病人体温录入";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
-    var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Nhiều bệnh nhânNhiệt độNhậpVào";
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
     var MutipatientNursingInputFlag = SysConfigReader.String("MutipatientNursingInputFlag");
     var ScdCode = SysConfigReader.String("ScdTimePoint");
 }
@@ -32,11 +32,11 @@
     <div class="topPanel" style="height:50px;line-height:30px">
         <table class="form">
             <tr>
-                <td class="formTitle"><span class="required">*</span>日期：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày:</td>
                 <td class="formValue">
                     <input id="rq" name="rq" type="text" class="required form-control input-wdatepicker formClearIgnore">
                 </td>
-                <td class="formTitle sjd"><span class="required">*</span>时间点：</td>
+                <td class="formTitle sjd"><span class="required">*</span>Thời điểm:</td>
                 <td class="formValue sjd" colspan="4">
                     <div>
                         @if (@ScdCode == "1")
@@ -90,11 +90,11 @@
     <div class="gridPanel"  style="width: 100%;background-color: #fff;">
         <table id="gridtwdsList"></table>
     </div>
-    <div style="width:30%"><span style="color:red">说明：</span>血压测量单位：mmHg；摄入摄出测量单位：ml</div>
+    <div style="width:30%"><span style="color:red">Mô tả:</span>Huyết ápĐoĐơn vị:mmHg;Đo lượng vào raĐơn vị:ml</div>
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 8 },
-    F8Text = "提交"
+    F8Text = "Gửi"
 })
 </div>
 <script type="text/javascript">
@@ -260,7 +260,7 @@
             height: $(window).height() - 230,
             shrinkToFit: false,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             editurl: "clientArray",  //行编辑不向服务器提交数据
             multiselect: true,//复选框
             unwritten: false,
@@ -268,11 +268,11 @@
             shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
             colModel: [
                 { label: "Id", name: "Id", hidden: true, frozen: true },
-                { label: "住院号", name: "zyh", width: 50, align: 'left', frozen: true },
-                { label: "病人姓名", name: "xm", width: 50, align: 'left', frozen: true },
-                { label: "状态", name: "brzt", hidden: true, editable: true },
+                { label: "Số nhập viện", name: "zyh", width: 50, align: 'left', frozen: true },
+                { label: "Họ tên bệnh nhân", name: "xm", width: 50, align: 'left', frozen: true },
+                { label: "Trạng thái", name: "brzt", hidden: true, editable: true },
                 {
-                    label: "状态", name: "brzttext", width: 80, align: 'left', edittype: "select", editwidth: "75%", editable: true, editoptions: {
+                    label: "Trạng thái", name: "brzttext", width: 80, align: 'left', edittype: "select", editwidth: "75%", editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -286,11 +286,11 @@
                         ]
                     }
                 },
-                { label: "状态标注<br />(时)", name: "brzt_hh", width: 80, align: 'left', editable: true },
-                { label: "状态标注<br />(分)", name: "brzt_mi", width: 80, align: 'left', editable: true},
+                { label: "Đánh dấu trạng thái<br />(giờ)", name: "brzt_hh", width: 80, align: 'left', editable: true },
+                { label: "Đánh dấu trạng thái<br />(phút)", name: "brzt_mi", width: 80, align: 'left', editable: true},
                 {
-                    label: "<span class='required'>*</span>体温测量方式", required: false, name: "twclfstext", width: 80, align: 'left', edittype: 'select', editwidth: "65%", editable: true, editoptions: {
-                        value: { 1: '口温', 2: '腋温', 3: '肛温' },
+                    label: "<span class='required'>*</span>Nhiệt độPhương thức đo", required: false, name: "twclfstext", width: 80, align: 'left', edittype: 'select', editwidth: "65%", editable: true, editoptions: {
+                        value: { 1: 'Nhiệt độ miệng', 2: 'Nhiệt độ nách', 3: 'Nhiệt độ hậu môn' },
                         dataEvents: [
                             {
                                 type: 'change',
@@ -305,10 +305,10 @@
                     }
                 },
                 { label: "twclfs", name: "twclfs", hidden: true, editable: true },
-                { label: "体温(℃)", editwidth: "75%", required: false, name: "tw", width: 50, align: 'left', editable: true },
+                { label: "Nhiệt độ(℃)", editwidth: "75%", required: false, name: "tw", width: 50, align: 'left', editable: true },
                 {
-                    label: "起搏器", name: "qbqtext", width: 65, align: 'left', edittype: 'select', editwidth: "65%", editable: true, editoptions: {
-                        value: { 1: '是', 0: '否' },
+                    label: "Máy tạo nhịp", name: "qbqtext", width: 65, align: 'left', edittype: 'select', editwidth: "65%", editable: true, editoptions: {
+                        value: { 1: 'Có', 0: 'Không' },
                         dataEvents: [
                            {
                                type: 'change',
@@ -324,8 +324,8 @@
                 },
                 { label: "qbq", name: "qbq", hidden: true, editable: true },
                 {
-                    label: "呼吸机", name: "hxjtext", width: 65, align: 'left', edittype: 'select', editwidth: "65%", editable: true, editoptions: {
-                        value: { 1: '是', 0: '否' },
+                    label: "Máy hô hấp", name: "hxjtext", width: 65, align: 'left', edittype: 'select', editwidth: "65%", editable: true, editoptions: {
+                        value: { 1: 'Có', 0: 'Không' },
                         dataEvents: [
                            {
                                type: 'change',
@@ -340,38 +340,38 @@
                     }
                 },
                 { label: "hxj", name: "hxj", hidden: true, editable: true },
-                { label: "心率(次/分)", name: "xl", width: 65, align: 'left', editwidth: "75%", editable: true },
-                { label: "脉搏(次/分)", name: "mb", width: 65, align: 'left', editwidth: "75%", editable: true },
-                { label: "呼吸(次/分)", name: "hx", width: 65, align: 'left', editwidth: "75%", editable: true },
+                { label: "Nhịp tim(lần/phút)", name: "xl", width: 65, align: 'left', editwidth: "75%", editable: true },
+                { label: "Mạch(lần/phút)", name: "mb", width: 65, align: 'left', editwidth: "75%", editable: true },
+                { label: "Hô hấp(lần/phút)", name: "hx", width: 65, align: 'left', editwidth: "75%", editable: true },
                 { label: "hxj", name: "hxj", width: 50, align: 'left', hidden: true },
                 //{label: "血压上值", name: "xysz", width: 50, align: 'left', editable: true},
                 //{ label: "血压下值", name: "xyxz", width: 50, editable: true, align: 'left' },
-                { label: "血压上下值", name: "xysxz", width: 80, align: 'left', editwidth: "75%", editable: true },
-                { label: "体重(kg)", name: "tz", width: 50, align: 'left', editable: true },
-                { label: "身高(cm)", name: "sg", width: 50, align: 'left', editable: true },
-                { label: "测量说明", name: "tzclbz", width: 100, align: 'left', editwidth: "75%", editable: true },
-                { label: "疼痛评分", name: "ttpf", width: 50, align: 'left', editable: true },
-                { label: "大便次数", name: "dbcs", width: 50, align: 'left', editable: true },
-                { label: "说明", name: "dbcsbz", width: 80, align: 'left', editwidth: "75%", editable: true },
-                { label: "过敏药", name: "gmyw", width: 80, align: 'left', editable: true },
-                { label: "总入量", name: "zrl", width: 50, align: 'left', editable: true },
-                { label: "总出量", name: "zcl", width: 50, align: 'left', editable: true },
-                { label: "引流量", name: "yll", width: 50, align: 'left', editable: true },
-                { label: "输液量", name: "syl", width: 50, align: 'left', editable: true },
-                { label: "饮食量", name: "ysl", width: 50, align: 'left', editable: true },
-                { label: "输血量", name: "sxl", width: 50, align: 'left', editable: true },
+                { label: "Huyết ápGiá trị trên dưới", name: "xysxz", width: 80, align: 'left', editwidth: "75%", editable: true },
+                { label: "Cân nặng(kg)", name: "tz", width: 50, align: 'left', editable: true },
+                { label: "Chiều cao(cm)", name: "sg", width: 50, align: 'left', editable: true },
+                { label: "ĐoMô tả", name: "tzclbz", width: 100, align: 'left', editwidth: "75%", editable: true },
+                { label: "Điểm đau", name: "ttpf", width: 50, align: 'left', editable: true },
+                { label: "Số lần đại tiện", name: "dbcs", width: 50, align: 'left', editable: true },
+                { label: "Mô tả", name: "dbcsbz", width: 80, align: 'left', editwidth: "75%", editable: true },
+                { label: "Thuốc dị ứng", name: "gmyw", width: 80, align: 'left', editable: true },
+                { label: "Tổng lượng vào", name: "zrl", width: 50, align: 'left', editable: true },
+                { label: "Tổng lượng ra", name: "zcl", width: 50, align: 'left', editable: true },
+                { label: "Lượng dịch dẫn lưu", name: "yll", width: 50, align: 'left', editable: true },
+                { label: "Lượng truyền dịch", name: "syl", width: 50, align: 'left', editable: true },
+                { label: "Lượng ăn uống", name: "ysl", width: 50, align: 'left', editable: true },
+                { label: "Lượng truyền máu", name: "sxl", width: 50, align: 'left', editable: true },
 
-                { label: "呕吐量", name: "otl", width: 50, align: 'left', editable: true },
-                { label: "尿量", name: "xbl", width: 40, align: 'left', editable: true },
-                { label: "超液量", name: "cys", width: 50, align: 'left', editable: true },
-                { label: "伤口引流", name: "skyll", width: 50, align: 'left', editable: true },
-                { label: "胸液量", name: "xyl", width: 50, align: 'left', editable: true },
-                { label: "胃液量", name: "wyl", width: 50, align: 'left', editable: true},
-                { label: "负吸小球", name: "fxxq", width: 50, align: 'left', editable: true},
-                { label: "其他摄出", name: "qtsc", width: 50, align: 'left', editable: true},
-                { label: "吸氧/流量L/min", name: "xyll", width: 90, align: 'left', editwidth: "75%", editable: true},
-                { label: "吸氧说明", name: "xyfs", width: 100, align: 'left', editwidth: "75%", editable: true },
-                { label: "血氧饱和度", name: "xybhd", width: 80, align: 'left', editwidth: "75%", editable: true}],
+                { label: "Lượng nôn", name: "otl", width: 50, align: 'left', editable: true },
+                { label: "Lượng nước tiểu", name: "xbl", width: 40, align: 'left', editable: true },
+                { label: "Lượng dịch thừa", name: "cys", width: 50, align: 'left', editable: true },
+                { label: "Dẫn lưu vết thương", name: "skyll", width: 50, align: 'left', editable: true },
+                { label: "Lượng dịch màng phổi", name: "xyl", width: 50, align: 'left', editable: true },
+                { label: "Lượng dịch dạ dày", name: "wyl", width: 50, align: 'left', editable: true},
+                { label: "Bóng hút áp lực âm", name: "fxxq", width: 50, align: 'left', editable: true},
+                { label: "Lượng vào ra khác", name: "qtsc", width: 50, align: 'left', editable: true},
+                { label: "Thở oxy/Lưu lượngL/min", name: "xyll", width: 90, align: 'left', editwidth: "75%", editable: true},
+                { label: "Thở oxyMô tả", name: "xyfs", width: 100, align: 'left', editwidth: "75%", editable: true },
+                { label: "Độ bão hòa oxy máu", name: "xybhd", width: 80, align: 'left', editwidth: "75%", editable: true}],
             viewrecords: true,
             rownumbers: false,
             editinputwidthborder: false,    //是否需要边框 默认为true
@@ -389,12 +389,12 @@
                 {
                     startColumnName: 'syl',
                     numberOfColumns: 3,
-                    titleText: '摄入量'
+                    titleText: 'Lượng đưa vào'
                 },
                 {
                     startColumnName: 'otl',
                     numberOfColumns: 8,
-                    titleText: '摄出量'
+                    titleText: 'Lượng vào ra'
                 }
             ]
         });
@@ -429,7 +429,7 @@
         //$("#" + rowid + "_brzt").val();
         var currentbrzt = "2";//默认显示在院
         if (top.clients.enums) {
-            var option = "<option>请选择</option>";
+            var option = "<option>Vui lòng chọn</option>";
             $.each(top.clients.enums, function (i, v) {
                 if (v.Type === "EnumHlbrzt") {
                     $.each(v.Items, function (ii, vv) {
@@ -672,8 +672,8 @@
                 return $.itemDetails.getItems(itemType);
             },
             colModel: [
-                { label: '编码', name: 'Code', widthratio: 20 },
-                { label: '名称', name: 'Name', widthratio: 60 },
+                { label: 'Mã', name: 'Code', widthratio: 20 },
+                { label: 'Tên', name: 'Name', widthratio: 60 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
                 //保存时验证val和data-Name一致
@@ -709,7 +709,7 @@
             }
             var gridData = $("#gridtwdsList").jqGrid('getRowData_AllLine', true, true);
             if (gridData.length < 1) {
-                $.modalAlert("缺少选中数据", 'warning');
+                $.modalAlert("ThiếuĐã chọnDữ liệu", 'warning');
                 return;
             }
             var submitdata = { entityList: gridData, sjd: headdata.sjd, rq: headdata.rq, flag: '@MutipatientNursingInputFlag', xysxzList: xysxzList};
@@ -735,14 +735,14 @@
         var selectrq = $.trim($('#rq').val())
         headdata.rq = selectrq.substr(0, 10);
         if (headdata.rq== '') {
-            $.modalAlert("请选择日期", "warning");
+            $.modalAlert("Vui lòng chọnNgày", "warning");
             return false;
         }
 
         if ('@MutipatientNursingInputFlag' == '0') {
             headdata.sjd = $("[name=optionsSj]:checked").val() || null;
             if (!(headdata.sjd)) {
-                $.modalAlert("请选择时间点", "warning");
+                $.modalAlert("Vui lòng chọn thời điểm", "warning");
                 return false;
             }
         } else {

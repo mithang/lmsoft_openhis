@@ -1,0 +1,147 @@
+@using Newtouch.Herp.Infrastructure.Enum
+@using Newtouch.Herp.Infrastructure;
+@{
+    ViewBag.Title = "Tra cứu vật tư của khoa";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var reportUrl = Constants.GetAppConfigValue("ReportUrl");
+    var reportSystemCode = Constants.GetAppConfigValue("ReportSystemCode");
+}
+<style>
+    #btn_search {
+        float: left;
+        margin-left: 25px;
+        margin-right: 10px;
+        width: 45px;
+        font-weight: bolder;
+    }
+
+    #btn_print {
+        width: 45px;
+        background-color: #fff;
+        color: #00a9ea;
+        font-weight: bolder;
+        float: left;
+    }
+</style>
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Điều kiện lọc
+        </div>
+        <div>
+            <table class="form">
+                <tr>
+                    <td class="formTitle">Tên vật tư:</td>
+                    <td class="formValue" style="width:120px;">
+                        <input type="text" id="keyWord" class="form-control" placeholder="Pinyin / Tên" />
+                        <input type="hidden" id="productId" value="" />
+                    </td>
+                    <td class="formTitle">Loại:</td>
+                    <td class="formValue formDdlSelectorTd">
+                        <select class="form-control" id="lb">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Trạng thái sử dụng:</td>
+                    <td class="formValue formDdlSelectorTd" style="width:75px;">
+                        <select class="form-control" id="kzbz" name="kzbz">
+                            <option value="">Tất cả</option>
+                            <option value="1">Bình thường</option>
+                            <option value="0">Kiểm soát</option>
+                        </select>
+                    </td>
+                    <td class="formTitle">Trạng thái vật tư:</td>
+                    <td class="formValue formDdlSelectorTd" style="width:75px;">
+                        @Html.DropDownList("wzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
+                    </td>
+                    <td class="formTitle" style="width:180px;">
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                        <input type="button" id="btn_print" class="btn btn-primary" value="In" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="gridPanel" style="margin-top:10px">
+    <table id="gridList"></table>
+    <div id="gridPager" rel="form1"></div>
+</div>
+<script>
+    var par = new Object();
+    var $gridList = $("#gridList");
+    $(function () {
+        initialddlYPLBList();
+        gridList();
+    });
+
+    //获取Vật tư信息
+    function gridList() {
+        $gridList.dataGrid({
+            url: "/WarehouseManage/Warehouse/GetWarehouseProducts",
+            postData: $("#form1").formSerialize(),
+            height: $(window).height() - document.getElementById('gridList').offsetTop - 70,
+            colModel: [
+                {
+                    label: 'Cờ kiểm soát', name: 'kzbz', width: 60, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Bình thường" : "Kiểm soát"; }
+                },
+                {
+                    label: 'Trạng thái vật tư', name: 'wzzt', width: 60, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có thể dùng" : "Không hiệu lực"; }
+                },
+                { label: 'Tên', name: 'wzmc', width: 180, align: 'left' },
+                { label: 'Mã bảo hiểm y tế quốc gia', name: 'gjybdm', width: 100, align: 'left' },
+                { label: 'Pinyin', name: 'py', width: 70, align: 'left' },
+                { label: 'Loại', name: 'lb', width: 100, align: 'left' },
+                { label: 'Số lượng đặt tối thiểu', name: 'zxqds', width: 70, align: 'left' },
+                {
+                    label: 'Giá bán lẻ', name: 'lsj', width: 80, hidden: true,
+                    formatter: function (val) {
+                        return val.toFixed(4);
+                    } },
+                { label: 'Đơn vị', name: 'zxdwmc', width: 50, align: 'center' },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },
+                { label: 'Thương hiệu', name: 'brand', width: 150, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+                {
+                    label: 'Có tồn kho bằng 0 không', name: 'sflkc', width: 70, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có" : "Không"; }
+                },
+                {
+                    label: 'Có tái sử dụng không', name: 'sffy', width: 60, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có" : "Không"; }
+                },
+                {
+                    label: 'Có theo ca không', name: 'sfgt', width: 55, align: 'center',
+                    formatter: function (cellvalue) { return cellvalue === "1" ? "Có" : "Không"; }
+                },
+                { label: "productId", name: "productId", hidden: true, key: true }
+            ],
+            pager: "#gridPager",
+            sortname: 'wzmc asc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: $("#form1").formSerialize()
+            }).trigger('reloadGrid');
+        });
+       $("#btn_print").click(function () {
+           if ('@reportUrl' === '') { $.modalAlert('Báo cáo in ấn cần máy chủ SSRS riêng, hiện chưa khả dụng.', 'warning'); return; }
+           window.open('@reportUrl' + "?tempCode=1266" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId" +
+               "&keyWord=" + ($("#keyWord").val() === "" ? "" : $("#keyWord").val()) +
+               "&lbId=" + ($("#lb option:selected").val() === "" ? "" : $("#lb option:selected").val()) +
+               "&kzbz=" + ($("#kzbz option:selected").val() === "" ? "" : $("#kzbz option:selected").val()) +
+               "&wzzt=" + ($("#wzzt option:selected").val() === "" ? "" : $("#wzzt option:selected").val())
+               );
+        });
+    }
+
+    //Loại
+    function initialddlYPLBList() {
+        $("#lb").bindSelect({
+            url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
+        });
+    }
+</script>

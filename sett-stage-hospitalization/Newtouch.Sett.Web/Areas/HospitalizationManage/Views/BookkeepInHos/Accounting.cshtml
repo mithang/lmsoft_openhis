@@ -1,0 +1,1228 @@
+@using Newtouch.Sett.Domain;
+@{
+    ViewBag.Title = "Accounting";
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+    var jhjzDjEditable = (ViewBag.jhjz_dj_editable as bool?) ?? false;
+    var from = Context.Request.Query["from"];
+}
+<style>
+    .toolbar {
+        width: 45% !important;
+        margin: 10px 30px 12px;
+    }
+</style>
+<div class="rows mz" style="margin-bottom: 1%;display:none;">
+    <form class="rows" style="margin-bottom: 1%;" id="formPat1">
+        <div class="panel panel-default">
+            <div class="panel-heading navb-bg">
+                Thông tin cơ bản ngoại trú
+            </div>
+            <div style="padding: 2px;padding-right:20px;" id="divPatInfo">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span><label id="lbl_mzh">Số bệnh án/Họ tên：</label></th>
+                        <td class="formValue">
+                            <input type="text" class="form-control" id="mzh" name="mzh" placeholder="Ít nhất1Ký tự" />
+                            <label id="mz_blh" hidden="hidden"></label>
+                            <label id="jzjhmxId" hidden="hidden"></label>
+                            <label id="dwjls" hidden="hidden"></label>@*Số lượng đo mỗi lần，So sánh với lượng điều trị mỗi lần*@
+                            <label id="jjcl" hidden="hidden"></label>@*Số lượng đo mỗi lần，So sánh với lượng điều trị mỗi lần*@
+                            <label id="mz_czlx" hidden="hidden"></label>@*Loại thao tác Thêm mới0/Sửa đổi1/Xóa2*@
+                        <td class="formValue" colspan="1">
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="mz_btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#mzh').val());" />
+                            <input type="hidden" id="mz_brxz" />
+                        </td>
+                        <th class="formTitle">Họ tên：</th>
+                        <td class="formValue">
+                            <label id="mz_xm" style="width: 150%"></label>
+                        </td>
+                        <th class="formTitle">Giới tính：</th>
+                        <td class="formValue">
+                            <label id="mz_xb"></label>
+                        </td>
+                        <th class="formTitle">Tuổi：</th>
+                        <td class="formValue">
+                            <label id="mz_nl"></label>
+                        </td>
+                    </tr>
+                    <tbody class="dispTbody" style="display:none;">
+                        <tr>
+                            <td class="formTitle">Số giấy tờ：</td>
+                            <td class="formValue" colspan="2">
+                                <label id="mz_zjh"></label>
+                            </td>
+                            <td class="formTitle">Số điện thoại：</td>
+                            <td class="formValue seWidth">
+                                <label id="mz_phone"></label>
+                            </td>
+                            <th class="formTitle">Ngày sinh：</th>
+                            <td class="formValue seWidth">
+                                <label id="mz_csny"></label>
+                            </td>
+                            <th class="formTitle" hidden>Thời gian khám：</th>
+                            <td class="formValue" colspan="2" hidden>
+                                <label id="mz_ghsj"></label>
+                            </td>
+                            <th class="formTitle" hidden>Người giới thiệu：</th>
+                            <td class="formValue">
+                                <label id="mz_jsr" hidden></label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="fa_icontoggle"><i class="fa fa-angle-double-down icontoggle" style="color:rgb(0, 160, 233);cursor:pointer;"></i></div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="rows zy" style="margin-bottom: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading navb-bg">
+            Thông tin bệnh nhân nhập viện
+        </div>
+        <table class="form" style="width:96%;">
+            <tbody>
+                <tr>
+                    <th class="formTitle">Số bệnh án/Họ tên：</th>
+                    <td class="formValue">
+                        <input class="form-control" type="text" id="zyh" value="" placeholder="Ít nhất1Ký tự" />
+                    </td>
+                    <td class="formValue">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#zyh').val());">
+                        <input hidden="hidden" id="btn_search" />
+                    </td>
+                    <th class="formTitle">Họ tên：</th>
+                    <td class="formValue">
+                        <label id="zy_xm"></label>
+                    </td>
+                    <th class="formTitle">Giới tính：</th>
+                    <td class="formValue">
+                        <label id="zy_xb"></label>
+                    </td>
+                    <th class="formTitle">Tuổi：</th>
+                    <td class="formValue">
+                        <label id="zy_nl"></label>
+                    </td>
+                    <th class="formTitle">Tính chất bệnh nhân：</th>
+                    <td class="formValue">
+                        <label id="zy_brxzmc"></label>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody class="dispTbody" style="display:none;">
+                <tr>
+                    <th class="formTitle">Số giấy tờ：</th>
+                    <td class="formValue" colspan="2">
+                        <label id="zy_zjh"></label>
+                    </td>
+                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <td class="formValue">
+                        <label id="zy_ryzd"></label>
+                    </td>
+                    <th class="formTitle">Số điện thoại：</th>
+                    <td class="formValue">
+                        <label id="zy_phone"></label>
+                    </td>
+                    <th class="formTitle">Ngày sinh：</th>
+                    <td class="formValue">
+                        <label id="zy_csny"></label>
+                    </td>
+                    <th class="formTitle">Ngày nhập viện：</th>
+                    <td class="formValue">
+                        <label id="zy_ryrq"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="fa_icontoggle"><i class="fa fa-angle-double-down icontoggle" style="color:rgb(0, 160, 233);cursor:pointer;"></i></div>
+    </div>
+</div>
+<div class="rows" style="margin-bottom: 1%;">
+    <div class="panel panel-default" style="margin-bottom:0;">
+        <div class="panel-heading navb-bg" id="divPanelJzxm">
+            Mụcghi sổ
+        </div>
+        <div id="divSLMX" style="padding: 2px;padding-right:20px;">
+            @if (from == "mz")
+            {
+                @Html.Partial("AccountingOutpatientInputArea")
+            }
+            else
+            {
+                @Html.Partial("AccountingInpatientInputArea")
+            }
+        </div>
+    </div>
+</div>
+@Html.Partial("_MiddleButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 2, 3, 6, 9 },
+    F2Text = "Thêm",
+    F3Text = "Sửa đổi",
+    F6Text = "Xóa",
+    F9Text = "Hủy sửa đổi",
+    F9Hidden = true
+})
+<style>
+    .danger {
+        background-color: #274b6d
+    }
+    .info {
+        background-color: #d9edf7
+    }
+    .complete {
+        background-color: #6ff3ad
+    }
+</style>
+<div>
+    <table id="gridMX"></table>
+</div>
+<table style="width:420px;height:20px; margin-top:10px;margin-left:10px; float:left; color:#274b6d">
+    <tr>
+        <td>
+            <label style="height:7px;width:25px;background-color:#6ff3ad; border:1px solid #ddd"></label>
+        </td>
+        <td>biểu thịĐã hoàn thành</td>
+        <td>
+            <label style="height:7px;width:25px;background-color:#d9edf7; border:1px solid #ddd"></label>
+        </td>
+        <td>biểu thịĐang thực hiện</td>
+        <td>
+            <label style="height:7px;width:25px;background-color:#f2dede; border:1px solid #ddd"></label>
+        </td>
+        <td>biểu thịĐã dừng</td>
+        <td>
+            <label style="height:7px;width:25px;background-color:white;  border:1px solid #ddd"></label>
+        </td>
+        <td>biểu thịChưa thực hiện</td>
+    </tr>
+</table>
+@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
+{
+    ShowKeyList = new int[] { 4, 7, 8 },
+    F7Text = "Mẫu",
+    F8Text = "Gửi"
+})
+<script type="text/javascript">
+    var respblh;//Số bệnh ánKiểm tra
+    var from = $.request("from");
+    var patInfoObj = {};//ghi sổ ngoại trú，Thông tin cơ bản bệnh nhânĐối tượng
+
+    $('#btn_bottombutton_f3').attr('disabled', 'disabled');
+    $('#btn_bottombutton_f6').attr('disabled', 'disabled');
+
+    //Sau khi hoàn thành đăng ký ngoại trú，Chuyển hướng tới，Khởi tạo
+    var keyValue = sessionStorage.getItem("mzh");
+    if (!!keyValue) {
+        from = "mz";
+        GetQueryFphAjax({ mzh: keyValue });
+        sessionStorage.removeItem("mzh")
+    }
+
+    if (from == 'mz') {
+        $('.mz').css("display", "block");
+        $('.zy').css("display", "none");
+        $('#jzsj').val($.getDate());
+    }
+    else {
+        $('#StartDate').val($.getDate());
+    }
+
+    //khai báo Chi tiết mục grid
+    $("#gridMX").newtouchLocalDataGrid({
+        height: $(window).height() - 330,
+        unwritten: false,
+        colModel: [
+            { label: "newid", name: "newid", width: 80, align: "left", hidden: true },
+            { label: "jzjhmxId", name: "jzjhmxId", width: 80, align: "left", hidden: true },
+            {
+                label: 'Dài/tạm thời', name: 'yzxz', width: 60, hidden: (from == "mz" ? true : undefined), formatter: function (cellvalue) {
+                    return cellvalue == "1" ? "Tạm thời" : "Dài hạn";
+                }
+            },
+            { label: "Mụcthu phí", name: "sfxmCode", align: "left", hidden: true },
+            { label: "Mụcthu phí", name: "sfxmmc", width: 250, align: "left" },
+            { label: "y lệnhLoại", name: "yzlx", width: 150, align: "left", hidden: true },
+            { label: "Loại", name: "sfdlCode", width: 50, align: "left", hidden: true },
+            { label: "Loại phí", name: "sfdlmc", width: 55, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 40, align: "left" },
+            {
+                label: "Đơn giá(đồng)", name: "dj", width: 60, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+            },
+            { label: "Lượng điều trị mỗi lần", name: "zll", width: 70, align: "left" },
+            { label: (from == "mz" ? "Tổng số lần" : "Số lần"), name: "sl", width: 40, align: "left" },
+            {
+                label: "Trạng thái thực hiện", name: "zxzt", width: 65, align: "left", formatter: function (cellvalue) {
+                    return cellvalue == 0 ? "Chưa thực hiện"
+                        : cellvalue == 1 ? "Đang thực hiện"
+                        : cellvalue == 2 ? "Đã hoàn thành"
+                        : cellvalue == 3 ? "Đã dừng"
+                        : ""; //Ngược lại phải là chưa gửi
+                }
+            },
+            { label: "Thời gian thực hiện cuối cùng", name: "LastEexcutionTime", width: 50, align: "left", hidden: true },
+            { label: "Ghi chú", name: "bz", align: "left", hidden: true },
+            {
+                label: "Ngàythu phí", name: "jzsj", width: 100, hidden: (from == "mz" ? undefined : true), formatter: function (val) {
+                    if (!!val) {
+                        return $.getDate({ date: val });
+                    }
+                    return "";
+                }
+            },
+            {
+                label: "Ngày lập phiếu", name: "StartDate", width: 100, hidden: (from == "mz" ? true : undefined), formatter: function (val) {
+                    if (!!val) {
+                        var date = $.getDate({ date: val });
+                        if (date < '2000-01-01') {
+                            return '';  //Một phần dữ liệu lịch sử1970-01-01
+                        }
+                        return date;
+                    }
+                    return "";
+                }
+            },
+            { label: "czlx", name: "czlx", hidden: true },
+            { label: "dwjls", name: "dwjls", hidden: true }
+        ],
+        ondblClickRow: function (rowid) {
+            gridEditRow(rowid);
+        },
+        onSelectRow: function (rowid) {
+            $('#btn_bottombutton_f3').removeAttr('disabled');
+            $('#btn_bottombutton_f6').removeAttr('disabled');
+        },
+        gridComplete: function (data) {
+            var ids = $("#gridMX").jqGrid('getDataIDs');
+            for (var i = 0; i < ids.length; i++) {
+                var rowData = $("#gridMX").jqGrid('getRowData', ids[i]);
+                if (rowData && rowData.zxzt) {
+                    if (rowData.zxzt === 'Đang thực hiện') {
+                        $('#gridMX tr[id="' + ids[i] + '"]').addClass('info');
+                    }
+                    else if (rowData.zxzt === 'Đã hoàn thành') {
+                        $('#gridMX tr[id="' + ids[i] + '"]').addClass('complete');
+                    }
+                    else if (rowData.zxzt === 'Đã dừng') {
+                        $('#gridMX tr[id="' + ids[i] + '"]').addClass('danger');
+                    }
+                }
+            }
+        }
+    });
+
+    //Liên kết lớp nổi chọn mục điều trị
+    $('#mzh,#zyh').newtouchBatchFloatingSelector({
+        width: 500,
+        height: 200,
+        caption: "Chọn bệnh nhân",
+        clickautotrigger: true,
+        url: "@Url.Action("PatAccountingSearchInfo")",
+        ajaxparameters: function ($thisinput) {
+            var keyword = $thisinput.val().trim();
+            return "keyword=" + keyword + "&from=" + from +"&brzybzType=" + '@((int)EnumZYBZ.Bqz + "," + (int)EnumZYBZ.Djz)';
+        },
+        itemdbclickhandler: function ($thistr, $thisinput) {
+            if (from =="mz") {
+                GetQueryFphAjax({ mzh: $thistr.attr('data-mzh') });
+            } else if (from=="zy") {
+                getPatInfoAjax({ zyh: $thistr.attr('data-mzh') });
+            }
+           
+        },
+        colModel: [
+            { label: 'khóa chính', name: 'patid', hidden: true },
+            { label: 'Số bệnh án', name: 'blh', width: 100, align: 'center' },
+            { label: 'brxz', name: 'brxz', align: 'center', hidden: true },
+            { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 80, align: 'center'},
+            { label: from == 'mz' ? "Số ngoại trú" : "Mã nhập viện", name: 'mzh', width: 120, align: 'center', key: true },
+            //{
+            //    label: 'Thời gian đăng ký khám', name: 'ghsj', width: 120, align: 'left', hidden: true , formatter: function (cellvalue) {
+            //        return cellvalue.length > 19 ? cellvalue.substring(0, 19).replace(/T/g, ' ') : ""
+            //    }
+            //},
+            { label: 'Họ tên', name: 'xm', width: 90, align: 'center' },
+            { label: 'Năm-tháng sinh', name: 'csny', hidden: true, width: 100, align: 'center', hidden: true  },
+            {
+                label: 'Giới tính', name: 'xb', width: 40, align: 'center', formatter: function (cellvalue) {
+                    return $.getGender(cellvalue);
+                }
+            },
+            {
+                label: 'Tuổi', name: 'nlshow', width: 50, align: 'center', formatter: function (cellvalue, options, rowObject) {
+                    return getAgeFromBirthTime({ begin: rowObject.csny }).text;
+                }
+            }
+        ]
+    });
+
+    $('#bz').keydownEnterEvent(function (event) {
+        if ($('#bz').hasClass('form-an-cur')) { //缺陷-Từ cái trướcenterĐã chuyển tới
+            $('#bz').removeClass('form-an-cur')
+            return;
+        }
+        if (editingNewid || editingJzjhmxId) {
+            $('#btn_bottombutton_f3').trigger('click');
+        } else {
+            $('#btn_bottombutton_f2').trigger('click');
+        }
+        return false;
+    });
+
+    //Liên kết lớp nổi chọn mục điều trị
+    $('#sfxmmc').sfxmFloatingSelector({
+        djDecimalPlaces: 4,
+        searchType: 'sfxm.dwjls',
+        width: 850,
+        ajaxparameters: function ($thisinput) {
+            return "dllb=2&mzzybz=" + (from == 'mz' ? "1" : "2") + "&keyword=" + $.trim($thisinput.val());
+        },
+        clickautotrigger: true,
+        itemdbclickhandler: function ($thistr, $thisinput) {
+            if ($thisinput.attr('id') == 'sfxmmc') {
+                $('#sfxmmc').val($thistr.attr('data-sfxmmc'));
+                $('#sfxmCode').val($thistr.attr('data-sfxmCode'));
+                $('#sfdlCode').val($thistr.attr('data-sfdlCode'));
+                $('#yzlx').val($thistr.attr('data-yzlx'));
+                $('#sfdlmc').val($thistr.attr('data-sfdlmc'));
+                '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+                     ? $('#dj').val($thistr.attr('data-dj'))
+                     : $('#dj').html($thistr.attr('data-dj'));
+                $('#dw').html($thistr.attr('data-dw'));
+                $('#dwjls').val($thistr.attr('data-dwjls'));
+                $('#jjcl').val($thistr.attr('data-jjcl'));
+                if (!(from == 'mz')) {
+                    $('#sl').val('1');
+                }
+            }
+        }
+    });
+
+    //Theo thời gian tạo đảo ngược叙 排Cột， Mới tạo nhất Ở phía trước nhất
+    var oldxmList = [];   //Mục lịch sử đã gửiList
+    var newxmList = [];   //Mục mớiList
+
+    //hướnggridMX gridtrong填充Dữ liệu
+    function fillDataToGrid() {
+        $("#gridMX").resetSelection();
+        $("#gridMX").clearGridData();
+        $("#gridMX").newtouchLocalDataGrid({ posttofirst: false }, oldxmList);
+        for (var i = 0; i <= newxmList.length; i++) {
+            $("#gridMX").newtouchLocalDataGrid(null, newxmList[newxmList.length - i]);
+        }
+    }
+
+    fillDataToGrid();
+
+    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）của完整性
+    function checkEditingRowData(rowData) {
+        if (!rowData.sfxmCode || !rowData.sfxmmc || !rowData.yzlx || !rowData.sfdlCode || !rowData.sfdlmc) {
+            $.modalAlert("Vui lòng chọn mụcthu phí", 'warning');
+        }
+        else if (rowData.dw == "") {
+            $.modalAlert("Thiếu thông tin đơn vị mục", 'warning');
+        }
+        else if (rowData.jjcl == "" || isNaN(rowData.jjcl)) {
+            $.modalAlert("Thiếu chính sách tính giá của mục", 'warning');
+        }
+        else if (rowData.dwjls == "" || isNaN(rowData.dwjls)) {
+            $.modalAlert("Thiếu số lượng đơn vị của mục", 'warning');
+        }
+        else if (rowData.yzlx == '2' && (rowData.zll == "" || isNaN(rowData.zll))) {
+            $.modalAlert("Thiếu lượng điều trị mỗi lần của mục", 'warning');
+        }
+        else if (!((/^(\+|-)?\d+$/).test(rowData.zll)) || rowData.zll < 1) {
+            $.modalAlert("Lượng điều trị mỗi lần lớn hơn0Số nguyên", 'warning');
+        }
+        else if (parseInt(rowData.dwjls) > parseInt(rowData.zll)) {
+            $.modalAlert("Lượng điều trị mỗi lần không được nhỏ hơn số lượng đo mỗi lần", 'warning');
+        }
+        else if (!((/^(([1-9][0-9]*\.[0-9][0-9]*)|([0]\.[0-9][0-9]*)|([1-9][0-9]*)|([0]{1}))$/).test(rowData.dj))) {
+            $.modalAlert("Đơn giá không nhỏ hơn0Số", 'warning');
+        }
+        else if (rowData.dj == "" || isNaN(rowData.dj)) {
+            $.modalAlert("Thiếu thông tin đơn giá mục", 'warning');
+        }
+        else if (!rowData.jzsj && from == 'mz') {
+            $.modalAlert("Thiếu ngàythu phí", 'warning');
+        }
+        else if (!rowData.StartDate && !(from == 'mz')) {
+            $.modalAlert("Thiếu ngày lập phiếu", 'warning');
+        }
+        else if (rowData.sl == "" || isNaN(rowData.sl)) {
+            $.modalAlert("Thiếu số lần thực hiện", 'warning');
+        }
+        else if (!((/^(\+|-)?\d+$/).test(rowData.sl)) || rowData.sl < 1) {
+            $.modalAlert("Số lần thực hiện lớn hơn0Số nguyên", 'warning');
+        }
+        else {
+            return true;
+        }
+        return false;
+    }
+
+    //Nút sự kiện start
+
+    //键入Mã nhập viện Tìm kiếm
+    $('#btn_search').click(function () {
+        var zyh = $('#zyh').val();
+        newtouch_globalevent_f4();
+        $('#zyh').val(zyh);
+        ajaxLoadDataResult();
+    });
+
+    var respZyh;
+
+    //Nạp thông tin cơ bản nhập viện
+    function ajaxLoadDataResult() {
+        var zyh = $('#zyh').val();
+        if (zyh) {
+            $.najax({
+                type: "GET",
+                url: "/HospitalizationManage/BookkeepInHos/GetAccountingStatusDetail?zyh=" + zyh,
+                loading: true,
+                success: function (ajaxresp) {
+                    respZyh = ajaxresp.data.patInfo.zyh;
+                    setPatInfoModel(ajaxresp.data.patInfo);
+                    oldxmList = ajaxresp.data.jzjhList;
+
+                    fillDataToGrid();
+                    Clearjzxm();
+                },
+                errorCallback: function (err) {
+                    newtouch_globalevent_f4();
+                    $('#zyh').trigger('focus');
+                }
+            });
+        }
+        else {
+            GetPatSerarchView();
+        }
+    }
+
+    //Nạp thông tin cơ bản ngoại trú，Lấy theo số bệnh án hoặc số ngoại trú
+    function GetQueryFphAjax(obj) {
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.ajax({
+            type: "POST",
+            url: "/OutpatientManage/OutpatientAccounting/GetpatientAccountInfoV4",
+            data: { mzh: obj.mzh },
+            dataType: "json",
+            cache: true,
+            async: true,
+            success: function (ajaxresp) {
+                if (ajaxresp.state === 'success') {
+                    $("#gridMX").clearGridData();
+                    oldxmList = [];   //Mục lịch sử đã gửiList
+                    newxmList = [];   //Mục mớiList
+                    if (ajaxresp.data.length > 1) {
+                        GetPatSerarchView(keyword);
+                    } else {
+                        if (!!ajaxresp.data.OutpatAccInfoDto) {
+                            respblh = ajaxresp.data.OutpatAccInfoDto.mzh;
+                            setPatInfoModel(ajaxresp.data.OutpatAccInfoDto); //Gán thông tin cơ bản cá nhân
+                        }
+                        if ((!!ajaxresp.data.OptimAccInfoDto) && ajaxresp.data.OptimAccInfoDto.length > 0) {
+                            ajaxresp.data.OptimAccInfoDto.forEach(function (val, idx) {
+                                ajaxresp.data.OptimAccInfoDto[idx].newid = null;//Xóa trốngnewidgiá trị，Đảm bảo logicghi sổ nhập viện và ngoại trú nhất quán
+                            });
+                            oldxmList = ajaxresp.data.OptimAccInfoDto;
+                        }
+                        fillDataToGrid();
+                        Clearjzxm();
+                    }
+                } else if (ajaxresp.state === 'error') {
+                    $.modalAlert("Truy vấn thất bại", 'error');
+                }
+            },
+            complete: function () {
+                $.loading(false);
+            }
+        });
+    }
+
+    //Khởi tạo thông tin bệnh nhân
+    function setPatInfoModel(patModel) {
+        if (from == 'mz') {
+            $("#mzh").val('@(ViewBag.IsBlh)' === "OFF" ? patModel.blh : patModel.mzh);
+            $("#mz_blh").html('@(ViewBag.IsBlh)' === "OFF" ? patModel.mzh : patModel.blh);
+            $("#mz_xb").html($.getGender(patModel.xb));
+            $("#mz_csny").html((patModel.csny && patModel.csny.length >= 10 ? patModel.csny.substring(0, 10) : ""));
+            $("#mz_zjh").html(patModel.zjh);
+            $("#mz_jsr").html(patModel.jsr);
+            $("#mz_xm").html(patModel.xm);
+            $("#mz_nl").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+            $("#mz_phone").html(patModel.phone);
+            if (patModel.sycs) {
+                $('#sycs').html("&nbsp&nbsp&nbsp&nbspbảo hiểm còn lại<span style='color:red'>" + patModel.sycs + "</span>Lần");
+            }
+            $("#mz_brxz").val(patModel.brxz);
+            //Nạp thông tin bệnh nhân
+            patInfoObj.xm = patModel.xm; //Họ tên
+            patInfoObj.xb = patModel.xb; //Giới tính
+            patInfoObj.csny = patModel.csny;
+            patInfoObj.patid = patModel.patid; //Mã bệnh nhân
+            patInfoObj.blh = patModel.blh; //Số bệnh án
+            patInfoObj.zjh = patModel.zjh; //Số giấy tờ
+            patInfoObj.brxz = patModel.brxz;//Tính chất bệnh nhân
+            patInfoObj.mzh = patModel.mzh;//Số ngoại trú
+        } else {
+            $('#zy_xm').html(patModel.xm);
+            $('#zy_xb').html($.getGender(patModel.xb));
+            $("#zy_nl").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+            $('#zy_ryzd').html(patModel.ryzdmc);
+            $('#zy_zjh').html(patModel.zjh);
+            $('#zy_phone').html(patModel.phone);
+            $('#zy_csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+            $('#zy_ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+            $('#zy_brxzmc').html(patModel.brxzmc);
+        }
+
+    }
+
+    //Bệnh nhân đã chọn callback
+    function getPatInfoAjax(selePatInfo) {
+        $('#zyh').val(selePatInfo.zyh);
+        ajaxLoadDataResult();
+    }
+
+    //Truy vấn bệnh nhân(Ngoại trú hoặc nhập viện)
+    function GetPatSerarchView(keyword) {
+        if (from == 'mz') {//Thông tin bệnh nhân ngoại trú
+            var blh = '@(ViewBag.IsBlh)' === "OFF" ? keyword : null;
+            var mzh = '@(ViewBag.IsBlh)' === "OFF" ? null : keyword;
+            $.modalOpen({
+                id: "patSearch",
+                title: "Truy vấn bệnh nhân",
+                url: "/OutpatientManage/OutpatientRefund/SysPatEntitiesReView?t=" + Math.random() + "&mzh=" + mzh + "&blh=" + blh,
+                width: "700px",
+                height: "600px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                }
+            });
+        } else {//Thông tin bệnh nhân nhập viện
+            var zyh;
+            if (keyword != "" && typeof (keyword) != undefined) {
+                zyh = keyword;
+            }
+            $.modalOpen({
+                id: "patSearch",
+                title: "Truy vấn bệnh nhân",
+                url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@((int)EnumZYBZ.Bqz + "," + (int)EnumZYBZ.Djz)' + "&t=" + Math.random() + "&zyh=" + zyh,
+                width: "700px",
+                height: "600px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].PatDbGrid(); //tạiBật lênsự kiện cửa sổ
+                    //Gọi truy vấn số thẻ và mã nhập viện
+                }//Hàm gọi lại khi nhấn xác nhận tại cửa sổ
+            });
+        }
+
+    }
+
+    //Lấy dữ liệu đối tượng của vùng chỉnh sửa
+    function getEditRowData() {
+        var data = {
+            yzxz: (from == 'mz' ? ($('#sl').val() == 1 ? "1" : "2") : $('[name=yzxz]:checked').val()),
+            sfxmCode: $('#sfxmCode').val(),
+            sfxmmc: $('#sfxmmc').val(),
+            yzlx: $('#yzlx').val(),
+            zll: $('#zll').val(),
+            dj: '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+                ? $('#dj').val()
+                : $('#dj').html(),
+            dw: $('#dw').html(),
+            sl: $('#sl').val(),
+            sfdlCode: $('#sfdlCode').val(),
+            sfdlmc: $('#sfdlmc').val(),
+            bz: $('#bz').val(),
+            jzsj: $("#jzsj").nval(),
+            StartDate: $("#StartDate").nval(),
+            jzjhmxId: $('#jzjhmxId').val(),
+            czlx: $('#mz_czlx').val(),
+            dwjls: $('#dwjls').val(),
+            jjcl: $('#jjcl').val()
+        };
+
+        return data;
+    }
+
+    var editingNewid = null;    //Đang sửa đổicủaDòng
+    var editingJzjhmxId = null;    //Đang sửa đổicủaDòng
+
+    //Yêu cầu Chỉnh sửa Dòng
+    function gridEditRow(rowid) {
+        if (rowid) {
+            var rowData = $("#gridMX").jqGrid('getRowData', rowid);
+            if (rowData) {
+                //20180910add Đã gửi thì không thể sửa đổi
+                if (!rowData.newid) {
+                    $.modalAlert("ghi sổ đã gửi，Không thể sửa đổi", 'warning');
+                    return;
+                }
+                //20180910add Đã gửi thì không thể sửa đổi
+                if (rowData.newid) {
+                    //nênlàthuộc vềnewxmList start
+                    rowDataArr = $.jsonWhere(newxmList, function (v) {
+                        return v && v.newid == rowData.newid;
+                    });
+                    if (!rowDataArr || rowDataArr.length == 0) {
+                        return; //làkhông tìm thấy gìtới
+                    }
+                    rowData = rowDataArr[0];  //Thông quarowData.newidtừLấy dữ liệu dòng đó từ mảng đối tượng
+                    if (true) { //&&Có thể chỉnh sửa
+                        editingJzjhmxId = null;
+                        editingNewid = rowData.newid;    //Đang sửa đổicủaDòng
+                    }
+                    else {
+                        return;
+                    }
+                    //nênlàthuộc vềnewxmList end
+                }
+                else if (rowData.jzjhmxId) {
+                    //nênlàthuộc vềoldxmList start
+                    //Yêu cầu chỉnh sửa dòng đã gửi
+                    if (rowData.zxzt == "Đã hoàn thành" || rowData.zxzt == "Đã dừng" || rowData.zxzt == "Đang thực hiện") {
+                        //oldxmListtrongcủa多LầnSửa đổi rowData.zxzt undifined cũngkhông问题
+                        $.modalAlert("Đã thực hiện/Đã hoàn thành/Bản ghi đã dừng không thể sửa đổi", 'warning');
+                        return;
+                    }
+                    $('#sfxmmc').attr('disabled', 'disabled').addClass('newtouch_Readonly');//Không thể sửa đổi mụcthu phí
+                    rowDataArr = $.jsonWhere(oldxmList, function (v) {
+                        return v && v.jzjhmxId == rowData.jzjhmxId;
+                    });
+                    if (!rowDataArr || rowDataArr.length == 0) {
+                        return; //làkhông tìm thấy gìtới
+                    }
+                    rowData = rowDataArr[0];  //Thông quarowData.jzjhmxIdtừLấy dữ liệu dòng đó từ mảng đối tượng
+                    if (true) { //&&Có thể chỉnh sửa
+                        editingJzjhmxId = rowData.jzjhmxId;
+                        editingNewid = null;    //Đang sửa đổicủaDòng
+                    }
+                    else {
+                        return;
+                    }
+                    //nênlàthuộc vềoldxmList end
+                }
+                if (!(from == 'mz')) {
+                    $('[name=yzxz][value="' + rowData.yzxz + '"]').trigger('click');
+                }
+                //old new common
+                //Tuần tự hóa vào vùng chỉnh sửa
+                $('#sfxmmc').val(rowData.sfxmmc);
+                $('#sfxmCode').val(rowData.sfxmCode);
+                $('#yzlx').val(rowData.yzlx);
+                $('#sfdlCode').val(rowData.sfdlCode);
+                $('#sfdlmc').val(rowData.sfdlmc);
+                $('#dw').html(rowData.dw);
+                '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+                    ? $('#dj').val(parseFloat(!!rowData.dj ? rowData.dj : 0).toFixed(2))
+                    : $('#dj').html(parseFloat(!!rowData.dj ? rowData.dj : 0).toFixed(2));
+                $('#zll').val(rowData.zll);
+                $('#sl').val(rowData.sl);
+                $('#bz').val(rowData.bz);
+                if (!!rowData.jzsj) {
+                    $('#jzsj').val($.getDate({ date: rowData.jzsj, ute: true }));
+                }
+                if (!!rowData.StartDate) {
+                    if ($.getDate({ date: rowData.StartDate }) > '2000-01-01') {
+                        $('#StartDate').val($.getDate({ date: rowData.StartDate, ute: true }));
+                    }
+                    else {
+                        //Bắt buộc bổ sung ngày lập phiếu
+                        $('#StartDate').val('');
+                    }
+                }
+                $('#jzjhmxId').val(rowData.jzjhmxId);
+                $('#mz_czlx').val(rowData.czlx);
+                $('#dwjls').val(rowData.dwjls);
+                $('#jjcl').val(rowData.jjcl);
+                $('#btn_bottombutton_f6').attr('disabled', 'disabled');
+                $('#btn_bottombutton_f9').show();
+
+                $('#btn_bottombutton_f2').attr('disabled', 'disabled');
+            }
+        }
+    }
+
+    //Nút thêm
+    function newtouch_event_f2() {
+        if (editingNewid || editingJzjhmxId) {
+            return; //Đang ở trạng thái sửa đổi，làKhông thể点击Nút thêmcủa   cầndisableXử lý
+        }
+
+        if (from == "mz") {
+            if (!patInfoObj.mzh) {
+                $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+                return;
+            }
+            if (patInfoObj.mzh !== respblh) {
+                $.modalAlert("Lỗi：Trong quá trình nhập，Thay đổi số ngoại trú", 'warning');
+                return;
+            }
+        } else {
+            var zyh = $('#zyh').val();
+            if (!zyh) {
+                $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+                return;
+            }
+            if (zyh != respZyh) {
+                $.modalAlert("Lỗi：Trong quá trình nhập，Thay đổi mã nhập viện", 'warning');
+                return;
+            }
+        }
+        var addgoon = function () {
+            data.czlx = "0";//Thêm mới
+            data.zxzt = 0;//Mặc định chưa thực hiện
+            //Kiểm tra mục trùng lặp
+
+            data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
+
+            newxmList.unshift(data);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+
+            //Liên kết lạixmTrình bày mảng tớigrid
+            fillDataToGrid();
+
+            $('#sfxmmc').val('');
+            $('#sfxmCode').val('');
+            $('#yzlx').val('');
+            $('#sfdlCode').val('');
+            $('#sfdlmc').val('');
+            $('#dw').html('');
+            '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+                ? $('#dj').val('')
+                : $('#dj').html('');
+            $('#zll').val('');
+            $('#dwjls').val('');
+            $('#jjcl').val('');
+            $('#sl').val('');
+            $("#mz_czlx").val('');
+            setTimeout("$('#sfxmmc').trigger('focus');$('#sfxmmc').trigger('click');", 100);
+        }
+        var data = getEditRowData();
+        if (!(CheckreAdddata(data) && checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+            return;
+        }
+        if (data && parseFloat(data.dj) < '0') {
+            $.modalAlert("Đơn giá không nhỏ hơn0Số", 'warning');
+            return;
+        }
+        else if (data && parseFloat(data.dj) == '0') {
+            $.modalConfirm("Đơn giá là0，Xác nhận có thêm hay không", function (flag) {
+                if (!flag) {
+                    return;
+                }
+                else {
+                    addgoon();
+                }
+            });
+        }
+        else {
+            addgoon();
+        }
+    }
+
+    //Nút sửa đổi
+    function newtouch_event_f3() {
+        if (editingNewid && editingJzjhmxId) {
+            $.modalConfirm("Chương trình bất thường，Sẽ tự động làm mới trang", function (flag) {
+                location.href = location.href;
+            });
+            return; //Lỗi chương trình
+        }
+        if (editingNewid || editingJzjhmxId) {
+            //GửiSửa đổi
+            var data = getEditRowData();
+            if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+                return;
+            }
+            var updategoon = function () {
+
+                data.newid = editingNewid;
+                data.jzjhmxId = editingJzjhmxId;
+                data.zxzt = 0;//Sửa đổisaucủaDữ liệuMặc định chưa thực hiện
+                if (!!data.jzjhmxId) {//Phán đoán có thêm dữ liệu mới hay không
+                    data.czlx = "1";//Sửa đổi
+                    $('#sfxmmc').removeAttr('disabled', 'disabled').removeClass('newtouch_Readonly');
+                }
+                //Kiểm tra mục trùng lặp
+
+                //Trước tiên tạixmTìm trong mảng
+                if (editingNewid) {
+                    var matchedIndex = -1;
+                    for (var ii = 0; ii < newxmList.length; ii++) {
+                        if (newxmList[ii].newid == data.newid) {
+                            matchedIndex = ii;
+                            break;
+                        }
+                    }
+                    if (matchedIndex == -1) {
+                        return; //nênlàBất thường
+                    }
+                    newxmList.remove(matchedIndex);   //Loại bỏ mục này
+                    newxmList.unshift(data);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                }
+                else {  //editingJzjhmxId
+                    var matchedIndex = -1;
+                    for (var ii = 0; ii < oldxmList.length; ii++) {
+                        if (oldxmList[ii].jzjhmxId == data.jzjhmxId) {
+                            matchedIndex = ii;
+                            data.LastEexcutionTime = oldxmList[ii].LastEexcutionTime;//Thời gian thực hiện cuối cùng不cần丢，虽然Không cần传tớidịch vụ器端
+                            break;
+                        }
+                    }
+                    if (matchedIndex == -1) {
+                        return; //nênlàBất thường
+                    }
+                    oldxmList.remove(matchedIndex);   //Loại bỏ mục này
+                    oldxmList.unshift(data);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                }
+
+                //Liên kết lạixmTrình bày mảng tớigrid
+                fillDataToGrid();
+                $('#sfxmmc').val('');
+                $('#sfxmCode').val('');
+                $('#yzlx').val('');
+                $('#sfdlCode').val('');
+                $('#sfdlmc').val('');
+                $('#dw').html('');
+                '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+                    ? $('#dj').val('')
+                    : $('#dj').html('');
+                $('#zll').val('');
+                $('#dwjls').val('');
+                $('#jjcl').val('');
+                $('#sl').val('');
+                $('#mz_czlx').val('');
+                $('#jzjhmxId').val('');
+                //$('#bz').val('');
+
+                editingNewid = null;    //Đang sửa đổicủaDòng
+                editingJzjhmxId = null;    //Đang sửa đổicủaDòng
+
+                bottomButtonsReset();
+
+                setTimeout("$('#sfxmmc').trigger('focus');$('#sfxmmc').trigger('click');", 100);
+            }
+            if (data && parseFloat(data.dj) < '0') {
+                $.modalAlert("Đơn giá không nhỏ hơn0Số", 'warning');
+                return;
+            }
+            else if (data && parseFloat(data.dj) == '0') {
+                $.modalConfirm("Đơn giá là0，Xác nhận có sửa đổi hay không", function (flag) {
+                    if (!flag) {
+                        return;
+                    }
+                    else {
+                        updategoon();
+                    }
+                });
+            }
+            else {
+                updategoon();
+            }
+        }
+        else {
+            //lấygridDòng đang chọn hiện tại
+            var seleId = $('#gridMX').jqGrid('getGridParam', 'selrow');
+            if (seleId) {
+                //Yêu cầu sửa dòng này
+                gridEditRow(seleId);
+            }
+        }
+    }
+
+    //F4Xóa
+    function newtouch_event_f4() {
+        $('[name=yzxz][value="2"]').trigger('click');
+        $("#gridMX").clearGridData();
+        $("#jzsj").val($.getDate());
+        $("#StartDate").val($.getDate());
+        $('#sfxmmc').removeAttr('disabled', 'disabled').removeClass('newtouch_Readonly');
+        //jsrq = "";
+        oldxmList = [];   //Mục lịch sử đã gửiList
+        newxmList = [];   //Mục mớiList
+        editingNewid = null;    //Đang sửa đổicủaDòng
+        editingJzjhmxId = null; //Đang sửa đổicủaDòng
+        patInfoObj = {};//ghi sổ ngoại trú，Thông tin cơ bản bệnh nhânĐối tượng
+        bottomButtonsReset();
+    };
+
+
+    //F6Xóa khỏi danh sách
+    function newtouch_event_f6() {
+        //lấygridDòng đang chọn hiện tại
+        var rowid = $('#gridMX').jqGrid('getGridParam', 'selrow');
+        //Yêu cầu xóa dòng này
+        if (rowid) {
+            var rowData = $("#gridMX").jqGrid('getRowData', rowid);
+            if (rowData) {
+                if (!rowData.newid) {   //Dòng này không thể xóa，nênlàthuộc vềoldxmList
+                    $.modalAlert("ghi sổ đã gửi，Không thể xóa", 'warning');
+                    return;
+                }
+                if (rowData.newid == editingNewid) {
+                    $.modalAlert("Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa", 'warning');
+                    return; //Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa
+                }
+
+                if (!!rowData.jzjhmxId) {
+                    rowData.czlx = "2";
+                }
+                var matchedIndex = -1;
+
+                if (newxmList.length > 0) {
+                    for (var ii = 0; ii < newxmList.length; ii++) {
+                        if (newxmList[ii].newid === rowData.newid) {
+                            matchedIndex = ii;
+                        }
+                    }
+                }
+
+                if (matchedIndex === -1) {
+                    if (oldxmList.length > 0) {
+                        for (var ii = 0; ii < oldxmList.length; ii++) {
+                            if (oldxmList[ii].jzjhmxId === rowData.jzjhmxId) {
+                                matchedIndex = ii;
+                            }
+                        }
+                    }
+                    if (matchedIndex === -1) {
+                        return; //nênlàBất thường
+                    }
+                    oldxmList.remove(matchedIndex);   //Loại bỏghi sổ lịch sử
+                } else {
+                    newxmList.remove(matchedIndex);   //Loại bỏghi sổ mới
+                }
+                //Liên kết lạixmTrình bày mảng tớigrid
+                fillDataToGrid();
+
+                //đối vớiKhácđều不phát sinh影响
+            }
+        }
+    }
+
+    //F7Sử dụng mẫu
+    function newtouch_event_f7() {
+        if ((from == "mz") && !!!$('#jzsj').val()) {
+            $.modalAlert("Thiếu ngàythu phí", 'warning');
+            return;
+        }
+        if (!(from == "mz") && !!!$('#StartDate').val()) {
+            $.modalAlert("Thiếu ngày lập phiếu", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Mẫu mụcthu phícửa sổ",
+            url: "/HospitalizationManage/BookkeepInHos/ChargeItemTemplate?keyValue=",
+            width: "700px",
+            height: "530px",
+            showleftlalbel: true,
+            callBack: function (iframeId, isClose) {
+                var data = top.frames[iframeId].submitForm();
+                $.each(data, function () {
+                    var newRowData = {
+                        yzxz: (from == 'mz' ? ($('#sl').val() == 1 ? "1" : "2") : $('[name=yzxz]:checked').val()),
+                        sfxmCode: this.sfxm,
+                        sfxmmc: this.sfxmmc,
+                        yzlx: "2",  //Mục
+                        duration: this.duration,
+                        dwjls: this.dwjls,
+                        dj: this.dj,
+                        dw: this.dw,
+                        sl: this.zxcs,
+                        sfdlCode: this.dl,
+                        sfdlmc: this.dlmc,
+                        bz: '',
+                        zll: this.zll,
+                        zxcs: this.zxcs,
+                        jjcl: this.jjcl,
+                        jzsj: $('#jzsj').nval(),
+                        StartDate: $('#StartDate').nval(),
+                        czlx: "0",
+                        zxzt: 0
+
+                    };
+
+                    newRowData.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
+                    if (!(checkEditingRowData(newRowData))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+                        return;
+                    }
+                    if (newRowData.sfxmCode && newRowData.sfdlCode && newRowData.dj && newRowData.dw && newRowData.sl) {
+                        newRowData.dj = parseFloat(newRowData.dj);
+                        newRowData.sl = parseInt(newRowData.sl);
+                        newxmList.unshift(newRowData);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+                    }
+                });
+
+                if (isClose === true) {
+                    top.frames[iframeId].$.modalClose();
+                }
+
+                fillDataToGrid();
+            }
+        });
+    }
+
+    //F8Gửi至dịch vụ器
+    function newtouch_event_f8() {
+        if (from == 'mz') {
+            mzsubmit();
+        } else {
+            zysubmit();
+        }
+    };
+    //F9Hủy sửa đổi
+    function newtouch_event_f9() {
+        $('#sfxmmc').val('');
+        $('#sfxmCode').val('');
+        $('#yzlx').val('');
+        $('#sfdlCode').val('');
+        $('#sfdlmc').val('');
+        $('#dw').html('');
+        '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+          ? $('#dj').val('')
+          : $('#dj').html('');
+        $('#zll').val('');
+        $('#dwjls').val('');
+        $('#jjcl').val('');
+        $('#sl').val('');
+        //$('#bz').val('');
+        $('#sfxmmc').removeAttr('disabled', 'disabled').removeClass('newtouch_Readonly');
+        editingNewid = null;    //Đang sửa đổicủaDòng
+        editingJzjhmxId = null;    //Đang sửa đổicủaDòng
+
+        $("#gridMX").resetSelection();
+
+        bottomButtonsReset();
+        $('#jzjhmxId').val('');
+        setTimeout("$('#sfxmmc').trigger('focus');$('#sfxmmc').trigger('click');", 100);
+    }
+    //Đặt lại nút
+    function bottomButtonsReset() {
+        $('#btn_bottombutton_f2').removeAttr('disabled');
+        $('#btn_bottombutton_f3').attr('disabled', 'disabled');
+        $('#btn_bottombutton_f6').attr('disabled', 'disabled');
+        $('#btn_bottombutton_f9').hide();
+    }
+
+    function mzsubmit() {
+        var paramData = [];
+        patInfoObj.brxz = $("#mz_brxz").val();
+        //paramData.xmList = newxmList;
+        var resultxmList = [];
+        $.each(newxmList, function () {
+            resultxmList.push(this);
+        });
+
+        //oldxmListtrongChỉnh sửa过của pushtớiresultxmListtrong Đồng thời Gửitớidịch vụ器
+        $.each(oldxmList, function () {
+            if (this.czlx !== undefined && this.czlx !== null) {
+                //zxzt undifined nhất định là Lịch sử gửi ， và nàyLầnSửa đổi过
+                resultxmList.unshift(this);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+            }
+        });
+        paramData.xmList = resultxmList;
+        if (!patInfoObj.mzh) {
+            $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+            return;
+        }
+        if (!paramData.xmList || paramData.xmList.length === 0) {
+            $.modalAlert("Thiếu mục kế hoạchghi sổ", 'warning');
+            return;
+        }
+        if (patInfoObj.mzh !== respblh) {
+            $.modalAlert("Lỗi：Trong quá trình nhập，Thay đổi số ngoại trú", 'warning');
+            return;
+        }
+        $.submitForm({
+            url: "/HospitalizationManage/BookkeepInHos/SavepatientAcountInfo",
+            param: { bacDto: patInfoObj, xmList: paramData.xmList },
+            success: function (ajaxresp) {
+                newtouch_globalevent_f4();
+                $('#mzh').trigger('focus');
+            }
+        });
+    }
+
+    function zysubmit() {
+        var paramData = {};
+        paramData.zyh = $('#zyh').val();
+
+        var resultxmList = [];
+        $.each(newxmList, function () {
+            resultxmList.push(this);
+        });
+
+        //oldxmListtrongChỉnh sửa过của pushtớiresultxmListtrong Đồng thời Gửitớidịch vụ器
+        $.each(oldxmList, function () {
+            if (this.czlx !== undefined && this.czlx !== null) {
+                //zxzt undifined nhất định là Lịch sử gửi ， và nàyLầnSửa đổi过
+                resultxmList.unshift(this);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+            }
+        });
+        paramData.xmList = resultxmList;
+        if (!paramData.zyh) {
+            $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+            return;
+        }
+        if (paramData.zyh != respZyh) {
+            $.modalAlert("Lỗi：Trong quá trình nhập，Thay đổi mã nhập viện", 'warning');
+            return;
+        }
+        if (!paramData.xmList || paramData.xmList.length == 0) {
+            $.modalAlert("Thiếu mục kế hoạchghi sổ", 'warning');
+            return;
+        }
+
+        for (var k = 0, length = paramData.xmList.length; k < length; k++) {
+            if (!checkEditingRowData(paramData.xmList[k])) {
+                return;
+            }
+        }
+
+        $.submitForm({
+            url: '/HospitalizationManage/BookkeepInHos/SubmitAccountingPlan',
+            param: paramData,
+            success: function (data) {
+                newtouch_globalevent_f4();
+                $('#zyh').trigger('focus');
+            }
+        });
+    }
+
+    //Xóa trốngMụcghi sổ
+    function Clearjzxm() {
+        $('#sfxmmc').val('');
+        $('#sfxmCode').val('');
+        $('#yzlx').val('');
+        $('#sfdlCode').val('');
+        $('#sfdlmc').val('');
+        $('#dw').html('');
+        '@(jhjzDjEditable.ToString().ToLower())' === 'true'
+            ? $('#dj').val('')
+            : $('#dj').html('');
+        $('#zll').val('');
+        $('#dwjls').val('');
+        $('#jjcl').val('');
+        $('#sl').val('');
+        $("#mz_czlx").val('');
+        $('#sfxmmc').removeAttr('disabled', 'disabled').removeClass('newtouch_Readonly');
+        setTimeout("$('#sfxmmc').trigger('focus');$('#sfxmmc').trigger('click');", 100);
+    }
+
+    //Phán đoán mục mới thêm có trùng lặp hay không
+    function CheckreAdddata(data) {
+        for (var ii = 0; ii < newxmList.length; ii++) {
+            if (newxmList[ii].sfxmCode == data.sfxmCode && newxmList[ii].jzsj == data.jzsj) {
+                $.modalAlert("Cùng ngày mụcthu phí không được thêm trùng lặp", "warning");
+                return false;
+            }
+        }
+        return true;
+    }
+</script>

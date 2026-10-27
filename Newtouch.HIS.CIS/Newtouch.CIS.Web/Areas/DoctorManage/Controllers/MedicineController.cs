@@ -1,17 +1,25 @@
-﻿using System;
+using System;
+using NewtouchHIS.Lib.Framework.Attributes;
+using Newtouch.CIS.Web.Attributes;
+using Newtouch.HIS.Domain.IRepository;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using System.Collections.Generic;
-using System.Configuration;
+
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface.Inpatient;
 using Newtouch.CIS.Proxy.CMMPlatform;
 using Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest;
-using Newtouch.Common;
+
 using Newtouch.Common.Web;
-using Newtouch.Core.Common.Exceptions;
-using Newtouch.Core.Common.Utils;
+using Newtouch.CIS.Compat;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO.InputDto.Inpatient;
 using Newtouch.Domain.DTO.OutputDto;
 using Newtouch.Domain.DTO.OutputDto.Inpatient.API;
@@ -24,10 +32,11 @@ using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Domain.ViewModels;
 using Newtouch.Domain.ViewModels.Outpatient;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.DoctorManage
 {
+    [Area("DoctorManage")]
     public class MedicineController : OrgControllerBase
     {
         private readonly ISysConfigRepo _sysConfigRepo;
@@ -39,11 +48,15 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         private readonly IInpatientSTATOrderRepo _inpatientSTATOrderRepo;
         
         
-        public MedicineController(
-            IInpatientLongTermOrderRepo inpatientLongTermOrderRepo,
-            IInpatientSTATOrderRepo _inpatientSTATOrderRepo)
+        public MedicineController(IInpatientLongTermOrderRepo inpatientLongTermOrderRepo,
+            IInpatientSTATOrderRepo _inpatientSTATOrderRepo, ISysConfigRepo sysConfigRepo, IDoctorserviceApp doctorserviceApp, IDoctorserviceDmnService doctorserviceDmnService, IQhdZnshSqtxRepo qhdznshsqtxRepo, IMedicalRecordDmnService medicalRecordDmnService)
      
         {
+            this._sysConfigRepo = sysConfigRepo;
+            this._doctorserviceApp = doctorserviceApp;
+            this._doctorserviceDmnService = doctorserviceDmnService;
+            this._qhdznshsqtxRepo = qhdznshsqtxRepo;
+            this._medicalRecordDmnService = medicalRecordDmnService;
         
             this._inpatientLongTermOrderRepo = inpatientLongTermOrderRepo;
             this._inpatientSTATOrderRepo = _inpatientSTATOrderRepo;
@@ -56,14 +69,14 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <param name="reqdoctorservices"></param>
         /// <param name="deldata"></param>
         /// <returns></returns>
-        public ActionResult SubmitdoctorService(List<DoctorServiceRequestDto> reqdoctorservices, List<string> deldata)
+        public IActionResult SubmitdoctorService(List<DoctorServiceRequestDto> reqdoctorservices, List<string> deldata)
         {
             string yzh="";
             _doctorserviceDmnService.SubmitdoctorServiceV2(OrganizeId, reqdoctorservices, deldata, out yzh);
             return Success("", yzh);
         }
 
-        public ActionResult ValidateRepeat(List<DSrepeatRequestVO> req, string zyh)
+        public IActionResult ValidateRepeat(List<DSrepeatRequestVO> req, string zyh)
         {
             var predata = _doctorserviceDmnService.DSTransferCL(req, OrganizeId);
             var data = _doctorserviceDmnService.DoctorserviceValidate(predata, zyh, OrganizeId);
@@ -76,18 +89,18 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>
         /// <returns></returns>
-        public ActionResult GetYZDetail(string zyh, string yzId, string yzlx)
+        public IActionResult GetYZDetail(string zyh, string yzId, string yzlx)
         {
             //string conflinktoOR = _sysConfigRepo.GetValueByCode("EnableLinkToOR", OrganizeId);
             //string b = _sysConfigRepo.GetByCode("EnableLinkToOR", OrganizeId).ToString();
-            String conflinktoOR = ConfigurationManager.AppSettings["EnableLinkToOR"];
+            String conflinktoOR = Newtouch.CIS.Compat.AppConfig.Get("EnableLinkToOR");
 
             if (!string.IsNullOrWhiteSpace(conflinktoOR) && conflinktoOR == "true")
             {
                 var datass = _doctorserviceDmnService.Ssupdate(yzId, zyh, OrganizeId);
                 if (datass.Count > 0)
                 {
-                    throw new FailedException("手术医嘱不能修改");
+                    throw new FailedException("Phẫu thuậtY lệnhKhông thểSửa");
                 }
             }
             var data = _doctorserviceApp.GetYZDetail(zyh, yzId, yzlx, OrganizeId);
@@ -109,7 +122,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
-        public ActionResult OrderDiagnosisForm(string zyh, string brxz)
+        public IActionResult OrderDiagnosisForm(string zyh, string brxz)
         {
             ViewBag.brxz = brxz;
             ViewBag.zyh = zyh;
@@ -135,20 +148,20 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/query", request, autoAppendToken: false);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.data != null)
                 {
-                    StockQueryResponseDTO successDoOrder = Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //接口返回数据 
+                    StockQueryResponseDTO successDoOrder = Newtouch.CIS.Compat.Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //接口返回数据 
                     if (successDoOrder != null && successDoOrder.drugStockInfos.Count > 0)
                     {
-                        //List<DrugStockInfo> successDoOrderYp = Tools.Json.ToList<DrugStockInfo>();
+                        //List<DrugStockInfo> successDoOrderYp = Newtouch.CIS.Compat.Tools.Json.ToList<DrugStockInfo>();
                         return successDoOrder.drugStockInfos.ToJson();
                     }
 
                 }
                 else
                 {
-                    return "F|调用药房药库接口失败";
+                    return "F|GọiNhà thuốcKho thuốcGiao diệnthất bại";
                 }
 
-                return "T|执行成功";
+                return "T|Thực hiệnthành công";
 
             }
             catch (Exception ex)
@@ -157,7 +170,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             }
         }
 
-        public ActionResult TCMMedicine() {
+        public IActionResult TCMMedicine() {
 
             return View();
         }
@@ -167,7 +180,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
-        public ActionResult GetqhdyzSqtxData(List<DoctorServiceRequestDto> reqdoctorservices , InpatientInfo brxx,string yzcfh)
+        public IActionResult GetqhdyzSqtxData(List<DoctorServiceRequestDto> reqdoctorservices , InpatientInfo brxx,string yzcfh)
         {
             var jlId = "";
             if (reqdoctorservices[0].yzlx == (int)EnumYzlx.Wz || reqdoctorservices[0].yzlx == (int)EnumYzlx.oper)
@@ -184,7 +197,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Content(data.ToJson());
         }
 
-        public ActionResult SaveLog(string logId, RESPONSEDATA responsedata)
+        public IActionResult SaveLog(string logId, RESPONSEDATA responsedata)
         {
             var jlId = "";
             string responsexml = responsedata.XmlSerialize();
@@ -200,14 +213,14 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
-        public ActionResult GetPriorReviewData(List<DoctorServiceRequestDto> reqdoctorservices, InpatientInfo brxx,string yzcfh, string GetMAC)
+        public IActionResult GetPriorReviewData(List<DoctorServiceRequestDto> reqdoctorservices, InpatientInfo brxx,string yzcfh, string GetMAC)
         {
             if (reqdoctorservices[0].yzlx == (int)EnumYzlx.Wz || reqdoctorservices[0].yzlx == (int)EnumYzlx.oper)
             {
                 return Content(null);
             }
-            string HospitalCode = ConfigurationManager.AppSettings["OrganizeCodeSd"];
-            string HospitalName = ConfigurationManager.AppSettings["HospitalName"];
+            string HospitalCode = Newtouch.CIS.Compat.AppConfig.Get("OrganizeCodeSd");
+            string HospitalName = Newtouch.CIS.Compat.AppConfig.Get("HospitalName");
             var response = _doctorserviceDmnService.GetPriorReviewData(OrganizeId, reqdoctorservices, brxx, this.UserIdentity.rygh, this.UserIdentity.UserName, HospitalCode, HospitalName,yzcfh,GetMAC);
             return Success(response);
         }
@@ -215,7 +228,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// 审核单据删除
         /// </summary>
         /// <returns></returns>
-        public ActionResult DeletePriorReview(string zyh,string yzid,string yzlx,string GetMAC)
+        public IActionResult DeletePriorReview(string zyh,string yzid,string yzlx,string GetMAC)
         {
             var response = _doctorserviceDmnService.DeletePriorReview(zyh, yzid, yzlx,OrganizeId, GetMAC);
             return Success(response);
@@ -224,7 +237,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// 诊断查询服务接口
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDiagnoseData()
+        public IActionResult GetDiagnoseData()
         {
             var response = _doctorserviceDmnService.GetDiagnoseData();
             return Success(response);
@@ -234,7 +247,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
-        public ActionResult GetBashData(string zyh, string GetMAC)
+        public IActionResult GetBashData(string zyh, string GetMAC)
         {
             var response = _doctorserviceDmnService.GetBashData(OrganizeId, zyh, this.UserIdentity.rygh, this.UserIdentity.UserName, GetMAC);
             return Success(response);
@@ -244,7 +257,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
-        public ActionResult GetDrgData(string zyh, string GetMAC)
+        public IActionResult GetDrgData(string zyh, string GetMAC)
         {
             var response = _doctorserviceDmnService.GetDrgData(OrganizeId, zyh, this.UserIdentity.rygh, this.UserIdentity.UserName, GetMAC);
             return Success(response);
@@ -259,7 +272,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <param name="yzlx"></param>
         /// <returns></returns>
         /// <exception cref="FailedException"></exception>
-        public ActionResult GetYzHlyy(List<DoctorServiceRequestDto> reqdoctorservices, string yzh)
+        public IActionResult GetYzHlyy(List<DoctorServiceRequestDto> reqdoctorservices, string yzh)
         {
             // 创建一个外部的 request 实例，只需要一个
             var request = new EngineReq
@@ -270,8 +283,8 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                     DepartID = "",
                     Department = "",
                     BedNo = "",
-                    PresType = "医嘱",
-                    PresSource = "住院",
+                    PresType = "Y lệnh",
+                    PresSource = "Nhập viện",
                     PresDatetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     PayType = "",
                     PatientNo = "",
@@ -396,7 +409,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             request.Prescriptions = prescriptions;
             var hlyyProxy = new HlyyProxy();
             var engineRes = hlyyProxy.engine(request);
-            return Success("查询成功", engineRes);
+            return Success("Tra cứuthành công", engineRes);
         }
        
         /// <summary>
@@ -404,11 +417,11 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// </summary>
         /// <param name="drugId"></param>
         /// <returns></returns>
-        public ActionResult GetHlyySms(string drugId)
+        public IActionResult GetHlyySms(string drugId)
         {
             var hlyyProxy = new HlyyProxy();
             var hisSmsJson = hlyyProxy.GetHisSmsJson(drugId);
-            return Success("查询成功", hisSmsJson);
+            return Success("Tra cứuthành công", hisSmsJson);
         }
 
 

@@ -1,21 +1,23 @@
-﻿using System;
+using System;
 using System.Linq;
-using System.Web.Mvc;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Utils;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Herp.Application.Interface;
-using Newtouch.Herp.Domain.Entity;
 using Newtouch.Herp.Domain.Entity.VEntity;
 using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
 using Newtouch.Herp.Domain.ValueObjects;
-using Newtouch.Tools;
+using Newtouch.Herp.Infrastructure;
+using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Framework.Filter;
 
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
     /// 物资管理
     /// </summary>
+    [Area("ProductManage")]
     public class ProductController : ControllerBase
     {
         private readonly IWzProductDmnService _wzProductDmnService;
@@ -23,21 +25,24 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         private readonly IWzProductRepo _wzProductRepo;
         private readonly IRelProductUnitRepo _relProductUnitRepo;
 
-        public override ActionResult Form()
+        public ProductController(IWzProductDmnService wzProductDmnService, IProductApp productApp,
+            IWzProductRepo wzProductRepo, IRelProductUnitRepo relProductUnitRepo)
         {
-            var maxSize = ConfigurationHelper.GetAppConfigValue("imageMaxSize");
+            _wzProductDmnService = wzProductDmnService;
+            _productApp = productApp;
+            _wzProductRepo = wzProductRepo;
+            _relProductUnitRepo = relProductUnitRepo;
+        }
+
+        public override IActionResult Form()
+        {
+            var maxSize = Constants.GetAppConfigValue("imageMaxSize");
             maxSize = string.IsNullOrWhiteSpace(maxSize) ? 5.ToString() : maxSize;
             ViewData["maxSize"] = Convert.ToInt32(maxSize);
             return View();
         }
 
-        /// <summary>
-        /// 物资列表
-        /// </summary>
-        /// <param name="pagination"></param>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetProductGridJson(Pagination pagination, string lb, string zt, string keyWord)
+        public IActionResult GetProductGridJson(Pagination pagination, string lb, string zt, string keyWord)
         {
             var data = new
             {
@@ -49,12 +54,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             return Content(data.ToJson());
         }
 
-        /// <summary>
-        /// 删除物资
-        /// </summary>
-        /// <param name="keyValue"></param>
-        /// <returns></returns>
-        public ActionResult DeleteForm(string keyValue)
+        public IActionResult DeleteForm(string keyValue)
         {
             try
             {
@@ -64,124 +64,74 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
             {
                 return Error(ex.Message);
             }
-            return Success("删除成功");
+            return Success("Xóa thành công");
         }
 
-        /// <summary>
-        /// get product information
-        /// </summary>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetFormJson(string keyWord)
+        public IActionResult GetFormJson(string keyWord)
         {
             var entity = _wzProductDmnService.GetProductInfo(keyWord, OrganizeId);
             return Content(entity.ToJson());
         }
 
-        /// <summary>
-        /// get product unit
-        /// </summary>
-        /// <param name="keyWord"></param>
-        /// <returns></returns>
-        public ActionResult GetProductUnitGridJson(string keyWord)
+        public IActionResult GetProductUnitGridJson(string keyWord)
         {
             var units = _relProductUnitRepo.IQueryable(p => p.productId == keyWord && p.OrganizeId == OrganizeId).ToList();
             return Content(units.ToJson());
         }
 
-        /// <summary>
-        /// delete contacts
-        /// </summary>
-        /// <param name="relId"></param>
-        /// <returns></returns>
-        public ActionResult DeleteProductUnit(string relId)
+        public IActionResult DeleteProductUnit(string relId)
         {
-            return _relProductUnitRepo.DeleteById(relId) > 0 ? Success("删除成功") : Error("删除失败");
+            return _relProductUnitRepo.DeleteById(relId) > 0 ? Success("Xóa thành công") : Error("Xóa thất bại");
         }
 
-        /// <summary>
-        /// add or update product unit
-        /// </summary>
-        /// <param name="productUnitRelVo"></param>
-        /// <returns></returns>
         [HttpPost]
-        public ActionResult SubmitUnit(ProductUnitRelVo productUnitRelVo)
+        public IActionResult SubmitUnit(ProductUnitRelVo productUnitRelVo)
         {
-            return _productApp.SubmitRelProductUnit(productUnitRelVo, OrganizeId) > 0 ? Success("操作成功") : Error("操作失败");
+            return _productApp.SubmitRelProductUnit(productUnitRelVo, OrganizeId) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
-        /// <summary>
-        /// 物资维护 表单提交
-        /// </summary>
-        /// <param name="wzProductEntity"></param>
-        /// <param name="keyValue"></param>
-        /// <returns></returns>
         [HandlerAjaxOnly]
-        public ActionResult SubmitForm(VProductInfoEntity wzProductEntity, string keyValue)
+        public IActionResult SubmitForm(VProductInfoEntity wzProductEntity, string keyValue, IFormFile imgUpload)
         {
             if (!string.IsNullOrEmpty(_wzProductDmnService.CheckProductCode(wzProductEntity.productCode, keyValue)))
             {
-                return Error("物资代码已存在");//防止出现并发情况
+                return Error("Mã vật tư đã tồn tại");
             }
-            var file = Request.Files["imgUpload"];
             wzProductEntity.zt = wzProductEntity.zt == "on" ? "1" : "0";
             wzProductEntity.sflkc = wzProductEntity.sflkc == "on" ? "1" : "0";
             wzProductEntity.sffy = wzProductEntity.sffy == "on" ? "1" : "0";
             wzProductEntity.sfgt = wzProductEntity.sfgt == "on" ? "1" : "0";
             wzProductEntity.OrganizeId = OrganizeId;
-            wzProductEntity.imageUrl = _productApp.UploadImag(file);
-			wzProductEntity.iswzsame = wzProductEntity.iswzsame == "on" ? "1" : "0";
-			return _productApp.SubmitForm(wzProductEntity, keyValue) > 0 ? Success("操作成功") : Error("操作失败");
+            wzProductEntity.imageUrl = _productApp.UploadImag(imgUpload);
+            wzProductEntity.iswzsame = wzProductEntity.iswzsame == "on" ? "1" : "0";
+            return _productApp.SubmitForm(wzProductEntity, keyValue) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");
         }
 
-        /// <summary>
-        /// 获取物资代码
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetProductCode()
+        public IActionResult GetProductCode()
         {
             return Content(_wzProductDmnService.GetProductCode());
         }
 
-        /// <summary>
-        /// 检查物资代码是否已存在
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult CheckProductCode(string productCode, string keyWord)
+        public IActionResult CheckProductCode(string productCode, string keyWord)
         {
             return Content(_wzProductDmnService.CheckProductCode(productCode, keyWord));
         }
 
-        /// <summary>
-        /// 根据物资类别获取物资
-        /// </summary>
-        /// <param name="typId"></param>
-        /// <returns></returns>
-        public ActionResult GetProductbyType(string typId)
+        public IActionResult GetProductbyType(string typId)
         {
             var data = _wzProductRepo.IQueryable(p => p.typeId == typId && p.zt == "1" && p.OrganizeId == OrganizeId);
-            if (data == null || !data.Any()) return Content(new { Id = "", name = "==请选择物资==" }.ToJson());
+            if (data == null || !data.Any()) return Content(new { Id = "", name = "==Chọn vật tư==" }.ToJson());
             return Content(data.ToJson());
         }
 
-        /// <summary>
-        /// 获取物资明细
-        /// </summary>
-        /// <param name="keyword"></param>
-        /// <returns></returns>
-        public ActionResult ProductDetailQuery(string keyword)
+        public IActionResult ProductDetailQuery(string keyword)
         {
             var result = _wzProductDmnService.SelectProductDetail(keyword, OrganizeId);
             return Content(result.ToJson());
         }
-        
-        /// <summary>
-        /// 获取物资所有单位
-        /// </summary>
-        /// <param name="keyword"></param>
-        /// <returns></returns>
+
         [HttpGet]
-        public ActionResult ProductUnitsQuery(string keyword)
+        public IActionResult ProductUnitsQuery(string keyword)
         {
             var result = _wzProductDmnService.SelectProductUnits(keyword, OrganizeId);
             return Content(result.ToJson());

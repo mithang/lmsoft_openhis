@@ -1,6 +1,6 @@
-﻿@using Newtouch.Domain.ViewModels;
+@using Newtouch.Domain.ViewModels;
 @{
-    ViewBag.Title = "挂号预约维护";
+    ViewBag.Title = "Đăng ký hẹn khámBảo trì";
     Layout = "~/Views/Shared/_Form.cshtml";
 
     var bdItems = ViewBag.defaultBespeakRegInfo as List<SysBespeakRegisterDateTimeVO>;
@@ -92,7 +92,7 @@
 <form id="form1">
     <div class="dv-left">
         <div class="panel panel-default" style="margin-bottom: 5px;">
-            <div class="panel-heading navb-bg">科室选择</div>
+            <div class="panel-heading navb-bg">KhoaChọn</div>
             @*<ul class="nav nav-tabs" role="tablist" id="resources">
                     <li role="presentation" class="active">
                         <a href="#dv-dept" role="tab" data-toggle="tab" id="li_dept" aria-expanded="true">科室</a>
@@ -106,7 +106,7 @@
             </div>
         </div>
         <div class="panel panel-default" style="margin-bottom: 5px;">
-            <div class="panel-heading navb-bg">专家选择</div>
+            <div class="panel-heading navb-bg">Chuyên giaChọn</div>
             <div style="width: 300px; overflow-x: auto; margin: 0;">
                 <table id="zjGridList"></table>
             </div>
@@ -114,7 +114,7 @@
     </div>
     <div class="panel panel-default dv-right">
         <div class="panel-heading navb-bg">
-            排班
+            Xếp lịch
             <span class="sp-Separate" id="sp_deptName"></span>
             <span class="sp-Separate" id="sp_zjName"></span>
         </div>
@@ -163,20 +163,20 @@
             <table style="display:inline-block;">
                 <tr>
                     <th style="height: 25px;">
-                        <i class="fa fa-plus-square-o" style="font-size: large; color: #09a3ea;vertical-align: middle;" onclick="addColumn();">(列)</i>
+                        <i class="fa fa-plus-square-o" style="font-size: large; color: #09a3ea;vertical-align: middle;" onclick="addColumn();">(cột)</i>
                     </th>
                 </tr>
             </table>
             <div class="dv-addRow">
-                <i class="fa fa-plus-square-o" style="font-size: large; color: #09a3ea;vertical-align: middle;" onclick="addRow(this);">(行)</i>
+                <i class="fa fa-plus-square-o" style="font-size: large; color: #09a3ea;vertical-align: middle;" onclick="addRow(this);">(hàng)</i>
             </div>
         </div>
     </div>
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 7, 8 },
-        F7Text = "重置",
-        F8Text = "保存"
+        F7Text = "Đặt lại",
+        F8Text = "Lưu"
     })
 </form>
 
@@ -202,7 +202,7 @@
                         $("#selitem").val(data.sfxmCode);
                     }
                     else {
-                        $.modalAlert("获取信息失败", 'error');
+                        $.modalAlert("LấyThông tinthất bại", 'error');
                     }
                 }
             });
@@ -217,8 +217,8 @@
             width: 250,
             postData: { organizeId: '@ViewBag.OrganizeId' },
             colModel: [
-                { label: '科室代码', name: 'Code', width: 70, align: 'left' },
-                { label: '科室名称', name: 'Name', width: 150, align: 'left' }
+                { label: 'KhoaMã', name: 'Code', width: 70, align: 'left' },
+                { label: 'KhoaTên', name: 'Name', width: 150, align: 'left' }
             ],
             onSelectRow: function (rowid) {
                 //标记科室
@@ -258,7 +258,7 @@
         if (ksCode == null || ksCode === "") {
             var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
             if (rowid == null || rowid === "") {
-                $.modalMsg("请先选择科室", 'error', 1500);
+                $.modalMsg("Vui lòng chọn trướcKhoa", 'error', 1500);
                 return;
             }
             var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
@@ -274,7 +274,7 @@
                     $('#zjGridList').newtouchLocalDataGrid(null, data);
                 }
                 else {
-                    $.modalMsg("获取专家信息失败，请联系管理员", 'error', 1500);
+                    $.modalMsg("LấyChuyên giaThông tinthất bại,Vui lòng liên hệQuản trị viên", 'error', 1500);
                 }
             }
         });
@@ -286,9 +286,9 @@
         width: 250,
         unwritten: false,
         colModel: [
-            { label: "主键", name: "Id", hidden: true, key: true },
-            { label: '工号', name: 'gh', width: 80, align: 'left' },
-            { label: '名称', name: 'Name', width: 120, align: 'left' },
+            { label: "Khóa chính", name: "Id", hidden: true, key: true },
+            { label: 'Mã nhân viên', name: 'gh', width: 80, align: 'left' },
+            { label: 'Tên', name: 'Name', width: 120, align: 'left' },
         ],
         onSelectRow: function (rowid) {
             var rowData = $('#zjGridList').jqGrid('getRowData', rowid);
@@ -330,7 +330,7 @@
     function newtouch_event_f8() {
         var deptRowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         if (!deptRowid) {
-            $.modalMsg('请选择科室', 'error', 1000);
+            $.modalMsg('Vui lòng chọnKhoa', 'error', 1000);
             return;
         }
         var allChk = $("input[name=chk_reg]");
@@ -365,7 +365,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     refleshData();
-                    $.modalMsg("提交成功", 'success');
+                    $.modalMsg("Gửithành công", 'success');
                 } else {
                     $.modalAlert(res.message, "error");
                 }
@@ -373,7 +373,7 @@
         });
     }
 
-    //刷新排班信息
+    //刷新Xếp lịch信息
     function refleshData() {
         var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         if (!rowid) {
@@ -403,7 +403,7 @@
                         buildColHtml(data);
                     }
                     else {
-                        $.modalAlert("获取Guid失败，请联系管理", 'error');
+                        $.modalAlert("LấyGuidthất bại,Vui lòng liên hệQuản lý", 'error');
                     }
                 }
             });
@@ -459,7 +459,7 @@
                     $("#tbd_content").append(data);
                 }
                 else {
-                    $.modalAlert("获取Guid失败，请联系管理", 'error');
+                    $.modalAlert("LấyGuidthất bại,Vui lòng liên hệQuản lý", 'error');
                 }
             }
         });

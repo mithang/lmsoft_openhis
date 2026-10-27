@@ -1,6 +1,6 @@
-﻿
+
 @{
-    ViewBag.Title = "病历单";
+    ViewBag.Title = "Phiếu bệnh án";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -16,7 +16,7 @@
     var mzh = $.request('mzh');
     //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E7%97%85%E5%8E%86%E5%8D%95&rs:Command=Render';
     //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%e7%97%85%e5%8e%86%e5%8d%95&rs:Command=Render';
-    var uri = "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f重庆病历单&rs:Command=Render";
+    var uri = "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f重庆Bệnh án单&rs:Command=Render";
     $(function () {
         submit();
     });
@@ -27,7 +27,7 @@
         location.href = url;
         return;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 

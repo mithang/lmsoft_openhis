@@ -1,0 +1,213 @@
+@using Newtouch.Herp.Infrastructure.Enum
+@{
+    ViewBag.Title = "Thêm mới/Sửa";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+    .formTitle span {
+        color: red;
+    }
+</style>
+<script src="~/Content/js/jquery.form.js"></script>
+<form id="form1">
+    <div class="container" style="padding:0;">
+        <div class="tab-content" style="margin-top:10px;padding-right:10px;">
+            <div role="tabpanel" class="tab-pane fade in active">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Chủ thể giấy phép：</th>
+                        <td class="formValue">
+                            <select class="form-control" id="belongedId" onchange="changeBelonged()"></select>
+                        </td>
+                        <td rowspan="4" style="width:250px;" align="center">
+                            <img id="fileUrl" src="~/Content/img/productDefault.png" style="width:200px; height:140px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Loại giấy phép：</th>
+                        <td class="formValue">
+                            <select class="form-control" id="licenceTypeId"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Số giấy phép：</th>
+                        <td class="formValue">
+                            <input id="licenceNo" name="licenceNo" type="text" class="form-control required" placeholder="Số giấy phép" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Tên đối tượng：</th>
+                        <td class="formValue">
+                            <input id="objectName" name="objectName" type="text" class="form-control required" placeholder="Tên đối tượng giấy phép" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Ngày hiệu lực：</th>
+                        <td class="formValue">
+                            <input id="qxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <td class="formValue" style="padding-left:25px;">
+                            <input id="fileUpload" name="fileUpload" type="file" style="float:left;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle"><span class="required">*</span>Ngày hết hiệu lực：</th>
+                        <td class="formValue">
+                            <input id="sxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        </td>
+                        <td class="formValue" style="padding-left: 25px;">
+                            <div class="ckbox">
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+<script lang="javascript">
+    var keyWord = $.request("keyValue");
+    $(function () {
+        Init();
+        if (!!keyWord) {
+            $.najax({
+                url: "/LicenceManage/Licence/GetLicenceFormJson",
+                data: { keyWord: keyWord },
+                dataType: "json",
+                success: function (data) {
+                    fillInput(data);
+                }
+            });
+        }
+    });
+
+    //Điền lại input
+    function fillInput(data) {
+        $("#zt").attr("checked", data.zt === "1" ? true : false);
+        if (data.fileUrl !== "") {
+            $("#fileUrl").attr("src", data.fileUrl);
+        }
+        $("#belongedId").val(data.belongedId).trigger("change");
+        $("#licenceTypeId").val(data.licenceTypeId).trigger("change");
+        $("#licenceNo").val(data.licenceNo);
+        $("#objectName").val(data.objectName);
+        $("#qxrq").val(data.qxrq.substring(0,10));
+        $("#sxrq").val(data.sxrq.substring(0,10));
+    }
+
+    //Khởi tạo
+    function Init() {
+        //Tải Chủ thể
+        $("#belongedId").bindSelect({
+            url: "/LicenceManage/Licence/Getbelonged"
+        });
+        $("#licenceTypeId").bindSelect({
+            url: "/LicenceManage/Licence/GetlicenceType?belonged=" + $("#belongedId").val()
+        });
+        $("#fileUpload").change(function (e) {
+            var file = e.delegateTarget.files[0];
+            if (file.name === "") { }
+            else {
+                var n1 = file.name.lastIndexOf('.') + 1;
+                var fileExt = file.name.substring(n1, n1 + 3).toLowerCase();
+                if (fileExt !== "jpg" && fileExt !== "bmp" && fileExt !== "png"
+                    && fileExt !== "ppt" && fileExt !== "pptx"
+                    && fileExt !== "xls" && fileExt !== "xlsx"
+                    && fileExt !== "doc" && fileExt !== "docx"
+                    && fileExt !== "pdf") {
+                    $.modalAlert("Hiện tại hệ thống chỉ hỗ trợ tải lên tệp có đuôi jpg, bmp, png, ppt, pptx, xlsx, docx, pdf!", 'warning');
+                    $("#fileUrl").val("");
+                    $("#fileUpload").val("");
+                    return false;
+                }
+                if (file.size/1024/2014 > @ViewData["maxSize"]) {
+                    $.modalAlert("Kích thước tệp không được vượt quá"+@ViewData["maxSize"]+"M!", 'warning');
+                    $("#fileUrl").val("");
+                    $("#fileUpload").val("");
+                    return false;
+                }
+            }
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (ret) {
+                //Xem trước hình ảnh
+                $("#fileUrl").attr({ "src": reader.result });
+            }
+        });
+    }
+
+    //Đổi Chủ thể Lấy Loại
+    function changeBelonged() {
+        var s = $("#belongedId").val();
+        if (s !== "") {
+            $("#licenceTypeId").html("");
+            //Tải Loại
+            $("#licenceTypeId").bindSelect({
+                url: "/LicenceManage/Licence/GetlicenceType?belonged=" + $("#belongedId").val()
+            });
+        }
+    }
+
+    //Gửi
+    function AcceptClick(callback) {
+        if (!DataValidate()) {
+            return;
+        }
+        var form = $("#form1");
+        var postData = {
+            zt: document.getElementById("zt").checked,
+            belongedId: $("#belongedId").val(),
+            licenceTypeId: $("#licenceTypeId").val(),
+            licenceNo: $("#licenceNo").val(),
+            objectName: $("#objectName").val(),
+            qxrq: $("#qxrq").val(),
+            sxrq: $("#sxrq").val()
+        };
+        var options = {
+            url: '/LicenceManage/Licence/SubmitLicenceForm?keyValue=' + keyWord,
+            type: 'post',
+            data: postData,
+            beforeSubmit: function () {
+                if (!DataValidate()) {
+                    return false;
+                }
+                return true;
+            },
+            success: function (data) {
+                $.modalClose();
+                callback();
+            }
+        };
+        form.ajaxSubmit(options);
+    }
+
+    //Kiểm tra dữ liệu
+    function DataValidate() {
+        if ($("#belongedId").val() === "") {
+            $.modalAlert("Phải chọn chủ thể giấy phép", 'warning');
+            return false;
+        }
+        if ($("#licenceTypeId").val() === "") {
+            $.modalAlert("Phải chọn loại giấy phép", 'warning');
+            return false;
+        }
+        if ($("#licenceNo").val() === "") {
+            $.modalAlert("Phải nhập số giấy phép", 'warning');
+            return false;
+        }
+        if ($("#objectName").val() === "") {
+            $.modalAlert("Phải nhập tên đối tượng", 'warning');
+            return false;
+        }
+        if ($("#qxrq").val() === "") {
+            $.modalAlert("Ngày bắt đầu không được để trống", 'warning');
+            return false;
+        }
+        if ($("#sxrq").val() === "") {
+            $.modalAlert("Ngày hết hiệu lực không được để trống", 'warning');
+            return false;
+        }
+        return true;
+    }
+</script>

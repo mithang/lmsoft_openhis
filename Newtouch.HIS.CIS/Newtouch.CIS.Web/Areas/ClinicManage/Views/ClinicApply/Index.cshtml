@@ -1,10 +1,10 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "远程诊疗管理";
+    ViewBag.Title = "Quản lý chẩn đoán từ xa";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
-    var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
+    var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
+    var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 <script src="~/Content/js/bootstrap-multiselect.js"></script>
 <link href="~/Content/js/bootstrap-multiselect.css" rel="stylesheet" />
@@ -47,54 +47,54 @@
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên:</th>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="xm" type="text" class="form-control" style="width:90px;float:left;" />
                 </td>
-                <th class="formTitle">证件号：</th>
+                <th class="formTitle">Số giấy tờ:</th>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="zjh" type="text" class="form-control" style="width:90px;float:left;" />
                 </td>
-                <th class="formTitle">诊疗时间：</th>
+                <th class="formTitle">Thời gian khám chữa bệnh:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <td class="formValue" style="width:10%;float:left;"><label style="position:relative;top:5px;">至</label></td>
+                <td class="formValue" style="width:10%;float:left;"><label style="position:relative;top:5px;">đến</label></td>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <td class="formTitle">科室：</td>
+                <td class="formTitle">Khoa:</td>
                 <td class="formValue">
                     <input type="text" id="ks" class="form-control" autocomplete="off" style="width: 100px" />
                     <input type="text" id="ksCode" class="form-control" style="display:none;" />
                 </td>
-                <td class="formTitle">医生：</td>
+                <td class="formTitle">Bác sĩ:</td>
                 <td class="formValue">
                     <input id="txt_doctor" name="txt_doctor" type="text" data-StaffGh="" class="form-control required" />
                 </td>
                 <td style="width: 20px"></td>
-                <th class="formTitle">状态：</th>
+                <th class="formTitle">Trạng thái:</th>
                 <td class="formValue">
                     <select class="form-control" id="sqzt">
-                        <option value="0" selected>全部</option>
-                        <option value="1">待确认</option>
-                        <option value="2">就诊中</option>
-                        <option value="3">已结束</option>
-                        <option value="4">已退回</option>
+                        <option value="0" selected>Tất cả</option>
+                        <option value="1">Chờ xác nhận</option>
+                        <option value="2">Đang khám bệnh</option>
+                        <option value="3">Đã kết thúc</option>
+                        <option value="4">Đã trả lại</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -154,54 +154,54 @@
             url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
             colModel: [
                 { label: 'Id', name: 'Id', width: 100, align: 'center', key:true,hidden: true },
-                { label: '姓名', name: 'xm', align: 'center', width: 100 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 100 },
                 {
-                    label: '性别', name: 'xb', width: 120, align: 'center', formatter: function (val) {
+                    label: 'Giới tính', name: 'xb', width: 120, align: 'center', formatter: function (val) {
                         if (val == "1") {
-                            return "男";
-                        } else { return "女"; }
+                            return "Nam";
+                        } else { return "Nữ"; }
                     }
                 },
-                { label: '证件号', name: 'zjh', width: 160, align: 'center' },
-                { label: '病人性质', name: 'brxzmc', width: 120, align: 'center' },
-                { label: '科室', name: 'ks', width: 120, align: 'center', hidden: true },
-                { label: '医生', name: 'ysgh', width: 120, align: 'center', hidden: true },
-                { label: '申请科室', name: 'deptName', width: 120, align: 'center' },
-                { label: '申请医生', name: 'ysxm', width: 120, align: 'center' },
-                { label: '诊疗时间', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '创建时间', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Số giấy tờ', name: 'zjh', width: 160, align: 'center' },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 120, align: 'center' },
+                { label: 'Khoa', name: 'ks', width: 120, align: 'center', hidden: true },
+                { label: 'Bác sĩ', name: 'ysgh', width: 120, align: 'center', hidden: true },
+                { label: 'Khoa nộp đơn', name: 'deptName', width: 120, align: 'center' },
+                { label: 'Bác sĩ nộp đơn', name: 'ysxm', width: 120, align: 'center' },
+                { label: 'Thời gian khám chữa bệnh', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 {
-                    label: '状态', name: 'sqzt', align: 'center', width: 120, formatter: function (val) {
+                    label: 'Trạng thái', name: 'sqzt', align: 'center', width: 120, formatter: function (val) {
                         return $.enum.getDescByValue("Emunzlzt", val);
                     }},
                 {
-                    label: '操作区', name: 'action', width: 200, align: 'center', formatter: function (cellvalue, op, row) {
-                        if (row.sqzt == 1) {//待确认
-                            return "<a class='btn btn-default' onclick='accept(\"" + row.Id + "\")'>同意</a>"
-                                + "<a class='btn btn-default' onclick='back(\"" + row.Id + "\")'>退回</a>"
+                    label: 'Khu thao tác', name: 'action', width: 200, align: 'center', formatter: function (cellvalue, op, row) {
+                        if (row.sqzt == 1) {//Chờ xác nhận
+                            return "<a class='btn btn-default' onclick='accept(\"" + row.Id + "\")'>Đồng ý</a>"
+                                + "<a class='btn btn-default' onclick='back(\"" + row.Id + "\")'>Trả lại</a>"
                         }
                         else if (row.sqzt == 2 ) {//就诊中 
-                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>查看详情</a>"
-                                + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>开始诊疗</a>"
-                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>关闭会议</a>"
+                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>XemChi tiết</a>"
+                                + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>Bắt đầuKhám chữa bệnh</a>"
+                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>"
                         }   
                         else if (row.sqzt == 3) {//已结束
-                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>查看详情</a>"
-                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>关闭会议</a>";
+                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>XemChi tiết</a>"
+                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>";
                         }
 
                         else
                             return '';
                     },
                 },
-                { label: '卡号', name: 'kh', width: 120, align: 'center', hidden: true },
+                { label: 'Số thẻ', name: 'kh', width: 120, align: 'center', hidden: true },
                 { label: '会议号', name: 'mettingId', width: 120, align: 'center', hidden: true },
-                { label: '申请流水号', name: 'sqlsh', width: 120, align: 'center', hidden: true },
+                { label: 'Đề nghịSố thứ tự', name: 'sqlsh', width: 120, align: 'center', hidden: true },
 
             ],
             pager: "#gridPager",
             sortname: " CreateTime asc",
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //是否显示Số thứ tự
             viewrecords: true
         });
         $("#btn_search").click(function () {
@@ -224,7 +224,7 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
 
                 $('#gridList').jqGrid("clearGridData");//先清空明细
                 $("#gridList").jqGrid('setGridParam', {
@@ -285,7 +285,7 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
 
                 $('#gridList').jqGrid("clearGridData");//先清空明细
                 $("#gridList").jqGrid('setGridParam', {
@@ -321,7 +321,7 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
 
                 $('#gridList').jqGrid("clearGridData");//先清空明细
                 $("#gridList").jqGrid('setGridParam', {
@@ -418,7 +418,7 @@
                     var resp = JSON.parse(ajaxresp.data);
                     if (!!resp) {
                         $('#zcfsj').text(resp.zcfsj);
-                        $("#zcfsj").attr("title", "收费项目详情:" + resp.zcfsfxm);
+                        $("#zcfsj").attr("title", "Mục thu phíChi tiết:" + resp.zcfsfxm);
                     }
 
                 }

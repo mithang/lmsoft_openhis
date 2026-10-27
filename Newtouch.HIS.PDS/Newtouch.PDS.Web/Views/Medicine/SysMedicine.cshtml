@@ -1,0 +1,167 @@
+
+@{
+    ViewBag.Title = "SysMedicine";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    $(function () {
+        gridList();
+
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            treeGrid: true,
+            treeGridModel: "adjacency",
+            url: "/SystemManage/SysChargeItem/GetsfGridJson",
+            height: $(window).height() - 96,
+            colModel: [
+                { label: "Khóa chính", name: "id", hidden: true, key: true },
+                { label: "Mã thuốc", name: "sfxm", width: 80, align: 'left' },
+                { label: 'Tên thuốc', name: 'sfxmmc', width: 100, align: 'left' },
+                { label: 'Tên hàng hóa', name: 'py', width: 50, align: 'left' },
+                { label: 'Pinyin', name: 'dw', width: 50, align: 'left' },
+                { label: 'Đơn vị đóng gói', name: 'dj', width: 50, align: 'left' },
+                { label: 'Số lẻ ngoại trú', name: 'dl', width: 100, align: 'left' },
+                { label: 'Đơn vị lẻ ngoại trú', name: 'fl', width: 100, align: 'left' },
+                { label: 'Số lẻ nội trú', name: 'zfbl', width: 50, align: 'left' },
+                { label: 'Đơn vị lẻ nội trú', name: 'zfxz', width: 50, align: 'left' },
+                { label: 'Đơn vị định giá', name: 'ybdm', width: 50, align: 'left' },
+                { label: 'Tỷ lệ tự trả', name: 'wjdm', width: 50, align: 'left' },
+                {
+                    label: 'Phạm vi', name: 'mzzybz', width: 80, align: 'left',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == "0") {
+                            return "Dùng chung";
+                        } else if (cellvalue == "1") {
+                            return "Ngoại trú";
+                        } else if (cellvalue == "2") {
+                            return "Nội trú";
+                        } else {
+                            return "";
+                        }
+                    }
+                }, { label: 'Thực hiện', name: 'ssbz', width: 50, align: 'left' },
+                       { label: 'Đặc biệt', name: 'tsbz', width: 50, align: 'left' },
+                         { label: 'Khoản thu phí', name: 'sfbz', width: 50, align: 'left' },
+                {
+                    label: 'Hiệu lực', name: 'zt', width: 50, align: 'left',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == 0) {
+                            return "Không hiệu lực"
+                        } else {
+                            return "Hiệu lực"
+                        }
+                    }
+                },
+                { label: 'Nhân viên lập hồ sơ', name: 'jdry', width: 50, align: 'left' },
+                {
+                    label: 'Ngày lập hồ sơ', name: 'jdrq', width: 50, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                }
+            ]
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "Thêm thuốc hệ thống",
+            url: "/Medicine/SysMedicineAdd",
+            width: "700px",
+            height: "420px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().id;
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa thông tin",
+            url: "/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "520px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        $.deleteForm({
+            url: "/SystemManage/SysChargeItem/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().id },
+            success: function () {
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_details() {
+        var keyValue = $("#gridList").jqGridRowValue().id;
+        $.modalOpen({
+            id: "Details",
+            title: "Xem tổ chức",
+            url: "/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "560px",
+            btn: null,
+        });
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: "/SystemManage/SysChargeItem/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.loading(false);
+            }
+        })
+    }
+</script>
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo hạng mục mới</a>
+        </div>
+        <div class="operate">
+            <ul class="nav nav-pills">
+                <li class="first">Đã chọn<span>1</span> mục</li>
+                <li><a id="NF-edit" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a></li>
+                <li><a id="NF-delete" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a></li>
+                <li><a id="NF-Details" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem thông tin</a></li>
+            </ul>
+            <a href="javascript:;" class="close"></a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+</div>
+

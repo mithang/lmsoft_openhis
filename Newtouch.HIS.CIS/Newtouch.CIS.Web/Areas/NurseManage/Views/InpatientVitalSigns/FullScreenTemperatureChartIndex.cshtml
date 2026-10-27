@@ -1,9 +1,9 @@
-﻿@using Newtouch.Infrastructure
+@using Newtouch.Infrastructure
 @{
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
 <script src="~/Content/js/utility.js"></script>
 <div class="panel panel-default">
     @Html.Partial("_TemperatureChartForCQ")
@@ -11,11 +11,11 @@
 
 <div id="loadingPage" style="display: none;">
     <div class="loading-shade"></div>
-    <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+    <div class="loading-content" onclick="$.loading(false)">Dữ liệuĐang tải,Vui lòng đợi trong giây lát…</div>
 </div>
 
 <div style="position:fixed;top:10px;left:250px;cursor:pointer;">
-    <img id="print" src="@SiteUrl.GetStaticResourceScriptUrl("~/img/print.png")" title="打印" alt="打印" />
+    <img id="print" src="@MvcHelper.GetStaticResourceScriptUrl("~/img/print.png")" title="In" alt="In" />
 </div>
 <script>
     $(function () {

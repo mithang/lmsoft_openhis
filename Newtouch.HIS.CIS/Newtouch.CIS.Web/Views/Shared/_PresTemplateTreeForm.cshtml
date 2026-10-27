@@ -1,4 +1,4 @@
-﻿@using Newtouch.Infrastructure;
+@using Newtouch.Infrastructure;
 
 @{
     var iSOpenZycfnew = ViewData["ISOpenZycfnew"] as bool?;
@@ -6,14 +6,14 @@
 <div id="floatPreTemplateTree" style="display:none;z-index:1;background: white;">
     <div class="ui-layout-west">
         <ul id="beveltabs">
-            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>个人</a></li>
-            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>科室</a></li>
-            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>全院</a></li>
+            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>Cá nhân</a></li>
+            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>Khoa</a></li>
+            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>Toàn viện</a></li>
         </ul>
         <table class="form">
             <tr>
                 <td class="formValue">
-                    <input id="mbKeyword" type="text" class="form-control" placeholder="输入模板名称/简拼后按回车键" />
+                    <input id="mbKeyword" type="text" class="form-control" placeholder="Nhập tên mẫu/viết tắt rồi nhấn Enter" />
                 </td>
             </tr>
         </table>
@@ -68,20 +68,20 @@
                     presTempClieckHandling = false;
                     return;
                 }
-                //引用历史处方
+                //Trích dẫnĐơn thuốc lịch sử
                 $.modalOpen({
                     id: "FormShowPresTemplateDetail",
-                    title: "处方模板",
+                    title: "Đơn thuốcMẫu",
                     url: "/TemplateManage/PresTemplate/PresTemplateDetail?mbId=" + item.Ex1 + "&cflx=" + pageFlag + "&brxzCode=" + window.currPatientInfo.brxzCode,
                     width: "800px",
                     height: "650px",
-                    btn: ['复制', '关闭'],
+                    btn: ['Sao chép', 'Đóng'],
                     callBack: function (iframeId) {
                         top.frames[iframeId].submitForm(function (data) {
                             if (data && data.mbmxList && data.mbmxList.length) {
                                 presTemplateFill(data);
                             }
-                            //重置 历史处方、处方模板
+                            //重置 Đơn thuốc lịch sử、处方模板
                             cfLeftFloatHide();
                             $.modalClose("FormShowPresTemplateDetail");
                         });
@@ -229,7 +229,7 @@
                         });
                     }
                     if (iscfcf) {
-                        $.modalAlert("单张处方下明细不能重复", 'warning');
+                        $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
                         return;
                     } else {
                         $("#" + grid).jqGrid("addRowData", undefined, data.mbmxList[i], "last");
@@ -250,7 +250,7 @@
                     });
                 }
                 if (isRepeatedAdd) {
-                    $.modalAlert("单张处方下明细不能重复", 'warning');
+                    $.modalAlert("Đơn lẻĐơn thuốcchi tiết trong không được trùng lặp", 'warning');
                     return;
                 }
                 else {

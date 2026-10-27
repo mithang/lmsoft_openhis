@@ -1,13 +1,18 @@
-﻿using FrameworkBase.MultiOrg.Domain.IDomainServices;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Domain.Entity;
-using FrameworkBase.MultiOrg.Web;
+using Newtouch.Domain.IDomainServices;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.CIS.Repository;
+using Newtouch.Domain.IRepository;
+
+using NewtouchHIS.Framework.Web.Controllers;
 using Newtouch.Application.Interface;
-using Newtouch.Common;
-using Newtouch.Common.Model;
+
+using NewtouchHIS.Lib.Base.Model;
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
-using Newtouch.Core.Common.Exceptions;
+
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.BusinessObjects.API;
 using Newtouch.Domain.DTO.InputDto.Outpatient;
 using Newtouch.Domain.DTO.OutputDto;
@@ -20,27 +25,24 @@ using Newtouch.Domain.ValueObjects;
 using Newtouch.Domain.ViewModels.Outpatient;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
-using Newtouch.Infrastructure.Log;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 using Newtouch.Tools.Excel;
 using newtouchyibao.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtouch.CIS.Proxy.CMMPlatform;
 using Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest;
-using Newtouch.Infrastructure.Log;
 using Newtouch.Domain.ViewModels;
 using Newtouch.Domain.ViewModels.Outpatient;
 using Newtouch.Domain.IRepository.Inpatient;
 using Newtouch.Domain.IRepository;
-using Newtouch.Core.Common.Utils;
+using Newtouch.CIS.Compat;
 using Newtouch.Domain.IRepository.Clinic;
 using Newtouch.Domain.Entity.Clinic;
 using Newtouch.Domain.IDomainServices.Clinic;
@@ -74,68 +76,92 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly IAdmissionNoticeRepo _admissionNoticeRepo;
         private readonly IClinicApplyRepo _clinicApplyRepo;
         private readonly IClinicDmnService _clinicDmnService;
+
+        public MedicalRecordController(IMedicalRecordDmnService medicalRecordDmnService, ITreatmentRepo treatmentRepo, IAuxiliaryDictionaryRepo auxiliaryDictionaryRepo, IMRTemplateRepo mRTemplateRepo, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, ITTCataloguesComparisonDmnService tTCataloguesComparisonDmnService, ISysStaffRepo sysStaffRepo, IReportDmnService reportDmnService, IOutpatientCmmManagerApp outpatientCmmManagerApp, IUsedDiagnosisRepo usedDiagnosisRepo, IMedicalRecordRepo medicalRecordRepo, IQhdZnshSqtxRepo qhdznshsqtxRepo, IMzZyBarCodeRepo mzzybarcodeRepo, IBlctglRepo blctglRepo, IComDiagnosisRepo comDiagnosisRepo, IReservationRepo reservationRepo, IAdmissionNoticeRepo admissionNoticeRepo, IClinicApplyRepo clinicApplyRepo, IClinicDmnService clinicDmnService)
+        {
+            this._medicalRecordDmnService = medicalRecordDmnService;
+            this._treatmentRepo = treatmentRepo;
+            this._auxiliaryDictionaryRepo = auxiliaryDictionaryRepo;
+            this._mRTemplateRepo = mRTemplateRepo;
+            this._sysConfigRepo = sysConfigRepo;
+            this._idbDmnService = idbDmnService;
+            this._tTCataloguesComparisonDmnService = tTCataloguesComparisonDmnService;
+            this._sysStaffRepo = sysStaffRepo;
+            this._reportDmnService = reportDmnService;
+            this._outpatientCmmManagerApp = outpatientCmmManagerApp;
+            this._usedDiagnosisRepo = usedDiagnosisRepo;
+            this._medicalRecordRepo = medicalRecordRepo;
+            this._qhdznshsqtxRepo = qhdznshsqtxRepo;
+            this._mzzybarcodeRepo = mzzybarcodeRepo;
+            this._blctglRepo = blctglRepo;
+            this._ComDiagnosisRepo = comDiagnosisRepo;
+            this._reservationRepo = reservationRepo;
+            this._admissionNoticeRepo = admissionNoticeRepo;
+            this._clinicApplyRepo = clinicApplyRepo;
+            this._clinicDmnService = clinicDmnService;
+        }
         /// <summary>
         /// 病历
         /// </summary>
         /// <returns></returns>
-        public ActionResult MedicalRecord()
+        public IActionResult MedicalRecord()
         {
             
             return View();
         }
 
-        public ActionResult ViewXindianList()
+        public IActionResult ViewXindianList()
         {
             return View();
         }
-        public ActionResult AdvanceRemind()
+        public IActionResult AdvanceRemind()
         {
             return View();
         }
-        public ActionResult LisSqdhQueryForm()
+        public IActionResult LisSqdhQueryForm()
         {
             return View();
         }
-        public ActionResult PacsSqdhQueryForm()
+        public IActionResult PacsSqdhQueryForm()
         {
             return View();
         }
 
-        public ActionResult GetlisPeportForm()
+        public IActionResult GetlisPeportForm()
         {
             return View();
         }
-        public ActionResult ReservationForm()
+        public IActionResult ReservationForm()
         {
             return View();
         }
-        public ActionResult AdmissionNoticeForm()
+        public IActionResult AdmissionNoticeForm()
         {
             return View();
         }
-        public ActionResult BlContinuePrint()
+        public IActionResult BlContinuePrint()
         {
             return View();
         }
         /// <summary>
-        /// 树结构 （历史病历：仅查询该病历号下的所有历史）
+        /// 树结构 （Lịch sử病历：仅查询该病历号下的所有Lịch sử）
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetTreeList(string blh, int queryDate)
+        public IActionResult GetTreeList(string blh, int queryDate)
         {
             if (string.IsNullOrWhiteSpace(blh))
             {
-                throw new FailedException("数据异常，缺少病历号");
+                throw new FailedException("Dữ liệuBất thường,ThiếuSố bệnh án");
             }
 
             var treeList = new List<TreeViewModel>();
 
-            //历史病历
+            //Lịch sử病历
             treeList.Add(new TreeViewModel()
             {
                 id = "1",
                 value = "1",
-                text = "历史病历",
+                text = "Lịch sửBệnh án",
                 parentId = null,
                 hasChildren = true,
                 isexpand = true,
@@ -154,7 +180,7 @@ namespace Newtouch.CIS.Web.Controllers
                     mode.isexpand = false;
                     mode.Ex1 = item.jzzt.ToString();
                     mode.Ex2 = "medicalRecord";
-                    mode.Ex3 = item.lsblly.ToString();   //历史病历来源
+                    mode.Ex3 = item.lsblly.ToString();   //Lịch sử病历来源
                     mode.title = item.ghksmc + (!string.IsNullOrEmpty(item.jzysmc) ? (" " + item.jzysmc) : "");
 
                     treeList.Add(mode);
@@ -166,7 +192,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "2",
                 value = "2",
-                text = "辅助词典",
+                text = "Hỗ trợTừ điển",
                 parentId = null,
                 hasChildren = true,
                 isexpand = true,
@@ -193,7 +219,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "3",
                 value = "3",
-                text = "病历模板",
+                text = "Bệnh ánMẫu",
                 parentId = null,
                 hasChildren = true,
                 isexpand = true,
@@ -205,11 +231,11 @@ namespace Newtouch.CIS.Web.Controllers
 
             return Content(treeList.TreeViewJson(null));
         }
-        public ActionResult SelectNodeContentV2(string jzId, string Id, string pageType, string jzzt)
+        public IActionResult SelectNodeContentV2(string jzId, string Id, string pageType, string jzzt)
         {
             var data = _medicalRecordDmnService.SelectNodeContent(jzId);
             if (pageType == "yczl" && (jzzt == "1" || jzzt == null))
-            {//远程诊疗  待就诊
+            {//Chẩn đoán từ xa  待就诊
                 //获取云诊所患者病历
                 var applyInfo = _clinicApplyRepo.GetYczl(Id, this.OrganizeId);
                 var blDataObj = new
@@ -296,7 +322,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 详情树节点   （固定）
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetDetailTreeNode()
+        public IActionResult GetDetailTreeNode()
         {
             var treeList = new List<TreeViewModel>();
 
@@ -304,7 +330,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "1",
                 value = "1",
-                text = "主诉",
+                text = "Triệu chứng chính",
                 Code = "nc_zs",
                 complete = true,
                 showcheck = true,
@@ -314,7 +340,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "2",
                 value = "2",
-                text = "现病史",
+                text = "Bệnh sử hiện tại",
                 Code = "nc_xbs",
                 complete = true,
                 showcheck = true,
@@ -324,7 +350,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "3",
                 value = "3",
-                text = "既往史",
+                text = "Tiền sử",
                 Code = "nc_jws",
                 complete = true,
                 showcheck = true,
@@ -334,7 +360,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "4",
                 value = "4",
-                text = "查体",
+                text = "Khám thực thể",
                 Code = "nc_ct",
                 complete = true,
                 showcheck = true,
@@ -344,7 +370,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "5",
                 value = "5",
-                text = "西医诊断",
+                text = "Chẩn đoán Tây y",
                 Code = "nc_xyzd",
                 complete = true,
                 showcheck = true,
@@ -354,7 +380,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "6",
                 value = "6",
-                text = "中医诊断",
+                text = "Chẩn đoán YHCT",
                 Code = "nc_zyzd",
                 complete = true,
                 showcheck = true,
@@ -366,7 +392,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "7",
                     value = "7",
-                    text = "康复处方",
+                    text = "Phục hồi chức năngĐơn thuốc",
                     Code = "nc_kfcf",
                     complete = true,
                     showcheck = true,
@@ -379,7 +405,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "8",
                     value = "8",
-                    text = "常规项目处方",
+                    text = "Thường quyMụcĐơn thuốc",
                     Code = "nc_cgxmcf",
                     complete = true,
                     showcheck = true,
@@ -390,7 +416,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "9",
                 value = "9",
-                text = "西药处方",
+                text = "Thuốc TâyĐơn thuốc",
                 Code = "nc_xycf",
                 complete = true,
                 showcheck = true,
@@ -400,7 +426,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "10",
                 value = "10",
-                text = "中药处方",
+                text = "Thuốc YHCTĐơn thuốc",
                 Code = "nc_zycf",
                 complete = true,
                 showcheck = true,
@@ -412,7 +438,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "11",
                     value = "11",
-                    text = "检验处方",
+                    text = "Xét nghiệmĐơn thuốc",
                     Code = "nc_jycf",
                     complete = true,
                     showcheck = true,
@@ -422,7 +448,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "12",
                     value = "12",
-                    text = "检查处方",
+                    text = "Kiểm traĐơn thuốc",
                     Code = "nc_jccf",
                     complete = true,
                     showcheck = true,
@@ -432,7 +458,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "13",
                 value = "13",
-                text = "发病日期",
+                text = "Khởi phátNgày",
                 Code = "nc_fbsj",
                 complete = true,
                 showcheck = true,
@@ -441,7 +467,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "14",
                 value = "14",
-                text = "处理",
+                text = "Xử lý",
                 Code = "nc_clfa",
                 complete = true,
                 showcheck = true,
@@ -450,7 +476,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "15",
                 value = "15",
-                text = "辅助检查",
+                text = "Kiểm tra hỗ trợ",
                 Code = "nc_fzjc",
                 complete = true,
                 showcheck = true,
@@ -463,7 +489,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
-        public ActionResult SelectNodeContent(string jzId,string ex2)
+        public IActionResult SelectNodeContent(string jzId,string ex2)
         {
             if ("mrtemplate".Equals(ex2))
             {
@@ -489,7 +515,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="cfDto"></param>
         /// <param name="jzFinish"></param>
         /// <returns></returns>
-        public ActionResult SaveMedicalRecord(TreatmentEntity jzObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, MedicalRecordEntity blObject, string cfDto, bool jzFinish, List<CFZDDiagnosisHtmlVO> cfzdlist)
+        public IActionResult SaveMedicalRecord(TreatmentEntity jzObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, MedicalRecordEntity blObject, string cfDto, bool jzFinish, List<CFZDDiagnosisHtmlVO> cfzdlist)
         {
             jzObject.jzks = this.UserIdentity.DepartmentCode;   //就诊科室 取操作人员当前科室
             jzObject.jzys = this.UserIdentity.rygh;    //就诊医生 取操作人员当前工号 //最后看诊医生工号
@@ -506,7 +532,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 jzObject.jzzt = (int)EnumJzzt.Treating;
 
-                //更新排队叫号状态：4应答
+                //更新排队Gọi số状态：4应答
                 var reqObj = new
                 {
                     mzh = jzObject.mzh,
@@ -518,8 +544,8 @@ namespace Newtouch.CIS.Web.Controllers
                      "api/SignInAppointment/SignInState", reqObj);
                 if (apiResp.msg != null || apiResp.sub_msg != null)
                 {
-                    LogCore.Error("签到状态修改接口调用失败【" + apiResp.msg + apiResp.sub_msg + "】");
-                    throw new FailedException("签到状态修改接口调用失败【" + apiResp.msg + apiResp.sub_msg + "】");
+                    LogCore.Error("Check-inTrạng tháiSửaGọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
+                    throw new FailedException("Check-inTrạng tháiSửaGọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
                 }
             }
 
@@ -555,7 +581,7 @@ namespace Newtouch.CIS.Web.Controllers
                     var matchCf = cfList.FirstOrDefault(a => a.cflx == cfitem.cflx && a.cfh == cfitem.cfh);
                     if (matchCf != null)
                     {
-                        matchCf.zje += cfitem.je;    //引用类型  能够直接改变list中的值
+                        matchCf.zje += cfitem.je;    //Trích dẫn类型  能够直接改变list中的值
                         var cfmx = new PrescriptionDetailVO();
                         cfitem.MapperTo(cfmx);
 
@@ -738,7 +764,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 if (cf.cfmxList.Select(p => p.zxks!=null&&p.sfzt!=1).Distinct().Count() > 1)
                 {
-                    throw new FailedException("错误：处方" + cf.cfh + "不能开立多个药房的药品");
+                    throw new FailedException("Lỗi:Đơn thuốc" + cf.cfh + "Không thể kê thuốc của nhiều nhà thuốc");
                 }
                 //西药处方的组号   
                 //处方没改，因为系统机制， 组号也一直在变 不合理？
@@ -761,7 +787,7 @@ namespace Newtouch.CIS.Web.Controllers
             //康复处方录入错误
             if (cfList.Where(p => p.sfbz == false && (p.cflx == (int)EnumCflx.RehabPres)).Any(cf => cf.cfmxList.Any(p => p.zl == 0)))
             {
-                throw new FailedException("错误：处方录入错误");
+                throw new FailedException("Lỗi:Đơn thuốcNhậpLỗi");
             }
 
             List<string> addedYpCfList;
@@ -776,13 +802,13 @@ namespace Newtouch.CIS.Web.Controllers
                 }
                 else
                 {
-                    PerformanceMonitoring.Running(() => _medicalRecordDmnService.sendPresToHis(jzObject.mzh, OrganizeId, UserIdentity.UserCode), "SaveMedicalRecord-sendPresToHis", "记录用接口同步至HIS耗时");//用接口同步至HIS
+                    PerformanceMonitoring.Running(() => _medicalRecordDmnService.sendPresToHis(jzObject.mzh, OrganizeId, UserIdentity.UserCode), "SaveMedicalRecord-sendPresToHis", "Ghi chép用Giao diệnĐồng bộ至HIS耗时");//用接口同步至HIS
                 }
             }
             catch (Exception ex)
             {
                 LogCore.Error("SaveMedicalRecord error", ex);
-                return Success("开立成功，但同步失败，请手动同步处方信息！", jzObject.jzId);
+                return Success("Kê đơn thành công, nhưng đồng bộ thất bại, vui lòng đồng bộ thủ công thông tin đơn thuốc!", jzObject.jzId);
             }
             //返回jzId
             return Success(null, jzObject.jzId);
@@ -792,11 +818,11 @@ namespace Newtouch.CIS.Web.Controllers
         /// 作废病历 包括病历诊断 处方 处方明细
         /// </summary>
         /// <returns></returns>
-        public ActionResult ObsoleteMedicalRecord(string jzId)
+        public IActionResult ObsoleteMedicalRecord(string jzId)
         {
             if (string.IsNullOrWhiteSpace(jzId))
             {
-                throw new FailedException("数据异常，缺少就诊Id");
+                throw new FailedException("Dữ liệuBất thường,ThiếuKhám bệnhId");
             }
             _medicalRecordDmnService.ObsoleteMedicalRecord(jzId, this.OrganizeId);
 
@@ -815,10 +841,10 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 发送处方
+        /// Gửi处方
         /// </summary>
         /// <returns></returns>
-        public ActionResult sendSinglePresToHis(string mzh, string cfId)
+        public IActionResult sendSinglePresToHis(string mzh, string cfId)
         {
             var pushResult = true;
             var syncMethod = _sysConfigRepo.GetValueByCode("HISSyncMethod", this.OrganizeId);
@@ -839,7 +865,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="mzh"></param>
         /// <param name="cfId"></param>
         /// <returns></returns>
-        public ActionResult cancelSinglePres(string mzh, string cfId)
+        public IActionResult cancelSinglePres(string mzh, string cfId)
         {
             int apicflx;   //1药品 2项目
             string cfh;
@@ -859,25 +885,25 @@ namespace Newtouch.CIS.Web.Controllers
 
             _medicalRecordDmnService.cancelSinglePresToPDS(this.OrganizeId, this.UserIdentity.UserCode, mzh, cfId, apicflx, cfh);
 
-            return Success(isAlertinherit ? "作废成功，是否继承处方" : "");
+            return Success(isAlertinherit ? "Hủy bỏthành công,Có hay khôngKế thừaĐơn thuốc" : "");
         }
 
 
-		public ActionResult delDzcf(string mzh, string cfId)
+		public IActionResult delDzcf(string mzh, string cfId)
 		{
 			int apicflx;   //1药品 2项目
 			string cfh;
 			bool isAlertinherit = false;
 			_medicalRecordDmnService.delDzcf(this.OrganizeId, mzh, cfId, out apicflx, out cfh, out isAlertinherit);
-			return Success(isAlertinherit ? "作废成功，是否继承处方" : "");
+			return Success(isAlertinherit ? "Hủy bỏthành công,Có hay khôngKế thừaĐơn thuốc" : "");
 		}
 		/// <summary>
-		/// 根据ghsj查询历史病历（API）
+		/// 根据ghsj查询Lịch sử病历（API）
 		/// </summary>
 		/// <param name="blh"></param>
 		/// <param name="ghsj"></param>
 		/// <returns></returns>
-		public ActionResult pullHistoryMRApi(string blh, string ghsj)
+		public IActionResult pullHistoryMRApi(string blh, string ghsj)
         {
             if (string.IsNullOrWhiteSpace(ghsj))
             {
@@ -897,7 +923,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(list.ToJson());
         }
 
-        public ActionResult GetJcDtxdmc(string mzh)
+        public IActionResult GetJcDtxdmc(string mzh)
         {
             string XdHisCode = "";
             YCYL_DtxdscDTO sqdmc = _medicalRecordDmnService.GetJcDtxdmc(mzh, this.OrganizeId);
@@ -912,13 +938,13 @@ namespace Newtouch.CIS.Web.Controllers
             return Success("", XdHisCode);
         }
 
-        public ActionResult GetMbqxSelectJson()
+        public IActionResult GetMbqxSelectJson()
         {
             //SysStaffVEntity sysStaffEntity = _sysStaffRepo.GetValidStaffByGh(this.UserIdentity.rygh, this.OrganizeId);
             //int mbqx = Convert.ToInt32((sysStaffEntity.mbqx == null || sysStaffEntity.mbqx == "") ? "1" : sysStaffEntity.mbqx);
             //if (mbqx == 3)
             //{
-            //    mbqx = 2;  //由于人员模板权限维护中3为病区，门诊3为全院，故此3降档为2科室
+            //    mbqx = 2;  //由于人员模板权限维护中3为病区，门诊3为Toàn viện，故此3降档为2科室
             //}
             int mbqx = (int)EnumCfMbLx.hospital;
             var data = new List<object>();
@@ -938,8 +964,8 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(data.ToJson());
         }
 
-        #region 获取事前提醒json
-        public ActionResult GetPatJzJson(string mjzbz)
+        #region LấyTrướcNhắc nhởjson
+        public IActionResult GetPatJzJson(string mjzbz)
         {
             //获取就诊类型对应
             FirstSecondThird jzlxobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "jzlx", mjzbz, "sqtx");
@@ -955,7 +981,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="strCfList"></param>
         /// <param name="mzh"></param>
         /// <returns></returns>
-        public ActionResult GetqhdCfSqtxData(List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, string strCfList,string mzh)
+        public IActionResult GetqhdCfSqtxData(List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, string strCfList,string mzh)
         {
             var jlId = "";
             var responsexml = _medicalRecordDmnService.GetqhdCfSqtxData(xyzdList, zyzdList, strCfList,mzh, out jlId, OrganizeId,this.UserIdentity.rygh,this.UserIdentity.UserName);
@@ -967,9 +993,7 @@ namespace Newtouch.CIS.Web.Controllers
             };
             return Content(data.ToJson());
         }
-
-        [ValidateInput(false)]
-        public ActionResult Getqhdxmltojson(string xmldata)
+        public IActionResult Getqhdxmltojson(string xmldata)
         {
             List<OUTROW> rowlist = new List<OUTROW>();
             xmldata = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xmldata;
@@ -989,14 +1013,14 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="mzh">门诊号</param>
         /// <param name="czlx">操作类型 1保存2删除</param>
         /// <returns></returns>
-        public ActionResult GetCfSqtxJson(string strCfList, string mzh, int czlx)
+        public IActionResult GetCfSqtxJson(string strCfList, string mzh, int czlx)
         {
             //获取当前患者就诊信息
             TreatmentEntity patjzInfo = _treatmentRepo.IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
             var prescriptionSqtxDTO = new List<PrescriptionSqtxDTO>();
 
             //页面上提交过来的处方明细列表    //重构处方数据
-            var cfDtoList = Tools.Json.ToList<PrescriptionHtmlDTO>(strCfList);
+            var cfDtoList = Newtouch.CIS.Compat.Tools.Json.ToList<PrescriptionHtmlDTO>(strCfList);
             //var cfList = new List<PrescriptionDTO>();
             foreach (var item in cfDtoList)
             {
@@ -1206,7 +1230,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="mzh"></param>
         /// <param name="cfid"></param>
         /// <returns></returns>
-        public ActionResult GetzfcfJson(string mzh, string cfid)
+        public IActionResult GetzfcfJson(string mzh, string cfid)
         {
             //获取当前患者就诊信息
             TreatmentEntity patjzInfo = _treatmentRepo.IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
@@ -1250,7 +1274,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region
 
-        public ActionResult LogQuery()
+        public IActionResult LogQuery()
         {
             return View();
         }
@@ -1258,7 +1282,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// 门诊病人日志查询
         /// </summary>
         /// <returns></returns>
-        public ActionResult OutpatientPatientQuery(Pagination pagination, string keyword, string kssj, string jssj, string jzysgh, string hznl, string xtxy, string qbdc)
+        public IActionResult OutpatientPatientQuery(Pagination pagination, string keyword, string kssj, string jssj, string jzysgh, string hznl, string xtxy, string qbdc)
         {
             var data = new
             {
@@ -1270,41 +1294,41 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(data.ToJson());
         }
 
-        public ActionResult Export(string keyword, string kssj, string jssj, string jzysgh, string hznl, string xtxy, string qbdc)
+        public IActionResult Export(string keyword, string kssj, string jssj, string jzysgh, string hznl, string xtxy, string qbdc)
         {
             var data = _medicalRecordDmnService.GetLogGridList(keyword, kssj, jssj, this.UserIdentity.rygh, this.OrganizeId, hznl, xtxy, qbdc);
-            var path = DateTime.Now.ToString("\\\\门诊日志查询yyyyMMdd\\\\HHmmssfff") + ".xls";
-            var filePath = CommmHelper.GetLocalFilePath("\\Excel导出\\门诊日志查询" + path);
+            var path = DateTime.Now.ToString("\\\\Ngoại trúNhật kýTra cứuyyyyMMdd\\\\HHmmssfff") + ".xls";
+            var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Ngoại trúNhật kýTra cứu" + path);
             var cols = new List<ExcelColumn>()
             {
-                   new ExcelColumn("jzsj","就诊日期"),
-                    new ExcelColumn("mzh","门诊号"),
-                    new ExcelColumn("xm","姓名"),
-                    new ExcelColumn("jzxm","家长姓名"),
-                    new ExcelColumn("dhhm","电话号码"),
-                    new ExcelColumn("xb","性别"),
-                     new ExcelColumn("nlshow","年龄"),
-                     new ExcelColumn("zy","职业"),
-                      new ExcelColumn("dz","地址"),
-                    new ExcelColumn("fbsj","发病日期"),
-                     new ExcelColumn("tiwen","体温"),
-                      new ExcelColumn("xueya","血压"),
-                       new ExcelColumn("cfz","初复诊"),
-                        new ExcelColumn("zs","主要症状"),
-                        new ExcelColumn("zdmc","诊断名称"),
-                        new ExcelColumn("clfa","处理"),
-                         new ExcelColumn("fzjc","辅助检查"),
-                         new ExcelColumn("jzysmc","医生签字"),
-                          new ExcelColumn("sfzh","有效证件号"),
-                          new ExcelColumn("ContactNum","电话"),
-                    new ExcelColumn("ghksmc","科别"),
-                    new ExcelColumn("xuetang","血糖"),
-                    new ExcelColumn("xbs","现病史"),
-                    new ExcelColumn("bz","备注"),
+                   new ExcelColumn("jzsj","Khám bệnhNgày"),
+                    new ExcelColumn("mzh","Số khám ngoại trú"),
+                    new ExcelColumn("xm","Họ tên"),
+                    new ExcelColumn("jzxm","Họ tên phụ huynh"),
+                    new ExcelColumn("dhhm","Số điện thoại"),
+                    new ExcelColumn("xb","Giới tính"),
+                     new ExcelColumn("nlshow","Tuổi"),
+                     new ExcelColumn("zy","Nghề nghiệp"),
+                      new ExcelColumn("dz","Địa chỉ"),
+                    new ExcelColumn("fbsj","Khởi phátNgày"),
+                     new ExcelColumn("tiwen","Nhiệt độ"),
+                      new ExcelColumn("xueya","Huyết áp"),
+                       new ExcelColumn("cfz","Khám lần đầu/tái khám"),
+                        new ExcelColumn("zs","Triệu chứng chính"),
+                        new ExcelColumn("zdmc","Chẩn đoánTên"),
+                        new ExcelColumn("clfa","Xử lý"),
+                         new ExcelColumn("fzjc","Kiểm tra hỗ trợ"),
+                         new ExcelColumn("jzysmc","Chữ ký bác sĩ"),
+                          new ExcelColumn("sfzh","Hiệu lựcSố giấy tờ"),
+                          new ExcelColumn("ContactNum","Điện thoại"),
+                    new ExcelColumn("ghksmc","Chuyên khoa"),
+                    new ExcelColumn("xuetang","Đường huyết"),
+                    new ExcelColumn("xbs","Bệnh sử hiện tại"),
+                    new ExcelColumn("bz","Ghi chú"),
             };
             var sheet = new ExcelSheet()
             {
-                Title = "门诊日志列表",
+                Title = "Danh sách nhật ký ngoại trú",
                 columns = cols
             };
 
@@ -1315,34 +1339,34 @@ namespace Newtouch.CIS.Web.Controllers
             }
             else
             {
-                return Content("文件导出失败，请返回列表页重试");
+                return Content("Xuất tập tin thất bại, vui lòng quay lại trang danh sách thử lại");
             }
         }
         #endregion
 
-        #region 远程调阅
+        #region Từ xaTra cứu
 
         /// <summary>
         /// 院内心电报告调用
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
-        public ActionResult chakanmingxidiaoyong(string kh)
+        public IActionResult chakanmingxidiaoyong(string kh)
         {
             var data = _medicalRecordDmnService.chakanmingxidiaoyong(kh);
             return Success("", data.ToJson());
         }
 
-        public ActionResult OutpatientTelemedicine()
+        public IActionResult OutpatientTelemedicine()
         {
             return View();
         }
 
-        public ActionResult TelxdReport()
+        public IActionResult TelxdReport()
         {
             return View();
         }
-        public ActionResult BlctForm()
+        public IActionResult BlctForm()
         {
             return View();
         }
@@ -1353,7 +1377,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="kh"></param>
         /// <param name="sqId"></param>
         /// <returns></returns>
-        public ActionResult xindianshenqing(string patid, string orderno)
+        public IActionResult xindianshenqing(string patid, string orderno)
         {
             var data = _medicalRecordDmnService.xindianshenqing(patid, orderno);
             return Success("", data.ToJson());
@@ -1365,7 +1389,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="kh"></param>
         /// <param name="sqId"></param>
         /// <returns></returns>
-        public ActionResult jianyanshenqing(string patid, string jzlsh)
+        public IActionResult jianyanshenqing(string patid, string jzlsh)
         {
             var data = _medicalRecordDmnService.jianyanshenqing(patid, jzlsh, this.OrganizeId);
             return Success("", data.ToJson());
@@ -1376,50 +1400,50 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="kh"></param>
         /// <param name="sqId"></param>
         /// <returns></returns>
-        public ActionResult yingxiangshenqing(string patid, string num)
+        public IActionResult yingxiangshenqing(string patid, string num)
         {
             var data = _medicalRecordDmnService.yingxiangshenqing(patid, num);
             return Success("", data.ToJson());
         }
 
-        public ActionResult xindiandiaoyue(string kh, string orderno)
+        public IActionResult xindiandiaoyue(string kh, string orderno)
         {
             var data = _medicalRecordDmnService.xindiandiaoyue(kh, orderno);
             return Success("", data.ToJson());
         }
         #endregion
 
-        public ActionResult TelemedicineRequest()
+        public IActionResult TelemedicineRequest()
         {
             return View();
         }
 
-        public ActionResult submitTelRequest(string patid, string mzh, bool jy, bool yx, bool xd, bool dtxd)
+        public IActionResult submitTelRequest(string patid, string mzh, bool jy, bool yx, bool xd, bool dtxd)
         {
             if (string.IsNullOrWhiteSpace(patid) || string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("缺少病人唯一编码：patid或mzh为空！");
+                throw new FailedException("Thiếu mã duy nhất của bệnh nhân: patid hoặc mzh để trống!");
             }
-            if (Request.Files.Count > 0)
+            if (Request.Form.Files.Count > 0)
             {
 
                 string dataHash = string.Empty;
                 string sqdh = string.Empty;
                 if (dtxd)//如果是动态心电，则进行数据转化，调用ESB接口上传数据
                 {
-                    for (int i = 0; i < Request.Files.Count; i++)
+                    for (int i = 0; i < Request.Form.Files.Count; i++)
                     {
-                        byte[] data = new byte[Request.Files[i].ContentLength];
+                        byte[] data = new byte[(int)Request.Form.Files[i].Length];
                         dataHash = string.Empty;
                         YCYL_DtxdscDTO dtxdscDto = new YCYL_DtxdscDTO();
                         dtxdscDto = _medicalRecordDmnService.GetJcDtxdmc(mzh, this.OrganizeId);
                         if (dtxdscDto == null)
                         {
-                            throw new FailedException("缺少配置远程医疗文件：CIS.ycyl_sysConfig");
+                            throw new FailedException("ThiếuCấu hìnhTừ xaY tếTập tin:CIS.ycyl_sysConfig");
                         }
-                        string fileName = Request.Files[i].FileName;
+                        string fileName = Request.Form.Files[i].FileName;
                         sqdh = fileName.Replace(dtxdscDto.Sjscjgmc, "").Replace(".7z", "");
-                        using (Stream inputStream = Request.Files[i].InputStream)
+                        using (Stream inputStream = Request.Form.Files[i].OpenReadStream())
                         {
                             //MemoryStream memoryStream = inputStream as MemoryStream;
                             //if (memoryStream == null)
@@ -1440,7 +1464,7 @@ namespace Newtouch.CIS.Web.Controllers
 
                             //var strStreamss = Server.UrlDecode(Encoding.UTF8.GetString(data)); 
                             //data = inputStream.ToArray();
-                            dataHash = Request.Files[i].GetHashCode().ToString();
+                            dataHash = Request.Form.Files[i].GetHashCode().ToString();
                             //string sssss = Convert.ToString(data);
                             //string sss = Convert.ToBase64String(data);
                         }
@@ -1451,7 +1475,7 @@ namespace Newtouch.CIS.Web.Controllers
                         dtxdscDto.FileTotalNum = "1";
                         dtxdscDto.FileStreams = Convert.ToBase64String(data);
                         dtxdscDto.FileHash = dataHash;
-                        dtxdscDto.FileDesc = Request.Files[i].FileName.Replace("&", "&amp;");
+                        dtxdscDto.FileDesc = Request.Form.Files[i].FileName.Replace("&", "&amp;");
 
                         YCYL_DtxdSqdDTO dtxdsqd = _medicalRecordDmnService.GetJcDtxdSqd(mzh, this.OrganizeId, sqdh);
 
@@ -1466,7 +1490,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 if (dtxd)
                 {
-                    throw new FailedException("动态远程医疗心电，必须上传该患者心电波形数据！");
+                    throw new FailedException("Điện tim từ xa, bắt buộc tải lên dữ liệu sóng điện tim của bệnh nhân này!");
                 }
             }
             if (jy)
@@ -1479,7 +1503,7 @@ namespace Newtouch.CIS.Web.Controllers
                 }
                 else
                 {
-                    throw new FailedException("未找到可上传的检验申请单");
+                    throw new FailedException("Không tìm thấy phiếu xét nghiệm có thể tải lên");
                 }
 
             }
@@ -1496,7 +1520,7 @@ namespace Newtouch.CIS.Web.Controllers
             //    string jzlsh = string.Join(",", cfhList.ToArray());
             //    _medicalRecordDmnService.yingxiangshenqing(patid, jzlsh);
             //}
-            return Success("上传成功");
+            return Success("Tải lênthành công");
         }
         /// <summary>
         /// 计算哈希值字符串
@@ -1515,18 +1539,18 @@ namespace Newtouch.CIS.Web.Controllers
 
             return sb.ToString();
         }
-        public ActionResult GetcfByJzId(string jzId)
+        public IActionResult GetcfByJzId(string jzId)
         {
             var data = _medicalRecordDmnService.GetcfByJzId(OrganizeId, jzId);
             return Content(data.ToJson());
         }
 
-        public ActionResult GetBarCodeBycfh(string cfh)
+        public IActionResult GetBarCodeBycfh(string cfh)
         {
             return Content(CommmHelper.GenerateBarCode(cfh, 25, 25));
         }
 
-        public ActionResult SaveBarCodeByYzh(string yzlist)
+        public IActionResult SaveBarCodeByYzh(string yzlist)
         {
             var yzh = yzlist.Substring(1).Split(',');
             foreach (var item in yzh)
@@ -1550,36 +1574,36 @@ namespace Newtouch.CIS.Web.Controllers
             return Content("");
         }
 
-        public ActionResult fastPrint(string jsonstr)
+        public IActionResult fastPrint(string jsonstr)
         {
-            var item = Newtouch.Tools.Json.ToObject<Outpatientfastreportreq>(jsonstr);
+            var item = Newtouch.CIS.Compat.Tools.Json.ToObject<Outpatientfastreportreq>(jsonstr);
             var j = "";
             switch (item.title)
             {
-                case "打印中草药":
+                case "In中草药":
                     j = _reportDmnService.GetZCYCFjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印处方":
-                case "打印常规处方":
+                case "InĐơn thuốc":
+                case "In常规Đơn thuốc":
                     j = _reportDmnService.GetCFDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印检验单":
+                case "In phiếu xét nghiệm":
                     j = _reportDmnService.GetJYDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印检查单":
+                case "In phiếu kiểm tra":
                     j = _reportDmnService.GetJCDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印雾化单":
+                case "In雾化单":
                     j = _reportDmnService.GetWHDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "打印注射单":
+                case "In注射单":
                     j = _reportDmnService.GetZSDjson(item.cfId, item.mzh, OrganizeId);
                     break;
             }
             return Success("", j);
         }
 
-        public ActionResult GetLastzcf(string blh)
+        public IActionResult GetLastzcf(string blh)
         {
             var data = _medicalRecordDmnService.GetLastzcf(blh, this.OrganizeId);
             return Success("", data.ToJson());
@@ -1607,16 +1631,16 @@ namespace Newtouch.CIS.Web.Controllers
             //    }
             //}
             //return Content(data.ToJson());
-            return Json(udlist, JsonRequestBehavior.AllowGet);
+            return Json(udlist);
         }
 
-        #region 修改病历相关信息
-        public ActionResult UpdateMedicalRecord()
+        #region SửaBệnh ánliên quanThông tin
+        public IActionResult UpdateMedicalRecord()
         {
             return View();
         }
 
-        public ActionResult SaveUpdateMed(string jzid, string fbrq, string xuetang, string xuetangclfs, string tiwen, string shousuoya, string shuzhangya)
+        public IActionResult SaveUpdateMed(string jzid, string fbrq, string xuetang, string xuetangclfs, string tiwen, string shousuoya, string shuzhangya)
         {
             TreatmentEntity entity = _treatmentRepo
                 .IQueryable(p => p.jzId == jzid && p.OrganizeId == this.OrganizeId && p.zt == "1")
@@ -1630,7 +1654,7 @@ namespace Newtouch.CIS.Web.Controllers
             }
             if (entity == null || blEntity == null)
             {
-                return Error("获取患者就诊信息失败，请重新选择患者后重试");
+                return Error("Lấy thông tin khám bệnh của bệnh nhân thất bại, vui lòng chọn lại bệnh nhân rồi thử lại");
             }
             decimal? decimalNull = null;
             entity.xuetang = (string.IsNullOrEmpty(xuetang) ? decimalNull : Convert.ToDecimal(xuetang));
@@ -1644,13 +1668,13 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        public ActionResult GetLisSqdhGridJson(string mzzyh, string type, string ztmc, string kssj, string jssj)
+        public IActionResult GetLisSqdhGridJson(string mzzyh, string type, string ztmc, string kssj, string jssj)
         {
             var data = _medicalRecordDmnService.GetLisSqdhData(this.OrganizeId, mzzyh, type, ztmc, kssj, jssj);
             return Content(data.ToJson());
         }
 
-        public ActionResult GetLisSqdyczGridJson(Pagination pagination, string mzzyh, string type, string ztmc,string ycbz,string sqdht)
+        public IActionResult GetLisSqdyczGridJson(Pagination pagination, string mzzyh, string type, string ztmc,string ycbz,string sqdht)
         {
             var data = new
             {
@@ -1662,20 +1686,20 @@ namespace Newtouch.CIS.Web.Controllers
             //var data = _medicalRecordDmnService.GetLisSqdyczData(pagination,this.OrganizeId, mzzyh, type, ztmc,ycbz,sqdht);
             return Content(data.ToJson());
         }
-        public ActionResult GetPacsSqdhGridJson(string mzzyh, string type,string ztmc,string kssj,string jssj)
+        public IActionResult GetPacsSqdhGridJson(string mzzyh, string type,string ztmc,string kssj,string jssj)
         {
             var data = _medicalRecordDmnService.GetPacsSqdhData(this.OrganizeId, mzzyh, type,ztmc,kssj,jssj);
             return Content(data.ToJson());
         }
-        public ActionResult OpenExe(string sqdh)
+        public IActionResult OpenExe(string sqdh)
         {
             System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//需要启动的程序名 
+            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名Bệnh án điện tử\\GoldHISManager.exe";//需要启动的程序名 
             p.StartInfo.Arguments = "G_HisApply.ReqNO='"+sqdh+"'" + " ";
             p.Start();//启动
             return Content("");
         }
-        public ActionResult SyncToPDSRequest(string rq)
+        public IActionResult SyncToPDSRequest(string rq)
         {
             /**
              * 
@@ -1693,11 +1717,11 @@ namespace Newtouch.CIS.Web.Controllers
             return Content("");
         }
 
-        #region  病历词条
+        #region  Bệnh ánTừ
 
         private char[] trimstr = { ' ', '-', '\'', '\"', '\\', '\n', '\r' };
 
-        public ActionResult GetctTreeList(int qx)
+        public IActionResult GetctTreeList(int qx)
         {
 
             var treeList = new List<TreeViewModel>();
@@ -1747,7 +1771,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="entity">实体对象</param>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult blctSubmitForm(BlctglEntity entity, string keyValue)
+        public IActionResult blctSubmitForm(BlctglEntity entity, string keyValue)
         {
 
             if (!string.IsNullOrEmpty(entity.ID))
@@ -1756,15 +1780,15 @@ namespace Newtouch.CIS.Web.Controllers
             }
             else
             {
-                if (Request["type"].ToString() == "mulu")
+                if (Request.Query["type"].ToString() == "mulu")
                 {
                     entity.parentId = "0";
-                    entity.qx = Convert.ToInt32(Request["mlqx"]);
-                    entity.mc = Request["mlmc"].ToString().Trim(trimstr);
+                    entity.qx = Convert.ToInt32(Request.Query["mlqx"]);
+                    entity.mc = Request.Query["mlmc"].ToString().Trim(trimstr);
                 }
                 else
                 {
-                    string PartCTID = Request["parentId"].ToString();
+                    string PartCTID = Request.Query["parentId"].ToString();
                     entity.parentId = PartCTID;
                 }
                 entity.CreatorCode = this.UserIdentity.UserCode;
@@ -1780,14 +1804,14 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 entity.ctnr = entity.ctnr.ToString().Trim(trimstr);
             }
-            entity.qx = Convert.ToInt32(Request["mlqx"]);
+            entity.qx = Convert.ToInt32(Request.Query["mlqx"]);
             _blctglRepo.SubmitForm(entity, entity.ID);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
-        public ActionResult DeleteForm(string delCTID)
+        public IActionResult DeleteForm(string delCTID)
         {
             _blctglRepo.DeleteForm(delCTID);
-            return Success("操作成功。");
+            return Success("Thao tác thành công.");
         }
 
         /// <summary>
@@ -1795,7 +1819,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         /// <param name="keyValue">主键值</param>
         /// <returns></returns>
-        public ActionResult GetFormJson(string keyValue)
+        public IActionResult GetFormJson(string keyValue)
         {
             var entity = _blctglRepo.FindEntity(keyValue);
             string mlmc = "";
@@ -1813,16 +1837,16 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
 
 
-        #region 常用诊断
+        #region Thường dùngChẩn đoán
         /// <summary>
         /// 诊断记录弹框
         /// </summary>
         /// <returns></returns>
-        public ActionResult CommonDiag()
+        public IActionResult CommonDiag()
         {
             return View();
         }
-        public ActionResult ToothBitmap()
+        public IActionResult ToothBitmap()
         {
             return View();
         }
@@ -1836,7 +1860,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="icd"></param>
         /// <param name="py"></param>
         /// <returns></returns>
-        public ActionResult SubmitDiag(string zdmc, string zdbm, string type, string icd, string py, string qxkz = null)
+        public IActionResult SubmitDiag(string zdmc, string zdbm, string type, string icd, string py, string qxkz = null)
         {
 
             if (string.IsNullOrEmpty(py))
@@ -1864,7 +1888,7 @@ namespace Newtouch.CIS.Web.Controllers
             }
             entity.zt = "1";
             _ComDiagnosisRepo.SubmitDiag(entity);
-            return Success("添加成功");
+            return Success("Thêmthành công");
         }
         /// <summary>
         /// 获取常用诊断信息-管理界面
@@ -1872,7 +1896,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="type"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetDiagsAdmin(string type, string keyword, string lx)
+        public IActionResult GetDiagsAdmin(string type, string keyword, string lx)
         {
             var entity = _ComDiagnosisRepo.GetComDiagnosisAdmin(this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, this.OrganizeId, type, keyword.Trim(), lx);
 
@@ -1884,7 +1908,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="type"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public ActionResult GetDiags(string type, string keyword,string lx)
+        public IActionResult GetDiags(string type, string keyword,string lx)
         {
             var entity = _ComDiagnosisRepo.GetComDiagnosis(this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, this.OrganizeId, type, keyword.Trim(), lx);
             
@@ -1896,7 +1920,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="type"></param>
         /// <param name="mzh"></param>
         /// <returns></returns>
-        public ActionResult GetDiagsLists(string type, string mzh) {
+        public IActionResult GetDiagsLists(string type, string mzh) {
             var data = _ComDiagnosisRepo.GetDiagsLists(this.OrganizeId,type,mzh);
             return Content(data.ToJson());
         }
@@ -1904,8 +1928,8 @@ namespace Newtouch.CIS.Web.Controllers
 
         #endregion
 
-        #region 历史病历
-        public ActionResult HistoryMedicalRecordForm()
+        #region Lịch sửBệnh án
+        public IActionResult HistoryMedicalRecordForm()
         {
             return View();
         }
@@ -1914,9 +1938,9 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
 
 
-		public ActionResult Getdjzlist(int mjzbz)
+		public IActionResult Getdjzlist(int mjzbz)
 		{
-			#region 获取出诊科室
+			#region LấyKhoa khám
 
 			var kcCode = UserIdentity.DepartmentCode;
 			var visitDept = visitDeptSetRepo.SelectData(this.UserIdentity.rygh, OrganizeId);
@@ -2014,18 +2038,18 @@ namespace Newtouch.CIS.Web.Controllers
 			return Content(RespList.ToJson());
 		}
 
-		public ActionResult dzcfcxForm()
+		public IActionResult dzcfcxForm()
 		{
 			return View();
 		}
 
-        public ActionResult BaseMedicineQuery() 
+        public IActionResult BaseMedicineQuery() 
         {
             return View();
         }
 
 
-        public ActionResult GetBaseMedicinetList(Pagination pagination , string zxdlb, string xmbm, string xmmc, string ck_kc) 
+        public IActionResult GetBaseMedicinetList(Pagination pagination , string zxdlb, string xmbm, string xmmc, string ck_kc) 
         {
             var reqcwNewObj = new  
             {
@@ -2091,7 +2115,7 @@ namespace Newtouch.CIS.Web.Controllers
                 records = pagination.records
             }.ToJson());
         }
-        public ActionResult SaveReservationData(string yyrq, string yysj, string yyks, string mzh, string yylxfs)
+        public IActionResult SaveReservationData(string yyrq, string yysj, string yyks, string mzh, string yylxfs)
         {
             ReservationEntity entity = _reservationRepo
                 .IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
@@ -2120,14 +2144,14 @@ namespace Newtouch.CIS.Web.Controllers
             }
             return Content("");
         }
-        public ActionResult GetReservationData(string mzh)
+        public IActionResult GetReservationData(string mzh)
         {
             ReservationEntity entity = _reservationRepo
                 .IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
                 .FirstOrDefault();
             return Content(entity.ToJson());
         }
-        public ActionResult DelReservationData(string mzh)
+        public IActionResult DelReservationData(string mzh)
         {
             ReservationEntity entity = _reservationRepo
                 .IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
@@ -2138,7 +2162,7 @@ namespace Newtouch.CIS.Web.Controllers
             }
             return Content("");
         }
-        public ActionResult SaveAdmissionNoticeData(AdmissionNoticeEntity postData)
+        public IActionResult SaveAdmissionNoticeData(AdmissionNoticeEntity postData)
         {
             AdmissionNoticeEntity entity = _admissionNoticeRepo
                .IQueryable(p => p.mzh == postData.mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
@@ -2169,7 +2193,7 @@ namespace Newtouch.CIS.Web.Controllers
             }
             return Content("");
         }
-        public ActionResult GetAdmissionNoticeData(string mzh)
+        public IActionResult GetAdmissionNoticeData(string mzh)
         {
             AdmissionNoticeEntity entity = _admissionNoticeRepo
                 .IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1")
@@ -2177,7 +2201,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(entity.ToJson());
         }
 
-        public ActionResult GetyczlPat(string Id, string jzzt)
+        public IActionResult GetyczlPat(string Id, string jzzt)
         {
             var patInfo = _clinicDmnService.getClinicPatInfo(this.OrganizeId, Id);
             //待就诊,调诊所获取病历接口
@@ -2208,7 +2232,7 @@ namespace Newtouch.CIS.Web.Controllers
             //}
             return Content(patInfo.ToJson());
 
-            //#region 获取出诊科室
+            //#region 获取Khoa khám
 
             //var kcCode = "00000080";
             ////var visitDept = visitDeptSetRepo.SelectData(this.UserIdentity.rygh, OrganizeId);
@@ -2311,7 +2335,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
 
-        public ActionResult CountLISztmz(string jzId)
+        public IActionResult CountLISztmz(string jzId)
         {
             var num = _medicalRecordDmnService.CountLISztmz(OrganizeId, jzId);
             var data = new
@@ -2324,7 +2348,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult GetMzHlyy(string jzId,string cfId)
+        public IActionResult GetMzHlyy(string jzId,string cfId)
         {
             //获取当前用户病历信息
             var data = _medicalRecordDmnService.SelectNodeContent(jzId);
@@ -2338,8 +2362,8 @@ namespace Newtouch.CIS.Web.Controllers
                     DepartID =  data.jzks, 
                     Department = data.ghksmc,
                     BedNo = "",
-                    PresType = "处方",
-                    PresSource = data.mjzbz == 1 ? "门诊" : data.mjzbz == 2 ? "急诊" : "门诊",
+                    PresType = "Đơn thuốc",
+                    PresSource = data.mjzbz == 1 ? "Ngoại trú" : data.mjzbz == 2 ? "Cấp cứu" : "Ngoại trú",
                     PresDatetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     PayType = "",
                     PatientNo = data.mzh,
@@ -2353,8 +2377,8 @@ namespace Newtouch.CIS.Web.Controllers
                     PhoneNo = "",
                     Age =data.nlshow+"0月" ,
                     Sex = data.xb,
-                    Height = Regex.Match(data.ct == null ? "身高：170cm" : data.ct, @"身高：(\d+cm)").Groups[1].Value,
-                    Weight = Regex.Match(data.ct == null ? "体重：60kg" : data.ct, @"体重：(\d+kg)").Groups[1].Value,
+                    Height = Regex.Match(data.ct == null ? "Chiều cao：170cm" : data.ct, @"Chiều cao：(\d+cm)").Groups[1].Value,
+                    Weight = Regex.Match(data.ct == null ? "Cân nặng：60kg" : data.ct, @"Cân nặng：(\d+kg)").Groups[1].Value,
                     BirthWeight = "",
                     PreviousHistory = "",
                     NowMedicalHistory = "",
@@ -2439,17 +2463,17 @@ namespace Newtouch.CIS.Web.Controllers
                 dataList.Add(engineRes);
             });
             
-            return Success("查询成功", dataList);
+            return Success("Tra cứuthành công", dataList);
         }
         
         [HttpPost]
         [HandlerAjaxOnly]
-        public ActionResult GetypSms(string drugId)
+        public IActionResult GetypSms(string drugId)
         {
             var hlyyProxy = new HlyyProxy();
             var hisSmsJson = hlyyProxy.GetHisSmsJson(drugId);
             
-            return Success("查询成功", hisSmsJson);;
+            return Success("Tra cứuthành công", hisSmsJson);;
         }
         
         

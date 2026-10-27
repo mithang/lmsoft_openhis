@@ -34,28 +34,28 @@
 
 
 <div id="dv_opedit">
-	<a class="btn  " id="sscz">手<br />术<br />管<br />理<br /><span class="glyphicon glyphicon-edit"></span></a>
+	<a class="btn  " id="sscz">Quản lý phẫu thuật<br /><span class="glyphicon glyphicon-edit"></span></a>
 	<div class="dv-left">
 		<div class="dv-left-tb" id="tb_opedit" style="padding-top:10px;height:423px;">
 			<div><input type="hidden" id="op_rowid" name="op_rowid" /></div>
 			<table class="form" style="width:95%;">
 				<tr>
-					<th class="formTitle "><span class="required">*</span>是否急诊手术：</th>
+					<th class="formTitle "><span class="required">*</span>Có phải phẫu thuật cấp cứu không:</th>
 					<td class="formValue">
 						<select id="SSLX" name="SSLX" class="form-control ">
-							<option value=""> 请选择 </option>
-							<option value="1">是</option>
-							<option value="0">否</option>
+							<option value=""> Vui lòng chọn </option>
+							<option value="1">Có</option>
+							<option value="0">Không</option>
 						</select>
 					</td>
-					<th class="formTitle "><span class="required">*</span>手术及操作：</th>
+					<th class="formTitle "><span class="required">*</span>Phẫu thuật và thao tác:</th>
 					<td class="formValue">
 						<input id="op_ssdm" name="op_ssdm" class="form-control required" attr-ssdm="" attr-ssjb="" autocomplete="off" />
 					</td>
-					<th class="formTitle ">@*<span class="required">*</span>*@手术级别：</th>
+					<th class="formTitle ">Phẫu thuật cấp độ:</th>
 					<td class="formValue">
 						<select id="SSJB" name="SSJB" class="form-control ">
-							<option value=""> 请选择 </option>
+							<option value=""> Vui lòng chọn </option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -64,59 +64,59 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle "><span class="required">*</span>手术及操作日期：</th>
+					<th class="formTitle "><span class="required">*</span>Ngày phẫu thuật và thao tác:</th>
 						<td class="formValue">
 							<input id="op_ssrq" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
 						</td>
-					<th class="formTitle ">@*<span class="required">*</span>*@手术开始日期：</th>
+					<th class="formTitle ">Phẫu thuật ngày bắt đầu:</th>
 					<td class="formValue">
 						<input id="SSKSSJ" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
 					</td>
-					<th class="formTitle ">@*<span class="required">*</span>*@手术结束日期：</th>
+					<th class="formTitle ">Phẫu thuật ngày kết thúc:</th>
 					<td class="formValue">
 						<input id="SSJSSJ" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle "><span class="required">*</span>主刀医生：</th>
+					<th class="formTitle "><span class="required">*</span>Bác sĩ phẫu thuật chính:</th>
 					<td class="formValue">
 						<input id="op_zdys" name="op_zdys" class="form-control" />
 					</td>
-					<th class="formTitle ">I助：</th>
+					<th class="formTitle ">Phụ mổ I:</th>
 					<td class="formValue">
 						<input id="op_sszl1" name="op_sszl1" class="form-control " />
 					</td>
-					<th class="formTitle ">II助：</th>
+					<th class="formTitle ">Phụ mổ II:</th>
 					<td class="formValue">
 						<input id="op_sszl2" name="op_sszl2" class="form-control" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle ">术前准备天数</th>
+					<th class="formTitle ">Số ngày chuẩn bị trước mổ</th>
 					<td class="formValue">
 						<input id="SQZBSJT" name="SQZBSJT" class="form-control " />
 					</td>
-					<th class="formTitle ">术前预防性<br />抗菌药物给药时间：</th>
+					<th class="formTitle ">Dự phòng trước mổ<br />Thời gian dùng kháng sinh:</th>
 					<td class="formValue">
 						<input id="SQYFKJGYS" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle ">麻醉医生：</th>
+					<th class="formTitle ">Bác sĩ gây mê:</th>
 					<td class="formValue">
 						<input id="op_mzys" name="op_mzys" class="form-control " />
 					</td>
 
-					<th class="formTitle ">麻醉方式：</th>
+					<th class="formTitle ">Phương pháp gây mê:</th>
 					<td class="formValue">
 						<select id="op_mzfs" name="op_mzfs" class="form-control ">
-							<option>请选择</option>
+							<option>Vui lòng chọn</option>
 						</select>
 					</td>
-					<th class="formTitle ">ASA麻醉分级：</th>
+					<th class="formTitle ">ASACấp độ gây mê:</th>
 					<td class="formValue">
 						<select id="MZFJ_ASA" name="MZFJ_ASA" class="form-control ">
-							<option value="">请选择</option>
+							<option value="">Vui lòng chọn</option>
 							<option value="Ⅰ">Ⅰ</option>
 							<option value="Ⅱ">Ⅱ</option>
 							<option value="Ⅲ">Ⅲ</option>
@@ -127,95 +127,95 @@
 
 				</tr>
 				<tr>
-					<th class="formTitle ">麻醉开始时间：</th>
+					<th class="formTitle ">Thời gian bắt đầu gây mê:</th>
 					<td class="formValue">
 						<input id="MZKSSJNYR" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle ">切口部位	：</th>
+					<th class="formTitle ">Vị trí vết mổ	:</th>
 					<td class="formValue">
 						<input id="QKBW" name="QKBW" class="form-control " />
 					</td>
-					<th class="formTitle ">切口愈合等级：</th>
+					<th class="formTitle ">Mức độ lành vết mổ:</th>
 					<td class="formValue">
 						<select id="op_yhdj" name="op_yhdj" class="form-control ">
-							<option>请选择</option>
+							<option>Vui lòng chọn</option>
 						</select>
 					</td>
-					<th class="formTitle ">切口愈合类别：</th>
+					<th class="formTitle ">Loại lành vết mổ:</th>
 					<td class="formValue">
 						<select id="op_yhlb" name="op_yhlb" class="form-control ">
-							<option>请选择</option>
+							<option>Vui lòng chọn</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle ">手术切口感染	：</th>
+					<th class="formTitle ">Nhiễm trùng vết mổ	:</th>
 					<td class="formValue">
 						<select id="SSQKGR" name="SSQKGR" class="form-control ">
-							<option value="">请选择</option>
-							<option value="1">有</option>
-							<option value="2">无</option>
+							<option value="">Vui lòng chọn</option>
+							<option value="1">Có</option>
+							<option value="2">Không có</option>
 						</select>
 					</td>
-					<th class="formTitle ">手术并发症：</th>
+					<th class="formTitle ">Biến chứng phẫu thuật:</th>
 					<td class="formValue">
 						<select id="SSBFZ" name="SSBFZ" class="form-control">
-							<option value="">请选择</option>
-							<option value="1">有</option>
-							<option value="2">无</option>
+							<option value="">Vui lòng chọn</option>
+							<option value="1">Có</option>
+							<option value="2">Không có</option>
 						</select>
 					</td>
 				</tr>
 
 				<tr>
-					<th class="formTitle ">手术并发症名称：</th>
-					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="伤口裂开、出血或血肿" id="id1"><label>伤口裂开、出血或血肿</label></td>
+					<th class="formTitle ">Tên biến chứng phẫu thuật:</th>
+					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="伤口裂开, 出血或血肿" id="id1"><label>Vết thương toác ra, Chảy máu hoặc tụ máu</label></td>
 
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="呼吸衰竭" id="id2">
-						<label>呼吸衰竭</label>
+						<label>Suy hô hấp</label>
 					</td>
 
 					<td class="formValue">
-						<input name="SSBFZMC" type="checkbox" value="医源性气胸" id="id3"><label>医源性气胸</label>
+						<input name="SSBFZMC" type="checkbox" value="医源性气胸" id="id3"><label>Tràn khí màng phổi do thầy thuốc</label>
 					</td>
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="髋关节骨折" id="id4">
-						<label>髋关节骨折</label>
+						<label>Gãy xương khớp háng</label>
 					</td>
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="生理与代谢紊乱" id="id5">
-						<label>生理与代谢紊乱</label>
+						<label>Rối loạn sinh lý và chuyển hóa</label>
 					</td>
 				</tr>
 				<tr>
 					<th></th>
 					<td class="formValue">
-						<input name="SSBFZMC" type="checkbox" value="手术过程中异物遗留" id="id6"><label>手术过程中异物遗留</label>
+						<input name="SSBFZMC" type="checkbox" value="手术过程中异物遗留" id="id6"><label>Dị vật còn sót trong quá trình phẫu thuật</label>
 					</td>
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="肺栓塞" id="id7">
-						<label>肺栓塞</label>
+						<label>Tắc mạch phổi</label>
 					</td>
-					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="肺部感染" id="id8"><label>肺部感染</label></td>
+					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="肺部感染" id="id8"><label>Nhiễm trùng phổi</label></td>
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="深静脉血栓" id="id9">
-						<label>深静脉血栓</label>
+						<label>Huyết khối tĩnh mạch sâu</label>
 					</td>
 				</tr>
 				<tr>
 					<th></th>
-					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="医源性意外穿刺伤" id="id10"><label>医源性意外穿刺伤</label></td>
-					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="医源性撕裂伤" id="id11"><label>医源性撕裂伤</label></td>
+					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="医源性意外穿刺伤" id="id10"><label>Vết đâm xuyên ngoài ý muốn do thầy thuốc</label></td>
+					<td class="formValue"><input name="SSBFZMC" type="checkbox" value="医源性撕裂伤" id="id11"><label>Vết rách do thầy thuốc</label></td>
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="败血症" id="id12">
-						<label>败血症</label>
+						<label>Nhiễm trùng huyết</label>
 					</td>
 					<td class="formValue">
 						<input name="SSBFZMC" type="checkbox" value="其他" id="id13">
-						<label>其他</label>
+						<label>Khác</label>
 					</td>
 
 				</tr>
@@ -223,9 +223,9 @@
 					<td></td>
 					<td></td>
 					<td colspan="2">
-						<input id="btn_submit_op" type="button" class="btn btn-default" value="添加" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
-						<input id="btn_del_op" type="button" class="btn btn-default" value="删除" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
-						<input id="btn_reset_op" type="button" class="btn btn-default" value="重置" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
+						<input id="btn_submit_op" type="button" class="btn btn-default" value="Thêm" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
+						<input id="btn_del_op" type="button" class="btn btn-default" value="Xóa" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
+						<input id="btn_reset_op" type="button" class="btn btn-default" value="Đặt lại" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
 					</td>
 				</tr>
 			</table>
@@ -242,7 +242,7 @@
 		var QKYHDJ_val
 		var op_yhdj_val = $("#op_yhdj option:selected").text();
 		var op_yhlb_val = $("#op_yhlb option:selected").text()
-		if (op_yhdj_val == "请选择" && op_yhlb_val == "请选择") {
+		if (op_yhdj_val == "Vui lòng chọn" && op_yhlb_val == "Vui lòng chọn") {
 			QKYHDJ_val = '';
 		} else {
 			QKYHDJ_val = $("#op_yhdj option:selected").text() + "/" + $("#op_yhlb option:selected").text()
@@ -262,7 +262,7 @@
 			EZMC: $("#op_sszl2").val(),
 			QKDJ: $("#op_yhdj").val(),
 			MZFS: $("#op_mzfs").val(),
-			MZFSMS: $("#op_mzfs option:selected").text() == "请选择" ? "" : $("#op_mzfs option:selected").text(),
+			MZFSMS: $("#op_mzfs option:selected").text() == "Vui lòng chọn" ? "" : $("#op_mzfs option:selected").text(),
 			MZYS: $("#op_mzys").attr("data-StaffGh"),
 			MZYSMC: $("#op_mzys").val(),
 			QKYHLB: $("#op_yhlb").val(),
@@ -317,15 +317,15 @@
 			getopdata();
 			var hzjbxx = getfromPara();
 			if (!!!opdata.SSJCZBM) {
-				$.modalAlert("请选择手术项目", 'error');
+				$.modalAlert("Vui lòng chọn phẫu thuật hạng mục", 'error');
 				return false;
 			}
 			if (!!!opdata.SZ) {
-				$.modalAlert("请选择主刀医生", 'error');
+				$.modalAlert("Vui lòng chọn bác sĩ phẫu thuật chính", 'error');
 				return false;
 			}
 			if (!!!opdata.SSJCZRQ) {
-				$.modalAlert("请选择手术及操作日期", 'error');
+				$.modalAlert("Vui lòng chọn ngày phẫu thuật và thao tác", 'error');
 				return false;
 			}
 			//if (!!!opdata.SSKSSJ) {
@@ -344,11 +344,11 @@
             if (!!SQZBSJT || !!SQYFKJGYS) {
                 debugger;
 				if (!!!SQZBSJT) {
-					$.modalAlert("术前抗菌药物时间给定，术前准备天数则为必填", 'error');
+					$.modalAlert("Đã cho thời gian kháng sinh trước mổ, Số ngày chuẩn bị trước mổ là bắt buộc", 'error');
 					return false;
 				}
 				if (!!!SQYFKJGYS) {
-					$.modalAlert("术前准备天数给定，术前抗菌药物时间则为必填", 'error');
+					$.modalAlert("Đã cho số ngày chuẩn bị trước mổ, Thời gian kháng sinh trước mổ là bắt buộc", 'error');
 					return false;
 				}
 			}
@@ -376,41 +376,41 @@
 			if (!!opdata.QKBW || !!opdata.QKYHDJ || !!opdata.QKYHLB) {
 
 				if (!!!opdata.QKBW) {
-					$.modalAlert("切口部位为必填项", 'error');
+					$.modalAlert("Vị trí vết mổ là bắt buộc", 'error');
 					return false;
 				}
 				if (!!!opdata.QKYHDJ) {
-					$.modalAlert("切口愈合等级为必填项", 'error');
+					$.modalAlert("Mức độ lành vết mổ là bắt buộc", 'error');
 					return false;
 				}
 				if (!!!opdata.QKYHLB) {
-					$.modalAlert("切口愈合类别为必填项", 'error');
+					$.modalAlert("Loại lành vết mổ là bắt buộc", 'error');
 					return false;
 				}
 			}
 
             if ((!!opdata.SSBFZ && opdata.SSBFZ != 2) || !!opdata.SSBFZMC) {
 				if (!!!opdata.SSBFZ) {
-					$.modalAlert("并发症名称给定，手术并发症则为必填", 'error');
+					$.modalAlert("Đã cho tên biến chứng, Biến chứng phẫu thuật là bắt buộc", 'error');
 					return false;
 				}
 				if (!!!opdata.SSBFZMC) {
-					$.modalAlert("手术并发症给定，并发症名称则为必填", 'error');
+					$.modalAlert("Đã cho biến chứng phẫu thuật, Tên biến chứng là bắt buộc", 'error');
 					return false;
 				}
 			}
 
 			if (time_sjc(hzjbxx.RYSJ) > time_sjc(opdata.SSKSSJ) || time_sjc(hzjbxx.CYSJ) < time_sjc(opdata.SSKSSJ)) {
-				$.modalAlert("手术开始日期不能小于入院日期且不能大于出院日期", 'warning');
+				$.modalAlert("Ngày bắt đầu phẫu thuật không được nhỏ hơn ngày nhập viện và không được lớn hơn ngày ra viện", 'warning');
 				return false;
 			}
 			if (time_sjc(opdata.SSJSSJ) < time_sjc(opdata.SSKSSJ) || time_sjc(hzjbxx.CYSJ) < time_sjc(opdata.SSJSSJ)) {
-				$.modalAlert("手术结束日期不能小于手术开始日期且不能大于出院日期", 'warning');
+				$.modalAlert("Ngày kết thúc phẫu thuật không được nhỏ hơn ngày bắt đầu phẫu thuật và không được lớn hơn ngày ra viện", 'warning');
 				return false;
 			}
 			if (!!opdata.SSJCZBM) {
 				if (time_sjc(opdata.MZKSSJNYR) < time_sjc(opdata.SSKSSJ) || time_sjc(opdata.MZKSSJNYR) > time_sjc(opdata.SSJSSJ)) {
-					$.modalAlert("麻醉开始日期不能小于手术开始日期且不能大于手术结束日期", 'warning');
+					$.modalAlert("Ngày bắt đầu gây mê không được nhỏ hơn ngày bắt đầu phẫu thuật và không được lớn hơn ngày kết thúc phẫu thuật", 'warning');
 					return false;
 				}
 			}
@@ -429,7 +429,7 @@
 					var rowdata = $grid.jqGrid("getRowData", rowid);
 					if (opdata.SSJCZBM == rowdata.SSJCZBM) {
 						$grid.jqGrid("setRowData", rowid, opdata);
-						$.modalAlert("录入成功", 'success');
+						$.modalAlert("Nhập thành công", 'success');
 						deletejq() 
 						return true;
 					}
@@ -442,12 +442,12 @@
 					deletejq() 
 				}
 				else {
-					$.modalAlert("手术已录入", 'error');
+					$.modalAlert("Đã nhập phẫu thuật", 'error');
 				}
 
 			}
 			else {
-				$.modalAlert("请选择手术", 'warning');
+				$.modalAlert("Vui lòng chọn phẫu thuật", 'warning');
 			}
 
 		});
@@ -457,12 +457,12 @@
 			if (rowid != null && rowid != undefined && rowid != "" && parseInt($("#op_rowid").val()) > 0) {
 				//getopdata();
 				opdata.zt = 0;
-				opdata.ztsm = '作废';
+				opdata.ztsm = 'Hủy hiệu lực';
 				jQuery("#gridopList").jqGrid("setRowData", rowid, opdata);
-				$.modalAlert("作废成功", 'success');
+				$.modalAlert("Hủy hiệu lực thành công", 'success');
 			}
 			else {
-				$.modalAlert("请选择手术记录", 'warning');
+				$.modalAlert("Vui lòng chọn phẫu thuật bản ghi", 'warning');
 			}
 		});
 
@@ -472,7 +472,7 @@
 
 	});
 
-	//把time装换成时间戳，方便比较
+	//把time装换成时间戳, 方便比较
 	function time_sjc(time) {
 		return new Date(time.replace(/-/g, "\/"));
 	}

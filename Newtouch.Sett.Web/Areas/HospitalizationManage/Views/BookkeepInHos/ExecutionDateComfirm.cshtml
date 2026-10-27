@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<table class="form" style="width:95%;margin-top:15px;">
+    <tr>
+        <th class="formTitle"><span style="color:red">*</span>Ngày điều trị：</th>
+        <td class="formValue">
+            <input id="zxrq" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" type="text" class="form-control input-wdatepicker"
+                   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd',maxDate:'%y-%M-%d', minDate: '%y-%M-#{%d-@(((ViewBag.DefaultPrevDate as int?)??0).ToString())}' })" />
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    function checkEditingRowData() {
+        var zxrq = $('#zxrq').val();
+        if (!zxrq) {
+            $.modalAlert('Ngày thực hiệnKhông thểlàtrống', 'warning');
+            return;
+        }
+        return { zxrq: zxrq }
+    }
+</script>
+

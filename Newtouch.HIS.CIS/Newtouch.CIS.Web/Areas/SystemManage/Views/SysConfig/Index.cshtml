@@ -1,4 +1,4 @@
-﻿@using Newtouch.Common.Operator;
+@using NewtouchHIS.Lib.Framework.Operator;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
@@ -11,23 +11,23 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
             @if (opeator.IsAdministrator || opeator.IsRoot || true)
             {
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                 <ul class="dropdown-menu pull-right">
-                    <li><a onclick="btn_template()" href="javascript:void(0)">配置模板管理</a></li>
+                    <li><a onclick="btn_template()" href="javascript:void(0)">Cấu hìnhMẫuQuản lý</a></li>
                 </ul>
             }
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_sync()"><i class="fa fa-pencil-square-o"></i>同步</a>
+            <a class="btn btn-primary" onclick="btn_sync()"><i class="fa fa-pencil-square-o"></i>Đồng bộ</a>
         </div>
     </div>
     <div class="search">
@@ -35,7 +35,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="配置名称/配置编码" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Cấu hìnhTên/Cấu hìnhMã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -67,17 +67,17 @@
             url: "/SystemManage/SysConfig/GetGridJson",
             height: $(window).height() - 100,
             colModel: [
-                 { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                  { label: "名称", name: "Name", width: 200, align: 'left'},
-                  { label: '编码', name: 'Code', width: 150, align: 'left' },
+                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                  { label: "Tên", name: "Name", width: 200, align: 'left'},
+                  { label: 'Mã', name: 'Code', width: 150, align: 'left' },
                   { label: 'Value', name: 'Value', width: 150, align: 'left' },
-                  { label: '说明', name: 'Memo', width: 200, align: 'left' },
-                    { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                  { label: 'Mô tả', name: 'Memo', width: 200, align: 'left' },
+                    { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Cuối cùngSửaThời gian', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
         });
         $("#btn_search").click(function () {
@@ -90,7 +90,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增配置",
+            title: "Thêm mớiCấu hình",
             url: "/SystemManage/SysConfig/Form",
             width: "550px",
             height: "350px",
@@ -106,12 +106,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改配置",
+            title: "SửaCấu hình",
             url: "/SystemManage/SysConfig/Form?keyValue=" + keyValue,
             width: "550px",
             height: "350px",
@@ -128,7 +128,7 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var IsA='@opeator.IsAdministrator';
@@ -138,7 +138,7 @@
             if ($("#gridList").jqGridRowValue().Value == "")
             {
                 // == ""? 不好
-                $.modalAlert("该模板配置不可删除", 'warning');
+                $.modalAlert("Mẫu cấu hình này không thể xóa", 'warning');
                 return;
             }
         }
@@ -152,9 +152,9 @@
         });
     }
     function btn_sync() {
-        $.modalConfirm("确定要同步所有系统参数吗？", function (r) {
+        $.modalConfirm("Xác nhận đồng bộ tất cả tham số hệ thống chứ?", function (r) {
             if (r) {
-                $.loading(true, '数据同步中...');
+                $.loading(true, 'Đang đồng bộ dữ liệu...');
                 $.najax({
                     url: "/Home/SyncSysConfigParams",
                     type: "POST",
@@ -162,7 +162,7 @@
                     dataType: "json",
                     async: false,
                     success: function (data) {
-                        $.modalAlert("同步成功", data.state);
+                        $.modalAlert("Đồng bộthành công", data.state);
                         $('#btn_search').trigger('click');
                         $.loading(false);
                     }
@@ -179,7 +179,7 @@
     function btn_ShowAllConfig() {
         $.modalOpen({
             id: "Form",
-            title: "查看所有配置项",
+            title: "Xem tất cả mục cấu hình",
             url: "/SystemManage/SysConfig/ConfigsPreviewIndex",
             width: "850px",
             height: "570px",
@@ -191,7 +191,7 @@
     {
         $.modalOpen({
             id: "Template",
-            title: "配置模板",
+            title: "Cấu hìnhMẫu",
             url: "/SystemManage/SysConfig/TemplateIndex",
             width: "900px",
             height: "500px",

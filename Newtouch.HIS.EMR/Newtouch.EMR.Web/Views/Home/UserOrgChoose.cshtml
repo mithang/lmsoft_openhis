@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 
     //是否页面加载时就必须选择Org
-    var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
+    var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.EMR.Web.Models.SysOrganizeV>;
 }
 
 <ul class="list-group">
@@ -37,7 +37,7 @@
 
     function cookieRemove() {
         var chooseOrgKey = "CookieKey_ChooseOrg";
-        var appId = '@(FrameworkBase.MultiOrg.Infrastructure.ConstantsBase.AppId)';
+        var appId = '@("EMR")';
         if (appId) {
             chooseOrgKey = appId + "_" + chooseOrgKey;
         }

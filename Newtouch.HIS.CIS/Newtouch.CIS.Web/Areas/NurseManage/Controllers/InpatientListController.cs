@@ -1,16 +1,22 @@
-﻿using System;
+using System;
+using NewtouchHIS.Lib.Framework.Attributes;
+using Newtouch.CIS.Web.Models;
+using Newtouch.CIS.Web.Attributes;
+using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.Application.Interface;
+using Newtouch.CIS.Repository;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web.Mvc;
-using System.Web.WebPages;
-using FrameworkBase.MultiOrg.Domain.IRepository;
-using FrameworkBase.MultiOrg.Web;
-using Newtouch.Common;
-using Newtouch.Common.Operator;
+using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.IRepository;
+using NewtouchHIS.Framework.Web.Controllers;
+
+using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Common.Web;
-using Newtouch.Core.Common;
+
 using Newtouch.Domain.DTO.InputDto;
 using Newtouch.Domain.DTO.OutputDto;
 using Newtouch.Domain.Entity;
@@ -19,17 +25,18 @@ using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
-using Newtouch.Tools;
+using Newtouch.CIS.Compat;
 
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
+    [Area("NurseManage")]
     public class InpatientListController : OrgControllerBase
     {
 
         private readonly ITreatmentRepo _treatmentRepo;
         private readonly IPatientVitalSignsRepo _patientVitalSignsRepo;
         private readonly IInpatientPatientDmnService _inpatientPatientDmnService;
-        private readonly FrameworkBase.MultiOrg.Domain.IDomainServices.IBaseDataDmnService _iBaseDataDmnService;
+        private readonly IBaseDataDmnService _iBaseDataDmnService;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IIDBDmnService _idbDmnService;
         private readonly IVisitDeptSetRepo visitDeptSetRepo;
@@ -37,12 +44,20 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly IOrderAuditDmnService _OrderAuditDmnService;
 
 
-        public InpatientListController()
+        public InpatientListController(ITreatmentRepo treatmentRepo, IPatientVitalSignsRepo patientVitalSignsRepo, IInpatientPatientDmnService inpatientPatientDmnService, IBaseDataDmnService iBaseDataDmnService, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, IExceReportPrintDmnService iExceReportPrintDmnService, IOrderAuditDmnService orderAuditDmnService)
         {
+            this._treatmentRepo = treatmentRepo;
+            this._patientVitalSignsRepo = patientVitalSignsRepo;
+            this._inpatientPatientDmnService = inpatientPatientDmnService;
+            this._iBaseDataDmnService = iBaseDataDmnService;
+            this._sysConfigRepo = sysConfigRepo;
+            this._idbDmnService = idbDmnService;
+            this._IExceReportPrintDmnService = iExceReportPrintDmnService;
+            this._OrderAuditDmnService = orderAuditDmnService;
 
         }
         // GET: NurseManage/InpatientList
-        public ActionResult Inpatient()
+        public IActionResult Inpatient()
         {
             var bqAuth = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault();
             if (bqAuth != null)
@@ -57,63 +72,63 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
         }
         #region  View
-        public ActionResult IndexCenter()
+        public IActionResult IndexCenter()
         {
             return View();
         }
-        public ActionResult MedicalorderQuery()
+        public IActionResult MedicalorderQuery()
         {
             return View();
         }
-        public ActionResult OrderAudit()
+        public IActionResult OrderAudit()
         {
             return View();
         }
-        public ActionResult OrderExecution()
+        public IActionResult OrderExecution()
         {
             return View();
         }
-        public ActionResult InHosBookkeep()
+        public IActionResult InHosBookkeep()
         {
             return View();
         }
-        public ActionResult InHosFeeRefund()
+        public IActionResult InHosFeeRefund()
         {
             return View();
         }
-        public ActionResult InHosMedReturn()
+        public IActionResult InHosMedReturn()
         {
             return View();
         }
-        public ActionResult InHosFee()
+        public IActionResult InHosFee()
         {
             return View();
         }
-        public ActionResult InHosRegistration()
+        public IActionResult InHosRegistration()
         {
             return View();
         }
-        public ActionResult InHosRecallOutArea()
+        public IActionResult InHosRecallOutArea()
         {
             return View();
         }
-        public ActionResult InHosQueryIndex()
+        public IActionResult InHosQueryIndex()
         {
             return View();
         }
-        public ActionResult InHosNursingInput()
+        public IActionResult InHosNursingInput()
         {
             ViewBag.MutipatientNursingInputFlag = _sysConfigRepo.GetIntValueByCode("MutipatientNursingInputFlag", OrganizeId, 0);
             ViewBag.ScdCode = _sysConfigRepo.GetValueByCode("ScdTimePoint", OrganizeId);//三测单时间点奇偶数设置 1 奇数 0 偶数
             return View();
         }
-        public ActionResult InHosPrint()
+        public IActionResult InHosPrint()
         {
             return View();
         }
         #endregion
 
-        public ActionResult GetPatWardTree(string zyzt, string keyword,string checkzyh=null)
+        public IActionResult GetPatWardTree(string zyzt, string keyword,string checkzyh=null)
         {
             var wardTree = _OrderAuditDmnService.GetWardTree(this.UserIdentity.StaffId);
             var patInfo = _IExceReportPrintDmnService.GetPatCenterTree(OrganizeId, zyzt, keyword);
@@ -128,11 +143,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 var NewPatInfo = patInfo.Where(p => p.bqCode == item.bqCode).OrderBy(p=>p.BedNo).ToList();
                 foreach (InpWardPatTreeVO itempat in NewPatInfo)
                 {
-                    string gender = itempat.sex == "1" ? "男" : "女";
+                    string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别+病人性质
-                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh + "-" + itempat.nl + "岁-" + gender + "-" + itempat.brxzmc;
+                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别+Tính chất bệnh nhân
+                    treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender + "-" + itempat.brxzmc;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
                     treepat.isexpand = false;

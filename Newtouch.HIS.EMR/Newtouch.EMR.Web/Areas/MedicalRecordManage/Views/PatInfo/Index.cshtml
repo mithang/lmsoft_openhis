@@ -1,5 +1,4 @@
 ﻿@model dynamic
-@using Newtouch.Infrastructure;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
 }
@@ -165,37 +164,37 @@
 </style>
 <ul class="nav nav-tabs navb-bg" role="tablist">
     <li role="presentation" id="linkzbq" class="active">
-        <a href="#div_zbq" role="tab" data-toggle="tab">在院</a>
+        <a href="#div_zbq" role="tab" data-toggle="tab">Đang nằm viện</a>
     </li>
     <li role="presentation" id="linkycq">
-        <a href="#div_ycq" role="tab" data-toggle="tab">出院</a>
+        <a href="#div_ycq" role="tab" data-toggle="tab">Ra viện</a>
     </li>
     <li role="presentation"  id="linkmy">
-        <a href="#div_my" role="tab" data-toggle="tab">我的</a>
+        <a href="#div_my" role="tab" data-toggle="tab">Của tôi</a>
     </li>
     <li>
         <table class="form" style="width:460px">
             <tr>
                 <td class="formValue formDdlSelectorTd">
                     <select id="sel_inpatientArea" class="form-control" style="width:90px">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
                 <td class="formValue ">
-                    <input type="button" id="btn_syncPat" value="患者同步" class="btn btn-default" onclick="btn_SyncPatinfo()"/>
+                    <input type="button" id="btn_syncPat" value="Đồng bộ bệnh nhân" class="btn btn-default" onclick="btn_SyncPatinfo()"/>
                 </td>
-                @*<td class="formValue formDdlSelectorTd" style="width:90px">
+                
                     <select id="sel_inpatienttype" class="form-control">
-                        <option value="">全部</option>
-                        <option value="@ViewBag.ysgh">分管</option>
+                        <option value="">Tất cả</option>
+                        <option value="@ViewBag.ysgh">Phụ trách</option>
                     </select>
-                </td>*@
+
                 <td>
-                    <input id="txt_cwmc" placeholder="输入床号,住院号，姓名" />
+                    <input id="txt_cwmc" placeholder="nhập số giường,Số nhập viện, Họ tên" />
                 </td>
                 <td style="padding-left:20px;">
-                    <i class="fa fa-id-card-o" title="床卡模式" style="line-height:40px" hidden></i>
-                    <i class="fa fa-list" title="列表模式" style="line-height:40px"></i>
+                    <i class="fa fa-id-card-o" title="Chế độ thẻ giường" style="line-height:40px" hidden></i>
+                    <i class="fa fa-list" title="Chế độ danh sách" style="line-height:40px"></i>
                 </td>
             </tr>
         </table>
@@ -209,7 +208,7 @@
         <ul class="ul-zbq"></ul>
         <table id="div_zbqList"></table>
         <div style="height:22px;" class="footer">
-            <div class="left" style="float:left;width:230px">　检索到 <span class="records"></span> 条记录</div>
+            <div class="left" style="float:left;width:230px">　Tìm thấy <span class="records"></span> Dòng bản ghi</div>
             <div class="right" style="width:292px;height:22px; float:right">
                 <div class="footerright">
                     <span class="glyphicon glyphicon-step-backward"></span>
@@ -222,7 +221,7 @@
                 </div>
                 <div style="float:left; margin:auto 10px">
                     <input class="ui-pg-input" type="text" size="2" maxlength="7" value="1" role="textbox">
-                    共<span id="sp_1_gridPager"></span>页
+                    Tổng cộng<span id="sp_1_gridPager"></span>Trang
                 </div>
                 <div class="footerright">
                     <span class="ui-separator"></span>
@@ -242,20 +241,20 @@
         <div cl>
             <table class="form" style="margin-left:5px;">
                 <tr>
-                    <th class="formTitle">出区开始日期：</th>
+                    <th class="formTitle">Ngày bắt đầu ra khỏi khu:</th>
                     <td class="formValue">
                         <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-01")" />
                     </td>
-                    <th class="formTitle">结束日期：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
                         <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                     </td>
-                    <th class="formTitle" style="width:120px">住院号/姓名/卡号：</th>
+                    <th class="formTitle" style="width:120px">Số nhập viện/Họ tên/Số thẻ:</th>
                     <td class="formValue">
-                        <input type="text" id="ycq_keyword" name="ycq_keyword" class="form-control" placeholder="最少1位字符" />
+                        <input type="text" id="ycq_keyword" name="ycq_keyword" class="form-control" placeholder="Ít nhất1Ký tự" />
                     </td>
                     <td class="formTitle" colspan="2" style="padding-left:20px">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" style="margin-right:10px" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tìm kiếm" style="margin-right:10px" />
                     </td>
                     <td></td>
                     <td></td>
@@ -269,20 +268,20 @@
     <div id="div_my" class="panel">
         <table class="form">
             <tr>
-                @*<th class="formTitle">出区开始日期：</th>
+                
                 <td class="formValue">
                     <input id="txt_myksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="txt_myjsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
-                </td>*@
-                <th class="formTitle" style="width:120px">住院号/姓名/卡号：</th>
+
+                <th class="formTitle" style="width:120px">Số nhập viện/Họ tên/Số thẻ:</th>
                 <td class="formValue">
-                    <input type="text" id="my_keyword" name="my_keyword" class="form-control" placeholder="最少1位字符" />
+                    <input type="text" id="my_keyword" name="my_keyword" class="form-control" placeholder="Ít nhất1Ký tự" />
                 </td>
                 <td class="formTitle" colspan="2" style="padding-left:20px">
-                    <input type="button" id="btn_mysearch" class="btn btn-md btn-primary" value="查询" style="margin-right:10px" />
+                    <input type="button" id="btn_mysearch" class="btn btn-md btn-primary" value="Tìm kiếm" style="margin-right:10px" />
                 </td>
                 <td></td>
                 <td></td>
@@ -363,7 +362,7 @@
     function validateSearch() {
         var bqval = $('#sel_inpatientArea').val();
         if (bqval == "") {
-            $.modalAlert("病区未选择", 'warning');
+            $.modalAlert("Chưa chọn khu bệnh", 'warning');
             return false;
         }
         return true;
@@ -405,7 +404,7 @@
         currentPatient.zyh = obj.zyh;//住院号
         currentPatient.brxzmc = obj.brxzmc;//病人性质
     }
-    /****数据处理*****/
+    /****Xử lý dữ liệu*****/
     //请求在病区病人信息
     function ajaxrequestzbq() {
         if (validateSearch()) {
@@ -438,25 +437,25 @@
                 + ' <i class="fa fa-bed" aria-hidden="true"></i><span style="user-select:none">' + v.cwmc + '</span>'
                 + ' </div >'
                 + ' <div class="dv-patxm" data-zyh=' + v.zyh + ' data-age=' + v.age + ' data-xm=' + v.xm + ' data-sex=' + v.sex + ' data-brxzmc=' + v.brxzmc + '>'
-                + ' <i class="fa fa-' + ($.getGender(v.sex) == '男' ? "mars" : "venus") + '" style="background-color:' + ($.getGender(v.sex) == '男' ? " #00a0e9" : "pink") + '; border: 1px solid ' + ($.getGender(v.sex) == '男' ? " #00a0e9" : "pink") + ';" aria-hidden="true"></i><span title="病人姓名">' + v.xm + '</span>'
+                + ' <i class="fa fa-' + ($.getGender(v.sex) == 'Nam' ? "mars" : "venus") + '" style="background-color:' + ($.getGender(v.sex) == 'Nam' ? " #00a0e9" : "pink") + '; border: 1px solid ' + ($.getGender(v.sex) == 'Nam' ? " #00a0e9" : "pink") + ';" aria-hidden="true"></i><span title="Tên bệnh nhân">' + v.xm + '</span>'
                 + ' </div>'
-                + ' <div class="dv-doctorxm" title="医生名称">'
+                + ' <div class="dv-doctorxm" title="Tên bác sĩ">'
                 + ' <i class="fa fa-user-md"></i><span>' + v.ysmc + '</span>'
                 + ' </div>'
-                + ' <div class="dv-gms" title="过敏史">'
-                + ' <span>' + (v.gms == null ? "无" : v.gms) + '</span>'
+                + ' <div class="dv-gms" title="Tiền sử dị ứng">'
+                + ' <span>' + (v.gms == null ? "Không có" : v.gms) + '</span>'
                 + ' </div>'
                 + ' <div class="dv-patType">'
-                + ' <span title="病人性质">' + v.brxzmc + '</span>'
-                + ' <span title="危重级别">' + $.enum.getDescByValue("EnumWzjb", v.wzjb) + '</span>'
+                + ' <span title="Tính chất bệnh nhân">' + v.brxzmc + '</span>'
+                + ' <span title="Nguy kịch cấp độ">' + $.enum.getDescByValue("EnumWzjb", v.wzjb) + '</span>'
                 + ' <span>' + v.brzt + '</span>'
-                + ' <label title="护理级别" class="sp-leave sp-leave-' + v.hljb + '" data-hllb=' + v.hljb + ' title="护理级别:' + v.hljb + '级"></label>'
+                + ' <label title="Cấp độ điều dưỡng" class="sp-leave sp-leave-' + v.hljb + '" data-hllb=' + v.hljb + ' title="Cấp độ điều dưỡng:' + v.hljb + ' cấp"></label>'
                 + ' </div>'
                 + ' </li >';
             $('.ul-zbq').append(li);
         });
     }
-    /****选项卡****/
+    /****Thẻ tab****/
     //当前选中病人对象
 
     var currentPatient = {};
@@ -543,8 +542,8 @@
         $('.ul-zbq').on("dblclick", "li", function () {
             sessionStorage.setItem('currentobj', JSON.stringify(currentobj));
 
-            top.top.$.Newtouchtab.tryCloseTab({ name: "病历管理", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
-            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历管理", enName: "", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
+            top.top.$.Newtouchtab.tryCloseTab({ name: "Quản lý bệnh án", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Quản lý bệnh án", enName: "", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
         });
     });
 
@@ -555,7 +554,7 @@
         initmy();
     }
 
-    /****在病区****/
+    /****Tại khu bệnh****/
 
     function initzbq() {
         $(".ul-zbq").children("li").remove();
@@ -576,22 +575,22 @@
             rownumbers: true,
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '床号', name: 'cwmc', align: 'center', width: 150 },
-                { label: '姓名', name: 'xm', align: 'center', width: 150 },
+                { label: 'Số giường', name: 'cwmc', align: 'center', width: 150 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 150 },
                 {
-                    label: '性别', name: 'sex', align: 'center', width: 100, formatter: function (val) {
+                    label: 'Giới tính', name: 'sex', align: 'center', width: 100, formatter: function (val) {
                         return $.getGender(val);
                     }
                 },
-                { label: '年龄', name: 'age', align: 'center', width: 70 },
-                { label: '住院号', name: 'zyh', align: 'center', width: 50 },
-                { label: '入院日期', name: 'ryrq', align: 'center', width: 140, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Tuổi', name: 'age', align: 'center', width: 70 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 50 },
+                { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 140, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
                 {
-                    label: '护理级别', name: 'hljb', align: 'center', width: 100, formatter: function (val) {
+                    label: 'Cấp độ điều dưỡng', name: 'hljb', align: 'center', width: 100, formatter: function (val) {
                         return $.enum.getDescByValue("EnumHljb", val);
                     }
                 },
-                { label: '入院诊断', name: 'zdmc', width: 100, align: 'left' }
+                { label: 'Chẩn đoán nhập viện', name: 'zdmc', width: 100, align: 'left' }
             ],
             onSelectRow: function (rowid) {
                 var obj = $("#div_zbqList").jqGrid('getRowData', rowid);
@@ -600,20 +599,20 @@
                 var obj = $("#div_zbqList").jqGrid('getRowData', rowid);
                 onSelectpatient(obj);
                 sessionStorage.setItem('currentobj', JSON.stringify(currentPatient));
-                top.top.$.Newtouchtab.tryCloseTab({ name: "病历管理", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
-                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历管理", enName: "", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
+                top.top.$.Newtouchtab.tryCloseTab({ name: "Quản lý bệnh án", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
+                top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Quản lý bệnh án", enName: "", url: "/MedicalRecordManage/PatInfo/PatMedRecordList" });
             }
         });
     }
 
-    /****已出区******/
+    /****Đã ra khỏi khu******/
     function initycq() {
         div_ycqList();
 
         $('#ycq_keyword').newtouchBatchFloatingSelector({
             width: 450,
             height: 200,
-            caption: "选择患者",
+            caption: "Chọn bệnh nhân",
             url: "@Url.Action("patientFloatingSelectorSource")",
             ajaxparameters: function ($thisinput) {
                 var keyword = $thisinput.val().trim();
@@ -623,18 +622,18 @@
             $('#ycq_keyword').val($thistr.attr('data-zyh'));
         },
         colModel: [
-            { label: '主键', name: 'Id', hidden: true },
-            { label: '住院号', name: 'zyh', width: 100, align: 'center' },
-            { label: '病历号', name: 'blh', width: 90, align: 'center' },
-            { label: '姓名', name: 'xm', width: 80, align: 'center' },
-            { label: '出生年月', name: 'birth', hidden: true, width: 100, align: 'center' },
+            { label: 'Khóa chính', name: 'Id', hidden: true },
+            { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'center' },
+            { label: 'Số bệnh án', name: 'blh', width: 90, align: 'center' },
+            { label: 'Họ tên', name: 'xm', width: 80, align: 'center' },
+            { label: 'Ngày tháng năm sinh', name: 'birth', hidden: true, width: 100, align: 'center' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
+                label: 'Giới tính', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
-            { label: '年龄', name: 'nlshow', width: 50, align: 'center' },
-            { label: '入院日期', name: 'ryrq', hidden: true }
+            { label: 'Tuổi', name: 'nlshow', width: 50, align: 'center' },
+            { label: 'Ngày nhập viện', name: 'ryrq', hidden: true }
         ]
     });
     }
@@ -649,34 +648,34 @@
             autoScroll: true,
             colModel: [
             { label: 'Id', name: 'Id', hidden: true },
-            { label: '姓名', name: 'xm', align: 'center', width: 100 },
-            { label: '住院号', name: 'zyh', align: 'center', width: 80 },
-            { label: '卡号', name: 'cardno', align: 'center', width: 50 },
-            { label: '床号', name: 'cwmc', align: 'center', width: 80 },
+            { label: 'Họ tên', name: 'xm', align: 'center', width: 100 },
+            { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 80 },
+            { label: 'Số thẻ', name: 'cardno', align: 'center', width: 50 },
+            { label: 'Số giường', name: 'cwmc', align: 'center', width: 80 },
             {
-                label: '性别', name: 'sex', align: 'center', width:50, formatter: function (val) {
+                label: 'Giới tính', name: 'sex', align: 'center', width:50, formatter: function (val) {
                     return $.getGender(val);
                 }
             },
-            { label: '年龄', name: 'nlshow', align: 'center', width: 50 },
-            { label: '入院诊断', name: 'zdmc', width:150, align: 'left' },
-            { label: '入院日期', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-            { label: '出区日期', name: 'cqrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-            { label: '床位医生', name: 'ysmc', align: 'center', width: 80 },
+            { label: 'Tuổi', name: 'nlshow', align: 'center', width: 50 },
+            { label: 'Chẩn đoán nhập viện', name: 'zdmc', width:150, align: 'left' },
+            { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+            { label: 'Ngày ra khỏi khu', name: 'cqrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+            { label: 'Bác sĩ giường bệnh', name: 'ysmc', align: 'center', width: 80 },
             {
-                label: "是否提交病案", name: "RecordStu", width: 80, align: "center", formatter: function (cellvalue) {
+                label: "Đã nộp hồ sơ bệnh án", name: "RecordStu", width: 80, align: "center", formatter: function (cellvalue) {
                     if (cellvalue == '@((int)EnumRecordStu.wtj)')
-                        return "未提交";
+                        return "Chưa nộp";
                     else if (cellvalue == '@((int)EnumRecordStu.ytj)')
-                        return "已提交";
+                        return "Đã nộp";
                     else if (cellvalue == '@((int)EnumRecordStu.th)')
-                        return "退回";
+                        return "Trả lại";
                     else
-                        return "未提交";
+                        return "Chưa nộp";
                 }
             },
-            { label: '提交日期', name: 'CommitTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-            { label: '是否当前', name: 'isCheck', hidden: true }
+            { label: 'Ngày nộp', name: 'CommitTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            { label: 'Là hiện tại', name: 'isCheck', hidden: true }
         ],
         pager: "#div_ycqgridPager",
         sortname: 'cqrq desc',
@@ -702,7 +701,7 @@
     }
     }
 
-    /*****获取My************/
+    /*****LấyMy************/
     function ajaxrequestmy() {
         if (validateSearch()) {
 
@@ -719,7 +718,7 @@
         $('#my_keyword').newtouchBatchFloatingSelector({
             width: 450,
             height: 200,
-            caption: "选择患者",
+            caption: "Chọn bệnh nhân",
             url: "@Url.Action("patientFloatingSelectorSource")",
             ajaxparameters: function ($thisinput) {
                 var keyword = $thisinput.val().trim();
@@ -729,18 +728,18 @@
             $('#my_keyword').val($thistr.attr('data-zyh'));
         },
         colModel: [
-            { label: '主键', name: 'Id', hidden: true },
-            { label: '住院号', name: 'zyh', width: 100, align: 'center' },
-            { label: '病历号', name: 'blh', width: 90, align: 'center' },
-            { label: '姓名', name: 'xm', width: 80, align: 'center' },
-            { label: '出生年月', name: 'birth', hidden: true, width: 100, align: 'center' },
+            { label: 'Khóa chính', name: 'Id', hidden: true },
+            { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'center' },
+            { label: 'Số bệnh án', name: 'blh', width: 90, align: 'center' },
+            { label: 'Họ tên', name: 'xm', width: 80, align: 'center' },
+            { label: 'Ngày tháng năm sinh', name: 'birth', hidden: true, width: 100, align: 'center' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
+                label: 'Giới tính', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
-            { label: '年龄', name: 'age', width: 50, align: 'center' },
-            { label: '入院日期', name: 'ryrq', hidden: true }
+            { label: 'Tuổi', name: 'age', width: 50, align: 'center' },
+            { label: 'Ngày nhập viện', name: 'ryrq', hidden: true }
         ]
     });
     }
@@ -755,50 +754,50 @@
             colModel: [
             { label: 'Id', name: 'Id', hidden: true },
             {
-                label: '在院标志', name: 'zybz', align: 'center', width:60, formatter: function (val) {
+                label: 'Dấu hiệu đang nằm viện', name: 'zybz', align: 'center', width:60, formatter: function (val) {
                         if (val == '@((int)EnumZYBZ.Djz)' || val == '@((int)EnumZYBZ.Ycy)') {
-                            return "出院";
+                            return "Ra viện";
                         }
                         else if (val == '@((int)EnumZYBZ.Bqz)') {
-                            return "在院";
+                            return "Đang nằm viện";
                         }
                         else if (val == '@((int)EnumZYBZ.Zq)') {
-                            return "转区";
+                            return "Chuyển khu";
                         }
                         else if (val == '@((int)EnumZYBZ.Wry)')
                         {
-                            return "取消入院";
+                            return "Hủy nhập viện";
                         }
-                        else{ return "其他"; }
+                        else{ return "Khác"; }
                 }
             },
-            { label: '姓名', name: 'xm', align: 'center', width: 120 },
-            { label: '住院号', name: 'zyh', align: 'center', width: 80 },
-            { label: '卡号', name: 'cardno', align: 'center', width: 60 },
-            { label: '床号', name: 'cwmc', align: 'center', width: 80 },
+            { label: 'Họ tên', name: 'xm', align: 'center', width: 120 },
+            { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 80 },
+            { label: 'Số thẻ', name: 'cardno', align: 'center', width: 60 },
+            { label: 'Số giường', name: 'cwmc', align: 'center', width: 80 },
             {
-                label: '性别', name: 'sex', align: 'center', width: 50, formatter: function (val) {
+                label: 'Giới tính', name: 'sex', align: 'center', width: 50, formatter: function (val) {
                     return $.getGender(val);
                 }
             },
-            { label: '年龄', name: 'age', align: 'center', width: 50 },
-            { label: '入院诊断', name: 'zdmc', width: 150, align: 'left' },
-            { label: '入院日期', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-            { label: '出区日期', name: 'cqrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+            { label: 'Tuổi', name: 'age', align: 'center', width: 50 },
+            { label: 'Chẩn đoán nhập viện', name: 'zdmc', width: 150, align: 'left' },
+            { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+            { label: 'Ngày ra khỏi khu', name: 'cqrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
             {
-                label: "是否提交病案", name: "RecordStu", width: 80, align: "center", formatter: function (cellvalue) {
+                label: "Đã nộp hồ sơ bệnh án", name: "RecordStu", width: 80, align: "center", formatter: function (cellvalue) {
                     if (cellvalue == '@((int)EnumRecordStu.wtj)')
-                        return "未提交";
+                        return "Chưa nộp";
                     else if (cellvalue == '@((int)EnumRecordStu.ytj)')
-                        return "已提交";
+                        return "Đã nộp";
                     else if (cellvalue == '@((int)EnumRecordStu.th)')
-                        return "退回";
+                        return "Trả lại";
                     else
-                        return "未提交";
+                        return "Chưa nộp";
                 }
             },
-            { label: '提交日期', name: 'CommitTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-            { label: '是否当前', name: 'isCheck', hidden: true }
+            { label: 'Ngày nộp', name: 'CommitTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            { label: 'Là hiện tại', name: 'isCheck', hidden: true }
         ],
         pager: "#div_mygridPager",
         sortname: 'cqrq desc',
@@ -812,7 +811,7 @@
         }
     });
     }
-    /***患者信息同步****/
+    /***Đồng bộ thông tin bệnh nhân****/
     function btn_SyncPatinfo()
     {
         $.ajax({
@@ -829,7 +828,7 @@
                 }
                 else {
                     setTimeout(function () {
-                        $.modalMsg('同步成功', 'success');
+                        $.modalMsg('Đồng bộ thành công', 'success');
                     }, 1000);
 
                 }

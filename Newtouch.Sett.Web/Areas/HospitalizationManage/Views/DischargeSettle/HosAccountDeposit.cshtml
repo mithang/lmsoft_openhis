@@ -1,0 +1,165 @@
+@using Newtouch.Sett.Domain
+
+@{
+    ViewBag.Title = "HosAccountDeposit";
+    Layout = "~/Views/Shared/_Form.cshtml";
+
+}
+<!--Nạptạm ứng và hoàn phí-->
+<div class="panel panel-default" style="margin-top:10px;">
+    <div style="padding: 2px;padding-right:20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">Phương thức thanh toán：</th>
+                <td class="formValue">
+                    <select id="ddlzffs" name="zffs" class="form-control required"></select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle"><span class="required">*</span>Số tiền：</th>
+                <td class="formValue">
+                    <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="Vui lòng nhập số tiền" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">Số chứng từ：</th>
+                <td class="formValue">
+                    <input type="text" id="txtlpzh" class="form-control newtouch_Readonly" style="width: 49.5%;display: inline;" value="" />
+                    <a id="receipt" class="btn btn-primary" onclick=""><i class="fa"></i>Số chứng từ</a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    var je = $.request("je");
+    $(function () {
+
+        if (!!je) {
+            $("#txtmoney").val(je);
+        } else {
+            $.modalAlert("Không có số tiền có thể nạp", 'warning');
+        }
+        GetSJPZH();
+        $("#ddlzffs").newtouchBindSelect({
+            id: "xjzffs",
+            text: "xjzffsmc",
+            datasource: function () {
+                //Duyệt nguồn dữ liệu
+                var resultObjArr = new Array();
+                $.each(top.clients.SysForCashPayList, function (idx, val) {
+                    if (val.zhxz == 'a') {
+                        resultObjArr.push(val);
+                    }
+                });
+                return resultObjArr;
+            }
+        });
+    });
+
+    //Lấy số chứng từ
+    function GetSJPZH() {
+        $.najax({
+            type: "POST",
+            url: "/PatientManage/AccountManage/GetReceipt",
+            data: {},
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null && resdata.data != "") {
+                    $("#txtlpzh").val(resdata.data);
+                    return resdata.data;
+                } else {
+                    $("#txtlpzh").val("");
+                    return "";
+                }
+            }
+        });
+    }
+
+    var zh,
+        zffsbh,
+        zffsmc,
+        zfmoney,
+        pzh;
+    //nạp tiềnvàhoàn款Phán đoán
+    function CheckDeposit() {
+        patid = $("#patid").val();
+
+
+        var reg = /^(-?\d+)(\.\d+)?$/;
+        zfmoney = $("#txtmoney").val();
+        var ddlzffs = $("#ddlzffs option:selected");//Lấy mục đã chọn
+        zffsbh = ddlzffs.val();//拿tớiĐã chọn项củagiá trị
+        zffsmc = ddlzffs.text();//拿tớiĐã chọn项của文này
+        pzh = $("#txtlpzh").val();
+        if (zffsbh == -1 || zffsmc == "") {
+            $.modalAlert("Thiếu phương thức thanh toán", 'warning');
+            return false;
+        }
+        if (zfmoney == "" || zfmoney == undefined) {
+            $.modalAlert("Thiếu số tiền thanh toán", 'warning');
+            return false;
+        } else {
+            if (!reg.test(zfmoney)) {
+                $.modalAlert("Định dạng số tiền không đúng", 'warning');
+                return false;
+            }
+        }
+        if (pzh == "" || pzh == undefined) {
+            $.modalAlert("Thiếu số chứng từ", 'warning');
+            return false;
+        }
+        return true;
+    }
+
+    function SubmitAccountDeposit(patid,xz,ye) {
+        var zfmoney = $("#txtmoney").val();
+        var newzhye = 0.00;
+        if (parseFloat(zfmoney) < 0 || zfmoney == "" || isNaN(zfmoney) == true) {
+            $.modalAlert("Thiếu số tiền thanh toán", 'warning');
+            return ;
+        }
+        if (!!!patid) {
+            $.modalAlert("Thiếu thông tin cơ bản của bệnh nhân", 'warning');
+            return ;
+        }
+        PayDepositPost(patid, xz);
+
+    }
+
+
+    //Nạptạm ứng
+    function PayDepositPost(patid, zhxz) {
+        var zffsbh = $("#ddlzffs option:selected").val();
+        var zffsmc = $("#ddlzffs option:selected").text();
+        var zfmoney = $("#txtmoney").val();
+        var pzh = $("#txtlpzh").val();
+        $.loading(true, "Đang yêu cầu dữ liệu...");
+        $.najax({
+            type: "POST",
+            url: "/PatientManage/AccountManage/PayDepositPostAcnt",
+            data: {
+                zffsbh: zffsbh, zffsmc: zffsmc,
+                zfje: zfmoney, pzh: pzh, zh: -1,
+                zhxz: zhxz,patid: patid,szxz:@Html.Raw((int)EnumSZXZ.cz)
+            },
+            dataType: "json",
+            cache: false,
+            success: function (resdata) {
+                if (resdata != null && resdata.data.flag) {
+                    $.loading(false);
+                    $.modalMsg("Nạp tiền thành công", 'success');
+                    $.modalClose();
+                }
+            }, errorCallback: function (rtnval) {
+                if (rtnval.message == "当前收据号已使用！") {
+                    GetSJPZH();
+                }
+                $.modalAlert(rtnval.message, "warning");
+            }
+        });
+
+    }
+</script>

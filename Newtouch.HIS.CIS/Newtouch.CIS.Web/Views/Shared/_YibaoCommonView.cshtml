@@ -1,9 +1,13 @@
-﻿@{
+@{
     //开关：是否开启事前提醒
     var iSReminderBeforehand = SysConfigReader.Bool("IS_ReminderBeforehand", false).Value; 
 }
 @if (iSReminderBeforehand == true)
 {
-    <object height="0" id="yibaoAX" classid="clsid:e7f3c5b7-14d2-45b9-973d-ef1d670b79e8" codebase="/dll/ActiveX.cab"></object>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/yibao.common.js", false)"></script>
+    <div class="alert alert-warning" style="margin:20px;padding:15px;border:1px solid #faebcc;background:#fcf8e3;color:#8a6d3b;">
+<strong>Thông báo:</strong> Tích hợp LIS ActiveX (điều khiển COM NewtouchActiveX, chỉ chạy trên Internet Explorer + Windows) không thể chạy trên Linux.
+Chức năng này cần giải pháp thay thế (SDK của nhà cung cấp / tiện ích trình duyệt / native messaging host) và đã được ghi nhận để triển khai riêng.
+Các chức năng khác của trang vẫn hoạt động bình thường.
+</div>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/yibao.common.js", false)"></script>
 }

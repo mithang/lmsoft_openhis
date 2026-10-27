@@ -1,7 +1,7 @@
-﻿
+
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "采购明细获取";
+    ViewBag.Title = "Lấy chi tiết mua sắm";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -9,10 +9,10 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">采购明细获取</div>
+        <div class="panel-heading">Lấy chi tiết mua sắm</div>
         <table class="form">
             <tr>
-                <th class="formTitle">查询时间：</th>
+                <th class="formTitle">Thời gian tra cứu:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -26,40 +26,40 @@
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">订单类型：</th>
+                <th class="formTitle">Loại đơn hàng:</th>
                 <td class="formValue">
                     <select id="ddlx" name="ddlx" class="form-control required" data-EnumType="EnumCGDLX">
                     </select>
                 </td>
-                <th class="formTitle">采购方式：</th>
+                <th class="formTitle">Phương thức mua sắm:</th>
                 <td class="formValue">
                     <select id="cgfs" name="cgfs" class="form-control required" data-EnumType="EnumCGFS">
                     </select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>单据填写方：</th>
+                <th class="formTitle"><span class="required">*</span>Bên lập chứng từ:</th>
                 <td class="formValue">
                     <select id="djtxf" name="djtxf" class="form-control required" data-EnumType="EnumDJTXF">
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle ">企业名称：</th>
+                <th class="formTitle ">Tên doanh nghiệp:</th>
                 <td class="formValue" colspan="2">
-                    <input type="text" id="qy" name="qy" class="form-control" placeholder="请选择企业" autocomplete="off" style="width:90%" />
+                    <input type="text" id="qy" name="qy" class="form-control" placeholder="Vui lòng chọn doanh nghiệp" autocomplete="off" style="width:90%" />
                     <input type="hidden" id="qybm" />
                 </td>
 
-                <th class="formTitle">采购类型：</th>
+                <th class="formTitle">Loại mua sắm:</th>
                 <td class="formValue">
                     <select id="cglx" name="cglx" class="form-control" data-EnumType="EnumCGLX">
                     </select>
                 </td>
-                <th class="formTitle">采购明细单号：</th>
+                <th class="formTitle">Số chi tiết mua sắm:</th>
                 <td class="formValue">
-                    <input id="ddmxbh" class="form-control" placeholder="采购明细单号" />
+                    <input id="ddmxbh" class="form-control" placeholder="Số chi tiết mua sắm" />
                 </td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                 </th>
                 <td></td>
             </tr>
@@ -82,20 +82,20 @@
 
     //初始化浮层
     function InitFloat() {
-        //物资供应商
+        //Nhà cung cấp vật tư
         $("#qy").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             url: '/Storage/GetSupplierList',
             height: 300,
             width: 400,
-            caption: "物资供应商",
+            caption: "Nhà cung cấp vật tư",
             ajaxparameters: function () {
                 return "key=" + $("#qy").val();
             },
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '编码', name: 'py', widthratio: 45 },
-                { label: '供应商', name: 'name', widthratio: 55 }
+                { label: 'Mã', name: 'py', widthratio: 45 },
+                { label: 'Nhà cung cấp', name: 'name', widthratio: 55 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#qybm").val($thistr.attr('data-py'));
@@ -127,47 +127,47 @@
             postData: getPostData(),
             colModel: [
                 {
-                    label: '订单类型', name: 'DDLX', width: 100, align: 'left', formatter: function (val) {
+                    label: 'Loại đơn hàng', name: 'DDLX', width: 100, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumCGDLX", val);
                     }
                 },
                 {
-                    label: '单据填写方', name: 'DJTXF', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Bên lập chứng từ', name: 'DJTXF', width: 80, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumDJTXF", val);
                     }
                 },
-                { label: '采购单明细编号', name: 'DDMXBH', width: 150, align: 'left' },
-                { label: '采购单号', name: 'DDBH', width: 150, align: 'left' },
-                { label: '顺序号', name: 'SXH', width: 80, align: 'left' },
-                { label: '医院计划单号', name: 'YYJHDH', width: 80, align: 'left' },
-                { label: '企业编码', name: 'QYBM', width: 120, align: 'left' },
-                { label: '配送点编码', name: 'PSDBM', width: 80, align: 'left' },
+                { label: 'Số chi tiết đơn mua sắm', name: 'DDMXBH', width: 150, align: 'left' },
+                { label: 'Số đơn mua sắm', name: 'DDBH', width: 150, align: 'left' },
+                { label: 'Số thứ tự', name: 'SXH', width: 80, align: 'left' },
+                { label: 'Số kế hoạch của bệnh viện', name: 'YYJHDH', width: 80, align: 'left' },
+                { label: 'Mã doanh nghiệp', name: 'QYBM', width: 120, align: 'left' },
+                { label: 'Mã điểm giao hàng', name: 'PSDBM', width: 80, align: 'left' },
                 {
-                    label: '采购类型', name: 'CGLX', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Loại mua sắm', name: 'CGLX', width: 80, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumCGLX", val);
                     }
                 },
-                { label: '耗材统编代码', name: 'HCTBDM', width: 80, align: 'left' },
-                { label: '耗材细分代码', name: 'HCXFDM', width: 80, align: 'left' },
-                { label: '医院本地代码', name: 'YYBDDM', width: 80, align: 'left' },
-                { label: '品名', name: 'PM', width: 80, align: 'left' },
-                { label: '规格', name: 'GG', width: 80, align: 'left' },
-                { label: '型号', name: 'XH', width: 80, align: 'left' },
-                { label: '规格型号说明', name: 'GGXHSM', width: 80, align: 'left' },
-                { label: '单位', name: 'DW', width: 80, align: 'left' },
-                { label: '生产企业名称', name: 'SCQY', width: 80, align: 'left' },
-                { label: '采购规格型号', name: 'CGGGXH', width: 80, align: 'left' },
-                { label: '配送说明', name: 'PSSM', width: 80, align: 'left' },
-                { label: '采购数量', name: 'CGSL', width: 80, align: 'left' },
-                { label: '采购单价', name: 'CGDJ', width: 80, align: 'left' },
+                { label: 'Mã thống nhất vật tư tiêu hao', name: 'HCTBDM', width: 80, align: 'left' },
+                { label: 'Mã phân loại vật tư tiêu hao', name: 'HCXFDM', width: 80, align: 'left' },
+                { label: 'Mã nội bộ bệnh viện', name: 'YYBDDM', width: 80, align: 'left' },
+                { label: 'Tên mặt hàng', name: 'PM', width: 80, align: 'left' },
+                { label: 'Quy cách', name: 'GG', width: 80, align: 'left' },
+                { label: 'Mẫu mã', name: 'XH', width: 80, align: 'left' },
+                { label: 'Giải thích quy cách mẫu mã', name: 'GGXHSM', width: 80, align: 'left' },
+                { label: 'Đơn vị', name: 'DW', width: 80, align: 'left' },
+                { label: 'Tên doanh nghiệp sản xuất', name: 'SCQY', width: 80, align: 'left' },
+                { label: 'Quy cách mẫu mã mua sắm', name: 'CGGGXH', width: 80, align: 'left' },
+                { label: 'Giải thích giao hàng', name: 'PSSM', width: 80, align: 'left' },
+                { label: 'Số lượng mua sắm', name: 'CGSL', width: 80, align: 'left' },
+                { label: 'Đơn giá mua sắm', name: 'CGDJ', width: 80, align: 'left' },
                 {
-                    label: '是否加急', name: 'SFJJ', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Có gấp không', name: 'SFJJ', width: 80, align: 'left', formatter: function (val) {
                         switch (val) {
                             case "0":
-                                return "无需加急"
+                                return "Không cần gấp"
                                 break;
                             case "1":
-                                return "需要加急"
+                                return "Cần gấp"
                                 break;
                             default:
                                 break;
@@ -175,34 +175,34 @@
                     }
                 },
                 {
-                    label: '配送要求', name: 'PSYQ', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Yêu cầu giao hàng', name: 'PSYQ', width: 80, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumPSYQ", val);
                     }
                  },
-                { label: '仓位信息', name: 'CWXX', width: 80, align: 'left' },
+                { label: 'Thông tin vị trí kho', name: 'CWXX', width: 80, align: 'left' },
                 {
-                    label: '多次配送标识', name: 'DCPSBS', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Dấu hiệu giao hàng nhiều lần', name: 'DCPSBS', width: 80, align: 'left', formatter: function (val) {
                         switch (val) {
                             case "0":
-                                return "不允许"
+                                return "Không cho phép"
                                 break;
                             case "1":
-                                return "允许"
+                                return "Cho phép"
                                 break;
                             default:
                                 break;
                         }
                     }
                 },
-                { label: '备注说明', name: 'BZSM', width: 80, align: 'left' },
+                { label: 'Giải thích ghi chú', name: 'BZSM', width: 80, align: 'left' },
                 {
-                    label: '采购方式', name: 'CGFS', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Phương thức mua sắm', name: 'CGFS', width: 80, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumCGFS", val);
                     }
                  },
-                { label: '系统编码', name: 'XTBM', width: 80, align: 'left' },
+                { label: 'Mã hệ thống', name: 'XTBM', width: 80, align: 'left' },
                 {
-                    label: '是否含伴随服务', name: 'SFHBSFW', width: 80, align: 'left', formatter: function (val) {
+                    label: 'Có kèm dịch vụ đi kèm không', name: 'SFHBSFW', width: 80, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumSFHBSFW", val);
                     }
                 },
@@ -223,17 +223,17 @@
         });
     }
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#djtxf").val() == "" || $("#djtxf").val() == null) {
-            $.modalAlert("请选择单据填写方", 'warning');
+            $.modalAlert("Vui lòng chọn bên lập chứng từ", 'warning');
             return ;
         }
         var kssj = new Date($("#kssj").val());
         var jssj = new Date($("#jssj").val());
         if (getDaysBetween(kssj,jssj) > 30) {
 
-            $.modalAlert("日期不能超过30天", 'warning');
+            $.modalAlert("Ngày không được vượt quá30 ngày", 'warning');
             return;
         }
         gridList();

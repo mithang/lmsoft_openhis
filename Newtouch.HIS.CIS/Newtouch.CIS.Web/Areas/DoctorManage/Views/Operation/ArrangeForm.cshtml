@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.title = "ArrangeForm";
     Layout = "~/Views/Shared/_Form.cshtml";
     var OperationAssistant = ViewBag.OperationAssistant as int?;
@@ -41,46 +41,46 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle">住院号：</td>
+                <td class="formTitle">Số nhập viện:</td>
                 <td class="formValue">
                     <label id="zyh" name="zyh">1</label>
                     <input type="hidden" id="operationId" />
                 </td>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue">
                     <label id="xm" name="xm">张三</label>
                 </td>
-                <td class="formTitle">手术：</td>
+                <td class="formTitle">Phẫu thuật:</td>
                 <td class="formValue" colspan="2">
                     <label id="ssmc" name="ssmc">阑尾炎切除</label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>手术日期：</td>
+                <td class="formTitle"><span class="required">*</span>Phẫu thuậtNgày:</td>
                 <td class="formValue" colspan="2">
                     <input id="rq" name="rq" type="text" width="120" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
                 </td>
                 <td></td>
-                <td class="formTitle"><span class="required">*</span>手术地点：</td>
+                <td class="formTitle"><span class="required">*</span>Phẫu thuậtĐịa điểm:</td>
                 <td class="formValue" colspan="2">
                     <select id="ssdd" name="ssdd" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">加急：</td>
+                <td class="formTitle">Khẩn:</td>
                 <td class="formValue" colspan="2">
                     <label class="radio-inline">
-                        <input type="radio" name="urgent" value="1">是
+                        <input type="radio" name="urgent" value="1">Có
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="urgent" value="0" checked="checked">否
+                        <input type="radio" name="urgent" value="0" checked="checked">Không
                     </label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>手术医生：</td>
+                <td class="formTitle"><span class="required">*</span>Phẫu thuậtBác sĩ:</td>
                 <td class="formValue">
                     <input type="text" id="ssys" name="ssys" class="form-control form-an" onblur="getValue('ssys');" />
                     <input type="hidden" id="hssys" name="hssys" /><input type="hidden" id="hssysName" name="hssysName" />
@@ -88,15 +88,15 @@
             </tr>
             <tr id="tr_sszs"></tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>麻醉方式：</td>
+                <td class="formTitle"><span class="required">*</span>Gây mêPhương thức:</td>
                 <td class="formValue">
                     <select id="mzfs" name="mzfs" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle" style="vertical-align:top;">注意事项：</td>
+                <td class="formTitle" style="vertical-align:top;">Lưu ý:</td>
                 <td class="formValue" colspan="3">
                     <textarea id="remark" name="remark" rows="5" class="form-an form-control"></textarea>
 
@@ -194,15 +194,15 @@
                 return resultObjArr;
 
             },
-            caption: "医生",
+            caption: "Bác sĩ",
             colModel: [
         {
-            label: '工号', name: 'StaffGh', widthratio: 25
+            label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
         },
         {
-            label: '名称', name: 'StaffName', widthratio: 25
+            label: 'Tên', name: 'StaffName', widthratio: 25
         },
-        { label: '拼音', name: 'StaffPY', widthratio: 25 }
+        { label: 'Pinyin', name: 'StaffPY', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#" + inputId).attr("data-label", $thistr.find("td:eq(0)").html());
@@ -231,7 +231,7 @@
 
     function setSSzsHtml(){
         var OperationAssistant = @OperationAssistant;
-        var content='<td class="formTitle">手术助手：</td><td class="formValue" colspan="5">';
+        var content='<td class="formTitle">Trợ thủ phẫu thuật:</td><td class="formValue" colspan="5">';
         for (var i = 1; i <= OperationAssistant; i++) {
             content +='<input type="text" id="sszs' + i + '" class="form-control form-an zs" onblur="getValue(\'sszs'+i+
                 '\');" />'+
@@ -247,7 +247,7 @@
 
     function AcceptClick(callback) {
         if ($.trim(keyValue) == '') {
-            $.modalAlert("请选择手术医嘱", "warning");
+            $.modalAlert("Vui lòng chọnPhẫu thuậtY lệnh", "warning");
             return;
         }
         if (!$("#form1").formValid()) {
@@ -258,30 +258,30 @@
         data.zyh = $('#zyh').html();
         var ssrq = $("#rq").val();
         if ($.trim(ssrq) == "") {
-            $.modalAlert("请选择手术日期", "warning");
+            $.modalAlert("Vui lòng chọnPhẫu thuậtNgày", "warning");
             return;
         }
         data.aprq = $("#rq").val();
         var ssdd = $("#ssdd").val();
         if ($.trim(ssdd) == "") {
-            $.modalAlert("请填写手术地点", "warning");
+            $.modalAlert("Vui lòng điềnPhẫu thuậtĐịa điểm", "warning");
             return;
         }
         data.ssAddr = ssdd;
         data.urgent = $('input:radio[name=urgent]:checked').val();
         if (!data.urgent || $.trim(data.urgent) == "") {
-            $.modalAlert("请选择是否加急", "warning");
+            $.modalAlert("Vui lòng chọnCó hay khôngKhẩn", "warning");
             return;
         }
         //字典
         data.surgeonId = $('#ssys').attr('data-label');
         if (!data.surgeonId || $.trim(data.surgeonId) == "") {
-            $.modalAlert("请选择手术医生", "warning");
+            $.modalAlert("Vui lòng chọnPhẫu thuậtBác sĩ", "warning");
             return;
         }
         data.surgeonName = $('#ssys').val();
         if (!data.surgeonName || $.trim(data.surgeonName) == "") {
-            $.modalAlert("请重新选择手术医生", "warning");
+            $.modalAlert("Vui lòng chọn lạiPhẫu thuậtBác sĩ", "warning");
             return;
         }
 
@@ -308,7 +308,7 @@
         data.assistantName = sszsNames;
         data.anesthesiaType = $("#mzfs").val();
         if (!data.anesthesiaType || $.trim(data.anesthesiaType) == "") {
-            $.modalAlert("请选择麻醉方式", "warning");
+            $.modalAlert("Vui lòng chọnGây mêPhương thức", "warning");
             return;
         }
         data.remark = $('#remark').val();

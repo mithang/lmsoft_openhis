@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
+    var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
 <div class="topPanel">
@@ -11,13 +11,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -52,12 +52,12 @@
             url: "/SystemManage/SysModule/GetTreeGridJson",
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '英文名称', name: 'EnName', width: 180, align: 'left' },
-                { label: '名称', name: 'Name', width: 180, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Tên tiếng Anh', name: 'EnName', width: 180, align: 'left' },
+                { label: 'Tên', name: 'Name', width: 180, align: 'left' },
                 {
-                    label: "图标", name: "Icon", width: 80, align: "center", formatter: function (cellvalue) {
+                    label: "Biểu tượng", name: "Icon", width: 80, align: "center", formatter: function (cellvalue) {
                         if (cellvalue) {
                             return '<i class=\"' + cellvalue + '\"></i>';
                         }
@@ -66,38 +66,38 @@
                         }
                     }
                 },
-                { label: '连接', name: 'UrlAddress', width: 260, align: 'left' },
+                { label: 'Kết nối', name: 'UrlAddress', width: 260, align: 'left' },
                 {
-                    label: '目标', name: 'Target', width: 100, align: 'center',
+                    label: 'Đích', name: 'Target', width: 100, align: 'center',
                     formatter: function (cellvalue) {
                         if (cellvalue == "expand") {
-                            return "无页面";
+                            return "Không có trang";
                         }
                         else if (cellvalue == "iframe") {
-                            return "框架页";
+                            return "Trang khung";
                         }
                         else if (cellvalue == "open") {
-                            return "弹出页";
+                            return "Trang bật lên";
                         }
                         else if (cellvalue == "blank") {
-                            return "新窗口";
+                            return "Cửa sổ mới";
                         }
                         else if (cellvalue == "subpage") {
-                            return "子页面";
+                            return "Trang con";
                         }
                         else if (cellvalue == "toplocation") {
-                            return "当前窗口";
+                            return "Cửa sổ hiện tại";
                         }
                     }
                 },
-                { label: '外部应用', name: 'AppId', width: 300, align: 'left' },
-                { label: '是否仅当前机构', name: 'OrganizeId', width: 100, align: 'left', formatter: function (cellvalue) { return !!cellvalue ? "是" : ""; } },
-                { label: '介绍', name: 'Description', width: 300, align: 'left' },
-                    { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ứng dụng bên ngoài', name: 'AppId', width: 300, align: 'left' },
+                { label: 'Có chỉ tổ chức hiện tại không', name: 'OrganizeId', width: 100, align: 'left', formatter: function (cellvalue) { return !!cellvalue ? "Có" : ""; } },
+                { label: 'Giới thiệu', name: 'Description', width: 300, align: 'left' },
+                    { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Sửa đổi lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa đổi lần cuối', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ]
         });
         $("#btn_search").click(function () {
@@ -116,7 +116,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增菜单",
+            title: "Thêm mới menu",
             url: "/SystemManage/SysModule/Form",
             width: "700px",
             height: "440px",
@@ -133,17 +133,17 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(opr.OrganizeId) && opr.OrganizeId != opr.TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改菜单",
+            title: "Sửa menu",
             url: "/SystemManage/SysModule/Form?keyValue=" + keyValue,
             width: "700px",
             height: "440px",
@@ -160,12 +160,12 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(opr.OrganizeId) && opr.OrganizeId != opr.TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }
         $.deleteForm({
