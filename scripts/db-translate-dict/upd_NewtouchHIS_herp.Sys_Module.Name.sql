@@ -1,0 +1,26 @@
+-- DB translation dict pass: NewtouchHIS_herp.Sys_Module.Name (applied live; re-runnable; keyed UPDATE by PK)
+USE [NewtouchHIS_herp];
+UPDATE [Sys_Module] SET [Name] = 'Bao tri phuong thuc nhap xuat kho' WHERE [Id] = N'387dad02-df13-4a7f-a976-feda0e23595c';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly nhap xuat kho' WHERE [Id] = N'73726891-adf2-4647-9d4a-7e1783819d79';
+UPDATE [Sys_Module] SET [Name] = 'Kiem ke kho' WHERE [Id] = N'd5d5f6da-6a80-4567-8a47-d11217bbae6a';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly kho' WHERE [Id] = N'16559767-63df-49df-a3be-0d5d7e636abe';
+UPDATE [Sys_Module] SET [Name] = 'Tra cuu vat tu cua kho nay' WHERE [Id] = N'c3d81233-9e1b-41ca-8310-f9d54a628859';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri nha cung cap' WHERE [Id] = N'ec43bc34-b40f-4a9c-9f1b-01fa432eaafd';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri giay phep' WHERE [Id] = N'e941c0ef-7050-435a-99a3-7d0b5a6ab331';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri loai giay phep' WHERE [Id] = N'515f6c93-7b01-4883-989c-3446f3d50384';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly tra hang (YY113+YY114)' WHERE [Id] = N'f9dea3d0-564c-45d3-b550-0b115299a57e';
+UPDATE [Sys_Module] SET [Name] = 'Nghiem thu hoa don (YY156+YY132)' WHERE [Id] = N'08079600-78b0-468c-8944-92b0d1dba925';
+UPDATE [Sys_Module] SET [Name] = 'Nghiem thu giao hang (YY153+YY131)' WHERE [Id] = N'009f7081-944b-4c77-97f2-7ab3110b80c1';
+UPDATE [Sys_Module] SET [Name] = 'Lay thong tin doanh nghiep (YY164)' WHERE [Id] = N'aa696c70-e69b-42fa-b6cc-97cbdb7cc8da';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri chu so huu giay phep' WHERE [Id] = N'd4c6869b-966f-4d5a-b281-d6a8d151cbf2';
+UPDATE [Sys_Module] SET [Name] = 'Nhap kho ngoai' WHERE [Id] = N'c353e736-74dc-4d8f-8940-274882f5fb20';
+UPDATE [Sys_Module] SET [Name] = 'Xuat kho toi khoa' WHERE [Id] = N'a76bb136-bd1e-413b-a9d5-de78be5222d0';
+UPDATE [Sys_Module] SET [Name] = 'Truyen bao diem phan phoi (YY101)' WHERE [Id] = N'3874e87f-7bb4-4643-ae03-a8866d67d438';
+UPDATE [Sys_Module] SET [Name] = 'Tra cuu phieu giao hang (YY154+YY155)' WHERE [Id] = N'd4310b15-9f92-4881-9039-4ee34634a990';
+UPDATE [Sys_Module] SET [Name] = 'Lap ke hoach mua sam' WHERE [Id] = N'2314f309-85b9-4b65-9151-a167bf1c387f';
+UPDATE [Sys_Module] SET [Name] = 'Ke hoach mua sam cua toi' WHERE [Id] = N'80caf0b0-1fd4-49e7-b755-e33f7ad1c546';
+UPDATE [Sys_Module] SET [Name] = 'Ke hoach mua sam (canh bao ton kho)' WHERE [Id] = N'56da2c77-88ce-4023-aedc-522785def9ba';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri kho' WHERE [Id] = N'018666ee-4818-4e97-b156-fe555ea32f90';
+UPDATE [Sys_Module] SET [Name] = 'Lay chi tiet tra hang (YY152)' WHERE [Id] = N'bce87155-f866-464b-b022-be8aa32b3d34';
+UPDATE [Sys_Module] SET [Name] = 'Trang thai phieu giao hang (YY161)' WHERE [Id] = N'e92ef758-0693-4b89-b429-9a06ef0cf8b7';
+UPDATE [Sys_Module] SET [Name] = 'Trang thai chi tiet tra hang (YY162)' WHERE [Id] = N'a7a17a17-2d1a-4142-bc4a-e102cd0f5a73';

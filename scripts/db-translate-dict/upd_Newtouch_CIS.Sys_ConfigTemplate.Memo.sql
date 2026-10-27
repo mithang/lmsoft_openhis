@@ -1,0 +1,28 @@
+-- DB translation dict pass: Newtouch_CIS.Sys_ConfigTemplate.Memo (applied live; re-runnable; keyed UPDATE by PK)
+USE [Newtouch_CIS];
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'true: in so benh an; false: in giay A4' WHERE [Id] = N'1C079AC0-B8CE-4ED8-BF85-86A92A03FD2C';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Cach tra cuu tham so cho kham Ngoai tru co chen du lieu theo view cung cap khong: 0 la tat, 1 la bat' WHERE [Id] = N'1D0243CD-16CC-4C4C-AA14-B4D09F3B189D';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'ON: khoa chan doan xuat khu dien, OFF: tat thao tac (can dong bo chan doan tu trang dau benh an trong benh an dien tu)' WHERE [Id] = N'20688964-C237-4EC1-9BD3-FF4B06B80265';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Mac dinh ket noi Sett.API' WHERE [Id] = N'2126dc6f-f583-40c7-9443-9356413658d3';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Phan tach bang dau , vi du 00,03' WHERE [Id] = N'3091AAA9-F529-4D47-B04E-BF064A807358';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'In don xin kiem tra (khong phai don thuoc)' WHERE [Id] = N'319f701b-1f57-495d-bae1-62bf7c3ded32';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '0 dai dien nhap theo tieu chuan quoc gia, 1 dai dien nhap tu dinh nghia' WHERE [Id] = N'4e26019c-f573-4a62-a746-17028187f369';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Phan tach bang dau ,: cap 1, cap 2, cap 3, ky thuat dac biet' WHERE [Id] = N'6a04b9e9-2697-4cd4-b73b-8c55b0c1e029';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Chuoi ma tan suat phan tach, vi du: 00' WHERE [Id] = N'6c09b6c0-450e-4164-9762-4a9b9a4aae79';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '1 nghia la thu mot ngay, 0 nghia la khong thu, 0.5 nghia la thu nua ngay' WHERE [Id] = N'81fb1298-1cb9-45a3-a74d-2affcd28ac77';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '1 nghia la thu mot ngay, 0 nghia la khong thu, 0.5 nghia la thu nua ngay' WHERE [Id] = N'8deef7e5-dc45-47f7-b71b-005e60bf73ee';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Lop noi thuoc co dung logic ton kho khong' WHERE [Id] = N'95DDA8BB-B4EB-4688-90A2-D4BCCA9D9FEA';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Ma chan doan phan tach bang dau ,' WHERE [Id] = N'96064747-5E57-4E3F-93D7-957FE2F05680';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'false hien thi, true an, mac dinh false' WHERE [Id] = N'97c037e6-cff7-4296-9a95-5efa3815daa0';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Ten, ma - dau phay tieng Anh' WHERE [Id] = N'A19C6C9D-84EF-4037-8DF9-46A894B20B54';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '1 thi hien thi, cac gia tri khac khong hien thi' WHERE [Id] = N'A748B2FD-64D9-4B67-9699-D9EDEBE43325';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'false: khong, true: co' WHERE [Id] = N'BB0BC4C6-B956-4AFE-8A13-94BA6B323CFF';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Duong dan chuong trinh xem PACS cua ben thu ba' WHERE [Id] = N'C2207156-56A1-4233-B7ED-C9A871FDF286';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '0 nghia la tat, 1 nghia la bat, mac dinh 0' WHERE [Id] = N'C9A9EFE3-9DDC-4489-8E7D-F68AA7D4FF13';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'times nghia la so lan, day nghia la so ngay. Mac dinh lam tron theo ngay' WHERE [Id] = N'c9bc6c42-ca50-4019-b118-2d340339753c';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Lieu tri lieu moi lan hoac so luong' WHERE [Id] = N'c9e7fb79-f519-47de-a3e7-242ba0b83927';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '1 nghia la thu mot ngay, 0 nghia la khong thu, 0.5 nghia la thu nua ngay' WHERE [Id] = N'd23bc90c-3b56-4b4c-8b0b-830fede9d064';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = '1 nghia la thu mot ngay, 0 nghia la khong thu, 0.5 nghia la thu nua ngay' WHERE [Id] = N'd51a2ddf-281c-4894-8140-12e23c17e302';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'ture: nhay; false: khong' WHERE [Id] = N'DF5B7C15-0085-4A29-AB4B-9F892FC310D6';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Chuoi ma hang muc thu phi phan tach bang dau ,' WHERE [Id] = N'E42D3495-4A59-4A92-B846-60518760EF4F';
+UPDATE [Sys_ConfigTemplate] SET [Memo] = 'Chuoi ma cach dung phan tach bang dau ,' WHERE [Id] = N'FA297CC2-EB45-45C1-83F8-E043E7CFAC96';

@@ -1,0 +1,27 @@
+-- DB translation dict pass: NewtouchHIS_PDS.Sys_Module.Name (applied live; re-runnable; keyed UPDATE by PK)
+USE [NewtouchHIS_PDS];
+UPDATE [Sys_Module] SET [Name] = 'Xuat kho thuoc' WHERE [Id] = N'7';
+UPDATE [Sys_Module] SET [Name] = 'Thong ke xuat kho xep thuoc' WHERE [Id] = N'0e6811c3-d835-4a68-812d-44ed224f452e';
+UPDATE [Sys_Module] SET [Name] = 'Thong ke xuat kho thuoc' WHERE [Id] = N'8ec08ca2-e83f-4594-a196-5944ebd81835';
+UPDATE [Sys_Module] SET [Name] = 'Nha thuoc phat thuoc - tra hang' WHERE [Id] = N'32';
+UPDATE [Sys_Module] SET [Name] = 'Tra thuoc Noi tru (moi)' WHERE [Id] = N'5ef9df3f-b01a-4cdd-ab8a-80093dfaf875';
+UPDATE [Sys_Module] SET [Name] = 'Tra cuu phat thuoc Noi tru (moi)' WHERE [Id] = N'c747c0dc-6f48-4efa-8bcd-b7fcbdc642e8';
+UPDATE [Sys_Module] SET [Name] = 'Tra cuu tinh hinh su dung khang sinh' WHERE [Id] = N'8e031b60-7bcf-469e-9c98-5f9d14c9ab44';
+UPDATE [Sys_Module] SET [Name] = 'Chi tiet xuat kho thuoc' WHERE [Id] = N'ef841c50-f90f-42e0-a967-55d428cd71c4';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly nhap xuat kho thuoc' WHERE [Id] = N'837ac5a2-7a9d-46b3-a249-f81ab47a74d1';
+UPDATE [Sys_Module] SET [Name] = 'Phan bo don xuat kho theo chung loai va khoa' WHERE [Id] = N'40ce4986-9fb9-430b-9ac5-e53f18ee8055';
+UPDATE [Sys_Module] SET [Name] = 'Thong ke so luong phat thuoc theo y lenh' WHERE [Id] = N'200bedb3-37fe-48d6-a051-0f2125db71d0';
+UPDATE [Sys_Module] SET [Name] = 'Tinh hinh su dung vat tu' WHERE [Id] = N'b08d2a8f-2f05-4964-930e-82c1acf3b417';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly han su dung thuoc' WHERE [Id] = N'89be0591-db88-49c0-a26b-71f9d0c5848a';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly han su dung thuoc' WHERE [Id] = N'9ade9d51-fdbf-46b3-a64b-b65e5a21ba66';
+UPDATE [Sys_Module] SET [Name] = 'Cua so nha thuoc' WHERE [Id] = N'cff1e074-4684-49d8-864a-82df90a50572';
+UPDATE [Sys_Module] SET [Name] = 'Xin linh - dieu chuyen' WHERE [Id] = N'61a12929-bf84-400e-9736-cf3c24d28347';
+UPDATE [Sys_Module] SET [Name] = 'Nhap kho do dieu chuyen' WHERE [Id] = N'bf37dfbb-f296-43a2-9e43-d331d8d95bc9';
+UPDATE [Sys_Module] SET [Name] = 'Thong ke tinh hinh su dung thuoc' WHERE [Id] = N'f3fe951a-5097-4315-920c-d3c6954a831a';
+UPDATE [Sys_Module] SET [Name] = 'Thong ke tong hop nhap xuat kho' WHERE [Id] = N'bc9509c8-7b2b-4715-b5e1-6f42f82d94f2';
+UPDATE [Sys_Module] SET [Name] = 'Truyen bao diem phan phoi (YY001)' WHERE [Id] = N'4cb370d2-ad82-465f-ba02-546fc60245a8';
+UPDATE [Sys_Module] SET [Name] = 'Chi tiet hoa don duoc vu anh sang' WHERE [Id] = N'8ebf3400-415d-4248-a018-55b60e4e7b58';
+UPDATE [Sys_Module] SET [Name] = 'Tieu ke thuoc thang' WHERE [Id] = N'2a4e1782-e6bc-480a-aa1f-7a425e9ed9a4';
+UPDATE [Sys_Module] SET [Name] = 'Phan tich gia thuoc' WHERE [Id] = N'880bfab6-5675-4200-bd68-aac859b52b58';
+UPDATE [Sys_Module] SET [Name] = 'Tra cuu ton kho thuoc trong ngay' WHERE [Id] = N'882e5794-10d4-43a1-959d-01df243a0bf2';
+UPDATE [Sys_Module] SET [Name] = 'Bao cao dang ky so luong don thuoc Ngoai tru' WHERE [Id] = N'586d09b0-7e6e-483e-9a5c-cbde022776bd';

@@ -1,0 +1,27 @@
+-- DB translation dict pass: NewtouchHIS_Base.xt_yp.ypmc (applied live; re-runnable; keyed UPDATE by PK)
+USE [NewtouchHIS_Base];
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem Glucose 5% (150ml nhua)' WHERE [ypId] = 865;
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem Glucose 5% (nhua lon)' WHERE [ypId] = 846;
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem Glucose 5% (nhua)' WHERE [ypId] = 863;
+UPDATE [xt_yp] SET [ypmc] = 'A Le / Vien Atorvastatin calci' WHERE [ypId] = 873;
+UPDATE [xt_yp] SET [ypmc] = 'Duoc lieu 1' WHERE [ypId] = 1120;
+UPDATE [xt_yp] SET [ypmc] = 'Duoc lieu 2' WHERE [ypId] = 1121;
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem Sai Ho' WHERE [ypId] = 836;
+UPDATE [xt_yp] SET [ypmc] = 'Vien Irbesartan + Hydrochlorothiazide (An Bo Nuo)' WHERE [ypId] = 831;
+UPDATE [xt_yp] SET [ypmc] = 'Vien Fosinopril natri (Meng Nuo)' WHERE [ypId] = 830;
+UPDATE [xt_yp] SET [ypmc] = 'Phu phien (Hac thuan phien)' WHERE [ypId] = 942;
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem Amino acid phuc phuong 18AA' WHERE [ypId] = 844;
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem phuc phuong Aminolinbarbital' WHERE [ypId] = 860;
+UPDATE [xt_yp] SET [ypmc] = 'Vien ngam Sacandra phuc phuong' WHERE [ypId] = 847;
+UPDATE [xt_yp] SET [ypmc] = 'Vien Dan Sam phuc phuong (nho giot)' WHERE [ypId] = 881;
+UPDATE [xt_yp] SET [ypmc] = 'Vien Dan Sam phuc phuong' WHERE [ypId] = 876;
+UPDATE [xt_yp] SET [ypmc] = 'Vien nang mem Hoac Huong Chinh Khi' WHERE [ypId] = 850;
+UPDATE [xt_yp] SET [ypmc] = 'Nuoc Hoac Huong Chinh Khi' WHERE [ypId] = 852;
+UPDATE [xt_yp] SET [ypmc] = 'Vien tieu thuc kien vi / nguoi lon' WHERE [ypId] = 855;
+UPDATE [xt_yp] SET [ypmc] = 'Vien giam dau (nho)' WHERE [ypId] = 870;
+UPDATE [xt_yp] SET [ypmc] = 'Tam that (80 cu)' WHERE [ypId] = 915;
+UPDATE [xt_yp] SET [ypmc] = 'Vien cuu tam nhanh' WHERE [ypId] = 872;
+UPDATE [xt_yp] SET [ypmc] = 'Vien Vitamin C Ngan Kieu' WHERE [ypId] = 840;
+UPDATE [xt_yp] SET [ypmc] = 'Bang dan Yunnan Baiyao (mong nhe thoang khi)' WHERE [ypId] = 882;
+UPDATE [xt_yp] SET [ypmc] = 'Binh xit Yunnan Baiyao' WHERE [ypId] = 883;
+UPDATE [xt_yp] SET [ypmc] = 'Thuoc tiem Yan Hu Ning (lon)' WHERE [ypId] = 875;

@@ -1,0 +1,22 @@
+-- DB translation dict pass: Newtouch_MRMS.mr_dic_sfdlrelbafee.hissfdlmc (applied live; re-runnable; keyed UPDATE by PK)
+USE [Newtouch_MRMS];
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Hang muc dich vu y te khac' WHERE [Id] = N'192A9498-03F3-4272-BA1A-DE55D082EBAA';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Hinh anh y hoc' WHERE [Id] = N'35CDC2A6-6FAF-4251-AABA-E7EB74F0712C';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Kiem tra benh ly' WHERE [Id] = N'3BE53BD2-E190-4C7E-A0B0-63B018A81326';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Lieu phap dac biet Y hoc co truyen' WHERE [Id] = N'455621C2-C78B-4FF7-96AF-D4362CB85F23';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Dich vu y te cong dong va du phong' WHERE [Id] = N'734E21D2-B5B4-4F3A-923F-B98A3A028542';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Lieu phap xoa bop' WHERE [Id] = N'7A031BFF-B3EE-4F01-BCCE-9BCD8545D40A';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Thao tac ho tro' WHERE [Id] = N'7ECCC843-D7ED-4F9A-B234-E0CDA722B014';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Dich vu y te' WHERE [Id] = N'84B725A6-CFB5-44AB-9C2A-7E7CC46A9F5A';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Cham cuu' WHERE [Id] = N'9863F7FE-BE3F-439F-AE25-A4AD9A91B469';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Y hoc hat nhan' WHERE [Id] = N'9F4D888F-9678-4A95-B76D-6BF69300F6DD';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Tong hop Y hoc co truyen' WHERE [Id] = N'A7891425-5979-4E98-9D9B-639187C8695A';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Chan doan hinh anh hoc' WHERE [Id] = N'B5EE6C7D-9138-4319-8CF5-C5A3762918F0';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Cuu' WHERE [Id] = N'B9B3C8D5-485C-4EFD-91C9-22421383FE6D';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Xa tri' WHERE [Id] = N'C6B77D61-E42F-4E60-98DF-6D4179FAA3D3';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Dieu tri ngoai Y hoc co truyen' WHERE [Id] = N'C98E31F9-9DDF-4860-AC88-0CEC1718E904';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Chan doan he thong' WHERE [Id] = N'D602661A-5C01-43F0-AF6A-1F9D6B8B9C58';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Co xuong Y hoc co truyen' WHERE [Id] = N'D6B49962-90AA-4158-A66F-0125613E3710';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Hau mon - truc trang Y hoc co truyen' WHERE [Id] = N'D78B3192-F058-4F01-98B0-687B4B69046B';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Ghep nhom mau' WHERE [Id] = N'E7D76695-5309-43FA-BB6D-C2645AF8B272';
+UPDATE [mr_dic_sfdlrelbafee] SET [hissfdlmc] = 'Chan doan can thiep' WHERE [Id] = N'EF9A5A84-6C4F-4904-AD6D-7ACF553A36B1';

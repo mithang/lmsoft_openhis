@@ -1,0 +1,27 @@
+-- DB translation dict pass: NewtouchHIS_Base.xt_kssType.typeName (applied live; re-runnable; keyed UPDATE by PK)
+USE [NewtouchHIS_Base];
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Gentamicin' WHERE [Id] = N'047e2c47-ed0b-4257-8a77-8bbbed09573a';
+UPDATE [xt_kssType] SET [typeName] = 'Toi' WHERE [Id] = N'095EDF56-4170-4B68-A6EE-2E858BCD6F04';
+UPDATE [xt_kssType] SET [typeName] = 'Doi' WHERE [Id] = N'0961DF1E-310C-4A96-8BA7-AABBF463664A';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Fosfomycin' WHERE [Id] = N'22658a7c-0e7c-4fb3-ac14-2699718c1223';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Sulfonamide' WHERE [Id] = N'3a9e5c0f-b7ec-4d6d-a922-b4d5d8724aa7';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Aminoglycoside' WHERE [Id] = N'3fa080cd-8f1c-43b9-9081-9cb69bc9819d';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Lincosamide' WHERE [Id] = N'4c8d5504-3e3d-4bbd-942d-4ab1086bd2e5';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Amide' WHERE [Id] = N'51edbf96-c80c-4f3f-89e6-6d70ed8285e5';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Cephalosporin' WHERE [Id] = N'5644d9dd-8054-41a4-bf3f-a1afb2bb4dd7';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Beta-lactam' WHERE [Id] = N'5c872322-10b5-4a02-9e6f-60051f01e30a';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Chloramphenicol' WHERE [Id] = N'5c91fdcc-f1cf-4955-8cb2-4aa8854115a7';
+UPDATE [xt_kssType] SET [typeName] = 'Vien hat Amoxicillin' WHERE [Id] = N'5eee4a96-35e1-4ae3-9557-ac048d356cac';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Tetracycline' WHERE [Id] = N'789add59-f429-478b-a40d-3a1d9ad515c0';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom chong nam' WHERE [Id] = N'8e606c41-fc6c-4a62-8634-25fdc3af275f';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Cephalosporin va Carbapenem' WHERE [Id] = N'967f64f8-6fec-4b00-9d8e-4b38e579b864';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Tetracycline' WHERE [Id] = N'9b2e4444-054b-4c63-acd4-dddb48cfe2be';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Cephalosporin va Carbapenem' WHERE [Id] = N'a304c13c-0cc9-46e3-8023-2946da1e620f';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Macrolide' WHERE [Id] = N'b40968a1-1846-49e9-a77c-1a38bfed1bb7';
+UPDATE [xt_kssType] SET [typeName] = 'Vien Amoxicillin + Clavulanate kali' WHERE [Id] = N'bbf6dfc8-2ec8-4665-8814-a0f9fbe5b4fb';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Carbapenem' WHERE [Id] = N'c5bb6c34-bb9b-44d7-893b-7511ac24a815';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Glycopeptide' WHERE [Id] = N'ea964147-62eb-447f-88a0-863dcf4419a2';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Macrolide' WHERE [Id] = N'ef457067-f0fa-43a0-a745-813c97170955';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Cephalosporin' WHERE [Id] = N'f21e1e33-55af-45c9-b238-b4dc0c431f8e';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom Macrolide' WHERE [Id] = N'f84dd629-f665-42d4-9e92-4435f0832e2c';
+UPDATE [xt_kssType] SET [typeName] = 'Nhom chong ky khi' WHERE [Id] = N'fd5bea35-06c5-4295-8970-f39286ba1338';

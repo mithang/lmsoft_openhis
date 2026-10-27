@@ -1,0 +1,26 @@
+-- DB translation dict pass: Newtouch_CIS.mz_cyzd.zdmc (applied live; re-runnable; keyed UPDATE by PK)
+USE [Newtouch_CIS];
+UPDATE [mz_cyzd] SET [zdmc] = 'Thay doi mau rang trong thoi ky hinh thanh rang' WHERE [Id] = N'00DA8B82-7CE5-4C6E-A3F7-A72EC620D93F';
+UPDATE [mz_cyzd] SET [zdmc] = 'Ta co dien' WHERE [Id] = N'03A86E87-0010-489B-BA72-81E7E4AA3660';
+UPDATE [mz_cyzd] SET [zdmc] = 'Ta co dien' WHERE [Id] = N'0C05EAD6-F80C-4A8D-B623-5FCC2F695325';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han keo dai' WHERE [Id] = N'0C143548-B6D9-4D3D-9933-41915C0E819D';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han bien chung viem tui mat' WHERE [Id] = N'0D30B42E-3786-4DF8-A670-698B8A93FE5A';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han the thoai hoa' WHERE [Id] = N'0E3462D9-905A-4269-AB85-ACBF0B0F7C9D';
+UPDATE [mz_cyzd] SET [zdmc] = 'Viem than kinh so nao' WHERE [Id] = N'1122A61B-C3BA-4B54-8B94-B7D7F67DC174';
+UPDATE [mz_cyzd] SET [zdmc] = 'Nghien rang' WHERE [Id] = N'18105AF3-3176-45A0-A841-BA15B3A08C95';
+UPDATE [mz_cyzd] SET [zdmc] = 'Rang doi' WHERE [Id] = N'2561F62C-3E63-4160-878C-BA905C84CE0A';
+UPDATE [mz_cyzd] SET [zdmc] = 'Ta, do phay rung O1' WHERE [Id] = N'2FA7610A-A48B-47B5-8B98-36AF50C8C87A';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han tai phat' WHERE [Id] = N'33A9FD17-4423-4A73-8593-E325243B45D7';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han bien chung thung ruot' WHERE [Id] = N'35BD5098-0897-49EC-845D-3324444790D1';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han tai phat' WHERE [Id] = N'5F5C4908-0BC1-4568-A14B-58589D676D42';
+UPDATE [mz_cyzd] SET [zdmc] = 'U lanh da dau' WHERE [Id] = N'65D8ABDC-398A-4A0C-A349-3B4A3C5F793D';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han the nhe' WHERE [Id] = N'73D81951-8652-4292-AC78-F6D8D2419452';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han' WHERE [Id] = N'780DFD38-010D-4770-93DE-D0F8843C1507';
+UPDATE [mz_cyzd] SET [zdmc] = 'Ta, do phay rung O1' WHERE [Id] = N'881EEDC1-B985-4528-8DEA-5BE259EAC452';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han keo dai' WHERE [Id] = N'8D56192C-6A82-4B7D-9910-86989BD5DF99';
+UPDATE [mz_cyzd] SET [zdmc] = 'Lao nuou' WHERE [Id] = N'960826ED-007A-4394-8D6B-A708EA0C4B62';
+UPDATE [mz_cyzd] SET [zdmc] = 'Ta sinh hoc El Tor' WHERE [Id] = N'99AD209A-4459-48E4-B491-2D7E90CF932F';
+UPDATE [mz_cyzd] SET [zdmc] = 'Viem gan do thuong han' WHERE [Id] = N'A551DA83-7D5F-42E0-B8BC-859BB5266CD8';
+UPDATE [mz_cyzd] SET [zdmc] = 'Viem khop do Salmonella' WHERE [Id] = N'BA278FC6-11AC-42A5-85BC-8AAC7DEF0113';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han bien chung viem mang nao' WHERE [Id] = N'C3F55590-D9AC-477B-818F-3C46BCC33338';
+UPDATE [mz_cyzd] SET [zdmc] = 'Thuong han' WHERE [Id] = N'F41C8F1A-13B1-4615-B238-0BD51862A090';
